@@ -20,15 +20,27 @@ RelocationTransactionSlot *relocation_transaction_slot(RelocationTransaction *tr
         return NULL;
     }
     if (slash == parent) { slash[1] = 0; } else { *slash = 0; }
-    char *directory = source_arena_join(&transaction->arena,parent,strcmp(parent,"/") == 0 ? "" : "/",".ama-relocation-XXXXXX");
+    bool reserved = transaction->intent_ready;
+    const char *directory = reserved ? relocation_transaction_slot_name(transaction,parent)
+        : source_arena_join(&transaction->arena,parent,strcmp(parent,"/") == 0 ? "" : "/",".ama-relocation-XXXXXX");
     if (directory == NULL) {
-        relocation_transaction_fail(transaction,RELOCATION_OUT_OF_MEMORY,"Relocation slot path allocation failed",target);
+        if (transaction->status == RELOCATION_OK) { relocation_transaction_fail(transaction,RELOCATION_OUT_OF_MEMORY,"Relocation slot path allocation failed",target); }
         return NULL;
     }
     *slot = (RelocationTransactionSlot){.next=transaction->slots,.directory=directory,.parent=parent};
     transaction->slots = slot;
+    if (reserved) {
+        slot->prepared = source_arena_join(&transaction->arena,directory,"/","prepared");
+        slot->backup = source_arena_join(&transaction->arena,directory,"/","original");
+        if (slot->prepared == NULL || slot->backup == NULL) {
+            relocation_transaction_fail(transaction,RELOCATION_OUT_OF_MEMORY,"Relocation slot child allocation failed",directory);
+            return NULL;
+        }
+        if (!relocation_transaction_reserve(transaction,slot)) { return NULL; }
+    }
     if (!relocation_transaction_permit(transaction,RELOCATION_IO_TEMPORARY,directory)) { return NULL; }
-    if (mkdtemp(directory) == NULL) {
+    bool created = reserved ? mkdir(directory,0700) == 0 : mkdtemp((char *)directory) != NULL;
+    if (!created) {
         relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"A private relocation slot could not be created",directory);
         return NULL;
     }
@@ -37,6 +49,8 @@ RelocationTransactionSlot *relocation_transaction_slot(RelocationTransaction *tr
         relocation_transaction_fail(transaction,RELOCATION_IO_ERROR,"A private relocation slot identity could not be read",directory);
         return NULL;
     }
+    slot->acknowledged = true;
+    if (reserved) { return relocation_transaction_own(transaction,slot) ? slot : NULL; }
     slot->prepared = source_arena_join(&transaction->arena,directory,"/","prepared");
     slot->backup = source_arena_join(&transaction->arena,directory,"/","original");
     if (slot->prepared == NULL || slot->backup == NULL) {

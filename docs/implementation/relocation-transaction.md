@@ -9,10 +9,8 @@ and restores them after ordinary precommit failure, under
 It never runs Ama, native constructors, embedded flags or a linker.
 
 This component implements synchronous application and in-process inverse cleanup.
-It writes the prepared inventory and commit decision, but automatic interruption
-replay, completed recovery reports and the full crash acceptance matrix belong to
-T114. The command/client boundary remains T115. A successful source move is not a
-claim that those later product features are already accepted.
+T114 adds [persistent preparation, independent recovery and owned reports](relocation-recovery.md),
+including terminal outcome receipts. The command/client boundary remains T115.
 
 ## Authority and ownership
 
@@ -62,9 +60,10 @@ source namespaces under the ordinary discovery rules.
 ## Prepare inverses before publication
 
 Each action owns an exclusively created sibling slot on its target filesystem.
-The slot has `prepared` and `original` child locations. Ownership is linked before
-creation and recorded immediately after success, so an allocation failure cannot
-lose an already created private directory. The recovery slot is created first.
+The slot has `prepared` and `original` child locations. Ownership is linked before creation. T114 records each later slot name before
+`mkdir` and its physical identity before copying data, so interruption and allocation
+failure cannot lose a nonempty private copy. The recovery slot is created first;
+its complete intent scope precedes other slots.
 
 The destination is an independent copy of the complete selected physical inventory.
 Directory parents precede children, following T110's breadth-first inventory.
@@ -185,8 +184,9 @@ move on one filesystem and between actual different device IDs for the workspace
 and `/tmp`, then reloads the final roots with the ordinary compiler frontend. It checks
 outside importer/configuration changes, opaque bytes/C comments, empty multiword
 directories, cyclic links, inside/outside output retirement and stale-plan refusal.
-All 254 measured application I/O checkpoints are refused individually against fresh
-fixtures. All 1280 measured application allocation ordinals are failed individually.
+Every measured application I/O checkpoint and allocation ordinal is refused
+individually against fresh fixtures. T113 originally measured 254/1280; T114 adds
+persistent preparation/reporting and the tests measure the expanded traces.
 Precommit paths/bytes/identities/modes restore; postcommit cleanup preserves the new
 project and receipt. A second persistent inverse failure retains saved originals and
 both causes. A controlled later inverse completes without rewriting text again.

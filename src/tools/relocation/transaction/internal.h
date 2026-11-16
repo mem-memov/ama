@@ -23,6 +23,7 @@ struct RelocationTransactionSlot {
     const char *backup;
     struct stat metadata;
     bool created;
+    bool acknowledged;
 };
 /** One physical entry of the independently prepared destination tree. */
 typedef struct {
@@ -60,16 +61,30 @@ bool relocation_transaction_invalidated(const RelocationStaging *, const char *)
 RelocationTransactionAction *relocation_transaction_action(RelocationTransaction *, RelocationActionKind, const char *);
 /** Synchronize a verified directory and close its descriptor once. */
 bool relocation_transaction_sync(RelocationTransaction *, const char *);
+/** Persist the preparation scope before any non-journal slot or copied data exists. */
+bool relocation_transaction_intent(RelocationTransaction *);
+/** Reserve one exact slot name durably before directory creation. */
+bool relocation_transaction_reserve(RelocationTransaction *, const RelocationTransactionSlot *);
+/** Record the newly created slot identity durably before any data is copied into it. */
+bool relocation_transaction_own(RelocationTransaction *, const RelocationTransactionSlot *);
+/** Mark the full prepared plan durable before publication may begin. */
+bool relocation_transaction_ready(RelocationTransaction *);
+/** Persist preparation abort after all registered private copies retire. */
+bool relocation_transaction_abandoned(RelocationTransaction *);
 /** Persist the complete prepared action/path inventory before any source mutation. */
 bool relocation_transaction_journal(RelocationTransaction *);
 /** Flush published parent entries and commit the journal; failed provisional records are durably retracted before rollback. */
 bool relocation_transaction_decide(RelocationTransaction *);
+/** Persist the completed commit/rollback outcome after all non-receipt private slots retire. */
+bool relocation_transaction_finish(RelocationTransaction *);
 /** Write all bytes to an owned descriptor, checking short writes and interruption exactly. */
 bool relocation_transaction_write(RelocationTransaction *, int, const char *, const unsigned char *, size_t);
 /** Apply every prepared forward action, recording inverse intent before each rename. */
 bool relocation_transaction_publish(RelocationTransaction *);
 /** Restore every attempted action in reverse order, preserving failed originals and primary diagnostics. */
 bool relocation_transaction_rollback(RelocationTransaction *);
+/** Synchronize restored public parents before private copies retire; actions with no attempted mutation need no flush. */
+bool relocation_transaction_restored(RelocationTransaction *);
 /** Probe a path as absent, expected identity, other identity, or failed inspection. */
 typedef enum { RELOCATION_PATH_ABSENT, RELOCATION_PATH_EXPECTED, RELOCATION_PATH_OTHER, RELOCATION_PATH_ERROR } RelocationPathState;
 RelocationPathState relocation_transaction_probe(RelocationTransaction *, const char *, const struct stat *);
@@ -81,6 +96,8 @@ bool relocation_transaction_remove(RelocationTransaction *, const char *);
 bool relocation_transaction_cleanup(RelocationTransaction *);
 /** Create and retain one private sibling slot without replacing an existing path. */
 RelocationTransactionSlot *relocation_transaction_slot(RelocationTransaction *, const char *);
+/** Choose an absent private sibling name bound to this journal identity and reserve its ordinal exactly. */
+const char *relocation_transaction_slot_name(RelocationTransaction *, const char *);
 /** Atomically rename into an absent target; supported Linux filesystems must implement no-replace rename. */
 bool relocation_transaction_rename(RelocationTransaction *, RelocationIOOperation, const char *, const char *);
 /** Write/copy one exact file into an absent private path and preserve its captured attributes. */

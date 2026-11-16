@@ -2588,10 +2588,30 @@ Contracts: [tools](spec/implementation/tools-and-conformance.md),
   and memory checks; all four transaction leaves under ASan+UBSan; standalone
   headers, complete per-file coverage and reproducible Doxygen. See
   `docs/implementation/relocation-transaction.md`.
-- [ ] **T114 — Implement relocation recovery and reporting.** Needs: T113.
+- [x] **T114 — Implement relocation recovery and reporting.** Needs: T113.
   Persist commit/rollback state and recover idempotently after interruption. Test
   incomplete rollback retains recovery data and reports affected paths; never
   report success for a partly applied move or rewrite text twice.
+  Completed: independent owned scope/settings/identity/file reports and strict
+  framed preparation/plan journals survive compiler/executor destruction. Durable
+  slot reservations precede creation, identity acknowledgements precede copied
+  data, and READY precedes publication. Validated uncommitted inverses restore
+  originals; committed recovery acknowledges its decision before retiring backups.
+  Restored/retired parents synchronize before terminal receipts; repeated terminal
+  recovery acknowledges the receipt without touching later user edits. Conflicts
+  retain both states and diagnostics; no source rewrite is executed during recovery.
+  Evidence: strict compiler/full suite, followed by final strict transaction/recovery
+  reruns after the receipt/retirement synchronization guard; real same/different
+  filesystem recovery with settings, invalidations, opaque binary bytes, cyclic
+  links and drafts; all 529 writer plus 49/33 recovery process-interruption points;
+  pending/terminal I/O refusals 49/33/8/8 and allocation refusals 258/252/162/162;
+  expanded application 1066 I/O and 1324 allocation refusals, exact bytes/identities,
+  live allocations and descriptors; report, all four recovery and all four
+  transaction leaves under ASan/UBSan. All 2240 maintained inputs have named
+  coverage without debt, standalone headers and local prose links pass, and two
+  complete Doxygen generations are byte-identical (6424 documented interfaces).
+  User-facing tool workflows remain T115. See
+  `docs/implementation/relocation-recovery.md`.
 - [ ] **T115 — Accept user-facing tools through real projects.** Needs: T108,
   T109, T114. Run editor/rename/debugger/relocation workflows against complete
   projects and regenerate verified output afterward. Document exact scope,

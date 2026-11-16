@@ -57,5 +57,5 @@ bool relocation_transaction_prepare(RelocationTransaction *transaction) {
     transaction->recovery_slot = relocation_transaction_slot(transaction,journal_target);
     if (transaction->recovery_slot == NULL) { return false; }
     transaction->journal = transaction->recovery_slot->directory;
-    return endpoints(transaction) && external_files(transaction) && outputs(transaction);
+    return relocation_transaction_intent(transaction) && endpoints(transaction) && external_files(transaction) && outputs(transaction);
 }

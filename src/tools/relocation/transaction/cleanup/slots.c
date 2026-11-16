@@ -27,9 +27,14 @@ bool relocation_transaction_cleanup(RelocationTransaction *transaction) {
     for (RelocationTransactionSlot *owned = transaction->slots; owned != NULL; owned = owned->next) {
         if (owned != transaction->recovery_slot && !slot(transaction,owned)) { complete = false; }
     }
+    /* Flush even already-absent slots: an earlier executor may have removed the
+     * directory but failed before its parent deletion became durable. */
+    for (const RelocationTransactionSlot *owned = transaction->slots; owned != NULL; owned = owned->next) {
+        if (owned != transaction->recovery_slot && !relocation_transaction_sync(transaction,owned->parent)) { complete = false; }
+    }
     /* A committed receipt remains after backup cleanup, so an acknowledgement
      * failure or later recovery never has to infer the completed outcome. */
-    if (complete && !transaction->committed && transaction->recovery_slot != NULL) {
+    if (complete && !transaction->committed && !transaction->retain_receipt && !transaction->intent_ready && transaction->recovery_slot != NULL) {
         complete = slot(transaction,transaction->recovery_slot);
     }
     return complete;

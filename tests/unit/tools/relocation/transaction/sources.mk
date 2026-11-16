@@ -6,4 +6,4 @@ SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/ide
 SOURCES += compiler/frontend.c compiler/inputs.c compiler/load.c compiler/authoring/check.c
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/library))
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/native/toolchain))
-SOURCES += $(foreach component,preview paths roots discovery references staging transaction,$(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/tools/relocation/$(component))))
+SOURCES += $(foreach component,preview paths roots discovery references staging report transaction,$(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/tools/relocation/$(component))))

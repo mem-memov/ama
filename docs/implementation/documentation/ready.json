@@ -105293,7 +105293,7 @@
     ]
   },
   "src/tools/relocation/relocation.h": {
-    "contract": "docs/implementation/relocation-preview.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
     "tests": [
       {
@@ -105485,6 +105485,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ],
     "standalone_header_command": [
@@ -106566,7 +106621,7 @@
     ]
   },
   "tests/unit/tools/relocation/Makefile": {
-    "contract": "docs/implementation/relocation-preview.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Prepare exact read-only physical/root/source relocation discovery while preserving original files and failed ownership prefixes.",
     "tests": [
       {
@@ -106758,6 +106813,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
@@ -109054,7 +109164,7 @@
     ]
   },
   "src/tools/relocation/transaction/apply.c": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -109126,11 +109236,66 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
   "src/tools/relocation/transaction/transaction.h": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -109202,6 +109367,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ],
     "standalone_header_command": [
@@ -109221,7 +109441,7 @@
     ]
   },
   "src/tools/relocation/transaction/internal.h": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -109293,6 +109513,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ],
     "standalone_header_command": [
@@ -109312,7 +109587,7 @@
     ]
   },
   "src/tools/relocation/transaction/lifetime.c": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -109384,11 +109659,66 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
   "src/tools/relocation/transaction/journal/prepare.c": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -109460,6 +109790,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
@@ -109768,7 +110153,7 @@
     ]
   },
   "src/tools/relocation/transaction/preparation/slot.c": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -109840,6 +110225,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
@@ -109920,7 +110360,7 @@
     ]
   },
   "src/tools/relocation/transaction/preparation/build.c": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -109992,6 +110432,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
@@ -110300,7 +110795,7 @@
     ]
   },
   "src/tools/relocation/transaction/cleanup/slots.c": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -110372,6 +110867,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
@@ -111516,7 +112066,7 @@
     ]
   },
   "tests/unit/tools/relocation/transaction/sources.mk": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -111588,6 +112138,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
@@ -111668,7 +112273,7 @@
     ]
   },
   "tests/unit/tools/relocation/transaction/decision/main.c": {
-    "contract": "docs/implementation/relocation-transaction.md",
+    "contract": "docs/implementation/relocation-recovery.md",
     "purpose": "Apply a completely validated relocation under exclusive directory leases, retaining originals and inverse state through commit or failed cleanup.",
     "tests": [
       {
@@ -111740,6 +112345,61 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   },
@@ -112728,6 +113388,2408 @@
         "case": "it_unwinds_every_application_allocation_without_losing_originals",
         "command": "make -C tests/unit/tools/relocation/transaction/application",
         "source": "tests/unit/tools/relocation/transaction/application/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/decode.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Decode exact framed relocation authority, rejecting malformed or incomplete prepared records before filesystem effects.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/internal.h": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/recovery/lease.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/lifetime.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/load.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/preparation.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/read/actions.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Decode exact framed relocation authority, rejecting malformed or incomplete prepared records before filesystem effects.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/read/integers.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Decode exact framed relocation authority, rejecting malformed or incomplete prepared records before filesystem effects.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/read/intent.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Decode exact framed relocation authority, rejecting malformed or incomplete prepared records before filesystem effects.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/read/metadata.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Decode exact framed relocation authority, rejecting malformed or incomplete prepared records before filesystem effects.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/read/report.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Decode exact framed relocation authority, rejecting malformed or incomplete prepared records before filesystem effects.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/read/text.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Decode exact framed relocation authority, rejecting malformed or incomplete prepared records before filesystem effects.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/recovery.h": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/recovery/retract.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/run.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/validation/intent.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/validation/paths.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/validation/physical.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/validation/replacement.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/validation/shape.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/validation/tree.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Validate retained ownership and replay the persisted relocation outcome without applying text edits again.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/report/build.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Own the complete relocation scope and explicit file roles independently of compiler snapshots.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/report/files.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Own the complete relocation scope and explicit file roles independently of compiler snapshots.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/report/internal.h": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Own the complete relocation scope and explicit file roles independently of compiler snapshots.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/report/lifetime.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Own the complete relocation scope and explicit file roles independently of compiler snapshots.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/report/modules.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Own the complete relocation scope and explicit file roles independently of compiler snapshots.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/report/report.h": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Own the complete relocation scope and explicit file roles independently of compiler snapshots.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/report/settings.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Own the complete relocation scope and explicit file roles independently of compiler snapshots.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/journal/actions.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/journal/finish.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/journal/format.h": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/tools/relocation/transaction/journal/intent.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/journal/metadata.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/journal/report.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/journal/scalars.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/preparation/reservation.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/transaction/publication/synchronize.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Persist preparation, inverse and terminal authority before dependent effects and retain idempotent outcome receipts.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/Makefile": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/common.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/decoding/Makefile": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_canonical_scalar_frames_exactly",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/decoding/main.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_rejects_every_truncated_inventory_prefix",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_decode_allocation",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_only_exact_decision_and_terminal_tails",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_distinguishes_binary_payloads_and_metadata_ranges",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      },
+      {
+        "case": "it_decodes_canonical_scalar_frames_exactly",
+        "command": "make -C tests/unit/tools/relocation/recovery/decoding",
+        "source": "tests/unit/tools/relocation/recovery/decoding/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/failures/Makefile": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/failures/main.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/interruption/Makefile": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/interruption/main.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/published/common.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/replay/Makefile": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/recovery/replay/main.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Compose real writer and recovery owners to verify exact outcome, interrupted prefixes and retained originals.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/report/Makefile": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Exercise independent relocation report ownership and allocation failure cleanup.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/report/common.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Exercise independent relocation report ownership and allocation failure cleanup.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/report/main.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Exercise independent relocation report ownership and allocation failure cleanup.",
+    "tests": [
+      {
+        "case": "it_owns_complete_report_scope_after_the_plan_expires",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      },
+      {
+        "case": "it_releases_every_failed_report_copy_prefix",
+        "command": "make -C tests/unit/tools/relocation/report",
+        "source": "tests/unit/tools/relocation/report/main.c"
+      }
+    ]
+  },
+  "src/tools/relocation/recovery/acknowledge.c": {
+    "contract": "docs/implementation/relocation-recovery.md",
+    "purpose": "Synchronize read commit and terminal authority before deleting originals or acknowledging historical completion.",
+    "tests": [
+      {
+        "case": "it_recovers_each_decision_without_rewriting_again",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_modified_published_bytes_until_explicit_repair",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_unrecorded_tree_children_before_any_inverse",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_preserves_later_public_edits_during_committed_cleanup",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_refuses_recovery_while_the_writer_holds_exclusive_access",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_retains_nonempty_unacknowledged_preparation_reservations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_cross_filesystem_assets_settings_and_invalidations",
+        "command": "make -C tests/unit/tools/relocation/recovery/replay",
+        "source": "tests/unit/tools/relocation/recovery/replay/main.c"
+      },
+      {
+        "case": "it_recovers_every_registered_process_interruption",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_filesystem_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_after_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/relocation/recovery/failures",
+        "source": "tests/unit/tools/relocation/recovery/failures/main.c"
+      },
+      {
+        "case": "it_recovers_every_interrupted_recovery_process",
+        "command": "make -C tests/unit/tools/relocation/recovery/interruption",
+        "source": "tests/unit/tools/relocation/recovery/interruption/main.c"
       }
     ]
   }

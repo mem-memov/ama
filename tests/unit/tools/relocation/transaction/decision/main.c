@@ -27,7 +27,7 @@ static bool permit(void *context, RelocationIOOperation operation, const char *p
     }
     return true;
 }
-/** Completed durable retraction permits ordinary inverse restoration and removes all temporary recovery data. */
+/** Completed durable retraction permits inverse restoration and retains a terminal rollback receipt. */
 static void it_retracts_a_failed_commit_before_restoring_sources(void) {
     prepare("retracted-decision");
     size_t baseline = descriptors();
@@ -40,7 +40,7 @@ static void it_retracts_a_failed_commit_before_restoring_sources(void) {
     assert(!transaction.committed && !transaction.decision_pending && transaction.state == RELOCATION_TRANSACTION_ROLLED_BACK);
     assert(transaction.error.message != NULL);
     struct stat metadata;
-    assert(lstat(transaction.journal,&metadata) != 0 && errno == ENOENT);
+    assert(lstat(transaction.journal,&metadata) == 0 && S_ISDIR(metadata.st_mode));
     relocation_transaction_destroy(&transaction);
     assert(descriptors() == baseline);
     done();

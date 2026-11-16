@@ -6,6 +6,7 @@
 #ifndef AMA_RELOCATION_TRANSACTION_H
 #define AMA_RELOCATION_TRANSACTION_H
 #include "../staging/staging.h"
+#include "../report/report.h"
 
 /** Observable filesystem phase for deterministic fault injection; callbacks never execute Ama or reenter application. */
 typedef enum {
@@ -14,7 +15,7 @@ typedef enum {
     RELOCATION_IO_CLOSE, RELOCATION_IO_MODE, RELOCATION_IO_OWNER, RELOCATION_IO_TIMES, RELOCATION_IO_VERIFY,
     RELOCATION_IO_LINK, RELOCATION_IO_SYNC, RELOCATION_IO_JOURNAL,
     RELOCATION_IO_BACKUP, RELOCATION_IO_PUBLISH, RELOCATION_IO_RESTORE,
-    RELOCATION_IO_REMOVE
+    RELOCATION_IO_REMOVE, RELOCATION_IO_READ
 } RelocationIOOperation;
 /** Optional synchronous fault adapter; false refuses the named operation before its filesystem effect.
  * Close checkpoints occur after the descriptor's sole actual close attempt so refusal
@@ -55,6 +56,7 @@ typedef struct RelocationTransactionAction RelocationTransactionAction;
 typedef struct {
     const RelocationStaging *staging;
     SourceArena arena;
+    RelocationReport report;
     RelocationIO io;
     RelocationDirectoryLease *leases;
     RelocationTransactionSlot *slots;
@@ -63,13 +65,18 @@ typedef struct {
     RelocationTransactionAction *last;
     const char *journal;
     const char *journal_record;
+    const char *intent_record;
+    size_t slot_ordinal;
     off_t journal_length;
+    off_t intent_length;
     const char *recovery_directory;
     RelocationStatus status;
     Diagnostic error;
     Diagnostic cleanup_error;
     RelocationTransactionState state;
     bool attempted;
+    bool retain_receipt;
+    bool intent_ready;
     bool committed;
     bool decision_pending;
     bool cleaning;

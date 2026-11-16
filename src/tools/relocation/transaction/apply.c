@@ -8,8 +8,12 @@
 /** Precommit failures restore every attempted change; an uncertain commit decision retains all copies for explicit recovery. */
 static bool abort_transaction(RelocationTransaction *transaction) {
     transaction->cleaning = true;
-    bool restored = !transaction->decision_pending && relocation_transaction_rollback(transaction);
+    bool restored = !transaction->decision_pending && relocation_transaction_rollback(transaction)
+        && relocation_transaction_restored(transaction);
     bool cleaned = restored && relocation_transaction_cleanup(transaction);
+    if (cleaned) {
+        cleaned = transaction->retain_receipt ? relocation_transaction_finish(transaction) : relocation_transaction_abandoned(transaction);
+    }
     if (cleaned) { transaction->state = RELOCATION_TRANSACTION_ROLLED_BACK; }
     else {
         transaction->state = RELOCATION_TRANSACTION_INCOMPLETE;
@@ -29,6 +33,10 @@ bool relocation_transaction_apply(RelocationTransaction *transaction, const Relo
     transaction->staging = request->staging;
     transaction->io = request->io;
     transaction->state = RELOCATION_TRANSACTION_PREPARING;
+    if (!relocation_report_build(&transaction->report,request->staging)) {
+        relocation_transaction_fail(transaction,transaction->report.status,"Relocation report ownership could not be prepared",NULL);
+        return abort_transaction(transaction);
+    }
     if (!relocation_transaction_lease(transaction,request->recovery_directory)
         || !relocation_transaction_revalidate(transaction) || !relocation_transaction_prepare(transaction)
         || !relocation_transaction_revalidate(transaction) || !relocation_transaction_journal(transaction)) {
@@ -40,7 +48,7 @@ bool relocation_transaction_apply(RelocationTransaction *transaction, const Relo
         return abort_transaction(transaction);
     }
     transaction->cleaning = true;
-    bool complete = relocation_transaction_cleanup(transaction);
+    bool complete = relocation_transaction_cleanup(transaction) && relocation_transaction_finish(transaction);
     transaction->cleaning = false;
     if (!complete) {
         transaction->state = RELOCATION_TRANSACTION_INCOMPLETE;

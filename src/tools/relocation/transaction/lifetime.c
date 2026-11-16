@@ -8,10 +8,12 @@
 void relocation_transaction_init(RelocationTransaction *transaction, SourceAllocator allocator) {
     *transaction = (RelocationTransaction){0};
     source_arena_init(&transaction->arena,allocator);
+    relocation_report_init(&transaction->report,allocator);
 }
 /** Destruction never interprets an incomplete state as permission to delete saved originals. */
 void relocation_transaction_destroy(RelocationTransaction *transaction) {
     relocation_transaction_release(transaction);
+    relocation_report_destroy(&transaction->report);
     source_arena_destroy(&transaction->arena);
     *transaction = (RelocationTransaction){0};
 }
