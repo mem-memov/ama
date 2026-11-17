@@ -52,9 +52,10 @@ The implementation MUST provide:
     library artifacts, and documented host/native-wrapper examples under
     [EMBED-01 through EMBED-08](c-library.md).
 12. Static module specialization under
-    [TPL-01 through TPL-10](../language/templates.md), after the linked source and
-    analysis design gates are resolved, with explicit implementation limitations
-    and evidence rather than a claim based on examples alone.
+    [TPL-01 through TPL-10](../language/templates.md), with explicit implementation
+    boundaries and evidence rather than a claim based on examples alone. The
+    constructor/signature source forms are defined; a case depending on a remaining
+    linked design decision awaits that decision before implementation.
 
 The compiler MAY reuse independently tested source-management, hashing, layout,
 and ownership components from the existing project. Reuse must not preserve
@@ -411,9 +412,11 @@ ownership effects, and source diagnostics are covered. At minimum:
 
 ### Static module templates
 
-These scenarios cover the new design. Cases depending on AMB-003 through AMB-008
-must be finalized after their explicit decisions; they are not implemented or
-covered merely because the pre-template matrix passed.
+These scenarios cover the new design, including the source forms agreed in
+[AMB-003](../../AMBIGUITIES.md#amb-003). Cases depending on AMB-004 through
+AMB-008 must be finalized after their explicit decisions. Neither the settled
+forms nor the pending cases are implemented or covered merely because the
+pre-template matrix passed.
 
 | Area | Required acceptance evidence |
 |---|---|
@@ -423,8 +426,8 @@ covered merely because the pre-template matrix passed.
 | Nested field specialization | TPL-04: two- and three-level explicit calls propagate symbolic outer types; independent field declarations can differ; one field and all instances of one concrete owner type keep one specialization; ordinary owners gain no implicit parameters; persistent fields in branches are concrete before creation |
 | Specialization identity | TPL-05: repeated equivalent bindings and direct-versus-staged applications share one nominal identity; distinct origins/root kinds/bindings remain distinct; unused parameters are retained; identical specializations keep separate object state, results, references and continuations; shared constants initialize once per specialization/context |
 | Concrete operation checks | TPL-06: complete ordinary default/copy/literal/condition/index/lifecycle/ownership checks after substitution; supplied inputs do not excuse statically invalid defaults or execute unused defaults; skipped runtime branches do not hide errors; ordinary predicates/comparators require matching interfaces; no implicit conversion or private-field access |
-| Template parameter signatures | TPL-07: after AMB-003 resolution, distinguish type/constructor categories, expected named signatures and captured bindings; unknown/duplicate/wrong-category/name/signature cases fail; extracting a constructor from a concrete value never guesses which parameters reopen |
-| Partial composition | TPL-08: after AMB-003 resolution, nested constructor forwarding and partial bindings compose structurally without capture; binding order/routes normalize; residual formals differ from captured dependencies; open constructors do not become runtime objects; ordinary argument omission retains default semantics |
+| Template parameter signatures | TPL-07: input application patterns and explicit static constructor formals distinguish Type/Template categories and recursive exact named signatures; root runtime-input patterns cover every residual explicitly and reject omissions, while nested Template arguments may remain partial; new bare right-hand placeholders introduce Type, and Template right-hand parameters require a declared signature; nominal input decomposition reopens exactly the listed formals and fixes all others while preserving the complete runtime input type; nested inversion preserves every existing actual residual and rejects reopening an already open slot; repeated patterns agree on residual signature and captures; static formals consume no runtime input positions; unknown/duplicate/wrong-category/name/signature cases fail; full atomic names bind without basename lookup, so `...dictionary.key type` does not name an actual `...key type` formal; canonical declaration order never enables positional static bindings |
+| Partial composition | TPL-08: declaration type bindings precede value initializers; nested named applications forward residual constructors without samples or runtime slots; direct/staged/reordered bindings normalize identically; lexical fields receive independent inference variables for omitted residuals, static argument expressions retain residual signatures, and every runtime type closes before layout; different opened arguments preserve fixed captures and independent state; residual formals differ from captured dependencies; rebinding/unknown-name/category/capture errors fail; ordinary argument omission retains default semantics |
 | List implementation boundary | TPL-09: generic wrappers and algorithms retain owned/reference semantics; empty unused language lists retain their explicitly known element type; any agreed implementation bridge preserves intrinsic methods/results, busy/preflight/refusal, exact membership/cursor/yield/copy behavior and LIST complexity; no hidden native handles or circular foundation |
 | Specialization analysis and diagnostics | TPL-10: scoped constraints and exact canonical keys precede layout; conflicts/missing evidence report definition and application chain; occurs checks distinguish infinite terms from nominal reference cycles; after AMB-005 resolution, recursive cases terminate under the exact agreed rule with no arbitrary depth/time/cache-order limit |
 

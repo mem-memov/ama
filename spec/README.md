@@ -16,11 +16,13 @@ If you are learning the language, read [the introduction](introduction.md), then
 values, and calls before exploring continuations or changing a list during a
 traversal. The examples introduce the model before the detailed rules.
 
-The new [static-template chapter](language/templates.md) records type inference,
-nested specialization and constructor/partial-substitution contracts. Its
-[open questions](../AMBIGUITIES.md#open-template-design-questions) are indexed
-separately so readers need not search the chapters for pending decisions. Template
-implementation and unresolved source forms must not be inferred from this design.
+The [static-template chapter](language/templates.md) explains ordinary-argument
+inference, named constructor signatures, static application and partial
+composition. Constructor patterns and named bindings now have agreed source
+forms; their examples explain how those forms fit together. The remaining
+[open questions](../AMBIGUITIES.md#open-template-design-questions) identify
+specific inference, recursion, list-foundation, native/export and naming
+boundaries. Agreed syntax is not evidence of compiler implementation.
 
 If you are implementing Ama, read the language chapters first. Then use the
 runtime, native-interface, and compiler chapters to see the required realization

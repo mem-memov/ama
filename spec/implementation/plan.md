@@ -180,20 +180,24 @@ rollback, and recovery evidence under TOOL-01 through TOOL-04.
 
 Deliverable: a reproducible build with a conformance report, not merely a working demo.
 
-### Stage 11: Static templates after design closure
+### Stage 11: Static templates with explicit design boundaries
 
 This is a new stage beyond the previously accepted implementation baseline.
-First resolve the [open template decisions](../../AMBIGUITIES.md#open-template-design-questions)
-owned by T158; their presence is not permission to invent a syntax or inference
-fallback. The [template chapter](../language/templates.md) and grammar identify
-the settled contract and pending boundaries. Do not claim existing tests cover
-the new placeholder grammar or specialization semantics.
+T157 records the basic contract and T159 settles named constructor/signature
+patterns and static partial application. The
+[template chapter](../language/templates.md) and grammar define those source
+forms. The [remaining decisions](../../AMBIGUITIES.md#open-template-design-questions)
+owned by T158 gate their affected cases; they do not leave the whole grammar
+unspecified or authorize an inference fallback. Before implementing a selected
+boundary, resolve every open decision on which that boundary depends and plan
+its acceptance. Existing tests do not cover the new template semantics.
 
-After design closure, plan narrow components in prerequisite order: placeholder
-recognition and scoped binding; exact static constraints and canonical identities;
-nested specialization and termination checks; ordinary type/lifecycle checking
-of concrete specializations; specialized layouts/emission and source diagnostics;
-constructor/partial-binding composition; then the agreed native/export boundary.
+Plan narrow components in prerequisite order: placeholder and type-expression
+recognition; scoped kinds and named signatures; exact static constraints,
+constructor-pattern decomposition and canonical partial bindings; nested
+specialization and the agreed termination checks; ordinary type/lifecycle
+checking of concrete specializations; specialized layouts/emission and source
+diagnostics; then the agreed native/export boundary.
 Each component needs its own argument, unit cases and real composition cases.
 Add complete positive/negative nested, partial and erroneous applications before
 making support claims. Update reviewed conformance only with actual evidence.
@@ -206,7 +210,7 @@ of adding placeholders.
 
 Deliverable: documented, tested static specialization with explicit supported
 boundaries and a current acceptance matrix. No compiler implementation is part
-of the specification-only T157 task.
+of the specification-only T157 or T159 tasks.
 
 ## Keep engineering choices separate from language changes
 

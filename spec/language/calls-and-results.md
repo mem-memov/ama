@@ -80,10 +80,13 @@ unrequested results remain stored. Repeated identical inputs still execute the
 body repeatedly. Reactivity and deduplication are application decisions.
 
 For a template target, ordinary typed input bindings also provide compile-time
-type evidence under [TPL-03](templates.md#tpl-03). The selected instance already
-has one fixed concrete specialization before execution. Omission/defaults and
-result transfers retain the semantics here; they do not partially bind a static
-template or choose a new runtime type.
+type evidence under [TPL-03](templates.md#tpl-03), including the explicit
+constructor patterns of [TPL-07](templates.md#tpl-07). Static constructor
+formals have no runtime input position; their named type applications follow
+[TPL-08](templates.md#tpl-08), rather than adding a new ordinary call argument
+form. The selected instance already has one fixed concrete specialization before
+execution. Omission/defaults and result transfers retain the semantics here;
+they do not partially bind a static template or choose a new runtime type.
 
 #### What receiving a result copies
 

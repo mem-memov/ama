@@ -41,12 +41,19 @@ answers three questions in order: what is the name and storage form, which modul
 defines its type, and what are its initial contents?
 
 Write the name and type on separate lines at the same indentation. A type line
-is a concrete module path or a scoped placeholder permitted by
-[TPL-01/TPL-02](templates.md#tpl-01). A path naming a template is specialized
-statically under [TPL-03/TPL-04](templates.md#tpl-03), including when it types a
-nested field. Optional initializer lines are one space deeper. The storage marker
-directly adjoins the name; it never belongs to the type line and never has an
-intervening space.
+starts with a concrete module path or a scoped placeholder permitted by
+[TPL-01/TPL-02](templates.md#tpl-01). Its named static binding block, when present,
+is one space deeper and precedes ordinary initializer lines at that same depth;
+[TPL-07/TPL-08](templates.md#tpl-07) define the type-expression forms and their
+scope. A path naming a template is specialized statically under
+[TPL-03/TPL-04](templates.md#tpl-03), including when it types a nested field.
+The storage marker directly adjoins the name; it never belongs to the type line
+and never has an intervening space.
+
+Static constructor formals in `@<` use TPL-07's separate declaration form.
+They describe compile-time parameters rather than any of the runtime storage
+forms below; named type application does not construct a value or execute a
+module body.
 
 There are two ways to omit an explicit type line. A receiver can introduce a
 persistent field whose type comes from its source or selected result (TYPE-06).

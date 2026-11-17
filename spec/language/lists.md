@@ -848,11 +848,13 @@ items[]
 The compiler knows the exact element type from the declaration even when the
 list has no entries. A parameterized list implementation therefore has type
 information available before any insertion; it need not obtain a sample element
-or wait for the first method call. Connecting that declaration-supplied identity
-to an ordinary template's `@<` parameters is an open design question recorded in
-[AMB-006](../../AMBIGUITIES.md#amb-006). This explanation does not choose a
-binding syntax, introduce a hidden sample value or claim that the bridge has
-been implemented.
+or wait for the first method call. Named static application is defined by
+[TPL-07/TPL-08](templates.md#tpl-07). Choosing the list implementation interface,
+the exact formal receiving that declaration-supplied identity and the primitive
+storage/lifecycle operations remains
+[AMB-006](../../AMBIGUITIES.md#amb-006). This explanation does not select that
+interface, introduce a hidden sample value or claim that the bridge has been
+implemented.
 
 ### Factoring code preserves the list contract
 

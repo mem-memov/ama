@@ -2924,6 +2924,74 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   rules are in [the template chapter](spec/language/templates.md); pending
   decisions are in [the open index](AMBIGUITIES.md#open-template-design-questions).
 
+- [x] **T159 — Specify named type constructors and partial application.**
+  Status: complete (specification/design documentation only). Prerequisite:
+  T157. The user's 2026-11-17 approval and instruction explicitly authorize
+  specification/EBNF changes for the agreed named constructor model and a review
+  of open questions. No compiler implementation or selection of pending
+  additional-evidence, ABI or recursive-generation policies is included.
+  Contract: preserve scoped full parameter names; distinguish Type and Template
+  parameters; specify signatures, ordinary-input decomposition, static named
+  application and forwarding; normalize partial bindings without merging state.
+  Steps: (1) reconcile the agreed source forms with existing TPL rules and record
+  exact scope/kind/inference boundaries; (2) update the canonical chapter and
+  indentation-parameterized EBNF, related cross-references and acceptance cases;
+  (3) resolve AMB-003, narrow related pending questions, and verify navigation,
+  grammar closure/alignment, documentation generation and historical conformance
+  boundaries. Acceptance requires positive/negative and nested/partial examples,
+  independent semantic review, document checks and a task commit. Remaining
+  undecided behavior stays explicitly gated under T158.
+  Step 1 result: reviewed the clean b5fea45 baseline, development standard,
+  existing canonical rules/grammar and the agreed discussion. A static binding
+  selects the exact complete foreign name; canonical parameter order does not
+  enable positional static binding. A Template needs a finite recursively named
+  signature; fresh bare right-hand input placeholders introduce Type, not a
+  category guessed from the first actual. Root input types explicitly cover all
+  residuals, including concrete template-path heads, preventing hidden owner
+  parameters. Body/result fields retain per-declaration inference variables.
+  Step 2 result: expanded [TPL-01 through TPL-10](spec/language/templates.md)
+  without adding duplicate requirements. Added explicit static Template formals,
+  recursive signatures, declaration type expressions and nested named binding
+  blocks to [the EBNF](spec/grammar.md). Static maps precede ordinary initializers;
+  static formals consume no runtime input slots. Definition/application examples
+  show a dictionary family, direct/static application, three-level composition,
+  forwarding with a fixed key, independent field inference, staged-equivalent
+  identities and invalid applications. Exact nominal recovery retains every
+  unselected binding and existing residual, with no constructor search. Updated
+  declaration/call/name/module/list/compiler explanations and acceptance rows.
+  Step 3 result: [AMB-003](AMBIGUITIES.md#amb-003) is resolved with the user's
+  decision/source/authorization. AMB-004 through AMB-008 remain Open under T158;
+  AMB-006 now concerns the concrete list interface and primitives, since general
+  named static application is settled. Three independent read-only reviews
+  found and resolved wording gaps for bare known-Template inputs, concrete-path
+  root coverage, infinite inferred signatures and argument reordering versus
+  changes to a definition's own introduction order. No blocking inconsistency
+  remains in the settled scope. No compiler/native/test implementation was
+  inspected or changed, and grammar examples are design evidence, not execution.
+  Verification from the repository root: `python3 /tmp/ama-t159-doc-check.py`
+  passes against the current maintained Markdown set (203 files, 210 uniquely
+  indexed requirements, 104 closed EBNF nonterminals, definition operators at
+  column 30 and template-example spacing). The checker is a temporary independent
+  audit, not a shipped compiler component. A separate graph check confirms all
+  104 unique productions are reachable from `module-file` or `abi-file`.
+  `git diff --check` passes. `make docs-complete` exits 0 (2335 ready inputs,
+  zero explicit debts). `make docs` exits 0 with Doxygen 1.11.0, Python 3.14.4
+  and markdown-it-py 3.0.0: 1749 maintained file pages, 6703 documented interfaces,
+  411 checked canonical/referenced destinations and 5524 generated pages.
+  `make conformance-check` exits 2 as expected: the specification changed and
+  implementation conformance needs review. No fingerprints were refreshed and
+  no template implementation support is claimed. Current targets remain 210
+  requirements and 118 acceptance rows; old 200/108 evidence stays historical.
+  An initial temporary inventory assertion mixed cell rows with table-separator
+  lines (128 versus 138); the corrected Markdown table audit passes with 118
+  acceptance rows and unchanged inventory. Archive checks confirm unique task
+  IDs T001 through T159, only T158 unfinished, and T001–T157 records unchanged.
+  Final archive/queue checks and Doxygen generation are repeated on these final
+  inputs before the task commit. Functional suites are not rerun for this
+  documentation-only task. Acceptance: named constructors and partial application
+  are specified with scoped, deterministic constraints and examples; the five
+  remaining design questions stay visible and unfinished in TODO.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

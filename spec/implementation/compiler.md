@@ -422,12 +422,22 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | Layout/lexical reader | Indentation, comments, literal boundaries, annotations | Tokens or logical lines |
 | Parser | Syntax recognition independent of declared-name lookup | AST with spans |
 | Namespace resolver | Module loading, qualified identities, name binding | Resolved symbols |
-| Static specializer | Scoped template constraints, canonical bindings and closed specialization checks under [TPL-01 through TPL-10](../language/templates.md) | Specialized resolved type/program structure; unresolved design gates remain blocked |
+| Static specializer | Scoped kinds/signatures, named applications, nominal constructor-pattern constraints and canonical bindings under [TPL-01 through TPL-10](../language/templates.md) | Closed specialized type/program structure before layout; individually unresolved design cases remain gated |
 | Type/lifecycle checker | Types, storage kinds, copy/default contracts | Validated typed nodes |
 | Control-flow lowering | Entry, calls, refusal branches, loops, yield positions | Typed control-flow IR |
 | Storage planner | Owned layout, stable-address pool blocks, instance access, service metadata | Explicit storage plan |
 | C backend | Types, includes, native bodies, labels, dispatch, mappings | Project C artifacts |
 | Toolchain verifier | Required inlining and target constraints | Conformance result |
+
+**Explanation.** Static constructor formals and partial applications belong to
+the resolved type structure, not instance storage or runtime argument frames.
+[TPL-07](../language/templates.md#tpl-07) determines the exact nominal
+decomposition of an input pattern; its runtime field still has the complete
+applied type, not merely the recovered constructor head. The nested bindings in
+[TPL-08](../language/templates.md#tpl-08) can pass a residual constructor without
+creating a sample object. Parsing those trees does not require a successful type
+lookup, and their agreed grammar does not resolve the separately indexed
+inference, recursion, list-foundation or native/export questions.
 
 ### Parse before resolving names
 

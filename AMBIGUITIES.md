@@ -9,19 +9,23 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 ## Template decisions still open
 
 The user explicitly requested this visible list on 2026-11-17 while authorizing
-the template specification. T157 records the agreed contracts and these gaps;
-[T158](TODO.md#current-tasks) owns their resolution before implementation. The
-examples below expose questions, not additional accepted Ama syntax. No answer
-is inferred from the request to document an open question.
+the template specification. T157 records the initial contracts and gaps;
+T159 records the user's subsequent resolution of [AMB-003](#amb-003).
+[T158](TODO.md#current-tasks) owns the remaining decisions before their affected
+implementation. Examples in open entries expose questions, not additional
+accepted Ama syntax. No answer is inferred from a request to document a question.
 
 | Issue | Decision still needed | Work affected |
 |---|---|---|
-| [AMB-003](#amb-003) | How to declare template categories/signatures and explicitly bind/pass residual constructors | Higher-order source forms and their EBNF |
 | [AMB-004](#amb-004) | Which type-evidence sources beyond ordinary input arguments participate; dependent constants | Complete inference and constant access |
 | [AMB-005](#amb-005) | Which recursive specializations are permitted and how analysis terminates exactly | Recursive template expansion |
-| [AMB-006](#amb-006) | How a language-list declaration supplies its static element type to an ordinary implementation template | Reimplementation of the list foundation |
+| [AMB-006](#amb-006) | Which list implementation/interface the compiler binds and which typed storage/lifecycle primitives support it | Reimplementation of the list foundation |
 | [AMB-007](#amb-007) | Native-template layout/companions and explicit selection of exported specializations | `@C` templates and C library roots |
 | [AMB-008](#amb-008) | Exact hyphen spelling/profile and its scope | Expanding accepted names beyond current SRC-03 |
+
+The constructor/signature and partial-binding notation is settled by
+[AMB-003](#amb-003); it is preserved below as a resolved decision, not an open
+grammar gate. These decisions do not themselves establish implementation support.
 
 When such a question arises, stop the affected task before implementing a guessed
 interpretation. Read-only investigation may continue to make the question precise.
@@ -208,14 +212,16 @@ Each entry must contain:
 
 ## AMB-003 — Source representation of template constructors and partial bindings
 
-- **Status:** Open.
-- **Task:** T158. T157 documents the abstract contract; implementation of passed
-  constructors and partial applications waits for this decision.
+- **Status:** Resolved.
+- **Task:** T159 records the agreed source forms in the specification and EBNF.
+  T157's abstract contract remains its prerequisite; T158 owns the other design
+  questions and does not authorize compiler implementation.
 - **Requirements:** [TPL-07](spec/language/templates.md#tpl-07),
   [TPL-08](spec/language/templates.md#tpl-08), and the
   [type grammar](spec/grammar.md#names-paths-and-storage-forms). Ordinary `...name`
-  introduces a type parameter through `@<`; its compound components are atomic.
-  No agreed source form declares a template-valued category or named signature.
+  introduces a type parameter through the permitted `@<` forms; its compound
+  components are atomic. TPL-07/TPL-08 now define constructor signatures, input
+  patterns and named static applications.
 - **Minimal example:** A concrete dictionary value has key type `..text` and
   value type `..integer`. An outer template wants to construct a dictionary for
   another value type, retaining the text-key binding. The concrete value alone
@@ -232,13 +238,59 @@ Each entry must contain:
   form and scope rules. Supporting both needs canonical equivalence and explicit
   disagreement diagnostics. None permits implicit filename search or choosing
   which bindings to reopen from an unqualified `...name`.
-- **User decision:** Unset. On 2026-11-17 the user accepted the distinction and
-  requested rules and an open-question file; no concrete notation was selected.
-- **Specification authorization:** The current conversation explicitly authorizes
-  recording these contracts and open questions, not inventing a selected notation.
-- **Resume evidence:** Record the chosen forms and named-signature rules, extend
-  the EBNF, and add nested/partial-equivalence and wrong-category/name cases before
-  claiming higher-order implementation.
+- **User decision:** On 2026-11-17 in the current conversation, the user approved
+  the proposed unified named type-application rule and then explicitly requested
+  its specification/EBNF update and review of the remaining questions. The agreed
+  rule has these consequences:
+
+  - A runtime input's type can be `...family` with indented rows such as
+    `...foreign type < ...local type`. The pattern declares the constructor's
+    exact residual signature. Matching a known nominal specialization reopens
+    exactly those foreign formals, captures all unlisted bindings, and relates
+    each listed actual type to the corresponding local expression. The runtime
+    field retains its complete applied type and ordinary transfer semantics.
+    A root runtime-input pattern covers every residual formal explicitly;
+    this also applies to a concrete template-path head. Omitted residuals there
+    are errors, rather than hidden owner parameters.
+    A new bare right-hand placeholder introduces Type only. A Template on that
+    side requires an independently declared category and signature.
+  - An explicit static constructor formal is written `...family <` in `@<`,
+    followed one level deeper by its named signature entries. A Type entry is
+    `...name`; a Template entry is `...name <` followed by its nested signature.
+    Such a formal is compile-time information and has no runtime input slot.
+  - Named static bindings follow a declaration's type line, before value
+    initializers. Their right-hand expressions can name a concrete module or a
+    local parameter and carry deeper binding rows. Partial applications can be
+    forwarded directly as static constructor arguments, without sample objects.
+  - Left-hand names are the selected constructor's complete formal names;
+    right-hand names use the supplying lexical scope. For example, an actual
+    `...key type` formal is not named `...dictionary.key type`. Dots are part
+    of one atomic parameter name, not a basename search, qualification shortcut
+    or implicit renaming. Unknown, duplicate and wrong-category bindings fail.
+  - Canonical declaration order normalizes identities; it does not provide
+    positional static binding syntax. Binding order and staged application do
+    not change an equivalent specialization's identity.
+  - Omitted residuals in a body/result runtime declaration get fresh inference
+    variables for that lexical field; a static argument expression instead
+    retains its residual constructor signature. Input patterns obey the explicit
+    coverage rule above. When a nested pattern matches an already partial actual,
+    inversion preserves its existing residuals and reopens only the explicitly
+    named actual fixed bindings. Signatures match exactly, without guessed
+    origins, erased bindings or invented values for an already open slot.
+    Runtime storage types close before layout, and equal specializations do not
+    merge instance state.
+
+  Source: the user's explicit approval of the proposed rule and subsequent
+  documentation instruction in this conversation, recorded by T159.
+- **Specification authorization:** The same instruction explicitly authorizes
+  the TPL-07/TPL-08, grammar, cross-reference and open-question updates. It does
+  not choose inference/recursion/list/native policies left in AMB-004 through
+  AMB-008 or authorize compiler implementation.
+- **Resume evidence:** T159 documents the source forms, ordinary-input nominal
+  decomposition, nested static forwarding, partial-equivalence and negative
+  naming/category cases. This is design evidence only; component/composition
+  tests and actual specialization acceptance remain necessary before claiming
+  implementation support.
 
 <a id="amb-004"></a>
 
@@ -247,6 +299,8 @@ Each entry must contain:
 - **Status:** Open.
 - **Task:** T158. Ordinary typed input evidence is settled; the full inference
   domain, constant-dependent forms and their implementation await this decision.
+  T159 also settles explicit named static arguments as direct binding information;
+  this question concerns the additional evidence sources below.
 - **Requirements:** [TPL-02](spec/language/templates.md#tpl-02),
   [TPL-03](spec/language/templates.md#tpl-03),
   [TYPE-02](spec/language/declarations.md#type-02),
@@ -329,19 +383,24 @@ Each entry must contain:
   [LIST-13](spec/language/lists.md#list-13).
 - **Minimal example:** `records[]` followed by `.record` already declares a typed
   empty list. No append, source element or runtime template input is needed.
-  Ordinary type placeholders are currently introduced through `@<`, while this
-  declaration supplies a type directly to the compiler.
-- **Question:** How does the compiler supply that static element type to a list
-  implementation template? Which minimal typed storage/lifecycle operations are
-  exposed below it, and which service/cursor responsibilities stay intrinsic?
+  Named static application is now available under TPL-07/TPL-08, but the list
+  declaration does not yet name an implementation template, its element formal
+  or the primitive operations beneath that template.
+- **Question:** Which list implementation template/interface does the compiler
+  select, and which exact formal does it bind to the declared element type?
+  Which minimal typed storage/lifecycle operations are exposed below it, and
+  which service/cursor responsibilities stay intrinsic? This is no longer a
+  question about the general notation for static application.
 - **Possible answers and consequences:** Keeping the primitive list core and
   templating only wrappers preserves the current boundary. A compiler-recognized
-  static binding bridge plus lower-level primitives could move more implementation
-  into Ama, but must specify identities, refusal/preflight, result frames, cursor
-  copying and complexity. A fake runtime sample or implementing the foundation
-  through that same list adds lifecycle effects or circular dependence.
-- **User decision:** Unset. The user authorized documenting the use of templates
-  for list implementation, not a particular bridge or raw-memory interface.
+  binding to an agreed implementation interface plus lower-level primitives
+  could move more implementation into Ama, but must specify identities,
+  refusal/preflight, result frames, cursor copying and complexity. Neither a
+  fake runtime sample nor bootstrapping the foundation through that same list
+  is supplied by the new named application syntax.
+- **User decision:** Open after T159. The user approved general named static
+  application in AMB-003, but did not select a list implementation binding or
+  raw-memory interface.
 - **Specification authorization:** Explicitly granted for the architecture and
   limits now described by TPL-09 and the list chapter.
 - **Resume evidence:** Agree the primitive/static interface and prove preservation

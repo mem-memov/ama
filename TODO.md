@@ -68,18 +68,21 @@ An implementation task, including one in this queue, is not permission to amend
 
 - [ ] **T158 — Resolve the remaining template design gates.**
   Status: awaiting explicit user decisions; no implementation is authorized by
-  this task. Prerequisite: T157's documented baseline. Questions and alternatives
+  this task. Prerequisites: T157's documented baseline and T159's named
+  constructor/signature forms. Questions and alternatives
   are indexed in [AMBIGUITIES.md](AMBIGUITIES.md#open-template-design-questions):
-  AMB-003 through AMB-008 cover constructor/signature source forms, complete
-  inference evidence/constants, recursive specialization, the list bridge,
-  native/export forms and hyphen spelling. Resolve each affected boundary before
+  AMB-003 is resolved by T159; AMB-004 through AMB-008 cover additional inference
+  evidence/constants, recursive specialization, the concrete list foundation
+  interface/primitives, native/export forms and hyphen spelling. Named static
+  application is available for a future list bridge, but its actual interface
+  is not selected. Resolve each affected boundary before
   implementation; do not infer answers from the existence of this queue item.
   Acceptance: record user decisions and authorized canonical/EBNF corrections;
   derive the implementation roadmap and named positive/negative acceptance cases
   from those settled contracts. Preserve the previous conformance matrix as
   historical evidence until new implementation evidence is actually available.
 
-The next unused task ID is **T159**.
+The next unused task ID is **T160**.
 
 ## Useful verification commands
 

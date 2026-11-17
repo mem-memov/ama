@@ -276,7 +276,7 @@ are defined in [Declarations and scope](language/declarations.md).
                                  <implementation-section>
 <constants-only-file>        ::= <layout(0)> <constants-section>
 <constants-section>          ::= "@=" <line-end> <declarations(0)>
-<parameters-section>         ::= "@<" <line-end> <declarations(0)>
+<parameters-section>         ::= "@<" <line-end> <input-declarations(0)>
 <results-section>            ::= "@>" <line-end> <declarations(0)>
 <implementation-section>     ::= "@!" <line-end> <body(0)>
                                  | "@C" <line-end> <layout(0)>
@@ -284,8 +284,25 @@ are defined in [Declarations and scope](language/declarations.md).
 <body(n)>                    ::= <layout(n)> { <statement(n)> <layout(n)> }
 <declaration(n)>             ::= <indent(n)> <declaration-name> <line-end>
                                  <layout(n)>
-                                 <indent(n)> <type-name> <line-end>
+                                 <indent(n)> <static-expression(n)>
                                  <initializers(n+1)>
+<input-declarations(n)>      ::= <layout(n)>
+                                 { ( <input-declaration(n)> | <template-formal(n)> )
+                                   <layout(n)> }
+<input-declaration(n)>       ::= <indent(n)> <declaration-name> <line-end>
+                                 <layout(n)>
+                                 <indent(n)> <static-expression(n)>
+                                 <initializers(n+1)>
+<template-formal(n)>         ::= <indent(n)> <placeholder-type> <space> "<" <line-end>
+                                 <template-signature(n+1)>
+<template-signature(n)>      ::= <layout(n)> <signature-member(n)> <layout(n)>
+                                 { <signature-member(n)> <layout(n)> }
+<signature-member(n)>        ::= <indent(n)> <placeholder-type> <line-end>
+                                 | <template-formal(n)>
+<static-expression(n)>       ::= <type-name> <line-end> <static-bindings(n+1)>
+<static-bindings(n)>         ::= <layout(n)> { <static-binding(n)> <layout(n)> }
+<static-binding(n)>          ::= <indent(n)> <placeholder-type> <space> "<" <space>
+                                 <static-expression(n)>
 <initializers(n)>            ::= <layout(n)> { <initializer(n)> <layout(n)> }
 <initializer(n)>             ::= <literal-line(n)>
                                  | <indent(n)> <copy-source> <line-end>
@@ -294,7 +311,7 @@ are defined in [Declarations and scope](language/declarations.md).
 | Annotation | Section |
 |---|---|
 | `@=` | Shared immutable constants |
-| `@<` | Parameters |
+| `@<` | Runtime inputs and static template formals |
 | `@>` | Results |
 | `@!` | Ama implementation |
 | `@C` | Companion C implementation |
@@ -316,9 +333,32 @@ initializer for a scalar and any number for a list, one value per element.
 Whole-list assignment is not implicitly a declaration initializer. Sources must
 be initialized in the specified declaration order. Explicit/inferred fields,
 creation-time construction, interface reset, and constant restrictions are
-defined in [Declarations and scope](language/declarations.md). Placeholder
-introductions and uses are checked after parsing under TPL-02; the parser never
-consults a parameter table to select `<type-name>`.
+defined in [Declarations and scope](language/declarations.md). The separate
+`<input-declaration>` production gives TPL-02 its input-pattern context without
+changing ordinary field recognition. A `<static-expression(n)>` starts after its
+caller has written the indentation or operand separator; `n` is the indentation
+of that expression's head line, and its bindings are at `n+1`.
+
+An optional static binding block immediately follows the declaration's type line;
+ordinary runtime initializers follow at the same depth as the bindings. A binding
+has an explicit full foreign formal name on the left, exactly one space on each
+side of `<`, and a nonempty static expression on the right. Its nested bindings
+are one level deeper. Comments and blank lines follow the displayed `<layout>`
+regions; they neither supply a binding nor change the kind of an input pattern.
+Once an ordinary initializer has begun, no later static binding can belong to
+that declaration. Empty, positional, inline and unnamed static bindings are
+invalid. A static binding does not initialize runtime storage.
+
+The `<template-formal>` alternative belongs only to `@<` or to a signature already
+nested within it. It has at least one signature member, even when comments or
+blank lines intervene. A bare member declares an expected Type parameter; a member
+ending in `<` recursively declares an expected Template signature. Signature names
+belong to that expected constructor interface, not the surrounding module's local
+parameter namespace. A standalone Type-formal line is not an alternative in
+`<input-declarations>`. Static formals consume no runtime input position. Placeholder
+introductions, categories and uses are checked after parsing under
+[TPL-02](language/templates.md#tpl-02) and [TPL-07](language/templates.md#tpl-07);
+the parser never consults a parameter table to select a production.
 
 ```text
 count
@@ -334,12 +374,30 @@ lines[]
 
 ## Static template syntax and design boundaries
 
-The concrete module file/section/declaration productions remain unchanged apart
-from `<type-name>` above. A placeholder type line in an `@<` declaration introduces
-a scoped type parameter. Reusing it in `@>` or the body is a semantic lookup;
-those positions cannot introduce a new placeholder. Ordinary arguments still use
-the existing `<parameter>` and `<result>` productions. There is no separate list
-of type arguments at an ordinary call site.
+The source shape distinguishes ordinary input patterns, named static bindings
+and explicit Template formals. A bare placeholder type line in an `@<` runtime
+input declaration introduces a Type parameter unless that name is declared as
+Template elsewhere in the input section. A known Template is an application
+subject to TPL-07's complete root-input coverage rule. A placeholder head with
+one or more named static bindings in that input position is a Template-application
+pattern. Its head names the local Template parameter; binding labels name the
+applied constructor's foreign formals, and right-hand expressions use the input
+pattern's local scope under [TPL-02](language/templates.md#tpl-02).
+A concrete template-path head has the same complete root-input coverage
+requirement and permits the same local right-hand Type introductions, but fixes
+the constructor origin without introducing a local Template head parameter.
+
+An explicit Template formal uses `...name <` in `@<`, followed by its nonempty
+expected named signature. Its signature may contain Type members and recursively
+nested Template members. Ordinary `@>` and body declarations may apply or forward
+parameters introduced in `@<`; they cannot introduce new local parameters or
+declare a new Template formal. Constants retain the pending dependent-use boundary
+in [AMB-004](../AMBIGUITIES.md#amb-004).
+
+Ordinary arguments still use the existing `<parameter>` and `<result>` productions.
+Static bindings attach to a declaration's type expression, never to an entry or
+resume operation. There is no separate list of type arguments at an ordinary
+runtime call site.
 
 ```text
 @<
@@ -355,21 +413,64 @@ result&
  source&
 ```
 
-This is a complete proposed template module returning the supplied reference.
+This is a complete template module returning the supplied reference.
 The whole `...data.element type` is one type parameter. Storage suffixes still
-belong to the variable names, not the type line. The grammar recognizes a
-placeholder only through `<type-name>`; concrete constant paths, value sources,
-call targets and native protocol records do not acquire placeholder alternatives.
+belong to the variable names, not the type line. A pattern introducing a Template
+parameter has a binding block instead:
 
-[TPL-07/TPL-08](language/templates.md#tpl-07) define the semantic requirements for
-template-valued parameters and partial substitution. Their category/signature,
-transmission and static-application source forms remain
-[AMB-003](../AMBIGUITIES.md#amb-003); this grammar deliberately establishes no
-production for those unsettled forms. Do not interpret omission of a runtime
-argument as partial static binding or split a compound placeholder into a
-constructor and member. The
-[other design gates](../AMBIGUITIES.md#open-template-design-questions) are semantic
-questions, not permission for type-dependent parsing.
+```text
+@<
+sample&
+...container
+ ...element < ...item type
+@!
+```
+
+The pattern relates an ordinary typed reference input to the explicitly named
+constructor application; it does not pass a constructor as a runtime reference.
+Its nominal decomposition and uniqueness checks follow
+[TPL-07](language/templates.md#tpl-07). An explicit Template-formal declaration
+states an expected signature without consuming a runtime argument:
+
+```text
+@<
+...family <
+ ...element
+ ...nested family <
+  ...content
+@!
+```
+
+Static applications can be nested on a binding's right-hand side. The following
+is a declaration fragment. Assume `.outer` expects a Template formal
+`...factory` with one residual Type formal `...value type`, plus a Type formal
+`...element`. Assume `.dictionary` has Type formals `...key type` and
+`...value type`, and `...item type` is already introduced in the enclosing
+template's input section:
+
+```text
+worker
+.outer
+ ...factory < .dictionary
+  ...key type < ..text
+ ...element < ...item type
+```
+
+The dictionary's unbound value formal remains part of that partial constructor;
+its existing key binding and its residual signature are checked against
+`.outer`'s `...factory` formal under [TPL-07](language/templates.md#tpl-07) and
+[TPL-08](language/templates.md#tpl-08). The less-indented `...element` binding
+belongs to `.outer`, so indentation alone determines each binding's owner.
+
+Concrete constant paths, runtime value sources, call targets and native protocol
+records do not acquire placeholder or static-application alternatives. A bare
+placeholder in a static expression is parsed alike whether its declared category
+is Type or Template; later scope/kind checks determine valid use. Omission of a
+runtime `<` binding is not partial static application. A compound placeholder
+never splits into a constructor and member. The
+[remaining design gates](../AMBIGUITIES.md#open-template-design-questions) are
+semantic questions, not permission for type-dependent parsing. These source forms
+do not claim implementation support.
 
 ## Executable statements and structural recognition
 
@@ -401,7 +502,11 @@ continuation
 
 Recognize the shape before name/type lookup:
 
-- A declaration name followed by a same-level type name is a declaration.
+- A declaration name followed by a same-level type expression is a declaration;
+  its named static bindings precede any ordinary initializers.
+- Only `@<` admits a standalone `...name <` Template-formal declaration with an
+  indented signature. A static binding instead has a right-hand expression on the
+  same line; a runtime argument remains inside its operation's argument block.
 - A receiver followed by an indented copy source is an assignment.
 - Suffix `!` starts entry execution; suffix `%` resumes.
 - An unmarked target with output actions reads retained results. A module path

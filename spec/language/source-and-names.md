@@ -179,8 +179,9 @@ one root marker, never an empty component. No spaces may split the marker or
 separate it from the first component. No space is allowed after a dot or before
 an internal dot. Empty components, internal doubled dots, three or more leading
 dots, a bare root marker, and a trailing dot are invalid in concrete module paths.
-Exactly three leading dots instead introduce a placeholder in a permitted type
-position under [TPL-01](templates.md#tpl-01), never a filesystem root. Its complete
+Exactly three leading dots instead introduce a placeholder spelling in a permitted
+static position under [TPL-01](templates.md#tpl-01), including type expressions,
+static formal/signature names and static binding labels, never a filesystem root. Its complete
 descriptive name needs no corresponding file or directory. Four leading dots
 remain invalid. The dots are structural separators, not name bytes; each
 component's internal spaces are identity.
@@ -399,7 +400,7 @@ list source likewise retains its compact suffix, as in `.catalog.item states[]`.
 | Annotation | Meaning |
 |---|---|
 | `@=` | Shared immutable constant declarations |
-| `@<` | Parameter declarations |
+| `@<` | Runtime parameter declarations and static Template formals |
 | `@>` | Result declarations |
 | `@!` | Executable Ama body |
 | `@C` | Native companion implementation |
