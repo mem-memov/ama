@@ -325,15 +325,18 @@ Resolve binding scopes by the following exact static algorithm:
    source-order traversal records them; never precollect later inferred fields.
 2. Traverse the parsed executable bodies in source order, maintaining the active
    enclosing foreach-local bindings. Resolve the collection in the incoming
-   environment before considering its new binding. Its element type must be
-   supplied by an explicit declaration or earlier inferred list field.
+   environment before considering its new binding. Its declaration identity,
+   list storage form and element type term must come from an explicit declaration
+   or earlier inferred list field. The term need not yet be concrete.
 3. For the binding's complete base name, look for an enclosing local binding,
    then an explicit module declaration or earlier inferred persistent field.
-   If present, require a mutable scalar reference of exactly the list's full
-   element-module identity, and reuse that variable. A mismatching storage form,
-   constant, or type is an error; do not shadow or convert it.
+   If present, reuse that variable and require a mutable scalar reference of
+   exactly the list's full element-module type. Reject a constant or incompatible
+   storage form; retain a type-compatibility equation when its concrete type is
+   not yet known. A later type mismatch is an error, not permission to create
+   another binding, shadow the name or convert its storage.
 4. If absent, declare a scalar reference local to this foreach body with the
-   list's exact element type. Make it visible throughout that body and nested
+   list's exact element type term. Make it visible throughout that body and nested
    executable bodies, but not in its own collection source, following code, or
    module construction. Pop that binding when leaving its lexical body.
 5. Classify body uses against this environment. New local binding declarations
@@ -349,11 +352,15 @@ than causing an earlier foreach to introduce a local reference. Explicit and
 receiver-inferred fields inside the body remain permanent fields. Their
 creation-time initializers cannot read a runtime foreach-local binding; an
 executable assignment may copy its handle into a permanent field or result.
-The body's entire syntax, names, types, and capabilities are checked even when
-the source will be empty. No runtime list contents participate in scope or
-type inference. Dependency edges from an inferred body field through a local
-binding lead to that earlier header and its typed list declaration, preserving
-TYPE-06's strictly decreasing declaration-position argument.
+The body's entire syntax, names, types and capabilities are checked even when
+the source will be empty. No runtime list contents participate in scope or type
+inference. Name-dependency edges from an inferred body field through a local
+binding lead to that earlier header and its list declaration. This preserves
+TYPE-06's lexical declaration-position argument; type equations are a separate
+graph and may be refined by later typed connections. Every required type is
+concrete before owner layout/construction or runtime execution. Deferred type
+checking changes no name scope and creates no runtime binding before the list
+validation and eligible-element activation specified below.
 
 ### Starting and advancing the traversal
 

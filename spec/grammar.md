@@ -374,25 +374,44 @@ lines[]
 
 ## Static template syntax and design boundaries
 
-The source shape distinguishes ordinary input patterns, named static bindings
-and explicit Template formals. A bare placeholder type line in an `@<` runtime
-input declaration introduces a Type parameter unless that name is declared as
-Template elsewhere in the input section. A known Template is an application
-subject to TPL-07's complete root-input coverage rule. A placeholder head with
-one or more named static bindings in that input position is a Template-application
+The source shape distinguishes interface type expressions, named static bindings
+and explicit Template formals. Collect local Type introductions from both `@<`
+and `@>` before checking uses under [TPL-02](language/templates.md#tpl-02).
+A bare placeholder type line in either section introduces a Type parameter
+unless that name is declared as Template in `@<`. Bare placeholders on the
+right-hand side of their named static bindings may likewise introduce Type
+parameters. A known Template retains its category wherever it is used; an actual
+value never determines which category its source spelling declares.
+
+At the root of a runtime input type, a known Template application is subject to
+TPL-07's complete root-input coverage rule. A placeholder head with one or more
+named static bindings in that input position can introduce a Template-application
 pattern. Its head names the local Template parameter; binding labels name the
 applied constructor's foreign formals, and right-hand expressions use the input
-pattern's local scope under [TPL-02](language/templates.md#tpl-02).
+pattern's local scope.
 A concrete template-path head has the same complete root-input coverage
 requirement and permits the same local right-hand Type introductions, but fixes
 the constructor origin without introducing a local Template head parameter.
 
 An explicit Template formal uses `...name <` in `@<`, followed by its nonempty
 expected named signature. Its signature may contain Type members and recursively
-nested Template members. Ordinary `@>` and body declarations may apply or forward
-parameters introduced in `@<`; they cannot introduce new local parameters or
-declare a new Template formal. Constants retain the pending dependent-use boundary
-in [AMB-004](../AMBIGUITIES.md#amb-004).
+nested Template members. Results can introduce new Type parameters and use
+Template parameters already introduced in `@<`; an unknown applied placeholder
+head in `@>` does not introduce a Template parameter. Explicit Template-formal
+declarations are not accepted in `@>`. The body may reuse interface parameters,
+apply or forward known constructors; it cannot introduce a new named Type or
+Template parameter. Body/result field declarations give omitted constructor
+residuals fresh field inference variables under TPL-08, unlike complete root-input
+patterns or residuals preserved inside a partial static argument. Constants
+retain the pending dependent-use boundary in [AMB-004](../AMBIGUITIES.md#amb-004).
+
+Static typing uses all specified typed connections under
+[TPL-03](language/templates.md#tpl-03): inputs, explicitly typed output receivers,
+defaults, declaration initializers, assignments, reference bindings and aliases.
+They constrain one fixed specialization, independently of execution order. A
+literal or an otherwise unconstrained receiver contributes no concrete type
+identity. Static propagation neither executes a later statement early nor
+relaxes ordinary initialization, ownership or storage-form rules.
 
 Ordinary arguments still use the existing `<parameter>` and `<result>` productions.
 Static bindings attach to a declaration's type expression, never to an entry or
@@ -415,8 +434,40 @@ result&
 
 This is a complete template module returning the supplied reference.
 The whole `...data.element type` is one type parameter. Storage suffixes still
-belong to the variable names, not the type line. A pattern introducing a Template
-parameter has a binding block instead:
+belong to the variable names, not the type line. A Type parameter can instead
+first appear in a result declaration:
+
+```text
+@>
+result
+...result type
+
+@!
+```
+
+This complete module has no runtime inputs. Assuming its path is `.default result`
+and the selected result type supports default construction, this caller determines
+the result Type through an explicitly typed receiving field:
+
+```text
+@!
+worker
+.default result
+
+number
+..integer
+
+worker !
+ > number
+```
+
+`...result type` is a named parameter of the callee, introduced in `@>`.
+Receiving into a new unconstrained name instead would not supply this evidence.
+The parser recognizes the same result declaration and output-binding shapes in
+both cases; solving their type constraints is a later semantic operation.
+
+A pattern introducing a Template parameter still belongs only to an input type
+and has a binding block:
 
 ```text
 @<
@@ -486,8 +537,12 @@ do not claim implementation support.
 An assignment has one source exactly one level below its receiver. It cannot
 use a literal source. A first-occurring simple receiver may declare a persistent
 field after parsing; an indexed receiver never declares its collection or index.
-TYPE-06 in [Declarations and scope](language/declarations.md) defines the exact
-source-order classification and type inference.
+Lexical receiver classification does not wait for its type to become concrete.
+A field may keep a symbolic type term until the interface-wide constraints are
+solved; later evidence never changes its original declaration/use classification.
+[TYPE-06](language/declarations.md#type-06) defines that exact source-order
+classification, and [TPL-03](language/templates.md#tpl-03) defines the admissible
+typed connections.
 
 ```text
 destination
@@ -499,6 +554,32 @@ target&
 continuation
  % original
 ```
+
+**Example: later static evidence, with ordinary execution order.** Assume
+`.forward` is the template defined in [TPL-04](language/templates.md#tpl-04):
+
+```text
+@!
+known
+..integer
+
+worker
+.forward
+
+worker !
+ < |0
+ > inferred
+
+inferred
+ known
+```
+
+The output receiver first introduces `inferred` under TYPE-06, initially with
+the result's symbolic type. The later assignment from `known` constrains that
+same field to `..integer`, which also fixes the worker's input/result type.
+The literal is then checked against that determined type; its bytes did not
+select a type. At runtime the call still precedes the assignment, and the fields
+are constructed under the ordinary declaration-order rules.
 
 Recognize the shape before name/type lookup:
 

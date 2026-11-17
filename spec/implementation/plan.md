@@ -183,8 +183,9 @@ Deliverable: a reproducible build with a conformance report, not merely a workin
 ### Stage 11: Static templates with explicit design boundaries
 
 This is a new stage beyond the previously accepted implementation baseline.
-T157 records the basic contract and T159 settles named constructor/signature
-patterns and static partial application. The
+T157 records the basic contract, T159 settles named constructor/signature
+patterns and static partial application, and T160 defines typed-connection
+inference and Type introductions in `@>`. The
 [template chapter](../language/templates.md) and grammar define those source
 forms. The [remaining decisions](../../AMBIGUITIES.md#open-template-design-questions)
 owned by T158 gate their affected cases; they do not leave the whole grammar
@@ -194,7 +195,9 @@ its acceptance. Existing tests do not cover the new template semantics.
 
 Plan narrow components in prerequisite order: placeholder and type-expression
 recognition; scoped kinds and named signatures; exact static constraints,
-constructor-pattern decomposition and canonical partial bindings; nested
+including the separate lexical receiver/foreach classification and globally
+refinable type terms; constructor-pattern decomposition and canonical partial
+bindings; nested
 specialization and the agreed termination checks; ordinary type/lifecycle
 checking of concrete specializations; specialized layouts/emission and source
 diagnostics; then the agreed native/export boundary.
@@ -210,7 +213,7 @@ of adding placeholders.
 
 Deliverable: documented, tested static specialization with explicit supported
 boundaries and a current acceptance matrix. No compiler implementation is part
-of the specification-only T157 or T159 tasks.
+of the specification-only T157, T159 or T160 tasks.
 
 ## Keep engineering choices separate from language changes
 

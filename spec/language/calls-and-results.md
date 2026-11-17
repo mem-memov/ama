@@ -79,9 +79,14 @@ entry-start execution. Requested results are transferred on completion or yield;
 unrequested results remain stored. Repeated identical inputs still execute the
 body repeatedly. Reactivity and deduplication are application decisions.
 
-For a template target, ordinary typed input bindings also provide compile-time
-type evidence under [TPL-03](templates.md#tpl-03), including the explicit
-constructor patterns of [TPL-07](templates.md#tpl-07). Static constructor
+For a template target, ordinary typed inputs and already declared typed output
+receivers provide compile-time evidence under [TPL-03](templates.md#tpl-03),
+together with typed defaults, declaration initializers, assignments and
+reference/alias connections. A receiver with unresolved generic arguments
+contributes equations rather than an independent concrete anchor. A new receiver
+under TYPE-06 does not choose a type merely by existing. Input bindings also
+support the explicit constructor patterns of [TPL-07](templates.md#tpl-07).
+Static constructor
 formals have no runtime input position; their named type applications follow
 [TPL-08](templates.md#tpl-08), rather than adding a new ordinary call argument
 form. The selected instance already has one fixed concrete specialization before
@@ -267,8 +272,11 @@ and of whether bindings are named or positional:
 
 1. Statically resolve and validate the entire operation: target mode, binding
    labels, input/output order, arity, storage forms, types and capabilities.
-   Classify and type result-inferred declarations under TYPE-06 before runtime;
-   all their receiver fields already exist when the operation begins.
+   Classify result receivers lexically under TYPE-06 and solve their type terms
+   with the other declared connections before runtime. Typed defaults constrain
+   specialization even when this invocation supplies their input, without
+   executing those defaults. All receiver fields already exist when the
+   operation begins.
    An ordinary named input/output binding label may occur at most once in its
    respective sequence. Different bindings may name the same caller-side receiver.
 2. For an instance/list operation, evaluate the target selection once and acquire
@@ -452,8 +460,12 @@ Apply this exact evaluation and lifetime algorithm:
 1. Parse all levels structurally, then statically resolve the complete operation
    tree from the root type through the selected result interfaces. Check modes,
    binding order, types, capabilities, selectors, and result-inferred declarations
-   before any acquisition, reset, or body execution. Result types are nominal;
-   no callee-body inspection, guessed type, or hidden receiver is involved.
+   before any acquisition, reset, or body execution. Result selection uses the
+   declared interfaces; TPL-03's scoped static constraints, including ordinary
+   typed Ama body connections, may refine their nominal type terms. This never
+   searches a body for an undeclared matching member, guesses a type from native
+   code or runtime contents, executes a module body for inference, or introduces
+   a hidden receiver.
 2. Acquire and prepare/execute the root under CALL-08. After a body completes or
    yields, retire that body's current return connection before running a nested
    selected operation. Retain the acquired target and its pending output actions

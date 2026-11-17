@@ -68,21 +68,28 @@ An implementation task, including one in this queue, is not permission to amend
 
 - [ ] **T158 — Resolve the remaining template design gates.**
   Status: awaiting explicit user decisions; no implementation is authorized by
-  this task. Prerequisites: T157's documented baseline and T159's named
-  constructor/signature forms. Questions and alternatives
+  this task. Prerequisites: T157's documented baseline, T159's named
+  constructor/signature forms and T160's interface-wide inference rules. Questions and alternatives
   are indexed in [AMBIGUITIES.md](AMBIGUITIES.md#open-template-design-questions):
-  AMB-003 is resolved by T159; AMB-004 through AMB-008 cover additional inference
-  evidence/constants, recursive specialization, the concrete list foundation
+  AMB-003 is resolved by T159; T160 settles AMB-004's inference/scope portion.
+  AMB-004 through AMB-008 still cover parameter-dependent constants and their
+  namespace, recursive specialization, the concrete list foundation
   interface/primitives, native/export forms and hyphen spelling. Named static
   application is available for a future list bridge, but its actual interface
   is not selected. Resolve each affected boundary before
   implementation; do not infer answers from the existence of this queue item.
+  Current checkpoint: AMB-004's additional inference evidence is approved, as is
+  introducing new Type placeholders in `@>` while keeping body introductions
+  forbidden. The answers/source are recorded in AMBIGUITIES; T160 supplies the
+  canonical scope, global constraint propagation and TYPE-06 corrections.
+  Parameter-dependent constants and their external namespace are under discussion;
+  no constant access syntax or inheritance behavior is selected. No jobs are active.
   Acceptance: record user decisions and authorized canonical/EBNF corrections;
   derive the implementation roadmap and named positive/negative acceptance cases
   from those settled contracts. Preserve the previous conformance matrix as
   historical evidence until new implementation evidence is actually available.
 
-The next unused task ID is **T160**.
+The next unused task ID is **T161**.
 
 ## Useful verification commands
 

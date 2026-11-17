@@ -8,7 +8,7 @@ In this chapter:
 - [Explanation: one definition, several concrete types](#explanation-one-definition-several-concrete-types)
 - [Placeholder spelling](#placeholder-spelling)
 - [Parameters and their scope](#parameters-and-their-scope)
-- [Inferring types from ordinary arguments](#inferring-types-from-ordinary-arguments)
+- [Inferring types from typed connections](#inferring-types-from-typed-connections)
 - [Nested template instances](#nested-template-instances)
 - [Specialization identity and independent state](#specialization-identity-and-independent-state)
 - [Checking a specialization before execution](#checking-a-specialization-before-execution)
@@ -38,7 +38,9 @@ the agreed design. The examples distinguish a template definition in a source
 file, a constructor used during compilation, and a concrete runtime instance. The
 [open-question index](../../AMBIGUITIES.md#open-template-design-questions) is the
 single place to find pending decisions, including inference boundaries, recursive
-specialization, native templates and the list implementation bridge. This chapter
+specialization, native templates and the list implementation bridge. Type evidence
+and result Type introductions are settled below; the remaining inference-related
+boundary is parameter-dependent shared constants and their namespace. This chapter
 does not imply that the compiler implements templates. Do not invent source forms
 or implement a pending case by guessing an answer. The grammar recognizes only
 the source forms explicitly specified in [the grammar](../grammar.md).
@@ -85,31 +87,39 @@ namespace, index, literal, or syntax for selecting a member of a type parameter.
 
 <a id="tpl-02"></a>
 
-**TPL-02.** Only `@<` introduces static parameters of a module template. Collect
-its introductions and signatures before checking uses, according to these forms:
+**TPL-02.** The interface sections `@<` and `@>` introduce a module template's
+Type parameters. Only `@<` introduces Template parameters and their signatures.
+Collect the whole interface before checking uses, according to these forms:
 
-- A bare placeholder used as a runtime input's type introduces a **Type**
-  parameter unless that name is declared as Template elsewhere in this input
-  section. A known Template in that position is an application, subject to
-  TPL-07's complete-input-pattern rule.
-- A placeholder used as a runtime input's type with a nonempty named static
+- A bare placeholder used as a runtime input or result type introduces a **Type**
+  parameter unless that name is declared as Template in `@<`. A known Template
+  in that position is an application. A root input application follows TPL-07's
+  complete-input-pattern rule; a result application follows TPL-08's field rule.
+- A placeholder used as a runtime input's type in `@<` with a nonempty named static
   binding block introduces a **Template** parameter if it has no explicit static
   formal declaration. Its expected residual signature is exactly those binding
   labels and their expression categories under TPL-07.
 - A standalone `...name <` declaration with a nested signature explicitly
   introduces a **Template** parameter under TPL-07. Declare it at most once.
-- In the right-hand expressions of input type patterns, a previously undeclared
-  bare placeholder introduces a local **Type** parameter. A Template used on
+- In the right-hand static expressions of input or result type declarations,
+  a previously undeclared bare placeholder introduces a local **Type** parameter.
+  A Template used on
   that side must have its category/signature declared by one of the preceding
   Template introduction forms. Do not infer its category from an actual value.
 
-Within input patterns, collect Template introductions/signatures before
-classifying otherwise undeclared bare placeholders as Type. A bare occurrence
+First collect all Template introductions/signatures from `@<`. Then collect Type
+introductions from both interface sections, excluding foreign binding labels and
+signature entries. A bare occurrence
 does not independently redeclare an already known Template. A Type parameter
 cannot be used as an applied constructor. Any repeated Template patterns must
 agree on the complete named, recursively kinded residual signature. Each
 signature and parameter category is fixed for the definition, independently of
 which specialization the compiler processes first.
+An unknown applied placeholder first occurring in `@>` does not introduce a
+Template: declare its signature through `@<` first. Only the Type introductions
+above are added to `@>`. A result typed by a concrete template path may introduce
+local Type parameters on the right of its named bindings without introducing a
+local Template head.
 Signatures must be finite. Cyclic inferred signature dependencies that require
 an infinite category/signature tree are static errors before specialization;
 the compiler must detect the cycle rather than expand it indefinitely.
@@ -123,8 +133,9 @@ available as a Type parameter in the surrounding body.
 
 Repeated local introductions of the same complete name refer to one parameter;
 different complete names introduce independent parameters. Parameter order for
-canonical identity is the order of first local introductions in `@<`, traversing
-each input pattern before the following declaration. Foreign labels/signature
+canonical identity is the order of first local introductions in the interface,
+first `@<`, then `@>`, traversing each declaration's type expression before the
+following declaration. Foreign labels/signature
 entries do not occupy positions in this order. This ordering never establishes
 positional static argument binding.
 
@@ -135,11 +146,11 @@ parameter. Physical submodule nesting does not inherit parameters under
 different roles: the variable holds runtime state; its placeholder describes
 the module type of that state.
 
-Static expressions in `@>` and the Ama body may reuse only local parameters
-introduced through that template's `@<`. Foreign static binding labels there
+Static expressions in the Ama body may reuse only local parameters introduced
+through that template's interface. Foreign static binding labels there
 still designate the selected constructor's own formals. A new local placeholder
-appearing only in a result or body is a static error, including in an unreachable
-branch or empty-loop body. Explicit static formal declarations are permitted
+appearing only in the body is a static error, including in an unreachable
+branch or empty-loop body. Explicit static Template-formal declarations are permitted
 only in `@<`; bare standalone Type declarations are not an additional source form.
 The body cannot add implicit type parameters to its enclosing module. Shared
 `@=` declarations do not introduce type parameters; dependent uses there belong
@@ -168,20 +179,61 @@ other value
 
 `value` and `other value` require the same module type. `key` is independent and
 may have either that same type or a different one. Reusing `...data.value type`
-in a result or body type line is valid; introducing `...data.result type` only
-there is invalid.
+in a result or body type line is valid. Introducing `...data.result type` in
+`@>` is also valid; introducing it only in the body is invalid.
 
-## Inferring types from ordinary arguments
+**Example: complete `.default result`.** Assume the eventual concrete type
+supports ordinary default construction:
+
+```text
+@>
+result
+...result type
+
+@!
+```
+
+There is no input section. The result declaration introduces a Type parameter
+of `.default result` itself. An explicitly typed receiving variable, a static
+binding or another permitted typed connection can determine it under TPL-03.
+Different producer declarations may therefore have different specializations.
+Every invocation of one declared producer still has one fixed result type.
+
+## Inferring types from typed connections
 
 <a id="tpl-03"></a>
 
 **TPL-03.** An ordinary entry call keeps the existing named/positional argument
 syntax. The caller passes values, references or lists under
-[CALL-01/CALL-02](calls-and-results.md#call-01). A typed actual input constrains
-the corresponding declared placeholder to that actual's module type. Reference
-and list arguments contribute their statically known target/element type;
-their ownership and scalar/list compatibility are checked separately under
-[TYPE-05](declarations.md#type-05).
+[CALL-01/CALL-02](calls-and-results.md#call-01). Generate scoped type-equality
+constraints from every statically checked connection below. Information may
+propagate in either direction; the written direction of runtime value transfer
+does not limit static type inference.
+
+| Connection | Required type constraint |
+|---|---|
+| Ordinary input binding | Actual source module type equals the selected input's declared type expression |
+| Entry, resume or retained-result transfer | Selected result type expression equals the receiver's module type |
+| Declaration initializer or input/result default with a typed source | Declared type expression equals that source's type |
+| Owned assignment, including a receiver-inferred field | Source type equals receiver type |
+| Reference formation, copying or rebinding | Declared target types agree; a self-reference contributes its enclosing specialization's nominal type |
+| Whole-list transfer or element transfer | Corresponding element module types agree, with the written scalar/list operation retained |
+
+Each source/receiver keeps its ordinary lexical environment and lookup rules,
+including selected result operations under CALL-09. Existing typed constants can
+contribute their declared type under the ordinary constant rules. This does not
+authorize parameter-dependent `@=` declarations or a new constant namespace;
+those remain AMB-004. Reference and list types contribute their statically known
+target/element type even without live values. Ownership, reference/value and
+scalar/list compatibility are checked separately under
+[TYPE-05](declarations.md#type-05); an equality never inserts a conversion,
+reference acquisition, dereference or storage suffix.
+
+A known symbolic type contributes structure and equations, not necessarily a
+concrete answer. For example, connecting two independently open fields equates
+their type variables; a later concrete source or typed receiver may determine
+both. Ordinary aliases and references to the same declared field constrain the
+same specialization variables, not new variables per alias or call.
 
 Repeated uses of one placeholder require one identical nominal type, including
 any specialization bindings. Distinct placeholders are independent until an
@@ -194,21 +246,45 @@ not select the first executed call, prefer an earlier branch, ignore a conflicti
 call in a mutually exclusive branch, or make specialization depend on reachability
 at runtime. Input/output binding modes, omission, default evaluation, busy checks
 and result transfer retain their ordinary rules after specialization.
+All declared typed defaults constrain their fields even when a call supplies an
+argument. A supplied input still suppresses the default's runtime construction
+under CALL-08. Static checking does not execute a default or a module body.
+
+**Example: a typed default.** If an input typed by `...value type` has a default
+copied from an existing text constant, that source constrains the parameter to
+text. Supplying an integer at a call conflicts with that constraint even though
+the default would not execute there. A literal default `|0` alone does not impose
+integer: it is checked against the type determined by other constraints.
 
 Known types are evidence even when a list is empty or a reference has no live
 target. Their contents/liveness still follow the ordinary runtime rules. Literal
 bytes such as `|0` have no intrinsic module type and cannot select one by their
 spelling. A discarded result, an untyped receiver introduced by TYPE-06, or an
-equation between unknown types alone supplies no concrete type identity.
+equation between unknown types alone supplies no concrete type identity. Literal,
+copy, condition, index and callable capabilities are checked after the relevant
+type is known; they do not select a type by searching for a supporting module.
 
-The settled input-based inference applies to direct calls and calls of selected
-results under CALL-09, with each operand's ordinary lexical environment. The
-additional roles of typed defaults, declaration initializers, aliases,
-assignments, typed output receivers and dependent constants are explicitly open
-in [AMB-004](../../AMBIGUITIES.md#amb-004). Do not silently accept or reject one
-of those unresolved cases by adding an inference heuristic. Required concrete
-bindings must ultimately be unique; missing evidence cannot be repaired with a
-default type or an implicit instance.
+An explicitly typed output receiver can determine a producer's result-only Type
+parameter or parameters of a returned template specialization. A first-occurring
+receiver introduced by TYPE-06 instead gets a type equation from that selected
+result. It supplies no independent concrete type merely by being introduced.
+Later permitted typed connections may solve that equation.
+
+Receiver declaration identities and name availability remain source ordered
+under [TYPE-06](declarations.md#type-06). A symbolic type may be refined after
+processing later constructs; this does not make a later inferred declaration
+visible at an earlier use, change a receiver's declaration site, permit a
+self-dependent new receiver, or remove storage suffix checks. Type constraints
+do not reorder value initialization: every initializer source must still be
+initialized when its value is read, and persistent fields are still constructed
+before the body under TYPE-02/TYPE-04.
+
+Required concrete bindings must ultimately be unique under TPL-10. Missing
+evidence cannot be repaired with a default type, implicit instance, runtime
+reachability choice, body inspection of a native implementation, or search for
+an unknown callee whose result would match. If a target's nominal type/interface
+is not known yet, retain its constraint until another typed connection determines
+it; report underdetermination if no such evidence exists.
 
 A named constructor pattern on an input additionally uses the exact nominal
 decomposition defined by TPL-07. The complete input type, including every actual
@@ -217,6 +293,85 @@ the old key/value types from the runtime interface. Explicit static formals
 allocate no ordinary input positions, and named static bindings do not consume
 runtime argument positions or change an ordinary call's binding mode.
 
+### Examples: expected result types and later information
+
+**Example: caller fragment using `.default result` above.**
+
+```text
+integer result
+..integer
+
+text result
+..text
+
+integer producer
+.default result
+
+text producer
+.default result
+
+integer producer !
+ > integer result
+
+text producer !
+ > text result
+```
+
+The predeclared receiving types determine two owner specializations: one with
+`...result type` equal to integer and one equal to text. Sending both outputs of
+the same producer declaration to those incompatible receivers is a type error,
+including when its calls appear in mutually exclusive branches.
+
+**Example: a caller fragment using TPL-04's `.forward`.**
+
+```text
+known
+..integer
+ |7
+
+worker
+.forward
+
+worker !
+ < |0
+ > inferred
+
+inferred
+ known
+```
+
+The first `> inferred` introduces a persistent field whose type is initially
+equated to `.forward`'s result parameter. The later assignment equates it to the
+known integer type. That fixes the worker specialization and permits checking
+the literal `|0` against the integer constructor. It does not execute the later
+assignment early. The worker and inferred field have their final concrete types
+and ordinary default construction before the body executes.
+
+With the later assignment removed and no other type evidence, this example is
+underdetermined: `|0` and the new receiver do not choose a type. An explicitly
+typed receiver would supply the same integer constraint directly at the call.
+
+**Example: a result field whose type specializes another template.** Assume
+`.box` declares one Type formal `...element type` and supports the construction
+and copying used here. The following is a complete `.box producer` definition:
+
+```text
+@>
+result
+.box
+ ...element type < ...produced element type
+
+@!
+```
+
+The new local Type parameter is introduced on the binding's right-hand side in
+`@>`. A receiver whose type is a box of integers fixes that parameter to integer;
+a separate producer field may specialize for a box of text. Each result is an
+ordinary owned box with a closed concrete type. A bare `.box` result without that
+named local parameter instead uses only field inference variables under TPL-08:
+it does not implicitly make its owner generic, and all instances of one concrete
+owner must agree on that field's inferred box type.
+
 ## Nested template instances
 
 <a id="tpl-04"></a>
@@ -224,7 +379,7 @@ runtime argument positions or change an ordinary call's binding mode.
 **TPL-04.** A template may explicitly declare fields whose type path names
 another template, or whose type expression applies a Template parameter under
 TPL-08. No special nested-call syntax is required. The nested
-template introduces its parameters in its own `@<`; those declarations do not
+template introduces its parameters in its own interface; those declarations do not
 introduce names into the enclosing template's scope. Explicitly passing an
 outer value to a nested input relates their module types under TPL-03, even
 when their placeholder names differ.
@@ -423,12 +578,12 @@ access require the unsettled contracts linked from
 [AMB-004](../../AMBIGUITIES.md#amb-004). No implicit native layout, C cast, export
 selection or default specialization is permitted to fill that gap.
 
-The introduction-only-in-inputs rule also constrains algorithms: a general
-conversion with distinct input/result types must introduce both independent type
-parameters through permitted inputs, or receive a constructor through TPL-07's
-static signature mechanism. A body-inferred result variable does not introduce
-a new placeholder name into `@>`. Empty generic containers likewise need a statically
-typed source of their bindings; missing runtime elements provide no evidence.
+A general conversion may introduce independent input and result Type parameters
+through the corresponding interface declarations, and may receive constructors
+through TPL-07's static signature mechanism. A body-inferred receiver does not
+introduce another user-visible parameter of its owner. Empty generic containers
+likewise need determining type constraints; missing runtime elements provide no
+type evidence. Every result has one fixed type per concrete owner specialization.
 
 ## Type parameters and template parameters
 
@@ -601,6 +756,14 @@ with no such nominal template metadata cannot satisfy a constructor-discovery
 pattern. There is no lookup by filename resemblance, common body or structure.
 Nested constructor-valued expressions use TPL-10's exact structural rule.
 
+The same declared constructor application may also be constrained by a typed
+result receiver, initializer, assignment or another TPL-03 connection. Its
+signature still determines exactly which original slots are open. If the root
+is a Template parameter, its category/signature must already have been introduced
+through `@<`; inferring its binding does not introduce a new Template in `@>` or
+the body. TPL-10 applies the same nominal recovery to these equations. A bare
+Type variable instead receives the complete nominal Type without decomposition.
+
 **Example: input-section fragment of `.remap`.**
 
 ```text
@@ -636,7 +799,7 @@ Unknown formal names, duplicate bindings, incompatible categories and unequal
 residual signatures are static errors. There are no positional static bindings,
 blank `<` placeholders, automatic formal renaming, guessed adapters or implicit
 opening of a concrete Type passed where a Template is expected. Constructor
-recovery occurs only at an explicitly declared pattern with an exact signature.
+recovery requires a declared constructor application with an exact signature.
 Ordinary calls keep their existing named/positional value bindings under TPL-03.
 
 ## Partial substitution and composition
@@ -728,11 +891,13 @@ signatures. Identify each variable by its concrete owner specialization, lexical
 field declaration and residual formal identity. Different fields get independent
 variables; repeated calls through the same field constrain the same variables.
 No new user-visible placeholder or implicit owner parameter is introduced.
-Known static bindings and ordinary typed calls can determine these variables.
+Known static bindings and TPL-03's typed connections can determine these variables.
 All required bindings must be uniquely concrete before construction/codegen.
 This is an inference operation of the compiler, not partial runtime storage or
-late selection by the first executed call. Root input patterns use TPL-07's
-explicit-coverage rule instead.
+late selection by the first executed call. A named Type parameter introduced in
+`@>` is a parameter of its owner; an omitted residual here remains only a field
+inference variable and cannot implicitly parameterize that owner. Root input
+patterns use TPL-07's explicit-coverage rule instead.
 
 **Example: complete `.typed consumer`.** Assume the supplied family has the
 dictionary interface from TPL-07, with a fixed key type and only value type open:
@@ -929,13 +1094,18 @@ scope:
    check. A locally bound residual formal is not a free unknown of its enclosing
    owner. Finite nominal reference cycles are not infinite substitution terms.
 3. For an unknown constructor application `F[P]` equated to known nominal static
-   information `R = (D, B, S)`, let P be its explicit set of applied formal names,
+   information `R = (D, B, S)`, let P be its set of applied formal names,
    B the actual fixed-binding map and S the actual residual signature. Every
    name in P must occur in B. Recover F uniquely as original D with fixed map
    `B minus P` and residual signature `S union P`, using D's original categories
    and nested signatures. This signature must equal F's declared signature.
    Equate each removed B binding with its corresponding explicit right-hand
    expression. Preserve every other fixed binding and every existing residual.
+   P consists of source-written named bindings and, at the root of a runtime
+   body/result field type, TPL-08's generated bindings for omitted residuals.
+   Generated labels come from the already known signature and use that field's
+   deterministic inference-variable identities; they are not guessed formals.
+   No generated binding is added inside a partial static Template argument.
    These symbols describe the algorithm, not additional Ama source syntax.
 4. In the closed runtime-input case, S is empty, and TPL-07 requires P to cover
    F's complete signature. In a nested Template-valued argument, S may be
@@ -943,23 +1113,27 @@ scope:
    that is not fixed in the actual cannot be reconstructed by inventing a
    binding; that decomposition fails.
 5. If a nominal origin or required equation is not known yet, retain the
-   constraint until more declared-path/typed-input evidence is available. Never
+   constraint until more declared-path or TPL-03 typed-connection evidence is
+   available. Never
    enumerate candidate constructors, partitions of their parameters or possible
    body implementations. Equating unknown constructors does not discover an
-   origin. For constraints entirely within the settled evidence domain, after
-   exhausting these rules unresolved required bindings are an underdetermination
-   error. Cases depending on additional evidence remain gated by AMB-004; this
-   algorithm does not decide whether to accept or reject that pending evidence.
+   origin. After exhausting these rules unresolved required bindings are an
+   underdetermination error. Parameter-dependent `@=` declarations and new
+   specialization-constant namespaces remain gated by AMB-004; a type equation
+   cannot introduce those pending declaration/access forms.
 
-The recovery step is the explicitly declared input-pattern operation of TPL-07.
-It does not authorize reopening fixed formals during ordinary static application.
-Direct static bindings and constraints recovered from an input must agree;
+The recovery step solves a declared constructor application under TPL-07 in any
+of TPL-03's typed connections. It does not authorize reopening fixed formals
+during ordinary static application or treating a supplied concrete Type as a
+Template argument. If F already has a binding, check that binding for consistency;
+do not replace it with a newly recovered constructor.
+Direct static bindings and constraints recovered from typed connections must agree;
 neither source has precedence over a conflict. Reordering independent constraints
 must preserve the normalized solution or rejection. Multiple unequal concrete
 solutions cannot be resolved by picking one.
 
 **Why the recovery is unique.** The actual nominal origin D, its original formal
-identities and the explicitly named set P determine exactly which entries are
+identities and the declared or generated named set P determine exactly which entries are
 removed from B. Both retained bindings and the new residual signature are then
 fixed, and the removed entries determine the right-hand equations. No choice
 depends on field contents, source traversal order or matching by ordinal. The

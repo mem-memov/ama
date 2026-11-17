@@ -17,7 +17,7 @@ accepted Ama syntax. No answer is inferred from a request to document a question
 
 | Issue | Decision still needed | Work affected |
 |---|---|---|
-| [AMB-004](#amb-004) | Which type-evidence sources beyond ordinary input arguments participate; dependent constants | Complete inference and constant access |
+| [AMB-004](#amb-004) | Parameter-dependent constants and selection of a concrete specialization's constant namespace; additional inference evidence and new Type placeholders in `@>` are settled by T160 | Constant declarations and access |
 | [AMB-005](#amb-005) | Which recursive specializations are permitted and how analysis terminates exactly | Recursive template expansion |
 | [AMB-006](#amb-006) | Which list implementation/interface the compiler binds and which typed storage/lifecycle primitives support it | Reimplementation of the list foundation |
 | [AMB-007](#amb-007) | Native-template layout/companions and explicit selection of exported specializations | `@C` templates and C library roots |
@@ -296,11 +296,14 @@ Each entry must contain:
 
 ## AMB-004 — Additional inference evidence and dependent constants
 
-- **Status:** Open.
-- **Task:** T158. Ordinary typed input evidence is settled; the full inference
-  domain, constant-dependent forms and their implementation await this decision.
-  T159 also settles explicit named static arguments as direct binding information;
-  this question concerns the additional evidence sources below.
+- **Status:** Open (constant declarations/access only; inference and result-Type
+  scope decisions are settled).
+- **Task:** T158 owns the remaining constant question. Ordinary typed input evidence and explicit named static
+  arguments were settled in T157/T159. The user has now approved the additional
+  evidence sources and new Type introductions in `@>` recorded below. Their
+  canonical scope/constraint update is recorded by T160; the constant
+  declaration/access decision remains open. No compiler implementation resumes
+  from this work-log entry.
 - **Requirements:** [TPL-02](spec/language/templates.md#tpl-02),
   [TPL-03](spec/language/templates.md#tpl-03),
   [TYPE-02](spec/language/declarations.md#type-02),
@@ -330,14 +333,36 @@ Each entry must contain:
   explicit scope/selection contract; ordinary full module paths cannot silently
   choose one specialization. Neither choice gives literal bytes an intrinsic
   type or allows an inferred receiver to manufacture missing type information.
-- **User decision:** Unset. The user explicitly approved inference from ordinary
-  typed inputs and prohibited new placeholders in results/body, but did not decide
-  these additional sources or a specialization-qualified constant form.
-- **Specification authorization:** Explicitly authorized to describe the settled
-  boundary and this gap. No interpretation of the missing cases is selected.
-- **Resume evidence:** Define the complete constraint relation and initialized
-  source ordering; test literal-plus-typed-output, self references, aliases,
-  conflicting branches, underdetermination and per-specialization constants.
+- **User decision (inference):** In the current conversation the user said:
+  “По первой теме. Да, добавляем прочие основания для вывода типов.” The approved
+  additional evidence comprises explicitly typed output receivers, typed
+  defaults, assignments, reference bindings and declaration initializers. These
+  static constraints may determine a returned template specialization as well
+  as an input specialization. Literal bytes alone still supply no type identity.
+  The user then answered the explicit scope question: “Да, разрешить новые
+  заглушки в @>; в теле по-прежнему запрещать”. New Type parameters may therefore
+  be introduced in result type declarations even when absent from `@<`; the body
+  still cannot introduce them. This changes the earlier input-only introduction
+  rule and requires corresponding TPL-02/03, TYPE-06 and grammar explanations to
+  be reconciled. The question concerned Type placeholders; it did not request
+  standalone static Template-formal declarations in `@>`.
+- **User decision (constants):** Unset. The user explicitly asks to compare
+  convenient designs before choosing parameter-dependent `@=` types or a
+  specialization-qualified constant namespace. No inheritance, implicit lookup,
+  instance-dependent constant or access notation is selected by this request.
+- **Specification authorization:** The earlier authorization records the design
+  boundary and this issue. The current answers explicitly select the inference
+  and result-Type scope behavior; canonical updates must implement those decisions
+  without treating the separate constant discussion as decided. This entry
+  records the answers and their source before any such update.
+- **Resume evidence:** T160 specifies interface-wide Type introductions, typed
+  input/output/default/initializer/assignment/reference equations and deferred
+  TYPE-06 type terms while preserving lexical binding and runtime initialization.
+  Required implementation cases include literal-plus-typed-output, later anchors,
+  self references, aliases, conflicting branches, defaults and underdetermination.
+  No execution evidence is claimed by the specification update. Dependent constant
+  declarations and external specialization selection remain undecided; resolve
+  them and their initialization/access rules before implementing those forms.
 
 <a id="amb-005"></a>
 

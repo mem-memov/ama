@@ -360,7 +360,11 @@ inner block would be a duplicate rather than a second local variable.
 
 ## Declaring a field at its first receiver
 
-**Explanation.** An assignment source or a declared result already determines a complete type. Ama lets the first textual occurrence of a receiver use that information instead of repeating a type line. The suffix remains explicit so that ownership is visible.
+**Explanation.** An assignment source or declared result supplies a scoped type
+expression. Ama lets a receiver's first textual occurrence use that information
+instead of repeating a type line. The expression may be concrete already or
+become concrete through other typed connections before layout. The suffix stays
+explicit so that ownership remains visible.
 
 <a id="type-06"></a>
 
@@ -384,22 +388,30 @@ Classification depends on source order, not on the branches actually executed or
 the order in which modules happen to load. Use this algorithm:
 
 1. Parse the module structurally, without using declared-name lookup to choose
-   its grammar. Collect all explicit module declarations and resolve their
-   complete module-type identities. This inventory is available throughout the
-   module for ordinary lookup and for FLOW-05's foreach-header lookup. Collecting
-   a later explicit declaration does not count as encountering its name at an
+   its grammar. Collect all explicit runtime declarations, bind their scoped type
+   expressions and static parameter names under TPL-02, and retain their storage
+   forms. A type expression may still contain unresolved specialization variables;
+   do not require a complete concrete type at this stage. This inventory is
+   available throughout the module for ordinary lookup and for FLOW-05's
+   foreach-header lookup. Static constructor formals are not runtime declarations.
+   Collecting a later explicit declaration does not count as encountering its name at an
    earlier source position and does not suppress an earlier receiver-inferred
    declaration. If both declare that base name, report a duplicate.
 2. Traverse the parsed module once in increasing source-byte order, visiting each
    branch, loop, and `:` body at its written location. Maintain the set of
-   encountered module-variable base names, the types of earlier inferred
-   fields, and the active lexical foreach bindings. All four storage spellings
-   share a base name. A possibly multiword name is one occurrence, never a set
+   encountered module-variable base names, the scoped type terms and storage
+   forms of earlier inferred fields, and the active lexical foreach bindings.
+   All four storage spellings share a base name. A possibly multiword name is
+   one occurrence, never a set
    of occurrences of its individual words.
-3. At a foreach header, resolve the source list from the explicit typed inventory,
-   earlier inferred fields, and enclosing lexical bindings. Its element type is
-   therefore known before applying FLOW-05's exact binding rule. Reuse a compatible
-   visible reference or introduce the specified local reference for that body.
+3. At a foreach header, resolve the source list's declaration identity, storage
+   form and element type term from the explicit inventory, earlier inferred
+   fields and enclosing lexical bindings. Apply FLOW-05's name rule now: reuse
+   the visible mutable scalar reference, if present, or introduce the specified
+   local reference for that body. An existing name with another storage role is
+   an error, not a reason to shadow it. Record type compatibility with the source
+   element as an equation if its complete type is not known yet. Delaying that
+   check never delays or changes the reuse/new-binding decision.
    New local-binding declarations and occurrences resolved to those locals do
    not enter the module-variable encountered set. An assignment/output receiver
    resolved to such a local updates that cell and cannot declare a module field.
@@ -409,28 +421,43 @@ the order in which modules happen to load. Use this algorithm:
    explicit declarations according to their syntax. Add each encountered base
    name, including unresolved uses. An earlier unresolved use therefore prevents
    inference at a later receiver.
-5. Type each new inferred field immediately, before processing any later source
-   construct. An assignment's following source line supplies its complete module
-   identity and transfer storage form through the table below. Resolve names in
-   that line using explicit declarations, earlier inferred fields, and visible
-   foreach bindings; also visit their occurrences in source order. A dependency
-   on the field currently being inferred is an error. For an output receiver,
-   resolve the operation target and selected interface position or label. Take
-   exactly that result's declared full module identity and storage form. Constant
-   reads use the selected `@=` declaration; list methods use LIST-04's fixed typed
-   result interface. Neither source execution, runtime values, nor inspection of
-   a callee body contributes a type.
-6. Require the receiver's written storage form to match the source transfer form
-   or selected result exactly. Check namespaces, initialization, ownership,
-   capabilities, and transfer compatibility. Missing or mismatching `&`/`[]`
-   is an error; do not insert a suffix, dereference, form a reference, or convert
-   between scalar and list. After a field has been typed, add it to the inventory
-   of earlier inferred fields used by later constructs. A valid later explicit
-   declaration can resolve ordinary uses under the existing visibility rule; a
-   later inferred receiver cannot. An invalid first occurrence never triggers a
-   search for a different declaration site or a different inferred type.
+5. Give each new inferred field a scoped type term immediately and connect it to
+   its source or selected result; the term need not yet be concrete. An assignment's
+   following source line supplies its transfer form through the table below.
+   Resolve names in that line using explicit declarations, earlier inferred fields
+   and visible foreach bindings; also visit their occurrences in source order.
+   A dependency on the field currently being inferred is an error. For an output
+   receiver, bind the operation target and selected interface position or label,
+   retaining constraints for interface resolution if the target's specialization
+   is still unresolved. Equate the new field's type to exactly that result's
+   scoped type term. Constant reads select the existing `@=` declaration; list
+   methods select LIST-04's fixed typed interface. This rule does not resolve the
+   separately pending [dependent-constant forms](../../AMBIGUITIES.md#amb-004).
+   Neither source execution nor runtime values supplies a type. Result selection
+   uses the declared interface, not a search for suitable fields in a callee
+   body; that body's ordinary static equations may refine the interface's terms.
+6. Record exact compatibility of the receiver's written storage form with the
+   source transfer form or selected result. Validate known facts now and retain
+   checks requiring resolved types. Missing or mismatching `&`/`[]` is an error;
+   do not insert a suffix, dereference, form a reference, or convert between
+   scalar and list. Add the field identity, storage form and type term to the
+   earlier-inferred inventory before visiting subsequent constructs. A valid
+   later explicit declaration can resolve ordinary uses under the existing
+   visibility rule; a later inferred receiver cannot. An invalid first occurrence
+   never triggers a search for a different declaration site or classification.
+7. Solve the type constraints together under TPL-03/TPL-10. Typed inputs, already
+   declared output receivers, typed defaults, declaration initializers,
+   assignments and reference/alias connections may refine an earlier field's
+   type term. An explicitly typed generic destination whose arguments are still
+   unknown contributes equations, not a concrete anchor. A new inferred receiver
+   likewise supplies no independent concrete type. Reject inconsistent or
+   unresolved required types and infinite substitution terms; then validate all
+   namespaces, interfaces, initialization, ownership, capabilities and transfer
+   checks before layout or execution. Type refinement never repairs an unresolved
+   earlier name use or changes a lexical binding established by steps 1 through 6.
 
-Module-path components, qualified constant member names, callee-side binding
+Module-path components, static parameter/signature names and binding labels,
+qualified constant member names, callee-side binding
 labels, direct-result selector base names, comments, and literal payloads are not
 local variable occurrences. They do not enter the encountered set. Names inside
 an index and a local constant used by its unqualified name do enter it. At an
@@ -442,15 +469,16 @@ new local scope. These rules keep the traversal lexical and unambiguous.
 
 Assignment-source inference uses the following exact rules. An indexed owned
 element or reference-list entry is scalar; a whole-list source retains its list
-form. The module identity is determined by the source's declared type, never its
-current runtime contents.
+form. The scoped module type comes from the source's declared type expression,
+never its current runtime contents. It may remain symbolic until the static
+constraints are solved.
 
-| Assignment source | Inferred module identity | Required receiver storage form |
+| Assignment source | Inferred module type term | Required receiver storage form |
 |---|---|---|
 | Owned scalar access or scalar constant | Source module type | Owned scalar |
 | Reference access, including an indexed reference-list entry | Referent module type | Reference scalar |
 | `&item` or `&items[index]` | Selected owned instance's module type | Reference scalar |
-| Standalone `&` | Containing module's complete identity | Reference scalar |
+| Standalone `&` | Containing module's complete type expression | Reference scalar |
 | Whole owning list or owning constant list | Element module type | Owning list |
 | Whole reference list | Referent element module type | Reference list |
 | `% owned` or `% target&`, including indexed scalar operands | Source/referent module type | Owned scalar |
@@ -470,28 +498,28 @@ classification unique. A validation failure rejects the program; it never
 changes the classification or starts another inference attempt. It does not change existing visibility rules for
 explicit declarations or permit forward/cyclic initializer dependencies.
 
-The root target's type must be supplied by an explicit declaration or an earlier
-receiver-inferred declaration, or by a visible foreach binding. A CALL-09
-selected target follows the explicitly
-typed result interface of its enclosing operation; each finite selector path is
-resolved from its root without searching bodies or caller names.
-Interface declarations in `@>`/`@=` have explicit module types; intrinsic list
-method result types are supplied by LIST-04's validated interfaces.
-They do not depend on inferred caller fields. Any field needed to type an
-operation target or assignment source must have an explicit type, come from
-an earlier receiver-inferred declaration, or resolve to a visible foreach
-binding whose element type is supplied by its earlier header. Indexed operands
-must likewise resolve to valid typed declarations. Although an assignment source follows its receiver
-in the text, dependencies on other inferred declarations strictly decrease their
-receiver source positions. These edges terminate at explicit types, fixed
-interfaces, the typed list declaration supplying a foreach binding, or the
-known containing-module type of `&`, making inference well-founded. Explicit
-declarations may occur later and terminate the dependency argument; only
-dependencies on inferred declarations must strictly decrease source positions.
-Reject missing types and self/cyclic inference dependencies;
-do not guess or infer backward from a later receiver. Existing visibility of
-valid explicit declarations, cross-module loading, initialization-order, and
-eager-construction checks remain separate.
+The declaration identity of an operation target or assignment source comes from
+an explicit declaration, an earlier receiver-inferred declaration or a visible
+foreach binding. Indexed operands obey the same name rule. References to other
+inferred declarations therefore decrease their introducing source positions;
+valid explicit declarations may occur later under the existing visibility rule.
+This establishes lexical bindings without needing every type to be concrete.
+A CALL-09 selector then uses its enclosing operation's declared result interface,
+retaining the necessary type/interface constraint if that operation is not yet
+specialized. It never searches a body or caller namespace for a matching member.
+
+Type equations are a separate graph and need not decrease source positions.
+For example, a later typed assignment can constrain the type term of a field
+already introduced by an earlier result receiver. Equality cycles between type
+variables are not errors by themselves: a concrete anchor may determine their
+common type. Without that anchor they remain underdetermined. An infinite
+substitution term still fails the occurs check, and an inferred field cannot
+provide its own assignment-source type at its introducing receiver. TPL-03 and
+TPL-10 define exact propagation and uniqueness, without guessing from literal
+bytes, capabilities or runtime execution. Name classification never reruns after
+type solving, even when a constraint fails. Cross-module loading, initialization
+order and eager ownership construction remain independent checks; a solved type
+does not authorize a forward or cyclic value initializer.
 
 ### When the inferred field is constructed
 
@@ -544,6 +572,36 @@ it. The same rule permits `new_ref&` from `&is_ok`, a reference-list field from 
 whole reference list, or an owned field from `% source`; their explicit suffixes
 and ordinary transfer checks must match. A later assignment to `new_var` reuses
 that field. `new_var` followed by an unindented `is_ok` is not an assignment.
+
+**Example: a later typed connection resolves an earlier field's type.** Assume
+the hypothetical `.producer` has one owned result whose Type parameter is
+introduced in `@>`, no typed inputs and no other determining constraint. Assume
+ordinary integer default construction and copying are available. This is a
+complete caller module:
+
+```text
+@!
+producer
+.producer
+
+producer !
+ > received
+
+known
+..integer
+ |7
+
+received
+ known
+```
+
+The first output binding introduces `received` and equates its type term to the
+producer's result term; neither term is concrete yet. The later assignment uses
+that existing field. Its source's declared `..integer` type supplies the concrete
+anchor, so both terms resolve to integer before any instance is constructed.
+The literal bytes `7` do not choose that type, and the assignment still executes
+after the call. This does not permit a source name to refer forward to a later
+inferred declaration: lexical name resolution remains the earlier pass.
 
 ## Supplying literal data
 

@@ -422,7 +422,7 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | Layout/lexical reader | Indentation, comments, literal boundaries, annotations | Tokens or logical lines |
 | Parser | Syntax recognition independent of declared-name lookup | AST with spans |
 | Namespace resolver | Module loading, qualified identities, name binding | Resolved symbols |
-| Static specializer | Scoped kinds/signatures, named applications, nominal constructor-pattern constraints and canonical bindings under [TPL-01 through TPL-10](../language/templates.md) | Closed specialized type/program structure before layout; individually unresolved design cases remain gated |
+| Static specializer | Scoped interface kinds/signatures, named applications, global typed-connection constraints, nominal pattern decomposition and canonical bindings under [TPL-01 through TPL-10](../language/templates.md) | Closed specialized type/program structure before layout; individually unresolved design cases remain gated |
 | Type/lifecycle checker | Types, storage kinds, copy/default contracts | Validated typed nodes |
 | Control-flow lowering | Entry, calls, refusal branches, loops, yield positions | Typed control-flow IR |
 | Storage planner | Owned layout, stable-address pool blocks, instance access, service metadata | Explicit storage plan |
@@ -437,7 +437,7 @@ applied type, not merely the recovered constructor head. The nested bindings in
 [TPL-08](../language/templates.md#tpl-08) can pass a residual constructor without
 creating a sample object. Parsing those trees does not require a successful type
 lookup, and their agreed grammar does not resolve the separately indexed
-inference, recursion, list-foundation or native/export questions.
+dependent-constant, recursion, list-foundation or native/export questions.
 
 ### Parse before resolving names
 
@@ -452,7 +452,12 @@ indented output actions, is instead that operation's acquisition-refusal handler
 Do not reinterpret either form based on whether a name or truth conversion exists.
 Parse assignments and output bindings uniformly; classify their simple receivers
 as inferred declarations or ordinary uses by TYPE-06's source-order rule after
-parsing, then resolve types. An inferred assignment remains an assignment node
+parsing. That lexical pass fixes field/local identities and storage forms while
+retaining scoped type terms. Solve those terms through the typed connections in
+TPL-03/TPL-10 before layout; a later type refinement cannot resolve an earlier
+unbound name or change a foreach reuse decision. Equality cycles with a concrete
+anchor may resolve, while infinite substitution terms fail the occurs check.
+An inferred assignment remains an assignment node
 with an executable source transfer, not an explicit declaration initializer.
 Do not use the symbol table to choose different grammar productions for the
 same assignment or output-binding text.

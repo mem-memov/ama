@@ -2992,6 +2992,65 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   are specified with scoped, deterministic constraints and examples; the five
   remaining design questions stay visible and unfinished in TODO.
 
+- [x] **T160 — Specify interface-wide type inference and result Type parameters.**
+  Status: complete (specification/design documentation only). Prerequisites:
+  T157/T159 and the user's approved additional inference evidence plus explicit
+  `@>` scope decision in [AMB-004](AMBIGUITIES.md#amb-004). Scope: update
+  TPL-02/03/06/10, TYPE-06 and linked grammar/examples so all agreed typed
+  connections constrain one fixed specialization and results may introduce Type
+  parameters. Preserve lexical receiver classification, storage suffixes,
+  runtime initialization order and body-introduction prohibition.
+  Steps: (1) reconcile scoped introductions and static constraints with the
+  receiver algorithm; (2) add canonical positive/negative/later-evidence examples
+  and acceptance cases; (3) review links, EBNF and Doxygen, record evidence and
+  commit. Parameter-dependent constants/access remain Open; no proposed constant
+  notation or compiler implementation is included.
+  Step 1 result: Type parameters may be introduced in `@<` and `@>`; Template
+  introductions/signatures remain only in `@<`. Collect interface scope before
+  checking uses; preserve input-then-result introduction order for identity.
+  New body parameters remain forbidden. Input/output transfers, typed defaults,
+  declaration initializers, assignments and reference/list/alias connections
+  contribute exact scoped type equations. Existing typed constants remain valid
+  evidence without authorizing dependent constants or a new namespace.
+  Step 2 result: [TPL-03](spec/language/templates.md#tpl-03) describes global
+  equality propagation, including later typed evidence and result-only owner
+  parameters. New inferred receivers supply equations, never a type by themselves;
+  literal bytes and capabilities still do not choose types. TYPE-06/FLOW-05 bind
+  lexical names/storage before solving their symbolic terms; a later anchor cannot
+  repair an earlier unresolved name or change reuse/local classification. The
+  proof separates decreasing name dependencies from bidirectional type equations.
+  Constructor recovery accepts the same typed connections, using a declared
+  signature and deterministic source/generated bindings without module search.
+  Examples cover two independently specialized producers, typed output/literal
+  inference, later assignment anchors, generic box results, per-field omissions,
+  defaults and rejection boundaries. Updated canonical cross-references and
+  existing acceptance cases; no parser production change is necessary.
+  Step 3 result: three independent semantic/grammar/consumer reviews pass after
+  correcting stale statements requiring an immediately complete receiver type
+  and forbidding all callee-body inspection. Ordinary typed Ama body assignments
+  may refine declared interface terms; executing bodies for inference, searching
+  for undeclared members or guessing from native/runtime contents remains
+  forbidden. Typed defaults constrain types even when runtime construction is
+  suppressed; persistent fields still construct before body execution. The
+  remaining part of AMB-004 concerns constant declarations/access only.
+  Verification from repository root: `python3 /tmp/ama-t160-doc-check.py` passes
+  for 203 maintained Markdown files, 2531 local links before archive navigation,
+  210 unique indexed rules, 104 closed EBNF nonterminals at column 30 and example
+  spacing. This is a temporary independent documentation audit. A separate
+  Markdown comparison confirms every EBNF production block is byte-identical to
+  39b0aaf and all 118 acceptance rows remain, with expanded scope/inference cases.
+  `git diff --check` passes. `make docs-complete` exits 0 (2335 ready inputs,
+  zero debt). `make docs` exits 0 with Doxygen 1.11.0, Python 3.14.4 and
+  markdown-it-py 3.0.0: 1749 maintained file pages, 6703 documented interfaces,
+  411 checked canonical/referenced destinations and 5524 generated pages.
+  `make conformance-check` exits 2 as expected because reviewed implementation
+  evidence predates the specification; no fingerprints or support claims change.
+  Final archive/queue checks and documentation generation repeat on final inputs
+  before commit. No compiler/native/test code was inspected or changed and no
+  functional suites were rerun for this documentation-only task. Acceptance:
+  the approved inference/scope change is explicit and consistent across chapters;
+  constant design and the other T158 questions remain visible and unfinished.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

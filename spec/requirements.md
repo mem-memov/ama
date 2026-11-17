@@ -65,7 +65,7 @@ you need the model, examples, or reasons behind a rule.
 |---|---|
 | [TPL-01](language/templates.md#tpl-01) | Placeholder spelling |
 | [TPL-02](language/templates.md#tpl-02) | Parameters and their scope |
-| [TPL-03](language/templates.md#tpl-03) | Inferring types from ordinary arguments |
+| [TPL-03](language/templates.md#tpl-03) | Inferring types from typed connections |
 | [TPL-04](language/templates.md#tpl-04) | Nested template instances |
 | [TPL-05](language/templates.md#tpl-05) | Specialization identity and independent state |
 | [TPL-06](language/templates.md#tpl-06) | Checking a specialization before execution |
