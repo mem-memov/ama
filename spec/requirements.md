@@ -75,6 +75,7 @@ you need the model, examples, or reasons behind a rule.
 | [TPL-10](language/templates.md#tpl-10) | Compiler obligations and design gates |
 | [TPL-11](language/templates.md#tpl-11) | Finite composition and specialization creation |
 | [TPL-12](language/static-results.md#tpl-12) | Static inputs, returned types/templates, positions and aliases |
+| [TPL-13](language/templates.md#tpl-13) | Concrete native modules and template source distribution |
 
 ## Literal data
 

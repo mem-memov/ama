@@ -54,6 +54,29 @@ an unavailable operation, unresolved dependency, or unsupported transport at
 build time; do not infer an export from filenames, public-looking C symbols,
 or a type's basename.
 
+Select an exported root by the full logical module path of an ordinary,
+non-template concrete executable module. The root may have either an Ama `@!`
+body or a concrete native `@C` implementation under
+[TPL-13](../language/templates.md#tpl-13). An already concrete native root needs
+no additional facade. To expose a generic Ama algorithm, define an ordinary
+Ama facade with concrete runtime inputs/results and explicitly closed internal
+specializations, then select that facade's module path.
+
+This export contract does not select a template root through a static binding
+map, a static result projection, or a generated specialization name. Reject a
+template definition selected as an exported root even if one of its concrete
+specializations was discovered elsewhere in the component. Open template
+distribution follows TPL-13's Ama-source contract; an unresolved constructor is
+not a runtime C export.
+
+Every runtime interface type and required dependency must be concrete before
+generating the public header and transport schema. Each required Type/Template
+binding must be determined under TPL-06; a Template-valued binding may retain
+its own declared residual formals. Runtime C arguments do not choose an Ama
+specialization or infer a missing static argument. Static result definitions
+under [TPL-12](../language/static-results.md#tpl-12) contribute no runtime C
+result fields or operations for returning types.
+
 The configuration is a compiler/build input, not new Ama syntax or another
 `.abi` protocol. Export selection does not change the module's nominal identity
 or expose private fields. An explicit facade may provide a narrower interface
@@ -88,6 +111,63 @@ declared public entry points. Compile a separate C consumer with the public
 header as its first project include; then link and run that consumer against
 both artifact kinds supported by the target. Linking without making an API
 call must have no Ama lifecycle effects.
+
+### Example: export a concrete facade over an Ama template
+
+**Example: complete `.forward`.** Assume the supplied Type supports ordinary
+default construction and owned copying:
+
+```text
+@<
+value
+...inner.value type
+
+@>
+result
+...inner.value type
+
+@!
+result
+ value
+```
+
+**Example: complete `.integer facade`.** The fixed library type `..integer`
+provides the construction and copy operations used here:
+
+```text
+@<
+value
+..integer
+
+@>
+result
+..integer
+
+@!
+worker
+.forward
+ ...inner.value type < ..integer
+
+worker !
+ value < value
+ result > result
+```
+
+Select `.integer facade` and its supported entry/read operations in the explicit
+library-build configuration, with a supported integer transport schema under
+EMBED-04. The facade has no free static parameters; its worker is the checked
+integer specialization of `.forward`. A second source facade with concrete
+text inputs/results can independently use the text specialization. The C
+consumer uses the generated declarations for each selected facade and supplies
+values in its declared transport representation. No runtime type selection,
+universal payload cast or knowledge of the worker's layout is needed.
+
+`worker` is explicit permanent Ama state, independently owned by each facade
+instance under EMBED-02. Internal calls retain the ordinary Ama dispatch and
+lifecycle contracts; the facade adds no hidden default instance or shared
+working state. Its private worker is not exposed as a pool address or native
+authoring type in the public header. These source examples illustrate the
+required contract and make no claim of existing template implementation.
 
 ## Create contexts and explicit exported instances
 

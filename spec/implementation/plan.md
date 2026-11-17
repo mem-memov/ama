@@ -190,12 +190,16 @@ with explicit concrete-type namespaces and their design rationale. T163 settles
 finite composition and specialization creation under
 [TPL-11](../language/templates.md#tpl-11). T162 defines static input categories,
 returned types/constructors, positional application and immutable aliases under
-[TPL-12](../language/static-results.md#tpl-12). The
+[TPL-12](../language/static-results.md#tpl-12). T165 settles the concrete native,
+source-distribution and ordinary-facade export boundaries under
+[TPL-13](../language/templates.md#tpl-13) and
+[EMBED-01](c-library.md#embed-01). The
 [template chapter](../language/templates.md),
 [static-results chapter](../language/static-results.md) and grammar define those
 source forms. The [remaining decisions](../../AMBIGUITIES.md#open-template-design-questions)
-owned by T158 gate their affected cases; they do not leave the whole grammar
-unspecified or authorize an inference fallback. Before implementing a selected
+owned by T158 retain only the open naming question. The list-foundation rewrite
+is explicitly deferred; neither boundary leaves the whole grammar unspecified
+or authorizes an inference fallback. Before implementing a selected
 boundary, resolve every open decision on which that boundary depends and plan
 its acceptance. Existing tests do not cover the new template semantics.
 
@@ -212,7 +216,16 @@ reuse of cached dependency subgraphs; ordinary type/lifecycle
 checking of concrete specializations, including dependent constant types,
 concrete namespace selection and per-specialization initialization graphs;
 specialized layouts/emission and source
-diagnostics; then the agreed native/export boundary.
+diagnostics; then concrete `@C` validation, ordinary source-package dependency
+resolution and concrete export facades. Reject native definitions with own free
+Type/Template formals, including implicitly introduced interface parameters;
+concrete native types can still be arguments and dependencies of Ama templates.
+Package open templates as Ama source with required ordinary native companions.
+Keep logical identities, root kinds and lexical scopes intact during loading.
+For C exports, use ordinary concrete roots (including already concrete native
+roots) and facade modules that internally use closed specializations. Direct
+specialization export selectors and a binary open-template format are outside
+this boundary; follow TPL-13/EMBED-01 rather than inventing a packaging interface.
 Each component needs its own argument, unit cases and real composition cases.
 Add complete positive/negative nested, partial and erroneous applications,
 including order-independent creation-path checks and permitted finite repeated
@@ -228,7 +241,7 @@ of adding placeholders.
 
 Deliverable: documented, tested static specialization with explicit supported
 boundaries and a current acceptance matrix. No compiler implementation is part
-of the specification-only T157, T159, T160, T161, T162 or T163 tasks.
+of the specification-only T157, T159, T160, T161, T162, T163 or T165 tasks.
 
 ## Keep engineering choices separate from language changes
 

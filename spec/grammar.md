@@ -340,6 +340,16 @@ A constants-only file may contain an empty `@=` section. Parameter/result sectio
 require an implementation. Unknown, repeated, or out-of-order annotations fail
 in active files.
 
+The two implementation markers share the interface productions. Their semantic
+boundary follows [TPL-13](language/templates.md#tpl-13): after TPL-02 collects a
+module's own free Type/Template parameters, a module implemented with `@C` must
+have none. This check precedes specialization-specific native header generation;
+binding every actual use does not turn a native template definition into an
+ordinary native module. A closed template application, bound static alias or
+defined static result does not itself introduce a free parameter. The parser
+therefore does not ban placeholder spellings or template applications merely
+because the implementation marker is `@C`.
+
 A file with no genuine zero-indent `@=`, `@!`, or `@C` marker is a draft.
 Shared encoding, TAB, and lexical spacing checks still apply, but incomplete
 declarations need not parse. Marker text in comments/literals and companion
@@ -1035,6 +1045,8 @@ lifetime rules are specified in [Continuations](language/continuations.md).
 
 A physical source filename followed by `.abi` names a flat binding table, not
 an Ama module. Active `@C` modules require their native companions under SRC-01.
+TPL-13's native-leaf check applies to their resolved Ama definitions, not to
+the companion-table grammar; native protocols gain no generic binding form.
 
 ```ebnf
 <abi-file>                   ::= { <abi-record> | <abi-blank> | <abi-comment-line> }

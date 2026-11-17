@@ -421,8 +421,8 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | Source manager | Paths, UTF-8 bytes, line tables, source lifetime | Stable source spans |
 | Layout/lexical reader | Indentation, comments, literal boundaries, annotations | Tokens or logical lines |
 | Parser | Syntax recognition independent of declared-name lookup | AST with spans |
-| Namespace resolver | Module loading, qualified identities, name binding | Resolved symbols |
-| Static specializer | Scoped interface kinds/signatures, static inputs/results and positional binding under [TPL-12](../language/static-results.md#tpl-12); global typed-connection constraints, nominal pattern decomposition, canonical bindings and specialization-creation validation under [TPL-01 through TPL-11](../language/templates.md) | Closed specialized type/program structure before layout; individually unresolved design cases remain gated |
+| Namespace resolver | Module loading, qualified identities, name binding and ordinary source-package closure under [TPL-13](../language/templates.md#tpl-13) | Resolved symbols |
+| Static specializer | Scoped interface kinds/signatures, static inputs/results and positional binding under [TPL-12](../language/static-results.md#tpl-12); global typed-connection constraints, nominal pattern decomposition, canonical bindings and specialization-creation validation under [TPL-01 through TPL-11](../language/templates.md) | Closed specialized type/program structure before layout; concrete native boundary under [TPL-13](../language/templates.md#tpl-13), with individually unresolved design cases gated |
 | Type/lifecycle checker | Types, storage kinds, copy/default contracts | Validated typed nodes |
 | Control-flow lowering | Entry, calls, refusal branches, loops, yield positions | Typed control-flow IR |
 | Storage planner | Owned layout, stable-address pool blocks, instance access, service metadata | Explicit storage plan |
@@ -464,8 +464,21 @@ its new ancestry. Check the active definition and creation ancestry before
 following each static expansion, rather than generating an unbounded producer
 chain and attempting to validate it only afterwards. An explicit output phase
 requires its producer application even when its head is a supplied closed Type
-or every requested output is skipped; plain reuse/aliasing alone does not. The remaining list-foundation and native/export questions stay
-separately indexed. Dependent shared storage
+or every requested output is skipped; plain reuse/aliasing alone does not.
+The [TPL-13](../language/templates.md#tpl-13) native boundary is checked from the
+own free parameter set collected under TPL-02, including implicit input/result
+introductions. A native definition cannot become valid merely by supplying
+concrete arguments to its forbidden free formals. Ordinary concrete native
+arguments, Ama-typed fields and declared references remain available; this
+boundary is not a ban on concrete native dependencies or instance composition.
+Open templates arrive through ordinary Ama source resolution with the same
+full logical identities, root kinds and lexical scopes; required concrete
+native companions remain normal dependencies. Exported roots follow
+[EMBED-01](c-library.md#embed-01): ordinary concrete modules and facades may use
+closed specializations internally, without a new generic export selector or
+runtime open-template representation. The list-foundation rewrite remains
+explicitly deferred, and the remaining naming question stays indexed.
+Dependent shared storage
 and explicit type namespaces follow
 [CONST-03/CONST-06](../language/declarations.md#const-06): resolve the concrete
 namespace before member lookup, retain its full specialization identity in

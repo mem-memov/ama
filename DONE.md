@@ -3265,6 +3265,65 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   test code was neither analyzed nor changed; functional suites were not rerun
   for this planning-only task. Current conformance evidence is not refreshed.
 
+- [x] **T165 — Specify concrete native leaves and source-distributed templates.**
+  Completed 2026-11-17; specification only. Prerequisites: T162's static
+  interfaces, T163's specialization identity rules and T164's sprint scope.
+  Authorization: after stating that `@C` modules should remain leaves without
+  templates, the user accepted the complete concrete-native/facade/source-delivery
+  proposal and instructed, "Принимаем. Внеси в спецификацию." The answer and source
+  are recorded in [AMB-007](AMBIGUITIES.md#amb-007).
+  Scope: canonical template/native/export rules, EBNF guidance, explanation and
+  examples, cross-references, roadmap, acceptance matrix and task/decision records.
+  No compiler, native implementation, fixture, build or ABI-generation code is
+  included. Preserve concrete native composition, existing lifecycle/transport
+  rules, deferred AMB-006 and open AMB-008.
+  Plan and acceptance: (1) record the exact boundary; (2) reconcile canonical
+  chapters and grammar; (3) independently review scopes, examples and navigation;
+  (4) run documentation gates, archive and commit. AMB-007 must be settled without
+  generic C companions, runtime open types or guessed export/source formats.
+  Step 1 result: [TPL-13](spec/language/templates.md#tpl-13) rejects an `@C`
+  definition with any own Type/Template parameter after interface collection,
+  including explicit, implicit and unused formals, even when every use binds
+  them. Concrete C types remain arguments to Ama templates. Closed dependency
+  types, declared Ama fields/references, bound static aliases and returned
+  constructors' own residuals are distinguished from free native-owner formals.
+  The rationale explains why a native implementation leaf is not an ownership
+  leaf and why a generic C header/lifecycle system is unnecessary.
+  Step 2 result: CABI-01 retains its concrete checked native interface and excludes
+  static results from runtime C arguments/storage. EMBED-01 exports ordinary
+  concrete module paths, including already concrete native roots and Ama facades
+  with internal closed specializations. Direct specialization selectors remain
+  outside the sprint. Complete `.forward`/`.integer facade` examples keep normal
+  state ownership and supported explicit transport; no generic C ABI is invented.
+  Open templates are delivered as Ama source with normally resolved dependencies;
+  full logical identities, root kinds, static scopes and checked closure remain
+  authoritative, with no new binary open-template or runtime generation format.
+  Step 3 result: grammar productions remain unchanged; semantic guidance links
+  TPL-13 rather than banning every `...` spelling on native interfaces. The
+  registry contains 214 unique definitions/index entries. Seven new acceptance
+  areas retain every previous area: 147 total, including 37 template areas.
+  Independent semantic, grammar and cross-reference reviews pass; they caught
+  and corrected differing formal names in repeated `.forward` examples and
+  wording that grouped deferred AMB-006 with the open naming gate. T158 remains
+  unfinished for AMB-008; no implementation support is claimed.
+  Verification from repository root: `python3 /tmp/ama-t165-doc-check.py` passes
+  initially for 204 Markdown files, 2705 local links, 214 canonical/indexed rules,
+  108 unique aligned EBNF rules in 10 blocks byte-identical to the previous
+  grammar, 147 uniquely named acceptance areas and 165 unique task IDs. The
+  temporary checker's first run omitted parameterized EBNF names; its extraction
+  was corrected without a grammar change and the complete audit passed. This
+  is a document audit, not shipped compiler tests. `git diff --check` and
+  `make docs-complete` pass (2335 ready maintained inputs, zero explicit debts).
+  Initial `make docs` exits 0 with Doxygen 1.11.0, Python 3.14.4 and
+  markdown-it-py 3.0.0: 1749 maintained file pages, 6703 documented interfaces,
+  416 checked canonical/referenced destinations and 5526 generated pages.
+  The final archived-input audit and Doxygen regeneration also pass before
+  commit; generated outputs remain unversioned. `make conformance-check` exits 2
+  with "specification changed; conformance review is required", as expected for
+  evidence predating these rules. No implementation fingerprints are refreshed;
+  compiler/native/test code was neither analyzed nor changed, and functional
+  suites were not rerun for this specification-only task.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

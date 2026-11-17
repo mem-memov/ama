@@ -20,7 +20,6 @@ accepted Ama syntax. No answer is inferred from a request to document a question
 
 | Issue | Decision still needed | Work affected |
 |---|---|---|
-| [AMB-007](#amb-007) | Native-template layout/companions and explicit selection of exported specializations | `@C` templates and C library roots |
 | [AMB-008](#amb-008) | Exact hyphen spelling/profile and its scope | Expanding accepted names beyond current SRC-03 |
 
 [AMB-006](#amb-006) is deferred outside the current template sprint by the
@@ -29,6 +28,11 @@ the existing intrinsic list contract and ordinary template algorithms over
 lists remain available design foundations. No implementation provider or new
 storage primitive is selected, and that future bridge no longer blocks this
 sprint. It requires a separate explicit decision before work resumes.
+
+[AMB-007](#amb-007) is resolved by T165: native modules have no own static
+parameters; Ama templates accept concrete native types, are distributed as
+source, and reach C applications through concrete ordinary exported modules.
+Direct specialization selectors in export configuration are outside this sprint.
 
 The constructor/signature and partial-binding notation in [AMB-003](#amb-003),
 inference, scope and constants in [AMB-004](#amb-004), and finite composition in
@@ -503,41 +507,57 @@ Each entry must contain:
 - **Resume evidence:** A future explicitly authorized task must reopen the bridge,
   agree the primitive/static interface, and prove preservation of existing list
   semantics, including empty unused lists, stale handles, mutation during
-  suspended traversal, failure and complexity cases. Until then, continue the
-  current design discussion with [AMB-007](#amb-007).
+  suspended traversal, failure and complexity cases. Until then, this bridge
+  imposes no prerequisite on the current template sprint.
 
 <a id="amb-007"></a>
 
 ## AMB-007 — Native templates and exported specialization selection
 
-- **Status:** Open.
-- **Task:** T158. Native-template generation and selection of generic C-library
-  roots await their specialization/ABI contract.
+- **Status:** Resolved.
+- **Task:** T165 records the user's chosen concrete native/source-delivery
+  boundary. T158 retains only AMB-008 as an open sprint gate.
 - **Requirements:** [TPL-05](spec/language/templates.md#tpl-05),
   [TPL-06](spec/language/templates.md#tpl-06),
+  [TPL-13](spec/language/templates.md#tpl-13),
   [CABI-06](spec/implementation/native-interface.md#cabi-06), and
   [EMBED-01](spec/implementation/c-library.md#embed-01).
-- **Minimal example:** One `@C` template is instantiated for integer and text
-  fields. Its companion declarations depend on those different generated layouts.
-  Separately, a C export configuration names a generic module path without any
-  typed Ama call selecting its bindings.
-- **Question:** How are specialization-specific native declarations, C namespaces
+- **Minimal example of the former gap:** One `@C` template is instantiated for
+  integer and text fields. Its companion declarations would depend on those
+  different generated layouts. Separately, a C export configuration names a
+  generic module path without any typed Ama call selecting its bindings.
+- **Original question:** How are specialization-specific native declarations, C namespaces
   and companions authored/checked? How does export configuration explicitly select
   closed specializations, and are open template definitions distributable?
-- **Possible answers and consequences:** An Ama-body-only first stage leaves
-  native templates for later explicit work while allowing concrete native type
-  arguments now. Supporting native templates immediately needs a full layout,
-  generation and lifecycle contract. Closed exports need uniquely determined
-  concrete bindings and a defined selection mechanism. Open template distribution
-  additionally needs a compile-time interface format and
-  identity/version rules, rather than a runtime C object with unresolved layout.
-- **User decision:** Unset. Ordinary concrete native modules as type arguments
-  are covered by existing rules; these generic native/export forms are not.
-- **Specification authorization:** Explicitly authorized to record the boundary
-  and open decision; no replacement ABI or implicit specialization is selected.
-- **Resume evidence:** Update native/export contracts and tests for two layouts,
-  independent namespaces, standalone generated headers, wrong bindings, lifecycle
-  and separately compiled component identity.
+- **User decision:** On 2026-11-17, in this conversation, the user stated:
+  "Думаю, что на модули типа @C шаблоны распространять не нужно. Это листья на
+  структуре дерева." The response proposed concrete native leaves, continued
+  use of concrete C types in Ama templates, export through ordinary concrete
+  facades with direct specialization selection outside the sprint, and source
+  delivery of open Ama templates. The user accepted that complete proposal:
+  "Принимаем. Внеси в спецификацию."
+- **Selected boundary and rationale:** An `@C` definition has no own Type/Template
+  formals, including implicit or unused ones, even if all applications supply
+  concrete bindings. Concrete native types remain valid arguments of Ama-defined
+  templates. The leaf boundary does not prohibit declared concrete Ama fields,
+  checked references or already closed template dependencies. It avoids a generic
+  C companion/header/lifecycle system while retaining the existing native ABI.
+  Export an ordinary concrete module path; a non-template Ama facade supplies
+  the concrete runtime interface for an internal closed specialization. Already
+  concrete native modules remain directly exportable. No static specialization
+  selector or open constructor enters the C export configuration/runtime API.
+  Distribute open templates as Ama source and resolve/instantiate them in the
+  consumer under existing exact names, roots, identities and dependency rules;
+  no binary-only open-template format or runtime specialization is introduced.
+- **Specification authorization:** The quoted acceptance explicitly authorizes
+  T165's canonical rules, EBNF guidance, examples, roadmap and acceptance updates.
+  No implementation work or replacement native ABI is authorized by this task.
+- **Resolution evidence:** T165 adds TPL-13 and reconciles CABI-01, EMBED-01,
+  grammar guidance and the acceptance matrix. Required implementation evidence
+  includes rejected native formals, concrete native type arguments/composition,
+  source-delivered specialization, checked concrete facade exports and rejection
+  of open/direct-specialization exports. The specification change itself does
+  not establish compiler support; T165's archive records document verification.
 
 <a id="amb-008"></a>
 

@@ -168,7 +168,7 @@ are build errors, never permission to bind one module's hook to another's.
 
 <a id="cabi-01"></a>
 
-**CABI-01.** `@C` selects the companion C implementation. Its declared Ama
+**CABI-01.** `@C` selects the companion C implementation. Its declared runtime Ama
 parameters/results define the interface; the generator supplies collision-safe
 C types and declarations. C parameters receive the corresponding C types;
 results are written through typed output storage. A native implementation has
@@ -176,8 +176,17 @@ no Ama-visible C return value. Exact generated adapter declarations must be
 documented and checked under CABI-06; where this chapter leaves their spelling
 open, that choice must preserve the specified types, direction, and semantics.
 
-The native interface has two separate outcome channels. Declared Ama results
-carry application values, including [ERROR-01](diagnostics.md#error-01)'s
+The concrete native boundary and the use of native types by Ama templates follow
+[TPL-13](../language/templates.md#tpl-13). Generate the companion's declarations
+from its resolved concrete runtime interface under that rule. Static results
+under [TPL-12](../language/static-results.md#tpl-12) are compile-time definitions;
+they add no C entry arguments, output storage or native execution protocol.
+The generated header and the companion keep the existing typed-field and
+resource contracts, including declared concrete Ama ownership and references
+under CABI-03/CABI-05.
+
+The native interface has two separate outcome channels. Declared runtime Ama
+results carry application values, including [ERROR-01](diagnostics.md#error-01)'s
 condition-capable failure module with its contained description. The generated
 technical-status output reports whether native execution itself succeeded under
 PROTO-09. A true application failure value can therefore accompany technical

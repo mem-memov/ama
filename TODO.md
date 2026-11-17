@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 212 current requirements;
+[requirement index](spec/requirements.md) locates all 214 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 engineering work needed to implement those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -80,9 +80,12 @@ An implementation task, including one in this queue, is not permission to amend
   AMB-006 is deferred and no longer blocks this sprint. Preserve the existing
   intrinsic list foundation; ordinary template algorithms over lists stay in
   scope. No implementation provider, new storage primitive or protected mutation
-  API is selected. The remaining open gates are AMB-007 (native/export forms)
-  and AMB-008 (hyphen spelling). Resolve each affected boundary before
-  implementation; do not infer answers from the existence of this queue item.
+  API is selected. T165 settles AMB-007 under
+  [TPL-13](spec/language/templates.md#tpl-13): native modules have no own static
+  parameters, templates are distributed as Ama source, and C exports select
+  concrete ordinary modules/facades rather than template specialization maps.
+  AMB-008 (hyphen spelling) is the only remaining open sprint gate. Resolve that
+  boundary before implementation; do not infer answers from this queue item.
   Current checkpoint: AMB-004's inference, result-Type scope and constant design
   are approved and specified. Explicit namespaces avoid name inheritance/imports;
   static parameters remain Type/Template, without numeric value parameters.
@@ -94,17 +97,18 @@ An implementation task, including one in this queue, is not permission to amend
   The user also clarified the polygon's purpose: automatic development and
   improvement of Ama algorithms from textual descriptions and examples in other
   languages; the base data model remains undecided. Other canonical changes
-  still need their own explicit authorization. T162's archived acceptance and
-  T164's scope decision are in [DONE.md](DONE.md); the remaining gates do not
-  undo settled static result rules. Current next action: discuss AMB-007 with
-  the user; its native-template and export contracts remain undecided. No
-  implementation or acceptance jobs are active.
+  still need their own explicit authorization. T162's archived acceptance,
+  T164's scope decision and T165's specification record are in [DONE.md](DONE.md);
+  the naming gate does not undo
+  settled static result or native/source-delivery rules. Current next action
+  after T165: discuss AMB-008 with the user. No implementation work
+  is authorized by this design-gate task.
   Acceptance: record user decisions and authorized canonical/EBNF corrections;
   derive the implementation roadmap and named positive/negative acceptance cases
   from those settled contracts. Preserve the previous conformance matrix as
   historical evidence until new implementation evidence is actually available.
 
-The next unused task ID is **T165**.
+The next unused task ID is **T166**.
 
 ## Useful verification commands
 

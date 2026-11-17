@@ -12,6 +12,7 @@ In this chapter:
 - [Nested template instances](#nested-template-instances)
 - [Specialization identity and independent state](#specialization-identity-and-independent-state)
 - [Checking a specialization before execution](#checking-a-specialization-before-execution)
+- [Concrete native modules and template source distribution](#concrete-native-modules-and-template-source-distribution)
 - [Type parameters and template parameters](#type-parameters-and-template-parameters)
 - [Partial substitution and composition](#partial-substitution-and-composition)
 - [Static result interfaces](#static-result-interfaces)
@@ -39,9 +40,11 @@ model, constructor signatures and partial-application forms below record
 the agreed design. The examples distinguish a template definition in a source
 file, a constructor used during compilation, and a concrete runtime instance. The
 [open-question index](../../AMBIGUITIES.md#open-template-design-questions) is the
-single place to find pending decisions, including native templates and the list
-implementation bridge. Finite nested composition and the prohibition on recursive
-specialization creation follow [TPL-11](#tpl-11). Type evidence and result
+single place to find pending decisions. The native/export boundary is settled
+by [TPL-13](#tpl-13); the list-foundation rewrite is outside the current sprint
+under [AMB-006](../../AMBIGUITIES.md#amb-006). Finite nested composition and the
+prohibition on recursive specialization creation follow [TPL-11](#tpl-11).
+Type evidence and result
 Type introductions are settled below. Parameter-dependent shared constants and
 explicit type namespaces follow [CONST-03/CONST-06](declarations.md#const-06).
 Static Type/Template results, source-ordered positional interfaces and immutable
@@ -608,12 +611,11 @@ substitution. Type checking alone does not prove ordering, hashing or other
 algebraic laws required by a library algorithm.
 
 A known concrete native module may be a type argument, with its ordinary ABI and
-capabilities. Defining the template's implementation itself using `@C`, selecting
-generic exported roots require the unsettled contracts linked from
-[AMB-007](../../AMBIGUITIES.md#amb-007). Specialization-qualified constant reads
-follow [CONST-03/CONST-06](declarations.md#const-06) independently of that native
-boundary. No implicit native layout, C cast, export
-selection or default specialization is permitted to fill that gap.
+capabilities. [TPL-13](#tpl-13) excludes native templates and defines source
+distribution of open Ama templates. Export through concrete ordinary modules
+follows [EMBED-01](../implementation/c-library.md#embed-01).
+Specialization-qualified constant reads follow
+[CONST-03/CONST-06](declarations.md#const-06) independently of that native boundary.
 
 A general conversion may introduce independent input and result Type parameters
 through the corresponding interface declarations, and may receive constructors
@@ -623,6 +625,126 @@ likewise need determining type constraints; missing runtime elements provide no
 type evidence. Every runtime result has one fixed type per concrete owner
 specialization. Static result definitions and concrete producer closure follow
 TPL-12; a returned Template may retain its own residual signature.
+
+## Concrete native modules and template source distribution
+
+**Explanation.** An Ama template organizes operations over supplied types. A
+native module provides a concrete implementation boundary with a checked C
+interface. Using a native integer type in an Ama template therefore does not
+require writing a generic C implementation. The compiler specializes the Ama
+definition and uses that integer module's existing concrete native contract.
+
+**Design rationale.** Keeping native modules concrete avoids a second template
+system for authored C representations, generated headers and lifecycle hooks.
+Native modules are leaves at the implementation boundary. This description does
+not make their declared Ama state a leaf in the ownership graph: concrete fields,
+checked references and their existing lifecycle rules still apply.
+
+<a id="tpl-13"></a>
+
+**TPL-13.** A module whose implementation section is `@C` must have no own static
+Type or Template parameters. Determine that parameter set by the complete
+interface collection and scope classification in TPL-02/TPL-12, before accepting
+the native definition or generating its authoring header. This restriction applies
+to explicit formals, implicit Type introductions through runtime input/result
+types or interface expressions, and implicit Template introductions through
+input patterns. An unused formal is still a formal. Supplying concrete arguments
+at every application does not make an otherwise generic `@C` definition valid.
+Report the native implementation marker and the parameter introduction site;
+do not synthesize a default specialization, erase the type through `void *`,
+or generate a specialization-dependent C companion as a fallback.
+
+A concrete native module remains an ordinary Type argument for an Ama-defined
+template. Its nominal identity, copy/default/condition/index capabilities,
+representation and lifecycle follow their existing contracts; substitution adds
+no operation that it does not provide. Its native authoring interface remains
+the concrete interface specified by
+[CABI-01/CABI-06](../implementation/native-interface.md#cabi-01).
+
+The restriction concerns the native module's own parameters, not every occurrence
+of `...`. A foreign static binding label is not a local formal. A known closed
+template application may supply a native module's declared field or interface
+Type, subject to ordinary ownership, capability and native-access checks. Bound
+static result names and received aliases remain governed by TPL-12; they do not
+independently make a module a template. A returned constructor's own locally bound
+residual parameters are distinct from free producer parameters. Static results
+never become native runtime input/output positions. Every type used for native
+runtime storage must be uniquely concrete before its header/layout is generated,
+under TPL-06 and CABI-06. An unresolved field binding is not permission to create
+a native template.
+
+**Example: TPL-04's complete `.forward`, repeated for this boundary.** Supplied
+types must support ordinary default construction and the owned copy used here:
+
+```text
+@<
+value
+...inner.value type
+
+@>
+result
+...inner.value type
+
+@!
+result
+ value
+```
+
+**Example: caller body fragment.** Assume the ordinary concrete native module
+`..integer` supports its declared literal and copy operations:
+
+```text
+number
+..integer
+ |42
+
+worker
+.forward
+
+worker !
+ < number
+ > copied
+```
+
+The call determines `.forward`'s element Type as `..integer`. The generated
+specialization has an Ama body; `..integer` acquires no template parameters or
+new native implementation. Replacing `.forward`'s `@!` section with `@C` would
+be rejected even if this were its only caller, because its interface introduces
+`...inner.value type`.
+
+### Source delivery and the concrete C boundary
+
+Distribute an open Ama template as its Ama source definition. A consuming project
+loads that definition, resolves its dependencies, applies its own static
+bindings and checks every required concrete specialization before generating
+executable code. Partial constructors remain compile-time information under
+TPL-07/TPL-08/TPL-12; they are not objects exported through a C runtime interface.
+No serialized open-template ABI, binary-only template interface or runtime
+specialization mechanism is introduced by this source-delivery contract.
+
+A source distribution must supply the required Ama definitions, or make them
+available through the consuming project's explicitly configured dependencies.
+Required concrete native modules retain their normal Ama interfaces, authored
+companions and external C dependencies; the consumer checks them under the
+existing native build contract. Source delivery does not require embedding the
+implementation of an independently supplied external C library in Ama files.
+
+Apply the existing exact source-name and root-resolution rules in
+[SRC-01/SRC-02](source-and-names.md#src-01) and
+[DEP-01 through DEP-03](../implementation/compiler.md#dep-01). Packaging does not
+create another namespace, implicit import, type-erasure scheme, or version-based
+identity rule. The same original logical template identity and normalized
+bindings retain one specialization identity under TPL-05. Conflicting definitions
+of one logical module, missing dependencies, invalid bindings and unresolved
+required types are diagnosed through the ordinary compiler rules.
+
+For use by a C application, select a concrete ordinary module as an exported
+root under [EMBED-01](../implementation/c-library.md#embed-01). A non-template Ama
+facade may contain the required closed template specialization and expose a
+concrete runtime interface. This preserves native-module identity and avoids
+passing an open constructor through C. Direct selection of a template
+specialization in export configuration is outside the current sprint; this
+contract introduces no configuration syntax for static export arguments.
 
 ## Type parameters and template parameters
 

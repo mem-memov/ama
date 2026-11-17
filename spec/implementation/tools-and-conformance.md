@@ -53,10 +53,12 @@ The implementation MUST provide:
     [EMBED-01 through EMBED-08](c-library.md).
 12. Static module specialization under
     [TPL-01 through TPL-11](../language/templates.md) and
-    [TPL-12](../language/static-results.md#tpl-12), with explicit implementation
-    boundaries and evidence rather than a claim based on examples alone. The
-    constructor/signature source forms are defined; a case depending on a remaining
-    linked design decision awaits that decision before implementation.
+    [TPL-12](../language/static-results.md#tpl-12), with native implementation,
+    concrete facade export and source-delivery boundaries under
+    [TPL-13](../language/templates.md#tpl-13). These require explicit evidence
+    rather than a claim based on examples alone. The constructor/signature source
+    forms are defined; a case depending on a remaining linked design decision
+    awaits that decision before implementation.
 
 The compiler MAY reuse independently tested source-management, hashing, layout,
 and ownership components from the existing project. Reuse must not preserve
@@ -417,11 +419,14 @@ These scenarios cover the new design, including the source forms agreed in
 [AMB-003](../../AMBIGUITIES.md#amb-003) and the typed-connection/output-parameter
 rules recorded by T160, T161's dependent constants with explicit namespaces,
 and T162's [static interfaces and returned types](../language/static-results.md#tpl-12).
-AMB-003 through AMB-005, AMB-009 and AMB-010 are resolved; finite composition
-and specialization creation follow [TPL-11](../language/templates.md#tpl-11). Cases depending on
-AMB-006 through AMB-008 await their explicit decisions. Neither the settled
-forms nor the pending cases are implemented or covered merely because the
-pre-template matrix passed.
+AMB-003 through AMB-005, AMB-007, AMB-009 and AMB-010 are resolved; finite
+composition and specialization creation follow
+[TPL-11](../language/templates.md#tpl-11), and native implementation, concrete
+facade exports and source delivery follow
+[TPL-13](../language/templates.md#tpl-13). AMB-006's list-foundation cases remain
+deferred outside this sprint; AMB-008 alone remains an open sprint gate.
+Neither the settled forms nor the pending cases
+are implemented or covered merely because the pre-template matrix passed.
 
 | Area | Required acceptance evidence |
 |---|---|
@@ -457,6 +462,11 @@ pre-template matrix passed.
 | Creation-graph provenance | [TPL-11](../language/templates.md#tpl-11): nested argument applications written in one instantiated definition retain that definition as their source owner; plain use of an already supplied Type without an explicit output phase adds no constructor-application edge; independent branches may reuse an origin, and unrelated concrete paths must not be merged into a false cycle merely because their source origins coincide |
 | Constructor origins and captures | [TPL-11](../language/templates.md#tpl-11): direct names, forwarded Template arguments and partial applications preserve their original constructor origin; fixed captures and supplied Type arguments are validated, including unused bindings; aliases or generated specialization names cannot hide a repeated origin on an actual creation path |
 | Cache-independent path checks | [TPL-11](../language/templates.md#tpl-11): cold and warm caches, reordered independent roots and constraints, and alternate paths to one specialization give the same acceptance or rejection; a cache hit checks the incoming creation edge and every outgoing path against its new ancestry; shared specialization identity/code does not suppress validation or merge instance state |
+| Native template rejection | [TPL-13](../language/templates.md#tpl-13): reject an `@C` definition with any own free Type/Template formal after complete TPL-02 interface collection, covering explicit formals, input-pattern introductions, input/result type expressions and right-hand static result definitions; binding every use, omitting runtime use or leaving a formal unused cannot suppress rejection; diagnose the native definition and originating formal before generating a specialization-specific authoring header |
+| Concrete native template arguments | [TPL-13](../language/templates.md#tpl-13): concrete native modules remain valid Type arguments to Ama-implemented templates; native default/copy/literal/condition/index requirements are checked after substitution without generic native hooks, hidden conversions or a new ABI; accept supported capabilities and reject missing or incompatible ones under the ordinary native contracts |
+| Concrete native composition | [TPL-13](../language/templates.md#tpl-13): an ordinary `@C` module may declare concrete Ama fields or dependencies whose types are closed Ama template applications, including permitted reference/list storage; bound aliases and static results introduce no spurious free owner parameter; check complete dependency types, native header/layout and lifecycle contracts without treating the native-leaf boundary as a ban on Ama-owned fields; reject dependencies that retain unresolved required bindings |
+| Template source delivery | [TPL-13](../language/templates.md#tpl-13): reuse open templates by supplying their Ama source definitions and the required Ama/native source dependencies to the consuming compilation; the consumer constructs and checks its own closed specializations; do not present a generic native object, precompiled open runtime type or generated specialization filename as a substitute for the source constructor |
+| Source distribution resolution | [TPL-05](../language/templates.md#tpl-05)/[TPL-13](../language/templates.md#tpl-13): source reuse preserves full logical origin/root kind, formal identities, captures and normalized specialization keys within the consumer's resolved module registry; repeated compatible imports share type/code identity without sharing instance state; reject logical-name conflicts, missing Ama definitions/native companions/external C dependencies and unresolved required bindings rather than selecting a similarly named module or silently changing constructor origin |
 
 ### Calls and control flow
 
@@ -550,6 +560,8 @@ pre-template matrix passed.
 | Area | Required acceptance evidence |
 |---|---|
 | Exports and packaging | Explicit export configuration and complete Ama/native closure; public header compiles as the first project include in two independent C consumer units; static and supported shared artifacts link into a larger C program without generated main or automatic Ama body execution |
+| Concrete facade exports | [TPL-13](../language/templates.md#tpl-13)/[EMBED-01](c-library.md#embed-01)/[EMBED-04](c-library.md#embed-04): export an ordinary concrete Ama facade with an explicitly closed template dependency through the existing compiled-library contract; verify the complete transitive specialization/native closure and supported concrete input/result transport, independent host objects and context state, and preserve specialization identity without exposing constructor metadata or adding a generic C ABI |
+| Template export exclusion | [TPL-13](../language/templates.md#tpl-13): reject an export configuration selecting an open template definition or requesting direct specialization selection by a virtual specialization identity or static argument map; supplying every argument in export configuration does not replace the required ordinary concrete facade; missing dependency closure or unsupported facade transport remains a build-time error under EMBED-01/EMBED-04, not an inferred default specialization or transport |
 | Explicit library objects | Context creation initializes constants without executing root bodies; exported instance creation is explicit and unexecuted; repeated entry resets only the interface, preserves body state, and supports retained read and valid resume; destroy/context disposal clean resources once |
 | Checked host entry | Foreign/stale/wrong-type control handles and reentrant/concurrent entry are rejected before state changes; API rejection is distinct from the three accepted execution outcomes; refused invocation does not publish a new result; failed contexts cannot resume |
 | Typed C values | Caller input views do not escape; decoded Ama values and exported C snapshots own their data; reference-bearing types require a valid declared value serializer; no raw Ama handle or live field address crosses a component boundary; copies preserve one failure value's condition and description |

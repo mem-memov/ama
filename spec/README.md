@@ -30,10 +30,15 @@ creation through definitions. It distinguishes passing an existing type from
 applying a constructor again, so library containers remain composable without
 requiring an analysis of arbitrary recursive type generation.
 The [constant section](language/declarations.md#const-06) records why parameterized
-shared values and explicit namespace selection avoid name conflicts. The remaining
-[open questions](../AMBIGUITIES.md#open-template-design-questions) identify
-list-foundation, native/export and naming boundaries. Agreed syntax is not
-evidence of compiler implementation.
+shared values and explicit namespace selection avoid name conflicts. The
+[native and distribution boundary](language/templates.md#tpl-13) keeps open
+templates in Ama source and native `@C` definitions concrete. Compiled libraries
+expose ordinary concrete module roots, including facades using closed
+specializations, under [EMBED-01](implementation/c-library.md#embed-01).
+The remaining [open question](../AMBIGUITIES.md#open-template-design-questions)
+concerns names. Moving Ama's list foundation into templates remains explicitly
+deferred under [TPL-09](language/templates.md#tpl-09). Agreed syntax and packaging
+rules are not evidence of compiler implementation.
 
 If you are implementing Ama, read the language chapters first. Then use the
 runtime, native-interface, and compiler chapters to see the required realization
@@ -52,7 +57,7 @@ program is well typed and what happens when it executes.
 | [Modules and state](language/modules-and-state.md) | Types versus instances, ownership, interface state, and a complete example |
 | [Source files, names, and layout](language/source-and-names.md) | Module paths, international names, exact spaces, comments, and sections |
 | [Declarations and scope](language/declarations.md) | Explicit and inferred declarations, initialization, constants, and visibility |
-| [Static module templates](language/templates.md) | Scoped interface Type parameters, typed-connection inference, constructors, partial composition, specialization identity, finite composition, dependent shared constants and explicit design gates |
+| [Static module templates](language/templates.md) | Scoped interface Type parameters, typed-connection inference, constructors, partial composition, specialization identity, finite composition, dependent shared constants, concrete native boundaries, source distribution and explicit design gates |
 | [Static inputs and returned types](language/static-results.md) | Explicit Type/Template formals, static output expressions, named and positional application, projection, immutable aliases, and compile-time evaluation boundaries |
 | [Values and references](language/values-and-references.md) | Independent copies, checked references, identity, and resource lifetime |
 | [Calls and results](language/calls-and-results.md) | Entry, resume, retained reads, method chains, and refusal handlers |
