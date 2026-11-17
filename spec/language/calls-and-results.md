@@ -79,6 +79,12 @@ entry-start execution. Requested results are transferred on completion or yield;
 unrequested results remain stored. Repeated identical inputs still execute the
 body repeatedly. Reactivity and deduplication are application decisions.
 
+For a template target, ordinary typed input bindings also provide compile-time
+type evidence under [TPL-03](templates.md#tpl-03). The selected instance already
+has one fixed concrete specialization before execution. Omission/defaults and
+result transfers retain the semantics here; they do not partially bind a static
+template or choose a new runtime type.
+
 #### What receiving a result copies
 
 Every requested result, including one received into a TYPE-06 inferred field,

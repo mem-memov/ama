@@ -59,6 +59,21 @@ you need the model, examples, or reasons behind a rule.
 | [TYPE-05](language/declarations.md#type-05) | Exact compatibility between storage forms |
 | [TYPE-06](language/declarations.md#type-06) | Declaring a field at its first receiver |
 
+## Static module templates
+
+| Requirement | Chapter section |
+|---|---|
+| [TPL-01](language/templates.md#tpl-01) | Placeholder spelling |
+| [TPL-02](language/templates.md#tpl-02) | Parameters and their scope |
+| [TPL-03](language/templates.md#tpl-03) | Inferring types from ordinary arguments |
+| [TPL-04](language/templates.md#tpl-04) | Nested template instances |
+| [TPL-05](language/templates.md#tpl-05) | Specialization identity and independent state |
+| [TPL-06](language/templates.md#tpl-06) | Checking a specialization before execution |
+| [TPL-07](language/templates.md#tpl-07) | Type parameters and template parameters |
+| [TPL-08](language/templates.md#tpl-08) | Partial substitution and composition |
+| [TPL-09](language/templates.md#tpl-09) | Templates and Ama's own lists |
+| [TPL-10](language/templates.md#tpl-10) | Compiler obligations and design gates |
+
 ## Literal data
 
 | Requirement | Chapter section |

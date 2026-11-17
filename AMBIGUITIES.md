@@ -4,6 +4,25 @@ This registry records ambiguities, contradictions, or missing observable behavio
 that block a task from [TODO.md](TODO.md). It is a work log, not a language
 specification. Only [spec/](spec/README.md) defines the product contract.
 
+<a id="open-template-design-questions"></a>
+
+## Template decisions still open
+
+The user explicitly requested this visible list on 2026-11-17 while authorizing
+the template specification. T157 records the agreed contracts and these gaps;
+[T158](TODO.md#current-tasks) owns their resolution before implementation. The
+examples below expose questions, not additional accepted Ama syntax. No answer
+is inferred from the request to document an open question.
+
+| Issue | Decision still needed | Work affected |
+|---|---|---|
+| [AMB-003](#amb-003) | How to declare template categories/signatures and explicitly bind/pass residual constructors | Higher-order source forms and their EBNF |
+| [AMB-004](#amb-004) | Which type-evidence sources beyond ordinary input arguments participate; dependent constants | Complete inference and constant access |
+| [AMB-005](#amb-005) | Which recursive specializations are permitted and how analysis terminates exactly | Recursive template expansion |
+| [AMB-006](#amb-006) | How a language-list declaration supplies its static element type to an ordinary implementation template | Reimplementation of the list foundation |
+| [AMB-007](#amb-007) | Native-template layout/companions and explicit selection of exported specializations | `@C` templates and C library roots |
+| [AMB-008](#amb-008) | Exact hyphen spelling/profile and its scope | Expanding accepted names beyond current SRC-03 |
+
 When such a question arises, stop the affected task before implementing a guessed
 interpretation. Read-only investigation may continue to make the question precise.
 Add an entry, ask the user, and wait for an explicit answer. Do not switch TODO
@@ -184,3 +203,209 @@ Each entry must contain:
   and newly covered selected-tree sources. Strict full and focused suites,
   reference/catalog ASan+UBSan, allocation-failure checks and complete per-file
   documentation pass; see [the component contract](docs/implementation/relocation-references.md).
+
+<a id="amb-003"></a>
+
+## AMB-003 — Source representation of template constructors and partial bindings
+
+- **Status:** Open.
+- **Task:** T158. T157 documents the abstract contract; implementation of passed
+  constructors and partial applications waits for this decision.
+- **Requirements:** [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-08](spec/language/templates.md#tpl-08), and the
+  [type grammar](spec/grammar.md#names-paths-and-storage-forms). Ordinary `...name`
+  introduces a type parameter through `@<`; its compound components are atomic.
+  No agreed source form declares a template-valued category or named signature.
+- **Minimal example:** A concrete dictionary value has key type `..text` and
+  value type `..integer`. An outer template wants to construct a dictionary for
+  another value type, retaining the text-key binding. The concrete value alone
+  does not distinguish that request from retaining integer values and reopening
+  the key parameter. This description is metanotation, not executable Ama.
+- **Question:** How are type/template categories, expected named residual
+  signatures and explicit partial bindings declared? Should constructors be
+  inferred from ordinary typed values under that signature, supplied directly
+  as compile-time arguments, or both? Does signature matching require an exact
+  residual signature, or may extra parameters be explicitly handled elsewhere?
+- **Possible answers and consequences:** A signature-guided ordinary-argument
+  form preserves call syntax but needs an exact nominal decomposition and binding
+  rule. Direct static arguments make the constructor explicit but need a source
+  form and scope rules. Supporting both needs canonical equivalence and explicit
+  disagreement diagnostics. None permits implicit filename search or choosing
+  which bindings to reopen from an unqualified `...name`.
+- **User decision:** Unset. On 2026-11-17 the user accepted the distinction and
+  requested rules and an open-question file; no concrete notation was selected.
+- **Specification authorization:** The current conversation explicitly authorizes
+  recording these contracts and open questions, not inventing a selected notation.
+- **Resume evidence:** Record the chosen forms and named-signature rules, extend
+  the EBNF, and add nested/partial-equivalence and wrong-category/name cases before
+  claiming higher-order implementation.
+
+<a id="amb-004"></a>
+
+## AMB-004 — Additional inference evidence and dependent constants
+
+- **Status:** Open.
+- **Task:** T158. Ordinary typed input evidence is settled; the full inference
+  domain, constant-dependent forms and their implementation await this decision.
+- **Requirements:** [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-03](spec/language/templates.md#tpl-03),
+  [TYPE-02](spec/language/declarations.md#type-02),
+  [TYPE-06](spec/language/declarations.md#type-06), and
+  [CONST-05](spec/language/declarations.md#const-05).
+- **Minimal example:** Assume `.forward` is TPL-04's template. A caller declares
+  `worker` of `.forward`, calls it with literal `< |0`, and receives into an
+  explicitly declared `..integer` destination. No independently typed input
+  fixes the placeholder. Separately, a generic `.node` has the declaration:
+
+  ```text
+  self&
+  .node
+   &
+  ```
+
+  The initializer could relate that reference's specialization to its enclosing
+  concrete `.node`, but the information comes from initialization, not an input.
+- **Question:** May explicitly typed outputs, typed defaults, assignments,
+  reference bindings and declaration initializers anchor or propagate template
+  bindings? Are previously introduced parameters usable in dependent `@=` types,
+  and how is another concrete specialization's constant namespace selected?
+- **Possible answers and consequences:** Input-only evidence gives a narrower
+  inference domain and rejects otherwise recoverable cases. Structural equality
+  propagation through the listed typed operations supports those cases but needs
+  precise direction, scope and conflict rules. Dependent constants need an
+  explicit scope/selection contract; ordinary full module paths cannot silently
+  choose one specialization. Neither choice gives literal bytes an intrinsic
+  type or allows an inferred receiver to manufacture missing type information.
+- **User decision:** Unset. The user explicitly approved inference from ordinary
+  typed inputs and prohibited new placeholders in results/body, but did not decide
+  these additional sources or a specialization-qualified constant form.
+- **Specification authorization:** Explicitly authorized to describe the settled
+  boundary and this gap. No interpretation of the missing cases is selected.
+- **Resume evidence:** Define the complete constraint relation and initialized
+  source ordering; test literal-plus-typed-output, self references, aliases,
+  conflicting branches, underdetermination and per-specialization constants.
+
+<a id="amb-005"></a>
+
+## AMB-005 — Permitted recursive specialization and exact termination
+
+- **Status:** Open.
+- **Task:** T158. Recursive expansion and its acceptance algorithm are paused.
+- **Requirements:** [TPL-04](spec/language/templates.md#tpl-04),
+  [TPL-10](spec/language/templates.md#tpl-10),
+  [TYPE-04](spec/language/declarations.md#type-04), and
+  [ARCH-05](spec/implementation/compiler.md#arch-05).
+- **Minimal example:** In explanatory mathematical notation, `Grow(T)` requires
+  `Grow(Box(T))`, which requires `Grow(Box(Box(T)))`, and so on. Every key is new,
+  so a cache does not terminate expansion. Conversely, a finite recursive node
+  specialization may refer to the same node type through a reference or empty
+  list without infinite eager construction.
+- **Question:** Which recursive specialization forms belong to the language's
+  supported class, and what exact terminating analysis decides their validity?
+- **Possible answers and consequences:** Prohibiting recursive specialization
+  dependencies is simple but restricts useful structures. Permitting only cycles
+  returning to identical complete bindings supports some recursive structures
+  but needs a precise, traversal-independent criterion. A broader class requires
+  a proved termination/closure analysis. A depth limit, timeout, or heuristic
+  choice does not define an exact language rule.
+- **User decision:** Unset. Acceptance of finite nesting did not select a policy
+  for indefinitely growing specialization graphs.
+- **Specification authorization:** Explicitly authorized to record this design
+  gate; no recursion restriction or fallback limit is selected.
+- **Resume evidence:** State the accepted class, correctness/termination argument
+  and order-independent diagnostics; test finite reference cycles, eager cycles,
+  changing bindings and ever-growing specialization chains separately.
+
+<a id="amb-006"></a>
+
+## AMB-006 — Binding the built-in list element type to its implementation template
+
+- **Status:** Open.
+- **Task:** T158. Moving the list foundation to ordinary templates is paused;
+  algorithms using the existing typed list primitives are a separate capability.
+- **Requirements:** [TPL-09](spec/language/templates.md#tpl-09),
+  [TYPE-01](spec/language/declarations.md#type-01),
+  [LIST-04](spec/language/lists.md#list-04), and
+  [LIST-13](spec/language/lists.md#list-13).
+- **Minimal example:** `records[]` followed by `.record` already declares a typed
+  empty list. No append, source element or runtime template input is needed.
+  Ordinary type placeholders are currently introduced through `@<`, while this
+  declaration supplies a type directly to the compiler.
+- **Question:** How does the compiler supply that static element type to a list
+  implementation template? Which minimal typed storage/lifecycle operations are
+  exposed below it, and which service/cursor responsibilities stay intrinsic?
+- **Possible answers and consequences:** Keeping the primitive list core and
+  templating only wrappers preserves the current boundary. A compiler-recognized
+  static binding bridge plus lower-level primitives could move more implementation
+  into Ama, but must specify identities, refusal/preflight, result frames, cursor
+  copying and complexity. A fake runtime sample or implementing the foundation
+  through that same list adds lifecycle effects or circular dependence.
+- **User decision:** Unset. The user authorized documenting the use of templates
+  for list implementation, not a particular bridge or raw-memory interface.
+- **Specification authorization:** Explicitly granted for the architecture and
+  limits now described by TPL-09 and the list chapter.
+- **Resume evidence:** Agree the primitive/static interface and prove preservation
+  of existing list semantics, including empty unused lists, stale handles,
+  mutation during suspended traversal, failure and complexity cases.
+
+<a id="amb-007"></a>
+
+## AMB-007 — Native templates and exported specialization selection
+
+- **Status:** Open.
+- **Task:** T158. Native-template generation and selection of generic C-library
+  roots await their specialization/ABI contract.
+- **Requirements:** [TPL-05](spec/language/templates.md#tpl-05),
+  [TPL-06](spec/language/templates.md#tpl-06),
+  [CABI-06](spec/implementation/native-interface.md#cabi-06), and
+  [EMBED-01](spec/implementation/c-library.md#embed-01).
+- **Minimal example:** One `@C` template is instantiated for integer and text
+  fields. Its companion declarations depend on those different generated layouts.
+  Separately, a C export configuration names a generic module path without any
+  typed Ama call selecting its bindings.
+- **Question:** How are specialization-specific native declarations, C namespaces
+  and companions authored/checked? How does export configuration explicitly select
+  closed specializations, and are open template definitions distributable?
+- **Possible answers and consequences:** An Ama-body-only first stage leaves
+  native templates for later explicit work while allowing concrete native type
+  arguments now. Supporting native templates immediately needs a full layout,
+  generation and lifecycle contract. Closed exports need uniquely determined
+  concrete bindings and a defined selection mechanism. Open template distribution
+  additionally needs a compile-time interface format and
+  identity/version rules, rather than a runtime C object with unresolved layout.
+- **User decision:** Unset. Ordinary concrete native modules as type arguments
+  are covered by existing rules; these generic native/export forms are not.
+- **Specification authorization:** Explicitly authorized to record the boundary
+  and open decision; no replacement ABI or implicit specialization is selected.
+- **Resume evidence:** Update native/export contracts and tests for two layouts,
+  independent namespaces, standalone generated headers, wrong bindings, lifecycle
+  and separately compiled component identity.
+
+<a id="amb-008"></a>
+
+## AMB-008 — Hyphens in source names and physical path components
+
+- **Status:** Open.
+- **Task:** T158. Extending the name profile waits for an exact selected spelling.
+- **Requirements:** [SRC-03](spec/language/source-and-names.md#src-03),
+  [TPL-01](spec/language/templates.md#tpl-01), and
+  [identifier grammar](spec/grammar.md#names-paths-and-storage-forms).
+- **Minimal example:** `_item`, `.data.item_name` and `...data.item_name` satisfy
+  the existing profile. `item-name` and `.data.item-name` do not. Allowing a hyphen
+  only in paths would separate the currently shared variable/component profile;
+  allowing it at any word position also raises leading/trailing/repeated cases.
+- **Question:** Should ASCII `-` be permitted uniformly in name words or only in
+  path components, and at which positions? Are leading, trailing and repeated
+  hyphens accepted?
+- **Possible answers and consequences:** Adding `-` to continuation characters
+  uniformly is a simple exact grammar change and keeps the start rule. Restricting
+  it to an internal separator gives a narrower profile with more rules. Path-only
+  support requires distinct productions. Filesystem aliases/unrepresentable paths
+  must still be diagnosed without normalization; placeholders require no files.
+- **User decision:** Unset. The user expressed a wish for hyphens and underscores;
+  underscores are already allowed, but no exact hyphen profile was selected.
+- **Specification authorization:** Current authorization covers documenting this
+  naming question. T157 retains the existing identifier profile pending a choice.
+- **Resume evidence:** Update SRC-03 and EBNF together, then cover Unicode words,
+  spaces, all selected hyphen positions, concrete paths, placeholders and physical
+  path collisions without changing module identity through sanitization.

@@ -6,8 +6,11 @@ references identify instances without owning them. Domain capabilities belong in
 libraries rather than an expanding collection of language primitives.
 
 [The product specification](spec/README.md) is the source of truth.
-The current implementation is mapped to all 200 requirements and 108 acceptance
-rows in the [reviewed conformance evidence](docs/implementation/conformance/README.md).
+The pre-template implementation baseline is mapped to 200 requirements and 108
+acceptance rows in the [reviewed conformance evidence](docs/implementation/conformance/README.md).
+The new [template specification](spec/language/templates.md) is a design contract;
+its implementation and [open decisions](AMBIGUITIES.md#open-template-design-questions)
+are tracked separately and are not covered by that baseline.
 The [release guide](docs/implementation/conformance/release.md) gives reproducible
 commands, supported configurations and the limits of that evidence.
 [Executable examples](docs/implementation/examples.md) show supported workflows;

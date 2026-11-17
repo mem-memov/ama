@@ -10,6 +10,7 @@ In this chapter:
 - [Names, paths, and storage forms](#names-paths-and-storage-forms)
 - [Literal data](#literal-data)
 - [Module files and declarations](#module-files-and-declarations)
+- [Static template syntax and design boundaries](#static-template-syntax-and-design-boundaries)
 - [Executable statements and structural recognition](#executable-statements-and-structural-recognition)
 - [Invocation, retained reads, and result selection](#invocation-retained-reads-and-result-selection)
 - [Branches, loops, completion, and suspension](#branches-loops-completion-and-suspension)
@@ -101,7 +102,8 @@ constraints also apply to every production below:
   comment suffix. A comment-only line instead requires exactly its containing
   region's indentation; it cannot invent a deeper region.
 - Recognize the longest fixed compound token: `@=`, `@<`, `@>`, `@!`, `@C`, `>>`,
-  `[]`, `&[]`, `&[`, and `..`. Their characters cannot be separated by spaces.
+  `[]`, `&[]`, `&[`, `...`, and `..`. Their characters cannot be separated by
+  spaces. At a type start recognize `...` before `..` and `.`.
 
 `<comment-gap(n)>` permits comments at the condition/marker indentation but no
 blank lines. `<layout(n)>` permits both blank lines and comments at that level.
@@ -134,6 +136,8 @@ is data.
 <identifier>                 ::= <name-word> { <space> <name-word> }
 <module-root>                ::= "." | ".."
 <module-path>                ::= <module-root> <identifier> { "." <identifier> }
+<placeholder-type>           ::= "..." <identifier> { "." <identifier> }
+<type-name>                  ::= <module-path> | <placeholder-type>
 ```
 
 Use Unicode 17.0.0 identifier properties. Names are case-sensitive and compared
@@ -149,7 +153,11 @@ Each path component is one complete name. The leading `.` selects project/import
 roots, while `..` selects the standard-library root. These are absolute logical
 root markers, not filesystem traversal. Internal separators are single adjoining
 dots: `.shop tools.item state` contains two components. Empty components, bare
-roots, trailing dots, internal doubled dots, and three leading dots are invalid.
+roots, trailing dots, internal doubled dots, and three leading dots are invalid
+in a concrete module path. A `<placeholder-type>` instead starts with exactly
+three dots and uses the same component spelling. Its whole name is one scoped
+type parameter under [TPL-01/TPL-02](language/templates.md#tpl-01), not a third
+filesystem root. It has no trailing dot and does not select a member.
 Physical `name+/` submodule directories add no source syntax; their exact mapping
 is defined by SRC-05 in [Source files and paths](language/source-and-names.md).
 
@@ -171,7 +179,7 @@ is defined by SRC-05 in [Source files and paths](language/source-and-names.md).
 | `items[]` | A list owning its elements |
 | `targets&[]` | A list owning reference slots |
 
-The module-path type line carries no storage suffix. The four forms share their
+The type line carries no storage suffix. The four forms share their
 base-name namespace; adding a suffix cannot declare a second `item` beside an
 existing `item`. [Declarations and scope](language/declarations.md) define
 visibility, receiver inference, and the non-shadowing rule for foreach locals.
@@ -276,7 +284,7 @@ are defined in [Declarations and scope](language/declarations.md).
 <body(n)>                    ::= <layout(n)> { <statement(n)> <layout(n)> }
 <declaration(n)>             ::= <indent(n)> <declaration-name> <line-end>
                                  <layout(n)>
-                                 <indent(n)> <module-path> <line-end>
+                                 <indent(n)> <type-name> <line-end>
                                  <initializers(n+1)>
 <initializers(n)>            ::= <layout(n)> { <initializer(n)> <layout(n)> }
 <initializer(n)>             ::= <literal-line(n)>
@@ -308,7 +316,9 @@ initializer for a scalar and any number for a list, one value per element.
 Whole-list assignment is not implicitly a declaration initializer. Sources must
 be initialized in the specified declaration order. Explicit/inferred fields,
 creation-time construction, interface reset, and constant restrictions are
-defined in [Declarations and scope](language/declarations.md).
+defined in [Declarations and scope](language/declarations.md). Placeholder
+introductions and uses are checked after parsing under TPL-02; the parser never
+consults a parameter table to select `<type-name>`.
 
 ```text
 count
@@ -321,6 +331,45 @@ lines[]
  |
  |Third line
 ```
+
+## Static template syntax and design boundaries
+
+The concrete module file/section/declaration productions remain unchanged apart
+from `<type-name>` above. A placeholder type line in an `@<` declaration introduces
+a scoped type parameter. Reusing it in `@>` or the body is a semantic lookup;
+those positions cannot introduce a new placeholder. Ordinary arguments still use
+the existing `<parameter>` and `<result>` productions. There is no separate list
+of type arguments at an ordinary call site.
+
+```text
+@<
+source&
+...data.element type
+
+@>
+result&
+...data.element type
+
+@!
+result&
+ source&
+```
+
+This is a complete proposed template module returning the supplied reference.
+The whole `...data.element type` is one type parameter. Storage suffixes still
+belong to the variable names, not the type line. The grammar recognizes a
+placeholder only through `<type-name>`; concrete constant paths, value sources,
+call targets and native protocol records do not acquire placeholder alternatives.
+
+[TPL-07/TPL-08](language/templates.md#tpl-07) define the semantic requirements for
+template-valued parameters and partial substitution. Their category/signature,
+transmission and static-application source forms remain
+[AMB-003](../AMBIGUITIES.md#amb-003); this grammar deliberately establishes no
+production for those unsettled forms. Do not interpret omission of a runtime
+argument as partial static binding or split a compound placeholder into a
+constructor and member. The
+[other design gates](../AMBIGUITIES.md#open-template-design-questions) are semantic
+questions, not permission for type-dependent parsing.
 
 ## Executable statements and structural recognition
 
@@ -352,7 +401,7 @@ continuation
 
 Recognize the shape before name/type lookup:
 
-- A declaration name followed by a same-level module path is a declaration.
+- A declaration name followed by a same-level type name is a declaration.
 - A receiver followed by an indented copy source is an assignment.
 - Suffix `!` starts entry execution; suffix `%` resumes.
 - An unmarked target with output actions reads retained results. A module path

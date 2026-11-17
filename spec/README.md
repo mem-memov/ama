@@ -16,6 +16,12 @@ If you are learning the language, read [the introduction](introduction.md), then
 values, and calls before exploring continuations or changing a list during a
 traversal. The examples introduce the model before the detailed rules.
 
+The new [static-template chapter](language/templates.md) records type inference,
+nested specialization and constructor/partial-substitution contracts. Its
+[open questions](../AMBIGUITIES.md#open-template-design-questions) are indexed
+separately so readers need not search the chapters for pending decisions. Template
+implementation and unresolved source forms must not be inferred from this design.
+
 If you are implementing Ama, read the language chapters first. Then use the
 runtime, native-interface, and compiler chapters to see the required realization
 of those rules. The [conformance chapter](implementation/tools-and-conformance.md)
@@ -33,6 +39,7 @@ program is well typed and what happens when it executes.
 | [Modules and state](language/modules-and-state.md) | Types versus instances, ownership, interface state, and a complete example |
 | [Source files, names, and layout](language/source-and-names.md) | Module paths, international names, exact spaces, comments, and sections |
 | [Declarations and scope](language/declarations.md) | Explicit and inferred declarations, initialization, constants, and visibility |
+| [Static module templates](language/templates.md) | Scoped type placeholders, ordinary-call inference, nested instances, specialization identity, composition and explicit design gates |
 | [Values and references](language/values-and-references.md) | Independent copies, checked references, identity, and resource lifetime |
 | [Calls and results](language/calls-and-results.md) | Entry, resume, retained reads, method chains, and refusal handlers |
 | [Control flow](language/control-flow.md) | Branches, condition loops, repeat boundaries, and early completion |

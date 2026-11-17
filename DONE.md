@@ -2872,6 +2872,58 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   the archive and queue. No compiler, spec or functional fixture changed;
   functional suites were not rerun for this documentation-only move.
 
+## Static-template design
+
+- [x] **T157 — Specify static module templates and their design boundaries.**
+  Status: complete (specification/design documentation only). Prerequisites: T156 and the user's 2026-11-17 authorization
+  to update the specification/EBNF and collect open template questions separately.
+  Scope: documentation only; no compiler, runtime, native ABI or test-fixture
+  implementation changes. Record agreed type-placeholder spelling and scope,
+  ordinary-argument inference, nested specialization, identity and lifecycle,
+  template-constructor/partial-substitution contracts, and the list implementation
+  boundary. Preserve unsettled choices as explicit questions rather than inventing
+  source syntax or runtime behavior.
+  Steps: (1) audit related rules and record the settled/pending boundary;
+  (2) write the canonical chapter, grammar and affected cross-references;
+  (3) independently review semantics, grammar, navigation and examples; record
+  actual checks and implementation-evidence limits, then commit this task.
+  Acceptance: every normative rule has one stable indexed definition; grammar
+  and examples agree with that definition; an immediately visible open-question
+  index links precise issues in AMBIGUITIES.md; existing list/native/continuation
+  guarantees remain intact; no documentation claims template implementation.
+  Results: added canonical TPL-01 through TPL-10, type-line-only placeholder
+  grammar, examples, acceptance scenarios and list implementation boundaries.
+  Independent semantic/grammar reviews passed; clarified static default checking
+  versus suppressed runtime default construction. AMB-003 through AMB-008 remain
+  explicitly open under T158. No compiler/native/test implementation was inspected
+  or changed. Current support notices preserve the old matrix as historical.
+  Checks: `make docs-complete` passed (2335 inputs, zero debt); the independent
+  Markdown/grammar audit passed (203 Markdown files, 2508 local links, 210 unique
+  indexed rules, 96 closed nonterminals, aligned EBNF). `make conformance-check`
+  exited 2 as expected: specification changed, conformance review required. Old
+  fingerprints were intentionally not refreshed; no template support is claimed.
+  Generated-reference check: first `make docs` exited 2 because the open-question
+  index's explicit anchor duplicated the automatic heading label. Retained the
+  stable explicit anchor and gave the heading a distinct spelling; no semantic
+  change. Full Doxygen rerun is required before acceptance.
+  Generated-reference rerun: `make docs` exited 0 after the anchor correction,
+  with Doxygen 1.11.0, Python 3.14.4 and markdown-it-py 3.0.0: 1749 maintained
+  file pages, 6703 documented interfaces and 411 checked destination links.
+  The final archive/queue inputs require the same generation check before
+  committing; rendered output remains generated and unversioned.
+  Acceptance: 210 rules are uniquely indexed, all 96 EBNF nonterminals close
+  and definition operators align at column 30; placeholder expansion changes
+  only declaration type lines. Independent semantic, grammar and list-boundary
+  reviews passed. T157 adds ten template acceptance rows and documents nested
+  calls, independent/fixed field specializations, hygienic partial bindings
+  and the list primitive boundary without inventing constructor syntax.
+  The six unresolved decisions remain Open under T158, not archived as done.
+  Existing evidence stays scoped to its 200-rule/108-row baseline; the current
+  target has 210 rules and 118 acceptance rows and is not fully implemented.
+  No functional suites were rerun for this documentation-only task. Canonical
+  rules are in [the template chapter](spec/language/templates.md); pending
+  decisions are in [the open index](AMBIGUITIES.md#open-template-design-questions).
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

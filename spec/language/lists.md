@@ -14,6 +14,7 @@ In this chapter:
 - [Length and whole-list copies](#length-and-whole-list-copies)
 - [Membership identity and traversal bookkeeping](#membership-identity-and-traversal-bookkeeping)
 - [Required representation and complexity](#required-representation-and-complexity)
+- [Explanation: templates and the list implementation](#explanation-templates-and-the-list-implementation)
 
 <!-- /chapter-contents -->
 
@@ -811,3 +812,74 @@ entries; a target handle alone cannot identify which duplicate was selected.
 may provide a circular-buffer queue over the same instance handles and pools,
 without changing ordinary list order or adding language syntax. A linked
 ordering structure is not required to optimize this separate workload.
+
+## Explanation: templates and the list implementation
+
+**Informative.** The boundary between module templates and the list primitive is
+defined by [TPL-09](templates.md#tpl-09). Templates make it possible to describe
+ordinary collection wrappers and algorithms once for different element types.
+For example, a wrapper can keep a typed list as its state, and a filtering
+algorithm can use the existing traversal and insertion operations. These uses
+build on the list primitive; they do not require implementing that primitive
+again for each element type.
+
+Parameterizing the primitive itself is a different implementation question.
+Its element type determines construction, copying, destruction and checked
+reference types. Its storage also needs the membership records, stable target
+identities and order array described by [LIST-03](#list-03). A template can
+organize code around those responsibilities, but naming an element parameter
+does not supply typed storage or lifecycle operations. Defining a primitive
+list solely in terms of another instance of that same primitive list would
+leave the storage foundation unexplained. A realization instead needs an
+explicit compiler/runtime foundation for those operations. Persistent Ama
+references remain compiler-visible typed state; placing them in opaque native
+payloads is not a way to provide that foundation.
+
+### An empty list still has an element type
+
+**Example.** This declaration fragment assumes that `.shop.item` is a concrete
+module type:
+
+```text
+items[]
+.shop.item
+```
+
+The compiler knows the exact element type from the declaration even when the
+list has no entries. A parameterized list implementation therefore has type
+information available before any insertion; it need not obtain a sample element
+or wait for the first method call. Connecting that declaration-supplied identity
+to an ordinary template's `@<` parameters is an open design question recorded in
+[AMB-006](../../AMBIGUITIES.md#amb-006). This explanation does not choose a
+binding syntax, introduce a hidden sample value or claim that the bridge has
+been implemented.
+
+### Factoring code preserves the list contract
+
+The six entries in [LIST-04](#list-04) remain intrinsic typed service entries.
+An ordinary template wrapper can expose its own module interface, but that does
+not turn the primitive's methods into owned module instances, retained results
+or resumable objects. Similarly, factoring their implementation does not change
+the service-frame lifetime of method results or make those results available
+through a hidden method object.
+
+The relevant implementation obligations remain those already defined in this
+chapter:
+
+- [LIST-10](#list-10) governs busy acquisition, source and destruction preflight,
+  result publication, refusal handling and cleanup. A wrapper does not grant
+  its callbacks access to the primitive's private acquisition token.
+- [LIST-13](#list-13) governs membership identity, live traversal boundaries,
+  correction during structural mutation and suspended cursors. Ordinary list
+  copies and explicit `%` continuation copies retain their different contracts:
+  a continuation copy needs the specified cursor, collection and origin
+  remapping, rather than copied acquisition tokens or native pointers.
+- [LIST-03](#list-03), [LIST-05](#list-05) and [LIST-13](#list-13) fix the
+  representation invariants and complexity bounds. Template-based factoring
+  does not replace direct membership lookup with target searches, introduce
+  per-entry linked ordering or remove the required cursor-correction costs.
+
+These distinctions allow the implementation to share suitable code while the
+source-level list behavior stays defined in one place. They describe a design
+boundary, not evidence that a complete list implementation can already be
+rewritten as ordinary Ama templates.

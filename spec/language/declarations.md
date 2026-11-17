@@ -40,9 +40,13 @@ defines what transfers between these storage forms do.
 answers three questions in order: what is the name and storage form, which module
 defines its type, and what are its initial contents?
 
-Write the name and type path on separate lines at the same indentation. Optional
-initializer lines are one space deeper. The storage marker directly adjoins the
-name; it never belongs to the type path and never has an intervening space.
+Write the name and type on separate lines at the same indentation. A type line
+is a concrete module path or a scoped placeholder permitted by
+[TPL-01/TPL-02](templates.md#tpl-01). A path naming a template is specialized
+statically under [TPL-03/TPL-04](templates.md#tpl-03), including when it types a
+nested field. Optional initializer lines are one space deeper. The storage marker
+directly adjoins the name; it never belongs to the type line and never has an
+intervening space.
 
 There are two ways to omit an explicit type line. A receiver can introduce a
 persistent field whose type comes from its source or selected result (TYPE-06).
@@ -126,10 +130,11 @@ edges and must not be substituted for this graph.
 <a id="type-05"></a>
 
 **TYPE-05.** Type compatibility is nominal: the same complete module identity is
-required, together with the storage-form rules below. Matching layouts, similar
-names or a C cast do not make different Ama types compatible. There is no implicit
-reference formation, dereference, scalar/list conversion, list splicing or subtype
-conversion.
+required, including all specialization bindings under
+[TPL-05](templates.md#tpl-05), together with the storage-form rules below.
+Matching layouts, similar names or a C cast do not make different Ama types
+compatible. There is no implicit reference formation, dereference, scalar/list
+conversion, list splicing or subtype conversion.
 
 | Destination storage | Accepted ordinary source of the same module type | Effect |
 |---|---|---|

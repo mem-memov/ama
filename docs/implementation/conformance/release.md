@@ -5,6 +5,13 @@ Start with [the specification](../../../spec/README.md) for language semantics,
 and [the matrix guide](README.md) for requirement evidence. This report describes
 verified implementation workflows; it does not introduce language requirements.
 
+**T157 scope notice (2026-11-17).** These checks describe the pre-template
+implementation baseline. The new [template contracts](../../../spec/language/templates.md)
+and acceptance rows are not implemented or covered by the retained matrix.
+Current whole-specification conformance needs new reviewed evidence after the
+[open design decisions](../../../AMBIGUITIES.md#open-template-design-questions)
+are resolved; do not reinterpret the historical results below as that evidence.
+
 ## What has been checked
 
 The reviewed matrix connects all **200 requirements** and **108 acceptance rows**

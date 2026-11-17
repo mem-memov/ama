@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 200 current requirements;
+[requirement index](spec/requirements.md) locates all 210 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 engineering work needed to implement those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -66,7 +66,20 @@ An implementation task, including one in this queue, is not permission to amend
 
 ## Current tasks
 
-No active tasks. The next unused task ID is **T157**.
+- [ ] **T158 — Resolve the remaining template design gates.**
+  Status: awaiting explicit user decisions; no implementation is authorized by
+  this task. Prerequisite: T157's documented baseline. Questions and alternatives
+  are indexed in [AMBIGUITIES.md](AMBIGUITIES.md#open-template-design-questions):
+  AMB-003 through AMB-008 cover constructor/signature source forms, complete
+  inference evidence/constants, recursive specialization, the list bridge,
+  native/export forms and hyphen spelling. Resolve each affected boundary before
+  implementation; do not infer answers from the existence of this queue item.
+  Acceptance: record user decisions and authorized canonical/EBNF corrections;
+  derive the implementation roadmap and named positive/negative acceptance cases
+  from those settled contracts. Preserve the previous conformance matrix as
+  historical evidence until new implementation evidence is actually available.
+
+The next unused task ID is **T159**.
 
 ## Useful verification commands
 

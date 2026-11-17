@@ -180,6 +180,34 @@ rollback, and recovery evidence under TOOL-01 through TOOL-04.
 
 Deliverable: a reproducible build with a conformance report, not merely a working demo.
 
+### Stage 11: Static templates after design closure
+
+This is a new stage beyond the previously accepted implementation baseline.
+First resolve the [open template decisions](../../AMBIGUITIES.md#open-template-design-questions)
+owned by T158; their presence is not permission to invent a syntax or inference
+fallback. The [template chapter](../language/templates.md) and grammar identify
+the settled contract and pending boundaries. Do not claim existing tests cover
+the new placeholder grammar or specialization semantics.
+
+After design closure, plan narrow components in prerequisite order: placeholder
+recognition and scoped binding; exact static constraints and canonical identities;
+nested specialization and termination checks; ordinary type/lifecycle checking
+of concrete specializations; specialized layouts/emission and source diagnostics;
+constructor/partial-binding composition; then the agreed native/export boundary.
+Each component needs its own argument, unit cases and real composition cases.
+Add complete positive/negative nested, partial and erroneous applications before
+making support claims. Update reviewed conformance only with actual evidence.
+
+Use ordinary templates for algorithms over the current list primitives first.
+Moving the list foundation is a separate boundary requiring TPL-09's static
+bridge and lower-level storage/lifecycle contract, with evidence preserving
+LIST-03 through LIST-13. Do not schedule that rewrite as an automatic consequence
+of adding placeholders.
+
+Deliverable: documented, tested static specialization with explicit supported
+boundaries and a current acceptance matrix. No compiler implementation is part
+of the specification-only T157 task.
+
 ## Keep engineering choices separate from language changes
 
 The canonical contracts are in the [language chapters](../README.md#language-chapters)

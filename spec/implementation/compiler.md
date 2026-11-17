@@ -54,6 +54,10 @@ encoding; removing punctuation from component names must not erase root identity
 Handwritten native symbols use the module-prefix facility in NAME-05; they are
 not discovered or rewritten by hashing a C source file.
 
+For a specialized type, the qualified identity includes the normalized parameter
+bindings under [TPL-05](../language/templates.md#tpl-05). Distinct bindings must
+not collide through use of only the original template's physical module path.
+
 Link-visible names must additionally distinguish independently compiled Ama
 components under [EMBED-06](c-library.md#embed-06). Use collision-checked component
 qualification or genuine internal C linkage so two libraries can
@@ -418,6 +422,7 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | Layout/lexical reader | Indentation, comments, literal boundaries, annotations | Tokens or logical lines |
 | Parser | Syntax recognition independent of declared-name lookup | AST with spans |
 | Namespace resolver | Module loading, qualified identities, name binding | Resolved symbols |
+| Static specializer | Scoped template constraints, canonical bindings and closed specialization checks under [TPL-01 through TPL-10](../language/templates.md) | Specialized resolved type/program structure; unresolved design gates remain blocked |
 | Type/lifecycle checker | Types, storage kinds, copy/default contracts | Validated typed nodes |
 | Control-flow lowering | Entry, calls, refusal branches, loops, yield positions | Typed control-flow IR |
 | Storage planner | Owned layout, stable-address pool blocks, instance access, service metadata | Explicit storage plan |

@@ -1,7 +1,17 @@
 # Current requirement and acceptance evidence
 
+**Template design update (T157, 2026-11-17).** The specification now includes
+TPL-01 through TPL-10 and new acceptance scenarios. The matrix below remains
+reviewed evidence for the pre-template **200-requirement / 108-row baseline**;
+its fingerprints do not establish current whole-specification conformance.
+No template implementation or executable acceptance was added by this
+documentation task, and the complete current-conformance gate is not satisfied.
+Resolve [T158's open decisions](../../../AMBIGUITIES.md#open-template-design-questions),
+implement the settled feature and review its evidence before updating that claim.
+Do not refresh old fingerprints or attach unrelated tests to manufacture coverage.
+
 The language is defined by [the specification](../../../spec/README.md). This
-review connects its **200 requirements** and **108 acceptance rows** to the
+pre-template review connects **200 requirements** and **108 acceptance rows** to the
 implementation, component arguments and named executable tests. It does not
 replace those requirements or turn the historical starting audit into a current
 coverage claim.
@@ -68,7 +78,8 @@ Duplicate JSON keys, unexpected fields, incomplete inventories, duplicate rows,
 unknown groups, stale files, changed arguments and open claims fail the complete
 gate. Partial review may explicitly retain an `open` claim when invoking the
 checker without `--complete`; it must explain the gap and never passes the
-complete target. The maintained matrix has no open claims.
+complete target. The pre-template matrix has no open rows, but is not a current
+template-support claim; see the T157 notice above.
 
 The scripts read maintained inputs and write only temporary compiler probes
 under the ordinary build workspace. They do not execute Ama/native constructors,

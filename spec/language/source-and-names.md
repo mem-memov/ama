@@ -56,6 +56,9 @@ The full logical identity is `(root kind, component sequence)`. `.item` and
 `..item` are distinct identities even when their component bytes coincide.
 Resolve a path only within its selected root family, with no fallback between
 project/import and standard-library roots and no search-order shadowing.
+For a template this identifies the source definition. A concrete specialization
+additionally includes its static bindings under
+[TPL-05](templates.md#tpl-05); no extra physical source file is required.
 
 ### Keeping a module and its submodules together
 
@@ -175,8 +178,12 @@ dot separates each subsequent pair of components. The two dots in `..` form
 one root marker, never an empty component. No spaces may split the marker or
 separate it from the first component. No space is allowed after a dot or before
 an internal dot. Empty components, internal doubled dots, three or more leading
-dots, a bare root marker, and a trailing dot are invalid. The dots are structural
-separators, not name bytes; each component's internal spaces are identity.
+dots, a bare root marker, and a trailing dot are invalid in concrete module paths.
+Exactly three leading dots instead introduce a placeholder in a permitted type
+position under [TPL-01](templates.md#tpl-01), never a filesystem root. Its complete
+descriptive name needs no corresponding file or directory. Four leading dots
+remain invalid. The dots are structural separators, not name bytes; each
+component's internal spaces are identity.
 Indentation or an operand separator before the root marker is outside the path,
 as in `< ..palette.red`, and retains its ordinary grammar rule.
 The final component of a qualified constant source is still exactly its constant
@@ -304,7 +311,8 @@ ready
 structural indentation, accepted literal payloads, comment text, and trailing
 comment prefixes, required code separators are exactly one U+0020. Standalone
 comment indentation must satisfy SYN-02. Module paths and
-qualified constant sources use adjoining dots under SRC-03. Storage suffixes
+qualified constant sources use adjoining dots under SRC-03. Placeholder names
+use adjoining dots under [TPL-01](templates.md#tpl-01). Storage suffixes
 `&`, `[]`, and `&[]` directly follow the complete name. A reference-forming prefix
 `&` directly precedes its owned access. Index delimiters `[`/`&[` directly follow
 the list name, directly precede the complete index access, and end with an
@@ -321,9 +329,10 @@ or alternative Unicode spacing character. Repeated spaces are permitted only in
 the three excluded regions, never within a name or between code tokens.
 
 In Ama, the fixed compound tokens are `@=`, `@<`, `@>`, `@!`, `@C`, `>>`, `[]`, `&[]`,
-`&[`, and the leading module-root marker `..`. They contain no internal whitespace.
+`&[`, the placeholder prefix `...`, and the leading module-root marker `..`.
+They contain no internal whitespace.
 Recognize the longest fixed token at a punctuation position; `&[]` is one token,
-not `&[` followed by `]`. At a path start, recognize `..` before considering
+not `&[` followed by `]`. At a type start, recognize `...` before `..` and then
 the single-dot root marker. The `..` token is invalid elsewhere in a path under
 SRC-03.
 The remaining source punctuation tokens are `.`, `&`, `[`, `]`, `!`, `%`, `<`,
@@ -342,6 +351,7 @@ lines, and the TAB ban are shared.
 | `items[]` / `targets&[]` | Owning-list / reference-list name |
 | `items[current position]` / `targets&[current position]` | Owned / reference element selection |
 | `.shop tools.item state` | Module path with two multiword components |
+| `...data.element type` | One descriptive type-placeholder name, without filesystem lookup |
 | `input name < source name` / `output name > receiver name` | Named bindings with complete multiword names |
 
 Literal `|` is followed immediately by its raw payload, not an implicit separator;
