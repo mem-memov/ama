@@ -3370,6 +3370,81 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   changed and functional suites were not rerun. T158 remains for separate final
   design acceptance; this task claims no template implementation support.
 
+- [x] **T158 — Resolve the remaining template design gates.**
+  Completed 2026-11-17; design acceptance only. No compiler implementation was
+  authorized or performed by this task. Prerequisites: T157's documented baseline, T159's named
+  constructor/signature forms, T160's interface-wide inference rules and T161's
+  dependent constants/explicit namespaces. Questions and alternatives
+  are indexed in [AMBIGUITIES.md](AMBIGUITIES.md#open-template-design-questions):
+  AMB-003 is resolved by T159; T160/T161 settle AMB-004.
+  T163 resolves AMB-005's specialization-creation boundary. T162 resolves
+  AMB-009/AMB-010 through static results, positional bindings, immutable aliases
+  and complete producer inference under [TPL-12](spec/language/static-results.md#tpl-12).
+  T164 records the user's exclusion of the base-list rewrite from this sprint:
+  AMB-006 is deferred and no longer blocks this sprint. Preserve the existing
+  intrinsic list foundation; ordinary template algorithms over lists stay in
+  scope. No implementation provider, new storage primitive or protected mutation
+  API is selected. T165 settles AMB-007 under
+  [TPL-13](spec/language/templates.md#tpl-13): native modules have no own static
+  parameters, templates are distributed as Ama source, and C exports select
+  concrete ordinary modules/facades rather than template specialization maps.
+  T166 settles AMB-008's isolated internal ASCII-hyphen profile under
+  [SRC-03](spec/language/source-and-names.md#src-03). No current sprint design
+  decision remains open. Final design acceptance checks the recorded decisions,
+  canonical rules, the prerequisite-ordered implementation roadmap and named
+  acceptance cases; this record establishes no implementation support.
+  Established design checkpoint: AMB-004's inference, result-Type scope and constant design
+  are approved and specified. Explicit namespaces avoid name inheritance/imports;
+  static parameters remain Type/Template, without numeric value parameters.
+  The answers/source are recorded in AMBIGUITIES. Any newly discovered gate
+  needs its own explicit decision before affected implementation. T163 specifies the user's
+  accepted finite-composition rule in [TPL-11](spec/language/templates.md#tpl-11),
+  with the creation-path check, termination argument and acceptance partitions.
+  AMB-005 is resolved; it no longer blocks implementation of that boundary.
+  The user also clarified the polygon's purpose: automatic development and
+  improvement of Ama algorithms from textual descriptions and examples in other
+  languages; the base data model remains undecided. Other canonical changes
+  still need their own explicit authorization. T162's archived acceptance,
+  T164's scope decision and T165's specification record are in [DONE.md](DONE.md);
+  T166's accepted naming decision preserves settled static result and
+  native/source-delivery rules. Final step after T166's commit: the decision-to-rule/roadmap/acceptance links
+  were reviewed before archiving this parent in its own commit. No implementation work is authorized by this task.
+  Acceptance: record user decisions and authorized canonical/EBNF corrections;
+  derive the implementation roadmap and named positive/negative acceptance cases
+  from those settled contracts. Preserve the previous conformance matrix as
+  historical evidence until new implementation evidence is actually available.
+  Final evidence map: AMB-003/T159 defines signatures and partial composition in
+  [TPL-07/TPL-08](spec/language/templates.md#tpl-07); AMB-004/T160/T161 defines
+  interface inference/scope under TPL-02/TPL-03 and dependent values/namespaces
+  under [CONST-03/CONST-06](spec/language/declarations.md#const-06).
+  AMB-005/T163 defines TPL-11's finite-composition/creation boundary;
+  AMB-006/T164 explicitly excludes the list-foundation rewrite from this sprint.
+  AMB-007/T165 defines concrete native leaves, source delivery and ordinary
+  export facades under TPL-13/EMBED-01. AMB-008/T166 defines SRC-03's uniform
+  isolated internal hyphen profile. AMB-009/AMB-010/T162 defines static results,
+  positions, aliases and complete producer inference under TPL-12.
+  The [Stage 11 roadmap](spec/implementation/plan.md#stage-11-static-templates-with-explicit-design-boundaries)
+  orders recognition, scoped interfaces, exact inference/composition, output
+  closure/cycles, creation validation/caching, lifecycle/constants, emission,
+  diagnostics and native/source/export checks. The
+  [acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix)
+  names positive/negative partitions across 150 areas, including 37 template
+  areas and the hyphen profile. Independent read-only review confirms that these
+  satisfy this task's design deliverable; old conformance remains historical.
+  Verification from repository root: `python3 /tmp/ama-t158-doc-check.py` passes
+  on the final archive/queue for document links, 214 uniquely indexed rules,
+  108 unchanged aligned EBNF productions, preserved 150 acceptance-area names,
+  unique task IDs and settled/deferred statuses. It also confirms `spec/` is
+  byte-unchanged from T166 commit c9e56b9 and only the three root planning records
+  change. `git diff --check` passes. T166's successful `make docs-complete` evidence
+  (2335 ready inputs, zero debt) remains applicable because no code inputs or
+  coverage registry change; final `make docs` reruns coverage and successfully
+  regenerates the archive/queue with the supported Doxygen 1.11.0/Python 3.14.4/
+  markdown-it-py 3.0.0 toolchain before commit. No functional suites, source audit
+  or implementation evidence refresh is claimed. T167 is a planned next-stage
+  task breakdown, not started compiler work or a new specification change.
+
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

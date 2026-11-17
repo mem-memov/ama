@@ -66,52 +66,26 @@ An implementation task, including one in this queue, is not permission to amend
 
 ## Current tasks
 
-- [ ] **T158 — Resolve the remaining template design gates.**
-  Status: ready for final design acceptance after T166; no implementation is authorized by
-  this task. Prerequisites: T157's documented baseline, T159's named
-  constructor/signature forms, T160's interface-wide inference rules and T161's
-  dependent constants/explicit namespaces. Questions and alternatives
-  are indexed in [AMBIGUITIES.md](AMBIGUITIES.md#open-template-design-questions):
-  AMB-003 is resolved by T159; T160/T161 settle AMB-004.
-  T163 resolves AMB-005's specialization-creation boundary. T162 resolves
-  AMB-009/AMB-010 through static results, positional bindings, immutable aliases
-  and complete producer inference under [TPL-12](spec/language/static-results.md#tpl-12).
-  T164 records the user's exclusion of the base-list rewrite from this sprint:
-  AMB-006 is deferred and no longer blocks this sprint. Preserve the existing
-  intrinsic list foundation; ordinary template algorithms over lists stay in
-  scope. No implementation provider, new storage primitive or protected mutation
-  API is selected. T165 settles AMB-007 under
-  [TPL-13](spec/language/templates.md#tpl-13): native modules have no own static
-  parameters, templates are distributed as Ama source, and C exports select
-  concrete ordinary modules/facades rather than template specialization maps.
-  T166 settles AMB-008's isolated internal ASCII-hyphen profile under
-  [SRC-03](spec/language/source-and-names.md#src-03). No current sprint design
-  decision remains open. Finish the design acceptance from recorded decisions,
-  canonical rules, the prerequisite-ordered implementation roadmap and named
-  acceptance cases; do not infer implementation support from this queue item.
-  Current checkpoint: AMB-004's inference, result-Type scope and constant design
-  are approved and specified. Explicit namespaces avoid name inheritance/imports;
-  static parameters remain Type/Template, without numeric value parameters.
-  The answers/source are recorded in AMBIGUITIES. Any newly discovered gate
-  needs its own explicit decision before affected implementation. T163 specifies the user's
-  accepted finite-composition rule in [TPL-11](spec/language/templates.md#tpl-11),
-  with the creation-path check, termination argument and acceptance partitions.
-  AMB-005 is resolved; it no longer blocks implementation of that boundary.
-  The user also clarified the polygon's purpose: automatic development and
-  improvement of Ama algorithms from textual descriptions and examples in other
-  languages; the base data model remains undecided. Other canonical changes
-  still need their own explicit authorization. T162's archived acceptance,
-  T164's scope decision and T165's specification record are in [DONE.md](DONE.md);
-  T166's accepted naming decision preserves settled static result and
-  native/source-delivery rules. Current next action after T166's commit: review
-  the final decision-to-rule/roadmap/acceptance links and archive this parent
-  task in its own commit. No implementation work is authorized by this task.
-  Acceptance: record user decisions and authorized canonical/EBNF corrections;
-  derive the implementation roadmap and named positive/negative acceptance cases
-  from those settled contracts. Preserve the previous conformance matrix as
-  historical evidence until new implementation evidence is actually available.
+- [ ] **T167 — Decompose the approved template roadmap into implementation tasks.**
+  Status: planned; not started. Prerequisites: T158's completed design review and
+  T166's naming profile. This is the next planning phase for a later implementation
+  request; the current specification update does not start source analysis or
+  compiler work. Use [Stage 11](spec/implementation/plan.md#stage-11-static-templates-with-explicit-design-boundaries)
+  and the [acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix)
+  to derive small, stable, prerequisite-ordered implementation tasks.
+  At that stage review the maintained implementation boundary and record existing
+  support/gaps, without analyzing excluded generated/binary artifacts. Assign
+  each task canonical rule links, an exact contract/invariants, its real component
+  and consumer boundaries, positive/negative and failure cases, documentation/
+  per-file coverage requirements, and independently verifiable acceptance.
+  Cover recognition/shared names, kinds/signatures/results, static/runtime
+  positions/aliases, exact constraints/patterns/partials, output closure/cycles,
+  specialization creation/cache, type/lifecycle/constants, emission/diagnostics,
+  concrete native composition, source delivery and facade exports. Keep the
+  base-list rewrite outside the sprint. Deliverable: an executable TODO breakdown
+  with no new language rules, guessed behavior or unsupported implementation claim.
 
-The next unused task ID is **T167**.
+The next unused task ID is **T168**.
 
 ## Useful verification commands
 

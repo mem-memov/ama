@@ -14,8 +14,8 @@ T159 records the user's subsequent resolution of [AMB-003](#amb-003).
 T160/T161 resolve inference, result Type scope and explicit constant namespaces
 in [AMB-004](#amb-004). T163 settles finite composition and specialization
 creation in [AMB-005](#amb-005).
-[T158](TODO.md#current-tasks) owns final acceptance of the recorded design
-decisions. Examples in a newly opened entry expose questions, not additional
+[T158 in the completed-work archive](DONE.md) records final acceptance of the
+design decisions. The next planning task is T167 in [TODO.md](TODO.md#current-tasks). Examples in a newly opened entry expose questions, not additional
 accepted Ama syntax. No answer is inferred from a request to document a question.
 
 No template design decision remains open for the current sprint. T166 resolves
@@ -517,7 +517,8 @@ Each entry must contain:
 
 - **Status:** Resolved.
 - **Task:** T165 records the user's chosen concrete native/source-delivery
-  boundary. T158 retains only AMB-008 as an open sprint gate.
+  boundary. T166 subsequently settles AMB-008; T158 archives the completed
+  current-sprint design review.
 - **Requirements:** [TPL-05](spec/language/templates.md#tpl-05),
   [TPL-06](spec/language/templates.md#tpl-06),
   [TPL-13](spec/language/templates.md#tpl-13),
@@ -565,7 +566,7 @@ Each entry must contain:
 ## AMB-008 — Hyphens in source names and physical path components
 
 - **Status:** Resolved.
-- **Task:** T166 specifies the accepted name profile. T158 can perform final
+- **Task:** T166 specifies the accepted name profile. T158 records completed
   design-gate acceptance after T166's verification and commit.
 - **Requirements:** [SRC-03](spec/language/source-and-names.md#src-03),
   [TPL-01](spec/language/templates.md#tpl-01), and
