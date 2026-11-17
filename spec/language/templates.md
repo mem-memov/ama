@@ -39,9 +39,11 @@ bindings and its own runtime state.
 model, constructor signatures and partial-application forms below record
 the agreed design. The examples distinguish a template definition in a source
 file, a constructor used during compilation, and a concrete runtime instance. The
-[open-question index](../../AMBIGUITIES.md#open-template-design-questions) is the
-single place to find pending decisions. The native/export boundary is settled
-by [TPL-13](#tpl-13); the list-foundation rewrite is outside the current sprint
+[decision index](../../AMBIGUITIES.md#open-template-design-questions) records the
+resolved questions for this sprint. The uniform naming profile, including
+internal ASCII hyphens, follows [SRC-03](source-and-names.md#src-03). The
+native/export boundary is settled by [TPL-13](#tpl-13); the list-foundation
+rewrite is outside the current sprint
 under [AMB-006](../../AMBIGUITIES.md#amb-006). Finite nested composition and the
 prohibition on recursive specialization creation follow [TPL-11](#tpl-11).
 Type evidence and result
@@ -52,8 +54,9 @@ receiver aliases follow [TPL-12](static-results.md#tpl-12). An explicit static
 output phase requires a completely determined producer while permitting its
 returned constructor to retain its own residual parameters.
 This chapter does not imply that the compiler implements templates. Do not
-invent source forms or implement a pending case by guessing an answer. The grammar recognizes only
-the source forms explicitly specified in [the grammar](../grammar.md).
+invent source forms or choose an interpretation for a newly discovered ambiguity.
+The grammar recognizes only the source forms explicitly specified in
+[the grammar](../grammar.md).
 
 ## Placeholder spelling
 
@@ -62,7 +65,8 @@ the source forms explicitly specified in [the grammar](../grammar.md).
 **TPL-01.** A placeholder type consists of exactly three adjoining ASCII dots
 followed by one or more complete name components separated by single adjoining
 dots. Each component follows [SRC-03](source-and-names.md#src-03), including its
-Unicode, underscore and single-space rules. There is no terminating dot.
+Unicode, underscore, internal ASCII hyphen and single-space rules. There is no
+terminating dot.
 
 The whole spelling is one static name. In `...data.element type`, neither
 `data` nor `element type` denotes a separately addressable parameter or field.
@@ -92,6 +96,10 @@ entry/resume target, index, literal, or dotted member-selection syntax. In parti
 | `...data.element type` | One parameter with two descriptive name components |
 | `...data.key type` | A different parameter, despite the shared first component |
 | `...имя типа.назначение` | The same naming rules with international words |
+| `...data.key-2 type` | Internal ASCII hyphen followed by a digit; the space still joins two words of one component |
+| `...data.key--type` | Invalid consecutive hyphens under SRC-03 |
+| `...data.key -type` | Invalid leading hyphen in a later word under SRC-03 |
+| `...data.key type-` | Invalid word-ending hyphen under SRC-03 |
 | `...data .element` | Invalid space before a separator |
 | `...data.element.` | Invalid terminating dot |
 
@@ -1378,12 +1386,14 @@ do not replace it with an arbitrary nesting limit, timeout, recursion heuristic,
 or cache-order-dependent acceptance. Ordinary finite nominal reference cycles
 are not automatically infinite type substitutions or eager ownership cycles.
 
-Before implementing a pending case, resolve its linked question and update the
-authorized canonical rule/grammar. Supported templates require component and
-composition evidence covering the acceptance scenarios, including negative
-applications. Existing pre-template acceptance evidence does not establish
-support for the new grammar or specialization model. The roadmap and open-question
-registry must keep this implementation gap visible.
+The current sprint's design questions are resolved; the list-foundation rewrite
+under AMB-006 remains deferred and outside this boundary. Newly discovered
+ambiguities still require an explicit decision before affected implementation.
+Supported templates require component and composition evidence covering the
+acceptance scenarios, including negative applications. Existing pre-template
+acceptance evidence does not establish support for the new grammar or
+specialization model. The roadmap and decision registry must keep the distinction
+between accepted design and implementation evidence visible.
 
 ## Finite composition and specialization creation
 

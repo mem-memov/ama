@@ -152,17 +152,42 @@ arbitrary bytes above 0x7F as letters. Module and variable names are case-sensit
 and compared byte-for-byte, without normalization, transliteration, or case folding.
 A name consists of one or more nonempty name words separated by exactly one
 ASCII space U+0020. Each word starts with `_` or a Unicode `XID_Start` character
-and continues with `_` or `XID_Continue` characters, using the identifier properties
-defined by [Unicode UAX #31](https://unicode.org/reports/tr31/). These rules support
-international alphabets, including Chinese, without requiring C-compatible names.
-Every word obeys the start rule: `item step2` is valid, but `item 2` is invalid.
+and otherwise continues with `_` or `XID_Continue` characters, using the identifier
+properties defined by [Unicode UAX #31](https://unicode.org/reports/tr31/).
+Each word may additionally contain isolated internal ASCII hyphens `-` (U+002D).
+Every hyphen must immediately follow an ordinary character of that word and be
+immediately followed by `_` or an `XID_Continue` character. It cannot begin or
+end a word, adjoin another hyphen, or adjoin a space or structural separator.
+Several separated hyphens are permitted: `red-blue-green` is one valid word.
+The hyphen does not begin a new word; `item-2` is valid. A space does begin a new
+word, whose start rule still applies: `item step2` is valid, but `item 2` is not.
+These rules support international alphabets, including Chinese, without requiring
+C-compatible names.
+
+The same profile applies to variable and constant names, runtime interface/member
+names, every module-path component and the descriptive components of static
+names under [TPL-01](templates.md#tpl-01). Only U+002D is added as a hyphen;
+similar-looking punctuation is not substituted for it. All other scalars retain
+their existing Unicode identifier-property requirements. Underscores remain
+ordinary start/continuation characters, including next to a hyphen: `item-_value`
+and `item_-value` are valid. An allowed combining continuation character remains
+allowed after a hyphen; this rule introduces no additional Unicode filtering.
+
+In a name position, `a-b` is one complete name, not subtraction. This extension
+adds no arithmetic operator or alternative name-splitting rule. Invalid spellings
+such as `a--b`, `a- b` and `a -b` are diagnosed rather than split into shorter
+declared names. Literal/comment payload and the standalone destructor marker
+`-` in a native `.abi` record retain their own rules. Authored C function names
+in those records still follow the target C identifier contract, not the Ama
+complete-name profile.
 
 A name MUST NOT begin or end with a space. Empty words, repeated internal spaces,
 TAB, and other Unicode whitespace inside a name are invalid. Structural indentation
 and token separators lie outside the name span; they are not silently trimmed
 from an otherwise invalid name. The complete name, including its single internal
-spaces, is the unit of identity and lookup. `result` and `result name` may coexist
-as distinct base names; reading the latter never searches for the shorter name.
+spaces and hyphens, is the unit of identity and lookup. `result` and `result name`
+may coexist as distinct base names; reading the latter never searches for the
+shorter name.
 
 Use Unicode 17.0.0 identifier properties and record that edition with the compiler
 source. Identifier acceptance must not depend on the host locale or a silently
@@ -190,8 +215,10 @@ Indentation or an operand separator before the root marker is outside the path,
 as in `< ..palette.red`, and retains its ordinary grammar rule.
 The final component of a qualified constant source is still exactly its constant
 name under CONST-05. Physical names beginning/ending with a space or containing
-repeated internal spaces are not valid Ama components; diagnose rather than trim,
-collapse, replace spaces with underscores, or guess another path. The structural
+repeated internal spaces or invalid hyphen placement are not valid Ama components;
+diagnose rather than trim, collapse, replace spaces/hyphens with underscores,
+or guess another path. `item-name`, `item_name` and `item name` are distinct
+logical spellings and are never aliases of one another. The structural
 physical `+` suffix follows SRC-05 independently of spaces in the component name.
 Filesystem lookup must preserve a one-to-one mapping between parsed components
 and the module file.
@@ -211,13 +238,33 @@ These are spelling examples, not complete programs.
 | `total price&` | The reference form of the complete name `total price` |
 | `.shop tools.item state` | A path with components `shop tools` and `item state` |
 | `items[current position]` | List `items`, indexed by the complete name `current position` |
+| `item-2 next_step` | One complete name; the digit continues the first word |
+| `red-blue-green` | One word with two separated internal hyphens |
+| `_item-_value`, `item_-value` | Valid combinations of ordinary underscores and isolated hyphens |
+| `.shop-tools.item-state` | A path to physical `shop-tools/item-state` with exact spelling |
+| `...данные.тип-ключа` | One static name; no corresponding file is required |
+| `item-name`, `item_name`, `item name` | Three distinct complete names |
 | `total  price` | Invalid: two spaces inside a name |
 | `.shop .item` | Invalid: a space next to a path separator |
+| `-item`, `item-`, `item--name` | Invalid: leading, trailing or adjacent hyphens |
+| `item- name`, `item -name`, `item - name` | Invalid: a hyphen cannot adjoin a word-separating space |
+| `item−2`, `item–2` | Invalid: U+2212 minus and U+2013 en dash are not ASCII hyphens or identifier characters |
 
 **Why this rule exists.** A space within a name does not separate operands.
-Punctuation or a line boundary ends the name, so parsing never depends on which
-shorter names have already been declared. The same source keeps the same shape
-as declarations are added or removed.
+Structural punctuation or a line boundary ends the name; an allowed internal
+hyphen is part of the name. Parsing never depends on which shorter names have
+already been declared. The same source keeps the same shape as declarations are
+added or removed. One shared profile makes a variable, a module-path component
+and a type placeholder equally readable. Isolating each hyphen permits familiar
+compound names while catching incomplete or accidentally repeated punctuation.
+
+**Why the grammar is unambiguous.** A hyphen is outside the ordinary continuation
+class. The name-word production consumes each hyphen together with its following
+ordinary continuation character; other continuation characters are consumed alone.
+Every accepted word consequently starts and ends with an ordinary character and
+has no adjacent hyphens. Conversely, every word satisfying those conditions and
+the stated start/character rules has exactly that grouping. Single spaces then
+determine the word boundaries without consulting declared names.
 
 ## Indentation and block boundaries
 

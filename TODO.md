@@ -67,7 +67,7 @@ An implementation task, including one in this queue, is not permission to amend
 ## Current tasks
 
 - [ ] **T158 — Resolve the remaining template design gates.**
-  Status: awaiting explicit user decisions; no implementation is authorized by
+  Status: ready for final design acceptance after T166; no implementation is authorized by
   this task. Prerequisites: T157's documented baseline, T159's named
   constructor/signature forms, T160's interface-wide inference rules and T161's
   dependent constants/explicit namespaces. Questions and alternatives
@@ -84,13 +84,16 @@ An implementation task, including one in this queue, is not permission to amend
   [TPL-13](spec/language/templates.md#tpl-13): native modules have no own static
   parameters, templates are distributed as Ama source, and C exports select
   concrete ordinary modules/facades rather than template specialization maps.
-  AMB-008 (hyphen spelling) is the only remaining open sprint gate. Resolve that
-  boundary before implementation; do not infer answers from this queue item.
+  T166 settles AMB-008's isolated internal ASCII-hyphen profile under
+  [SRC-03](spec/language/source-and-names.md#src-03). No current sprint design
+  decision remains open. Finish the design acceptance from recorded decisions,
+  canonical rules, the prerequisite-ordered implementation roadmap and named
+  acceptance cases; do not infer implementation support from this queue item.
   Current checkpoint: AMB-004's inference, result-Type scope and constant design
   are approved and specified. Explicit namespaces avoid name inheritance/imports;
   static parameters remain Type/Template, without numeric value parameters.
-  The answers/source are recorded in AMBIGUITIES. Remaining gates need their own
-  explicit decisions before affected implementation. T163 specifies the user's
+  The answers/source are recorded in AMBIGUITIES. Any newly discovered gate
+  needs its own explicit decision before affected implementation. T163 specifies the user's
   accepted finite-composition rule in [TPL-11](spec/language/templates.md#tpl-11),
   with the creation-path check, termination argument and acceptance partitions.
   AMB-005 is resolved; it no longer blocks implementation of that boundary.
@@ -99,16 +102,16 @@ An implementation task, including one in this queue, is not permission to amend
   languages; the base data model remains undecided. Other canonical changes
   still need their own explicit authorization. T162's archived acceptance,
   T164's scope decision and T165's specification record are in [DONE.md](DONE.md);
-  the naming gate does not undo
-  settled static result or native/source-delivery rules. Current next action
-  after T165: discuss AMB-008 with the user. No implementation work
-  is authorized by this design-gate task.
+  T166's accepted naming decision preserves settled static result and
+  native/source-delivery rules. Current next action after T166's commit: review
+  the final decision-to-rule/roadmap/acceptance links and archive this parent
+  task in its own commit. No implementation work is authorized by this task.
   Acceptance: record user decisions and authorized canonical/EBNF corrections;
   derive the implementation roadmap and named positive/negative acceptance cases
   from those settled contracts. Preserve the previous conformance matrix as
   historical evidence until new implementation evidence is actually available.
 
-The next unused task ID is **T166**.
+The next unused task ID is **T167**.
 
 ## Useful verification commands
 

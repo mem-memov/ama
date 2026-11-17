@@ -132,7 +132,8 @@ is data.
 ```ebnf
 <identifier-start>           ::= "_" | ? Unicode scalar with property XID_Start ?
 <identifier-continue>        ::= "_" | ? Unicode scalar with property XID_Continue ?
-<name-word>                  ::= <identifier-start> { <identifier-continue> }
+<name-word>                  ::= <identifier-start>
+                                 { <identifier-continue> | "-" <identifier-continue> }
 <identifier>                 ::= <name-word> { <space> <name-word> }
 <module-root>                ::= "." | ".."
 <module-path>                ::= <module-root> <identifier> { "." <identifier> }
@@ -145,9 +146,21 @@ byte-for-byte without normalization or transliteration. A complete name cannot
 begin/end with a space and contains exactly one space between nonempty words.
 Every word obeys its own start rule: `item step2` is valid; `item 2` is invalid.
 
-In a name position, consume the maximal complete name up to punctuation or the
-code-part boundary. A space alone cannot separate two operands. Never consult
-declarations to split a name or repair its spelling.
+ASCII hyphen-minus U+002D may occur only inside a name word, immediately between
+ordinary identifier characters. `<identifier-continue>` itself excludes `-`;
+the separate alternative requires a non-hyphen continuation after every hyphen.
+Thus `item-2`, `item-_value` and `ключ-2` are valid, while `-item`, `item-`,
+`item--name`, `item- name` and `item -name` are invalid. A hyphen does not start
+a new word, so a digit or another permitted `XID_Continue` scalar, including a
+combining character, may follow it. Other dash/minus characters are not alternate
+spellings of U+002D. The exact profile follows
+[SRC-03](language/source-and-names.md#src-03).
+
+In a name position, consume the maximal complete name up to reserved punctuation
+or the code-part boundary; a valid internal hyphen is part of that name.
+`a-b` is one name, not subtraction. A malformed hyphen sequence is invalid and
+cannot be repaired by splitting it into operands. A space alone cannot separate
+two operands. Never consult declarations to split a name or repair its spelling.
 
 Each path component is one complete name. The leading `.` selects project/import
 roots, while `..` selects the standard-library root. These are absolute logical
@@ -1063,6 +1076,9 @@ symbol and one module-local C identifier accepted by the supported toolchain.
 C identifiers are not multiword Ama names. Leading spaces are permitted only
 before comments. Blank lines contain no spaces, and trailing spaces require a
 comment. The shared physical-line, UTF-8, and TAB rules still apply.
+The standalone `-` record symbol remains the native destructor slot; admitting
+internal hyphens in Ama names changes neither this token nor the supported C
+toolchain's function-identifier rules.
 
 There are no sections, nesting, includes, macros, expressions, or executable
 bodies. Duplicate/unknown slots and missing required lifecycle slots are errors.

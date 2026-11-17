@@ -6,7 +6,7 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 <a id="open-template-design-questions"></a>
 
-## Template decisions still open
+## Template design decisions
 
 The user explicitly requested this visible list on 2026-11-17 while authorizing
 the template specification. T157 records the initial contracts and gaps;
@@ -14,13 +14,14 @@ T159 records the user's subsequent resolution of [AMB-003](#amb-003).
 T160/T161 resolve inference, result Type scope and explicit constant namespaces
 in [AMB-004](#amb-004). T163 settles finite composition and specialization
 creation in [AMB-005](#amb-005).
-[T158](TODO.md#current-tasks) owns the remaining decisions before their affected
-implementation. Examples in open entries expose questions, not additional
+[T158](TODO.md#current-tasks) owns final acceptance of the recorded design
+decisions. Examples in a newly opened entry expose questions, not additional
 accepted Ama syntax. No answer is inferred from a request to document a question.
 
-| Issue | Decision still needed | Work affected |
-|---|---|---|
-| [AMB-008](#amb-008) | Exact hyphen spelling/profile and its scope | Expanding accepted names beyond current SRC-03 |
+No template design decision remains open for the current sprint. T166 resolves
+[AMB-008](#amb-008) with the accepted isolated internal ASCII-hyphen profile.
+The agreed requirements and acceptance matrix describe the target contract;
+they do not establish compiler support.
 
 [AMB-006](#amb-006) is deferred outside the current template sprint by the
 user's 2026-11-17 decision, recorded in T164. The base-list rewrite is excluded;
@@ -563,30 +564,47 @@ Each entry must contain:
 
 ## AMB-008 — Hyphens in source names and physical path components
 
-- **Status:** Open.
-- **Task:** T158. Extending the name profile waits for an exact selected spelling.
+- **Status:** Resolved.
+- **Task:** T166 specifies the accepted name profile. T158 can perform final
+  design-gate acceptance after T166's verification and commit.
 - **Requirements:** [SRC-03](spec/language/source-and-names.md#src-03),
   [TPL-01](spec/language/templates.md#tpl-01), and
   [identifier grammar](spec/grammar.md#names-paths-and-storage-forms).
-- **Minimal example:** `_item`, `.data.item_name` and `...data.item_name` satisfy
-  the existing profile. `item-name` and `.data.item-name` do not. Allowing a hyphen
-  only in paths would separate the currently shared variable/component profile;
-  allowing it at any word position also raises leading/trailing/repeated cases.
-- **Question:** Should ASCII `-` be permitted uniformly in name words or only in
+- **Minimal example of the former gap:** `_item`, `.data.item_name` and
+  `...data.item_name` satisfied the earlier profile, while `item-name` and
+  `.data.item-name` did not. Path-only support would separate the shared
+  variable/component profile; unrestricted continuation would admit final or
+  consecutive hyphens.
+- **Original question:** Should ASCII `-` be permitted uniformly in name words or only in
   path components, and at which positions? Are leading, trailing and repeated
   hyphens accepted?
-- **Possible answers and consequences:** Adding `-` to continuation characters
-  uniformly is a simple exact grammar change and keeps the start rule. Restricting
-  it to an internal separator gives a narrower profile with more rules. Path-only
-  support requires distinct productions. Filesystem aliases/unrepresentable paths
-  must still be diagnosed without normalization; placeholders require no files.
-- **User decision:** Unset. The user expressed a wish for hyphens and underscores;
-  underscores are already allowed, but no exact hyphen profile was selected.
-- **Specification authorization:** Current authorization covers documenting this
-  naming question. T157 retains the existing identifier profile pending a choice.
-- **Resume evidence:** Update SRC-03 and EBNF together, then cover Unicode words,
-  spaces, all selected hyphen positions, concrete paths, placeholders and physical
-  path collisions without changing module identity through sanitization.
+- **User decision:** On 2026-11-17, in this conversation, after the uniform profile
+  and boundary examples were proposed, the user answered: "Да, принимаем
+  одиночный внутренний дефис." The proposal permits separated internal hyphens
+  rather than limiting a word to one total hyphen: `red-blue-green` is valid,
+  while `item--name` is not. The name-word start rule remains unchanged and a
+  hyphen continues that word, so `item-2` is valid and `item 2` remains invalid.
+- **Selected boundary and rationale:** One profile applies to runtime names,
+  module-path components and static names. Every ASCII `-` (U+002D) must be
+  internal to a word and immediately followed by an ordinary `_`/`XID_Continue`
+  character; it cannot start/end a word, repeat consecutively or adjoin a space.
+  Ordinary Unicode continuation characters, including combining characters and
+  underscores next to a hyphen, retain their existing acceptance. The complete
+  spelling remains exact identity: no normalization, substitution of lookalike
+  punctuation or merging of `a-b`, `a_b` and `a b`. `a-b` is one name and adds no
+  subtraction operator. Native `.abi` destructor records, authored C identifiers,
+  literals and comments keep their separate existing contracts. Uniform spelling
+  avoids separate identifier rules for files and variables; isolated hyphens
+  catch incomplete or repeated punctuation without name-resolution heuristics.
+- **Specification authorization:** The behavioral answer did not itself authorize
+  a canonical edit. The subsequent explicit instruction, "Вноси это в
+  спецификацию", authorizes T166's SRC-03, EBNF, examples, acceptance and related
+  navigation/roadmap changes. No compiler implementation is authorized here.
+- **Resolution evidence:** T166 updates SRC-03 and the name-word production
+  together, retaining the ordinary start/continuation character sets. Named
+  acceptance cases cover positions, spaces, Unicode/underscores, exact identities,
+  paths/static names and separate `.abi`/literal/comment contexts. Its archive
+  records document verification; support still requires implementation evidence.
 
 <a id="amb-009"></a>
 

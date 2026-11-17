@@ -3324,6 +3324,52 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   compiler/native/test code was neither analyzed nor changed, and functional
   suites were not rerun for this specification-only task.
 
+- [x] **T166 — Specify single internal ASCII hyphens in complete names.**
+  Completed 2026-11-17; specification only. Prerequisites: SRC-03/TPL-01's shared
+  name profile and the user's explicit AMB-008 answer, followed by "Вноси это в
+  спецификацию" in this conversation. The answer/source and distinct canonical
+  authorization are recorded in [AMB-008](AMBIGUITIES.md#amb-008).
+  Scope: canonical name spelling, EBNF, examples/rationale, related navigation,
+  roadmap, acceptance and task/decision records; no compiler/native/test code.
+  Plan and acceptance: update SRC-03 and name-word together; explain exact word,
+  path and static-name boundaries; add named acceptance partitions; review and
+  verify documents; archive and commit. Preserve original start/continuation
+  character sets, exact identity, separate native ABI and payload contexts.
+  Step 1 result: [SRC-03](spec/language/source-and-names.md#src-03) permits
+  isolated internal U+002D hyphens in every name word, including several separated
+  hyphens, without leading/trailing/consecutive or space-adjacent forms. `item-2`
+  is valid; `item 2` is not. Underscores and permitted combining continuations
+  retain their original position classes. The EBNF consumes `-` with an ordinary
+  following continuation and leaves the continuation class itself unchanged;
+  the explanatory grouping argument establishes the exact same word language.
+  Step 2 result: examples distinguish `a-b`, `a_b` and `a b`, preserve exact
+  physical path spelling and static whole-name identity, and reject confusable
+  punctuation without normalization. No subtraction operator is introduced.
+  Native `.abi` destruction, authored C identifiers and literal/comment payloads
+  retain their own rules. Placeholder examples and the roadmap share SRC-03;
+  three new acceptance areas preserve all 147 previous areas: 150 total, with
+  all 37 template areas retained. AMB-008 is resolved; AMB-006 remains deferred.
+  Independent semantic/grammar reviews found no contradiction; wording explicitly
+  distinguishes isolated hyphens from a one-hyphen-per-word limit.
+  Verification from repository root: `python3 /tmp/ama-t166-doc-check.py` passes
+  initially for 204 Markdown files, 2718 local links, 214 indexed canonical rules,
+  108 unique aligned EBNF productions and 166 task IDs. Only the accepted
+  name-word production changes; all other grammar content in the 10 EBNF blocks
+  is preserved. The temporary document-model audit independently compares the
+  grammar-shaped expression with SRC-03's position predicates over all 97656
+  strings of lengths 0..7 using five character-role representatives; all agree.
+  This is a bounded document check, not compiler or Unicode-table conformance.
+  `git diff --check` and `make docs-complete` pass (2335 ready maintained inputs,
+  zero explicit debts). Initial `make docs` exits 0 with Doxygen 1.11.0, Python
+  3.14.4 and markdown-it-py 3.0.0: 1749 maintained file pages, 6703 documented
+  interfaces, 416 checked destinations and 5526 generated pages. Final archived
+  inputs also pass the audit and documentation regeneration before commit;
+  generated outputs remain unversioned. `make conformance-check` exits 2 with
+  "specification changed; conformance review is required"; no implementation
+  fingerprints are refreshed. Source/native/test code was neither analyzed nor
+  changed and functional suites were not rerun. T158 remains for separate final
+  design acceptance; this task claims no template implementation support.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

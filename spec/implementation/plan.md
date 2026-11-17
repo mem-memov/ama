@@ -196,15 +196,17 @@ source-distribution and ordinary-facade export boundaries under
 [EMBED-01](c-library.md#embed-01). The
 [template chapter](../language/templates.md),
 [static-results chapter](../language/static-results.md) and grammar define those
-source forms. The [remaining decisions](../../AMBIGUITIES.md#open-template-design-questions)
-owned by T158 retain only the open naming question. The list-foundation rewrite
-is explicitly deferred; neither boundary leaves the whole grammar unspecified
-or authorizes an inference fallback. Before implementing a selected
-boundary, resolve every open decision on which that boundary depends and plan
-its acceptance. Existing tests do not cover the new template semantics.
+source forms. T166 settles the uniform internal ASCII hyphen spelling under
+[SRC-03](../language/source-and-names.md#src-03), completing the current sprint's
+[design decisions](../../AMBIGUITIES.md#open-template-design-questions).
+The list-foundation rewrite remains explicitly deferred outside this sprint.
+Before implementing a selected boundary, plan its exact contract and acceptance;
+resolve any newly discovered ambiguity through the normal workflow rather than
+an inference fallback. Existing tests do not cover the new template semantics.
 
 Plan narrow components in prerequisite order: placeholder and type-expression
-recognition; scoped kinds, named signatures and defined static results; separate
+recognition, including the shared SRC-03 name-word recognizer for ordinary names,
+paths and static names; scoped kinds, named signatures and defined static results; separate
 static/runtime positions and lexical alias classification; exact static constraints,
 including the separate lexical receiver/foreach classification and globally
 refinable type terms; constructor-pattern decomposition and canonical partial
@@ -241,7 +243,7 @@ of adding placeholders.
 
 Deliverable: documented, tested static specialization with explicit supported
 boundaries and a current acceptance matrix. No compiler implementation is part
-of the specification-only T157, T159, T160, T161, T162, T163 or T165 tasks.
+of the specification-only T157, T159, T160, T161, T162, T163, T165 or T166 tasks.
 
 ## Keep engineering choices separate from language changes
 

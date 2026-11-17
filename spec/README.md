@@ -35,10 +35,13 @@ shared values and explicit namespace selection avoid name conflicts. The
 templates in Ama source and native `@C` definitions concrete. Compiled libraries
 expose ordinary concrete module roots, including facades using closed
 specializations, under [EMBED-01](implementation/c-library.md#embed-01).
-The remaining [open question](../AMBIGUITIES.md#open-template-design-questions)
-concerns names. Moving Ama's list foundation into templates remains explicitly
-deferred under [TPL-09](language/templates.md#tpl-09). Agreed syntax and packaging
-rules are not evidence of compiler implementation.
+The naming profile in [SRC-03](language/source-and-names.md#src-03) permits the
+same internal ASCII hyphen spelling in ordinary names, module-path components
+and static names. The current template sprint's
+[design questions](../AMBIGUITIES.md#open-template-design-questions) are resolved.
+Moving Ama's list foundation into templates remains explicitly deferred under
+[TPL-09](language/templates.md#tpl-09). Agreed syntax and packaging rules are not
+evidence of compiler implementation.
 
 If you are implementing Ama, read the language chapters first. Then use the
 runtime, native-interface, and compiler chapters to see the required realization
