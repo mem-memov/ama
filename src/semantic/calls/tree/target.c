@@ -23,7 +23,7 @@ bool semantic_call_target(SemanticProgram *program, SemanticType *caller, Semant
     const AstNode *node = statement->syntax;
     if (node->as.call.mode == AST_CONSTANT_READ) {
         statement->operation_kind = SEMANTIC_CONSTANT_OPERATION;
-        statement->namespace_type = semantic_type(program, node->as.call.namespace_path);
+        statement->namespace_type = semantic_type(program, node->as.call.namespace_expression->head);
         return statement->namespace_type != NULL || semantic_fail(program, node->span,
             "The constant namespace is unavailable", NULL);
     }

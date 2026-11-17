@@ -117,7 +117,7 @@ static void it_resolves_multiword_declarations_through_both_root_families(void) 
     assert(ordinary != NULL && standard != NULL && ordinary != standard);
     assert(frontend.plan.entry->first->symbol->type != frontend.plan.entry->first->next->symbol->type);
     assert(layout_text_is(frontend.project.entry->syntax.body.first->as.declaration.name->name, "ordinary state"));
-    assert(layout_text_is(frontend.project.entry->syntax.body.last->as.declaration.type, "..value"));
+    assert(layout_text_is(frontend.project.entry->syntax.body.last->as.declaration.type->head, "..value"));
     destroy_frontend();
 }
 
@@ -236,10 +236,29 @@ static void it_retains_hyphenated_names_and_exact_type_identities_in_both_roots(
 }
 
 /**
- * Run every explicitly selected assertion case in this executable; a failed assertion preserves
- * leaf generated output for diagnosis.
+ * Refuse unresolved static syntax before publishing a concrete semantic graph;
+ * this admission check prevents silent erasure before T184 supplies resolution.
  */
+static void it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundary(void) {
+    const char *cases[] = {
+        "@<\n...type\n@!\n", "@>\n...result\n.value\n@!\n",
+        "@!\n.factory\n ... > ...alias\n", "@!\nfield\n.value\n ... < .value\n",
+        "@!\n.value\n ... < .value\n zero >> result\n"
+    };
+    for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
+        prepare_project();
+        file("generated/project/main", cases[index]);
+        setup_frontend();
+        assert(!check_project() && !frontend.valid);
+        assert(diagnostic_valid(&frontend.error));
+        assert(strstr(frontend.error.message, "Static syntax requires resolution") != NULL);
+        destroy_frontend();
+    }
+}
+
+/** Run production frontend compositions and rejection/cleanup partitions. */
 void run(void) {
+    it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundary();
     it_retains_hyphenated_names_and_exact_type_identities_in_both_roots();
     it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c();
     it_builds_complete_control_ir_for_traversal_and_header_trees();

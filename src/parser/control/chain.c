@@ -14,7 +14,7 @@ bool parser_condition_chain(Parser *parser, ParseFrame **frame,
     ParseFrame *root = *frame;
     for (ParseFrame *link = *frame; link != NULL && link->kind == FRAME_CALL; link = link->parent) {
         AstNode *operation = link->owner;
-        if (link->condition_loop != NULL || operation->as.call.namespace_path.source != NULL
+        if (link->condition_loop != NULL || operation->as.call.namespace_expression != NULL
             || operation->as.call.output_count != 0
             || (link == *frame && operation->as.call.first_output != NULL)
             || (link != *frame && (operation->as.call.first_output == NULL

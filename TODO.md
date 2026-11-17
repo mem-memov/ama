@@ -146,38 +146,14 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T169 is accepted and archived; T170 is
-next. Shared-word normal/sanitizer/consumer evidence and known baseline parser
-inventory failure are recorded. No implementation/test jobs active.
+Current implementation checkpoint: T170 is accepted and archived in
+[DONE.md](DONE.md#t170); final documentation regeneration on archived inputs
+precedes its separate commit. T171 is the next ready task. Functional jobs have
+finished; no ambiguity or specification change is pending.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
-
-<a id="t170"></a>
-
-- [ ] **T170 — Parse immutable static interfaces and application trees.**
-  Baseline acceptance owner: reconcile the explicit canonical-example inventory
-  in tests/unit/parser/composition/support/documented.c with the current
-  specification, including newly added static forms and each example's declared
-  module/body/ABI context. T169 found a pre-existing fence-count assertion before
-  parser invocation: declarations 9 versus 16, lists 3 versus 4, grammar 8 versus
-  20 and C-library 1 versus 3. Preserve the failure evidence and validate contexts;
-  do not skip unsupported examples or guess wrappers to obtain a pass.
-  Prerequisites: T169.
-  Rules: [grammar](spec/grammar.md#static-template-syntax-and-design-boundaries),
-  [COMP-01](spec/implementation/compiler.md#comp-01),
-  [TPL-12](spec/language/static-results.md#tpl-12).
-  Boundary: AST lifetime and parser section/declaration/type-expression/binding
-  children, composed through the reusable frontend.
-  Steps: (1) represent formals, recursive signatures, two-line static results,
-  applications/projections and skips with source spans; (2) implement structural
-  parsing separately from lookup; (3) test actual section/body/nested compositions.
-  Accept: valid categories' syntax, nested arguments/results/namespaces and
-  interleaved runtime declarations parse without symbol knowledge; bad indentation,
-  missing result definitions, invalid suffixes/markers and malformed nesting fail.
-  Check allocation failures, safe partial-tree destruction and finite traversal
-  without an arbitrary depth limit; native syntax uses the same parser.
 
 <a id="t171"></a>
 

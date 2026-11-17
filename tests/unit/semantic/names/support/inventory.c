@@ -44,7 +44,7 @@ static void it_builds_complete_source_ordered_inventories_and_distinct_root_nomi
         assert(symbol->declaration->span.start > previous);
         previous = symbol->declaration->span.start;
         assert(symbol->role_ordinal == counts[symbol->role]++);
-        SourceSpan path = symbol->declaration->as.declaration.type;
+        SourceSpan path = symbol->declaration->as.declaration.type->head;
         assert(symbol->type == (layout_text_is(path, "..value") ? standard_type : project_type));
         index++;
     }

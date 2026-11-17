@@ -39,37 +39,21 @@ bool parser_declaration(Parser *parser, size_t indentation, AstNode *node) {
     parser->line = parser->line->next;
     parser_skip_region(parser, indentation);
     if (parser->line == NULL || parser->line == parser->end
-        || parser->line->indentation != indentation || !parser_path(parser->line->code)) {
+        || parser->line->indentation != indentation
+        || (!parser_path(parser->line->code) && !parser_static_name(parser->line->code))) {
         return parser_fail(parser, parser_site(parser), "A declaration needs its module type on the next code line",
             EXPECT_TYPE_LINE);
     }
-    node->as.declaration.type = parser->line->code;
-    node->span.end = parser->line->code.end;
-    parser->line = parser->line->next;
+    if (!parser_type_expression(parser, parser->line->code, indentation, &node->as.declaration.type)) {
+        return false;
+    }
+    node->span.end = node->as.declaration.type->span.end;
     parser_skip_region(parser, indentation + 1);
     while (parser->line != NULL && parser->line != parser->end
         && parser->line->indentation == indentation + 1) {
         if (!add_initializer(parser, node, indentation + 1)) {
             return false;
         }
-    }
-    return true;
-}
-
-bool parser_declarations(Parser *parser, ParsedSection section, AstBlock *output) {
-    parser->line = section.first;
-    parser->end = section.end;
-    parser_skip_region(parser, 0);
-    while (parser->line != NULL && parser->line != parser->end) {
-        AstNode *node = parser_node(parser, AST_DECLARATION, parser->line->code);
-        if (node == NULL || parser->line->indentation != 0) {
-            return node == NULL ? false : parser_fail(parser, parser_site(parser),
-                "Section declarations start at indentation zero", EXPECT_TOP_DECLARATION);
-        }
-        if (!parser_declaration(parser, 0, node)) {
-            return false;
-        }
-        parser_append(output, node);
     }
     return true;
 }

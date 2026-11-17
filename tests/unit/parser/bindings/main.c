@@ -110,7 +110,7 @@ static void it_preserves_resume_retained_and_standard_constant_read_modes(void) 
         if (index == 0) { assert(call->as.call.target->reference && call->as.call.first->omitted); }
         if (index == 1) { assert(call->as.call.target->reference && call->as.call.target->index != NULL); }
         if (index == 2) {
-            assert(call->as.call.target == NULL && layout_text_is(call->as.call.namespace_path, "..цветовая палитра"));
+            assert(call->as.call.target == NULL && layout_text_is(call->as.call.namespace_expression->head, "..цветовая палитра"));
             assert(call->as.call.first->next->label->whole_list);
         }
         destroy_tree();

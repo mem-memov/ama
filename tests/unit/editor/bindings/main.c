@@ -31,6 +31,13 @@ static void it_resolves_definitions_and_signatures_without_crossing_caller_calle
     setup_editor();
     assert(analyze(&analysis) && analysis.state == EDITOR_COMPLETE && analysis.indexed);
     const SourceText *source = analysis.selected->text;
+    const SemanticStatement *operation = NULL;
+    assert(editor_operation(&analysis, ".main", point(source, "worker !"), &operation));
+    assert(operation->syntax->as.call.namespace_expression == NULL);
+    assert(editor_operation(&analysis, ".main", point(source, ".palette"), &operation));
+    assert(layout_text_is(operation->syntax->as.call.namespace_expression->head, ".palette"));
+    assert(editor_operation(&analysis, ".main", point(source, "result& !"), &operation));
+    assert(operation->syntax->as.call.namespace_expression == NULL);
     EditorDefinition definition;
     assert(editor_definition(&analysis,".main",point(source,"argument <"),&definition));
     assert(text_is(definition.symbol->name,"argument") && definition.symbol->role == SYMBOL_PARAMETER);

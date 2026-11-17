@@ -10,6 +10,8 @@
  * result-selection actions and each refusal body's owning operation. Control headers retain one lexical repeat root under
  * [FLOW-04](../../spec/language/control-flow.md#flow-04);
  * [SYN-01](../../spec/language/source-and-names.md#syn-01) retains warnings at written empty markers.
+ * [TPL-12](../../spec/language/static-results.md#tpl-12) retains static syntax
+ * separately from ordinary runtime fields, arguments and result positions.
  * [FLOW-05](../../spec/language/lists.md#flow-05) has distinct reference binders.
  */
 #ifndef AMA_SYNTAX_AST_H
@@ -18,6 +20,7 @@
 #include "parser/module/sections.h"
 #include "parser/status.h"
 #include "parser/error/error.h"
+#include "static.h"
 
 /** Structural base/suffix/index view; every text span borrows source, every linked node belongs to the AST arena. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02), [CALL-08](../../spec/language/calls-and-results.md#call-08), [CALL-09](../../spec/language/calls-and-results.md#call-09), [FLOW-04](../../spec/language/control-flow.md#flow-04), [SYN-01](../../spec/language/source-and-names.md#syn-01), [FLOW-05](../../spec/language/lists.md#flow-05). */
 typedef struct AstAccess {
@@ -69,7 +72,8 @@ typedef enum { AST_ENTRY_CALL, AST_RESUME_CALL, AST_RETAINED_READ, AST_CONSTANT_
 /** Structural statement kinds; execution support is tracked separately by feature tasks. Component contract: [COMP-02](../../spec/implementation/compiler.md#comp-02), [CALL-08](../../spec/language/calls-and-results.md#call-08), [CALL-09](../../spec/language/calls-and-results.md#call-09), [FLOW-04](../../spec/language/control-flow.md#flow-04), [SYN-01](../../spec/language/source-and-names.md#syn-01), [FLOW-05](../../spec/language/lists.md#flow-05). */
 typedef enum {
     AST_DECLARATION, AST_ASSIGNMENT, AST_CALL, AST_BRANCH,
-    AST_LOOP, AST_BREAK, AST_RETURN, AST_SUSPEND, AST_FOREACH
+    AST_LOOP, AST_BREAK, AST_RETURN, AST_SUSPEND, AST_FOREACH,
+    AST_STATIC_FORMAL, AST_STATIC_RESULT, AST_STATIC_PROJECTION
 } AstNodeKind;
 /**
  * Forward declaration of an arena-owned structural syntax node; its complete tagged body follows
@@ -100,7 +104,7 @@ struct AstNode {
     union {
         struct {
             AstAccess *name;
-            SourceSpan type;
+            AstTypeExpression *type;
             AstInitializer *first;
             AstInitializer *last;
             size_t initializer_count;
@@ -109,7 +113,7 @@ struct AstNode {
         struct {
             AstCallMode mode;
             AstAccess *target;
-            SourceSpan namespace_path;
+            AstTypeExpression *namespace_expression;
             AstArgument *first;
             AstArgument *last;
             AstOutputAction *first_output;
@@ -126,6 +130,12 @@ struct AstNode {
             bool has_alternative;
             AstBlock alternative;
         } call;
+        AstStaticFormal *static_formal;
+        struct {
+            SourceSpan name;
+            AstTypeExpression *expression;
+        } static_result;
+        AstTypeExpression *static_projection;
         struct {
             AstAccess *condition;
             AstNode *command;

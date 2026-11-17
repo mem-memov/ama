@@ -239,8 +239,52 @@ static void it_uses_hyphen_words_in_paths_accesses_and_literal_labels(void) {
     }
 }
 
+/** Three dots form one token before either an atomic static name or a spaced
+ * positional binding; four dots and padded component joins are never repaired.
+ */
+static void it_distinguishes_static_prefixes_from_module_roots_and_binding_separators(void) {
+    const char *valid[] = {"...key-type.part < ..integer", "... <",
+        "... > ...received-type", "... >"};
+    const LexKind kinds[][5] = {
+        {LEX_STATIC_PREFIX, LEX_NAME, LEX_DOT, LEX_NAME, LEX_INPUT},
+        {LEX_STATIC_PREFIX, LEX_INPUT},
+        {LEX_STATIC_PREFIX, LEX_OUTPUT, LEX_STATIC_PREFIX, LEX_NAME},
+        {LEX_STATIC_PREFIX, LEX_OUTPUT}
+    };
+    const size_t checked[] = {5, 2, 4, 2};
+    for (size_t index = 0; index < 4; index++) {
+        setup_test();
+        LexCursor cursor;
+        assert(begin(valid[index], 0, &cursor));
+        LexToken token;
+        for (size_t ordinal = 0; ordinal < checked[index]; ordinal++) {
+            assert(lex_token_next(&cursor, &token) == LEX_TOKEN);
+            assert(token.kind == kinds[index][ordinal]);
+        }
+        if (index == 0) {
+            assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_STANDARD_ROOT);
+            assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_NAME);
+        }
+        assert(lex_token_next(&cursor, &token) == LEX_END);
+        destroy_layout();
+    }
+    const char *invalid[] = {"....type", "... type", "...< ..integer",
+        "...type..part", "...type...part"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
+        setup_test();
+        LexCursor cursor;
+        assert(begin(invalid[index], 0, &cursor));
+        LexToken token;
+        LexStatus status;
+        do { status = lex_token_next(&cursor, &token); } while (status == LEX_TOKEN);
+        assert(status == LEX_INVALID);
+        destroy_layout();
+    }
+}
+
 /** Run every exact-layout/token boundary scenario explicitly. */
 void run(void) {
+    it_distinguishes_static_prefixes_from_module_roots_and_binding_separators();
     it_uses_hyphen_words_in_paths_accesses_and_literal_labels();
     it_preserves_complete_names_compound_tokens_and_all_line_ending_forms();
     it_recognizes_every_annotation_and_standalone_marker();

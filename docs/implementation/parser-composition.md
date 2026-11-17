@@ -33,9 +33,13 @@ valid only after every physical record and mandatory slot succeeds.
 ## Examples are checked in their stated contexts
 
 `tests/unit/parser/composition/support/documented.c` declares an explicit
-chapter/fence/context manifest for 63 canonical Ama/ABI text fences. It reads the
+chapter/fence/context manifest for 119 canonical Ama/ABI text fences. It reads the
 current specification without editing it. Complete modules are parsed unchanged;
-body/declaration fragments receive an explicit `@!` context. The constructor-only
+body/declaration fragments receive an explicit `@!` context. Static input and
+result section fragments receive their stated section/implementation markers;
+one isolated binding-block illustration receives an explicit parent and one
+structural indentation space. The grammar example with static inputs after a
+constant transfer must fail, exactly as its surrounding explanation requires. The constructor-only
 and clone-only ABI illustrations receive the explicitly listed missing lifecycle
 records. Filesystem trees, compiler dependency diagrams and directory decomposition
 illustrations are excluded because they are not Ama programs. No lookup or

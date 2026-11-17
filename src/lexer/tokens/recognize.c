@@ -19,7 +19,7 @@ bool lex_recognize(LexCursor *cursor, size_t offset, LexToken *token) {
         return true;
     }
     static const FixedToken fixed[] = {
-        {"&[]",LEX_REFERENCE_LIST}, {"@=",LEX_CONSTANTS}, {"@<",LEX_PARAMETERS},
+        {"...",LEX_STATIC_PREFIX}, {"&[]",LEX_REFERENCE_LIST}, {"@=",LEX_CONSTANTS}, {"@<",LEX_PARAMETERS},
         {"@>",LEX_RESULTS}, {"@!",LEX_AMA}, {"@C",LEX_NATIVE}, {">>",LEX_READ},
         {"[]",LEX_LIST}, {"&[",LEX_REFERENCE_INDEX}, {"..",LEX_STANDARD_ROOT},
         {".",LEX_DOT}, {"&",LEX_REFERENCE}, {"[",LEX_INDEX_OPEN}, {"]",LEX_INDEX_CLOSE},

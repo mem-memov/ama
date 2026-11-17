@@ -6,6 +6,67 @@ static void check_span(SourceSpan span, const SourceText *source) {
     if (span.source != NULL) { assert(span.source == source && source_span_valid(span)); }
     else { assert(span.start == 0 && span.end == 0); }
 }
+/** Finite expression worklists check original spans, ordered ownership and the
+ * absence of fabricated operands on skips; capacity follows admitted bytes.
+ */
+static void check_expression(const AstTypeExpression *root, const SourceText *source) {
+    if (root == NULL) { return; }
+    size_t capacity = source_length(source) + 1, count = 1;
+    const AstTypeExpression **queue = calloc(capacity, sizeof(*queue));
+    assert(queue != NULL);
+    queue[0] = root;
+    for (size_t cursor = 0; cursor < count; cursor++) {
+        const AstTypeExpression *expression = queue[cursor];
+        check_span(expression->span, source);
+        check_span(expression->head, source);
+        assert(expression->head.start == expression->span.start);
+        const AstStaticBinding *last = NULL;
+        bool outputs = false;
+        for (const AstStaticBinding *binding = expression->first; binding != NULL; binding = binding->next) {
+            check_span(binding->span, source);
+            check_span(binding->label, source);
+            check_span(binding->marker, source);
+            check_span(binding->receiver, source);
+            if (binding->kind == AST_STATIC_INPUT) {
+                assert(!outputs && binding->receiver.source == NULL);
+                assert((binding->input == NULL) == binding->omitted);
+                if (binding->input != NULL) {
+                    assert(count < capacity);
+                    queue[count++] = binding->input;
+                }
+            } else {
+                assert(binding->kind == AST_STATIC_OUTPUT && binding->input == NULL);
+                assert((binding->receiver.source == NULL) == binding->omitted);
+                outputs = true;
+            }
+            assert(!binding->omitted || binding->positional);
+            last = binding;
+        }
+        assert(last == expression->last);
+    }
+    free(queue);
+}
+/** Each signature owns its foreign names and finite nested signatures; no
+ * resolution table is consulted to validate their source representation.
+ */
+static void check_formal(const AstStaticFormal *root, const SourceText *source) {
+    size_t capacity = source_length(source) + 1, count = 1;
+    const AstStaticFormal **queue = calloc(capacity, sizeof(*queue));
+    assert(root != NULL && queue != NULL);
+    queue[0] = root;
+    for (size_t cursor = 0; cursor < count; cursor++) {
+        const AstStaticFormal *formal = queue[cursor], *last = NULL;
+        check_span(formal->span, source);
+        check_span(formal->name, source);
+        for (const AstStaticFormal *child = formal->first; child != NULL; child = child->next) {
+            assert(count < capacity);
+            queue[count++] = child;
+            last = child;
+        }
+        assert(last == formal->last);
+    }
+    free(queue);
+}
 /** Nested named indices share source lifetime and never become reference-valued index expressions. */
 static void check_access(const AstAccess *access, const SourceText *source) {
     bool index = false;
@@ -44,7 +105,7 @@ static void queue_block(AstBlock block, const AstNode **queue, size_t *count, si
 static void check_call(const AstNode *node, const SourceText *source,
     const AstNode **queue, size_t *count, size_t capacity) {
     check_access(node->as.call.target, source);
-    check_span(node->as.call.namespace_path, source);
+    check_expression(node->as.call.namespace_expression, source);
     check_span(node->as.call.refusal_marker, source);
     size_t inputs = 0, outputs = 0, actions = 0;
     const AstArgument *last = NULL;
@@ -95,7 +156,7 @@ static void check_tree(const char *original) {
         check_span(node->span, source);
         if (node->kind == AST_DECLARATION) {
             check_access(node->as.declaration.name, source);
-            check_span(node->as.declaration.type, source);
+            check_expression(node->as.declaration.type, source);
             size_t initializers = 0;
             const AstInitializer *last = NULL;
             for (const AstInitializer *item = node->as.declaration.first; item != NULL; item = item->next) {
@@ -104,6 +165,13 @@ static void check_tree(const char *original) {
                 last = item;
             }
             assert(initializers == node->as.declaration.initializer_count && last == node->as.declaration.last);
+        } else if (node->kind == AST_STATIC_FORMAL) {
+            check_formal(node->as.static_formal, source);
+        } else if (node->kind == AST_STATIC_RESULT) {
+            check_span(node->as.static_result.name, source);
+            check_expression(node->as.static_result.expression, source);
+        } else if (node->kind == AST_STATIC_PROJECTION) {
+            check_expression(node->as.static_projection, source);
         } else if (node->kind == AST_ASSIGNMENT) {
             check_access(node->as.assignment.receiver, source);
             check_source(node->as.assignment.source, source);

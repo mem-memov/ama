@@ -3614,6 +3614,70 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   this archival edit rechecks final inputs. No spec, Unicode table or reviewed
   conformance fingerprint changed. Commit T169 separately; T170 is next.
 
+<a id="t170"></a>
+
+- [x] **T170 — Parse immutable static interfaces and application trees.**
+  Status: completed 2026-11-18. Scope: structural AST/parser only; no static
+  name/kind resolution, substitution or template execution. Steps:
+  (1) document source-span ownership, structural classifications and iterative
+  nesting invariants; (2) recognize static prefixes/names and represent expression,
+  binding, signature and result trees; (3) compose declarations/interfaces,
+  namespaces and standalone projections with the existing parser; (4) reconcile
+  canonical example contexts, exercise allocation/depth/failure partitions and
+  real ordinary consumers; (5) per-file evidence, Doxygen, archival and commit.
+  Baseline acceptance owner: reconcile the explicit canonical-example inventory
+  in tests/unit/parser/composition/support/documented.c with the current
+  specification, including newly added static forms and each example's declared
+  module/body/ABI context. T169 found a pre-existing fence-count assertion before
+  parser invocation: declarations 9 versus 16, lists 3 versus 4, grammar 8 versus
+  20 and C-library 1 versus 3. Preserve the failure evidence and validate contexts;
+  do not skip unsupported examples or guess wrappers to obtain a pass.
+  Prerequisites: T169.
+  Rules: [grammar](spec/grammar.md#static-template-syntax-and-design-boundaries),
+  [COMP-01](spec/implementation/compiler.md#comp-01),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: AST lifetime and parser section/declaration/type-expression/binding
+  children, composed through the reusable frontend.
+  Steps: (1) represent formals, recursive signatures, two-line static results,
+  applications/projections and skips with source spans; (2) implement structural
+  parsing separately from lookup; (3) test actual section/body/nested compositions.
+  Accept: valid categories' syntax, nested arguments/results/namespaces and
+  interleaved runtime declarations parse without symbol knowledge; bad indentation,
+  missing result definitions, invalid suffixes/markers and malformed nesting fail.
+  Check allocation failures, safe partial-tree destruction and finite traversal
+  without an arbitrary depth limit; native syntax uses the same parser.
+
+  Results: source-owned static expression/binding/signature/result/projection
+  records replace bare type-path spans. Separate iterative parser components
+  preserve exact source heads, nested ownership, source-order phases and skips;
+  section/body composition performs no lookup or kind inference. Ordinary
+  concrete consumers retain their behavior; the old semantic inventory refuses
+  unresolved static syntax until T184 composes the resolver before it.
+  Evidence: [component contract and complete step record](docs/implementation/syntax-tree.md#static-syntax-construction-t170).
+  Ten independent static cases cover exact names, nested and positional operands,
+  interface/native/body composition, rejection partitions, 600-level expression
+  and signature trees, every actual expression/module allocation-failure prefix
+  and counted cleanup. The explicitly contextualized canonical manifest checks
+  119 fences, including the documented syntax rejection; no example is skipped
+  to hide an unsupported form. Complete parser, token, semantic names/inference/
+  composition, project closure, compiler check, editor and codegen assembly
+  checks pass, as do parser/grammar and check integration leaves and make.
+  The static leaf passes ASan/UBSan/Werror with the previously established
+  container LeakSanitizer limitation; counted ownership still reaches zero.
+  Failures and corrections: include the standard snprintf declaration; supply
+  explicit interface-fragment markers instead of duplicate section markers;
+  preserve nullable namespaces in editor indexing; include the header's full
+  rule boundary on its Doxygen file page. Corrected affected checks pass.
+  No heuristics, spec changes or semantic decisions were introduced.
+  docs-complete: 2352 ready inputs, zero debt. Corrected Doxygen generation:
+  1765 maintained file pages, 6765 interfaces, 417 canonical destinations,
+  5573 pages, all actual destinations validated. Source navigation resolves
+  src/ast/static.h links to their exact spec files/anchors; installed VS Code
+  code --goto templates.md:759 returns zero for TPL-07 (no mouse-click claim).
+  The archived inputs receive final regeneration before the separate task
+  commit. Reviewed language-conformance fingerprints remain owned by T196;
+  full template execution is not claimed by structural parsing. T171 is next.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

@@ -79,7 +79,7 @@ static void it_represents_assignments_nested_indices_calls_reads_and_resume(void
     node = node->next;
     assert(node->as.call.mode == AST_RETAINED_READ);
     node = node->next;
-    assert(node->as.call.mode == AST_CONSTANT_READ && layout_text_is(node->as.call.namespace_path, ".catalog"));
+    assert(node->as.call.mode == AST_CONSTANT_READ && layout_text_is(node->as.call.namespace_expression->head, ".catalog"));
     destroy_tree();
 }
 

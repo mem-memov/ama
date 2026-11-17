@@ -48,6 +48,10 @@ const char *parser_expected_text(ParserExpectation expectation) {
         "a named value/reference, qualified constant, or explicit copy source",
         "]",
         "end of access",
+        "a complete module path or three-dot static name",
+        "a three-dot named or positional static < or > binding",
+        "a three-dot formal name with an optional nonempty signature",
+        "a static result name followed by a same-level type expression",
     };
     _Static_assert(sizeof(descriptions) / sizeof(descriptions[0]) == EXPECT_COUNT,
         "Every grammar expectation needs a description");

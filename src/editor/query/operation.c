@@ -12,7 +12,7 @@ bool editor_operation(const EditorAnalysis *analysis, const char *module, size_t
     if (type == NULL || offset >= source_length(type->module->source->text)) { return false; }
     for (const SemanticStatement *item = type->statements; item != NULL; item = item->next) {
         if (item->syntax->kind != AST_CALL) { continue; }
-        SourceSpan span = item->syntax->as.call.target == NULL ? item->syntax->as.call.namespace_path
+        SourceSpan span = item->syntax->as.call.mode == AST_CONSTANT_READ ? item->syntax->as.call.namespace_expression->head
             : item->syntax->as.call.target->span;
         if (span.source == type->module->source->text && offset >= span.start && offset < span.end) {
             *output = item;

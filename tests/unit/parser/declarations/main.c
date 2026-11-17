@@ -33,7 +33,7 @@ static void it_builds_all_storage_forms_with_multiword_names_and_standard_root_t
         for (size_t index = 0; index < 4; index++) {
             assert(node != NULL && node->kind == AST_DECLARATION);
             assert(layout_text_is(node->as.declaration.name->name, names[index]));
-            assert(layout_text_is(node->as.declaration.type, "..integer"));
+            assert(layout_text_is(node->as.declaration.type->head, "..integer"));
             assert(node->as.declaration.name->reference == references[index]);
             assert(node->as.declaration.name->whole_list == lists[index]);
             assert(node->as.declaration.initializer_count == (index == 2 ? 2 : 1));

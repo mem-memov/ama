@@ -16,6 +16,20 @@
 static bool declare(SemanticProgram *program, SemanticType *type, const AstNode *node, size_t loop_depth, const AstNode *loop, void *context) {
     (void)loop_depth;
     (void)loop;
+    /* [COMP-02](../../../spec/implementation/compiler.md#comp-02) keeps
+     * unresolved static syntax out of this concrete-only inventory. T184 owns
+     * the future specialization composition; ignoring these nodes would
+     * incorrectly publish ordinary runtime types for unprocessed programs.
+     */
+    const AstTypeExpression *expression = node->kind == AST_DECLARATION
+        ? node->as.declaration.type
+        : node->kind == AST_CALL ? node->as.call.namespace_expression : NULL;
+    if (node->kind == AST_STATIC_FORMAL || node->kind == AST_STATIC_RESULT
+        || node->kind == AST_STATIC_PROJECTION
+        || (expression != NULL && (expression->kind != AST_TYPE_MODULE_PATH || expression->first != NULL))) {
+        return semantic_fail(program, node->span,
+            "Static syntax requires resolution before the concrete declaration inventory", NULL);
+    }
     if (node->kind != AST_DECLARATION) {
         return true;
     }
@@ -32,7 +46,7 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
     }
     *symbol = (SemanticSymbol){.owner = type, .declaration = node, .role = role,
         .name = name->name, .spelling = name->span, .site = node->span,
-        .type_site = node->as.declaration.type,
+        .type_site = node->as.declaration.type->head,
         .initializer_syntax = node->as.declaration.first,
         .initializer_count = node->as.declaration.initializer_count,
         .ordinal = type->symbol_count++, .role_ordinal = type->counts[role]++,

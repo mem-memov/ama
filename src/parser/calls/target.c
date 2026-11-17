@@ -6,6 +6,7 @@
  * fixes the suffix separator rather than allowing whitespace repair.
  */
 #include "../internal.h"
+#include "../static/internal.h"
 bool parser_call_mode(Parser *parser, SourceSpan text, SourceSpan *target, AstCallMode *mode) {
     const unsigned char *bytes = source_bytes(text.source);
     *target = text;
@@ -24,11 +25,7 @@ bool parser_call_target(Parser *parser, AstNode *node, SourceSpan target, AstCal
     node->kind = AST_CALL;
     node->as.call.mode = mode;
     if (mode == AST_CONSTANT_READ) {
-        if (!parser_path(target)) {
-            return parser_fail(parser, target, "Invalid shared-constant namespace", EXPECT_NAMESPACE_PATH);
-        }
-        node->as.call.namespace_path = target;
-        return true;
+        return static_expression_head(parser, target, &node->as.call.namespace_expression);
     }
     if (!parser_access(parser, target, &node->as.call.target)) { return false; }
     if (mode == AST_RESUME_CALL && node->as.call.target->whole_list) {

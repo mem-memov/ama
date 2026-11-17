@@ -33,7 +33,7 @@ bool inference_operation(Inference *inference, const AstNode *node) {
     operation->syntax = node;
     if (node->as.call.mode == AST_CONSTANT_READ) {
         operation->kind = INFER_NAMESPACE;
-        operation->value.type = semantic_type(inference->program, node->as.call.namespace_path);
+        operation->value.type = semantic_type(inference->program, node->as.call.namespace_expression->head);
         if (operation->value.type == NULL) { return semantic_fail(inference->program, node->span, "The constant namespace is unavailable", NULL); }
     } else if (node->as.call.enclosing_operation != NULL) {
         InferenceOperation *parent = inference_find_operation(inference, node->as.call.enclosing_operation);

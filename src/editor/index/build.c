@@ -24,8 +24,8 @@ static bool binding(EditorAnalysis *analysis, const SemanticBinding *item) {
 static bool statement(EditorAnalysis *analysis, const SemanticStatement *item) {
     if (!editor_index_access(analysis, item->access) || !editor_index_access(analysis, item->condition.access)
         || !editor_index_source(analysis, item->source)) { return false; }
-    if (item->syntax->kind == AST_CALL
-        && !editor_index_add(analysis, item->syntax->as.call.namespace_path, NULL, item->namespace_type, false)) { return false; }
+    if (item->syntax->kind == AST_CALL && item->syntax->as.call.namespace_expression != NULL
+        && !editor_index_add(analysis, item->syntax->as.call.namespace_expression->head, NULL, item->namespace_type, false)) { return false; }
     for (const SemanticBinding *argument = item->bindings; argument != NULL; argument = argument->next) {
         if (!binding(analysis, argument)) { return false; }
     }

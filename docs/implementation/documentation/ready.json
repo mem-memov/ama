@@ -361,6 +361,56 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -12836,6 +12886,56 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -13573,6 +13673,56 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -13644,6 +13794,56 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -13695,6 +13895,56 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -13942,6 +14192,56 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -31094,6 +31394,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundary",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -43298,6 +43603,11 @@
         "source": "tests/unit/compiler/check/main.c",
         "case": "it_retains_hyphenated_names_and_exact_type_identities_in_both_roots",
         "command": "make -C tests/unit/compiler/check"
+      },
+      {
+        "case": "it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundary",
+        "command": "make -C tests/unit/compiler/check",
+        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -46980,7 +47290,7 @@
   },
   "tests/unit/parser/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch section, declaration, source, tree, call, binding, result, ABI, access and error suites.",
+    "purpose": "Dispatch independent child suites: module declarations sources tree calls bindings results control composition abi access errors static.",
     "tests": [
       {
         "case": "it_reads_all_six_symbols_in_any_order_with_physical_spans",
@@ -47201,6 +47511,56 @@
         "case": "it_parses_documented_forms_with_exact_original_source_views",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -59211,6 +59571,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_distinguishes_static_prefixes_from_module_roots_and_binding_separators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -59272,6 +59637,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_distinguishes_static_prefixes_from_module_roots_and_binding_separators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -59414,6 +59784,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_distinguishes_static_prefixes_from_module_roots_and_binding_separators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ],
     "standalone_header_command": [
@@ -59577,6 +59952,11 @@
         "source": "tests/unit/compiler/check/main.c",
         "case": "it_retains_hyphenated_names_and_exact_type_identities_in_both_roots",
         "command": "make -C tests/unit/compiler/check"
+      },
+      {
+        "case": "it_distinguishes_static_prefixes_from_module_roots_and_binding_separators",
+        "command": "make -C tests/unit/lexer/tokens",
+        "source": "tests/unit/lexer/tokens/main.c"
       }
     ]
   },
@@ -60869,6 +61249,56 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -124672,6 +125102,571 @@
         "source": "tests/unit/source/unicode/main.c",
         "case": "it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes",
         "command": "make -C tests/unit/source/unicode"
+      }
+    ]
+  },
+  "src/ast/static.h": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Represent source-owned static expressions, bindings and constructor signatures.",
+    "tests": [
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/parser/declarations/section.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Compose section declarations with explicit static input/result source forms.",
+    "tests": [
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "src/parser/static/names.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Recognize complete static names without splitting them into module/member lookups.",
+    "tests": [
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "src/parser/static/head.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Construct a source-preserving static type head without resolving its name.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "src/parser/static/expression.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Parse nested static expressions with explicit indentation and phase frames.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "src/parser/static/statement.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Compose static projections and constant namespaces from one expression owner.",
+    "tests": [
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "src/parser/static/result.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Construct two-line static result definitions with no runtime initializer list.",
+    "tests": [
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "src/parser/static/internal.h": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Declare narrow static-expression construction operations within the AST owner.",
+    "tests": [
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/parser/static/binding.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Build exact static binding labels, skips and source/receiver heads.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "src/parser/static/formal.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Parse named constructor signatures with explicit source-depth frames.",
+    "tests": [
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/static/main.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Verify static source spellings and structural trees without symbol lookup.",
+    "tests": [
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/static/Makefile": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Build structural static-name and expression cases against the common parser.",
+    "tests": [
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/static/support/names.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Check complete static spellings without symbol lookup or allocation.",
+    "tests": [
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/static/support/interfaces.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Check section and body static compositions with native syntax and failure cleanup.",
+    "tests": [
+      {
+        "case": "it_composes_static_interfaces_with_runtime_declarations_in_both_implementations",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_composes_projections_constant_reads_and_initialized_type_expressions",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_incomplete_static_interfaces_and_execution_suffixes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_composed_static_module_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/parser/static/support/expressions.c": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Check structural static bindings, finite nesting and expression failure ownership.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_expression_owners_and_initializer_boundaries",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_retains_positional_input_and_output_skips_as_distinct_bindings",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_operand_order_and_indentation_errors_without_publication",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   }
