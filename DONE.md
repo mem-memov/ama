@@ -3445,6 +3445,78 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   task breakdown, not started compiler work or a new specification change.
 
 
+<a id="t167"></a>
+
+- [x] **T167 — Decompose the approved template roadmap into implementation tasks.**
+  Completed 2026-11-17; planning only, authorized by the user's sprint-planning
+  request. Reviewed input revision: a1022bd; initially clean working tree. Prerequisites: T158's completed design review and
+  T166's naming profile. No compiler implementation or specification edit is
+  included. Use [Stage 11](spec/implementation/plan.md#stage-11-static-templates-with-explicit-design-boundaries)
+  and the [acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix)
+  to derive small, stable, prerequisite-ordered implementation tasks.
+  At that stage review the maintained implementation boundary and record existing
+  support/gaps, without analyzing excluded generated/binary artifacts. Assign
+  each task canonical rule links, an exact contract/invariants, its real component
+  and consumer boundaries, positive/negative and failure cases, documentation/
+  per-file coverage requirements, and independently verifiable acceptance.
+  Cover recognition/shared names, kinds/signatures/results, static/runtime
+  positions/aliases, exact constraints/patterns/partials, output closure/cycles,
+  specialization creation/cache, type/lifecycle/constants, emission/diagnostics,
+  concrete native composition, source delivery and facade exports. Keep the
+  base-list rewrite outside the sprint. Deliverable: an executable TODO breakdown
+  with no new language rules, guessed behavior or unsupported implementation claim.
+
+  Result: [T168–T198](TODO.md#sprint-static-module-templates), 31 independently
+  accepted implementation tasks, in prerequisite order. Each task identifies
+  canonical rules, component/consumer boundary, concrete steps and positive,
+  negative and failure acceptance. The queue defines the per-step record,
+  continuation checkpoint, documentation/test evidence and per-task commit rules.
+  All implementation tasks remain planned and unchecked; T168 starts the later
+  implementation phase. No new language behavior or spec edit was selected.
+
+  | Step | Purpose and actual result | Verification and decision |
+  |---|---|---|
+  | 1 | Read the development standard/template, canonical Stage 11 and current contract/evidence inventories; inspect only maintained source/test directory topology | Existing conformance remains pre-template evidence; old component prose includes historical subsets. Exact source/function and functional gap audit belongs to T168; no unsupported support claim |
+  | 2 | Allocate T168–T198 from foundations to product consumers and release; assign one primary owner to each of the 37 template acceptance areas | Three independent read-only reviews confirm scope and sequencing; base-list rewrite stays deferred; native/source/export and editor/relocation consumers are included |
+  | 3 | Check canonical links, rule/grammar preservation, task IDs, dependency graph and acceptance routing | 31 planned tasks, 105 prerequisite edges, no cycle or forward prerequisite; 198 unique task IDs; 37 canonical area names routed exactly once; hyphen and facade obligations routed separately |
+  | 4 | Run documentation gates, fix the observed formatting error, archive this planning task and regenerate final inputs | make docs-complete and corrected make docs pass; final archive/queue links and Doxygen generation are rechecked before commit |
+
+  Review decisions: lexical alias classification precedes final free-formal
+  collection; native admission uses that complete inventory. Nonexpanding term,
+  equality and application components precede guarded expansion. Active symbolic
+  ancestry checks precede producer expansion and remain effective on cache hits.
+  T175 owns normalized-record representation; T177 owns source-application
+  normalization. T183 interns closed candidates; T185 supplies ordinary checks
+  before executable admission. Unresolved projected kind/signature obligations
+  retain fixed lexical identities. T198 rechecks final conformance freshness
+  after release/documentation/archive changes instead of trusting T196 hashes.
+
+  Verification from repository root: python3 /tmp/ama-t167-plan-check.py checks
+  all tracked Markdown destinations, canonical rule/index bijection, unchanged
+  EBNF blocks, unique IDs, ordered acyclic prerequisites, complete task record
+  fields and exact acceptance-area ownership. The final audit covers 204 Markdown
+  documents, 214 indexed rules, 108 unchanged aligned grammar productions and
+  150 acceptance areas, including 37 template areas. Its algorithm and results
+  are recorded here; 2837 local links pass after archival. The temporary audit
+  script is not a new project tool or the
+  sole record of decisions. git diff --check passes. Only planning/archive and
+  conformance-navigation prose changes; spec, compiler/native/test code, coverage
+  registry and reviewed conformance matrix remain unchanged.
+
+  Actual documentation results: make docs-complete reports 2335 ready inputs
+  and zero explicit debts. The first make docs returned exit 2 because a plain
+  native-selector marker in TODO was interpreted as an unknown Doxygen command.
+  Inline-code formatting fixed it; the exact make docs checkpoint rerun passed, checking
+  1749 maintained file pages, 6703 documented interfaces, 416 rule/page
+  destinations and 5526 generated pages. Supported tools: Doxygen 1.11.0,
+  Python 3.14.4 and markdown-it-py 3.0.0. The final make docs generation follows
+  this archival edit, rechecks coverage and describes the final maintained inputs.
+  No functional tests, sanitizer runs, compiler source-body audit or executable
+  template support is claimed. Current implementation readiness: T168 is planned;
+  no implementation or test jobs are active. This task's commit closes planning;
+  later tasks retain their own implementation authorization and acceptance gates.
+
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

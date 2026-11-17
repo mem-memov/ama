@@ -6,8 +6,10 @@ reviewed evidence for the pre-template **200-requirement / 108-row baseline**;
 its fingerprints do not establish current whole-specification conformance.
 No template implementation or executable acceptance was added by this
 documentation task, and the complete current-conformance gate is not satisfied.
-Resolve [T158's open decisions](../../../AMBIGUITIES.md#open-template-design-questions),
-implement the settled feature and review its evidence before updating that claim.
+[T158's design review](../../../DONE.md) is complete; the
+[T167 sprint plan](../../../TODO.md#sprint-static-module-templates) orders the
+implementation and acceptance work, starting with the T168 boundary audit.
+Implement the settled feature and review its evidence before updating that claim.
 Do not refresh old fingerprints or attach unrelated tests to manufacture coverage.
 
 The language is defined by [the specification](../../../spec/README.md). This

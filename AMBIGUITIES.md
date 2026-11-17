@@ -15,8 +15,10 @@ T160/T161 resolve inference, result Type scope and explicit constant namespaces
 in [AMB-004](#amb-004). T163 settles finite composition and specialization
 creation in [AMB-005](#amb-005).
 [T158 in the completed-work archive](DONE.md) records final acceptance of the
-design decisions. The next planning task is T167 in [TODO.md](TODO.md#current-tasks). Examples in a newly opened entry expose questions, not additional
-accepted Ama syntax. No answer is inferred from a request to document a question.
+design decisions. T167 records the implementation sprint plan in
+[TODO.md](TODO.md#sprint-static-module-templates); its first implementation task
+is [T168](TODO.md#t168). Examples in a newly opened entry expose questions,
+not additional accepted Ama syntax. No answer is inferred from a request to document a question.
 
 No template design decision remains open for the current sprint. T166 resolves
 [AMB-008](#amb-008) with the accepted isolated internal ASCII-hyphen profile.
