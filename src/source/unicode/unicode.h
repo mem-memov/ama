@@ -37,8 +37,21 @@ bool unicode_identifier_start(uint32_t scalar);
 /** Test pinned XID_Continue plus underscore; original scalar spelling remains unchanged.
  * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool unicode_identifier_continue(uint32_t scalar);
-/** Recognize one nonempty XID word, separately from complete multiword-name grammar.
- * @param[out] error_offset Set to the first failing scalar lead byte on false, including empty input.
+/** Return the maximal complete Ama word prefix without allocating or changing bytes.
+ * A word begins with pinned XID_Start/underscore and continues with pinned
+ * XID_Continue/underscore or a hyphen immediately followed by such a continuation.
+ * Returning zero means no word starts here. Malformed UTF-8, punctuation or an
+ * invalid hyphen ends the prefix before that byte; callers validate their full
+ * span or diagnose the unconsumed suffix, never repair it.
+ * @param[in] bytes Borrowed bounded original bytes; NULL yields zero.
+ * @param[in] length Maximum readable byte count; no terminator is required.
+ * @return Consumed byte count in [0,length], including only complete scalars.
+ * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03)
+ * supplies the same word profile to name validation and token recognition. */
+size_t unicode_word_prefix(const unsigned char *bytes, size_t length);
+/** Recognize one complete Ama word, including isolated internal ASCII hyphens.
+ * @param[out] error_offset Set on false to the first unconsumed byte of the
+ * maximal word prefix (zero for empty/invalid start), including an invalid hyphen.
  * @param[in] bytes Borrowed nonempty UTF-8 spelling of one identifier word.
  * @param[in] length Exact byte length of that word; spaces belong to a separate grammar layer.
  * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */

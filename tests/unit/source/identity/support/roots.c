@@ -35,9 +35,10 @@ static void it_separates_all_categories_roots_and_complete_component_boundaries(
     setup_test();
     IdentityRegistry registry;
     identity_registry_init(&registry, sources.allocator);
-    const char *paths[] = {".item state", "..item state", ".item.state", ".Item state", ".é value", ".e\xcc\x81 value"};
-    const IdentityName *names[6][7];
-    for (size_t path = 0; path < 6; path++) {
+    const char *paths[] = {".item state", "..item state", ".item.state", ".Item state", ".é value", ".e\xcc\x81 value",
+        ".a-b", ".a_b", ".a b", ".ab"};
+    const IdentityName *names[sizeof(paths) / sizeof(*paths)][7];
+    for (size_t path = 0; path < sizeof(paths) / sizeof(*paths); path++) {
         for (int category = IDENTITY_TYPE; category <= IDENTITY_NATIVE_NAMESPACE; category++) {
             QualifiedIdentity identity = {(IdentityCategory)category, paths[path], NULL, 0, {0}};
             assert(identity_register(&registry, identity, &names[path][category - 1]) == IDENTITY_OK);

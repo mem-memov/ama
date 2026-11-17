@@ -186,8 +186,62 @@ static void it_shares_bounded_maximal_name_scanning_with_parser_consumers(void) 
     destroy_layout();
 }
 
+/** Compose shared hyphen words with path roots, compact storage/index syntax
+ * and raw entry literals; malformed joins must fail rather than split names.
+ */
+static void it_uses_hyphen_words_in_paths_accesses_and_literal_labels(void) {
+    const char *valid[] = {"..shop-tools.item-2", "result-name&[position-2]",
+        "name-2 part_3 !"};
+    const LexKind kinds[][4] = {
+        {LEX_STANDARD_ROOT, LEX_NAME, LEX_DOT, LEX_NAME},
+        {LEX_NAME, LEX_REFERENCE_INDEX, LEX_NAME, LEX_INDEX_CLOSE},
+        {LEX_NAME, LEX_EXECUTE}
+    };
+    const size_t counts[] = {4, 4, 2};
+    for (size_t index = 0; index < 3; index++) {
+        setup_test();
+        LexCursor cursor;
+        assert(begin(valid[index], 0, &cursor));
+        LexToken token;
+        for (size_t position = 0; position < counts[index]; position++) {
+            assert(lex_token_next(&cursor, &token) == LEX_TOKEN);
+            assert(token.kind == kinds[index][position]);
+            if (index == 0 && position == 1) {
+                assert(layout_text_is(token.text, "shop-tools"));
+            }
+            if (index == 2 && position == 0) {
+                assert(layout_text_is(token.text, "name-2 part_3"));
+            }
+        }
+        assert(lex_token_next(&cursor, &token) == LEX_END);
+        destroy_layout();
+    }
+    setup_test();
+    LexCursor cursor;
+    assert(begin(" input-name < |-- raw # -  \n", 1, &cursor));
+    LexToken token;
+    assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_NAME);
+    assert(layout_text_is(token.text, "input-name"));
+    assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_INPUT);
+    assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_LITERAL);
+    assert(layout_text_is(token.payload, "-- raw # -  "));
+    assert(lex_token_next(&cursor, &token) == LEX_END);
+    destroy_layout();
+    const char *invalid[] = {"a-", "-a", "a--b", "a- b", "a -b",
+        ".shop-.item", "..shop..item-2"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
+        setup_test();
+        assert(begin(invalid[index], 0, &cursor));
+        LexStatus status;
+        do { status = lex_token_next(&cursor, &token); } while (status == LEX_TOKEN);
+        assert(status == LEX_INVALID && diagnostic_valid(&cursor.error));
+        destroy_layout();
+    }
+}
+
 /** Run every exact-layout/token boundary scenario explicitly. */
 void run(void) {
+    it_uses_hyphen_words_in_paths_accesses_and_literal_labels();
     it_preserves_complete_names_compound_tokens_and_all_line_ending_forms();
     it_recognizes_every_annotation_and_standalone_marker();
     it_shares_bounded_maximal_name_scanning_with_parser_consumers();

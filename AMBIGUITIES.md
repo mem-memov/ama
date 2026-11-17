@@ -17,7 +17,7 @@ creation in [AMB-005](#amb-005).
 [T158 in the completed-work archive](DONE.md) records final acceptance of the
 design decisions. T167 records the implementation sprint plan in
 [TODO.md](TODO.md#sprint-static-module-templates); the initial implementation audit
-is [T168](DONE.md#t168), followed by [T169](TODO.md#t169). Examples in a newly opened entry expose questions,
+is [T168](DONE.md#t168), followed by [T169](DONE.md#t169). Examples in a newly opened entry expose questions,
 not additional accepted Ama syntax. No answer is inferred from a request to document a question.
 
 No template design decision remains open for the current sprint. T166 resolves

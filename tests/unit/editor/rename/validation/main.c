@@ -6,7 +6,8 @@
 static void it_rejects_invalid_complete_names_without_preparing_source_edits(void) {
     project_fixture("@!\nvalue\n.cell\n");
     setup_rename();
-    const char *invalid[] = {""," leading","trailing ","two  spaces","with\ttab","line\nbreak","field&","values[]",".module","name#comment","1name","\xff"};
+    const char *invalid[] = {""," leading","trailing ","two  spaces","with\ttab","line\nbreak","field&","values[]",".module","name#comment","1name","\xff",
+        "-name", "name-", "name--part", "name- part", "name -part"};
     for (size_t index = 0; index < sizeof(invalid)/sizeof(*invalid); index++) {
         assert(!prepare(".main","value",invalid[index]) && !rename_plan.prepared && rename_plan.first == NULL);
         assert(diagnostic_valid(&rename_plan.diagnostic));

@@ -35537,7 +35537,7 @@
   },
   "src/source/unicode/identifier.c": {
     "contract": "docs/implementation/unicode.md",
-    "purpose": "Recognize XID words using exact binary searches over pinned immutable ranges.",
+    "purpose": "Recognize pinned Unicode scalar properties by exact immutable range searches.",
     "tests": [
       {
         "case": "it_decodes_every_unicode_scalar_and_rejects_surrogates",
@@ -35583,6 +35583,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_matches_hyphen_words_and_names_over_a_finite_alphabet",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_checks_every_post_hyphen_scalar_and_truncated_encoding",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes",
+        "command": "make -C tests/unit/source/unicode"
       }
     ]
   },
@@ -35664,6 +35679,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_matches_hyphen_words_and_names_over_a_finite_alphabet",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_checks_every_post_hyphen_scalar_and_truncated_encoding",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes",
+        "command": "make -C tests/unit/source/unicode"
       }
     ]
   },
@@ -43263,6 +43293,11 @@
         "case": "it_builds_complete_control_ir_for_traversal_and_header_trees",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/check/main.c",
+        "case": "it_retains_hyphenated_names_and_exact_type_identities_in_both_roots",
+        "command": "make -C tests/unit/compiler/check"
       }
     ]
   },
@@ -56521,6 +56556,21 @@
         "case": "it_validates_every_two_byte_view_and_preserves_output_failure_contracts",
         "command": "make -C tests/unit/source/unicode",
         "source": "tests/unit/source/unicode/main.c"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_matches_hyphen_words_and_names_over_a_finite_alphabet",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_checks_every_post_hyphen_scalar_and_truncated_encoding",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes",
+        "command": "make -C tests/unit/source/unicode"
       }
     ]
   },
@@ -57975,7 +58025,7 @@
   },
   "src/source/unicode/name.c": {
     "contract": "docs/implementation/unicode.md",
-    "purpose": "Validate an already-delimited complete name as exact XID words separated by single ASCII spaces.",
+    "purpose": "Validate complete Ama names as shared words separated by single ASCII spaces.",
     "tests": [
       {
         "case": "it_validates_complete_international_names_without_trimming_or_normalizing",
@@ -58006,6 +58056,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_matches_hyphen_words_and_names_over_a_finite_alphabet",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_checks_every_post_hyphen_scalar_and_truncated_encoding",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes",
+        "command": "make -C tests/unit/source/unicode"
       }
     ]
   },
@@ -59502,6 +59567,16 @@
         "case": "it_shares_bounded_maximal_name_scanning_with_parser_consumers",
         "command": "make -C tests/unit/lexer/tokens",
         "source": "tests/unit/lexer/tokens/main.c"
+      },
+      {
+        "source": "tests/unit/lexer/tokens/main.c",
+        "case": "it_uses_hyphen_words_in_paths_accesses_and_literal_labels",
+        "command": "make -C tests/unit/lexer/tokens"
+      },
+      {
+        "source": "tests/unit/compiler/check/main.c",
+        "case": "it_retains_hyphenated_names_and_exact_type_identities_in_both_roots",
+        "command": "make -C tests/unit/compiler/check"
       }
     ]
   },
@@ -59829,6 +59904,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/lexer/tokens/main.c",
+        "case": "it_uses_hyphen_words_in_paths_accesses_and_literal_labels",
+        "command": "make -C tests/unit/lexer/tokens"
+      },
+      {
+        "source": "tests/unit/compiler/check/main.c",
+        "case": "it_retains_hyphenated_names_and_exact_type_identities_in_both_roots",
+        "command": "make -C tests/unit/compiler/check"
       }
     ]
   },
@@ -108912,6 +108997,11 @@
         "case": "it_preserves_intrinsic_labels_while_renaming_index_operands",
         "command": "make -C tests/unit/editor/rename/plan",
         "source": "tests/unit/editor/rename/plan/main.c"
+      },
+      {
+        "source": "tests/unit/editor/rename/plan/main.c",
+        "case": "it_renames_to_hyphenated_complete_names_without_changing_other_bytes",
+        "command": "make -C tests/unit/editor/rename/plan"
       }
     ]
   },
@@ -124530,6 +124620,58 @@
         "source": "tests/integration/products/main.c",
         "case": "it_rejects_signal_termination_as_a_technical_failure_result",
         "command": "make -C tests/integration/products"
+      }
+    ]
+  },
+  "src/source/unicode/word.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Scan one bounded Ama word with exact pinned scalar and internal-hyphen rules.",
+    "tests": [
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_matches_hyphen_words_and_names_over_a_finite_alphabet",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_checks_every_post_hyphen_scalar_and_truncated_encoding",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/lexer/tokens/main.c",
+        "case": "it_uses_hyphen_words_in_paths_accesses_and_literal_labels",
+        "command": "make -C tests/unit/lexer/tokens"
+      },
+      {
+        "source": "tests/unit/compiler/check/main.c",
+        "case": "it_retains_hyphenated_names_and_exact_type_identities_in_both_roots",
+        "command": "make -C tests/unit/compiler/check"
+      }
+    ]
+  },
+  "tests/unit/source/unicode/support/hyphens.c": {
+    "contract": "docs/implementation/unicode.md",
+    "purpose": "Check Ama hyphen words against a finite grammar model and pinned Unicode data.",
+    "tests": [
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_matches_hyphen_words_and_names_over_a_finite_alphabet",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_checks_every_post_hyphen_scalar_and_truncated_encoding",
+        "command": "make -C tests/unit/source/unicode"
+      },
+      {
+        "source": "tests/unit/source/unicode/main.c",
+        "case": "it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes",
+        "command": "make -C tests/unit/source/unicode"
       }
     ]
   }

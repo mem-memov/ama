@@ -118,3 +118,158 @@ Unicode ASan/UBSan leaf (leak detection disabled), complete coverage of 767
 maintained inputs and all Markdown links. Warning-free Doxygen checks 595
 maintained files, 2440 interfaces and all 288 canonical/page destinations;
 two complete generations produce byte-identical output.
+
+
+## Shared Ama word prefix
+
+T169 implements [SRC-03](../../spec/language/source-and-names.md#src-03)'s
+isolated internal ASCII hyphens through one bounded word operation. Its contract
+also supplies the descriptive components required by
+[TPL-01](../../spec/language/templates.md#tpl-01); full static syntax is T170's
+separate boundary, not a capability claimed by this component.
+
+The operation unicode_word_prefix, in src/source/unicode/word.c, borrows an
+original byte span and returns the length of its longest valid word prefix.
+NULL/empty/invalid-start input returns zero. It never reads a terminator or a
+byte beyond the supplied length, allocates, retains, changes or normalizes input.
+Pinned scalar XID predicates retain their existing meaning: hyphen is not added
+to XID_Continue or to C identifiers. The complete-word validator requires a
+nonzero prefix covering its whole view; failure reports the first unconsumed
+byte and success leaves the caller's error output unchanged.
+
+The initial transition requires XID_Start or underscore. Each later transition
+consumes either one ordinary continuation scalar, or ASCII hyphen together with
+its following ordinary continuation scalar. Therefore each published prefix
+ends in an ordinary character; a hyphen never appears at either end or next to
+another hyphen. An underscore or combining continuation immediately after a
+hyphen is permitted. A space is outside the word operation: unicode_name starts
+a fresh word after exactly one space, applying the start property again.
+
+Invariant: offset is within the borrowed length, lies after a complete ordinary
+scalar, and the consumed prefix is a valid word. Each accepted transition
+preserves it and advances by at least one byte. At a failed transition, no longer
+valid prefix can pass the offending scalar or incomplete hyphen transition;
+returning the preceding offset is maximal. No input is skipped or repaired.
+Bounds follow from UTF-8 decoder width being within the remaining view; advancing
+one byte over a present hyphen remains at most length, even at physical EOF.
+Time is O(B + S log R), for bytes B, inspected scalars S and pinned ranges R;
+scratch storage is O(1), with no allocation, recursion or locale dependence.
+
+The lexer uses this operation for each complete-name word; its source span and
+original bytes remain unchanged. The complete-name validator delegates through
+the same operation, so path/catalog/literal-label consumers share acceptance.
+Ten explicit test source lists include the new production file, while directory
+source discovery includes it automatically for normal compiler builds. Native
+ABI identifiers use their existing independent supported-C recognizer and the
+standalone destructor marker retains its record role.
+
+### T169 steps and acceptance record
+
+Input revision: 755bc97, clean before the task. The owning TODO record supplies
+scope, prerequisites and acceptance. All production edits were settled before
+the final sixteen-unit/two-integration batch (session 18872); the two relocated
+translation units received fresh dependency timestamps before rebuilding, so
+no object from an earlier edit interval supplies final evidence.
+
+| Step | Actual result | Verification |
+|---|---|---|
+| 1. Contract | One bounded borrowed word-prefix operation; unchanged scalar properties and C identifier domain | Invariant, maximality, progress, bounds and cost argument above |
+| 2. Implementation | Word prefix/full validation in word.c; scalar tables/search in identifier.c; lexer shares prefix and preserves spans | No duplicate word scanner, allocation, normalization or source mutation |
+| 3. Independent component tests | 97656 strings over five roles, complete Unicode post-hyphen domain/truncations, exact byte/boundary cases | source/unicode passes normally and with ASan/UBSan bounds instrumentation |
+| 4. Real consumers | Paths/roots/submodule storage, compact refs/indices, literals, exact identities, frontend fields, rename and relocation | Sixteen unit and two integration leaves pass; generated C program compiles and runs |
+| 5. Documentation | Purpose/contracts and per-file named-case mapping include both new code files and all changed consumers/build inputs | docs-complete passes: 2337 ready inputs, zero explicit debt; final Doxygen generation follows |
+
+Normal commands, from repository root: make, then make -C tests/unit/NAME for
+each of source/unicode, lexer/tokens, source/module, source/identity,
+compiler/check, parser/abi, native/status-providers, native/namespace,
+driver/options, lexer/layout, parser/module, parser/declarations, parser/calls,
+editor/rename/plan, editor/rename/validation and tools/relocation/preview;
+then make -C tests/integration/parser/grammar and make -C tests/integration/check.
+All exited zero. Exact individual logs are /tmp/ama-t169-final-*.log.
+
+Independent component cases are
+it_matches_hyphen_words_and_names_over_a_finite_alphabet,
+it_checks_every_post_hyphen_scalar_and_truncated_encoding and
+it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes. The finite model is
+an independently enumerated three-state grammar, not a copy of UTF-8 scanning.
+Post-hyphen property data are read independently from the pinned Unicode source;
+scalar property/checksum and every-word start tests remain unchanged. Consumer
+cases inspect actual token spans, nominal types, namespace roots and candidate
+rename bytes; related named mappings are in the per-file registry.
+
+#### Compiled source acceptance
+
+Place empty body modules a-b and a_b in a fresh source directory P, each
+containing only the body section marker. Use this extensionless main file:
+
+```text
+@!
+value-name
+.a-b
+other_name
+.a_b
+item-list[]
+.a-b
+copy-list[]
+ item-list[]
+value-ref&
+ &value-name
+value-name !
+other_name !
+```
+
+Execute ./ama --emit P .main --out O --sdk /absolute/path/to/ama/src --compile
+with a fresh output O, then execute O/program. Both commands exited zero and
+runtime stdout was empty. The original /tmp/ama-t169-program-xxbahye2 run used
+source/output directories containing spaces; results.json retains argv/streams.
+This checks actual C naming and owned/list/reference construction/calls without
+analyzing generated files. It introduces no static-template execution claim.
+
+#### Failures and actual instrumentation boundary
+
+The expanded parser/composition suite failed before parser invocation because
+its fixed canonical fence inventory is stale. An isolated source archive of
+unchanged 755bc97 reproduces the same assertion at documented.c:104 (exit 2;
+/tmp/ama-t169-parser-baseline.log). The fixture and counted chapters are byte
+identical to that revision: declarations expects 9 text fences versus 16,
+lists 3 versus 4, grammar 8 versus 20 and C-library 1 versus 3. No word-scanner
+operation participates in the count. T170 owns explicit example/context
+reconciliation with static syntax. No example is skipped and this broad suite
+is not reported as passing; full conformance remains pending later tasks.
+
+A new rename test initially used a nonexistent status member and failed C
+compilation; correcting it to the declared validated member passed the focused
+and final complete rename runs. No production behavior was changed for that fix.
+
+The first ASan/UBSan run with detect_leaks=1 failed at LeakSanitizer shutdown
+(exit 2 from make), reporting ptrace incompatibility. A separate nonleaking
+one-byte malloc/free C probe reproduces that fatal error (exit 1). Thus leak
+sanitizer success is not claimed. With detect_leaks=0 its normal access exits
+zero; an intentional one-byte overflow exits one with an UBSan diagnostic and
+AddressSanitizer heap-buffer-overflow. Probe source/logs are retained under
+/tmp/ama-t169-asan-EkeFnb. New word operations allocate nothing; ownership and
+counted fixture cleanup remain separate evidence.
+
+The complete Unicode leaf passed (exit 0, session 46755) with environment
+ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 and UBSAN_OPTIONS=halt_on_error=1,
+using make -C tests/unit/source/unicode and this single C_COMPILER_FLAGS value:
+
+```text
+-O1 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L -fsanitize=address,undefined -fno-omit-frame-pointer
+```
+
+/tmp/ama-t169-sanitizers-bounds.log records the actual successful run. All tests
+ran serially within shared output owners; the baseline archive and compiled
+program used independent temporary trees. No semantic limits, fallback scanner
+or disabled assertion were introduced. Unicode tables, native identifier policy,
+canonical specification and reviewed conformance fingerprints remain unchanged.
+
+
+T169 documentation acceptance: canonical/local link checks and git diff --check
+pass. make docs-complete validates 2337 ready inputs with zero explicit debts;
+make docs validates 1751 maintained file pages, 6711 documented interfaces and
+417 rule/page destinations (5532 generated pages), using Doxygen 1.11.0,
+Python 3.14.4 and markdown-it-py 3.0.0. Archive/queue updates are followed by a
+final generation before committing T169; source/API and test evidence above
+remain the acceptance boundary. Full canonical-example/parser and template
+implementation conformance remain with the subsequent tasks.

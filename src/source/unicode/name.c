@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Validate an already-delimited complete name as exact XID words separated by single ASCII spaces.
+ * @brief Validate complete Ama names as shared words separated by single ASCII spaces.
  *
  * [SRC-03](../../../spec/language/source-and-names.md#src-03) applies the start
  * rule to every word and forbids trimming, repeated/edge spaces and normalization.
@@ -8,7 +8,7 @@
  */
 #include "unicode.h"
 
-/** Validate words through the pinned scalar predicate, preserving global byte-error positions.
+/** Validate words through the shared word predicate, preserving global byte-error positions.
  * ASCII space cannot be a UTF-8 continuation byte. Word splitting is therefore
  * exact even when the following word contains malformed UTF-8, which its own
  * scalar validation rejects. Each completed word advances the finite byte offset.

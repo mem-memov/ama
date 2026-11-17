@@ -146,39 +146,24 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T168 is accepted and archived; T169 is the
-next ready task. No implementation/test jobs active; start its contract and
-record before changing code.
+Current implementation checkpoint: T169 is accepted and archived; T170 is
+next. Shared-word normal/sanitizer/consumer evidence and known baseline parser
+inventory failure are recorded. No implementation/test jobs active.
 
 ## Current tasks
 
-### Phase 0. Establish the implementation boundary
-
 ### Phase 1. Recognize sources and establish interfaces
-
-<a id="t169"></a>
-
-- [ ] **T169 — Share the exact complete-name and path-component profile.**
-  Prerequisites: T168.
-  Rules: [SRC-03](spec/language/source-and-names.md#src-03),
-  [SYN-06](spec/language/source-and-names.md#syn-06),
-  [TPL-01](spec/language/templates.md#tpl-01).
-  Boundary: source Unicode/name recognition, lexer/parser and module-path/tool
-  consumers; retain original bytes and spans.
-  Steps: (1) define one word/name recognition contract; (2) adapt ordinary,
-  qualified and static-name consumers with explicit root/delimiter recognition;
-  (3) exercise filesystem and ordinary/static syntax compositions.
-  Accept: internal isolated ASCII hyphens, multiword/Unicode/underscore names and
-  exact distinct identities pass; malformed UTF-8, joins, repeated/end hyphens,
-  unsupported dash/minus punctuation lookalikes and invalid component aliases
-  fail. Valid XID homographs remain accepted and byte-distinct.
-  Literals/comments retain data,
-  `a-b` remains one name, and .abi destructor/C identifiers retain their own syntax.
-  Check ordinary grammar, physical catalogs and identity collision rejection.
 
 <a id="t170"></a>
 
 - [ ] **T170 — Parse immutable static interfaces and application trees.**
+  Baseline acceptance owner: reconcile the explicit canonical-example inventory
+  in tests/unit/parser/composition/support/documented.c with the current
+  specification, including newly added static forms and each example's declared
+  module/body/ABI context. T169 found a pre-existing fence-count assertion before
+  parser invocation: declarations 9 versus 16, lists 3 versus 4, grammar 8 versus
+  20 and C-library 1 versus 3. Preserve the failure evidence and validate contexts;
+  do not skip unsupported examples or guess wrappers to obtain a pass.
   Prerequisites: T169.
   Rules: [grammar](spec/grammar.md#static-template-syntax-and-design-boundaries),
   [COMP-01](spec/implementation/compiler.md#comp-01),

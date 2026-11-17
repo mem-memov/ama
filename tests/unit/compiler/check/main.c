@@ -195,11 +195,52 @@ static void it_builds_complete_control_ir_for_traversal_and_header_trees(void) {
     }
 }
 
+/** Resolve real hyphenated files, multiword names and structural submodules
+ * through both configured roots, retaining distinct nominal and field identities.
+ */
+static void it_retains_hyphenated_names_and_exact_type_identities_in_both_roots(void) {
+    const char *roots[] = {"generated/hyphen project", "generated/hyphen standard"};
+    const char *names[] = {"a-b", "a_b", "a b", "ab"};
+    for (size_t root = 0; root < 2; root++) {
+        directory(roots[root]);
+        for (size_t index = 0; index < 4; index++) {
+            char path[128];
+            int written = snprintf(path, sizeof(path), "%s/%s", roots[root], names[index]);
+            assert(written > 0 && (size_t)written < sizeof(path));
+            file(path, "@!\n");
+        }
+    }
+    directory("generated/hyphen project/a-b+");
+    file("generated/hyphen project/a-b+/item-2", "@!\n");
+    file("generated/hyphen project/main", "@!\nx-name\n.a-b\nx_name\n.a_b\n"
+        "x name\n.a b\nxname\n.ab\nstd-value\n..a-b\nchild-value\n.a-b.item-2\n");
+    ModuleRoot configured[] = {{roots[0], NULL, 0, MODULE_ROOT_PROJECT},
+        {roots[1], NULL, 0, MODULE_ROOT_STANDARD}};
+    setup_frontend();
+    assert(compiler_frontend_check(&frontend, configured, 2, ".main"));
+    const char *paths[] = {".a-b", ".a_b", ".a b", ".ab", "..a-b", ".a-b.item-2"};
+    const char *fields[] = {"x-name", "x_name", "x name", "xname", "std-value", "child-value"};
+    SemanticType *types[6];
+    SemanticSymbol *field = frontend.plan.entry->type->first;
+    for (size_t index = 0; index < 6; index++) {
+        types[index] = semantic_find_type(&frontend.semantic, paths[index]);
+        assert(types[index] != NULL && field != NULL && field->type == types[index]);
+        assert(layout_text_is(field->name, fields[index]));
+        for (size_t earlier = 0; earlier < index; earlier++) {
+            assert(types[index] != types[earlier]);
+        }
+        field = field->next;
+    }
+    assert(field == NULL && frontend.plan.valid);
+    destroy_frontend();
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_retains_hyphenated_names_and_exact_type_identities_in_both_roots();
     it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c();
     it_builds_complete_control_ir_for_traversal_and_header_trees();
     it_preserves_selected_result_actions_in_complete_ir();

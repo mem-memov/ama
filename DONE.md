@@ -3559,6 +3559,61 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   No compiler/test/native code or spec changes, full-suite/sanitizer or template
   implementation claim. This commit closes T168; T169 is the next ready task.
 
+<a id="t169"></a>
+
+- [x] **T169 — Share the exact complete-name and path-component profile.**
+  Completed 2026-11-18; input 755bc97, initially clean tree.
+  Owner: [shared word contract](docs/implementation/unicode.md#shared-ama-word-prefix).
+  Prerequisites: T168.
+  Rules: [SRC-03](spec/language/source-and-names.md#src-03),
+  [SYN-06](spec/language/source-and-names.md#syn-06),
+  [TPL-01](spec/language/templates.md#tpl-01).
+  Boundary: source Unicode/name recognition, lexer/parser and module-path/tool
+  consumers; retain original bytes and spans.
+  Steps: (1) define one word/name recognition contract; (2) adapt ordinary,
+  qualified and static-name consumers with explicit root/delimiter recognition;
+  (3) exercise filesystem and ordinary/static syntax compositions.
+  Accept: internal isolated ASCII hyphens, multiword/Unicode/underscore names and
+  exact distinct identities pass; malformed UTF-8, joins, repeated/end hyphens,
+  unsupported dash/minus punctuation lookalikes and invalid component aliases
+  fail. Valid XID homographs remain accepted and byte-distinct.
+  Literals/comments retain data,
+  `a-b` remains one name, and .abi destructor/C identifiers retain their own syntax.
+  Check ordinary grammar, physical catalogs and identity collision rejection.
+
+  Steps/results: the bounded prefix contract and general invariant/progress/cost
+  argument precede the implementation in the owning document. word.c owns maximal
+  prefix/full validation; identifier.c owns pinned properties; lex_name delegates
+  to the same kernel as complete names. Ten explicit test source lists include
+  the new source; directory-based discovery handles ordinary builds. No fallback,
+  normalization, locale, scalar-property or C-identifier change.
+  Tests compare 97656 finite strings with an independent three-state grammar,
+  every post-hyphen code point/truncation against independently read Unicode 17
+  data, and exact UTF-8/boundary/error-output partitions. Actual token/path/root,
+  structural submodule, nominal identity, frontend and rename consumers exercise
+  the shared handoffs. Per-file evidence covers both new files and all changed
+  headers/test/build consumers; independent header compilation passes.
+  Final make, sixteen unit leaves and two integration leaves passed (session 18872;
+  exact commands/results in the owner). An emitted/compiled/executed program with
+  distinct hyphen/underscore module types, owned/list/reference fields and calls
+  exits zero with empty stdout, using source/output paths containing spaces.
+  ASan/UBSan Unicode leaf passes with strict warnings and detect_leaks=0;
+  positive/intentional-overflow controls confirm instrumentation. LeakSanitizer
+  is unavailable under ptrace: a nonleaking minimal control reproduces its fatal
+  shutdown. No successful leak-sanitizer or whole-release claim is made.
+  Failures preserved: the new rename test initially used the wrong status-member
+  name; correction to validated passed. parser/composition fails its stale text-
+  fence inventory before parsing, identically on an isolated unchanged 755bc97
+  archive. No case skipped or expected count weakened; T170 owns canonical
+  inventory/context reconciliation and static syntax. This known baseline gap
+  is outside T169's name-profile acceptance; broad parser conformance is unclaimed.
+  Documentation checks: canonical/local links, unchanged spec/EBNF and git diff
+  --check pass; docs-complete reports 2337 ready inputs, zero debt. make docs
+  passes with 1751 maintained file pages, 6711 interfaces and 417 destinations
+  under Doxygen 1.11.0/Python 3.14.4/markdown-it-py 3.0.0. Final regeneration after
+  this archival edit rechecks final inputs. No spec, Unicode table or reviewed
+  conformance fingerprint changed. Commit T169 separately; T170 is next.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

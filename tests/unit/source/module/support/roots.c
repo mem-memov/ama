@@ -5,10 +5,12 @@
 
 /** Both root markers are absolute, every component obeys complete-name rules and no whitespace is trimmed. */
 static void it_validates_exact_project_and_standard_paths_with_multiword_components(void) {
-    const char *valid[] = {".item", "..item", ".shop tools.item state", "..中国 变量.é value", ".a2._ next"};
+    const char *valid[] = {".item", "..item", ".shop tools.item state", "..中国 变量.é value",
+        ".a2._ next", ".shop-tools.item-2", ".._item-_value.ключ-2 next_3"};
     for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) { assert(module_path_valid(valid[index])); }
     const char *invalid[] = {"", ".", "..", "...item", "item", ".item.", "..item..child", ". item", "..item ",
-        ".shop .item", ".shop. item", ".item  state", ".item 2", ".item\tstate", ".item\xc2\xa0state", ".item+", ".a/child"};
+        ".shop .item", ".shop. item", ".item  state", ".item 2", ".item\tstate", ".item\xc2\xa0state", ".item+", ".a/child",
+        ".-item", ".item-", ".item--name", ".item- name", ".item -name", ".item-.child"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) { assert(!module_path_valid(invalid[index])); }
     assert(!module_path_valid(NULL));
 }

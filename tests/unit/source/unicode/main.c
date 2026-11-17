@@ -215,11 +215,16 @@ static void it_regenerates_pinned_tables_and_rejects_invalid_input_and_output(vo
     assert(execute(write_failure, "generated/small-properties", true) != 0);
 }
 
+#include "support/hyphens.c"
+
 /**
  * Execute every named assertion case selected by this leaf; the recursive harness owns process
  * status and success-only cleanup.
  */
 void run(void) {
+    it_matches_hyphen_words_and_names_over_a_finite_alphabet();
+    it_checks_every_post_hyphen_scalar_and_truncated_encoding();
+    it_preserves_hyphen_word_boundaries_and_exact_unicode_bytes();
     it_verifies_the_exact_pinned_unicode_edition_and_source_checksum();
     it_validates_complete_international_names_without_trimming_or_normalizing();
     it_applies_the_pinned_start_rule_to_every_word_over_the_complete_scalar_domain();

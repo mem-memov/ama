@@ -77,8 +77,29 @@ static void it_preserves_intrinsic_labels_while_renaming_index_operands(void) {
     assert(text_is(rename_plan.target->name,"position"));
     destroy_rename();
 }
+/** Prepare and revalidate hyphenated replacement names through the common
+ * scanner and exact source edits, including international multiword spellings.
+ */
+static void it_renames_to_hyphenated_complete_names_without_changing_other_bytes(void) {
+    const char *names[] = {"new-name", "new-name next-2", "ключ-2"};
+    for (size_t index = 0; index < sizeof(names) / sizeof(*names); index++) {
+        project_fixture("@!\nvalue\n.cell\ncopy\n value\n");
+        setup_rename();
+        assert(prepare(".main", "value", names[index]));
+        const EditorRenameFile *main = changed_file(".main");
+        char expected[256];
+        int written = snprintf(expected, sizeof(expected),
+            "@!\n%s\n.cell\ncopy\n %s\n", names[index], names[index]);
+        assert(written > 0 && (size_t)written < sizeof(expected));
+        assert(main != NULL && strcmp((const char *)source_bytes(main->replacement), expected) == 0);
+        assert(validate() && rename_plan.validated);
+        destroy_rename();
+    }
+}
+
 /** Check core source-edit construction with real catalog/parser/resolver/planner revalidation. */
 void run(void) {
+    it_renames_to_hyphenated_complete_names_without_changing_other_bytes();
     it_renames_callee_labels_in_unused_importers_without_changing_caller_values();
     it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes();
     it_preserves_reference_list_suffixes_and_same_name_noops();

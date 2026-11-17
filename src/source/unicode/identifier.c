@@ -1,10 +1,10 @@
 /**
  * @file
- * @brief Recognize XID words using exact binary searches over pinned immutable ranges.
+ * @brief Recognize pinned Unicode scalar properties by exact immutable range searches.
  *
  * [SRC-03](../../../spec/language/source-and-names.md#src-03)
- * Word membership is separate from complete-name validation in name.c; T022
- * selects the exact token span before applying those predicates.
+ * Scalar property membership remains independent of Ama punctuation. Word
+ * operations in word.c compose these properties without modifying the tables.
  */
 #include "unicode.h"
 
@@ -42,20 +42,4 @@ bool unicode_identifier_start(uint32_t scalar) {
 bool unicode_identifier_continue(uint32_t scalar) {
     return scalar == '_' || contains(xid_continue,
         sizeof(xid_continue) / sizeof(xid_continue[0]), scalar);
-}
-
-bool unicode_identifier(const unsigned char *bytes, size_t length, size_t *error_offset) {
-    size_t offset = 0;
-    do {
-        uint32_t scalar;
-        size_t width;
-        if (!utf8_decode(bytes == NULL ? NULL : bytes + offset, length - offset, &scalar, &width)
-            || !(offset == 0 ? unicode_identifier_start(scalar)
-                : unicode_identifier_continue(scalar))) {
-            *error_offset = offset;
-            return false;
-        }
-        offset += width;
-    } while (offset < length);
-    return true;
 }
