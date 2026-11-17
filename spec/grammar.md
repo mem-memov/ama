@@ -532,6 +532,16 @@ constructor and member. The
 semantic questions, not permission for type-dependent parsing. These source forms
 do not claim implementation support.
 
+**Explanation: finite syntax and specialization creation.** Nested static
+applications use the productions above even when the same template path appears
+at several levels. Whether instantiated definitions recursively create
+specializations is checked after resolution under
+[TPL-11](language/templates.md#tpl-11), using constructor origins and concrete
+bindings. The parser does not reject repeated spellings, inspect a definition's
+dependencies, or impose a template-depth limit. Reusing an already supplied Type
+and applying its original constructor again have different resolved meanings;
+that distinction changes no EBNF production.
+
 ## Executable statements and structural recognition
 
 ```ebnf

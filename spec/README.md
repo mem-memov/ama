@@ -21,11 +21,16 @@ from typed connections, Type parameters introduced in inputs or results, named
 constructor signatures, static application and partial composition. Constructor
 patterns, named bindings, bidirectional type constraints and explicit constant
 namespaces have agreed rules; their examples explain how those forms fit together.
+The [finite-composition rule](language/templates.md#tpl-11) permits explicitly
+nested uses of the same template while rejecting recursive specialization
+creation through definitions. It distinguishes passing an existing type from
+applying a constructor again, so library containers remain composable without
+requiring an analysis of arbitrary recursive type generation.
 The [constant section](language/declarations.md#const-06) records why parameterized
 shared values and explicit namespace selection avoid name conflicts. The remaining
 [open questions](../AMBIGUITIES.md#open-template-design-questions) identify
-recursion, list-foundation, native/export and naming
-boundaries. Agreed syntax is not evidence of compiler implementation.
+list-foundation, native/export and naming boundaries. Agreed syntax is not
+evidence of compiler implementation.
 
 If you are implementing Ama, read the language chapters first. Then use the
 runtime, native-interface, and compiler chapters to see the required realization
@@ -44,7 +49,7 @@ program is well typed and what happens when it executes.
 | [Modules and state](language/modules-and-state.md) | Types versus instances, ownership, interface state, and a complete example |
 | [Source files, names, and layout](language/source-and-names.md) | Module paths, international names, exact spaces, comments, and sections |
 | [Declarations and scope](language/declarations.md) | Explicit and inferred declarations, initialization, constants, and visibility |
-| [Static module templates](language/templates.md) | Scoped interface Type parameters, typed-connection inference, named constructors, partial composition, specialization identity, dependent shared constants and explicit design gates |
+| [Static module templates](language/templates.md) | Scoped interface Type parameters, typed-connection inference, named constructors, partial composition, specialization identity, finite composition, dependent shared constants and explicit design gates |
 | [Values and references](language/values-and-references.md) | Independent copies, checked references, identity, and resource lifetime |
 | [Calls and results](language/calls-and-results.md) | Entry, resume, retained reads, method chains, and refusal handlers |
 | [Control flow](language/control-flow.md) | Branches, condition loops, repeat boundaries, and early completion |

@@ -73,6 +73,7 @@ you need the model, examples, or reasons behind a rule.
 | [TPL-08](language/templates.md#tpl-08) | Partial substitution and composition |
 | [TPL-09](language/templates.md#tpl-09) | Templates and Ama's own lists |
 | [TPL-10](language/templates.md#tpl-10) | Compiler obligations and design gates |
+| [TPL-11](language/templates.md#tpl-11) | Finite composition and specialization creation |
 
 ## Literal data
 

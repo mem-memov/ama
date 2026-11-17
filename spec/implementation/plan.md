@@ -186,7 +186,9 @@ This is a new stage beyond the previously accepted implementation baseline.
 T157 records the basic contract, T159 settles named constructor/signature
 patterns and static partial application, T160 defines typed-connection inference
 and Type introductions in `@>`, and T161 specifies dependent shared constants
-with explicit concrete-type namespaces and their design rationale. The
+with explicit concrete-type namespaces and their design rationale. T163 settles
+finite composition and specialization creation under
+[TPL-11](../language/templates.md#tpl-11). The
 [template chapter](../language/templates.md) and grammar define those source
 forms. The [remaining decisions](../../AMBIGUITIES.md#open-template-design-questions)
 owned by T158 gate their affected cases; they do not leave the whole grammar
@@ -198,15 +200,18 @@ Plan narrow components in prerequisite order: placeholder and type-expression
 recognition; scoped kinds and named signatures; exact static constraints,
 including the separate lexical receiver/foreach classification and globally
 refinable type terms; constructor-pattern decomposition and canonical partial
-bindings; nested
-specialization and the agreed termination checks; ordinary type/lifecycle
+bindings; concrete-specialization creation dependencies and their TPL-11
+validation, including inferred applications, constructor-valued parameters and
+reuse of cached dependency subgraphs; ordinary type/lifecycle
 checking of concrete specializations, including dependent constant types,
 concrete namespace selection and per-specialization initialization graphs;
 specialized layouts/emission and source
 diagnostics; then the agreed native/export boundary.
 Each component needs its own argument, unit cases and real composition cases.
-Add complete positive/negative nested, partial and erroneous applications before
-making support claims. Update reviewed conformance only with actual evidence.
+Add complete positive/negative nested, partial and erroneous applications,
+including order-independent creation-path checks and permitted finite repeated
+nesting, before making support claims. Update reviewed conformance only with
+actual evidence.
 
 Use ordinary templates for algorithms over the current list primitives first.
 Moving the list foundation is a separate boundary requiring TPL-09's static
@@ -216,7 +221,7 @@ of adding placeholders.
 
 Deliverable: documented, tested static specialization with explicit supported
 boundaries and a current acceptance matrix. No compiler implementation is part
-of the specification-only T157, T159, T160 or T161 tasks.
+of the specification-only T157, T159, T160, T161 or T163 tasks.
 
 ## Keep engineering choices separate from language changes
 

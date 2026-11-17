@@ -422,7 +422,7 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | Layout/lexical reader | Indentation, comments, literal boundaries, annotations | Tokens or logical lines |
 | Parser | Syntax recognition independent of declared-name lookup | AST with spans |
 | Namespace resolver | Module loading, qualified identities, name binding | Resolved symbols |
-| Static specializer | Scoped interface kinds/signatures, named applications, global typed-connection constraints, nominal pattern decomposition and canonical bindings under [TPL-01 through TPL-10](../language/templates.md) | Closed specialized type/program structure before layout; individually unresolved design cases remain gated |
+| Static specializer | Scoped interface kinds/signatures, named applications, global typed-connection constraints, nominal pattern decomposition, canonical bindings and specialization-creation validation under [TPL-01 through TPL-11](../language/templates.md) | Closed specialized type/program structure before layout; individually unresolved design cases remain gated |
 | Type/lifecycle checker | Types, storage kinds, copy/default contracts | Validated typed nodes |
 | Control-flow lowering | Entry, calls, refusal branches, loops, yield positions | Typed control-flow IR |
 | Storage planner | Owned layout, stable-address pool blocks, instance access, service metadata | Explicit storage plan |
@@ -436,8 +436,14 @@ decomposition of an input pattern; its runtime field still has the complete
 applied type, not merely the recovered constructor head. The nested bindings in
 [TPL-08](../language/templates.md#tpl-08) can pass a residual constructor without
 creating a sample object. Parsing those trees does not require a successful type
-lookup, and their agreed grammar does not resolve the separately indexed
-recursion, list-foundation or native/export questions. Dependent shared storage
+lookup. Specialization-creation dependencies are checked under
+[TPL-11](../language/templates.md#tpl-11) after actual constructor origins and
+bindings are known. The creation graph is neither a structural type-containment
+tree nor a graph merging all bindings by source-template identity. Interning a
+specialization and validating its use on a creation path are
+separate responsibilities, so a cache hit cannot hide a dependency forbidden in
+its new ancestry. The remaining list-foundation and native/export questions stay
+separately indexed. Dependent shared storage
 and explicit type namespaces follow
 [CONST-03/CONST-06](../language/declarations.md#const-06): resolve the concrete
 namespace before member lookup, retain its full specialization identity in

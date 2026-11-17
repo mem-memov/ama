@@ -3110,6 +3110,56 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   acceptance cases. AMB-004 is resolved; AMB-005 through AMB-008 remain Open
   under T158. No dependent-type/vector extension or compiler code is included.
 
+- [x] **T163 — Specify finite composition and nonrecursive specialization creation.**
+  Status: complete; specification/documentation only. Prerequisites: T157, T159,
+  T160, T161 and the accepted [AMB-005](AMBIGUITIES.md#amb-005) decision.
+  Explicit authorization on 2026-11-17: "Вноси правила рекурсии в спецификацию
+  и делай коммит." This extracts the settled recursion boundary from T158;
+  positional forms and the other template gates remain unfinished work.
+  Boundary: canonical templates, grammar guidance, requirements/navigation,
+  compiler/roadmap guidance, acceptance scenarios and decision/task records.
+  Steps: (1) define creation edges, finite roots and source-origin path checks;
+  (2) reconcile higher-order/partial/inferred applications, cache behavior and
+  separate type/ownership checks; (3) update related guidance and acceptance;
+  (4) review semantics, validate documentation, archive and commit this scope.
+  Acceptance: finite repeated nesting is permitted; recursive creation is
+  rejected under an exact terminating rule; original identities, independent
+  branches/specializations and cache-order independence are explicit. No
+  compiler implementation or functional template support is claimed.
+  Steps 1–3 result: [TPL-11](spec/language/templates.md#tpl-11) defines the graph
+  on concrete types and applications originating in their instantiated owners.
+  Nested argument applications retain their lexical owner; reusing a supplied
+  Type creates no edge, while every supplied Type is still checked. Actual
+  Template origins, partial captures and inferred applications cannot hide
+  repetition. Cached dependency paths remain subject to the new ancestry;
+  unrelated concrete bindings cannot be merged into fictitious source cycles.
+  Added complete Ama box/nesting examples and an invalid growing-reference
+  example, private dictionary/set composition, partial-origin and independent
+  binding cases, motivation and the finite-branching/creation-path termination
+  argument. Recorded the user's algorithm-development purpose without assuming
+  a polygon data architecture. AMB-005 is resolved; T158's other gates remain.
+  Step 4 result: independent semantic review found no blocking ambiguity and
+  confirmed scope/grammar, provenance, finite captures, ordinary roots and cache
+  behavior. Refined the order-invariance wording to cover equivalent normalized
+  bindings and reordered independent arguments. Verification from repository
+  root: `python3 /tmp/ama-t163-doc-check.py` passes for 203 maintained Markdown
+  files and their local links, 212 uniquely indexed canonical requirements,
+  104 closed EBNF nonterminals aligned at column 30 and example spacing.
+  A separate comparison verifies all 10 EBNF production blocks are byte-identical
+  to e4e2d6a: this change is semantic, not new syntax. All 121 previous acceptance
+  areas remain, with five creation-path partitions bringing the matrix to 126.
+  `git diff --check` and `make docs-complete` pass (2335 ready inputs, zero debt).
+  `make docs` passes with Doxygen 1.11.0, Python 3.14.4 and markdown-it-py 3.0.0:
+  1749 maintained file pages, 6703 documented interfaces, 413 checked canonical
+  and referenced destinations, and 5524 generated pages. Archive/queue inputs
+  are included in a final documentation audit and Doxygen generation before
+  commit; generated outputs remain unversioned. `make conformance-check` exits
+  2 as expected with "specification changed; conformance review is required";
+  no implementation evidence or fingerprints are refreshed. No compiler/native/
+  test code was inspected or changed, and functional suites were not rerun for
+  this specification-only task. Pre-existing unfinished positional-proposal
+  work-log changes are preserved outside this task's commit.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

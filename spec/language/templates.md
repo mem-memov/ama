@@ -16,6 +16,7 @@ In this chapter:
 - [Partial substitution and composition](#partial-substitution-and-composition)
 - [Templates and Ama's own lists](#templates-and-amas-own-lists)
 - [Compiler obligations and design gates](#compiler-obligations-and-design-gates)
+- [Finite composition and specialization creation](#finite-composition-and-specialization-creation)
 
 <!-- /chapter-contents -->
 
@@ -37,8 +38,9 @@ model, named constructor signatures and partial-application forms below record
 the agreed design. The examples distinguish a template definition in a source
 file, a constructor used during compilation, and a concrete runtime instance. The
 [open-question index](../../AMBIGUITIES.md#open-template-design-questions) is the
-single place to find pending decisions, including recursive specialization,
-native templates and the list implementation bridge. Type evidence and result
+single place to find pending decisions, including native templates and the list
+implementation bridge. Finite nested composition and the prohibition on recursive
+specialization creation follow [TPL-11](#tpl-11). Type evidence and result
 Type introductions are settled below. Parameter-dependent shared constants and
 explicit type namespaces follow [CONST-03/CONST-06](declarations.md#const-06).
 This chapter does not imply that the compiler implements templates. Do not
@@ -1094,6 +1096,8 @@ available during checking, including when its use has become a closed Type.
 An implementation may intern this metadata; it may not discard information
 needed for input-pattern decomposition or nominal identity. Keep capability,
 ownership, initialization and execution dependency graphs distinct under COMP-03.
+Retain definition/application provenance for the separate specialization-creation
+graph under [TPL-11](#tpl-11); a canonical-key cache does not replace its path check.
 
 ### Exact structural constraints
 
@@ -1167,16 +1171,15 @@ Occurs checking prevents cyclic substitution terms. Each successful refinement
 solves/merges a variable or decomposes known finite structure, and an unresolved
 pass without a refinement terminates with underdetermination. Provide the actual
 algorithm's invariants and progress measure under ARCH-05/ARCH-06. This contract
-does not promise arbitrary higher-order unification or recursive specialization
-termination.
+does not promise arbitrary higher-order unification. The accepted class of
+specialization creation and its separate termination argument follow TPL-11.
 
 An occurs check and a cache of repeated specialization keys do not establish that
 arbitrary recursive generation terminates: a template can generate a new distinct
-specialization at every step. The permitted recursive-specialization class and
-its exact terminating analysis remain [AMB-005](../../AMBIGUITIES.md#amb-005).
-Do not replace that decision with an arbitrary nesting limit, timeout, recursion
-heuristic, or cache-order-dependent acceptance. Ordinary finite nominal reference
-cycles are not automatically infinite type substitutions or eager ownership cycles.
+specialization at every step. Apply TPL-11's exact creation-path restriction;
+do not replace it with an arbitrary nesting limit, timeout, recursion heuristic,
+or cache-order-dependent acceptance. Ordinary finite nominal reference cycles
+are not automatically infinite type substitutions or eager ownership cycles.
 
 Before implementing a pending case, resolve its linked question and update the
 authorized canonical rule/grammar. Supported templates require component and
@@ -1184,3 +1187,216 @@ composition evidence covering the acceptance scenarios, including negative
 applications. Existing pre-template acceptance evidence does not establish
 support for the new grammar or specialization model. The roadmap and open-question
 registry must keep this implementation gap visible.
+
+## Finite composition and specialization creation
+
+**Explanation.** A finite type expression can use the same constructor more than
+once. A box of boxes has a perfectly definite type: the outer box receives the
+complete inner box type as its element Type. This differs from a definition that
+requires another application of itself whenever the compiler expands it.
+
+**Why this rule exists.** Ama is intended to support automatic development and
+improvement of algorithms from textual descriptions and examples in other
+languages. Nested containers, indexes and reusable wrappers are useful in that
+work. Prohibiting every repeated constructor in a type would force artificial
+copies of library definitions and expose private helper choices to callers.
+The chosen boundary preserves finite composition while excluding recursive
+definition expansion, including some cases that would eventually terminate.
+It requires no general analysis of whether changing type arguments will stop
+growing. It assumes no particular data model for the algorithm-development
+polygon.
+
+**Example: complete `.box`.** Assume supplied element types support ordinary
+default construction. This definition simply holds a value of its supplied Type:
+
+```text
+@<
+value
+...element type
+
+@!
+```
+
+**Example: declaration fragment in an ordinary caller.**
+
+```text
+nested
+.box
+ ...element type < .box
+  ...element type < ..integer
+```
+
+This is a box whose element type is a box of integers. The two applications are
+written in the caller's definition. Neither application is written in `.box`'s
+own definition. Its `value` input merely reuses the supplied concrete Type.
+
+**Example: complete `.nest`.** The same composition is also permitted inside
+another template, with the deepest element determined by that template's input:
+
+```text
+@<
+sample&
+...element type
+
+@!
+nested
+.box
+ ...element type < .box
+  ...element type < ...element type
+```
+
+For `.nest` specialized with integers, both box applications originate in that
+`.nest` definition. They form two outgoing creation edges, not a box-to-box edge.
+Using the resulting inner box Type as the outer box's argument adds no such edge.
+
+**Example: invalid complete `.grow`.** Use a reference field here to separate
+specialization creation from eager ownership allocation:
+
+```text
+@<
+value&
+...element type
+
+@!
+next&
+.grow
+ ...element type < .box
+  ...element type < ...element type
+```
+
+Expanding `.grow` requests `.grow` again with a different element Type. A cache
+cannot finish this ever-growing sequence. The reference suffix avoids allocating
+the target, but its type still has to exist and pass static checking.
+
+<a id="tpl-11"></a>
+
+**TPL-11.** Permit finite repeated nesting of constructors in static expressions.
+Prohibit repetition of an original source template on any path of the
+specialization-creation graph defined below, even when the repeated application
+has exactly the same complete bindings. This restriction applies to required
+specializations before code generation or runtime construction.
+
+### Construction provenance
+
+The graph distinguishes concrete module types by their full nominal identities
+under TPL-05, including all normalized Type/Template bindings. An ordinary module
+definition can also be an owner of applications. It has its ordinary concrete
+identity rather than an invented template parameter or default specialization.
+
+For each required concrete owner, record an edge to the concrete specialization
+required by each constructor application originating in that owner's instantiated
+definition. Include applications in shared declarations, input/result types,
+defaults, body declarations and explicit constant namespaces. Include applications
+inside other applications' static arguments, and applications introduced or
+completed by the permitted inference rules. Keep the originating definition and
+application source locations on the edge. Runtime branch reachability does not
+remove these static requirements.
+
+Every application inside a static expression belongs to that expression's
+lexical definition owner. Syntactic argument nesting alone does not add an edge
+from the outer application's result to the inner application's result. For
+example, if owner `O` writes `Box(Box(Integer))`, record edges from `O` to each
+box specialization. Add no outer-box-to-inner-box creation edge unless the box
+definition itself contains a corresponding constructor application.
+
+Merely using a supplied concrete Type, or decomposing its known nominal metadata
+under TPL-10, creates no application edge. Validate that Type and its required
+definition independently; this is not permission to leave an argument type
+unchecked. A Type parameter cannot be applied as a constructor under TPL-02.
+
+For a Template parameter, use the actual original constructor and its fixed
+bindings, not the formal's name or signature alone. A partial constructor remains
+finite static metadata under TPL-08/TPL-10. Capturing or forwarding an unapplied
+constructor, and partially applying a head that remains open, do not themselves
+require a specialization of that head. Any closed applications in their written
+argument expressions are still accounted for. When the constructor is fully
+applied, record the application with its actual origin and retained captures,
+including bindings unused by generated code.
+
+The initial requirements arise from finite source expressions in the required
+ordinary definitions and selected concrete compilation roots. Every additionally
+required specialization must be attributable to such a root or to a recorded
+application edge. Inferring a binding cannot manufacture unrelated type origins
+or exempt an implicit application from this provenance requirement.
+
+### Path checking and canonical caching
+
+On every creation-edge path, compare original full logical source-template
+identities. Reject the first repetition on that path, regardless of unequal
+bindings, equal canonical keys, aliases, partial-binding routes or generated
+names. Direct self-application and recurrence through other templates are both
+invalid. No exception is made for reference storage, an initially empty list,
+finite permutations of bindings or a recursive definition that would terminate.
+
+Check independent paths independently. Keep different concrete specializations
+as different graph vertices; merging their edges into one graph of source names
+can introduce cycles that no actual creation path contains. Repeated sibling
+applications and repeated origins in the structure of supplied Types are not
+themselves a repeated origin on a creation path.
+
+Record an application edge even when its result is already interned or checked.
+A cache hit cannot authorize a repeated origin. When a cached dependency subgraph
+is used under a new ancestry, check its outgoing paths against that ancestry too;
+checking only the immediate cached target is insufficient. For equivalent
+normalized bindings, changing source discovery order, reordering independent
+named bindings or using a warm instead of cold cache must yield the same
+acceptance or rejection. An implementation may retain exact
+dependency summaries instead of repeating body work, provided the same path
+predicate is preserved.
+
+Report a rejected path with the applications and original source identity that
+repeats, retaining definition and use locations under TPL-10. Do not diagnose a
+finite repeated type expression as recursion merely because its printed type
+name contains an earlier constructor name.
+
+### Relationship to the other checks
+
+Creation paths are separate from the structure of specialization bindings, module
+loading, eager ownership, constant initialization, clone capability and runtime
+execution. Continue checking finite signatures under TPL-02, finite substitution
+terms under TPL-10 and eager construction under
+[TYPE-04](declarations.md#type-04). Ordinary finite nominal reference cycles and
+reuse of an already supplied Type remain governed by their own rules; they do
+not imply a new constructor application. Runtime calls keep their ordinary
+instance availability rules and do not generate types during execution.
+
+**Examples: explanatory metanotation, not additional Ama syntax.** In this table
+an arrow means a constructor application originating in the expanded definition:
+
+| Case | Required result |
+|---|---|
+| `Box(Box(Integer))`, where Box only uses its supplied Type | Permitted, including when written inside another template |
+| `Pair(Box(Integer), Box(Text))` | Permitted independent branches |
+| `A(T) -> A(T)` | Rejected even for identical full bindings |
+| `A(T) -> B(T) -> A(T)` | Rejected mutual recurrence |
+| `Grow(T) -> Grow(Box(T))` | Rejected changing bindings |
+| `A(X,Y) -> A(Y,X)` | Rejected finite permutation recurrence |
+| An actual Template parameter applies a partial constructor originating in its owner | Rejected repeated source, even if its next application would terminate |
+| A constructor is captured but never applied | No creation edge for that capture; its finite metadata is still checked |
+
+**Explanation: private helpers do not prohibit finite composition.** Suppose
+`Set(T)` is implemented using `Dictionary(T, Marker)`, and Dictionary only reuses
+its supplied key/value Types. An Index definition requiring
+`Dictionary(Feature, Set(Node))` has paths `Index -> Dictionary` and
+`Index -> Set -> Dictionary`. The supplied Set Type adds no `Dictionary -> Set`
+edge. This composition is permitted even though Dictionary occurs twice in the
+complete type structure. If an actual definition additionally creates a return
+path to an earlier source template, that different construction is rejected.
+
+**Explanation: unrelated bindings must not create a fictitious cycle.** Suppose
+A and B each apply a received one-Type constructor to their element Type. One
+root supplies A with B partially fixed to use Box; its creation path is
+`A -> B -> Box`. Another root supplies B with A partially fixed to use Box;
+its path is `B -> A -> Box`. These different concrete applications are permitted.
+Combining their edges by source name would falsely produce `A -> B -> A`.
+
+**Why checking terminates.** Source definitions, their static expressions and
+their initially required roots are finite. Each instantiated definition contains
+finitely many application occurrences. The path predicate bounds the number of
+template-source steps by the number of original templates, so finite branching
+cannot produce an infinite creation tree. Reuse of supplied Types adds no new
+application step; all required concrete Types still have their root/application
+provenance. Constructor captures and constraints remain finite under the separate
+signature and occurs checks. This is a structural termination argument, not a
+configured depth limit: explicit finite nesting has no additional language depth
+limit, and no timeout or heuristic substitutes for the path check.

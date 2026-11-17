@@ -12,21 +12,22 @@ The user explicitly requested this visible list on 2026-11-17 while authorizing
 the template specification. T157 records the initial contracts and gaps;
 T159 records the user's subsequent resolution of [AMB-003](#amb-003).
 T160/T161 resolve inference, result Type scope and explicit constant namespaces
-in [AMB-004](#amb-004).
+in [AMB-004](#amb-004). T163 settles finite composition and specialization
+creation in [AMB-005](#amb-005).
 [T158](TODO.md#current-tasks) owns the remaining decisions before their affected
 implementation. Examples in open entries expose questions, not additional
 accepted Ama syntax. No answer is inferred from a request to document a question.
 
 | Issue | Decision still needed | Work affected |
 |---|---|---|
-| [AMB-005](#amb-005) | Which recursive specializations are permitted and how analysis terminates exactly | Recursive template expansion |
 | [AMB-006](#amb-006) | Which list implementation/interface the compiler binds and which typed storage/lifecycle primitives support it | Reimplementation of the list foundation |
 | [AMB-007](#amb-007) | Native-template layout/companions and explicit selection of exported specializations | `@C` templates and C library roots |
 | [AMB-008](#amb-008) | Exact hyphen spelling/profile and its scope | Expanding accepted names beyond current SRC-03 |
 
 The constructor/signature and partial-binding notation in [AMB-003](#amb-003),
-and inference, scope and constants in [AMB-004](#amb-004), are preserved below
-as resolved decisions, not open grammar gates. These decisions do not themselves
+inference, scope and constants in [AMB-004](#amb-004), and finite composition in
+[AMB-005](#amb-005) are preserved below as resolved decisions, not open grammar
+gates. These decisions do not themselves
 establish implementation support.
 
 When such a question arises, stop the affected task before implementing a guessed
@@ -385,34 +386,66 @@ Each entry must contain:
 
 <a id="amb-005"></a>
 
-## AMB-005 — Permitted recursive specialization and exact termination
+## AMB-005 — Finite template composition and nonrecursive specialization creation
 
-- **Status:** Open.
-- **Task:** T158. Recursive expansion and its acceptance algorithm are paused.
+- **Status:** Resolved.
+- **Task:** T163 extracts this settled boundary from T158. The canonical change
+  is authorized; no compiler implementation is included in this task.
 - **Requirements:** [TPL-04](spec/language/templates.md#tpl-04),
   [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-11](spec/language/templates.md#tpl-11),
   [TYPE-04](spec/language/declarations.md#type-04), and
   [ARCH-05](spec/implementation/compiler.md#arch-05).
-- **Minimal example:** In explanatory mathematical notation, `Grow(T)` requires
-  `Grow(Box(T))`, which requires `Grow(Box(Box(T)))`, and so on. Every key is new,
-  so a cache does not terminate expansion. Conversely, a finite recursive node
-  specialization may refer to the same node type through a reference or empty
-  list without infinite eager construction.
-- **Question:** Which recursive specialization forms belong to the language's
-  supported class, and what exact terminating analysis decides their validity?
-- **Possible answers and consequences:** Prohibiting recursive specialization
-  dependencies is simple but restricts useful structures. Permitting only cycles
-  returning to identical complete bindings supports some recursive structures
-  but needs a precise, traversal-independent criterion. A broader class requires
-  a proved termination/closure analysis. A depth limit, timeout, or heuristic
-  choice does not define an exact language rule.
-- **User decision:** Unset. Acceptance of finite nesting did not select a policy
-  for indefinitely growing specialization graphs.
-- **Specification authorization:** Explicitly authorized to record this design
-  gate; no recursion restriction or fallback limit is selected.
-- **Resume evidence:** State the accepted class, correctness/termination argument
-  and order-independent diagnostics; test finite reference cycles, eager cycles,
-  changing bindings and ever-growing specialization chains separately.
+- **Minimal example:** In explanatory mathematical notation,
+  `Container(Container(Integer))` is a finite type expression when Container
+  only stores its supplied Type. In contrast, a definition `Grow(T)` that
+  requires `Grow(Container(T))` generates an unbounded sequence of new keys;
+  caching identical keys cannot stop it. Even a finite recursive definition
+  such as `Node(T)` requiring `Node(T)` is a separate case from finite nesting.
+- **Question:** Which dependencies count as recursive specialization creation,
+  and what exact terminating check distinguishes them from finite composition?
+- **Possible answers and consequences:** A blanket ban on repeated source
+  templates also rejects ordinary nested containers and hidden library helpers.
+  Allowing finite supplied Types while prohibiting repeated source origins on
+  creation paths preserves that composition without general growth analysis.
+  Allowing recursive definitions as well needs an additional accepted class and
+  termination analysis. A depth limit, timeout, or cache-order-dependent choice
+  does not define an exact language rule.
+- **User decision:** On 2026-11-17 the user first chose a blanket repetition ban
+  and explicitly allowed reuse in independent sibling branches. After a review
+  of its library-composition costs, the user accepted the preceding proposal
+  to allow finite nested Types while retaining the prohibition on recursive
+  definition expansion: "Хорошо. Принимаем такой вариант для рекурсии."
+  That proposal distinguishes new constructor applications originating in a
+  definition from reuse of an already supplied concrete Type. It checks original
+  source-template identities on each specialization-creation path, including
+  actual constructors received through Template parameters or partial bindings.
+  This latest decision supersedes the earlier ban on finite repeated nesting;
+  the independent-branch allowance remains. No recursive-definition exception
+  for identical complete bindings was accepted.
+- **Purpose and motivation:** In the same user message, the user described the
+  polygon's purpose as automatic development and improvement of algorithms
+  available through textual descriptions and examples in other programming
+  languages, but not yet available in Ama. It is not an AI-model evaluation
+  platform. This makes transfer of varied algorithms and composition of their
+  data structures relevant design criteria. The user separately answered that
+  the polygon's base data model is undecided; no uniform node/link architecture
+  is assumed by this decision. The polygon architecture and implementation are
+  not specified by this work-log entry.
+- **Specification authorization:** On 2026-11-17 the user explicitly requested:
+  "Вноси правила рекурсии в спецификацию и делай коммит." This authorizes T163's
+  canonical recursion rule, related grammar guidance, examples and acceptance
+  scenarios; it does not authorize implementation of the remaining template gates.
+- **Resume evidence:** [TPL-11](spec/language/templates.md#tpl-11) now defines
+  creation provenance, concrete graph vertices, source-origin path checks and
+  caching, with finite-nesting examples and the termination argument. The
+  [grammar guidance](spec/grammar.md#static-template-syntax-and-design-boundaries)
+  distinguishes parsing from this semantic check. The
+  [acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix)
+  includes nested/helper composition, direct/mutual/growing creation, inferred
+  applications, constructor origins/captures and cache-order partitions. T163's
+  completed record owns the documentation evidence; implementation support still
+  requires its own component/composition tests.
 
 <a id="amb-006"></a>
 

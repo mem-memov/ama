@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 211 current requirements;
+[requirement index](spec/requirements.md) locates all 212 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 engineering work needed to implement those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -73,8 +73,9 @@ An implementation task, including one in this queue, is not permission to amend
   dependent constants/explicit namespaces. Questions and alternatives
   are indexed in [AMBIGUITIES.md](AMBIGUITIES.md#open-template-design-questions):
   AMB-003 is resolved by T159; T160/T161 settle AMB-004.
-  AMB-005 through AMB-008 still cover recursive specialization, the concrete list foundation
-  interface/primitives, native/export forms and hyphen spelling. Named static
+  T163 resolves AMB-005's specialization-creation boundary. AMB-006 through
+  AMB-008 still cover the concrete list foundation interface/primitives,
+  native/export forms and hyphen spelling. Named static
   application is available for a future list bridge, but its actual interface
   is not selected. Resolve each affected boundary before
   implementation; do not infer answers from the existence of this queue item.
@@ -82,13 +83,20 @@ An implementation task, including one in this queue, is not permission to amend
   are approved and specified. Explicit namespaces avoid name inheritance/imports;
   static parameters remain Type/Template, without numeric value parameters.
   The answers/source are recorded in AMBIGUITIES. Remaining gates need their own
-  explicit decisions before affected implementation. No jobs are active.
+  explicit decisions before affected implementation. T163 specifies the user's
+  accepted finite-composition rule in [TPL-11](spec/language/templates.md#tpl-11),
+  with the creation-path check, termination argument and acceptance partitions.
+  AMB-005 is resolved; it no longer blocks implementation of that boundary.
+  The user also clarified the polygon's purpose: automatic development and
+  improvement of Ama algorithms from textual descriptions and examples in other
+  languages; the base data model remains undecided. Other canonical changes
+  still need their own explicit authorization. No jobs are active.
   Acceptance: record user decisions and authorized canonical/EBNF corrections;
   derive the implementation roadmap and named positive/negative acceptance cases
   from those settled contracts. Preserve the previous conformance matrix as
   historical evidence until new implementation evidence is actually available.
 
-The next unused task ID is **T162**.
+The next unused task ID is **T164**.
 
 ## Useful verification commands
 
