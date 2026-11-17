@@ -46,15 +46,17 @@ copying an owned value creates independent owned data according to its type.
 An executable module can have three kinds of instance fields:
 
 - Runtime parameters in `@<` accept typed inputs when a call starts from entry.
-- Results in `@>` retain typed outputs after completion or a yield.
+- Runtime results in `@>` retain typed outputs after completion or a yield.
 - Declarations in `@!` describe permanent body state, constructed once with the
   instance, including declarations written inside branches or loops.
 
 `@=` instead declares immutable constants shared by instances within an
 execution context. They are not part of any instance's ownership tree.
-The same input section can also declare static Template formals under
-[TPL-07](templates.md#tpl-07). Those describe compile-time constructors and
-contribute no instance field or ordinary argument position.
+The same input section can also declare static Type or Template formals, and
+`@>` can define returned types and constructors under
+[TPL-12](static-results.md#tpl-12). Those compile-time interfaces contribute no
+instance field or ordinary argument/result position. Producing a static result
+does not run a module body, create an instance, or initialize a method.
 
 Starting `job !` prepares a fresh interface, then executes the body from entry.
 It preserves permanent body state. Resuming `job %` uses its saved position and

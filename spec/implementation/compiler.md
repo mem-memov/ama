@@ -422,7 +422,7 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | Layout/lexical reader | Indentation, comments, literal boundaries, annotations | Tokens or logical lines |
 | Parser | Syntax recognition independent of declared-name lookup | AST with spans |
 | Namespace resolver | Module loading, qualified identities, name binding | Resolved symbols |
-| Static specializer | Scoped interface kinds/signatures, named applications, global typed-connection constraints, nominal pattern decomposition, canonical bindings and specialization-creation validation under [TPL-01 through TPL-11](../language/templates.md) | Closed specialized type/program structure before layout; individually unresolved design cases remain gated |
+| Static specializer | Scoped interface kinds/signatures, static inputs/results and positional binding under [TPL-12](../language/static-results.md#tpl-12); global typed-connection constraints, nominal pattern decomposition, canonical bindings and specialization-creation validation under [TPL-01 through TPL-11](../language/templates.md) | Closed specialized type/program structure before layout; individually unresolved design cases remain gated |
 | Type/lifecycle checker | Types, storage kinds, copy/default contracts | Validated typed nodes |
 | Control-flow lowering | Entry, calls, refusal branches, loops, yield positions | Typed control-flow IR |
 | Storage planner | Owned layout, stable-address pool blocks, instance access, service metadata | Explicit storage plan |
@@ -436,13 +436,35 @@ decomposition of an input pattern; its runtime field still has the complete
 applied type, not merely the recovered constructor head. The nested bindings in
 [TPL-08](../language/templates.md#tpl-08) can pass a residual constructor without
 creating a sample object. Parsing those trees does not require a successful type
-lookup. Specialization-creation dependencies are checked under
+lookup. The static interface in [TPL-12](../language/static-results.md#tpl-12)
+adds defined outputs and immutable aliases to that resolved structure. Keep
+static and runtime interface ordinals separate, resolve projection against the
+known actual constructor origin, and retain source-order alias visibility
+without manufacturing free parameters. An explicit static output phase gives
+omitted producer inputs distinct per-expression inference terms. Solve those
+terms using exact input/output equations and require all producer inputs to be
+uniquely determined under the enclosing specialization before publishing any
+output, including when selected outputs do not depend on those inputs or all
+output positions are skipped. Without an output phase, retain the surrounding
+context's ordinary omission rules. A returned constructor's own residual
+parameters remain distinct from missing producer inputs.
+Static evaluation preserves constructor
+captures and normalized type identity; a determined Template-valued input may
+retain its declared residual signature, with known origin and captures. Static
+evaluation is not runtime invocation or arbitrary
+execution of the template body. Output equations contribute only their exact
+structural information, not a search for a producer or a default missing type.
+Specialization-creation dependencies are checked under
 [TPL-11](../language/templates.md#tpl-11) after actual constructor origins and
 bindings are known. The creation graph is neither a structural type-containment
 tree nor a graph merging all bindings by source-template identity. Interning a
 specialization and validating its use on a creation path are
 separate responsibilities, so a cache hit cannot hide a dependency forbidden in
-its new ancestry. The remaining list-foundation and native/export questions stay
+its new ancestry. Check the active definition and creation ancestry before
+following each static expansion, rather than generating an unbounded producer
+chain and attempting to validate it only afterwards. An explicit output phase
+requires its producer application even when its head is a supplied closed Type
+or every requested output is skipped; plain reuse/aliasing alone does not. The remaining list-foundation and native/export questions stay
 separately indexed. Dependent shared storage
 and explicit type namespaces follow
 [CONST-03/CONST-06](../language/declarations.md#const-06): resolve the concrete
@@ -471,7 +493,10 @@ anchor may resolve, while infinite substitution terms fail the occurs check.
 An inferred assignment remains an assignment node
 with an executable source transfer, not an explicit declaration initializer.
 Do not use the symbol table to choose different grammar productions for the
-same assignment or output-binding text.
+same assignment or output-binding text. The static declaration/application
+forms and `...`-prefixed projection bindings of
+[TPL-12](../language/static-results.md#tpl-12) are also structural; resolve their
+Type/Template categories, alias equality and residual signatures afterwards.
 Recognize FLOW-05 foreach by a reference-name binding inside its header brackets.
 `items[index]` remains indexed access; `items[item&]` followed by `{` is foreach
 before lookup. Represent foreach as its own ordinary statement, never as a

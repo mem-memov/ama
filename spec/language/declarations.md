@@ -14,8 +14,8 @@ In this chapter:
 
 <!-- /chapter-contents -->
 
-An Ama name identifies storage. Its type is a module, and its suffix says whether
-that storage owns a value, holds a reference, owns a list, or holds a list of
+An Ama runtime name identifies storage. Its type is a module, and its suffix
+says whether that storage owns a value, holds a reference, owns a list, or holds a list of
 references. Keeping those two decisions separate makes ownership visible at the
 place where a name is used.
 
@@ -42,18 +42,21 @@ defines its type, and what are its initial contents?
 
 Write the name and type on separate lines at the same indentation. A type line
 starts with a concrete module path or a scoped placeholder permitted by
-[TPL-01/TPL-02](templates.md#tpl-01). Its named static binding block, when present,
+[TPL-01/TPL-02](templates.md#tpl-01). Its static application block, when present,
 is one space deeper and precedes ordinary initializer lines at that same depth;
-[TPL-07/TPL-08](templates.md#tpl-07) define the type-expression forms and their
-scope. A path naming a template is specialized statically under
-[TPL-03/TPL-04](templates.md#tpl-03), including when it types a nested field.
+[TPL-07/TPL-08](templates.md#tpl-07) define the type-expression forms, with
+static inputs, projections and aliases governed by
+[TPL-12](static-results.md#tpl-12). A path naming a template is specialized
+statically under [TPL-03/TPL-04](templates.md#tpl-03), including when it types a nested field.
 The storage marker directly adjoins the name; it never belongs to the type line
 and never has an intervening space.
 
-Static constructor formals in `@<` use TPL-07's separate declaration form.
-They describe compile-time parameters rather than any of the runtime storage
-forms below; named type application does not construct a value or execute a
-module body.
+Static formals in `@<` and static results in `@>` use
+[TPL-12](static-results.md#tpl-12)'s separate declaration forms. They describe
+compile-time Type/Template parameters and expressions rather than any runtime
+storage form below. Static application and result projection do not construct a
+value or execute a module body. A static result's second line defines its value;
+an ordinary declaration's second line specifies the type of its storage.
 
 There are two ways to omit an explicit type line. A receiver can introduce a
 persistent field whose type comes from its source or selected result (TYPE-06).
@@ -272,6 +275,12 @@ explicit declarations are collected for ordinary use and foreach resolution.
 | Explicit shared constant, parameter, result, or persistent body field | Throughout its declaring module, including text before its declaration and all nested executable bodies. Declaring a field inside a branch, loop, or `:` does not restrict its scope to that body. |
 | TYPE-06 receiver-inferred persistent field | At its introducing receiver and subsequent source positions in that module, including outside the branch/loop/handler containing that receiver. An earlier unresolved use prevents later inference; it cannot be repaired by treating the later receiver as a forward declaration. |
 | New FLOW-05 foreach-local reference | Executable uses in that foreach body and its nested bodies only. It is absent from its own collection-source expression, following code, sibling bodies, and instance-construction initializers. An enclosing binding remains available when resolving a nested loop's source. |
+
+Static parameter, result and alias names belong to the separate static
+namespace of [TPL-02](templates.md#tpl-02) and
+[TPL-12](static-results.md#tpl-12), not this runtime field table. In particular,
+collecting runtime declarations does not turn a later static result alias into
+a forward-visible name.
 
 #### Blocks and reuse
 
@@ -738,23 +747,30 @@ ordinary saved-read bindings:
 ```
 
 The namespace head is a concrete module path or a locally declared static
-placeholder. It may have a named static binding block under
-[TPL-07/TPL-08](templates.md#tpl-07). Those bindings precede the read bindings,
-at the same one-level-deeper indentation. Static `<` bindings apply types or
-constructors; they are not ordinary runtime input bindings. The read requires
+placeholder. It may have a static application block under
+[TPL-07/TPL-08](templates.md#tpl-07) and
+[TPL-12](static-results.md#tpl-12). Those bindings and static output projections
+precede the read bindings at the same one-level-deeper indentation. Static `<`
+bindings apply types or constructors; static `>` bindings project defined types
+or constructors. Neither is an ordinary runtime input/result binding. The read requires
 at least one `>>` with a receiver and a consistent named/positional read mode.
-Ordinary input `<`, result transfer `>`, invocation `!`, resumption `%`, refusal
+Ordinary runtime input `<`, runtime result transfer `>`, invocation `!`, resumption `%`, refusal
 handlers and executable nested actions are not permitted in this namespace read.
 
 Before selecting any member, resolve the namespace expression to one fully
 concrete Type. Explicit static bindings and already determined local parameter
 bindings may supply that Type; a known Template parameter may be applied to its
-named residual formals. A Type parameter cannot receive further static bindings.
-An expression with residual formals or unresolved type arguments is an error:
-this position does not introduce field inference variables or choose a default
-specialization. Do not infer namespace bindings from requested constant names,
-positional ordinals, receiver types or literal bytes. Independently available
-type constraints may first determine a local parameter; namespace member lookup
+residual formals. A Type parameter cannot receive further static input bindings;
+TPL-12 governs output projection from its known nominal origin.
+An expression that remains open is an error. Without a static output phase,
+this position introduces no fresh inference variables. With an explicit output
+phase, [TPL-12](static-results.md#tpl-12) supplies per-expression terms for
+omitted producer inputs; output equalities may determine them, and every
+producer input must close before constant-member lookup. This never chooses a
+default specialization. Do not infer namespace bindings from requested constant names,
+positional ordinals, runtime receiver types or literal bytes. Independently
+available type constraints, including TPL-12 static output equalities, may first
+determine a local parameter; namespace constant-member lookup
 cannot supply the evidence needed to choose its own owner. There is no search
 for a module that happens to provide a requested constant.
 
@@ -957,7 +973,9 @@ turns module initialization into an executable call or permits dependency cycles
 introduced by its module's `@<`/`@>` interface under
 [TPL-02](templates.md#tpl-02). Collect that interface before resolving the
 declaration even though `@=` is written first. Apply the ordinary static
-type-expression rules to its type line and named binding block. A shared
+type-expression rules to its type line and static application block. Static
+result aliases obey [TPL-12](static-results.md#tpl-12)'s source-order visibility;
+interface collection does not make later aliases forward-visible. A shared
 declaration introduces no new static parameter, and neither its initializer nor
 its type may introduce a new placeholder that the interface does not declare.
 Any omitted residuals of a named template type have the ordinary declaration

@@ -61,7 +61,10 @@ A path followed by `>>` is a separate constant read under CONST-03, not an
 invocation or retained-instance read. Parameters and requested results appear on separate
 indented lines. Inputs precede all output-phase actions. An operation's ordinary
 bindings use named or positional mode consistently; CALL-09 selectors are separate
-actions. Positional binding order follows interface declaration order.
+actions. Positional binding order follows runtime interface declaration order;
+static formals and static results do not occupy those positions. Compile-time
+applications have their separate ordering under
+[TPL-12](static-results.md#tpl-12).
 
 ```text
 worker !
@@ -86,11 +89,12 @@ reference/alias connections. A receiver with unresolved generic arguments
 contributes equations rather than an independent concrete anchor. A new receiver
 under TYPE-06 does not choose a type merely by existing. Input bindings also
 support the explicit constructor patterns of [TPL-07](templates.md#tpl-07).
-Static constructor
-formals have no runtime input position; their named type applications follow
-[TPL-08](templates.md#tpl-08), rather than adding a new ordinary call argument
-form. The selected instance already has one fixed concrete specialization before
-execution. Omission/defaults and result transfers retain the semantics here;
+Static formals and static results have no runtime input/output positions;
+compile-time applications, projections and aliases follow
+[TPL-08](templates.md#tpl-08) and [TPL-12](static-results.md#tpl-12). A static
+output is not a retained instance value and cannot be selected by `>>` or a
+CALL-09 method action. The selected instance already has one fixed concrete
+specialization before execution. Omission/defaults and result transfers retain the semantics here;
 they do not partially bind a static template or choose a new runtime type.
 
 #### What receiving a result copies

@@ -74,6 +74,7 @@ you need the model, examples, or reasons behind a rule.
 | [TPL-09](language/templates.md#tpl-09) | Templates and Ama's own lists |
 | [TPL-10](language/templates.md#tpl-10) | Compiler obligations and design gates |
 | [TPL-11](language/templates.md#tpl-11) | Finite composition and specialization creation |
+| [TPL-12](language/static-results.md#tpl-12) | Static inputs, returned types/templates, positions and aliases |
 
 ## Literal data
 

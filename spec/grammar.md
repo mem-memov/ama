@@ -155,9 +155,12 @@ root markers, not filesystem traversal. Internal separators are single adjoining
 dots: `.shop tools.item state` contains two components. Empty components, bare
 roots, trailing dots, internal doubled dots, and three leading dots are invalid
 in a concrete module path. A `<placeholder-type>` instead starts with exactly
-three dots and uses the same component spelling. Its whole name is one scoped
-type parameter under [TPL-01/TPL-02](language/templates.md#tpl-01), not a third
-filesystem root. It has no trailing dot and does not select a member.
+three dots and uses the same component spelling. Its whole name denotes one
+scoped static parameter, result or alias under
+[TPL-01/TPL-02](language/templates.md#tpl-01) and
+[TPL-12](language/static-results.md#tpl-12), not a third filesystem root. It has
+no trailing dot and does not select a member. Bare `...` is recognized only as
+the positional static-binding marker below, never as a placeholder name or path.
 Physical `name+/` submodule directories add no source syntax; their exact mapping
 is defined by SRC-05 in [Source files and paths](language/source-and-names.md).
 
@@ -280,7 +283,7 @@ are defined in [Declarations and scope](language/declarations.md).
 <constants-only-file>        ::= <layout(0)> <constants-section>
 <constants-section>          ::= "@=" <line-end> <declarations(0)>
 <parameters-section>         ::= "@<" <line-end> <input-declarations(0)>
-<results-section>            ::= "@>" <line-end> <declarations(0)>
+<results-section>            ::= "@>" <line-end> <result-declarations(0)>
 <implementation-section>     ::= "@!" <line-end> <body(0)>
                                  | "@C" <line-end> <layout(0)>
 <declarations(n)>            ::= <layout(n)> { <declaration(n)> <layout(n)> }
@@ -290,22 +293,34 @@ are defined in [Declarations and scope](language/declarations.md).
                                  <indent(n)> <static-expression(n)>
                                  <initializers(n+1)>
 <input-declarations(n)>      ::= <layout(n)>
-                                 { ( <input-declaration(n)> | <template-formal(n)> )
+                                 { ( <input-declaration(n)> | <static-formal(n)> )
                                    <layout(n)> }
 <input-declaration(n)>       ::= <indent(n)> <declaration-name> <line-end>
                                  <layout(n)>
                                  <indent(n)> <static-expression(n)>
                                  <initializers(n+1)>
-<template-formal(n)>         ::= <indent(n)> <placeholder-type> <space> "<" <line-end>
-                                 <template-signature(n+1)>
-<template-signature(n)>      ::= <layout(n)> <signature-member(n)> <layout(n)>
-                                 { <signature-member(n)> <layout(n)> }
-<signature-member(n)>        ::= <indent(n)> <placeholder-type> <line-end>
-                                 | <template-formal(n)>
-<static-expression(n)>       ::= <type-name> <line-end> <static-bindings(n+1)>
-<static-bindings(n)>         ::= <layout(n)> { <static-binding(n)> <layout(n)> }
-<static-binding(n)>          ::= <indent(n)> <placeholder-type> <space> "<" <space>
+<static-formal(n)>           ::= <indent(n)> <placeholder-type> <line-end>
+                                 [ <template-signature(n+1)> ]
+<template-signature(n)>      ::= <layout(n)> <static-formal(n)> <layout(n)>
+                                 { <static-formal(n)> <layout(n)> }
+<result-declarations(n)>     ::= <layout(n)>
+                                 { ( <declaration(n)> | <static-result(n)> ) <layout(n)> }
+<static-result(n)>           ::= <indent(n)> <placeholder-type> <line-end>
+                                 <layout(n)> <indent(n)> <static-expression(n)>
+<static-expression(n)>       ::= <type-name> <line-end> <static-inputs(n+1)>
+                                 [ <static-outputs(n+1)> ]
+<static-inputs(n)>           ::= <layout(n)> { <static-input(n)> <layout(n)> }
+<static-outputs(n)>          ::= <static-output(n)> <layout(n)>
+                                 { <static-output(n)> <layout(n)> }
+<static-input(n)>            ::= <indent(n)> <placeholder-type> <space> "<" <space>
                                  <static-expression(n)>
+                                 | <indent(n)> "..." <space> "<" <line-end>
+                                 | <indent(n)> "..." <space> "<" <space>
+                                   <static-expression(n)>
+<static-output(n)>           ::= <indent(n)> <placeholder-type> <space> ">" <space>
+                                 <placeholder-type> <line-end>
+                                 | <indent(n)> "..." <space> ">"
+                                   [ <space> <placeholder-type> ] <line-end>
 <initializers(n)>            ::= <layout(n)> { <initializer(n)> <layout(n)> }
 <initializer(n)>             ::= <literal-line(n)>
                                  | <indent(n)> <copy-source> <line-end>
@@ -314,8 +329,8 @@ are defined in [Declarations and scope](language/declarations.md).
 | Annotation | Section |
 |---|---|
 | `@=` | Shared immutable constants |
-| `@<` | Runtime inputs and static template formals |
-| `@>` | Results |
+| `@<` | Runtime inputs and static Type/Template formals |
+| `@>` | Runtime results and static Type/Template result definitions |
 | `@!` | Ama implementation |
 | `@C` | Companion C implementation |
 
@@ -342,26 +357,33 @@ changing ordinary field recognition. A `<static-expression(n)>` starts after its
 caller has written the indentation or operand separator; `n` is the indentation
 of that expression's head line, and its bindings are at `n+1`.
 
-An optional static binding block immediately follows the declaration's type line;
-ordinary runtime initializers follow at the same depth as the bindings. A binding
-has an explicit full foreign formal name on the left, exactly one space on each
-side of `<`, and a nonempty static expression on the right. Its nested bindings
-are one level deeper. Comments and blank lines follow the displayed `<layout>`
+An optional static binding block immediately follows a declaration's type line;
+ordinary runtime initializers follow at the same depth as the bindings. Named
+inputs use a full foreign formal name; positional inputs use bare `...`. Each
+nonempty input has exactly one space on each side of `<` and a static expression
+on its right. A positional input may instead end immediately after `<`. Static
+outputs follow all inputs at their level and use `>` with a placeholder receiver;
+only a positional output may omit that receiver. Nested expression bindings are
+one level deeper. Comments and blank lines follow the displayed `<layout>`
 regions; they neither supply a binding nor change the kind of an input pattern.
 Once an ordinary initializer has begun, no later static binding can belong to
-that declaration. Empty, positional, inline and unnamed static bindings are
-invalid. A static binding does not initialize runtime storage.
+that declaration. Static bindings initialize no runtime storage. Binding modes,
+positions, skips and output receiver scope follow
+[TPL-12](language/static-results.md#tpl-12).
 
-The `<template-formal>` alternative belongs only to `@<` or to a signature already
-nested within it. It has at least one signature member, even when comments or
-blank lines intervene. A bare member declares an expected Type parameter; a member
-ending in `<` recursively declares an expected Template signature. Signature names
-belong to that expected constructor interface, not the surrounding module's local
-parameter namespace. A standalone Type-formal line is not an alternative in
-`<input-declarations>`. Static formals consume no runtime input position. Placeholder
-introductions, categories and uses are checked after parsing under
-[TPL-02](language/templates.md#tpl-02) and [TPL-07](language/templates.md#tpl-07);
-the parser never consults a parameter table to select a production.
+The `<static-formal>` alternative belongs only to `@<` or to a signature already
+nested within it. A header with no signature members declares Type; a header with
+one or more indented members declares Template. The same structural distinction
+applies recursively. There is no trailing `<` on a header. A comment or blank
+line cannot substitute for a signature member. Signature names belong to the
+expected constructor interface, not the surrounding module's local parameter
+namespace. Static formals consume no runtime input position. A `<static-result>`
+in `@>` has a name line and a same-level expression line; its static bindings
+are one level deeper, and it has no runtime initializer. The expression determines
+its Type or Template result under TPL-12. Placeholder introductions, categories
+and uses are checked after parsing under
+[TPL-02](language/templates.md#tpl-02), [TPL-07](language/templates.md#tpl-07) and
+TPL-12; the parser never consults a parameter table to select a production.
 
 ```text
 count
@@ -377,36 +399,49 @@ lines[]
 
 ## Static template syntax and design boundaries
 
-The source shape distinguishes interface type expressions, named static bindings
-and explicit Template formals. Collect local Type introductions from both `@<`
-and `@>` before checking uses under [TPL-02](language/templates.md#tpl-02).
-A bare placeholder type line in either section introduces a Type parameter
-unless that name is declared as Template in `@<`. Bare placeholders on the
-right-hand side of their named static bindings may likewise introduce Type
-parameters. A known Template retains its category wherever it is used; an actual
-value never determines which category its source spelling declares.
+The source shape distinguishes interface type expressions, static bindings,
+static result definitions and explicit static formals. Collect local Type
+introductions from both `@<` and `@>` before checking uses under
+[TPL-02](language/templates.md#tpl-02). Collect static result names separately
+under [TPL-12](language/static-results.md#tpl-12): a result name is not another
+free parameter. A bare placeholder in an interface type expression introduces
+Type unless that name already denotes a declared Template or static result.
+An already visible received alias is likewise a use, not a parameter introduction;
+TPL-12 classifies receiver aliases before finalizing implicit interface parameters.
+Bare placeholders on the right-hand side of static input bindings may likewise
+introduce Type parameters in that interface context. A known Template retains
+its category wherever it is used; a runtime value never determines which category
+its source spelling declares.
 
-At the root of a runtime input type, a known Template application is subject to
-TPL-07's complete root-input coverage rule. A placeholder head with one or more
-named static bindings in that input position can introduce a Template-application
-pattern. Its head names the local Template parameter; binding labels name the
-applied constructor's foreign formals, and right-hand expressions use the input
-pattern's local scope.
-A concrete template-path head has the same complete root-input coverage
-requirement and permits the same local right-hand Type introductions, but fixes
-the constructor origin without introducing a local Template head parameter.
+Without a static output phase, a known Template application at the root of a
+runtime input type follows TPL-07's complete root-input coverage rule. A
+placeholder head with one or more named static bindings in that input position
+can introduce a Template-application pattern. Its head names the local Template
+parameter; binding labels name the applied constructor's foreign formals, and
+right-hand expressions use the input pattern's local scope. A concrete
+template-path head has the same root-input coverage requirement and permits the
+same local right-hand Type introductions, but fixes the constructor origin
+without introducing a local Template head parameter.
+Positional bindings cannot introduce an unknown constructor's named signature;
+they require an explicitly declared signature or a known concrete constructor
+origin. Their ordinary recognition never depends on choosing an actual type.
 
-An explicit Template formal uses `...name <` in `@<`, followed by its nonempty
-expected named signature. Its signature may contain Type members and recursively
-nested Template members. Results can introduce new Type parameters and use
-Template parameters already introduced in `@<`; an unknown applied placeholder
-head in `@>` does not introduce a Template parameter. Explicit Template-formal
-declarations are not accepted in `@>`. The body may reuse interface parameters,
-apply or forward known constructors; it cannot introduce a new named Type or
-Template parameter. Shared/body/result declarations give omitted constructor
-residuals fresh field inference variables under TPL-08, unlike complete root-input
-patterns or residuals preserved inside a partial static argument. Shared `@=`
-declarations may reuse interface parameters in their type expressions under
+An explicit static formal uses `...name` in `@<`. With no nested signature it
+declares Type; with a nonempty named signature it declares Template. Signature
+members use the same recursive form. Results can introduce new Type parameters
+and use Template parameters already introduced in `@<`; an unknown applied
+placeholder head in `@>` does not introduce a Template parameter. A static
+result's required second line distinguishes it from an input formal. The body
+may reuse interface parameters, apply or forward known constructors, and receive
+immutable static aliases under TPL-12; it cannot introduce a new free Type or
+Template parameter. Without a static output phase, shared/body/runtime-result
+declarations give omitted constructor residuals fresh field inference variables
+under TPL-08, unlike complete root-input patterns or residuals preserved inside
+a partial static argument or static result definition. With a static output
+phase, the expression follows TPL-12's concrete-producer rule instead: omitted
+producer inputs receive expression-local inference terms, including in a static
+argument or result definition. Shared `@=` declarations may reuse interface
+parameters in their type expressions under
 [CONST-06](language/declarations.md#const-06); they cannot introduce parameters.
 Their resolved types and constant construction must meet the ordinary constant
 restrictions.
@@ -420,9 +455,10 @@ identity. Static propagation neither executes a later statement early nor
 relaxes ordinary initialization, ownership or storage-form rules.
 
 Ordinary arguments still use the existing `<parameter>` and `<result>` productions.
-Static bindings attach to a declaration's type expression or a constant-read
-namespace expression, never to an entry or resume operation. There is no
-separate list of type arguments at an ordinary runtime call site.
+Static bindings attach to static expressions in declarations, result definitions,
+constant namespaces or standalone static projections, never to an entry or
+resume operation. There is no separate list of type arguments at an ordinary
+runtime call site.
 
 ```text
 @<
@@ -486,14 +522,17 @@ sample&
 The pattern relates an ordinary typed reference input to the explicitly named
 constructor application; it does not pass a constructor as a runtime reference.
 Its nominal decomposition and uniqueness checks follow
-[TPL-07](language/templates.md#tpl-07). An explicit Template-formal declaration
-states an expected signature without consuming a runtime argument:
+[TPL-07](language/templates.md#tpl-07). An explicit static-formal declaration
+states an expected signature without consuming a runtime argument. This fragment
+declares one Type and one Template:
 
 ```text
 @<
-...family <
+...item type
+
+...family
  ...element
- ...nested family <
+ ...nested family
   ...content
 @!
 ```
@@ -519,15 +558,36 @@ its existing key binding and its residual signature are checked against
 [TPL-08](language/templates.md#tpl-08). The less-indented `...element` binding
 belongs to `.outer`, so indentation alone determines each binding's owner.
 
+Static results use the ordinary declaration's two-line shape with a placeholder
+result name. The following `@>` fragment assumes `...family` has the dictionary's
+two-slot signature and `...key type` is a local Type parameter:
+
+```text
+@>
+...dictionaries for key
+...family
+ ...key type < ...key type
+
+...integer dictionary
+...family
+ ...key type < ...key type
+ ...value type < ..integer
+```
+
+The first expression leaves a residual constructor; the second is fully applied.
+These declarations define no runtime result fields or initializer sources.
+Their meaning, independent static output positions and projection rules belong
+to [TPL-12](language/static-results.md#tpl-12).
+
 The explicit constant-read namespace accepts a static type expression under
 [CONST-03](language/declarations.md#const-03) and
 [CONST-06](language/declarations.md#const-06). Direct qualified constant sources,
 runtime value sources, call targets and native protocol records do not acquire
 placeholder or static-application alternatives. A bare placeholder in a static
 expression is parsed alike whether its declared category is Type or Template;
-later scope/kind checks determine valid use. Omission of a runtime `<` binding is
-not partial static application. A compound placeholder never splits into a
-constructor and member. The
+later scope/kind checks determine valid use. Bare `...` never supplies a type
+expression. Omission of a runtime `<` binding is not partial static application.
+A compound placeholder never splits into a constructor and member. The
 [remaining design gates](../AMBIGUITIES.md#open-template-design-questions) are
 semantic questions, not permission for type-dependent parsing. These source forms
 do not claim implementation support.
@@ -546,11 +606,14 @@ that distinction changes no EBNF production.
 
 ```ebnf
 <statement(n)>               ::= <declaration(n)> | <assignment(n)> | <call(n)>
-                                 | <constant-read(n)> | <branch(n)> | <loop(n)> | <foreach(n)>
+                                 | <constant-read(n)> | <static-projection(n)>
+                                 | <branch(n)> | <loop(n)> | <foreach(n)>
                                  | <break(n)> | <return(n)> | <suspend(n)>
 <assignment(n)>              ::= <indent(n)> <receiver> <line-end>
                                  <layout(n+1)>
                                  <indent(n+1)> <copy-source> <line-end>
+<static-projection(n)>       ::= <indent(n)> <type-name> <line-end>
+                                 <static-inputs(n+1)> <static-outputs(n+1)>
 ```
 
 An assignment has one source exactly one level below its receiver. It cannot
@@ -573,6 +636,35 @@ target&
 continuation
  % original
 ```
+
+A standalone static projection requires at least one static output action,
+including an explicit positional skip. Its head has no `!` or `%`, and the
+statement has no refusal handler. A static expression embedded in a declaration,
+binding or result definition may also contain static output actions. Any such
+output phase requests a concrete checked producer under
+[TPL-12](language/static-results.md#tpl-12). Omitted producer inputs receive
+deterministic expression-local inference terms, and static output constraints
+may help determine them. All producer inputs must be uniquely determined before
+any result is published; skips or unselected outputs do not waive that check.
+The expression itself still denotes the concrete producer Type; receiving a
+static result does not replace that Type. A returned Template may retain its
+own residual parameters. Alias visibility and publication follow TPL-12;
+these compile-time operations execute no runtime statement.
+
+**Example: static projection fragment.** Assume hypothetical `.prepare types`
+has one static Type input and two explicit static outputs. This reads the second
+output and skips the first:
+
+```text
+.prepare types
+ ... < ..text
+ ... >
+ ... > ...prepared family
+```
+
+The bare `...` selects positional mode; it is not a placeholder name. The
+receiver is a complete placeholder spelling. Static input and output positions
+are independent of ordinary runtime positions and of each other under TPL-12.
 
 **Example: later static evidence, with ordinary execution order.** Assume
 `.forward` is the template defined in [TPL-04](language/templates.md#tpl-04):
@@ -603,15 +695,18 @@ are constructed under the ordinary declaration-order rules.
 Recognize the shape before name/type lookup:
 
 - A declaration name followed by a same-level type expression is a declaration;
-  its named static bindings precede any ordinary initializers.
-- Only `@<` admits a standalone `...name <` Template-formal declaration with an
-  indented signature. A static binding instead has a right-hand expression on the
-  same line; a runtime argument remains inside its operation's argument block.
+  its static bindings precede any ordinary initializers.
+- Only `@<` admits a static-formal header `...name`, with an optional nonempty
+  indented signature. A static result in `@>` instead requires a same-level
+  expression line. Binding lines have `<` or `>`; runtime arguments remain
+  inside their operation's argument block.
 - A receiver followed by an indented copy source is an assignment.
 - Suffix `!` starts entry execution; suffix `%` resumes.
 - An unmarked instance target with output actions reads retained results. A
-  static type expression with `>>` reads shared constants; a whole-list parent
-  selects intrinsic methods.
+  static type expression with `>>` reads shared constants; one with static `>`
+  actions alone is a standalone static projection. A whole-list parent selects
+  intrinsic methods. These forms are distinguished by source tokens and
+  indentation before lookup, including for a placeholder expression head.
 - An owned access followed by same-level `?`, `:`, or `{` is control flow. A `:`
   after an eligible operation is instead that operation's refusal handler.
 - A bracketed reference-name binder before `{` is foreach. A bracketed owned
@@ -620,9 +715,10 @@ Recognize the shape before name/type lookup:
   is one condition-chain loop.
 - Standalone `^`, `>`, and `%` are control statements.
 
-A bare target is invalid. There are no implicit calls, expression statements,
-arithmetic operators, or mandatory `*` name prefixes. A missing declaration type
-line cannot turn a second unindented name into an assignment source.
+A bare target is invalid. There are no implicit calls, general expression
+statements, arithmetic operators, or mandatory `*` name prefixes. A static
+projection requires its explicit output actions. A missing declaration type line
+cannot turn a second unindented name into an assignment source.
 
 ## Invocation, retained reads, and result selection
 
@@ -686,7 +782,8 @@ input consumes its newline directly, so `#` in payload cannot become a comment.
 | `worker` | None | At least one `>>` binding or selected operation |
 | `items[]` / `targets&[]` | None | At least one selected list method `!` |
 | Selected list method `!` | Its declared `<` bindings | Its declared results |
-| `.namespace` / `...type` | None | At least one `>>` binding |
+| `.namespace` / `...type` constant read | None | At least one `>>` binding |
+| `.producer` / `...producer` static projection | None | At least one static `>` action |
 
 Execution modes cannot combine at one operation level. Module paths cannot be
 entry/resume targets. A constant-read namespace likewise cannot acquire `!`, `%`,
@@ -700,27 +797,36 @@ set; the list interface restricts that set during static checking.
 ### Constant namespace shape
 
 The namespace head is a module path or a locally declared placeholder, followed
-by the same optional named static binding block as a declaration's type
-expression. A known Template head may be applied through that block; a Type
-head is already a type and cannot receive constructor arguments. Binding labels
-belong to the selected constructor's interface; right-hand expressions use the
-surrounding template's established scope. Neither position introduces a new
-local parameter.
+by the same optional static binding block as a declaration's type expression.
+A known Template head may be applied through that block; a Type head is already
+a type and cannot receive constructor arguments. Static input labels belong to
+the selected constructor's formals, and static output labels to its declared
+static results; source expressions use the surrounding template's established
+scope. Static output receivers may introduce immutable aliases under
+[TPL-12](language/static-results.md#tpl-12); they introduce no free parameter.
 
 The namespace expression must resolve to one concrete Type under
 [CONST-06](language/declarations.md#const-06) before constant-member lookup.
-Explicit bindings or already determined static bindings supply that identity;
-requested constant names and receiver types do not complete an unresolved
-namespace. A residual constructor is not a constant namespace. This is a
-static namespace selection, not a runtime value source or an instance operation.
+Without a static output phase, explicit bindings or already determined static
+bindings must supply that identity; omitted namespace inputs do not receive
+inference terms. When static output actions are present, their producer follows
+TPL-12: expression-local inference terms and static output constraints may
+determine omitted producer inputs, and the complete producer must be concrete
+and checked before publishing outputs or selecting constants. Requested constant
+names and ordinary constant receiver types cannot complete an unresolved
+namespace. A residual constructor is not a constant namespace. This is a static
+namespace selection, not a runtime value source or an instance operation.
 
 Static bindings and saved-result bindings are both at depth `n+1`. All static
-bindings precede the first `>>` binding. A nested application on a static
-binding's right-hand side owns its own, deeper binding block as usual. Once
-the first saved-result binding begins, no later static binding can attach to
-that constant read. No runtime input bindings, `>` transfers, selected calls,
-or refusal handler are admitted in a constant-read block. Named and positional
-constant requests retain CONST-03's ordinary saved-read rules.
+inputs and any static output actions precede the first `>>` binding. A nested
+application on a static input's right-hand side owns its own, deeper binding
+block as usual. Once the first saved-result binding begins, no later static
+binding can attach to that constant read. No runtime input bindings, ordinary
+`>` transfers, selected calls or refusal handler are admitted in a constant-read
+block. Static `...result > ...receiver` and `... > ...receiver` have distinct
+source forms from those ordinary transfers. The static application's mode follows
+TPL-12; named and positional constant requests independently retain CONST-03's
+ordinary saved-read rules.
 
 **Examples: specification fragments, not implementation claims.** Assume the
 enclosing interface declares Type parameter `...element type`, its substitution
@@ -754,6 +860,15 @@ There is no inline static application inside such a source, and
 `...element type.zero` does not mean the `zero` constant of `...element type`.
 
 ### Binding form and order
+
+Static input/output bindings use the separate mode and interface positions in
+[TPL-12](language/static-results.md#tpl-12): one application uses named labels
+throughout or bare `...` throughout, inputs precede outputs, and input/output
+counters are independent. Named labels always require operands; only positional
+static bindings admit a skip. The two counters follow the actual constructor's
+residual input order and explicit static-output declaration order. A nested
+static expression has its own mode and counters. Resolving those interfaces is
+a semantic operation, not a different parse for different constructor bindings.
 
 One operation uses either named or positional ordinary bindings across both
 inputs and outputs. Input/output counters are independent and follow interface

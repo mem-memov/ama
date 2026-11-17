@@ -3160,6 +3160,77 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   this specification-only task. Pre-existing unfinished positional-proposal
   work-log changes are preserved outside this task's commit.
 
+- [x] **T162 — Design positional static arguments and returned type bindings.**
+  Status: complete; specification/documentation only. Prerequisites: T157,
+  T159, T160 and T161; T163 supplies the finite-creation baseline. Explicit
+  authorization on 2026-11-17 covers static Type/Template results and positional
+  input/output bindings with skips. The user selected textual static-output
+  order in `@>`, immutable receiver aliases visible from their receiver onward
+  through the module, and complete producers before static result publication.
+  Decisions and their conversation sources are retained in
+  [AMB-009](AMBIGUITIES.md#amb-009)/[AMB-010](AMBIGUITIES.md#amb-010).
+  Boundary: canonical static inputs/results, structural inference, scope,
+  identity, grammar, related chapter/implementation guidance, acceptance and
+  task/decision records. No compiler, native, fixture, numeric-static-parameter
+  or dependent-type implementation is included.
+  Plan: (1) record the actual decisions; (2) reconcile named/positional views,
+  skips, categories, output definitions and alias scope; (3) update readable
+  canonical rules, rationale and examples; (4) independently review, verify
+  documentation, archive and commit. Acceptance requires deterministic original
+  interface identities, exact category/equality checks, no heuristic type or
+  origin search, independent runtime/static positions and complete producer
+  closure while preserving returned constructor residuals.
+  Step 1 result: AMB-009's output sequence and receiver scope are resolved.
+  Composition review exposed a separate omitted-producer-input boundary rather
+  than guessing it. Work paused for AMB-010; the user explicitly selected full
+  producer determination, allowing exact result constraints to infer omitted
+  inputs and rejecting any that remain unknown, including unused inputs.
+  Step 2 result: [TPL-12](spec/language/static-results.md#tpl-12) owns the new
+  static-result chapter. Two-line results define Type/Template values; input
+  formal signatures use indentation without a hanging `<`. Positional inputs
+  normalize through the actual origin's original residual order, positional
+  outputs use explicit static `@>` declaration order, and named/positional
+  modes, independent counters, skips and arity are exact. Output phases create
+  deterministic per-expression producer inference terms; no-output contexts
+  retain their prior partial/field/namespace rules. Declared output binders and
+  source-ordered receiver aliases remain distinct from free owner parameters.
+  Explicit interface binders are collected first; lexical alias classification
+  prevents later interface uses from creating hidden owner parameters, while
+  genuine owner formals retain whole-interface visibility.
+  Step 3 result: TPL-02/05/07/08/10/11 and the EBNF are reconciled. Examples
+  show concrete dictionary Types, returned key-bound families, equivalent named
+  and positional applications, skips, subsequent composition and output-driven
+  inference. Rationale explains static library interfaces and information lost
+  by noninjective outputs. Exact result identity, captures, complete checking,
+  unselected outputs and source/projection provenance remain explicit. Active
+  definition and known-origin creation paths are guarded before expansion,
+  including during inference and cache reuse, rather than after generating an
+  unbounded chain. The target acceptance matrix preserves its previous 126
+  areas and adds 14 static-result partitions: 140 total, 32 about templates.
+  Step 4 result: independent semantic and grammar reviews found no remaining
+  blocker. They caught and corrected pre-expansion guard ordering, closed-Type
+  producer provenance, interface receiver classification and a hypothetical
+  grammar example's conflicting producer name. Verification from repository
+  root: `python3 /tmp/ama-t162-doc-check.py` passes for 204 maintained Markdown
+  files and their local destinations, 213 uniquely indexed canonical rules,
+  108 closed EBNF nonterminals at column 30, example spacing and 32 template
+  acceptance areas. A separate exact graph/matrix audit confirms all 108
+  productions are reachable and all 140 acceptance-area names are unique.
+  These are temporary independent document audits, not shipped compiler tests.
+  `git diff --check` and `make docs-complete` pass (2335 ready maintained inputs,
+  zero explicit debt). Initial `make docs` exits 0 with Doxygen 1.11.0,
+  Python 3.14.4 and markdown-it-py 3.0.0: 1749 maintained file pages, 6703
+  documented interfaces, 415 checked canonical/referenced destinations and
+  5526 generated pages. The archive/queue and final canonical refinements are
+  included in a final successful audit and Doxygen regeneration before commit;
+  generated output remains unversioned. `make conformance-check` exits 2 with
+  "specification changed; conformance review is required", as expected for
+  evidence predating these language changes. No implementation fingerprints are
+  refreshed and no template support is claimed. Compiler/native/test code was
+  neither analyzed nor changed; functional suites were not rerun for this
+  specification-only task. T158 retains AMB-006 through AMB-008; their list,
+  native/export and naming decisions remain outside this completed task.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

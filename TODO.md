@@ -73,7 +73,9 @@ An implementation task, including one in this queue, is not permission to amend
   dependent constants/explicit namespaces. Questions and alternatives
   are indexed in [AMBIGUITIES.md](AMBIGUITIES.md#open-template-design-questions):
   AMB-003 is resolved by T159; T160/T161 settle AMB-004.
-  T163 resolves AMB-005's specialization-creation boundary. AMB-006 through
+  T163 resolves AMB-005's specialization-creation boundary. T162 resolves
+  AMB-009/AMB-010 through static results, positional bindings, immutable aliases
+  and complete producer inference under [TPL-12](spec/language/static-results.md#tpl-12). AMB-006 through
   AMB-008 still cover the concrete list foundation interface/primitives,
   native/export forms and hyphen spelling. Named static
   application is available for a future list bridge, but its actual interface
@@ -90,7 +92,8 @@ An implementation task, including one in this queue, is not permission to amend
   The user also clarified the polygon's purpose: automatic development and
   improvement of Ama algorithms from textual descriptions and examples in other
   languages; the base data model remains undecided. Other canonical changes
-  still need their own explicit authorization. No jobs are active.
+  still need their own explicit authorization. No jobs are active. T162's archived acceptance is in [DONE.md](DONE.md);
+  the remaining gates do not undo its settled static result rules.
   Acceptance: record user decisions and authorized canonical/EBNF corrections;
   derive the implementation roadmap and named positive/negative acceptance cases
   from those settled contracts. Preserve the previous conformance matrix as

@@ -26,7 +26,8 @@ accepted Ama syntax. No answer is inferred from a request to document a question
 
 The constructor/signature and partial-binding notation in [AMB-003](#amb-003),
 inference, scope and constants in [AMB-004](#amb-004), and finite composition in
-[AMB-005](#amb-005) are preserved below as resolved decisions, not open grammar
+[AMB-005](#amb-005), and static outputs, aliases and complete producers in
+[AMB-009](#amb-009)/[AMB-010](#amb-010) are preserved below as resolved decisions, not open grammar
 gates. These decisions do not themselves
 establish implementation support.
 
@@ -545,3 +546,155 @@ Each entry must contain:
 - **Resume evidence:** Update SRC-03 and EBNF together, then cover Unicode words,
   spaces, all selected hyphen positions, concrete paths, placeholders and physical
   path collisions without changing module identity through sanitization.
+
+<a id="amb-009"></a>
+
+## AMB-009 — Positional static outputs and destination-name scope
+
+- **Status:** Resolved.
+- **Task:** T162. The user requests positional type-constructor arguments,
+  explicit static Type/Template results, positional returned types and skips.
+  Static results, their source-declaration output order, and receiver aliases
+  are specified and verified by the specification-only T162 task.
+- **Requirements:** [TPL-01](spec/language/templates.md#tpl-01),
+  [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-08](spec/language/templates.md#tpl-08),
+  [TPL-12](spec/language/static-results.md#tpl-12), and
+  [static grammar](spec/grammar.md#static-template-syntax-and-design-boundaries).
+  Before T162, arguments bound only by names and there was no explicit static
+  output list or receiver-alias rule. The canonical definitions now distinguish
+  producer formals, defined static outputs, and immutable received aliases.
+- **Minimal example:** The user's requested source form is:
+
+  ```text
+  .mod
+   ... < ..integer
+   ... >
+   ... > ...my key type
+  ```
+
+  For comparison, assume `.mod` has a runtime input `key&` typed `...key type`
+  in `@<`, and a runtime output `value` typed `...value type` in `@>`.
+  Selecting the first static output could mean the type of `value`, the first
+  constructor-formal binding (`...key type`), or the complete applied `.mod`
+  type. Those alternatives exposed the original question; T162 selects only
+  the separately declared static outputs, as specified by TPL-12.
+- **Original scope question:** If a static output receiver name is not already
+  declared, does it introduce an immutable local Type/Template alias, visible
+  from that receiver onward through the containing module, without introducing
+  a free parameter of that module? If the name already resolves, does the
+  output instead impose exact category/type or constructor equality? This
+  policy requires a static-name rule separate from NAME-06's runtime
+  declarations and TPL-02's free parameter introductions. The alternative was
+  to require every receiver to name an already declared static parameter or
+  alias; the user selected the new-alias policy below.
+- **Possible answers and consequences:** Reading ordinary result types gives
+  separate input/output views corresponding to module interfaces; extracting
+  constructor bindings is static introspection over a formal sequence; receiving
+  the whole applied type gives one output. A new body-local alias needs a scope
+  rule distinct from introduction of an owner Type parameter. An existing-only
+  binding keeps current scope but requires the name to be introduced elsewhere.
+  None can be selected by a heuristic or inferred solely from the arrow tokens.
+- **User decision:** On 2026-11-17 the user explicitly said: "позиция определяется
+  также как и при позиционных вызоывах". This settles use of the ordinary
+  positional-call model for order/advancement; it does not yet identify the
+  static output sequence or the scope of a new destination name. In the
+  subsequent clarification the user answered: "Заглушка объявляется в `@>`
+  вызываемого модуля и делает шаблоном его." This concerns the producer's
+  interface Type introduction, already supported by TPL-02, rather than a new
+  free parameter first appearing in a consumer's body. It does not select the
+  scope of a fresh static receiver name. The user then requested a syntax
+  proposal for both concrete-Type and residual-Template results and examples
+  of useful algorithms. The subsequent design discussion proposed two-line
+  static results in `@>`: the first line names the result, and the second is
+  its defining static expression, with named substitutions one level deeper.
+  Applying all remaining parameters yields Type; a residual signature yields
+  Template. On 2026-11-17 the user approved adding these static returns to the
+  specification and explicitly stated: "Для позиционного возврата порядок
+  статических выходов также, как и со входами, - по порядку в коде в секции
+  `@>`." Thus the output sequence comprises explicit static result declarations
+  in their source order, excluding runtime result fields. Earlier proposals
+  did not define the fresh receiver's exact visibility. The separate explicit
+  reply on 2026-11-17 selected "Да, новое имя создаёт псевдоним по описанному
+  правилу (рекомендуется)" in response to the complete proposed rule: a new
+  immutable Type/Template alias is visible from its receiver onward through the
+  containing module, including nested blocks; it introduces no free owner
+  parameter; an existing name requires exact type/constructor and category
+  equality. This resolves the final behavioral question.
+- **Specification authorization:** The request "Добавь возможность позиционной
+  передачи типа в конструктор типа" and positional type returns authorizes that
+  specific extension after its meaning is clarified. The latest instruction
+  explicitly authorizes specifying static Type/Template returns and their
+  source-ordered positional outputs. The separate request to
+  discuss static natural-number parameters does not adopt a numeric category,
+  syntax, type-level arithmetic or unchecked indexing.
+- **Resolution evidence:** T162 adds the canonical TPL-12 chapter, aligned
+  EBNF, reconciled template/scope/identity rules, rationale, complete examples
+  and acceptance partitions. Static positions, skip/mode rules and aliases are
+  explicit; all 213 canonical rules and 108 grammar productions pass document
+  checks. Independent semantic review and Doxygen generation pass. See
+  [DONE.md](DONE.md) for task evidence. Compiler implementation remains outside
+  this specification task; no implementation fingerprints were refreshed.
+
+<a id="amb-010"></a>
+
+## AMB-010 — Closing the producer before reading static results
+
+- **Status:** Resolved.
+- **Task:** T162. The receiver-scope decision in AMB-009 is recorded. Its
+  specification drafts exposed the distinct specialization boundary resolved
+  by the explicit answer below and the TPL-12 producer-closure rule.
+- **Requirements:** [TPL-05](spec/language/templates.md#tpl-05),
+  [TPL-06](spec/language/templates.md#tpl-06),
+  [TPL-08](spec/language/templates.md#tpl-08),
+  [TPL-10](spec/language/templates.md#tpl-10), and
+  [TPL-11](spec/language/templates.md#tpl-11). Partial static arguments preserve
+  residual bound formals, whereas runtime field roots infer omitted bindings.
+  Concrete specialization identity retains every original binding, even unused
+  ones. New static result projection needs a rule selecting its producer context.
+- **Minimal example:** Under the approved explicit-formal/result notation,
+  `.factory` declares an input `...unused type` and a static result defined as
+  `..integer`. A consumer writes:
+
+  ```text
+  .factory
+   ... > ...integer alias
+  ```
+
+  The selected output is known, but no evidence determines the producer's
+  `...unused type`. Separately, a producer with every own input fixed can return
+  `.dictionary` with only its key bound; that returned Template intentionally
+  retains its own value-type formal.
+- **Question:** Does every explicit static-result read require a fully
+  determined producer specialization, allowing omitted producer inputs to be
+  inferred from exact result constraints but rejecting any that remain unknown?
+  The returned Template could still retain its own declared residual parameters.
+- **Possible answers and consequences:**
+  1. **Require a determined producer (recommended):** an explicit output phase
+     requests a checked specialization in every expression context. Omitted
+     producer inputs receive scoped inference variables; all must close before
+     publication. This reuses complete identities, ordinary checking and
+     concrete-owner creation edges. Without an output phase, ordinary partial
+     application is unchanged. The example fails as underdetermined.
+  2. **Permit projection from an open producer:** the example can succeed if
+     the selected output is independent of unresolved inputs. Dependent outputs,
+     symbolic-owner creation provenance, unused-output validation and captured
+     residuals need additional rules before implementation.
+- **User decision:** On 2026-11-17 the user explicitly selected "Да,
+  производитель должен быть полностью определён (рекомендуется)" in response
+  to the question above, including inference of omitted producer inputs and
+  permission for a returned Template to retain its own residual parameters.
+  The selected contract is alternative 1; alternative 2 is not adopted.
+- **Specification authorization:** The current user instruction authorizes
+  static results and positional bindings. The chosen producer-closing behavior
+  will be incorporated within that authorized scope once explicitly selected.
+- **Resolution evidence:** [TPL-12](spec/language/static-results.md#tpl-12)
+  requires complete producers in every output-phase context, with deterministic
+  inference terms for omitted inputs and exact structural result equations.
+  Returned Template residuals remain separate. TPL-08/TPL-10/TPL-11, the grammar
+  and acceptance matrix cover unused inputs, skips, noninvertible outputs,
+  nested projections and checking creation ancestry before expansion. Document
+  checks, independent semantic review and Doxygen generation pass under T162;
+  [DONE.md](DONE.md) retains the evidence. No compiler implementation or
+  conformance claim is part of this task.

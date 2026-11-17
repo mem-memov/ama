@@ -18,9 +18,12 @@ traversal. The examples introduce the model before the detailed rules.
 
 The [static-template chapter](language/templates.md) explains static inference
 from typed connections, Type parameters introduced in inputs or results, named
-constructor signatures, static application and partial composition. Constructor
-patterns, named bindings, bidirectional type constraints and explicit constant
-namespaces have agreed rules; their examples explain how those forms fit together.
+constructor signatures, static application and partial composition. The
+[static-results chapter](language/static-results.md) explains explicit Type and
+Template inputs, two-line static output declarations, positional bindings and
+immutable result aliases. Constructor patterns, static bindings, bidirectional
+type constraints and explicit constant namespaces have agreed rules; their
+examples explain how those forms fit together.
 The [finite-composition rule](language/templates.md#tpl-11) permits explicitly
 nested uses of the same template while rejecting recursive specialization
 creation through definitions. It distinguishes passing an existing type from
@@ -49,7 +52,8 @@ program is well typed and what happens when it executes.
 | [Modules and state](language/modules-and-state.md) | Types versus instances, ownership, interface state, and a complete example |
 | [Source files, names, and layout](language/source-and-names.md) | Module paths, international names, exact spaces, comments, and sections |
 | [Declarations and scope](language/declarations.md) | Explicit and inferred declarations, initialization, constants, and visibility |
-| [Static module templates](language/templates.md) | Scoped interface Type parameters, typed-connection inference, named constructors, partial composition, specialization identity, finite composition, dependent shared constants and explicit design gates |
+| [Static module templates](language/templates.md) | Scoped interface Type parameters, typed-connection inference, constructors, partial composition, specialization identity, finite composition, dependent shared constants and explicit design gates |
+| [Static inputs and returned types](language/static-results.md) | Explicit Type/Template formals, static output expressions, named and positional application, projection, immutable aliases, and compile-time evaluation boundaries |
 | [Values and references](language/values-and-references.md) | Independent copies, checked references, identity, and resource lifetime |
 | [Calls and results](language/calls-and-results.md) | Entry, resume, retained reads, method chains, and refusal handlers |
 | [Control flow](language/control-flow.md) | Branches, condition loops, repeat boundaries, and early completion |

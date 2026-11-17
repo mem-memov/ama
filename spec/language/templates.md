@@ -14,6 +14,7 @@ In this chapter:
 - [Checking a specialization before execution](#checking-a-specialization-before-execution)
 - [Type parameters and template parameters](#type-parameters-and-template-parameters)
 - [Partial substitution and composition](#partial-substitution-and-composition)
+- [Static result interfaces](#static-result-interfaces)
 - [Templates and Ama's own lists](#templates-and-amas-own-lists)
 - [Compiler obligations and design gates](#compiler-obligations-and-design-gates)
 - [Finite composition and specialization creation](#finite-composition-and-specialization-creation)
@@ -34,7 +35,7 @@ own a field of another template's type. That field has its own inferred static
 bindings and its own runtime state.
 
 **Design status.** The placeholder spelling, ordinary-call model, nested-field
-model, named constructor signatures and partial-application forms below record
+model, constructor signatures and partial-application forms below record
 the agreed design. The examples distinguish a template definition in a source
 file, a constructor used during compilation, and a concrete runtime instance. The
 [open-question index](../../AMBIGUITIES.md#open-template-design-questions) is the
@@ -43,6 +44,10 @@ implementation bridge. Finite nested composition and the prohibition on recursiv
 specialization creation follow [TPL-11](#tpl-11). Type evidence and result
 Type introductions are settled below. Parameter-dependent shared constants and
 explicit type namespaces follow [CONST-03/CONST-06](declarations.md#const-06).
+Static Type/Template results, source-ordered positional interfaces and immutable
+receiver aliases follow [TPL-12](static-results.md#tpl-12). An explicit static
+output phase requires a completely determined producer while permitting its
+returned constructor to retain its own residual parameters.
 This chapter does not imply that the compiler implements templates. Do not
 invent source forms or implement a pending case by guessing an answer. The grammar recognizes only
 the source forms explicitly specified in [the grammar](../grammar.md).
@@ -56,7 +61,7 @@ followed by one or more complete name components separated by single adjoining
 dots. Each component follows [SRC-03](source-and-names.md#src-03), including its
 Unicode, underscore and single-space rules. There is no terminating dot.
 
-The whole spelling is one parameter name. In `...data.element type`, neither
+The whole spelling is one static name. In `...data.element type`, neither
 `data` nor `element type` denotes a separately addressable parameter or field.
 The components explain the parameter's purpose. They are not a physical path,
 an ordinary/standard-library root selector, or an instruction to find a file.
@@ -65,13 +70,14 @@ allowed by SRC-03 without an existing directory or module of that name.
 
 Recognize `...` before the concrete-path prefixes `..` and `.`. The prefix
 directly adjoins its first component; internal dots directly adjoin both
-components. Empty components, bare `...`, four leading dots, trailing dots,
-internal doubled dots and spaces adjoining a dot are invalid. Indentation and
+components. Empty components, bare `...` as a name, four leading dots, trailing
+dots, internal doubled dots and spaces adjoining a dot are invalid. Bare `...`
+is instead permitted solely as TPL-12's positional static-binding marker. Indentation and
 the separator outside an operand remain outside the placeholder name.
 
 A placeholder spelling is permitted only in the static positions defined here:
-type expressions, static formal/signature declarations, named static binding
-labels and the explicit constant namespace in
+type expressions, static formal/signature declarations, static result names,
+receiver aliases, static binding labels and the explicit constant namespace in
 [CONST-03](declarations.md#const-03). It is not a value source, runtime variable,
 entry/resume target, index, literal, or dotted member-selection syntax. In particular,
 `...type.field` never means access to `field` through `...type`.
@@ -94,33 +100,47 @@ entry/resume target, index, literal, or dotted member-selection syntax. In parti
 Type parameters. Only `@<` introduces Template parameters and their signatures.
 Collect the whole interface before checking uses, according to these forms:
 
+- A standalone `...name` declaration in `@<` introduces a **Type** parameter
+  when it has no indented signature members. With a nonempty signature it
+  introduces a **Template** parameter under TPL-07. Declare an explicit formal
+  at most once; its later uses may refer to that same parameter.
 - A bare placeholder used as a runtime input or result type introduces a **Type**
-  parameter unless that name is declared as Template in `@<`. A known Template
+  parameter unless that name already denotes a collected static formal or
+  static result, or a visible received alias. A known Template
   in that position is an application. A root input application follows TPL-07's
-  complete-input-pattern rule; a result application follows TPL-08's field rule.
+  complete-input-pattern rule when it has no static output phase; a runtime
+  result application follows TPL-08's field rule. TPL-12 governs applications
+  with an explicit static output phase.
 - A placeholder used as a runtime input's type in `@<` with a nonempty named static
   binding block introduces a **Template** parameter if it has no explicit static
-  formal declaration. Its expected residual signature is exactly those binding
+  formal declaration and does not name a collected static result or visible
+  received alias. Its expected
+  residual signature is exactly those binding
   labels and their expression categories under TPL-07.
-- A standalone `...name <` declaration with a nested signature explicitly
-  introduces a **Template** parameter under TPL-07. Declare it at most once.
 - In the right-hand static expressions of input or result type declarations,
-  a previously undeclared bare placeholder introduces a local **Type** parameter.
+  including a static result's defining expression under TPL-12, a previously
+  undeclared bare placeholder introduces a local **Type** parameter.
   A Template used on
   that side must have its category/signature declared by one of the preceding
   Template introduction forms. Do not infer its category from an actual value.
 
-First collect all Template introductions/signatures from `@<`. Then collect Type
-introductions from both interface sections, excluding foreign binding labels and
-signature entries. A bare occurrence
+First collect explicit static result binders and explicit static formals.
+Classify received aliases and genuine implicit introduction sites under
+TPL-12's source-order rule; an alias's later interface uses cannot introduce
+another owner parameter. Then collect Template-introducing patterns from `@<`
+and their signatures, followed by remaining Type introductions from both interface sections,
+excluding collected result names, foreign binding labels, output receiver
+aliases and signature entries. A bare occurrence
 does not independently redeclare an already known Template. A Type parameter
-cannot be used as an applied constructor. Any repeated Template patterns must
+cannot be used as an applied constructor. Reject duplicate explicit binders or
+formals. Any repeated Template patterns must
 agree on the complete named, recursively kinded residual signature. Each
 signature and parameter category is fixed for the definition, independently of
 which specialization the compiler processes first.
 An unknown applied placeholder first occurring in `@>` does not introduce a
-Template: declare its signature through `@<` first. Only the Type introductions
-above are added to `@>`. A result typed by a concrete template path may introduce
+Template: declare its signature through `@<` first. A static result may derive
+a Template from a known constructor; its result binder is not a new Template
+parameter. A result typed by a concrete template path may introduce
 local Type parameters on the right of its named bindings without introducing a
 local Template head.
 Signatures must be finite. Cyclic inferred signature dependencies that require
@@ -130,17 +150,19 @@ the compiler must detect the cycle rather than expand it indefinitely.
 The left-hand labels of static bindings and the entries inside a static formal's
 signature belong to the selected foreign constructor interface. They introduce
 no parameters in the surrounding module. A bare signature entry declares a Type
-slot of that interface; a nested `...name <` entry declares a Template slot.
+slot of that interface; an entry with its own nested signature declares a Template slot.
 For example, a signature containing `...value type` does not make that name
 available as a Type parameter in the surrounding body.
 
 Repeated local introductions of the same complete name refer to one parameter;
 different complete names introduce independent parameters. Parameter order for
 canonical identity is the order of first local introductions in the interface,
-first `@<`, then `@>`, traversing each declaration's type expression before the
-following declaration. Foreign labels/signature
-entries do not occupy positions in this order. This ordering never establishes
-positional static argument binding.
+first `@<`, then `@>`, visiting an explicit formal at its declaration and
+traversing each declaration's type/defining expression before the following
+declaration. Foreign labels, result binders, receiver aliases and signature
+entries do not occupy positions in this order. TPL-12 uses this original order,
+restricted to actual residual formals, for positional static inputs; static
+outputs have their separate textual `@>` order.
 
 The parameter identity comprises its defining module identity and complete
 placeholder name. Identical spelling in another template introduces a different
@@ -149,13 +171,15 @@ parameter. Physical submodule nesting does not inherit parameters under
 different roles: the variable holds runtime state; its placeholder describes
 the module type of that state.
 
-Static expressions in the Ama body may reuse only local parameters introduced
-through that template's interface. Foreign static binding labels there
+Static expressions in the Ama body may reuse local parameters and static results
+introduced through that template's interface, and visible received aliases
+under TPL-12. Foreign static binding labels there
 still designate the selected constructor's own formals. A new local placeholder
-appearing only in the body is a static error, including in an unreachable
+appearing only as an unbound source in the body is a static error, including in an unreachable
 branch or empty-loop body. Explicit static Template-formal declarations are permitted
-only in `@<`; bare standalone Type declarations are not an additional source form.
-The body cannot add implicit type parameters to its enclosing module. Shared
+only in `@<`; bare Type-formal declarations are likewise input-only. Receiving
+a static alias under TPL-12 does not introduce a free parameter. The body cannot
+add implicit type parameters to its enclosing module. Shared
 `@=` declarations do not introduce type parameters. They may reuse parameters
 collected from the whole interface under
 [CONST-06](declarations.md#const-06), even though the shared section is written
@@ -528,11 +552,17 @@ Equivalent substitutions reached through different nesting or partial-binding
 routes have one specialization identity. Normalize by the original parameter
 identities in their declared order; application order, aliases, path basenames
 and coincidentally identical layouts cannot change or merge that identity.
-Static arguments always bind by name. Permuting distinct named argument bindings
+Static inputs normalize to original formal identities, whether their source
+form is named or positional under TPL-12. Derived static results and receiver
+aliases are not additional producer-key components. Returning a Type preserves
+that Type's own original identity rather than creating a producer-qualified
+wrapper. Permuting distinct named argument bindings
 to an already defined constructor in the same supplying environment preserves
 their meaning and canonical result. Reordering introductions in the definition
 itself may change its declared parameter order under TPL-02; that is not a
-permutation of arguments to an unchanged definition. A Template-valued binding includes
+permutation of arguments to an unchanged definition. Moving a nested expression
+that introduces a received alias across that alias's use is not a permutation
+in the same lexical environment. A Template-valued binding includes
 its constructor origin, fixed bindings and residual signature under TPL-08;
 it cannot be identified by its signature or remaining arity alone.
 Distinct template definitions remain nominally distinct. NAME-01/NAME-02's exact
@@ -590,7 +620,9 @@ through the corresponding interface declarations, and may receive constructors
 through TPL-07's static signature mechanism. A body-inferred receiver does not
 introduce another user-visible parameter of its owner. Empty generic containers
 likewise need determining type constraints; missing runtime elements provide no
-type evidence. Every result has one fixed type per concrete owner specialization.
+type evidence. Every runtime result has one fixed type per concrete owner
+specialization. Static result definitions and concrete producer closure follow
+TPL-12; a returned Template may retain its own residual signature.
 
 ## Type parameters and template parameters
 
@@ -630,29 +662,34 @@ corresponding category and recursively nested signature matches. Extra residual
 formals, missing formals, renamed formals and category differences are errors.
 Prior bindings are not residual formals and are not listed in that signature.
 
-An explicit Template formal occupies its own declaration in `@<`:
+An explicit static formal occupies its own declaration in `@<`. A bare name
+with no indented signature declares Type; a name with a nonempty signature
+declares Template. The distinction is structural and applies recursively:
 
 ```text
-...dictionary family <
+...element type
+
+...dictionary family
  ...key type
  ...value type
 ```
 
-The final `<` is separated from the name by exactly one space. A signature entry
-is indented exactly one level deeper. A bare entry declares a Type slot; an
-entry ending in ` <` declares a Template slot followed by its own deeper,
-nonempty signature. No runtime name, storage suffix, default, literal or ordinary
+There is no trailing `<` on either header. A signature entry is indented exactly
+one level deeper. A bare entry declares a Type slot; an entry with its own
+deeper nonempty signature declares a Template slot. Comments and blank lines
+are layout, not signature entries. No runtime name, storage suffix, default, literal or ordinary
 initializer belongs to this declaration. It allocates no runtime field or
-ordinary input position. Its actual constructor is supplied by a named static
+ordinary input position. Its actual Type or constructor is supplied by a static
 binding on the containing module's type expression, or constrained by an input
 pattern referring to this formal. Missing information is not filled with a
-default constructor.
+default Type or constructor. Explicit static results in `@>` have a required
+second expression line under TPL-12; they do not use this input-formal form.
 
 **Example: a recursive signature fragment in `@<`.**
 
 ```text
-...algorithm family <
- ...container family <
+...algorithm family
+ ...container family
   ...element type
  ...payload type
 ```
@@ -687,7 +724,7 @@ A complete module `.factory` can receive that constructor as a static argument:
 
 ```text
 @<
-...dictionary family <
+...dictionary family
  ...key type
  ...value type
 
@@ -733,7 +770,7 @@ expression categories determine the formal categories. Bare new right-hand
 placeholders introduce Type under TPL-02; a Template on that side needs its own
 declared signature. The category is never inferred by trying the first actual.
 
-At the root of a runtime input type, every residual formal of the constructor
+Without a static output phase, at the root of a runtime input type every residual formal of the constructor
 must be bound explicitly exactly once, including when its head is a concrete
 template path. An explicit prior signature must agree with that complete binding
 set. An omitted residual at this root is an error:
@@ -745,9 +782,12 @@ parameters is a valid fixed-origin input pattern. A bare local Type placeholder
 instead accepts the complete concrete dictionary type as one Type without
 decomposing it or introducing a Template.
 
-The coverage rule concerns the root input type; a nested Template-valued argument
-may remain partial, and shared/body/result declarations may omit residual bindings
-under TPL-08.
+The coverage rule concerns a root input type without an output phase; a nested
+Template-valued argument may remain partial, and shared/body/runtime-result
+declarations may omit residual bindings under TPL-08. A static output phase
+instead invokes TPL-12's uniform producer-inference and closure rule. Implicit
+Template introduction still requires named input-pattern labels; positional
+bindings alone require an already known constructor/signature.
 
 Match such a pattern only against a type with known nominal specialization
 metadata. For a pattern with expected residual signature R matched to a closed
@@ -812,9 +852,10 @@ definition above: that whole spelling is a different name, not qualification.
 ### Category and interface errors
 
 Unknown formal names, duplicate bindings, incompatible categories and unequal
-residual signatures are static errors. There are no positional static bindings,
-blank `<` placeholders, automatic formal renaming, guessed adapters or implicit
-opening of a concrete Type passed where a Template is expected. Constructor
+residual signatures are static errors. TPL-12 defines positional static inputs,
+outputs and skips separately from ordinary runtime `<`/`>` bindings. There is
+no automatic formal renaming, guessed adapter or implicit opening of a concrete
+Type passed where a Template is expected. Constructor
 recovery requires a declared constructor application with an exact signature.
 Ordinary calls keep their existing named/positional value bindings under TPL-03.
 
@@ -827,11 +868,13 @@ on source text. It replaces references to specific formal parameter identities
 in their lexical environment. It preserves caller/callee scope and cannot capture
 an unrelated parameter or variable with the same spelling.
 
-A static expression starts with a concrete module path or a local placeholder.
+A static expression starts with a concrete module path or a visible static name.
 A path resolves to its exact original module definition; a local placeholder
 resolves in the supplying template's scope. An unapplied ordinary module denotes
 a Type; an unapplied template path denotes its constructor. A Type parameter
-denotes a Type, and a Template parameter denotes its bound constructor.
+denotes a Type, and a Template parameter denotes its bound constructor. Static
+results and receiver aliases denote their defined Type or constructor under
+TPL-12. Input application never changes a Type into a Template.
 
 A named static binding has the form `...formal < expression`, with exactly one
 separator on each side of `<`. Its line is indented one level below the expression
@@ -840,7 +883,11 @@ All bindings at one level apply to that level's constructor; deeper bindings
 apply to their immediate right-hand expression, not to a sibling or ancestor.
 The complete left-hand name selects an original residual formal of that
 constructor. The right-hand side resolves in the supplying lexical environment.
-Names used as foreign labels never enter that environment.
+Names used as foreign labels never enter that environment. TPL-12 normalizes
+positional static inputs to the same original formal identities and defines the
+separate static output phase. An expression with any static output binding
+requests a concrete producer, with scoped inference terms for omitted inputs;
+the omission rules below apply when no such phase is present.
 
 On a runtime declaration, this block follows the type line and precedes all
 ordinary runtime initializer sources. Static bindings and initializers are each
@@ -870,16 +917,18 @@ A partial substitution binds a subset of the constructor's residual formals.
 Each supplied expression must have the formal's declared category and, for
 Template, exact expected residual signature. Unknown or repeated names fail.
 A previously fixed formal is no longer residual; rebinding it is an error even
-if the repeated expression would be equal. Applying bindings to a Type is an
-error. Distinct named bindings at one level are simultaneous; their source
-order neither changes scope nor allows one binding's label to define another
-binding's source.
+if the repeated expression would be equal. Applying input bindings to a Type is an
+error. Distinct named bindings at one level are simultaneous in their supplying
+lexical environment; a binding's foreign label cannot define another binding's
+source. Nested static output receivers have their explicit lexical visibility
+under TPL-12; moving a declaration across a use can change that environment.
 
 Normalize the result as the original constructor identity, its map of fixed
 original formals to normalized static expressions, and the remaining original
 formal signature. Recursively normalize supplied constructors and captured
 dependencies. Store/compare formals in original declaration order for canonical
-identity; this is not positional source binding. Repeated aliases to the same
+identity. TPL-12's positional normalization uses that same original order,
+restricted to actual residuals. Repeated aliases to the same
 local parameter preserve its identity. No binding is dropped because generated
 code does not use it. If residual formals remain, the result is Template; if none
 remain, it is Type, possibly still symbolically dependent on surrounding
@@ -895,14 +944,15 @@ constructor additionally requires TPL-07's signature contract.
 
 ### Partial arguments and inferred field types
 
-In a static argument expression, omitted residuals stay bound formals of the
+In a static argument or static result expression without an output phase,
+omitted residuals stay bound formals of the
 resulting constructor. They are available for later application or forwarding;
 the compiler does not fill them with fresh runtime types just because the
 expression occurs within a field declaration. A fully applied Type cannot
 satisfy a Template formal, and an open Template cannot satisfy a Type formal.
 
-At the root of a shared-constant, body-field or result declaration's type
-expression, omitted residuals instead receive fresh inference variables of their
+At the root of a shared-constant, body-field or runtime-result declaration's type
+expression without an output phase, omitted residuals instead receive fresh inference variables of their
 declared categories and signatures. Identify each variable by its concrete owner specialization, lexical
 field declaration and residual formal identity. Different fields get independent
 variables; repeated calls through the same field constrain the same variables.
@@ -913,17 +963,21 @@ This is an inference operation of the compiler, not partial runtime storage or
 late selection by the first executed call. A named Type parameter introduced in
 `@>` is a parameter of its owner; an omitted residual here remains only a field
 inference variable and cannot implicitly parameterize that owner. Root input
-patterns use TPL-07's explicit-coverage rule instead. A shared constant's inferred
+patterns without an output phase use TPL-07's explicit-coverage rule instead. A shared constant's inferred
 type still obeys [CONST-06](declarations.md#const-06); no runtime input supplies
 its value. Constant-read namespace expressions are static selections, not field
-declarations, and do not receive these generated inference variables.
+declarations, and without an output phase do not receive these generated
+inference variables. TPL-12 explicitly supplies producer inference terms when
+any expression contains static output bindings, including a namespace or
+otherwise partial argument expression. A returned constructor's own residual
+signature remains distinct from those producer-input inference terms.
 
 **Example: complete `.typed consumer`.** Assume the supplied family has the
 dictionary interface from TPL-07, with a fixed key type and only value type open:
 
 ```text
 @<
-...received family <
+...received family
  ...value type
 
 sample&
@@ -1019,7 +1073,8 @@ application. Static maps are attached to declaration type expressions or explici
 constant namespaces under [CONST-03](declarations.md#const-03), never to
 an ordinary `!`/`%` operation's argument sequence. An open constructor cannot be
 an Ama runtime result, mutable field, checked reference or dynamically replaceable
-type. It may be passed only through the static Template forms defined here.
+type. It may be passed or returned through the static Template forms defined
+here and in TPL-12.
 
 ### Invalid applications
 
@@ -1037,9 +1092,19 @@ type. It may be passed only through the static Template forms defined here.
 | Use a signature leaf as a surrounding local Type without introducing it | Out-of-scope placeholder |
 | Introduce a new right-hand placeholder only in the body | Invalid local introduction under TPL-02 |
 | Put a static binding after an ordinary initializer | Invalid ordering |
-| Write a positional or operandless binding inside a static application block | Invalid static syntax; the separate formal-declaration marker has its own signature |
+| Omit an operand of a named static binding | Invalid static syntax; only positional `... <`/`... >` admit skips |
 | Infer signatures where F contains G's signature and G contains F's | Infinite signature dependency; static error before expansion |
 | Leave a field's residual type with no determining constraints | Underdetermined runtime type; no default type is selected |
+
+## Static result interfaces
+
+[TPL-12](static-results.md#tpl-12) defines two-line static results, their
+source-ordered output interface, named/positional projections and immutable
+receiver aliases. A completely determined producer can return either a concrete
+Type or a Template with its own residual signature. Static outputs add exact
+constraints without executing bodies or creating runtime producer instances.
+The chapter also states how output definitions interact with nominal identity,
+source visibility, constant namespaces and specialization-creation provenance.
 
 ## Templates and Ama's own lists
 
@@ -1123,15 +1188,18 @@ scope:
    and nested signatures. This signature must equal F's declared signature.
    Equate each removed B binding with its corresponding explicit right-hand
    expression. Preserve every other fixed binding and every existing residual.
-   P consists of source-written named bindings and, at the root of a shared,
-   body-field or result declaration's type expression, TPL-08's generated
-   bindings for omitted residuals.
+   P consists of source-written bindings normalized to original names and,
+   at a shared/body/runtime-result field root, TPL-08's generated bindings for
+   omitted residuals. An expression with a static output phase additionally
+   uses TPL-12's per-expression inferred producer bindings.
    Generated labels come from the already known signature and use that field's
    deterministic inference-variable identities; they are not guessed formals.
-   No generated binding is added inside a partial static Template argument.
+   Without a static output phase, no generated binding is added inside a
+   partial static Template argument or static result definition.
    These symbols describe the algorithm, not additional Ama source syntax.
 4. In the closed runtime-input case, S is empty, and TPL-07 requires P to cover
-   F's complete signature. In a nested Template-valued argument, S may be
+   F's complete signature when that input pattern has no static output phase.
+   In a nested Template-valued argument without an output phase, S may be
    nonempty: an already partial actual remains partial. A requested P formal
    that is not fixed in the actual cannot be reconstructed by inventing a
    binding; that decomposition fails.
@@ -1145,6 +1213,13 @@ scope:
    [CONST-03/CONST-06](declarations.md#const-06): resolve the concrete namespace
    from independent static information before selecting its declared members.
    Member-name or capability search is not an additional constraint operation.
+6. For a static output phase, apply TPL-12: use independently known nominal
+   producer origins, expand their declared static result expressions with
+   scoped inputs, and add exact output-receiver equations. Check definition
+   cycles and TPL-11 creation paths before following each expansion/application
+   edge. An output transformation need not be injective; never infer discarded
+   inputs or an unknown origin by inventing an inverse. All producer inputs
+   must uniquely close before any output is published.
 
 The recovery step solves a declared constructor application under TPL-07 in any
 of TPL-03's typed connections. It does not authorize reopening fixed formals
@@ -1285,8 +1360,12 @@ identity rather than an invented template parameter or default specialization.
 
 For each required concrete owner, record an edge to the concrete specialization
 required by each constructor application originating in that owner's instantiated
-definition. Include applications in shared declarations, input/result types,
-defaults, body declarations and explicit constant namespaces. Include applications
+definition. Include applications in shared declarations, input/runtime-result
+types, static result definitions and projections under TPL-12, defaults, body
+declarations and explicit constant namespaces. A projection's concrete producer
+is required even when its ordinary application Type is discarded. Returning a
+supplied Type adds no application edge; a later application of a returned
+Template retains its actual original constructor and captures. Include applications
 inside other applications' static arguments, and applications introduced or
 completed by the permitted inference rules. Keep the originating definition and
 application source locations on the edge. Runtime branch reachability does not
@@ -1303,6 +1382,8 @@ Merely using a supplied concrete Type, or decomposing its known nominal metadata
 under TPL-10, creates no application edge. Validate that Type and its required
 definition independently; this is not permission to leave an argument type
 unchecked. A Type parameter cannot be applied as a constructor under TPL-02.
+An explicit static output phase is the required producer application defined
+by TPL-12, rather than this plain reuse of supplied nominal metadata.
 
 For a Template parameter, use the actual original constructor and its fixed
 bindings, not the formal's name or signature alone. A partial constructor remains

@@ -181,8 +181,9 @@ an internal dot. Empty components, internal doubled dots, three or more leading
 dots, a bare root marker, and a trailing dot are invalid in concrete module paths.
 Exactly three leading dots instead introduce a placeholder spelling in a permitted
 static position under [TPL-01](templates.md#tpl-01), including type expressions,
-static formal/signature names and static binding labels, never a filesystem root. Its complete
-descriptive name needs no corresponding file or directory. Four leading dots
+static formal/signature names, static result names and aliases, and static
+binding labels under [TPL-12](static-results.md#tpl-12), never a filesystem root.
+Its complete descriptive name needs no corresponding file or directory. Four leading dots
 remain invalid. The dots are structural separators, not name bytes; each
 component's internal spaces are identity.
 Indentation or an operand separator before the root marker is outside the path,
@@ -400,8 +401,8 @@ list source likewise retains its compact suffix, as in `.catalog.item states[]`.
 | Annotation | Meaning |
 |---|---|
 | `@=` | Shared immutable constant declarations |
-| `@<` | Runtime parameter declarations and static Template formals |
-| `@>` | Result declarations |
+| `@<` | Runtime parameter declarations and static Type/Template formals |
+| `@>` | Runtime result declarations and defined static Type/Template results |
 | `@!` | Executable Ama body |
 | `@C` | Native companion implementation |
 
