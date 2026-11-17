@@ -15775,6 +15775,31 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_loads_all_static_expression_positions_without_importing_placeholders_or_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_loads_deep_static_applications_with_one_definition_and_distinct_requests",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_static_expression_closures_and_request_failures_at_every_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -49024,6 +49049,31 @@
         "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
         "command": "make -C tests/unit/tools/relocation/references",
         "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "case": "it_loads_all_static_expression_positions_without_importing_placeholders_or_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_loads_deep_static_applications_with_one_definition_and_distinct_requests",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_static_expression_closures_and_request_failures_at_every_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -62586,6 +62636,31 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_loads_all_static_expression_positions_without_importing_placeholders_or_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_loads_deep_static_applications_with_one_definition_and_distinct_requests",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_static_expression_closures_and_request_failures_at_every_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ],
     "standalone_header_command": [
@@ -125667,6 +125742,92 @@
         "case": "it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
+      }
+    ]
+  },
+  "src/project/dependencies/discover/expressions.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Extract concrete source dependencies from complete structural type expressions.",
+    "tests": [
+      {
+        "case": "it_loads_all_static_expression_positions_without_importing_placeholders_or_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_loads_deep_static_applications_with_one_definition_and_distinct_requests",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_static_expression_closures_and_request_failures_at_every_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/static/closure.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Compose static expressions with exact roots, source cycles and native dependency ownership.",
+    "tests": [
+      {
+        "case": "it_loads_all_static_expression_positions_without_importing_placeholders_or_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/static/depth.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Exercise real deeply nested static source expressions through the closure loader.",
+    "tests": [
+      {
+        "case": "it_loads_deep_static_applications_with_one_definition_and_distinct_requests",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/static/failures.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Fail every allocation in static closure construction and its actual error paths.",
+    "tests": [
+      {
+        "case": "it_unwinds_static_expression_closures_and_request_failures_at_every_allocation",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/static/expressions.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Check exact concrete dependency extraction independently of parsing and loading.",
+    "tests": [
+      {
+        "case": "it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/static/diagnostics.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Check exact nested-static requester diagnostics without cross-family fallback.",
+    "tests": [
+      {
+        "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   }

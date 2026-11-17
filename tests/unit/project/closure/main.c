@@ -8,6 +8,11 @@
 #include "../common.c"
 #include "support/identity.c"
 #include "support/diagnostics.c"
+#include "support/static/expressions.c"
+#include "support/static/closure.c"
+#include "support/static/diagnostics.c"
+#include "support/static/failures.c"
+#include "support/static/depth.c"
 
 /**
  * Write the explicit diamond dependency fixture so shared module identity and requester edges
@@ -359,6 +364,11 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites();
+    it_loads_all_static_expression_positions_without_importing_placeholders_or_parents();
+    it_reports_exact_nested_static_requester_chains_and_root_failures();
+    it_unwinds_static_expression_closures_and_request_failures_at_every_allocation();
+    it_loads_deep_static_applications_with_one_definition_and_distinct_requests();
     it_loads_constants_only_and_empty_analysis_sets_without_an_entry();
     it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents();
     it_unwinds_every_implicit_interface_dependency_allocation_in_success_and_error_paths();

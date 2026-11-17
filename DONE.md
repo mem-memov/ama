@@ -3678,6 +3678,64 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   commit. Reviewed language-conformance fingerprints remain owned by T196;
   full template execution is not claimed by structural parsing. T171 is next.
 
+<a id="t171"></a>
+
+- [x] **T171 — Load template definitions through the exact source registry.**
+  Status: completed 2026-11-18. Input f6f80c0. Record:
+  [static dependency extraction](docs/implementation/project-dependencies.md#static-expression-dependencies-t171).
+  Existing catalog/registry already enforces complete root identities, physical
+  aliases, once-only parsing and finite source cycles. Extend structural path
+  extraction only; do not infer actual types, generate specialization records or
+  change native admission rules. Independent component tests precede real
+  configured-root/diagnostic/failure compositions and final documentation checks.
+  Prerequisites: T170.
+  Rules: [DEP-01](spec/implementation/compiler.md#dep-01),
+  [DEP-02](spec/implementation/compiler.md#dep-02),
+  [DEP-03](spec/implementation/compiler.md#dep-03),
+  [TPL-05](spec/language/templates.md#tpl-05).
+  Boundary: source catalog, project dependency closure and immutable parsed
+  definition registry; virtual specializations are a separate later registry.
+  Steps: (1) trace concrete module-path dependencies in static expression trees;
+  (2) integrate exact loading/origin lookup; (3) compose configured-root loading
+  with the new parser and requester diagnostics.
+  Accept: both root kinds and name+/ storage preserve complete logical identity;
+  atomic placeholders are never filesystem paths. Resolve each required concrete
+  definition once; reject conflicts, missing definitions and aliases exactly.
+  Distinguish source cycles from specialization/ownership cycles; retain original
+  spans and native-companion requirements without fabricating specialization files.
+
+  Results: one explicit-frame expression component collects only concrete
+  MODULE_PATH heads and traverses input children beneath both concrete and
+  placeholder heads. The AST collector composes declaration types, constant
+  namespaces, static result definitions and standalone projections. Atomic
+  formals/signatures/output aliases never become filesystem requests. Existing
+  source-position sorting, exact roots, module registry and native selection
+  remain the admission boundary; no virtual module source file is created.
+  Evidence: [complete step record and proof](docs/implementation/project-dependencies.md#static-expression-dependencies-t171).
+  Five named component/composition cases check independently built expression
+  trees, original repeated spans, null/skips/aliases, all four real source
+  positions, Project/Standard root order and hyphens, physical name+/ storage,
+  unimported draft parents, source cycles and shared AST identities. Missing,
+  draft and invalid nested arguments preserve exact requester chains and never
+  retry another root family; native companions are selected and diagnosed.
+  Real 768-level static syntax produces 769 distinct source requests to one
+  parsed definition. Success, missing and native-error paths survive every
+  actual allocation-failure prefix, with zero counted live allocations.
+  make, complete project/source-catalog/compiler-check/editor suites and check
+  integration pass. The entire closure leaf also passes ASan/UBSan/Werror with
+  the established container LeakSanitizer limitation. Initial fixture failures
+  and corrections are retained in the owner: draft lexical spacing and the
+  previously uncreated .factory source in the T170 semantic-admission scenario.
+  Required behavior/assertions were preserved; no heuristic, spec edit or
+  unresolved semantic interpretation was introduced.
+  docs-complete passes: 2358 ready inputs, zero debt. Doxygen passes: 1771
+  maintained file pages, 6779 interfaces, 417 canonical destinations and 5588
+  pages. Every deep-source link resolves to its canonical rule; code --goto
+  compiler.md:630 returns zero for DEP-03 (no GUI click claim). Final generation
+  rechecks the archived/staged input bytes before this task's separate commit.
+  Conformance fingerprints remain owned by T196; static semantics and generated
+  specialization execution remain the later sprint tasks. T172 is next.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

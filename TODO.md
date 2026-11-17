@@ -146,33 +146,14 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T170 is accepted and archived in
-[DONE.md](DONE.md#t170); final documentation regeneration on archived inputs
-precedes its separate commit. T171 is the next ready task. Functional jobs have
-finished; no ambiguity or specification change is pending.
+Current implementation checkpoint: T171 is accepted and archived in
+[DONE.md](DONE.md#t171); final documentation generation checks archived/staged
+inputs before its separate commit. T172 is next. Functional jobs have finished;
+no ambiguity or specification change is pending.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
-
-<a id="t171"></a>
-
-- [ ] **T171 — Load template definitions through the exact source registry.**
-  Prerequisites: T170.
-  Rules: [DEP-01](spec/implementation/compiler.md#dep-01),
-  [DEP-02](spec/implementation/compiler.md#dep-02),
-  [DEP-03](spec/implementation/compiler.md#dep-03),
-  [TPL-05](spec/language/templates.md#tpl-05).
-  Boundary: source catalog, project dependency closure and immutable parsed
-  definition registry; virtual specializations are a separate later registry.
-  Steps: (1) trace concrete module-path dependencies in static expression trees;
-  (2) integrate exact loading/origin lookup; (3) compose configured-root loading
-  with the new parser and requester diagnostics.
-  Accept: both root kinds and name+/ storage preserve complete logical identity;
-  atomic placeholders are never filesystem paths. Resolve each required concrete
-  definition once; reject conflicts, missing definitions and aliases exactly.
-  Distinguish source cycles from specialization/ownership cycles; retain original
-  spans and native-companion requirements without fabricating specialization files.
 
 <a id="t172"></a>
 

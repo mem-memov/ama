@@ -41,7 +41,7 @@ static bool source_dependency(Project *project, DependencyPaths *paths, const As
  * Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool node_dependencies(Project *project, DependencyPaths *paths, const AstNode *node) {
     if (node->kind == AST_DECLARATION) {
-        if (!project_collect_path(project, paths, node->as.declaration.type->head, NULL)) {
+        if (!project_collect_expression(project, paths, node->as.declaration.type)) {
             return false;
         }
         for (AstInitializer *value = node->as.declaration.first; value != NULL; value = value->next) {
@@ -49,6 +49,10 @@ static bool node_dependencies(Project *project, DependencyPaths *paths, const As
                 return false;
             }
         }
+    } else if (node->kind == AST_STATIC_RESULT) {
+        return project_collect_expression(project, paths, node->as.static_result.expression);
+    } else if (node->kind == AST_STATIC_PROJECTION) {
+        return project_collect_expression(project, paths, node->as.static_projection);
     } else if (node->kind == AST_ASSIGNMENT) {
         return source_dependency(project, paths, node->as.assignment.source);
     } else if (node->kind == AST_CALL) {
@@ -56,7 +60,7 @@ static bool node_dependencies(Project *project, DependencyPaths *paths, const As
             && node->as.call.has_selected && !project_collect_path(project, paths,
                 node->as.call.target->span, "..integer")) { return false; }
         if (node->as.call.mode == AST_CONSTANT_READ
-            && !project_collect_path(project, paths, node->as.call.namespace_expression->head, NULL)) {
+            && !project_collect_expression(project, paths, node->as.call.namespace_expression)) {
             return false;
         }
         for (AstArgument *argument = node->as.call.first; argument != NULL; argument = argument->next) {

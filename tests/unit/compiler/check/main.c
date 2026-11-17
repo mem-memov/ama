@@ -248,6 +248,7 @@ static void it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundar
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
         prepare_project();
         file("generated/project/main", cases[index]);
+        file("generated/project/factory", "@!\n");
         setup_frontend();
         assert(!check_project() && !frontend.valid);
         assert(diagnostic_valid(&frontend.error));

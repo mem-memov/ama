@@ -149,3 +149,120 @@ native selection memoization, foreign/unbuilt inputs, exact companion paths and
 every native-selection allocation failure with atomic publication. Deep body and
 module-chain cases retain explicit frames. Named per-file evidence is registered
 in `documentation/ready.json`.
+
+## Static expression dependencies (T171)
+
+Input f6f80c0, clean tree. T170 supplies immutable source-owned expressions in
+declaration types, constant namespaces, static result definitions and standalone
+projections. The old collector reads only each ordinary declaration/namespace
+head; it can mistake a placeholder for a filesystem path and misses concrete
+nested operands. This task extends discovery, not static semantic resolution.
+
+Contract: traverse one optional structural expression exactly once per owning
+edge. Emit each MODULE_PATH head with its original span. Emit no path for a
+PLACEHOLDER head, formal/signature name or output receiver; nevertheless visit
+all nested input expressions below a placeholder. Preserve duplicate written
+occurrences for the existing stable source-position sort and shared source
+registry. No static substitution, scope guess, fallback root, synthetic file or
+virtual specialization is created. Source/AST views remain borrowed; work and
+request records belong to the project arena. Failure leaves no public valid
+closure and uses the ordinary counted teardown.
+
+Algorithm: keep an explicit pending-expression chain, pop one head and push its
+nonempty owned input children. Each pop processes a unique finite AST owner;
+no output alias supplies another ownership edge. Remaining unvisited owner edges
+strictly decrease when consumed, so traversal terminates without C recursion.
+For e expression/binding records and p concrete heads the new traversal costs
+O(e + p) plus copying/sorting/admission already described above, and O(e + p)
+project arena storage, including frames retained until owner destruction.
+Adding this complete request extraction preserves the existing closure's least
+fixed-point proof; source cycles do not become specialization or layout errors.
+
+Steps: (1) independent expression component tests for placeholder/concrete/nested
+heads and exact paths; (2) compose all four AST expression positions;
+(3) real two-root/name+/source-cycle/diagnostic/native/failure fixtures;
+(4) per-file evidence, whole-consumer regressions, documentation and task commit.
+Current step 1; no active jobs or unresolved semantic questions.
+
+Step 1/2 results: `project_collect_expression` is a separate iterative component.
+A direct independently assembled tree verifies placeholder roots with concrete
+nested inputs, repeated equal spellings with distinct source spans, output aliases,
+input skips and allocation-free null input. The AST collector now calls it from
+declaration types, constant namespaces, static result expressions and standalone
+projections; signature/formal names remain non-filesystem syntax.
+
+Step 3 results: the real closure fixture passes both root orders, exact hyphenated
+Project/Standard names, nested `shelf+/child` without loading its draft parent,
+explicit static result/projection/alias-namespace forms, a source cycle, shared
+source ASTs and required native companions. Each written path retains physical
+source order and its original requesting span. Missing/draft/invalid nested
+arguments preserve the exact two-module requester chain and do not fall back from
+Standard to a same-named Project module. Success, missing and invalid-native
+paths pass every actual allocation-failure prefix with zero live counted owners.
+A real 768-level static expression produces 769 requests to one loaded definition.
+
+Commands already passed: `make -C tests/unit/project/closure`, logs
+`/tmp/ama-t171-expression.log`, `/tmp/ama-t171-closure.log` and
+`/tmp/ama-t171-composed.log`. The first new draft fixture used `unfinished [`;
+SYN-06 correctly rejected its illegal spacing before draft classification.
+Replacing it with lexically valid `unfinished module` exercises the intended
+required-draft partition; the corrected composed run passes. No requirement or
+expected behavior changed to fit the implementation. New files and changed
+interfaces have named per-file evidence in the registry.
+
+Current step 4: settled sources ready for broader project/source/frontend/editor
+regressions, strict sanitizers and final documentation acceptance. No semantic
+ambiguity or spec change is involved; no specialization identity is allocated here.
+
+Broader acceptance checkpoint: `make`, the complete project parent and source
+catalog leaf pass, including existing duplicate/physical-alias/root-family
+checks (`/tmp/ama-t171-regressions.json`). The T170 concrete-boundary frontend
+test now exposes an incomplete fixture: its standalone `.factory` expression
+becomes an actual source dependency under T171, but that scenario never created
+the definition. Add that source to the fixture before asserting the later semantic
+admission failure; keep the loader's new dependency behavior unchanged. Collect
+running editor/integration batch session 90561 and isolated closure ASan/UBSan
+before source edits, then rerun the affected compiler leaf. Sanitizer log:
+`/tmp/ama-t171-sanitized.log`; leak detection uses the established container limit.
+
+Corrected functional acceptance: the frontend scenario explicitly creates its
+`.factory` definition before loading and now reaches the intended concrete-stage
+static admission diagnostic; the entire compiler/check leaf passes
+(`/tmp/ama-t171-frontend-corrected.log`). The first placement of that fixture
+line matched another similar test loop, was caught by the focused check and
+moved to the owning scenario. No production behavior or assertion was weakened.
+
+Final broader commands passed: `make`, `make -C tests/unit/project`,
+`make -C tests/unit/source/module`, `make -C tests/unit/compiler/check`,
+`make -C tests/unit/editor`, `make -C tests/integration/check`. The unchanged
+catalog cases cover root duplication, hardlink/symlink/directory aliases and
+structural native paths; new compositions exercise the same catalog with actual
+static dependencies. No virtual source files are generated or searched.
+
+The complete closure leaf also passes strict ASan/UBSan, including all five new
+component/composition cases, existing graph/ordering cases and allocation-failure
+prefixes (`/tmp/ama-t171-sanitized.log`):
+
+```sh
+ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 \
+make -C tests/unit/project/closure \
+  C_COMPILER_FLAGS='-O1 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L -fsanitize=address,undefined -fno-omit-frame-pointer'
+```
+
+LeakSanitizer has T169's independently reproduced container/ptrace limitation;
+counted ownership cleanup remains asserted. Original spans, exact roots, stable
+physical request order, shared parsed source definitions and finite source cycles
+are established; specialization/layout legality and native template rejection
+remain their later semantic tasks. Functional jobs have finished; complete
+per-file documentation and Doxygen acceptance are next.
+
+T171 documentation acceptance (2026-11-18): `make docs-complete` checks 2358
+ready inputs with zero debt. `make docs` passes all originating-file and actual
+rendered destination gates: 1771 maintained file pages, 6779 interfaces, 417
+canonical destinations and 5588 pages (Doxygen 1.11.0/Python 3.14.4/markdown-it-py
+3.0.0). Deep-source links resolve relative to expressions.c's actual directory;
+`code --goto /home/u/repos/ama/spec/implementation/compiler.md:630` returns zero
+for DEP-03 in the supported source-navigation setup, without a GUI click claim.
+The full task is archived in [DONE](../../DONE.md#t171). Final regeneration checks
+archived/staged maintained bytes before the separate task commit; no spec bytes
+or reviewed conformance fingerprints changed.
