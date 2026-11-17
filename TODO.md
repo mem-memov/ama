@@ -68,9 +68,9 @@ An implementation task, including one in this queue, is not permission to amend
 
 This sprint implements the approved [Stage 11](spec/implementation/plan.md#stage-11-static-templates-with-explicit-design-boundaries).
 The [T167 planning record](DONE.md#t167) preserves its review and acceptance.
-The request on 2026-11-17 authorizes planning this queue. It does not start
-implementation. All T168–T198 tasks and their steps below are planned, not started;
-their completion requires a subsequent implementation request.
+The user authorized sequential implementation on 2026-11-18, including focused
+tests, code documentation, exact algorithms and a separate commit per completed
+task. Specification changes still require their own explicit authorization.
 
 The deliverable is compile-time specialization with exact inference, composition,
 partial constructors, static results and concrete native/source/C-library
@@ -146,31 +146,13 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T168 is the first planned task; no
-implementation step, build or test job has started.
+Current implementation checkpoint: T168 is accepted and archived; T169 is the
+next ready task. No implementation/test jobs active; start its contract and
+record before changing code.
 
 ## Current tasks
 
 ### Phase 0. Establish the implementation boundary
-
-<a id="t168"></a>
-
-- [ ] **T168 — Audit the template delta and assign component ownership.**
-  Prerequisites: T167, T158, T166.
-  Rules: [ARCH-01](spec/implementation/compiler.md#arch-01),
-  [ARCH-06](spec/implementation/compiler.md#arch-06),
-  [TEST-06](spec/implementation/tools-and-conformance.md#test-06) and Stage 11.
-  Boundary: maintained source, native declarations/companions, tests, build/tool
-  consumers and [current contracts](docs/implementation/contracts/README.md).
-  Steps: (1) trace actual stage/API handoffs and compare current rules with old
-  evidence; (2) map retained/adapted/obsolete responsibilities, exact test homes
-  and each sprint acceptance area to its owning task; (3) characterize affected
-  existing behavior through focused tests/probes and reconcile current prose.
-  Accept: every gap has a task owner, narrow interface and real consumer; unchanged
-  support is distinguished from observed failures and unverified behavior.
-  Preserve immutable historical audits; do not delete working code just because
-  templates are absent. Record exact commands, revision and supported assumptions.
-  No binary/build/generated-artifact analysis and no spec edits.
 
 ### Phase 1. Recognize sources and establish interfaces
 

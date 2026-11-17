@@ -3517,6 +3517,48 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   later tasks retain their own implementation authorization and acceptance gates.
 
 
+<a id="t168"></a>
+
+- [x] **T168 — Audit the template delta and assign component ownership.**
+  Completed 2026-11-18; audit and migration ownership only. Input 88f5867.
+  Evidence: [source/API audit](docs/implementation/audit/template-sprint.md).
+  Prerequisites: T167, T158, T166.
+  Rules: [ARCH-01](spec/implementation/compiler.md#arch-01),
+  [ARCH-06](spec/implementation/compiler.md#arch-06),
+  [TEST-06](spec/implementation/tools-and-conformance.md#test-06) and Stage 11.
+  Boundary: maintained source, native declarations/companions, tests, build/tool
+  consumers and [current contracts](docs/implementation/contracts/README.md).
+  Steps: (1) trace actual stage/API handoffs and compare current rules with old
+  evidence; (2) map retained/adapted/obsolete responsibilities, exact test homes
+  and each sprint acceptance area to its owning task; (3) characterize affected
+  existing behavior through focused tests/probes and reconcile current prose.
+  Accept: every gap has a task owner, narrow interface and real consumer; unchanged
+  support is distinguished from observed failures and unverified behavior.
+  Preserve immutable historical audits; do not delete working code just because
+  templates are absent. Record exact commands, revision and supported assumptions.
+  No binary/build/generated-artifact analysis and no spec edits.
+
+  Actual result: concrete-only AST/semantic/identity assumptions traced to
+  production interfaces; all T169–T198 responsibilities have component and real
+  consumer test homes. Immutable source ownership, pinned Unicode, configured
+  roots, ordinary lifecycle/IR/ABI and tool transaction contracts are retained.
+  No code is obsolete merely because it lacks template support. Corrected the
+  current AST guide's stale missing-feature paragraph; historical audits unchanged.
+  Verification: make and fourteen focused leaves passed (twelve unit, two actual
+  CLI/parser integration); exact commands and input partitions are in the audit.
+  Independent controls accept ordinary/multiword names; valid hyphens, a typed
+  template call and concrete static results expose recognition gaps. The first
+  template probe mixed named/positional runtime bindings and correctly failed;
+  the corrected named fixture reaches the placeholder error. make conformance-check
+  returned expected exit 2 for stale pre-template evidence; no fingerprints refreshed.
+  Document audit checks 205 Markdown documents, canonical/index links, 214 rules,
+  108 unchanged EBNF productions and 37 template areas; git diff --check passes.
+  make docs-complete passed with 2335 ready inputs and zero debt; make docs passed
+  with 1749 maintained file pages, 6703 interfaces and 417 checked destinations.
+  Final generation after archival rechecks final maintained inputs before commit.
+  No compiler/test/native code or spec changes, full-suite/sanitizer or template
+  implementation claim. This commit closes T168; T169 is the next ready task.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

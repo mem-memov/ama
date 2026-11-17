@@ -1,8 +1,8 @@
 # Source AST and structural parser
 
 Boundary: `src/ast/` and `src/parser/{access,declarations,body,calls,module}/`.
-Retains structural machinery for COMP-01/02, TYPE-01/02, source/access syntax,
-sections and call/control syntax; current forms still require T022–T028. Full type, declaration-order, capability and ownership
+Retains structural machinery for COMP-01/02, TYPE-01/02, ordinary source/access
+syntax, sections and call/control syntax. Full type, declaration-order, capability and ownership
 checks belong to semantic resolution. In particular multiple scalar initializers, constant
 reference storage and break-outside-loop are represented for semantic rejection.
 
@@ -58,10 +58,13 @@ allocation refusal in a composed parse. Call binding ASTs and positional-hole in
 
 
 T146 documents every retained AST type, parser helper and iterative frame boundary.
-The represented subset still lacks complete multiword/two-root access parsing,
-standalone self sources, direct-result trees, negative-only conditionals,
-foreach bindings and the complete current condition-loop repeat model. It retains
-older whitespace/adjacency rules described as implementation limits above. These
-are assigned feature tasks, not unresolved choices or a second accepted grammar.
-Source classification never queries declared names, and failed partial trees
-remain unusable while their arenas stay destructible.
+The ordinary parser now represents complete multiword/two-root accesses,
+standalone self sources, direct-result operation trees, negative-only
+conditionals, foreach bindings and lexical condition-loop repeat roots.
+T168 rechecks the declaration/call/result/control components and their real
+frontend consumers; [the audit](audit/template-sprint.md) records exact evidence.
+The current AST still stores a declaration type as one concrete path span:
+static formals, signatures, result definitions and structural type expressions
+require T170's separate work. Source classification never queries declared
+names, and failed partial trees remain unusable while their arenas stay
+destructible.
