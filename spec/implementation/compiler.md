@@ -437,7 +437,12 @@ applied type, not merely the recovered constructor head. The nested bindings in
 [TPL-08](../language/templates.md#tpl-08) can pass a residual constructor without
 creating a sample object. Parsing those trees does not require a successful type
 lookup, and their agreed grammar does not resolve the separately indexed
-dependent-constant, recursion, list-foundation or native/export questions.
+recursion, list-foundation or native/export questions. Dependent shared storage
+and explicit type namespaces follow
+[CONST-03/CONST-06](../language/declarations.md#const-06): resolve the concrete
+namespace before member lookup, retain its full specialization identity in
+constant dependencies, and preserve the distinction between compile-time types
+and per-context value construction. Member names do not select a type.
 
 ### Parse before resolving names
 

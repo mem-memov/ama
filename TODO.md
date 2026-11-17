@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 210 current requirements;
+[requirement index](spec/requirements.md) locates all 211 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 engineering work needed to implement those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -69,27 +69,26 @@ An implementation task, including one in this queue, is not permission to amend
 - [ ] **T158 — Resolve the remaining template design gates.**
   Status: awaiting explicit user decisions; no implementation is authorized by
   this task. Prerequisites: T157's documented baseline, T159's named
-  constructor/signature forms and T160's interface-wide inference rules. Questions and alternatives
+  constructor/signature forms, T160's interface-wide inference rules and T161's
+  dependent constants/explicit namespaces. Questions and alternatives
   are indexed in [AMBIGUITIES.md](AMBIGUITIES.md#open-template-design-questions):
-  AMB-003 is resolved by T159; T160 settles AMB-004's inference/scope portion.
-  AMB-004 through AMB-008 still cover parameter-dependent constants and their
-  namespace, recursive specialization, the concrete list foundation
+  AMB-003 is resolved by T159; T160/T161 settle AMB-004.
+  AMB-005 through AMB-008 still cover recursive specialization, the concrete list foundation
   interface/primitives, native/export forms and hyphen spelling. Named static
   application is available for a future list bridge, but its actual interface
   is not selected. Resolve each affected boundary before
   implementation; do not infer answers from the existence of this queue item.
-  Current checkpoint: AMB-004's additional inference evidence is approved, as is
-  introducing new Type placeholders in `@>` while keeping body introductions
-  forbidden. The answers/source are recorded in AMBIGUITIES; T160 supplies the
-  canonical scope, global constraint propagation and TYPE-06 corrections.
-  Parameter-dependent constants and their external namespace are under discussion;
-  no constant access syntax or inheritance behavior is selected. No jobs are active.
+  Current checkpoint: AMB-004's inference, result-Type scope and constant design
+  are approved and specified. Explicit namespaces avoid name inheritance/imports;
+  static parameters remain Type/Template, without numeric value parameters.
+  The answers/source are recorded in AMBIGUITIES. Remaining gates need their own
+  explicit decisions before affected implementation. No jobs are active.
   Acceptance: record user decisions and authorized canonical/EBNF corrections;
   derive the implementation roadmap and named positive/negative acceptance cases
   from those settled contracts. Preserve the previous conformance matrix as
   historical evidence until new implementation evidence is actually available.
 
-The next unused task ID is **T161**.
+The next unused task ID is **T162**.
 
 ## Useful verification commands
 

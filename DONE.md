@@ -3051,6 +3051,65 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   the approved inference/scope change is explicit and consistent across chapters;
   constant design and the other T158 questions remain visible and unfinished.
 
+- [x] **T161 — Specify dependent constants and explicit type namespaces.**
+  Status: complete; specification/documentation only. Prerequisites: T157, T159,
+  T160 and the user's explicit selection of constant design option 2 on
+  2026-11-17. Authorized result: constants may reuse interface type parameters,
+  and programs may explicitly select the constants of a substituted concrete
+  type or specialization, without importing/inheriting names. Preserve the
+  motivation, examples, initialization and ownership limits in the project.
+  Boundary: canonical declarations/templates/grammar, affected indexes and
+  acceptance scenarios, AMB-004 and this task's evidence; no compiler changes
+  and no adoption of value-indexed/dependent types.
+  Steps: (1) record the decision and exact scope; (2) define shared constants,
+  namespace resolution and syntax, with rationale and positive/negative examples;
+  (3) reconcile cross-references and pending gates; (4) check links, requirements,
+  grammar, documentation and the final diff, then archive and commit this task.
+  Acceptance: one canonical rule per behavior, no implicit name lookup or runtime
+  input dependency, explicit specialization identities and lifecycle preservation,
+  named acceptance cases, and an accurate distinction between specified design
+  and implementation support. The documentation checks below supply acceptance evidence.
+  Steps 1–3 result: recorded the approval/source before canonical edits; added
+  CONST-06 and explicit static-expression namespaces in CONST-03/EBNF. Wrote the
+  rationale and examples for empty lists, neutral values and bounds, without
+  imports/inheritance or runtime-dependent values. Constant initialization now
+  distinguishes full specialization identities. Reconciled scope/inference,
+  indexes, roadmap and acceptance cases; AMB-004 is resolved, with four other
+  gates still open. No compiler/native/test implementation was inspected or
+  changed. Functional suites are outside this design-only scope.
+  Step 4 result: two independent semantic reviews found no blocking ambiguity.
+  Corrected the distinction between ordinary literal rejection at startup and
+  permitted equivalent earlier validation, and explicitly included shared
+  declarations in TPL-08's per-declaration inference without adding owner
+  parameters. Namespace selection creates no such inference variables.
+  The informative rationale in [CONST-06](spec/language/declarations.md#const-06)
+  explains own dependent constants, explicit access to another type's values,
+  and why automatic imports/inheritance would introduce conflicts and hiding.
+  Type/Template composition remains distinct from numeric value parameters:
+  ordinary integer contents and constant values do not enter specialization keys.
+  Verification from the repository root: `python3 /tmp/ama-t161-doc-check.py`
+  passes for 203 maintained Markdown files, local links, 211 uniquely indexed
+  requirements, 104 closed EBNF nonterminals at column 30 and example spacing.
+  This is a temporary independent audit, not a shipped implementation component.
+  A separate grammar/matrix comparison passes: only the constant-read production
+  changes, all 104 productions remain reachable, all 118 prior acceptance areas
+  remain, and three specialized-constant areas bring the target to 121 rows.
+  Its initial auxiliary run searched for an obsolete matrix heading and failed;
+  using the existing `Acceptance matrix` heading makes the full rerun pass.
+  `git diff --check` passes. `make docs-complete` exits 0 (2335 ready inputs,
+  zero explicit debt). `make docs` exits 0 with Doxygen 1.11.0, Python 3.14.4
+  and markdown-it-py 3.0.0: 1749 maintained file pages, 6703 documented interfaces,
+  412 checked canonical/referenced destinations and 5524 generated pages.
+  `make conformance-check` exits 2 as expected: reviewed implementation evidence
+  predates these specification changes. No fingerprints are refreshed and no
+  template/constant implementation support is claimed. Final archive/queue
+  navigation and Doxygen generation repeat on these final inputs before commit;
+  generated pages remain unversioned.
+  Acceptance: the user's selected option 2 is specified with motivation, concrete
+  namespace ownership, pure per-context initialization and positive/negative
+  acceptance cases. AMB-004 is resolved; AMB-005 through AMB-008 remain Open
+  under T158. No dependent-type/vector extension or compiler code is included.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

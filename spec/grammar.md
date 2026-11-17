@@ -225,9 +225,12 @@ In a qualified constant source, the final path component is the constant name;
 the preceding components name its module. At least one module component and one
 constant-name component must follow the root marker. `.catalog.item states[]`
 is a constant list source. No longest-prefix lookup or alternate path split is
-permitted. A path in a type line names a type instead. Constants cannot be
-receivers, mutable-reference sources, execution targets, or continuation-copy
-operands. See [Constants](language/declarations.md).
+permitted. A path in a type line names a type instead. This direct source form
+does not accept a placeholder or a static binding block; use the explicit
+constant-read namespace form below to select a specialized type. In particular,
+`...type.member` remains one complete placeholder, not qualified constant access.
+Constants cannot be receivers, mutable-reference sources, execution targets, or
+continuation-copy operands. See [Constants](language/declarations.md).
 
 `% owned` and `% target&` are explicit continuation-copy sources for an owned
 scalar destination. Suffix `%` on an operation and standalone `%` are different
@@ -400,10 +403,13 @@ Template parameters already introduced in `@<`; an unknown applied placeholder
 head in `@>` does not introduce a Template parameter. Explicit Template-formal
 declarations are not accepted in `@>`. The body may reuse interface parameters,
 apply or forward known constructors; it cannot introduce a new named Type or
-Template parameter. Body/result field declarations give omitted constructor
+Template parameter. Shared/body/result declarations give omitted constructor
 residuals fresh field inference variables under TPL-08, unlike complete root-input
-patterns or residuals preserved inside a partial static argument. Constants
-retain the pending dependent-use boundary in [AMB-004](../AMBIGUITIES.md#amb-004).
+patterns or residuals preserved inside a partial static argument. Shared `@=`
+declarations may reuse interface parameters in their type expressions under
+[CONST-06](language/declarations.md#const-06); they cannot introduce parameters.
+Their resolved types and constant construction must meet the ordinary constant
+restrictions.
 
 Static typing uses all specified typed connections under
 [TPL-03](language/templates.md#tpl-03): inputs, explicitly typed output receivers,
@@ -414,9 +420,9 @@ identity. Static propagation neither executes a later statement early nor
 relaxes ordinary initialization, ownership or storage-form rules.
 
 Ordinary arguments still use the existing `<parameter>` and `<result>` productions.
-Static bindings attach to a declaration's type expression, never to an entry or
-resume operation. There is no separate list of type arguments at an ordinary
-runtime call site.
+Static bindings attach to a declaration's type expression or a constant-read
+namespace expression, never to an entry or resume operation. There is no
+separate list of type arguments at an ordinary runtime call site.
 
 ```text
 @<
@@ -513,12 +519,15 @@ its existing key binding and its residual signature are checked against
 [TPL-08](language/templates.md#tpl-08). The less-indented `...element` binding
 belongs to `.outer`, so indentation alone determines each binding's owner.
 
-Concrete constant paths, runtime value sources, call targets and native protocol
-records do not acquire placeholder or static-application alternatives. A bare
-placeholder in a static expression is parsed alike whether its declared category
-is Type or Template; later scope/kind checks determine valid use. Omission of a
-runtime `<` binding is not partial static application. A compound placeholder
-never splits into a constructor and member. The
+The explicit constant-read namespace accepts a static type expression under
+[CONST-03](language/declarations.md#const-03) and
+[CONST-06](language/declarations.md#const-06). Direct qualified constant sources,
+runtime value sources, call targets and native protocol records do not acquire
+placeholder or static-application alternatives. A bare placeholder in a static
+expression is parsed alike whether its declared category is Type or Template;
+later scope/kind checks determine valid use. Omission of a runtime `<` binding is
+not partial static application. A compound placeholder never splits into a
+constructor and member. The
 [remaining design gates](../AMBIGUITIES.md#open-template-design-questions) are
 semantic questions, not permission for type-dependent parsing. These source forms
 do not claim implementation support.
@@ -590,8 +599,9 @@ Recognize the shape before name/type lookup:
   same line; a runtime argument remains inside its operation's argument block.
 - A receiver followed by an indented copy source is an assignment.
 - Suffix `!` starts entry execution; suffix `%` resumes.
-- An unmarked target with output actions reads retained results. A module path
-  with `>>` reads shared constants; a whole-list parent selects intrinsic methods.
+- An unmarked instance target with output actions reads retained results. A
+  static type expression with `>>` reads shared constants; a whole-list parent
+  selects intrinsic methods.
 - An owned access followed by same-level `?`, `:`, or `{` is control flow. A `:`
   after an eligible operation is instead that operation's refusal handler.
 - A bracketed reference-name binder before `{` is foreach. A bracketed owned
@@ -615,8 +625,8 @@ line cannot turn a second unindented name into an assignment source.
                                  <layout(n+1)> <resume-arguments(n+1)>
 <read-call(n)>               ::= <indent(n)> <call-target> <line-end>
                                  <layout(n+1)> <read-arguments(n+1)>
-<constant-read(n)>           ::= <indent(n)> <module-path> <line-end>
-                                 <layout(n+1)> <constant-read-arguments(n+1)>
+<constant-read(n)>           ::= <indent(n)> <static-expression(n)>
+                                 <constant-read-arguments(n+1)>
 <execution-arguments(n)>     ::= { <parameter-line(n)> <layout(n)> }
                                  { <execution-output-action(n)> }
 <resume-arguments(n)>        ::= { <execution-output-action(n)> }
@@ -659,21 +669,79 @@ input consumes its newline directly, so `#` in payload cannot become a comment.
 
 ### Modes
 
-| Form | Inputs | Output actions |
+| Form | Runtime inputs | Output actions |
 |---|---|---|
 | `worker !` | `<` bindings | `>` bindings and selected operations |
 | `worker %` | None | `>` bindings and selected operations |
 | `worker` | None | At least one `>>` binding or selected operation |
 | `items[]` / `targets&[]` | None | At least one selected list method `!` |
 | Selected list method `!` | Its declared `<` bindings | Its declared results |
-| `.namespace` | None | At least one `>>` binding |
+| `.namespace` / `...type` | None | At least one `>>` binding |
 
 Execution modes cannot combine at one operation level. Module paths cannot be
-entry/resume targets and constant reads have no refusal handler. A whole-list
-parent has neither `!`/`%` nor ordinary bindings. Its methods accept only `!`;
+entry/resume targets. A constant-read namespace likewise cannot acquire `!`, `%`,
+a reference suffix or acquisition prefix, and constant reads have no refusal
+handler. A whole-list parent has neither `!`/`%` nor ordinary bindings. Its methods
+accept only `!`;
 they are intrinsic interface entries, not first-class values with retained reads
 or resume positions. The productions intentionally recognize a broader target
 set; the list interface restricts that set during static checking.
+
+### Constant namespace shape
+
+The namespace head is a module path or a locally declared placeholder, followed
+by the same optional named static binding block as a declaration's type
+expression. A known Template head may be applied through that block; a Type
+head is already a type and cannot receive constructor arguments. Binding labels
+belong to the selected constructor's interface; right-hand expressions use the
+surrounding template's established scope. Neither position introduces a new
+local parameter.
+
+The namespace expression must resolve to one concrete Type under
+[CONST-06](language/declarations.md#const-06) before constant-member lookup.
+Explicit bindings or already determined static bindings supply that identity;
+requested constant names and receiver types do not complete an unresolved
+namespace. A residual constructor is not a constant namespace. This is a
+static namespace selection, not a runtime value source or an instance operation.
+
+Static bindings and saved-result bindings are both at depth `n+1`. All static
+bindings precede the first `>>` binding. A nested application on a static
+binding's right-hand side owns its own, deeper binding block as usual. Once
+the first saved-result binding begins, no later static binding can attach to
+that constant read. No runtime input bindings, `>` transfers, selected calls,
+or refusal handler are admitted in a constant-read block. Named and positional
+constant requests retain CONST-03's ordinary saved-read rules.
+
+**Examples: specification fragments, not implementation claims.** Assume the
+enclosing interface declares Type parameter `...element type`, its substitution
+is already concrete, and that selected type declares constant `zero`:
+
+```text
+...element type
+ zero >> initial value
+```
+
+Assume `.container` declares Type formal `...element type` and shared constant
+`empty list[]`. Its concrete namespace can be selected without an instance:
+
+```text
+.container
+ ...element type < ..integer
+ empty list[] >> values[]
+```
+
+The following fragment is invalid because a static binding follows a constant
+request:
+
+```text
+.container
+ empty list[] >> values[]
+ ...element type < ..integer
+```
+
+The direct copy-source spelling `.palette.red` retains its separate production.
+There is no inline static application inside such a source, and
+`...element type.zero` does not mean the `zero` constant of `...element type`.
 
 ### Binding form and order
 

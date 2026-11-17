@@ -201,7 +201,7 @@ results, not parameters or private body fields.
 **STATE-03.** `@=` declares one shared immutable part of a module, usable alongside
 parameters/results and either Ama or native implementation. Its values belong to
 the module identity, not to any executable instance. They are initialized once per execution context before
-its root creation/execution under CONST-01 through CONST-05, never once per instance
+its root creation/execution under CONST-01 through CONST-06, never once per instance
 or invocation. Earlier constants in the same module may be used by name in later
 constant/interface/body initializers.
 
@@ -213,8 +213,8 @@ receivers or sources of mutable references. Shared storage is not an instance
 pool or a callable singleton.
 
 A constants-only module provides the shared part without executable instances.
-It requires no pool and cannot run as the root. A module path followed by `>>`
-reads shared constants under CONST-03, never an instance's retained results.
+It requires no pool and cannot run as the root. A static type namespace followed
+by `>>` reads shared constants under CONST-03, never an instance's retained results.
 
 Separate parallel execution contexts have separate constant values and native
 value/resource lifecycles. They may share compiled code and immutable literal
@@ -430,9 +430,10 @@ the order in which modules happen to load. Use this algorithm:
    receiver, bind the operation target and selected interface position or label,
    retaining constraints for interface resolution if the target's specialization
    is still unresolved. Equate the new field's type to exactly that result's
-   scoped type term. Constant reads select the existing `@=` declaration; list
-   methods select LIST-04's fixed typed interface. This rule does not resolve the
-   separately pending [dependent-constant forms](../../AMBIGUITIES.md#amb-004).
+   scoped type term. Constant reads first select a concrete namespace under
+   CONST-03, then its existing `@=` declaration; list methods select LIST-04's
+   fixed typed interface. A constant receiver cannot infer the namespace it
+   reads from.
    Neither source execution nor runtime values supplies a type. Result selection
    uses the declared interface, not a search for suitable fields in a callee
    body; that body's ordinary static equations may refine the interface's terms.
@@ -694,9 +695,9 @@ construction/initializer dependencies and rejects cycles or use-before-initializ
 Declaration initializers may use literals, previously initialized local constant
 sources, or qualified constant sources under CONST-05. Include cross-module
 constant dependencies in initialization planning; preserve declaration order
-within each module and reject cycles. Qualifying a local forward reference does
-not bypass that ordering. Required constant dependencies initialize first, before
-the root can start.
+within each concrete module specialization and reject cycles. Qualifying a local
+forward reference does not bypass that ordering. Required constant dependencies
+initialize first, before the root can start.
 Native construction must not introduce hidden initialization dependencies.
 Do not execute an Ama module body or arbitrary native constructors at compiler
 time. Build-time validation is allowed only through an explicitly equivalent,
@@ -707,21 +708,28 @@ once after executable instances, in reverse initialization order.
 
 #### Exact initialization order
 
-Plan initialization over individual constant declarations, not over a graph that
-merely says one module mentions another's type. Add an ordering edge from each
-constant to the preceding constant in its own module, and a dependency edge to
-each constant value its construction reads, including declared owned-field
+Plan initialization over individual constant declarations of concrete module
+identities, not over a graph that merely says one module mentions another's type.
+Different specializations have distinct nodes; equivalent specializations share
+the same nodes under [TPL-05](templates.md#tpl-05). Add an ordering edge from each
+constant to the preceding constant in its own concrete module, and a dependency
+edge to each constant value its construction reads, including declared owned-field
 initializers. Reject cycles in this graph. Choose the next dependency-ready
-declaration deterministically by the bytewise full module path, then declaration
-ordinal. A module declaring constants of its own executable value type is not
-thereby cyclic: shared `@=` storage is not an owned field of that type. Eager
-owned-state construction cycles are checked independently under TYPE-04.
+declaration deterministically by the bytewise full logical module path, then by
+the bytewise canonical complete specialization-identity encoding when paths
+are equal, then declaration ordinal. Use the versioned, unambiguous identity
+encoding under [NAME-01/NAME-02](../implementation/compiler.md#name-01), including
+all normalized static bindings in TPL-05's canonical order. Compare the identity
+bytes themselves, not their hash, generated C identifier or an instance address.
+A module declaring constants of its own executable value type is not thereby
+cyclic: shared `@=` storage is not an owned field of that type. Eager owned-state
+construction cycles are checked independently under TYPE-04.
 
 ### Reading another module’s constants
 
 <a id="const-03"></a>
 
-**CONST-03.** Read constants of another module with a module-path target and
+**CONST-03.** Read shared constants with a static type-expression namespace and
 ordinary saved-read bindings:
 
 ```text
@@ -729,16 +737,106 @@ ordinary saved-read bindings:
  red >> selected color
 ```
 
-The compiler statically resolves the module and the requested `@=` members.
-Named requests use constant declaration names; positional requests follow their
-order in `@=`. Existing read rules require at least one `>>` with a receiver,
-consistent named/positional mode, and no `<`, `>`, `!`, or `%`. This is a static
-constant read, not entry/resume, an instance acquisition, or a computed getter.
-A path cannot expose parameters, body fields, or instance results. Missing modules
-or members, draft sources, incompatible types and mutable receivers in shared
-storage are compile-time errors. Runtime value-copy failure remains technical.
+The namespace head is a concrete module path or a locally declared static
+placeholder. It may have a named static binding block under
+[TPL-07/TPL-08](templates.md#tpl-07). Those bindings precede the read bindings,
+at the same one-level-deeper indentation. Static `<` bindings apply types or
+constructors; they are not ordinary runtime input bindings. The read requires
+at least one `>>` with a receiver and a consistent named/positional read mode.
+Ordinary input `<`, result transfer `>`, invocation `!`, resumption `%`, refusal
+handlers and executable nested actions are not permitted in this namespace read.
+
+Before selecting any member, resolve the namespace expression to one fully
+concrete Type. Explicit static bindings and already determined local parameter
+bindings may supply that Type; a known Template parameter may be applied to its
+named residual formals. A Type parameter cannot receive further static bindings.
+An expression with residual formals or unresolved type arguments is an error:
+this position does not introduce field inference variables or choose a default
+specialization. Do not infer namespace bindings from requested constant names,
+positional ordinals, receiver types or literal bytes. Independently available
+type constraints may first determine a local parameter; namespace member lookup
+cannot supply the evidence needed to choose its own owner. There is no search
+for a module that happens to provide a requested constant.
+
+Resolve named requests only in the selected concrete type's own `@=` declarations;
+positional requests follow their declaration order. Substitution does not import
+or inherit constants of any argument type. A namespace cannot expose parameters,
+body fields or instance results. Missing modules or members, draft sources,
+incompatible types and mutable receivers in shared storage are compile-time
+errors. Runtime value-copy failure remains technical. This operation does not
+execute a body, acquire an instance, evaluate a getter or create a mutable alias.
 An instance target with `>>` continues to expose only its retained `@>` results,
-not constants. Local constants are available directly by their declared names.
+not constants. Local constants remain available directly by their declared names.
+
+**Example: fragments using a selected specialization.** Assume `.container` is
+the template defined in CONST-06 and `..integer` is independently copyable:
+
+```text
+.container
+ ...element type < ..integer
+ empty list[] >> working values[]
+```
+
+The static binding chooses the concrete namespace. The read copies its empty
+constant into an owning list under the ordinary receiver-declaration rules.
+Appending to `working values[]` later cannot mutate the shared empty list.
+Omitting the static binding here leaves `.container` open and is an error;
+`working values[]` does not choose the missing argument.
+
+**Example: complete `.initial value`.** Assume, for this example only,
+`..integer` declares a constant named `zero` of its own type. This is a library
+assumption, not a required spelling or an added integer capability:
+
+```text
+@<
+sample&
+...value type
+
+@>
+result
+...value type
+
+@!
+...value type
+ zero >> result
+```
+
+An ordinary call supplying an integer reference determines `...value type` as
+`..integer`; the body reads that concrete type's `zero` constant. No live target
+is needed to determine the reference's declared module type. Passing a type with
+no `zero` declaration is a compile-time error. A constant named `zero` whose
+declared type differs from `...value type` also fails the result transfer check.
+
+**Example: range bounds, body fragment.** Assume `...value type` is an already
+determined local Type parameter whose actual type declares compatible constants
+named `minimum` and `maximum`:
+
+```text
+...value type
+ minimum >> lower bound
+ maximum >> upper bound
+```
+
+The read obtains copies of that type's bounds. It does not infer the parameter
+from those names, require all types to have bounds, or prove a mathematical
+ordering law. Such meanings belong to the actual library's contract. If another
+parameter's type also declares `minimum`, explicitly selecting its namespace
+keeps the two owners separate without a name conflict.
+
+**Example: body fragment using a supplied constructor.** Assume the interface
+already declares `...container family` as a Template with exactly one residual
+Type formal named `...element type`, and `...local type` is already determined:
+
+```text
+...container family
+ ...element type < ...local type
+ empty list[] >> working values[]
+```
+
+The constructor's signature does not promise an `empty list[]` constant. Check
+that member and its type against the fully selected specialization, as for a
+concrete module path. The head remains a static expression, never a runtime
+variable or an invocation of the constructor.
 
 ### Named enumeration values
 
@@ -788,8 +886,9 @@ constants do not choose list actions.
 
 <a id="const-05"></a>
 
-**CONST-05.** A qualified constant may be used directly wherever a copy source is
-accepted: a declaration initializer, an assignment source, or an entry-call input.
+**CONST-05.** A qualified constant of a concrete nongeneric namespace may be used
+directly wherever a copy source is accepted: a declaration initializer, an
+assignment source, or an entry-call input.
 Its spelling is the full logical module path followed by `.` and the constant's
 declaration name without surrounding dot spaces, for example `..palette.red`.
 The final component is always
@@ -801,6 +900,13 @@ Preserve the root kind when splitting the path: `..palette.red` names constant
 `red` in standard-library module `..palette`. The root marker is not a component;
 a qualified constant source needs at least one module component and one member
 component, and cannot use bare `.` or `..` as its namespace.
+This compact dotted form carries no static binding block and cannot identify a
+specialization of a generic module. It does not accept a placeholder namespace:
+`...type.member` remains one atomic placeholder name under TPL-01, not member
+selection. To copy a constant from a specialization or a substituted type, use
+CONST-03's explicit namespace read into local storage, then use that local value
+where an ordinary copy source is needed. Do not add an inline binding syntax or
+select a specialization from the destination's expected type.
 
 #### Resolving a qualified constant
 
@@ -842,3 +948,98 @@ selected color
 
 A qualified source in `@=` adds an explicit initialization dependency. It never
 turns module initialization into an executable call or permits dependency cycles.
+
+### Constants whose types depend on parameters
+
+<a id="const-06"></a>
+
+**CONST-06.** A shared declaration may use local Type or Template parameters
+introduced by its module's `@<`/`@>` interface under
+[TPL-02](templates.md#tpl-02). Collect that interface before resolving the
+declaration even though `@=` is written first. Apply the ordinary static
+type-expression rules to its type line and named binding block. A shared
+declaration introduces no new static parameter, and neither its initializer nor
+its type may introduce a new placeholder that the interface does not declare.
+Any omitted residuals of a named template type have the ordinary declaration
+constraints under TPL-08; their required concrete types must be determined
+before construction.
+
+Resolve dependent declarations for each required concrete specialization.
+Their types, storage forms, construction, literals and copy sources must satisfy
+CONST-01/CONST-02 and the ordinary declaration rules after substitution. Typed
+initializer sources contribute the equalities of TPL-03; a literal has no
+intrinsic type and cannot choose a type parameter. An invalid dependent constant
+rejects that specialization even if its body never reads the constant. A
+substituted type is not automatically constant-capable merely because it is a
+valid input, result or list element elsewhere.
+
+Constant values may depend on literals, permitted initialized constants and the
+selected concrete types' ordinary constant-capable default construction. They
+must not depend on a runtime argument's value or liveness, instance fields,
+retained results, execution position, mutable external state, or executing an
+Ama body. Reading a constant through a static type namespace never supplies a
+runtime value to its owner. Capability checking does not infer an otherwise
+unknown type by looking for a constructor that accepts the initializer.
+
+Keep one immutable shared part per concrete specialization per execution context
+under STATE-03/TPL-05. Equivalent complete substitutions use the same constants
+in that context; different substitutions have different shared parts, even when
+their constant values happen to compare equal. Runtime instances keep independent
+owned state. Constant construction and disposal remain context lifecycle
+operations under CONST-02, not compile-time evaluation or per-instance work.
+
+**Example: complete `.container`.** Assume the selected element type supports
+independent value copying and otherwise satisfies CONST-01:
+
+```text
+@=
+empty list[]
+...element type
+
+@<
+element&
+...element type
+
+@!
+```
+
+The declaration owns an empty list whose element type is the interface's Type
+parameter. No element value is required to construct it, but the selected
+constant type must still satisfy the constant capability rules. Specializing
+with `..integer` and `..text` yields separate typed empty lists. Two ordinary
+instances of the integer specialization share its one constant, while keeping
+their input references and other instance state separate. CONST-03 shows how
+to obtain an independent working copy without first creating either instance.
+
+**Example: dependent literal, declaration fragment.** Assume `...value type`
+is introduced in this module's interface:
+
+```text
+@=
+initial value
+...value type
+ |0
+```
+
+`|0` is interpreted by the selected type's literal contract. It does not imply
+`..integer`, an additive identity, a minimum value, or any other algebraic
+property. Literal construction follows LIT-04: native rejection during shared
+initialization is a technical failure that prevents root startup; an equivalent
+documented validation mechanism may diagnose it earlier. Use explicit named
+constants such as a library's `zero`, `minimum` or `maximum` when those library contracts express
+the intended meaning.
+
+**Why this rule exists.** A generic container can publish an empty value of its
+own element type, and an algorithm can explicitly select a supplied type's
+neutral values or range bounds through CONST-03. These are two separate actions:
+declaring a constant in the current specialization and selecting a constant
+owned by another concrete type. They do not establish a parent/child relation
+between those types.
+
+An explicit namespace keeps the owner visible when several type parameters
+provide names such as `zero` or `maximum`. Automatic imports or inheritance would
+require conflict and hiding rules and could change unqualified name lookup when
+a library adds a constant. Ordinary unqualified names keep their local meaning
+under [NAME-04/NAME-06](#name-04), while member selection checks the chosen owner's
+actual shared interface. A constant's descriptive name does not prove algebraic laws; those
+remain part of the selected library's contract.

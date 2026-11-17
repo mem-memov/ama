@@ -100,6 +100,7 @@ you need the model, examples, or reasons behind a rule.
 | [CONST-03](language/declarations.md#const-03) | Reading another module’s constants |
 | [CONST-04](language/declarations.md#const-04) | Named enumeration values |
 | [CONST-05](language/declarations.md#const-05) | Using a qualified constant directly |
+| [CONST-06](language/declarations.md#const-06) | Constants whose types depend on parameters |
 
 ## References and lifetime
 

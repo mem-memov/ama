@@ -11,21 +11,23 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 The user explicitly requested this visible list on 2026-11-17 while authorizing
 the template specification. T157 records the initial contracts and gaps;
 T159 records the user's subsequent resolution of [AMB-003](#amb-003).
+T160/T161 resolve inference, result Type scope and explicit constant namespaces
+in [AMB-004](#amb-004).
 [T158](TODO.md#current-tasks) owns the remaining decisions before their affected
 implementation. Examples in open entries expose questions, not additional
 accepted Ama syntax. No answer is inferred from a request to document a question.
 
 | Issue | Decision still needed | Work affected |
 |---|---|---|
-| [AMB-004](#amb-004) | Parameter-dependent constants and selection of a concrete specialization's constant namespace; additional inference evidence and new Type placeholders in `@>` are settled by T160 | Constant declarations and access |
 | [AMB-005](#amb-005) | Which recursive specializations are permitted and how analysis terminates exactly | Recursive template expansion |
 | [AMB-006](#amb-006) | Which list implementation/interface the compiler binds and which typed storage/lifecycle primitives support it | Reimplementation of the list foundation |
 | [AMB-007](#amb-007) | Native-template layout/companions and explicit selection of exported specializations | `@C` templates and C library roots |
 | [AMB-008](#amb-008) | Exact hyphen spelling/profile and its scope | Expanding accepted names beyond current SRC-03 |
 
-The constructor/signature and partial-binding notation is settled by
-[AMB-003](#amb-003); it is preserved below as a resolved decision, not an open
-grammar gate. These decisions do not themselves establish implementation support.
+The constructor/signature and partial-binding notation in [AMB-003](#amb-003),
+and inference, scope and constants in [AMB-004](#amb-004), are preserved below
+as resolved decisions, not open grammar gates. These decisions do not themselves
+establish implementation support.
 
 When such a question arises, stop the affected task before implementing a guessed
 interpretation. Read-only investigation may continue to make the question precise.
@@ -296,19 +298,21 @@ Each entry must contain:
 
 ## AMB-004 — Additional inference evidence and dependent constants
 
-- **Status:** Open (constant declarations/access only; inference and result-Type
-  scope decisions are settled).
-- **Task:** T158 owns the remaining constant question. Ordinary typed input evidence and explicit named static
-  arguments were settled in T157/T159. The user has now approved the additional
+- **Status:** Resolved.
+- **Task:** T160 records inference/result-Type scope and T161 records dependent
+  constants with explicit namespaces. Ordinary typed input evidence and explicit
+  named static arguments were settled in T157/T159. The user has now approved the additional
   evidence sources and new Type introductions in `@>` recorded below. Their
   canonical scope/constraint update is recorded by T160; the constant
-  declaration/access decision remains open. No compiler implementation resumes
-  from this work-log entry.
+  declaration/access decision and its rationale are specified by T161. No compiler
+  implementation resumes from this work-log entry.
 - **Requirements:** [TPL-02](spec/language/templates.md#tpl-02),
   [TPL-03](spec/language/templates.md#tpl-03),
   [TYPE-02](spec/language/declarations.md#type-02),
-  [TYPE-06](spec/language/declarations.md#type-06), and
-  [CONST-05](spec/language/declarations.md#const-05).
+  [TYPE-06](spec/language/declarations.md#type-06),
+  [CONST-03](spec/language/declarations.md#const-03),
+  [CONST-05](spec/language/declarations.md#const-05), and
+  [CONST-06](spec/language/declarations.md#const-06).
 - **Minimal example:** Assume `.forward` is TPL-04's template. A caller declares
   `worker` of `.forward`, calls it with literal `< |0`, and receives into an
   explicitly declared `..integer` destination. No independently typed input
@@ -346,23 +350,38 @@ Each entry must contain:
   rule and requires corresponding TPL-02/03, TYPE-06 and grammar explanations to
   be reconciled. The question concerned Type placeholders; it did not request
   standalone static Template-formal declarations in `@>`.
-- **User decision (constants):** Unset. The user explicitly asks to compare
-  convenient designs before choosing parameter-dependent `@=` types or a
-  specialization-qualified constant namespace. No inheritance, implicit lookup,
-  instance-dependent constant or access notation is selected by this request.
-- **Specification authorization:** The earlier authorization records the design
-  boundary and this issue. The current answers explicitly select the inference
-  and result-Type scope behavior; canonical updates must implement those decisions
-  without treating the separate constant discussion as decided. This entry
-  records the answers and their source before any such update.
+- **User decision (constants):** On 2026-11-17, after the requested examples and
+  diagrams, the user explicitly selected design option 2: "Пойдём по пути №2,
+  который дает и пустые значения, и границы диапазонов. Внеси это в спецификацию
+  как описание правил." This permits shared declarations whose types reuse
+  interface parameters and explicit access to the shared constants of a
+  substituted concrete type or a named specialization. The discussed source
+  forms use a type-expression namespace with named static bindings, followed by
+  existing `>>` constant bindings. Constants are not automatically imported or
+  inherited; `...type.member` remains one atomic placeholder name. The user also
+  requires the reasons for the selected design to be retained in the project.
+  This decision does not add runtime-dependent constant values, static value
+  parameters, dependent types, or compiler implementation authorization.
+- **Specification authorization:** The inference and result-Type answers
+  authorize T160's canonical changes. The later explicit instruction quoted
+  above authorizes T161's constant rules, grammar, examples, rationale and related
+  cross-references. The constants were discussed with examples and diagrams before
+  approval, as the user required. Neither instruction authorizes unrelated type
+  extensions or compiler implementation. Each answer/source was recorded before
+  its canonical update.
 - **Resume evidence:** T160 specifies interface-wide Type introductions, typed
   input/output/default/initializer/assignment/reference equations and deferred
   TYPE-06 type terms while preserving lexical binding and runtime initialization.
   Required implementation cases include literal-plus-typed-output, later anchors,
   self references, aliases, conflicting branches, defaults and underdetermination.
-  No execution evidence is claimed by the specification update. Dependent constant
-  declarations and external specialization selection remain undecided; resolve
-  them and their initialization/access rules before implementing those forms.
+  T161 adds CONST-06, explicit static type-expression namespaces under CONST-03,
+  per-specialization constant dependencies and rationale for avoiding implicit
+  imports/inheritance. Namespace closure precedes member lookup; neither member
+  names nor receivers select an otherwise open specialization. Existing direct
+  dotted sources retain nongeneric namespaces and atomic placeholder names.
+  No execution evidence is claimed by these specification updates; implementation
+  still needs the named positive/negative acceptance cases and resolution of any
+  other design gate its chosen boundary depends on.
 
 <a id="amb-005"></a>
 

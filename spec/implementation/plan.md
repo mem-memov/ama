@@ -184,8 +184,9 @@ Deliverable: a reproducible build with a conformance report, not merely a workin
 
 This is a new stage beyond the previously accepted implementation baseline.
 T157 records the basic contract, T159 settles named constructor/signature
-patterns and static partial application, and T160 defines typed-connection
-inference and Type introductions in `@>`. The
+patterns and static partial application, T160 defines typed-connection inference
+and Type introductions in `@>`, and T161 specifies dependent shared constants
+with explicit concrete-type namespaces and their design rationale. The
 [template chapter](../language/templates.md) and grammar define those source
 forms. The [remaining decisions](../../AMBIGUITIES.md#open-template-design-questions)
 owned by T158 gate their affected cases; they do not leave the whole grammar
@@ -199,7 +200,9 @@ including the separate lexical receiver/foreach classification and globally
 refinable type terms; constructor-pattern decomposition and canonical partial
 bindings; nested
 specialization and the agreed termination checks; ordinary type/lifecycle
-checking of concrete specializations; specialized layouts/emission and source
+checking of concrete specializations, including dependent constant types,
+concrete namespace selection and per-specialization initialization graphs;
+specialized layouts/emission and source
 diagnostics; then the agreed native/export boundary.
 Each component needs its own argument, unit cases and real composition cases.
 Add complete positive/negative nested, partial and erroneous applications before
@@ -213,7 +216,7 @@ of adding placeholders.
 
 Deliverable: documented, tested static specialization with explicit supported
 boundaries and a current acceptance matrix. No compiler implementation is part
-of the specification-only T157, T159 or T160 tasks.
+of the specification-only T157, T159, T160 or T161 tasks.
 
 ## Keep engineering choices separate from language changes
 

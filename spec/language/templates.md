@@ -37,12 +37,12 @@ model, named constructor signatures and partial-application forms below record
 the agreed design. The examples distinguish a template definition in a source
 file, a constructor used during compilation, and a concrete runtime instance. The
 [open-question index](../../AMBIGUITIES.md#open-template-design-questions) is the
-single place to find pending decisions, including inference boundaries, recursive
-specialization, native templates and the list implementation bridge. Type evidence
-and result Type introductions are settled below; the remaining inference-related
-boundary is parameter-dependent shared constants and their namespace. This chapter
-does not imply that the compiler implements templates. Do not invent source forms
-or implement a pending case by guessing an answer. The grammar recognizes only
+single place to find pending decisions, including recursive specialization,
+native templates and the list implementation bridge. Type evidence and result
+Type introductions are settled below. Parameter-dependent shared constants and
+explicit type namespaces follow [CONST-03/CONST-06](declarations.md#const-06).
+This chapter does not imply that the compiler implements templates. Do not
+invent source forms or implement a pending case by guessing an answer. The grammar recognizes only
 the source forms explicitly specified in [the grammar](../grammar.md).
 
 ## Placeholder spelling
@@ -68,9 +68,10 @@ internal doubled dots and spaces adjoining a dot are invalid. Indentation and
 the separator outside an operand remain outside the placeholder name.
 
 A placeholder spelling is permitted only in the static positions defined here:
-type expressions, static formal/signature declarations and named static binding
-labels. It is not a value source, runtime variable, call target, constant
-namespace, index, literal, or syntax for selecting a member of a type parameter. In particular,
+type expressions, static formal/signature declarations, named static binding
+labels and the explicit constant namespace in
+[CONST-03](declarations.md#const-03). It is not a value source, runtime variable,
+entry/resume target, index, literal, or dotted member-selection syntax. In particular,
 `...type.field` never means access to `field` through `...type`.
 
 **Example: spellings, not complete modules.**
@@ -153,9 +154,11 @@ appearing only in the body is a static error, including in an unreachable
 branch or empty-loop body. Explicit static Template-formal declarations are permitted
 only in `@<`; bare standalone Type declarations are not an additional source form.
 The body cannot add implicit type parameters to its enclosing module. Shared
-`@=` declarations do not introduce type parameters; dependent uses there belong
-to the explicitly pending inference/constant-access decision in
-[AMB-004](../../AMBIGUITIES.md#amb-004), rather than an inferred extension of scope.
+`@=` declarations do not introduce type parameters. They may reuse parameters
+collected from the whole interface under
+[CONST-06](declarations.md#const-06), even though the shared section is written
+before that interface. A constant-read namespace likewise reuses scoped
+parameters and never introduces one.
 
 The ordinary declaration's storage suffix remains independent of its module
 type. The same parameter can type an owned scalar, a scalar reference, an owning
@@ -220,10 +223,12 @@ does not limit static type inference.
 | Whole-list transfer or element transfer | Corresponding element module types agree, with the written scalar/list operation retained |
 
 Each source/receiver keeps its ordinary lexical environment and lookup rules,
-including selected result operations under CALL-09. Existing typed constants can
-contribute their declared type under the ordinary constant rules. This does not
-authorize parameter-dependent `@=` declarations or a new constant namespace;
-those remain AMB-004. Reference and list types contribute their statically known
+including selected result operations under CALL-09. Typed constants contribute
+their declared type under the ordinary constant rules, including dependent
+declarations in [CONST-06](declarations.md#const-06). The namespace of a constant
+read must first resolve under [CONST-03](declarations.md#const-03); requested
+member names and receiver types cannot choose an otherwise open namespace.
+Reference and list types contribute their statically known
 target/element type even without live values. Ownership, reference/value and
 scalar/list compatibility are checked separately under
 [TYPE-05](declarations.md#type-05); an equality never inserts a conversion,
@@ -572,10 +577,10 @@ algebraic laws required by a library algorithm.
 
 A known concrete native module may be a type argument, with its ordinary ABI and
 capabilities. Defining the template's implementation itself using `@C`, selecting
-generic exported roots and supplying specialization-qualified external constant
-access require the unsettled contracts linked from
-[AMB-007](../../AMBIGUITIES.md#amb-007) and
-[AMB-004](../../AMBIGUITIES.md#amb-004). No implicit native layout, C cast, export
+generic exported roots require the unsettled contracts linked from
+[AMB-007](../../AMBIGUITIES.md#amb-007). Specialization-qualified constant reads
+follow [CONST-03/CONST-06](declarations.md#const-06) independently of that native
+boundary. No implicit native layout, C cast, export
 selection or default specialization is permitted to fill that gap.
 
 A general conversion may introduce independent input and result Type parameters
@@ -603,6 +608,15 @@ complete argument metadata. Applying a constructor to all its residual formals
 produces a Type; leaving some formals open produces a Template. A Type and a
 Template are different categories, even if they have similar names or one is the
 origin of the other. Category checking never performs a runtime call.
+
+**Explanation: types are not numeric values.** These are the two static parameter
+categories. A number stored in `..integer`, including a list position or length,
+is an ordinary runtime value, not another static argument category. Different
+integer contents do not produce different nominal types or specialization keys.
+Reading a shared constant does not evaluate its contents as a type expression.
+Composition may build different concrete types from different named Type and
+Template arguments; it does not introduce value-indexed types, type-level
+integer arithmetic or proofs that a mutable list has a particular length.
 
 ### Named signatures and explicit declarations
 
@@ -730,7 +744,7 @@ instead accepts the complete concrete dictionary type as one Type without
 decomposing it or introducing a Template.
 
 The coverage rule concerns the root input type; a nested Template-valued argument
-may remain partial, and body/result field declarations may omit residual bindings
+may remain partial, and shared/body/result declarations may omit residual bindings
 under TPL-08.
 
 Match such a pattern only against a type with known nominal specialization
@@ -885,9 +899,9 @@ the compiler does not fill them with fresh runtime types just because the
 expression occurs within a field declaration. A fully applied Type cannot
 satisfy a Template formal, and an open Template cannot satisfy a Type formal.
 
-At the root of a body/result runtime field's type expression, omitted residuals
-instead receive fresh inference variables of their declared categories and
-signatures. Identify each variable by its concrete owner specialization, lexical
+At the root of a shared-constant, body-field or result declaration's type
+expression, omitted residuals instead receive fresh inference variables of their
+declared categories and signatures. Identify each variable by its concrete owner specialization, lexical
 field declaration and residual formal identity. Different fields get independent
 variables; repeated calls through the same field constrain the same variables.
 No new user-visible placeholder or implicit owner parameter is introduced.
@@ -897,7 +911,10 @@ This is an inference operation of the compiler, not partial runtime storage or
 late selection by the first executed call. A named Type parameter introduced in
 `@>` is a parameter of its owner; an omitted residual here remains only a field
 inference variable and cannot implicitly parameterize that owner. Root input
-patterns use TPL-07's explicit-coverage rule instead.
+patterns use TPL-07's explicit-coverage rule instead. A shared constant's inferred
+type still obeys [CONST-06](declarations.md#const-06); no runtime input supplies
+its value. Constant-read namespace expressions are static selections, not field
+declarations, and do not receive these generated inference variables.
 
 **Example: complete `.typed consumer`.** Assume the supplied family has the
 dictionary interface from TPL-07, with a fixed key type and only value type open:
@@ -996,7 +1013,8 @@ concrete under TPL-06.
 
 Omission of a runtime `<` binding, an empty positional `<`, `>` or a literal
 retains its existing call/default semantics. It does not perform static partial
-application. Static maps are attached to declaration type expressions, never to
+application. Static maps are attached to declaration type expressions or explicit
+constant namespaces under [CONST-03](declarations.md#const-03), never to
 an ordinary `!`/`%` operation's argument sequence. An open constructor cannot be
 an Ama runtime result, mutable field, checked reference or dynamically replaceable
 type. It may be passed only through the static Template forms defined here.
@@ -1101,8 +1119,9 @@ scope:
    and nested signatures. This signature must equal F's declared signature.
    Equate each removed B binding with its corresponding explicit right-hand
    expression. Preserve every other fixed binding and every existing residual.
-   P consists of source-written named bindings and, at the root of a runtime
-   body/result field type, TPL-08's generated bindings for omitted residuals.
+   P consists of source-written named bindings and, at the root of a shared,
+   body-field or result declaration's type expression, TPL-08's generated
+   bindings for omitted residuals.
    Generated labels come from the already known signature and use that field's
    deterministic inference-variable identities; they are not guessed formals.
    No generated binding is added inside a partial static Template argument.
@@ -1118,9 +1137,10 @@ scope:
    enumerate candidate constructors, partitions of their parameters or possible
    body implementations. Equating unknown constructors does not discover an
    origin. After exhausting these rules unresolved required bindings are an
-   underdetermination error. Parameter-dependent `@=` declarations and new
-   specialization-constant namespaces remain gated by AMB-004; a type equation
-   cannot introduce those pending declaration/access forms.
+   underdetermination error. Constant namespaces follow
+   [CONST-03/CONST-06](declarations.md#const-06): resolve the concrete namespace
+   from independent static information before selecting its declared members.
+   Member-name or capability search is not an additional constraint operation.
 
 The recovery step solves a declared constructor application under TPL-07 in any
 of TPL-03's typed connections. It does not authorize reopening fixed formals
