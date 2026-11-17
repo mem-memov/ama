@@ -75,11 +75,13 @@ An implementation task, including one in this queue, is not permission to amend
   AMB-003 is resolved by T159; T160/T161 settle AMB-004.
   T163 resolves AMB-005's specialization-creation boundary. T162 resolves
   AMB-009/AMB-010 through static results, positional bindings, immutable aliases
-  and complete producer inference under [TPL-12](spec/language/static-results.md#tpl-12). AMB-006 through
-  AMB-008 still cover the concrete list foundation interface/primitives,
-  native/export forms and hyphen spelling. Named static
-  application is available for a future list bridge, but its actual interface
-  is not selected. Resolve each affected boundary before
+  and complete producer inference under [TPL-12](spec/language/static-results.md#tpl-12).
+  T164 records the user's exclusion of the base-list rewrite from this sprint:
+  AMB-006 is deferred and no longer blocks this sprint. Preserve the existing
+  intrinsic list foundation; ordinary template algorithms over lists stay in
+  scope. No implementation provider, new storage primitive or protected mutation
+  API is selected. The remaining open gates are AMB-007 (native/export forms)
+  and AMB-008 (hyphen spelling). Resolve each affected boundary before
   implementation; do not infer answers from the existence of this queue item.
   Current checkpoint: AMB-004's inference, result-Type scope and constant design
   are approved and specified. Explicit namespaces avoid name inheritance/imports;
@@ -92,14 +94,17 @@ An implementation task, including one in this queue, is not permission to amend
   The user also clarified the polygon's purpose: automatic development and
   improvement of Ama algorithms from textual descriptions and examples in other
   languages; the base data model remains undecided. Other canonical changes
-  still need their own explicit authorization. No jobs are active. T162's archived acceptance is in [DONE.md](DONE.md);
-  the remaining gates do not undo its settled static result rules.
+  still need their own explicit authorization. T162's archived acceptance and
+  T164's scope decision are in [DONE.md](DONE.md); the remaining gates do not
+  undo settled static result rules. Current next action: discuss AMB-007 with
+  the user; its native-template and export contracts remain undecided. No
+  implementation or acceptance jobs are active.
   Acceptance: record user decisions and authorized canonical/EBNF corrections;
   derive the implementation roadmap and named positive/negative acceptance cases
   from those settled contracts. Preserve the previous conformance matrix as
   historical evidence until new implementation evidence is actually available.
 
-The next unused task ID is **T164**.
+The next unused task ID is **T165**.
 
 ## Useful verification commands
 

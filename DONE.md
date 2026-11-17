@@ -3231,6 +3231,40 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   specification-only task. T158 retains AMB-006 through AMB-008; their list,
   native/export and naming decisions remain outside this completed task.
 
+- [x] **T164 — Remove list-foundation reimplementation from the template sprint.**
+  Completed 2026-11-17; documentation and planning only. Prerequisites: T157's
+  [TPL-09](spec/language/templates.md#tpl-09) boundary and the user's explicit
+  instruction to exclude the base-list rewrite from this sprint and commit the
+  decision. Scope: AMBIGUITIES.md, TODO.md and this completed record; no compiler,
+  native, test, build, grammar or canonical specification changes.
+  Plan and acceptance: record the actual decision and rationale, update the open
+  index and T158, verify local destinations/task IDs/scope, then archive and commit
+  before discussing the next open question. AMB-006 must no longer block the
+  sprint; AMB-007/AMB-008 must remain open and T158 unfinished.
+  Step 1 result: [AMB-006](AMBIGUITIES.md#amb-006) is deferred outside this sprint,
+  with the quoted user instruction and its source. This preserves the existing
+  intrinsic list foundation and ordinary template algorithms over lists. No
+  provider, raw storage interface or protected mutation mechanism is selected;
+  future base-list work needs its own explicit decision. The rationale records
+  the publication/lifecycle costs and why whole-order copying on every append
+  would violate the required amortized O(1) bound. This is not a permanent ban.
+  Step 2 result: the open index and T158 now retain AMB-007/AMB-008 as the remaining
+  sprint gates, with AMB-007 next. T158 remains unchecked; no unrelated design or
+  implementation task is claimed complete. Independent content review confirms
+  the scope decision and preserved semantic boundaries.
+  Verification from repository root: `python3 /tmp/ama-t164-doc-check.py` passes
+  initially for three maintained files, 253 local links and 164 unique task IDs;
+  it checks deferred/open statuses, T158's unfinished state and unchanged `spec/`.
+  This is a temporary document audit, not a shipped compiler test. `git diff
+  --check` and `make docs-complete` pass; 2335 maintained inputs are ready with
+  zero explicit debts. Initial `make docs` exits 0 with Doxygen 1.11.0, Python
+  3.14.4 and markdown-it-py 3.0.0: 1749 maintained file pages, 6703 documented
+  interfaces, 415 checked canonical/referenced destinations and 5526 generated
+  pages. The final scope/link audit and Doxygen regeneration also pass after
+  archiving this record; generated outputs remain unversioned. Compiler/native/
+  test code was neither analyzed nor changed; functional suites were not rerun
+  for this planning-only task. Current conformance evidence is not refreshed.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

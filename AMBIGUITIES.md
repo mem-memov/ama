@@ -20,9 +20,15 @@ accepted Ama syntax. No answer is inferred from a request to document a question
 
 | Issue | Decision still needed | Work affected |
 |---|---|---|
-| [AMB-006](#amb-006) | Which list implementation/interface the compiler binds and which typed storage/lifecycle primitives support it | Reimplementation of the list foundation |
 | [AMB-007](#amb-007) | Native-template layout/companions and explicit selection of exported specializations | `@C` templates and C library roots |
 | [AMB-008](#amb-008) | Exact hyphen spelling/profile and its scope | Expanding accepted names beyond current SRC-03 |
+
+[AMB-006](#amb-006) is deferred outside the current template sprint by the
+user's 2026-11-17 decision, recorded in T164. The base-list rewrite is excluded;
+the existing intrinsic list contract and ordinary template algorithms over
+lists remain available design foundations. No implementation provider or new
+storage primitive is selected, and that future bridge no longer blocks this
+sprint. It requires a separate explicit decision before work resumes.
 
 The constructor/signature and partial-binding notation in [AMB-003](#amb-003),
 inference, scope and constants in [AMB-004](#amb-004), and finite composition in
@@ -452,9 +458,11 @@ Each entry must contain:
 
 ## AMB-006 — Binding the built-in list element type to its implementation template
 
-- **Status:** Open.
-- **Task:** T158. Moving the list foundation to ordinary templates is paused;
-  algorithms using the existing typed list primitives are a separate capability.
+- **Status:** Deferred — excluded from the current template sprint.
+- **Task:** T164 records the scope decision. Reimplementing the list foundation
+  through templates is outside T158's current sprint and is no longer an open
+  gate for that sprint. Algorithms using the existing typed list primitives
+  remain a separate, permitted use of templates.
 - **Requirements:** [TPL-09](spec/language/templates.md#tpl-09),
   [TYPE-01](spec/language/declarations.md#type-01),
   [LIST-04](spec/language/lists.md#list-04), and
@@ -476,14 +484,27 @@ Each entry must contain:
   refusal/preflight, result frames, cursor copying and complexity. Neither a
   fake runtime sample nor bootstrapping the foundation through that same list
   is supplied by the new named application syntax.
-- **User decision:** Open after T159. The user approved general named static
-  application in AMB-003, but did not select a list implementation binding or
-  raw-memory interface.
-- **Specification authorization:** Explicitly granted for the architecture and
-  limits now described by TPL-09 and the list chapter.
-- **Resume evidence:** Agree the primitive/static interface and prove preservation
-  of existing list semantics, including empty unused lists, stale handles,
-  mutation during suspended traversal, failure and complexity cases.
+- **User decision:** On 2026-11-17, after discussing the implementation examples
+  and tradeoffs in this conversation, the user instructed: "Тогда убираем из
+  этого спринта переделку базового списка. Закоммить отказ" (exclude the base-list
+  rewrite from this sprint and commit the decision). Preserve the existing
+  intrinsic list foundation; do not add a template provider, lower storage API
+  or protected mutation mechanism in this sprint. This is a scope deferral,
+  not a permanent prohibition on future work.
+- **Rationale:** A safe rewrite needs a new typed storage/lifecycle and publication
+  boundary. It adds compiler and verification work without an inherent speed or
+  memory benefit. Copying the entire order array before every append would break
+  the required amortized O(1) bound; direct in-place mutation in ordinary Ama
+  still needs an agreed protection contract. Generic algorithms over existing
+  lists can support the polygon without this dependency.
+- **Specification authorization:** The existing TPL-09/list contracts are retained.
+  This instruction authorizes recording the sprint decision and committing it;
+  T164 does not change any file in `spec/` or select a new semantic/storage API.
+- **Resume evidence:** A future explicitly authorized task must reopen the bridge,
+  agree the primitive/static interface, and prove preservation of existing list
+  semantics, including empty unused lists, stale handles, mutation during
+  suspended traversal, failure and complexity cases. Until then, continue the
+  current design discussion with [AMB-007](#amb-007).
 
 <a id="amb-007"></a>
 
