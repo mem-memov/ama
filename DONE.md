@@ -4448,3 +4448,46 @@ this table is navigation, not a parallel semantic definition.
   HEAD-plus-four-record snapshot is a final commit gate; its outcome and tool
   versions are recorded with that commit. No compiler execution or implementation
   support is claimed.
+
+<a id="t203"></a>
+
+- [x] **T203 — Audit existing components against the revised static model.**
+  Completed 2026-11-19 on 99ffbed plus the fingerprinted unfinished T182 inputs.
+  Actual source/test audit only; no new-model implementation acceptance.
+  Record: [actual implementation alignment](docs/implementation/audit/static-module-alignment.md).
+  Prerequisites: T202, T204, T205.
+  Rules: [ARCH-01](spec/implementation/compiler.md#arch-01),
+  [ARCH-06](spec/implementation/compiler.md#arch-06),
+  [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: actual maintained source/test/component contracts, their consumers,
+  and the exact uncommitted T182 input revision and file fingerprints.
+  Steps: inventory components and existing evidence; classify each affected
+  responsibility as reusable, requiring adaptation, obsolete or deferred;
+  assign its source/tests/documentation to a task below and record any necessary
+  finer decomposition before implementation. Inspect the recorded O2 warning
+  and actual lifecycle/embedding acceptance affected by T205.
+  Accept: a per-component/file map names real consumers and executable checks;
+  source, AST, scopes, metadata, constraints, guards, registry, graph results,
+  constants and product boundaries all have explicit owners. Historical
+  T169–T181/T201 evidence remains dated to its accepted contract, never promoted
+  to acceptance of removed mixed interfaces, exact signatures or static positions.
+  Preserve T182's partial files, run/failure evidence and continuation note.
+  Reuse them only through an identified cohesive task with tests and comments;
+  do not silently depend on uncommitted APIs, delete unfinished work or commit it
+  as a side effect of this audit. No semantic change or implementation is part
+  of the audit itself. Follow the common evidence/documentation/commit criteria.
+  The user's continuation instruction requires deleting unused/obsolete code
+  and its sole-purpose tests, not retaining alternative implementations. Record
+  exact removal/replacement ownership here before source edits; each responsible
+  implementation task must remove superseded paths and test the current rules.
+  Evidence: 1730 unique paths in 25 explicit boundaries, all 73 original dirty
+  hashes preserved, seven valid focused leaf invocations and root build exit 0.
+  The invalid direct nested/consumer command exits 2 and is recorded separately;
+  its actual host runs through the successful nested parent. Five source probes
+  preserve independent target expectations and identify unresolved frontend/parser
+  gaps. Reproduced the existing O2 warning without hiding or fixing it in an audit.
+  Added T214 for the precisely traced unused preview API before T206; each
+  obsolete branch/test family has an explicit replacement owner. No code, test,
+  spec or evidence-registry changes are included. Final navigation, task graph,
+  whitespace and isolated Doxygen checks must pass before the task commit.

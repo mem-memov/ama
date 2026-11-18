@@ -1,0 +1,100 @@
+{
+  "task": "T203",
+  "revision": "99ffbed",
+  "scope": "Characterization of the captured working source inputs; target expectations are derived from the current specification, not current compiler output. Rejected positive probes are gaps, not accepted tests.",
+  "cases": [
+    {
+      "name": "ordinary-concrete",
+      "expected": "accepted",
+      "files": {
+        "main": "@!\nnumber\n..integer\n |7\n"
+      },
+      "command": [
+        "./ama",
+        "--check",
+        "<case-root>",
+        ".main",
+        "--standard-root",
+        "stdlib/modules"
+      ],
+      "returncode": 0,
+      "stdout": "checked .main\n",
+      "stderr": ""
+    },
+    {
+      "name": "ordinary-template-call",
+      "expected": "accepted after required specialization closure",
+      "files": {
+        "worker": "@<\nvalue\n...value type\n\n@>\nresult\n...value type\n\n@!\nresult\n value\n",
+        "main": "@!\nnumber\n..integer\n |7\nworker\n.worker\nworker !\n < number\n > result\n"
+      },
+      "command": [
+        "./ama",
+        "--check",
+        "<case-root>",
+        ".main",
+        "--standard-root",
+        "stdlib/modules"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/tmp/ama-t203-probes-fy_j4xlc/ordinary-template-call/worker:2:1: error[type-mismatch]: Static syntax requires resolution before the concrete declaration inventory\n    2 | value\n    3 | ...value type\n    span: bytes [3, 22)\n"
+    },
+    {
+      "name": "static-export-selector",
+      "expected": "accepted; selected integer Type is independent of the consuming field",
+      "files": {
+        "assembly": "@...\n...integer type\n..integer\n",
+        "main": "@!\nnumber\n.assembly\n ...integer type\n |7\n"
+      },
+      "command": [
+        "./ama",
+        "--check",
+        "<case-root>",
+        ".main",
+        "--standard-root",
+        "stdlib/modules"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/tmp/ama-t203-probes-fy_j4xlc/static-export-selector/main:4:2: error[syntax]: Invalid qualified constant source\n    subject: .main\n    4 |  ...integer type\n    span: bytes [21, 36)\n    expected: a Project or Standard qualified constant, optionally ending in []\n"
+    },
+    {
+      "name": "static-multiple-outputs",
+      "expected": "accepted; both named exports retain separate identities and ordinary storage",
+      "files": {
+        "assembly": "@...\n...integer type\n..integer\n...text type\n..text\n",
+        "main": "@!\nnumber\n.assembly\n ...integer type\n |7\ntext\n.assembly\n ...text type\n |message\n"
+      },
+      "command": [
+        "./ama",
+        "--check",
+        "<case-root>",
+        ".main",
+        "--standard-root",
+        "stdlib/modules"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/tmp/ama-t203-probes-fy_j4xlc/static-multiple-outputs/main:4:2: error[syntax]: Invalid qualified constant source\n    subject: .main\n    4 |  ...integer type\n    span: bytes [21, 36)\n    expected: a Project or Standard qualified constant, optionally ending in []\n"
+    },
+    {
+      "name": "reject-ordinary-static-formal",
+      "expected": "rejected syntax; ordinary interfaces require runtime name/type pairs",
+      "files": {
+        "main": "@<\n...type\n@!\n"
+      },
+      "command": [
+        "./ama",
+        "--check",
+        "<case-root>",
+        ".main",
+        "--standard-root",
+        "stdlib/modules"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/tmp/ama-t203-probes-fy_j4xlc/reject-ordinary-static-formal/main:2:1: error[type-mismatch]: Static syntax requires resolution before the concrete declaration inventory\n    2 | ...type\n    span: bytes [3, 10)\n"
+    }
+  ]
+}

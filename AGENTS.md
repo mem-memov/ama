@@ -60,6 +60,13 @@
 ## Style
 
 - Follow `CONTRIBUTORS.md` for naming, formatting, component boundaries, and tests.
+- Remove unused, obsolete and superseded implementation code together with tests
+  whose only purpose is to exercise it. Retain no dormant alternatives or
+  compatibility branches for abandoned language rules. Trace real consumers
+  before deleting shared components; reusable foundations must have an explicit
+  current implementation owner. Passing old tests does not establish conformity
+  with the current specification. Replace obsolete cases with positive, negative,
+  boundary and failure checks of the current rules and their real compositions.
 - Use English text and descriptive identifiers. C indentation is four spaces;
   Ama fixtures retain semantic one-space nesting. Make recipes use `>` followed
   by four spaces.

@@ -952,7 +952,7 @@ Each entry must contain:
 - **Status:** Resolved by the user's static-module redesign, specified by T202.
 - **Task:** [T182](TODO.md#t182) exposed the question; [T202](DONE.md#t202) owns
   the specification change. T182's unfinished source/test foundations remain
-  outside the specification delivery and must be audited under [T203](TODO.md#t203).
+  outside the specification delivery and must be audited under [T203](DONE.md#t203).
 - **Requirements:** [TPL-02](spec/language/templates.md#tpl-02),
   [TPL-10](spec/language/templates.md#tpl-10),
   [TPL-11](spec/language/templates.md#tpl-11) and

@@ -1,0 +1,299 @@
+{
+  "task": "T203",
+  "input_revision": "99ffbed3691969477df6038ca9764ea2b4a90550",
+  "purpose": "Preserve exact pre-existing unfinished T182 inputs; no acceptance or ownership transfer is implied.",
+  "files": [
+    {
+      "path": "docs/implementation/documentation/ready.json",
+      "sha256": "d34b28880ecc58df608faf7d144945219312e1b49c58514531835344b9e6d5b9"
+    },
+    {
+      "path": "docs/implementation/static-connections.md",
+      "sha256": "19b799f37bbe035df15c05afe18434989fbbdd2460174f5b8e5bda0c4791b431"
+    },
+    {
+      "path": "docs/implementation/static-projections.md",
+      "sha256": "9bf135868d0fb7d41cc30ce1412bcb616a22776457cffb425f431cc642e10aa5"
+    },
+    {
+      "path": "src/semantic/static/connections/error.c",
+      "sha256": "f9454ac1b35754ee1f906ae04994690a7a54fd331d0712b1815a651a42852053"
+    },
+    {
+      "path": "src/semantic/static/connections/internal.h",
+      "sha256": "7435cad0822fd62d38603d47befc67ff774d2b802fbf18325462717df697ba48"
+    },
+    {
+      "path": "src/semantic/static/connections/owner.c",
+      "sha256": "1852dee0bf507117926fddaf104324d68e07d9d855ae18b1a4e57b014e47d913"
+    },
+    {
+      "path": "src/semantic/static/connections/plan.h",
+      "sha256": "25b32c1973c337fc4ad6685c4268161591064f002b2eea9b28d3c1a50b409f01"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/bind/access.c",
+      "sha256": "edbf7843087ccb0ff5c98c7151f9b3166333d43ff40583b16042783979942ac0"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/bind/events.c",
+      "sha256": "879f6d33afbc325419d0abc8991b15a94de1a516957eedd55579ac01e29e17bc"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/bind/foreach.c",
+      "sha256": "ac6560f62e3e51e4822fa2f56f2aabb065b0027a2bd8df9e53dba486e4fb78ac"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/bind/receiver.c",
+      "sha256": "490bec54b5d26399687a0356e66a9c9788030317923f0da9c9d20470d06bf7e5"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/bind/source.c",
+      "sha256": "6ee1019131b345568db52987a50d34c75dcc1730e5a193844dc0e3b511615059"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/events/collect.c",
+      "sha256": "3604b6c7107f4e95e8103e9391cf810b528c591de2ebef4212db27fa40b73bfc"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/events/model.h",
+      "sha256": "4ecb9c2d37ca96486b080ddccf7b9520ab105ce048e309ef9ac56c7f4bd4cbd7"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/events/sort.c",
+      "sha256": "0b7851a6f5190abf96377c8f7a3af40767fab7bf5702a382dde8bb215eb2da16"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/fields/add.c",
+      "sha256": "90964219836e5153f093945343bf00f5e73ae866aaf0054237178c71d95417e5"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/fields/collect.c",
+      "sha256": "f02d21a9bc13db72364ccc2a0b0096b0b58a0c96f4a4bad41459f25641302daf"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/fields/find.c",
+      "sha256": "bcce4b309f89084e888a07f4afda96ea30c9dccbfbde4f88ec78313bfb947c03"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/model.h",
+      "sha256": "2adb1a24a9854b276d07929d7934053c69500a799b6221ee1e40ea6719927fcc"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/names/encounter.c",
+      "sha256": "a46dd379489360448beb6f64606c22c6a88c757324a68f9c20aed248f5afc15c"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/names/use.c",
+      "sha256": "4a87b86972c27a9f7baa732c029b6849ef33af08fc17e154fb0f25a68bf38457"
+    },
+    {
+      "path": "src/semantic/static/connections/runtime/prepare.c",
+      "sha256": "a7aa9367a053ec4760ef2965d2d1fbd8c4728bc9853bef3bf315fae1715525de"
+    },
+    {
+      "path": "src/semantic/static/connections/typed/context/prepare.c",
+      "sha256": "5415691ec2a9226310a02f2ef2dade7d1222d0dcd99b64cdde9eb6660886e3ca"
+    },
+    {
+      "path": "src/semantic/static/connections/typed/model.h",
+      "sha256": "4072d6902e3cd798ec5285fc3088fd3af2fe32ddb7ff8c31ac245941fd8ecd1d"
+    },
+    {
+      "path": "src/semantic/static/connections/typed/scope/field.c",
+      "sha256": "8399356e95396f1371ca15de2f570b81054d595f6085a0da76c801d022eec9cd"
+    },
+    {
+      "path": "src/semantic/static/connections/typed/scope/fields.c",
+      "sha256": "1bc033f31154574e343c6e44afb17f5f5b8d0e26c8d96c4a2736ea1725542fba"
+    },
+    {
+      "path": "src/semantic/static/connections/typed/scope/merge.c",
+      "sha256": "358bf1da5f7ab9524ec7e52ce3d47677416ae2debaae74075121b5e0bd4f8962"
+    },
+    {
+      "path": "src/semantic/static/connections/typed/scope/prepare.c",
+      "sha256": "97088b1d39fea86a91379fb44308a68f3e5d01372d56853d0de70003ea6144b8"
+    },
+    {
+      "path": "src/semantic/static/constraints/equivalence/query.c",
+      "sha256": "014ca60c28e043928ab145c2d9dc42ceabbdbfe331b9e7afcb1421f488f505aa"
+    },
+    {
+      "path": "src/semantic/static/constraints/error.c",
+      "sha256": "fcbd124e99be0c4c0b35c7fa21deb9e45616f6364be4697a3c8de8a1c514cfa3"
+    },
+    {
+      "path": "src/semantic/static/constraints/solver.h",
+      "sha256": "3685e56cb3a1caa41075d6443bf18aa6200bb7c9ec4313721ec2fde0236ba811"
+    },
+    {
+      "path": "src/semantic/static/events/ast.c",
+      "sha256": "6d5f1d147209098ea5a3a5a9f100561d4edfaeb069f1015262d286cd2dcd9356"
+    },
+    {
+      "path": "src/semantic/static/events/internal.h",
+      "sha256": "08ed82a7dcb22510c96f4ae848dfb76ccb2532cbe2d1ea1f066787532e86c741"
+    },
+    {
+      "path": "src/semantic/static/events/statement.c",
+      "sha256": "7759c031c0429e42b469242e3213ea381feb08816512cee366281209bd5690fc"
+    },
+    {
+      "path": "src/semantic/static/model.h",
+      "sha256": "c0a47cd8b71de7bd8c8200d7ec0da848190b491e909423d5c0745dad869a4d3f"
+    },
+    {
+      "path": "src/semantic/static/results/expression/application.c",
+      "sha256": "aabeb3c092bc7889f5d6cee833ef9b124d5f94a67ad0adb102ab08b843adf22c"
+    },
+    {
+      "path": "src/semantic/static/results/expression/apply.c",
+      "sha256": "d24211dcd1334c1fc4c8cf0e35a84cdffc42284c29b3d7d21e528e180c43a578"
+    },
+    {
+      "path": "src/semantic/static/results/expression/prepare.c",
+      "sha256": "98dfbc60ae4b71297fc55829d313f9f017d9ac36a4a1a0457281b7e39a474bdc"
+    },
+    {
+      "path": "src/semantic/static/results/internal.h",
+      "sha256": "1bacafc0a5c9b1224ea561d160a8368695f8cb631ea58975980b1c99d31b6907"
+    },
+    {
+      "path": "src/semantic/static/results/model.h",
+      "sha256": "43ff6e1e98f7192d64898396295206874409840cb1c3ce9c35fe841e273bd267"
+    },
+    {
+      "path": "src/semantic/static/results/pattern/apply.c",
+      "sha256": "5cb9ffdb1b1b9919a9b04ba8276d364389def355ee03cf500e7cd7fa127217af"
+    },
+    {
+      "path": "src/semantic/static/results/pattern/prepare.c",
+      "sha256": "e428dd87851c2944483e906caad4217985239462d5e8faf916411d0688a42b5d"
+    },
+    {
+      "path": "src/semantic/static/results/plan.h",
+      "sha256": "b50f0ff83be1ccabbc90b7aae7f9468db3a7bf13973a6143ed56973ecf953094"
+    },
+    {
+      "path": "src/semantic/static/terms/identity/runtime.c",
+      "sha256": "91042f6a6ad267505a3e6fc0e6d71b27dc01132f0ed8e6720854f95c5417afa5"
+    },
+    {
+      "path": "src/semantic/static/terms/identity/variable.c",
+      "sha256": "8646a16fe0746df408051b08bbe85881838cc560e81a167524a3a3f9f09ae553"
+    },
+    {
+      "path": "src/semantic/static/terms/model.h",
+      "sha256": "2668b3fe376c1d844fbe574cd3944051f85ba54443bc65d530a4e764045447f2"
+    },
+    {
+      "path": "src/semantic/static/terms/store.h",
+      "sha256": "319f4509deadc70bbd41dffa4d25b8eb1346efb4c6e1c14d3b955701bc860339"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/Makefile",
+      "sha256": "5fcdc4a77f4ea47a4f59c10d12f54b8131f5a8da276647fb46b06b5d0b92567c"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/common.c",
+      "sha256": "7816eb16c7a9ee83e4e96ec90be0e30177b99adfc45dbc4ef3bcc6371551d499"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/events/Makefile",
+      "sha256": "27dbd08e75eaff57139654c4d883edb087923118306fe8aefe1c3b843568b65e"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/events/main.c",
+      "sha256": "01cae97cf43d40a15f01fa775762590237718eb5cc32bb4fe1ec405f7c8d6854"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/failures/Makefile",
+      "sha256": "68f9271d95833a92bc1a0ebfe073cb677462280bcdc53481bc77a3b1bcc7d089"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/failures/main.c",
+      "sha256": "b0fdd63dc92f89b31f77834058eea39f55bf392547e3240a55340ae865561e03"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/receivers/Makefile",
+      "sha256": "68f9271d95833a92bc1a0ebfe073cb677462280bcdc53481bc77a3b1bcc7d089"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/receivers/main.c",
+      "sha256": "09e179197a3415cea521a63206154329399c294236c81c7e04971da1b4ad0ddd"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/scopes/Makefile",
+      "sha256": "68f9271d95833a92bc1a0ebfe073cb677462280bcdc53481bc77a3b1bcc7d089"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/scopes/main.c",
+      "sha256": "17b64699e4879596336294128fc2bb7d824bb61bde0d10d9bb65e39528febd3f"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/typed/Makefile",
+      "sha256": "a9a5e95d4329495f8e2289a526c93473a12576a4aa8a41f41888290df2b42ea8"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/typed/common.c",
+      "sha256": "c58c5b6430eec186e10b8b5b9551ed251b1cbc272c60cf504cc5eb96bff58bd6"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/typed/main.c",
+      "sha256": "5639de263f86870689cb9d3d0b8b34b4a3c9aaed900f2fc1492052a13e68ecdb"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/typed_failures/Makefile",
+      "sha256": "a9a5e95d4329495f8e2289a526c93473a12576a4aa8a41f41888290df2b42ea8"
+    },
+    {
+      "path": "tests/unit/semantic/static/connections/typed_failures/main.c",
+      "sha256": "8b7265b29ae595e7465b7cb129833a17b6619ea506dfd8717537ee3fc9eb4fb7"
+    },
+    {
+      "path": "tests/unit/semantic/static/constraints/Makefile",
+      "sha256": "04e96a8c2d34c6e300a38cabe04e68f5c7170b2de67a6481d644ad4dd49648b8"
+    },
+    {
+      "path": "tests/unit/semantic/static/constraints/equivalent/Makefile",
+      "sha256": "049752ee083ca6bb2d51527afeb32e99dbfb6f9af6f85ae87767040c566e9868"
+    },
+    {
+      "path": "tests/unit/semantic/static/constraints/equivalent/main.c",
+      "sha256": "db5d2b17c0ded2c394766eb2d2ae064d90040173cc9e99cfa4e3faee77ce4df5"
+    },
+    {
+      "path": "tests/unit/semantic/static/events/main.c",
+      "sha256": "fa96ccef09a0d6debc53e86ef3a34612cc90431f0e5d8b047e75fb9592042846"
+    },
+    {
+      "path": "tests/unit/semantic/static/events/support/statements.c",
+      "sha256": "947d8a401c0bd24368168a225421b33e9f3dd3f4f0be3aa77678d9eefd7bda25"
+    },
+    {
+      "path": "tests/unit/semantic/static/results/Makefile",
+      "sha256": "b9dfbfdab28f470d28c87da36915f03b848ff57fe1bb03bb43a2f4dbc9754505"
+    },
+    {
+      "path": "tests/unit/semantic/static/results/pattern/Makefile",
+      "sha256": "b89efa98aab671e7baeeb420cc80d08eb766e9c0eb1dfb0edcd9832a19e6043a"
+    },
+    {
+      "path": "tests/unit/semantic/static/results/pattern/main.c",
+      "sha256": "94788625dc3be3c019896db3969e2ef08cda72b24461a5cc89f6055f56fed03f"
+    },
+    {
+      "path": "tests/unit/semantic/static/terms/Makefile",
+      "sha256": "c0db91f2d485f24ba6f50db9237af3043278946de2a9c0fa3cb4166c69ec3df7"
+    },
+    {
+      "path": "tests/unit/semantic/static/terms/runtime/Makefile",
+      "sha256": "b82789f34c7f57367d8df012dbb3a727b0e0435ead77e921d34dd11d53550e26"
+    },
+    {
+      "path": "tests/unit/semantic/static/terms/runtime/main.c",
+      "sha256": "977ab4100bed96d910a331e73aa9829282eec47a6a9bb53aa479b54ccc974e14"
+    }
+  ]
+}

@@ -67,10 +67,13 @@ control/declaration line, and separate statements for separate operations. Split
 long calls/declarations at meaningful boundaries. Makefiles use
 `.RECIPEPREFIX := >`, with `>` followed by four spaces in recipes.
 
-Ama nesting uses exactly one space. Target sections are optional `@=` shared
-constants, optional `@<`/`@>` interfaces, then `@!` or `@C`. Constants-only files
-are complete; files with none of `@=`, `@!`, `@C` are drafts. Blank lines never
-delimit sections. A literal's payload after `|` is data and must not be trimmed
+Ama nesting uses exactly one space. Ordinary sections are optional `@=` shared
+constants, optional `@<`/`@>` interfaces, then `@!` or `@C`. A static module uses
+the exclusive `@...` graph under [TPL-12](spec/language/static-results.md#tpl-12),
+with named static bindings and no ordinary sections. Constants-only files are
+complete; activation and drafts follow [SYN-04](spec/language/source-and-names.md#syn-04),
+including the static marker. Blank lines never delimit sections. A literal's
+payload after `|` is data and must not be trimmed
 or reformatted. Preserve deliberate CRLF fixtures and missing final newlines;
 ordinary source/docs use LF. Editor/Git rules treat fixture inputs and expectations
 as byte-exact data; never trim their literal payload or normalize their endings.

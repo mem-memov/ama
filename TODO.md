@@ -90,7 +90,7 @@ generation are introduced.
 | Phase | Tasks | Assessable result |
 |---|---|---|
 | Actual baseline | T203 | Evidence-based reuse/adapt/remove map, including unfinished T182 ownership |
-| Source and binding | T206, T207, T213 | Exclusive module kinds, immutable AST, scopes and exact source closure |
+| Cleanup, source and binding | T214, T206, T207, T213 | Remove unused preview API; establish exclusive module kinds, immutable AST, scopes and exact source closure |
 | Finite structural foundation | T208, T209, T210, T183 | Actual metadata, open requirements, nonexpanding equations, guards and canonical candidate registry |
 | Static graphs and ordinary bridge | T211, T212 | Named producer equations, complete inputs and independent concrete export selection |
 | Ordinary closure and admission | T182, T184, T185, T186 | Runtime typed connections, checked concrete groups and constant lifecycle plans |
@@ -165,50 +165,50 @@ procedure above; this queue grants no permission to change spec.
 Specification clarifications [T200](DONE.md#t200), [T202](DONE.md#t202) and
 [T205](DONE.md#t205) are accepted. The complete bounded review is recorded in
 [the consistency/planning note](docs/implementation/static-plan-review.md).
-T203 is the first implementation prerequisite. T182 remains unfinished with its
-partial files and failed-run evidence; implementing this queue requires its
-explicit ownership audit before any source changes. Historical
+[T203](DONE.md#t203) records the actual source/test ownership audit. T214 is the
+next ready task; T182 remains unfinished with its partial files and failed-run
+evidence. Source changes must follow the recorded ownership/disposition map. Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
 T212, not treated as current acceptance of removed inline projections.
 
 ## Current tasks
 
-### Phase 1. Audit the actual implementation
+### Phase 1. Actual implementation baseline
 
-<a id="t203"></a>
-
-- [ ] **T203 — Audit existing components against the revised static model.**
-  Status: the first ready implementation task after T204; no source-body audit
-  or new-model implementation acceptance is claimed by the planning review.
-  Prerequisites: T202, T204, T205.
-  Rules: [ARCH-01](spec/implementation/compiler.md#arch-01),
-  [ARCH-06](spec/implementation/compiler.md#arch-06),
-  [TPL-02](spec/language/templates.md#tpl-02),
-  [TPL-12](spec/language/static-results.md#tpl-12).
-  Boundary: actual maintained source/test/component contracts, their consumers,
-  and the exact uncommitted T182 input revision and file fingerprints.
-  Steps: inventory components and existing evidence; classify each affected
-  responsibility as reusable, requiring adaptation, obsolete or deferred;
-  assign its source/tests/documentation to a task below and record any necessary
-  finer decomposition before implementation. Inspect the recorded O2 warning
-  and actual lifecycle/embedding acceptance affected by T205.
-  Accept: a per-component/file map names real consumers and executable checks;
-  source, AST, scopes, metadata, constraints, guards, registry, graph results,
-  constants and product boundaries all have explicit owners. Historical
-  T169–T181/T201 evidence remains dated to its accepted contract, never promoted
-  to acceptance of removed mixed interfaces, exact signatures or static positions.
-  Preserve T182's partial files, run/failure evidence and continuation note.
-  Reuse them only through an identified cohesive task with tests and comments;
-  do not silently depend on uncommitted APIs, delete unfinished work or commit it
-  as a side effect of this audit. No semantic change or implementation is part
-  of the audit itself. Follow the common evidence/documentation/commit criteria.
+[T203](DONE.md#t203) completed the source/test audit. Its
+[exact dispositions](docs/implementation/audit/static-module-alignment.md) govern
+reuse, removal and replacement below; they do not establish current-spec support.
 
 ### Phase 2. Establish current source structure and bindings
+
+<a id="t214"></a>
+
+- [ ] **T214 — Remove the unused ordinary interface-preview application API.**
+  Prerequisites: T203.
+  Rules: [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-12](spec/language/static-results.md#tpl-12),
+  [ARCH-03](spec/implementation/compiler.md#arch-03).
+  Boundary: `src/semantic/static/results/pattern/apply.c`, its public declaration
+  and unused cached-application field, and the sole-purpose result-pattern leaf.
+  T203 traced every occurrence: only that leaf calls `static_result_pattern_apply`;
+  actual expression evaluation consumes operand preparation without this API.
+  Steps: remove the unused API/state and obsolete leaf; retain source/environment
+  operand preparation through its real expression consumer; reconcile purpose
+  comments, recursive test routing and per-file evidence without importing T182
+  implementation as an unrelated side effect.
+  Accept: no declaration/call/definition or dormant compatibility wrapper remains.
+  Meaningful preparation identity, failure/cleanup and actual expression checks
+  remain covered through independently runnable live-consumer tests. Run affected
+  results, publication and constant compositions, relevant sanitizers and root
+  build; preserve the pre-existing warning as T182-owned until its real fix.
+  The user's 2026-11-19 unused-code instruction authorizes removing these exact
+  unfinished T182 files; retain their fingerprints and historical failed runs,
+  not obsolete executable code. Follow common documentation and commit criteria.
 
 <a id="t206"></a>
 
 - [ ] **T206 — Parse separate static modules and simple ordinary Type forms.**
-  Prerequisites: T203.
+  Prerequisites: T203, T214.
   Rules: [SYN-03](spec/language/source-and-names.md#syn-03),
   [SYN-04](spec/language/source-and-names.md#syn-04),
   [COMP-01](spec/implementation/compiler.md#comp-01),
@@ -433,13 +433,15 @@ T212, not treated as current acceptance of removed inline projections.
 <a id="t182"></a>
 
 - [ ] **T182 — Generate ordinary typed-connection and nested-field constraints.**
-  Status: retained unfinished work; wait for T203 and the new foundations above.
+  Status: retained unfinished work; use T203's completed audit and wait for the
+  new foundations above.
   AMB-013 is resolved by excluding computed ordinary interfaces; do not implement
   the obsolete preview exception or treat old mixed-interface probes as support.
   Partial foundations pass 24 lexical/typed-scope and five congruence sanitizer
   cases; full step/failure/checkpoint evidence is in the owning note. O2 root
   build has a recorded return-contract warning; T182 is not accepted or committed.
-  No jobs active; retain the partial work and finish T203 before resuming.
+  No jobs active; follow T203's file ownership and the explicitly authorized
+  T214 unused-preview removal before resuming the remaining work.
   Its local continuation note remains with the unfinished working-tree files,
   outside T202; the specification task establishes no implementation acceptance.
   Prerequisites: T207, T209, T212.
@@ -855,7 +857,7 @@ consumers of the same resolved identities. T196 reviews every other canonical
 row and existing product regression, and T197/T198 complete release/reference
 acceptance. No historical hash refresh or routing label establishes support.
 
-The next unused task ID is **T214**.
+The next unused task ID is **T215**.
 
 ## Useful verification commands
 
