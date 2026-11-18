@@ -454,15 +454,18 @@ retain its declared residual signature, with known origin and captures. Static
 evaluation is not runtime invocation or arbitrary
 execution of the template body. Output equations contribute only their exact
 structural information, not a search for a producer or a default missing type.
-Specialization-creation dependencies are checked under
-[TPL-11](../language/templates.md#tpl-11) after actual constructor origins and
-bindings are known. The creation graph is neither a structural type-containment
-tree nor a graph merging all bindings by source-template identity. Interning a
-specialization and validating its use on a creation path are
-separate responsibilities, so a cache hit cannot hide a dependency forbidden in
-its new ancestry. Check the active definition and creation ancestry before
-following each static expansion, rather than generating an unbounded producer
-chain and attempting to validate it only afterwards. An explicit output phase
+Specialization-creation dependencies follow
+[TPL-11](../language/templates.md#tpl-11), including its closed-key recurrence,
+pending comparisons and fixed ordinary constant-namespace reuse. The graph is
+neither a structural type-containment tree nor a graph merging all bindings by
+source-template identity. Registering a canonical nominal vertex and admitting
+a fully checked type are separate responsibilities. A same-key cycle closes
+the nominal graph, while all outgoing dependencies and independent checks still
+have to finish. A cache hit cannot hide a path between different specializations
+of the same source template, including a path through a closed cycle. Check
+static-definition dependencies and creation obligations before following each
+expansion; do not generate an unbounded producer chain first or assume that
+unresolved repeated origins have equal keys. An explicit output phase
 requires its producer application even when its head is a supplied closed Type
 or every requested output is skipped; plain reuse/aliasing alone does not.
 The [TPL-13](../language/templates.md#tpl-13) native boundary is checked from the

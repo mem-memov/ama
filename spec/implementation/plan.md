@@ -188,7 +188,10 @@ patterns and static partial application, T160 defines typed-connection inference
 and Type introductions in `@>`, and T161 specifies dependent shared constants
 with explicit concrete-type namespaces and their design rationale. T163 settles
 finite composition and specialization creation under
-[TPL-11](../language/templates.md#tpl-11). T162 defines static input categories,
+[TPL-11](../language/templates.md#tpl-11). T200 refines that contract with
+closed same-key cycles and fixed nongeneric constant-namespace reuse; these
+later design decisions do not establish implementation support. T162 defines
+static input categories,
 returned types/constructors, positional application and immutable aliases under
 [TPL-12](../language/static-results.md#tpl-12). T165 settles the concrete native,
 source-distribution and ordinary-facade export boundaries under
@@ -214,7 +217,8 @@ bindings and actual-origin result projection; cycle-safe static output
 dependencies and exact output inference, including complete producer-input
 closure before publishing any projected output; concrete-specialization creation
 dependencies and their TPL-11 validation, including inferred applications, constructor-valued parameters and
-reuse of cached dependency subgraphs; ordinary type/lifecycle
+reuse of cached dependency subgraphs, including all paths through same-key
+cycles and pending comparisons before keys close; ordinary type/lifecycle
 checking of concrete specializations, including dependent constant types,
 concrete namespace selection and per-specialization initialization graphs;
 specialized layouts/emission and source
@@ -230,8 +234,10 @@ specialization export selectors and a binary open-template format are outside
 this boundary; follow TPL-13/EMBED-01 rather than inventing a packaging interface.
 Each component needs its own argument, unit cases and real composition cases.
 Add complete positive/negative nested, partial and erroneous applications,
-including order-independent creation-path checks and permitted finite repeated
-nesting, plus static outputs, partial returned constructors, positional skips and
+including order-independent creation-path checks, permitted finite repeated
+nesting and closed recursive reference/list types, different-key recurrence
+rejection, ordinary namespace reuse, plus static outputs, partial returned
+constructors, positional skips and
 alias equality/visibility, before making support claims. Update reviewed
 conformance only with actual evidence.
 

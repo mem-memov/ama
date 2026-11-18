@@ -774,6 +774,14 @@ determine a local parameter; namespace constant-member lookup
 cannot supply the evidence needed to choose its own owner. There is no search
 for a module that happens to provide a requested constant.
 
+Specialization-creation provenance follows [TPL-11](templates.md#tpl-11).
+Selecting an ordinary nongeneric namespace without static outputs reuses its
+fixed Type, just as a direct qualified source does under CONST-05. The namespace
+is still independently loaded and checked; its constants retain their value
+dependencies. Template applications and explicit static output phases keep
+their required producer/application checks. Namespace selection never means
+acquiring a default instance.
+
 Resolve named requests only in the selected concrete type's own `@=` declarations;
 positional requests follow their declaration order. Substitution does not import
 or inherit constants of any argument type. A namespace cannot expose parameters,
@@ -932,6 +940,10 @@ No implicit Ama variable, local alias, hidden instance, body execution, or new
 literal category is introduced. A type-path line in a declaration remains a type
 path; source position determines qualified-constant interpretation. Namespace
 loading uses the same project/library/submodule mapping and collision checks.
+For creation provenance this is the fixed-Type namespace reuse defined by
+[TPL-11](templates.md#tpl-11), with the same policy as CONST-03 without static
+outputs. This changes no constant-value initialization dependency or validation
+of the namespace itself.
 Missing namespaces/members, draft namespaces, incompatible types, and incorrect
 storage forms are source-located compile-time errors.
 
@@ -963,7 +975,9 @@ selected color
 ```
 
 A qualified source in `@=` adds an explicit initialization dependency. It never
-turns module initialization into an executable call or permits dependency cycles.
+turns module initialization into an executable call or permits cycles of
+constant-value initialization. Finite nominal type-reference cycles are checked
+separately; they are not themselves constant-value dependencies.
 
 ### Constants whose types depend on parameters
 

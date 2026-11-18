@@ -4078,6 +4078,76 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   No specification edit, output evaluation, runtime execution or executable
   specialization admission is claimed; T179/T180/T184 retain those boundaries.
 
+<a id="t200"></a>
+
+- [x] **T200 — Specify closed specialization cycles and fixed constant namespaces.**
+  Status: accepted, 2026-11-18; input 78a2099 with unfinished T181 work preserved.
+  Prerequisites: accepted template design and the explicit user decisions for
+  AMB-012 option 2 and exact same-key recursion, followed by authorization:
+  "Вноси изменения в спецификацию с безопасными послаблениями. Проверь
+  согласованность и непротиворечивость требований в спецификации."
+  Rules: TPL-10/TPL-11/TPL-12, CONST-03/CONST-05, TYPE-04, COMP-03 and the
+  canonical grammar/acceptance matrix. Boundary: specification, decision log,
+  task routing and documentation; no compiler implementation or support claim.
+  Steps: (1) audit canonical and derived specification text and record decisions;
+  (2) define exact closed-key recurrence, unresolved obligations, namespace reuse,
+  cache-independent checks and termination, with explained examples;
+  (3) reconcile grammar guidance, implementation/acceptance contracts and TODO
+  consumers, verify links/rules/grammar and documentation, archive and commit.
+  Acceptance: no path connects distinct concrete keys of the same source
+  template; exact-key cycles remain subject to separate eager construction,
+  substitution, static-definition and constant-value checks. Both ordinary
+  no-output namespace spellings reuse the fixed Type. Unknown keys are never
+  guessed, caches do not hide outgoing paths, and the finite-graph argument
+  covers all admitted creation paths. Record actual checks, not compiler claims.
+  Step 1 findings: TPL-12's pre-key origin rejection, blanket cycle wording in
+  CONST-05 and same-key negative acceptance cases require coordinated changes.
+  Results: coordinated nine specification files, explanations, four new Ama
+  fences and eight existing acceptance areas. TPL-11 owns the exact graph
+  predicate, incremental predecessor/successor check, full-key comparison,
+  unresolved-obligation policy and finite-branching/simple-path proof. TPL-12
+  retains static-definition cycle rejection; CONST-05's former blanket dependency
+  cycle wording now refers specifically to constant-value initialization.
+  The A(text)/B/A(integer) example distinguishes fixed namespace reuse even
+  after same-key cycles become legal. Closed-cycle outgoing-branch rejection,
+  independent siblings, references, empty lists, ownership and capture boundaries
+  are explicit. Grammar productions and stable requirement/acceptance identities
+  are unchanged. AMB-012 records user decisions and authorization; AMB-005
+  preserves its dated original decision and identifies the later refinement.
+  Verification: make -C tests/unit/parser/composition exits 0, including all
+  124 canonical Ama/ABI examples and unchanged ownership/prefix/failure cases
+  (log /tmp/ama-t200-parser-examples.log). The existing per-file named consumer
+  covers support/documented.c; only its four explicit example contexts changed.
+  Pre-archive canonical/link audit exits 0: 213 Markdown pages, 2942 local links, 214 rules,
+  108 byte-identical EBNF productions and 150 unchanged acceptance-area identities.
+  A temporary independent graph model (python3 /tmp/ama-t200-four-vertex-model.py,
+  log /tmp/ama-t200-model.log, exit 0) enumerates all 65536 four-vertex graphs,
+  including self-loops, for two origin profiles. Independent BFS and incremental
+  closure agree in 262144 acceptance comparisons and 9824 accepted full closures;
+  131072 ascending/descending order comparisons and six explicit controls pass.
+  Profiles accept/reject 784/64752 (two template pairs) and 4128/61408
+  (one template pair plus two ordinary vertices). This finite model supplements
+  the canonical proof; it does not test compiler behavior or arbitrary graph sizes.
+  Documentation acceptance uses an isolated HEAD source tree with only T200
+  document/example changes overlaid at /tmp/ama-t200-docs-x4btfgw_/tree, excluding
+  unfinished T181 code. With GIT_INDEX_FILE=/tmp/ama-t200-docs-x4btfgw_/index
+  and GIT_WORK_TREE set to that tree, make docs-complete exits 0: 2655 reviewed
+  code/fixture inputs, zero debts, independent headers and named test interfaces
+  (log /tmp/ama-t200-docs-complete.log). On those checked code inputs,
+  python3 tools/documentation/build.py --doxygen doxygen exits 0: 2006 maintained
+  file pages, 7775 interfaces, 427 checked destinations and 6341 pages (log
+  /tmp/ama-t200-doxygen-initial.log). Tools: Doxygen 1.11.0, Python 3.14.4,
+  markdown-it-py 3.0.0. Final archived link/structure/whitespace checks also exit
+  0: 213 pages, 2943 local links, the same rule/grammar/acceptance identities,
+  and unique TODO/DONE task IDs with T200 archived, T201 planned and T181 unfinished.
+  Delivery regenerates the archived inputs through make docs in the isolated
+  tree (log /tmp/ama-t200-doxygen-final.log) and compares its manifest with every
+  corresponding working-tree document/example byte before the task commit.
+  Implementation remains pending: T201 owns changed guards and result/publication
+  consumers; T181 remains unfinished behind that prerequisite. Component records
+  explicitly distinguish prior accepted evidence from the revised target. No
+  compiler/runtime support or conformance fingerprint refresh is claimed.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

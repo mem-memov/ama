@@ -421,21 +421,27 @@ producer Type. Attribute that application to its enclosing instantiated
 definition. This also applies when the head is an already supplied closed Type
 or an ordinary module with no static parameters: reading its static results
 requires checking its producer definition, rather than merely decomposing type
-metadata. Preserve ordinary producer identities in dependency records; TPL-11's
-repeated-template predicate concerns original template origins. A concrete constructor application written inside the producer's
-output definition is an edge from that producer; returning a supplied Type
+metadata. Preserve ordinary producer identities in dependency records; TPL-11
+compares full specialization keys sharing an original template origin. A
+concrete constructor application written inside the producer's output definition
+is an edge from that producer; returning a supplied Type
 adds no fictitious application. A returned partial constructor is finite
 metadata until its later application, which uses its actual original origin
-and captures. Output aliases and warm cache entries cannot conceal a repeated
-origin on an actual creation path.
+and captures. Output aliases and warm cache entries cannot conceal a path to a
+different specialization of an earlier source template. Returning the producer's
+own closed nominal Type can close a TPL-11 graph; defining a static result by
+projecting that same result still violates the separate definition-cycle check.
 
 During inference, retain distinct application occurrences and their scoped
 symbolic input environments while complete canonical keys are unresolved.
-Check already known original template origins on the active creation ancestry
-before expanding their definitions. Finalize and cache concrete vertices once
-bindings close; merging equal keys must preserve every incoming provenance and
-its path validation. This allows output equations to determine inputs without
-first expanding an unguarded recursive producer chain.
+Before expanding a dependency, apply TPL-11's closed-key or pending-key check.
+A repeated origin is not alone a rejection, and unresolved bindings are not
+proof of equal keys. Suspend a repeated-origin expansion whose comparison keys
+remain unresolved; refine its existing constraints without generating further
+copies. Finalize concrete vertices once bindings close; merging equal keys must
+preserve every incoming provenance and all outgoing dependencies. Check the
+complete graph independently of discovery/cache order. This allows output
+equations to determine inputs without expanding an unguarded producer chain.
 
 An exact checker can proceed as follows:
 
@@ -450,15 +456,18 @@ An exact checker can proceed as follows:
 3. Apply TPL-10's exact structural equations. Expand known static result
    definitions without losing parameter scope. Before following each
    definition/application dependency, check the active static-definition path
-   and TPL-11's concrete creation ancestry; reject a repeated forbidden origin
-   before expanding its next definition. Cache hits retain these path checks.
+   and TPL-11's creation graph. Close identical concrete nominal vertices,
+   reject a reachable unequal key of the same source template, or retain a
+   pending comparison under TPL-11 instead of expanding an unresolved repeat.
+   Cache hits retain the complete dependency checks.
    Do not invert a general output
    transformation, enumerate constructors, infer from capabilities, or choose
    a binding from execution order. A blocked expression waits only for actual
    new static evidence; an iteration without a change is not progress.
 4. Require unique complete producer bindings, finish validating the already
-   guarded static-definition graph and TPL-11 creation paths, and check all required specialized
-   definitions. Reject unresolved required origins, inputs or captures.
+   guarded static-definition graph and TPL-11 creation paths, and check all
+   required specialized definitions. Reject unresolved required origins, inputs
+   or captures.
 5. Publish the normalized result aliases and concrete runtime types. Retain
    provenance for diagnostics and cache canonical specialization information.
    Lower only the resulting ordinary runtime operations and storage.

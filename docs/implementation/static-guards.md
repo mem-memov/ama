@@ -1,5 +1,13 @@
 # Static dependency and creation guards
 
+**Pending contract alignment:** T200 changes
+[TPL-11](../../spec/language/templates.md#tpl-11) to permit exact closed-key
+cycles and fixed ordinary constant-namespace reuse. The T178 implementation and
+evidence below describe its earlier stricter guard behavior; they do not prove
+conformance to the revised rule. [T201](../../TODO.md#t201) owns the guard,
+consumer, comment and test updates before T181 resumes. In particular, the
+origin-only rejection described below must not be used as the new language rule.
+
 T178 is accepted on input 8cfe3f6. T175 supplies scoped immutable identities,
 T176 finite normalization and T177 source-preserving application records.
 Authority: [TPL-11](../../spec/language/templates.md#tpl-11),
@@ -8,7 +16,7 @@ Authority: [TPL-11](../../spec/language/templates.md#tpl-11),
 [COMP-04](../../spec/implementation/compiler.md#comp-04),
 [ARCH-03](../../spec/implementation/compiler.md#arch-03),
 [ARCH-05](../../spec/implementation/compiler.md#arch-05).
-No specification change is authorized. This component guards requests; it does
+T178 did not authorize specification changes. This component guards requests; it does
 not evaluate static outputs, inspect runtime state or admit executable types.
 T179 owns output equations and T184 owns frontend work scheduling/admission.
 

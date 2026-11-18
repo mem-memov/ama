@@ -45,7 +45,7 @@ internal ASCII hyphens, follows [SRC-03](source-and-names.md#src-03). The
 native/export boundary is settled by [TPL-13](#tpl-13); the list-foundation
 rewrite is outside the current sprint
 under [AMB-006](../../AMBIGUITIES.md#amb-006). Finite nested composition and the
-prohibition on recursive specialization creation follow [TPL-11](#tpl-11).
+finite specialization-creation rule follow [TPL-11](#tpl-11).
 Type evidence and result
 Type introductions are settled below. Parameter-dependent shared constants and
 explicit type namespaces follow [CONST-03/CONST-06](declarations.md#const-06).
@@ -1411,7 +1411,9 @@ specialization creation and its separate termination argument follow TPL-11.
 
 An occurs check and a cache of repeated specialization keys do not establish that
 arbitrary recursive generation terminates: a template can generate a new distinct
-specialization at every step. Apply TPL-11's exact creation-path restriction;
+specialization at every step. A cache can close a dependency on the same complete
+key; it cannot prove that changing keys will stop. Apply TPL-11's exact
+creation-graph restriction and its treatment of unresolved repeated origins;
 do not replace it with an arbitrary nesting limit, timeout, recursion heuristic,
 or cache-order-dependent acceptance. Ordinary finite nominal reference cycles
 are not automatically infinite type substitutions or eager ownership cycles.
@@ -1429,19 +1431,21 @@ between accepted design and implementation evidence visible.
 
 **Explanation.** A finite type expression can use the same constructor more than
 once. A box of boxes has a perfectly definite type: the outer box receives the
-complete inner box type as its element Type. This differs from a definition that
-requires another application of itself whenever the compiler expands it.
+complete inner box type as its element Type. A recursive node can also have a
+definite type: a reference to another node of exactly the same specialization
+closes a finite graph. Neither case requires an endless sequence of new types.
 
 **Why this rule exists.** Ama is intended to support automatic development and
 improvement of algorithms from textual descriptions and examples in other
 languages. Nested containers, indexes and reusable wrappers are useful in that
 work. Prohibiting every repeated constructor in a type would force artificial
 copies of library definitions and expose private helper choices to callers.
-The chosen boundary preserves finite composition while excluding recursive
-definition expansion, including some cases that would eventually terminate.
-It requires no general analysis of whether changing type arguments will stop
-growing. It assumes no particular data model for the algorithm-development
-polygon.
+The chosen boundary preserves finite composition and cycles returning to the
+same fully determined specialization. It excludes paths that return to the same
+source template with different bindings, including some finite permutations.
+This supports generic linked nodes and recursive collections without requiring
+a general analysis of whether changing type arguments will stop growing. It
+assumes no particular data model for the algorithm-development polygon.
 
 **Example: complete `.box`.** Assume supplied element types support ordinary
 default construction. This definition simply holds a value of its supplied Type:
@@ -1507,11 +1511,19 @@ the target, but its type still has to exist and pass static checking.
 
 <a id="tpl-11"></a>
 
-**TPL-11.** Permit finite repeated nesting of constructors in static expressions.
-Prohibit repetition of an original source template on any path of the
-specialization-creation graph defined below, even when the repeated application
-has exactly the same complete bindings. This restriction applies to required
-specializations before code generation or runtime construction.
+**TPL-11.** Permit finite repeated nesting of constructors in static expressions
+and specialization-creation cycles that return to exactly the same fully
+determined nominal type. In the required specialization-creation graph defined
+below, reject a directed path from one concrete specialization to a *different*
+concrete specialization of the same original source template. A return to the
+same canonical vertex is permitted. This restriction applies before code
+generation or runtime construction, independently of the other cycle checks.
+
+Compare complete normalized specialization identities under TPL-05: original
+logical origin/root kind and all Type/Template bindings, including unused
+bindings, fixed arguments, residual constructor signatures and captures. Equal
+names, representations or generated code do not establish equal keys. Distinct
+inference variables cannot be equated merely to make a cycle close.
 
 ### Construction provenance
 
@@ -1524,8 +1536,9 @@ For each required concrete owner, record an edge to the concrete specialization
 required by each constructor application originating in that owner's instantiated
 definition. Include applications in shared declarations, input/runtime-result
 types, static result definitions and projections under TPL-12, defaults, body
-declarations and explicit constant namespaces. A projection's concrete producer
-is required even when its ordinary application Type is discarded. Returning a
+declarations and template applications in explicit constant namespaces. A
+projection's concrete producer is required even when its ordinary application
+Type is discarded. Returning a
 supplied Type adds no application edge; a later application of a returned
 Template retains its actual original constructor and captures. Include applications
 inside other applications' static arguments, and applications introduced or
@@ -1547,6 +1560,17 @@ unchecked. A Type parameter cannot be applied as a constructor under TPL-02.
 An explicit static output phase is the required producer application defined
 by TPL-12, rather than this plain reuse of supplied nominal metadata.
 
+A concrete ordinary module with no own static parameters, used as a constant
+namespace without a static output phase, also reuses its fixed Type. This adds
+no specialization-creation edge, in both [CONST-03](declarations.md#const-03)'s
+explicit namespace read and [CONST-05](declarations.md#const-05)'s direct qualified
+source. The namespace remains independently required: load and fully validate
+its definition and retain its real member/value-initialization dependencies.
+Do not create an implicit instance or skip the namespace's outgoing applications.
+An explicit static output phase still requires its producer application under
+TPL-12, including when the producer is an ordinary nongeneric module. Applying
+a template to select a constant namespace retains its ordinary creation edges.
+
 For a Template parameter, use the actual original constructor and its fixed
 bindings, not the formal's name or signature alone. A partial constructor remains
 finite static metadata under TPL-08/TPL-10. Capturing or forwarding an unapplied
@@ -1562,35 +1586,79 @@ required specialization must be attributable to such a root or to a recorded
 application edge. Inferring a binding cannot manufacture unrelated type origins
 or exempt an implicit application from this provenance requirement.
 
-### Path checking and canonical caching
+### Closed cycles, pending keys and canonical caching
 
-On every creation-edge path, compare original full logical source-template
-identities. Reject the first repetition on that path, regardless of unequal
-bindings, equal canonical keys, aliases, partial-binding routes or generated
-names. Direct self-application and recurrence through other templates are both
-invalid. No exception is made for reference storage, an initially empty list,
-finite permutations of bindings or a recursive definition that would terminate.
+Keep different concrete specializations as different graph vertices. The path
+predicate is exact reachability: two distinct vertices with the same original
+template origin must not be reachable one from the other. It includes paths
+through ordinary modules and already closed cycles. Independent sibling
+applications may use different bindings of the same template when neither
+depends on the other. Merging all bindings into one source-name vertex would
+reject valid independent paths.
 
-Check independent paths independently. Keep different concrete specializations
-as different graph vertices; merging their edges into one graph of source names
-can introduce cycles that no actual creation path contains. Repeated sibling
-applications and repeated origins in the structure of supplied Types are not
-themselves a repeated origin on a creation path.
+Register a closed nominal identity before following its required dependencies.
+An edge back to that exact identity closes the graph rather than requesting
+another expansion of the same definition. Registration is not successful
+validation: finish every outgoing application and every separate required
+check before admitting executable types. Reference fields and initially empty
+lists can make instance construction finite under TYPE-04, but do not excuse
+different-key recurrence under this rule.
 
-Record an application edge even when its result is already interned or checked.
-A cache hit cannot authorize a repeated origin. When a cached dependency subgraph
-is used under a new ancestry, check its outgoing paths against that ancestry too;
-checking only the immediate cached target is insufficient. For equivalent
-normalized bindings, changing source discovery order, reordering independent
-named bindings or using a warm instead of cold cache must yield the same
-acceptance or rejection. An implementation may retain exact
-dependency summaries instead of repeating body work, provided the same path
-predicate is preserved.
+A finite group of mutually dependent nominal vertices may finish checking
+together once all its local checks and required external dependencies pass.
+No member must be treated as already valid merely because it is in progress,
+and no member must wait for another member's completed validation before its
+nominal identity can be referenced. This does not close cycles of static value
+definitions or constant initialization.
 
-Report a rejected path with the applications and original source identity that
-repeats, retaining definition and use locations under TPL-10. Do not diagnose a
-finite repeated type expression as recursion merely because its printed type
-name contains an earlier constructor name.
+Before complete keys are known, retain original application occurrences, scoped
+bindings and dependency obligations. If following a dependency would revisit a
+source template while the keys needed for comparison remain unresolved, suspend
+that expansion. Use actual new TPL-10/TPL-12 constraints to close the keys;
+neither assume equality, reject solely from the repeated origin, nor expand
+further copies speculatively. A required obligation still unresolved after
+genuine refinements are exhausted is an underdetermination error. A proven
+unequal repeated key is a creation-path error. This does not relax the separate
+static-definition cycle check under TPL-12.
+
+Record application edges even when their targets are already interned, pending
+or checked. Check new outgoing edges against all existing relevant incoming
+paths, including paths through closed cycles. A cache hit cannot hide a reachable
+pair with unequal keys. Cached dependency subgraphs or exact summaries must
+preserve all these reachability facts and source locations, not merely the
+immediate target or the fact that its body was visited once. Changing root/source
+discovery order, independent named-binding order or warm/cold cache state must
+yield the same acceptance or rejection for equivalent normalized bindings.
+
+Report a rejected path with both unequal complete specialization identities,
+their common original template and the creating definition/use locations under
+TPL-10. Do not reject a finite expression from repeated printed names alone.
+
+**Explanation: one exact graph check.** For a finite concrete graph, maintain
+reflexive transitive reachability. When adding an edge `u -> v`, every new
+reachable pair consists of a predecessor of `u` and a successor of `v`, including
+the endpoints themselves. Check those pairs for the forbidden same-origin,
+different-key condition, then retain the edge and the new reachability facts.
+This works even when the edge closes a cycle. Replaying cached dependencies
+performs the same check; equivalent exact graph algorithms are also valid.
+With an explicit reachability matrix, storage is quadratic in the number of
+concrete vertices and each edge insertion examines at most that many pairs;
+key normalization and diagnostic-path reconstruction are separate costs.
+
+**Example: closing a cycle must not hide its other branches.** In explanatory
+metanotation, let `B1` and `B2` be different specializations of the same B template:
+
+```mermaid
+flowchart LR
+    A1 --> B1
+    B1 --> A1
+    A1 --> B2
+```
+
+Although the cycle returns to the same A key, the graph contains
+`B1 -> A1 -> B2`, so it is rejected. A traversal that stops checking all
+dependencies after seeing A1 again would miss this path. In contrast, a root
+with independent edges to B1 and B2 and no return path is permitted.
 
 ### Relationship to the other checks
 
@@ -1610,12 +1678,88 @@ an arrow means a constructor application originating in the expanded definition:
 |---|---|
 | `Box(Box(Integer))`, where Box only uses its supplied Type | Permitted, including when written inside another template |
 | `Pair(Box(Integer), Box(Text))` | Permitted independent branches |
-| `A(T) -> A(T)` | Rejected even for identical full bindings |
-| `A(T) -> B(T) -> A(T)` | Rejected mutual recurrence |
+| `A(T) -> A(T)` | Permitted same-key closure, subject to the separate checks |
+| `A(T) -> B(T) -> A(T)` | Permitted finite mutual closure when the returned full A key is identical |
 | `Grow(T) -> Grow(Box(T))` | Rejected changing bindings |
-| `A(X,Y) -> A(Y,X)` | Rejected finite permutation recurrence |
-| An actual Template parameter applies a partial constructor originating in its owner | Rejected repeated source, even if its next application would terminate |
+| `A(X,Y) -> A(Y,X)`, with unequal X and Y | Rejected different-key recurrence, even though permutation can terminate |
+| The same permutation with equal X and Y | Permitted identical-key closure |
+| An actual Template parameter applies a partial constructor originating in its owner | Compare the actual full origin and bindings: identical-key closure is permitted; a reachable different key is rejected |
 | A constructor is captured but never applied | No creation edge for that capture; its finite metadata is still checked |
+
+**Example: complete recursive `.node`.** Assume the selected element Type is
+default-constructible. The next reference starts empty and the children list
+starts empty; neither constructs another node immediately:
+
+```text
+@<
+...element type
+
+@!
+value
+...element type
+
+next&
+.node
+ ...element type < ...element type
+
+children[]
+.node
+ ...element type < ...element type
+```
+
+Selecting integers requires one `.node` specialization. Both node-typed fields
+refer to that same nominal identity, without sharing instance state. Later
+operations can build finite linked structures and trees. Replacing `next&`
+with an owned scalar `next` would still close the type graph, but would violate
+TYPE-04: constructing a node would immediately require another node forever.
+
+**Example: reading a fixed namespace does not create its Type again.** Assume
+`..text` and `..integer` are distinct concrete Types. File `.a` is a template:
+
+```text
+@<
+...type
+
+@!
+copied
+..integer
+ .b.constant
+```
+
+File `.b` is ordinary and nongeneric:
+
+```text
+@=
+constant
+..integer
+ |0
+
+@!
+back&
+.a
+ ...type < ..integer
+```
+
+Require `.a` with `...type` bound to `..text`. Reading `.b.constant` requires
+checking `.b`, but does not create an `.a(text) -> .b` application edge. Checking
+`.b` requires `.a(integer)` for its reference field. Thus both A specializations
+are permitted: neither depends on the other in the creation graph. The unused
+Type parameter still distinguishes their full keys under TPL-05. The constant
+is the independent integer zero; no value-initialization cycle is present.
+
+The body of `.a` may instead use this explicit read, with the same acceptance:
+
+```text
+copied
+..integer
+
+.b
+ constant >> copied
+```
+
+If the namespace had a static output phase, its required producer application
+would remain in the graph. If `.b` had an invalid definition or its constant
+initialization had a cycle, fixed-Type reuse would not make it valid.
 
 **Explanation: private helpers do not prohibit finite composition.** Suppose
 `Set(T)` is implemented using `Dictionary(T, Marker)`, and Dictionary only reuses
@@ -1623,8 +1767,8 @@ its supplied key/value Types. An Index definition requiring
 `Dictionary(Feature, Set(Node))` has paths `Index -> Dictionary` and
 `Index -> Set -> Dictionary`. The supplied Set Type adds no `Dictionary -> Set`
 edge. This composition is permitted even though Dictionary occurs twice in the
-complete type structure. If an actual definition additionally creates a return
-path to an earlier source template, that different construction is rejected.
+complete type structure. If an actual definition additionally creates a path to
+a different specialization of an earlier source template, it is rejected.
 
 **Explanation: unrelated bindings must not create a fictitious cycle.** Suppose
 A and B each apply a received one-Type constructor to their element Type. One
@@ -1633,13 +1777,21 @@ root supplies A with B partially fixed to use Box; its creation path is
 its path is `B -> A -> Box`. These different concrete applications are permitted.
 Combining their edges by source name would falsely produce `A -> B -> A`.
 
-**Why checking terminates.** Source definitions, their static expressions and
-their initially required roots are finite. Each instantiated definition contains
-finitely many application occurrences. The path predicate bounds the number of
-template-source steps by the number of original templates, so finite branching
-cannot produce an infinite creation tree. Reuse of supplied Types adds no new
-application step; all required concrete Types still have their root/application
-provenance. Constructor captures and constraints remain finite under the separate
-signature and occurs checks. This is a structural termination argument, not a
-configured depth limit: explicit finite nesting has no additional language depth
-limit, and no timeout or heuristic substitutes for the path check.
+**Why checking terminates.** Source definitions, static expressions and initial
+roots are finite. Each instantiated definition has finitely many application
+occurrences. A simple directed path contains no repeated canonical vertex; by
+the path predicate it also contains no two different specializations of one
+original template. Ordinary nongeneric modules each have one fixed identity.
+Thus simple paths are bounded by the finite number of source definitions.
+Finite branching and bounded simple paths permit only finitely many required
+vertices. Returning to an existing key adds an edge, not another vertex or
+definition expansion. Unresolved repeated origins cannot generate more copies
+while waiting. Reuse of supplied Types and fixed ordinary constant namespaces
+adds no application step, but their independently required definitions remain
+checked. Fixed ordinary namespaces range over finitely many source identities;
+supplied-Type reuse requires existing finite nominal metadata from roots or
+bindings and does not synthesize a fresh specialization key. These operations
+cannot introduce an unbounded family of independent roots. Signatures, finite
+substitution terms and static-definition expansion retain their separate
+termination checks. No depth budget, timeout, heuristic
+or discovery-order choice replaces this argument.

@@ -1,12 +1,19 @@
 # Complete static producers and immutable publication
 
+**Pending contract alignment:** [T201](../../TODO.md#t201) owns the effects of
+T200's [TPL-11](../../spec/language/templates.md#tpl-11) revision on guard and
+result/publication consumers. The T180 evidence below is its recorded baseline,
+not evidence that same-key cycles or revised namespace reuse already work.
+Producer closure, immutable publication and separate definition checks remain
+required under [TPL-12](../../spec/language/static-results.md#tpl-12).
+
 T180 is accepted on input fa1cd3e. Authority:
 [TPL-12](../../spec/language/static-results.md#tpl-12),
 [TPL-08](../../spec/language/templates.md#tpl-08),
 [TPL-10](../../spec/language/templates.md#tpl-10),
 [TPL-11](../../spec/language/templates.md#tpl-11),
 [ARCH-03](../../spec/implementation/compiler.md#arch-03).
-No specification change is authorized.
+T180 did not authorize specification changes.
 
 ## Contract
 

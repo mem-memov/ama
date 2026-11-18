@@ -20,6 +20,12 @@ design decisions. T167 records the implementation sprint plan in
 is [T168](DONE.md#t168), followed by [T169](DONE.md#t169). Examples in a newly opened entry expose questions,
 not additional accepted Ama syntax. No answer is inferred from a request to document a question.
 
+[AMB-012](#amb-012) is resolved by the 2026-11-18 user decisions and T200:
+ordinary nongeneric constant namespaces without static outputs reuse a fixed
+Type in both spellings. T200 also authorizes same-key specialization cycles
+while retaining different-key recurrence rejection. T201 must align the guards
+before T181 resumes; its partial implementation is not accepted by this decision.
+
 The planned design decisions were closed before implementation. The user also
 resolves the implementation clarification [AMB-011](#amb-011): output-only
 interface heads may introduce Type under TPL-02. T199 records the authorized
@@ -438,8 +444,11 @@ Each entry must contain:
   source-template identities on each specialization-creation path, including
   actual constructors received through Template parameters or partial bindings.
   This latest decision supersedes the earlier ban on finite repeated nesting;
-  the independent-branch allowance remains. No recursive-definition exception
-  for identical complete bindings was accepted.
+  the independent-branch allowance remains. At T163 no recursive-definition
+  exception for identical complete bindings was accepted. The later 2026-11-18
+  decision recorded in [AMB-012](#amb-012) and T200 supersedes that part: exact
+  closed-key cycles are now permitted, while reachable different keys of the
+  same source template remain forbidden.
 - **Purpose and motivation:** In the same user message, the user described the
   polygon's purpose as automatic development and improvement of algorithms
   available through textual descriptions and examples in other programming
@@ -841,3 +850,86 @@ Each entry must contain:
   Type-formal controls. Both parser leaves pass; these establish syntax, not
   implemented inference. T172 must test actual parameter/alias identities and
   ordering through its completed inventory. Its original task remains unfinished.
+
+<a id="amb-012"></a>
+
+## AMB-012 — Creation provenance of nongeneric constant namespaces
+
+- **Status:** Resolved by the 2026-11-18 user decisions and T200 clarification.
+- **Task:** T181 — Resolve dependent constant types and explicit namespaces,
+  unfinished on input 78a2099. T200 owns the specification correction; T201
+  aligns the creation guards and consumers before T181 resumes. Qualified-source
+  lowering is not implemented. Existing partial constant work and the unused
+  draft dependency-path adapter remain unaccepted local implementation work.
+- **Requirements at discovery:** [TPL-11](spec/language/templates.md#tpl-11)
+  included explicit constant namespace applications but exempted supplied-Type
+  reuse. [CONST-03](spec/language/declarations.md#const-03) and
+  [CONST-05](spec/language/declarations.md#const-05) did not settle whether a
+  written ordinary nongeneric namespace was such an application or fixed-Type
+  reuse. This changed program acceptance under the then-current repeated-origin
+  rule, rather than merely implementation metadata.
+- **Minimal example:** File `.a` is a template:
+
+  ```text
+  @<
+  ...type
+
+  @!
+  copied
+  ..integer
+   .b.constant
+  ```
+
+  File `.b` is nongeneric:
+
+  ```text
+  @=
+  constant
+  ..integer
+   |0
+
+  @!
+  back&
+  .a
+   ...type < ..integer
+  ```
+
+  At discovery the selected root was `.a(integer)`: adding the namespace edge
+  produced `A(integer) -> B -> A(integer)`, rejected by the former blanket
+  repetition rule. Under T200 that exact-key cycle is itself permitted, so the
+  distinguishing control now selects `.a(text)` with Text distinct from Integer.
+  Adding the namespace edge would produce the forbidden different-key path
+  `A(text) -> B -> A(integer)`; the selected fixed-Type reuse policy adds no
+  `A(text) -> B` edge and admits the independently checked Types. The explicit
+  `.b` / `constant >> copied` spelling has the same outcome. `back&` adds no
+  eager ownership cycle and the independent integer zero adds no value cycle.
+- **Question:** Without a static output phase, do written ordinary nongeneric
+  namespaces in both constant-read forms add creation edges, or reuse fixed Types?
+- **Alternatives considered:** Adding edges uniformly preserves the earlier
+  explicit-adapter behavior but overrestricts ordinary constant reads. Reusing
+  fixed Types separates constant access from specialization construction, while
+  still requiring full namespace validation, loading and initialization checks.
+  Neither alternative permits hidden runtime instances or unchecked namespaces.
+- **User decision and source:** In this conversation on 2026-11-18 the user
+  explicitly selected option 2: "Выбираем второй вариант", stating the goal of
+  covering varied algorithms while allowing cases whose finite type construction
+  is quickly and unambiguously provable. The user then asked whether reference
+  restrictions could be relaxed. The accepted proposal permits exact closed-key
+  self/mutual cycles, but prohibits a creation path between different complete
+  specializations of the same original template. Unknown keys are never guessed
+  equal; caches retain every outgoing dependency. Other cycle checks stay separate.
+- **Specification authorization:** The subsequent 2026-11-18 instruction is:
+  "Вноси изменения в спецификацию с безопасными послаблениями. Проверь
+  согласованность и непротиворечивость требований в спецификации."
+  This authorizes T200's precise namespace/closed-cycle changes, their canonical
+  rules, explanations, grammar guidance and acceptance/implementation contracts.
+  It supersedes AMB-005's earlier identical-key ban; unequal-key permutation and
+  growing-specialization paths remain rejected. No arbitrary recursive type
+  computation, runtime type generation or inferred default specialization is added.
+- **Resume evidence:** T200 aligns TPL-10/TPL-11/TPL-12, CONST-03/CONST-05,
+  compiler/grammar guidance and acceptance cases, including the separating root
+  above and a same-key cycle with an outgoing unequal-key branch. T201 must adapt
+  guards/result/publication consumers with exact graph and unresolved-obligation
+  tests before T181 relies on them. T181 still owns qualified-source binding,
+  typed constant composition and its final registry/sanitizer/build/documentation
+  acceptance; neither this resolution nor T200 completes that implementation.

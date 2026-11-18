@@ -1,5 +1,11 @@
 # Guarded static result equations
 
+**Pending contract alignment:** [T201](../../TODO.md#t201) must align this
+component with T200's revised [TPL-11](../../spec/language/templates.md#tpl-11)
+closed-key/pending checks and fixed ordinary namespace reuse. The T179 evidence
+below covers the earlier guard contract. Static-definition cycles remain
+forbidden independently; no new compiler support is claimed by the design edit.
+
 T179 is accepted on input e48fc3e. Authority:
 [TPL-12](../../spec/language/static-results.md#tpl-12),
 [TPL-11](../../spec/language/templates.md#tpl-11),
@@ -8,7 +14,7 @@ T179 is accepted on input e48fc3e. Authority:
 [TPL-10](../../spec/language/templates.md#tpl-10),
 [COMP-04](../../spec/implementation/compiler.md#comp-04),
 [ARCH-03](../../spec/implementation/compiler.md#arch-03).
-No specification change is authorized. T180 owns final producer closure/alias
+T179 did not authorize specification changes. T180 owns final producer closure/alias
 publication, T181 runtime constant namespaces, T182 typed runtime connections,
 T184 whole-project closure, T185 ordinary validation and T189 final diagnostic
 rendering. Corrected the T178 note's future-renderer reference from T183 to T189;

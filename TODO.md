@@ -146,10 +146,16 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T180 accepted on input fa1cd3e.
-[Static publication](docs/implementation/static-publication.md) records exact
-producer/receiver proof closure and immutable results. T181 is next ready.
-Final archive/reference refresh precedes the T180 commit. No spec edit authorized.
+Specification clarification [T200](DONE.md#t200) is accepted and archived.
+T201 is the next implementation prerequisite; T181's unfinished local work is
+preserved and has not been accepted by the specification change.
+Current implementation checkpoint: T181 active on input 78a2099.
+[Static constants](docs/implementation/static-constants.md) records dependent
+shared types, deferred namespace reads and qualified-source provenance.
+T180 is accepted, archived and committed. The user has resolved
+[AMB-012](AMBIGUITIES.md#amb-012) and authorized T200's specification correction.
+T181 awaits T201's prerequisite guard/consumer alignment with that new contract.
+No implementation jobs are active; design acceptance is not compiler support.
 
 ## Current tasks
 
@@ -157,12 +163,45 @@ Final archive/reference refresh precedes the T180 commit. No spec edit authorize
 
 ### Phase 2. Build exact static analysis components
 
+<a id="t201"></a>
+
+- [ ] **T201 — Align creation guards and consumers with closed-key cycles.**
+  Status: planned implementation follow-up to the authorized T200 design;
+  existing T178/T179/T180 evidence describes the earlier stricter contract.
+  Prerequisites: T178, T179, T180, T200.
+  Rules: [TPL-11](spec/language/templates.md#tpl-11),
+  [TPL-12](spec/language/static-results.md#tpl-12),
+  [CONST-03](spec/language/declarations.md#const-03),
+  [CONST-05](spec/language/declarations.md#const-05).
+  Boundary: creation guards, their result/publication/application consumers,
+  focused tests and current component comments/contracts; preserve T181's local
+  partial work and replace its unaccepted edge adapter only as required.
+  Steps: (1) specify exact closed-key/pending/reuse states and finite progress;
+  (2) implement reachability and cycle-safe checked contexts, keeping static
+  definition cycles separate; (3) align result/publication/namespace consumers,
+  documentation and per-file evidence, run composition/resource/build checks.
+  Accept: direct/mutual same-key reference/empty-list cycles close without body
+  re-expansion or premature validation. Reachable distinct keys of one origin
+  still fail, including differing unused captures, unequal permutations and
+  cycle-outgoing branches. Unknown comparisons wait for actual constraints,
+  then close or fail without guessing. Both fixed ordinary namespace forms
+  retain independent checking without creation edges; output phases retain
+  producers. Cold/warm caches and reordered roots/edges agree. Exhaustive finite
+  graph tests, allocation failures and real guard/result/publication consumers
+  validate the changed behavior; static-definition/occurs/eager/value checks
+  remain separate. Update stale component prose rather than claiming T178's
+  earlier checks establish support. Commit before resuming T181.
+
 ### Phase 3. Close and validate executable specializations
 
 <a id="t181"></a>
 
 - [ ] **T181 — Resolve dependent constant types and explicit namespaces.**
-  Prerequisites: T174, T177, T180.
+  Status: awaiting T201 after the resolved [AMB-012](AMBIGUITIES.md#amb-012),
+  2026-11-18, on implementation input 78a2099. The task remains unfinished.
+  Step record:
+  [static constants](docs/implementation/static-constants.md).
+  Prerequisites: T174, T177, T180, T201.
   Rules: [CONST-03](spec/language/declarations.md#const-03),
   [CONST-06](spec/language/declarations.md#const-06),
   [TPL-12](spec/language/static-results.md#tpl-12).
@@ -201,7 +240,7 @@ Final archive/reference refresh precedes the T180 commit. No spec edit authorize
 <a id="t183"></a>
 
 - [ ] **T183 — Register exact specialization identities and guarded cache reuse.**
-  Prerequisites: T171, T178, T180, T182.
+  Prerequisites: T171, T178, T180, T182, T201.
   Rules: [TPL-05](spec/language/templates.md#tpl-05),
   [TPL-11](spec/language/templates.md#tpl-11),
   [NAME-01](spec/implementation/compiler.md#name-01),
@@ -215,8 +254,9 @@ Final archive/reference refresh precedes the T180 commit. No spec edit authorize
   Accept: direct/partial/alias-equivalent bindings share identity; different
   roots/origins/unused bindings/captures/residual signatures do not merge.
   Interning is not executable admission; T185 supplies ordinary validation.
-  Cold/warm caches and reordered roots agree, including repeated-origin errors
-  hidden in cached grandchildren; unrelated concrete paths do not form false
+  Cold/warm caches and reordered roots agree, including unequal-key paths
+  hidden in cached grandchildren or outgoing branches of same-key cycles;
+  exact-key closure retains every outgoing check. Unrelated paths do not form false
   source-only cycles. Inject key collisions and allocation failure explicitly.
 
 <a id="t184"></a>
@@ -234,7 +274,8 @@ Final archive/reference refresh precedes the T180 commit. No spec edit authorize
   closed type candidates for ordinary validation; (3) test real check-only and
   multi-root frontend stage handoffs.
   Accept: all required runtime types and producer inputs close; residual returned
-  constructors remain compile-time values only. No expansion bypasses T178 and
+  constructors remain compile-time values only. No expansion bypasses the T201
+  guards, including unresolved repeated-key obligations, and
   no cache bypasses path validation. Reordered independent constraints/roots
   preserve acceptance; malformed definitions and skipped branches remain checked.
   Check every allocation/publication failure and safe frontend teardown; this
@@ -466,7 +507,7 @@ Final archive/reference refresh precedes the T180 commit. No spec edit authorize
 <a id="t196"></a>
 
 - [ ] **T196 — Review current requirement and acceptance evidence.**
-  Prerequisites: T168 through T195.
+  Prerequisites: T168 through T195, T200, T201.
   Rules: [TEST-07](spec/implementation/tools-and-conformance.md#test-07),
   [TEST-08](spec/implementation/tools-and-conformance.md#test-08),
   [ARCH-06](spec/implementation/compiler.md#arch-06).
@@ -580,7 +621,7 @@ existing compiled-library/embedding regressions. T192/T193 own affected editor
 and directory-relocation consumers. T196–T198 cover full evidence/release/docs;
 these additional obligations are not discharged by the 37-row routing table.
 
-The next unused task ID is **T200**.
+The next unused task ID is **T202**.
 
 ## Useful verification commands
 

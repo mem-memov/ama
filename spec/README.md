@@ -25,10 +25,11 @@ immutable result aliases. Constructor patterns, static bindings, bidirectional
 type constraints and explicit constant namespaces have agreed rules; their
 examples explain how those forms fit together.
 The [finite-composition rule](language/templates.md#tpl-11) permits explicitly
-nested uses of the same template while rejecting recursive specialization
-creation through definitions. It distinguishes passing an existing type from
-applying a constructor again, so library containers remain composable without
-requiring an analysis of arbitrary recursive type generation.
+nested uses of the same template and recursive definitions returning to exactly
+the same closed specialization. It rejects creation paths between different
+specializations of one source template. It distinguishes using a fixed type
+from applying a constructor again, so linked structures and library containers
+remain composable without analyzing arbitrary recursive type generation.
 The [constant section](language/declarations.md#const-06) records why parameterized
 shared values and explicit namespace selection avoid name conflicts. The
 [native and distribution boundary](language/templates.md#tpl-13) keeps open

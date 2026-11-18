@@ -629,7 +629,8 @@ specializations is checked after resolution under
 bindings. The parser does not reject repeated spellings, inspect a definition's
 dependencies, or impose a template-depth limit. Reusing an already supplied Type
 and applying its original constructor again have different resolved meanings;
-that distinction changes no EBNF production.
+closed same-key recurrence and different-key recurrence are likewise semantic
+cases under TPL-11. None of these distinctions changes an EBNF production.
 
 ## Executable statements and structural recognition
 
@@ -845,6 +846,10 @@ and checked before publishing outputs or selecting constants. Requested constant
 names and ordinary constant receiver types cannot complete an unresolved
 namespace. A residual constructor is not a constant namespace. This is a static
 namespace selection, not a runtime value source or an instance operation.
+Creation provenance follows [TPL-11](language/templates.md#tpl-11): an ordinary
+nongeneric namespace without static outputs reuses its fixed Type in both the
+explicit and direct qualified forms. The namespace is still independently
+checked. An explicit static output phase retains its required producer check.
 
 Static bindings and saved-result bindings are both at depth `n+1`. All static
 inputs and any static output actions precede the first `>>` binding. A nested
