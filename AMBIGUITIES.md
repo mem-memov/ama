@@ -30,6 +30,12 @@ T181's constant metadata are accepted in DONE. T202 resolves
 first align the earlier components with this source model under T203; T182
 remains unfinished. Relative module paths are explicitly deferred.
 
+The whole-specification review T204 found [AMB-015](#amb-015), an unqualified
+other-context cleanup prohibition conflicting with explicit owned-child disposal.
+The user approved its precise clarification on 2026-11-19;
+[T205](DONE.md#t205) delivers the lifecycle correction before T204 completes the
+revised implementation plan.
+
 The planned design decisions were closed before implementation. The user also
 resolves the implementation clarification [AMB-011](#amb-011): output-only
 interface heads may introduce Type under TPL-02. T199 records the authorized
@@ -1051,3 +1057,57 @@ Each entry must contain:
   both language chapters and grammar; verify no ordinal reads or invented
   reserved result name remain in the named-only model. This question does not
   revoke the separately agreed AMB-013 redesign.
+
+<a id="amb-015"></a>
+
+## AMB-015 — Context cleanup versus an explicitly owned foreign child
+
+- **Status:** Resolved by the explicit 2026-11-19 user decision; T205 owns the
+  canonical clarification and its acceptance, recorded in [DONE](DONE.md#t205).
+- **Task:** [T204](TODO.md#t204), whole-specification consistency review before
+  the user-authorized conditional work-plan rewrite, input `155c9da`.
+- **Requirements at input 155c9da:** [LIFE-05](spec/implementation/native-interface.md#life-05)
+  ended with the unqualified rule that cleanup of one context does not dispose
+  another. [LIFE-03](spec/implementation/native-interface.md#life-03) invokes
+  owned resources' destructors during cleanup.
+  [CABI-05](spec/implementation/native-interface.md#cabi-05) explicitly permits
+  a native wrapper to own an isolated foreign context and requires destruction
+  to dispose child resources. [EMBED-07](spec/implementation/c-library.md#embed-07)
+  requires exactly-once disposal of the exclusively owned child, including the
+  outer-technical-failure acceptance case. Its explicit exception concerns the
+  opaque-payload prohibition, not LIFE-05's cross-context cleanup sentence.
+- **Minimal case:** Outer context A owns native wrapper W; W exclusively owns a
+  quiescent child context B. A suffers an allocation failure. LIFE-05/LIFE-03
+  require cleanup to run W's destructor. EMBED-07 requires that destructor to
+  dispose B, while LIFE-05's final sentence forbids disposing another context.
+  B is neither a peer borrowed from another owner nor an active ancestor.
+- **Question:** Does the no-cross-context-cleanup rule prohibit only implicit
+  disposal of independent peer contexts, while expressly owned foreign child
+  contexts are disposed through their owning resource's destructor? May LIFE-05
+  be clarified to state that exception before the conditional replan resumes?
+- **Recommended concrete clarification:** Replace LIFE-05's final sentence with:
+
+  > Context cleanup does not implicitly dispose independently owned peer contexts.
+  > Destructors dispose exclusively owned foreign child-context resources under
+  > EMBED-07, without executing Ama bodies or reentering active contexts.
+
+  CABI-05/EMBED-07's existing exclusive acyclic ownership, exactly-once cleanup,
+  native callback lifetime and noncopyability obligations remain in force.
+- **Other answer and consequences:** Forbidding child-context disposal during
+  outer cleanup would require redesigning the existing embedding ownership and
+  failed-construction/failure-cleanup contract. A safe alternate owner or resource
+  handoff is not currently specified; silently leaking or abandoning the child
+  is not a supported interpretation.
+- **User decision and source:** On 2026-11-19 the user answered the explicit
+  lifecycle/specification authorization question: “Да, внеси это уточнение и
+  продолжай”. The question quoted the proposed independent-peer versus
+  explicitly-owned-child distinction, the EMBED-07 destructor path and the
+  prohibition on executing Ama bodies or reentering active contexts.
+- **Specification authorization:** This answer explicitly authorizes that
+  LIFE-05 clarification and continuation of the consistency review and plan.
+  It does not authorize unrelated language changes or relative module paths.
+- **Resolution evidence:** T205 reconciles LIFE-05 with CABI-05/EMBED-07
+  and the relevant acceptance case. T204 can finish the consistency review
+  and replan. Preserve exactly-once acyclic resource ownership, independent
+  peer lifetimes, native callback/code lifetime and nonexecuting cleanup. No
+  compiler source or partial T182 work is changed by the specification decision.

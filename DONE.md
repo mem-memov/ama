@@ -4380,3 +4380,30 @@ this table is navigation, not a parallel semantic definition.
   Final archive/record inputs are regenerated and document/staged whitespace
   checks are required to pass before this task's commit. No compiler execution
   or updated conformance-evidence claim is made by these documentation checks.
+
+<a id="t205"></a>
+
+- [x] **T205 — Clarify disposal of explicitly owned foreign child contexts.**
+  Completed 2026-11-19 on specification input 155c9da. The user's explicit
+  AMB-015 answer approves the independent-peer/owned-child clarification and
+  continuation of the review and plan. T204 remains a separate unfinished task.
+  Rules: [LIFE-05](spec/implementation/native-interface.md#life-05),
+  [CABI-05](spec/implementation/native-interface.md#cabi-05),
+  [EMBED-07](spec/implementation/c-library.md#embed-07).
+  Changed LIFE-05's blanket other-context prohibition to prohibit implicit
+  disposal of independent peers while requiring owning native destructors to
+  dispose exclusively owned foreign children exactly once. Preserved acyclic
+  ownership, no Ama body execution/reentry, yielded/failed child disposal and
+  detached native callback/code lifetimes. Added the A/W/B versus independent C
+  example and corresponding canonical acceptance evidence; no ABI or grammar
+  syntax is changed. AMB-015 records the decision and authorization.
+  Evidence: the previously conflicting lifecycle/embedding/native/async rules
+  now prescribe the same outcome for the minimal example; independent source
+  review and document checks pass. `python3 /tmp/ama-t204-check.py .` checked
+  29 documents, 1128 links, 214 indexed rules, 11 EBNF blocks and 108 productions;
+  undefined-name/alignment/group negative controls reject. `git diff --check`
+  passes. Final records are checked again and Doxygen generation from an isolated
+  HEAD-plus-task snapshot must pass before the task's commit. No compiler source,
+  maintained tests, T182 private files or evidence fingerprints are changed.
+  The audit/planning note is committed as T205's prerequisite/handoff record,
+  explicitly retaining T204 as incomplete; it is not an accepted new work plan.

@@ -156,6 +156,24 @@ records the consumed declaration/namespace/initializer boundary and its evidence
 
 ## Current tasks
 
+<a id="t204"></a>
+
+- [ ] **T204 — Audit specification consistency and rebuild the implementation plan.**
+  Status: active after explicit [AMB-015](AMBIGUITIES.md#amb-015) approval;
+  T205 delivers the accepted clarification. Input 155c9da, resumed 2026-11-19.
+  The user requests a whole-specification
+  consistency review and, only if no contradictions remain, a revised work plan
+  and its commit. This authorizes planning records, not semantic edits to `spec/`.
+  Record: [specification audit and planning](docs/implementation/static-plan-review.md).
+  Steps: review all canonical chapters and cross-chapter boundaries; record any
+  real ambiguity and stop affected planning if necessary; otherwise replace the
+  old sprint dependency/acceptance routing with small foundation-first tasks;
+  check links, unique IDs, dependency order and coverage, then archive and commit.
+  Acceptance: a bounded documented consistency conclusion; no guessed rule or
+  unsupported code-acceptance claim; a complete prerequisite-ordered plan with
+  component/composition/failure tests and code documentation in every task.
+  Preserve all unfinished T182 files and historical completed records.
+
 <a id="t203"></a>
 
 - [ ] **T203 — Audit and plan implementation alignment with separate static modules.**
@@ -603,7 +621,7 @@ these additional obligations are not discharged by this routing table.
 T203 must reconcile every remaining historical owner with the changed source
 model before old component evidence is reused; the table is not a support claim.
 
-The next unused task ID is **T204**.
+The next unused task ID is **T206**.
 
 ## Useful verification commands
 

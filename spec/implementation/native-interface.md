@@ -910,14 +910,45 @@ The explicit task
 cancellation protocol does not change this boundary. Outstanding native operation
 records follow ASYNC-09: detachment must prevent later callbacks from accessing
 destroyed Ama state, while any required native record remains alive until its
-external completion is finished. Native cleanup hooks cannot call back into Ama
-or create new Ama work. Cleanup of this context does not dispose another one.
+external completion is finished. Native cleanup hooks cannot enter, resume or
+restart Ama bodies, reenter the current or an active ancestor context, or create
+new Ama work.
+
+Cleanup does not implicitly dispose independent peer contexts. An owning native
+wrapper must, however, dispose its exclusively owned foreign child resources
+through their supported cleanup interface under
+[EMBED-07](c-library.md#embed-07). This is resource destruction, not Ama execution
+or callback reentry. Preserve the acyclic context-ownership forest and release
+each successfully acquired child resource exactly once, including a yielded or
+failed child. Child disposal follows its own root/constant cleanup and the
+deferred-native-activity and code-lifetime rules in
+[ASYNC-09](../language/async-and-parallelism.md#async-09) and
+[EMBED-06](c-library.md#embed-06); it does not resume the child's saved
+continuation. Further exclusively owned descendants follow the same rule.
+Ownership cleanup does not grant
+authority to dispose an unrelated context.
 
 **Informative example.** If a host successfully creates independent roots `a`,
 `b`, then `c`, context disposal destroys `c`, `b`, then `a`, followed by the
 constants. If the host has already disposed `b`, only `c` and `a` remain, in that
 order. Replacing `a`'s contents does not make it newer than `c`. This resource-stack
 order makes cleanup predictable independently of storage allocation choices.
+
+**Informative example: owned children and independent peers.** Context `A` owns
+a native wrapper `W`; that wrapper exclusively owns child context `B`. Context
+`C` is independently owned:
+
+```text
+A -> owned W -> exclusively owned B
+C (independent peer)
+```
+
+Disposing `A`, including after its technical failure, finalizes `W` and disposes
+`B` exactly once. If `B` has yielded, disposal destroys its saved state without
+executing the statements after `%`. Context `C` remains live and can continue
+under its own host policy. Native callback records required after `B` is detached
+retain their native storage and code lifetime, never access to destroyed Ama
+state.
 
 Generated C parameter names, private type aliases, and helper decomposition are
 implementation work wherever no rule fixes them. This freedom does not rename
