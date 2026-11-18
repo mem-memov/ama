@@ -146,37 +146,19 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T174 accepted and archived in DONE.
-Input 11d0b7e; [native admission record](docs/implementation/native-static-admission.md).
-All functional, full consumer, sanitizer, CLI and documentation gates passed.
-Final archive-input refresh uses /tmp/ama-t174-doxygen-archive.log; collect an
-outstanding run before the task commit. Next ready task is T175 after that
-per-task commit. No spec changes; full executable integration remains T184.
+Current implementation checkpoint: T175 accepted and archived in DONE.
+Input 5c00e82; [static term record](docs/implementation/static-terms.md).
+Strict parent (76 cases), term sanitizers (nine cases), root build, standalone
+headers and documentation gates passed. Final archive-input refresh uses
+/tmp/ama-t175-doxygen-archive.log; collect an outstanding run before the task
+commit. Next ready task is T176 after that per-task commit. No specification
+change; full executable integration remains T184.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
 
 ### Phase 2. Build exact static analysis components
-
-<a id="t175"></a>
-
-- [ ] **T175 — Represent scoped static terms and normalized binding records.**
-  Prerequisites: T172, T173.
-  Rules: [TPL-05](spec/language/templates.md#tpl-05),
-  [TPL-08](spec/language/templates.md#tpl-08),
-  [TPL-10](spec/language/templates.md#tpl-10).
-  Boundary: a cohesive static-term model and immutable definition/application
-  environments, separate from AST, concrete layouts and mutable runtime state.
-  Steps: (1) define scoped Type/Template, inference and residual-binder terms;
-  (2) construct/compare immutable normalized origin/capture/residual records
-  without unfolding definitions; (3) test inventory-to-term handoffs with
-  explicitly prepared records and failure cleanup.
-  Accept: original formal identities/order and unused captures survive record
-  construction and comparison; application normalization is owned by T177.
-  Residual binders differ from unresolved inference variables; independent
-  declaration occurrences receive distinct terms while repeated uses share the intended term.
-  Explain representation ownership, exact equality inputs and termination/cost.
 
 <a id="t176"></a>
 

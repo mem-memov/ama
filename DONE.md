@@ -3900,6 +3900,44 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   No specification changes or default native specialization. Fully concrete
   storage/header resolution and generated interoperability remain T184/T190.
 
+<a id="t175"></a>
+
+- [x] **T175 — Represent scoped static terms and normalized binding records.**
+  Status: accepted 2026-11-18 on input 5c00e82. Step record:
+  [static terms](docs/implementation/static-terms.md).
+  Prerequisites: T172, T173.
+  Rules: [TPL-05](spec/language/templates.md#tpl-05),
+  [TPL-08](spec/language/templates.md#tpl-08),
+  [TPL-10](spec/language/templates.md#tpl-10).
+  Boundary: a cohesive static-term model and immutable definition/application
+  environments, separate from AST, concrete layouts and mutable runtime state.
+  Steps: (1) define scoped Type/Template, inference and residual-binder terms;
+  (2) construct/compare immutable normalized origin/capture/residual records
+  without unfolding definitions; (3) test inventory-to-term handoffs with
+  explicitly prepared records and failure cleanup.
+  Accept: original formal identities/order and unused captures survive record
+  construction and comparison; application normalization is owned by T177.
+  Residual binders differ from unresolved inference variables; independent
+  declaration occurrences receive distinct terms while repeated uses share the intended term.
+  Explain representation ownership, exact equality inputs and termination/cost.
+
+  Evidence: nine independent cases cover exact lexical identities, repeated and
+  independent field/producer uses, deferred aliases, capture ordering/unused
+  captures, local residuals, applied owner lookup, symbolic groundness, 512-level
+  finite graphs, actual known/pending T173 imports, skips, reordered operands,
+  distinct use provenance, copied/foreign identities, saturated counters and
+  every observed preparation allocation refusal with counted full teardown.
+  Full strict static parent passes 76 cases; nine term cases pass ASan/UBSan.
+  Root build, real standalone headers and 2481 ready inputs/zero debt pass.
+  Doxygen validates 1870 file pages, 7160 interfaces and 421 canonical targets;
+  Markdown audit validates 209 files/2894 links, 214 rules and 108 unchanged
+  EBNF productions. Actual editor navigation opens TPL-08. Component record
+  retains the finite-DAG interning proof, precise costs, ownership, failed fixture
+  and comment checks, exact commands/results and stage handoffs. No spec changes.
+  Pointer equality is structural identity within an owner, never solver equality.
+  Constraint solving, application normalization and expansion remain T176–T178;
+  no executable specialization or runtime state is introduced by this component.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

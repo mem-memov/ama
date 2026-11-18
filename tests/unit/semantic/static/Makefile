@@ -1,5 +1,5 @@
 # @file
 # @brief Dispatch independent static scope and inventory component suites.
 # Contract: ../../../../docs/implementation/static-symbols.md.
-SUBDIRECTORIES := scope events explicit signature classify composition bindings native
+SUBDIRECTORIES := scope events explicit signature classify composition bindings native terms
 include ../../../parent.mk

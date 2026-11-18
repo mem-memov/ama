@@ -128552,6 +128552,51 @@
         "case": "it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction",
         "command": "make -C tests/unit/semantic/static/native",
         "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
       }
     ]
   },
@@ -133251,6 +133296,876 @@
         "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
         "command": "make -C tests/integration/native-admission",
         "source": "tests/integration/native-admission/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/store.h": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Own immutable term/environment records over accepted scoped source metadata.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/terms/error.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Retain first static-term construction errors without allocating diagnostic storage.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/model.h": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Represent scoped variables and normalized nominal values without runtime instance state.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/terms/owner.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Own immutable static term scratch independently of borrowed source inventories.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/internal.h": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Declare checked term construction, identity membership and first-error boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/terms/application.h": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Retain prepared static operands separately from application provenance.",
+    "tests": [
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/terms/environment.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Intern explicit lexical environments without unfolding their definitions.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/query.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Query canonical value equality and cached free-variable closedness.",
+    "tests": [
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/identity/membership.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Validate exact source/environment/value identities without dereferencing foreign records.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/identity/inference.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Key inference variables by original formal and registered lexical occurrence.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/identity/symbol.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Resolve local static symbols in their explicit generic or applied owner.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/identity/variable.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Intern scoped variable identities independently of future equation solutions.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/nominal/internal.h": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Declare validated original capture lookup and nominal record assembly.",
+    "tests": [
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/terms/nominal/construct.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Intern normalized nominal records using exact original formal mappings.",
+    "tests": [
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/nominal/records.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Partition original formals into ordered captures and local residual binders.",
+    "tests": [
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/terms/application/import.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Import prepared static inputs while preserving independent source-use records.",
+    "tests": [
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/Makefile": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Dispatch immutable static term component checks.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/failures/main.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Verify invalid identity and bounded-counter refusals before publication.",
+    "tests": [
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/failures/Makefile": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Run foreign identity and bounded-counter refusal checks.",
+    "tests": [
+      {
+        "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
+        "command": "make -C tests/unit/semantic/static/terms/failures",
+        "source": "tests/unit/semantic/static/terms/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/identity/main.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Verify lexical static identity without specialization or equation solving.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/identity/Makefile": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Run scoped term identity and ownership checks.",
+    "tests": [
+      {
+        "case": "it_preserves_scoped_symbols_and_reuses_exact_keys",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_preserves_producer_roles_and_deferred_alias_metadata",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      },
+      {
+        "case": "it_unwinds_environment_and_variable_allocation_failures",
+        "command": "make -C tests/unit/semantic/static/terms/identity",
+        "source": "tests/unit/semantic/static/terms/identity/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/nominal/main.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Verify canonical nominal partitions, deep graphs and refused publication.",
+    "tests": [
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/nominal/Makefile": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Run canonical nominal identity and allocation refusal checks.",
+    "tests": [
+      {
+        "case": "it_canonicalizes_original_maps_and_preserves_symbolic_captures",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      },
+      {
+        "case": "it_retains_prior_values_on_every_nominal_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/nominal",
+        "source": "tests/unit/semantic/static/terms/nominal/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/application/main.c": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Verify prepared operand handoff from actual known and pending binding requests.",
+    "tests": [
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/terms/application/Makefile": {
+    "contract": "docs/implementation/static-terms.md",
+    "purpose": "Run actual binding-to-term handoff and allocation refusal checks.",
+    "tests": [
+      {
+        "case": "it_preserves_actual_slots_skips_and_distinct_use_provenance",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_unwinds_every_application_record_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
+      },
+      {
+        "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
+        "command": "make -C tests/unit/semantic/static/terms/application",
+        "source": "tests/unit/semantic/static/terms/application/main.c"
       }
     ]
   }
