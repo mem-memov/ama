@@ -129007,6 +129007,131 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
       }
     ]
   },
@@ -139636,6 +139761,131 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
       }
     ]
   },
@@ -140232,6 +140482,2136 @@
         "case": "it_guards_application_counter_and_sticky_failure_without_allocation",
         "command": "make -C tests/unit/semantic/static/applications/failures",
         "source": "tests/unit/semantic/static/applications/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/plan.h": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Own checked creation paths independently of immutable applications and equation solving.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/guards/error.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Preserve first guard diagnostics without allocating during a refusal.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/model.h": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Represent symbolic creation ancestry and full-key canonical creation graph identities.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/guards/owner.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Own finite guard records without owning or executing their borrowed applications.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/internal.h": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Share exact membership, first-error and partial-allocation guard operations.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/guards/refresh.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Reify complete keys and recheck cached paths only after genuine finite evidence changes.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/identity/owner.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Intern exact lexical owner shapes while retaining unresolved captured variables.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/cache/vertices.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Intern full closed nominal creation keys without merging source-equal specializations.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/cache/edges.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Preserve every original incoming creation use as its endpoint keys become concrete.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/cache/check.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Reject nonempty concrete paths with repeated original template labels, including cached descendants.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/cache/keys.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Normalize symbolic creation owners into exact complete cache vertices.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/path/enter.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Check known original template ancestry before expanding a source-backed application.",
+    "tests": [
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/path/root.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Preserve explicit selected-root provenance before symbolic specialization expansion.",
+    "tests": [
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/path/records.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Validate and own immutable creation occurrences separately from canonical cache vertices.",
+    "tests": [
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/definition/model.h": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Represent scoped static value definitions separately from creation and equality relations.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/guards/definition/edges.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Retain exact scoped static-definition dependency occurrences.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/definition/enter.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Guard active and cached static-definition dependencies before exposing their expansion frames.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/definition/paths.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Own incoming static-definition expansion paths without losing source ancestry.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/definition/node.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Intern original static result and alias identities in their required producer scopes.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/definition/check.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Reject directed cycles in the scoped static-definition graph after exact owner-key merging.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/definition/keys.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Merge static-definition identities only after exact complete owner normalization.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/common.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compose guard ownership with actual application, solver, term and source fixtures.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Dispatch exact creation and static-definition dependency guard tests.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/classification/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compose actual source applications with reuse, partial metadata and producer guard classification.",
+    "tests": [
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/classification/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Verify supplied metadata and Types differ from required static-output producers.",
+    "tests": [
+      {
+        "case": "it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/graph/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Exhaust all four-vertex concrete graphs without collapsing unequal specialization keys.",
+    "tests": [
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/graph/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compare the complete concrete path checker with an independent finite relation oracle.",
+    "tests": [
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/failures/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Refuse each public guard allocation and validate checked publication counters.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/failures/operations.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Prepare exact source-backed guard operations before each independent allocator cutpoint.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/failures/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Inject all observed guard-operation allocator refusals and arithmetic counter limits.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/ancestry/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Check direct and mutual symbolic recurrence separately from finite supplied nesting.",
+    "tests": [
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/ancestry/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Verify lexical creation ancestry before concrete specialization keys exist.",
+    "tests": [
+      {
+        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/cache/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compose concrete creation caching with lexical provenance and independent symbolic anchors.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/cache/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Verify symbolic key closure and cached descendant checks through real source applications.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/owner/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Verify scoped symbolic owner shapes preserve all original bindings and lifetime boundaries.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/owner/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Verify exact symbolic owner identity and all partial-allocation failures.",
+    "tests": [
+      {
+        "case": "it_preserves_generic_and_applied_owner_identity_without_inventing_parameters",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_unwinds_every_generic_and_applied_owner_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_owners_missing_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/guards/owner",
+        "source": "tests/unit/semantic/static/guards/owner/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/definition-model/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Exhaust all three-definition relations including alias nodes and nonempty cycle witnesses.",
+    "tests": [
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/definition-model/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compare scoped definition-cycle checking with independent complete topological order enumeration.",
+    "tests": [
+      {
+        "case": "it_matches_every_three_definition_relation_and_discovery_order",
+        "command": "make -C tests/unit/semantic/static/guards/definition-model",
+        "source": "tests/unit/semantic/static/guards/definition-model/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/definitions/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compose scoped static definitions with creation provenance, equality controls and key closure.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/definitions/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Verify separate active and cached static value-definition cycle guards.",
+    "tests": [
+      {
+        "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_preserves_alias_definition_scope_and_idempotent_sibling_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_keeps_anchored_equality_cycles_separate_from_static_definitions",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rechecks_definition_edges_after_scoped_owners_become_equal",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
+        "command": "make -C tests/unit/semantic/static/guards/definitions",
+        "source": "tests/unit/semantic/static/guards/definitions/main.c"
       }
     ]
   }

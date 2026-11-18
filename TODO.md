@@ -146,38 +146,19 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T177 accepted and archived in DONE.
-Input 7e3afda; [static application record](docs/implementation/static-applications.md).
-Strict static parent, final source cases, all 26 application cases under sanitizers,
-root build, per-file/header coverage and first Doxygen generation passed. Final
-archive-input documentation refresh uses /tmp/ama-t177-doxygen-archive.log;
-collect completion before the task commit. Next ready task is T178 after that
-commit. No specification change or executable support claim.
+Current implementation checkpoint: T178 accepted and archived in DONE.
+Input 8cfe3f6; [static dependency guards](docs/implementation/static-guards.md).
+Strict guard parent and final captured-origin cases, all 25 cases under sanitizers,
+root build, complete per-file/header coverage and first Doxygen generation pass.
+Final archive-input refresh: /tmp/ama-t178-doxygen-archive.log; collect before
+committing the task. Next ready task is T179 after the per-task commit.
+No specification change or executable support claim.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
 
 ### Phase 2. Build exact static analysis components
-
-<a id="t178"></a>
-
-- [ ] **T178 — Guard static dependencies and specialization creation paths.**
-  Prerequisites: T175, T177.
-  Rules: [TPL-11](spec/language/templates.md#tpl-11),
-  [TPL-12](spec/language/static-results.md#tpl-12),
-  [COMP-03](spec/implementation/compiler.md#comp-03).
-  Boundary: provenance/ancestry and static-definition dependency operations;
-  all later definition expansion must enter through these checked boundaries.
-  Steps: (1) model distinct graphs and original owner/application source edges;
-  (2) check active symbolic ancestry before following each expansion edge;
-  (3) test concrete and unresolved-key paths with the term/application components.
-  Accept: finite repeated supplied/nested constructors and independent sibling
-  reuse pass; direct, mutual, permuted and growing creation paths fail before
-  unbounded expansion. Preserve lexical owners, forwarded/captured origins and
-  supplied-Type reuse versus explicit-output producer edges.
-  Prove progress without depth/time limits; distinguish output-definition cycles
-  from equality, loading, eager ownership and constant-value cycles.
 
 <a id="t179"></a>
 

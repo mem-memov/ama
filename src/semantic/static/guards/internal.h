@@ -1,0 +1,75 @@
+/** @file
+ * @brief Share exact membership, first-error and partial-allocation guard operations.
+ * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial records.
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) retains borrowed diagnostics.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves checked path identities.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates definition dependencies.
+ */
+#ifndef AMA_STATIC_GUARD_INTERNAL_H
+#define AMA_STATIC_GUARD_INTERNAL_H
+#include "plan.h"
+#include "../applications/internal.h"
+
+/** Allocate zeroed owned records while healthy; errors require no allocation.
+ * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial preparation.
+ */
+void *static_guard_allocate(StaticGuardPlan *, size_t);
+/** Preserve the first constant diagnostic and existing source witness fields.
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) avoids reporting allocation.
+ */
+bool static_guard_fail(StaticGuardPlan *, StaticGuardStatus, SourceSpan, const char *);
+/** Propagate compatible borrowed-owner errors without copying their storage.
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves original diagnostics.
+ */
+bool static_guard_dependencies(StaticGuardPlan *);
+/** Validate an exact published path before following its ancestry or source.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves incoming uses.
+ */
+bool static_guard_has_path(const StaticGuardPlan *, const StaticCreationPath *);
+/** Append one prechecked immutable occurrence; counters fail before publication.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) retains every creation edge.
+ */
+bool static_guard_path(StaticGuardPlan *, const StaticCreationPath *, const StaticGuardOwner *,
+    const StaticApplicationRecord *, SourceSpan, const StaticCreationPath **);
+/** Intern one already normalized complete nominal Type as a concrete graph key.
+ * Caller proves normalization/closure through T176; this helper chooses no key.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves concrete identities.
+ */
+bool static_guard_vertex(StaticGuardPlan *, const StaticTerm *, StaticCreationVertex **);
+/** Add every newly concrete path edge once without dropping original uses.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves incoming provenance.
+ */
+bool static_guard_edges(StaticGuardPlan *);
+/** Check the complete concrete graph's repeated-template path predicate with
+ * bounded iterative reachability, preserving a full cached-edge witness on failure.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) rechecks cached descendants.
+ */
+bool static_guard_creation_graph(StaticGuardPlan *);
+/** Normalize symbolic creation owners while retaining pending frames and all
+ * exact original environments.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves complete keys.
+ */
+bool static_guard_creation_keys(StaticGuardPlan *, StaticGuardClosure *);
+/** Intern one original result/alias in its exact required producer scope.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves definition identity.
+ */
+bool static_guard_definition(StaticGuardPlan *, const StaticCreationPath *, const StaticSymbol *, StaticDefinitionNode **);
+/** Normalize definition owners and merge only equal complete owner/symbol keys.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves all incoming edges.
+ */
+bool static_guard_definition_keys(StaticGuardPlan *, StaticGuardClosure *);
+/** Check the separate scoped definition relation for directed cycles.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) forbids definition recursion.
+ */
+bool static_guard_definition_graph(StaticGuardPlan *);
+/** Deduplicate only an exact original source/target/use dependency occurrence.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) retains original edges.
+ */
+bool static_guard_definition_edge(StaticGuardPlan *, StaticDefinitionNode *, StaticDefinitionNode *,
+    SourceSpan, const StaticDefinitionEdge **);
+/** Retain each distinct incoming definition/creation ancestry before expansion.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves active paths.
+ */
+bool static_guard_definition_path(StaticGuardPlan *, const StaticDefinitionPath *, const StaticCreationPath *,
+    StaticDefinitionNode *, const StaticDefinitionEdge *, SourceSpan, const StaticDefinitionPath **);
+#endif

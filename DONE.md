@@ -4028,6 +4028,56 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   No specification edit, definition expansion, runtime execution or executable
   specialization admission is claimed; T178–T180/T184 retain those boundaries.
 
+<a id="t178"></a>
+
+- [x] **T178 — Guard static dependencies and specialization creation paths.**
+  Status: accepted 2026-11-18 on input 8cfe3f6. Step record:
+  [static dependency guards](docs/implementation/static-guards.md).
+  Prerequisites: T175, T177.
+  Rules: [TPL-11](spec/language/templates.md#tpl-11),
+  [TPL-12](spec/language/static-results.md#tpl-12),
+  [COMP-03](spec/implementation/compiler.md#comp-03).
+  Boundary: provenance/ancestry and static-definition dependency operations;
+  all later definition expansion must enter through these checked boundaries.
+  Steps: (1) model distinct graphs and original owner/application source edges;
+  (2) check active symbolic ancestry before following each expansion edge;
+  (3) test concrete and unresolved-key paths with the term/application components.
+  Accept: finite repeated supplied/nested constructors and independent sibling
+  reuse pass; direct, mutual, permuted and growing creation paths fail before
+  unbounded expansion. Preserve lexical owners, forwarded/captured origins and
+  supplied-Type reuse versus explicit-output producer edges.
+  Prove progress without depth/time limits; distinguish output-definition cycles
+  from equality, loading, eager ownership and constant-value cycles.
+
+  Evidence: 25 guard cases cover exact symbolic owner identity, active
+  creation ancestry before complete keys, direct/mutual/equal/permuted/growing
+  applications, finite nested/sibling reuse, partial metadata, supplied Types,
+  ordinary producers and captured original constructors. Concrete key refresh
+  retains incoming provenance, checks cached descendants under new ancestors,
+  and rechecks scopes after independent equations close their keys. Distinct A/B
+  specializations do not create a fictitious source-name cycle; ordinary-only
+  creation cycles remain separate from static definition cycles.
+  Creation reachability agrees with independent matrix closure for every
+  four-vertex graph in both discovery orders: 131072 combinations. The separate
+  scoped result/alias checker agrees with exhaustive topological-order checking
+  for all three-node relations in both orders: 1024 combinations. Source-backed
+  cycles, cached foreign outputs, alias scope, anchored equality controls and
+  definition-key merging retain original diagnostics and full witness paths.
+  Eight public-operation and four graph-kernel allocation partitions refuse
+  every observed request; counters/products, copied/foreign handles and sticky
+  borrowed errors are checked with complete counted teardown. One hundred
+  unchanged refreshes allocate nothing. No heuristic depth/pass/time limit.
+  Strict guard parent plus final captured-origin delta and all 25 cases under
+  strict C11 ASan/UBSan pass; root build passes. LSan's established container
+  restriction remains explicit alongside independent counted ownership checks.
+  Documentation checks 2597 ready inputs, zero debts and standalone headers;
+  212 Markdown files/2914 links, 214 rules and 108 unchanged EBNF productions.
+  Doxygen validates 1959 file pages, 7554 interfaces and 424 destinations;
+  actual editor navigation opens TPL-11. The component record retains exact
+  commands/logs, scope, invariant/termination/cost arguments and failure laws.
+  No specification edit, output evaluation, runtime execution or executable
+  specialization admission is claimed; T179/T180/T184 retain those boundaries.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.
