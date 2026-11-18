@@ -144338,6 +144338,21 @@
         "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
         "command": "make -C tests/unit/semantic/static/publication/contexts",
         "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
       }
     ],
     "standalone_header_command": [
@@ -144805,6 +144820,21 @@
         "source": "tests/unit/semantic/static/publication/recursion/main.c",
         "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
       }
     ],
     "standalone_header_command": [
@@ -145272,6 +145302,21 @@
         "source": "tests/unit/semantic/static/publication/recursion/main.c",
         "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
       }
     ],
     "standalone_header_command": [
@@ -145483,7 +145528,7 @@
     ]
   },
   "src/semantic/static/results/expression/prepare.c": {
-    "contract": "docs/implementation/static-projections.md",
+    "contract": "docs/implementation/static-operands.md",
     "purpose": "Prepare one source operator with lexical child values and unchanged skip provenance.",
     "tests": [
       {
@@ -145575,6 +145620,21 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
       }
     ]
   },
@@ -147705,6 +147765,21 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
       }
     ]
   },
@@ -148023,6 +148098,21 @@
         "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
         "command": "make -C tests/unit/semantic/static/results/prepare",
         "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
       }
     ]
   },
@@ -148054,6 +148144,21 @@
         "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
         "command": "make -C tests/unit/semantic/static/results/prepare",
         "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
       }
     ]
   },
@@ -152845,6 +152950,196 @@
         "source": "tests/unit/semantic/static/constants/qualified/main.c",
         "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/constants/qualified"
+      }
+    ]
+  },
+  "src/semantic/static/results/operands/prepare.c": {
+    "contract": "docs/implementation/static-operands.md",
+    "purpose": "Validate registered source identities and publish immutable operand cache entries only after complete preparation.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/prepare/support/operands.c": {
+    "contract": "docs/implementation/static-operands.md",
+    "purpose": "Exercise live-source operand sharing, environment separation, validation, overflow and every measured refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      }
+    ]
+  },
+  "src/semantic/static/results/expression/application.c": {
+    "contract": "docs/implementation/static-operands.md",
+    "purpose": "Normalize an actual expression application while retaining its guarded caller state and exact origin evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      }
+    ]
+  },
+  "src/semantic/static/results/operands/internal.h": {
+    "contract": "docs/implementation/static-operands.md",
+    "purpose": "Keep cache ownership and the operand collection contract private to actual preparation.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/results/operands/collect.c": {
+    "contract": "docs/implementation/static-operands.md",
+    "purpose": "Collect each original lexical input term without evaluating a child or entering a producer.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_shares_only_same_source_environment_operands_across_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/prepare/main.c",
+        "case": "it_unwinds_every_live_zero_input_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare"
       }
     ]
   }

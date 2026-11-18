@@ -356,3 +356,16 @@ verification.
   refresh before commit. No semantic source changes followed sanitized acceptance.
   T180 is the next ready task; its owner requires complete producers before
   publishing immutable static results and aliases.
+
+## Live operand preparation after T214
+
+[The operand contract](static-operands.md) owns private immutable preparation
+shared by actual expression uses with the same original source/environment.
+Collection and cache publication are separate operations. Each actual use still
+retains its own lexical child uses, application state and guarded definition/
+creation/output traversal; shared preparation grants no readiness proof.
+
+The unused interface-preview application operation and its sole-purpose leaf
+are removed. No public preview API or cached preview application remains.
+Current source inventory and graph semantics are adapted by T206–T212; this
+preparation cleanup does not establish whole-program static-module support.

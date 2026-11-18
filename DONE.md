@@ -4491,3 +4491,43 @@ this table is navigation, not a parallel semantic definition.
   obsolete branch/test family has an explicit replacement owner. No code, test,
   spec or evidence-registry changes are included. Final navigation, task graph,
   whitespace and isolated Doxygen checks must pass before the task commit.
+
+<a id="t214"></a>
+
+- [x] **T214 — Remove the unused ordinary interface-preview application API.**
+  Completed 2026-11-19 on 3289336 plus the explicitly adopted result bundle;
+  original pre-existing inputs and removal ownership are recorded by T203.
+  Record: [live operand preparation](docs/implementation/static-operands.md).
+  Prerequisites: T203.
+  Rules: [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-12](spec/language/static-results.md#tpl-12),
+  [ARCH-03](spec/implementation/compiler.md#arch-03).
+  Boundary: `src/semantic/static/results/pattern/apply.c`, its public declaration
+  and unused cached-application field, and the sole-purpose result-pattern leaf.
+  T203 traced every occurrence: only that leaf calls `static_result_pattern_apply`;
+  actual expression evaluation consumes operand preparation without this API.
+  Steps: remove the unused API/state and obsolete leaf; retain source/environment
+  operand preparation through its real expression consumer; reconcile purpose
+  comments, recursive test routing and per-file evidence without importing T182
+  implementation as an unrelated side effect.
+  Accept: no declaration/call/definition or dormant compatibility wrapper remains.
+  Meaningful preparation identity, failure/cleanup and actual expression checks
+  remain covered through independently runnable live-consumer tests. Run affected
+  results, publication and constant compositions, relevant sanitizers and root
+  build; preserve the pre-existing warning as T182-owned until its real fix.
+  The user's 2026-11-19 unused-code instruction authorizes removing these exact
+  unfinished T182 files; retain their fingerprints and historical failed runs,
+  not obsolete executable code. Follow common documentation and commit criteria.
+  Evidence: dormant API/state and four original untracked code/test files removed;
+  nine cohesive live result source/header inputs and two prepare-test inputs
+  adopted without other T182 changes. Private collection/cache contracts preserve
+  exact lexical identity, incoming validation, failure publication and teardown.
+  The initial eight-case live prepare leaf passes. On an isolated HEAD-plus-task
+  snapshot, all 35 results, 29 publication and 35 constant cases pass both strict
+  Werror and ASan/UBSan configurations; root make passes without warnings.
+  Executable C inputs remain those exercised by the six parent runs; a later
+  header-purpose comment repair produces identical compiler-preprocessed bytes.
+  New/private headers and every changed source/support file have named consumers.
+  Final links/task routing, selected evidence merge, Doxygen and staged-byte
+  checks are commit gates. No spec change or template-language acceptance is
+  claimed; T206 is next. T182's separate local O2 warning remains recorded.

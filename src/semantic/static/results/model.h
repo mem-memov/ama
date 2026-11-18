@@ -22,6 +22,12 @@ typedef struct StaticResultSource {
     const StaticTerm *value;
 } StaticResultSource;
 
+/** Opaque result-owned preparation cache, never a public application service.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) keeps source metadata
+ * separate from the creation/definition checks retained by each actual use.
+ */
+typedef struct StaticResultOperands StaticResultOperands;
+
 /** An explicit result reads its defining expression. An alias reads the exact
  * selected output at its original receiver, not that producer expression's own
  * Type. The original symbol scopes the independent derived value variable.

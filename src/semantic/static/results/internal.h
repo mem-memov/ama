@@ -76,4 +76,19 @@ bool static_result_dependency(StaticResultPlan *, StaticResultUse *, const Stati
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) guards producer expansion.
  */
 bool static_result_apply(StaticResultPlan *, StaticResultUse *, StaticApplicationOutcome *);
+/** Prepare immutable original operands for a registered source/environment.
+ * No application state or readiness is returned. Caller output is untouched on
+ * refusal; every actual use retains separate child and expansion provenance.
+ * [TPL-08](../../../../spec/language/templates.md#tpl-08) fixes lexical inputs;
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) forbids metadata-only admission.
+ */
+bool static_result_operands(StaticResultPlan *, const StaticResultSource *,
+    const StaticTermApplication **);
+/** Apply original source/operand equations to one retained application state,
+ * without entering a producer or evaluating derived names/outputs. Callers have
+ * validated source/prepared/state ownership; actual uses still run creation guards.
+ * [TPL-10](../../../../spec/language/templates.md#tpl-10) keeps structural recovery exact.
+ */
+bool static_result_application(StaticResultPlan *, const StaticResultSource *,
+    const StaticTermApplication *, const StaticApplicationRecord **);
 #endif

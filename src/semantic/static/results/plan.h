@@ -26,6 +26,8 @@ typedef struct {
     StaticGuardPlan *guards;
     StaticResultSource *first_source;
     size_t source_count;
+    StaticResultOperands *first_operands;
+    size_t operand_count;
     StaticResultDefinition *first_definition;
     size_t definition_count;
     StaticResultContext *first_context;

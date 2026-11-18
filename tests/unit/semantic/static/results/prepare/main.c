@@ -14,6 +14,8 @@ static StaticResultUse *prepared_root(const char *name) {
     return use;
 }
 
+#include "support/operands.c"
+
 /** Skips count as positions while explicit nested inputs keep the lexical
  * context. No equation, producer context or recursive child preparation occurs.
  */
@@ -136,6 +138,9 @@ static void it_recovers_a_constructor_from_an_independent_whole_expression_type(
 
 /** Execute source-position, shallow-depth, foreign-handle and failure evidence. */
 static void run(void) {
+    it_shares_only_same_source_environment_operands_across_actual_contexts();
+    it_refuses_foreign_operand_sources_receivers_and_cache_count_overflow();
+    it_unwinds_every_live_zero_input_preparation_allocation_refusal();
     it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation();
     it_prepares_zero_inputs_and_rejects_copied_work_handles();
     it_unwinds_every_shallow_operand_preparation_allocation_refusal();

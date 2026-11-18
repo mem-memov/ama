@@ -165,9 +165,11 @@ procedure above; this queue grants no permission to change spec.
 Specification clarifications [T200](DONE.md#t200), [T202](DONE.md#t202) and
 [T205](DONE.md#t205) are accepted. The complete bounded review is recorded in
 [the consistency/planning note](docs/implementation/static-plan-review.md).
-[T203](DONE.md#t203) records the actual source/test ownership audit. T214 is the
-next ready task; T182 remains unfinished with its partial files and failed-run
-evidence. Source changes must follow the recorded ownership/disposition map. Historical
+[T203](DONE.md#t203) records the actual source/test ownership audit;
+[T214](DONE.md#t214) removes the unused preview service and retains only live
+operand preparation. T206 is next. T182 remains unfinished with its partial
+files and failed-run evidence. Follow the recorded ownership/disposition map.
+Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
 T212, not treated as current acceptance of removed inline projections.
 
@@ -180,30 +182,6 @@ T212, not treated as current acceptance of removed inline projections.
 reuse, removal and replacement below; they do not establish current-spec support.
 
 ### Phase 2. Establish current source structure and bindings
-
-<a id="t214"></a>
-
-- [ ] **T214 — Remove the unused ordinary interface-preview application API.**
-  Prerequisites: T203.
-  Rules: [TPL-02](spec/language/templates.md#tpl-02),
-  [TPL-12](spec/language/static-results.md#tpl-12),
-  [ARCH-03](spec/implementation/compiler.md#arch-03).
-  Boundary: `src/semantic/static/results/pattern/apply.c`, its public declaration
-  and unused cached-application field, and the sole-purpose result-pattern leaf.
-  T203 traced every occurrence: only that leaf calls `static_result_pattern_apply`;
-  actual expression evaluation consumes operand preparation without this API.
-  Steps: remove the unused API/state and obsolete leaf; retain source/environment
-  operand preparation through its real expression consumer; reconcile purpose
-  comments, recursive test routing and per-file evidence without importing T182
-  implementation as an unrelated side effect.
-  Accept: no declaration/call/definition or dormant compatibility wrapper remains.
-  Meaningful preparation identity, failure/cleanup and actual expression checks
-  remain covered through independently runnable live-consumer tests. Run affected
-  results, publication and constant compositions, relevant sanitizers and root
-  build; preserve the pre-existing warning as T182-owned until its real fix.
-  The user's 2026-11-19 unused-code instruction authorizes removing these exact
-  unfinished T182 files; retain their fingerprints and historical failed runs,
-  not obsolete executable code. Follow common documentation and commit criteria.
 
 <a id="t206"></a>
 
