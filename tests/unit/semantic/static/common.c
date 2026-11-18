@@ -43,7 +43,7 @@ static void setup_static_with_roots(const char *main_text, const char *other_tex
 /** Preserve the original exact two-definition domain for tests that need no
  * standard/import sources. The generalized loader also serves real list roots.
  */
-static void setup_static(const char *main_text, const char *other_text) {
+static inline void setup_static(const char *main_text, const char *other_text) {
     ModuleRoot root = {STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT};
     setup_static_with_roots(main_text, other_text, &root, 1);
     assert(module_count() == 2);

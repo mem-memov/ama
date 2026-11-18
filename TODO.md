@@ -146,39 +146,19 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T176 accepted and archived in DONE.
-Input 5d735be; [static constraint record](docs/implementation/static-constraints.md).
-Strict static parent, final closure cases, all 24 constraint cases under sanitizers,
-root build, standalone headers and documentation gates passed. Final archive-input
-refresh uses /tmp/ama-t176-doxygen-archive.log; collect an outstanding run before
-the task commit. Next ready task is T177 after the per-task commit. No spec change;
-full executable integration remains T184.
+Current implementation checkpoint: T177 accepted and archived in DONE.
+Input 7e3afda; [static application record](docs/implementation/static-applications.md).
+Strict static parent, final source cases, all 26 application cases under sanitizers,
+root build, per-file/header coverage and first Doxygen generation passed. Final
+archive-input documentation refresh uses /tmp/ama-t177-doxygen-archive.log;
+collect completion before the task commit. Next ready task is T178 after that
+commit. No specification change or executable support claim.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
 
 ### Phase 2. Build exact static analysis components
-
-<a id="t177"></a>
-
-- [ ] **T177 — Apply partial constructors and recover nominal input patterns.**
-  Prerequisites: T173, T175, T176.
-  Rules: [TPL-07](spec/language/templates.md#tpl-07),
-  [TPL-08](spec/language/templates.md#tpl-08).
-  Boundary: structural application/recovery operations over known nominal
-  origin metadata, called by later typed-connection/projection analysis.
-  Steps: (1) validate binding/category/signature contracts and context-specific
-  omission descriptors; (2) apply/recover captures, compute exact residuals and
-  normalize direct/staged/reordered source applications into T175 records;
-  (3) compose nested patterns with finite equality solving.
-  Accept: equivalent direct/staged/reordered applications have equal normalized
-  records; forwarding and completing partial constructors preserves captures;
-  complete root input patterns and nested partial patterns invert only declared
-  formals. Check repeated pattern agreement, residuals already open, unknown
-  actual origins deferred, wrong-category/name/signature and fixed rebinding.
-  Distinguish static-argument residuals, field inference terms, independent
-  constant namespaces and explicit-output producer terms without runtime samples.
 
 <a id="t178"></a>
 

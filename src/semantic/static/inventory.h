@@ -67,4 +67,12 @@ const StaticModule *static_module_find(const StaticInventory *, const ProjectMod
  */
 const StaticSymbol *static_symbol_find(const StaticModule *, SourceSpan, size_t);
 
+/** Select an original input/result by its dense role ordinal, independently of
+ * allocation-chain order. Borrow a collected module with completed ordinals;
+ * return null for absent modules, aliases, unsupported roles or out-of-range
+ * positions. This query neither validates nor changes the inventory.
+ * Contract: [TPL-02](../../../spec/language/templates.md#tpl-02),
+ * [TPL-12](../../../spec/language/static-results.md#tpl-12).
+ */
+const StaticSymbol *static_symbol_at(const StaticModule *, StaticRole, size_t);
 #endif

@@ -89,4 +89,11 @@ bool static_term_equal(StaticTermStore *, const StaticTerm *, const StaticTerm *
  * Contract: [TPL-10](../../../../spec/language/templates.md#tpl-10).
  */
 bool static_term_ground(StaticTermStore *, const StaticTerm *, bool *);
+/** Reuse/create an internal result variable for one registered source expression
+ * in its explicit owner environment. This introduces no source-visible formal,
+ * does not evaluate the expression and assumes no result category or origin.
+ * Contract: [TPL-10](../../../../spec/language/templates.md#tpl-10).
+ */
+bool static_term_expression_result(StaticTermStore *, const StaticTermEnvironment *,
+    const AstTypeExpression *, const StaticTerm **);
 #endif

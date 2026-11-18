@@ -64,10 +64,7 @@ static bool static_slots(BindingPlan *plan, BindingInterface *view,
         StaticRole role = direction == BINDING_STATIC_INPUT ? STATIC_PARAMETER : STATIC_RESULT;
         size_t count = role == STATIC_PARAMETER ? view->origin->parameter_count : view->origin->result_count;
         for (size_t ordinal = 0; ordinal < count; ordinal++) {
-            const StaticSymbol *selected = NULL;
-            for (const StaticSymbol *symbol = view->origin->first; symbol != NULL; symbol = symbol->next) {
-                if (symbol->role == role && symbol->ordinal == ordinal) { selected = symbol; break; }
-            }
+            const StaticSymbol *selected = static_symbol_at(view->origin, role, ordinal);
             assert(selected != NULL);
             if (role == STATIC_PARAMETER && fixed(selected, captures, capture_count)) { continue; }
             BindingSlot prototype = {.name = name(selected->name), .original_ordinal = ordinal,

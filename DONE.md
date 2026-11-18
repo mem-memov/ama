@@ -3982,6 +3982,52 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   runtime state is merged. T177 owns application/recovery, T178–T180 own guarded
   expansion/projection closure, and T184 owns full frontend admission. No spec edit.
 
+<a id="t177"></a>
+
+- [x] **T177 — Apply partial constructors and recover nominal input patterns.**
+  Status: accepted 2026-11-18 on input 7e3afda. Step record:
+  [static applications](docs/implementation/static-applications.md).
+  Prerequisites: T173, T175, T176.
+  Rules: [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-08](spec/language/templates.md#tpl-08).
+  Boundary: structural application/recovery operations over known nominal
+  origin metadata, called by later typed-connection/projection analysis.
+  Steps: (1) validate binding/category/signature contracts and context-specific
+  omission descriptors; (2) apply/recover captures, compute exact residuals and
+  normalize direct/staged/reordered source applications into T175 records;
+  (3) compose nested patterns with finite equality solving.
+  Accept: equivalent direct/staged/reordered applications have equal normalized
+  records; forwarding and completing partial constructors preserves captures;
+  complete root input patterns and nested partial patterns invert only declared
+  formals. Check repeated pattern agreement, residuals already open, unknown
+  actual origins deferred, wrong-category/name/signature and fixed rebinding.
+  Distinguish static-argument residuals, field inference terms, independent
+  constant namespaces and explicit-output producer terms without runtime samples.
+
+  Evidence: 26 application cases cover direct/staged/reordered capture maps,
+  mixed explicit/implicit source ordinals, exact Type/Template contracts,
+  independently refined pending signatures, source-backed omission policies,
+  positional skips, actual filtered interfaces and independent output counters.
+  Exact recovery preserves unused captures, actual residuals and previous
+  constructor equations; nested result equations determine inner constructors
+  and RHS Types without origin or partition search. Independent finite models
+  cover 27 three-slot maps, six orders and every prefix split (486 partitions),
+  plus 27 positional partial recoveries with reversed expected-signature order.
+  Every observed allocation across source/recovery/field/producer/refinement
+  operations is refused with counted teardown; checked counters and sticky
+  errors preserve publication. A real T175 mixed-introduction ordering defect
+  is fixed through one shared original-ordinal selector and regression evidence.
+  Full strict static parent and final source cases pass; all 26 cases pass
+  AddressSanitizer/UBSan. LSan remains disabled under the established container
+  restriction; counted zero-live-allocation ownership is checked independently.
+  Root build passes. Documentation checks 2557 ready inputs, zero debts and
+  standalone headers; Doxygen checks 1928 file pages, 7409 interfaces and 423
+  destinations. Markdown navigation and actual editor opening of TPL-10 pass.
+  The component record retains exact commands/logs, failure corrections,
+  preservation/uniqueness/termination arguments, costs and consumer boundaries.
+  No specification edit, definition expansion, runtime execution or executable
+  specialization admission is claimed; T178–T180/T184 retain those boundaries.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

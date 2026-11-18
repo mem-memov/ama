@@ -6,6 +6,7 @@
  * signatures independently of actual values. [TPL-02](../../../../spec/language/templates.md#tpl-02)
  * preserves owner parameter order separately from foreign signature name sets.
  */
+#include <assert.h>
 #include <stdint.h>
 #include "signature.h"
 #include "../internal.h"
@@ -43,12 +44,9 @@ static bool constructor(StaticInventory *inventory, StaticModule *module) {
     module->constructor_signature = static_allocate(inventory, sizeof(*module->constructor_signature));
     if (module->constructor_signature == NULL) { return false; }
     for (size_t ordinal = 0; ordinal < module->parameter_count; ordinal++) {
-        for (const StaticSymbol *symbol = module->first; symbol != NULL; symbol = symbol->next) {
-            if (symbol->role == STATIC_PARAMETER && symbol->ordinal == ordinal) {
-                if (!append(inventory, module->constructor_signature, symbol->name, NULL)) { return false; }
-                break;
-            }
-        }
+        const StaticSymbol *symbol = static_symbol_at(module, STATIC_PARAMETER, ordinal);
+        assert(symbol != NULL);
+        if (!append(inventory, module->constructor_signature, symbol->name, NULL)) { return false; }
     }
     return true;
 }

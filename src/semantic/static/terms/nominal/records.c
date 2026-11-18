@@ -4,6 +4,7 @@
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) distinguishes residuals from holes.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns unpublished capture and signature records.
  */
+#include <assert.h>
 #include "internal.h"
 
 /** The input is an explicit array, not its possibly unset linked-list members.
@@ -29,8 +30,9 @@ bool static_nominal_prepare(StaticTermStore *store, StaticTerm *term,
         if (signature == NULL) { return false; }
     }
     term->ground = true;
-    for (const StaticSymbol *formal = nominal->origin->first; formal != NULL; formal = formal->next) {
-        if (formal->role != STATIC_PARAMETER) { continue; }
+    for (size_t ordinal = 0; ordinal < nominal->origin->parameter_count; ordinal++) {
+        const StaticSymbol *formal = static_symbol_at(nominal->origin, STATIC_PARAMETER, ordinal);
+        assert(formal != NULL);
         const StaticTerm *value = static_nominal_supplied(captures, count, formal);
         if (value != NULL) {
             StaticTermCapture *capture = static_term_allocate(store, sizeof(*capture));

@@ -62,10 +62,11 @@ typedef struct {
  * Contract: [TPL-10](../../../../spec/language/templates.md#tpl-10).
  */
 typedef enum { STATIC_VARIABLE_FORMAL, STATIC_VARIABLE_DERIVED,
-    STATIC_VARIABLE_FIELD, STATIC_VARIABLE_PRODUCER } StaticVariableRole;
+    STATIC_VARIABLE_FIELD, STATIC_VARIABLE_PRODUCER, STATIC_VARIABLE_APPLICATION } StaticVariableRole;
 
 /** Inference keys retain both lexical occurrence and original residual formal.
  * A symbol reference instead uses the owner's exact local symbol identity.
+ * Application results have no symbol; producer points to their original expression.
  * Contract: [TPL-08](../../../../spec/language/templates.md#tpl-08).
  */
 typedef struct {

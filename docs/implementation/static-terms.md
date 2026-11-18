@@ -78,7 +78,8 @@ The store is a canonical finite DAG, not a mutable equation graph. Every variabl
 key is interned by its complete role/environment/symbol/occurrence tuple. Every
 nominal uses an accepted original module and distinct registered original formal
 keys, and references only previously published store-owned child terms. Before
-publication, original declaration order partitions all input formals into captures
+publication, original declaration ordinals (independent of allocation-chain order) partition
+all input formals into captures
 and residuals; all supplied captures survive, including unused ones. No source
 body is followed. Application category checking remains T177's responsibility;
 this representation admits symbolic/deferred operands without solving them.
@@ -99,7 +100,7 @@ E environments, P original formals and C supplied captures. Membership is linear
 in its owning registry. An environment lookup costs O(M + V + E); a variable
 lookup O(E + S + V), plus source occurrence membership for inference sites.
 Nominal input validation costs O(M + C(S + V + C)); canonical search costs
-O(V(1 + C²)); ordered preparation costs O(P(1 + C)), with O(P) new records.
+O(V(1 + C²)); ordered preparation costs O(P(S + 1 + C)), with O(P) new records.
 Equality/groundness queries cost O(V) for checked handles, then O(1). There is no
 recursion-depth dependence, including destruction. Input counts are bounded by
 accepted origin/request counts; public arena counters are checked against
