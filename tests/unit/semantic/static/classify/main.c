@@ -34,7 +34,7 @@ static void it_classifies_output_only_heads_result_types_and_explicit_controls(v
         "@>\n...result\n...type\n ... >\n@!\n"
     };
     for (size_t index = 0; index < 5; index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = prepare();
         assert(static_classify_names(&inventory, module));
         const StaticSymbol *type = named(module, "...type");
@@ -59,7 +59,7 @@ static void it_uses_source_order_for_aliases_without_turning_later_uses_into_for
         "@<\nsource\n...received\nlater\n.other\n ...out > ...received\n@!\n"
     };
     for (size_t index = 0; index < 2; index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = prepare();
         assert(static_classify_names(&inventory, module));
         const StaticSymbol *symbol = named(module, "...received");
@@ -79,7 +79,7 @@ static void it_uses_source_order_for_aliases_without_turning_later_uses_into_for
  */
 static void it_collects_whole_interface_template_categories_and_original_introduction_ordinals(void) {
     setup_static("@<\nforward\n...family\n...type\npattern\n...family\n ...slot < ...type\n"
-        "later\n...last\n@!\n", static_scope_text);
+        "later\n...last\n@!\n", STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = prepare();
     assert(static_classify_names(&inventory, module));
     const StaticSymbol *family = named(module, "...family");
@@ -96,7 +96,7 @@ static void it_collects_whole_interface_template_categories_and_original_introdu
  */
 static void it_excludes_body_sources_and_result_only_applied_heads_from_introductions(void) {
     setup_static("@>\nvalue\n...unknown\n ...slot < ...type\n@!\n"
-        "body\n...body only\n.other\n ...out > ...alias\n", static_scope_text);
+        "body\n...body only\n.other\n ...out > ...alias\n", STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = prepare();
     assert(static_classify_names(&inventory, module));
     assert(module->parameter_count == 1 && named(module, "...type")->category == STATIC_CATEGORY_TYPE);
@@ -112,7 +112,7 @@ static void it_excludes_body_sources_and_result_only_applied_heads_from_introduc
 static void it_unwinds_every_implicit_classification_allocation_failure(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_static("@<\nfirst\n...family\n ...slot < ...type\nsecond\n.other\n ...out > ...alias\n@!\n", static_scope_text);
+        setup_static("@<\nfirst\n...family\n ...slot < ...type\nsecond\n.other\n ...out > ...alias\n@!\n", STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = prepare();
         size_t before = allocation_count;
         if (failure != 0) { failure_at = before + failure; }

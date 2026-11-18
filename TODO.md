@@ -146,35 +146,16 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T172 accepted and moved to DONE.
-Input 2562706; [component record](docs/implementation/static-symbols.md).
-All 36 static cases, project regressions, compiler build and documentation
-acceptance passed. Final staged-tree documentation refresh uses
-/tmp/ama-t172-doxygen-staged.log; collect an outstanding refresh before resuming.
-Next ready task is T173 after the per-task T172 commit. Full executable template
-integration remains T184; no whole-sprint completion is claimed.
+Current implementation checkpoint: T173 accepted and archived in DONE.
+Input e4c8d92; [binding sequence record](docs/implementation/binding-sequences.md).
+All 62 affected cases, build/project regressions and documentation gates passed.
+Final archive-input refresh uses /tmp/ama-t173-doxygen-archive.log; collect an
+outstanding run before the task commit. Next ready task is T174 after that
+per-task commit. Full executable template integration remains T184.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
-
-<a id="t173"></a>
-
-- [ ] **T173 — Normalize separate static and runtime binding sequences.**
-  Prerequisites: T172.
-  Rules: [TPL-12](spec/language/static-results.md#tpl-12),
-  [CALL-06](spec/language/calls-and-results.md#call-06).
-  Boundary: semantic application/interface binding descriptors, consumed by later
-  constraint generation rather than parser symbol-dependent decisions.
-  Steps: (1) retain actual-origin formal/output order and runtime role ordinals;
-  (2) validate modes/order/arity and normalize named/positional requests and skips;
-  (3) compose nested applications with parser and scoped interfaces.
-  Accept: snapshot the residual static-input sequence before processing bindings,
-  include interface-inferred formals, order static outputs by `@>` source order,
-  and keep four independent static/runtime input/output sequences. Check every
-  skip position, fixed captures, reversed expected signatures and nested modes.
-  Reject mixed modes, excess/duplicate positions and input-after-output; unknown
-  actual origins remain explicit obligations, never guessed from output labels.
 
 <a id="t174"></a>
 

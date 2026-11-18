@@ -49455,6 +49455,136 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
       }
     ]
   },
@@ -54463,6 +54593,136 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
       }
     ]
   },
@@ -127571,6 +127831,136 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
       }
     ]
   },
@@ -127757,6 +128147,136 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
       }
     ]
   },
@@ -129855,6 +130375,2156 @@
         "case": "it_limits_partial_signature_matching_to_supplied_root_names",
         "command": "make -C tests/unit/semantic/static/signature",
         "source": "tests/unit/semantic/static/signature/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/error.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Keep first binding metadata failures without allocating diagnostic storage.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/interface/intrinsic.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Snapshot intrinsic list interfaces from canonical descriptors without fabricating source declarations.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/interface/slot.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Append immutable interface slots with exact whole-name uniqueness and checked counts.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/interface/source.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Freeze actual source-module interface sequences before any argument is applied.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/internal.h": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Declare transactional slot construction and allocation-free binding diagnostics.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/bindings/model.h": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Represent immutable four-sequence interface snapshots without runtime values.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/bindings/owner.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Own compile-time binding records without changing borrowed static inventories.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/owner.h": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Own binding snapshots independently of validated static lexical inventories.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/semantic/static/bindings/Makefile": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Dispatch binding snapshot and request-normalization component suites.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/common.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Own binding metadata after accepted static source preparation and before source teardown.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/interface/Makefile": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify immutable actual interface snapshots, capture filtering and intrinsic identity.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/interface/main.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Compose source/static inventories with exact four-sequence snapshot construction.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/interface/support/failures.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Exercise transactional snapshot failures and maximum sequence counters with counted ownership.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_source_and_intrinsic_snapshot_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_checks_slot_count_overflow_and_first_failure_without_publication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_published_snapshots_when_later_construction_fails",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/interface/support/intrinsic.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify all canonical intrinsic arities and borrowed field identities without source spans.",
+    "tests": [
+      {
+        "case": "it_reuses_every_canonical_intrinsic_interface_without_source_fabrication",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/interface/support/source.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify original source ordinals, exact capture identity and disjoint interface surfaces.",
+    "tests": [
+      {
+        "case": "it_freezes_four_original_interface_sequences_with_result_introduced_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_capture_sets_before_allocating_or_changing_sources",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_selects_shared_constant_surfaces_and_preserves_empty_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_preserves_other_sequences_when_all_static_inputs_are_fixed",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      },
+      {
+        "case": "it_rejects_duplicate_actual_runtime_names_without_publishing_partial_views",
+        "command": "make -C tests/unit/semantic/static/bindings/interface",
+        "source": "tests/unit/semantic/static/bindings/interface/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/normalize.h": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Normalize source requests against independently selected actual interface snapshots.",
+    "tests": [
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/bindings/request/append.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Validate and append requests against frozen independent interface sequences.",
+    "tests": [
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/request/lifetime.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Prepare and publish normalized applications without exposing partial request chains.",
+    "tests": [
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/request/runtime.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Normalize one ordinary operation independently of selected actions and static bindings.",
+    "tests": [
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/bindings/request/static.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Normalize one static expression's own input/output requests without descending into nested owners.",
+    "tests": [
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/failures/Makefile": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify transactional request publication, overflow and exact snapshot ownership.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/failures/main.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Check all normalization allocation refusals, prior publications and bounded counter invariants.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/request-common.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Prepare actual producer metadata independently of reversed caller signatures for request tests.",
+    "tests": [
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_checks_every_direction_counter_limit_without_publishing_or_allocating",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
+        "command": "make -C tests/unit/semantic/static/bindings/failures",
+        "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/runtime/Makefile": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify ordinary request snapshots, operation modes and intrinsic selected actions.",
+    "tests": [
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/runtime/main.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Compose actual ordinary call syntax with runtime and intrinsic interface snapshots.",
+    "tests": [
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/runtime/support/errors.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify ordinary field errors and independent validation of invalid cloned request metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/runtime/support/modes.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Compose resumes, retained/shared reads and canonical selected list methods with normalization.",
+    "tests": [
+      {
+        "case": "it_normalizes_resume_and_retained_reads_without_input_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_uses_the_shared_constant_surface_for_constant_reads",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      },
+      {
+        "case": "it_normalizes_selected_intrinsic_methods_without_parent_argument_positions",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/runtime/support/omissions.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify every ordinary skip prefix and first excess against independent actual directions.",
+    "tests": [
+      {
+        "case": "it_checks_every_runtime_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/runtime/support/ordinary.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Check independent ordinary positions, source payload identity and exact storage labels.",
+    "tests": [
+      {
+        "case": "it_keeps_runtime_omissions_and_named_storage_labels_in_independent_sequences",
+        "command": "make -C tests/unit/semantic/static/bindings/runtime",
+        "source": "tests/unit/semantic/static/bindings/runtime/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/static/Makefile": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify static request snapshots, modes, omissions and actual-origin obligations.",
+    "tests": [
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/static/main.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Compose parsed static requests with actual interfaces independently of expected signature order.",
+    "tests": [
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/static/support/composition.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Compose named, fixed-residual and nested applications against independently known producer identities.",
+    "tests": [
+      {
+        "case": "it_maps_named_static_requests_to_exact_original_fields_in_arbitrary_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_uses_fixed_residual_snapshots_without_reopening_captured_formals",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_normalizes_nested_static_modes_without_flattening_child_requests",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/static/support/errors.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Verify static lexical contradictions, foreign identities and actual interface arities.",
+    "tests": [
+      {
+        "case": "it_rejects_static_mode_order_duplicate_and_actual_arity_errors",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/static/support/omissions.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Check all skip prefixes and the first excess in independent static input/output sequences.",
+    "tests": [
+      {
+        "case": "it_checks_every_static_skip_prefix_and_first_excess_position",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/bindings/static/support/positions.c": {
+    "contract": "docs/implementation/binding-sequences.md",
+    "purpose": "Check actual static positions and immutable unknown-to-known request results.",
+    "tests": [
+      {
+        "case": "it_uses_actual_static_positions_without_renumbering_or_expected_signature_order",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
+      },
+      {
+        "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
+        "command": "make -C tests/unit/semantic/static/bindings/static",
+        "source": "tests/unit/semantic/static/bindings/static/main.c"
       }
     ]
   }

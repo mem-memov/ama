@@ -16,7 +16,7 @@ static const char *explicit_source = "@<\n...type\nruntime&\n...type\n"
  * result expression categories remain separate, unclaimed later phases.
  */
 static void it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names(void) {
-    setup_static(explicit_source, static_scope_text);
+    setup_static(explicit_source, STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_explicit(&inventory, module));
     assert(module->parameter_count == 2 && module->result_count == 2);
@@ -51,7 +51,7 @@ static void it_rejects_explicit_formal_and_result_collisions_with_original_heade
         "@>\n...same\n...value type\n...same\n...value type\n@!\n"
     };
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = static_module_add(&inventory, project.entry);
         assert(module != NULL && !static_collect_explicit(&inventory, module));
         assert(inventory.status == STATIC_INVALID && diagnostic_valid(&inventory.error));
@@ -67,7 +67,7 @@ static void it_rejects_explicit_formal_and_result_collisions_with_original_heade
  * inventoried, so fully bound actual uses cannot conceal a free definition.
  */
 static void it_retains_unused_native_formals_for_the_later_native_admission_boundary(void) {
-    setup_static("@<\n...unused type\n@C\n", static_scope_text);
+    setup_static("@<\n...unused type\n@C\n", STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_explicit(&inventory, module));
     assert(module->definition->syntax.sections.kind == MODULE_NATIVE);
@@ -83,7 +83,7 @@ static void it_retains_unused_native_formals_for_the_later_native_admission_boun
 static void it_unwinds_every_explicit_static_inventory_allocation_failure(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_static(explicit_source, static_scope_text);
+        setup_static(explicit_source, STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = static_module_add(&inventory, project.entry);
         assert(module != NULL);
         size_t before = allocation_count;

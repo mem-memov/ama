@@ -26,7 +26,7 @@ static const char *expanded_event_source = "@!\nroot !\n selected !\n :\n"
  * runtime branch/handler nesting does not change the static module scope.
  */
 static void it_collects_exact_static_heads_and_receivers_in_all_source_contexts(void) {
-    setup_static(event_source, static_scope_text);
+    setup_static(event_source, STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_occurrences(&inventory, module));
     static_sort_occurrences(module);
@@ -61,7 +61,7 @@ static void it_collects_exact_static_heads_and_receivers_in_all_source_contexts(
  * both branch arms once each, retaining module-wide static body context.
  */
 static void it_visits_every_runtime_owning_subtree_once_without_following_alias_links(void) {
-    setup_static(expanded_event_source, static_scope_text);
+    setup_static(expanded_event_source, STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_occurrences(&inventory, module));
     static_sort_occurrences(module);

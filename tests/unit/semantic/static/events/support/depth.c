@@ -17,7 +17,7 @@ static void it_collects_deep_expression_owners_without_recursive_c_activation(vo
         memcpy(text + used, binding, strlen(binding)); used += strlen(binding);
     }
     assert(used + 1 == size); text[used] = 0;
-    setup_static(text, static_scope_text);
+    setup_static(text, STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_occurrences(&inventory, module));
     static_sort_occurrences(module);

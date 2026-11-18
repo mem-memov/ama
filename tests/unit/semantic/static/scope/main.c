@@ -8,7 +8,7 @@
  * suffixes and defining modules remain independent. No lookup allocates.
  */
 static void it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility(void) {
-    setup_static(static_scope_text, static_scope_text);
+    setup_static(STATIC_SCOPE_SOURCE_TEXT, STATIC_SCOPE_SOURCE_TEXT);
     const ProjectModule *main = project.entry, *other = project_find(&project, ".other");
     StaticModule *left = static_module_add(&inventory, main), *right = static_module_add(&inventory, other);
     assert(left != NULL && right != NULL && left != right);
@@ -47,7 +47,7 @@ static void it_keeps_exact_module_scoped_static_identities_and_forward_alias_vis
 static void it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation(void) {
     for (StaticRole first = STATIC_PARAMETER; first <= STATIC_ALIAS; first++) {
         for (StaticRole second = STATIC_PARAMETER; second <= STATIC_ALIAS; second++) {
-            setup_static(static_scope_text, static_scope_text);
+            setup_static(STATIC_SCOPE_SOURCE_TEXT, STATIC_SCOPE_SOURCE_TEXT);
             StaticModule *module = static_module_add(&inventory, project.entry);
             SourceSpan name = static_name_site(project.entry, "...same");
             StaticSymbol *original = static_symbol_add(&inventory, module, name, name, first, STATIC_CATEGORY_TYPE);
@@ -73,7 +73,7 @@ static void it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_
 static void it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_static(static_scope_text, static_scope_text);
+        setup_static(STATIC_SCOPE_SOURCE_TEXT, STATIC_SCOPE_SOURCE_TEXT);
         size_t before = allocation_count;
         if (failure != 0) { failure_at = before + failure; }
         StaticModule *module = static_module_add(&inventory, project.entry);
@@ -101,7 +101,7 @@ static void it_unwinds_every_static_record_allocation_failure_and_retains_the_fi
  */
 static void it_checks_both_interface_counter_limits_without_counting_aliases(void) {
     for (StaticRole role = STATIC_PARAMETER; role <= STATIC_RESULT; role++) {
-        setup_static(static_scope_text, static_scope_text);
+        setup_static(STATIC_SCOPE_SOURCE_TEXT, STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = static_module_add(&inventory, project.entry);
         assert(module != NULL);
         module->parameter_count = SIZE_MAX;

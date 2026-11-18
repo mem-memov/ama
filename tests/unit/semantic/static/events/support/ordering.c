@@ -20,7 +20,7 @@ static bool next_order(size_t *order, size_t count) {
  * independent stable insertion oracle; prove identity/stability/no allocation.
  */
 static void it_orders_every_five_record_permutation_and_prefix_stably_without_allocation(void) {
-    setup_static(static_scope_text, static_scope_text);
+    setup_static(STATIC_SCOPE_SOURCE_TEXT, STATIC_SCOPE_SOURCE_TEXT);
     size_t order[] = {0, 1, 2, 3, 4}, keys[] = {0, 1, 1, 2, 2}, checked = 0;
     do {
         for (size_t count = 0; count <= 5; count++) {

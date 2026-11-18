@@ -14,7 +14,7 @@ static void it_binds_output_only_type_heads_and_retains_actual_alias_obligations
         "@>\noutput\n...type\n ... >\n@!\n"
     };
     for (size_t index = 0; index < 5; index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid && inventory.attempted);
         const StaticModule *module = static_module_find(&inventory, project.entry);
         assert(module->parameter_count == 1 && named("...type")->ordinal == 0);
@@ -35,7 +35,7 @@ static void it_binds_output_only_type_heads_and_retains_actual_alias_obligations
  */
 static void it_binds_result_definitions_and_foreign_names_without_runtime_storage(void) {
     setup_static("@<\n...family\n ...foreign\n@>\n...result\n...type\noutput\n...type\n"
-        "...constructor result\n...family\n@!\n", static_scope_text);
+        "...constructor result\n...family\n@!\n", STATIC_SCOPE_SOURCE_TEXT);
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticModule *module = static_module_find(&inventory, project.entry);
     assert(module->parameter_count == 2 && module->result_count == 2);
@@ -62,7 +62,7 @@ static void it_rejects_body_only_names_and_sources_before_alias_reception(void) 
         "@>\n...result\n.other\nvalue\n...result\n ...slot < .other\n@!\n"
     };
     for (size_t index = 0; index < 6; index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         assert(static_inventory_collect(&inventory) == STATIC_INVALID && !inventory.valid && inventory.attempted);
         assert(diagnostic_valid(&inventory.error));
         assert(inventory.error.primary.span.source == project.entry->source->text);
@@ -74,7 +74,7 @@ static void it_rejects_body_only_names_and_sources_before_alias_reception(void) 
  * are collected once without evaluating a runtime condition or native hook.
  */
 static void it_preserves_aliases_received_inside_runtime_blocks_for_later_uses(void) {
-    setup_static("@!\ncondition\n?\n .other\n  ...out > ...alias\nvalue\n...alias\n", static_scope_text);
+    setup_static("@!\ncondition\n?\n .other\n  ...out > ...alias\nvalue\n...alias\n", STATIC_SCOPE_SOURCE_TEXT);
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticSymbol *alias = named("...alias");
     assert(alias->role == STATIC_ALIAS && alias->category == STATIC_CATEGORY_DEFERRED);

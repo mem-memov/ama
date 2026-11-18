@@ -21,7 +21,7 @@ static void signatures(StaticSignature **left, StaticSignature **right) {
 
 /** Exact recursive sets ignore source ordering and preserve foreign provenance. */
 static void it_builds_finite_foreign_signatures_and_matches_reordered_name_sets(void) {
-    setup_static(signature_source, static_scope_text);
+    setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
     StaticSignature *left = NULL, *right = NULL;
     signatures(&left, &right);
     assert(left != right && left->count == 2 && right->count == 2);
@@ -42,7 +42,7 @@ static void it_builds_finite_foreign_signatures_and_matches_reordered_name_sets(
  */
 static void it_distinguishes_missing_renamed_nested_category_and_pending_slots(void) {
     for (size_t partition = 0; partition < 7; partition++) {
-        setup_static(signature_source, static_scope_text);
+        setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
         StaticSignature *left = NULL, *right = NULL;
         signatures(&left, &right);
         switch (partition) {
@@ -76,7 +76,7 @@ static void it_rejects_same_level_signature_duplicates_at_original_sites(void) {
         "@<\n...family\n ...nested\n  ...slot\n  ...slot\n@!\n"
     };
     for (size_t index = 0; index < 2; index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         StaticSignature *output = NULL;
         assert(!static_signature_build(&inventory,
             project.entry->syntax.parameters.first->as.static_formal->first, &output));
@@ -87,7 +87,7 @@ static void it_rejects_same_level_signature_duplicates_at_original_sites(void) {
         assert(inventory.error.primary.span.start > inventory.related.location.span.start);
         destroy_static();
     }
-    setup_static("@<\n...family\n ...slot\n  ...slot\n@!\n", static_scope_text);
+    setup_static("@<\n...family\n ...slot\n  ...slot\n@!\n", STATIC_SCOPE_SOURCE_TEXT);
     StaticSignature *output = NULL;
     assert(static_signature_build(&inventory,
         project.entry->syntax.parameters.first->as.static_formal->first, &output));
@@ -102,7 +102,7 @@ static void it_unwinds_every_signature_build_and_compare_allocation_failure(void
     for (size_t operation = 0; operation < 2; operation++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_static(signature_source, static_scope_text);
+            setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
             StaticSignature *left = NULL, *right = NULL, *output = NULL;
             if (operation == 1) { signatures(&left, &right); }
             StaticSignatureComparison comparison = STATIC_SIGNATURE_DIFFERENT;
@@ -126,7 +126,7 @@ static void it_unwinds_every_signature_build_and_compare_allocation_failure(void
  * this fixture depth is evidence, never a language nesting limit.
  */
 static void it_builds_and_compares_deep_signatures_without_recursive_c_activation(void) {
-    setup_static(signature_source, static_scope_text);
+    setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
     enum { DEPTH = 900 };
     AstStaticFormal formals[DEPTH];
     memset(formals, 0, sizeof(formals));
@@ -154,7 +154,7 @@ static void it_builds_and_compares_deep_signatures_without_recursive_c_activatio
  * visit each exact pair once while still preserving deferred leaf obligations.
  */
 static void it_memoizes_shared_signature_pairs_without_skipping_pending_metadata(void) {
-    setup_static(signature_source, static_scope_text);
+    setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
     enum { LEVELS = 100 };
     StaticSignature left[LEVELS], right[LEVELS];
     StaticSignatureEntry left_slots[LEVELS][2], right_slots[LEVELS][2];
@@ -191,7 +191,7 @@ static void it_memoizes_shared_signature_pairs_without_skipping_pending_metadata
  * retain exact finite name sets. Root excess and renamed names still fail.
  */
 static void it_limits_partial_signature_matching_to_supplied_root_names(void) {
-    setup_static(signature_source, static_scope_text);
+    setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
     StaticSignature *left = NULL, *right = NULL;
     signatures(&left, &right);
     left->count = 1;

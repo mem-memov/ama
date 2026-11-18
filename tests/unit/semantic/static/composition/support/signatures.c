@@ -16,7 +16,7 @@ static void it_checks_explicit_and_repeated_inferred_recursive_signature_agreeme
         "@<\nvalue\n...family\n ...slot < ...type\n ...slot < ...type\n@!\n"
     };
     for (size_t index = 0; index < 7; index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         assert(static_inventory_collect(&inventory) == (index < 2 ? STATIC_OK : STATIC_INVALID));
         assert(inventory.valid == (index < 2));
         if (index < 2) {
@@ -37,7 +37,7 @@ static void it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_meta
         "@<\n...leaf\n ...type\nfirst\n...one\n ...a < ...leaf\n ...b < ...leaf\nsecond\n...two\n ...slot < ...one\n@!\n"
     };
     for (size_t index = 0; index < 3; index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         assert(static_inventory_collect(&inventory) == (index == 2 ? STATIC_OK : STATIC_INVALID));
         assert(inventory.valid == (index == 2));
         if (index != 2) { assert(strstr(inventory.error.message, "Cyclic") != NULL); }
@@ -58,7 +58,7 @@ static void it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_meta
 static void it_retains_applied_and_projected_metadata_as_explicit_pending_obligations(void) {
     setup_static("@<\n...nested family\n ...element\nfirst\n...outer\n"
         " ...slot < ...nested family\n  ...element < ...type\n"
-        "second\n.other\n ...out > ...received\nthird\n...projected family\n ...slot < ...received\n@!\n", static_scope_text);
+        "second\n.other\n ...out > ...received\nthird\n...projected family\n ...slot < ...received\n@!\n", STATIC_SCOPE_SOURCE_TEXT);
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticModule *module = static_module_find(&inventory, project.entry);
     assert(module->first_pattern->pending && module->last_pattern->pending);
@@ -79,7 +79,7 @@ static void it_allows_partial_known_constructor_inputs_when_outputs_request_clos
         "@<\nfirst\n...family\n ...a < ...type\n ...b < ...type\nsecond\n...family\n ...a < ...type\n ... >\n@!\n"
     };
     for (size_t index = 0; index < 3; index++) {
-        setup_static(cases[index], static_scope_text);
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         assert(static_inventory_collect(&inventory) == (index == 1 ? STATIC_INVALID : STATIC_OK));
         if (index != 1) {
             const StaticModule *module = static_module_find(&inventory, project.entry);
@@ -130,7 +130,7 @@ static void it_collects_deep_real_signature_definitions_without_recursive_c_acti
     memcpy(text + used, tail, strlen(tail) + 1);
     used += strlen(tail);
     assert(used + 1 == size);
-    setup_static(text, static_scope_text);
+    setup_static(text, STATIC_SCOPE_SOURCE_TEXT);
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticSignature *signature = named("...family")->signature;
     for (size_t level = 0; level < depth; level++) {

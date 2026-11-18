@@ -3815,6 +3815,47 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   This task certifies scoped static inventory, not executable-template support;
   full frontend integration remains T184. No specification changes in T172.
 
+<a id="t173"></a>
+
+- [x] **T173 — Normalize separate static and runtime binding sequences.**
+  Status: accepted 2026-11-18 on input e4c8d92. Step record:
+  [binding sequences](docs/implementation/binding-sequences.md).
+  Prerequisites: T172.
+  Rules: [TPL-12](spec/language/static-results.md#tpl-12),
+  [CALL-06](spec/language/calls-and-results.md#call-06).
+  Boundary: semantic application/interface binding descriptors, consumed by later
+  constraint generation rather than parser symbol-dependent decisions.
+  Steps: (1) retain actual-origin formal/output order and runtime role ordinals;
+  (2) validate modes/order/arity and normalize named/positional requests and skips;
+  (3) compose nested applications with parser and scoped interfaces.
+  Accept: snapshot the residual static-input sequence before processing bindings,
+  include interface-inferred formals, order static outputs by `@>` source order,
+  and keep four independent static/runtime input/output sequences. Check every
+  skip position, fixed captures, reversed expected signatures and nested modes.
+  Reject mixed modes, excess/duplicate positions and input-after-output; unknown
+  actual origins remain explicit obligations, never guessed from output labels.
+
+  Evidence: all 26 binding cases plus all 36 prior T172 cases pass the full
+  affected static parent with strict C11 warnings as errors and ASan/UBSan.
+  This covers actual/reversed expected order, all skip prefixes and first excess
+  positions, captured-formal filtering, nested modes, static/runtime/shared and
+  intrinsic surfaces, original diagnostic contexts, counter boundaries and every
+  actual allocation refusal while preserving previous successful publications.
+  Native list composition loads the real Standard integer dependency; existing
+  fixture domains and old scope tests remain passing. Compiler make and the
+  complete project parent pass. Logs: /tmp/ama-t173-sanitizers.log,
+  /tmp/ama-t173-build.log, /tmp/ama-t173-project.log.
+  Documentation: 2440 ready inputs, zero debt; 207 Markdown files/2887 local
+  links, 214 canonical rules and 108 unchanged grammar productions. Doxygen
+  validates 1841 file pages, 7048 interfaces and all 419 canonical destinations;
+  actual editor navigation opens TPL-12. The component record retains initial
+  fixture failures, exact corrections, ownership/termination/cost invariants,
+  all acceptance results and stage limits. No specification change in T173.
+  Handoff: records preserve raw operands and unresolved actual interfaces;
+  immutable type/application terms and value closure remain T175/T177/T179,
+  full executable frontend integration remains T184. No runtime target,
+  native callback, default initializer or hidden instance is executed here.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.
