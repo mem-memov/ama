@@ -73,8 +73,8 @@ tests, code documentation, exact algorithms and a separate commit per completed
 task. Specification changes still require their own explicit authorization.
 
 The deliverable is compile-time specialization with exact inference, composition,
-partial constructors, static results and concrete native/source/C-library
-consumers. Keep the existing intrinsic list foundation. The deferred
+partial constructors, separate named `@...` graphs, independently concrete
+export selectors and concrete native/source/C-library consumers. Keep the existing intrinsic list foundation. The deferred
 [AMB-006](AMBIGUITIES.md#amb-006) rewrite, new raw-storage API, generic native ABI,
 binary-only open-template format, static natural-number parameters and dependent
 types are outside this sprint. No runtime template objects or specialization
@@ -84,7 +84,7 @@ generation are introduced.
 
 | Phase | Tasks | Assessable result |
 |---|---|---|
-| Baseline | T168 | Reviewed gaps, component ownership and executable acceptance map |
+| Baseline | T168; T203 after T202 | Reviewed gaps, then alignment of the earlier components with separate static modules |
 | Source and interfaces | T169–T174 | Shared names, immutable syntax, exact origins, scoped interfaces and early native rejection |
 | Static analysis components | T175–T180 | Nonexpanding terms/equalities, partial applications, guards and fully closed static projections |
 | Complete specialization | T181–T186 | Typed connections, guarded cache/orchestration, ordinary checks and specialization constants |
@@ -108,9 +108,10 @@ historical subsets: T168 must reconcile it with actual files and recorded tests.
 
 Four ordering constraints are essential:
 
-- Inventory declared static names and classify lexical aliases before final
-  free-formal collection; reject generic native definitions from that complete
-  inventory before preparing native authoring headers.
+- Distinguish ordinary and static module kinds before collecting interfaces.
+  Ordinary input/result Type lines introduce Type formals; static graphs collect
+  every public binder before free inputs and derive requirements from all uses.
+  Reject generic native definitions before preparing native authoring headers.
 - Classify runtime receivers and foreach locals before solving their types.
   Later evidence refines terms and cannot change bindings.
 - Equality, normalization and pattern components initially operate on finite
@@ -148,11 +149,38 @@ procedure above; this queue grants no permission to change spec.
 
 Specification clarification [T200](DONE.md#t200) is accepted and archived.
 T201's guard alignment and T181's dependent constant metadata are accepted in
-[DONE](DONE.md). The next ready task is T182, ordinary typed connections and
-nested-field constraints. [Static constants](docs/implementation/static-constants.md)
+[DONE](DONE.md). T202 resolves [AMB-013](AMBIGUITIES.md#amb-013) and
+[AMB-014](AMBIGUITIES.md#amb-014) through separate static modules. T203 must
+audit and align earlier components before unfinished T182 resumes. [Static constants](docs/implementation/static-constants.md)
 records the consumed declaration/namespace/initializer boundary and its evidence.
 
 ## Current tasks
+
+<a id="t203"></a>
+
+- [ ] **T203 — Audit and plan implementation alignment with separate static modules.**
+  Status: planned; the next implementation prerequisite after T202. No new
+  implementation acceptance is claimed by the specification task.
+  Prerequisites: T202; consult the historical T169–T181/T201 results and retain
+  unfinished T182 work without treating its old-model tests as current support.
+  Rules: [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-12](spec/language/static-results.md#tpl-12),
+  [ARCH-01](spec/implementation/compiler.md#arch-01).
+  Boundary: source activation/tokens/AST, scope and requirement inventory, partial
+  metadata, graph equations and export selectors, and their actual consumers.
+  Steps: inspect each existing component and test against the new contract;
+  distinguish reusable foundations from obsolete mixed interfaces/exact signatures/
+  static positions; record small dependency-ordered implementation tasks with
+  component/composition/negative/failure acceptance and documentation ownership.
+  Acceptance: an explicit per-component gap/evidence map and executable task plan
+  cover multiple public outputs, open minimum requirements, partial forwarding,
+  independent ready-Type bridges, nominal cycles and rejection of old forms.
+  No guessed implementation support, heuristic inference, hidden ABI change,
+  relative-path feature or list-foundation rewrite is introduced by the audit.
+  Keep code/tests and Doxygen purpose/contract links together in subsequent work;
+  finish this audit before continuing T182 or downstream implementation.
 
 ### Phase 1. Recognize sources and establish interfaces
 
@@ -163,7 +191,16 @@ records the consumed declaration/namespace/initializer boundary and its evidence
 <a id="t182"></a>
 
 - [ ] **T182 — Generate ordinary typed-connection and nested-field constraints.**
-  Prerequisites: T176, T177, T180, T181.
+  Status: paused for the [T203](#t203) alignment audit after T202.
+  AMB-013 is resolved by excluding computed ordinary interfaces; do not implement
+  the obsolete preview exception or treat old mixed-interface probes as support.
+  Partial foundations pass 24 lexical/typed-scope and five congruence sanitizer
+  cases; full step/failure/checkpoint evidence is in the owning note. O2 root
+  build has a recorded return-contract warning; T182 is not accepted or committed.
+  No jobs active; retain the partial work and finish T203 before resuming.
+  Its local continuation note remains with the unfinished working-tree files,
+  outside T202; the specification task establishes no implementation acceptance.
+  Prerequisites: T176, T177, T180, T181, T203.
   Rules: [TYPE-06](spec/language/declarations.md#type-06),
   [NAME-06](spec/language/declarations.md#name-06),
   [TPL-03](spec/language/templates.md#tpl-03),
@@ -282,7 +319,7 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   full nominal distinctions, correct refs/lists/constants and stable pool roles.
   No emitter-side inference, implicit default instances or state save/restore.
   Check arithmetic/layout/allocation failures, unused static results and
-  interleaved interfaces; static metadata remains available only where needed
+  separated static/runtime graphs; static metadata remains available only where needed
   for compilation/debug descriptions, not as runtime template objects.
 
 <a id="t188"></a>
@@ -450,7 +487,7 @@ records the consumed declaration/namespace/initializer boundary and its evidence
 <a id="t196"></a>
 
 - [ ] **T196 — Review current requirement and acceptance evidence.**
-  Prerequisites: T168 through T195, T200, T201.
+  Prerequisites: T168 through T195, T200, T201, T202, T203.
   Rules: [TEST-07](spec/implementation/tools-and-conformance.md#test-07),
   [TEST-08](spec/implementation/tools-and-conformance.md#test-08),
   [ARCH-06](spec/implementation/compiler.md#arch-06).
@@ -527,20 +564,20 @@ T168 verifies the source/test mapping; T196 reviews the actual full evidence.
 | Explicit constant namespaces | T181 |
 | Specialized constant lifecycle | T186 |
 | Concrete operation checks | T185 |
-| Template parameter signatures | T177 |
+| Template parameter signatures | T203 alignment, then partial-application components |
 | Partial composition | T177 |
-| Explicit static input categories | T172 |
-| Defined static results | T179 |
-| Static output composition | T179 |
-| Static output lookup | T179 |
-| Static positional interface order | T173 |
-| Static skips and arity | T173 |
-| Static binding modes and order | T173 |
-| Static result alias introduction | T180 |
-| Static alias scope and capture | T172 |
+| Explicit static input categories | T203 alignment, then static scope inventory |
+| Defined static results | T203 alignment, then static result equations |
+| Static output composition | T203 alignment, then static result equations |
+| Static output lookup | T203 alignment, then named graph lookup |
+| Named-only static interfaces | T203 alignment, then parser/interface checks |
+| Static named arity and rejected skips | T203 alignment, then parser/interface checks |
+| Static binding modes and order | T203 alignment, then graph syntax checks |
+| Static result alias introduction | T203 alignment, then static scope/equalities |
+| Static alias scope and capture | T203 alignment, then static scope inventory |
 | Static output inference and closure | T180 |
 | Complete producer closure | T180 |
-| Output-phase omission boundary | T180 |
+| Ordinary static-export boundary | T203 alignment, then export resolution |
 | Static evaluation boundary and cycles | T179 |
 | Returned constructor creation provenance | T178 |
 | List implementation boundary | T195 |
@@ -562,9 +599,11 @@ T187/T188 own compiled storage/dispatch/state evidence;
 T194 owns Concrete facade exports and Template export exclusion, with the
 existing compiled-library/embedding regressions. T192/T193 own affected editor
 and directory-relocation consumers. T196–T198 cover full evidence/release/docs;
-these additional obligations are not discharged by the 37-row routing table.
+these additional obligations are not discharged by this routing table.
+T203 must reconcile every remaining historical owner with the changed source
+model before old component evidence is reused; the table is not a support claim.
 
-The next unused task ID is **T202**.
+The next unused task ID is **T204**.
 
 ## Useful verification commands
 

@@ -62,9 +62,9 @@ invocation or retained-instance read. Parameters and requested results appear on
 indented lines. Inputs precede all output-phase actions. An operation's ordinary
 bindings use named or positional mode consistently; CALL-09 selectors are separate
 actions. Positional binding order follows runtime interface declaration order;
-static formals and static results do not occupy those positions. Compile-time
-applications have their separate ordering under
-[TPL-12](static-results.md#tpl-12).
+ordinary Type placeholders do not add positions. Static modules have a separate
+named interface under [TPL-12](static-results.md#tpl-12), with no positional
+static bindings or runtime slots.
 
 ```text
 worker !
@@ -87,12 +87,12 @@ receivers provide compile-time evidence under [TPL-03](templates.md#tpl-03),
 together with typed defaults, declaration initializers, assignments and
 reference/alias connections. A receiver with unresolved generic arguments
 contributes equations rather than an independent concrete anchor. A new receiver
-under TYPE-06 does not choose a type merely by existing. Input bindings also
-support the explicit constructor patterns of [TPL-07](templates.md#tpl-07).
-Static formals and static results have no runtime input/output positions;
-compile-time applications, projections and aliases follow
-[TPL-08](templates.md#tpl-08) and [TPL-12](static-results.md#tpl-12). A static
-output is not a retained instance value and cannot be selected by `>>` or a
+under TYPE-06 does not choose a type merely by existing. Ordinary type lines
+contain no inline static applications or projections; named Type/Template
+composition belongs to `@...` modules under
+[TPL-07/TPL-08](templates.md#tpl-07) and [TPL-12](static-results.md#tpl-12).
+An independently determined concrete static export may type a runtime field.
+Static graph outputs cannot be selected by retained instance `>>` reads or a
 CALL-09 method action. The selected instance already has one fixed concrete
 specialization before execution. Omission/defaults and result transfers retain the semantics here;
 they do not partially bind a static template or choose a new runtime type.

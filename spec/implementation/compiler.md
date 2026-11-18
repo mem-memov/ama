@@ -422,52 +422,61 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | Layout/lexical reader | Indentation, comments, literal boundaries, annotations | Tokens or logical lines |
 | Parser | Syntax recognition independent of declared-name lookup | AST with spans |
 | Namespace resolver | Module loading, qualified identities, name binding and ordinary source-package closure under [TPL-13](../language/templates.md#tpl-13) | Resolved symbols |
-| Static specializer | Scoped interface kinds/signatures, static inputs/results and positional binding under [TPL-12](../language/static-results.md#tpl-12); global typed-connection constraints, nominal pattern decomposition, canonical bindings and specialization-creation validation under [TPL-01 through TPL-11](../language/templates.md) | Closed specialized type/program structure before layout; concrete native boundary under [TPL-13](../language/templates.md#tpl-13), with individually unresolved design cases gated |
+| Static specializer | Ordinary interface Type parameters and separate named `@...` graphs under [TPL-12](../language/static-results.md#tpl-12); exact typed-connection constraints, usage requirements, nominal decomposition, captures and specialization-creation validation under [TPL-01 through TPL-11](../language/templates.md) | Closed specialized type/program structure before layout, validated static exports and concrete native boundary under [TPL-13](../language/templates.md#tpl-13) |
 | Type/lifecycle checker | Types, storage kinds, copy/default contracts | Validated typed nodes |
 | Control-flow lowering | Entry, calls, refusal branches, loops, yield positions | Typed control-flow IR |
 | Storage planner | Owned layout, stable-address pool blocks, instance access, service metadata | Explicit storage plan |
 | C backend | Types, includes, native bodies, labels, dispatch, mappings | Project C artifacts |
 | Toolchain verifier | Required inlining and target constraints | Conformance result |
 
-**Explanation.** Static constructor formals and partial applications belong to
-the resolved type structure, not instance storage or runtime argument frames.
-[TPL-07](../language/templates.md#tpl-07) determines the exact nominal
-decomposition of an input pattern; its runtime field still has the complete
-applied type, not merely the recovered constructor head. The nested bindings in
-[TPL-08](../language/templates.md#tpl-08) can pass a residual constructor without
-creating a sample object. Parsing those trees does not require a successful type
-lookup. The static interface in [TPL-12](../language/static-results.md#tpl-12)
-adds defined outputs and immutable aliases to that resolved structure. Keep
-static and runtime interface ordinals separate, resolve projection against the
-known actual constructor origin, and retain source-order alias visibility
-without manufacturing free parameters. An explicit static output phase gives
-omitted producer inputs distinct per-expression inference terms. Solve those
-terms using exact input/output equations and require all producer inputs to be
-uniquely determined under the enclosing specialization before publishing any
-output, including when selected outputs do not depend on those inputs or all
-output positions are skipped. Without an output phase, retain the surrounding
-context's ordinary omission rules. A returned constructor's own residual
-parameters remain distinct from missing producer inputs.
-Static evaluation preserves constructor
-captures and normalized type identity; a determined Template-valued input may
-retain its declared residual signature, with known origin and captures. Static
-evaluation is not runtime invocation or arbitrary
-execution of the template body. Output equations contribute only their exact
-structural information, not a search for a producer or a default missing type.
-Specialization-creation dependencies follow
-[TPL-11](../language/templates.md#tpl-11), including its closed-key recurrence,
-pending comparisons and fixed ordinary constant-namespace reuse. The graph is
-neither a structural type-containment tree nor a graph merging all bindings by
-source-template identity. Registering a canonical nominal vertex and admitting
-a fully checked type are separate responsibilities. A same-key cycle closes
-the nominal graph, while all outgoing dependencies and independent checks still
-have to finish. A cache hit cannot hide a path between different specializations
-of the same source template, including a path through a closed cycle. Check
-static-definition dependencies and creation obligations before following each
-expansion; do not generate an unbounded producer chain first or assume that
-unresolved repeated origins have equal keys. An explicit output phase
-requires its producer application even when its head is a supplied closed Type
-or every requested output is skipped; plain reuse/aliasing alone does not.
+**Explanation.** Ordinary template interfaces contain runtime name/type pairs.
+Their bare Type placeholders contribute compile-time parameters without adding
+runtime slots. Complex applications and Type/Template output reads belong to
+separate `@...` graphs under
+[TPL-12](../language/static-results.md#tpl-12). Parse those graphs structurally;
+collect all local result binders before identifying free inputs. Their named
+connections have no positional sequence or runtime frame. Preserve atomic names,
+lexical identities and the distinction between producer labels and local names.
+
+Ordinary typed connections refine their scoped Type terms; static graphs solve
+their own finite structural equations. The ordinary named-export bridge does not
+transfer consuming-context constraints into a static producer. Follow
+[TPL-10](../language/templates.md#tpl-10) for exact inference and
+[TPL-11](../language/templates.md#tpl-11) for pending key comparisons; never
+preview a static program inside a suspended ordinary interface, guess equality,
+enumerate possible constructors or speculatively copy an unbounded sequence of
+bodies. Independently available nominal evidence can refine existing terms in
+either direction within the permitted context. It cannot repair an unbound
+ordinary name or create an anchor merely by naming a new graph result. No fixed
+number of compiler passes is prescribed.
+
+[TPL-07](../language/templates.md#tpl-07) defines Type/Template categories and
+minimum named usage requirements. A supplied constructor retains its actual
+origin and complete residual signature; checking required members does not
+silently discard additional formals or captures. Partial composition under
+[TPL-08](../language/templates.md#tpl-08) preserves fixed bindings and intentionally
+free residuals. Those residuals differ from missing producer bindings needed
+to publish a requested output.
+
+Validate every static producer under TPL-12 before publishing its outputs,
+including unused inputs and unselected public definitions. Outputs may provide
+exact structural equations while validation remains pending, but useful
+equations are not proof of successful producer validation. Static computation
+cannot inspect runtime values, execute Ama/native bodies or initialize state.
+A normal type declaration selecting a named static export requires independent
+producer closure; constraints from the consuming ordinary context cannot pick
+that assembly's inputs. Keep nominal closure distinct from final validation of
+mutually required closed definitions.
+
+Specialization-creation dependencies follow TPL-11. The graph records actual
+constructor applications, not structural containment or all uses of a source
+name. Same-key ordinary cycles may close a nominal graph; all outgoing
+obligations, eager-ownership, occurs and static-definition checks still run.
+Reachable different keys of the same original template fail, including paths
+through closed cycles. Cache reuse retains every incoming and outgoing proof
+obligation. Forwarding an already supplied Type adds no invented application,
+while actual static producers retain their required dependencies. No decreasing
+recursion exception or static natural-number parameters are implied.
 The [TPL-13](../language/templates.md#tpl-13) native boundary is checked from the
 own free parameter set collected under TPL-02, including implicit input/result
 introductions. A native definition cannot become valid merely by supplying
@@ -480,7 +489,8 @@ native companions remain normal dependencies. Exported roots follow
 [EMBED-01](c-library.md#embed-01): ordinary concrete modules and facades may use
 closed specializations internally, without a new generic export selector or
 runtime open-template representation. The list-foundation rewrite remains
-explicitly deferred, and the remaining naming question stays indexed.
+explicitly deferred; deferred dependent-type work does not weaken the current
+creation and closure checks.
 Dependent shared storage
 and explicit type namespaces follow
 [CONST-03/CONST-06](../language/declarations.md#const-06): resolve the concrete
@@ -509,10 +519,11 @@ anchor may resolve, while infinite substitution terms fail the occurs check.
 An inferred assignment remains an assignment node
 with an executable source transfer, not an explicit declaration initializer.
 Do not use the symbol table to choose different grammar productions for the
-same assignment or output-binding text. The static declaration/application
-forms and `...`-prefixed projection bindings of
-[TPL-12](../language/static-results.md#tpl-12) are also structural; resolve their
-Type/Template categories, alias equality and residual signatures afterwards.
+same assignment or output-binding text. The separate `@...` graph forms of
+[TPL-12](../language/static-results.md#tpl-12), including alias pairs and named
+output bindings, are also structural. Resolve their Type/Template categories,
+usage requirements, equality and residual signatures afterwards; do not use a
+symbol-table guess to reinterpret a graph as ordinary runtime code.
 Recognize FLOW-05 foreach by a reference-name binding inside its header brackets.
 `items[index]` remains indexed access; `items[item&]` followed by `{` is foreach
 before lookup. Represent foreach as its own ordinary statement, never as a

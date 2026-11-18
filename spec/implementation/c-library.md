@@ -63,19 +63,20 @@ Ama facade with concrete runtime inputs/results and explicitly closed internal
 specializations, then select that facade's module path.
 
 This export contract does not select a template root through a static binding
-map, a static result projection, or a generated specialization name. Reject a
-template definition selected as an exported root even if one of its concrete
-specializations was discovered elsewhere in the component. Open template
-distribution follows TPL-13's Ama-source contract; an unresolved constructor is
+map, a static-module export selector, or a generated specialization name. Reject
+a static module or template definition selected as an exported root even if one
+of its concrete specializations was discovered elsewhere in the component. Open
+template distribution follows TPL-13's Ama-source contract; an unresolved constructor is
 not a runtime C export.
 
 Every runtime interface type and required dependency must be concrete before
 generating the public header and transport schema. Each required Type/Template
 binding must be determined under TPL-06; a Template-valued binding may retain
 its own declared residual formals. Runtime C arguments do not choose an Ama
-specialization or infer a missing static argument. Static result definitions
-under [TPL-12](../language/static-results.md#tpl-12) contribute no runtime C
-result fields or operations for returning types.
+specialization or infer a missing static argument. Separate `@...` graph
+results under [TPL-12](../language/static-results.md#tpl-12) contribute no runtime
+C result fields or operations for returning types. A facade's named static
+export selections must resolve independently of the host call context.
 
 The configuration is a compiler/build input, not new Ama syntax or another
 `.abi` protocol. Export selection does not change the module's nominal identity
@@ -131,6 +132,16 @@ result
  value
 ```
 
+**Example: complete `.integer worker`.** A separate static module fixes the
+worker Type before the ordinary facade uses it:
+
+```text
+@...
+...worker type
+.forward
+ ...inner.value type < ..integer
+```
+
 **Example: complete `.integer facade`.** The fixed library type `..integer`
 provides the construction and copy operations used here:
 
@@ -145,8 +156,8 @@ result
 
 @!
 worker
-.forward
- ...inner.value type < ..integer
+.integer worker
+ ...worker type
 
 worker !
  value < value

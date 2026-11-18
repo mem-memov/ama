@@ -4,7 +4,8 @@
 
 ## Explanation: start with an object that can run
 
-A module describes a type of state and the behavior that runs on that state.
+An ordinary executable module describes a type of state and the behavior that
+runs on that state.
 An instance is one object of that type. Two variables can own two instances of
 the same module: the code is shared, but their data and saved positions are
 independent.
@@ -52,11 +53,14 @@ An executable module can have three kinds of instance fields:
 
 `@=` instead declares immutable constants shared by instances within an
 execution context. They are not part of any instance's ownership tree.
-The same input section can also declare static Type or Template formals, and
-`@>` can define returned types and constructors under
-[TPL-12](static-results.md#tpl-12). Those compile-time interfaces contribute no
-instance field or ordinary argument/result position. Producing a static result
-does not run a module body, create an instance, or initialize a method.
+
+A separate static module begins with `@...` and describes a graph of Type and
+Template equations under [TPL-12](static-results.md#tpl-12). It has no instance,
+runtime fields or executable body. An ordinary template introduces Type
+placeholders through the single-line types of its input and result variables;
+complex type composition belongs to static modules. Selecting a named static
+export as a field type does not run a body, create a producer instance or
+initialize a method.
 
 Starting `job !` prepares a fresh interface, then executes the body from entry.
 It preserves permanent body state. Resuming `job %` uses its saved position and

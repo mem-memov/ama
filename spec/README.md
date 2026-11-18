@@ -16,14 +16,14 @@ If you are learning the language, read [the introduction](introduction.md), then
 values, and calls before exploring continuations or changing a list during a
 traversal. The examples introduce the model before the detailed rules.
 
-The [static-template chapter](language/templates.md) explains static inference
-from typed connections, Type parameters introduced in inputs or results, named
-constructor signatures, static application and partial composition. The
-[static-results chapter](language/static-results.md) explains explicit Type and
-Template inputs, two-line static output declarations, positional bindings and
-immutable result aliases. Constructor patterns, static bindings, bidirectional
-type constraints and explicit constant namespaces have agreed rules; their
-examples explain how those forms fit together.
+The [ordinary-template chapter](language/templates.md) explains Type parameters
+introduced through ordinary input/output variable types, inference from typed
+connections, specialization identity and finite composition. The
+[static-module chapter](language/static-results.md) explains the separate `@...`
+graph form: named Type/Template bindings, partial composition, public results,
+and the selection of a concrete named export as an ordinary field type. Complex
+static expressions stay in static modules; ordinary declarations retain the
+readable name/type pair. The examples explain both the model and its limits.
 The [finite-composition rule](language/templates.md#tpl-11) permits explicitly
 nested uses of the same template and recursive definitions returning to exactly
 the same closed specialization. It rejects creation paths between different
@@ -38,8 +38,8 @@ expose ordinary concrete module roots, including facades using closed
 specializations, under [EMBED-01](implementation/c-library.md#embed-01).
 The naming profile in [SRC-03](language/source-and-names.md#src-03) permits the
 same internal ASCII hyphen spelling in ordinary names, module-path components
-and static names. The current template sprint's
-[design questions](../AMBIGUITIES.md#open-template-design-questions) are resolved.
+and static names. The [design-question registry](../AMBIGUITIES.md#open-template-design-questions)
+records the decisions and any remaining implementation blockers.
 Moving Ama's list foundation into templates remains explicitly deferred under
 [TPL-09](language/templates.md#tpl-09). Agreed syntax and packaging rules are not
 evidence of compiler implementation.
@@ -61,8 +61,8 @@ program is well typed and what happens when it executes.
 | [Modules and state](language/modules-and-state.md) | Types versus instances, ownership, interface state, and a complete example |
 | [Source files, names, and layout](language/source-and-names.md) | Module paths, international names, exact spaces, comments, and sections |
 | [Declarations and scope](language/declarations.md) | Explicit and inferred declarations, initialization, constants, and visibility |
-| [Static module templates](language/templates.md) | Scoped interface Type parameters, typed-connection inference, constructors, partial composition, specialization identity, finite composition, dependent shared constants, concrete native boundaries, source distribution and explicit design gates |
-| [Static inputs and returned types](language/static-results.md) | Explicit Type/Template formals, static output expressions, named and positional application, projection, immutable aliases, and compile-time evaluation boundaries |
+| [Ordinary module templates](language/templates.md) | Interface Type parameters, typed-connection inference, specialization identity, finite composition, dependent constants, native boundaries and source distribution |
+| [Static modules and returned types](language/static-results.md) | Named equation graphs, Type/Template inputs, partial composition, public exports, ordinary type selection and compile-time evaluation boundaries |
 | [Values and references](language/values-and-references.md) | Independent copies, checked references, identity, and resource lifetime |
 | [Calls and results](language/calls-and-results.md) | Entry, resume, retained reads, method chains, and refusal handlers |
 | [Control flow](language/control-flow.md) | Branches, condition loops, repeat boundaries, and early completion |

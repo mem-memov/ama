@@ -23,8 +23,12 @@ not additional accepted Ama syntax. No answer is inferred from a request to docu
 [AMB-012](#amb-012) is resolved by the 2026-11-18 user decisions and T200:
 ordinary nongeneric constant namespaces without static outputs reuse a fixed
 Type in both spellings. T200 also authorizes same-key specialization cycles
-while retaining different-key recurrence rejection. T201 must align the guards
-before T181 resumes; its partial implementation is not accepted by this decision.
+while retaining different-key recurrence rejection. T201's guard alignment and
+T181's constant metadata are accepted in DONE. T202 resolves
+[AMB-013](#amb-013) by separating static modules from ordinary interfaces and
+[AMB-014](#amb-014) by the explicitly approved result pair. Implementation must
+first align the earlier components with this source model under T203; T182
+remains unfinished. Relative module paths are explicitly deferred.
 
 The planned design decisions were closed before implementation. The user also
 resolves the implementation clarification [AMB-011](#amb-011): output-only
@@ -933,3 +937,117 @@ Each entry must contain:
   tests before T181 relies on them. T181 still owns qualified-source binding,
   typed constant composition and its final registry/sanitizer/build/documentation
   acceptance; neither this resolution nor T200 completes that implementation.
+
+<a id="amb-013"></a>
+
+## AMB-013 — Computed interface Types behind a suspended template application
+
+- **Status:** Resolved by the user's static-module redesign, specified by T202.
+- **Task:** [T182](TODO.md#t182) exposed the question; [T202](DONE.md#t202) owns
+  the specification change. T182's unfinished source/test foundations remain
+  outside the specification delivery and must be audited under [T203](TODO.md#t203).
+- **Requirements:** [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-11](spec/language/templates.md#tpl-11) and
+  [TPL-12](spec/language/static-results.md#tpl-12).
+- **Original problem:** In the previous mixed-interface model, an ordinary
+  module's input Type could be computed by another static producer. A recursive
+  call then needed that computed interface equation to determine its own key,
+  while expansion of the repeated template was suspended until the key closed.
+  The question was whether a finite interface preview could cross that barrier.
+- **Historical minimal example, explanatory metanotation:**
+
+  ```text
+  main(X).argument : factory(X).out
+  factory(X).out = X
+  main(Integer) -> next: main(Y)
+  next.argument receives an Integer, so factory(Y).out = Integer
+  ```
+
+  The former syntax/inventory probe passed before the redesign. That evidence
+  established recognition of the old mixed form only, not execution or support
+  for the new static-module model.
+- **User decision and source:** The user requests a distinct `@...` module kind,
+  retains only simple ordinary runtime name/type pairs, places structural type
+  computation in static modules, accepts public intermediate names and multiple
+  named outputs, and removes static positional interfaces. Ordinary declarations
+  select a named ready Type using a static module path and one indented export
+  name. Incoming constructor requirements are inferred from all uses, rather
+  than requiring an exhaustive signature. The user subsequently requests
+  transferring that solution into the specification/EBNF and committing it;
+  the latest clarification repeats that request and explicitly defers relative
+  paths. AMB-014 records the final own-expression spelling.
+- **Resolution:** No interface-preview exception is added. An ordinary Type is
+  a bare interface Type parameter, a fixed ordinary Type, an inferred ordinary
+  field specialization or an independently determined named static export.
+  Static producer inputs close independently of the consuming runtime context.
+  The old computed recursive interface is therefore outside the accepted source
+  model. Ordinary same-key reference recursion remains supported without that
+  interface computation. A fixed extra number of compiler passes is not required.
+- **Preserved obligations:** Exact scoped equations, full producer closure,
+  retained partial-constructor metadata, separate definition/creation/occurs/
+  eager-ownership checks, and warm/cold cache and independent-order invariance
+  remain mandatory. A known closed nominal identity can participate before its
+  whole mutually dependent definition group finishes validation; it is not yet
+  executable admission.
+- **Resume evidence required:** T203 must audit the actual old components and
+  incomplete T182 work, plan the new parser/scope/equation/export handoffs and
+  update acceptance owners before implementation resumes. Include positive
+  ordinary recursion and closed export cases and negative mixed interfaces,
+  contextual bridge closure, unknown inputs, definition cycles and unequal-key
+  paths. This decision completes neither T182 nor an implementation acceptance.
+
+<a id="amb-014"></a>
+
+## AMB-014 — Own-expression result capture after removing static positions
+
+- **Status:** Resolved by the 2026-11-18 user clarification and T202 specification delivery.
+- **Task:** [T202](DONE.md#t202), authorized static-module specification rewrite.
+- **Requirements:** [TPL-08](spec/language/templates.md#tpl-08) distinguishes an
+  application's own Type/Template value from [TPL-12](spec/language/static-results.md#tpl-12)'s
+  selected producer outputs. The redesign removes static positional interfaces,
+  but constructor examples used `... > ...type` for the own value; discussion
+  also considered bare `> ...type` without approving that exact spelling.
+- **Minimal example:** A constructor has named inputs and its own resulting Type:
+
+  ```text
+  @...
+  .dictionary
+   ...key type < ..text
+   ...value type < ..integer
+   ... > ...dictionary type
+  ```
+
+  No named static output is declared by the ordinary dictionary. The last line
+  therefore captures the constructed Type rather than selecting output ordinal 1.
+- **Question:** With named-only static interfaces, retain `... >` solely as
+  own-value capture, replace it with bare `>`, or retain positional static
+  bindings generally? This affects accepted source spelling.
+- **Consequences:** Retained capture preserves the user's examples without a
+  result-name keyword; bare capture adds a shorter form; retaining positions
+  restores interface ordering/skips. In both named-only choices, declared outputs
+  of a static producer must be selected by their actual names, never by an
+  implicit first-output fallback.
+- **User decision:** Define the own expression value with a two-line pair:
+
+  ```text
+  ...dictionary type
+  .dictionary
+   ...key type < ..text
+   ...value type < ..integer
+  ```
+
+  The first line defines the public immutable static result; the second line
+  supplies an ordinary Type/Template expression. No own-value capture arrow,
+  positional static interface or reserved output name is introduced. Multiple
+  pairs define multiple outputs; an actual static producer's outputs are still
+  selected by their explicit names. The user's latest clarification quotes this
+  exact pair, requests completion of the static-module specification/EBNF and
+  its commit, and explicitly defers relative module paths. No relative-path
+  syntax or resolution rule is authorized by this task.
+- **Specification authorization:** The latest user request explicitly authorizes
+  the agreed redesign, detailed specification/EBNF changes and their commit.
+- **Resume evidence required:** Use one spelling throughout
+  both language chapters and grammar; verify no ordinal reads or invented
+  reserved result name remain in the named-only model. This question does not
+  revoke the separately agreed AMB-013 redesign.

@@ -178,9 +178,12 @@ open, that choice must preserve the specified types, direction, and semantics.
 
 The concrete native boundary and the use of native types by Ama templates follow
 [TPL-13](../language/templates.md#tpl-13). Generate the companion's declarations
-from its resolved concrete runtime interface under that rule. Static results
-under [TPL-12](../language/static-results.md#tpl-12) are compile-time definitions;
-they add no C entry arguments, output storage or native execution protocol.
+from its resolved concrete runtime interface under that rule. A separate static
+module under [TPL-12](../language/static-results.md#tpl-12) has no native entry
+or runtime ABI; a concrete export selected as an ordinary native field type
+contributes that field's normal resolved Type. Static graph inputs and outputs
+add no C entry arguments, output storage or native execution protocol. Inline
+static bindings and static output definitions are not native-interface forms.
 The generated header and the companion keep the existing typed-field and
 resource contracts, including declared concrete Ama ownership and references
 under CABI-03/CABI-05.

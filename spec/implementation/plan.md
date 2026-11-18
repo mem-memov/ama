@@ -180,76 +180,68 @@ rollback, and recovery evidence under TOOL-01 through TOOL-04.
 
 Deliverable: a reproducible build with a conformance report, not merely a working demo.
 
-### Stage 11: Static templates with explicit design boundaries
+<a id="stage-11-static-templates-with-explicit-design-boundaries"></a>
 
-This is a new stage beyond the previously accepted implementation baseline.
-T157 records the basic contract, T159 settles named constructor/signature
-patterns and static partial application, T160 defines typed-connection inference
-and Type introductions in `@>`, and T161 specifies dependent shared constants
-with explicit concrete-type namespaces and their design rationale. T163 settles
-finite composition and specialization creation under
-[TPL-11](../language/templates.md#tpl-11). T200 refines that contract with
-closed same-key cycles and fixed nongeneric constant-namespace reuse; these
-later design decisions do not establish implementation support. T162 defines
-static input categories,
-returned types/constructors, positional application and immutable aliases under
-[TPL-12](../language/static-results.md#tpl-12). T165 settles the concrete native,
-source-distribution and ordinary-facade export boundaries under
-[TPL-13](../language/templates.md#tpl-13) and
-[EMBED-01](c-library.md#embed-01). The
-[template chapter](../language/templates.md),
-[static-results chapter](../language/static-results.md) and grammar define those
-source forms. T166 settles the uniform internal ASCII hyphen spelling under
-[SRC-03](../language/source-and-names.md#src-03), completing the current sprint's
-[design decisions](../../AMBIGUITIES.md#open-template-design-questions).
-The list-foundation rewrite remains explicitly deferred outside this sprint.
-Before implementing a selected boundary, plan its exact contract and acceptance;
-resolve any newly discovered ambiguity through the normal workflow rather than
-an inference fallback. Existing tests do not cover the new template semantics.
+### Stage 11: Ordinary templates and separate static modules
 
-Plan narrow components in prerequisite order: placeholder and type-expression
-recognition, including the shared SRC-03 name-word recognizer for ordinary names,
-paths and static names; scoped kinds, named signatures and defined static results; separate
-static/runtime positions and lexical alias classification; exact static constraints,
-including the separate lexical receiver/foreach classification and globally
-refinable type terms; constructor-pattern decomposition and canonical partial
-bindings and actual-origin result projection; cycle-safe static output
-dependencies and exact output inference, including complete producer-input
-closure before publishing any projected output; concrete-specialization creation
-dependencies and their TPL-11 validation, including inferred applications, constructor-valued parameters and
-reuse of cached dependency subgraphs, including all paths through same-key
-cycles and pending comparisons before keys close; ordinary type/lifecycle
-checking of concrete specializations, including dependent constant types,
-concrete namespace selection and per-specialization initialization graphs;
-specialized layouts/emission and source
-diagnostics; then concrete `@C` validation, ordinary source-package dependency
-resolution and concrete export facades. Reject native definitions with own free
-Type/Template formals, including implicitly introduced interface parameters;
-concrete native types can still be arguments and dependencies of Ama templates.
-Package open templates as Ama source with required ordinary native companions.
-Keep logical identities, root kinds and lexical scopes intact during loading.
-For C exports, use ordinary concrete roots (including already concrete native
-roots) and facade modules that internally use closed specializations. Direct
-specialization export selectors and a binary open-template format are outside
-this boundary; follow TPL-13/EMBED-01 rather than inventing a packaging interface.
-Each component needs its own argument, unit cases and real composition cases.
-Add complete positive/negative nested, partial and erroneous applications,
-including order-independent creation-path checks, permitted finite repeated
-nesting and closed recursive reference/list types, different-key recurrence
-rejection, ordinary namespace reuse, plus static outputs, partial returned
-constructors, positional skips and
-alias equality/visibility, before making support claims. Update reviewed
-conformance only with actual evidence.
+The target contract separates ordinary runtime declarations from structural
+Type/Template computation. Ordinary input/output variable types introduce bare
+Type parameters under [TPL-02](../language/templates.md#tpl-02). Static modules
+use the exclusive `@...` graph form under
+[TPL-12](../language/static-results.md#tpl-12), with named applications, public
+result names and an explicit named-export bridge to ordinary field types.
+The template, static-module and grammar chapters define the source forms;
+this roadmap does not preserve an alternative older interface.
 
-Use ordinary templates for algorithms over the current list primitives first.
-Moving the list foundation is a separate boundary requiring TPL-09's static
-bridge and lower-level storage/lifecycle contract, with evidence preserving
-LIST-03 through LIST-13. Do not schedule that rewrite as an automatic consequence
-of adding placeholders.
+Plan narrow components in prerequisite order: placeholder/name recognition;
+ordinary interface inventory; static graph parsing and whole-graph binder/input
+classification; exact Type/Template usage requirements; named constructor
+applications, partial residuals and fixed captures; public result definitions
+and actual-origin named reads; exact structural equations within static graphs
+and ordinary typed constraints within their permitted context; pending
+repeated-key comparisons without speculative expansion; independent
+static-producer closure and named export selection;
+then validation of definition dependencies, nominal creation paths, ownership,
+constants, operations and layout. Preserve ordinary runtime positional calls,
+receiver/foreach lexical classification and initialization semantics.
 
-Deliverable: documented, tested static specialization with explicit supported
-boundaries and a current acceptance matrix. No compiler implementation is part
-of the specification-only T157, T159, T160, T161, T162, T163, T165 or T166 tasks.
+Follow [TPL-11](../language/templates.md#tpl-11) for identical-key closure,
+unequal-key rejection, pending comparisons and cache-independent incoming and
+outgoing path proofs. Check static result-definition cycles separately; useful
+equations alone never prove successful producer validation. Test cold/warm
+caches, reordered independent constraints, finite repeated nesting and ordinary
+closed recursive reference/list graphs. No arbitrary recursion budget or guessed
+unknown equality is permitted. Proven decreasing static recursion and natural
+number parameters remain deferred with dependent types.
+
+Resolve dependent shared constants and explicit namespaces using ordinary Type
+parameters or independently complete static exports. No inline static bindings
+or projections belong in ordinary declarations, constant reads or native
+interfaces. A literal, requested member name or runtime receiving field cannot
+choose a static producer's missing arguments.
+
+Then implement specialized layouts/emission and source diagnostics, concrete
+`@C` validation and ordinary source-package dependency closure under
+[TPL-13](../language/templates.md#tpl-13). Reject native definitions with own
+free Type parameters; concrete native Types remain valid arguments and
+ordinary dependencies. Export ordinary concrete roots or facades under
+[EMBED-01](c-library.md#embed-01), never static modules or constructor metadata.
+
+Each component needs its own exact argument, unit cases and real composition
+cases. Cover forwarding, returned partial Templates, open named usage
+requirements, multiple public outputs, output-based nominal inversion, ordinary
+export selectors and all rejected obsolete inline/positional static forms.
+Update implementation and conformance claims only with actual acceptance
+evidence; specifying the new target does not establish compiler support.
+
+Use ordinary templates for algorithms over current list primitives first.
+Moving the list foundation remains a separate deferred boundary requiring
+[TPL-09](../language/templates.md#tpl-09), lower-level storage/lifecycle contracts
+and evidence preserving LIST-03 through LIST-13.
+
+Deliverable: documented and tested specialization with separate static graphs,
+explicit supported boundaries and a current acceptance matrix. Specification
+approval alone does not complete any compiler implementation task.
 
 ## Keep engineering choices separate from language changes
 

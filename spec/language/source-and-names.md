@@ -14,8 +14,8 @@ In this chapter:
 
 <!-- /chapter-contents -->
 
-A source file defines a module type. Names can use your own language and can
-contain spaces; punctuation and exact indentation make their boundaries visible.
+A source file defines an ordinary module or a static module. Names can use your
+own language and can contain spaces; punctuation and exact indentation make their boundaries visible.
 This chapter explains how a physical file receives a logical module name, then
 how the reader distinguishes names, comments, and nested blocks.
 
@@ -39,8 +39,8 @@ For example, `shop/item` is named `.shop.item`. A companion C implementation is
 `shop/item.c`. An active `@C` module requires companions `shop/item.h` for its
 native declarations/layout, `shop/item.c` for implementation, and `shop/item.abi`
 for protocol bindings. The optional capabilities are optional records, not
-permission to omit mandatory lifecycle metadata. Ama implementations and
-constants-only namespaces do not require native companions. `.abi` files are
+permission to omit mandatory lifecycle metadata. Ama implementations, static
+modules and constants-only namespaces do not require native companions. `.abi` files are
 compiler inputs describing native contracts, not executable Ama modules.
 
 For a standard-library root at `stdlib/modules`, the source
@@ -99,7 +99,7 @@ directory marks submodules of its sibling extensionless `name` module file; that
 file must exist, although normal draft rules still determine whether the parent
 itself participates in compilation. Nesting does not implicitly import or execute
 the parent, inherit its declarations, or establish runtime instance ownership.
-A parent may be a constants-only module, executable module, or an unused draft;
+A parent may be a constants-only, static or executable module, or an unused draft;
 a referenced child must independently satisfy active-module rules.
 
 Strip exactly the structural trailing `+` from each such directory component
@@ -117,7 +117,11 @@ without changing existing top-level companion names.
 
 <a id="src-04"></a>
 
-**SRC-04.** A module path identifies a type, not a callable object. Executable module types
+**SRC-04.** A module path identifies a source definition, not a callable object.
+An ordinary definition provides a type; a static definition provides a graph
+producer whose named Type export may be selected under
+[TPL-12](static-results.md#tpl-12). A static producer itself cannot own runtime
+storage or be invoked/resumed. Executable module types
 have no implicit/default live instances. A module's `@=` section is shared
 immutable storage, not an implicit executable instance. Ordinary source-level execution,
 resumption, and retained-result reads must select an explicit instance through
@@ -206,7 +210,7 @@ an internal dot. Empty components, internal doubled dots, three or more leading
 dots, a bare root marker, and a trailing dot are invalid in concrete module paths.
 Exactly three leading dots instead introduce a placeholder spelling in a permitted
 static position under [TPL-01](templates.md#tpl-01), including type expressions,
-static formal/signature names, static result names and aliases, and static
+static graph input/result names, aliases, and named static
 binding labels under [TPL-12](static-results.md#tpl-12), never a filesystem root.
 Its complete descriptive name needs no corresponding file or directory. Four leading dots
 remain invalid. The dots are structural separators, not name bytes; each
@@ -377,8 +381,8 @@ There is no optional whitespace, repeated separator, trailing code space, TAB,
 or alternative Unicode spacing character. Repeated spaces are permitted only in
 the three excluded regions, never within a name or between code tokens.
 
-In Ama, the fixed compound tokens are `@=`, `@<`, `@>`, `@!`, `@C`, `>>`, `[]`, `&[]`,
-`&[`, the placeholder prefix `...`, and the leading module-root marker `..`.
+In Ama, the fixed compound tokens are `@...`, `@=`, `@<`, `@>`, `@!`, `@C`,
+`>>`, `[]`, `&[]`, `&[`, the placeholder prefix `...`, and the leading module-root marker `..`.
 They contain no internal whitespace.
 Recognize the longest fixed token at a punctuation position; `&[]` is one token,
 not `&[` followed by `]`. At a type start, recognize `...` before `..` and then
@@ -448,15 +452,17 @@ list source likewise retains its compact suffix, as in `.catalog.item states[]`.
 | Annotation | Meaning |
 |---|---|
 | `@=` | Shared immutable constant declarations |
-| `@<` | Runtime parameter declarations and static Type/Template formals |
-| `@>` | Runtime result declarations and defined static Type/Template results |
+| `@<` | Runtime parameter declarations |
+| `@>` | Runtime result declarations |
 | `@!` | Executable Ama body |
 | `@C` | Native companion implementation |
+| `@...` | Complete static Type/Template equation graph |
 
 <a id="syn-03"></a>
 
-**SYN-03.** Annotations occur at indentation zero. The section order is optional
-`@=`, optional `@<`, optional `@>`, then one implementation selector, `@!` or `@C`.
+**SYN-03.** Annotations occur at indentation zero. An ordinary module's section
+order is optional `@=`, optional `@<`, optional `@>`, then one implementation
+selector, `@!` or `@C`.
 `@=` is a declaration section, not an implementation selector; it may accompany
 either implementation. Repeated, unknown, or out-of-order annotations in an active
 file are errors. `@!` may introduce an empty body. Only layout follows `@C`;
@@ -467,11 +473,17 @@ constants-only module, with no executable implementation or instance pool.
 An empty `@=` section is allowed. Parameter/result sections require `@!` or `@C`;
 adding `@=` must not make an unfinished interface without implementation valid.
 
+A static module instead consists of optional leading layout, the single marker
+`@...`, and its graph under [TPL-12](static-results.md#tpl-12). It cannot combine
+`@...` with `@=`, `@<`, `@>`, `@!` or `@C`. Its graph contains compile-time
+Type/Template expressions, not runtime declarations, initializers or executable
+statements. It has no instance pool and cannot be an executable entry.
+
 ### Drafts and activation
 
 <a id="syn-04"></a>
 
-**SYN-04.** A file with none of `@=`, `@!`, or `@C` is a draft excluded from
+**SYN-04.** A file with none of `@=`, `@!`, `@C`, or `@...` is a draft excluded from
 compilation. It may contain unfinished declarations without full parsing, name
 binding, or type checking. UTF-8 decoding, the lexical whitespace rules in SYN-06,
 and recognition of genuine zero-indent section markers still apply; text inside literal payload/comments cannot activate
@@ -479,7 +491,7 @@ a file. Companion files cannot make a draft executable or trigger layout/stub
 output.
 
 Using a draft as a type or program entry is an error identifying the file and
-referring location. Adding `@!`/`@C`, or `@=` for a constants-only file, activates
+referring location. Adding `@!`/`@C`, `@...`, or `@=` for a constants-only file, activates
 full validation. An incomplete constant declaration then fails rather than being
 ignored as a draft. Constants-only files are valid dependencies, but cannot be
 program entries or invocation/resumption targets. They do not create a hidden

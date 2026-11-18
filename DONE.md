@@ -4339,3 +4339,44 @@ this table is navigation, not a parallel semantic definition.
   C tokens. Final archived reference must regenerate before staging; record its
   collected outcome in the commit. No spec edits or executable template claims.
   Next ready task: T182, typed connections and nested-field constraints.
+
+<a id="t202"></a>
+
+- [x] **T202 — Specify separate static modules and resolve AMB-013.**
+  Completed 2026-11-18; input 43afdd9. The user's explicit specification/EBNF
+  authorization and final clarification approve a static own-result pair:
+  `...dictionary type`, then `.dictionary` and its indented named inputs.
+  Relative paths are expressly deferred; no such syntax/resolution rule is added.
+  Record: [static-module specification](docs/implementation/static-modules-specification.md).
+  Scope: 17 canonical specification files plus decisions and implementation
+  handoff records; no compiler source, tests, registry hashes or T182 private
+  implementation notes are delivered by this task.
+  Changes: exclusive `@...` structural graphs; named-only static inputs/outputs;
+  public immutable pair/receiver results and multiple-output selection; whole-
+  graph scope/input collection; minimum requirements inferred from all constructor
+  uses while preserving actual residuals/captures; complete producer closure;
+  independent single named concrete-export selectors in ordinary declarations
+  and constant namespaces. Ordinary interfaces retain runtime name/type pairs
+  and bare Type parameters. Native definitions remain concrete; no static ABI,
+  runtime template object, value-indexed Type or list-foundation rewrite appears.
+  Preserved: exact ordinary typed inference and field specialization, full nominal
+  identity without shared object state, exact-key closure and unequal-key path
+  rejection, and separate definition/occurs/eager-ownership/value checks.
+  AMB-013 is resolved by excluding computed ordinary interfaces, not adding a
+  preview exception. AMB-014 records the final approved pair spelling. T203 must
+  audit/plan alignment of earlier components before incomplete T182 resumes.
+  Evidence: cross-review of the chapters, grammar and collateral requirements;
+  all 214 unique requirement IDs retain their canonical files and indexed anchors;
+  11 EBNF blocks contain 108 defined, aligned and reference-closed productions.
+  Markdown checks include every spec chapter, TODO/DONE, ambiguity registry and
+  task note; undefined-production/alignment/group negative controls reject as
+  expected. The initial link check found three references to the renamed Stage 11
+  heading; restoring its stable anchor fixed them and the rerun passed.
+  `make docs-complete` passed in the existing workspace (2743 inputs, zero debts;
+  includes unfinished T182 and makes no code-support claim). A HEAD-plus-task
+  snapshot excluding that partial implementation passed `make docs`: 2690 ready
+  inputs, zero debts, 2032 maintained file pages, 7914 documented interfaces and
+  428 checked destinations, Doxygen 1.11.0, Python 3.14.4, Markdown parser 3.0.0.
+  Final archive/record inputs are regenerated and document/staged whitespace
+  checks are required to pass before this task's commit. No compiler execution
+  or updated conformance-evidence claim is made by these documentation checks.

@@ -41,22 +41,36 @@ answers three questions in order: what is the name and storage form, which modul
 defines its type, and what are its initial contents?
 
 Write the name and type on separate lines at the same indentation. A type line
-starts with a concrete module path or a scoped placeholder permitted by
-[TPL-01/TPL-02](templates.md#tpl-01). Its static application block, when present,
-is one space deeper and precedes ordinary initializer lines at that same depth;
-[TPL-07/TPL-08](templates.md#tpl-07) define the type-expression forms, with
-static inputs, projections and aliases governed by
-[TPL-12](static-results.md#tpl-12). A path naming a template is specialized
-statically under [TPL-03/TPL-04](templates.md#tpl-03), including when it types a nested field.
-The storage marker directly adjoins the name; it never belongs to the type line
-and never has an intervening space.
+starts with a module path or one bare scoped Type placeholder permitted by
+[TPL-01/TPL-02](templates.md#tpl-01). The storage marker directly adjoins the
+name; it never belongs to the type line and never has an intervening space.
+Ordinary `@<` and `@>` contain only these runtime declarations, not standalone
+static inputs or static output definitions. A placeholder used there introduces
+or reuses an ordinary template's Type parameter; body and shared declarations
+may only reuse parameters already introduced by that interface.
 
-Static formals in `@<` and static results in `@>` use
-[TPL-12](static-results.md#tpl-12)'s separate declaration forms. They describe
-compile-time Type/Template parameters and expressions rather than any runtime
-storage form below. Static application and result projection do not construct a
-value or execute a module body. A static result's second line defines its value;
-an ordinary declaration's second line specifies the type of its storage.
+Complex Type/Template applications, partial composition and static output reads
+belong exclusively to static modules under [TPL-12](static-results.md#tpl-12).
+An ordinary declaration may select one public export of a static module: write
+its path as the type line and the exact exported `...name` one space deeper,
+before any ordinary initializer. For example, assume `.integer dictionary`
+is a static module exporting a concrete Type named `...dictionary type`:
+
+```text
+items
+.integer dictionary
+ ...dictionary type
+```
+
+The selector is not a binding, new parameter or runtime initializer. The selected
+export must be a concrete Type from a fully determined static producer,
+independently of this ordinary declaration's contextual constraints. A residual
+Template cannot type runtime storage. The static module itself has no instance
+and cannot serve as the field's runtime type without selecting an export. No
+static `<`/`>` bindings, nested applications, or static output aliases may appear
+in ordinary declarations, constant reads or executable statements. The ordinary
+inference rules of [TPL-03/TPL-04](templates.md#tpl-03) still determine omitted
+ordinary template substitutions where that context permits inference.
 
 There are two ways to omit an explicit type line. A receiver can introduce a
 persistent field whose type comes from its source or selected result (TYPE-06).
@@ -276,11 +290,11 @@ explicit declarations are collected for ordinary use and foreach resolution.
 | TYPE-06 receiver-inferred persistent field | At its introducing receiver and subsequent source positions in that module, including outside the branch/loop/handler containing that receiver. An earlier unresolved use prevents later inference; it cannot be repaired by treating the later receiver as a forward declaration. |
 | New FLOW-05 foreach-local reference | Executable uses in that foreach body and its nested bodies only. It is absent from its own collection-source expression, following code, sibling bodies, and instance-construction initializers. An enclosing binding remains available when resolving a nested loop's source. |
 
-Static parameter, result and alias names belong to the separate static
-namespace of [TPL-02](templates.md#tpl-02) and
-[TPL-12](static-results.md#tpl-12), not this runtime field table. In particular,
-collecting runtime declarations does not turn a later static result alias into
-a forward-visible name.
+Ordinary interface Type parameters belong to the static namespace of
+[TPL-02](templates.md#tpl-02), not this runtime field table. Static graph inputs
+and public result names follow [TPL-12](static-results.md#tpl-12) in their own
+module; selecting an export does not introduce that name into the ordinary
+module or import the graph's other names.
 
 #### Blocks and reuse
 
@@ -402,7 +416,7 @@ the order in which modules happen to load. Use this algorithm:
    forms. A type expression may still contain unresolved specialization variables;
    do not require a complete concrete type at this stage. This inventory is
    available throughout the module for ordinary lookup and for FLOW-05's
-   foreach-header lookup. Static constructor formals are not runtime declarations.
+   foreach-header lookup. Static graph names are not runtime declarations.
    Collecting a later explicit declaration does not count as encountering its name at an
    earlier source position and does not suppress an earlier receiver-inferred
    declaration. If both declare that base name, report a duplicate.
@@ -445,7 +459,7 @@ the order in which modules happen to load. Use this algorithm:
    reads from.
    Neither source execution nor runtime values supplies a type. Result selection
    uses the declared interface, not a search for suitable fields in a callee
-   body; that body's ordinary static equations may refine the interface's terms.
+   body; that body's ordinary typed connections may refine the interface's terms.
 6. Record exact compatibility of the receiver's written storage form with the
    source transfer form or selected result. Validate known facts now and retain
    checks requiring resolved types. Missing or mismatching `&`/`[]` is an error;
@@ -466,8 +480,8 @@ the order in which modules happen to load. Use this algorithm:
    checks before layout or execution. Type refinement never repairs an unresolved
    earlier name use or changes a lexical binding established by steps 1 through 6.
 
-Module-path components, static parameter/signature names and binding labels,
-qualified constant member names, callee-side binding
+Module-path components, static parameter names, static export selectors and
+binding labels, qualified constant member names, callee-side binding
 labels, direct-result selector base names, comments, and literal payloads are not
 local variable occurrences. They do not enter the encountered set. Names inside
 an index and a local constant used by its unqualified name do enter it. At an
@@ -746,41 +760,40 @@ ordinary saved-read bindings:
  red >> selected color
 ```
 
-The namespace head is a concrete module path or a locally declared static
-placeholder. It may have a static application block under
-[TPL-07/TPL-08](templates.md#tpl-07) and
-[TPL-12](static-results.md#tpl-12). Those bindings and static output projections
-precede the read bindings at the same one-level-deeper indentation. Static `<`
-bindings apply types or constructors; static `>` bindings project defined types
-or constructors. Neither is an ordinary runtime input/result binding. The read requires
-at least one `>>` with a receiver and a consistent named/positional read mode.
-Ordinary runtime input `<`, runtime result transfer `>`, invocation `!`, resumption `%`, refusal
-handlers and executable nested actions are not permitted in this namespace read.
+The namespace head is a module path or an already determined scoped Type
+placeholder. A static-module path requires the exact named-export selector of
+TYPE-01 before the ordinary read bindings:
 
-Before selecting any member, resolve the namespace expression to one fully
-concrete Type. Explicit static bindings and already determined local parameter
-bindings may supply that Type; a known Template parameter may be applied to its
-residual formals. A Type parameter cannot receive further static input bindings;
-TPL-12 governs output projection from its known nominal origin.
-An expression that remains open is an error. Without a static output phase,
-this position introduces no fresh inference variables. With an explicit output
-phase, [TPL-12](static-results.md#tpl-12) supplies per-expression terms for
-omitted producer inputs; output equalities may determine them, and every
-producer input must close before constant-member lookup. This never chooses a
-default specialization. Do not infer namespace bindings from requested constant names,
-positional ordinals, runtime receiver types or literal bytes. Independently
-available type constraints, including TPL-12 static output equalities, may first
-determine a local parameter; namespace constant-member lookup
-cannot supply the evidence needed to choose its own owner. There is no search
-for a module that happens to provide a requested constant.
+```text
+.integer container
+ ...container type
+ empty list[] >> working values[]
+```
+
+Here `.integer container` is an independently fully determined static module
+whose `...container type` export denotes an ordinary concrete module Type. The
+read selects that Type's own constant. Static applications and projections
+belong inside the static module and cannot precede or follow this read inline.
+
+The read requires at least one `>>` with a receiver and a consistent
+named/positional runtime read mode. Ordinary runtime input `<`, runtime result
+transfer `>`, invocation `!`, resumption `%`, refusal handlers and executable
+nested actions are not permitted in this namespace read.
+
+Before selecting any member, resolve the namespace to one fully concrete Type.
+A bare already determined Type parameter can supply it; a partial Template
+cannot. A static assembly must be completely determined independently of the
+ordinary namespace context before its selected export is used. Do not infer
+namespace bindings from requested constant names, positional ordinals, runtime
+receiver types or literal bytes. There is no search for a module that happens
+to provide a requested constant, and no default specialization.
 
 Specialization-creation provenance follows [TPL-11](templates.md#tpl-11).
-Selecting an ordinary nongeneric namespace without static outputs reuses its
-fixed Type, just as a direct qualified source does under CONST-05. The namespace
-is still independently loaded and checked; its constants retain their value
-dependencies. Template applications and explicit static output phases keep
-their required producer/application checks. Namespace selection never means
-acquiring a default instance.
+Selecting an ordinary nongeneric namespace reuses its fixed Type, just as a
+direct qualified source does under CONST-05. The namespace remains independently
+loaded and checked, and its constants retain their value dependencies. Static
+assembly dependencies retain their required producer/application checks under
+TPL-12. Namespace selection never acquires a default instance.
 
 Resolve named requests only in the selected concrete type's own `@=` declarations;
 positional requests follow their declaration order. Substitution does not import
@@ -792,20 +805,19 @@ execute a body, acquire an instance, evaluate a getter or create a mutable alias
 An instance target with `>>` continues to expose only its retained `@>` results,
 not constants. Local constants remain available directly by their declared names.
 
-**Example: fragments using a selected specialization.** Assume `.container` is
-the template defined in CONST-06 and `..integer` is independently copyable:
+**Example: a static assembly selecting a specialization.** Assume `.container`
+is the ordinary template defined in CONST-06. File `.integer container`:
 
 ```text
+@...
+...container type
 .container
  ...element type < ..integer
- empty list[] >> working values[]
 ```
 
-The static binding chooses the concrete namespace. The read copies its empty
-constant into an owning list under the ordinary receiver-declaration rules.
-Appending to `working values[]` later cannot mutate the shared empty list.
-Omitting the static binding here leaves `.container` open and is an error;
-`working values[]` does not choose the missing argument.
+The earlier read fragment obtains an independent copy of the exported Type's
+empty list constant. Appending to `working values[]` cannot mutate the shared
+constant. Its receiver does not help choose the assembly's substitutions.
 
 **Example: complete `.initial value`.** Assume, for this example only,
 `..integer` declares a constant named `zero` of its own type. This is a library
@@ -847,20 +859,10 @@ ordering law. Such meanings belong to the actual library's contract. If another
 parameter's type also declares `minimum`, explicitly selecting its namespace
 keeps the two owners separate without a name conflict.
 
-**Example: body fragment using a supplied constructor.** Assume the interface
-already declares `...container family` as a Template with exactly one residual
-Type formal named `...element type`, and `...local type` is already determined:
-
-```text
-...container family
- ...element type < ...local type
- empty list[] >> working values[]
-```
-
-The constructor's signature does not promise an `empty list[]` constant. Check
-that member and its type against the fully selected specialization, as for a
-concrete module path. The head remains a static expression, never a runtime
-variable or an invocation of the constructor.
+A supplied Template may be applied in a separate static module, whose concrete
+export can then select the constant namespace. Ordinary code cannot apply a
+Template inline. A Template's usage requirements do not promise an `empty
+list[]` constant: validate the member against the final concrete Type.
 
 ### Named enumeration values
 
@@ -941,8 +943,8 @@ literal category is introduced. A type-path line in a declaration remains a type
 path; source position determines qualified-constant interpretation. Namespace
 loading uses the same project/library/submodule mapping and collision checks.
 For creation provenance this is the fixed-Type namespace reuse defined by
-[TPL-11](templates.md#tpl-11), with the same policy as CONST-03 without static
-outputs. This changes no constant-value initialization dependency or validation
+[TPL-11](templates.md#tpl-11), with the same fixed-Type reuse policy as CONST-03.
+This changes no constant-value initialization dependency or validation
 of the namespace itself.
 Missing namespaces/members, draft namespaces, incompatible types, and incorrect
 storage forms are source-located compile-time errors.
@@ -983,18 +985,17 @@ separately; they are not themselves constant-value dependencies.
 
 <a id="const-06"></a>
 
-**CONST-06.** A shared declaration may use local Type or Template parameters
-introduced by its module's `@<`/`@>` interface under
+**CONST-06.** A shared declaration may reuse Type parameters introduced by its
+ordinary module's input/output variable types under
 [TPL-02](templates.md#tpl-02). Collect that interface before resolving the
-declaration even though `@=` is written first. Apply the ordinary static
-type-expression rules to its type line and static application block. Static
-result aliases obey [TPL-12](static-results.md#tpl-12)'s source-order visibility;
-interface collection does not make later aliases forward-visible. A shared
-declaration introduces no new static parameter, and neither its initializer nor
-its type may introduce a new placeholder that the interface does not declare.
-Any omitted residuals of a named template type have the ordinary declaration
-constraints under TPL-08; their required concrete types must be determined
-before construction.
+declaration even though `@=` is written first. Its type uses TYPE-01's ordinary
+forms: a module path, one bare existing Type parameter, or a static-module path
+with one named concrete-export selector. Complex static applications and
+projections belong to `@...` modules. A shared declaration introduces no new
+static parameter, and neither its initializer nor its type may introduce a
+placeholder absent from the interface. Required ordinary template substitutions
+must be determined before construction. A selected static producer must be
+fully determined independently of the shared declaration's context.
 
 Resolve dependent declarations for each required concrete specialization.
 Their types, storage forms, construction, literals and copy sources must satisfy

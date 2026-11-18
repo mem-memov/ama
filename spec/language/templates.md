@@ -1,11 +1,11 @@
-# Static module templates
+# Executable templates and static type composition
 
 [Specification index](../README.md)
 
 <!-- chapter-contents -->
 In this chapter:
 
-- [Explanation: one definition, several concrete types](#explanation-one-definition-several-concrete-types)
+- [Explanation: two kinds of work](#explanation-two-kinds-of-work)
 - [Placeholder spelling](#placeholder-spelling)
 - [Parameters and their scope](#parameters-and-their-scope)
 - [Inferring types from typed connections](#inferring-types-from-typed-connections)
@@ -22,218 +22,114 @@ In this chapter:
 
 <!-- /chapter-contents -->
 
-## Explanation: one definition, several concrete types
+## Explanation: two kinds of work
 
-A template is a module definition with named static parameters. Those parameters
-stand for module types or type constructors. The compiler obtains concrete types
-from typed values connected to the template, substitutes them into the program
-structure, and checks the resulting module before generating executable code. Runtime values and
-execution state remain ordinary Ama values and state.
+An executable template describes ordinary variables and operations whose types
+are supplied by its users. For example, a forwarding module copies a value
+without choosing in advance whether it is an integer, text or a user-defined
+record. Its interface still reads as pairs: a variable name, then its type.
 
-For example, a queue can store different types of work without maintaining a
-separate handwritten queue definition for each work type. A template may also
-own a field of another template's type. That field has its own inferred static
-bindings and its own runtime state.
+A **static module**, marked `@...`, does a different job: it describes equations
+between types and partially filled constructors. It has no runtime instance.
+It can receive a constructor, fix some of its arguments, combine it with other
+constructors and expose several named results. The compiler solves this finite
+structural description; it does not run arbitrary Ama or C code to discover a
+new type. [TPL-12](static-results.md#tpl-12) defines that separate source form.
 
-**Design status.** The placeholder spelling, ordinary-call model, nested-field
-model, constructor signatures and partial-application forms below record
-the agreed design. The examples distinguish a template definition in a source
-file, a constructor used during compilation, and a concrete runtime instance. The
-[decision index](../../AMBIGUITIES.md#open-template-design-questions) records the
-resolved questions for this sprint. The uniform naming profile, including
-internal ASCII hyphens, follows [SRC-03](source-and-names.md#src-03). The
-native/export boundary is settled by [TPL-13](#tpl-13); the list-foundation
-rewrite is outside the current sprint
-under [AMB-006](../../AMBIGUITIES.md#amb-006). Finite nested composition and the
-finite specialization-creation rule follow [TPL-11](#tpl-11).
-Type evidence and result
-Type introductions are settled below. Parameter-dependent shared constants and
-explicit type namespaces follow [CONST-03/CONST-06](declarations.md#const-06).
-Static Type/Template results, source-ordered positional interfaces and immutable
-receiver aliases follow [TPL-12](static-results.md#tpl-12). An explicit static
-output phase requires a completely determined producer while permitting its
-returned constructor to retain its own residual parameters.
-This chapter does not imply that the compiler implements templates. Do not
-invent source forms or choose an interpretation for a newly discovered ambiguity.
-The grammar recognizes only the source forms explicitly specified in
-[the grammar](../grammar.md).
+**Design rationale.** This division keeps code that manipulates values easy to
+read. A standalone `...name` is not hidden among runtime input declarations;
+complex type assembly has an explicit home. Simple executable templates still
+infer their Types through normal calls, results and other typed connections.
+Static modules give libraries composition and partial application without adding
+runtime template objects, a general compile-time interpreter or dependent types.
+
+**Design status.** This chapter defines target behavior, not an implementation
+claim. The [decision registry](../../AMBIGUITIES.md#open-template-design-questions)
+records decisions and the implementation queue records remaining work. The list
+foundation remains intrinsic under TPL-09; static natural numbers, value-indexed
+lengths and provably decreasing type recursion remain deferred. Relative module
+paths are outside this change: existing absolute logical roots remain governed
+by [SRC-01](source-and-names.md#src-01).
 
 ## Placeholder spelling
 
 <a id="tpl-01"></a>
 
-**TPL-01.** A placeholder type consists of exactly three adjoining ASCII dots
-followed by one or more complete name components separated by single adjoining
-dots. Each component follows [SRC-03](source-and-names.md#src-03), including its
-Unicode, underscore, internal ASCII hyphen and single-space rules. There is no
-terminating dot.
+**TPL-01.** A static name starts with exactly three adjoining ASCII dots followed
+by one or more complete name components separated by single adjoining dots.
+Each component obeys [SRC-03](source-and-names.md#src-03), including Unicode,
+underscores, isolated internal ASCII hyphens and single internal spaces. There
+is no terminating dot.
 
-The whole spelling is one static name. In `...data.element type`, neither
-`data` nor `element type` denotes a separately addressable parameter or field.
-The components explain the parameter's purpose. They are not a physical path,
-an ordinary/standard-library root selector, or an instruction to find a file.
-No source with that name is required or loaded. A component may use any spelling
-allowed by SRC-03 without an existing directory or module of that name.
+The complete spelling is one name. In `...data.element type`, `data` is not a
+namespace object and `element type` is not a selected member. The components
+explain the name's purpose; they do not locate files or inherit parameters from
+another module. Identical spelling in different definitions does not bind them.
 
-Recognize `...` before the concrete-path prefixes `..` and `.`. The prefix
-directly adjoins its first component; internal dots directly adjoin both
-components. Empty components, bare `...` as a name, four leading dots, trailing
-dots, internal doubled dots and spaces adjoining a dot are invalid. Bare `...`
-is instead permitted solely as TPL-12's positional static-binding marker. Indentation and
-the separator outside an operand remain outside the placeholder name.
+Recognize `...` before `..` and `.` at a type start. The prefix adjoins the first
+component and every internal dot adjoins both components. Bare `...`, empty
+components, four leading dots, doubled internal dots, a terminating dot and
+spaces adjoining dots are invalid. There is no positional static marker.
+Structural indentation and operand separators remain outside the name.
 
-A placeholder spelling is permitted only in the static positions defined here:
-type expressions, static formal/signature declarations, static result names,
-receiver aliases, static binding labels and the explicit constant namespace in
-[CONST-03](declarations.md#const-03). It is not a value source, runtime variable,
-entry/resume target, index, literal, or dotted member-selection syntax. In particular,
-`...type.field` never means access to `field` through `...type`.
+Static names occur only in the roles defined by TPL-02, TPL-08 and TPL-12, and
+as an already scoped Type namespace under [CONST-03](declarations.md#const-03).
+They are not runtime value sources, variables, indices, entry/resume targets,
+literals or dotted member accesses. A normal variable's type line may use one
+bare Type name; that does not make the variable itself a static value.
 
-**Example: spellings, not complete modules.**
+**Examples: spellings, not complete modules.**
 
-| Spelling | Interpretation |
+| Spelling | Meaning |
 |---|---|
-| `...data.element type` | One parameter with two descriptive name components |
-| `...data.key type` | A different parameter, despite the shared first component |
-| `...имя типа.назначение` | The same naming rules with international words |
-| `...data.key-2 type` | Internal ASCII hyphen followed by a digit; the space still joins two words of one component |
-| `...data.key--type` | Invalid consecutive hyphens under SRC-03 |
-| `...data.key -type` | Invalid leading hyphen in a later word under SRC-03 |
-| `...data.key type-` | Invalid word-ending hyphen under SRC-03 |
-| `...data .element` | Invalid space before a separator |
+| `...data.element type` | One descriptive static name |
+| `...data.key type` | A different complete name |
+| `...имя типа.назначение` | The same rules with international words |
+| `...data.key-2 type` | Valid isolated internal hyphen |
+| `...data.key--type` | Invalid adjacent hyphens |
+| `...data .element` | Invalid space beside a separator |
 | `...data.element.` | Invalid terminating dot |
 
 ## Parameters and their scope
 
 <a id="tpl-02"></a>
 
-**TPL-02.** The interface sections `@<` and `@>` introduce a module template's
-Type parameters. Only `@<` introduces Template parameters and their signatures.
-Collect the whole interface before checking uses, according to these forms:
+**TPL-02.** In an ordinary executable module, each declaration in `@<` and `@>`
+is an ordinary name/type pair under [TYPE-01](declarations.md#type-01). A bare
+`...name` on such a declaration's type line introduces one Type parameter of
+that module. Collect all these introductions from both sections before checking
+uses. Repeated use of the same complete name denotes the same parameter;
+different names denote independent parameters until a typed connection equates
+them. New parameters may be introduced in results as well as inputs.
 
-- A standalone `...name` declaration in `@<` introduces a **Type** parameter
-  when it has no indented signature members. With a nonempty signature it
-  introduces a **Template** parameter under TPL-07. Declare an explicit formal
-  at most once; its later uses may refer to that same parameter.
-- A bare placeholder used as a runtime input or result type introduces a **Type**
-  parameter unless that name already denotes a collected static formal or
-  static result, or a visible received alias. A known Template
-  in that position is an application. A root input application follows TPL-07's
-  complete-input-pattern rule when it has no static output phase; a runtime
-  result application follows TPL-08's field rule. TPL-12 governs applications
-  with an explicit static output phase.
-- A placeholder used as a runtime input's type in `@<` with a nonempty named static
-  input binding block introduces a **Template** parameter if it has no explicit static
-  formal declaration and does not name a collected static result or visible
-  received alias. Its expected
-  residual signature is exactly those binding
-  labels and their expression categories under TPL-07.
-- In the right-hand static expressions of input or result type declarations,
-  including a static result's defining expression under TPL-12, a previously
-  undeclared bare placeholder introduces a local **Type** parameter.
-  A Template used on
-  that side must have its category/signature declared by one of the preceding
-  Template introduction forms. Do not infer its category from an actual value.
+An ordinary interface cannot contain a standalone static formal, a static
+result definition, a constructor signature or a static application/projection
+block. The same prohibition on complex static operations applies in ordinary
+shared declarations, body declarations, defaults and constant namespaces.
+Several runtime declarations may share a bare placeholder Type, but indented
+static input/output bindings may not follow that type line. Static composition
+belongs in an `@...` module, including when its result will later type an
+ordinary field.
 
-For these introduction rules, a bare placeholder head has no static **input**
-bindings. Static output actions do not change that eligibility, including an
-output-only positional skip. A head in an eligible interface position can
-therefore introduce Type while reading static results from that Type. It must
-still satisfy the existing exclusions for collected formals, result names and
-visible aliases. Output labels name the producer's static results; they never
-contribute a Template parameter's expected input signature. An input binding,
-including an omitted positional input, is not a bare-head occurrence.
+A body or `@=` type line may reuse any Type parameter collected from the whole
+ordinary interface. It cannot introduce another free parameter. This remains
+true in unreachable branches and empty loops. Shared declarations may reuse
+parameters even though `@=` precedes the interface in source order. A constant
+namespace may reuse a collected Type, not introduce one.
 
-**Example: complete interface with an output-only Type head.** Assume the
-eventual concrete input type declares the static result `...element type`:
+The parameter identity is the original defining module identity plus the complete
+static name. Physical submodule nesting does not inherit parameters. Canonical
+formal order is first introduction in `@<`, then first introduction in `@>`, in
+each section's textual declaration order. This order supports deterministic
+metadata; it introduces no positional static source interface.
 
-```text
-@<
-source&
-...source type
- ...element type > ...received element type
+A parameter's Type is separate from the variable's storage form. The same Type
+can describe an owned value, a reference target, an owning list's element or a
+reference list's target. Substitution never adds/removes `&`, `[]` or `&[]`.
+An open constructor is not a valid runtime field type. Static-module free inputs,
+public definitions and scopes follow TPL-12 instead of these interface rules.
 
-@!
-```
-
-The interface head introduces the owner's Type parameter `...source type`.
-The ordinary input supplies independent nominal type evidence; there is no
-search for a producer by output name. The receiver introduces an immutable
-alias under TPL-12, with metadata from the selected result, and does not occupy
-a formal position. No Template signature is inferred from `...element type`.
-An explicit standalone Type formal for `...source type` would make the head a
-use of that formal instead, with the same category. Shared sections, body-only
-expressions and constant namespaces still cannot introduce free parameters.
-
-First collect explicit static result binders and explicit static formals.
-Classify received aliases and genuine implicit introduction sites under
-TPL-12's source-order rule; an alias's later interface uses cannot introduce
-another owner parameter. Then collect Template-introducing patterns from `@<`
-and their signatures, followed by remaining Type introductions from both interface sections,
-excluding collected result names, foreign binding labels, output receiver
-aliases and signature entries. A bare occurrence
-does not independently redeclare an already known Template. A Type parameter
-cannot be used as an applied constructor. Reject duplicate explicit binders or
-formals. Any repeated Template patterns must
-agree on the complete named, recursively kinded residual signature. Each
-signature and parameter category is fixed for the definition, independently of
-which specialization the compiler processes first.
-An unknown applied placeholder first occurring in `@>` does not introduce a
-Template: declare its signature through `@<` first. A static result may derive
-a Template from a known constructor; its result binder is not a new Template
-parameter. A result typed by a concrete template path may introduce
-local Type parameters on the right of its named bindings without introducing a
-local Template head.
-Signatures must be finite. Cyclic inferred signature dependencies that require
-an infinite category/signature tree are static errors before specialization;
-the compiler must detect the cycle rather than expand it indefinitely.
-
-The left-hand labels of static bindings and the entries inside a static formal's
-signature belong to the selected foreign constructor interface. They introduce
-no parameters in the surrounding module. A bare signature entry declares a Type
-slot of that interface; an entry with its own nested signature declares a Template slot.
-For example, a signature containing `...value type` does not make that name
-available as a Type parameter in the surrounding body.
-
-Repeated local introductions of the same complete name refer to one parameter;
-different complete names introduce independent parameters. Parameter order for
-canonical identity is the order of first local introductions in the interface,
-first `@<`, then `@>`, visiting an explicit formal at its declaration and
-traversing each declaration's type/defining expression before the following
-declaration. Foreign labels, result binders, receiver aliases and signature
-entries do not occupy positions in this order. TPL-12 uses this original order,
-restricted to actual residual formals, for positional static inputs; static
-outputs have their separate textual `@>` order.
-
-The parameter identity comprises its defining module identity and complete
-placeholder name. Identical spelling in another template introduces a different
-parameter. Physical submodule nesting does not inherit parameters under
-[SRC-05](source-and-names.md#src-05). Ordinary variables and type parameters have
-different roles: the variable holds runtime state; its placeholder describes
-the module type of that state.
-
-Static expressions in the Ama body may reuse local parameters and static results
-introduced through that template's interface, and visible received aliases
-under TPL-12. Foreign static binding labels there
-still designate the selected constructor's own formals. A new local placeholder
-appearing only as an unbound source in the body is a static error, including in an unreachable
-branch or empty-loop body. Explicit static Template-formal declarations are permitted
-only in `@<`; bare Type-formal declarations are likewise input-only. Receiving
-a static alias under TPL-12 does not introduce a free parameter. The body cannot
-add implicit type parameters to its enclosing module. Shared
-`@=` declarations do not introduce type parameters. They may reuse parameters
-collected from the whole interface under
-[CONST-06](declarations.md#const-06), even though the shared section is written
-before that interface. A constant-read namespace likewise reuses scoped
-parameters and never introduces one.
-
-The ordinary declaration's storage suffix remains independent of its module
-type. The same parameter can type an owned scalar, a scalar reference, an owning
-list and a reference list. Substitution never changes these four storage forms.
-For a reference the parameter denotes the target module type; for a list it
-denotes the element module type, not a new implicit list-of-list type.
-
-**Example: an input-section fragment.**
+**Example: ordinary interface fragment.**
 
 ```text
 @<
@@ -245,15 +141,18 @@ value
 
 other value
 ...data.value type
+
+@>
+result
+...data.result type
 ```
 
-`value` and `other value` require the same module type. `key` is independent and
-may have either that same type or a different one. Reusing `...data.value type`
-in a result or body type line is valid. Introducing `...data.result type` in
-`@>` is also valid; introducing it only in the body is invalid.
+`value` and `other value` have the same Type. The key and result Types may differ.
+Every declaration remains a name/type pair; no declaration supplies a separate
+compile-time object as a runtime input.
 
-**Example: complete `.default result`.** Assume the eventual concrete type
-supports ordinary default construction:
+**Example: complete `.default result`.** Assume the selected result Type supports
+ordinary default construction:
 
 ```text
 @>
@@ -263,11 +162,10 @@ result
 @!
 ```
 
-There is no input section. The result declaration introduces a Type parameter
-of `.default result` itself. An explicitly typed receiving variable, a static
-binding or another permitted typed connection can determine it under TPL-03.
-Different producer declarations may therefore have different specializations.
-Every invocation of one declared producer still has one fixed result type.
+An explicitly typed receiver or another permitted typed connection can determine
+this result-only parameter. A static assembly can also apply `.default result`
+by its named Type formal. Every invocation of one declared concrete producer
+still has the same fixed result Type.
 
 ## Inferring types from typed connections
 
@@ -358,13 +256,6 @@ an unknown callee whose result would match. If a target's nominal type/interface
 is not known yet, retain its constraint until another typed connection determines
 it; report underdetermination if no such evidence exists.
 
-A named constructor pattern on an input additionally uses the exact nominal
-decomposition defined by TPL-07. The complete input type, including every actual
-slot binding, remains part of the constraint; extracting a family does not erase
-the old key/value types from the runtime interface. Explicit static formals
-allocate no ordinary input positions, and named static bindings do not consume
-runtime argument positions or change an ordinary call's binding mode.
-
 ### Examples: expected result types and later information
 
 **Example: caller fragment using `.default result` above.**
@@ -423,34 +314,13 @@ With the later assignment removed and no other type evidence, this example is
 underdetermined: `|0` and the new receiver do not choose a type. An explicitly
 typed receiver would supply the same integer constraint directly at the call.
 
-**Example: a result field whose type specializes another template.** Assume
-`.box` declares one Type formal `...element type` and supports the construction
-and copying used here. The following is a complete `.box producer` definition:
-
-```text
-@>
-result
-.box
- ...element type < ...produced element type
-
-@!
-```
-
-The new local Type parameter is introduced on the binding's right-hand side in
-`@>`. A receiver whose type is a box of integers fixes that parameter to integer;
-a separate producer field may specialize for a box of text. Each result is an
-ordinary owned box with a closed concrete type. A bare `.box` result without that
-named local parameter instead uses only field inference variables under TPL-08:
-it does not implicitly make its owner generic, and all instances of one concrete
-owner must agree on that field's inferred box type.
-
 ## Nested template instances
 
 <a id="tpl-04"></a>
 
 **TPL-04.** A template may explicitly declare fields whose type path names
-another template, or whose type expression applies a Template parameter under
-TPL-08. No special nested-call syntax is required. The nested
+another executable template. No special nested-call syntax is required.
+The nested
 template introduces its parameters in its own interface; those declarations do not
 introduce names into the enclosing template's scope. Explicitly passing an
 outer value to a nested input relates their module types under TPL-03, even
@@ -581,690 +451,344 @@ applies again; there is no implicit inheritance down the ownership tree.
 
 <a id="tpl-05"></a>
 
-**TPL-05.** A concrete specialization's nominal identity comprises the original
-template definition's full logical module identity and the complete normalized
-binding of its static parameters. Preserve parameter identities, parameter kinds
-and all bindings, including a binding unused by the generated body. Concrete
-type bindings use their full nominal identities, including root kind and any
-own specialization bindings. Native C names and physical generated filenames
-are representations of this identity, not its definition.
+**TPL-05.** A specialization's nominal identity consists of the original full
+logical module identity and its complete normalized static input bindings.
+Preserve root kind, original parameter identities, categories and every binding,
+including bindings unused by the body. A Type binding uses its full nominal
+identity. A Template binding retains its original constructor, fixed captures
+and full residual signature, not merely its arity or the minimum requirements
+of its current user. Derived outputs and local aliases are not extra inputs.
 
-Equivalent substitutions reached through different nesting or partial-binding
-routes have one specialization identity. Normalize by the original parameter
-identities in their declared order; application order, aliases, path basenames
-and coincidentally identical layouts cannot change or merge that identity.
-Static inputs normalize to original formal identities, whether their source
-form is named or positional under TPL-12. Derived static results and receiver
-aliases are not additional producer-key components. Returning a Type preserves
-that Type's own original identity rather than creating a producer-qualified
-wrapper. Permuting distinct named argument bindings
-to an already defined constructor in the same supplying environment preserves
-their meaning and canonical result. Reordering introductions in the definition
-itself may change its declared parameter order under TPL-02; that is not a
-permutation of arguments to an unchanged definition. Moving a nested expression
-that introduces a received alias across that alias's use is not a permutation
-in the same lexical environment. A Template-valued binding includes
-its constructor origin, fixed bindings and residual signature under TPL-08;
-it cannot be identified by its signature or remaining arity alone.
-Distinct template definitions remain nominally distinct. NAME-01/NAME-02's exact
-encoding and collision checks apply to the extended identities.
+Normalize bindings by the original formal identities in their canonical order.
+Named argument order, staging of partial application, aliases, equal layouts and
+physical filenames do not change identity. Reordering independent named inputs
+to the same constructor preserves the result. Renaming or reordering formal
+introductions in a definition changes that definition's metadata and is a
+separate operation. Distinct source constructors remain nominally distinct.
+[NAME-01/NAME-02](../implementation/compiler.md#name-01) require exact identity
+encoding and collision checks, including for virtual modules that have no file.
 
-One specialization identity shares type information and generated code. It does
-not share mutable instances, fields, busy flags, results or continuations.
-Two declared owned fields with the same specialization still own independent
-state; an explicit reference may alias an existing instance under ordinary rules.
-Shared `@=` values belong to each concrete specialization once per execution
-context under STATE-03, not once per object or once across all specializations.
+Static definitions forward a Type's original identity; they do not wrap it in the
+producer's namespace. Two static producers can expose the same Type. Their own
+specializations still retain their complete inputs and checking obligations.
 
-Reference target compatibility and list element compatibility include the whole
-specialization identity. A list remains homogeneous. A reference cannot alternate
-between incompatible specializations merely because their original template
-definition is the same.
+One specialization identity shares checked type metadata and generated code,
+never mutable object state. Two owned declarations still have independent fields,
+busy flags, results, continuations and lifetimes. Only ordinary explicit references
+alias instances. Shared `@=` values belong once to each concrete specialization
+in each execution context under STATE-03. Reference compatibility and homogeneous
+list element compatibility compare the whole specialization identity.
 
 ## Checking a specialization before execution
 
 <a id="tpl-06"></a>
 
-**TPL-06.** Before emitting executable code or constructing runtime state, all
-used specializations and their required dependencies must be fully concrete and
-pass ordinary Ama checking. An open template/partial binding is compile-time
-information, not an executable value or an incompletely initialized instance.
-An ordinary variable or reference carries one concrete nominal type at runtime.
+**TPL-06.** Every used executable specialization and required dependency must be
+fully concrete and pass ordinary Ama checks before code generation or runtime
+construction. An open definition or partial constructor is compiler metadata,
+not an executable value or an incompletely initialized runtime instance. Every
+runtime field, reference target and list element has one concrete nominal Type.
 
-Check syntax, placeholder scope and resolvable names at definition time. After
-substitution, check storage compatibility, every body operation, interface arity,
-defaults, literal/copy/condition/index capabilities, lifecycle and ownership
-graphs, and constant initialization. A provided argument does not excuse a
-statically invalid declared default. This does not execute an unused default:
-CALL-08 still suppresses its runtime construction when an input is supplied.
-Runtime branch outcomes do not disable static checks;
-there is no silent removal of invalid operations or automatic selection of an
-alternative specialization.
+Check source syntax, lexical scope and resolvable names at definition time.
+After substitution, check every required operation, storage form, input/result
+interface, default, literal/copy/condition/index capability, ownership graph,
+lifecycle and constant initializer. Runtime reachability does not excuse invalid
+operations. A provided argument does not excuse a statically invalid default;
+CALL-08 still avoids executing that default when the input is supplied.
 
-Templates do not add universal comparison, arithmetic, implicit conversions,
-structural subtyping or access to another module's private fields. An ordinary
-module instance passed by reference may supply a predicate/comparison operation;
-its concrete callable interface must match the template's actual calls after
-substitution. Type checking alone does not prove ordering, hashing or other
-algebraic laws required by a library algorithm.
+There is no implicit conversion, common supertype, structural subtyping or
+capability-based search for a Type. A concrete module passed as an ordinary
+value or reference may provide methods used by an algorithm, but every call must
+match that actual module's ordinary interface. Type checking does not prove
+ordering, hashing or other algebraic laws that the library algorithm requires.
 
-A known concrete native module may be a type argument, with its ordinary ABI and
-capabilities. [TPL-13](#tpl-13) excludes native templates and defines source
-distribution of open Ama templates. Export through concrete ordinary modules
-follows [EMBED-01](../implementation/c-library.md#embed-01).
-Specialization-qualified constant reads follow
-[CONST-03/CONST-06](declarations.md#const-06) independently of that native boundary.
+An output-only Type parameter is allowed under TPL-02, but an actual declared
+producer's result cannot change Type between invocations. A field inference
+variable under TPL-04 does not silently become another parameter of its owner.
+An empty generic container needs determining Type evidence; lack of elements
+provides none. Static modules must determine every producer input before
+publishing outputs under TPL-12. A returned Template may retain its own bound
+residual parameters without leaving a producer input unknown.
 
-A general conversion may introduce independent input and result Type parameters
-through the corresponding interface declarations, and may receive constructors
-through TPL-07's static signature mechanism. A body-inferred receiver does not
-introduce another user-visible parameter of its owner. Empty generic containers
-likewise need determining type constraints; missing runtime elements provide no
-type evidence. Every runtime result has one fixed type per concrete owner
-specialization. Static result definitions and concrete producer closure follow
-TPL-12; a returned Template may retain its own residual signature.
+Closed nominal identities can be registered and referred to while their finite
+mutually dependent group is still being checked under TPL-11. Registration is
+not admission and does not waive any checks. In particular, the ordinary bridge
+to a static export must know its concrete identity independently of the consuming
+runtime context, but need not demand completed validation of every mutually
+referencing body before that identity can participate in checking.
 
 ## Concrete native modules and template source distribution
 
-**Explanation.** An Ama template organizes operations over supplied types. A
-native module provides a concrete implementation boundary with a checked C
-interface. Using a native integer type in an Ama template therefore does not
-require writing a generic C implementation. The compiler specializes the Ama
-definition and uses that integer module's existing concrete native contract.
-
-**Design rationale.** Keeping native modules concrete avoids a second template
-system for authored C representations, generated headers and lifecycle hooks.
-Native modules are leaves at the implementation boundary. This description does
-not make their declared Ama state a leaf in the ownership graph: concrete fields,
-checked references and their existing lifecycle rules still apply.
+**Design rationale.** Native modules supply checked concrete implementation
+boundaries. Keeping them concrete avoids a second generic system for authored C
+layouts, generated headers and lifecycle hooks. An Ama template may still use a
+native integer or text Type without modifying that Type's C implementation.
 
 <a id="tpl-13"></a>
 
-**TPL-13.** A module whose implementation section is `@C` must have no own static
-Type or Template parameters. Determine that parameter set by the complete
-interface collection and scope classification in TPL-02/TPL-12, before accepting
-the native definition or generating its authoring header. This restriction applies
-to explicit formals, implicit Type introductions through runtime input/result
-types or interface expressions, and implicit Template introductions through
-input patterns. An unused formal is still a formal. Supplying concrete arguments
-at every application does not make an otherwise generic `@C` definition valid.
-Report the native implementation marker and the parameter introduction site;
-do not synthesize a default specialization, erase the type through `void *`,
-or generate a specialization-dependent C companion as a fallback.
+**TPL-13.** A module implemented by `@C` must have no own Type parameters.
+Collect its entire ordinary input/result interface under TPL-02 before accepting
+it or generating native authoring headers. A parameter introduced only by a
+result, or unused by the native body, still violates this restriction. Supplying
+concrete arguments at every use does not make a generic native definition valid.
+Report the implementation marker and offending introduction; do not synthesize
+a default specialization, erase it through `void *` or generate a generic C
+companion as a fallback. `@...` is a separate module kind, never a native body.
 
-A concrete native module remains an ordinary Type argument for an Ama-defined
-template. Its nominal identity, copy/default/condition/index capabilities,
-representation and lifecycle follow their existing contracts; substitution adds
-no operation that it does not provide. Its native authoring interface remains
-the concrete interface specified by
-[CABI-01/CABI-06](../implementation/native-interface.md#cabi-01).
+Concrete Types produced by static assemblies may type native fields/interfaces
+through TPL-12's named export selection. A selected name does not introduce a
+free parameter. All native runtime storage must be uniquely concrete before
+layout/header generation under CABI-06. Persistent Ama references remain in
+compiler-managed typed storage, not hidden in native payloads. Static inputs,
+partial constructors and static outputs add no C ABI arguments or runtime slots.
 
-The restriction concerns the native module's own parameters, not every occurrence
-of `...`. A foreign static binding label is not a local formal. A known closed
-template application may supply a native module's declared field or interface
-Type, subject to ordinary ownership, capability and native-access checks. Bound
-static result names and received aliases remain governed by TPL-12; they do not
-independently make a module a template. A returned constructor's own locally bound
-residual parameters are distinct from free producer parameters. Static results
-never become native runtime input/output positions. Every type used for native
-runtime storage must be uniquely concrete before its header/layout is generated,
-under TPL-06 and CABI-06. An unresolved field binding is not permission to create
-a native template.
-
-**Example: TPL-04's complete `.forward`, repeated for this boundary.** Supplied
-types must support ordinary default construction and the owned copy used here:
-
-```text
-@<
-value
-...inner.value type
-
-@>
-result
-...inner.value type
-
-@!
-result
- value
-```
-
-**Example: caller body fragment.** Assume the ordinary concrete native module
-`..integer` supports its declared literal and copy operations:
-
-```text
-number
-..integer
- |42
-
-worker
-.forward
-
-worker !
- < number
- > copied
-```
-
-The call determines `.forward`'s element Type as `..integer`. The generated
-specialization has an Ama body; `..integer` acquires no template parameters or
-new native implementation. Replacing `.forward`'s `@!` section with `@C` would
-be rejected even if this were its only caller, because its interface introduces
-`...inner.value type`.
+An ordinary native module remains a valid concrete Type argument. Its nominal
+identity, representation, capabilities and lifecycle follow its original native
+contract. Applying an Ama template does not add operations to that module.
+For example, TPL-04's `.forward` can specialize to `..integer`; changing its own
+`@!` to `@C` remains invalid because `.forward` itself introduces a Type formal.
 
 ### Source delivery and the concrete C boundary
 
-Distribute an open Ama template as its Ama source definition. A consuming project
-loads that definition, resolves its dependencies, applies its own static
-bindings and checks every required concrete specialization before generating
-executable code. Partial constructors remain compile-time information under
-TPL-07/TPL-08/TPL-12; they are not objects exported through a C runtime interface.
-No serialized open-template ABI, binary-only template interface or runtime
-specialization mechanism is introduced by this source-delivery contract.
+Distribute open executable templates and static modules as Ama source. A consumer
+loads the definitions and configured dependencies, solves the applicable static
+bindings and checks every required concrete specialization. This introduces no
+serialized open-template ABI, binary-only constructor format or runtime type
+generation. Required concrete native modules keep their normal interfaces,
+companions and external C dependencies.
 
-A source distribution must supply the required Ama definitions, or make them
-available through the consuming project's explicitly configured dependencies.
-Required concrete native modules retain their normal Ama interfaces, authored
-companions and external C dependencies; the consumer checks them under the
-existing native build contract. Source delivery does not require embedding the
-implementation of an independently supplied external C library in Ama files.
+The exact root and source conflict rules in SRC-01/SRC-02 and DEP-01 through
+DEP-03 still apply. Packaging adds no implicit imports, alternate namespace or
+version-based identity. Equal original definitions and complete bindings retain
+one identity under TPL-05; missing/conflicting sources remain errors.
 
-Apply the existing exact source-name and root-resolution rules in
-[SRC-01/SRC-02](source-and-names.md#src-01) and
-[DEP-01 through DEP-03](../implementation/compiler.md#dep-01). Packaging does not
-create another namespace, implicit import, type-erasure scheme, or version-based
-identity rule. The same original logical template identity and normalized
-bindings retain one specialization identity under TPL-05. Conflicting definitions
-of one logical module, missing dependencies, invalid bindings and unresolved
-required types are diagnosed through the ordinary compiler rules.
-
-For use by a C application, select a concrete ordinary module as an exported
-root under [EMBED-01](../implementation/c-library.md#embed-01). A non-template Ama
-facade may contain the required closed template specialization and expose a
-concrete runtime interface. This preserves native-module identity and avoids
-passing an open constructor through C. Direct selection of a template
-specialization in export configuration is outside the current sprint; this
-contract introduces no configuration syntax for static export arguments.
+A C application exports a concrete ordinary root under
+[EMBED-01](../implementation/c-library.md#embed-01). An ordinary facade may select
+ready concrete Types from a static assembly and expose ordinary concrete runtime
+inputs/results. Neither an open constructor nor a static module itself is a C
+runtime object or export root. Selecting a template specialization by new export
+configuration syntax is outside the current sprint.
 
 ## Type parameters and template parameters
 
 <a id="tpl-07"></a>
 
-**TPL-07.** Distinguish two static parameter categories:
+**TPL-07.** Distinguish these two categories of structural static value:
 
-| Category | Meaning of its binding |
+| Category | Meaning |
 |---|---|
-| Type | One module type, concrete or symbolically dependent on parameters in an enclosing composition |
-| Template | A type constructor with a nonempty expected named residual signature, possibly carrying prior partial bindings |
+| Type | One ordinary module Type, possibly symbolic before its enclosing inputs close |
+| Template | An ordinary type constructor with at least one residual named formal and any prior fixed captures |
 
-A constructor is compile-time information describing how static arguments form
-a type. It has no runtime state or entry point. A concrete specialization of a
-template is a Type, even though the compiler retains its constructor origin and
-complete argument metadata. Applying a constructor to all its residual formals
-produces a Type; leaving some formals open produces a Template. A Type and a
-Template are different categories, even if they have similar names or one is the
-origin of the other. Category checking never performs a runtime call.
+An unapplied nongeneric ordinary module denotes Type. An executable template's
+path denotes Template until its residual formals are bound; complete application
+produces Type. A static module is a producer of named static values under
+TPL-12, not an ordinary Type, Template, runtime value or third first-class static
+function category. Its named outputs may themselves be Types or Templates.
 
-**Explanation: types are not numeric values.** These are the two static parameter
-categories. A number stored in `..integer`, including a list position or length,
-is an ordinary runtime value, not another static argument category. Different
-integer contents do not produce different nominal types or specialization keys.
-Reading a shared constant does not evaluate its contents as a type expression.
-Composition may build different concrete types from different named Type and
-Template arguments; it does not introduce value-indexed types, type-level
-integer arithmetic or proofs that a mutable list has a particular length.
+A constructor's actual signature is its complete set of residual original formal
+names with their categories and applicable nested requirements. Its fixed map
+retains all captures. In an executable template all own formals are Type under
+TPL-02. Static-module inputs may receive either category according to their
+actual supplied metadata and their uses; there is no standalone signature tree
+to declare in an ordinary input section.
 
-### Named signatures and explicit declarations
+### Requirements inferred from all uses
 
-A signature is a finite, nonempty set of distinct complete formal names with
-their categories. A Template slot recursively includes its own expected
-signature. Names match exactly under TPL-01; order in a signature is not a
-parameter position. Two signatures match if their name sets are equal and each
-corresponding category and recursively nested signature matches. Extra residual
-formals, missing formals, renamed formals and category differences are errors.
-Prior bindings are not residual formals and are not listed in that signature.
+For each free static-module input, collect every structural operation imposed
+by its uses, including all named applications and forwarding paths. These are
+minimum requirements, not a closed list of allowed formals. An applied input
+must be Template, have every supplied name in its actual residual signature and
+accept the category of each supplied expression. Operations on results impose
+further requirements on those results. Repeated requirements must agree.
 
-An explicit static formal occupies its own declaration in `@<`. A bare name
-with no indented signature declares Type; a name with a nonempty signature
-declares Template. The distinction is structural and applies recursively:
+Do not reject an actual constructor merely because it has additional residual
+formals. Preserve them in every partial result. The category of a result may
+therefore depend on the supplied constructor's full metadata: binding two names
+may produce Type for a two-slot constructor and Template for a constructor with
+a third residual slot. A forwarded-only input retains its eventual actual
+category and metadata; no signature or default category is invented for it.
 
-```text
-...element type
+Requirements are derived from the whole definition before admitting actual
+specializations, not from the first actual encountered. At a particular complete
+producer specialization, every input has uniquely determined actual metadata.
+Check that actual metadata against every use. A previously successful actual
+cannot establish a closed contract that excludes a later valid constructor.
+No name-based capture, formal renaming, structural layout match or filesystem
+search supplies a missing constructor origin.
 
-...dictionary family
- ...key type
- ...value type
-```
-
-There is no trailing `<` on either header. A signature entry is indented exactly
-one level deeper. A bare entry declares a Type slot; an entry with its own
-deeper nonempty signature declares a Template slot. Comments and blank lines
-are layout, not signature entries. No runtime name, storage suffix, default, literal or ordinary
-initializer belongs to this declaration. It allocates no runtime field or
-ordinary input position. Its actual Type or constructor is supplied by a static
-binding on the containing module's type expression, or constrained by an input
-pattern referring to this formal. Missing information is not filled with a
-default Type or constructor. Explicit static results in `@>` have a required
-second expression line under TPL-12; they do not use this input-formal form.
-
-**Example: a recursive signature fragment in `@<`.**
+**Example: complete static module `.bind key`.**
 
 ```text
-...algorithm family
- ...container family
-  ...element type
- ...payload type
+@...
+...with key
+...family
+ ...key type < ...key
 ```
 
-The algorithm's `...container family` formal expects a constructor with exactly
-one remaining Type slot named `...element type`. The algorithm's other formal,
-`...payload type`, expects a Type. These signature entries describe the foreign
-algorithm interface; they introduce no surrounding local parameters named
-`...container family`, `...element type` or `...payload type`.
+The free inputs are `...family` and `...key`. The first must be a constructor
+whose residual formals include `...key type`, accepting the supplied key value.
+It may also have value, comparator or allocator formals. The result preserves
+all such residuals and the original captures. This example does not promise any
+runtime dictionary method merely because a formal is called `...key type`.
 
-### Where a template is defined and where it is used
+Each application is independent. Binding a key in one result and a value in
+another does not mutate the incoming family or combine those two partial maps.
+To complete one partial result, explicitly apply that result under TPL-08.
 
-**Walkthrough: definition and explicit application.** Assume a hypothetical
-module `.dictionary` has the following input-section fragment; its implementation
-and results are outside this fragment:
+### Type arguments are not numeric values
 
-```text
-@<
-key&
-...key type
-
-value&
-...value type
-```
-
-The source file `.dictionary` defines this constructor. Its original static
-formal names are exactly `...key type` and `...value type`, both Type. The input
-variables `key&` and `value&` are runtime references with independent storage
-roles. Their placeholder types do not themselves name references.
-
-A complete module `.factory` can receive that constructor as a static argument:
-
-```text
-@<
-...dictionary family
- ...key type
- ...value type
-
-@!
-first
-...dictionary family
- ...key type < ..text
- ...value type < ..integer
-
-second
-...dictionary family
- ...value type < ..integer
- ...key type < ..text
-```
-
-Assume `.dictionary` supports ordinary default construction of these fields.
-The two declarations apply the received constructor to the same named types in
-different source orders. They have the same concrete type and independent state.
-The following declaration fragment selects the actual constructor for `.factory`:
-
-```text
-builder
-.factory
- ...dictionary family < .dictionary
-```
-
-`.factory` is a source module; `...dictionary family` is its local Template
-parameter; `.dictionary` is the source constructor supplied to that parameter.
-The generated concrete dictionary type is a virtual module in compiler memory,
-not a file created alongside `.dictionary`. The field `builder` is a runtime
-instance of a concrete `.factory` specialization; its static argument creates
-no additional runtime argument. No `!` is needed to apply a type constructor.
-
-### Input patterns that recover a constructor
-
-A runtime input may declare a constructor-application pattern. Its root is a
-Template parameter or a concrete module path naming a template; its children
-are named static bindings. A concrete path fixes the nominal origin and
-introduces no local Template parameter. If a placeholder root has
-no explicit static formal declaration, the children introduce its expected
-residual signature: their labels are its formal names, and their right-hand
-expression categories determine the formal categories. Bare new right-hand
-placeholders introduce Type under TPL-02; a Template on that side needs its own
-declared signature. The category is never inferred by trying the first actual.
-
-Without a static output phase, at the root of a runtime input type every residual formal of the constructor
-must be bound explicitly exactly once, including when its head is a concrete
-template path. An explicit prior signature must agree with that complete binding
-set. An omitted residual at this root is an error:
-name its local binding in the pattern instead. This makes the input type a
-function of declared static parameters and prevents hidden owner parameters.
-For example, an input typed `.dictionary` alone is incomplete for the two-slot
-definition above. Binding both `...key type` and `...value type` to local Type
-parameters is a valid fixed-origin input pattern. A bare local Type placeholder
-instead accepts the complete concrete dictionary type as one Type without
-decomposing it or introducing a Template.
-
-The coverage rule concerns a root input type without an output phase; a nested
-Template-valued argument may remain partial, and shared/body/runtime-result
-declarations may omit residual bindings under TPL-08. A static output phase
-instead invokes TPL-12's uniform producer-inference and closure rule. Implicit
-Template introduction still requires named input-pattern labels; positional
-bindings alone require an already known constructor/signature.
-
-Match such a pattern only against a type with known nominal specialization
-metadata. For a pattern with expected residual signature R matched to a closed
-actual of original constructor D:
-
-1. R must name actual original formals of D with exactly compatible categories
-   and recursive signatures.
-2. Recover the root constructor as D with precisely the R formals open. Keep
-   every other original binding fixed, including unused bindings. Never reopen
-   an unlisted slot or discard another slot's binding.
-3. Constrain each actual R-slot binding to its explicit right-hand expression.
-   These constraints determine local Type/Template parameters through the same
-   scoped structure as other static constraints.
-4. Retain the complete input type as the application of that constructor to
-   those expressions. All its argument types remain in the owner's identity
-   and interface; the constructor alone does not describe the input's layout.
-
-Every occurrence of the same Template parameter must recover the same origin,
-fixed bindings and residual signature. Different families with equal layouts
-or signatures are not interchangeable actuals for that one parameter. A module
-with no such nominal template metadata cannot satisfy a constructor-discovery
-pattern. There is no lookup by filename resemblance, common body or structure.
-Nested constructor-valued expressions use TPL-10's exact structural rule.
-
-The same declared constructor application may also be constrained by a typed
-result receiver, initializer, assignment or another TPL-03 connection. Its
-signature still determines exactly which original slots are open. If the root
-is a Template parameter, its category/signature must already have been introduced
-through `@<`; inferring its binding does not introduce a new Template in `@>` or
-the body. TPL-10 applies the same nominal recovery to these equations. A bare
-Type variable instead receives the complete nominal Type without decomposition.
-
-**Example: input-section fragment of `.remap`.**
-
-```text
-@<
-source&
-...dictionary family
- ...key type < ...key type
- ...value type < ...previous value type
-
-replacement&
-...replacement type
-```
-
-Passing a dictionary with text keys and integer values establishes the original
-dictionary constructor as `...dictionary family`, `..text` as the local
-`...key type`, and `..integer` as the local `...previous value type`. Passing a
-text `replacement&` additionally establishes `...replacement type` as `..text`.
-The complete source type still includes its integer value binding. A different
-source value type gives a different `.remap` specialization, even when its body
-does not read the old values. Any additional dictionary formals not listed here
-remain fixed in the captured family and participate in its identity.
-
-In `...key type < ...key type`, the left name is a formal of the selected
-dictionary; the right name is local to `.remap`. The explicit binding connects
-them. Renaming only the right name to `...source key type` and updating its local
-uses preserves the connection. Renaming the left name to
-`...dictionary.key type` is an unknown-formal error for the `.dictionary`
-definition above: that whole spelling is a different name, not qualification.
-
-### Category and interface errors
-
-Unknown formal names, duplicate bindings, incompatible categories and unequal
-residual signatures are static errors. TPL-12 defines positional static inputs,
-outputs and skips separately from ordinary runtime `<`/`>` bindings. There is
-no automatic formal renaming, guessed adapter or implicit opening of a concrete
-Type passed where a Template is expected. Constructor
-recovery requires a declared constructor application with an exact signature.
-Ordinary calls keep their existing named/positional value bindings under TPL-03.
+A number held in `..integer`, including a list position or length, is an ordinary
+value, not a third static argument category. Distinct numeric contents do not
+produce different nominal Types. Reading a constant's contents does not turn
+them into a type expression. Static natural numbers, value-indexed vectors,
+type-level arithmetic and provably decreasing recursion are deferred together
+with dependent types. Ordinary list bounds and availability checks remain
+mandatory under the existing list contract.
 
 ## Partial substitution and composition
 
 <a id="tpl-08"></a>
 
-**TPL-08.** Static substitution operates on bound program/type structure, never
-on source text. It replaces references to specific formal parameter identities
-in their lexical environment. It preserves caller/callee scope and cannot capture
-an unrelated parameter or variable with the same spelling.
+**TPL-08.** Static substitution acts on resolved structure and scoped formal
+identities, never source text. Resolve a concrete path to its exact original
+ordinary module definition or a static name to its supplying static environment.
+Capture neither unrelated names in another module nor a foreign binding label.
+TPL-12 defines the separate graph syntax and visibility rules.
 
-A static expression starts with a concrete module path or a visible static name.
-A path resolves to its exact original module definition; a local placeholder
-resolves in the supplying template's scope. An unapplied ordinary module denotes
-a Type; an unapplied template path denotes its constructor. A Type parameter
-denotes a Type, and a Template parameter denotes its bound constructor. Static
-results and receiver aliases denote their defined Type or constructor under
-TPL-12. Input application never changes a Type into a Template.
+A static value expression has an ordinary path or visible Type/Template name as
+head. A named input is `...formal < expression`, indented one level below that
+head, with one separator on each side of `<`. Its complete left name belongs
+to the selected constructor. Its right side belongs to the supplying module and
+may have its own deeper named input block. Deeper bindings apply only to their
+immediate expression. At one level all inputs use the same supplying scope;
+a foreign label does not define a source for another binding.
 
-A named static binding has the form `...formal < expression`, with exactly one
-separator on each side of `<`. Its line is indented one level below the expression
-it applies to. The right-hand expression may have its own deeper binding block.
-All bindings at one level apply to that level's constructor; deeper bindings
-apply to their immediate right-hand expression, not to a sibling or ancestor.
-The complete left-hand name selects an original residual formal of that
-constructor. The right-hand side resolves in the supplying lexical environment.
-Names used as foreign labels never enter that environment. TPL-12 normalizes
-positional static inputs to the same original formal identities and defines the
-separate static output phase. An expression with any static output binding
-requests a concrete producer, with scoped inference terms for omitted inputs;
-the omission rules below apply when no such phase is present.
+Unknown names, duplicate inputs at one application, category conflicts and
+binding an already fixed formal are errors. Rebinding a fixed slot fails even
+if its proposed value is equal. Applying inputs to Type fails; no implicit
+reopening converts Type back into Template. An open Template cannot occupy a
+runtime Type slot. Actual category requirements follow TPL-07 rather than exact
+closed-signature comparison or ordinal matching.
 
-On a runtime declaration, this block follows the type line and precedes all
-ordinary runtime initializer sources. Static bindings and initializers are each
-one level below the declaration's name/type lines, but their recognized forms
-are different. A static binding after the first runtime initializer is invalid.
-Blank lines and correctly indented comments may separate entries; they do not
-change their owner or indentation. An empty binding block adds no syntax.
+Bind the explicitly named residual subset and normalize to the original origin,
+fixed binding map and remaining original signature. Preserve every capture,
+including unused and symbolically dependent bindings. Remaining formals stay
+locally bound constructor parameters, not unknown producer inputs or generated
+runtime field variables. If none remain, the result is Type; otherwise it is
+Template. Surrounding free dependencies must still close when their producer
+is specialized. Partial application itself executes no body, initializer,
+default, literal constructor, copy or native hook.
 
-**Example: declaration fragment with both kinds of input.** Assume `.forward`
-is the TPL-04 template and `source` is an initialized owned instance of its
-specialization with `...inner.value type` bound to `..integer`:
+### Defining and reusing results
+
+A static pair names the expression's own value:
 
 ```text
-worker
-.forward
- ...inner.value type < ..integer
- source
-```
-
-The static line determines `worker`'s concrete type. The final source copies
-runtime contents into that declared instance under the ordinary initializer
-rules; it must have the complete specialized `.forward` type. An integer value
-itself would be incompatible with that destination. Static arguments do not
-initialize the `value` input field with runtime contents.
-
-A partial substitution binds a subset of the constructor's residual formals.
-Each supplied expression must have the formal's declared category and, for
-Template, exact expected residual signature. Unknown or repeated names fail.
-A previously fixed formal is no longer residual; rebinding it is an error even
-if the repeated expression would be equal. Applying input bindings to a Type is an
-error. Distinct named bindings at one level are simultaneous in their supplying
-lexical environment; a binding's foreign label cannot define another binding's
-source. Nested static output receivers have their explicit lexical visibility
-under TPL-12; moving a declaration across a use can change that environment.
-
-Normalize the result as the original constructor identity, its map of fixed
-original formals to normalized static expressions, and the remaining original
-formal signature. Recursively normalize supplied constructors and captured
-dependencies. Store/compare formals in original declaration order for canonical
-identity. TPL-12's positional normalization uses that same original order,
-restricted to actual residuals. Repeated aliases to the same
-local parameter preserve its identity. No binding is dropped because generated
-code does not use it. If residual formals remain, the result is Template; if none
-remain, it is Type, possibly still symbolically dependent on surrounding
-parameters before the enclosing specialization closes.
-
-An outer template may receive a constructor, supply its own parameters to that
-constructor and use the resulting type/template. Named bindings refer to the
-selected constructor's own formal identities; the supplied expressions refer to
-the explicit supplying environment. Identical names never create connections
-by themselves. Nested ordinary calls in TPL-04 already establish symbolic type
-equalities without additional call syntax; independently passing a residual
-constructor additionally requires TPL-07's signature contract.
-
-### Partial arguments and inferred field types
-
-In a static argument or static result expression without an output phase,
-omitted residuals stay bound formals of the
-resulting constructor. They are available for later application or forwarding;
-the compiler does not fill them with fresh runtime types just because the
-expression occurs within a field declaration. A fully applied Type cannot
-satisfy a Template formal, and an open Template cannot satisfy a Type formal.
-
-At the root of a shared-constant, body-field or runtime-result declaration's type
-expression without an output phase, omitted residuals instead receive fresh inference variables of their
-declared categories and signatures. Identify each variable by its concrete owner specialization, lexical
-field declaration and residual formal identity. Different fields get independent
-variables; repeated calls through the same field constrain the same variables.
-No new user-visible placeholder or implicit owner parameter is introduced.
-Known static bindings and TPL-03's typed connections can determine these variables.
-All required bindings must be uniquely concrete before construction/codegen.
-This is an inference operation of the compiler, not partial runtime storage or
-late selection by the first executed call. A named Type parameter introduced in
-`@>` is a parameter of its owner; an omitted residual here remains only a field
-inference variable and cannot implicitly parameterize that owner. Root input
-patterns without an output phase use TPL-07's explicit-coverage rule instead. A shared constant's inferred
-type still obeys [CONST-06](declarations.md#const-06); no runtime input supplies
-its value. Constant-read namespace expressions are static selections, not field
-declarations, and without an output phase do not receive these generated
-inference variables. TPL-12 explicitly supplies producer inference terms when
-any expression contains static output bindings, including a namespace or
-otherwise partial argument expression. A returned constructor's own residual
-signature remains distinct from those producer-input inference terms.
-
-**Example: complete `.typed consumer`.** Assume the supplied family has the
-dictionary interface from TPL-07, with a fixed key type and only value type open:
-
-```text
-@<
-...received family
- ...value type
-
-sample&
-...element type
-
-@!
-storage
-...received family
-
-storage !
- value& < sample&
-```
-
-The static formal does not consume an ordinary input position; `sample&` does.
-The `storage` declaration applies its family's remaining value formal to a fresh
-field inference variable. The ordinary call constrains that variable to
-`...element type`. This body is checked against the actual family's complete
-interface; the signature alone does not promise an input called `value&`.
-
-Declaring two such fields and calling one with an integer and the other with text
-can give different concrete types. Calling the same field with both requires
-those types to be equal and fails for integer/text. All objects of one concrete
-owner type retain the same type for each corresponding field under TPL-04.
-
-### Forwarding a partial constructor without a runtime sample
-
-**Example: complete `.remap` using `.typed consumer` above.** The source input
-provides the constructor and its previous bindings. `replacement&` provides the
-desired new value type. The example describes types and construction; actual
-dictionary enumeration/copying would require the ordinary dictionary methods.
-
-```text
-@<
-source&
-...dictionary family
- ...key type < ...key type
- ...value type < ...previous value type
-
-replacement&
-...replacement type
-
-@!
-step
-.typed consumer
- ...received family < ...dictionary family
-  ...key type < ...key type
-
-step !
- sample& < replacement&
-```
-
-The outer `.remap` recovers the dictionary family from the nominal source type.
-Inside the static argument to `.typed consumer`, it binds that family's key
-formal to the outer key Type. Its value formal stays open, exactly matching
-`...received family`'s one-slot signature. The ordinary `step !` input determines
-the consumer's element Type, and its `storage !` input in turn determines the
-dictionary field's value Type. This is three-level structural composition.
-The original source retains its previous value type. No dictionary sample,
-temporary instance or runtime call is needed to transmit the partial constructor.
-
-All owned fields are still created under TYPE-04 before their bodies execute.
-Static application itself executes no module body, default, initializer, copy or
-native effect. A new dictionary has ordinary fresh contents; copying source keys
-or assigning replacement values requires explicit runtime operations.
-
-**Example: equivalence of staged and direct bindings.** If a consumer supplies
-`...value type < ..integer` when applying the text-key partial family, the final
-type is the same specialization as this direct declaration:
-
-```text
-dictionary
+...text dictionaries
 .dictionary
  ...key type < ..text
+```
+
+Assume `.dictionary` has Type formals `...key type` and `...value type`. This
+pair defines a Template with key fixed to text and value still residual. It
+does not select an output named by the dictionary, instantiate dictionary
+storage or implicitly receive output position one.
+
+A later pair in the same static module can complete it:
+
+```text
+...integer dictionary
+...text dictionaries
  ...value type < ..integer
 ```
 
-Changing the order of these two lines does not change that type. Creating two
-objects of it still creates two independent states. Partially binding the value
-instead of the key produces a different residual signature and is not an
-acceptable argument to a consumer requiring exactly `...value type` open.
+The final Type equals direct application of both named arguments to `.dictionary`.
+A second pair can forward the partial family unchanged:
 
-Residual formals and captured dependencies are different. A dictionary whose
-key is bound to an outer parameter still depends on that parameter even after
-its value formal is bound. Conversely, a template-valued argument may retain
-its own declared formals without making the receiving outer specialization open:
-those formals are locally bound constructor parameters, not unresolved free
-variables. Every type actually used as executable storage must nevertheless be
-concrete under TPL-06.
+```text
+...forwarded family
+...text dictionaries
+```
 
-Omission of a runtime `<` binding, an empty positional `<`, `>` or a literal
-retains its existing call/default semantics. It does not perform static partial
-application. Static maps are attached to declaration type expressions or explicit
-constant namespaces under [CONST-03](declarations.md#const-03), never to
-an ordinary `!`/`%` operation's argument sequence. An open constructor cannot be
-an Ama runtime result, mutable field, checked reference or dynamically replaceable
-type. It may be passed or returned through the static Template forms defined
-here and in TPL-12.
+A static producer with several outputs is not a value-expression head. Select
+its actual named outputs in a graph statement under TPL-12; those receiver
+aliases can then be expression heads. Neither `... >`, bare `>` nor a reserved
+`...result` keyword captures an expression's own value. Static interfaces have
+no positional bindings, skips or implicit first-output fallback.
 
-### Invalid applications
+### Nested structural composition
 
-**Examples: rejection cases, with the preceding interfaces assumed.**
+**Example: complete static assembly `.nested types`.** Assume `.box` is the
+one-Type executable template defined in TPL-11:
 
-| Case | Required result |
-|---|---|
-| Bind `...dictionary.key type` on `.dictionary` | Unknown formal: it is a different complete name from `...key type` |
-| Bind `...key type` twice at one level | Duplicate static binding, even if both expressions agree |
-| Supply a fully concrete dictionary Type for a Template formal | Wrong category; no implicit reopening |
-| Supply open `.dictionary` for a Type formal | Wrong category; explicitly bind all residuals first |
-| Pass the two-slot dictionary family to the one-slot `.typed consumer` | Residual-signature mismatch |
-| Bind the already fixed key of a text-key family | Nonresidual-formal error |
-| Leave a root input-pattern slot unlisted | Incomplete input-pattern signature; name its binding explicitly |
-| Use a signature leaf as a surrounding local Type without introducing it | Out-of-scope placeholder |
-| Introduce a new right-hand placeholder only in the body | Invalid local introduction under TPL-02 |
-| Put a static binding after an ordinary initializer | Invalid ordering |
-| Omit an operand of a named static binding | Invalid static syntax; only positional `... <`/`... >` admit skips |
-| Infer signatures where F contains G's signature and G contains F's | Infinite signature dependency; static error before expansion |
-| Leave a field's residual type with no determining constraints | Underdetermined runtime type; no default type is selected |
+```text
+@...
+...inner box
+.box
+ ...element type < ..integer
+
+...nested box
+.box
+ ...element type < ...inner box
+```
+
+The same nested Type can be written with finite inline arguments:
+
+```text
+...same nested box
+.box
+ ...element type < .box
+  ...element type < ..integer
+```
+
+Both uses retain the original Box identity and bindings. A nested expression can
+apply or forward an incoming ordinary constructor; a multioutput static producer
+must first expose its selected output through an explicit graph receiver.
+TPL-11 assigns every written application to its lexical owner rather than
+inventing an outer-to-inner creation edge from indentation alone.
+
+### Ordinary declarations keep simple Types
+
+No static binding block occurs in an ordinary module. To use a deliberately
+assembled Type, select a named ready output under TPL-12:
+
+```text
+nested
+.nested types
+ ...nested box
+```
+
+At a shared/body/runtime-result field whose ordinary type path names an open
+executable template, preserve TPL-04's field inference. Introduce fresh inference
+variables for that field's omitted Type formals, keyed by concrete owner,
+lexical field and original residual formal. Normal typed connections may solve
+them. Different fields are independent; one field keeps one specialization.
+This is compiler inference, not runtime partial storage or a new owner parameter.
+An ordinary runtime input may instead use a bare Type placeholder to accept an
+entire supplied concrete Type. An open concrete template path with unresolved
+input formals is not a complete input Type pattern; no implicit decomposition
+or complex application block is introduced there.
+
+The indented selector of an actual static module is distinct from field
+inference. It must independently determine one ready Type under TPL-12; an
+ordinary receiver or call cannot complete that producer through the bridge.
+A constant namespace likewise receives no fresh field inference variables.
+Its Type must be known independently under CONST-03.
+
+Runtime `<`, `>`, empty positional bindings and literal inputs retain their
+ordinary call/default meanings. They are not compile-time partial application.
+A Template cannot be stored in a variable, checked reference, list or runtime
+result; an instance of a concrete Type built from it is an ordinary Ama value.
 
 ## Static result interfaces
 
-[TPL-12](static-results.md#tpl-12) defines two-line static results, their
-source-ordered output interface, named/positional projections and immutable
-receiver aliases. A completely determined producer can return either a concrete
-Type or a Template with its own residual signature. Static outputs add exact
-constraints without executing bodies or creating runtime producer instances.
-The chapter also states how output definitions interact with nominal identity,
-source visibility, constant namespaces and specialization-creation provenance.
+[TPL-12](static-results.md#tpl-12) defines the exclusive `@...` source form,
+public result pairs, multiple named results, free input collection, exact graph
+dependencies and the named ready-Type bridge into ordinary declarations.
+It separates static result-definition dependencies from equalities and from
+specialization creation. The examples show how to pass partial constructors
+between producers without introducing runtime objects or implicit type lookup.
 
 ## Templates and Ama's own lists
 
@@ -1308,147 +832,130 @@ for the division of responsibilities.
 
 <a id="tpl-10"></a>
 
-**TPL-10.** Keep parsed definitions immutable. Resolve parameter identities and
-scope before structural substitution, retain definition/application source spans,
-and construct checked specialization/type information before layout/control-flow
-lowering. Report both the relevant definition and application chain for conflicting,
-unknown, wrong-category or unresolved bindings. Never change the grammar based
-on a successful type lookup.
+**TPL-10.** Keep parsed definitions immutable. Resolve lexical names and formal
+identities before structural substitution. Retain definition/application source
+spans and construct checked static/type information before layout or control-flow
+lowering. Explain conflicting, unknown, wrong-category or unresolved bindings
+using both their definition and application chain. Parsing never depends on a
+successful lookup, supplied actual or runtime execution.
 
-Use exact static constraint algorithms and canonical specialization caching.
-Keep a constructor's nominal origin, fixed-binding map and residual signature
-available during checking, including when its use has become a closed Type.
-An implementation may intern this metadata; it may not discard information
-needed for input-pattern decomposition or nominal identity. Keep capability,
-ownership, initialization and execution dependency graphs distinct under COMP-03.
-Retain definition/application provenance for the separate specialization-creation
-graph under [TPL-11](#tpl-11); a canonical-key cache does not replace its path check.
+Keep complete nominal origins, fixed maps and residual signatures available even
+when an application has become Type. Metadata may be interned; information needed
+for identity, minimum usage checks and structural inference must not be erased.
+Keep type equalities, source loading, static definitions, specialization creation,
+eager ownership, capability and constant-value graphs separate under COMP-03.
+A specialization cache replaces neither path checks nor ordinary validation.
 
 ### Exact structural constraints
 
-For the finite graph of constraints belonging to a supported specialization,
-use the following deterministic operations. A static expression keeps references
-to scoped parameter identities, rather than copying source names into another
-scope:
+Use these deterministic operations on the finite constraint graph of a supported
+specialization. The symbols below are explanatory metanotation, not new syntax.
 
-1. Normalize applications with known origins under TPL-08. Compare ordinary
-   nominal origins exactly and decompose equal specialization origins into
-   equations for corresponding complete bindings. Unequal origins are a
-   conflict, regardless of equal layouts or capabilities.
-2. Equate Type variables with Type expressions and Template variables with
-   constructors of exactly their declared signature. Respect prior equations;
-   reject inconsistent bindings and infinite substitution terms with an occurs
-   check. A locally bound residual formal is not a free unknown of its enclosing
-   owner. Finite nominal reference cycles are not infinite substitution terms.
-3. For an unknown constructor application `F[P]` equated to known nominal static
-   information `R = (D, B, S)`, let P be its set of applied formal names,
-   B the actual fixed-binding map and S the actual residual signature. Every
-   name in P must occur in B. Recover F uniquely as original D with fixed map
-   `B minus P` and residual signature `S union P`, using D's original categories
-   and nested signatures. This signature must equal F's declared signature.
-   Equate each removed B binding with its corresponding explicit right-hand
-   expression. Preserve every other fixed binding and every existing residual.
-   P consists of source-written bindings normalized to original names and,
-   at a shared/body/runtime-result field root, TPL-08's generated bindings for
-   omitted residuals. An expression with a static output phase additionally
-   uses TPL-12's per-expression inferred producer bindings.
-   Generated labels come from the already known signature and use that field's
-   deterministic inference-variable identities; they are not guessed formals.
-   Without a static output phase, no generated binding is added inside a
-   partial static Template argument or static result definition.
-   These symbols describe the algorithm, not additional Ama source syntax.
-4. In the closed runtime-input case, S is empty, and TPL-07 requires P to cover
-   F's complete signature when that input pattern has no static output phase.
-   In a nested Template-valued argument without an output phase, S may be
-   nonempty: an already partial actual remains partial. A requested P formal
-   that is not fixed in the actual cannot be reconstructed by inventing a
-   binding; that decomposition fails.
-5. If a nominal origin or required equation is not known yet, retain the
-   constraint until more declared-path or TPL-03 typed-connection evidence is
-   available. Never
-   enumerate candidate constructors, partitions of their parameters or possible
-   body implementations. Equating unknown constructors does not discover an
-   origin. After exhausting these rules unresolved required bindings are an
-   underdetermination error. Constant namespaces follow
-   [CONST-03/CONST-06](declarations.md#const-06): resolve the concrete namespace
-   from independent static information before selecting its declared members.
-   Member-name or capability search is not an additional constraint operation.
-6. For a static output phase, apply TPL-12: use independently known nominal
-   producer origins, expand their declared static result expressions with
-   scoped inputs, and add exact output-receiver equations. Check definition
-   cycles and TPL-11 creation paths before following each expansion/application
-   edge. An output transformation need not be injective; never infer discarded
-   inputs or an unknown origin by inventing an inverse. All producer inputs
-   must uniquely close before any output is published.
+1. Normalize applications whose origins are known under TPL-08. Compare nominal
+   origins exactly. Equal origins decompose into corresponding complete original
+   binding equations; unequal origins conflict regardless of layout/capabilities.
+2. Merge unknowns or equate them with structural static expressions. Preserve
+   all earlier equations and inferred category/usage obligations. Reject wrong
+   categories, inconsistent bindings and infinite substitution terms with an
+   occurs check. A returned constructor's bound residual formals are distinct
+   from unresolved free inputs. Finite nominal reference cycles do not themselves
+   create infinite substitution terms.
+3. For an unknown constructor application `F[P]` equated to known nominal
+   metadata `R = (D, B, S)`, P is its written set of applied names, B the actual
+   fixed map and S the actual residual signature. Every name in P must be fixed
+   in B. Recover F uniquely as original D with map `B minus P` and residuals
+   `S union P`, using D's original formal categories. Equate each removed B entry
+   with its written right-hand expression; retain every other capture/residual.
+   Check the recovered metadata against all inferred minimum requirements on F,
+   not a guessed exact signature. If F was already bound, check that same binding
+   rather than replacing it. A requested name not fixed in B cannot be recovered
+   by inventing a value or choosing another partition.
+4. Ordinary field inference under TPL-04 adds deterministic variables only for
+   residual formals of its known ordinary template origin. Typed inputs/results,
+   defaults, copies and references generate TPL-03 equalities. A bare ordinary
+   Type parameter receives a complete nominal Type, not an implicitly extracted
+   family. No constructor-application patterns are added to ordinary interfaces.
+5. Static graph definitions and selected outputs contribute TPL-12 equations.
+   Inspect only independently known producer origins and their finite structural
+   definitions, retaining all actual definition/application obligations. Never
+   search implementations by requested output, try candidate constructors,
+   enumerate parameter partitions or invent an inverse for a noninjective result.
+   Knowing an output does not determine an unused/discarded input. All producer
+   inputs must close before publishing its outputs.
+6. Retain a constraint while genuine independent evidence may determine its
+   origin, category or binding. After exact refinements are exhausted, reject
+   every unresolved required input, runtime Type or usage obligation. Unknown
+   equated to unknown supplies no origin. Resolve constant namespaces independently
+   under CONST-03/CONST-06; member names, literal bytes and capabilities do not
+   discover a missing namespace or select a Type.
 
-The recovery step solves a declared constructor application under TPL-07 in any
-of TPL-03's typed connections. It does not authorize reopening fixed formals
-during ordinary static application or treating a supplied concrete Type as a
-Template argument. If F already has a binding, check that binding for consistency;
-do not replace it with a newly recovered constructor.
-Direct static bindings and constraints recovered from typed connections must agree;
-neither source has precedence over a conflict. Reordering independent constraints
-must preserve the normalized solution or rejection. Multiple unequal concrete
-solutions cannot be resolved by picking one.
+A supplied concrete Type is not reopened into a Template merely because its
+origin metadata is retained. Step 3 solves an explicitly written application
+whose head is unknown; it is not an implicit conversion of a Type argument to a
+constructor. Direct inputs and inferred equations have equal authority: neither
+wins over a conflict. Reordering independent equations must yield the same
+normalized solution or rejection, with static definition roles fixed by TPL-12.
 
-**Why the recovery is unique.** The actual nominal origin D, its original formal
-identities and the declared or generated named set P determine exactly which entries are
-removed from B. Both retained bindings and the new residual signature are then
-fixed, and the removed entries determine the right-hand equations. No choice
-depends on field contents, source traversal order or matching by ordinal. The
-same reasoning applies recursively to a constructor-valued binding. Signature
-checking rejects a recovered object outside the declared interface.
+**Why recovery is unique.** D supplies the actual original formal identities; P
+supplies exactly the entries to remove from B. The remaining map, removed-entry
+equations and new residual set are therefore fixed. No choice is made by name
+resemblance, ordinal, layout, first successful actual or filesystem search. If
+these finite operations do not determine a unique required result, the program
+is outside the accepted inference class. This is not arbitrary higher-order
+unification or type-level program execution.
 
-**Finite-constraint obligation.** Implement equations as a finite structural
-constraint graph with shared terms. Bindings only refine unknown information;
-they never reopen solved variables or repeatedly manufacture equivalent nodes.
-Occurs checking prevents cyclic substitution terms. Each successful refinement
-solves/merges a variable or decomposes known finite structure, and an unresolved
-pass without a refinement terminates with underdetermination. Provide the actual
-algorithm's invariants and progress measure under ARCH-05/ARCH-06. This contract
-does not promise arbitrary higher-order unification. The accepted class of
-specialization creation and its separate termination argument follow TPL-11.
+### Termination and implementation evidence
 
-An occurs check and a cache of repeated specialization keys do not establish that
-arbitrary recursive generation terminates: a template can generate a new distinct
-specialization at every step. A cache can close a dependency on the same complete
-key; it cannot prove that changing keys will stop. Apply TPL-11's exact
-creation-graph restriction and its treatment of unresolved repeated origins;
-do not replace it with an arbitrary nesting limit, timeout, recursion heuristic,
-or cache-order-dependent acceptance. Ordinary finite nominal reference cycles
-are not automatically infinite type substitutions or eager ownership cycles.
+Represent finite equations with shared terms and a worklist. Refinement merges
+unknowns, adds a justified kind/usage obligation or decomposes known finite
+structure; it never reopens solved variables or repeatedly creates equivalent
+nodes. Occurs checking rejects infinite terms. An unresolved sweep without new
+information terminates as underdetermination. Provide the actual algorithm's
+invariants and progress/cost argument under ARCH-05/ARCH-06. No fixed number of
+compiler passes is prescribed.
 
-The current sprint's design questions are resolved; the list-foundation rewrite
-under AMB-006 remains deferred and outside this boundary. Newly discovered
-ambiguities still require an explicit decision before affected implementation.
-Supported templates require component and composition evidence covering the
-acceptance scenarios, including negative applications. Existing pre-template
-acceptance evidence does not establish support for the new grammar or
-specialization model. The roadmap and decision registry must keep the distinction
-between accepted design and implementation evidence visible.
+Before expanding another specialization, apply TPL-11's separate creation check.
+A cache and occurs check alone cannot stop infinitely many different keys. Keep
+unknown repeated-origin keys pending instead of assuming equality or expanding
+speculative copies. Static value definitions and eager ownership retain their
+separate cycle checks. Extra passes, depth limits, timeouts and heuristics do not
+replace these contracts.
+
+The separation also resolves the old interface-preview boundary recorded in
+[AMB-013](../../AMBIGUITIES.md#amb-013). An ordinary input Type is a bare parameter,
+a fixed ordinary Type or an independently closed selected export. It cannot
+contain a static program that must be previewed while its owner's recursive key
+is still unknown. Static modules solve their own finite equations separately;
+the bridge does not infer their inputs from the consuming runtime interface.
+This deliberately excludes that circular interface construction rather than
+claiming that a later compiler pass makes an ambiguous dependency safe.
+
+Supported implementations need component and composition evidence for the
+canonical acceptance scenarios. Earlier mixed-interface or pre-template tests
+are historical evidence, not acceptance of this source model. The implementation
+queue must retain alignment prerequisites and incomplete work accurately. No
+unsupported feature becomes implemented by changing documentation or evidence
+fingerprints.
 
 ## Finite composition and specialization creation
 
-**Explanation.** A finite type expression can use the same constructor more than
-once. A box of boxes has a perfectly definite type: the outer box receives the
-complete inner box type as its element Type. A recursive node can also have a
-definite type: a reference to another node of exactly the same specialization
-closes a finite graph. Neither case requires an endless sequence of new types.
+**Explanation.** A finite written type expression may use one constructor twice:
+a box of boxes has a definite Type. A node referencing the same node Type can
+also form a finite nominal graph. The problem is a definition that repeatedly
+requires its own constructor with changing arguments, creating endlessly many
+new Types. Ama distinguishes these cases instead of forbidding every repeated
+printed template name or trying to prove termination of arbitrary type programs.
 
-**Why this rule exists.** Ama is intended to support automatic development and
-improvement of algorithms from textual descriptions and examples in other
-languages. Nested containers, indexes and reusable wrappers are useful in that
-work. Prohibiting every repeated constructor in a type would force artificial
-copies of library definitions and expose private helper choices to callers.
-The chosen boundary preserves finite composition and cycles returning to the
-same fully determined specialization. It excludes paths that return to the same
-source template with different bindings, including some finite permutations.
-This supports generic linked nodes and recursive collections without requiring
-a general analysis of whether changing type arguments will stop growing. It
-assumes no particular data model for the algorithm-development polygon.
+**Design rationale.** Ama supports automatic development and improvement of
+algorithms from descriptions and examples in other languages. Nested containers,
+indexes and linked structures are useful for this work. Allowing finite written
+composition and exactly repeated closed keys supports them without requiring a
+particular model of the algorithm-development polygon. Changing-key recursive
+generation, even some finite permutations, stays outside the accepted class.
+Provably decreasing recursion is deferred with dependent types.
 
-**Example: complete `.box`.** Assume supplied element types support ordinary
-default construction. This definition simply holds a value of its supplied Type:
+**Example: complete ordinary `.box`.** Assume each supplied Type supports ordinary
+default construction:
 
 ```text
 @<
@@ -1458,195 +965,150 @@ value
 @!
 ```
 
-**Example: declaration fragment in an ordinary caller.**
+**Example: complete static `.nest types`.**
 
 ```text
-nested
+@...
+...nested type
 .box
  ...element type < .box
-  ...element type < ..integer
+  ...element type < ...element
 ```
 
-This is a box whose element type is a box of integers. The two applications are
-written in the caller's definition. Neither application is written in `.box`'s
-own definition. Its `value` input merely reuses the supplied concrete Type.
+Both Box applications are written in `.nest types`. When its input is integer,
+its concrete owner has two outgoing creation edges, one to each Box Type. The
+outer Box's mere use of its supplied element Type adds no outer-to-inner edge.
 
-**Example: complete `.nest`.** The same composition is also permitted inside
-another template, with the deepest element determined by that template's input:
+**Example: invalid complete ordinary `.grow`.**
 
 ```text
 @<
-sample&
+value
 ...element type
 
 @!
-nested
+wrapped
 .box
- ...element type < .box
-  ...element type < ...element type
-```
 
-For `.nest` specialized with integers, both box applications originate in that
-`.nest` definition. They form two outgoing creation edges, not a box-to-box edge.
-Using the resulting inner box Type as the outer box's argument adds no such edge.
+wrapped !
+ < value
 
-**Example: invalid complete `.grow`.** Use a reference field here to separate
-specialization creation from eager ownership allocation:
-
-```text
-@<
-value&
-...element type
-
-@!
 next&
 .grow
- ...element type < .box
-  ...element type < ...element type
+
+next& !
+ < wrapped
 ```
 
-Expanding `.grow` requests `.grow` again with a different element Type. A cache
-cannot finish this ever-growing sequence. The reference suffix avoids allocating
-the target, but its type still has to exist and pass static checking.
+Normal calls determine `wrapped` as Box(T) and the next reference as Grow(Box(T)).
+That creates a path to a different specialization of Grow. The initially empty
+reference makes the runtime call unavailable; it does not remove static typing
+or creation obligations. The definition is rejected before execution.
 
 <a id="tpl-11"></a>
 
-**TPL-11.** Permit finite repeated nesting of constructors in static expressions
-and specialization-creation cycles that return to exactly the same fully
-determined nominal type. In the required specialization-creation graph defined
-below, reject a directed path from one concrete specialization to a *different*
-concrete specialization of the same original source template. A return to the
-same canonical vertex is permitted. This restriction applies before code
-generation or runtime construction, independently of the other cycle checks.
+**TPL-11.** Permit finite written repeated constructor nesting and creation cycles
+returning to exactly the same fully determined specialization. In the required
+specialization-creation graph, reject a directed path from a concrete vertex to
+a *different* concrete vertex of the same original template definition. A return
+to the same canonical vertex is permitted, subject to every separate check.
+Apply this rule before code generation/runtime construction, including to static
+producer specializations that themselves have no runtime representation.
 
-Compare complete normalized specialization identities under TPL-05: original
-logical origin/root kind and all Type/Template bindings, including unused
-bindings, fixed arguments, residual constructor signatures and captures. Equal
-names, representations or generated code do not establish equal keys. Distinct
-inference variables cannot be equated merely to make a cycle close.
+Compare complete normalized identities under TPL-05: origin/root kind, all
+bindings, unused arguments, fixed captures and actual residual constructor
+signatures. Similar names, equal layouts and equal generated code do not prove
+key equality. Distinct unknowns cannot be equated just to close a cycle.
 
 ### Construction provenance
 
-The graph distinguishes concrete module types by their full nominal identities
-under TPL-05, including all normalized Type/Template bindings. An ordinary module
-definition can also be an owner of applications. It has its ordinary concrete
-identity rather than an invented template parameter or default specialization.
+For every required closed owner, retain the applications originating in its
+instantiated source definition. A concrete ordinary nongeneric owner has its
+ordinary identity, not an invented default specialization. A closed static
+producer also has a compiler identity even though it is not an ordinary Type.
 
-For each required concrete owner, record an edge to the concrete specialization
-required by each constructor application originating in that owner's instantiated
-definition. Include applications in shared declarations, input/runtime-result
-types, static result definitions and projections under TPL-12, defaults, body
-declarations and template applications in explicit constant namespaces. A
-projection's concrete producer is required even when its ordinary application
-Type is discarded. Returning a
-supplied Type adds no application edge; a later application of a returned
-Template retains its actual original constructor and captures. Include applications
-inside other applications' static arguments, and applications introduced or
-completed by the permitted inference rules. Keep the originating definition and
-application source locations on the edge. Runtime branch reachability does not
-remove these static requirements.
+Record an edge from that owner to each required closed constructor application
+or static producer use. Include static result pairs and producer statements,
+finite inline argument applications, shared/body/runtime-result field inference
+and all applications completed by permitted equations. Ordinary runtime branch
+reachability does not remove a static application. Retain original definition,
+expression and application spans, including for edges obtained from caches.
 
-Every application inside a static expression belongs to that expression's
-lexical definition owner. Syntactic argument nesting alone does not add an edge
-from the outer application's result to the inner application's result. For
-example, if owner `O` writes `Box(Box(Integer))`, record edges from `O` to each
-box specialization. Add no outer-box-to-inner-box creation edge unless the box
-definition itself contains a corresponding constructor application.
+Every inline application belongs to its lexical definition owner. Mere argument
+nesting does not create an edge from the outer result to the inner result. If
+owner O writes `Box(Box(Integer))`, record O's edges to both Box specializations;
+add an outer-to-inner edge only if the Box definition itself writes a required
+application that establishes it. Supplied argument metadata is not such an edge.
 
-Merely using a supplied concrete Type, or decomposing its known nominal metadata
-under TPL-10, creates no application edge. Validate that Type and its required
-definition independently; this is not permission to leave an argument type
-unchecked. A Type parameter cannot be applied as a constructor under TPL-02.
-An explicit static output phase is the required producer application defined
-by TPL-12, rather than this plain reuse of supplied nominal metadata.
+Merely using or forwarding a supplied Type, decomposing known nominal metadata,
+or forwarding an unapplied/partial constructor creates no new specialization of
+that head. Fully applying it does, with its actual origin and all captures.
+Closed applications inside written arguments still count even when their outer
+head remains partial. Validate all supplied metadata and required Type definitions;
+reuse is not permission to skip their real outgoing applications or ordinary
+checks. No unrelated origin may be invented as an inference result.
 
-A concrete ordinary module with no own static parameters, used as a constant
-namespace without a static output phase, also reuses its fixed Type. This adds
-no specialization-creation edge, in both [CONST-03](declarations.md#const-03)'s
-explicit namespace read and [CONST-05](declarations.md#const-05)'s direct qualified
-source. The namespace remains independently required: load and fully validate
-its definition and retain its real member/value-initialization dependencies.
-Do not create an implicit instance or skip the namespace's outgoing applications.
-An explicit static output phase still requires its producer application under
-TPL-12, including when the producer is an ordinary nongeneric module. Applying
-a template to select a constant namespace retains its ordinary creation edges.
+A fixed nongeneric ordinary constant namespace also reuses its Type without a
+creation edge, for both explicit CONST-03 reads and direct CONST-05 sources.
+Its independently required definition, actual outgoing applications and value
+initialization dependencies remain checked. A named ready-Type selector depends
+on its actual static producer; retain that producer requirement and provenance
+rather than treating the export as an unchecked filesystem Type. A selected
+Type keeps its own origin instead of a new producer-qualified wrapper.
 
-For a Template parameter, use the actual original constructor and its fixed
-bindings, not the formal's name or signature alone. A partial constructor remains
-finite static metadata under TPL-08/TPL-10. Capturing or forwarding an unapplied
-constructor, and partially applying a head that remains open, do not themselves
-require a specialization of that head. Any closed applications in their written
-argument expressions are still accounted for. When the constructor is fully
-applied, record the application with its actual origin and retained captures,
-including bindings unused by generated code.
+Initial roots and written expressions are finite. Every further required
+specialization must be attributable to a root or a recorded application.
+Inference, aliases and constant namespace reuse cannot introduce arbitrary new
+roots or suppress an implicit field application's provenance.
 
-The initial requirements arise from finite source expressions in the required
-ordinary definitions and selected concrete compilation roots. Every additionally
-required specialization must be attributable to such a root or to a recorded
-application edge. Inferring a binding cannot manufacture unrelated type origins
-or exempt an implicit application from this provenance requirement.
+### Closed cycles and pending keys
 
-### Closed cycles, pending keys and canonical caching
+Register a fully known nominal identity before following its required outgoing
+dependencies. Returning to that exact identity closes a graph; it does not
+request another copy of the same expansion. Registration is not completed
+validation. Every local check and outgoing application must still pass.
 
-Keep different concrete specializations as different graph vertices. The path
-predicate is exact reachability: two distinct vertices with the same original
-template origin must not be reachable one from the other. It includes paths
-through ordinary modules and already closed cycles. Independent sibling
-applications may use different bindings of the same template when neither
-depends on the other. Merging all bindings into one source-name vertex would
-reject valid independent paths.
+A finite mutually dependent nominal group may finish checking together when its
+local obligations and external dependencies pass. No member must be treated as
+valid merely because it is active; no member must demand completed validation
+of another before referring to its already closed identity. Reference fields
+and initially empty lists can make eager construction finite under TYPE-04.
+They do not waive this creation-path check or admit changing-key recurrence.
 
-Register a closed nominal identity before following its required dependencies.
-An edge back to that exact identity closes the graph rather than requesting
-another expansion of the same definition. Registration is not successful
-validation: finish every outgoing application and every separate required
-check before admitting executable types. Reference fields and initially empty
-lists can make instance construction finite under TYPE-04, but do not excuse
-different-key recurrence under this rule.
+If following a dependency would revisit an original template while comparison
+keys remain unknown, retain its scoped occurrence and suspend further expansion
+along that path. Use only actual new TPL-10/TPL-12 evidence to close the keys.
+Do not assume equality, reject from the source name alone or expand speculative
+copies while waiting. Exhausted refinements with a required unresolved key mean
+underdetermination; a proven unequal repeated key means a creation-path error.
+This does not authorize a static-definition cycle or an infinite substitution.
 
-A finite group of mutually dependent nominal vertices may finish checking
-together once all its local checks and required external dependencies pass.
-No member must be treated as already valid merely because it is in progress,
-and no member must wait for another member's completed validation before its
-nominal identity can be referenced. This does not close cycles of static value
-definitions or constant initialization.
+### Canonical caching and every reachable path
 
-Before complete keys are known, retain original application occurrences, scoped
-bindings and dependency obligations. If following a dependency would revisit a
-source template while the keys needed for comparison remain unresolved, suspend
-that expansion. Use actual new TPL-10/TPL-12 constraints to close the keys;
-neither assume equality, reject solely from the repeated origin, nor expand
-further copies speculatively. A required obligation still unresolved after
-genuine refinements are exhausted is an underdetermination error. A proven
-unequal repeated key is a creation-path error. This does not relax the separate
-static-definition cycle check under TPL-12.
+Different concrete keys are distinct vertices, even for the same source origin.
+Check exact reachability, including paths through ordinary modules, closed cycles
+and already cached specializations. Independent sibling applications may use
+different bindings when neither is reachable from the other. Combining them
+into one source-name vertex would reject valid compositions.
 
-Record application edges even when their targets are already interned, pending
-or checked. Check new outgoing edges against all existing relevant incoming
-paths, including paths through closed cycles. A cache hit cannot hide a reachable
-pair with unequal keys. Cached dependency subgraphs or exact summaries must
-preserve all these reachability facts and source locations, not merely the
-immediate target or the fact that its body was visited once. Changing root/source
-discovery order, independent named-binding order or warm/cold cache state must
-yield the same acceptance or rejection for equivalent normalized bindings.
+Retain every actual incoming/outgoing application even if its target is already
+interned, pending or checked. A new edge must be checked against all relevant
+existing paths, including paths through a closed cycle. Cached subgraphs or exact
+summaries must preserve these facts and diagnostic provenance. Warm/cold caches,
+root discovery order and independent binding permutations must yield equivalent
+acceptance. The cache's first visit cannot choose a specialization's meaning.
 
-Report a rejected path with both unequal complete specialization identities,
-their common original template and the creating definition/use locations under
-TPL-10. Do not reject a finite expression from repeated printed names alone.
+**Explanation: an exact finite graph check.** Maintain reflexive transitive
+reachability. Adding `u -> v` creates only pairs between predecessors of u and
+successors of v, including the endpoints. Reject any such pair with equal origin
+and unequal full keys, then retain the edge and new reachability facts. This
+works when closing a cycle as well. A reachability matrix uses quadratic space
+and each insertion examines at most quadratically many pairs; exact alternative
+algorithms are permitted. Identity normalization and diagnostic paths have their
+own costs and evidence under ARCH-05/ARCH-06.
 
-**Explanation: one exact graph check.** For a finite concrete graph, maintain
-reflexive transitive reachability. When adding an edge `u -> v`, every new
-reachable pair consists of a predecessor of `u` and a successor of `v`, including
-the endpoints themselves. Check those pairs for the forbidden same-origin,
-different-key condition, then retain the edge and the new reachability facts.
-This works even when the edge closes a cycle. Replaying cached dependencies
-performs the same check; equivalent exact graph algorithms are also valid.
-With an explicit reachability matrix, storage is quadratic in the number of
-concrete vertices and each edge insertion examines at most that many pairs;
-key normalization and diagnostic-path reconstruction are separate costs.
-
-**Example: closing a cycle must not hide its other branches.** In explanatory
-metanotation, let `B1` and `B2` be different specializations of the same B template:
+**Example: a closed cycle does not conceal another branch.** B1 and B2 below
+are different specializations of the same B constructor:
 
 ```mermaid
 flowchart LR
@@ -1655,69 +1117,63 @@ flowchart LR
     A1 --> B2
 ```
 
-Although the cycle returns to the same A key, the graph contains
-`B1 -> A1 -> B2`, so it is rejected. A traversal that stops checking all
-dependencies after seeing A1 again would miss this path. In contrast, a root
-with independent edges to B1 and B2 and no return path is permitted.
+The graph contains `B1 -> A1 -> B2`, so it is rejected despite the equal-key A
+closure. A root with independent outgoing edges to B1 and B2 and no return path
+is permitted. Report the rejected path, both full keys, their common origin and
+creating definition/use spans.
 
 ### Relationship to the other checks
 
-Creation paths are separate from the structure of specialization bindings, module
-loading, eager ownership, constant initialization, clone capability and runtime
-execution. Continue checking finite signatures under TPL-02, finite substitution
-terms under TPL-10 and eager construction under
-[TYPE-04](declarations.md#type-04). Ordinary finite nominal reference cycles and
-reuse of an already supplied Type remain governed by their own rules; they do
-not imply a new constructor application. Runtime calls keep their ordinary
-instance availability rules and do not generate types during execution.
+Specialization creation is separate from source loading, finite substitution
+terms, static value definitions, eager ownership, constant initialization and
+runtime call availability. A permitted nominal cycle can still fail any of
+those checks. A static definition depending on its own value is rejected under
+TPL-12 even if its producer key repeats exactly. An equality cycle can be solved
+from an independent concrete anchor without becoming a definition cycle.
 
-**Examples: explanatory metanotation, not additional Ama syntax.** In this table
-an arrow means a constructor application originating in the expanded definition:
+**Examples: metanotation, not additional Ama syntax.**
 
 | Case | Required result |
 |---|---|
-| `Box(Box(Integer))`, where Box only uses its supplied Type | Permitted, including when written inside another template |
+| `Box(Box(Integer))`, where Box only reuses its element Type | Permitted finite written composition |
 | `Pair(Box(Integer), Box(Text))` | Permitted independent branches |
-| `A(T) -> A(T)` | Permitted same-key closure, subject to the separate checks |
-| `A(T) -> B(T) -> A(T)` | Permitted finite mutual closure when the returned full A key is identical |
-| `Grow(T) -> Grow(Box(T))` | Rejected changing bindings |
-| `A(X,Y) -> A(Y,X)`, with unequal X and Y | Rejected different-key recurrence, even though permutation can terminate |
-| The same permutation with equal X and Y | Permitted identical-key closure |
-| An actual Template parameter applies a partial constructor originating in its owner | Compare the actual full origin and bindings: identical-key closure is permitted; a reachable different key is rejected |
-| A constructor is captured but never applied | No creation edge for that capture; its finite metadata is still checked |
+| `A(T) -> A(T)` | Permitted exact-key closure, subject to separate checks |
+| `A(T) -> B(T) -> A(T)` | Permitted mutual closure with the identical complete A key |
+| `Grow(T) -> Grow(Box(T))` | Rejected changing-key recurrence |
+| `A(X,Y) -> A(Y,X)` with unequal X/Y | Rejected, even when this permutation would terminate |
+| The same permutation with equal X/Y | Permitted identical-key closure |
+| A captured constructor is never applied | No application edge for the capture; validate its finite metadata |
+| A returned constructor is subsequently applied | Use its actual original identity and captures, not its alias |
 
-**Example: complete recursive `.node`.** Assume the selected element Type is
-default-constructible. The next reference starts empty and the children list
-starts empty; neither constructs another node immediately:
+**Example: complete recursive ordinary `.node`.**
 
 ```text
 @<
-...element type
-
-@!
 value
 ...element type
 
+@!
 next&
 .node
- ...element type < ...element type
 
-children[]
-.node
- ...element type < ...element type
+next& !
+ < value
 ```
 
-Selecting integers requires one `.node` specialization. Both node-typed fields
-refer to that same nominal identity, without sharing instance state. Later
-operations can build finite linked structures and trees. Replacing `next&`
-with an owned scalar `next` would still close the type graph, but would violate
-TYPE-04: constructing a node would immediately require another node forever.
+For integer values, the ordinary input equation determines the reference target
+as exactly Node(Integer), closing one nominal vertex. The reference starts
+empty, so this call performs no action at runtime. An available target can later
+be supplied through ordinary operations. There is no hidden instance or skipped
+static call check. Replacing `next&` with an owned scalar `next` would fail
+TYPE-04: construction would immediately require another node forever.
 
-**Example: reading a fixed namespace does not create its Type again.** Assume
-`..text` and `..integer` are distinct concrete Types. File `.a` is a template:
+**Example: fixed namespace reuse, with `.a` and `.b` as separate files.**
+
+File `.a`:
 
 ```text
 @<
+unused
 ...type
 
 @!
@@ -1726,7 +1182,7 @@ copied
  .b.constant
 ```
 
-File `.b` is ordinary and nongeneric:
+File `.b`:
 
 ```text
 @=
@@ -1735,63 +1191,32 @@ constant
  |0
 
 @!
+number
+..integer
+ |0
+
 back&
 .a
- ...type < ..integer
+
+back& !
+ < number
 ```
 
-Require `.a` with `...type` bound to `..text`. Reading `.b.constant` requires
-checking `.b`, but does not create an `.a(text) -> .b` application edge. Checking
-`.b` requires `.a(integer)` for its reference field. Thus both A specializations
-are permitted: neither depends on the other in the creation graph. The unused
-Type parameter still distinguishes their full keys under TPL-05. The constant
-is the independent integer zero; no value-initialization cycle is present.
+A root may use A(Text). Reading `.b.constant` requires B's definition, but adds
+no A(Text)-to-B application edge merely for namespace reuse. Checking B requires
+A(Integer) for its reference field. Both A keys are permitted because neither
+is reachable from the other in the creation graph. The unused parameter still
+distinguishes their identities. B's own definition and constant dependencies
+must pass; no implicit instance of B is created by the read.
 
-The body of `.a` may instead use this explicit read, with the same acceptance:
-
-```text
-copied
-..integer
-
-.b
- constant >> copied
-```
-
-If the namespace had a static output phase, its required producer application
-would remain in the graph. If `.b` had an invalid definition or its constant
-initialization had a cycle, fixed-Type reuse would not make it valid.
-
-**Explanation: private helpers do not prohibit finite composition.** Suppose
-`Set(T)` is implemented using `Dictionary(T, Marker)`, and Dictionary only reuses
-its supplied key/value Types. An Index definition requiring
-`Dictionary(Feature, Set(Node))` has paths `Index -> Dictionary` and
-`Index -> Set -> Dictionary`. The supplied Set Type adds no `Dictionary -> Set`
-edge. This composition is permitted even though Dictionary occurs twice in the
-complete type structure. If an actual definition additionally creates a path to
-a different specialization of an earlier source template, it is rejected.
-
-**Explanation: unrelated bindings must not create a fictitious cycle.** Suppose
-A and B each apply a received one-Type constructor to their element Type. One
-root supplies A with B partially fixed to use Box; its creation path is
-`A -> B -> Box`. Another root supplies B with A partially fixed to use Box;
-its path is `B -> A -> Box`. These different concrete applications are permitted.
-Combining their edges by source name would falsely produce `A -> B -> A`.
-
-**Why checking terminates.** Source definitions, static expressions and initial
-roots are finite. Each instantiated definition has finitely many application
-occurrences. A simple directed path contains no repeated canonical vertex; by
-the path predicate it also contains no two different specializations of one
-original template. Ordinary nongeneric modules each have one fixed identity.
-Thus simple paths are bounded by the finite number of source definitions.
-Finite branching and bounded simple paths permit only finitely many required
-vertices. Returning to an existing key adds an edge, not another vertex or
-definition expansion. Unresolved repeated origins cannot generate more copies
-while waiting. Reuse of supplied Types and fixed ordinary constant namespaces
-adds no application step, but their independently required definitions remain
-checked. Fixed ordinary namespaces range over finitely many source identities;
-supplied-Type reuse requires existing finite nominal metadata from roots or
-bindings and does not synthesize a fresh specialization key. These operations
-cannot introduce an unbounded family of independent roots. Signatures, finite
-substitution terms and static-definition expansion retain their separate
-termination checks. No depth budget, timeout, heuristic
-or discovery-order choice replaces this argument.
+**Why checking terminates.** Source definitions and roots are finite and each
+instantiated definition has finitely many application occurrences. A simple
+creation path contains neither a repeated canonical vertex nor two different
+keys of the same original template. Its length is therefore bounded by the
+finite set of source origins; nongeneric ordinary origins have one identity.
+Finite branching and bounded simple paths yield finitely many required vertices.
+An equal-key return adds an edge rather than another vertex; unresolved repeated
+origins cannot generate speculative copies. Reusing fixed namespaces or supplied
+finite nominal metadata adds no fresh origin or unbounded family of roots.
+Finite substitution terms and static-definition graphs keep their separate
+termination checks. No depth budget, timeout or heuristic replaces this argument.

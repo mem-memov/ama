@@ -1,71 +1,262 @@
-# Static results and positional application
+# Static modules and exported types
 
 [Specification index](../README.md)
 
 <!-- chapter-contents -->
 In this chapter:
 
-- [Explanation: a library can provide types](#explanation-a-library-can-provide-types)
-- [Defining static results](#defining-static-results)
-- [Selecting a producer and its results](#selecting-a-producer-and-its-results)
-- [Named and positional interfaces](#named-and-positional-interfaces)
-- [Receiving an immutable static name](#receiving-an-immutable-static-name)
+- [Explanation: assembling types before execution](#explanation-assembling-types-before-execution)
+- [The static module](#the-static-module)
+- [Defining and forwarding a result](#defining-and-forwarding-a-result)
+- [Calling a static producer](#calling-a-static-producer)
+- [Inputs, public names and scope](#inputs-public-names-and-scope)
+- [Requirements inferred from uses](#requirements-inferred-from-uses)
 - [Inference and complete producers](#inference-and-complete-producers)
+- [Using an exported Type in ordinary code](#using-an-exported-type-in-ordinary-code)
 - [Composition and specialization identity](#composition-and-specialization-identity)
-- [Dependencies, checking, and implementation](#dependencies-checking-and-implementation)
+- [Separate graphs and cycle checks](#separate-graphs-and-cycle-checks)
+- [Checking and implementation](#checking-and-implementation)
 - [Examples of rejected programs](#examples-of-rejected-programs)
 
 <!-- /chapter-contents -->
 
-## Explanation: a library can provide types
+## Explanation: assembling types before execution
 
-A module library can provide a concrete type, or a constructor that still needs
-some static arguments. For example, an algorithm can fix a dictionary's key
-type and provide a family of dictionaries whose value type remains selectable.
-Clients reuse that family instead of repeating the key binding at every site.
+A static module describes how types fit together. It can fix a dictionary's key
+type, return a family of dictionaries whose value type remains open, or supply
+several related concrete types to a program. The compiler solves these
+relationships before generating executable code.
 
-There are two distinct activities. The compiler substitutes types and checks
-their operations. The running program creates instances, stores values and calls
-methods on those instances. A static result belongs to the first activity. A
-runtime result such as `get` belongs to the second.
+The running program then creates ordinary values and calls ordinary modules.
+A static specialization is a compiler object, not a value passed to an ordinary
+input. A dictionary instance created from an exported dictionary Type is an
+ordinary value; the factory that supplied its Type is not that instance.
 
-**Design rationale.** Named static results make related types part of a library
-interface. Partial application supplies the returned constructor without a
-separate type-lambda notation. The two-line declaration keeps the familiar Ama
-shape, while its leading `...` marks a static name. Restricting definitions to
-structural static expressions permits exact substitution and the existing
-finite-specialization checks, without executing arbitrary Ama or native code
-during compilation.
+**Design rationale.** Separate static modules make the phase visible in source.
+Ordinary declarations retain their name/type shape, and ordinary template
+interfaces use simple Type placeholders. Named static bindings identify the
+intended parameter or result without depending on declaration order. The
+compiler substitutes structural Type/Template expressions; it does not execute
+arbitrary Ama or native code to discover types.
 
-## Defining static results
+The examples below use descriptive module names and assume the stated ordinary
+constructors exist. Their names are not additional standard-library facilities.
+
+## The static module
 
 <a id="tpl-12"></a>
 
-**TPL-12.** A module may define static Type or Template results in `@>` and
-select them through explicit static output bindings. Static formals, results,
-applications and receivers obey the rules in this chapter together with
-[TPL-02/TPL-07/TPL-08](templates.md#tpl-02). Every static name uses TPL-01's
-complete placeholder spelling; bare `...` is solely a positional binding marker.
+**TPL-12.** A static module begins with `@...` and contains a graph of static
+result definitions and named uses of other static modules. It has no `@=`, `@<`,
+`@>`, `@!` or `@C` section. Blank lines and comments follow the ordinary
+source-layout rules. An empty graph has no inputs or exports.
 
-A static result has exactly two same-level head lines: its name, then its
-defining static expression. Arguments of that expression are one indentation
-level deeper. The definition has no runtime storage suffix, literal, ordinary
-initializer, input default or mutable result cell. It contributes no runtime
-input/output position, acquisition, reset, copy or continuation state.
+Its values are Type and Template metadata under
+[TPL-01/TPL-07/TPL-08](templates.md#tpl-01). A Type denotes one ordinary module
+type. A Template retains an actual original constructor, its fixed captures and
+its still-unfilled named formals. A static module's own specialization records
+its inputs and outputs for compilation; it does not provide an additional
+ordinary application Type or an executable instance.
 
-**Example: complete `.prepare dictionaries`.** Assume the supplied family has
-exactly the two Type formals shown, and supports the operations required by any
-later runtime use:
+The graph has no ordinary variables, mutable result cells, references, lists of
+runtime values, defaults, literals, ordinary initializers, acquisition, reset,
+copy or continuation state. There is no runtime control flow, module execution,
+native hook or refusal handler in this graph. Static names use the complete
+`...name` spelling under TPL-01; names and substitutions are not source-text
+replacement.
+
+Only static modules contain explicit static input-binding blocks, result pairs
+and named static output bindings. Ordinary modules use their simple type
+declarations and the explicit named export reference defined
+[below](#using-an-exported-type-in-ordinary-code). An ordinary simple template
+path retains the field inference allowed by [TPL-04](templates.md#tpl-04);
+that compiler inference introduces no static binding block. Ordinary modules
+do not contain a static graph or become static producers when a Type placeholder
+appears in an ordinary input or output.
+
+## Defining and forwarding a result
+
+A result definition has two same-level head lines: the complete public name,
+then a static value expression. Named inputs of that expression are indented
+one level deeper. This pair names the value of the expression itself; it does
+not select a result member of the expression's head.
+
+**Example: complete `.prepare types`.** Assume `.dictionary` is an ordinary
+constructor with the two Type formals `...key type` and `...value type`:
 
 ```text
-@<
-...key type
+@...
+...dictionary type
+.dictionary
+ ...key type < ..text
+ ...value type < ..integer
 
-...dictionary family
- ...key type
- ...value type
+...dictionaries for text
+.dictionary
+ ...key type < ..text
 
-@>
+...integer type
+..integer
+```
+
+There are three public results. `...dictionary type` is the concrete
+`Dictionary(Text, Integer)` Type. `...dictionaries for text` is a Template with
+its key fixed to text and its value formal still open. `...integer type` is the
+supplied integer Type. None of these definitions creates a dictionary or integer
+instance.
+
+A result expression may be an ordinary constructor path, a supplied Type or a
+supplied Template. A concrete Type cannot be applied again as a constructor.
+Applying named inputs to a Template uses its actual residual formals under
+TPL-08. Any omitted residual formals remain open: the expression returns a
+Template until all its formals are filled. Supplying a partial Template is not
+the same operation as leaving the identity of a producer input unknown.
+
+**Example: complete forwarding module.**
+
+```text
+@...
+...forwarded
+...source
+```
+
+Here `...source` is an external static input. The output preserves that supplied
+Type or Template, including a Template's original constructor and captures. The
+two names do not create two nominal types. Their categories and actual metadata
+are checked at specialization; descriptive words in their names do not determine
+the category.
+
+Constructor expressions can nest as input values. Each binding's children are
+indented one further level; the outer pair still names the outer expression.
+
+**Example: a finite nested expression.** Assume `.box` has the Type formal
+`...element type`:
+
+```text
+@...
+...twice boxed
+.box
+ ...element type < .box
+  ...element type < ..integer
+```
+
+This is the finite expression `Box(Box(Integer))`. Merely writing nested
+arguments does not make one box specialization require another application in
+its own definition; creation provenance follows
+[TPL-11](templates.md#tpl-11).
+
+## Calling a static producer
+
+A static producer use names a concrete path to a static module, followed by
+zero or more named inputs and one or more named output selections. An input is
+`...formal < expression`. An output is `...result > ...receiver`. The left name
+belongs to the selected producer; source expressions and receiver names belong
+to the supplying module.
+
+**Example: complete `.selected types`, using `.prepare types` above.**
+
+```text
+@...
+.prepare types
+ ...dictionary type > ...dictionary
+ ...dictionaries for text > ...family
+ ...integer type > ...integer
+```
+
+The three receivers are public outputs of `.selected types`. Selecting one
+producer result does not discard the other required definitions or change the
+producer's identity. A call can select only the outputs it needs, but every
+declared output of its required producer must still pass checking.
+
+All static application bindings are named. Positional inputs, positional output
+selection, skips, bare `<`, bare `>` and a bare `...` binding marker are not
+source forms. Unknown or repeated foreign labels are errors, including equal
+repeated bindings. A binding must contain its source or receiver. Named inputs
+precede named outputs at each application level. Source nesting follows SYN-06;
+there is no static ordinal counter or implicit first result.
+
+A static producer has named outputs rather than a value denoting its own Type.
+It cannot be the right-hand value of a result pair or an inline constructor
+argument. Select its result into a name, then use that name as the value of
+another expression. A producer use without an output selection is not a graph
+statement. This introduces no output-free or effectful compile-time call.
+
+The actual producer is determined by its explicit path. A supplied Template
+input denotes an ordinary constructor under TPL-07, not an arbitrary function
+that executes a static module or produces a bundle of named results. Passing
+such static functions as values would require a separate language facility.
+
+## Inputs, public names and scope
+
+Before classifying source occurrences, collect all result-pair names and every
+named output receiver in the entire static module. This includes occurrences
+appearing after a use. Every collected name is public; using an output later as
+an intermediate does not make it private or remove it from the interface.
+
+After excluding these output names, every free local `...name` used as a source
+or value-expression head is an external static input. Foreign input/output
+labels, concrete path components and formals belonging to an actual constructor
+are not local input introductions. Equal spellings in different modules do not
+connect inputs; only explicit bindings connect their scoped identities.
+
+The canonical collection order of external inputs is their first eligible local
+source/head occurrence after this whole-module output classification. Keep that
+order for deterministic original formal identities and diagnostics. It creates
+no positional static binding interface; callers supply these inputs by name.
+
+All collected input and output names are visible throughout their declaring
+static module. A later definition can supply an earlier expression. This is a
+dependency graph, not a sequence of runtime assignments. In particular, the
+compiler does not turn a forward reference to an output into an extra external
+input.
+
+**Example: complete forward reference.**
+
+```text
+@...
+...boxed integer
+.box
+ ...element type < ...integer type
+
+...integer type
+..integer
+```
+
+The graph has two outputs and no external input. The output `...integer type`
+is known from its definition even though that pair appears later in source.
+
+Result pairs declare their names exactly once. A repeated pair declaration is
+an error. A named selection into a pair-declared name imposes exact equality
+with that definition, including when the selection precedes the pair. If no
+pair declares a receiver, its first receiver occurrence in lexical source order
+defines its immutable alias; later receipts into that name impose equality.
+This binder classification is fixed by source syntax before equation solving.
+It never depends on the order in which compiler work happens to finish.
+
+The output name cannot be reassigned, shadowed or reopened. Type equality is
+full nominal identity. Template equality includes the actual constructor,
+fixed captures and complete actual residual signature. A new name merely names
+its defining expression; it supplies no independent evidence that could select
+a concrete type or invent a producer input.
+
+Moving independent equations does not change the solution. Moving which
+occurrence defines a reused receiver can change its definition dependencies;
+that is a source change, not a different execution schedule. Preserve the
+distinction between a definition and a later equality check when checking
+[cycles](#separate-graphs-and-cycle-checks).
+
+## Requirements inferred from uses
+
+A static input need not declare an exhaustive expected Template signature.
+Check its uses under [TPL-07](templates.md#tpl-07) against the actual metadata
+provided by its caller. Infer requirements from all uses, including uses after
+partial application, rather than from the first textual use or first concrete
+constructor supplied during compilation.
+
+**Example: complete `.prepare dictionaries`.**
+
+```text
+@...
 ...dictionaries for key
 ...dictionary family
  ...key type < ...key type
@@ -74,439 +265,302 @@ later runtime use:
 ...dictionary family
  ...key type < ...key type
  ...value type < ..integer
-
-@!
 ```
 
-The first result is Template with only `...value type` residual. The second is
-Type. The empty implementation is sufficient because these definitions are
-static; a client does not call this module's body to obtain them.
+Its external inputs are `...dictionary family` and `...key type`. Both output
+pairs are public. The named applications require suitable residual formals
+`...key type` and `...value type` on the supplied family. They do not state that
+these are its only formals.
 
-The second line defines the static result's value, rather than the type of a
-runtime cell. Determine the result category and, for Template, its exact
-residual signature from that expression and the declared parameter signatures.
-An application without a static output phase preserves omitted residuals here
-as in a static argument expression under TPL-08. It does not introduce runtime
-field inference variables. Captured producer parameters and a returned
-constructor's own residual formals remain distinct.
+If the supplied family has exactly those two Type formals, the first output
+retains the value formal and the second is concrete Type. If it also has an
+unfilled `...allocator type`, the first output retains value and allocator, and
+the second still retains allocator. The compiler must not silently remove that
+extra formal or choose a default. A caller can supply a family whose allocator
+was already fixed, or a later static expression can fill it.
 
-Collect all explicit static result names before interpreting interface
-expressions. They are bound names, not new free parameters of their producer.
-Each is visible throughout its declaring module, including other interface
-expressions and earlier text, subject to the dependency checks below. A result
-name must be distinct from every static formal and other explicit static result
-name of that module. Runtime names occupy their separate namespace.
-Genuinely undeclared bare Type names in permitted interface expressions may
-still introduce producer Type parameters under TPL-02; a reference to a
-collected result name never does. New Template parameters require an input
-declaration/signature under TPL-07.
-
-Runtime and static results may be interleaved in `@>`. Ordinary `>`/`>>` reads
-and CALL-09 selectors use only the runtime interface. Static output bindings
-use only the explicit static result definitions. A runtime result's type does
-not itself declare a static result.
-
-## Selecting a producer and its results
-
-A standalone static projection has a static-expression head followed by zero
-or more static input bindings and at least one static output binding. Its head
-is a concrete module path or a visible Type/Template name. It has no `!`, `%`
-or refusal handler. The whole construct contributes compile-time constraints;
-its source position in a runtime body does not make it execute at runtime.
-
-Static output bindings may also occur after the static inputs of an expression
-inside a declaration, static result definition, argument or constant namespace.
-They select that expression's producer outputs. They do not replace the
-expression's own application value with the selected result: after resolution,
-the expression still denotes the producer's fully determined Type. A standalone
-projection uses its static outputs and need not store that producer Type.
-
-The presence of any static output binding, including a positional skip,
-requests a fully determined producer specialization. After matching explicit
-input bindings, give each omitted producer formal a distinct inference term of
-its declared category/signature. Identify it by the enclosing specialization,
-the expression's lexical source node and the original residual formal identity.
-For a Template-valued formal, a determined binding is a known original
-constructor, fixed captures and exact residual signature; its own locally
-bound residual formals need not be saturated.
-
-Solve the producer's applicable static constraints together with the output
-equations below. Before publishing any selected result, every producer input
-binding must be uniquely determined under its enclosing specialization. This
-includes inputs not mentioned by a selected output. Validate the complete
-required producer specialization under TPL-06. The producer's body, defaults,
-native hooks and runtime initializers do not execute.
-
-Without a static output phase, omission retains TPL-07/TPL-08's existing
-context-specific meaning: partial static arguments/results retain residuals,
-runtime declaration roots infer field bindings, ordinary root input patterns
-require coverage, and a constant namespace requires independent closure.
-An output phase provides the same producer-inference rule in all expression
-contexts; the output actions and omitted-input inference terms never add a free
-parameter to the containing module. This does not suppress an interface head's
-independent Type introduction under [TPL-02](templates.md#tpl-02): a head with no
-static input bindings remains eligible even when it has static output actions.
-Output receivers retain the alias/equality rules below.
-
-Determine the producer's actual nominal origin from explicit paths, supplied
-static metadata or permitted nominal constraints before looking up outputs.
-Then resolve named outputs or positions in that definition's explicit static
-`@>` interface. A Template parameter's input signature does not promise particular
-outputs: check the actual supplied constructor's output declarations when its
-origin is known, as for other operations on supplied types under TPL-08.
-Retain a pending constraint while independent evidence may determine that origin;
-report underdetermination if it never does. An output name, requested category,
-receiver type or matching body is not evidence for searching candidate modules
-or choosing an otherwise unknown origin.
-Once the producer origin is known, an output expression that contains a
-declared constructor-application pattern may still recover an input constructor
-through TPL-10's exact nominal decomposition. This is structural inference
-within that known definition, rather than a search for a producer.
-
-## Named and positional interfaces
-
-A named input is `...formal < expression`. A named output is
-`...result > ...receiver`. The left name belongs to the selected producer's
-interface; sources and receivers belong to the supplying module. Names match
-exactly. Unknown or repeated named labels are errors, including equal repeated
-bindings. A named binding cannot omit its source or receiver.
-
-Positional bindings use bare `...` instead of a foreign label:
-
-```text
-... < ..integer
-... <
-... >
-... > ...received type
-```
-
-Each line consumes one position in its respective sequence. Empty `... <`
-does not supply a binding. Empty `... >` does not create an alias or receive a
-result. An omitted trailing binding consumes no additional position. Every
-explicit skip counts toward arity; positions beyond the interface are errors.
-
-Take the input sequence from TPL-02's original formal order of the actual
-constructor, restricted to its residual formals at the start of this application.
-It includes explicit and interface-introduced producer parameters in that
-order; a parameter first introduced through a runtime result type remains a
-producer parameter. Captured/fixed formals are excluded. Snapshot this sequence
-before processing any binding: filling the first slot does not renumber the
-second. Expected signatures remain named, order-insensitive contracts under
-TPL-07; writing a supplied constructor's expected signature in another order
-does not reorder its actual positional inputs. Delay positional resolution
-until the actual origin is known. Positions alone cannot introduce an unknown
-Template's named signature.
-
-The output sequence is exactly the explicit static result declarations in
-their textual order in the actual producer's `@>` section. Runtime fields,
-free parameter introductions, binding lines and signature children contribute
-no static output positions. The ordinary runtime sequences separately exclude
-all static declarations.
-
-Input and output counters are independent. All input bindings precede every
-output binding at their expression level. Use either named mode throughout
-that level's inputs and outputs, or positional mode throughout; mixing modes
-is an error. Nested expressions and ordinary runtime operations choose their
-own modes independently. All separators and indentation follow SYN-06.
-
-**Example: caller body fragment.** Assume `.dictionary` has the two explicit
-Type inputs `...key type` then `...value type`, and its concrete instances
-support ordinary default construction:
-
-```text
-.prepare dictionaries
- ... < ..text
- ... < .dictionary
- ... > ...text key dictionaries
- ... > ...text integer dictionary
-
-first
-...text integer dictionary
-
-second
-...text key dictionaries
- ...value type < ..integer
-```
-
-Both fields have the same dictionary Type, with independent runtime storage.
-An equivalent named projection is:
-
-```text
-.prepare dictionaries
- ...key type < ..text
- ...dictionary family < .dictionary
- ...dictionaries for key > ...text key dictionaries
- ...integer dictionary > ...text integer dictionary
-```
-
-These are alternative caller fragments. To skip the family and receive only
-the concrete Type, use:
-
-```text
-.prepare dictionaries
- ... < ..text
- ... < .dictionary
- ... >
- ... > ...text integer dictionary
-```
-
-Skipping an output suppresses only its binding to the caller. It neither makes
-an invalid producer valid nor skips checking declared static result definitions.
-
-## Receiving an immutable static name
-
-Resolve a nonempty receiver as a complete name in the supplying static scope.
-If it already denotes a parameter, static result or visible alias, impose exact
-equality with the selected output. A Type must agree in nominal identity; a
-Template must agree in original constructor, fixed bindings/captures and exact
-residual signature. An unresolved parameter may be constrained by that equality;
-an already determined name is never reassigned or reopened.
-
-If the receiver is new, introduce an immutable alias for that selected Type or
-Template. Its category and metadata come from the result; the alias contributes
-no independent concrete type evidence. It creates no runtime field and no free
-parameter or specialization-key component of the containing module.
-
-For receiver classification inside interface expressions, first collect explicit
-input formals and static result binders, whose scope is the whole module. For
-each remaining name, compare receiver positions with eligible implicit
-interface-parameter introduction positions in lexical order. A receiver before
-any such introduction establishes an alias; its subsequent in-scope uses are
-uses of that alias, not later implicit parameter introductions. Otherwise the
-receiver constrains the interface parameter already introduced. Finish the
-whole-interface category/signature collection under TPL-02 on those genuine
-parameter sites. This preserves forward visibility of owner parameters without
-turning a newly received alias into an owner parameter when it is later used as
-an interface type. An earlier unbound body source remains an error.
-
-The alias is visible at its receiver and subsequent source positions through
-the remainder of the containing module, including nested blocks. Ordinary
-branch, loop, foreach and refusal-handler nesting does not shorten this static
-scope. A later receiver with the same visible name imposes equality instead of
-shadowing it. An earlier unresolved use cannot be repaired by a later alias.
-The alias's name does not become a producer formal, a foreign binding label or
-a dotted member-access prefix.
-Its own producer and input expressions cannot use the new receiver as an
-earlier source. Nested projections introduce aliases at their actual receiver
-positions; later expressions may use them, while foreign input labels never
-introduce names into the supplying scope.
-
-Classify static names by source position independently of runtime control flow.
-An alias received inside a runtime branch is established statically even when
-that branch is not taken; incompatible equations in different branches are
-errors. All ordinary runtime ownership, initialization and scope rules remain
-applicable to fields typed through such an alias.
-
-**Example: body fragment with a known producer interface.**
-
-```text
-.prepare dictionaries
- ... < ..text
- ... < .dictionary
- ... > ...text key dictionaries
-
-worker
-.typed consumer
- ...received family < ...text key dictionaries
-```
-
-Here `.typed consumer` is the TPL-08 consumer whose expected family has only
-`...value type` residual. Its ordinary typed input calls must still determine
-the element Type and satisfy that family's actual runtime interface. Receiving
-the family does not create or initialize a dictionary instance.
+The output category and residual metadata therefore follow the actual supplied
+constructor and captures. An ordinary declaration still requires Type, not an
+unfinished Template. Categories, full captures and residual names remain exact
+metadata even though use requirements need not enumerate an exhaustive input
+signature. Passing a constructor through an opaque input does not make it an
+ordinary value or allow runtime reflection.
 
 ## Inference and complete producers
 
-Static output definitions add structural equality constraints to TPL-10.
-Substitute the producer's explicit and inferred bindings into the selected
-definition, preserving scoped identities. An existing determined receiver may
-then constrain producer inputs visible in that expression. A fresh receiver
-merely names the output expression; it does not choose its unknown bindings.
-Preserve every producer input in its specialization key, even if its value is
-discarded by all output definitions.
+When a static producer use omits an input, retain a distinct inference term for
+that actual formal at that lexical application occurrence. Do not turn the
+omission into a new free input of the supplying module. Its identity includes
+the enclosing specialization, original application site and actual formal.
+
+Substitute explicit and inferred inputs into the producer's structural output
+definitions while preserving scope. Receiver equalities and other applicable
+static equations can determine missing inputs under TPL-10. No definition is
+executed as an ordinary module body. Before admitting any selected result,
+every producer input must be uniquely determined, including inputs not reflected
+in the selected outputs. A Template-valued input is determined when its actual
+origin, fixed captures and complete residual metadata are known; its own
+residual parameters need not have been filled.
 
 **Example: complete `.type identity`.**
 
 ```text
-@<
-...type
-
-@>
+@...
 ...same type
 ...type
-
-@!
 ```
 
-After the earlier caller has established `...text integer dictionary`, this
-projection determines the identity producer's omitted input:
+An explicitly defined receiver can constrain the omitted producer input:
 
 ```text
+@...
+...known type
+..integer
+
 .type identity
- ... > ...text integer dictionary
+ ...same type > ...known type
 ```
 
-Its input is that exact dictionary Type. In contrast, the same projection into
-a new `...unknown type` leaves both its producer input and output undetermined
-and fails. A positional skip instead of the receiver supplies no constraint.
+The identity producer's `...type` is integer. By contrast, selecting that result
+only into a fresh `...unknown type` supplies no anchor: the input and result
+remain undetermined. Repeating the fresh alias supplies no additional evidence.
 
-**Explanation: information can be lost.** In mathematical notation, not Ama
-syntax, let `Factory(K, V)` return `List(V)`. An expected `List(Integer)` can
-determine `V`; it contains no information about `K`. Supply `K` or determine it
-through another permitted constraint. If a factory always returns `Integer`,
-that result alone determines none of its input parameters. The compiler never
-invents an inverse or chooses an unused argument.
+**Explanation: information can be lost.** In mathematical notation, let
+`Factory(K, V)` return only `List(V)`. An expected `List(Integer)` determines
+`V`, but contains no information about `K`. Supply `K` or determine it through
+another permitted equation. The compiler does not invent an inverse, enumerate
+constructors, search for a module matching an output name or select an unused
+input arbitrarily.
 
-Full producer determination and a returned Template's residual signature are
-different requirements. `.prepare dictionaries` has its own key Type and family
-argument completely determined above. Its `...dictionaries for key` result
-deliberately retains the returned dictionary constructor's value formal. This
-is a valid closed producer returning a partial constructor.
+Full producer determination and a returned Template's residuals are separate
+requirements. A producer with all its inputs known may return a family that
+deliberately retains some of its own parameters. That is finite static metadata,
+not an unresolved producer specialization.
+
+## Using an exported Type in ordinary code
+
+An ordinary declaration can select one named export of a static module. Its
+type position contains the static module's concrete path; the first meaningful
+indented line is exactly one complete exported name:
+
+```text
+first
+.prepare types
+ ...dictionary type
+
+second
+.prepare types
+ ...dictionary type
+```
+
+Both fields have the same dictionary Type and independent runtime storage. The
+static module is not instantiated as an ordinary parameter or field.
+
+The selector is mandatory even when the producer exports only one name. It has
+no ordinal form, bindings, suffixes or children. Comments and blank lines may
+separate the path and selector under the layout rules. Ordinary initializers,
+when allowed for the selected Type, follow the selector at their usual depth:
+
+```text
+number
+.prepare types
+ ...integer type
+ |0
+```
+
+Recognize this selector from its source shape without loading the path's file.
+Semantic resolution then requires that the concrete path denote a static
+module and that its exact exported name exist. Under an ordinary module path,
+the selector is an error; it is not reinterpreted as a static input binding or
+another source form. It declares no free placeholder, alias or ordinary variable
+in the using module.
+
+The supplying static specialization must be fully determined independently of
+the ordinary declaration and its call/input/result constraints. This reference
+cannot fill omitted factory inputs or use the ordinary expected Type to infer
+them. Use a closed static assembly that explicitly supplies the parameterized
+factory's inputs. The selected export must be a complete ordinary Type, not a
+Template or the static producer itself. A closed producer may export other
+Template-valued results; they do not invalidate this Type-valued selection.
+
+An independently known complete nominal identity can be referenced while the
+required definition group is still being checked. Do not require every ordinary
+body in a finite nominal cycle to have finished validation before that identity
+can be named. Before executable admission, finish the producer, every required
+output and every actual dependency check. This reference grants no early
+successful validation or skipped definition.
 
 ## Composition and specialization identity
 
-A received Type can type runtime storage or serve as a Type argument. A received
-Template can be forwarded to a compatible Template formal, partially applied
-again or completed into Type. Apply TPL-08's exact named capture and residual
-rules at each step. Parameter names in separate modules never connect by
-spelling; binding labels and source expressions establish the connection.
+A named producer result can feed a result expression or another producer's
+named input. The Type/Template distinction applies at each use. A static
+producer with multiple outputs never implicitly supplies its first output as
+an argument value.
 
-Static result aliases do not manufacture new nominal types. Two producers
-returning the same `.dictionary` with the same complete bindings return the
-same Type, even when their own producer specializations differ. The result
-retains the returned constructor's origin, not a new origin formed from the
-producer name or the alias. Equal partial constructors retain equal metadata.
-Different producers still have their own complete identities and required
-checks. Multiple runtime instances of one returned Type remain independent.
-
-**Example: caller fragment.** Assume `.wrap type` has one Type input and returns
-its `.box` specialization through one static result:
+**Example: complete `.composed types`.** Supply `.prepare dictionaries` with
+the two-formal dictionary constructor used above, then finish its returned
+family in a new pair:
 
 ```text
-.wrap type
- ... < ...text integer dictionary
- ... > ...boxed dictionary
+@...
+.prepare dictionaries
+ ...dictionary family < .dictionary
+ ...key type < ..text
+ ...dictionaries for key > ...text dictionaries
+ ...integer dictionary > ...text integer dictionary
 
-boxed
-...boxed dictionary
+...text text dictionary
+...text dictionaries
+ ...value type < ..text
 ```
 
-The first producer's concrete dictionary result becomes the second producer's
-input. A further producer could receive `...text key dictionaries` as a Template
-instead. Neither case requires a temporary runtime instance of the producer.
+The two receivers and the final pair are all exports. The incoming family and
+key are fully determined producer inputs, while its first output deliberately
+retains a value formal. The last pair binds that residual formal without
+changing the other returned Type or the original family. An intermediate remains
+public even when another graph node uses it. To forward a result unchanged,
+define another result pair whose expression is its name.
 
-## Dependencies, checking, and implementation
+Aliases do not manufacture nominal types. Two producers returning the same
+ordinary constructor with the same complete bindings return the same Type.
+The result retains its constructor's origin, not a new origin formed from a
+factory or alias name. Equal partial constructors retain equal captures and
+residual metadata. Different producers still have their own complete
+specialization identities and required checks. Preserve every producer input
+in that identity, even when generated runtime code does not use it.
 
-Check every declared static output of each required concrete producer, including
-unselected and positionally skipped outputs. Check normal type, operation,
-lifecycle, shared-constant and ownership obligations under TPL-06. Static output
-expressions cannot branch on runtime values, inspect list contents or length,
-execute module bodies/native hooks, or depend on method-initialization flags.
-Numeric static arguments and arbitrary compile-time Ama execution are outside
-these Type/Template source forms.
+Receiving or forwarding a Type creates no instance. Later ordinary instances
+of that Type retain their independent identity, lifecycle and state. No
+static factory instance, Type value or Template value crosses the native or
+ordinary runtime boundary as hidden data.
 
-Keep the graph of static value-definition expansion separate from ordinary
-type-reference, constraint-equality, ownership and constant-value graphs. Its
-nodes identify a static result or receiver-alias definition in its scoped
-producer/application environment. Add an edge for a definition that requires
-another static definition's expansion, including selected foreign static
-results. Reject directed definition cycles with the relevant definition and
-application locations. Merely mentioning the type of an ordinary reference
-field is not such an edge. TPL-10's occurs check and its permitted anchored
-equality cycles remain separate from definitional expansion cycles.
+## Separate graphs and cycle checks
 
-Retain TPL-11's specialization-creation provenance. A static output phase creates
-a required concrete producer application even if the caller discards the normal
-producer Type. Attribute that application to its enclosing instantiated
-definition. This also applies when the head is an already supplied closed Type
-or an ordinary module with no static parameters: reading its static results
-requires checking its producer definition, rather than merely decomposing type
-metadata. Preserve ordinary producer identities in dependency records; TPL-11
-compares full specialization keys sharing an original template origin. A
-concrete constructor application written inside the producer's output definition
-is an edge from that producer; returning a supplied Type
-adds no fictitious application. A returned partial constructor is finite
-metadata until its later application, which uses its actual original origin
-and captures. Output aliases and warm cache entries cannot conceal a path to a
-different specialization of an earlier source template. Returning the producer's
-own closed nominal Type can close a TPL-11 graph; defining a static result by
-projecting that same result still violates the separate definition-cycle check.
+Static equations and ordinary recursive structures use different graphs.
 
-During inference, retain distinct application occurrences and their scoped
-symbolic input environments while complete canonical keys are unresolved.
-Before expanding a dependency, apply TPL-11's closed-key or pending-key check.
-A repeated origin is not alone a rejection, and unresolved bindings are not
-proof of equal keys. Suspend a repeated-origin expansion whose comparison keys
-remain unresolved; refine its existing constraints without generating further
-copies. Finalize concrete vertices once bindings close; merging equal keys must
-preserve every incoming provenance and all outgoing dependencies. Check the
-complete graph independently of discovery/cache order. This allows output
-equations to determine inputs without expanding an unguarded producer chain.
+- **Definition expansion:** nodes identify result-pair or defining receiver
+  expressions in their scoped producer/application environments. Add an edge
+  when evaluating such a definition requires another static definition's value,
+  including a selected foreign output. Reject directed definition cycles with
+  their source locations. An equality check against an already defined receiver
+  does not replace or redefine that receiver's expression. Equality cycles and
+  TPL-10's occurs check remain separate.
+- **Specialization creation:** retain the actual ordinary and static producers
+  required by applications under TPL-11. Identical complete nominal keys can
+  close a finite graph; a creation path to a different specialization of the
+  same original template is forbidden. Finite written argument nesting is not
+  itself an application originating in the argument type's own definition.
+- **Instance construction and other obligations:** ordinary reference fields
+  and initially empty lists can make runtime construction finite. Eager scalar
+  ownership, constant initialization and runtime availability still follow their
+  own rules. Closing a type graph does not waive them.
+
+**Example: a forbidden definition cycle.**
+
+```text
+@...
+...a
+...b
+
+...b
+...a
+```
+
+Both names are collected outputs, so neither becomes an external input. Their
+definitions depend on each other and are rejected. In contrast, an ordinary
+`Node(Integer)` may refer to that same complete Type through an initially empty
+reference under TPL-11/TYPE-04. Such a reference does not read a static output
+back through its own defining expression.
+
+Static producer uses retain their real dependency and creation obligations even
+when the caller selects only one output. Applications in static definitions
+belong to their lexical definition owner. Returning a supplied Type adds no
+fictitious constructor application. A returned partial constructor remains
+finite metadata until applied; later applications retain the actual original
+constructor and captures. Shared aliases and warm cache entries must not hide
+an application or an unequal-key path.
+
+Before following a dependency, apply the exact closed-key/pending-key check in
+TPL-11. Unknown repeated keys are not evidence of equality. Suspend that
+expansion and use only genuine permitted refinements; do not instantiate an
+unbounded chain to search for an answer. An unresolved required obligation after
+refinements are exhausted is underdetermined. Check actual static-definition
+cycles independently even when a nominal specialization key closes.
+
+The ordinary interface boundary is deliberately narrower: an ordinary input or
+result cannot contain a computed projection `Factory(X).out`. It uses simple
+Type declarations, or a named export whose identity is determined independently
+of that ordinary context. No extra compiler pass or interface-preview exception
+is implied by this rule.
+
+## Checking and implementation
+
+Check every declared output of every required static producer, including
+unselected outputs. Check all normal type, operation, lifecycle, shared-constant,
+ownership and native-boundary obligations of the resulting ordinary types.
+Static expressions cannot inspect runtime values, list lengths/contents,
+initialization flags, branch results or native effects. Numeric static arguments,
+value-indexed types and arbitrary compile-time Ama execution are outside this
+Type/Template graph.
 
 An exact checker can proceed as follows:
 
-1. Parse immutable syntax. Collect explicit interface formals and output
-   binders separately; classify received aliases and genuine implicit parameter
-   sites in lexical source order, then finish whole-interface parameter
-   category/signature collection under TPL-02.
-2. Create scoped terms for producer applications, their omitted input bindings
-   when an output phase is present, and each static output equation. Normalize
-   positional labels to actual original formal/result identities once that
-   origin is independently known. Retain source locations and positional skips.
-3. Apply TPL-10's exact structural equations. Expand known static result
-   definitions without losing parameter scope. Before following each
-   definition/application dependency, check the active static-definition path
-   and TPL-11's creation graph. Close identical concrete nominal vertices,
-   reject a reachable unequal key of the same source template, or retain a
-   pending comparison under TPL-11 instead of expanding an unresolved repeat.
-   Cache hits retain the complete dependency checks.
-   Do not invert a general output
-   transformation, enumerate constructors, infer from capabilities, or choose
-   a binding from execution order. A blocked expression waits only for actual
-   new static evidence; an iteration without a change is not progress.
-4. Require unique complete producer bindings, finish validating the already
-   guarded static-definition graph and TPL-11 creation paths, and check all
-   required specialized definitions. Reject unresolved required origins, inputs
-   or captures.
-5. Publish the normalized result aliases and concrete runtime types. Retain
-   provenance for diagnostics and cache canonical specialization information.
-   Lower only the resulting ordinary runtime operations and storage.
+1. Parse immutable syntax. Classify module kind from its marker. Collect pair
+   names and receiver names globally, classify unique definitions versus exact
+   equality receipts, then collect remaining free local source names as inputs.
+2. Retain original application occurrences, scoped symbolic input environments
+   and output equations. Resolve a foreign name only in its actual original
+   constructor or producer, never by searching candidate modules.
+3. Refine the structural equations under TPL-10 and use requirements under
+   TPL-07. Track each partial application's actual residual metadata. Follow
+   guarded definition/application dependencies under TPL-11, retaining pending
+   key comparisons rather than speculative copies.
+4. Revisit a blocked obligation only when actual new equations or metadata can
+   refine it. An iteration without new information is not progress. Reject
+   contradictions, definition cycles, forbidden creation paths and unresolved
+   required inputs/origins/captures; use no inference budget or heuristic.
+5. Finish complete producer and required ordinary-definition validation before
+   publishing admissible exports or executable types. Preserve provenance on
+   every cache hit and when equal closed keys merge. Lower only ordinary runtime
+   operations and storage.
 
-**Correctness rationale.** Positional normalization maps each consumed ordinal
-to exactly one original interface identity; named and positional forms therefore
-produce the same equations when they select the same slots. Substitution follows
-scoped identities, so no name capture or source-text replacement occurs. Acyclic
-static definitions admit dependency-ordered expansion. TPL-11 separately bounds
-required specialization creation; partial output metadata does not introduce
-an unchecked expansion mechanism. Exact equality solving and closure establish
-one normalized producer and result identity, or report a conflict or missing
-evidence. These obligations provide the finite structural basis for checking;
-tests additionally exercise the boundaries and real component handoffs.
+**Correctness rationale.** Scoped names make explicit bindings independent of
+unrelated spellings and discovery order. Whole-graph collection prevents forward
+outputs from becoming accidental inputs. Named lookup identifies the actual
+formal/result; partial application retains every unfixed formal instead of
+guessing an arity. Acyclic definitions have a dependency order. The separate
+TPL-11 rule bounds required specialization creation without executing module
+bodies. Exact structural solving and complete closure establish determined
+identities, or report a conflict or missing evidence. These are separate checks:
+cache reuse, aliasing and a concrete selected output cannot substitute for any
+one of them.
 
 ## Examples of rejected programs
 
-**Examples: fragments with the interfaces above assumed.**
+**Examples: fragments with the stated interfaces assumed.**
 
 | Case | Required diagnosis |
 |---|---|
-| `@>` contains a lone `...result` with no expression | Incomplete static result declaration |
-| Give a static result `&`, `[]`, a literal or ordinary value initializer | Invalid static result source form |
-| Define a result with the same complete name as a static formal | Duplicate static declaration |
-| Use a later receiver alias in an earlier expression | Out-of-scope static name |
-| Read a runtime `get` field as a static output | Not a declared static output |
-| Use a static result in an ordinary `>` or CALL-09 selector | Not a runtime result |
-| Mix named input with positional output at one level | Mixed static binding modes |
-| Supply input after a static output or output skip | Invalid static phase order |
-| Consume a third output of `.prepare dictionaries` | Excess static output position |
-| Rebind the fixed key of its returned family | Nonresidual input binding |
-| Receive a different determined Type into an existing alias | Conflicting immutable static equality |
-| Receive `.type identity` output only into a fresh alias | Underdetermined producer input |
-| Leave a producer input unused by its otherwise concrete output unknown | Underdetermined producer input, even when the selected result is known |
-| Select an output of an origin that has never been determined | Underdetermined producer origin; no member search |
-| Define `...a` through `...b` and `...b` through `...a` | Cyclic static value definition |
-| Return an invalid constructor application only in an unselected output | Invalid required producer specialization |
-| Choose a static output from a runtime `initialized` flag | Runtime-dependent static definition |
+| Put an ordinary variable, runtime initializer or `@!` body in `@...` | Invalid static-module source form |
+| Leave a result-pair name without its expression | Incomplete static result definition |
+| Give a result `&`, `[]`, a literal or ordinary initializer | Invalid static result source form |
+| Declare the same result pair twice | Duplicate static result definition |
+| Supply a positional binding, skip or bare capture marker | Invalid static binding source form |
+| Supply input after a named output at the same level | Invalid static phase order |
+| Repeat a foreign input or output label in one application | Duplicate named binding |
+| Read an ordinary runtime field as a static output | Not a declared static producer result |
+| Use a static producer as the value of a pair or argument | Static producer has no own Type/Template value |
+| Rebind a Template's already captured formal | Nonresidual input binding |
+| Ignore extra unfilled actual formals and use the result as Type | Incomplete Template where Type is required |
+| Receive a different determined Type into an existing output name | Conflicting immutable equality |
+| Receive identity output only into a fresh name with no input evidence | Underdetermined producer input |
+| Leave a producer input absent from an otherwise concrete output unknown | Underdetermined producer input |
+| Choose an origin by matching only an output name or desired Type | Missing independent producer evidence |
+| Define outputs through a direct or mutual expansion cycle | Cyclic static value definition |
+| Hide an invalid constructor application in an unselected output | Invalid required producer specialization |
+| Omit the ordinary named selector or select by ordinal | Missing or invalid static export reference |
+| Select a partial Template as an ordinary field Type | Concrete Type required |
+| Infer factory inputs from the ordinary field or its calls | Static export is not independently determined |
+| Depend on runtime data, list length, native effects or initialization flags | Runtime-dependent static definition |
 
-The source forms are canonical requirements, not evidence of compiler support.
-Acceptance cases are listed in the
-[template conformance matrix](../implementation/tools-and-conformance.md#static-module-templates).
+These source forms are requirements, not evidence of compiler support.

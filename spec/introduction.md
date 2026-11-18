@@ -2,10 +2,15 @@
 
 [Specification index](README.md)
 
-Ama programs are built from modules that keep their own state. Calling a module
+Ama programs execute ordinary modules that keep their own state. Calling a module
 means executing a particular instance. A result can itself be a module instance,
 a reference, or a list, so a program can construct behavior and then invoke it
 through the same ordinary call rules.
+
+Static modules, marked `@...`, instead connect types and templates during
+compilation. They have no runtime instance or mutable state; their results
+provide types for ordinary declarations. See
+[static modules](language/static-results.md#tpl-12) after learning ordinary calls.
 
 **Explanation.** Think of a module as a description of storage and behavior, and
 of an instance as one concrete set of that storage. A declaration creates owned
