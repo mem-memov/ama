@@ -5,7 +5,7 @@ ROOT := $(abspath ../../../..)
 C_COMPILER ?= gcc
 include $(ROOT)/tests/unit/planning/sources.mk
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/identity))
-SOURCES += compiler/frontend.c compiler/inputs.c compiler/load.c compiler/authoring/check.c
+include $(ROOT)/tests/unit/compiler/sources.mk
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/library))
 TEST_DEFINES := -DTEST_STANDARD_ROOT=\"$(ROOT)/stdlib/modules\" -DTEST_C_COMPILER='"$(C_COMPILER)"'
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/native/toolchain))

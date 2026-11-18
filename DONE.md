@@ -3856,6 +3856,50 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   full executable frontend integration remains T184. No runtime target,
   native callback, default initializer or hidden instance is executed here.
 
+<a id="t174"></a>
+
+- [x] **T174 — Reject native definitions with own free static formals early.**
+  Status: accepted 2026-11-18 on input 11d0b7e. Step record:
+  [native admission](docs/implementation/native-static-admission.md).
+  Prerequisites: T172, T173.
+  Rules: [TPL-13](spec/language/templates.md#tpl-13),
+  [CABI-06](spec/implementation/native-interface.md#cabi-06).
+  Boundary: semantic native admission and authoring/scaffold preparation.
+  Steps: (1) consume the completed own-formal inventory; (2) reject prohibited
+  definitions before specialization-specific header preparation; (3) compose
+  check-only and native-authoring commands with precise formal/definition errors.
+  Accept: explicit, pattern-introduced, implicit input/result and unused free
+  Type/Template formals fail even when all uses would bind them. Bound aliases,
+  returned constructors' own residuals and concrete dependencies are not mistaken
+  for owner formals. Existing concrete native declarations remain admissible;
+  generated concrete template/native composition is accepted later in T190.
+
+  Evidence: five pure policy, five frontend/lowering and two real CLI cases
+  cover every introduction kind, unused/fully bound definitions, aliases/foreign
+  residual controls, original marker/formal diagnostics, required/catalog and
+  normal/authoring paths, no artifacts on create/overwrite refusal, every new
+  frontend allocation refusal and original diagnostic lifetime. Pure/frontend
+  leaves pass strict C11 ASan/UBSan; compiler parent passes strict warnings as
+  errors. Existing library, complete relocation and concrete CLI check/scaffold
+  regressions pass. Relocation includes the full 1340-position application
+  allocation matrix and all interruption/recovery failure partitions.
+  Logs: /tmp/ama-t174-admission.log, /tmp/ama-t174-frontend-admission.log,
+  /tmp/ama-t174-compiler-parent-final.log, /tmp/ama-t174-cli.log,
+  /tmp/ama-t174-policy-sanitizers.log, /tmp/ama-t174-frontend-sanitizers.log,
+  /tmp/ama-t174-library.log, /tmp/ama-t174-relocation.log,
+  /tmp/ama-t174-concrete-check.log, /tmp/ama-t174-concrete-scaffold.log.
+  Integration required an explicit unresolved-static lowering guard for the
+  three T170 AST kinds and a shared frontend source list for nine consumers.
+  The old concrete-boundary regression now checks precise earlier kind errors
+  versus remaining legacy unsupported forms, without weakening rejection.
+  Documentation: 2456 ready inputs, zero debt; 208 Markdown files/2890 links,
+  214 canonical rules and 108 unchanged EBNF productions. Doxygen validates
+  1850 file pages, 7077 interfaces and all 420 referenced destinations. Actual
+  editor navigation opens TPL-13. The component record retains corrections,
+  owner/cost proofs, all collected results and explicit handoff limits.
+  No specification changes or default native specialization. Fully concrete
+  storage/header resolution and generated interoperability remain T184/T190.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

@@ -146,32 +146,16 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T173 accepted and archived in DONE.
-Input e4c8d92; [binding sequence record](docs/implementation/binding-sequences.md).
-All 62 affected cases, build/project regressions and documentation gates passed.
-Final archive-input refresh uses /tmp/ama-t173-doxygen-archive.log; collect an
-outstanding run before the task commit. Next ready task is T174 after that
-per-task commit. Full executable template integration remains T184.
+Current implementation checkpoint: T174 accepted and archived in DONE.
+Input 11d0b7e; [native admission record](docs/implementation/native-static-admission.md).
+All functional, full consumer, sanitizer, CLI and documentation gates passed.
+Final archive-input refresh uses /tmp/ama-t174-doxygen-archive.log; collect an
+outstanding run before the task commit. Next ready task is T175 after that
+per-task commit. No spec changes; full executable integration remains T184.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
-
-<a id="t174"></a>
-
-- [ ] **T174 — Reject native definitions with own free static formals early.**
-  Prerequisites: T172, T173.
-  Rules: [TPL-13](spec/language/templates.md#tpl-13),
-  [CABI-06](spec/implementation/native-interface.md#cabi-06).
-  Boundary: semantic native admission and authoring/scaffold preparation.
-  Steps: (1) consume the completed own-formal inventory; (2) reject prohibited
-  definitions before specialization-specific header preparation; (3) compose
-  check-only and native-authoring commands with precise formal/definition errors.
-  Accept: explicit, pattern-introduced, implicit input/result and unused free
-  Type/Template formals fail even when all uses would bind them. Bound aliases,
-  returned constructors' own residuals and concrete dependencies are not mistaken
-  for owner formals. Existing concrete native declarations remain admissible;
-  generated concrete template/native composition is accepted later in T190.
 
 ### Phase 2. Build exact static analysis components
 

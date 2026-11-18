@@ -4468,6 +4468,36 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
       }
     ]
   },
@@ -4624,6 +4654,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
       }
     ]
   },
@@ -4907,6 +4972,36 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
       }
     ]
   },
@@ -5078,6 +5173,36 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
       }
     ]
   },
@@ -8930,6 +9055,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
       }
     ]
   },
@@ -37191,7 +37321,7 @@
   },
   "tests/integration/Makefile": {
     "contract": "docs/implementation/source-tool-commands.md",
-    "purpose": "Dispatch independent child suites: launcher rebuild harness native source parser project semantic check scaffold execution.",
+    "purpose": "Dispatch independent child suites: examples failure-values standard-integer launcher rebuild harness native source parser project semantic check scaffold native-admission execution minimal objects.",
     "tests": [
       {
         "case": "it_exposes_implementation_status_through_the_real_launcher",
@@ -37347,6 +37477,16 @@
         "source": "tests/integration/products/main.c",
         "case": "it_preserves_products_on_refusal_and_refreshes_original_source_diagnostics",
         "command": "make -C tests/integration/products"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
       }
     ]
   },
@@ -37620,6 +37760,16 @@
         "case": "it_composes_source_transactions_relocation_debugging_and_verified_rebuilds",
         "source": "tests/integration/tools/workflows/main.c",
         "command": "make -C tests/integration/tools/workflows"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
       }
     ]
   },
@@ -43450,7 +43600,7 @@
   },
   "tests/unit/compiler/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch independent child suites: check status.",
+    "purpose": "Dispatch independent child suites: check status composition native-admission.",
     "tests": [
       {
         "case": "it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c",
@@ -43496,6 +43646,31 @@
         "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
         "command": "make -C tests/unit/compiler/composition",
         "source": "tests/unit/compiler/composition/main.c"
+      },
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
       }
     ]
   },
@@ -43934,6 +44109,31 @@
         "case": "it_rejects_symlinks_and_malformed_manifests_even_with_overwrite",
         "command": "make -C tests/unit/native/scaffold/ownership",
         "source": "tests/unit/native/scaffold/ownership/main.c"
+      },
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
       }
     ]
   },
@@ -49585,6 +49785,31 @@
         "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
         "command": "make -C tests/unit/semantic/static/bindings/failures",
         "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_every_native_own_formal_at_its_original_marker_and_introduction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_rejects_a_native_definition_even_when_every_source_use_binds_its_parameter",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templates",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_selects_original_formal_order_and_the_first_prohibited_native_definition",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
       }
     ]
   },
@@ -127961,6 +128186,31 @@
         "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
         "command": "make -C tests/unit/semantic/static/bindings/failures",
         "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_every_native_own_formal_at_its_original_marker_and_introduction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_rejects_a_native_definition_even_when_every_source_use_binds_its_parameter",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templates",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_selects_original_formal_order_and_the_first_prohibited_native_definition",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
       }
     ]
   },
@@ -128277,6 +128527,31 @@
         "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
         "command": "make -C tests/unit/semantic/static/bindings/failures",
         "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_rejects_every_native_own_formal_at_its_original_marker_and_introduction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_rejects_a_native_definition_even_when_every_source_use_binds_its_parameter",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templates",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_selects_original_formal_order_and_the_first_prohibited_native_definition",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
       }
     ]
   },
@@ -132525,6 +132800,457 @@
         "case": "it_retains_unknown_static_origins_until_independent_actual_metadata_is_supplied",
         "command": "make -C tests/unit/semantic/static/bindings/static",
         "source": "tests/unit/semantic/static/bindings/static/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/native/admission.h": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Admit native definitions using complete own static-formal identities, not placeholder spelling.",
+    "tests": [
+      {
+        "case": "it_rejects_every_native_own_formal_at_its_original_marker_and_introduction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_rejects_a_native_definition_even_when_every_source_use_binds_its_parameter",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templates",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_selects_original_formal_order_and_the_first_prohibited_native_definition",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/native/admission.c": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Reject native own-formal definitions before any specialization-dependent native preparation.",
+    "tests": [
+      {
+        "case": "it_rejects_every_native_own_formal_at_its_original_marker_and_introduction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_rejects_a_native_definition_even_when_every_source_use_binds_its_parameter",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templates",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_selects_original_formal_order_and_the_first_prohibited_native_definition",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      }
+    ]
+  },
+  "src/compiler/admission.c": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Collect immutable static source identities and gate native definitions before frontend preparation.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/sources.mk": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Share the explicit frontend translation units after a consumer's planning dependencies.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/native/main.c": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Check all native own-formal introductions independently of bindings or foreign residual metadata.",
+    "tests": [
+      {
+        "case": "it_rejects_every_native_own_formal_at_its_original_marker_and_introduction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_rejects_a_native_definition_even_when_every_source_use_binds_its_parameter",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templates",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_selects_original_formal_order_and_the_first_prohibited_native_definition",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/native/Makefile": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Verify definition-based native own-formal refusal and source-backed admission diagnostics.",
+    "tests": [
+      {
+        "case": "it_rejects_every_native_own_formal_at_its_original_marker_and_introduction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_rejects_a_native_definition_even_when_every_source_use_binds_its_parameter",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templates",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_selects_original_formal_order_and_the_first_prohibited_native_definition",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      },
+      {
+        "case": "it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction",
+        "command": "make -C tests/unit/semantic/static/native",
+        "source": "tests/unit/semantic/static/native/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/native-admission/main.c": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Prove native own-formal errors precede capture, ABI preparation and ordinary semantic completion.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/native-admission/Makefile": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Compose early native admission with check, required/candidate loads and authoring frontend paths.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/native-admission/support/failures.c": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Refuse each frontend allocation through lexical collection and preserve diagnostic owners.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/native-admission/support/lowering.c": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Verify strict-build prerequisite refusal of unresolved static syntax at executable lowering.",
+    "tests": [
+      {
+        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/unit/compiler/native-admission/support/paths.c": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Verify source-derived native policy on strict, authoring, catalog and explicit-required routes.",
+    "tests": [
+      {
+        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
+        "command": "make -C tests/unit/compiler/native-admission",
+        "source": "tests/unit/compiler/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/integration/native-admission/main.c": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Run real check and native-authoring processes against isolated copies of invalid native definitions.",
+    "tests": [
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/integration/native-admission/Makefile": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Verify actual CLI native-template refusal before companion/header publication.",
+    "tests": [
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/integration/native-admission/project/main": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Bind the native definition concretely without legalizing its own free formal.",
+    "tests": [
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/integration/native-admission/project/bad": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Supply a native definition with an otherwise unused own static Type formal.",
+    "tests": [
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      }
+    ]
+  },
+  "tests/integration/native-admission/project/plain": {
+    "contract": "docs/implementation/native-static-admission.md",
+    "purpose": "Supply an ordinary concrete Ama Type argument independent of the native definition.",
+    "tests": [
+      {
+        "case": "it_rejects_native_templates_in_check_mode_even_with_concrete_uses",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
+        "command": "make -C tests/integration/native-admission",
+        "source": "tests/integration/native-admission/main.c"
       }
     ]
   }

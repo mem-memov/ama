@@ -4,6 +4,8 @@
  *
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Set initialization credits before fallible work; destroy plans before semantics and loaded sources.
+ * [TPL-13](../../spec/language/templates.md#tpl-13) also gates preloaded catalog
+ * checks before input capture and semantic/header preparation.
  */
 #include <assert.h>
 #include "internal.h"
@@ -21,7 +23,8 @@ void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocato
 
 /**
  * Destroy initialized plan before semantic state, then proposed ABI sources and project storage;
- * reset the owner so borrowed outputs expire together.
+ * release static metadata before Project/source destruction and reset the owner
+ * so borrowed outputs expire together.
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 void compiler_frontend_destroy(CompilerFrontend *frontend) {
     if (frontend->plan_initialized) {
@@ -29,6 +32,9 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
     }
     if (frontend->semantic_initialized) {
         semantic_program_destroy(&frontend->semantic);
+    }
+    if (frontend->static_initialized) {
+        static_inventory_destroy(&frontend->static_inventory);
     }
     source_manager_destroy(&frontend->proposed_sources);
     project_inputs_destroy(&frontend->inputs);
@@ -72,7 +78,11 @@ bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots
         && compiler_frontend_finish(frontend, NULL);
 }
 
-/** Candidate validation reuses the complete compiler pipeline after explicit catalog preparation. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
+/** Candidate validation reuses the complete compiler pipeline after explicit
+ * catalog preparation, including native definition admission before capture.
+ * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03),
+ * [TPL-13](../../spec/language/templates.md#tpl-13).
+ */
 bool compiler_frontend_check_catalog(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry, const char *const *required, size_t required_count) {
     assert(!frontend->attempted);
@@ -81,5 +91,6 @@ bool compiler_frontend_check_catalog(CompilerFrontend *frontend, const ModuleRoo
         frontend->error = frontend->project.error;
         return false;
     }
-    return compiler_frontend_capture(frontend, roots, count) && compiler_frontend_finish(frontend, NULL);
+    return compiler_frontend_admit(frontend) && compiler_frontend_capture(frontend, roots, count)
+        && compiler_frontend_finish(frontend, NULL);
 }

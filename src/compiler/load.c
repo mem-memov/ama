@@ -6,6 +6,8 @@
  * Project failure retains source-backed diagnostics until frontend destruction; loading does not publish artifacts.
  * [DEP-03](../../spec/implementation/compiler.md#dep-03) captures contributing
  * source/native/configuration inputs before consumers may reuse this frontend.
+ * [TPL-13](../../spec/language/templates.md#tpl-13) requires scoped native
+ * admission before capture/authoring can proceed.
  */
 #include <assert.h>
 #include "internal.h"
@@ -13,7 +15,8 @@
 /**
  * Require no prior attempt; load the complete exact project closure and retain its diagnostic on
  * failure. This function neither emits nor runs native code.
- * Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01), [DEP-03](../../spec/implementation/compiler.md#dep-03). */
+ * Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01), [DEP-03](../../spec/implementation/compiler.md#dep-03),
+ * [TPL-13](../../spec/language/templates.md#tpl-13). */
 bool compiler_frontend_load_required(CompilerFrontend *frontend, const ModuleRoot *roots,
     size_t count, const char *entry, const char *const *required, size_t required_count) {
     assert(!frontend->attempted);
@@ -22,7 +25,7 @@ bool compiler_frontend_load_required(CompilerFrontend *frontend, const ModuleRoo
         frontend->error = frontend->project.error;
         return false;
     }
-    return compiler_frontend_capture(frontend, roots, count);
+    return compiler_frontend_admit(frontend) && compiler_frontend_capture(frontend, roots, count);
 }
 
 /** Track original or explicit candidate source bytes through the same sealed input graph. Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01), [DEP-03](../../spec/implementation/compiler.md#dep-03). */

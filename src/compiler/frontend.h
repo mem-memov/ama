@@ -4,26 +4,33 @@
  *
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Check once; source spans, proposed ABI and diagnostics stay valid until reverse destruction. No native compilation or execution occurs.
+ * [TPL-13](../../spec/language/templates.md#tpl-13) admits native own-formal
+ * definitions before source/native input tracking or authoring preparation.
  */
 #ifndef AMA_COMPILER_FRONTEND_H
 #define AMA_COMPILER_FRONTEND_H
 
 #include "planning/plan.h"
 #include "project/inputs/inputs.h"
+#include "semantic/static/native/admission.h"
 
 /**
- * Own project/source graph, exact input snapshot, optional authoring ABI, semantic graph and plan. Initialization
+ * Own project/source graph, scoped static inventory/native admission, exact input
+ * snapshot, optional authoring ABI, semantic graph and plan. Initialization
  * flags make every failed stage safely destructible; all exported views expire at destruction.
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
     Project project;
     ProjectInputs inputs;
+    StaticInventory static_inventory;
+    StaticNativeAdmission native_admission;
     SemanticProgram semantic;
     ProgramPlan plan;
     Diagnostic error;
     SourceAllocator allocator;
     SourceManager proposed_sources;
     bool authoring;
+    bool static_initialized;
     bool semantic_initialized;
     bool plan_initialized;
     bool attempted;

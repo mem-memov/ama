@@ -1,0 +1,6 @@
+# @file
+# @brief Bind the native definition concretely without legalizing its own free formal.
+@!
+instance
+.bad
+ ...type < .plain

@@ -4,6 +4,8 @@
  *
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Borrow roots/options during one attempt and retain diagnostics in the frontend owner.
+ * [TPL-13](../../spec/language/templates.md#tpl-13) requires native definition
+ * admission before authoring/header preparation.
  */
 #ifndef AMA_COMPILER_FRONTEND_INTERNAL_H
 #define AMA_COMPILER_FRONTEND_INTERNAL_H
@@ -21,6 +23,13 @@ bool compiler_frontend_load(CompilerFrontend *frontend, const ModuleRoot *roots,
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_load_required(CompilerFrontend *, const ModuleRoot *, size_t,
     const char *, const char *const *, size_t);
+/** Collect source-scoped static identities and reject native own formals before
+ * capture, ABI proposals or semantic/header preparation. Retain owners for all
+ * error records through frontend destruction; call once after a valid Project.
+ * Component contract: [TPL-13](../../spec/language/templates.md#tpl-13),
+ * [ARCH-03](../../spec/implementation/compiler.md#arch-03).
+ */
+bool compiler_frontend_admit(CompilerFrontend *);
 /** Capture the successfully loaded immutable project and exact entry policy before semantic completion. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_capture(CompilerFrontend *, const ModuleRoot *, size_t);
 /**

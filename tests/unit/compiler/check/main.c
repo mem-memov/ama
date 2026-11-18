@@ -238,6 +238,8 @@ static void it_retains_hyphenated_names_and_exact_type_identities_in_both_roots(
 /**
  * Refuse unresolved static syntax before publishing a concrete semantic graph;
  * this admission check prevents silent erasure before T184 supplies resolution.
+ * Known nongeneric applications fail earlier in scoped checking; unresolved
+ * valid static forms still reach the legacy concrete-only boundary.
  */
 static void it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundary(void) {
     const char *cases[] = {
@@ -252,7 +254,14 @@ static void it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundar
         setup_frontend();
         assert(!check_project() && !frontend.valid);
         assert(diagnostic_valid(&frontend.error));
-        assert(strstr(frontend.error.message, "Static syntax requires resolution") != NULL);
+        const char *expected = index < 3 ? "Static syntax requires resolution" : "A Type is not an applied constructor";
+        assert(strstr(frontend.error.message, expected) != NULL);
+        assert(frontend.static_initialized && !frontend.plan_initialized);
+        if (index < 3) {
+            assert(frontend.static_inventory.valid && frontend.semantic_initialized);
+        } else {
+            assert(!frontend.static_inventory.valid && !frontend.semantic_initialized);
+        }
         destroy_frontend();
     }
 }

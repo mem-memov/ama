@@ -8,13 +8,26 @@
  * and [FLOW-05](../../../spec/language/lists.md#flow-05) traversal frames to lower_foreach;
  * a saved position denotes the resolved successor, including the recorded repeat
  * check when suspension is the last statement in a loop body.
+ * [COMP-02](../../../spec/implementation/compiler.md#comp-02) requires resolved
+ * executable input: static source nodes are refused explicitly at this boundary.
  */
 #include "internal.h"
 
+/** Lower only executable source shapes whose static analysis is complete.
+ * Raw static formals/results/projections cannot silently become missing runtime
+ * edges; type terms and projections are resolved before this stage.
+ * Contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02),
+ * [COMP-02](../../../spec/implementation/compiler.md#comp-02).
+ */
 ControlNode *lower_statement(Lowering *lowering, const SemanticStatement *statement,
     ControlNode *after, ControlNode *break_target) {
     const AstNode *node = statement->syntax;
     switch (node->kind) {
+        case AST_STATIC_FORMAL:
+        case AST_STATIC_RESULT:
+        case AST_STATIC_PROJECTION:
+            plan_fail(lowering->plan, node->span, "Static source nodes must be resolved before executable lowering");
+            return NULL;
         case AST_FOREACH:
             return lower_foreach(lowering, statement, after);
         case AST_DECLARATION:
