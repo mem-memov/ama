@@ -25,6 +25,8 @@ static StaticResultFrame *frame(StaticResultEvaluation *evaluation) {
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates graphs.
  */
 bool static_result_push_expression(StaticResultEvaluation *evaluation, StaticResultUse *use) {
+    if (evaluation->top && evaluation->top->expression &&
+        !static_result_dependency(evaluation->plan, evaluation->top->expression, use, NULL)) { return false; }
     if (use->active) {
         if (evaluation->top) { evaluation->top->pending = true; evaluation->top->closed = false; }
         return true;
@@ -41,6 +43,8 @@ bool static_result_push_expression(StaticResultEvaluation *evaluation, StaticRes
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves checked reuse.
  */
 bool static_result_push_definition(StaticResultEvaluation *evaluation, StaticResultDefinitionUse *use) {
+    if (evaluation->top && evaluation->top->expression &&
+        !static_result_dependency(evaluation->plan, evaluation->top->expression, NULL, use)) { return false; }
     bool hit;
     if (!static_result_cache_read(evaluation->plan, use, &hit)) { return false; }
     if (hit) { return true; }

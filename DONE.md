@@ -4139,3 +4139,42 @@ this table is navigation, not a parallel semantic definition.
   Markdown/rule/unchanged-grammar checks and Doxygen links pass. Detailed
   commands, limits, proof and final archive refresh are in the linked step record.
   No spec changes; T180 owns final producer closure and alias publication.
+
+<a id="t180"></a>
+
+- [x] **T180 — Finalize complete producers and immutable result aliases.**
+  Status: accepted 2026-11-18 on input fa1cd3e. Step record:
+  [static publication](docs/implementation/static-publication.md).
+  Prerequisites: T172, T176, T179.
+  Rules: [TPL-12](spec/language/static-results.md#tpl-12),
+  [TPL-08](spec/language/templates.md#tpl-08).
+  Boundary: per-application closure obligations and publication of resolved
+  static results/lexically classified aliases.
+  Steps: (1) create distinct omitted-input terms for each explicit output phase;
+  (2) solve and require unique complete producer bindings before publishing;
+  (3) compose alias equality/visibility with partial returned constructors.
+  Accept: output equalities can close missing producer inputs; unused inputs,
+  unselected outputs and all-skipped phases still require full closure.
+  A fresh alias provides no type anchor; existing aliases require exact equality.
+  Returned Template residuals may remain bound as their own parameters; enclosing
+  producer inputs may not. Compare the same omission with and without outputs
+  in argument/field/result/constant contexts and reject noninvertible inference.
+
+  Evidence: 21 publication cases check independent receiver inference, fresh
+  alias/skip/unused-input rejection, noninvertible outputs, unknown actual origins,
+  canonical output order, immutable alias agreement/conflict, scoped owner identity,
+  returned partial constructors and six original contexts with/without output
+  syntax. Distinct output phases retain distinct omitted-input terms. Exact
+  required-source edges and cached RHS witnesses preserve transitive original
+  receiver producer closure while accepting compatible equality cycles. New checked
+  contexts count as actual provenance evidence; unchanged snapshots do not.
+  The receiver-proof and provenance-progress regressions failed before their
+  fixes and pass with positive controls. Strict and ASan/UBSan pass all 21
+  publication and 32 affected result cases; root build passes. Two full-operation
+  allocation partitions, invalid handles, counter limits, late conflicts and
+  counted zero-leak teardown pass. LSan's container limitation remains explicit.
+  Documentation passes 2655 ready inputs/zero debts and standalone headers;
+  Markdown/rule/unchanged-grammar checks and Doxygen validate 2006 file pages,
+  7775 interfaces, 426 canonical destinations and 6339 pages. Detailed commands,
+  proofs, source boundaries and final archive refresh are in the linked record.
+  No spec changes. Whole-project admission and ordinary validation remain T184/T185.

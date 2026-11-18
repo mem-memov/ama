@@ -32,6 +32,7 @@ typedef struct {
     size_t context_count;
     StaticResultUse *first_use;
     size_t use_count;
+    size_t dependency_count;
     StaticResultDefinitionUse *first_definition_use;
     size_t definition_use_count;
     StaticResultCache *first_cache;
@@ -76,4 +77,12 @@ bool static_result_context(StaticResultPlan *, const StaticCreationPath *, const
  */
 bool static_result_evaluate(StaticResultPlan *, const StaticResultContext *,
     const AstTypeExpression *, StaticResultOutcome *);
+/** Evaluate an original static result/alias as an independent guarded root.
+ * A receiver constraint can request its existing definition without creating
+ * a dependency from the producer that merely writes the receiver equality.
+ * Output remains untouched on failure; no executable admission is implied.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates definitions and equalities.
+ */
+bool static_result_evaluate_definition(StaticResultPlan *, const StaticResultContext *,
+    const StaticSymbol *, StaticResultOutcome *);
 #endif

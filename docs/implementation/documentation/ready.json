@@ -129154,6 +129154,11 @@
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
       {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
         "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
         "command": "make -C tests/unit/semantic/static/results/cache",
         "source": "tests/unit/semantic/static/results/cache/main.c"
@@ -129297,6 +129302,111 @@
         "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ]
   },
@@ -140093,6 +140203,11 @@
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
       {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
         "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
         "command": "make -C tests/unit/semantic/static/results/cache",
         "source": "tests/unit/semantic/static/results/cache/main.c"
@@ -140206,6 +140321,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ]
   },
@@ -142481,6 +142701,11 @@
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
       {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
         "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
         "command": "make -C tests/unit/semantic/static/results/cache",
         "source": "tests/unit/semantic/static/results/cache/main.c"
@@ -142624,6 +142849,111 @@
         "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ]
   },
@@ -143205,6 +143535,11 @@
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
       {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
         "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
         "command": "make -C tests/unit/semantic/static/results/cache",
         "source": "tests/unit/semantic/static/results/cache/main.c"
@@ -143318,6 +143653,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ],
     "standalone_header_command": [
@@ -143377,6 +143817,11 @@
       },
       {
         "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
         "command": "make -C tests/unit/semantic/static/results/context",
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
@@ -143542,6 +143987,11 @@
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
       {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
         "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
         "command": "make -C tests/unit/semantic/static/results/cache",
         "source": "tests/unit/semantic/static/results/cache/main.c"
@@ -143655,6 +144105,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ],
     "standalone_header_command": [
@@ -143714,6 +144269,11 @@
       },
       {
         "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
         "command": "make -C tests/unit/semantic/static/results/context",
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
@@ -143879,6 +144439,11 @@
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
       {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
         "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
         "command": "make -C tests/unit/semantic/static/results/cache",
         "source": "tests/unit/semantic/static/results/cache/main.c"
@@ -143992,6 +144557,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ],
     "standalone_header_command": [
@@ -144031,6 +144701,11 @@
       },
       {
         "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
         "command": "make -C tests/unit/semantic/static/results/context",
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
@@ -144122,6 +144797,11 @@
       },
       {
         "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
         "command": "make -C tests/unit/semantic/static/results/context",
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
@@ -144641,6 +145321,11 @@
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
       {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
         "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
@@ -144846,6 +145531,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ]
   },
@@ -145003,6 +145793,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ]
   },
@@ -145337,6 +146232,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ]
   },
@@ -145433,6 +146433,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ]
   },
@@ -145477,6 +146582,11 @@
       },
       {
         "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
         "command": "make -C tests/unit/semantic/static/results/context",
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
@@ -145594,6 +146704,111 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
       }
     ]
   },
@@ -145638,6 +146853,11 @@
       },
       {
         "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
         "command": "make -C tests/unit/semantic/static/results/context",
         "source": "tests/unit/semantic/static/results/context/main.c"
       },
@@ -146130,6 +147350,11 @@
         "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/results/context",
         "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
       }
     ]
   },
@@ -146154,6 +147379,11 @@
       },
       {
         "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
         "command": "make -C tests/unit/semantic/static/results/context",
         "source": "tests/unit/semantic/static/results/context/main.c"
       }
@@ -146294,6 +147524,1873 @@
       "c",
       "-fsyntax-only",
       "-"
+    ]
+  },
+  "src/semantic/static/publication/plan.h": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Own immutable static publications after exact producer and dependency closure.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/publication/resolve.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Publish an exact source occurrence only after complete producer and dependency closure.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/publication/error.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Preserve original static publication failures without allocating diagnostic state.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/publication/owner.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Own publication descriptors independently from borrowed static evaluation state.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/publication/internal.h": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Share checked publication allocation, closure and original receiver evidence operations.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/publication/closure/evidence.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Supply independent original receiver definitions without inventing producer dependency edges.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/publication/closure/solve.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Close one producer using monotone exact evidence rather than pass budgets or inverse guessing.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/publication/publish/alias.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Intern immutable canonical static aliases by exact lexical environment and symbol.",
+    "tests": [
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/publication/publish/outputs.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Publish every actual static output in declaration order and only then its received aliases.",
+    "tests": [
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/common.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Own immutable publications before their borrowed guarded result fixtures.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/Makefile": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Dispatch complete static producer and immutable publication acceptance.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/failures/main.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Refuse every observed publication allocation and preserve original failures and immutable identities.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/failures/Makefile": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Verify publication resource refusals, boundaries and late conflicts.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/values/main.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Verify immutable alias reuse, partial returned families and scoped publication identities.",
+    "tests": [
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/values/Makefile": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Verify canonical static values and immutable alias identities.",
+    "tests": [
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/closure/main.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Verify exact receiver inference, unresolved producer rejection and immutable static results.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/closure/Makefile": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Verify complete static producers and independent receiver inference.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/contexts/main.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Compare producer-output omission against partial, field, argument and constant namespace contexts.",
+    "tests": [
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/contexts/Makefile": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Verify output-phase omission across original static expression contexts.",
+    "tests": [
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/use/dependency.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Retain exact expression and guarded definition dependencies for later producer closure.",
+    "tests": [
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/publication/closure/internal.h": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Describe a finite selected-source closure worklist distinct from definition-cycle checks.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/publication/closure/graph.c": {
+    "contract": "docs/implementation/static-publication.md",
+    "purpose": "Close the exact reachable source and receiver-proof graph without rejecting equality cycles.",
+    "tests": [
+      {
+        "case": "it_closes_omitted_inputs_from_independent_existing_result_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_fresh_aliases_skips_and_unused_input_underdetermination",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_refuses_to_invent_inputs_lost_by_a_noninvertible_output",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_rejects_unknown_producer_origins_even_with_known_selected_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_treats_new_checked_source_contexts_as_real_provenance_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/closure",
+        "source": "tests/unit/semantic/static/publication/closure/main.c"
+      },
+      {
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_partial_returned_families_after_closing_their_producer",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_preserves_independent_applied_owner_publications",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_publishes_every_declared_output_even_when_all_receivers_are_skips",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_closes_selected_producers_without_hiding_or_requiring_unrelated_roots",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_rejects_conflicting_existing_alias_values_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_keeps_omitted_inputs_independent_between_explicit_output_phases",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_requires_original_receiver_alias_producers_to_close_before_reuse",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_follows_cached_receiver_rhs_dependencies_transitively",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_accepts_anchored_receiver_equality_cycles_without_recursive_closure",
+        "command": "make -C tests/unit/semantic/static/publication/values",
+        "source": "tests/unit/semantic/static/publication/values/main.c"
+      },
+      {
+        "case": "it_applies_output_phase_inference_uniformly_across_all_original_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/contexts",
+        "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      },
+      {
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures",
+        "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
     ]
   }
 }

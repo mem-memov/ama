@@ -73,10 +73,10 @@ static void it_reads_scoped_results_in_applied_environments(void) {
     const StaticResultDefinition *definition;
     assert(static_result_definition(&results, applied, first, &definition));
     StaticResultOutcome outcome;
-    assert(evaluate(context, definition->source->expression, &outcome) && outcome == STATIC_RESULT_READY);
+    assert(static_result_evaluate_definition(&results, context, first, &outcome) && outcome == STATIC_RESULT_READY);
     const StaticTerm *value;
     StaticConstraintOutcome solved;
-    assert(static_constraint_value(&solver, definition->source->value, &value, &solved));
+    assert(static_constraint_value(&solver, definition->value, &value, &solved));
     assert(solved == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
     destroy_results();
 }

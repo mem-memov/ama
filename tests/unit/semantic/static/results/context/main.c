@@ -135,12 +135,49 @@ static void it_unwinds_every_context_and_persistent_use_allocation_refusal(void)
     }
 }
 
+/** Required-source edges retain exact handles and deduplicate retries. A copied
+ * payload or wrapped count cannot manufacture a source/definition dependency.
+ */
+static void it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap(void) {
+    for (size_t mode = 0; mode < 7; mode++) {
+        setup_results();
+        const StaticCreationPath *root;
+        const StaticResultContext *context;
+        assert(static_creation_root(&guards, caller_environment, &root));
+        assert(static_result_context(&results, root, &context));
+        StaticResultUse *parent, *child;
+        StaticResultDefinitionUse *definition;
+        assert(static_result_use(&results, context, result_field("first"), NULL, &parent));
+        assert(static_result_use(&results, context, result_field("second"), NULL, &child));
+        assert(static_result_definition_use(&results, context, result_named(caller_module, "...first"),
+            NULL, (SourceSpan){0}, &definition));
+        StaticResultUse copied_parent = *parent, copied_child = *child;
+        StaticResultDefinitionUse copied_definition = *definition;
+        if (mode == 0) {
+            assert(static_result_dependency(&results, parent, child, NULL));
+            assert(static_result_dependency(&results, parent, NULL, definition));
+            size_t before = allocation_count;
+            assert(static_result_dependency(&results, parent, child, NULL));
+            assert(results.dependency_count == 2 && allocation_count == before);
+        } else {
+            if (mode == 6) { results.dependency_count = SIZE_MAX; }
+            assert(!static_result_dependency(&results, mode == 1 ? &copied_parent : parent,
+                mode == 2 ? &copied_child : mode == 3 || mode == 5 ? NULL : child,
+                mode == 3 ? &copied_definition : mode == 4 ? definition : NULL));
+            assert(results.status == (mode == 6 ? STATIC_RESULT_OUT_OF_MEMORY : STATIC_RESULT_INVALID));
+            assert(parent->first_dependency == NULL);
+        }
+        destroy_results();
+    }
+}
+
 /** Execute stable work identity, guard ordering and preparation refusals. */
 static void run(void) {
     it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests();
     it_checks_definition_ancestry_before_returning_existing_work_records();
     it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap();
     it_unwinds_every_context_and_persistent_use_allocation_refusal();
+    it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_counter_wrap();
 }
 /** Return success after counted full teardown. */
 int main(void) { run(); return 0; }

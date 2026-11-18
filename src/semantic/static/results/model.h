@@ -57,7 +57,8 @@ typedef enum { STATIC_RESULT_READY, STATIC_RESULT_PENDING } StaticResultOutcome;
 typedef struct StaticResultUse StaticResultUse;
 
 /** Definition occurrences retain checked dependency ancestry, including on a
- * value-cache hit under a new incoming path.
+ * value-cache hit under a new incoming path. checked_rhs borrows the original
+ * cache proof without pretending it belongs to this use's lexical environment.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) validates incoming paths.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves definition dependencies.
  */
@@ -67,10 +68,21 @@ typedef struct StaticResultDefinitionUse {
     const StaticResultContext *context;
     const StaticDefinitionPath *path;
     StaticResultUse *rhs;
+    const StaticResultUse *checked_rhs;
     StaticResultOutcome outcome;
     bool active;
     bool cache_hit;
 } StaticResultDefinitionUse;
+
+/** Exact checked source dependencies survive value-cache reuse. Receiver
+ * equalities remain separate and add no definition edge here.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) retains required producer provenance.
+ */
+typedef struct StaticResultDependency {
+    struct StaticResultDependency *next;
+    const StaticResultUse *expression;
+    const StaticResultDefinitionUse *definition;
+} StaticResultDependency;
 
 /** Persistent identity prevents resubmission from manufacturing fresh creation
  * contexts as apparent progress. Source value identity stays separate from its
@@ -85,13 +97,16 @@ struct StaticResultUse {
     const StaticTermApplication *prepared;
     const StaticApplicationRecord *application;
     const StaticResultContext *producer;
+    StaticResultDependency *first_dependency;
     StaticResultOutcome outcome;
     bool active;
     bool closed;
 };
 
 /** Cache independently computed, checked, closed definition values by their
- * complete owner identity and original symbol. No runtime instance is merged.
+ * complete owner identity and original symbol. The original RHS proof survives
+ * so publication can also inspect its independent receiver dependencies.
+ * No runtime instance is merged.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves result identity.
  */
 typedef struct StaticResultCache {
@@ -99,5 +114,6 @@ typedef struct StaticResultCache {
     const StaticTerm *owner;
     const StaticSymbol *symbol;
     const StaticTerm *value;
+    const StaticResultUse *rhs;
 } StaticResultCache;
 #endif

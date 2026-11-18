@@ -71,7 +71,7 @@ bool static_result_cache_store(StaticResultPlan *plan, StaticResultDefinitionUse
     StaticResultCache *cached = static_result_allocate(plan, sizeof(*cached));
     if (cached == NULL) { return false; }
     *cached = (StaticResultCache){.owner = owner, .symbol = use->definition->symbol,
-        .value = value, .next = plan->first_cache};
+        .value = value, .rhs = use->rhs, .next = plan->first_cache};
     plan->first_cache = cached;
     plan->cache_count++;
     *output = true;

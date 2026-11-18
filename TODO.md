@@ -146,35 +146,16 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T179 accepted on input e48fc3e;
-[static result equations](docs/implementation/static-projections.md) records
-component acceptance and the symbolic-cache prerequisite repair. T180 is the
-next ready task: complete producer closure and immutable alias publication.
-No spec edit authorized. Final T179 documentation refresh precedes its commit.
+Current implementation checkpoint: T180 accepted on input fa1cd3e.
+[Static publication](docs/implementation/static-publication.md) records exact
+producer/receiver proof closure and immutable results. T181 is next ready.
+Final archive/reference refresh precedes the T180 commit. No spec edit authorized.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
 
 ### Phase 2. Build exact static analysis components
-
-<a id="t180"></a>
-
-- [ ] **T180 — Finalize complete producers and immutable result aliases.**
-  Prerequisites: T172, T176, T179.
-  Rules: [TPL-12](spec/language/static-results.md#tpl-12),
-  [TPL-08](spec/language/templates.md#tpl-08).
-  Boundary: per-application closure obligations and publication of resolved
-  static results/lexically classified aliases.
-  Steps: (1) create distinct omitted-input terms for each explicit output phase;
-  (2) solve and require unique complete producer bindings before publishing;
-  (3) compose alias equality/visibility with partial returned constructors.
-  Accept: output equalities can close missing producer inputs; unused inputs,
-  unselected outputs and all-skipped phases still require full closure.
-  A fresh alias provides no type anchor; existing aliases require exact equality.
-  Returned Template residuals may remain bound as their own parameters; enclosing
-  producer inputs may not. Compare the same omission with and without outputs
-  in argument/field/result/constant contexts and reject noninvertible inference.
 
 ### Phase 3. Close and validate executable specializations
 

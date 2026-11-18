@@ -61,6 +61,12 @@ bool static_result_prepare(StaticResultPlan *, StaticResultUse *);
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) scopes work identities.
  */
 bool static_result_has_use(const StaticResultPlan *, const StaticResultUse *);
+/** Retain an exact visited expression or guarded definition dependency once.
+ * Only one child alternative is nonnull; no receiver equality becomes an edge.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves checked provenance.
+ */
+bool static_result_dependency(StaticResultPlan *, StaticResultUse *, const StaticResultUse *,
+    const StaticResultDefinitionUse *);
 /** Apply prepared operands through the actual-origin adapter and enter its
  * creation path before exposing a producer context. This does not evaluate
  * child definitions or static outputs. Pending origins retain the same record

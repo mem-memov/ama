@@ -28,6 +28,7 @@ bool static_result_cache_read(StaticResultPlan *plan, StaticResultDefinitionUse 
                 (void)static_result_dependencies(plan); return false;
             }
             use->cache_hit = true;
+            use->checked_rhs = cached->rhs;
             use->outcome = STATIC_RESULT_READY;
             *output = true;
             return true;
