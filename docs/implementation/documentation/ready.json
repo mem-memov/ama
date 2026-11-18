@@ -129059,26 +129059,6 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
         "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
@@ -129132,6 +129112,191 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
       }
     ]
   },
@@ -139886,6 +140051,161 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
       }
     ]
   },
@@ -140525,26 +140845,6 @@
         "source": "tests/unit/semantic/static/guards/failures/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
         "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
@@ -140573,6 +140873,36 @@
         "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
       }
     ],
     "standalone_header_command": [
@@ -140722,26 +141052,6 @@
         "source": "tests/unit/semantic/static/guards/failures/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
         "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
@@ -140770,6 +141080,36 @@
         "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
       }
     ],
     "standalone_header_command": [
@@ -141211,28 +141551,8 @@
   },
   "src/semantic/static/guards/cache/check.c": {
     "contract": "docs/implementation/static-guards.md",
-    "purpose": "Reject nonempty concrete paths with repeated original template labels, including cached descendants.",
+    "purpose": "Reject repeated known source templates across concrete caches and unresolved scoped paths.",
     "tests": [
-      {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
       {
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph",
@@ -141257,6 +141577,36 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
       }
     ]
   },
@@ -142036,26 +142386,6 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
         "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
@@ -142109,6 +142439,191 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
       }
     ]
   },
@@ -142167,26 +142682,6 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
         "case": "it_refuses_direct_and_mutual_active_static_result_definitions",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
@@ -142240,6 +142735,36 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
       }
     ]
   },
@@ -142450,6 +142975,16 @@
         "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
       }
     ]
   },
@@ -142474,6 +143009,16 @@
       },
       {
         "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       }
@@ -142613,6 +143158,3142 @@
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       }
+    ]
+  },
+  "src/semantic/static/results/plan.h": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Own static result source preparation without publishing aliases or executing producer bodies.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/results/error.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Propagate source-backed static result diagnostics without allocating during failure.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/model.h": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Retain source-bound static expressions and result definitions separately from their values.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/results/owner.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Own static result preparation separately from borrowed guard and term lifetimes.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/internal.h": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Share checked source-owner allocation and first-error operations for static result preparation.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/results/use/expression.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Intern expression uses with exact lexical creation and definition contexts.",
+    "tests": [
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/use/definition.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Preserve guarded definition occurrences before consulting any semantic value cache.",
+    "tests": [
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/expression/prepare.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Prepare one source operator with lexical child values and unchanged skip provenance.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/expression/apply.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Handoff prepared source operands to exact actual-origin application and creation guards.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/source/expression.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Bind exact original expression heads in their lexical owner without interpreting names as text paths.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/source/definition.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Bind original result and first receiver-alias definitions without conflating their expression values.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/scope/context.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Register exact guarded required scopes without manufacturing module roots.",
+    "tests": [
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/evaluate/expression.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Advance lexical expression dependencies through an explicit continuation stack.",
+    "tests": [
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/evaluate/stack.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Own iterative evaluation continuations and propagate actual child outcomes.",
+    "tests": [
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/evaluate/internal.h": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Define operation-local iterative static evaluation frames and narrow phase interfaces.",
+    "tests": [
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/results/evaluate/run.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Drive a single finite static evaluation attempt without recursive host calls or runtime execution.",
+    "tests": [
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/evaluate/definition.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Evaluate original static definitions while keeping aliases distinct from their producer Types.",
+    "tests": [
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/evaluate/receivers.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Equate static output receivers with exact actual producer result symbols.",
+    "tests": [
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/cache/membership.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Validate exact definition-use ownership before reading cached scope/value metadata.",
+    "tests": [
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/cache/store.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Cache only independently computed closed static definitions while preserving every producer input.",
+    "tests": [
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/results/cache/read.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Reuse independently checked closed definition values without bypassing incoming path checks.",
+    "tests": [
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/common.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Own result preparation before its borrowed guards, applications and immutable sources.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/Makefile": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Dispatch static expression, definition and projection equation components.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/source/main.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify original receiver identity, owner substitution and all source preparation refusals.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/source/Makefile": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify exact static expression and original result/alias binding boundaries.",
+    "tests": [
+      {
+        "case": "it_binds_original_results_and_first_alias_receivers_without_conflating_values",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_preserves_applied_type_and_template_captures_in_distinct_scopes",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_sources_definitions_receivers_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      },
+      {
+        "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/source",
+        "source": "tests/unit/semantic/static/results/source/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/evaluate/main.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify iterative static output equations against independently expected nominal values and guards.",
+    "tests": [
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/evaluate/Makefile": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify iterative guarded static expressions and output equations.",
+    "tests": [
+      {
+        "case": "it_evaluates_nested_inputs_and_actual_selected_output_values",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_returns_partial_families_and_uses_them_as_actual_heads",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_reads_scoped_results_in_applied_environments",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_unselected_output_definition_cycles_before_returning",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_retains_pending_unknown_producer_origins_without_guessing",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_equates_existing_result_receivers_without_definition_self_cycles",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_keeps_constant_results_uncached_for_unresolved_producer_inputs",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_checks_creation_ancestry_before_expanding_producer_definitions",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_unwinds_every_iterative_output_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_preserves_positional_output_skips_and_whole_producer_types",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_absent_runtime_and_over_arity_static_output_requests",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
+        "command": "make -C tests/unit/semantic/static/results/evaluate",
+        "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/cache/main.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify local closure, partial-family results and exact cache ownership/failure laws.",
+    "tests": [
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/cache/common.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Prepare independently justified bare-formal definition equations for cache boundary tests.",
+    "tests": [
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/cache/Makefile": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify checked closed definition caching before iterative evaluator integration.",
+    "tests": [
+      {
+        "case": "it_caches_only_complete_owner_keys_and_preserves_incoming_scoped_variables",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_preserves_closed_partial_template_values_and_distinct_result_symbols",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_keeps_constant_alias_values_uncached_until_every_producer_input_closes",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_refuses_unchecked_foreign_mismatched_and_overflowing_cache_publication",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      },
+      {
+        "case": "it_unwinds_every_cache_publication_and_reuse_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/cache",
+        "source": "tests/unit/semantic/static/results/cache/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/prepare/main.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify shallow expression preparation preserves lexical values and all original actions.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/prepare/Makefile": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify shallow scoped operand preparation and actual-origin handoff.",
+    "tests": [
+      {
+        "case": "it_preserves_nested_inputs_skips_and_output_provenance_without_evaluation",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_prepares_zero_inputs_and_rejects_copied_work_handles",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_unwinds_every_shallow_operand_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_refines_actual_origins_without_repeating_unchanged_source_work",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      },
+      {
+        "case": "it_recovers_a_constructor_from_an_independent_whole_expression_type",
+        "command": "make -C tests/unit/semantic/static/results/prepare",
+        "source": "tests/unit/semantic/static/results/prepare/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/context/main.c": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify persistent static work identities retain exact required and definition ancestry.",
+    "tests": [
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/context/Makefile": {
+    "contract": "docs/implementation/static-projections.md",
+    "purpose": "Verify guarded scope and persistent expression/definition use identities.",
+    "tests": [
+      {
+        "case": "it_preserves_scope_use_and_definition_ancestry_with_idempotent_requests",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_checks_definition_ancestry_before_returning_existing_work_records",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_contexts_definition_paths_receivers_and_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      },
+      {
+        "case": "it_unwinds_every_context_and_persistent_use_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/context",
+        "source": "tests/unit/semantic/static/results/context/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/cache/view.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Retain unresolved required scopes in cache-path validation before their complete keys exist.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/cache/view.h": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Define temporary exact validation classes for complete keys and unresolved lexical owners.",
+    "tests": [
+      {
+        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_cached_descendants_before_publishing_a_new_creation",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_rechecks_all_incoming_provenance_when_symbolic_keys_close",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_descendants_against_a_still_symbolic_ancestor",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
+        "command": "make -C tests/unit/semantic/static/guards/cache",
+        "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph",
+        "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_guards_path_vertex_definition_and_search_counter_limits",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
+        "command": "make -C tests/unit/semantic/static/guards/failures",
+        "source": "tests/unit/semantic/static/guards/failures/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   }
 }

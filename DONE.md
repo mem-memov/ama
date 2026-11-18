@@ -4102,3 +4102,40 @@ this table is navigation, not a parallel semantic definition.
 | PAR-01–PAR-08 | T006, T013, T052, T061, T100–T106 |
 | EMBED-01–EMBED-08 | T123–T131, T116–T122 |
 | TOOL-01–TOOL-04 | T110–T115 |
+
+<a id="t179"></a>
+
+- [x] **T179 — Generate guarded static result projections and equations.**
+  Status: accepted 2026-11-18 on input e48fc3e. Step record:
+  [static result equations](docs/implementation/static-projections.md).
+  Prerequisites: T176, T177, T178.
+  Rules: [TPL-12](spec/language/static-results.md#tpl-12),
+  [TPL-11](spec/language/templates.md#tpl-11).
+  Boundary: static result definition evaluation and projection descriptors,
+  using known origins, normalized bindings, finite terms and checked expansion.
+  Steps: (1) bind declared output definitions and actual-origin lookup;
+  (2) expand required definitions through T178 and generate exact receiver
+  equations; (3) compose nested/returned constructors and static namespaces.
+  Accept: concrete/symbolic Types and partial Template results, named/positional
+  projection and all-skipped output phases preserve provenance; the expression
+  still denotes its producer Type. Validate unselected outputs and reject
+  unknown origins/members, runtime-field selection and definition cycles.
+  Static processing executes no body, default constructor or native effect;
+  source-located diagnostics accompany each failure from the start.
+
+  Evidence: 31 named result component cases cover original scoped source/alias
+  identities, persistent checked uses, complete definition caching, shallow
+  operands, exact actual-origin refinement/recovery, iterative nested evaluation,
+  returned partial constructors, named/positional output equations, skipped and
+  unselected outputs, existing receivers, invalid fields/arity, Pending origins,
+  creation/definition cycles and every observed evaluation allocation refusal.
+  Source/selected values remain distinct and all accepted fixtures unwind to zero.
+  Repaired T178 cached-descendant validation across unresolved ancestry with two
+  source regressions; all 27 affected guard cases and exhaustive graph oracles
+  pass strict and ASan/UBSan acceptance. Initial 30 result cases plus final
+  13-case evaluator delta pass strict and ASan/UBSan; root build passes. LSan's
+  established container restriction is separate from counted ownership checks.
+  Documentation passes 2633 ready inputs/zero debts and standalone headers;
+  Markdown/rule/unchanged-grammar checks and Doxygen links pass. Detailed
+  commands, limits, proof and final archive refresh are in the linked step record.
+  No spec changes; T180 owns final producer closure and alias publication.

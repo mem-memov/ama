@@ -40,6 +40,13 @@ outgoing paths against the new ancestry before allowing expansion. Binding
 equality cannot silently drop provenance. Different specializations of the same
 source remain distinct vertices; merging solely by source name is forbidden.
 
+Path validation additionally retains unresolved required owners as temporary
+exact-scope classes. Frames with the same guard owner use the same original
+environment and captured variables; unrelated unresolved environments stay
+distinct. A partial-endpoint edge remains a real recorded use before either
+endpoint has a concrete key. Follow it together with complete cached edges when
+checking known original origins. This view publishes no symbolic cache key.
+
 Definition identity uses the original result/alias plus its scoped owner; after
 owner normalization equivalent complete keys must preserve all edges. Check a
 new definition dependency and the active definition ancestry before following
@@ -83,10 +90,10 @@ denotes a real creation path; no captured Type or syntactic argument relation is
 inserted. Appending a known template origin is permitted exactly when it is not
 already on that path. Frames retain symbolic environments without guessing keys.
 
-For a finite concrete graph, the path predicate is equivalent to absence of a
+For the finite validation graph, the path predicate is equivalent to absence of a
 nonempty directed path from any template vertex to another vertex with the same
 original source template. Search each template vertex using a visited set of
-full concrete vertices. This checks cached descendants under all incoming paths,
+complete-key and exact unresolved-scope classes. This checks cached descendants under all incoming paths,
 permits ordinary-only reference cycles, terminates on finite vertices and never
 combines unequal specialization identities. Keep witness edges for diagnostics.
 The implementation and independent graph domains below discharge this algorithm
@@ -107,8 +114,15 @@ survives closure; equivalent full keys share a vertex and all original edges.
 For every forbidden path, start the reachability search at its first repeated
 template origin and reach its later occurrence. Conversely, every reported
 nonempty same-origin reachability path is precisely a forbidden creation path.
-Visited full vertices preserve reachability while bounding work, including through
+Visited validation classes preserve reachability while bounding work, including through
 ordinary cycles. Syntactic capture nesting never supplies these graph edges.
+
+Before closure, an exact scoped owner represents the same immutable environment
+and captured variables at every incoming use. Unioning its recorded outgoing
+requirements therefore preserves real paths for every subsequent substitution.
+Different unresolved environments are not joined. After closure, their exact
+normal form authorizes canonical joining. Thus known repeated source origins
+cannot hide behind either a symbolic ancestor or a symbolic cached descendant.
 
 Definition identity is an original result/alias plus its lexical environment.
 Once closed, only equal complete owner Type and the same original symbol merge.
@@ -147,7 +161,13 @@ their separately documented costs. Identity and membership lists are exact linea
 scans. Vertex lookup is O(V), key representative selection O(D²), and recording
 newly concrete occurrence edges O(F). No near-linear aggregate claim is made.
 
-The creation checker takes O(V(V + E)) time and O(V) temporary search storage.
+Let S be distinct unresolved required owners and N = V + S. The all-concrete
+creation checker takes O(F + V(V + E)) time and O(V) temporary search storage.
+With partial-endpoint edges, exact scoped-class lookup and occurrence scans take
+O(V + F S + N(N + E + N F)) time and O(V + F) scratch in the conservative case.
+Only actual unresolved frames contribute extra node capacity; known concrete
+adjacency is reused directly. This deliberately includes linear scope lookup
+and makes no near-linear mixed-graph claim.
 The definition checker scans original scoped nodes for each representative's edge
 union, taking O(D³ + D H) time and O(D) temporary storage. It checks all actual
 representatives rather than a source-name approximation. A refresh with R genuine
@@ -162,7 +182,7 @@ scratch is released immediately. On semantic rejection, its already allocated
 search array transfers to a dedicated witness arena so complete original edge
 chains remain inspectable without allocation during error reporting. Active
 rejection retains existing immutable ancestry plus the closing site. Fixed
-diagnostic contexts identify original definitions; T183 owns final chain rendering.
+diagnostic contexts identify original definitions; T189 owns final chain rendering.
 
 Counters/products are checked before the corresponding publication/allocation.
 Failures can retain valid owner/key/node/edge preparation inside guard or borrowed

@@ -35,6 +35,7 @@ typedef struct {
     size_t edge_count;
     const StaticCreationSearch *creation_witness;
     const StaticCreationEdge *closing_edge;
+    const StaticCreationPath *closing_creation_path;
     bool refreshed;
     size_t observed_paths;
     size_t observed_equations;

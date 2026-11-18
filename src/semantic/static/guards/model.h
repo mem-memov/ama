@@ -63,14 +63,19 @@ struct StaticCreationVertex {
     StaticCreationEdge *last;
 };
 
-/** Search entries retain the exact cached-edge witness; parent links refer to
- * the same retained scratch array only on rejection, not to a recursive stack.
+/** Search entries retain an exact concrete vertex or unresolved scoped owner.
+ * Path is the original incoming use; edge is present only for a concrete edge.
+ * Parent links refer to retained scratch on rejection, never a recursive stack.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) reports the rejected path.
  */
 typedef struct StaticCreationSearch {
     StaticCreationVertex *vertex;
+    const StaticGuardOwner *owner;
+    const StaticModule *origin;
+    size_t ordinal;
     struct StaticCreationSearch *parent;
     StaticCreationEdge *edge;
+    const StaticCreationPath *path;
 } StaticCreationSearch;
 
 /** Closure concerns registered path keys only; unknown application requests

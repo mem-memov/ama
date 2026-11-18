@@ -146,37 +146,17 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T178 accepted and archived in DONE.
-Input 8cfe3f6; [static dependency guards](docs/implementation/static-guards.md).
-Strict guard parent and final captured-origin cases, all 25 cases under sanitizers,
-root build, complete per-file/header coverage and first Doxygen generation pass.
-Final archive-input refresh: /tmp/ama-t178-doxygen-archive.log; collect before
-committing the task. Next ready task is T179 after the per-task commit.
-No specification change or executable support claim.
+Current implementation checkpoint: T179 accepted on input e48fc3e;
+[static result equations](docs/implementation/static-projections.md) records
+component acceptance and the symbolic-cache prerequisite repair. T180 is the
+next ready task: complete producer closure and immutable alias publication.
+No spec edit authorized. Final T179 documentation refresh precedes its commit.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
 
 ### Phase 2. Build exact static analysis components
-
-<a id="t179"></a>
-
-- [ ] **T179 — Generate guarded static result projections and equations.**
-  Prerequisites: T176, T177, T178.
-  Rules: [TPL-12](spec/language/static-results.md#tpl-12),
-  [TPL-11](spec/language/templates.md#tpl-11).
-  Boundary: static result definition evaluation and projection descriptors,
-  using known origins, normalized bindings, finite terms and checked expansion.
-  Steps: (1) bind declared output definitions and actual-origin lookup;
-  (2) expand required definitions through T178 and generate exact receiver
-  equations; (3) compose nested/returned constructors and static namespaces.
-  Accept: concrete/symbolic Types and partial Template results, named/positional
-  projection and all-skipped output phases preserve provenance; the expression
-  still denotes its producer Type. Validate unselected outputs and reject
-  unknown origins/members, runtime-field selection and definition cycles.
-  Static processing executes no body, default constructor or native effect;
-  source-located diagnostics accompany each failure from the start.
 
 <a id="t180"></a>
 

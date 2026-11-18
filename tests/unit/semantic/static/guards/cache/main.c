@@ -200,12 +200,82 @@ static void it_rechecks_all_incoming_provenance_when_symbolic_keys_close(void) {
     destroy_guards();
 }
 
+/** The cached B->A->Leaf path is complete, but a new incoming A root still
+ * has symbolic inputs. Its known source A must participate before key closure;
+ * postponing its edge until concrete normalization would conceal A->B->A.
+ */
+static void it_checks_cached_descendants_against_a_still_symbolic_ancestor(void) {
+    directory(STATIC_SCOPE_ROOT_DIRECTORY);
+    file("generated/static scope/leaf", leaf_source);
+    setup_guards("@<\n...element\n...next\n ...element\n@!\nanchor&\n..integer\n"
+        "child&\n...next\n ...element < ...element\nleaf&\n.leaf\n ...element < ..integer\n"
+        "fixed&\n.other\n ...element < ..integer\n ...next < .main\n  ...next < .leaf\n", family_source);
+    const StaticModule *leaf_module = static_module_find(&inventory, project_find(&project, ".leaf"));
+    const StaticTerm *leaf;
+    assert(leaf_module && static_term_nominal(&terms, leaf_module, NULL, 0, (SourceSpan){0}, &leaf));
+    const StaticTerm *a_family = family(caller_module, leaf);
+    const StaticCreationPath *b = root(target_module, a_family);
+    const StaticCreationPath *a = child(b);
+    (void)child(a);
+    const StaticCreationPath *symbolic;
+    assert(static_creation_root(&guards, caller_environment, &symbolic));
+    assert(symbolic->vertex == NULL);
+    StaticApplicationContext context;
+    assert(static_application_context(&applications, caller_environment, field(caller_module, "fixed"), &context));
+    StaticApplicationInput inputs[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
+        {.formal = application_formal(target_module, 1), .value = a_family}};
+    const StaticApplicationRecord *record;
+    assert(static_application_forward(&applications, target_constructor, inputs, 2, context, &record));
+    assert(record->value == b->owner->value);
+    const StaticCreationPath *output = NULL;
+    StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
+    assert(!static_creation_enter(&guards, symbolic, record, &output, &outcome));
+    assert(output == NULL && guards.status == STATIC_GUARD_CONFLICT && symbolic->vertex == NULL);
+    assert(guards.creation_witness && guards.rejected_origin == caller_module);
+    destroy_guards();
+}
+
+/** Neither repeated A has a complete key. The cached B owner is concrete, but
+ * its known A descendant still has omitted Type/Template inputs. Validation
+ * must retain that symbolic suffix as well as the new symbolic ancestor.
+ */
+static void it_checks_cached_symbolic_descendants_without_publishing_concrete_edges(void) {
+    directory(STATIC_SCOPE_ROOT_DIRECTORY);
+    file("generated/static scope/leaf", leaf_source);
+    setup_guards("@<\n...element\n...next\n ...element\n@!\nanchor&\n..integer\n"
+        "fixed&\n.other\n ...element < ..integer\n ...next < .leaf\n",
+        "@<\n...element\n...next\n ...element\n@!\ndeferred&\n.main\n");
+    const StaticModule *leaf_module = static_module_find(&inventory, project_find(&project, ".leaf"));
+    const StaticTerm *leaf;
+    assert(leaf_module && static_term_nominal(&terms, leaf_module, NULL, 0, (SourceSpan){0}, &leaf));
+    const StaticCreationPath *b = root(target_module, leaf);
+    const StaticCreationPath *deferred = symbolic_child(b, "deferred", caller_constructor);
+    assert(deferred->vertex == NULL && guards.edge_count == 0);
+    const StaticCreationPath *symbolic;
+    assert(static_creation_root(&guards, caller_environment, &symbolic));
+    StaticApplicationContext context;
+    assert(static_application_context(&applications, caller_environment, field(caller_module, "fixed"), &context));
+    StaticApplicationInput inputs[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
+        {.formal = application_formal(target_module, 1), .value = leaf}};
+    const StaticApplicationRecord *record;
+    assert(static_application_forward(&applications, target_constructor, inputs, 2, context, &record));
+    const StaticCreationPath *output = NULL;
+    StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
+    assert(!static_creation_enter(&guards, symbolic, record, &output, &outcome));
+    assert(output == NULL && guards.status == STATIC_GUARD_CONFLICT && guards.creation_witness);
+    assert(guards.closing_edge == NULL && guards.closing_creation_path == deferred);
+    assert(symbolic->vertex == NULL && deferred->vertex == NULL && guards.vertex_count == 1 && guards.edge_count == 0);
+    destroy_guards();
+}
+
 /** Execute finite concrete paths, warmed descendants and delayed key merging. */
 static void run(void) {
     it_preserves_distinct_specializations_and_shared_finite_tails();
     it_rejects_a_captured_own_constructor_even_with_finite_next_captures();
     it_rechecks_cached_descendants_before_publishing_a_new_creation();
     it_rechecks_all_incoming_provenance_when_symbolic_keys_close();
+    it_checks_cached_descendants_against_a_still_symbolic_ancestor();
+    it_checks_cached_symbolic_descendants_without_publishing_concrete_edges();
 }
 /** Return success after counted guard and source teardown. */
 int main(void) { run(); return 0; }

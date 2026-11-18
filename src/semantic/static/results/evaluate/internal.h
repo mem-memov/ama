@@ -1,0 +1,65 @@
+/** @file
+ * @brief Define operation-local iterative static evaluation frames and narrow phase interfaces.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) orders guarded dependencies.
+ * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) bounds scratch lifetime.
+ */
+#ifndef AMA_STATIC_RESULT_EVALUATE_INTERNAL_H
+#define AMA_STATIC_RESULT_EVALUATE_INTERNAL_H
+#include "../internal.h"
+
+/** A continuation retains one source phase and its next original dependency.
+ * Nested frames never consume the host call stack.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves dependency scope.
+ */
+typedef struct StaticResultFrame {
+    struct StaticResultFrame *parent;
+    StaticResultUse *expression;
+    StaticResultDefinitionUse *definition;
+    const StaticResultContext *context;
+    const StaticTermInput *input;
+    size_t output;
+    unsigned phase;
+    bool pending;
+    bool closed;
+    bool found_context;
+} StaticResultFrame;
+
+/** Scratch frames expire at the end of one finite evaluation attempt.
+ * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) separates temporary state.
+ */
+typedef struct {
+    StaticResultPlan *plan;
+    SourceArena arena;
+    StaticResultFrame *top;
+} StaticResultEvaluation;
+
+/** Push only inactive expression work; active equations defer without recursion.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves logical Pending.
+ */
+bool static_result_push_expression(StaticResultEvaluation *, StaticResultUse *);
+/** Entered definition handles are cache checked before expanding their RHS.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) forbids cache bypass.
+ */
+bool static_result_push_definition(StaticResultEvaluation *, StaticResultDefinitionUse *);
+/** Pop one completed frame, propagating readiness/closure to its continuation.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates structural and closed results.
+ */
+void static_result_pop(StaticResultEvaluation *, StaticResultOutcome, bool);
+/** Advance one expression phase; descendants are pushed, never called recursively.
+ * [TPL-08](../../../../../spec/language/templates.md#tpl-08) preserves lexical application.
+ */
+bool static_result_expression_step(StaticResultEvaluation *);
+/** Advance one result/alias definition phase with distinct producer/value terms.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves selected results.
+ */
+bool static_result_definition_step(StaticResultEvaluation *);
+/** Generate only actual output receiver equalities; receiver reads add no
+ * definition dependency by themselves.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates equality and definition graphs.
+ */
+bool static_result_receivers(StaticResultPlan *, StaticResultUse *);
+/** Query selected closure without demanding unrelated registered roots.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires complete producers.
+ */
+bool static_result_closed(StaticResultPlan *, const StaticTerm *, bool *);
+#endif
