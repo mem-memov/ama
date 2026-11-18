@@ -147,17 +147,10 @@ change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
 Specification clarification [T200](DONE.md#t200) is accepted and archived.
-T201's implementation alignment is accepted in [DONE](DONE.md#t201); T181's
-unfinished local work is preserved and ready to resume.
-Current implementation checkpoint: T201 accepted on input 7469fd4; T181's prior
-partial work remains preserved on its implementation input 78a2099.
-[Static constants](docs/implementation/static-constants.md) records dependent
-shared types, deferred namespace reads and qualified-source provenance.
-T180 is accepted, archived and committed. The user has resolved
-[AMB-012](AMBIGUITIES.md#amb-012) and authorized T200's specification correction.
-T181 resumes after T201's accepted guard/consumer alignment with that contract.
-T201 checks and the continuation checkpoint are recorded in its linked component
-note; design acceptance alone is not compiler support.
+T201's guard alignment and T181's dependent constant metadata are accepted in
+[DONE](DONE.md). The next ready task is T182, ordinary typed connections and
+nested-field constraints. [Static constants](docs/implementation/static-constants.md)
+records the consumed declaration/namespace/initializer boundary and its evidence.
 
 ## Current tasks
 
@@ -166,29 +159,6 @@ note; design acceptance alone is not compiler support.
 ### Phase 2. Build exact static analysis components
 
 ### Phase 3. Close and validate executable specializations
-
-<a id="t181"></a>
-
-- [ ] **T181 — Resolve dependent constant types and explicit namespaces.**
-  Status: ready to resume after T201 and the resolved [AMB-012](AMBIGUITIES.md#amb-012),
-  2026-11-18, on implementation input 78a2099. The task remains unfinished.
-  Step record:
-  [static constants](docs/implementation/static-constants.md).
-  Prerequisites: T174, T177, T180, T201.
-  Rules: [CONST-03](spec/language/declarations.md#const-03),
-  [CONST-06](spec/language/declarations.md#const-06),
-  [TPL-12](spec/language/static-results.md#tpl-12).
-  Boundary: static declared-type and namespace resolution for shared values and
-  constant sources; it supplies typed evidence, not constant runtime execution.
-  Steps: (1) bind `@=` types to collected owner formals without new introductions;
-  (2) resolve independent concrete namespaces or guarded output-phase equations;
-  (3) compose declared-member types with the solver and static projections.
-  Accept: result-introduced types, empty typed lists and nested templates work;
-  named/positional reads select only declared `@=` members. Keep direct qualified
-  constants distinct from atomic placeholders. No constant name or runtime
-  receiver can choose an open namespace; output equalities may close it first.
-  Register symbolic obligations for later owner substitution without premature
-  lookup. Reject open/unknown namespaces, invalid storage/operations and members.
 
 <a id="t182"></a>
 

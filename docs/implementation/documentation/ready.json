@@ -127055,6 +127055,51 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
       }
     ],
     "standalone_header_command": [
@@ -127673,6 +127718,51 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
       }
     ],
     "standalone_header_command": [
@@ -129407,6 +129497,181 @@
         "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
         "command": "make -C tests/unit/semantic/static/publication/contexts",
         "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
       }
     ]
   },
@@ -129798,6 +130063,51 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
       }
     ],
     "standalone_header_command": [
@@ -129818,7 +130128,7 @@
   },
   "src/semantic/static/events/ast.c": {
     "contract": "docs/implementation/static-symbols.md",
-    "purpose": "Collect static source occurrences through owning AST sections and nested bodies.",
+    "purpose": "Collect static Type and qualified constant occurrences through owning AST sections and bodies.",
     "tests": [
       {
         "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
@@ -129899,6 +130209,51 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
       }
     ]
   },
@@ -130543,6 +130898,51 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
       }
     ]
   },
@@ -147084,6 +147484,61 @@
         "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/recursion",
         "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
       }
     ]
   },
@@ -149868,6 +150323,2528 @@
         "source": "tests/unit/semantic/static/publication/recursion/main.c",
         "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/recursion"
+      }
+    ]
+  },
+  "src/semantic/static/constants/plan.h": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Own dependent shared declaration and namespace metadata without constructing constant values.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/constants/error.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Preserve first constant type/namespace errors and longer-lived dependency diagnostics.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "src/semantic/static/constants/owner.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Own constant type metadata separately from canonical static values and runtime shared storage.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "src/semantic/static/constants/scope.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Validate explicit required namespace contexts without using them to infer namespaces.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "src/semantic/static/constants/internal.h": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Share checked constant metadata allocation and first-error propagation.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/constants/read/register.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Register original constant namespace reads without selecting an unknown owner's members.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      }
+    ]
+  },
+  "src/semantic/static/constants/read/select.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Select shared fields only after independently closing their namespace and checked source scope.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      }
+    ]
+  },
+  "src/semantic/static/constants/read/surface.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Snapshot the unique own constant surface of an independently determined concrete Type.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      }
+    ]
+  },
+  "src/semantic/static/constants/read/members.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Bind selected own constant declarations after concrete namespace lookup.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      }
+    ]
+  },
+  "src/semantic/static/constants/source/register.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Register original qualified sources through collected loaded dependency identities.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "src/semantic/static/constants/source/select.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Select qualified own constants in independently checked fixed namespace scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "src/semantic/static/constants/initializer/resolve.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Supply exact typed initializer equations while preserving unresolved static work.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "src/semantic/static/constants/initializer/register.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Register original shared initializer Type obligations without evaluating values.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "src/semantic/static/constants/declaration/bind.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Bind exact shared declaration Type obligations without interpreting initializer values.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/common.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Own constant metadata before its borrowed publication, result and source fixtures.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/Makefile": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Dispatch dependent constant types and independently resolved namespace components.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/read/main.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify deferred constant reads retain original namespace and saved-read syntax without member inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/read/Makefile": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify complete static producers and independent receiver inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_registers_unknown_namespaces_without_using_requested_members_as_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_preserves_pending_named_and_positional_saved_read_shapes",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/read/main.c",
+        "case": "it_unwinds_every_deferred_namespace_registration_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/read"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/qualified/main.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify qualified own constant resolution without synthetic syntax or creation edges.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/qualified/Makefile": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify original qualified constant provenance and independently checked namespaces.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/selection/main.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify independent concrete namespace selection and scoped own constant Type obligations.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/selection/Makefile": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify complete static producers and independent receiver inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_selects_named_and_positional_own_constants_before_completing_member_types",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_uses_independent_static_output_inference_before_namespace_member_selection",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_member_or_receiver_driven_namespace_completion",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_rejects_duplicate_constant_names_and_unselected_reference_storage",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/selection/main.c",
+        "case": "it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes",
+        "command": "make -C tests/unit/semantic/static/constants/selection"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/failures/main.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify namespace/member selection resource refusal, actual-scope checks and late conflicts.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/failures/Makefile": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify complete static producers and independent receiver inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_unwinds_every_direct_and_projected_namespace_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_rechecks_namespace_equations_before_reusing_existing_selections",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/failures/main.c",
+        "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
+        "command": "make -C tests/unit/semantic/static/constants/failures"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/initializer/main.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify local/qualified typed initializer inference, literal noninference and failure ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/initializer/Makefile": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify exact shared initializer Type evidence without constant value execution.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_from_local_and_qualified_constants_but_never_literal_bytes",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_infers_nested_template_and_list_element_types_from_own_constant_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_rejects_runtime_and_mutable_shared_initializer_sources",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_checks_initializer_identity_counter_bounds_and_type_conflicts",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/initializer/main.c",
+        "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/initializer"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/declaration/main.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify exact dependent shared declarations, empty list element Types and preparation refusals.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/declaration/Makefile": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify complete static producers and independent receiver inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_symbolic_shared_types_without_using_literals_as_type_anchors",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_resolves_shared_types_in_their_actual_applied_owner_environment",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_binds_result_introduced_parameters_in_earlier_empty_shared_lists",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_rejects_shared_reference_and_reference_list_storage_before_type_work",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_refuses_foreign_shared_identities_and_declaration_counter_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/declaration/main.c",
+        "case": "it_unwinds_every_dependent_shared_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/declaration"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/catalog/main.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify qualified source ownership, exact loaded provenance and inventory failure boundaries.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constants/catalog/Makefile": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Verify original qualified constant provenance and independently checked namespaces.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      }
+    ]
+  },
+  "src/semantic/static/events/constants.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Catalog original qualified value sources without treating them as static names.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      }
+    ]
+  },
+  "src/semantic/static/scope/origin.c": {
+    "contract": "docs/implementation/static-constants.md",
+    "purpose": "Resolve original module requests by exact retained dependency occurrence.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_unwinds_every_qualified_inventory_allocation_and_counter_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_agrees_between_compact_and_explicit_fixed_namespace_reads",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_checks_qualified_members_storage_and_open_namespaces",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_refuses_foreign_qualified_handles_scopes_and_count_wrap",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_reuses_one_fixed_namespace_from_distinct_template_specializations",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_preserves_standard_root_identity_and_original_member_spans",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/qualified/main.c",
+        "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constants/qualified"
       }
     ]
   }

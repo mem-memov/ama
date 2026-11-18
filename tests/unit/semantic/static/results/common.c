@@ -24,13 +24,13 @@ static inline void setup_results(void) {
 }
 
 /** Exact whole source names use the existing accepted symbol namespace. */
-static const StaticSymbol *result_named(const StaticModule *module, const char *name) {
+static inline const StaticSymbol *result_named(const StaticModule *module, const char *name) {
     const StaticSymbol *symbol = static_symbol_find(module, static_name_site(module->definition, name), SIZE_MAX);
     assert(symbol); return symbol;
 }
 
 /** Only original declaration roots are selected; nested receivers are not heads. */
-static const AstTypeExpression *result_field(const char *name) {
+static inline const AstTypeExpression *result_field(const char *name) {
     for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
         if (site->root && site->receiver == NULL && site->statement->kind == AST_DECLARATION &&
             layout_text_is(site->statement->as.declaration.name->name, name)) { return site->expression; }
@@ -39,7 +39,7 @@ static const AstTypeExpression *result_field(const char *name) {
 }
 
 /** Applied caller scope keeps Type and one-slot Template arguments distinct. */
-static const StaticTermEnvironment *result_applied_environment(void) {
+static inline const StaticTermEnvironment *result_applied_environment(void) {
     StaticTermCapture captures[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
         {.formal = application_formal(caller_module, 1), .value = target_constructor}};
     const StaticTerm *value;

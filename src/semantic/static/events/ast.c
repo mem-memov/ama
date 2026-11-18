@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Collect static source occurrences through owning AST sections and nested bodies.
+ * @brief Collect static Type and qualified constant occurrences through owning AST sections and bodies.
  *
  * [TPL-02](../../../../spec/language/templates.md#tpl-02) distinguishes interface
  * introduction contexts from shared/body uses. [TPL-12](../../../../spec/language/static-results.md#tpl-12)
@@ -94,7 +94,8 @@ bool static_collect_occurrences(StaticInventory *inventory, StaticModule *module
         const AstNode *node = work->node;
         if (node == NULL) { pending = work->next; continue; }
         work->node = node->next;
-        if (!node_occurrences(inventory, module, node, work->context)
+        if (!static_constant_occurrences(inventory, module, node)
+            || !node_occurrences(inventory, module, node, work->context)
             || !child_blocks(inventory, &pending, node)) { return false; }
     }
     return true;

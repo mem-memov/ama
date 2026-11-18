@@ -20,4 +20,9 @@ bool static_occurrence_append(StaticInventory *, StaticModule *, StaticOccurrenc
  */
 bool static_expression_occurrences(StaticInventory *, StaticModule *,
     const AstTypeExpression *, const AstNode *, StaticContext);
+/** Collect qualified sources from this original node's own initializer/argument
+ * edges. Owning child statements are visited by the existing block traversal.
+ * [CONST-02](../../../../spec/language/declarations.md#const-02) preserves source identity.
+ */
+bool static_constant_occurrences(StaticInventory *, StaticModule *, const AstNode *);
 #endif

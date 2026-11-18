@@ -1,7 +1,8 @@
 # Dependent constant types and concrete namespaces
 
-T181 is unfinished on input 78a2099. Accepted prerequisite
-[T201](../../DONE.md#t201) now permits resumption after T200's authorized specification correction. Authority:
+T181 is accepted on input 83603d5, after [T201](../../DONE.md#t201).
+Earlier partial input 78a2099 and the resolved AMB-012 correction are retained
+in the explicitly historical records below. Authority:
 [CONST-03](../../spec/language/declarations.md#const-03),
 [CONST-06](../../spec/language/declarations.md#const-06),
 [CONST-01](../../spec/language/declarations.md#const-01),
@@ -10,8 +11,8 @@ T181 is unfinished on input 78a2099. Accepted prerequisite
 [TPL-08](../../spec/language/templates.md#tpl-08),
 [ARCH-03](../../spec/implementation/compiler.md#arch-03).
 The 2026-11-18 user decisions and authorization are recorded in
-[AMB-012](../../AMBIGUITIES.md#amb-012). T200 changes the design; the partial
-implementation and earlier strict results below do not establish support.
+[AMB-012](../../AMBIGUITIES.md#amb-012). T200 changed the design; acceptance is established by the final T181 evidence
+below, separately from its earlier partial results.
 
 ## Contract and component boundary
 
@@ -72,7 +73,7 @@ owners. Failure keeps public outputs untouched and partial records owned.
    component/composition tests, sanitizers, build and documentation acceptance,
    archive and commit before T182.
 
-## Continuation
+## Earlier partial implementation record
 
 T180 commit 78a2099 is accepted with a clean working tree, 21 publication and
 32 result cases under strict/ASan/UBSan, root build and final Doxygen reference.
@@ -122,7 +123,7 @@ No active jobs. Current step: shared declaration/source binding. No ambiguity.
 - No jobs active. T181 is unfinished; final registry/sanitizers/build/docs acceptance
   and qualified/initializer composition remain. No specification ambiguity/change.
 
-## Resolved clarification and implementation prerequisite
+## Resolved clarification and prerequisite history
 
 [AMB-012](../../AMBIGUITIES.md#amb-012) is resolved: the user chose fixed-Type
 reuse in both ordinary no-output namespace forms and authorized T200's spec edit.
@@ -145,3 +146,161 @@ backup. Existing constant sources/tests were preserved, not accepted by T201.
 Next T181 step: rerun the explicit-read consumers under the accepted reuse
 contract and supply actual independently checked contexts where required, then
 continue qualified-source collection and typed initializer composition.
+
+## T181 resumption after T201
+
+Active input: 83603d5, 2026-11-18. Preserve the earlier 21-case partial work,
+but rerun its actual consumers because ordinary namespace reads now reuse fixed
+Types without producer paths. First update tests to supply independently checked
+namespace contexts, retaining producer-context use only for actual applications
+or explicit output phases. Then collect original qualified-source identities
+and exact dependency occurrences without manufacturing type syntax, bind own
+member obligations, and compose typed initializers. Final registry, strict parent
+checks, sanitizers/allocation refusals, build and documentation remain required.
+No functional jobs active before the baseline consumer run.
+
+Post-T201 baseline parent failed in selection/failures
+(/tmp/ama-t181-post-t201-baseline.log, collected exit 2); declaration and raw-read
+leaves passed. The ordinary namespace fixtures still relied on now-forbidden
+implicit producer scopes. They now explicitly register and pass the known
+ordinary target's independently checked context; generic/output-phase consumers
+retain their actual producer. This updates the consumers to the accepted rule,
+without adding production fallback scope lookup.
+
+The post-T201 explicit consumer parent passes all earlier 21 cases
+(/tmp/ama-t181-post-t201-consumers.log, exit 0). Original qualified-source
+collection now reuses the existing iterative owning AST walk. It stores exact
+AST sources and statements separately from Type occurrences, and binds exact
+nonimplicit dependency spans through a shared allocation-free origin operation.
+Qualified registration/selection never fabricates AST Type syntax or infers an
+open namespace; both spellings share explicit actual-scope validation.
+The first expanded run failed compilation of new test leaves on optional fixture
+helpers and a missing private classifier include
+(/tmp/ama-t181-qualified-first.log, exit 2). Make optional helpers inline and
+include the classifier's declared interface; no semantic expectation changes.
+
+Expanded strict parent passes 28 cases after the fixture/include corrections
+(/tmp/ama-t181-qualified-rerun.log, collected exit 0). Seven new cases cover
+compact/explicit declaration identity without creation edges, scalar/list own
+membership and open namespaces, invalid handles/scopes/counts, all observed
+registration/selection allocations, every source-owning AST node/nested block,
+exact loaded spans and collection allocation/counter failures. Missing exact
+provenance refuses even when identical namespace text is loaded elsewhere.
+
+Next step: initializer Type evidence. Register only original shared-declaration
+initializer sources; preserve literals without Type anchors. A local constant
+source binds its own original shared declaration in the same context. A qualified
+source uses its original catalog entry and independently checked namespace scope.
+Resolve source Type terms through the existing evaluator and add exact equality
+with the destination's declared Type term; keep unresolved terms for the later
+scheduler. This operation never evaluates values, checks native capabilities,
+constructs defaults or replaces later initialization-order/copy/lifecycle checks.
+Runtime field sources, mutable acquisition, self and continuation sources cannot
+supply shared initialization evidence. Ordinary storage/index/cardinality and
+value-order checks retain their existing later owners; this step supplies Type
+obligations, not executable admission.
+
+Correctness: original identity validation precedes dereference; source provenance
+uses exact dependency spans, never path-text matching. Selection requires fixed
+Type plus a matching registered actual context before scanning only own shared
+members. Surface validation rejects duplicates/reference storage before lookup.
+There is no namespace equation from a member name, receiver or initializer.
+Records are interned by exact source/context (and selected context), so unchanged
+retries add no owned descriptors. Every finite scan consumes a source, statement,
+original member or retained record; no definition unfolding occurs in cataloging.
+For N original AST nodes/sources and E loaded dependency occurrences, cataloging
+uses O(N) records and O(N E) simple exact-span binding time, in addition to the
+existing owning AST walk. Registration is linear in its retained/source records;
+selection is linear in own surface/request records plus duplicate-name O(D^2)
+validation for D own declarations and separately accounted static kernels.
+All allocations are arena-owned before public publication; failed outputs remain
+untouched and owner teardown is finite, including partially prepared bindings.
+
+Initializer registration/resolution now retains original sources, checks permitted
+source categories, evaluates only declared static Type expressions and adds exact
+source/destination equality. Its first strict leaf exposed a test-contract mistake:
+a Pending value query deliberately leaves its value receiver untouched; the new
+test had not initialized that receiver before asserting null
+(/tmp/ama-t181-initializer-first.log, exit 2). Initialize the sentinel explicitly;
+retain the independently required Pending/literal-noninference expectations.
+
+The next initializer run reached a malformed continuation-negative fixture:
+`%known` violates the existing required separator before it can reach the
+constant-source category check (/tmp/ama-t181-initializer-rerun.log, exit 2).
+Use the valid `% known` spelling to test the intended semantic refusal.
+
+The initializer leaf passes five strict cases
+(/tmp/ama-t181-initializer-final.log, collected exit 0); the complete then-current
+constant parent passes 33 (/tmp/ama-t181-constants-strict.log, exit 0). Added
+distinct-caller-specialization reuse and standard-root/member-span cases to the
+qualified leaf. The complete constant parent is now in the static dispatcher.
+The expanded parent, sanitizers, inventory consumers, build and documentation
+remain; no executable specialization support is claimed by these components.
+
+Final focused strict parent passes 35 cases
+(/tmp/ama-t181-constants-final-strict.log, collected exit 0). Named test mappings
+now cover every new constant operation/header/fixture/Makefile and the shared
+inventory/origin changes; new headers have independent strict compilation probes.
+Next acceptance runs the full static dispatcher and warning-enabled root build,
+then focused ASan/UBSan and documentation after any resulting corrections.
+
+Continuation checkpoint (83603d5 plus current T181 inputs): final focused strict
+parent passed 35 cases; root make -j4 passed with no warnings
+(/tmp/ama-t181-build.log, collected exit 0). Full strict static dispatcher is
+active as session 91978, log /tmp/ama-t181-static-parent-strict.log; complete
+coverage/header checks are session 18146, log /tmp/ama-t181-docs-complete.log.
+Do not overlap a leaf/parent rebuild in those output trees. Next collect both
+results, then run focused ASan/UBSan with the established LSan restriction, review
+current component/source claims and generate final Doxygen before acceptance.
+No specification change, ambiguity or uncollected root build.
+
+Full strict static dispatcher passes all 54 actual leaf executables with zero
+compiler warnings (/tmp/ama-t181-static-parent-strict.log, collected exit 0),
+including the existing exhaustive creation/definition graph models and all actual
+solver/application/result/publication consumers. Complete per-file coverage and
+independent headers pass 2690 ready inputs with zero debts
+(/tmp/ama-t181-docs-complete.log, collected exit 0). The previously active sessions
+91978/18146 are collected. Focused ASan/UBSan now runs as session 30495, log
+/tmp/ama-t181-constants-sanitizers.log; source inputs remain unchanged.
+
+Initializer invariants: registration validates original declaration/source identity
+before following handles, and records exactly one literal/local/qualified source
+kind. A literal introduces no equality. A typed source contributes one structural
+Type equality; namespace selection precedes that contribution and never uses the
+destination Type. Both source and destination Type expressions pass the existing
+creation/static-definition guards; Pending is preserved until independent actual
+facts close them. READY requires both checked structural expressions and a closed
+destination Type, not value construction or global executable admission. Repeated
+register/select calls reuse exact metadata identities and constraint insertion
+uses the solver's duplicate equation contract. Local-source lookup is finite
+O(D times name bytes); other registration scans are linear in actual retained
+records. Resolution adds the separately accounted existing evaluator/solver/guard
+cost plus finite membership/namespace scans; it has no polling or host recursion.
+Prepared metadata is arena-owned throughout refusal and teardown.
+
+## T181 acceptance
+
+All 35 focused constant cases pass strict C11/-Werror and ASan/UBSan at O1
+(/tmp/ama-t181-constants-final-strict.log and
+/tmp/ama-t181-constants-sanitizers.log, collected exit 0). Sanitizers use
+-fno-pie/-no-pie and -fno-omit-frame-pointer. ASAN_OPTIONS=detect_leaks=0 retains
+the established container LSan limitation; exhaustive observed allocation refusal
+and counted zero-live-owner teardown remain independent evidence. The full static
+dispatcher passes 54 leaf executables with no compiler warnings; root make -j4
+passes without warnings. Complete coverage/header acceptance passes 2690 ready
+inputs with zero debts. No functional jobs remain.
+
+Doxygen passes (/tmp/ama-t181-doxygen.log, collected exit 0): 2032 maintained file
+pages, 7914 interfaces, 427 actual canonical destinations and 6439 generated pages,
+with Doxygen 1.11.0, Python 3.14.4 and markdown-it-py 3.0.0. Markdown audit passes
+215 files, 2969 local links, 214 canonical rules and 108 unchanged EBNF productions
+(/tmp/ama-t181-markdown-final.log). Final review corrects a rule link to CONST-05,
+clarifies the collector purpose and removes one extra EOF line; C tokens are
+unchanged. Regenerate the final archived reference before staging and retain its
+collected result in the task commit. Generated pages remain unversioned.
+
+The [completed task](../../DONE.md#t181) supplies static declarations, deferred
+reads, qualified provenance and initializer Type equations for T182/T184. It does
+not claim whole-program template source admission, executable specialization,
+native constant capability checks or runtime initialization; those retain their
+planned later owners. No specification edits or new ambiguity were required.

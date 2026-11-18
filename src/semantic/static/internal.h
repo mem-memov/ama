@@ -64,6 +64,11 @@ bool static_collect_explicit(StaticInventory *, StaticModule *);
  * [TPL-12](../../../spec/language/static-results.md#tpl-12).
  */
 bool static_bind_occurrences(StaticInventory *, StaticModule *);
+/** Resolve only an exact original nonimplicit loaded request span; no textual
+ * path search or new loading. Null means no matching dependency occurrence.
+ * [DEP-03](../../../spec/implementation/compiler.md#dep-03) retains request provenance.
+ */
+const ProjectModule *static_loaded_origin(const StaticModule *, SourceSpan);
 /** Build signature skeletons over already classified and bound modules; retain
  * pending expression metadata instead of inferring categories from actuals.
  * Contract: [TPL-07](../../../spec/language/templates.md#tpl-07).

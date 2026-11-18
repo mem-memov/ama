@@ -9,18 +9,6 @@
  */
 #include "../internal.h"
 
-/** Dependency collection preserves every original request span; equal basename
- * or normalized spelling is not sufficient to bind an origin.
- * Component contract: [TPL-02](../../../../spec/language/templates.md#tpl-02).
- */
-static const ProjectModule *origin(const StaticModule *module, SourceSpan site) {
-    for (const ProjectDependency *edge = module->definition->first; edge != NULL; edge = edge->next) {
-        if (!edge->implicit && edge->requirement.source == site.source
-            && edge->requirement.start == site.start && edge->requirement.end == site.end) { return edge->target; }
-    }
-    return NULL;
-}
-
 /** Scan original lexical order, keeping foreign labels outside local lookup.
  * Inputs and source heads precede their own receivers, so self-sourcing a new
  * alias fails even though its later receiver already has an inventory record.
@@ -31,7 +19,7 @@ bool static_bind_occurrences(StaticInventory *inventory, StaticModule *module) {
     if (inventory->status != STATIC_OK) { return false; }
     for (StaticOccurrence *site = module->first_occurrence; site != NULL; site = site->next) {
         if (site->receiver == NULL && site->expression->kind == AST_TYPE_MODULE_PATH) {
-            site->origin = origin(module, site->site);
+            site->origin = static_loaded_origin(module, site->site);
             if (site->origin == NULL) {
                 return static_invalid(inventory, site->site, "Static path has no loaded dependency identity", NULL);
             }
@@ -47,6 +35,13 @@ bool static_bind_occurrences(StaticInventory *inventory, StaticModule *module) {
                     }
                 }
             }
+        }
+    }
+    for (StaticConstantOccurrence *site = module->first_constant_source; site; site = site->next) {
+        site->origin = static_loaded_origin(module, site->source->module_path);
+        if (site->origin == NULL) {
+            return static_invalid(inventory, site->source->module_path,
+                "Qualified constant has no loaded dependency identity", NULL);
         }
     }
     return true;

@@ -276,3 +276,14 @@ any C token. The active checkpoint was made independent of transient runner
 status. Final staged-tree documentation refresh is logged in
 `/tmp/ama-t172-doxygen-staged.log`; collect it before the authorized commit.
 Functional tests need no repetition for this whitespace/checkpoint correction.
+
+## Qualified source provenance after T181
+
+The inventory also catalogs original qualified constant sources separately from
+static Type heads/receivers. [Dependent constant metadata](static-constants.md)
+owns their selection and Type obligations. The same iterative owning AST walk
+retains initializer, assignment and argument sources, including nested bodies;
+exact nonimplicit loaded dependency spans bind their namespaces. Atomic three-dot
+placeholders stay in the static symbol namespace. A same-spelled path at another
+source position cannot replace a missing request, and this collection alone
+creates neither a specialization edge nor executable admission.

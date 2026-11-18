@@ -244,3 +244,8 @@ cycle checking. T201 composes these guards with
 [static result equations](../static-projections.md) and
 [complete immutable publication](../static-publication.md); their component
 records distinguish metadata checking from later whole-program admission.
+
+T181's [dependent constant metadata contract](../static-constants.md) owns shared
+declaration Type obligations, exact qualified-source provenance, explicit/fixed
+namespace selection and typed initializer equality. Constant values, construction
+capabilities and executable admission remain separate later consumers.

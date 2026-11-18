@@ -119,6 +119,18 @@ typedef struct StaticPattern {
     bool output_phase;
 } StaticPattern;
 
+/** An original qualified constant source has its own AST/dependency identity,
+ * separate from atomic static placeholders and fabricated type expressions.
+ * [CONST-05](../../../spec/language/declarations.md#const-05) fixes the written namespace.
+ * [DEP-03](../../../spec/implementation/compiler.md#dep-03) retains each request occurrence.
+ */
+typedef struct StaticConstantOccurrence {
+    struct StaticConstantOccurrence *next;
+    const AstSource *source;
+    const AstNode *statement;
+    const ProjectModule *origin;
+} StaticConstantOccurrence;
+
 /** One definition's local namespace, with independent parameter/result counts.
  * Component contract: [TPL-02](../../../spec/language/templates.md#tpl-02)
  * makes identical spellings in different definitions independent identities.
@@ -133,6 +145,9 @@ struct StaticModule {
     StaticOccurrence *first_occurrence;
     StaticOccurrence *last_occurrence;
     size_t occurrence_count;
+    StaticConstantOccurrence *first_constant_source;
+    StaticConstantOccurrence *last_constant_source;
+    size_t constant_source_count;
     StaticSignature *constructor_signature;
     StaticPattern *first_pattern;
     StaticPattern *last_pattern;

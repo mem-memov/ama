@@ -4299,3 +4299,43 @@ this table is navigation, not a parallel semantic definition.
   The seven replaced unused draft adapter inputs are preserved with hashes at
   /tmp/ama-t201-input-7469fd4. T181's constant sources/tests remain unfinished
   local work and are excluded from this commit. Next ready task: T181.
+
+<a id="t181"></a>
+
+- [x] **T181 — Resolve dependent constant types and explicit namespaces.**
+  Status: accepted on implementation input 83603d5, 2026-11-18; preserved
+  earlier partial input 78a2099 and resolved AMB-012/T201 decisions.
+  Step record:
+  [static constants](docs/implementation/static-constants.md).
+  Prerequisites: T174, T177, T180, T201.
+  Rules: [CONST-03](spec/language/declarations.md#const-03),
+  [CONST-06](spec/language/declarations.md#const-06),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: static declared-type and namespace resolution for shared values and
+  constant sources; it supplies typed evidence, not constant runtime execution.
+  Steps: (1) bind `@=` types to collected owner formals without new introductions;
+  (2) resolve independent concrete namespaces or guarded output-phase equations;
+  (3) compose declared-member types with the solver and static projections.
+  Accept: result-introduced types, empty typed lists and nested templates work;
+  named/positional reads select only declared `@=` members. Keep direct qualified
+  constants distinct from atomic placeholders. No constant name or runtime
+  receiver can choose an open namespace; output equalities may close it first.
+  Register symbolic obligations for later owner substitution without premature
+  lookup. Reject open/unknown namespaces, invalid storage/operations and members.
+  Acceptance: 35 strict C11/-Werror and ASan/UBSan constant cases; all 54 full
+  static dispatcher leaf executables; every observed allocation refusal with
+  counted teardown; root make -j4 without warnings. Both namespace spellings
+  agree without false creation edges across distinct caller specializations.
+  Typed local/qualified initializers infer Types; literal bytes supply no anchor.
+  Original source/dependency identity, root kind, own member/list storage, missing
+  scopes/members, open namespaces, forbidden sources and invalid handles/counts
+  are covered. Full commands, proof/cost and failed-run corrections are retained
+  in the owning component record. LSan's established container restriction is
+  explicit and is not claimed as passing leak instrumentation.
+  Complete per-file/independent-header checks pass 2690 ready inputs and zero
+  debts. Doxygen passes 2032 file pages, 7914 interfaces, 427 actual destinations
+  and 6439 pages. Markdown audit passes 215 documents, 2969 links, 214 rules and
+  108 unchanged grammar productions. Comment/EOF-only final cleanup changes no
+  C tokens. Final archived reference must regenerate before staging; record its
+  collected outcome in the commit. No spec edits or executable template claims.
+  Next ready task: T182, typed connections and nested-field constraints.
