@@ -146,37 +146,19 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T175 accepted and archived in DONE.
-Input 5c00e82; [static term record](docs/implementation/static-terms.md).
-Strict parent (76 cases), term sanitizers (nine cases), root build, standalone
-headers and documentation gates passed. Final archive-input refresh uses
-/tmp/ama-t175-doxygen-archive.log; collect an outstanding run before the task
-commit. Next ready task is T176 after that per-task commit. No specification
-change; full executable integration remains T184.
+Current implementation checkpoint: T176 accepted and archived in DONE.
+Input 5d735be; [static constraint record](docs/implementation/static-constraints.md).
+Strict static parent, final closure cases, all 24 constraint cases under sanitizers,
+root build, standalone headers and documentation gates passed. Final archive-input
+refresh uses /tmp/ama-t176-doxygen-archive.log; collect an outstanding run before
+the task commit. Next ready task is T177 after the per-task commit. No spec change;
+full executable integration remains T184.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
 
 ### Phase 2. Build exact static analysis components
-
-<a id="t176"></a>
-
-- [ ] **T176 — Solve finite structural type constraints exactly.**
-  Prerequisites: T175.
-  Rules: [TPL-03](spec/language/templates.md#tpl-03),
-  [TPL-10](spec/language/templates.md#tpl-10),
-  [ARCH-05](spec/implementation/compiler.md#arch-05).
-  Boundary: nonexpanding equality/nominal decomposition, recursive signature
-  checks, occurs checking and monotone delayed obligations.
-  Steps: (1) state the finite-term algebra and fixed-point invariant; (2) implement
-  exact refinement/conflict/unresolved outcomes; (3) compose bound application
-  terms with independent model/order/failure tests.
-  Accept: anchored equality cycles and later anchors solve; contradictory,
-  unanchored required and infinite substitution terms fail precisely.
-  Permuting equations preserves the result. Nominal reference cycles are not
-  substitution cycles. No literal/capability/name search, arbitrary iteration
-  budget or default type chooses a solution; definitions are not expanded here.
 
 <a id="t177"></a>
 

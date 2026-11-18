@@ -27,7 +27,7 @@ static char *request_text(const char *body) {
 }
 
 /** Materialize a real generic caller and selected producer in the narrow domain. */
-static void setup_requests(const char *body) {
+static inline void setup_requests(const char *body) {
     char *text = request_text(body);
     setup_binding(text, request_producer);
     free(text);

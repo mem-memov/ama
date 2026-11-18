@@ -43,4 +43,13 @@ bool static_signature_build(StaticInventory *, const AstStaticFormal *, StaticSi
  */
 bool static_signature_compare(StaticInventory *, const StaticSignature *,
     const StaticSignature *, StaticSignatureMatch, StaticSignatureComparison *);
+/** Compare accepted finite signatures using independent arena-owned scratch.
+ * Borrow all inputs, retain no temporary caller state and publish output only on
+ * success. False means scratch allocation refusal; no inventory is mutated.
+ * The caller owns failure diagnostics and destroys all partial arena storage.
+ * Contract: [TPL-07](../../../../spec/language/templates.md#tpl-07),
+ * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03).
+ */
+bool static_signature_compare_arena(SourceArena *, const StaticSignature *,
+    const StaticSignature *, StaticSignatureMatch, StaticSignatureComparison *);
 #endif

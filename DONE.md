@@ -3938,6 +3938,50 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   Constraint solving, application normalization and expansion remain T176–T178;
   no executable specialization or runtime state is introduced by this component.
 
+<a id="t176"></a>
+
+- [x] **T176 — Solve finite structural type constraints exactly.**
+  Status: accepted 2026-11-18 on input 5d735be. Step record:
+  [static constraints](docs/implementation/static-constraints.md).
+  Prerequisites: T175.
+  Rules: [TPL-03](spec/language/templates.md#tpl-03),
+  [TPL-10](spec/language/templates.md#tpl-10),
+  [ARCH-05](spec/implementation/compiler.md#arch-05).
+  Boundary: nonexpanding equality/nominal decomposition, recursive signature
+  checks, occurs checking and monotone delayed obligations.
+  Steps: (1) state the finite-term algebra and fixed-point invariant; (2) implement
+  exact refinement/conflict/unresolved outcomes; (3) compose bound application
+  terms with independent model/order/failure tests.
+  Accept: anchored equality cycles and later anchors solve; contradictory,
+  unanchored required and infinite substitution terms fail precisely.
+  Permuting equations preserves the result. Nominal reference cycles are not
+  substitution cycles. No literal/capability/name search, arbitrary iteration
+  budget or default type chooses a solution; definitions are not expanded here.
+
+  Evidence: 24 independent constraint cases cover symmetric records, original
+  source/parent diagnostics, later anchors, anchored/unanchored cycles, nominal
+  origins and unused captures, partial residual binders, Type/Template and
+  recursive signature conflicts, pending metadata and independent exact facts,
+  direct/indirect/Template occurs failures and nominal-reference-cycle controls.
+  An independent Boolean graph oracle checks 720 graph/order combinations.
+  Shared 64-level normalization and 100 repeated queries establish finite shared
+  work and immediate scratch release; stable solves allocate nothing. Actual
+  T173/T175 and standard integer facts compose through original producer slots.
+  Every observed allocation across seven operation partitions and all meaningful
+  count/lookup boundaries is refused with counted full teardown and sticky errors.
+  Full strict static parent passes its then-current 99 cases; final closure leaf
+  passes the added metadata-undertermination partitions. All 24 current constraint
+  cases pass strict C11 ASan/UBSan; root build passes. LSan's established container
+  restriction remains explicit, separate from counted ownership evidence.
+  Documentation: 2518 ready inputs/zero debt, standalone headers; 210 Markdown
+  files/2901 links, 214 rules and 108 unchanged EBNF productions. Doxygen validates
+  1899 file pages, 7283 interfaces and 422 canonical targets. Actual editor
+  navigation opens TPL-10. The component note retains exact commands, input/logs,
+  fixture corrections, solution-set/progress proofs, conservative costs and scope.
+  No source definitions are unfolded, no default type/origin is chosen and no
+  runtime state is merged. T177 owns application/recovery, T178–T180 own guarded
+  expansion/projection closure, and T184 owns full frontend admission. No spec edit.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

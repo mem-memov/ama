@@ -128597,6 +128597,126 @@
         "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
         "command": "make -C tests/unit/semantic/static/terms/failures",
         "source": "tests/unit/semantic/static/terms/failures/main.c"
+      },
+      {
+        "case": "it_compares_recursive_signatures_in_independent_read_only_scratch",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_preserves_output_and_source_inventory_on_each_signature_scratch_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
       }
     ]
   },
@@ -129986,6 +130106,106 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_compares_recursive_signatures_in_independent_read_only_scratch",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_preserves_output_and_source_inventory_on_each_signature_scratch_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
       }
     ]
   },
@@ -130341,6 +130561,106 @@
         "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_compares_recursive_signatures_in_independent_read_only_scratch",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_preserves_output_and_source_inventory_on_each_signature_scratch_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
       }
     ],
     "standalone_header_command": [
@@ -132578,6 +132898,11 @@
         "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
         "command": "make -C tests/unit/semantic/static/bindings/failures",
         "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
       }
     ]
   },
@@ -134166,6 +134491,2683 @@
         "case": "it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses",
         "command": "make -C tests/unit/semantic/static/terms/application",
         "source": "tests/unit/semantic/static/terms/application/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/error.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Retain original constraint/definition diagnostics without allocating on failure.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/solver.h": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Own incremental finite equations separately from borrowed canonical term storage.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/constraints/model.h": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Separate finite equations and variable solutions from immutable static values.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/constraints/owner.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Own incremental constraint storage without changing borrowed term payloads.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/internal.h": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Declare checked constraint scratch, diagnostic and equation publication operations.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/constraints/scratch.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Bound query-local work lifetime while preserving sticky solver allocation errors.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/metadata/refine.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Admit only complete independent metadata facts preserving every known declaration.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/metadata/signature.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Cache exact immutable signature-pair outcomes without discarding Pending obligations.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/metadata/description.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Read exact independently refined descriptions without mutating source metadata.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/records/lookup.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Grow checked ordinal lookup arrays while preserving stable variable records.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/records/requirement.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Retain explicit required-closure obligations without inventing type information.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/records/equation.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Deduplicate finite unordered equality pairs before publishing source-backed work.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/solve/metadata.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Recheck every retained alias-class category and recursive signature restriction.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/solve/fixed-point.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Iterate only genuine finite refinements, then distinguish satisfaction from pending closure.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/solve/graph.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Walk current substitution/capture graphs iteratively for occurs and closure queries.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/solve/variables.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Follow and refine variable links with exact representative and occurs invariants.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/solve/equation.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Refine one equality or decompose exact original nominal capture keys.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/result/value.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Resolve selected closed values without confusing query success with executable admission.",
+    "tests": [
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/result/internal.h": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Declare iterative closed-value reconstruction over immutable canonical records.",
+    "tests": [
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/constraints/result/finalize.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Convert stable required unknowns into underdetermination diagnostics at explicit finalization.",
+    "tests": [
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/result/materialize.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Rebuild closed substituted values bottom-up with shared iterative frames.",
+    "tests": [
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/common.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Own counted finite constraint fixtures over actual scoped source records.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/Makefile": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Dispatch exact finite constraint and signature scratch checks.",
+    "tests": [
+      {
+        "case": "it_compares_recursive_signatures_in_independent_read_only_scratch",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_preserves_output_and_source_inventory_on_each_signature_scratch_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      },
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/records/main.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Check exact constraint input ownership, symmetric work keys and partial failures.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/records/Makefile": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Verify finite equation and required-closure record ownership and refusals.",
+    "tests": [
+      {
+        "case": "it_retains_finite_equations_requirements_and_derivation_sites",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_unwinds_each_equation_and_requirement_record_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_inputs_and_saturated_record_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/records",
+        "source": "tests/unit/semantic/static/constraints/records/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/failures/main.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Verify solver failure ownership across mutable refinements and canonical result preparation.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/failures/Makefile": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Refuse every solving, metadata and normalization allocation and bounded counter edge.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_solve_metadata_value_and_finalization_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      },
+      {
+        "case": "it_refuses_saturated_variable_metadata_and_generated_equation_counts",
+        "command": "make -C tests/unit/semantic/static/constraints/failures",
+        "source": "tests/unit/semantic/static/constraints/failures/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/signature/main.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Verify independent comparison scratch never mutates accepted source metadata.",
+    "tests": [
+      {
+        "case": "it_compares_recursive_signatures_in_independent_read_only_scratch",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_preserves_output_and_source_inventory_on_each_signature_scratch_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/signature/Makefile": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Verify read-only recursive signature comparison with independent scratch ownership.",
+    "tests": [
+      {
+        "case": "it_compares_recursive_signatures_in_independent_read_only_scratch",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      },
+      {
+        "case": "it_preserves_output_and_source_inventory_on_each_signature_scratch_refusal",
+        "command": "make -C tests/unit/semantic/static/constraints/signature",
+        "source": "tests/unit/semantic/static/constraints/signature/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/solve/main.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Test finite type equations against independently stated alias and nominal laws.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/solve/Makefile": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Verify exact finite equality solving, signature consistency and occurs checking.",
+    "tests": [
+      {
+        "case": "it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_decomposes_complete_and_partial_nominals_without_opening_residual_binders",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_distinct_origins_and_conflicting_repeated_bindings",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_indirect_infinite_substitution_terms",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_type_and_template_restrictions_through_a_deferred_alias",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_checks_reordered_recursive_signatures_and_known_nested_conflicts",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      },
+      {
+        "case": "it_preserves_unused_capture_conflicts_and_checks_template_occurrences",
+        "command": "make -C tests/unit/semantic/static/constraints/solve",
+        "source": "tests/unit/semantic/static/constraints/solve/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/composition/main.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Check actual input-slot equations against independently selected producer and standard type facts.",
+    "tests": [
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/composition/Makefile": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Compose actual source binding requests, immutable term imports and exact equality solving.",
+    "tests": [
+      {
+        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
+        "command": "make -C tests/unit/semantic/static/constraints/composition",
+        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/closure/main.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Test closure and metadata refinement without inventing constructor origins.",
+    "tests": [
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/closure/Makefile": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Verify delayed metadata, required closure and canonical substituted results.",
+    "tests": [
+      {
+        "case": "it_distinguishes_pending_queries_from_final_required_underdetermination",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_resumes_pending_signature_checks_from_independent_resolved_metadata",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_keeps_metadata_evidence_separate_from_origin_evidence",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_normalizes_partial_results_and_retains_local_residuals",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_refuses_invalid_metadata_and_value_query_contracts",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      },
+      {
+        "case": "it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely",
+        "command": "make -C tests/unit/semantic/static/constraints/closure",
+        "source": "tests/unit/semantic/static/constraints/closure/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/model/main.c": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Compare exact finite solving with independent Boolean graph closure.",
+    "tests": [
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/constraints/model/Makefile": {
+    "contract": "docs/implementation/static-constraints.md",
+    "purpose": "Check every three-edge five-vertex equality graph in all equation orders.",
+    "tests": [
+      {
+        "case": "it_matches_all_finite_three_edge_models_in_every_equation_order",
+        "command": "make -C tests/unit/semantic/static/constraints/model",
+        "source": "tests/unit/semantic/static/constraints/model/main.c"
       }
     ]
   }
