@@ -4407,3 +4407,44 @@ this table is navigation, not a parallel semantic definition.
   maintained tests, T182 private files or evidence fingerprints are changed.
   The audit/planning note is committed as T205's prerequisite/handoff record,
   explicitly retaining T204 as incomplete; it is not an accepted new work plan.
+
+<a id="t204"></a>
+
+- [x] **T204 — Audit specification consistency and rebuild the implementation plan.**
+  Completed 2026-11-19; review input 155c9da, plan input 40c27b5 after T205.
+  The user requested a whole-specification review and, if no contradictions
+  remain, a revised plan and commit. The original request authorized planning
+  records, not semantic edits; the later explicit AMB-015 answer separately
+  authorized T205's narrow clarification and continuation.
+  Record: [specification audit and planning](docs/implementation/static-plan-review.md).
+  Steps completed: reviewed all canonical chapters and cross-chapter boundaries;
+  stopped for the real LIFE-05/EMBED-07 conflict, recorded the explicit answer
+  and resumed after T205; rebuilt the prerequisite/acceptance plan; reconciled
+  historical evidence and unfinished work; checked links, IDs, dependencies and
+  coverage. The bounded review found no other blocking contradiction, not a
+  formal proof of specification completeness or an implementation acceptance.
+  Added T206–T213 and reordered the 26 remaining implementation tasks by their
+  80 explicit prerequisite edges. T203 audits actual source/test evidence first;
+  source/scopes/lookup precede metadata/equations/guards, early T183 candidate
+  identities precede graphs and the ordinary bridge, and executable admission
+  remains in T185 after ordinary closure. All 37 canonical template acceptance
+  areas have current unfinished owners. Consumers, useful examples, evidence,
+  release and generated reference follow their prerequisites. Every task keeps
+  component/composition/failure tests, purpose/contract documentation, per-file
+  evidence and a separate commit; T214 is the next unused ID.
+  Preserved completed historical records and all unfinished T182 files, partial
+  test results, failed-run evidence and local continuation note. T204 changes
+  neither spec nor compiler/test sources or evidence fingerprints. T203 remains
+  future work and must establish the actual reuse/adapt/remove map before coding.
+  Evidence: independent chapter/plan reviews; exact CommonMark link/anchor and
+  rule-index checks; all 11 EBNF blocks/108 productions checked for defined
+  references, balanced groups and alignment; unique task IDs, resolved acyclic
+  prerequisites, topological presentation and exact 37-area ownership checks.
+  Negative controls reject undefined productions, shifted alignment, unbalanced
+  groups, cycles, unknown dependencies, missing areas and obsolete owners.
+  Final archived records pass: 29 documents, 1200 local links, 214 indexed rules,
+  26 active tasks, 80 dependency edges and 37/37 current acceptance owners.
+  Whitespace and unchanged-spec checks pass. Doxygen generation from an isolated
+  HEAD-plus-four-record snapshot is a final commit gate; its outcome and tool
+  versions are recorded with that commit. No compiler execution or implementation
+  support is claimed.

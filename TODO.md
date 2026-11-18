@@ -67,14 +67,19 @@ An implementation task, including one in this queue, is not permission to amend
 ## Sprint: static module templates
 
 This sprint implements the approved [Stage 11](spec/implementation/plan.md#stage-11-static-templates-with-explicit-design-boundaries).
-The [T167 planning record](DONE.md#t167) preserves its review and acceptance.
+The [T167 planning record](DONE.md#t167) preserves the original sprint.
+[T202](DONE.md#t202) defines the new static-module source model;
+[T205](DONE.md#t205) resolves its subsequent lifecycle clarification.
+[T204](DONE.md#t204) records the consistency review and replaces the remaining
+implementation plan.
 The user authorized sequential implementation on 2026-11-18, including focused
 tests, code documentation, exact algorithms and a separate commit per completed
 task. Specification changes still require their own explicit authorization.
 
 The deliverable is compile-time specialization with exact inference, composition,
 partial constructors, separate named `@...` graphs, independently concrete
-export selectors and concrete native/source/C-library consumers. Keep the existing intrinsic list foundation. The deferred
+export selectors and concrete native/source/C-library consumers. Keep the existing
+intrinsic list foundation. Relative paths remain explicitly deferred. The
 [AMB-006](AMBIGUITIES.md#amb-006) rewrite, new raw-storage API, generic native ABI,
 binary-only open-template format, static natural-number parameters and dependent
 types are outside this sprint. No runtime template objects or specialization
@@ -84,13 +89,14 @@ generation are introduced.
 
 | Phase | Tasks | Assessable result |
 |---|---|---|
-| Baseline | T168; T203 after T202 | Reviewed gaps, then alignment of the earlier components with separate static modules |
-| Source and interfaces | T169–T174 | Shared names, immutable syntax, exact origins, scoped interfaces and early native rejection |
-| Static analysis components | T175–T180 | Nonexpanding terms/equalities, partial applications, guards and fully closed static projections |
-| Complete specialization | T181–T186 | Typed connections, guarded cache/orchestration, ordinary checks and specialization constants |
-| Execution | T187–T190 | Resolved plans, compiled execution, source diagnostics and concrete native composition |
-| Product consumers | T191–T195 | Source delivery, editor/relocation consumers, C facades and useful list algorithms |
-| Acceptance and delivery | T196–T198 | Current evidence, clean release and final generated reference |
+| Actual baseline | T203 | Evidence-based reuse/adapt/remove map, including unfinished T182 ownership |
+| Source and binding | T206, T207, T213 | Exclusive module kinds, immutable AST, scopes and exact source closure |
+| Finite structural foundation | T208, T209, T210, T183 | Actual metadata, open requirements, nonexpanding equations, guards and canonical candidate registry |
+| Static graphs and ordinary bridge | T211, T212 | Named producer equations, complete inputs and independent concrete export selection |
+| Ordinary closure and admission | T182, T184, T185, T186 | Runtime typed connections, checked concrete groups and constant lifecycle plans |
+| Execution | T187–T190 | Resolved storage/control plans, compiled execution, diagnostics and concrete native composition |
+| Product consumers | T191–T195 | Source delivery, editor/relocation, C facades and useful list algorithms |
+| Acceptance and delivery | T196–T198 | Current evidence, clean release and generated reference |
 
 The presentation is a topological order, not a promise that all tasks are one
 linear algorithm. Explicit prerequisites below govern readiness. Components may
@@ -98,13 +104,22 @@ exchange symbolic terms and deferred obligations; completing an early component
 does not claim whole-program closure. Every task is accepted and committed on
 its own. Do not batch completed tasks into a phase commit.
 
-T168 fixes the exact production/test paths after inspecting maintained sources.
-The boundaries below name existing responsibility owners and intended children,
-not new mandatory directory spellings or guessed existing support. This planning
-review inspected canonical requirements, maintained contracts and source/test
-directory topology; it did not inspect compiler function bodies, run functional
-tests or establish template support. Some component prose still describes
-historical subsets: T168 must reconcile it with actual files and recorded tests.
+This is a specification-led plan, not a source audit. T168 and T169–T181/T201
+remain completed historical prerequisites for their recorded contracts. Their
+implementation is neither discarded nor accepted automatically for the changed
+model. T203 must inspect the actual code, tests, contracts and dirty T182 inputs,
+identify reusable parts and assign every replacement to its current task.
+Exact source/test paths and narrower implementation steps follow that evidence;
+this plan does not invent existing support or mandatory empty directory levels.
+
+T183 deliberately precedes static graph evaluation. It accepts normalized closed
+candidate keys and pending validation state without requiring ordinary body
+checking. T211 consumes that guarded registry; T212 provides independent Type
+identities and constant evidence; T182 then generates ordinary typed connections.
+T184/T185 finish closure and ordinary admission. No dependency from the early
+registry back to T182 is allowed, and no earlier component promises executable
+admission. This avoids both a task cycle and premature validation of mutually
+referencing nominal groups.
 
 Four ordering constraints are essential:
 
@@ -147,103 +162,200 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Specification clarification [T200](DONE.md#t200) is accepted and archived.
-T201's guard alignment and T181's dependent constant metadata are accepted in
-[DONE](DONE.md). T202 resolves [AMB-013](AMBIGUITIES.md#amb-013) and
-[AMB-014](AMBIGUITIES.md#amb-014) through separate static modules. T203 must
-audit and align earlier components before unfinished T182 resumes. [Static constants](docs/implementation/static-constants.md)
-records the consumed declaration/namespace/initializer boundary and its evidence.
+Specification clarifications [T200](DONE.md#t200), [T202](DONE.md#t202) and
+[T205](DONE.md#t205) are accepted. The complete bounded review is recorded in
+[the consistency/planning note](docs/implementation/static-plan-review.md).
+T203 is the first implementation prerequisite. T182 remains unfinished with its
+partial files and failed-run evidence; implementing this queue requires its
+explicit ownership audit before any source changes. Historical
+[constant analysis](docs/implementation/static-constants.md) is revalidated in
+T212, not treated as current acceptance of removed inline projections.
 
 ## Current tasks
 
-<a id="t204"></a>
-
-- [ ] **T204 — Audit specification consistency and rebuild the implementation plan.**
-  Status: active after explicit [AMB-015](AMBIGUITIES.md#amb-015) approval;
-  T205 delivers the accepted clarification. Input 155c9da, resumed 2026-11-19.
-  The user requests a whole-specification
-  consistency review and, only if no contradictions remain, a revised work plan
-  and its commit. This authorizes planning records, not semantic edits to `spec/`.
-  Record: [specification audit and planning](docs/implementation/static-plan-review.md).
-  Steps: review all canonical chapters and cross-chapter boundaries; record any
-  real ambiguity and stop affected planning if necessary; otherwise replace the
-  old sprint dependency/acceptance routing with small foundation-first tasks;
-  check links, unique IDs, dependency order and coverage, then archive and commit.
-  Acceptance: a bounded documented consistency conclusion; no guessed rule or
-  unsupported code-acceptance claim; a complete prerequisite-ordered plan with
-  component/composition/failure tests and code documentation in every task.
-  Preserve all unfinished T182 files and historical completed records.
+### Phase 1. Audit the actual implementation
 
 <a id="t203"></a>
 
-- [ ] **T203 — Audit and plan implementation alignment with separate static modules.**
-  Status: planned; the next implementation prerequisite after T202. No new
-  implementation acceptance is claimed by the specification task.
-  Prerequisites: T202; consult the historical T169–T181/T201 results and retain
-  unfinished T182 work without treating its old-model tests as current support.
+- [ ] **T203 — Audit existing components against the revised static model.**
+  Status: the first ready implementation task after T204; no source-body audit
+  or new-model implementation acceptance is claimed by the planning review.
+  Prerequisites: T202, T204, T205.
+  Rules: [ARCH-01](spec/implementation/compiler.md#arch-01),
+  [ARCH-06](spec/implementation/compiler.md#arch-06),
+  [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: actual maintained source/test/component contracts, their consumers,
+  and the exact uncommitted T182 input revision and file fingerprints.
+  Steps: inventory components and existing evidence; classify each affected
+  responsibility as reusable, requiring adaptation, obsolete or deferred;
+  assign its source/tests/documentation to a task below and record any necessary
+  finer decomposition before implementation. Inspect the recorded O2 warning
+  and actual lifecycle/embedding acceptance affected by T205.
+  Accept: a per-component/file map names real consumers and executable checks;
+  source, AST, scopes, metadata, constraints, guards, registry, graph results,
+  constants and product boundaries all have explicit owners. Historical
+  T169–T181/T201 evidence remains dated to its accepted contract, never promoted
+  to acceptance of removed mixed interfaces, exact signatures or static positions.
+  Preserve T182's partial files, run/failure evidence and continuation note.
+  Reuse them only through an identified cohesive task with tests and comments;
+  do not silently depend on uncommitted APIs, delete unfinished work or commit it
+  as a side effect of this audit. No semantic change or implementation is part
+  of the audit itself. Follow the common evidence/documentation/commit criteria.
+
+### Phase 2. Establish current source structure and bindings
+
+<a id="t206"></a>
+
+- [ ] **T206 — Parse separate static modules and simple ordinary Type forms.**
+  Prerequisites: T203.
+  Rules: [SYN-03](spec/language/source-and-names.md#syn-03),
+  [SYN-04](spec/language/source-and-names.md#syn-04),
+  [COMP-01](spec/implementation/compiler.md#comp-01),
+  [TPL-12](spec/language/static-results.md#tpl-12);
+  [canonical EBNF](spec/grammar.md).
+  Boundary: shared lexical/layout components, module-kind activation, immutable
+  AST nodes and source/path spans; no symbol-table-dependent recognition.
+  Steps: recognize `@...` and exclusive module kinds; parse result pairs, named
+  producer uses and finite nested constructor arguments; parse one named export
+  selector in ordinary declarations/constant reads and expose actual path spans.
+  Accept: empty graphs, comments, final virtual newline, Unicode/multiword/hyphen
+  names and arbitrary finite nesting obey exact spacing/indentation. Multiple
+  outputs require named selections. Reject mixed annotations, incomplete pairs,
+  empty/positional static bindings, inputs after outputs, trailing captures and
+  ordinary inline static applications/projections. Runtime positional forms are
+  unchanged. Keep lexical/layout/parser responsibilities separately testable and
+  compose them through the real AST. Cover malformed input and every allocation
+  failure; remove superseded syntax branches with their replacements. Meet the
+  common per-file tests, Doxygen links and same-task commit criteria.
+
+<a id="t207"></a>
+
+- [ ] **T207 — Collect ordinary Type formals and whole-graph static scopes.**
+  Prerequisites: T206.
   Rules: [TPL-02](spec/language/templates.md#tpl-02),
-  [TPL-07](spec/language/templates.md#tpl-07),
-  [TPL-10](spec/language/templates.md#tpl-10),
   [TPL-12](spec/language/static-results.md#tpl-12),
-  [ARCH-01](spec/implementation/compiler.md#arch-01).
-  Boundary: source activation/tokens/AST, scope and requirement inventory, partial
-  metadata, graph equations and export selectors, and their actual consumers.
-  Steps: inspect each existing component and test against the new contract;
-  distinguish reusable foundations from obsolete mixed interfaces/exact signatures/
-  static positions; record small dependency-ordered implementation tasks with
-  component/composition/negative/failure acceptance and documentation ownership.
-  Acceptance: an explicit per-component gap/evidence map and executable task plan
-  cover multiple public outputs, open minimum requirements, partial forwarding,
-  independent ready-Type bridges, nominal cycles and rejection of old forms.
-  No guessed implementation support, heuristic inference, hidden ABI change,
-  relative-path feature or list-foundation rewrite is introduced by the audit.
-  Keep code/tests and Doxygen purpose/contract links together in subsequent work;
-  finish this audit before continuing T182 or downstream implementation.
+  [TPL-13](spec/language/templates.md#tpl-13),
+  [NAME-06](spec/language/declarations.md#name-06).
+  Boundary: immutable source-owned parameter/result identities and label roles;
+  runtime receiver/foreach classification remains T182's responsibility.
+  Steps: collect ordinary input/result Type introductions; collect all static
+  pair and receiver binders before free inputs; classify unique definitions,
+  first defining receipts and later equality receipts independently of solver
+  order. Reject own free native Type formals before authoring-header generation.
+  Accept: forward result uses are not accidental inputs; every graph result is
+  public; pair definitions take their declared role regardless of textual order;
+  repeated receipts constrain one immutable name. Foreign labels and equal names
+  in independent modules never introduce or capture local formals. Reject duplicate
+  pairs, new body/shared parameters and standalone ordinary static declarations.
+  Include result-only/unused native parameters and concrete export selectors that
+  introduce no parameter. Test the inventory and real parser/native consumers,
+  scope/source spans and all refusals; replace obsolete signature/position tables.
+  Meet the common per-file tests, Doxygen links and same-task commit criteria.
 
-### Phase 1. Recognize sources and establish interfaces
+<a id="t213"></a>
 
-### Phase 2. Build exact static analysis components
+- [ ] **T213 — Resolve static graph dependencies and source module kinds.**
+  Prerequisites: T206.
+  Rules: [SRC-01](spec/language/source-and-names.md#src-01),
+  [SRC-02](spec/language/source-and-names.md#src-02),
+  [DEP-01](spec/implementation/compiler.md#dep-01),
+  [DEP-02](spec/implementation/compiler.md#dep-02),
+  [DEP-03](spec/implementation/compiler.md#dep-03).
+  Boundary: the common source registry, logical origin resolution, required
+  source closure and input invalidation; T206 only extracts syntactic spans.
+  Steps: traverse every new AST path position; load exact roots and resolve
+  ordinary constructor versus static producer roles; retain all source/native
+  dependencies and source-located missing/invalid-kind diagnostics.
+  Accept: pair RHS paths, nested arguments, producer heads, ordinary selector
+  producer paths and constant namespaces enter the actual closure. Static names,
+  selectors and foreign labels are not filesystem paths. Preserve both root
+  kinds, exact duplicate/alias rejection, name+/ mapping, draft rules and native
+  companions. Source-loading cycles do not recursively reload or imply successful
+  validation. Cover shared dependencies, reordered roots, missing/invalid sources,
+  stale input invalidation and allocation cleanup through real parser/registry
+  compositions. No implicit import, new package format or relative path is added.
+  Meet the common per-file tests, Doxygen links and same-task commit criteria.
 
-### Phase 3. Close and validate executable specializations
+### Phase 3. Build finite structural analysis and guarded identities
 
-<a id="t182"></a>
+<a id="t208"></a>
 
-- [ ] **T182 — Generate ordinary typed-connection and nested-field constraints.**
-  Status: paused for the [T203](#t203) alignment audit after T202.
-  AMB-013 is resolved by excluding computed ordinary interfaces; do not implement
-  the obsolete preview exception or treat old mixed-interface probes as support.
-  Partial foundations pass 24 lexical/typed-scope and five congruence sanitizer
-  cases; full step/failure/checkpoint evidence is in the owning note. O2 root
-  build has a recorded return-contract warning; T182 is not accepted or committed.
-  No jobs active; retain the partial work and finish T203 before resuming.
-  Its local continuation note remains with the unfinished working-tree files,
-  outside T202; the specification task establishes no implementation acceptance.
-  Prerequisites: T176, T177, T180, T181, T203.
-  Rules: [TYPE-06](spec/language/declarations.md#type-06),
-  [NAME-06](spec/language/declarations.md#name-06),
-  [TPL-03](spec/language/templates.md#tpl-03),
-  [TPL-04](spec/language/templates.md#tpl-04).
-  Boundary: runtime declaration/source-order inference, foreach locals and
-  semantic input/result/default/assignment/reference connections.
-  Steps: (1) classify lexical receivers and locals before solving, keeping static
-  names separate; (2) generate equations from typed connections and deferred
-  constant evidence; (3) compose two/three-level owner/field applications.
-  Accept: later anchors refine existing terms without rebinding; independent
-  fields can differ while one field/concrete owner agrees across all uses.
-  Check empty typed references/lists, self-reference and unused typed defaults,
-  local lifetime, later explicit/inferred names and suffix mismatches.
-  Literals, runtime contents, first execution and unknown-to-unknown copying
-  provide no invented anchor; unresolved/inconsistent required types fail.
+- [ ] **T208 — Model actual static metadata and minimum usage requirements.**
+  Prerequisites: T207, T213.
+  Rules: [TPL-05](spec/language/templates.md#tpl-05),
+  [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-08](spec/language/templates.md#tpl-08).
+  Boundary: immutable Type/Template/producer descriptions, formal identities,
+  fixed captures, full actual residual signatures and symbolic use requirements.
+  Steps: retain complete actual metadata; collect compatible requirements from
+  all applications/forwarding uses; check supplied actuals without closing the
+  requirement set to the first signature encountered. This component expands
+  neither producer definitions nor recursive runtime bodies.
+  Accept: additional actual residuals survive; a forwarded-only input retains
+  its supplied category, origin and captures. All uses constrain an input and
+  each partial result has its own residual map. Reject wrong categories, missing
+  named members and incompatible requirements; no first-actual contract, capability
+  search or implicit Type reopening. Distinguish static producers from ordinary
+  constructors. Test exact identity/category laws, symbolic-to-actual refinement,
+  independent scopes and allocation/size boundaries with real inventory/resolver
+  consumers. Meet the common tests, Doxygen links and same-task commit criteria.
+
+<a id="t209"></a>
+
+- [ ] **T209 — Apply named constructors and solve nonexpanding equations.**
+  Prerequisites: T208.
+  Rules: [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-08](spec/language/templates.md#tpl-08),
+  [TPL-10](spec/language/templates.md#tpl-10).
+  Boundary: structural terms, named input application, partial normalization,
+  equality/congruence/occurs checks and exact nominal constructor recovery.
+  Steps: normalize known applications; propagate minimum requirements; solve
+  finite structural equalities and uniquely justified B-minus-P recovery while
+  retaining unanchored obligations. Do not unfold definitions at this stage.
+  Accept: direct/staged/reordered inputs agree and preserve unused captures;
+  independent partial applications do not mutate or combine the original family.
+  Reject duplicate/unknown/fixed labels, category conflicts, unequal nominal
+  origins and infinite terms. Unknown-to-unknown equalities, literals and
+  noninjective outputs invent no origin or missing binding. Preserve extra
+  residuals and require actual named compatibility rather than exact expected
+  signature equality. Derive finite solver progress/cost and recovery uniqueness;
+  exercise metadata/constraint consumers, permutations and allocation refusal.
+  Remove obsolete positional/exact-signature branches. Meet the common per-file
+  tests, Doxygen links and same-task commit criteria.
+
+<a id="t210"></a>
+
+- [ ] **T210 — Guard definition expansion and every specialization path.**
+  Prerequisites: T207, T209.
+  Rules: [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-11](spec/language/templates.md#tpl-11),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: separate exact static-definition and specialization-creation graphs,
+  original application provenance and pending repeated-key obligations.
+  Steps: revalidate the existing guards against the new graph roles; attribute
+  applications to lexical owners; expose checks that run before any expansion
+  and on every cache path. T183 composes these algorithms with the registry.
+  Accept: finite nested applications and identical closed-key cycles pass;
+  reachable unequal keys of one origin fail even through a closed cycle or late
+  edge. Unknown comparison keys suspend expansion without guessed equality or
+  speculative copies. Supplied Types/fixed namespaces add no invented creation
+  edge, while actual producer uses do. Pair/first-receipt definitions differ
+  from equality checks; direct/mutual static-definition cycles remain errors.
+  Check exact finite graph oracles, root/constraint order, cached dependencies,
+  pending-to-closed transitions, diagnostics and every refusal cleanup. Preserve
+  occurs/eager/value graphs separately. Meet the common per-file tests, Doxygen
+  links and same-task commit criteria.
 
 <a id="t183"></a>
 
 - [ ] **T183 — Register exact specialization identities and guarded cache reuse.**
-  Prerequisites: T171, T178, T180, T182, T201.
+  Prerequisites: T208, T209, T210, T213.
   Rules: [TPL-05](spec/language/templates.md#tpl-05),
   [TPL-11](spec/language/templates.md#tpl-11),
   [NAME-01](spec/implementation/compiler.md#name-01),
   [NAME-02](spec/implementation/compiler.md#name-02).
-  Boundary: compile-time specialization registry, full-key encoding and cache
+  Boundary: the early compile-time candidate registry, full-key encoding and cache
   dependency/provenance records, separate from instance allocation.
   Steps: (1) key complete normalized bindings by original identity/formal order;
   (2) intern structurally valid closed candidate keys with retained dependencies
@@ -252,15 +364,111 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   Accept: direct/partial/alias-equivalent bindings share identity; different
   roots/origins/unused bindings/captures/residual signatures do not merge.
   Interning is not executable admission; T185 supplies ordinary validation.
+  This task does not depend on T182 or resolved ordinary body members: compose
+  actual metadata/term/guard components over finite candidate graphs first.
+  Keep candidate, pending, checked and failed states explicit; T211 may retain
+  validation obligations while naming an already closed nominal identity.
   Cold/warm caches and reordered roots agree, including unequal-key paths
   hidden in cached grandchildren or outgoing branches of same-key cycles;
   exact-key closure retains every outgoing check. Unrelated paths do not form false
   source-only cycles. Inject key collisions and allocation failure explicitly.
 
+### Phase 4. Resolve static graphs and independent ordinary exports
+
+<a id="t211"></a>
+
+- [ ] **T211 — Resolve named graph results and complete producer inputs.**
+  Prerequisites: T207, T209, T210, T183, T213.
+  Rules: [TPL-08](spec/language/templates.md#tpl-08),
+  [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: result-pair values, explicit named producer outputs, scoped
+  application equations and producer closure through the guarded registry.
+  Steps: derive structural definitions and receiver equations; retain deterministic
+  omitted-input variables; solve/refine guarded demands and validate all graph
+  definitions. Apply guards before following each dependency, including unknown
+  keys and cache hits, rather than expanding first and checking afterwards.
+  Accept: multiple outputs, public intermediate names, forwarding and partial
+  returned families preserve exact metadata. Existing receivers add equality;
+  fresh names supply no anchor. Every producer input must close, including one
+  unused by selected results; every public output retains validation obligations.
+  Reject unknown/repeated output labels, implicit first results, producer-as-value
+  uses, static-definition cycles and unresolved/noninvertible input requirements.
+  Register closed identities with outstanding ordinary checks, never claim final
+  executable admission or require T185 prematurely. Test real parser/scope/solver/
+  guard/registry compositions, definition versus equality cycles, warm/cold order
+  and all preparation/publication failures. Meet the common per-file tests,
+  Doxygen links and same-task commit criteria.
+
+<a id="t212"></a>
+
+- [ ] **T212 — Select independent concrete exports and align constant analysis.**
+  Prerequisites: T211, T213.
+  Rules: [TYPE-01](spec/language/declarations.md#type-01),
+  [CONST-03](spec/language/declarations.md#const-03),
+  [CONST-05](spec/language/declarations.md#const-05),
+  [CONST-06](spec/language/declarations.md#const-06),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: ordinary declaration/constant-namespace export selection and
+  specialization-dependent constant declared-Type evidence. Runtime constant
+  initialization remains T186; ordinary call/assignment/foreach inference is T182.
+  Steps: resolve one exact selected export; require producer closure independently
+  of the consuming context; align shared declarations and both constant-source
+  forms with current scopes, known Types and graph dependencies.
+  Accept: one named selector precedes ordinary initializers and introduces no
+  local placeholder. Reject missing/multiple/unknown selectors, residual Template
+  storage and attempts to fill producer inputs from runtime receivers/calls.
+  Preserve field inference in permitted ordinary contexts, result-introduced Type
+  parameters and parameter-dependent shared lists. Explicit constant namespaces
+  use independent concrete Types; ordinary named/positional `>>` is unchanged.
+  Direct qualified constants keep their final-member split; member names and
+  literal bytes do not choose Types. Known nominal identities may participate
+  while whole-group validation remains pending, with no early successful admission.
+  Revalidate retained T181 metadata through actual declaration/graph/constant
+  consumers, cycles/provenance, unavailable members and resource failures.
+  Meet the common per-file tests, Doxygen links and same-task commit criteria.
+
+### Phase 5. Close and admit ordinary specializations
+
+<a id="t182"></a>
+
+- [ ] **T182 — Generate ordinary typed-connection and nested-field constraints.**
+  Status: retained unfinished work; wait for T203 and the new foundations above.
+  AMB-013 is resolved by excluding computed ordinary interfaces; do not implement
+  the obsolete preview exception or treat old mixed-interface probes as support.
+  Partial foundations pass 24 lexical/typed-scope and five congruence sanitizer
+  cases; full step/failure/checkpoint evidence is in the owning note. O2 root
+  build has a recorded return-contract warning; T182 is not accepted or committed.
+  No jobs active; retain the partial work and finish T203 before resuming.
+  Its local continuation note remains with the unfinished working-tree files,
+  outside T202; the specification task establishes no implementation acceptance.
+  Prerequisites: T207, T209, T212.
+  Rules: [TYPE-06](spec/language/declarations.md#type-06),
+  [NAME-06](spec/language/declarations.md#name-06),
+  [TPL-03](spec/language/templates.md#tpl-03),
+  [TPL-04](spec/language/templates.md#tpl-04).
+  Boundary: runtime declaration/source-order inference, foreach locals and
+  semantic input/result/default/assignment/reference connections.
+  Steps: (1) resolve the recorded O2 return-contract warning under its actual
+  contract, without inventing a fallback; classify lexical receivers and locals
+  before solving, keeping static
+  names separate; (2) generate equations from typed connections and deferred
+  constant evidence; (3) compose two/three-level owner/field applications.
+  Accept: later anchors refine existing terms without rebinding; independent
+  fields can differ while one field/concrete owner agrees across all uses.
+  Check empty typed references/lists, self-reference and unused typed defaults,
+  local lifetime, later explicit/inferred names and suffix mismatches.
+  Literals, runtime contents, first execution and unknown-to-unknown copying
+  provide no invented anchor; unresolved/inconsistent required types fail.
+  Use current ordinary name/type pairs and ready export evidence. Test real
+  new-parser/scope/constant/solver compositions, allocation failures and later
+  concrete anchors without contextual static-producer closure or old interface
+  previews. Reuse partial code only through T203's reviewed file ownership.
+
 <a id="t184"></a>
 
 - [ ] **T184 — Orchestrate the complete guarded specialization closure.**
-  Prerequisites: T174, T181, T182, T183.
+  Prerequisites: T182, T183, T211, T212.
   Rules: [TPL-06](spec/language/templates.md#tpl-06),
   [TPL-10](spec/language/templates.md#tpl-10),
   [TPL-11](spec/language/templates.md#tpl-11),
@@ -268,14 +476,15 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   Boundary: reusable frontend semantic pipeline and required-specialization
   worklist, with explicit child operations and publication/cleanup ownership.
   Steps: (1) compose source loading, lexical classification, constraints,
-  projections and guarded demands; (2) reach exact closure before exposing
-  closed type candidates for ordinary validation; (3) test real check-only and
-  multi-root frontend stage handoffs.
+  separate graph equations, independent export references and guarded demands;
+  (2) reach exact closure before exposing closed type candidates for ordinary
+  validation; (3) test real check-only and multi-root frontend stage handoffs.
   Accept: all required runtime types and producer inputs close; residual returned
   constructors remain compile-time values only. No expansion bypasses the T201
-  guards, including unresolved repeated-key obligations, and
-  no cache bypasses path validation. Reordered independent constraints/roots
-  preserve acceptance; malformed definitions and skipped branches remain checked.
+  guard contracts revalidated in T210, including unresolved repeated-key
+  obligations, and no cache bypasses path validation. Reordered independent
+  constraints/roots preserve acceptance; malformed definitions and skipped
+  branches remain checked.
   Check every allocation/publication failure and safe frontend teardown; this
   closure result still requires the ordinary checks in T185 before lowering.
 
@@ -302,7 +511,7 @@ records the consumed declaration/namespace/initializer boundary and its evidence
 <a id="t186"></a>
 
 - [ ] **T186 — Plan and execute specialization-scoped constant lifecycles.**
-  Prerequisites: T181, T183, T185.
+  Prerequisites: T183, T185, T212.
   Rules: [CONST-02](spec/language/declarations.md#const-02),
   [CONST-06](spec/language/declarations.md#const-06),
   [LIFE-03](spec/implementation/native-interface.md#life-03).
@@ -318,7 +527,7 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   partial native construction; copies preserve immutable shared originals.
   Generated whole-project startup evidence is completed with T188.
 
-### Phase 4. Lower and execute concrete programs
+### Phase 6. Lower and execute concrete programs
 
 <a id="t187"></a>
 
@@ -331,13 +540,14 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   Boundary: semantic-to-planning handoff, concrete layout descriptors and
   explicit typed transfer/control/lifecycle plans.
   Steps: (1) map validated specialization identities and members to resolved
-  plans; (2) remove static-only inputs/outputs/aliases from runtime storage and
-  keep runtime ordinals; (3) test actual semantic/planning/codegen-model handoffs.
+  plans; (2) exclude complete static graphs and their metadata from runtime
+  storage/control while preserving ordinary runtime interface ordinals;
+  (3) test actual semantic/planning/codegen-model handoffs.
   Accept: every runtime type/layout is closed; plans retain source provenance,
   full nominal distinctions, correct refs/lists/constants and stable pool roles.
   No emitter-side inference, implicit default instances or state save/restore.
   Check arithmetic/layout/allocation failures, unused static results and
-  separated static/runtime graphs; static metadata remains available only where needed
+  separate static/runtime graphs; retain static metadata only where needed
   for compilation/debug descriptions, not as runtime template objects.
 
 <a id="t188"></a>
@@ -374,15 +584,18 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   (3) verify stable outcomes across cache/order changes and low-memory failures.
   Accept: malformed names, kind/signature conflicts, occurs failures, unknown
   evidence, incomplete producers and each distinct cycle identify responsible
-  original sites. Unicode/multiword/hyphen paths round-trip, virtual identities
+  original sites. Include pair definitions versus equality receipts, preserved
+  extra residuals and independent-bridge closure errors. Unicode/multiword/hyphen
+  paths round-trip; virtual identities
   do not pretend to be source files, and diagnostics remain valid through cleanup.
-  No output artifacts are published on failed compilation; static evaluation
-  neither executes runtime code nor produces fictitious runtime stack entries.
+  A failed compilation must not leave partial output masquerading as a usable
+  build or overwrite handwritten native companions. Static evaluation neither
+  executes runtime code nor produces fictitious runtime stack entries.
 
 <a id="t190"></a>
 
 - [ ] **T190 — Compile concrete native/template compositions.**
-  Prerequisites: T174, T185, T187, T188.
+  Prerequisites: T207, T212, T185, T187, T188.
   Rules: [TPL-13](spec/language/templates.md#tpl-13),
   [CABI-01](spec/implementation/native-interface.md#cabi-01),
   [CABI-05](spec/implementation/native-interface.md#cabi-05),
@@ -390,7 +603,7 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   Boundary: native semantic views, scaffold/header models, layout/toolchain
   verification and handwritten concrete native companions.
   Steps: (1) instantiate Ama templates with concrete native types; (2) integrate
-  closed Ama template fields/dependencies inside concrete `@C` modules;
+  concrete static-export field/dependency Types inside ordinary `@C` modules;
   (3) independently compile generated headers and run actual native compositions.
   Accept: required native default/copy/literal/condition/index capabilities and
   lifecycle/layout contracts are checked after substitution; unsupported ones
@@ -398,51 +611,59 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   Declared Ama refs remain visible and checked, never opaque native payloads.
   Cover concrete owned/ref/list fields and rejection of open dependencies;
   introduce no generic native hooks or specialization-specific authoring API.
+  Revalidate native constructor/destructor behavior with the current selected
+  Types; own-child embedding cleanup receives full host acceptance in T194.
 
-### Phase 5. Connect the existing product consumers
+### Phase 7. Connect product consumers and algorithm examples
 
 <a id="t191"></a>
 
 - [ ] **T191 — Deliver open templates as source and invalidate consumers exactly.**
-  Prerequisites: T171, T183, T188, T190.
+  Prerequisites: T213, T183, T188, T190.
   Rules: [TPL-13](spec/language/templates.md#tpl-13),
   [DEP-03](spec/implementation/compiler.md#dep-03),
   [COMP-05](spec/implementation/compiler.md#comp-05).
   Boundary: existing configured roots, project/native source closure, incremental
   input fingerprints and actual independent source-distribution consumers.
   Steps: (1) load an open template library and required companions in a separate
-  consumer project; (2) build/run that consumer's own specializations;
+  consumer project with separate static-assembly and ordinary-template sources;
+  (2) build/run that consumer's own specializations;
   (3) test repeat/reordered imports, changed inputs and missing dependencies.
   Accept: full root/origin/formal/capture identity survives reuse; compatible
   imports share type/code without instance state. Reject name conflicts, absent
   Ama/native/external C dependencies and unresolved bindings exactly.
-  Changed template/signature/output/native inputs invalidate affected results;
-  no-op builds remain current. Use existing source delivery, not a new package
-  manager, file format, virtual filename or binary-only template interface.
+  Changed graph definitions/outputs, Type uses and native inputs invalidate
+  affected results; no-op builds remain current. Use existing source delivery,
+  not a new package manager, file format, virtual filename or binary-only
+  template interface.
 
 <a id="t192"></a>
 
 - [ ] **T192 — Integrate static bindings with editor analysis and rename.**
-  Prerequisites: T169, T172, T173, T184, T189.
+  Prerequisites: T206, T207, T208, T211, T212, T184, T189.
   Rules: [COMP-01](spec/implementation/compiler.md#comp-01),
   [NAME-06](spec/language/declarations.md#name-06),
   [TPL-02](spec/language/templates.md#tpl-02),
   [TPL-12](spec/language/static-results.md#tpl-12).
   Boundary: existing editor snapshots/index/query/rename consumers of the common
   frontend; preserve their documented transaction and failure contracts.
-  Steps: (1) index distinct static declarations, aliases and external labels;
+  Steps: (1) index graph pairs, defining/equality receipts, free inputs, foreign
+  labels and ordinary export selectors;
   (2) route navigation/diagnostics/rename through resolved source identities;
   (3) exercise actual workspace queries and checked rename transactions.
   Accept: same-spelled foreign parameters and actual signature labels do not
-  collapse; rename respects lexical alias visibility, full atomic names and
-  captures. No generated specialization source file or duplicated parser.
+  collapse; navigation/rename respect whole-graph visibility, ordinary source-
+  ordered receiver scope, full atomic names and retained captures. Preserve the
+  existing checked transaction contract when labels have multiple actual origins;
+  do not invent a rename interpretation for an unspecified case. No generated
+  specialization source file or duplicated parser.
   Cover incomplete/error snapshots, Unicode/hyphens, stale versions and capture
   rejection; failed transactions preserve workspace bytes.
 
 <a id="t193"></a>
 
 - [ ] **T193 — Preserve template meaning during source directory relocation.**
-  Prerequisites: T171, T184, T189, T191, T192.
+  Prerequisites: T213, T184, T189, T191, T192.
   Rules: [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01),
   [TOOL-03](spec/implementation/tools-and-conformance.md#tool-03),
   [TOOL-04](spec/implementation/tools-and-conformance.md#tool-04),
@@ -454,14 +675,18 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   mapping/preflight; (3) relocate, rebuild/run and exercise refusal/recovery cases.
   Accept: rewrite only real resolved paths, preserve other bytes and static
   binding relationships, and recompute specialization origins from new sources.
-  Include nested applications/namespaces, both root kinds, hyphens/name+/,
-  original-name conflicts/new-root files, interruption and rollback/replay.
+  Include moving only a static producer versus its returned constructor: the
+  producer identity changes while an unchanged returned ordinary Type preserves
+  its original identity. Never rewrite export selectors or descriptive static
+  names as paths. Include nested applications/namespaces, both root kinds,
+  hyphens/name+/, original-name conflicts/new-root files, interruption and
+  rollback/replay.
   No text replacement or treating explanatory placeholder components as files.
 
 <a id="t194"></a>
 
 - [ ] **T194 — Export concrete template facades through the checked C boundary.**
-  Prerequisites: T188, T190, T191.
+  Prerequisites: T188, T190, T191, T205.
   Rules: [TPL-13](spec/language/templates.md#tpl-13),
   [EMBED-01](spec/implementation/c-library.md#embed-01),
   [EMBED-04](spec/implementation/c-library.md#embed-04),
@@ -476,14 +701,18 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   Accept: full specialization/native closure, supported typed transport,
   independent contexts/host objects, ownership and cleanup all hold. Include
   two concrete facades with different substitutions and inspect their ABI identities.
-  Reject open export roots, virtual specialization selectors/static argument
-  maps, missing closure and unsupported transport. Static results add no runtime
-  C slots; no shared mutable Ama refs or yield across an unfinished native call.
+  Reject open export roots, static-module export roots including closed graphs,
+  virtual specialization selectors/static argument maps, missing closure and
+  unsupported transport. Static results add no runtime C slots; no shared
+  mutable Ama refs or yield across an unfinished native call.
+  Exercise T205's `A -> owned W -> child B` with independent peer C: normal and
+  outer-failure cleanup dispose yielded/failed B exactly once, preserve C and
+  respect detached native activity/code lifetimes without Ama execution/reentry.
 
 <a id="t195"></a>
 
 - [ ] **T195 — Exercise useful generic algorithms over existing intrinsic lists.**
-  Prerequisites: T185, T186, T188, T190, T191.
+  Prerequisites: T185, T186, T188, T190, T191, T211, T212.
   Rules: [TPL-09](spec/language/templates.md#tpl-09),
   [TPL-04](spec/language/templates.md#tpl-04),
   [FLOW-05](spec/language/lists.md#flow-05),
@@ -492,20 +721,23 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   existing list methods and ordinary modules for state/methods.
   Steps: (1) document algorithm inputs, preconditions, invariants and expected
   effects independently of outputs; (2) implement examples of typed list
-  processing, nested composition and a returned partial constructor;
+  processing and nested composition, with a separate static assembly returning
+  a partial constructor;
   (3) compile/run several concrete types and negative applications.
   Accept: empty explicitly typed lists need no sample; owned/ref forms, live
   traversal insertion/deletion, busy/refusal and copy behavior remain unchanged.
-  Include equal specialization instances with independent state, explicit static
-  outputs and wrong-operation/category cases. Examples teach useful composition;
-  no base-list provider, new allocator/storage API or privileged generic code.
+  Include equal specialization instances with independent state, multiple named
+  static outputs and wrong-operation/category cases. Ordinary algorithm bodies
+  contain no complex static applications or runtime Template values. Examples
+  teach useful composition; no base-list provider, new allocator/storage API or
+  privileged generic code.
 
-### Phase 6. Review evidence and deliver
+### Phase 8. Review evidence and deliver
 
 <a id="t196"></a>
 
 - [ ] **T196 — Review current requirement and acceptance evidence.**
-  Prerequisites: T168 through T195, T200, T201, T202, T203.
+  Prerequisites: T189, T190, T191, T192, T193, T194, T195.
   Rules: [TEST-07](spec/implementation/tools-and-conformance.md#test-07),
   [TEST-08](spec/implementation/tools-and-conformance.md#test-08),
   [ARCH-06](spec/implementation/compiler.md#arch-06).
@@ -515,8 +747,9 @@ records the consumed declaration/namespace/initializer boundary and its evidence
   distinct real-consumer cases; (2) run the recorded affected behavior and
   evidence-gate checks; (3) refresh reviewed mappings/fingerprints only after
   inspecting the corresponding sources, arguments and results.
-  Accept: all 214 currently indexed rules and 150 current acceptance rows,
-  including the 37 template areas and hyphen/facade consumers, have accurate
+  Accept: enumerate every current canonical requirement and acceptance row
+  from the specification (baseline: 214 rules, 150 rows, 37 template areas),
+  including the new model and lifecycle clarification. All have accurate
   evidence or an explicit applicable deferred boundary. The list rewrite is
   excluded, not falsely implemented. No stale baseline hash refresh substitutes
   for tests; unresolved mandatory coverage or documentation debt blocks completion.
@@ -569,59 +802,60 @@ records the consumed declaration/namespace/initializer boundary and its evidence
 This is navigation to task owners, not a second definition of language rules
 or completed evidence. Exact obligations remain in the
 [canonical acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix).
-T168 verifies the source/test mapping; T196 reviews the actual full evidence.
+T203 audits the current source/test mapping; T168 remains historical evidence.
+T196 reviews the actual full evidence.
 
-| Static module template acceptance area | Primary task |
+| Static module template acceptance area | Current task owner |
 |---|---|
-| Placeholder spelling | T169 |
-| Placeholder scope | T172 |
-| Ordinary-argument inference | T182 |
-| Nested field specialization | T182 |
-| Specialization identity | T183 |
-| Dependent constant declarations | T181 |
-| Explicit constant namespaces | T181 |
-| Specialized constant lifecycle | T186 |
-| Concrete operation checks | T185 |
-| Template parameter signatures | T203 alignment, then partial-application components |
-| Partial composition | T177 |
-| Explicit static input categories | T203 alignment, then static scope inventory |
-| Defined static results | T203 alignment, then static result equations |
-| Static output composition | T203 alignment, then static result equations |
-| Static output lookup | T203 alignment, then named graph lookup |
-| Named-only static interfaces | T203 alignment, then parser/interface checks |
-| Static named arity and rejected skips | T203 alignment, then parser/interface checks |
-| Static binding modes and order | T203 alignment, then graph syntax checks |
-| Static result alias introduction | T203 alignment, then static scope/equalities |
-| Static alias scope and capture | T203 alignment, then static scope inventory |
-| Static output inference and closure | T180 |
-| Complete producer closure | T180 |
-| Ordinary static-export boundary | T203 alignment, then export resolution |
-| Static evaluation boundary and cycles | T179 |
-| Returned constructor creation provenance | T178 |
-| List implementation boundary | T195 |
-| Specialization analysis and diagnostics | T189 |
-| Finite repeated composition | T178 |
-| Definition-generated recursion | T178 |
-| Creation-graph provenance | T178 |
-| Constructor origins and captures | T178 |
-| Cache-independent path checks | T183 |
-| Native template rejection | T174 |
-| Concrete native template arguments | T190 |
-| Concrete native composition | T190 |
-| Template source delivery | T191 |
-| Source distribution resolution | T191 |
+| Placeholder spelling | [T206](#t206) |
+| Placeholder scope | [T207](#t207) |
+| Ordinary-argument inference | [T182](#t182) |
+| Nested field specialization | [T182](#t182) |
+| Specialization identity | [T183](#t183) |
+| Dependent constant declarations | [T212](#t212) |
+| Explicit constant namespaces | [T212](#t212) |
+| Specialized constant lifecycle | [T186](#t186) |
+| Concrete operation checks | [T185](#t185) |
+| Template parameter signatures | [T208](#t208) |
+| Partial composition | [T209](#t209) |
+| Explicit static input categories | [T207](#t207) |
+| Defined static results | [T211](#t211) |
+| Static output composition | [T211](#t211) |
+| Static output lookup | [T211](#t211) |
+| Named-only static interfaces | [T206](#t206) |
+| Static named arity and rejected skips | [T209](#t209), [T211](#t211) |
+| Static binding modes and order | [T206](#t206) |
+| Static result alias introduction | [T207](#t207) |
+| Static alias scope and capture | [T207](#t207) |
+| Static output inference and closure | [T211](#t211) |
+| Complete producer closure | [T211](#t211) |
+| Ordinary static-export boundary | [T212](#t212) |
+| Static evaluation boundary and cycles | [T210](#t210) |
+| Returned constructor creation provenance | [T210](#t210) |
+| List implementation boundary | [T195](#t195) |
+| Specialization analysis and diagnostics | [T189](#t189) |
+| Finite repeated composition | [T210](#t210) |
+| Definition-generated recursion | [T210](#t210) |
+| Creation-graph provenance | [T210](#t210) |
+| Constructor origins and captures | [T208](#t208) |
+| Cache-independent path checks | [T183](#t183) |
+| Native template rejection | [T207](#t207) |
+| Concrete native template arguments | [T190](#t190) |
+| Concrete native composition | [T190](#t190) |
+| Template source delivery | [T191](#t191) |
+| Source distribution resolution | [T191](#t191) |
 
-T169 additionally owns Internal hyphen words, Hyphenated name identity and
-Hyphen context boundaries, plus affected ordinary name/path regressions.
-T187/T188 own compiled storage/dispatch/state evidence;
-T194 owns Concrete facade exports and Template export exclusion, with the
-existing compiled-library/embedding regressions. T192/T193 own affected editor
-and directory-relocation consumers. T196–T198 cover full evidence/release/docs;
-these additional obligations are not discharged by this routing table.
-T203 must reconcile every remaining historical owner with the changed source
-model before old component evidence is reused; the table is not a support claim.
+T206 also owns integration of the unchanged Internal hyphen words, Hyphenated
+name identity and Hyphen context boundaries. T213 owns new AST source lookup and
+dependency closure; T190 owns the native authoring/header consumers. T187/T188
+own compiled storage, label dispatch, state and continuation evidence. T194 owns
+Concrete facade exports, Template export exclusion and the owned-child/independent-
+peer lifecycle acceptance clarified by T205. T192/T193 own editor/relocation
+consumers of the same resolved identities. T196 reviews every other canonical
+row and existing product regression, and T197/T198 complete release/reference
+acceptance. No historical hash refresh or routing label establishes support.
 
-The next unused task ID is **T206**.
+The next unused task ID is **T214**.
 
 ## Useful verification commands
 

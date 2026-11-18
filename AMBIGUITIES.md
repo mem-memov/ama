@@ -33,8 +33,9 @@ remains unfinished. Relative module paths are explicitly deferred.
 The whole-specification review T204 found [AMB-015](#amb-015), an unqualified
 other-context cleanup prohibition conflicting with explicit owned-child disposal.
 The user approved its precise clarification on 2026-11-19;
-[T205](DONE.md#t205) delivers the lifecycle correction before T204 completes the
-revised implementation plan.
+[T205](DONE.md#t205) delivers the lifecycle correction. [T204](DONE.md#t204)
+finishes the consistency review and revised implementation plan; no other
+blocking contradiction was found in that bounded review.
 
 The planned design decisions were closed before implementation. The user also
 resolves the implementation clarification [AMB-011](#amb-011): output-only
@@ -1064,7 +1065,7 @@ Each entry must contain:
 
 - **Status:** Resolved by the explicit 2026-11-19 user decision; T205 owns the
   canonical clarification and its acceptance, recorded in [DONE](DONE.md#t205).
-- **Task:** [T204](TODO.md#t204), whole-specification consistency review before
+- **Task:** [T204](DONE.md#t204), whole-specification consistency review before
   the user-authorized conditional work-plan rewrite, input `155c9da`.
 - **Requirements at input 155c9da:** [LIFE-05](spec/implementation/native-interface.md#life-05)
   ended with the unqualified rule that cleanup of one context does not dispose
@@ -1107,7 +1108,8 @@ Each entry must contain:
   LIFE-05 clarification and continuation of the consistency review and plan.
   It does not authorize unrelated language changes or relative module paths.
 - **Resolution evidence:** T205 reconciles LIFE-05 with CABI-05/EMBED-07
-  and the relevant acceptance case. T204 can finish the consistency review
-  and replan. Preserve exactly-once acyclic resource ownership, independent
-  peer lifetimes, native callback/code lifetime and nonexecuting cleanup. No
+  and the relevant acceptance case. T204 finishes the consistency review
+  and replan without another blocking contradiction. Preserve exactly-once
+  acyclic resource ownership, independent peer lifetimes, native callback/code
+  lifetime and nonexecuting cleanup. No
   compiler source or partial T182 work is changed by the specification decision.
