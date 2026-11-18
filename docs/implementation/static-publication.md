@@ -1,11 +1,14 @@
 # Complete static producers and immutable publication
 
-**Pending contract alignment:** [T201](../../TODO.md#t201) owns the effects of
-T200's [TPL-11](../../spec/language/templates.md#tpl-11) revision on guard and
-result/publication consumers. The T180 evidence below is its recorded baseline,
-not evidence that same-key cycles or revised namespace reuse already work.
-Producer closure, immutable publication and separate definition checks remain
-required under [TPL-12](../../spec/language/static-results.md#tpl-12).
+**T201 alignment:** [Creation guards](static-guards.md#t201-alignment) records
+the current nominal-cycle/result/publication evidence. Own nominal Type results
+can close their specialization graph, while direct/mutual static projections
+still fail the definition guard. A repeated unknown producer ancestry stays
+Pending and cannot publish until independent evidence closes it. A warm foreign
+value proof cannot bypass that check: unknown incoming ancestry requires original
+RHS checking in the actual context. T180's dated
+evidence below remains its original baseline. Full producer closure and immutable
+publication still follow [TPL-12](../../spec/language/static-results.md#tpl-12).
 
 T180 is accepted on input fa1cd3e. Authority:
 [TPL-12](../../spec/language/static-results.md#tpl-12),

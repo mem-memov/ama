@@ -1,7 +1,7 @@
 # Dependent constant types and concrete namespaces
 
-T181 is unfinished on input 78a2099, awaiting prerequisite
-[T201](../../TODO.md#t201) after T200's authorized specification correction. Authority:
+T181 is unfinished on input 78a2099. Accepted prerequisite
+[T201](../../DONE.md#t201) now permits resumption after T200's authorized specification correction. Authority:
 [CONST-03](../../spec/language/declarations.md#const-03),
 [CONST-06](../../spec/language/declarations.md#const-06),
 [CONST-01](../../spec/language/declarations.md#const-01),
@@ -137,3 +137,11 @@ explicit read registration/selection and resource boundaries. Earlier six-case
 binding, four-case read and seven-case selection checks also passed. No active
 jobs or completed T181 commit. The next implementation task is the explicitly
 planned prerequisite T201, not an unrelated task chosen to evade an ambiguity.
+
+T201 alignment is accepted on input 7469fd4: fixed ordinary namespaces reuse
+Type identity; unknown repeated ancestry and foreign cached proofs retain their
+checks. The unused draft edge adapter was removed with a seven-input hashed
+backup. Existing constant sources/tests were preserved, not accepted by T201.
+Next T181 step: rerun the explicit-read consumers under the accepted reuse
+contract and supply actual independently checked contexts where required, then
+continue qualified-source collection and typed initializer composition.

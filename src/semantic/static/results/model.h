@@ -57,8 +57,9 @@ typedef enum { STATIC_RESULT_READY, STATIC_RESULT_PENDING } StaticResultOutcome;
 typedef struct StaticResultUse StaticResultUse;
 
 /** Definition occurrences retain checked dependency ancestry, including on a
- * value-cache hit under a new incoming path. checked_rhs borrows the original
- * cache proof without pretending it belongs to this use's lexical environment.
+ * value-cache hit under a new incoming path. checked_rhs borrows an already
+ * checked proof: prefer this actual context; a foreign proof requires closed
+ * actual ancestor keys. Proof provenance never changes lexical environments.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) validates incoming paths.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves definition dependencies.
  */

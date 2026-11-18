@@ -1,6 +1,6 @@
 /** @file
- * @brief Reject repeated known source templates across concrete caches and unresolved scoped paths.
- * [TPL-11](../../../../../spec/language/templates.md#tpl-11) checks before key closure.
+ * @brief Reject reachable unequal complete template keys while retaining mixed-scope provenance.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) permits identical-key cycles and requires complete key comparison.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) retains symbolic ancestry.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) releases successful search scratch.
  * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04) retains complete rejection witnesses.
@@ -11,19 +11,21 @@
 #include "../internal.h"
 
 /** Transfer already allocated evidence without allocating to explain the error.
- * A closing path can still be symbolic and need not have a concrete edge yet.
+ * Endpoints are closed unequal keys; an intermediate edge can remain symbolic.
  * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04) retains actual source uses.
  */
 static bool reject(StaticGuardPlan *plan, StaticCreationSearch *current,
-    const StaticCreationViewNode *target, StaticCreationEdge *edge,
+    const StaticCreationViewNode *root, const StaticCreationViewNode *target, StaticCreationEdge *edge,
     const StaticCreationPath *path, SourceArena *scratch) {
     const StaticModule *origin = target->origin;
     (void)static_guard_fail(plan, STATIC_GUARD_CONFLICT, path->site,
-        "Repeated original template in a cached specialization-creation path");
+        "Different complete specializations of one template in a cached creation path");
     plan->creation_witness = current;
     plan->closing_edge = edge;
     plan->closing_creation_path = path;
     plan->rejected_origin = origin;
+    plan->earlier_creation_value = root->vertex->value;
+    plan->rejected_creation_value = target->vertex->value;
     plan->rejected_site = path->site;
     plan->rejected_path = path->parent;
     plan->witness_arena = *scratch;
@@ -38,15 +40,17 @@ static bool reject(StaticGuardPlan *plan, StaticCreationSearch *current,
     return false;
 }
 
-/** Check a real target's known source before visited suppression. Each exact
+/** Check closed unequal endpoints before visited suppression. Each exact
  * validation class enters the queue once; provenance remains on original paths.
- * [TPL-11](../../../../../spec/language/templates.md#tpl-11) checks nonempty paths.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) permits same-key closure without skipping outgoing paths.
  */
-static bool visit(StaticGuardPlan *plan, const StaticCreationView *view, const StaticModule *origin,
+static bool visit(StaticGuardPlan *plan, const StaticCreationView *view, const StaticCreationViewNode *root,
     size_t target, StaticCreationSearch *current, StaticCreationEdge *edge, const StaticCreationPath *path,
     StaticCreationSearch *entries, StaticCreationSearch **seen, size_t *count, SourceArena *scratch) {
     const StaticCreationViewNode *node = &view->nodes[target];
-    if (node->origin == origin) { return reject(plan, current, node, edge, path, scratch); }
+    if (node->origin == root->origin && node->vertex != NULL && node->vertex != root->vertex) {
+        return reject(plan, current, root, node, edge, path, scratch);
+    }
     if (seen[target] != NULL) { return true; }
     entries[*count] = (StaticCreationSearch){.vertex = node->vertex, .owner = node->owner, .origin = node->origin,
         .ordinal = target, .parent = current, .edge = edge, .path = path};
@@ -56,7 +60,7 @@ static bool visit(StaticGuardPlan *plan, const StaticCreationView *view, const S
 
 /** Concrete adjacency is reused directly. Edges with an unresolved endpoint
  * are retained occurrence paths, grouped only by exact scoped owner identity.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) checks known origins before closure.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) retains pending scopes without assuming canonical equality.
  */
 static bool search(StaticGuardPlan *plan, const StaticCreationView *view, size_t start,
     StaticCreationSearch *entries, StaticCreationSearch **seen, SourceArena *scratch) {
@@ -71,7 +75,7 @@ static bool search(StaticGuardPlan *plan, const StaticCreationView *view, size_t
         const StaticCreationViewNode *node = &view->nodes[current->ordinal];
         if (node->vertex != NULL) {
             for (StaticCreationEdge *edge = node->vertex->first; edge; edge = edge->next) {
-                if (!visit(plan, view, root->origin, edge->target->ordinal, current, edge, edge->path,
+                if (!visit(plan, view, root, edge->target->ordinal, current, edge, edge->path,
                     entries, seen, &count, scratch)) { return false; }
             }
         }
@@ -82,15 +86,15 @@ static bool search(StaticGuardPlan *plan, const StaticCreationView *view, size_t
             if (!matches) { continue; }
             size_t target;
             if (!static_creation_view_path(plan, view, path, &target) ||
-                !visit(plan, view, root->origin, target, current, NULL, path,
+                !visit(plan, view, root, target, current, NULL, path,
                     entries, seen, &count, scratch)) { return false; }
         }
     }
     return true;
 }
 
-/** Same-origin reachability checks both already complete graph paths and
- * known symbolic prefixes/suffixes. Exact scope classes are validation views,
+/** Closed unequal endpoints are checked across complete and symbolic paths.
+ * A partial endpoint alone cannot prove a conflict. Exact scope classes are validation views,
  * not prematurely published concrete cache keys. No path/depth budget is used.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) validates all incoming paths.
  */
@@ -117,7 +121,7 @@ bool static_guard_creation_graph(StaticGuardPlan *plan) {
                     "Creation path search could not allocate scratch");
             }
             for (size_t index = 0; success && index < view.count; index++) {
-                if (view.nodes[index].origin->parameter_count == 0) { continue; }
+                if (view.nodes[index].vertex == NULL || view.nodes[index].origin->parameter_count == 0) { continue; }
                 success = search(plan, &view, index, entries, seen, &scratch);
             }
         }

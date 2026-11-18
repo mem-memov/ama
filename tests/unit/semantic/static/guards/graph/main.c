@@ -19,7 +19,7 @@ static bool forbidden(unsigned graph) {
     }
     for (size_t from = 0; from < 3; from++) {
         for (size_t to = 0; to < 3; to++) {
-            if (labels[from] == labels[to] && paths[from][to]) { return true; }
+            if (from != to && labels[from] == labels[to] && paths[from][to]) { return true; }
         }
     }
     return false;
@@ -60,6 +60,9 @@ static void witness(void) {
     }
     assert(length <= 4);
     assert(item->vertex->value->as.nominal.origin == guards.closing_edge->target->value->as.nominal.origin);
+    assert(item->vertex != guards.closing_edge->target);
+    assert(guards.earlier_creation_value == item->vertex->value);
+    assert(guards.rejected_creation_value == guards.closing_edge->target->value);
     assert(diagnostic_valid(&guards.error));
 }
 

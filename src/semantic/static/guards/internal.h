@@ -26,6 +26,12 @@ bool static_guard_dependencies(StaticGuardPlan *);
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves incoming uses.
  */
 bool static_guard_has_path(const StaticGuardPlan *, const StaticCreationPath *);
+/** Compare repeated actual template origins by complete keys before expansion.
+ * Pending keys suspend this request, without guessing equality or another scope.
+ * Closed unequal keys retain both canonical identities and the original path.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) permits only exact-key closure.
+ */
+bool static_guard_ancestry(StaticGuardPlan *, const StaticCreationPath *, const StaticTerm *, SourceSpan, bool *);
 /** Append one prechecked immutable occurrence; counters fail before publication.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) retains every creation edge.
  */
@@ -40,8 +46,9 @@ bool static_guard_vertex(StaticGuardPlan *, const StaticTerm *, StaticCreationVe
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves incoming provenance.
  */
 bool static_guard_edges(StaticGuardPlan *);
-/** Check the complete concrete graph's repeated-template path predicate with
- * bounded iterative reachability, preserving a full cached-edge witness on failure.
+/** Check reachable distinct complete keys of the same template origin with
+ * finite iterative reachability through concrete and unresolved scope classes,
+ * preserving both endpoint keys and a full cached-edge witness on failure.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) rechecks cached descendants.
  */
 bool static_guard_creation_graph(StaticGuardPlan *);

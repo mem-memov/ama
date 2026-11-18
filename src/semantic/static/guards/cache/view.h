@@ -1,6 +1,6 @@
 /** @file
  * @brief Define temporary exact validation classes for complete keys and unresolved lexical owners.
- * [TPL-11](../../../../../spec/language/templates.md#tpl-11) checks cached known-origin paths.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) compares closed endpoints through cached paths.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) retains symbolic environments.
  */
 #ifndef AMA_STATIC_CREATION_VIEW_H
@@ -29,7 +29,7 @@ typedef struct {
 
 /** Build exact classes for all concrete vertices and required unresolved scopes.
  * No symbolic class is published as a concrete specialization/cache key.
- * [TPL-11](../../../../../spec/language/templates.md#tpl-11) checks origins before closure.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) retains unknown scopes without merging their keys.
  */
 bool static_creation_view(StaticGuardPlan *, SourceArena *, StaticCreationView *);
 /** Map one registered frame to its complete-key or exact unresolved-scope class.

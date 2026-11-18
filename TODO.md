@@ -147,15 +147,17 @@ change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
 Specification clarification [T200](DONE.md#t200) is accepted and archived.
-T201 is the next implementation prerequisite; T181's unfinished local work is
-preserved and has not been accepted by the specification change.
-Current implementation checkpoint: T181 active on input 78a2099.
+T201's implementation alignment is accepted in [DONE](DONE.md#t201); T181's
+unfinished local work is preserved and ready to resume.
+Current implementation checkpoint: T201 accepted on input 7469fd4; T181's prior
+partial work remains preserved on its implementation input 78a2099.
 [Static constants](docs/implementation/static-constants.md) records dependent
 shared types, deferred namespace reads and qualified-source provenance.
 T180 is accepted, archived and committed. The user has resolved
 [AMB-012](AMBIGUITIES.md#amb-012) and authorized T200's specification correction.
-T181 awaits T201's prerequisite guard/consumer alignment with that new contract.
-No implementation jobs are active; design acceptance is not compiler support.
+T181 resumes after T201's accepted guard/consumer alignment with that contract.
+T201 checks and the continuation checkpoint are recorded in its linked component
+note; design acceptance alone is not compiler support.
 
 ## Current tasks
 
@@ -163,41 +165,12 @@ No implementation jobs are active; design acceptance is not compiler support.
 
 ### Phase 2. Build exact static analysis components
 
-<a id="t201"></a>
-
-- [ ] **T201 — Align creation guards and consumers with closed-key cycles.**
-  Status: planned implementation follow-up to the authorized T200 design;
-  existing T178/T179/T180 evidence describes the earlier stricter contract.
-  Prerequisites: T178, T179, T180, T200.
-  Rules: [TPL-11](spec/language/templates.md#tpl-11),
-  [TPL-12](spec/language/static-results.md#tpl-12),
-  [CONST-03](spec/language/declarations.md#const-03),
-  [CONST-05](spec/language/declarations.md#const-05).
-  Boundary: creation guards, their result/publication/application consumers,
-  focused tests and current component comments/contracts; preserve T181's local
-  partial work and replace its unaccepted edge adapter only as required.
-  Steps: (1) specify exact closed-key/pending/reuse states and finite progress;
-  (2) implement reachability and cycle-safe checked contexts, keeping static
-  definition cycles separate; (3) align result/publication/namespace consumers,
-  documentation and per-file evidence, run composition/resource/build checks.
-  Accept: direct/mutual same-key reference/empty-list cycles close without body
-  re-expansion or premature validation. Reachable distinct keys of one origin
-  still fail, including differing unused captures, unequal permutations and
-  cycle-outgoing branches. Unknown comparisons wait for actual constraints,
-  then close or fail without guessing. Both fixed ordinary namespace forms
-  retain independent checking without creation edges; output phases retain
-  producers. Cold/warm caches and reordered roots/edges agree. Exhaustive finite
-  graph tests, allocation failures and real guard/result/publication consumers
-  validate the changed behavior; static-definition/occurs/eager/value checks
-  remain separate. Update stale component prose rather than claiming T178's
-  earlier checks establish support. Commit before resuming T181.
-
 ### Phase 3. Close and validate executable specializations
 
 <a id="t181"></a>
 
 - [ ] **T181 — Resolve dependent constant types and explicit namespaces.**
-  Status: awaiting T201 after the resolved [AMB-012](AMBIGUITIES.md#amb-012),
+  Status: ready to resume after T201 and the resolved [AMB-012](AMBIGUITIES.md#amb-012),
   2026-11-18, on implementation input 78a2099. The task remains unfinished.
   Step record:
   [static constants](docs/implementation/static-constants.md).

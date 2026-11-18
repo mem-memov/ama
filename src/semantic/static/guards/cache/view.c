@@ -1,6 +1,6 @@
 /** @file
  * @brief Retain unresolved required scopes in cache-path validation before their complete keys exist.
- * [TPL-11](../../../../../spec/language/templates.md#tpl-11) checks known source ancestry.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) preserves paths between closed unequal endpoints.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves symbolic occurrences.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) bounds scratch ownership.
  */
@@ -17,14 +17,16 @@ static bool capacity(StaticGuardPlan *plan, size_t *output) {
     for (const StaticCreationPath *path = plan->first_path; path; path = path->next) {
         if (path->vertex != NULL) { continue; }
         if (pending == SIZE_MAX) {
-            return static_guard_fail(plan, STATIC_GUARD_OUT_OF_MEMORY, path->site, "Symbolic creation scope count exceeds storage");
+            (void)static_guard_fail(plan, STATIC_GUARD_OUT_OF_MEMORY, path->site, "Symbolic creation scope count exceeds storage");
+            return false;
         }
         pending++;
     }
     if (pending > SIZE_MAX - plan->vertex_count ||
         pending + plan->vertex_count > SIZE_MAX / sizeof(StaticCreationViewNode)) {
-        return static_guard_fail(plan, STATIC_GUARD_OUT_OF_MEMORY, (SourceSpan){0},
+        (void)static_guard_fail(plan, STATIC_GUARD_OUT_OF_MEMORY, (SourceSpan){0},
             "Creation validation view exceeds representable storage");
+        return false;
     }
     *output = pending + plan->vertex_count;
     return true;

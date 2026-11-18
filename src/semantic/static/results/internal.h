@@ -37,8 +37,10 @@ bool static_result_use(StaticResultPlan *, const StaticResultContext *, const As
  */
 bool static_result_definition_use(StaticResultPlan *, const StaticResultContext *, const StaticSymbol *,
     const StaticDefinitionPath *, SourceSpan, StaticResultDefinitionUse **);
-/** Reuse a checked complete definition value only after incoming guards refresh;
- * equate the current scoped result rather than replacing its identity.
+/** Reuse a checked complete definition value only after incoming guards refresh.
+ * A hit requires an actual-context proof or fully closed actual ancestor keys;
+ * otherwise a successful miss retains valid value equations and requests RHS
+ * replay in the actual context. Never replace the current scoped identity.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves immutable results.
  */
 bool static_result_cache_read(StaticResultPlan *, StaticResultDefinitionUse *, bool *);

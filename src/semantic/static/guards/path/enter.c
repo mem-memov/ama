@@ -1,6 +1,6 @@
 /** @file
- * @brief Check known original template ancestry before expanding a source-backed application.
- * [TPL-11](../../../../../spec/language/templates.md#tpl-11) forbids repeated creation origins.
+ * @brief Classify source-backed creation and resolve repeated keys before expanding definitions.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) permits exact-key cycles and suspends unknown repeats.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires output producers.
  * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04) retains the full rejected path.
  */
@@ -23,37 +23,13 @@ static bool application(StaticGuardPlan *plan, const StaticCreationPath *parent,
         "Creation application must belong to its exact lexical owner path");
 }
 
-/** Original template identity is independent of captures, aliases and cache
- * keys. Ordinary zero-parameter modules remain graph nodes but do not trigger
- * this predicate. Preserve every existing frame plus the closing application.
- * [TPL-11](../../../../../spec/language/templates.md#tpl-11) checks original sources.
- */
-static bool ancestry(StaticGuardPlan *plan, const StaticCreationPath *parent,
-    const StaticModule *origin, SourceSpan site) {
-    if (origin->parameter_count == 0) { return true; }
-    for (const StaticCreationPath *ancestor = parent; ancestor; ancestor = ancestor->parent) {
-        if (ancestor->owner->environment->definition != origin) { continue; }
-        plan->rejected_path = parent;
-        plan->repeated_ancestor = ancestor;
-        plan->rejected_origin = origin;
-        plan->rejected_site = site;
-        (void)static_guard_fail(plan, STATIC_GUARD_CONFLICT, site, "Repeated original template on a specialization-creation path");
-        const ProjectModule *definition = origin->definition;
-        plan->related[0] = (DiagnosticRelated){.location = {.span = {definition->source->text, 0, 0}},
-            .role = "repeated source template", .name = definition->source->logical_path};
-        plan->related[1] = (DiagnosticRelated){.location = {.span = ancestor->site},
-            .role = "earlier creation on this path", .name = definition->source->logical_path};
-        plan->error.related = plan->related;
-        plan->error.related_count = 2;
-        return false;
-    }
-    return true;
-}
-
 /** Classify already checked structural values. Unapplied constructors and plain
- * supplied Types carry no new edge, while every explicit output phase requires
- * its producer even if its head was a Type parameter or ordinary module.
+ * supplied Types and fixed ordinary constant namespaces carry no new edge,
+ * while every explicit output phase requires its producer even if its head was
+ * a Type parameter or ordinary module. Namespace reuse still needs independent
+ * required-type validation by the caller; it is not default-instance creation.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) overrides plain reuse.
+ * [CONST-03](../../../../../spec/language/declarations.md#const-03) keeps fixed namespace lookup separate.
  */
 static StaticCreationOutcome classify(StaticGuardPlan *plan, const StaticApplicationRecord *record,
     const StaticTerm **value) {
@@ -69,12 +45,16 @@ static StaticCreationOutcome classify(StaticGuardPlan *plan, const StaticApplica
         return STATIC_CREATION_REUSE;
     }
     *value = static_constraint_root(plan->applications->solver, record->value);
+    if (!producer && record->context.policy == STATIC_OMIT_NAMESPACE &&
+        (*value)->kind == STATIC_TERM_NOMINAL && (*value)->as.nominal.origin->parameter_count == 0) {
+        return STATIC_CREATION_REUSE;
+    }
     return (*value)->kind == STATIC_TERM_NOMINAL ? STATIC_CREATION_ENTERED : STATIC_CREATION_PENDING;
 }
 
-/** The source guard precedes target environment preparation. Symbolic captures
- * remain intact, so checking cannot be delayed until a growing canonical key
- * exists. Non-entered successful outcomes never publish a path handle.
+/** Repeated unresolved origins stop before target scope preparation; exact
+ * closed repeats can register an edge to the existing nominal vertex.
+ * Non-entered successful outcomes never publish a path handle.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) guards before expansion.
  */
 bool static_creation_enter(StaticGuardPlan *plan, const StaticCreationPath *parent,
@@ -90,16 +70,29 @@ bool static_creation_enter(StaticGuardPlan *plan, const StaticCreationPath *pare
     const StaticTerm *value = NULL;
     StaticCreationOutcome result = classify(plan, record, &value);
     if (result != STATIC_CREATION_ENTERED) { *outcome = result; return true; }
-    SourceSpan site = record->context.expression->span;
-    if (!ancestry(plan, parent, value->as.nominal.origin, site)) { return false; }
-    const StaticTermEnvironment *environment;
-    if (!static_term_environment(plan->applications->terms, value->as.nominal.origin, value, &environment)) {
-        (void)static_guard_dependencies(plan); return false;
+    const StaticCreationPath *path = NULL;
+    for (const StaticCreationPath *item = plan->first_path; item; item = item->next) {
+        if (item->parent == parent && item->application == record) { path = item; break; }
     }
-    const StaticGuardOwner *owner;
-    const StaticCreationPath *path;
-    if (!static_guard_owner(plan, environment, &owner) ||
-        !static_guard_path(plan, parent, owner, record, site, &path)) { return false; }
+    if (path == NULL) {
+        SourceSpan site = record->context.expression->span;
+        bool pending;
+        if (!static_guard_ancestry(plan, parent, value, site, &pending)) { return false; }
+        if (pending) { *outcome = STATIC_CREATION_PENDING; return true; }
+        const StaticTerm *closed;
+        StaticConstraintOutcome normalization;
+        if (!static_constraint_value(plan->applications->solver, value, &closed, &normalization)) {
+            (void)static_guard_dependencies(plan); return false;
+        }
+        if (normalization == STATIC_CONSTRAINT_COMPLETE) { value = closed; }
+        const StaticTermEnvironment *environment;
+        if (!static_term_environment(plan->applications->terms, value->as.nominal.origin, value, &environment)) {
+            (void)static_guard_dependencies(plan); return false;
+        }
+        const StaticGuardOwner *owner;
+        if (!static_guard_owner(plan, environment, &owner) ||
+            !static_guard_path(plan, parent, owner, record, site, &path)) { return false; }
+    }
     StaticGuardClosure closure;
     if (!static_guard_refresh(plan, &closure)) { return false; }
     *output = path;

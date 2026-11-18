@@ -1,10 +1,11 @@
 # Guarded static result equations
 
-**Pending contract alignment:** [T201](../../TODO.md#t201) must align this
-component with T200's revised [TPL-11](../../spec/language/templates.md#tpl-11)
-closed-key/pending checks and fixed ordinary namespace reuse. The T179 evidence
-below covers the earlier guard contract. Static-definition cycles remain
-forbidden independently; no new compiler support is claimed by the design edit.
+**T201 alignment:** [Creation guards](static-guards.md#t201-alignment) records
+the revised [TPL-11](../../spec/language/templates.md#tpl-11) handoff and current
+evidence. An otherwise known application propagates Pending when its repeated
+ancestry cannot yet compare complete keys. Closed equal keys can produce nominal
+results without recursively evaluating those results; directed definition cycles
+still fail independently. T179's dated evidence below retains its original scope.
 
 T179 is accepted on input e48fc3e. Authority:
 [TPL-12](../../spec/language/static-results.md#tpl-12),
@@ -149,6 +150,17 @@ residuals are local and may remain open. Cache hits still enter both applicable
 guards, and equate the new scoped derived variable with the cached canonical
 value. This is static value reuse, not executable/alias publication.
 
+A cached value and its readiness proof serve different purposes. The value is
+valid equality evidence for the same complete owner/symbol. A proof from another
+creation context certifies the new read only when every actual ancestor key is
+closed: refreshed graph reachability can then check those keys against all cached
+descendants. Otherwise evaluate the original RHS in the actual context while
+retaining the valid value equation. Prefer an already checked inactive RHS for
+this actual context, so unchanged retries do not replay successful local work.
+This preserves cold/warm behavior without demanding that unrelated outer keys
+close when the actual RHS has no repeated-template comparison. It neither guesses
+an unknown key nor suppresses a dependency edge.
+
 This distinction also prevents a valid ordinary self-producer alias from creating
 endless fresh source contexts: after its literal output is checked, an equivalent
 complete owner/symbol read reuses the guarded value rather than re-expanding the
@@ -175,7 +187,9 @@ checked-validation evidence for stable work identities, never mere snapshot coun
 5. Cache publication requires READY inactive RHS work, independently closed
    owner, full producer expression and selected value, and closed transitive RHS
    requirements. A complete Template value may still have local residual binders.
-   Cache hits retain the incoming creation and definition guards.
+   Cache hits retain the incoming creation and definition guards. Foreign proof
+   reuse additionally requires all actual ancestor keys closed; unknown ancestry
+   requires actual-context RHS checking, not merely a cached value.
 6. Temporary stack frames belong to one attempt and are destroyed on every
    outcome. Failed semantic owners are destructible only; callers cannot reuse
    partially active work. Public output parameters remain untouched on failure.
@@ -189,11 +203,17 @@ scratch is O(W), and persistent storage is proportional to genuinely prepared
 source/use/definition/application and cache records. Scratch allocations remain
 owned until attempt completion, so this is not a claim of O(active depth) memory.
 The solver and mixed creation/definition graph costs are additional kernel costs,
-not hidden constant-time operations.
+not hidden constant-time operations. Checking a foreign proof adds O(H) time
+and O(1) scratch for H actual ancestors. An inconclusive certificate replays
+ordinary finite RHS work in that context; its existing checked proof is retained
+for subsequent reads. This is a sufficient exact optimization certificate, not a
+semantic rule requiring every unrelated ancestor to close.
 
 Original syntax is finite and nested inputs do not recurse through the host
-stack. Definition cycles fail through T178; a repeated template creation fails
-before expansion. Ordinary zero-parameter owners have one complete nominal
+stack. Definition cycles fail through the separate definition guard. T201 checks
+complete repeated keys before preparing another scope: unequal keys fail, unknown
+comparisons wait without expanding another copy, and equal keys close the nominal
+graph. Ordinary zero-parameter owners have one complete nominal
 identity, so repeated definition dependencies are checked on that identity;
 independently completed values can be reused without endlessly manufacturing
 ordinary contexts. Stable source uses retain known-origin application records.

@@ -4248,3 +4248,54 @@ this table is navigation, not a parallel semantic definition.
   7775 interfaces, 426 canonical destinations and 6339 pages. Detailed commands,
   proofs, source boundaries and final archive refresh are in the linked record.
   No spec changes. Whole-project admission and ordinary validation remain T184/T185.
+
+<a id="t201"></a>
+
+- [x] **T201 — Align creation guards and consumers with closed-key cycles.**
+  Status: accepted on input 7469fd4, 2026-11-18; authorized by the user's request to
+  continue under the agreed plan. Step record: [creation guards](docs/implementation/static-guards.md#t201-alignment).
+  existing T178/T179/T180 evidence describes the earlier stricter contract.
+  Prerequisites: T178, T179, T180, T200.
+  Rules: [TPL-11](spec/language/templates.md#tpl-11),
+  [TPL-12](spec/language/static-results.md#tpl-12),
+  [CONST-03](spec/language/declarations.md#const-03),
+  [CONST-05](spec/language/declarations.md#const-05).
+  Boundary: creation guards, their result/publication/application consumers,
+  focused tests and current component comments/contracts; preserve T181's local
+  partial work and replace its unaccepted edge adapter only as required.
+  Steps: (1) specify exact closed-key/pending/reuse states and finite progress;
+  (2) implement reachability and cycle-safe checked contexts, keeping static
+  definition cycles separate; (3) align result/publication/namespace consumers,
+  documentation and per-file evidence, run composition/resource/build checks.
+  Accept: direct/mutual same-key reference/empty-list cycles close without body
+  re-expansion or premature validation. Reachable distinct keys of one origin
+  still fail, including differing unused captures, unequal permutations and
+  cycle-outgoing branches. Unknown comparisons wait for actual constraints,
+  then close or fail without guessing. Both fixed ordinary namespace forms
+  retain independent checking without creation edges; output phases retain
+  producers. Cold/warm caches and reordered roots/edges agree. Exhaustive finite
+  graph tests, allocation failures and real guard/result/publication consumers
+  validate the changed behavior; static-definition/occurs/eager/value checks
+  remain separate. Update stale component prose rather than claiming T178's
+  earlier checks establish support. Commit before resuming T181.
+  Acceptance: 32 guard, 32 result and 29 publication cases pass their affected
+  strict and ASan/UBSan compositions, including 131072 independent creation
+  graph/order checks, the separate definition oracle, all observed allocation
+  refusals and counted teardown. Root make -j4 passes without warnings. LSan
+  remains unavailable under the established container restriction; its absence
+  is not counted as sanitizer evidence.
+  Cold/warm foreign cached proofs now preserve actual unknown ancestry, with
+  positive unrelated-ancestor and resource-refusal regressions. Full failed-run,
+  invariant, complexity and exact command/configuration evidence is retained in
+  the linked component note. Specification bytes are unchanged.
+  Per-file/header acceptance passes 2658 ready inputs with zero debts in an
+  isolated HEAD-plus-T201 tree, excluding unfinished T181 additions. Doxygen
+  rerun passes 2008 maintained file pages, 7795 interfaces, 427 actual canonical
+  destinations and 6346 generated pages. Markdown audit passes 215 documents,
+  2965 local links, 214 rules and 108 unchanged EBNF productions; queue/archive
+  IDs are unique. Editor source-navigation command exits 0 (dispatch evidence,
+  not an observed manual click). Final archive-input Doxygen refresh must pass
+  before staging; its collected outcome is recorded in this task's commit.
+  The seven replaced unused draft adapter inputs are preserved with hashes at
+  /tmp/ama-t201-input-7469fd4. T181's constant sources/tests remain unfinished
+  local work and are excluded from this commit. Next ready task: T181.

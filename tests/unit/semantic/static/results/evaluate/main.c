@@ -144,18 +144,44 @@ static void it_keeps_constant_results_uncached_for_unresolved_producer_inputs(vo
     destroy_results();
 }
 
-/** Exact original template ancestry rejects a source repeat before its output
- * expression can expand, including a complete result already in the value cache.
+/** A repeated producer waits on unknown keys, rejects proven unequal keys,
+ * or expands its outputs after exact closure. A constant output never invents
+ * missing input evidence, even if that result value is independently known.
  */
 static void it_checks_creation_ancestry_before_expanding_producer_definitions(void) {
-    setup_guards("@<\n...slot\n@>\n...out\n..integer\n@!\nanchor&\n..integer\nfield&\n.main\n ... >\n", result_target_source);
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
-    StaticResultOutcome outcome = STATIC_RESULT_READY;
-    assert(!static_result_evaluate(&results, context, result_field("field"), &outcome));
-    assert(outcome == STATIC_RESULT_READY && guards.repeated_ancestor == context->creation);
-    assert(results.definition_use_count == 0);
-    destroy_results();
+    const char *omitted = "@<\n...slot\n@>\n...out\n..integer\n@!\nanchor&\n..integer\nfield&\n.main\n ... >\n";
+    const char *explicit = "@<\n...slot\n@>\n...out\n..integer\n@!\nanchor&\n..integer\nfield&\n.main\n ... < ..integer\n ... >\n";
+    for (size_t mode = 0; mode < 4; mode++) {
+        setup_guards(mode < 2 ? omitted : explicit, result_target_source);
+        static_result_init(&results, &guards, sources.allocator);
+        const StaticTermEnvironment *environment = caller_environment;
+        if (mode != 0) {
+            const StaticTerm *argument = integer_type;
+            if (mode == 2) {
+                StaticTermCapture other = {.formal = application_formal(target_module, 0), .value = integer_type};
+                assert(static_term_nominal(&terms, target_module, &other, 1, (SourceSpan){0}, &argument));
+            }
+            StaticTermCapture capture = {.formal = application_formal(caller_module, 0), .value = argument};
+            const StaticTerm *owner;
+            assert(static_term_nominal(&terms, caller_module, &capture, 1, (SourceSpan){0}, &owner));
+            assert(static_term_environment(&terms, caller_module, owner, &environment));
+        }
+        const StaticResultContext *context = root_context(environment);
+        StaticResultOutcome outcome = STATIC_RESULT_READY;
+        bool success = static_result_evaluate(&results, context, result_field("field"), &outcome);
+        assert(success == (mode != 2));
+        if (mode < 2) {
+            assert(outcome == STATIC_RESULT_PENDING && guards.status == STATIC_GUARD_OK);
+            assert(results.definition_use_count == 0 && guards.repeated_ancestor == NULL);
+        } else if (mode == 2) {
+            assert(outcome == STATIC_RESULT_READY && guards.repeated_ancestor == context->creation);
+            assert(results.definition_use_count == 0 && guards.rejected_creation_value != guards.earlier_creation_value);
+        } else {
+            assert(outcome == STATIC_RESULT_READY && guards.status == STATIC_GUARD_OK);
+            assert(results.definition_use_count == 1 && guards.repeated_ancestor == NULL);
+        }
+        destroy_results();
+    }
 }
 
 /** Sweep every allocation in a real output evaluation, including continuations,

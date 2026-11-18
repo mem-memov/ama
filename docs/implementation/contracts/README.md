@@ -237,3 +237,10 @@ without a second parser, implicit execution or guessed outcome.
 [Combined tool workflows](../tool-workflows.md) accept actual document transactions,
 logical/physical relocations, historical receipt replay, native execution and fresh
 verified rebuilds over one complete owned workspace.
+
+[Static creation and definition guards](../static-guards.md) retain exact
+canonical-key reachability, pending repeated scopes and separate static-value
+cycle checking. T201 composes these guards with
+[static result equations](../static-projections.md) and
+[complete immutable publication](../static-publication.md); their component
+records distinguish metadata checking from later whole-program admission.

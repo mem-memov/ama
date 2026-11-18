@@ -5,6 +5,28 @@
  */
 #include "../internal.h"
 
+/** A proof from the same actual creation context has already faced its incoming
+ * ancestry. Foreign proof reuse additionally requires every actual ancestor key
+ * closed, so the refreshed graph can decide all comparisons against its cached
+ * descendants. Otherwise replay the RHS in this context; cached value equations
+ * remain useful independent evidence but cannot certify Pending ancestry.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) preserves cold/warm path checks.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates value evidence from readiness.
+ */
+static const StaticResultUse *proof(const StaticResultDefinitionUse *use, const StaticResultCache *cached) {
+    const StaticResultUse *rhs = cached->rhs;
+    if (use->rhs != NULL && !use->active && !use->rhs->active &&
+        use->outcome == STATIC_RESULT_READY && use->rhs->outcome == STATIC_RESULT_READY && use->rhs->closed &&
+        use->rhs->source == use->definition->source && use->rhs->context == use->context) {
+        rhs = use->rhs;
+    }
+    if (rhs->context == use->context) { return rhs; }
+    for (const StaticCreationPath *path = use->context->creation; path; path = path->parent) {
+        if (path->vertex == NULL) { return NULL; }
+    }
+    return rhs;
+}
+
 /** A closed owner/symbol pair denotes one checked static definition. Its current
  * scoped variable receives equality, never rebinding; new evidence is solved and
  * guard paths refreshed before reporting a cache hit.
@@ -27,8 +49,10 @@ bool static_result_cache_read(StaticResultPlan *plan, StaticResultDefinitionUse 
                 !static_constraint_solve(solver, &solved) || !static_guard_refresh(plan->guards, &closure)) {
                 (void)static_result_dependencies(plan); return false;
             }
+            const StaticResultUse *checked = proof(use, cached);
+            if (checked == NULL) { *output = false; return true; }
             use->cache_hit = true;
-            use->checked_rhs = cached->rhs;
+            use->checked_rhs = checked;
             use->outcome = STATIC_RESULT_READY;
             *output = true;
             return true;

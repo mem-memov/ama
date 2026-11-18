@@ -36,7 +36,16 @@ static void creation_graph(bool cyclic, StaticCreationPath *trace) {
     assert(static_constraint_value(&solver, value, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
     StaticCreationVertex *source, *target;
     assert(static_guard_vertex(&guards, closed, &source));
-    if (cyclic) { target = source; }
+    if (cyclic) {
+        StaticTermCapture other[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
+            {.formal = application_formal(target_module, 1), .value = integer_type}};
+        const StaticTerm *argument;
+        assert(static_term_nominal(&terms, target_module, other, 2, (SourceSpan){0}, &argument));
+        captures[0].value = argument;
+        assert(static_term_nominal(&terms, caller_module, captures, 2, (SourceSpan){0}, &value));
+        assert(static_constraint_value(&solver, value, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
+        assert(static_guard_vertex(&guards, closed, &target) && target != source);
+    }
     else {
         captures[0].formal = application_formal(target_module, 0);
         captures[1].formal = application_formal(target_module, 1);
@@ -51,7 +60,7 @@ static void creation_graph(bool cyclic, StaticCreationPath *trace) {
     guards.edge_count = 1;
 }
 
-/** Both success and semantic-cycle kernels allocate scratch before graph search;
+/** Both success and semantic-conflict kernels allocate scratch before graph search;
  * refusal must clean it without allocating to explain or retain an error.
  */
 static void it_unwinds_every_successful_and_rejected_graph_search_allocation_refusal(void) {

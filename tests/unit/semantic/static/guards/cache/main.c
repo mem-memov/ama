@@ -10,7 +10,7 @@ static const char *family_source = "@<\n...element\n...next\n ...element\n@!\n"
     "leaf&\n.leaf\n ...element < ..integer\n";
 static const char *leaf_source = "@<\n...element\n@!\n";
 static const char *returning_leaf_source = "@<\n...element\n@!\nback&\n.main\n"
-    " ...element < ...element\n ...next < .leaf\n";
+    " ...element < ..integer\n ...next < .leaf\n";
 
 /** Find original root declaration syntax in its actual lexical module. */
 static const AstTypeExpression *field(const StaticModule *module, const char *name) {
@@ -129,7 +129,7 @@ static void it_preserves_distinct_specializations_and_shared_finite_tails(void) 
 }
 
 /** Leaf's new edge points to a cached A specialization whose outgoing edge
- * already points back to Leaf. The immediate target A is not the current Leaf
+ * already points to a different Leaf key. The immediate A is not the current Leaf
  * ancestor; only checking all cached descendants detects the forbidden path.
  */
 static void it_rechecks_cached_descendants_before_publishing_a_new_creation(void) {
@@ -137,7 +137,13 @@ static void it_rechecks_cached_descendants_before_publishing_a_new_creation(void
     const StaticCreationPath *b = root(target_module, family(caller_module, leaf));
     const StaticCreationPath *a = child(b), *tail = child(a);
     const StaticCreationPath *leaf_root;
-    assert(static_creation_root(&guards, tail->owner->environment, &leaf_root));
+    const StaticModule *leaf_module = tail->owner->environment->definition;
+    StaticTermCapture alternate = {.formal = application_formal(leaf_module, 0), .value = a->owner->value};
+    const StaticTerm *alternate_type;
+    const StaticTermEnvironment *alternate_environment;
+    assert(static_term_nominal(&terms, leaf_module, &alternate, 1, (SourceSpan){0}, &alternate_type));
+    assert(static_term_environment(&terms, leaf_module, alternate_type, &alternate_environment));
+    assert(static_creation_root(&guards, alternate_environment, &leaf_root));
     const StaticTermEnvironment *environment = leaf_root->owner->environment;
     StaticApplicationContext context;
     const AstTypeExpression *expression = field(environment->definition, "back");
@@ -151,7 +157,7 @@ static void it_rechecks_cached_descendants_before_publishing_a_new_creation(void
     StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
     assert(!static_creation_enter(&guards, leaf_root, record, &output, &outcome));
     assert(output == NULL && outcome == STATIC_CREATION_PENDING && guards.status == STATIC_GUARD_CONFLICT);
-    assert(guards.creation_witness && guards.closing_edge && guards.vertex_count == 3 && guards.edge_count == 3);
+    assert(guards.creation_witness && guards.closing_edge && guards.vertex_count == 4 && guards.edge_count == 3);
     assert(guards.creation_witness->parent != NULL && diagnostic_valid(&guards.error));
     destroy_guards();
 }
@@ -172,37 +178,51 @@ static const StaticCreationPath *symbolic_child(const StaticCreationPath *parent
 
 /** Original symbolic keys remain distinct occurrences until independent evidence
  * closes them. A->B and B->A then share full keys and must be rechecked as a
- * genuine cycle; an external solve cannot hide this change behind dirty=false.
+ * permitted same-key cycle; an external solve cannot hide new concrete edges.
  */
 static void it_rechecks_all_incoming_provenance_when_symbolic_keys_close(void) {
-    setup_guards("@<\n...a\n...b\n@!\nanchor&\n..integer\nchild&\n.other\n",
-        "@<\n...a\n...b\n@!\nback&\n.main\n");
-    const StaticCreationPath *a, *b;
-    assert(static_creation_root(&guards, caller_environment, &a));
-    (void)symbolic_child(a, "child", target_constructor);
-    const StaticTermEnvironment *b_environment;
-    assert(static_term_environment(&terms, target_module, NULL, &b_environment));
-    assert(static_creation_root(&guards, b_environment, &b));
-    (void)symbolic_child(b, "back", caller_constructor);
-    assert(guards.path_count == 4 && guards.vertex_count == 0);
-    for (const StaticCreationPath *path = guards.first_path; path; path = path->next) {
-        for (const StaticTermCapture *capture = path->owner->value->as.nominal.first_capture; capture; capture = capture->next) {
-            assert(static_constraint_equate(&solver, capture->value, integer_type, capture->formal->site));
+    for (size_t unequal = 0; unequal < 2; unequal++) {
+        setup_guards("@<\n...a\n...b\n@!\nanchor&\n..integer\nchild&\n.other\n",
+            "@<\n...a\n...b\n@!\nback&\n.main\n");
+        const StaticCreationPath *a, *b;
+        assert(static_creation_root(&guards, caller_environment, &a));
+        (void)symbolic_child(a, "child", target_constructor);
+        const StaticTermEnvironment *b_environment;
+        assert(static_term_environment(&terms, target_module, NULL, &b_environment));
+        assert(static_creation_root(&guards, b_environment, &b));
+        const StaticCreationPath *returned_a = symbolic_child(b, "back", caller_constructor);
+        assert(guards.path_count == 4 && guards.vertex_count == 0);
+        StaticTermCapture map[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
+            {.formal = application_formal(target_module, 1), .value = integer_type}};
+        const StaticTerm *other;
+        assert(static_term_nominal(&terms, target_module, map, 2, (SourceSpan){0}, &other));
+        for (const StaticCreationPath *path = guards.first_path; path; path = path->next) {
+            for (const StaticTermCapture *capture = path->owner->value->as.nominal.first_capture; capture; capture = capture->next) {
+                const StaticTerm *argument = unequal && path == returned_a && capture->formal == application_formal(caller_module, 0)
+                    ? other : integer_type;
+                assert(static_constraint_equate(&solver, capture->value, argument, capture->formal->site));
+            }
         }
+        StaticConstraintOutcome solved;
+        assert(static_constraint_solve(&solver, &solved) && !solver.dirty);
+        StaticGuardClosure closure = STATIC_GUARD_PENDING;
+        bool accepted = static_guard_refresh(&guards, &closure);
+        assert(accepted == !unequal);
+        if (!unequal) {
+            assert(closure == STATIC_GUARD_CLOSED && guards.status == STATIC_GUARD_OK);
+            assert(guards.vertex_count == 2 && guards.edge_count == 2 && guards.creation_witness == NULL);
+        } else {
+            assert(closure == STATIC_GUARD_PENDING && guards.status == STATIC_GUARD_CONFLICT);
+            assert(guards.creation_witness && guards.rejected_creation_value != guards.earlier_creation_value);
+        }
+        assert(a->owner->environment == caller_environment && a->owner->value != a->vertex->value);
+        destroy_guards();
     }
-    StaticConstraintOutcome solved;
-    assert(static_constraint_solve(&solver, &solved) && !solver.dirty);
-    StaticGuardClosure closure = STATIC_GUARD_PENDING;
-    assert(!static_guard_refresh(&guards, &closure));
-    assert(closure == STATIC_GUARD_PENDING && guards.status == STATIC_GUARD_CONFLICT);
-    assert(guards.vertex_count == 2 && guards.edge_count == 2 && guards.creation_witness);
-    assert(a->owner->environment == caller_environment && a->owner->value != a->vertex->value);
-    destroy_guards();
 }
 
 /** The cached B->A->Leaf path is complete, but a new incoming A root still
- * has symbolic inputs. Its known source A must participate before key closure;
- * postponing its edge until concrete normalization would conceal A->B->A.
+ * has symbolic inputs. Preserve that path and wait for real key evidence;
+ * matching source names alone cannot prove the two A keys unequal.
  */
 static void it_checks_cached_descendants_against_a_still_symbolic_ancestor(void) {
     directory(STATIC_SCOPE_ROOT_DIRECTORY);
@@ -229,15 +249,17 @@ static void it_checks_cached_descendants_against_a_still_symbolic_ancestor(void)
     assert(record->value == b->owner->value);
     const StaticCreationPath *output = NULL;
     StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
-    assert(!static_creation_enter(&guards, symbolic, record, &output, &outcome));
-    assert(output == NULL && guards.status == STATIC_GUARD_CONFLICT && symbolic->vertex == NULL);
-    assert(guards.creation_witness && guards.rejected_origin == caller_module);
+    assert(static_creation_enter(&guards, symbolic, record, &output, &outcome));
+    assert(output && outcome == STATIC_CREATION_ENTERED && output->vertex == b->vertex);
+    StaticGuardClosure closure;
+    assert(static_guard_refresh(&guards, &closure) && closure == STATIC_GUARD_PENDING);
+    assert(guards.status == STATIC_GUARD_OK && symbolic->vertex == NULL && guards.creation_witness == NULL);
     destroy_guards();
 }
 
 /** Neither repeated A has a complete key. The cached B owner is concrete, but
  * its known A descendant still has omitted Type/Template inputs. Validation
- * must retain that symbolic suffix as well as the new symbolic ancestor.
+ * retains both symbolic endpoints without inventing canonical equality.
  */
 static void it_checks_cached_symbolic_descendants_without_publishing_concrete_edges(void) {
     directory(STATIC_SCOPE_ROOT_DIRECTORY);
@@ -261,9 +283,11 @@ static void it_checks_cached_symbolic_descendants_without_publishing_concrete_ed
     assert(static_application_forward(&applications, target_constructor, inputs, 2, context, &record));
     const StaticCreationPath *output = NULL;
     StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
-    assert(!static_creation_enter(&guards, symbolic, record, &output, &outcome));
-    assert(output == NULL && guards.status == STATIC_GUARD_CONFLICT && guards.creation_witness);
-    assert(guards.closing_edge == NULL && guards.closing_creation_path == deferred);
+    assert(static_creation_enter(&guards, symbolic, record, &output, &outcome));
+    assert(output && outcome == STATIC_CREATION_ENTERED && output->vertex == b->vertex);
+    StaticGuardClosure closure;
+    assert(static_guard_refresh(&guards, &closure) && closure == STATIC_GUARD_PENDING);
+    assert(guards.status == STATIC_GUARD_OK && guards.creation_witness == NULL);
     assert(symbolic->vertex == NULL && deferred->vertex == NULL && guards.vertex_count == 1 && guards.edge_count == 0);
     destroy_guards();
 }

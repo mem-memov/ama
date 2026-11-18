@@ -16,7 +16,7 @@ static const char *result_caller_source = "@<\n...type\n...family\n ...slot\n@>\
 static const char *result_target_source = "@<\n...slot\n@>\n...out\n...slot\n@!\n";
 
 /** The guard fixture already proves no runtime setup occurs for these source records. */
-static void setup_results(void) {
+static inline void setup_results(void) {
     setup_guards(result_caller_source, result_target_source);
     size_t before = allocation_count;
     static_result_init(&results, &guards, sources.allocator);

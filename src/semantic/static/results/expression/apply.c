@@ -49,6 +49,8 @@ static bool application(StaticResultPlan *plan, StaticResultUse *use) {
 /** Guard entry is separate from output evaluation: plain Type reuse and partial
  * constructors have no producer context. Preserve the checked creation identity
  * for subsequent checks and retain Pending without claiming result closure.
+ * A structurally complete application can still have unresolved creation
+ * ancestry; propagate that Pending rather than publishing a false ready proof.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) preserves required paths.
  */
 bool static_result_apply(StaticResultPlan *plan, StaticResultUse *use, StaticApplicationOutcome *output) {
@@ -67,6 +69,7 @@ bool static_result_apply(StaticResultPlan *plan, StaticResultUse *use, StaticApp
         if (!static_creation_enter(plan->guards, use->context->creation, use->application, &path, &creation)) {
             (void)static_result_dependencies(plan); return false;
         }
+        if (creation == STATIC_CREATION_PENDING) { checked = STATIC_APPLY_PENDING; }
         if (creation == STATIC_CREATION_ENTERED && !static_result_context(plan, path, &use->producer)) { return false; }
     } else {
         StaticGuardClosure closure;

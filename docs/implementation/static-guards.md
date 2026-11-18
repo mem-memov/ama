@@ -1,14 +1,148 @@
 # Static dependency and creation guards
 
-**Pending contract alignment:** T200 changes
-[TPL-11](../../spec/language/templates.md#tpl-11) to permit exact closed-key
-cycles and fixed ordinary constant-namespace reuse. The T178 implementation and
-evidence below describe its earlier stricter guard behavior; they do not prove
-conformance to the revised rule. [T201](../../TODO.md#t201) owns the guard,
-consumer, comment and test updates before T181 resumes. In particular, the
-origin-only rejection described below must not be used as the new language rule.
+<a id="t201-alignment"></a>
 
-T178 is accepted on input 8cfe3f6. T175 supplies scoped immutable identities,
+## T201 implementation alignment
+
+T201 is accepted on input 7469fd4 under the user's 2026-11-18 instruction to continue
+the agreed implementation plan. Authority is the revised TPL-11/TPL-12 and
+CONST-03/CONST-05 contracts linked below. T181's unfinished constant sources
+and tests remain intact. Its seven draft guard files are backed up, with exact
+hashes, under /tmp/ama-t201-input-7469fd4 before replacing the unused
+dependency-edge adapter. The ordered record below retains failed runs and their
+resolutions; current acceptance evidence follows them.
+
+Ordered steps and expected observations:
+
+1. Replace origin-only ancestry refusal with exact closed-key comparison and
+   pending unresolved repeats before environment/definition expansion. Remove
+   the unused draft dependency API; classify ordinary nongeneric constant
+   namespaces as fixed-Type reuse, preserving explicit output-phase producers.
+2. Change the existing iterative mixed graph predicate to reject reachable
+   *distinct closed vertices* sharing a template origin. Same-key self edges
+   are traversed with visited suppression, never skipped before other outgoing
+   branches are examined. Partial scopes retain exact identity and no guessed
+   canonical equality. Preserve allocation-free diagnostic witness transfer.
+3. Align result/publication consumers with pending guard entry and verify
+   same-key nominal return versus directed static-definition recursion.
+   Independently checked namespace contexts remain required for constant reuse.
+4. Replace obsolete negative expectations with positive same-key and pending
+   cases, retain growing/unequal-key negatives, exhaust all four-vertex graphs
+   against independent matrix closure, and test reordered/cached/partial routes,
+   late closure, malformed handles and every observed allocation refusal.
+5. Reconcile purpose/contracts and per-file/header evidence, run strict parent
+   compositions, ASan/UBSan/counting, compiler build and documentation gates;
+   archive and commit before T181 resumes.
+
+The graph proof uses finite BFS over concrete vertices and exact unresolved
+scope classes; only unequal fully closed endpoints can prove a creation
+conflict. An unresolved same-origin ancestry prevents further repeated expansion
+and returns Pending without a new producer context. Actual equations/metadata
+permit retry; allocation counts never justify progress. Existing static-definition
+cycle checking remains separate. Detailed result/cost evidence will replace
+the obsolete baseline explanation when implementation acceptance completes.
+
+Step 1/2 results: removed only the backed-up unused namespace-edge draft.
+Implemented pending repeated ancestry, canonical unequal-key witnesses and
+mixed-graph closed-endpoint comparison. The graph leaf passes all 131072
+four-vertex/order combinations (/tmp/ama-t201-graph.log, exit 0).
+The first ancestry run (/tmp/ama-t201-ancestry.log, exit 2) passed the new pending
+and closed-key cases, then exposed extra normalization allocation on an unchanged
+repeated source query. Preserve the established hot-query contract: reuse the
+exact registered parent/application path and refresh its keys, instead of
+preparing its environment again. This is an engineering regression, not a
+language ambiguity. No jobs active; next fix and rerun ancestry, then consumers.
+
+Step 2/3 continuation: the hot-query fix passes ancestry. The first full guard
+run stopped at an obsolete same-key-negative cache expectation
+(/tmp/ama-t201-guards-first.log, exit 2); that case now uses a genuinely unequal
+Leaf key, while late equal/unequal closure has separate independent expectations.
+Guards and publication parents pass on the updated input
+(/tmp/ama-t201-guards-strict.log and /tmp/ama-t201-publication-strict.log, exit 0).
+The new publication/recursion leaf passes five cases including every observed
+self-result publication allocation refusal
+(/tmp/ama-t201-publication-recursion-final.log, exit 0). Its two initial runs
+failed because global graph/path counts omitted the independently required
+integer Type argument; assertions now identify the actual main-template key,
+self edge and absence of a speculative main producer scope. Canonical application
+provenance, not observed counts, determines these expectations. An optional
+fixture initializer is now inline to support narrow consumers under -Werror.
+
+Collected checks: guards parent ASan/UBSan/-Werror exits 0
+(/tmp/ama-t201-guards-sanitizers.log), and publication parent under the same
+configuration exits 0 (/tmp/ama-t201-publication-sanitizers.log). The result
+parent first stopped at its obsolete blanket-origin refusal case, then its
+new unequal-key fixture exposed inconsistent named-input/positional-output
+bindings. Corrected that fixture to positional inputs/outputs as TPL-12 requires.
+The complete result parent now passes under ASan/UBSan/-Werror
+(/tmp/ama-t201-results-sanitizers.log, exit 0), and final uninstrumented
+results/evaluate passes (/tmp/ama-t201-evaluate-final.log, exit 0).
+
+The first root build exited 0 but reported a maybe-uninitialized capacity
+warning in cache/view.c. Its capacity helper returned an external always-false
+error result on refusal; returning literal false after recording the same error
+makes its successful output-write contract visible to GCC, without changing
+observable behavior. The root rerun (/tmp/ama-t201-build-rerun.log) exits 0
+without warnings. Final sanitizer runs additionally pass the counter/allocation
+failure leaf (/tmp/ama-t201-failures-sanitizers-final.log) and the recursive
+publication leaf with stable unchanged-Pending retry assertions
+(/tmp/ama-t201-recursion-sanitizers-final.log), both exit 0.
+
+Final cache review reproduced a genuine cold/warm disagreement: an independently
+cached nominal result could reuse a proof without the new unknown ancestor and
+incorrectly report READY. The cold/warm regression first failed
+(/tmp/ama-t201-cache-ancestry-red.log, exit 2). Cache reads now separate canonical
+value equality from readiness certification. Reuse a proof checked in this actual
+context, or a foreign proof only when every actual ancestor key is closed;
+otherwise retain valid value equations and replay the original RHS in this
+context. The refreshed graph still checks every cached descendant and incoming
+edge. This sufficient exact certificate preserves semantics without demanding
+closure of unrelated unknown outer keys. It costs O(H) time and O(1) scratch for
+H ancestors; replay has the ordinary evaluator's finite-work cost.
+
+The regression then passed (/tmp/ama-t201-cache-ancestry-green.log, exit 0).
+The final recursion leaf has eight cases: cold/warm equal and unequal anchors,
+actual-context proof reuse under unrelated unknown ancestors, and every observed
+foreign-proof replay allocation refusal supplement the original five cases
+(/tmp/ama-t201-cache-proof-composition.log, strict exit 0). Both full consumers
+were rerun after the fix: results and publication pass ASan/UBSan/-Werror
+(/tmp/ama-t201-results-sanitizers-cache.log and
+/tmp/ama-t201-publication-sanitizers-cache.log, collected exit 0). Root make -j4
+also passes without warnings (/tmp/ama-t201-build-cache.log, exit 0).
+
+Current evidence is 32 explicit guard, 32 result and 29 publication cases. The
+creation oracle covers all 65536 four-vertex directed graphs including self-loops,
+in both key/edge discovery orders (131072 comparisons); the separate definition
+oracle retains its 1024 relation/order checks. No compiler execution or complete
+specialization admission is claimed. ASan/UBSan uses O1, strict C11/-Werror,
+-fno-pie/-no-pie, and ASAN_OPTIONS=detect_leaks=0. LSan's established container
+restriction remains explicit; every injected operation still unwinds through
+independent counted allocation ownership checks.
+
+Per-file evidence registers the new ancestry operation and recursive publication
+C/Make leaf, preserves existing registry ordering, and maps every changed code
+input to named executable consumers. Existing standalone header probes remain
+required. Complete per-file/standalone-header acceptance passes 2658 ready inputs
+with zero debts (/tmp/ama-t201-docs-complete-final.log, exit 0), on a HEAD-plus-T201
+isolated tree excluding the unaccepted T181 additions. Markdown audit passes 215
+files, 2965 local links, 214 canonical rules and 108 byte-unchanged grammar
+productions (/tmp/ama-t201-markdown.log, exit 0). First Doxygen generation failed
+because its automatic heading anchor duplicated the explicit t201-alignment
+anchor (/tmp/ama-t201-doxygen.log, exit 1). Renamed only the visible heading,
+retaining the stable explicit link destination. The rerun passes
+(/tmp/ama-t201-doxygen-rerun.log, collected exit 0): 2008 maintained file pages,
+7795 interfaces, 427 canonical/rendered destinations and 6346 generated pages.
+Editor navigation to templates.md:1514 exits 0
+(/tmp/ama-t201-editor-navigation.log); this records command dispatch, not a manual
+GUI click. Complete task evidence is archived in [DONE](../../DONE.md#t201).
+Final archive-input regeneration uses /tmp/ama-t201-doxygen-archive.log; collect
+its outcome before explicit staging and record it in the task commit. No active
+functional jobs. T181 is next; its partial sources/tests remain excluded from
+T201. Specification bytes have not changed.
+
+T178's original acceptance below remains historical evidence on input 8cfe3f6.
+The current contract is aligned by T201 on input 7469fd4; its acceptance and
+checks are recorded above. T175 supplies scoped immutable identities,
 T176 finite normalization and T177 source-preserving application records.
 Authority: [TPL-11](../../spec/language/templates.md#tpl-11),
 [TPL-12](../../spec/language/static-results.md#tpl-12),
@@ -24,7 +158,7 @@ T179 owns output equations and T184 owns frontend work scheduling/admission.
 
 Keep two disjoint relations. Creation nodes retain full nominal Type identity;
 edges retain the lexical owner and original application use. The forbidden
-predicate is two occurrences of one original source template on a creation path,
+predicate is reachability between distinct complete keys of one source template,
 not repetition in a capture DAG, a source-name graph or an ordinary reference.
 An ordinary zero-parameter producer is retained as a vertex but is not a template
 for this predicate. Definition nodes identify one static result or alias in an
@@ -34,9 +168,12 @@ Retain immutable ancestry frames per occurrence/environment before complete keys
 exist. A selected compilation root has explicit source/environment provenance.
 An application can enter only from its actual lexical owner: syntactically
 nested applications in one caller are siblings, not edges between their results.
-Known actual origins are checked against every ancestor before following their
-definitions, even when captures remain symbolic. Unknown origins stay pending.
-Partial constructor metadata and plain supplied-Type reuse add no creation edge;
+Repeated origins require complete normalized key comparison before another
+scope is prepared. Equal keys close the nominal graph; unequal keys retain both
+canonical values and an error path. Unresolved comparisons return Pending with
+no new scope/path output. Unknown origins also stay pending. Partial constructor
+metadata, supplied-Type reuse and ordinary nongeneric no-output constant
+namespaces add no creation edge;
 an explicit output phase does require its producer, including ordinary modules
 and already supplied Types. Every written child application is checked separately.
 
@@ -53,7 +190,9 @@ exact-scope classes. Frames with the same guard owner use the same original
 environment and captured variables; unrelated unresolved environments stay
 distinct. A partial-endpoint edge remains a real recorded use before either
 endpoint has a concrete key. Follow it together with complete cached edges when
-checking known original origins. This view publishes no symbolic cache key.
+checking reachability between closed endpoints. A symbolic endpoint cannot
+prove inequality; it remains an independent closure obligation. This view
+publishes no symbolic cache key.
 
 Definition identity uses the original result/alias plus its scoped owner; after
 owner normalization equivalent complete keys must preserve all edges. Check a
@@ -68,44 +207,26 @@ failure; valid partial records may already exist internally. Failed owners are
 destructible only; no whole-operation rollback is promised. No native/body/default
 execution, filesystem lookup or generated-source effect belongs here.
 
-## Ordered steps and independent acceptance
-
-1. Add scoped guard ownership, original/canonical key records and source-backed
-   diagnostic paths. Validate membership before dereferencing foreign handles.
-   Test empty owners, exact key reuse, different environments/values and refusal.
-2. Implement symbolic active creation ancestry and source-backed application
-   classification. Check direct/mutual/permuted/growing paths before expansion,
-   finite nested supplied Types, independent sibling reuse, retained captures,
-   partial metadata, ordinary producers and output-phase override.
-3. Add concrete key refresh and exact whole-path cache validation. Test warm and
-   cold agreement, cached descendants conflicting with a new ancestor, distinct
-   specialization paths that would form a false source-name cycle, and key
-   closure preserving incoming provenance. Compare finite graphs with an
-   independent exhaustive path oracle; use no depth/time/iteration limit.
-4. Add separate static-definition identities, dependencies and active guards.
-   Test direct/mutual/alias/foreign-result cycles, acyclic siblings and ordinary
-   reference/equality controls, including symbolic-to-concrete key handoffs.
-5. Compose actual T173–T177 source/term/equality records, refuse every observed
-   allocation and checked counter boundary, justify finite progress and costs,
-   register precise per-file/header evidence, run strict affected tests,
-   sanitizers/build/docs, archive acceptance and commit before starting T179.
-
-## Planned invariant and exact checks
+## Invariants and exact checks
 
 An ancestry frame is an original root or an application whose recorded lexical
 environment equals its parent's expanded-definition environment. Inductively it
-denotes a real creation path; no captured Type or syntactic argument relation is
-inserted. Appending a known template origin is permitted exactly when it is not
-already on that path. Frames retain symbolic environments without guessing keys.
+is a real creation path; captured Types and syntactic argument nesting add no
+invented edges. Repeated complete keys are compared by exact canonical identity,
+including every unused argument/capture. Unknown comparisons suspend entry
+without manufacturing another environment. Repeating the same pending request
+adds no semantic facts and cannot justify a closure retry.
 
-For the finite validation graph, the path predicate is equivalent to absence of a
-nonempty directed path from any template vertex to another vertex with the same
-original source template. Search each template vertex using a visited set of
-complete-key and exact unresolved-scope classes. This checks cached descendants under all incoming paths,
-permits ordinary-only reference cycles, terminates on finite vertices and never
-combines unequal specialization identities. Keep witness edges for diagnostics.
-The implementation and independent graph domains below discharge this algorithm
-obligation; full frontend scheduling and executable admission remain later tasks.
+For the finite mixed validation graph, start BFS at each concrete template
+vertex. Reject precisely a reachable different concrete vertex of that same
+original template. Traverse ordinary and exact unresolved-scope classes too,
+without treating a partial endpoint as a complete specialization. Visited
+suppression closes same-key cycles but does not skip any other outgoing edge;
+starting from every concrete template vertex detects paths leaving those cycles.
+Retain the exact original edges and both closed endpoint values for diagnostics.
+The independent matrix oracle enumerates the complete four-vertex graph domain;
+source compositions independently test actual paths and pending scope handoffs.
+Full frontend scheduling and executable admission remain later tasks.
 
 ## Preservation and progress
 
@@ -113,15 +234,17 @@ Generic owner preparation binds every original formal to its existing scoped
 variable. It changes no source binder or environment; applied owners retain their
 provided full nominal shape. Lexical parent equality prevents a written nested
 argument from becoming an edge out of the outer result's definition. Active
-template-origin comparison precedes target expansion and does not need concrete
-keys, so growing and permuted keys cannot defer rejection indefinitely.
+key comparison precedes repeated target expansion. An unresolved repeat waits
+on independently supplied equations instead of spawning more copies. A closed
+growing or unequal permuted key is rejected; an equal key closes the graph.
 
 Complete vertex identity is the exact T175 normal form returned by T176, including
 all unused fixed bindings and retained constructor captures. Every incoming frame
 survives closure; equivalent full keys share a vertex and all original edges.
-For every forbidden path, start the reachability search at its first repeated
-template origin and reach its later occurrence. Conversely, every reported
-nonempty same-origin reachability path is precisely a forbidden creation path.
+For every forbidden path, start the reachability search at its earlier closed
+key and reach its different-key endpoint. Conversely, every reported pair has
+the same source template and two unequal full canonical identities, connected
+by a retained application path. A return to the start vertex is not a conflict.
 Visited validation classes preserve reachability while bounding work, including through
 ordinary cycles. Syntactic capture nesting never supplies these graph edges.
 
@@ -129,8 +252,10 @@ Before closure, an exact scoped owner represents the same immutable environment
 and captured variables at every incoming use. Unioning its recorded outgoing
 requirements therefore preserves real paths for every subsequent substitution.
 Different unresolved environments are not joined. After closure, their exact
-normal form authorizes canonical joining. Thus known repeated source origins
-cannot hide behind either a symbolic ancestor or a symbolic cached descendant.
+normal form authorizes canonical joining. Refresh then rechecks all incoming
+and outgoing paths, so late equality cannot hide different closed keys behind
+an earlier symbolic scope or cache hit. Still-unresolved endpoints remain pending,
+not errors justified merely by source-name repetition.
 
 Definition identity is an original result/alias plus its lexical environment.
 Once closed, only equal complete owner Type and the same original symbol merge.
@@ -149,8 +274,11 @@ equivalent. Repeat only when its actual fact count increases, so an earlier key
 can observe a later query's new metadata. Registered owner graphs and their unique
 normal forms are finite, and each term gets at most one complete metadata fact;
 these refinements terminate without a pass budget. The caller's later expansion
-work set is separately bounded by the source-template ancestry rule and canonical
-ordinary-body reuse; this guard component itself never expands a source body.
+work set is separately bounded by TPL-11's finite-simple-path argument,
+pending-repeat barrier and canonical body reuse; this guard never expands a
+source body. A same-key occurrence still retains distinct incoming provenance.
+Existing parent/application pairs reuse their registered frame and refresh
+changed keys, avoiding repeated environment/normalization allocation.
 
 An unchanged refresh reuses its result only when exact path/definition counts,
 equation/metadata/requirement identities and solver dirty state show no new facts.
@@ -200,7 +328,7 @@ without copying borrowed storage. Destroy guards, applications, solver, terms,
 binding plan, inventory/project/source and allocator in that order. Guards neither
 merge runtime instances nor allocate runtime state or call native/module bodies.
 
-## Step results and continuation
+## T178 step results and acceptance (historical)
 
 - Guard ownership and lexical owner shapes are implemented. Generic owners bind
   every original formal to its existing scoped variable; applied owners preserve

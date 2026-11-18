@@ -84,10 +84,38 @@ static void it_requires_ordinary_supplied_type_producers_without_banning_ordinar
     destroy_guards();
 }
 
+/** A fixed ordinary namespace is a required Type, not a constructor edge.
+ * Adding an explicit static output skip still requires its producer context.
+ */
+static void it_reuses_fixed_ordinary_namespaces_but_enters_output_producers(void) {
+    setup_guards("@!\nanchor&\n..integer\n.other\n value >> copied\n.other\n ... >\n value >> copied\n",
+        "@=\nvalue\n..integer\n |0\n@>\n...result\n..integer\n@!\n");
+    const StaticCreationPath *root;
+    assert(static_creation_root(&guards, caller_environment, &root));
+    const AstTypeExpression *namespaces[2] = {0};
+    size_t count = 0;
+    for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
+        if (site->root && site->receiver == NULL && site->context == STATIC_CONTEXT_NAMESPACE) {
+            assert(count < 2); namespaces[count++] = site->expression;
+        }
+    }
+    assert(count == 2 && target_module->parameter_count == 0);
+    for (size_t index = 0; index < 2; index++) {
+        const StaticApplicationRecord *record = prepare(caller_environment, namespaces[index], target_constructor);
+        const StaticCreationPath *output = root;
+        StaticCreationOutcome outcome;
+        assert(static_creation_enter(&guards, root, record, &output, &outcome));
+        if (!index) { assert(outcome == STATIC_CREATION_REUSE && output == root && guards.path_count == 1); }
+        else { assert(outcome == STATIC_CREATION_ENTERED && output != root && output->parent == root); }
+    }
+    destroy_guards();
+}
+
 /** Execute actual T173/T175/T176/T177 handoffs for every edge-classification role. */
 static void run(void) {
     it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse();
     it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse();
+    it_reuses_fixed_ordinary_namespaces_but_enters_output_producers();
 }
 /** Return success after counted teardown. */
 int main(void) { run(); return 0; }

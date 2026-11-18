@@ -39478,7 +39478,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/程序": {
+  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -39564,7 +39564,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/中间": {
+  "tests/integration/project/closure/project/\u4e2d\u95f4": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40863,7 +40863,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元": {
+  "tests/integration/semantic/types/project/\u5143": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40874,7 +40874,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.abi": {
+  "tests/integration/semantic/types/project/\u5143.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40885,7 +40885,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.c": {
+  "tests/integration/semantic/types/project/\u5143.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -40896,7 +40896,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.h": {
+  "tests/integration/semantic/types/project/\u5143.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -40922,7 +40922,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米": {
+  "tests/integration/semantic/types/project/\u7c73": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40933,7 +40933,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.abi": {
+  "tests/integration/semantic/types/project/\u7c73.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40944,7 +40944,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.c": {
+  "tests/integration/semantic/types/project/\u7c73.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -40955,7 +40955,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.h": {
+  "tests/integration/semantic/types/project/\u7c73.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -41168,7 +41168,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/商品": {
+  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -41194,7 +41194,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/商店/商品": {
+  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -129024,12 +129024,12 @@
         "source": "tests/unit/semantic/static/guards/owner/main.c"
       },
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -140053,12 +140053,12 @@
         "source": "tests/unit/semantic/static/guards/owner/main.c"
       },
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -141123,6 +141123,71 @@
         "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_identical_keys_and_rejects_closed_permutation_or_growth",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_retries_pending_comparisons_only_after_independent_owner_evidence",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_mutual_reference_and_empty_list_keys",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_unwinds_every_closed_repeat_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_publishes_the_producers_own_nominal_type_without_value_recursion",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_preserves_closed_recursive_identity_with_constructor_captures",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_propagates_pending_ancestry_until_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_mutual_static_projection_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
       }
     ],
     "standalone_header_command": [
@@ -141527,6 +141592,46 @@
         "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_identical_keys_and_rejects_closed_permutation_or_growth",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_retries_pending_comparisons_only_after_independent_owner_evidence",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_mutual_reference_and_empty_list_keys",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_unwinds_every_closed_repeat_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       }
     ],
     "standalone_header_command": [
@@ -141771,7 +141876,7 @@
   },
   "src/semantic/static/guards/cache/check.c": {
     "contract": "docs/implementation/static-guards.md",
-    "purpose": "Reject repeated known source templates across concrete caches and unresolved scoped paths.",
+    "purpose": "Check reachable unequal closed keys through concrete caches and exact unresolved scopes.",
     "tests": [
       {
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
@@ -141827,6 +141932,31 @@
         "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "case": "it_publishes_the_producers_own_nominal_type_without_value_recursion",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_preserves_closed_recursive_identity_with_constructor_captures",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_propagates_pending_ancestry_until_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_mutual_static_projection_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
       }
     ]
   },
@@ -141883,15 +142013,15 @@
   },
   "src/semantic/static/guards/path/enter.c": {
     "contract": "docs/implementation/static-guards.md",
-    "purpose": "Check known original template ancestry before expanding a source-backed application.",
+    "purpose": "Enter exact source applications, retain pending repeated keys and reuse fixed ordinary constant namespaces.",
     "tests": [
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -141954,6 +142084,31 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "case": "it_closes_identical_keys_and_rejects_closed_permutation_or_growth",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_retries_pending_comparisons_only_after_independent_owner_evidence",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_mutual_reference_and_empty_list_keys",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_unwinds_every_closed_repeat_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_reuses_fixed_ordinary_namespaces_but_enters_output_producers",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
       }
     ]
   },
@@ -141962,12 +142117,12 @@
     "purpose": "Preserve explicit selected-root provenance before symbolic specialization expansion.",
     "tests": [
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -142038,12 +142193,12 @@
     "purpose": "Validate and own immutable creation occurrences separately from canonical cache vertices.",
     "tests": [
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -142571,12 +142726,12 @@
         "source": "tests/unit/semantic/static/guards/owner/main.c"
       },
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -142977,12 +143132,12 @@
         "source": "tests/unit/semantic/static/guards/owner/main.c"
       },
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -143111,6 +143266,11 @@
         "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
+      },
+      {
+        "case": "it_reuses_fixed_ordinary_namespaces_but_enters_output_producers",
+        "command": "make -C tests/unit/semantic/static/guards/classification",
+        "source": "tests/unit/semantic/static/guards/classification/main.c"
       }
     ]
   },
@@ -143232,15 +143392,15 @@
   },
   "tests/unit/semantic/static/guards/ancestry/main.c": {
     "contract": "docs/implementation/static-guards.md",
-    "purpose": "Check direct and mutual symbolic recurrence separately from finite supplied nesting.",
+    "purpose": "Verify closed and unresolved self/mutual recurrence, unequal keys, source provenance and every closed-entry allocation refusal.",
     "tests": [
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -143253,6 +143413,26 @@
         "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_identical_keys_and_rejects_closed_permutation_or_growth",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_retries_pending_comparisons_only_after_independent_owner_evidence",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_mutual_reference_and_empty_list_keys",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_unwinds_every_closed_repeat_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       }
     ]
   },
@@ -143261,12 +143441,12 @@
     "purpose": "Verify lexical creation ancestry before concrete specialization keys exist.",
     "tests": [
       {
-        "case": "it_rejects_direct_equal_permuted_and_growing_origins_before_expansion",
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_rejects_mutual_symbolic_origins_and_retains_each_original_use",
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
@@ -144210,6 +144390,21 @@
         "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
         "command": "make -C tests/unit/semantic/static/publication/contexts",
         "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_revalidates_cached_result_proofs_under_unknown_incoming_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_reuses_actual_context_proofs_without_requiring_unrelated_ancestor_keys",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
       }
     ],
     "standalone_header_command": [
@@ -144662,6 +144857,21 @@
         "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
         "command": "make -C tests/unit/semantic/static/publication/contexts",
         "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_revalidates_cached_result_proofs_under_unknown_incoming_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_reuses_actual_context_proofs_without_requiring_unrelated_ancestor_keys",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
       }
     ],
     "standalone_header_command": [
@@ -145061,6 +145271,31 @@
         "case": "it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner",
         "command": "make -C tests/unit/semantic/static/results/evaluate",
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
+      },
+      {
+        "case": "it_publishes_the_producers_own_nominal_type_without_value_recursion",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_preserves_closed_recursive_identity_with_constructor_captures",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_propagates_pending_ancestry_until_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_mutual_static_projection_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
       }
     ]
   },
@@ -146538,6 +146773,21 @@
         "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
         "command": "make -C tests/unit/semantic/static/publication/contexts",
         "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_revalidates_cached_result_proofs_under_unknown_incoming_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_reuses_actual_context_proofs_without_requiring_unrelated_ancestor_keys",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
       }
     ]
   },
@@ -146809,6 +147059,31 @@
         "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
         "command": "make -C tests/unit/semantic/static/publication/contexts",
         "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_the_producers_own_nominal_type_without_value_recursion",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_preserves_closed_recursive_identity_with_constructor_captures",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_propagates_pending_ancestry_until_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_mutual_static_projection_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
       }
     ]
   },
@@ -148694,6 +148969,46 @@
         "case": "it_preserves_preexisting_owner_captures_when_resolving_result_contexts",
         "command": "make -C tests/unit/semantic/static/publication/contexts",
         "source": "tests/unit/semantic/static/publication/contexts/main.c"
+      },
+      {
+        "case": "it_publishes_the_producers_own_nominal_type_without_value_recursion",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_preserves_closed_recursive_identity_with_constructor_captures",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_propagates_pending_ancestry_until_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_mutual_static_projection_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_revalidates_cached_result_proofs_under_unknown_incoming_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_reuses_actual_context_proofs_without_requiring_unrelated_ancestor_keys",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
       }
     ]
   },
@@ -149390,6 +149705,169 @@
         "case": "it_rechecks_equations_before_reusing_a_prior_publication",
         "command": "make -C tests/unit/semantic/static/publication/failures",
         "source": "tests/unit/semantic/static/publication/failures/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/guards/path/ancestry.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compare repeated template keys exactly, suspend unknown comparisons and retain canonical unequal-key witnesses.",
+    "tests": [
+      {
+        "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_suspends_mutual_symbolic_recurrence_without_an_extra_scope",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_identical_keys_and_rejects_closed_permutation_or_growth",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_retries_pending_comparisons_only_after_independent_owner_evidence",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_closes_mutual_reference_and_empty_list_keys",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_unwinds_every_closed_repeat_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_accepts_finite_nested_and_sibling_applications_of_one_origin",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
+        "command": "make -C tests/unit/semantic/static/guards/ancestry",
+        "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "case": "it_publishes_the_producers_own_nominal_type_without_value_recursion",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_preserves_closed_recursive_identity_with_constructor_captures",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_propagates_pending_ancestry_until_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_mutual_static_projection_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/recursion/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compose same-key nominal results, pending ancestry, separate static value cycles and allocation refusal.",
+    "tests": [
+      {
+        "case": "it_publishes_the_producers_own_nominal_type_without_value_recursion",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_preserves_closed_recursive_identity_with_constructor_captures",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_propagates_pending_ancestry_until_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_mutual_static_projection_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_revalidates_cached_result_proofs_under_unknown_incoming_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_reuses_actual_context_proofs_without_requiring_unrelated_ancestor_keys",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/recursion/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Compose same-key nominal results, pending ancestry, separate static value cycles and allocation refusal.",
+    "tests": [
+      {
+        "case": "it_publishes_the_producers_own_nominal_type_without_value_recursion",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_preserves_closed_recursive_identity_with_constructor_captures",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_propagates_pending_ancestry_until_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_rejects_direct_and_mutual_static_projection_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion",
+        "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_revalidates_cached_result_proofs_under_unknown_incoming_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_reuses_actual_context_proofs_without_requiring_unrelated_ancestor_keys",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_unwinds_every_foreign_cache_proof_replay_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
       }
     ]
   }

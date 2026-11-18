@@ -58,6 +58,12 @@ typedef struct {
     const StaticCreationPath *rejected_path;
     const StaticCreationPath *repeated_ancestor;
     const StaticModule *rejected_origin;
+    /** Borrowed complete unequal keys for TPL-11 diagnostics; never fabricated
+     * from unresolved scopes. [COMP-04](../../../../spec/implementation/compiler.md#comp-04)
+     * reports both specializations alongside their original applications.
+     */
+    const StaticTerm *earlier_creation_value;
+    const StaticTerm *rejected_creation_value;
     SourceSpan rejected_site;
     StaticGuardStatus status;
     Diagnostic error;
@@ -88,7 +94,9 @@ bool static_creation_root(StaticGuardPlan *, const StaticTermEnvironment *, cons
 /** Check a source-backed application of this exact lexical owner before any
  * definition expansion. Finite argument expressions use their common lexical
  * parent. Only ENTERED publishes a path; other successful outcomes leave it
- * untouched. Known origins are checked even when captures remain unresolved.
+ * untouched. A repeated origin with unresolved comparison keys returns Pending
+ * before preparing another producer scope. Equal complete keys may close a
+ * cycle; an existing exact parent/application request refreshes without new work.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) checks creation ancestry.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires producer phases.
  */
