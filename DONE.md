@@ -3736,6 +3736,40 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   Conformance fingerprints remain owned by T196; static semantics and generated
   specialization execution remain the later sprint tasks. T172 is next.
 
+<a id="t199"></a>
+
+- [x] **T199 — Clarify output-only interface Type introductions (AMB-011).**
+  Status: completed, 2026-11-18; user explicitly confirms the recommended Type
+  introduction and authorizes the precise specification clarification.
+  Prerequisite: T171. This decision unblocks T172, without completing it.
+  Rules: TPL-02, TPL-07, TPL-12 and grammar static-template explanation.
+  Steps: record the decision/source; define introduction eligibility independently
+  of static outputs; distinguish input-pattern labels from output labels; add an
+  explained example and parser/context regression; verify links/grammar and
+  documentation, archive and commit this clarification separately.
+  Acceptance: no new syntax production or output-derived free formal; output-only
+  interface heads introduce Type, output labels never define Template signatures,
+  and ordinary alias/closure/scope rules remain linked to their canonical owners.
+  Steps/results: user decision recorded before edits. TPL-02 owns the exact
+  no-static-input definition and complete explained example; TPL-12/grammar
+  distinguish that introduction from output actions. No EBNF production changes.
+  Existing known-symbol exclusions and shared/body/namespace restrictions remain
+  explicit. parser/static passes a new four-part implicit/explicit/named/skip
+  regression; parser/composition checks all 120 contextualized canonical fences.
+  Logs: /tmp/ama-t199-static.log and /tmp/ama-t199-examples.log. These are syntax
+  checks; T172's semantic parameter/alias assertions remain required. Next:
+  canonical/link checks, complete documentation gates, archive and task commit.
+
+  Acceptance: both parser leaves pass; canonical/link audit checks 205 Markdown
+  files, 2883 local links, all 214 rules, unchanged aligned 108 EBNF productions
+  and the unchanged 150-area acceptance matrix (37 template areas). Only the
+  authorized TPL-02/TPL-12 chapters and grammar explanation changed in spec.
+  docs-complete passes with 2358 ready inputs and zero debt; Doxygen validates
+  1771 maintained file pages, 6780 interfaces and all 417 canonical destinations.
+  T172 remains unfinished and owns actual Type/alias inventory assertions.
+  Final documentation regeneration checks archive inputs before the required
+  separate task commit. No compiler-inference support is claimed by this edit.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

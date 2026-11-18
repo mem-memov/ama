@@ -20,7 +20,10 @@ design decisions. T167 records the implementation sprint plan in
 is [T168](DONE.md#t168), followed by [T169](DONE.md#t169). Examples in a newly opened entry expose questions,
 not additional accepted Ama syntax. No answer is inferred from a request to document a question.
 
-No template design decision remains open for the current sprint. T166 resolves
+The planned design decisions were closed before implementation. The user also
+resolves the implementation clarification [AMB-011](#amb-011): output-only
+interface heads may introduce Type under TPL-02. T199 records the authorized
+clarification; T172 implements its symbol classification. T166 resolves
 [AMB-008](#amb-008) with the accepted isolated internal ASCII-hyphen profile.
 The agreed requirements and acceptance matrix describe the target contract;
 they do not establish compiler support.
@@ -760,3 +763,81 @@ Each entry must contain:
   checks, independent semantic review and Doxygen generation pass under T162;
   [DONE.md](DONE.md) retains the evidence. No compiler implementation or
   conformance claim is part of this task.
+
+<a id="amb-011"></a>
+
+## AMB-011 — Implicit Type introduction on an interface head with static outputs
+
+- **Status:** Resolved by the 2026-11-18 user decision and T199 clarification.
+- **Task:** T172 — Collect scoped static symbols, kinds and result definitions.
+  Blocked before implementation, on input commit 0690d70 after accepted T171.
+  Read-only review found the issue; no T172 implementation or specification
+  change has been made. All test/documentation jobs have finished.
+- **Requirements:** [TPL-02](spec/language/templates.md#tpl-02) introduces Type
+  through a "bare placeholder" used as a runtime input/result type, while a
+  named input-pattern block can introduce Template under
+  [TPL-07](spec/language/templates.md#tpl-07). TPL-07 explicitly requires input
+  pattern labels for implicit Template introduction. The
+  [canonical grammar explanation](spec/grammar.md#static-template-syntax-and-design-boundaries)
+  likewise uses "bare placeholder" without defining whether an output-only
+  block changes that status. [TPL-12](spec/language/static-results.md#tpl-12)
+  permits static output bindings inside interface expressions, permits a Type
+  producer, leaves the expression's own value as its fully determined producer
+  Type, and says the output phase never adds a free owner parameter. It does
+  not explicitly settle introduction eligibility of that expression's unknown
+  placeholder head when no static input application is written.
+- **Minimal example:** This is a runtime input-section definition fragment,
+  completed with an empty Ama implementation:
+
+  ```text
+  @<
+  source&
+  ...source type
+   ...element type > ...received element type
+
+  @!
+  ```
+
+  `...source type` has no explicit static formal and no other implicit
+  introduction site. The actual input can independently determine its nominal
+  concrete Type; assume that Type declares the static result `...element type`.
+  The foreign result label and new receiver alias do not introduce free
+  parameters. There are no static input bindings, omitted constructor slots or
+  constructor-search rules involved in the example.
+- **Question:** Does this output-only interface head itself introduce the free
+  Type parameter `...source type`, or must the programmer first declare it as
+  a standalone static formal (or introduce it at another bare interface site)?
+  In particular, does "bare" mean no static input application, permitting output
+  actions, or no static binding block of either direction?
+- **Possible answers and consequences:**
+  1. Introduce Type from the interface head despite its output-only block. Its
+     identity participates in the owner's formal order/key; input nominal type
+     evidence determines the producer, while the receiver remains an alias.
+     This avoids an extra declaration and retains the Type/Template distinction:
+     output labels never become a Template signature. Clarify that the interface
+     head, rather than the output phase, introduces this parameter.
+  2. Require an explicit formal or another eligible bare interface occurrence.
+     The example is an unknown-static-name error; adding standalone
+     `...source type` in `@<` makes its intended category explicit. Clarify that
+     output-only blocks are not implicit introduction sites. This is stricter
+     and requires an additional declaration.
+  Either choice changes observable acceptance and the symbol inventory, so the
+  classifier must not infer an answer from a first actual or a lexical heuristic.
+- **User decision:** 2026-11-18, the user replies “разрешаю, подтверждаю” to
+  the preceding recommended option “Вводить Type; уточнить spec”. An interface
+  head with no static input bindings may introduce Type despite static output
+  actions; the received name remains an alias, not a new formal.
+- **Specification authorization:** Explicitly granted by that same answer to
+  the preceding question requesting the choice and precise TPL-02/TPL-12/grammar
+  clarification. T199 owns the edit and verification; no broader semantic change
+  is authorized.
+- **Resume evidence:** TPL-02 now defines a bare head by absence of static input
+  bindings and permits output-only introductions in eligible interface contexts.
+  TPL-12 distinguishes that introduction from its output actions/omitted-input
+  inference terms. Grammar explanations cross-link this semantic rule; the 108
+  EBNF productions are unchanged. The explained complete example is admitted by
+  the exact canonical manifest, now 120 fences. The independent static parser
+  leaf checks named outputs and positional skips with implicit heads and explicit
+  Type-formal controls. Both parser leaves pass; these establish syntax, not
+  implemented inference. T172 must test actual parameter/alias identities and
+  ordering through its completed inventory. Its original task remains unfinished.

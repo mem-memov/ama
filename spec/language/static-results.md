@@ -142,7 +142,11 @@ context-specific meaning: partial static arguments/results retain residuals,
 runtime declaration roots infer field bindings, ordinary root input patterns
 require coverage, and a constant namespace requires independent closure.
 An output phase provides the same producer-inference rule in all expression
-contexts; it never adds a free parameter to the containing module.
+contexts; the output actions and omitted-input inference terms never add a free
+parameter to the containing module. This does not suppress an interface head's
+independent Type introduction under [TPL-02](templates.md#tpl-02): a head with no
+static input bindings remains eligible even when it has static output actions.
+Output receivers retain the alias/equality rules below.
 
 Determine the producer's actual nominal origin from explicit paths, supplied
 static metadata or permitted nominal constraints before looking up outputs.

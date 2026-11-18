@@ -436,9 +436,15 @@ introduce Type parameters in that interface context. A known Template retains
 its category wherever it is used; a runtime value never determines which category
 its source spelling declares.
 
+TPL-02 defines bare-head introduction by absence of static input bindings,
+independently of an optional static output phase. Thus an eligible output-only
+interface head may introduce Type; output labels do not define an input-pattern
+Template signature. This is semantic classification of the existing
+`<static-expression(n)>` production, not a separate source form.
+
 Without a static output phase, a known Template application at the root of a
 runtime input type follows TPL-07's complete root-input coverage rule. A
-placeholder head with one or more named static bindings in that input position
+placeholder head with one or more named static input bindings in that input position
 can introduce a Template-application pattern. Its head names the local Template
 parameter; binding labels name the applied constructor's foreign formals, and
 right-hand expressions use the input pattern's local scope. A concrete

@@ -130,3 +130,32 @@ static void it_parses_deep_signatures_without_c_recursion(void) {
     destroy_tree();
     free(text);
 }
+
+/** Output-only interface heads retain their source structure in implicit,
+ * explicitly declared and positional-skip forms; category introduction remains
+ * a semantic operation rather than parser lookup or synthesized formal syntax.
+ */
+static void it_preserves_output_only_interface_heads_and_explicit_type_controls(void) {
+    const char *outputs[] = {"...element type > ...received element type", "... >"};
+    for (size_t explicit = 0; explicit < 2; explicit++) {
+        for (size_t output = 0; output < 2; output++) {
+            char text[512];
+            int length = snprintf(text, sizeof(text), "@<\n%ssource&\n...source type\n %s\n@!\n",
+                explicit ? "...source type\n" : "", outputs[output]);
+            assert(length > 0 && (size_t)length < sizeof(text));
+            setup_tree();
+            assert(parse_text(text) == PARSE_OK);
+            AstNode *input = module.parameters.first;
+            if (explicit) {
+                assert(input->kind == AST_STATIC_FORMAL && input->as.static_formal->first == NULL);
+                input = input->next;
+            }
+            assert(input == module.parameters.last && input->kind == AST_DECLARATION);
+            AstTypeExpression *expression = input->as.declaration.type;
+            assert(expression->kind == AST_TYPE_PLACEHOLDER && expression->first == expression->last);
+            assert(expression->first->kind == AST_STATIC_OUTPUT && expression->first->input == NULL);
+            assert(expression->first->omitted == (output == 1));
+            destroy_tree();
+        }
+    }
+}

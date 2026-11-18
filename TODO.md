@@ -146,10 +146,11 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T171 is accepted and archived in
-[DONE.md](DONE.md#t171); final documentation generation checks archived/staged
-inputs before its separate commit. T172 is next. Functional jobs have finished;
-no ambiguity or specification change is pending.
+Current implementation checkpoint: T199 is accepted and archived in
+[DONE](DONE.md#t199); final documentation regeneration checks archive inputs
+before its separate commit. AMB-011 is resolved by the explicit user decision;
+T172 is ready to resume, including semantic assertions for output-only Type
+heads and aliases. Functional jobs are finished; no question remains open.
 
 ## Current tasks
 
@@ -158,7 +159,11 @@ no ambiguity or specification change is pending.
 <a id="t172"></a>
 
 - [ ] **T172 — Collect scoped static symbols, kinds and result definitions.**
-  Prerequisites: T171.
+  Status: ready after accepted T199, 2026-11-18.
+  The user resolves [AMB-011](AMBIGUITIES.md#amb-011): an output-only interface
+  head introduces Type. The precise rule
+  is recorded and verified; no T172 code has been written yet.
+  Prerequisites: T171, T199.
   Rules: [TPL-02](spec/language/templates.md#tpl-02),
   [TPL-07](spec/language/templates.md#tpl-07),
   [TPL-12](spec/language/static-results.md#tpl-12).
@@ -168,7 +173,8 @@ no ambiguity or specification change is pending.
   receiver aliases versus genuine implicit interface introductions by source
   order, then finish whole-interface formal collection; (3) build/check finite
   recursive named Type/Template signatures and bound result-expression records.
-  Accept: result-only Type introductions, existing Template reuse, nested
+  Accept: output-only Type heads (named and skipped outputs, with an explicit
+  Type-formal control), result-only Type introductions, existing Template reuse, nested
   signatures and aliases have exact scopes; same-spelled foreign names never
   capture. Reject body-only free names, implicit result Template introductions,
   duplicate/category/signature errors and alias use before its receiver.
@@ -748,7 +754,7 @@ existing compiled-library/embedding regressions. T192/T193 own affected editor
 and directory-relocation consumers. T196–T198 cover full evidence/release/docs;
 these additional obligations are not discharged by the 37-row routing table.
 
-The next unused task ID is **T199**.
+The next unused task ID is **T200**.
 
 ## Useful verification commands
 

@@ -23,6 +23,7 @@ void run(void) {
     it_rejects_incomplete_static_interfaces_and_execution_suffixes();
     it_unwinds_every_composed_static_module_allocation_failure();
     it_parses_deep_signatures_without_c_recursion();
+    it_preserves_output_only_interface_heads_and_explicit_type_controls();
 }
 
 /** Return success only after all structural assertions and ownership cleanup. */

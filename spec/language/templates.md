@@ -123,7 +123,7 @@ Collect the whole interface before checking uses, according to these forms:
   result application follows TPL-08's field rule. TPL-12 governs applications
   with an explicit static output phase.
 - A placeholder used as a runtime input's type in `@<` with a nonempty named static
-  binding block introduces a **Template** parameter if it has no explicit static
+  input binding block introduces a **Template** parameter if it has no explicit static
   formal declaration and does not name a collected static result or visible
   received alias. Its expected
   residual signature is exactly those binding
@@ -134,6 +134,36 @@ Collect the whole interface before checking uses, according to these forms:
   A Template used on
   that side must have its category/signature declared by one of the preceding
   Template introduction forms. Do not infer its category from an actual value.
+
+For these introduction rules, a bare placeholder head has no static **input**
+bindings. Static output actions do not change that eligibility, including an
+output-only positional skip. A head in an eligible interface position can
+therefore introduce Type while reading static results from that Type. It must
+still satisfy the existing exclusions for collected formals, result names and
+visible aliases. Output labels name the producer's static results; they never
+contribute a Template parameter's expected input signature. An input binding,
+including an omitted positional input, is not a bare-head occurrence.
+
+**Example: complete interface with an output-only Type head.** Assume the
+eventual concrete input type declares the static result `...element type`:
+
+```text
+@<
+source&
+...source type
+ ...element type > ...received element type
+
+@!
+```
+
+The interface head introduces the owner's Type parameter `...source type`.
+The ordinary input supplies independent nominal type evidence; there is no
+search for a producer by output name. The receiver introduces an immutable
+alias under TPL-12, with metadata from the selected result, and does not occupy
+a formal position. No Template signature is inferred from `...element type`.
+An explicit standalone Type formal for `...source type` would make the head a
+use of that formal instead, with the same category. Shared sections, body-only
+expressions and constant namespaces still cannot introduce free parameters.
 
 First collect explicit static result binders and explicit static formals.
 Classify received aliases and genuine implicit introduction sites under

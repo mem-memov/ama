@@ -33,7 +33,7 @@ valid only after every physical record and mandatory slot succeeds.
 ## Examples are checked in their stated contexts
 
 `tests/unit/parser/composition/support/documented.c` declares an explicit
-chapter/fence/context manifest for 119 canonical Ama/ABI text fences. It reads the
+chapter/fence/context manifest for 120 canonical Ama/ABI text fences. It reads the
 current specification without editing it. Complete modules are parsed unchanged;
 body/declaration fragments receive an explicit `@!` context. Static input and
 result section fragments receive their stated section/implementation markers;

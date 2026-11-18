@@ -125618,6 +125618,11 @@
         "case": "it_parses_deep_signatures_without_c_recursion",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_output_only_interface_heads_and_explicit_type_controls",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
       }
     ]
   },
@@ -125714,6 +125719,11 @@
       },
       {
         "case": "it_parses_deep_signatures_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_output_only_interface_heads_and_explicit_type_controls",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       }
