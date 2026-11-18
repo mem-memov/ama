@@ -146,42 +146,17 @@ On acceptance, move the full record to DONE and commit that task's complete
 change. A newly discovered semantic ambiguity follows the stop/record/ask
 procedure above; this queue grants no permission to change spec.
 
-Current implementation checkpoint: T199 is accepted and archived in
-[DONE](DONE.md#t199); final documentation regeneration checks archive inputs
-before its separate commit. AMB-011 is resolved by the explicit user decision;
-T172 is ready to resume, including semantic assertions for output-only Type
-heads and aliases. Functional jobs are finished; no question remains open.
+Current implementation checkpoint: T172 accepted and moved to DONE.
+Input 2562706; [component record](docs/implementation/static-symbols.md).
+All 36 static cases, project regressions, compiler build and documentation
+acceptance passed. Final staged-tree documentation refresh uses
+/tmp/ama-t172-doxygen-staged.log; collect an outstanding refresh before resuming.
+Next ready task is T173 after the per-task T172 commit. Full executable template
+integration remains T184; no whole-sprint completion is claimed.
 
 ## Current tasks
 
 ### Phase 1. Recognize sources and establish interfaces
-
-<a id="t172"></a>
-
-- [ ] **T172 — Collect scoped static symbols, kinds and result definitions.**
-  Status: ready after accepted T199, 2026-11-18.
-  The user resolves [AMB-011](AMBIGUITIES.md#amb-011): an output-only interface
-  head introduces Type. The precise rule
-  is recorded and verified; no T172 code has been written yet.
-  Prerequisites: T171, T199.
-  Rules: [TPL-02](spec/language/templates.md#tpl-02),
-  [TPL-07](spec/language/templates.md#tpl-07),
-  [TPL-12](spec/language/static-results.md#tpl-12).
-  Boundary: static semantic inventories and lexical binding, separate from
-  runtime fields and from callee formal/result label lookup.
-  Steps: (1) inventory explicit formals and static result binders; (2) classify
-  receiver aliases versus genuine implicit interface introductions by source
-  order, then finish whole-interface formal collection; (3) build/check finite
-  recursive named Type/Template signatures and bound result-expression records.
-  Accept: output-only Type heads (named and skipped outputs, with an explicit
-  Type-formal control), result-only Type introductions, existing Template reuse, nested
-  signatures and aliases have exact scopes; same-spelled foreign names never
-  capture. Reject body-only free names, implicit result Template introductions,
-  duplicate/category/signature errors and alias use before its receiver.
-  Later alias uses do not invent owner formals; retained output definitions have
-  no runtime storage or evaluation. Fix lexical identities now but retain
-  category/signature obligations whose projected producer origin is unresolved
-  until T179 can determine it. Allocation failure leaves destructible owners.
 
 <a id="t173"></a>
 

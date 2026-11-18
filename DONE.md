@@ -3770,6 +3770,51 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   Final documentation regeneration checks archive inputs before the required
   separate task commit. No compiler-inference support is claimed by this edit.
 
+<a id="t172"></a>
+
+- [x] **T172 — Collect scoped static symbols, kinds and result definitions.**
+  Status: accepted 2026-11-18; input 2562706; implementation follows committed T199.
+  The user resolves [AMB-011](AMBIGUITIES.md#amb-011): an output-only interface
+  head introduces Type. The precise rule
+  is recorded and verified. Step record: [static symbols](docs/implementation/static-symbols.md).
+  Prerequisites: T171, T199.
+  Rules: [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: static semantic inventories and lexical binding, separate from
+  runtime fields and from callee formal/result label lookup.
+  Steps: (1) inventory explicit formals and static result binders; (2) classify
+  receiver aliases versus genuine implicit interface introductions by source
+  order, then finish whole-interface formal collection; (3) build/check finite
+  recursive named Type/Template signatures and bound result-expression records.
+  Accept: output-only Type heads (named and skipped outputs, with an explicit
+  Type-formal control), result-only Type introductions, existing Template reuse, nested
+  signatures and aliases have exact scopes; same-spelled foreign names never
+  capture. Reject body-only free names, implicit result Template introductions,
+  duplicate/category/signature errors and alias use before its receiver.
+  Later alias uses do not invent owner formals; retained output definitions have
+  no runtime storage or evaluation. Fix lexical identities now but retain
+  category/signature obligations whose projected producer origin is unresolved
+  until T179 can determine it. Allocation failure leaves destructible owners.
+
+  Evidence: all 36 static cases in six leaves pass strict C11 with ASan/UBSan
+  (LeakSanitizer disabled for the documented container limitation), including
+  original scopes/order, every real allocation refusal, 120 sort permutations
+  with every prefix, 900-deep signature construction/comparison, a 700-level
+  actual parser-to-inventory signature and shared-DAG memoization.
+  Logs: /tmp/ama-t172-sanitizers.log, /tmp/ama-t172-project.log,
+  /tmp/ama-t172-build.log. Compiler make and the complete project parent pass.
+  Documentation: 2405 ready inputs, zero debt; Doxygen validates 1811 file pages,
+  6939 interfaces and all 418 canonical destinations. Local audit checks 206
+  Markdown files/2884 links, 214 rules and 108 unchanged grammar productions.
+  Actual editor navigation opens the canonical TPL-02 location successfully.
+  Failed helper-comment documentation coverage was corrected before acceptance;
+  all decisions, algorithms, bounds and checks are in the component record.
+  Handoff: pending application metadata belongs to T173/T175/T177; projected
+  aliases belong to T179, with exact syntax and pending records retained.
+  This task certifies scoped static inventory, not executable-template support;
+  full frontend integration remains T184. No specification changes in T172.
+
 ## Requirement coverage map
 
 This map routes each indexed requirement family to its implementation tasks.

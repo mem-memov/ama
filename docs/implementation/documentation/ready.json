@@ -49275,6 +49275,186 @@
         "case": "it_releases_every_partial_resolved_value_binding_and_access",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
       }
     ]
   },
@@ -53727,7 +53907,7 @@
   },
   "tests/unit/semantic/Makefile": {
     "contract": "docs/implementation/library-tests-and-build.md",
-    "purpose": "Dispatch independent child suites: names native types relations constants diagnostics.",
+    "purpose": "Dispatch independent child suites: names native inference types calls selected lists control continuations composition relations constants diagnostics static.",
     "tests": [
       {
         "case": "it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_order",
@@ -54103,6 +54283,186 @@
         "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
         "command": "make -C tests/unit/semantic/composition",
         "source": "tests/unit/semantic/composition/main.c"
+      },
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
       }
     ]
   },
@@ -125838,6 +126198,3663 @@
         "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/error.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Preserve first static-inventory failures with original source sites and no reporting allocation.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/model.h": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Represent scoped static identities separately from runtime semantic fields.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/owner.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Own stable static inventory records and release partial construction deterministically.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/inventory.h": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Own static module inventories and expose exact source-scoped queries.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/internal.h": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Declare static inventory construction and allocation-free failure boundaries.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/scope/insert.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Insert distinct static definitions and local names with stable ownership.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/scope/lookup.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Query exact static module identities and source-position name visibility.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/common.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Own counted project-backed static records and exact source-name fixtures.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/Makefile": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Dispatch independent static scope and inventory component suites.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/scope/main.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Verify static identity, alias visibility, duplicate failure and allocation ownership.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/scope/Makefile": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Build independent static ownership and exact scope operations against semantic components.",
+    "tests": [
+      {
+        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      },
+      {
+        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "command": "make -C tests/unit/semantic/static/scope",
+        "source": "tests/unit/semantic/static/scope/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/inventory/explicit.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Collect explicit static formals and result binders before local introduction classification.",
+    "tests": [
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/events/expression.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Collect static expression heads and receivers without importing foreign labels.",
+    "tests": [
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/events/append.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Append source-owned static occurrences with checked count and atomic linking.",
+    "tests": [
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/events/internal.h": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Declare structural static occurrence construction without name classification.",
+    "tests": [
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/events/ast.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Collect static source occurrences through owning AST sections and nested bodies.",
+    "tests": [
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/events/sort.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Stably order static occurrence records by original physical source position.",
+    "tests": [
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/events/main.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Verify structural static contexts, source order, owner traversal and failure cleanup.",
+    "tests": [
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/events/Makefile": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Build independent static occurrence collection and lexical ordering checks.",
+    "tests": [
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/explicit/main.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Check explicit static names, categories, source provenance and independent interface order.",
+    "tests": [
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/explicit/Makefile": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Build parser-to-explicit-static-inventory composition and ownership tests.",
+    "tests": [
+      {
+        "case": "it_collects_whole_module_explicit_binders_without_importing_runtime_or_signature_names",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_rejects_explicit_formal_and_result_collisions_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_retains_unused_native_formals_for_the_later_native_admission_boundary",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      },
+      {
+        "case": "it_unwinds_every_explicit_static_inventory_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit",
+        "source": "tests/unit/semantic/static/explicit/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/events/support/contexts.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Check original static occurrence contexts through every owning runtime subtree.",
+    "tests": [
+      {
+        "case": "it_collects_exact_static_heads_and_receivers_in_all_source_contexts",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "case": "it_visits_every_runtime_owning_subtree_once_without_following_alias_links",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/events/support/depth.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Check deep real expression traversal without recursive C activation.",
+    "tests": [
+      {
+        "case": "it_collects_deep_expression_owners_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/events/support/failures.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Check occurrence allocation refusal, first error and maximum-count ownership.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/events/support/ordering.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Exhaust finite occurrence orders against an independent stable insertion oracle.",
+    "tests": [
+      {
+        "case": "it_orders_every_five_record_permutation_and_prefix_stably_without_allocation",
+        "command": "make -C tests/unit/semantic/static/events",
+        "source": "tests/unit/semantic/static/events/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/classify/candidate.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Recognize eligible bare and named input-pattern heads without resolving names.",
+    "tests": [
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/classify/names.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Classify interface parameters and received aliases before binding local uses.",
+    "tests": [
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/classify/sites.h": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Identify syntactic interface introduction candidates before category resolution.",
+    "tests": [
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/inventory/collect.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Orchestrate one whole-project static lexical inventory before later application inference.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/scope/bind.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Bind local static occurrences and exact loaded path requests without textual substitution.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/signature/build.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Convert explicit foreign formal trees into owned finite named signatures.",
+    "tests": [
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/signature/check.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Resolve available signature categories and retain explicit unresolved pattern obligations.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/signature/compare.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Compare complete finite signature name sets and recursive categories without source-order bias.",
+    "tests": [
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/signature/cycles.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Detect actual cycles among known expected signature edges before recursive comparison.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/signature/internal.h": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Share known metadata pairs between finite propagation and signature checking.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/signature/metadata.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Propagate independently known static categories to a finite monotone fixed point.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/signature/prepare.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Build constructor and input-pattern signature skeletons before resolving dependent categories.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/signature/signature.h": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Build and compare finite named constructor signatures independently of local scope.",
+    "tests": [
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/semantic/static/classify/Makefile": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Verify lexical parameter and alias classification before use binding.",
+    "tests": [
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/classify/main.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Exercise lexical parameter introductions, receiver precedence and original formal ordering.",
+    "tests": [
+      {
+        "case": "it_classifies_output_only_heads_result_types_and_explicit_controls",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_uses_source_order_for_aliases_without_turning_later_uses_into_formals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_collects_whole_interface_template_categories_and_original_introduction_ordinals",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_excludes_body_sources_and_result_only_applied_heads_from_introductions",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      },
+      {
+        "case": "it_unwinds_every_implicit_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify",
+        "source": "tests/unit/semantic/static/classify/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/composition/Makefile": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Compose loaded ASTs with complete static scope and known-signature collection.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/composition/main.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Run parser/project/static-inventory acceptance and resource partitions.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/composition/support/failures.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Refuse every real allocation across whole static-inventory construction and validation.",
+    "tests": [
+      {
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/composition/support/scope.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Verify actual static lexical identities across interfaces, results and runtime blocks.",
+    "tests": [
+      {
+        "case": "it_binds_output_only_type_heads_and_retains_actual_alias_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_binds_result_definitions_and_foreign_names_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_body_only_names_and_sources_before_alias_reception",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_aliases_received_inside_runtime_blocks_for_later_uses",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/composition/support/signatures.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Check recursive signature categories, repeated patterns and exact known-cycle rejection.",
+    "tests": [
+      {
+        "case": "it_checks_explicit_and_repeated_inferred_recursive_signature_agreement",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_rejects_infinite_known_signatures_but_accepts_shared_acyclic_metadata",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_retains_applied_and_projected_metadata_as_explicit_pending_obligations",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_allows_partial_known_constructor_inputs_when_outputs_request_closure",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_checks_concrete_constructor_patterns_without_importing_foreign_formals",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_collects_deep_real_signature_definitions_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/composition",
+        "source": "tests/unit/semantic/static/composition/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/signature/Makefile": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Verify finite explicit signature construction, named equality and failure ownership.",
+    "tests": [
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/signature/main.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Verify explicit finite signatures against independent structural partitions.",
+    "tests": [
+      {
+        "case": "it_builds_finite_foreign_signatures_and_matches_reordered_name_sets",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_distinguishes_missing_renamed_nested_category_and_pending_slots",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_rejects_same_level_signature_duplicates_at_original_sites",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_unwinds_every_signature_build_and_compare_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_builds_and_compares_deep_signatures_without_recursive_c_activation",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_memoizes_shared_signature_pairs_without_skipping_pending_metadata",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
+      },
+      {
+        "case": "it_limits_partial_signature_matching_to_supplied_root_names",
+        "command": "make -C tests/unit/semantic/static/signature",
+        "source": "tests/unit/semantic/static/signature/main.c"
       }
     ]
   }
