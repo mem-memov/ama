@@ -18,7 +18,7 @@ static bool registered(const StaticConstantPlan *plan, const StaticConstantRead 
     return false;
 }
 
-/** Normalize actual own member names/positions only after T180's whole producer
+/** Normalize actual own member names/positions only after independent namespace/supplier
  * closure, then bind symbolic declared Types without executing their values.
  * Existing selection reuse still rechecks current equations and namespace scope.
  * [CONST-03](../../../../../spec/language/declarations.md#const-03) separates namespace and member typing.
@@ -29,12 +29,12 @@ bool static_constant_select(StaticConstantPlan *plan, const StaticConstantRead *
     if (output == NULL || !registered(plan, read)) {
         return static_constant_fail(plan, STATIC_CONSTANT_INVALID, (SourceSpan){0}, "Invalid constant read selection handle or receiver");
     }
-    const StaticPublication *namespace;
-    if (!static_publication_resolve(plan->publications, read->context, read->source->source->expression, &namespace)) {
+    const StaticTerm *namespace_type;
+    if (!static_ordinary_resolve(plan->publications, read->source, &namespace_type)) {
         (void)static_constant_dependencies(plan); return false;
     }
-    if (context == NULL) { context = read->source->producer; }
-    if (!static_constant_scope(plan, context, namespace->value)) { return false; }
+    if (context == NULL && read->source->source) { context = read->source->source->producer; }
+    if (!static_constant_scope(plan, context, namespace_type)) { return false; }
     for (const StaticConstantSelection *selection = plan->first_selection; selection; selection = selection->next) {
         if (selection->read == read && selection->context == context) { *output = selection; return true; }
     }
@@ -44,13 +44,13 @@ bool static_constant_select(StaticConstantPlan *plan, const StaticConstantRead *
     }
     BindingInterface *view;
     BindingApplication *requests;
-    if (!static_constant_surface(plan, namespace->value, &view) ||
+    if (!static_constant_surface(plan, namespace_type, &view) ||
         !binding_normalize_runtime(plan->publications->results->guards->applications->bindings, view, read->syntax, &requests)) {
         (void)static_constant_dependencies(plan); return false;
     }
     StaticConstantSelection *selection = static_constant_allocate(plan, sizeof(*selection));
     if (selection == NULL) { return false; }
-    *selection = (StaticConstantSelection){.read = read, .context = context, .namespace = namespace, .requests = requests};
+    *selection = (StaticConstantSelection){.read = read, .context = context, .namespace_type = namespace_type, .requests = requests};
     if (!static_constant_members(plan, selection)) { return false; }
     selection->next = plan->first_selection;
     plan->first_selection = selection;

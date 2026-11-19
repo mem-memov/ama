@@ -37,12 +37,11 @@ bool static_constant_initializer_resolve(StaticConstantPlan *plan, const StaticC
     StaticResultPlan *results = plan->publications->results;
     StaticConstraintSolver *solver = results->guards->applications->solver;
     StaticResultOutcome destination_work, source_work = STATIC_RESULT_READY;
-    if (!static_result_evaluate(results, item->declaration->context,
-        item->declaration->source->source->expression, &destination_work)) {
+    if (!static_ordinary_evaluate(plan->publications, item->declaration->source, &destination_work)) {
         (void)static_constant_dependencies(plan); return false;
     }
     if (source) {
-        if (!static_result_evaluate(results, source->context, source->source->source->expression, &source_work) ||
+        if (!static_ordinary_evaluate(plan->publications, source->source, &source_work) ||
             !static_constraint_equate(solver, item->declaration->type, source->type, item->syntax->span)) {
             (void)static_constant_dependencies(plan); return false;
         }

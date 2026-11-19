@@ -30,8 +30,8 @@ static void it_agrees_between_compact_and_explicit_fixed_namespace_reads(void) {
     const StaticConstantSelection *selection;
     assert(static_constant_read(&constants, caller, constant_namespace_read(0), &read));
     assert(static_constant_select(&constants, read, actual, &selection));
-    assert(read->source->producer == NULL && value->declaration == selection->first->declaration);
-    assert(value->declaration->source->source->head == integer_type && guards.edge_count == 0);
+    assert(read->source->source->producer == NULL && value->declaration == selection->first->declaration);
+    assert(value->declaration->source->source->source->head == integer_type && guards.edge_count == 0);
     assert(constants.source_count == 1 && constants.value_count == 1 && constants.declaration_count == 1);
     destroy_constants();
 }
@@ -57,7 +57,7 @@ static void it_checks_qualified_members_storage_and_open_namespaces(void) {
         destroy_constants();
     }
     setup_constants("@!\nanchor&\n..integer\nx\n..integer\n .other.value\n",
-        "@=\nvalue\n...slot\n@<\n...slot\n@!\n");
+        "@=\nvalue\n...slot\n@<\ninput\n...slot\n@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantSource *source;
     const StaticConstantValue *value = NULL;
@@ -99,7 +99,7 @@ static void it_refuses_foreign_qualified_handles_scopes_and_count_wrap(void) {
  * creation path between their keys or duplicate shared declaration identity.
  */
 static void it_reuses_one_fixed_namespace_from_distinct_template_specializations(void) {
-    setup_constants("@<\n...slot\n@!\nanchor&\n..integer\nx\n..integer\n .other.value\n.other\n value >> y\n",
+    setup_constants("@<\ninput\n...slot\n@!\nanchor&\n..integer\nx\n..integer\n .other.value\n.other\n value >> y\n",
         "@=\nvalue\n..integer\n@!\n");
     const StaticResultContext *actual = constant_fixed_target_context();
     const StaticConstantDeclaration *shared = NULL;
@@ -119,7 +119,7 @@ static void it_reuses_one_fixed_namespace_from_distinct_template_specializations
         assert(static_constant_read(&constants, context, constant_namespace_read(0), &read));
         assert(static_constant_select(&constants, read, actual, &selection));
         if (index == 0) { shared = value->declaration; }
-        assert(value->declaration == shared && selection->first->declaration == shared && read->source->producer == NULL);
+        assert(value->declaration == shared && selection->first->declaration == shared && read->source->source->producer == NULL);
     }
     assert(keys[0] != keys[1] && guards.edge_count == 0 && guards.status == STATIC_GUARD_OK);
     assert(constants.source_count == 2 && constants.value_count == 2 && constants.declaration_count == 1);

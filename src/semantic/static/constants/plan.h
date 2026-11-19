@@ -6,7 +6,7 @@
  */
 #ifndef AMA_STATIC_CONSTANT_PLAN_H
 #define AMA_STATIC_CONSTANT_PLAN_H
-#include "../publication/plan.h"
+#include "../publication/types.h"
 
 /** One original shared declaration under a checked incoming scope. Its Type
  * variable is source/environment scoped even when different paths retain uses.
@@ -17,7 +17,7 @@ typedef struct StaticConstantDeclaration {
     struct StaticConstantDeclaration *next;
     const StaticResultContext *context;
     const AstNode *syntax;
-    StaticResultUse *source;
+    StaticOrdinaryType *source;
     const StaticTerm *type;
     bool list;
 } StaticConstantDeclaration;
@@ -30,7 +30,7 @@ typedef struct StaticConstantRead {
     struct StaticConstantRead *next;
     const StaticResultContext *context;
     const AstNode *syntax;
-    StaticResultUse *source;
+    StaticOrdinaryType *source;
     const BindingApplication *requests;
 } StaticConstantRead;
 
@@ -52,7 +52,7 @@ typedef struct StaticConstantSelection {
     struct StaticConstantSelection *next;
     const StaticConstantRead *read;
     const StaticResultContext *context;
-    const StaticPublication *namespace;
+    const StaticTerm *namespace_type;
     const BindingApplication *requests;
     StaticConstantMember *first;
     size_t count;
@@ -149,7 +149,8 @@ bool static_constant_read(StaticConstantPlan *, const StaticResultContext *,
 /** Independently close the read namespace, then select own declarations using
  * actual original names/positions. No requested member or receiver anchors it.
  * Optional context must be a checked actual namespace scope matching that Type;
- * null uses the source producer context. Plain Type reuse needs a checked scope
+ * null may use an actual normal-source Type context. Static export selection and
+ * plain Type reuse need a checked ordinary scope
  * supplied by the required-type registry rather than an invented default root.
  * Selected declaration Type terms remain available for later constraints.
  * Failed output is untouched; no runtime constant value is copied.

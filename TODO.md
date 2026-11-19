@@ -178,7 +178,8 @@ boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 [T183](DONE.md#t183) supplies canonical candidates, guarded use retention and
 finite dependency-check groups. [T211](DONE.md#t211) supplies named result
   equations, complete producer publication and independent validation witnesses.
-T212 is next. T182 remains unfinished with its partial
+[T212](DONE.md#t212) supplies independent concrete export selection and
+current constant Type/namespace evidence. T182 is next, with its retained partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -197,37 +198,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 3. Build finite structural analysis and guarded identities
 
 ### Phase 4. Resolve static graphs and independent ordinary exports
-
-<a id="t212"></a>
-
-- [ ] **T212 — Select independent concrete exports and align constant analysis.**
-  Prerequisites: T211, T213.
-  Rules: [TYPE-01](spec/language/declarations.md#type-01),
-  [CONST-03](spec/language/declarations.md#const-03),
-  [CONST-05](spec/language/declarations.md#const-05),
-  [CONST-06](spec/language/declarations.md#const-06),
-  [TPL-12](spec/language/static-results.md#tpl-12).
-  Boundary: ordinary declaration/constant-namespace export selection and
-  specialization-dependent constant declared-Type evidence. Runtime constant
-  initialization remains T186; ordinary call/assignment/foreach inference is T182.
-  Steps: resolve one exact selected export; require producer closure independently
-  of the consuming context; align shared declarations and both constant-source
-  forms with current scopes, known Types and graph dependencies.
-  Accept: one named selector precedes ordinary initializers and introduces no
-  local placeholder. Reject missing/multiple/unknown selectors, residual Template
-  storage and attempts to fill producer inputs from runtime receivers/calls.
-  Preserve field inference in permitted ordinary contexts, result-introduced Type
-  parameters and parameter-dependent shared lists. Explicit constant namespaces
-  use independent concrete Types; ordinary named/positional `>>` is unchanged.
-  Direct qualified constants keep their final-member split; member names and
-  literal bytes do not choose Types. Known nominal identities may participate
-  while whole-group validation remains pending, with no early successful admission.
-  Revalidate retained T181 metadata through actual declaration/graph/constant
-  consumers, cycles/provenance, unavailable members and resource failures.
-  Meet the common per-file tests, Doxygen links and same-task commit criteria.
-
-  Fixtures: Migrate retained constant fixtures to current graph exports and simple ordinary
-  namespaces; T181 history alone is not current source acceptance.
 
 ### Phase 5. Close and admit ordinary specializations
 
@@ -623,8 +593,8 @@ whole-program admission; component certificates do not replace those checks.
 | Ordinary-argument inference | [T182](#t182) |
 | Nested field specialization | [T182](#t182) |
 | Specialization identity | [T184](#t184), [T196](#t196) |
-| Dependent constant declarations | [T212](#t212) |
-| Explicit constant namespaces | [T212](#t212) |
+| Dependent constant declarations | [T196](#t196) |
+| Explicit constant namespaces | [T196](#t196) |
 | Specialized constant lifecycle | [T186](#t186) |
 | Concrete operation checks | [T185](#t185) |
 | Template parameter signatures | [T196](#t196) |
@@ -640,7 +610,7 @@ whole-program admission; component certificates do not replace those checks.
 | Static alias scope and capture | [T196](#t196) |
 | Static output inference and closure | [T196](#t196) |
 | Complete producer closure | [T196](#t196) |
-| Ordinary static-export boundary | [T212](#t212) |
+| Ordinary static-export boundary | [T196](#t196) |
 | Static evaluation boundary and cycles | [T196](#t196) |
 | Returned constructor creation provenance | [T196](#t196) |
 | List implementation boundary | [T195](#t195) |

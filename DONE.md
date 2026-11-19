@@ -5331,3 +5331,134 @@ T201. Specification bytes have not changed.
   `/tmp/ama-t211-final-docs.log`. No specification changes, runtime/executable
   admission claims, or unrelated T182 changes are included. Earlier active-step
   text is the chronological work record, not an unfinished acceptance claim.
+
+<a id="t212"></a>
+
+- [x] **T212 — Select independent concrete exports and align constant analysis.**
+  Prerequisites: T211, T213.
+  Rules: [TYPE-01](spec/language/declarations.md#type-01),
+  [CONST-03](spec/language/declarations.md#const-03),
+  [CONST-05](spec/language/declarations.md#const-05),
+  [CONST-06](spec/language/declarations.md#const-06),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: ordinary declaration/constant-namespace export selection and
+  specialization-dependent constant declared-Type evidence. Runtime constant
+  initialization remains T186; ordinary call/assignment/foreach inference is T182.
+  Steps: resolve one exact selected export; require producer closure independently
+  of the consuming context; align shared declarations and both constant-source
+  forms with current scopes, known Types and graph dependencies.
+  Accept: one named selector precedes ordinary initializers and introduces no
+  local placeholder. Reject missing/multiple/unknown selectors, residual Template
+  storage and attempts to fill producer inputs from runtime receivers/calls.
+  Preserve field inference in permitted ordinary contexts, result-introduced Type
+  parameters and parameter-dependent shared lists. Explicit constant namespaces
+  use independent concrete Types; ordinary named/positional `>>` is unchanged.
+  Direct qualified constants keep their final-member split; member names and
+  literal bytes do not choose Types. Known nominal identities may participate
+  while whole-group validation remains pending, with no early successful admission.
+  Revalidate retained T181 metadata through actual declaration/graph/constant
+  consumers, cycles/provenance, unavailable members and resource failures.
+  Meet the common per-file tests, Doxygen links and same-task commit criteria.
+
+  Fixtures: Migrate retained constant fixtures to current graph exports and simple ordinary
+  namespaces; T181 history alone is not current source acceptance.
+
+  Active step (2026-11-19, after T211 commit a1f0b75): reviewed TYPE-01,
+  CONST-03/05/06 and TPL-12 plus actual parser/inventory and constant consumers.
+  The parser already retains `selected_export` without declaring a caller name;
+  ordinary applications explicitly refuse selectors, awaiting this consumer.
+  The retained constant layer incorrectly assumes every declaration/read source
+  is a normal result use and every namespace publication has its own value.
+  Its old inline-projection fixtures therefore need replacement, not adapters.
+  Plan: (1) add a cohesive ordinary-Type operation under publication ownership,
+  with exact source/context registration and separate normal-value/export paths;
+  (2) require independent full producer publication before connecting a selected
+  Type to any consumer equation; (3) use that operation for shared declarations,
+  initializer Type evidence and namespace selection; retain explicit actual
+  ordinary namespace contexts and fixed-Type qualified-source provenance;
+  (4) replace obsolete fixtures, check real ordinary/constant compositions,
+  failures/headers/coverage, build and Doxygen, then archive/commit T212.
+  The ordinary Type record may expose a consumer-local Type variable, but no
+  equation to a static export is added until its producer independently closes.
+  A producer's root context is a compile-time registry obligation, not an Ama
+  instance. Metadata may close while ordinary body checks remain pending.
+  Ordinary-Type registration/evaluation/independent export resolution is now
+  implemented in small publication-owned operations, with a separate public
+  header and [component contract](docs/implementation/static-ordinary-types.md).
+  Seven named cases pass strict C11 in `/tmp/ama-t212-source-yrrlzbo2`;
+  `/tmp/ama-t212-ordinary-rerun.exit` is 0 (session 73354 to collect).
+  They cover shared supplier identities, known consumer/open supplier refusal,
+  Type versus Template outputs, exact public names, normal contextual inference,
+  every measured prepare/resolve allocation and handle/counter boundaries.
+  The initial test assumed an unresolved bare value must have structural Pending;
+  T211's contract allows READY structural work with an open value. The test now
+  independently queries Pending value metadata, without changing that contract
+  (`/tmp/ama-t212-ordinary-first.exit`, 2; session 30897 collected).
+  Constants now borrow the common ordinary-Type operation. Active work migrates
+  dependent declarations, namespace reads/selection and initializer fixtures;
+  these consumers have not yet passed a composed acceptance run. No final T212
+  acceptance, sanitizer/build/docs gate or commit is claimed. No specification
+  change or semantic ambiguity is identified; T182 inputs remain protected.
+  Shared declarations, saved reads and initializer resolution now use the same
+  ordinary-Type service; selected namespaces retain canonical Type metadata,
+  with the supplying publication proof on the source record. An actual static
+  producer context is refused as an ordinary namespace scope before passing a
+  nonexistent owner Type to the solver. All 67 composed cases pass strict C11
+  across `constants` (38) and `publication` (29), snapshot
+  `/tmp/ama-t212-source-0zc6eqk6`, `/tmp/ama-t212-composition-final.exit` 0
+  (collect session 18964). The earlier 4-leaf constant run and initial full
+  composition also passed (`/tmp/ama-t212-constants-first.exit` and
+  `/tmp/ama-t212-composition-first.exit`, both 0; sessions 82538/49797 collected).
+  Extra cases cover unselected definition-cycle refusal, shared exported scalar/
+  empty-list Types, typed/literal initializer noninference, copied syntax/context
+  and real count overflow. Nested initializer Type evidence now comes from a
+  named static assembly rather than removed inline application syntax.
+  Updated the current constant contract and ordinary-Type ownership/proof note.
+  Next: per-file/header registration, sanitizer and build gates, final current
+  Doxygen generation, archive and commit. T212 remains unfinished.
+  Final code gates collected: strict composition 67 cases passed as above;
+  ASan/UBSan composition passes in `/tmp/ama-t212-source-kkfw_bpb`,
+  `/tmp/ama-t212-sanitizers.exit` 0 (session 50136 collected). Root `make -j4`
+  passes in `/tmp/ama-t212-source-rpbj6yv3`, `/tmp/ama-t212-build.exit` 0
+  (session 27272 collected). Complete per-file/header validation passes with
+  2794 ready rows and zero debt (`/tmp/ama-t212-docs-complete.exit`, 0;
+  session 98936 collected). The only subsequent code-file difference is a
+  comment clarifying structural READY versus concrete value closure in types.h;
+  it changes no declarations or executable tokens. Final docs will compile that
+  exact header and validate the current rendered input fingerprints.
+  No jobs active. Prepare prospective final archive/queue, check source/registry
+  preservation, render Doxygen on those exact inputs, then commit. T182 remains
+  excluded from this task's acceptance and staging.
+
+  Acceptance (2026-11-19): all 67 named composition cases pass strict C11
+  (`constants` 38, `publication` 29), including actual parser/inventory/solver/
+  guard/registry/publication handoffs, independent exported Types, typed constant
+  copying and allocation refusals. Command: `make -j4 -C
+  tests/unit/semantic/static constants publication` with
+  `C_COMPILER_FLAGS=-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic
+  -D_POSIX_C_SOURCE=200809L`; `/tmp/ama-t212-composition-final.exit` is 0.
+  The same composition passes O1 ASan/UBSan with those strict warnings,
+  `-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie` and
+  `LINKER_FLAGS=-fsanitize=address,undefined -no-pie`;
+  `/tmp/ama-t212-sanitizers.exit` is 0. Use
+  `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+  `UBSAN_OPTIONS=halt_on_error=1`; unavailable LSan is not claimed. Counted
+  ownership independently verifies teardown after each measured refusal.
+  Root `make -j4` passes (`/tmp/ama-t212-build.exit`, 0). Complete per-file and
+  standalone-header gate passes, 2794 ready inputs and zero debt
+  (`/tmp/ama-t212-docs-complete.exit`, 0). All sessions are collected.
+  The final code differs from the sanitizer input only by the reviewed header
+  comment clarifying structural READY, without changed executable tokens.
+  Current contracts replace obsolete inline-projection descriptions. Tests
+  retain relevant constant/provenance laws using current simple ordinary forms
+  and named static assemblies; no obsolete syntax adapter or guessed inference
+  is preserved. The static producer's scope is explicitly distinct from a
+  checked ordinary namespace scope. Type identity can close while ordinary body
+  validation remains a retained registry obligation.
+  Final prospective tree `/tmp/ama-t212-source-vb3hud3j` includes this archive
+  and the T182 queue. `make docs` must generate and verify those exact inputs
+  before they are copied into the working tree and committed; its collected log
+  is `/tmp/ama-t212-final-docs.log`. No spec changes or unrelated T182 changes
+  are included. Runtime ordinary inference/admission, constant construction,
+  execution and release acceptance retain T182/T184–T198 ownership. Earlier
+  active-step text is chronological evidence, not an unfinished acceptance claim.

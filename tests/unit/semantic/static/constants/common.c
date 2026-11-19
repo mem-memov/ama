@@ -31,10 +31,22 @@ static inline const StaticResultContext *constant_fixed_target_context(void) {
  * their later Type and Template parameters without adding implicit formals.
  */
 static inline void setup_constant_fixture(void) {
-    char source[2048];
-    int length = snprintf(source, sizeof(source), "@=\nscalar\n...type\n |ignored literal bytes\nempty[]\n...type\n%s", result_caller_source);
-    assert(length > 0 && (size_t)length < sizeof(source));
-    setup_constants(source, result_target_source);
+    setup_constants("@=\nscalar\n...type\n |ignored literal bytes\nempty[]\n...type\n"
+        "@<\ninput\n...type\n@>\noutput\n...result type\n@!\nanchor&\n..integer\ntarget&\n.other\n", "@!\n");
+}
+
+/** Concrete ordinary owner inputs remain Type metadata, never Template arguments. */
+static inline const StaticTermEnvironment *constant_applied_environment(void) {
+    StaticTermCapture captures[] = {
+        {.formal = application_formal(caller_module, 0), .value = integer_type},
+        {.formal = application_formal(caller_module, 1), .value = integer_type}};
+    const StaticTerm *owner;
+    const StaticTermEnvironment *environment;
+    bool success = static_term_nominal(&terms, caller_module, captures, 2, (SourceSpan){0}, &owner);
+    assert(success);
+    success = static_term_environment(&terms, caller_module, owner, &environment);
+    assert(success);
+    return environment;
 }
 
 /** Select only a declared own shared field by its exact complete base name. */

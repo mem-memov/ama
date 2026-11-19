@@ -42,19 +42,14 @@ bool static_constant_declaration(StaticConstantPlan *plan, const StaticResultCon
         return static_constant_fail(plan, STATIC_CONSTANT_OUT_OF_MEMORY, syntax->span,
             "Shared declaration metadata count exceeds representable storage");
     }
-    StaticResultUse *source;
-    if (!static_result_use(results, context, syntax->as.declaration.type, NULL, &source)) {
-        (void)static_constant_dependencies(plan); return false;
-    }
-    StaticConstraintSolver *solver = results->guards->applications->solver;
-    if (!static_constraint_describe(solver, source->source->value, STATIC_CATEGORY_TYPE, NULL, syntax->as.declaration.type->span) ||
-        !static_constraint_require(solver, source->source->value, syntax->span)) {
+    StaticOrdinaryType *source;
+    if (!static_ordinary_type(plan->publications, context, syntax->as.declaration.type, &source)) {
         (void)static_constant_dependencies(plan); return false;
     }
     StaticConstantDeclaration *record = static_constant_allocate(plan, sizeof(*record));
     if (record == NULL) { return false; }
     *record = (StaticConstantDeclaration){.context = context, .syntax = syntax, .source = source,
-        .type = source->source->value, .list = syntax->as.declaration.name->whole_list, .next = plan->first_declaration};
+        .type = source->value, .list = syntax->as.declaration.name->whole_list, .next = plan->first_declaration};
     plan->first_declaration = record;
     plan->declaration_count++;
     *output = record;

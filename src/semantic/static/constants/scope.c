@@ -13,7 +13,8 @@
 bool static_constant_scope(StaticConstantPlan *plan, const StaticResultContext *context, const StaticTerm *type) {
     const StaticTerm *value;
     StaticConstraintOutcome outcome;
-    if (!static_result_has_context(plan->publications->results, context)) {
+    if (!static_result_has_context(plan->publications->results, context) ||
+        context->creation->owner->value == NULL) {
         return static_constant_fail(plan, STATIC_CONSTANT_INVALID, type->site, "Constant namespace has no checked actual scope");
     }
     if (!static_constraint_value(plan->publications->results->guards->applications->solver,

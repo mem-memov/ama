@@ -19,11 +19,11 @@ static void it_selects_named_and_positional_own_constants_before_completing_memb
         const StaticConstantSelection *selection, *again;
         assert(static_constant_read(&constants, context, constant_namespace_read(0), &read));
         assert(static_constant_select(&constants, read, actual, &selection));
-        assert(selection->namespace->value == target_constructor && selection->context == actual && read->source->producer == NULL);
+        assert(selection->namespace_type == target_constructor && selection->context == actual && read->source->source->producer == NULL);
         assert(selection->count == 2 && selection->first->declaration->syntax == constant_named(target_module, "scalar"));
         assert(selection->first->next->declaration->syntax == constant_named(target_module, "list"));
         assert(!selection->first->declaration->list && selection->first->next->declaration->list);
-        assert(selection->first->declaration->source->source->head == integer_type);
+        assert(selection->first->declaration->source->source->source->head == integer_type);
         const StaticTerm *value = NULL;
         StaticConstraintOutcome outcome;
         assert(static_constraint_value(&solver, selection->first->declaration->type, &value, &outcome));
@@ -34,24 +34,54 @@ static void it_selects_named_and_positional_own_constants_before_completing_memb
     }
 }
 
-/** Static output equations, not runtime receiver Types or requested members,
- * determine the namespace before its empty shared list declaration is selected.
+/** A closed static assembly supplies a concrete namespace before ordinary
+ * member selection. Its producer is separate from the ordinary required scope.
  */
-static void it_uses_independent_static_output_inference_before_namespace_member_selection(void) {
-    setup_constants("@>\n...expected\n..integer\n@!\nanchor&\n..integer\n.other\n ...out > ...expected\n empty[] >> xs[]\n",
-        "@=\nempty[]\n...slot\n@<\n...slot\n@>\n...out\n...slot\n@!\n");
+static void it_selects_a_concrete_export_before_namespace_member_selection(void) {
+    directory(STATIC_SCOPE_ROOT_DIRECTORY);
+    file("generated/static scope/container", "@=\nempty[]\n...slot\n@<\ninput\n...slot\n@!\n");
+    setup_constants("@!\n.other\n ...container type\n empty[] >> xs[]\n",
+        "@...\n...container type\n.container\n ...slot < ..integer\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantRead *read;
     const StaticConstantSelection *selection;
-    assert(static_constant_read(&constants, context, constant_namespace_read(0), &read));
-    assert(static_constant_select(&constants, read, NULL, &selection));
-    assert(selection->namespace->value->as.nominal.first_capture->value == integer_type);
-    assert(selection->first->declaration->list);
+    bool success = static_constant_read(&constants, context, constant_namespace_read(0), &read);
+    assert(success && read->source->source == NULL);
+    const StaticTerm *namespace_type;
+    success = static_ordinary_resolve(&publications, read->source, &namespace_type);
+    assert(success && namespace_type->as.nominal.first_capture->value == integer_type);
+    const StaticTermEnvironment *environment;
+    success = static_term_environment(&terms, namespace_type->as.nominal.origin, namespace_type, &environment);
+    assert(success);
+    const StaticResultContext *actual = publication_context(environment);
+    success = static_constant_select(&constants, read, actual, &selection);
+    assert(success && selection->namespace_type == namespace_type && selection->first->declaration->list);
     const StaticTerm *element;
     StaticConstraintOutcome outcome;
-    assert(static_constraint_value(&solver, selection->first->declaration->source->source->head, &element, &outcome));
-    assert(outcome == STATIC_CONSTRAINT_COMPLETE && element == integer_type);
+    success = static_constraint_value(&solver, selection->first->declaration->source->source->source->head, &element, &outcome);
+    assert(success && outcome == STATIC_CONSTRAINT_COMPLETE && element == integer_type);
     assert(selection->first->declaration->syntax->as.declaration.first == NULL);
+    destroy_constants();
+}
+
+/** The static producer context is not the selected ordinary namespace's context.
+ * Refusal must not pass a nonexistent producer Type to the constraint solver.
+ */
+static void it_refuses_a_static_producer_scope_as_an_ordinary_namespace_scope(void) {
+    directory(STATIC_SCOPE_ROOT_DIRECTORY);
+    file("generated/static scope/container", "@=\nvalue\n..integer\n@!\n");
+    setup_constants("@!\n.other\n ...out\n value >> x\n", "@...\n...out\n.container\n");
+    const StaticResultContext *context = publication_context(caller_environment);
+    const StaticConstantRead *read;
+    bool success = static_constant_read(&constants, context, constant_namespace_read(0), &read);
+    assert(success);
+    const StaticTerm *type;
+    success = static_ordinary_resolve(&publications, read->source, &type);
+    assert(success && read->source->producer_context);
+    const StaticConstantSelection *selection = NULL;
+    success = static_constant_select(&constants, read, read->source->producer_context, &selection);
+    assert(!success && selection == NULL && constants.status == STATIC_CONSTANT_INVALID);
+    assert(publications.status == STATIC_PUBLICATION_OK && solver.status == STATIC_CONSTRAINT_OK);
     destroy_constants();
 }
 
@@ -75,15 +105,33 @@ static void it_excludes_instance_fields_and_argument_type_constants_from_the_act
         assert(selection == NULL && constants.status == STATIC_CONSTANT_CONFLICT && constants.declaration_count == 0);
         destroy_constants();
     }
-    setup_constants("@=\nfrom argument\n..integer\n@!\nanchor&\n..integer\n.other\n ...slot < .main\n from argument >> x\n",
-        "@=\nonly own\n..integer\n@<\n...slot\n@!\n");
-    const StaticResultContext *context = publication_context(caller_environment);
-    const StaticResultContext *actual = NULL;
+    directory(STATIC_SCOPE_ROOT_DIRECTORY);
+    file("generated/static scope/argument", "@=\nfrom argument\n..integer\n@!\n");
+    setup_constants("@<\nnamespace\n...namespace\n@!\nanchor&\n..integer\nargument&\n.argument\n...namespace\n from argument >> x\n",
+        "@=\nonly own\n..integer\n@<\ninput\n...slot\n@!\n");
+    const StaticModule *argument = static_module_find(&inventory, project_find(&project, ".argument"));
+    const StaticTerm *argument_type, *namespace_type, *owner;
+    bool success = static_term_nominal(&terms, argument, NULL, 0, (SourceSpan){0}, &argument_type);
+    assert(success);
+    StaticTermCapture slot = {.formal = application_formal(target_module, 0), .value = argument_type};
+    success = static_term_nominal(&terms, target_module, &slot, 1, (SourceSpan){0}, &namespace_type);
+    assert(success);
+    StaticTermCapture supplied = {.formal = application_formal(caller_module, 0), .value = namespace_type};
+    success = static_term_nominal(&terms, caller_module, &supplied, 1, (SourceSpan){0}, &owner);
+    assert(success);
+    const StaticTermEnvironment *environment;
+    success = static_term_environment(&terms, caller_module, owner, &environment);
+    assert(success);
+    const StaticResultContext *context = publication_context(environment);
+    success = static_term_environment(&terms, target_module, namespace_type, &environment);
+    assert(success);
+    const StaticResultContext *actual = publication_context(environment);
     const StaticConstantRead *read;
     const StaticConstantSelection *selection = NULL;
-    assert(static_constant_read(&constants, context, constant_namespace_read(0), &read));
-    assert(!static_constant_select(&constants, read, actual, &selection));
-    assert(selection == NULL && constants.status == STATIC_CONSTANT_CONFLICT);
+    success = static_constant_read(&constants, context, constant_namespace_read(0), &read);
+    assert(success);
+    success = static_constant_select(&constants, read, actual, &selection);
+    assert(!success && selection == NULL && constants.status == STATIC_CONSTANT_CONFLICT);
     destroy_constants();
 }
 
@@ -93,10 +141,10 @@ static void it_excludes_instance_fields_and_argument_type_constants_from_the_act
 static void it_refuses_member_or_receiver_driven_namespace_completion(void) {
     const char *callers[] = {
         "@!\nanchor&\n..integer\nxs[]\n..integer\n.other\n empty[] >> xs[]\n",
-        "@<\n...family\n ...slot\n@!\nanchor&\n..integer\n...family\n ...slot < ..integer\n empty[] >> xs[]\n"
+        "@<\nnamespace\n...type\n@!\nanchor&\n..integer\nxs[]\n..integer\n...type\n empty[] >> xs[]\n"
     };
     for (size_t mode = 0; mode < 2; mode++) {
-        setup_constants(callers[mode], "@=\nempty[]\n...slot\n@<\n...slot\n@!\n");
+        setup_constants(callers[mode], "@=\nempty[]\n...slot\n@<\ninput\n...slot\n@!\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticConstantRead *read;
         const StaticConstantSelection *selection = NULL;
@@ -135,7 +183,7 @@ static void it_rejects_duplicate_constant_names_and_unselected_reference_storage
  */
 static void it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse(void) {
     for (size_t supplied = 0; supplied < 2; supplied++) {
-        setup_constants("@<\n...type\n@!\nanchor&\n..integer\n...type\n value >> x\n", "@=\nvalue\n..integer\n@!\n");
+        setup_constants("@<\nnamespace\n...type\n@!\nanchor&\n..integer\n...type\n value >> x\n", "@=\nvalue\n..integer\n@!\n");
         StaticTermCapture capture = {.formal = application_formal(caller_module, 0), .value = target_constructor};
         const StaticTerm *owner;
         const StaticTermEnvironment *environment, *target_environment;
@@ -148,8 +196,8 @@ static void it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse(
         const StaticConstantSelection *selection = NULL;
         assert(static_constant_read(&constants, context, constant_namespace_read(0), &read));
         bool success = static_constant_select(&constants, read, supplied ? actual : NULL, &selection);
-        assert(success == (supplied != 0) && read->source->producer == NULL);
-        if (success) { assert(selection->context == actual && selection->first->declaration->source->source->head == integer_type); }
+        assert(success == (supplied != 0) && read->source->source->producer == NULL);
+        if (success) { assert(selection->context == actual && selection->first->declaration->source->source->source->head == integer_type); }
         else { assert(selection == NULL && constants.status == STATIC_CONSTANT_INVALID); }
         destroy_constants();
     }
@@ -160,11 +208,11 @@ static void it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse(
  */
 static void it_refuses_invalid_selection_handles_and_preserves_shared_type_scopes(void) {
     setup_constant_fixture();
-    const StaticResultContext *context = publication_context(result_applied_environment());
+    const StaticResultContext *context = publication_context(constant_applied_environment());
     const StaticConstantDeclaration *record;
     assert(static_constant_declaration(&constants, context, constant_named(caller_module, "scalar"), &record));
-    assert(record->source->source->head == integer_type);
-    assert(record->source->source->occurrence->symbol == result_named(caller_module, "...type"));
+    assert(record->source->source->source->head == integer_type);
+    assert(record->source->source->source->occurrence->symbol == result_named(caller_module, "...type"));
     const StaticConstantSelection *selection = NULL;
     assert(!static_constant_select(&constants, NULL, context, &selection));
     assert(selection == NULL && constants.status == STATIC_CONSTANT_INVALID);
@@ -173,7 +221,7 @@ static void it_refuses_invalid_selection_handles_and_preserves_shared_type_scope
     static_publication_init(&publications, &results, sources.allocator);
     static_constant_init(&constants, &publications, sources.allocator);
     context = publication_context(caller_environment);
-    assert(!static_publication_resolve(&publications, context, result_field("first"), NULL));
+    assert(!static_publication_resolve(&publications, context, result_pair("...first"), NULL));
     assert(!static_constant_select(&constants, NULL, NULL, &selection));
     assert(constants.error.message == publications.error.message && selection == NULL);
     destroy_constants();
@@ -182,7 +230,8 @@ static void it_refuses_invalid_selection_handles_and_preserves_shared_type_scope
 /** Execute namespace closure, own surfaces, symbolic member Types and registry scopes. */
 static void run(void) {
     it_selects_named_and_positional_own_constants_before_completing_member_types();
-    it_uses_independent_static_output_inference_before_namespace_member_selection();
+    it_selects_a_concrete_export_before_namespace_member_selection();
+    it_refuses_a_static_producer_scope_as_an_ordinary_namespace_scope();
     it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface();
     it_refuses_member_or_receiver_driven_namespace_completion();
     it_rejects_duplicate_constant_names_and_unselected_reference_storage();

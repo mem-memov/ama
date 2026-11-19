@@ -13,10 +13,10 @@ static void it_binds_symbolic_shared_types_without_using_literals_as_type_anchor
     assert(static_constant_declaration(&constants, context, constant_named(caller_module, "scalar"), &scalar));
     assert(static_constant_declaration(&constants, context, constant_named(caller_module, "empty"), &list));
     assert(!scalar->list && list->list && scalar->type != list->type && caller_module->parameter_count == 2);
-    assert(scalar->source->prepared == NULL && scalar->source->application == NULL && results.context_count == 1);
+    assert(scalar->source->source->prepared == NULL && scalar->source->source->application == NULL && results.context_count == 1);
     const StaticTerm *formal;
     assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...type"), &formal));
-    assert(scalar->source->source->head == formal && list->source->source->head == formal);
+    assert(scalar->source->source->source->head == formal && list->source->source->source->head == formal);
     const StaticTerm *value = NULL;
     StaticConstraintOutcome outcome;
     assert(static_constraint_value(&solver, scalar->type, &value, &outcome));
@@ -32,11 +32,11 @@ static void it_binds_symbolic_shared_types_without_using_literals_as_type_anchor
  */
 static void it_resolves_shared_types_in_their_actual_applied_owner_environment(void) {
     setup_constant_fixture();
-    const StaticTermEnvironment *environment = result_applied_environment();
+    const StaticTermEnvironment *environment = constant_applied_environment();
     const StaticResultContext *context = publication_context(environment);
     const StaticConstantDeclaration *record;
     assert(static_constant_declaration(&constants, context, constant_named(caller_module, "scalar"), &record));
-    assert(record->source->source->head == integer_type);
+    assert(record->source->source->source->head == integer_type);
     const StaticPublication *publication;
     assert(static_publication_resolve(&publications, context, record->syntax->as.declaration.type, &publication));
     assert(publication->value == integer_type && publications.alias_count == 0);
@@ -55,7 +55,7 @@ static void it_binds_result_introduced_parameters_in_earlier_empty_shared_lists(
     assert(static_constant_declaration(&constants, context, syntax, &generic));
     assert(generic->list && syntax->as.declaration.first == NULL && caller_module->parameter_count == 1);
     const StaticSymbol *symbol = result_named(caller_module, "...element");
-    assert(symbol->role == STATIC_PARAMETER && generic->source->source->head->as.variable.symbol == symbol);
+    assert(symbol->role == STATIC_PARAMETER && generic->source->source->source->head->as.variable.symbol == symbol);
     StaticTermCapture capture = {.formal = symbol, .value = integer_type};
     const StaticTerm *owner;
     const StaticTermEnvironment *environment;
@@ -63,7 +63,30 @@ static void it_binds_result_introduced_parameters_in_earlier_empty_shared_lists(
     assert(static_term_environment(&terms, caller_module, owner, &environment));
     context = publication_context(environment);
     assert(static_constant_declaration(&constants, context, syntax, &applied));
-    assert(applied != generic && applied->type != generic->type && applied->source->source->head == integer_type);
+    assert(applied != generic && applied->type != generic->type && applied->source->source->source->head == integer_type);
+    destroy_constants();
+}
+
+/** Exported Types supply scalar and empty-list element metadata without local
+ * placeholders, implicit instances or inference from literal bytes.
+ */
+static void it_binds_independently_exported_shared_scalar_and_empty_list_types(void) {
+    setup_constants("@=\nscalar\n.other\n ...out\n |7\nempty[]\n.other\n ...out\n@!\n",
+        "@...\n...out\n..integer\n");
+    const StaticResultContext *context = publication_context(caller_environment);
+    const StaticConstantDeclaration *scalar, *list;
+    bool success = static_constant_declaration(&constants, context, constant_named(caller_module, "scalar"), &scalar);
+    assert(success);
+    success = static_constant_declaration(&constants, context, constant_named(caller_module, "empty"), &list);
+    assert(success && !scalar->list && list->list && scalar->type != list->type);
+    assert(caller_module->parameter_count == 0 && caller_module->first == NULL);
+    const StaticTerm *scalar_type, *element_type;
+    success = static_ordinary_resolve(&publications, scalar->source, &scalar_type);
+    assert(success);
+    success = static_ordinary_resolve(&publications, list->source, &element_type);
+    assert(success && scalar_type == integer_type && element_type == scalar_type);
+    assert(scalar->source->publication == list->source->publication);
+    assert(list->syntax->as.declaration.initializer_count == 0 && publications.alias_count == 0);
     destroy_constants();
 }
 
@@ -107,7 +130,7 @@ static void it_refuses_foreign_shared_identities_and_declaration_counter_wrap(vo
     static_constant_init(&constants, &publications, sources.allocator);
     const StaticResultContext *context = publication_context(result_applied_environment());
     const StaticConstantDeclaration *record = NULL;
-    assert(!static_publication_resolve(&publications, context, result_field("first"), NULL));
+    assert(!static_publication_resolve(&publications, context, result_pair("...first"), NULL));
     assert(!static_constant_declaration(&constants, context, NULL, &record));
     assert(record == NULL && constants.status == STATIC_CONSTANT_INVALID && constants.error.message == publications.error.message);
     destroy_constants();
@@ -121,7 +144,7 @@ static void it_unwinds_every_dependent_shared_type_preparation_allocation_refusa
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
             setup_constant_fixture();
-            const StaticTermEnvironment *environment = mode ? result_applied_environment() : caller_environment;
+            const StaticTermEnvironment *environment = mode ? constant_applied_environment() : caller_environment;
             const StaticResultContext *context = publication_context(environment);
             const AstNode *syntax = constant_named(caller_module, "scalar");
             const StaticConstantDeclaration *record = NULL;
@@ -141,6 +164,7 @@ static void run(void) {
     it_binds_symbolic_shared_types_without_using_literals_as_type_anchors();
     it_resolves_shared_types_in_their_actual_applied_owner_environment();
     it_binds_result_introduced_parameters_in_earlier_empty_shared_lists();
+    it_binds_independently_exported_shared_scalar_and_empty_list_types();
     it_rejects_shared_reference_and_reference_list_storage_before_type_work();
     it_refuses_foreign_shared_identities_and_declaration_counter_wrap();
     it_unwinds_every_dependent_shared_type_preparation_allocation_refusal();

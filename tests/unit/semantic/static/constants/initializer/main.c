@@ -20,7 +20,7 @@ static void it_infers_from_local_and_qualified_constants_but_never_literal_bytes
     const char *sources[] = {"known", ".other.value", "|123"};
     for (size_t mode = 0; mode < 3; mode++) {
         char caller[512];
-        int size = snprintf(caller, sizeof(caller), "@=\nknown\n..integer\n |1\ninferred\n...slot\n %s\n@<\n...slot\n@!\nanchor&\n..integer\n", sources[mode]);
+        int size = snprintf(caller, sizeof(caller), "@=\nknown\n..integer\n |1\ninferred\n...slot\n %s\n@<\ninput\n...slot\n@!\nanchor&\n..integer\n", sources[mode]);
         assert(size > 0 && (size_t)size < sizeof(caller));
         setup_constants(caller, "@=\nvalue\n..integer\n |2\n@!\n");
         const StaticResultContext *context = publication_context(caller_environment), *actual = constant_fixed_target_context();
@@ -40,25 +40,55 @@ static void it_infers_from_local_and_qualified_constants_but_never_literal_bytes
     }
 }
 
-/** Two-level applications propagate initializer equality into nested captures;
- * list storage retains its declared element Type without constructing elements.
+/** A concrete nested Type comes from a static assembly. Typed copying can
+ * infer an ordinary Type parameter and list element without inline constructors.
  */
-static void it_infers_nested_template_and_list_element_types_from_own_constant_sources(void) {
-    setup_constants("@=\nknown[]\n.other\n ...slot < .other\n  ...slot < ..integer\ninferred[]\n.other\n"
-        " ...slot < .other\n  ...slot < ...slot\n known[]\n@<\n...slot\n@!\nanchor&\n..integer\n",
-        "@<\n...slot\n@!\n");
+static void it_infers_nested_exported_list_element_types_from_own_constant_sources(void) {
+    directory(STATIC_SCOPE_ROOT_DIRECTORY);
+    file("generated/static scope/inner", "@<\nvalue\n...item\n@!\n");
+    file("generated/static scope/assembly", "@...\n...out\n.other\n ...slot < .inner\n  ...item < ..integer\n");
+    setup_constants("@=\nknown[]\n.assembly\n ...out\ninferred[]\n...slot\n known[]\n"
+        "@<\ninput\n...slot\n@!\nanchor&\n..integer\n", "@<\nvalue\n...slot\n@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantInitializer *item = initializer(context, "inferred");
     StaticResultOutcome outcome;
-    assert(item->local != NULL && item->declaration->list && item->local->list);
-    assert(static_constant_initializer_resolve(&constants, item, NULL, &outcome));
-    assert(static_constant_initializer_resolve(&constants, item, NULL, &outcome) && outcome == STATIC_RESULT_READY);
+    assert(item->local && item->declaration->list && item->local->list);
+    bool success = static_constant_initializer_resolve(&constants, item, NULL, &outcome);
+    assert(success);
+    success = static_constant_initializer_resolve(&constants, item, NULL, &outcome);
+    assert(success && outcome == STATIC_RESULT_READY);
     const StaticTerm *formal, *value;
     StaticConstraintOutcome closed;
-    assert(static_term_symbol(&terms, caller_environment, application_formal(caller_module, 0), &formal));
-    assert(static_constraint_value(&solver, formal, &value, &closed) && closed == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
+    success = static_term_symbol(&terms, caller_environment, application_formal(caller_module, 0), &formal);
+    assert(success);
+    success = static_constraint_value(&solver, formal, &value, &closed);
+    assert(success && closed == STATIC_CONSTRAINT_COMPLETE && value->as.nominal.origin == target_module);
+    const StaticTerm *inner = value->as.nominal.first_capture->value;
+    assert(inner->as.nominal.origin->definition == project_find(&project, ".inner"));
+    assert(inner->as.nominal.first_capture->value == integer_type);
     assert(constants.initializer_count == 1 && constants.declaration_count == 2);
     destroy_constants();
+}
+
+/** Neither a typed constant source nor literal payload can complete the inputs
+ * of a static supplier selected as the destination's declared Type.
+ */
+static void it_refuses_initializer_driven_completion_of_a_selected_static_supplier(void) {
+    const char *sources[] = {"known", "|7"};
+    for (size_t kind = 0; kind < 2; kind++) {
+        char caller[512];
+        int length = snprintf(caller, sizeof(caller),
+            "@=\nknown\n..integer\nbad\n.other\n ...out\n %s\n@!\n", sources[kind]);
+        assert(length > 0 && (size_t)length < sizeof(caller));
+        setup_constants(caller, "@...\n...out\n...slot\n...anchor\n..integer\n");
+        const StaticResultContext *context = publication_context(caller_environment);
+        const StaticConstantInitializer *item = initializer(context, "bad");
+        StaticResultOutcome outcome = STATIC_RESULT_READY;
+        bool success = static_constant_initializer_resolve(&constants, item, NULL, &outcome);
+        assert(!success && outcome == STATIC_RESULT_READY && constants.status == STATIC_CONSTANT_UNRESOLVED);
+        assert(item->declaration->source->publication == NULL && publications.count == 0);
+        destroy_constants();
+    }
 }
 
 /** Runtime names, mutable links, continuations and self cannot supply constant
@@ -121,7 +151,7 @@ static void it_unwinds_every_initializer_registration_and_resolution_allocation_
             size_t total = 0;
             for (size_t cut = 0; cut <= total; cut++) {
                 char caller[512];
-                int size = snprintf(caller, sizeof(caller), "@=\nknown\n..integer\nbad\n...slot\n %s\n@<\n...slot\n@!\nanchor&\n..integer\n", sources[mode]);
+                int size = snprintf(caller, sizeof(caller), "@=\nknown\n..integer\nbad\n...slot\n %s\n@<\ninput\n...slot\n@!\nanchor&\n..integer\n", sources[mode]);
                 assert(size > 0 && (size_t)size < sizeof(caller));
                 setup_constants(caller, "@=\nvalue\n..integer\n@!\n");
                 const StaticResultContext *context = publication_context(caller_environment), *actual = constant_fixed_target_context();
@@ -150,7 +180,8 @@ static void it_unwinds_every_initializer_registration_and_resolution_allocation_
 /** Run independent Type evidence and strict source/ownership partitions. */
 static void run(void) {
     it_infers_from_local_and_qualified_constants_but_never_literal_bytes();
-    it_infers_nested_template_and_list_element_types_from_own_constant_sources();
+    it_infers_nested_exported_list_element_types_from_own_constant_sources();
+    it_refuses_initializer_driven_completion_of_a_selected_static_supplier();
     it_rejects_runtime_and_mutable_shared_initializer_sources();
     it_checks_initializer_identity_counter_bounds_and_type_conflicts();
     it_unwinds_every_initializer_registration_and_resolution_allocation_refusal();

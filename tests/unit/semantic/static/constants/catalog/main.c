@@ -8,7 +8,7 @@
 
 /** Real parser/project shapes include every source-owning node and nested block. */
 static const char *source_text = "@=\nshared\n.other\n .other.value\n"
-    "@<\n...other.value\ninput\n.other\n .other.value\n"
+    "@<\nplaceholder\n...other.value\ninput\n.other\n .other.value\n"
     "@>\noutput\n.other\n .other.items[]\n@!\nlocal\n.other\n .other.value\n"
     "local\n .other.value\nworker !\n < .other.value\n:\n handler\n .other\n  .other.value\n"
     "flag\n?\n positive\n .other\n  .other.value\n:\n negative\n .other\n  .other.value\n"

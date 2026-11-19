@@ -4,18 +4,18 @@
 #include "../common.c"
 
 /** An unknown family remains unknown despite requested members and receivers;
- * static input/output actions remain separate from ordinary saved-read positions.
+ * a Type obligation retains the source without executing or selecting members.
  */
 static void it_registers_unknown_namespaces_without_using_requested_members_as_anchors(void) {
-    setup_constants("@<\n...family\n ...slot\n@!\nanchor&\n..integer\n...family\n ...slot < ..integer\n ...out > ...type alias\n constant >> receiver\n", result_target_source);
+    setup_constants("@<\nnamespace\n...type\n@!\nanchor&\n..integer\n...type\n constant >> receiver\n", "@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantRead *read;
     assert(static_constant_read(&constants, context, constant_namespace_read(0), &read));
     assert(read->requests->pending && read->requests->interface == NULL && read->requests->input_count == 0);
     assert(read->requests->output_count == 1 && read->requests->first->slot == NULL);
-    assert(read->source->source->head->as.variable.symbol == result_named(caller_module, "...family"));
-    assert(read->source->prepared == NULL && read->source->application == NULL && publications.count == 0);
-    assert(solver.equation_count == 0 && solver.requirement_count == 0 && caller_module->parameter_count == 1);
+    assert(read->source->source->source->head->as.variable.symbol == result_named(caller_module, "...type"));
+    assert(read->source->source->prepared == NULL && read->source->source->application == NULL && publications.count == 0);
+    assert(solver.equation_count == 0 && solver.requirement_count == 1 && caller_module->parameter_count == 1);
     size_t before = allocation_count;
     const StaticConstantRead *again;
     assert(static_constant_read(&constants, context, read->syntax, &again));
@@ -72,7 +72,7 @@ static void it_refuses_foreign_read_handles_counter_wrap_and_borrowed_failures(v
     static_publication_init(&publications, &results, sources.allocator);
     static_constant_init(&constants, &publications, sources.allocator);
     context = publication_context(result_applied_environment());
-    assert(!static_publication_resolve(&publications, context, result_field("first"), NULL));
+    assert(!static_publication_resolve(&publications, context, result_pair("...first"), NULL));
     assert(!static_constant_read(&constants, context, NULL, &read));
     assert(constants.error.message == publications.error.message && read == NULL);
     destroy_constants();
@@ -85,8 +85,8 @@ static void it_unwinds_every_deferred_namespace_registration_allocation_refusal(
     for (size_t mode = 0; mode < 2; mode++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_constants(mode ? "@<\n...family\n ...slot\n@!\nanchor&\n..integer\n...family\n ...slot < ..integer\n ...out > ...alias\n value >> receiver\n" :
-                "@!\nanchor&\n..integer\n.other\n value >> receiver\n", result_target_source);
+            setup_constants(mode ? "@<\nnamespace\n...type\n@!\nanchor&\n..integer\n...type\n value >> receiver\n" :
+                "@!\nanchor&\n..integer\n.other\n value >> receiver\n", "@=\nvalue\n..integer\n@!\n");
             const StaticResultContext *context = publication_context(caller_environment);
             const AstNode *syntax = constant_namespace_read(0);
             const StaticConstantRead *read = NULL;

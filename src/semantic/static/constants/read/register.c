@@ -43,9 +43,9 @@ bool static_constant_read(StaticConstantPlan *plan, const StaticResultContext *c
         return static_constant_fail(plan, STATIC_CONSTANT_OUT_OF_MEMORY, syntax->span,
             "Constant namespace read count exceeds representable storage");
     }
-    StaticResultUse *source;
+    StaticOrdinaryType *source;
     BindingApplication *requests;
-    if (!static_result_use(results, context, syntax->as.call.namespace_expression, NULL, &source) ||
+    if (!static_ordinary_type(plan->publications, context, syntax->as.call.namespace_expression, &source) ||
         !binding_normalize_runtime(results->guards->applications->bindings, NULL, syntax, &requests)) {
         (void)static_constant_dependencies(plan); return false;
     }

@@ -60,6 +60,8 @@ typedef enum { STATIC_PUBLICATION_OK, STATIC_PUBLICATION_INVALID,
 typedef struct {
     SourceArena arena;
     StaticResultPlan *results;
+    struct StaticOrdinaryType *first_type;
+    size_t type_count;
     StaticPublication *first;
     size_t count;
     StaticPublishedAlias *first_alias;
