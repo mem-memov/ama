@@ -4,18 +4,17 @@
 #include "../common.c"
 
 /** Distinct source applications cover unchanged, permuted and growing captures. */
-static const char *caller_source = "@<\n...a\n...b\n@!\nanchor&\n..integer\nchild&\n.other\n"
-    "direct&\n.main\nsame&\n.main\n ...a < ...a\n ...b < ...b\n"
-    "permuted&\n.main\n ...a < ...b\n ...b < ...a\n"
-    "growing&\n.main\n ...a < .other\n  ...a < ...a\n  ...b < ...b\n ...b < ...b\n"
-    "nested&\n.other\n ...a < .other\n  ...a < ..integer\n  ...b < ..integer\n ...b < ..integer\n";
-static const char *target_source = "@<\n...a\n...b\n@!\nback&\n.main\n";
+static const char *caller_source = "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nanchor&\n..integer\nchild&\n.other\n"
+    "direct&\n.main\nsame&\n.main\npermuted&\n.main\ngrowing&\n.main\nnested&\n.other\n";
+static const char *target_source = "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nback&\n.main\n";
 
 /** Registered declaration syntax determines the lexical owner, independently of
  * whichever constructor is supplied through the prepared head.
  */
 static const AstTypeExpression *field(const StaticModule *module, const char *name) {
     for (const StaticOccurrence *site = module->first_occurrence; site; site = site->next) {
+        if (site->root && site->receiver == NULL && site->statement->kind == AST_STATIC_RESULT &&
+            layout_text_is(site->statement->as.static_result.name, name)) { return site->expression; }
         if (site->root && site->receiver == NULL && site->statement->kind == AST_DECLARATION &&
             layout_text_is(site->statement->as.declaration.name->name, name)) { return site->expression; }
     }
@@ -157,8 +156,8 @@ static void it_retries_pending_comparisons_only_after_independent_owner_evidence
  */
 static void it_closes_mutual_reference_and_empty_list_keys(void) {
     for (size_t lists = 0; lists < 2; lists++) {
-        const char *a_source = lists ? "@<\n...a\n...b\n@!\nanchor&\n..integer\nchild[]\n.other\n" : caller_source;
-        const char *b_source = lists ? "@<\n...a\n...b\n@!\nback[]\n.main\n" : target_source;
+        const char *a_source = lists ? "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nanchor&\n..integer\nchild[]\n.other\n" : caller_source;
+        const char *b_source = lists ? "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nback[]\n.main\n" : target_source;
         setup_guards(a_source, b_source);
         StaticTermCapture captures[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
             {.formal = application_formal(caller_module, 1), .value = integer_type}};
@@ -212,13 +211,14 @@ static void it_unwinds_every_closed_repeat_entry_allocation_refusal(void) {
  * cannot create a false outer-to-inner creation edge or ban finite repeated nesting.
  */
 static void it_accepts_finite_nested_and_sibling_applications_of_one_origin(void) {
-    setup_guards(caller_source, target_source);
+    setup_guards("@...\n...nested\n.other\n ...a < .other\n  ...a < ..integer\n  ...b < ..integer\n ...b < ..integer\n...anchor\n..integer\n",
+        "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\n");
     const StaticCreationPath *root, *outer, *inner;
     assert(static_creation_root(&guards, caller_environment, &root));
-    const AstTypeExpression *outer_expression = field(caller_module, "nested"), *inner_expression = NULL;
+    const AstTypeExpression *outer_expression = field(caller_module, "...nested"), *inner_expression = NULL;
     for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
-        if (!site->root && site->receiver == NULL && site->statement && site->statement->kind == AST_DECLARATION &&
-            layout_text_is(site->statement->as.declaration.name->name, "nested") &&
+        if (!site->root && site->receiver == NULL && site->statement && site->statement->kind == AST_STATIC_RESULT &&
+            layout_text_is(site->statement->as.static_result.name, "...nested") &&
             layout_text_is(site->expression->head, ".other")) { inner_expression = site->expression; break; }
     }
     assert(inner_expression);

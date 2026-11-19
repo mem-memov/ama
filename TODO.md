@@ -173,7 +173,8 @@ boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 [T208](DONE.md#t208) establishes actual metadata and all-use requirements.
 [T209](DONE.md#t209) establishes named application and finite structural equations.
 [T215](DONE.md#t215) establishes exact compiler-only producer owner keys.
-T210 is next. T182 remains unfinished with its partial
+[T210](DONE.md#t210) validates current creation/definition guard paths.
+T183 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -190,36 +191,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 2. Establish current source structure and bindings
 
 ### Phase 3. Build finite structural analysis and guarded identities
-
-<a id="t210"></a>
-
-- [ ] **T210 — Guard definition expansion and every specialization path.**
-  Prerequisites: T207, T209, T215.
-  Rules: [TPL-10](spec/language/templates.md#tpl-10),
-  [TPL-11](spec/language/templates.md#tpl-11),
-  [TPL-12](spec/language/static-results.md#tpl-12).
-  Boundary: separate exact static-definition and specialization-creation graphs,
-  original application provenance and pending repeated-key obligations.
-  Steps: revalidate the existing guards against the new graph roles; attribute
-  applications to lexical owners; expose checks that run before any expansion
-  and on every cache path. T183 composes these algorithms with the registry.
-  Accept: finite nested applications and identical closed-key cycles pass;
-  reachable unequal keys of one origin fail even through a closed cycle or late
-  edge. Unknown comparison keys suspend expansion without guessed equality or
-  speculative copies. Supplied Types/fixed namespaces add no invented creation
-  edge, while actual producer uses do. Pair/first-receipt definitions differ
-  from equality checks; direct/mutual static-definition cycles remain errors.
-  Check exact finite graph oracles, root/constraint order, cached dependencies,
-  pending-to-closed transitions, diagnostics and every refusal cleanup. Preserve
-  occurs/eager/value graphs separately. Meet the common per-file tests, Doxygen
-  links and same-task commit criteria.
-  Fixtures: Migrate the live guard fixtures to current source/metadata without weakening
-  creation ancestry or cache-path checks.
-  Active step (2026-11-19): T215 has delivered separate producer maps and
-  owner-key normalization. Next migrate the remaining guard fixtures to current
-  source roles and test full lexical expansion/cache integration, including
-  unresolved intermediate scopes, first/equality receipt distinctions and all
-  guarded refusal paths. No whole-compiler conformance is claimed.
 
 <a id="t183"></a>
 
@@ -689,6 +660,8 @@ T203 audits the current source/test mapping; T168 remains historical evidence.
 T196 reviews the actual full evidence. [T207](DONE.md#t207) records accepted
 source-scope and native own-formal rejection; remaining owners below cover
 actual categories, captured values, native consumers and final conformance.
+[T210](DONE.md#t210) supplies exact guard algorithms and current component
+acceptance; remaining creation owners cover registry/body/equation integration.
 
 | Static module template acceptance area | Current task owner |
 |---|---|
@@ -715,13 +688,13 @@ actual categories, captured values, native consumers and final conformance.
 | Static output inference and closure | [T211](#t211) |
 | Complete producer closure | [T211](#t211) |
 | Ordinary static-export boundary | [T212](#t212) |
-| Static evaluation boundary and cycles | [T210](#t210) |
-| Returned constructor creation provenance | [T210](#t210) |
+| Static evaluation boundary and cycles | [T211](#t211) |
+| Returned constructor creation provenance | [T211](#t211) |
 | List implementation boundary | [T195](#t195) |
 | Specialization analysis and diagnostics | [T189](#t189) |
-| Finite repeated composition | [T210](#t210) |
-| Definition-generated recursion | [T210](#t210) |
-| Creation-graph provenance | [T210](#t210) |
+| Finite repeated composition | [T183](#t183) |
+| Definition-generated recursion | [T183](#t183) |
+| Creation-graph provenance | [T183](#t183) |
 | Constructor origins and captures | [T211](#t211) |
 | Cache-independent path checks | [T183](#t183) |
 | Native template rejection | [T190](#t190) |

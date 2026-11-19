@@ -48,7 +48,8 @@ bool static_creation_producer_enter(StaticGuardPlan *plan, const StaticCreationP
         return static_guard_fail(plan, STATIC_GUARD_OUT_OF_MEMORY, expression->span, "Producer comparison map allocation failed");
     }
     for (size_t index = 0; index < count; index++) {
-        map[index] = inputs[index];
+        map[index].formal = inputs[index].formal;
+        map[index].value = inputs[index].value;
         map[index].next = index + 1 < count ? &map[index + 1] : NULL;
     }
     StaticTermEnvironment candidate = {.definition = definition, .producer_inputs = map, .producer_applied = true};

@@ -1,124 +1,86 @@
 /** @file
- * @brief Compose concrete creation caching with lexical provenance and independent symbolic anchors.
+ * @brief Check producer cache provenance, shared finite tails and delayed ordinary key closure.
  */
 #include "../common.c"
-#include "semantic/static/bindings/normalize.h"
 
-/** A and B apply their received one-slot family to their own element Type. */
-static const char *family_source = "@<\n...element\n...next\n ...element\n@!\n"
-    "anchor&\n..integer\nchild&\n...next\n ...element < ...element\n"
-    "leaf&\n.leaf\n ...element < ..integer\n";
-static const char *leaf_source = "@<\n...element\n@!\n";
-static const char *returning_leaf_source = "@<\n...element\n@!\nback&\n.main\n"
-    " ...element < ..integer\n ...next < .leaf\n";
+/** Static producer edges have explicit named maps; the fixed edges make
+ * concrete cached descendants independent of the current owner's unknown input.
+ */
+static const char *main_source = "@...\n...out\n...element\n"
+    ".other\n ...element < ...element\n ...out > ...other result\n"
+    ".other\n ...element < ..text\n ...out > ...fixed other result\n"
+    ".leaf\n ...element < ..integer\n ...out > ...leaf result\n"
+    ".leaf\n ...element < ..integer\n ...out > ...second leaf result\n"
+    "...anchor\n..integer\n...text\n..text\n";
+static const char *other_source = "@...\n...out\n...element\n"
+    ".main\n ...element < ...element\n ...out > ...main result\n"
+    ".leaf\n ...element < ..integer\n ...out > ...leaf result\n";
+static const char *leaf_source = "@...\n...out\n...element\n"
+    ".main\n ...element < ..text\n ...out > ...main result\n";
 
-/** Find original root declaration syntax in its actual lexical module. */
-static const AstTypeExpression *field(const StaticModule *module, const char *name) {
+/** Load three actual graph origins and an independent concrete argument Type. */
+static const StaticTerm *setup_producers(void) {
+    directory(STATIC_SCOPE_ROOT_DIRECTORY);
+    file("generated/static scope/leaf", leaf_source);
+    setup_guards(main_source, other_source);
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticTerm *type;
+    assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &type));
+    return type;
+}
+
+/** Select an exact written projection by its local defining receipt. */
+static const AstTypeExpression *projection(const StaticModule *module, const char *receiver) {
     for (const StaticOccurrence *site = module->first_occurrence; site; site = site->next) {
-        if (site->root && site->receiver == NULL && site->statement->kind == AST_DECLARATION &&
-            layout_text_is(site->statement->as.declaration.name->name, name)) { return site->expression; }
+        if (site->receiver && layout_text_is(site->receiver->receiver, receiver)) {
+            assert(site->statement->kind == AST_STATIC_PROJECTION);
+            return site->statement->as.static_projection;
+        }
     }
     assert(false); return NULL;
 }
 
-/** The third real source constructor makes the finite tails in both independent
- * specialization paths explicit; no native module is treated as a template.
- */
-static const StaticTerm *setup_families(bool returning) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/leaf", returning ? returning_leaf_source : leaf_source);
-    setup_guards(family_source, family_source);
-    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
-    assert(leaf && leaf->parameter_count == 1);
-    const StaticTerm *constructor;
-    assert(static_term_nominal(&terms, leaf, NULL, 0, (SourceSpan){0}, &constructor));
-    return constructor;
-}
-
-/** Fix only next; the original element slot stays a local residual. */
-static const StaticTerm *family(const StaticModule *module, const StaticTerm *next) {
-    StaticTermCapture captured = {.formal = application_formal(module, 1), .value = next};
-    const StaticTerm *value;
-    assert(static_term_nominal(&terms, module, &captured, 1, (SourceSpan){0}, &value));
-    return value;
-}
-
-/** Select one complete root without changing any source definition. */
-static const StaticCreationPath *root(const StaticModule *module, const StaticTerm *next) {
-    StaticTermCapture captures[] = {{.formal = application_formal(module, 0), .value = integer_type},
-        {.formal = application_formal(module, 1), .value = next}};
-    const StaticTerm *value;
+/** Bind the producer's full one-input identity before selecting a compilation root. */
+static const StaticCreationPath *producer_root(const StaticModule *module, const StaticTerm *value) {
+    StaticTermCapture input = {.formal = application_formal(module, 0), .value = value};
     const StaticTermEnvironment *environment;
-    assert(static_term_nominal(&terms, module, captures, 2, (SourceSpan){0}, &value));
-    assert(static_term_environment(&terms, module, value, &environment));
+    assert(static_term_producer_environment(&terms, module, &input, 1, &environment));
     const StaticCreationPath *path;
     assert(static_creation_root(&guards, environment, &path));
     return path;
 }
 
-/** Evaluate this fixture's explicit next(element) source handoff using its
- * original owner bindings. T173 reselects the actual residual input after capture.
+/** Inputs are resolved fixture IR for the selected source binding, not a
+ * replacement for T211's graph equation evaluator. No output is evaluated here.
  */
-static const StaticApplicationRecord *child_application(const StaticCreationPath *parent) {
-    const StaticTermEnvironment *environment = parent->owner->environment;
-    const StaticModule *module = environment->definition;
-    const StaticTerm *head, *element;
-    assert(static_term_symbol(&terms, environment, application_formal(module, 1), &head));
-    assert(static_term_symbol(&terms, environment, application_formal(module, 0), &element));
-    const AstTypeExpression *expression = field(module, "child");
-    BindingApplication *requests;
-    assert(binding_normalize_static(&binding_plan, NULL, expression, &requests));
-    StaticTermOperand input = {.request = requests->first, .value = element};
-    const StaticTermApplication *source;
-    assert(static_term_application(&terms, &binding_plan, requests, environment, head, &input, 1, &source));
-    const StaticApplicationRecord *record;
-    assert(static_application_source(&applications, source, &record));
-    return record;
-}
-
-/** Follow one checked lexical creation edge after the actual source handoff. */
-static const StaticCreationPath *child(const StaticCreationPath *parent) {
-    const StaticApplicationRecord *record = child_application(parent);
+static const StaticCreationPath *producer_child(const StaticCreationPath *parent,
+    const char *receiver, const StaticModule *target, const StaticTerm *value) {
+    StaticTermCapture input = {.formal = application_formal(target, 0), .value = value};
     const StaticCreationPath *path;
     StaticCreationOutcome outcome;
-    assert(static_creation_enter(&guards, parent, record, &path, &outcome) && outcome == STATIC_CREATION_ENTERED);
+    assert(static_creation_producer_enter(&guards, parent,
+        projection(parent->owner->environment->definition, receiver), &input, 1, &path, &outcome));
+    assert(outcome == STATIC_CREATION_ENTERED);
     return path;
 }
 
-/** An actual captured constructor retains its original source even when the
- * next concrete application would terminate. TPL-11 rejects this source repeat
- * before expansion, independently of the received formal's descriptive name.
+/** A(integer)->B(integer)->Leaf(integer) and B(text)->A(text)->Leaf(integer)
+ * share only the true finite tail. Source names alone must not join A/B keys.
+ * These kernel checks do not admit unevaluated result definitions.
  */
-static void it_rejects_a_captured_own_constructor_even_with_finite_next_captures(void) {
-    const StaticTerm *leaf = setup_families(false);
-    const StaticCreationPath *owner = root(caller_module, family(caller_module, leaf));
-    const StaticApplicationRecord *record = child_application(owner);
-    assert(record->constructor->as.nominal.origin == caller_module);
-    assert(record->constructor->as.nominal.capture_count == 1 && record->value->ground);
-    assert(record->value != owner->owner->value);
-    const StaticCreationPath *output = NULL;
-    StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
-    assert(!static_creation_enter(&guards, owner, record, &output, &outcome));
-    assert(output == NULL && outcome == STATIC_CREATION_PENDING);
-    assert(guards.status == STATIC_GUARD_CONFLICT && guards.repeated_ancestor == owner);
-    assert(guards.rejected_origin == caller_module && guards.path_count == 1);
-    destroy_guards();
-}
-
-/** A(B(Leaf)) and B(A(Leaf)) have distinct concrete A/B vertices. Their source
- * names alone would form a fictitious cycle; both true paths end in Leaf.
- * These are guard-component checks, not admission of unexpanded source fields.
- */
-static void it_preserves_distinct_specializations_and_shared_finite_tails(void) {
-    const StaticTerm *leaf = setup_families(false);
-    const StaticCreationPath *a = root(caller_module, family(target_module, leaf));
-    const StaticCreationPath *b_child = child(a), *first_leaf = child(b_child);
-    const StaticCreationPath *b = root(target_module, family(caller_module, leaf));
-    const StaticCreationPath *a_child = child(b), *second_leaf = child(a_child);
+static void it_preserves_distinct_producer_specializations_and_shared_finite_tails(void) {
+    const StaticTerm *text = setup_producers();
+    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+    const StaticCreationPath *a = producer_root(caller_module, integer_type);
+    const StaticCreationPath *b_child = producer_child(a, "...other result", target_module, integer_type);
+    const StaticCreationPath *first_leaf = producer_child(b_child, "...leaf result", leaf, integer_type);
+    const StaticCreationPath *b = producer_root(target_module, text);
+    const StaticCreationPath *a_child = producer_child(b, "...main result", caller_module, text);
+    const StaticCreationPath *second_leaf = producer_child(a_child, "...leaf result", leaf, integer_type);
     assert(a->vertex != a_child->vertex && b->vertex != b_child->vertex);
     assert(first_leaf->vertex == second_leaf->vertex && first_leaf != second_leaf);
     assert(guards.vertex_count == 5 && guards.edge_count == 4 && guards.path_count == 6);
-    assert(first_leaf->edge != second_leaf->edge && first_leaf->application != second_leaf->application);
+    assert(first_leaf->edge != second_leaf->edge && first_leaf->site.source != second_leaf->site.source);
     size_t before = allocation_count, live = live_allocations;
     for (size_t repeat = 0; repeat < 100; repeat++) {
         StaticGuardClosure closure;
@@ -128,41 +90,60 @@ static void it_preserves_distinct_specializations_and_shared_finite_tails(void) 
     destroy_guards();
 }
 
-/** Leaf's new edge points to a cached A specialization whose outgoing edge
- * already points to a different Leaf key. The immediate A is not the current Leaf
- * ancestor; only checking all cached descendants detects the forbidden path.
+/** A new Leaf(text)->cached A(text) edge must inspect A's existing Leaf(integer)
+ * descendant. The immediate target alone has a different origin from the root.
  */
 static void it_rechecks_cached_descendants_before_publishing_a_new_creation(void) {
-    const StaticTerm *leaf = setup_families(true);
-    const StaticCreationPath *b = root(target_module, family(caller_module, leaf));
-    const StaticCreationPath *a = child(b), *tail = child(a);
-    const StaticCreationPath *leaf_root;
-    const StaticModule *leaf_module = tail->owner->environment->definition;
-    StaticTermCapture alternate = {.formal = application_formal(leaf_module, 0), .value = a->owner->value};
-    const StaticTerm *alternate_type;
-    const StaticTermEnvironment *alternate_environment;
-    assert(static_term_nominal(&terms, leaf_module, &alternate, 1, (SourceSpan){0}, &alternate_type));
-    assert(static_term_environment(&terms, leaf_module, alternate_type, &alternate_environment));
-    assert(static_creation_root(&guards, alternate_environment, &leaf_root));
-    const StaticTermEnvironment *environment = leaf_root->owner->environment;
-    StaticApplicationContext context;
-    const AstTypeExpression *expression = field(environment->definition, "back");
-    assert(static_application_context(&applications, environment, expression, &context));
-    StaticApplicationInput inputs[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
-        {.formal = application_formal(caller_module, 1), .value = leaf}};
-    const StaticApplicationRecord *record;
-    assert(static_application_forward(&applications, caller_constructor, inputs, 2, context, &record));
-    assert(record->value == a->owner->value);
-    const StaticCreationPath *output = NULL;
-    StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
-    assert(!static_creation_enter(&guards, leaf_root, record, &output, &outcome));
-    assert(output == NULL && outcome == STATIC_CREATION_PENDING && guards.status == STATIC_GUARD_CONFLICT);
-    assert(guards.creation_witness && guards.closing_edge && guards.vertex_count == 4 && guards.edge_count == 3);
-    assert(guards.creation_witness->parent != NULL && diagnostic_valid(&guards.error));
+    for (size_t root_first = 0; root_first < 2; root_first++) {
+        const StaticTerm *text = setup_producers();
+        const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+        const StaticCreationPath *leaf_root = root_first ? producer_root(leaf, text) : NULL;
+        const StaticCreationPath *b = producer_root(target_module, text);
+        const StaticCreationPath *a = producer_child(b, "...main result", caller_module, text);
+        (void)producer_child(a, "...leaf result", leaf, integer_type);
+        if (!root_first) { leaf_root = producer_root(leaf, text); }
+        StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = text};
+        const StaticCreationPath *output = NULL;
+        StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
+        assert(!static_creation_producer_enter(&guards, leaf_root, projection(leaf, "...main result"),
+            &input, 1, &output, &outcome));
+        assert(output == NULL && outcome == STATIC_CREATION_PENDING && guards.status == STATIC_GUARD_CONFLICT);
+        assert(guards.creation_witness && guards.closing_edge && guards.vertex_count == 4 && guards.edge_count == 3);
+        assert(guards.creation_witness->parent && diagnostic_valid(&guards.error));
+        assert(guards.earlier_creation_key != guards.rejected_creation_key);
+        destroy_guards();
+    }
+}
+
+/** Distinct written receipts under one parent retain distinct creation uses
+ * even when their target producer key is identical and already cached.
+ */
+static void it_keeps_separate_source_uses_of_the_same_producer_key(void) {
+    (void)setup_producers();
+    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+    const StaticCreationPath *a = producer_root(caller_module, integer_type);
+    const StaticCreationPath *first = producer_child(a, "...leaf result", leaf, integer_type);
+    const StaticCreationPath *second = producer_child(a, "...second leaf result", leaf, integer_type);
+    assert(first != second && first->vertex == second->vertex && first->edge != second->edge);
+    size_t live = live_allocations;
+    assert(producer_child(a, "...leaf result", leaf, integer_type) == first);
+    assert(producer_child(a, "...second leaf result", leaf, integer_type) == second);
+    assert(live_allocations == live && guards.path_count == 3 && guards.edge_count == 2);
     destroy_guards();
 }
 
-/** Prepare a real field omission from a symbolic generic owner. */
+/** Ordinary field inference prepares new field-local input holes. Their exact
+ * source ownership is independent of the owner's own parameter variables.
+ */
+static const AstTypeExpression *field(const StaticModule *module, const char *name) {
+    for (const StaticOccurrence *site = module->first_occurrence; site; site = site->next) {
+        if (site->root && site->receiver == NULL && site->statement->kind == AST_DECLARATION &&
+            layout_text_is(site->statement->as.declaration.name->name, name)) { return site->expression; }
+    }
+    assert(false); return NULL;
+}
+
+/** Enter one source-backed ordinary field with independently inferred inputs. */
 static const StaticCreationPath *symbolic_child(const StaticCreationPath *parent, const char *name, const StaticTerm *constructor) {
     StaticApplicationContext context;
     assert(static_application_context(&applications, parent->owner->environment,
@@ -176,14 +157,13 @@ static const StaticCreationPath *symbolic_child(const StaticCreationPath *parent
     return path;
 }
 
-/** Original symbolic keys remain distinct occurrences until independent evidence
- * closes them. A->B and B->A then share full keys and must be rechecked as a
- * permitted same-key cycle; an external solve cannot hide new concrete edges.
+/** Independent scopes can later merge into a permitted same-key A/B cycle or
+ * a cached path between unequal A keys. External solving cannot hide new edges.
  */
 static void it_rechecks_all_incoming_provenance_when_symbolic_keys_close(void) {
     for (size_t unequal = 0; unequal < 2; unequal++) {
-        setup_guards("@<\n...a\n...b\n@!\nanchor&\n..integer\nchild&\n.other\n",
-            "@<\n...a\n...b\n@!\nback&\n.main\n");
+        setup_guards("@<\nfirst\n...a\nsecond\n...b\n@!\nanchor&\n..integer\nchild&\n.other\n",
+            "@<\nfirst\n...a\nsecond\n...b\n@!\nback&\n.main\n");
         const StaticCreationPath *a, *b;
         assert(static_creation_root(&guards, caller_environment, &a));
         (void)symbolic_child(a, "child", target_constructor);
@@ -209,80 +189,68 @@ static void it_rechecks_all_incoming_provenance_when_symbolic_keys_close(void) {
         bool accepted = static_guard_refresh(&guards, &closure);
         assert(accepted == !unequal);
         if (!unequal) {
-            assert(closure == STATIC_GUARD_CLOSED && guards.status == STATIC_GUARD_OK);
-            assert(guards.vertex_count == 2 && guards.edge_count == 2 && guards.creation_witness == NULL);
+            assert(closure == STATIC_GUARD_CLOSED && guards.vertex_count == 2 && guards.edge_count == 2);
         } else {
             assert(closure == STATIC_GUARD_PENDING && guards.status == STATIC_GUARD_CONFLICT);
-            assert(guards.creation_witness && guards.rejected_creation_value != guards.earlier_creation_value);
+            assert(guards.creation_witness && guards.rejected_creation_key != guards.earlier_creation_key);
         }
         assert(a->owner->environment == caller_environment && a->owner->value != a->vertex->value);
         destroy_guards();
     }
 }
 
-/** The cached B->A->Leaf path is complete, but a new incoming A root still
- * has symbolic inputs. Preserve that path and wait for real key evidence;
- * matching source names alone cannot prove the two A keys unequal.
+/** A symbolic incoming A can reach a complete cached B->A->Leaf path. Its
+ * unknown key cannot prove a conflict; later independent evidence decides it.
  */
 static void it_checks_cached_descendants_against_a_still_symbolic_ancestor(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/leaf", leaf_source);
-    setup_guards("@<\n...element\n...next\n ...element\n@!\nanchor&\n..integer\n"
-        "child&\n...next\n ...element < ...element\nleaf&\n.leaf\n ...element < ..integer\n"
-        "fixed&\n.other\n ...element < ..integer\n ...next < .main\n  ...next < .leaf\n", family_source);
-    const StaticModule *leaf_module = static_module_find(&inventory, project_find(&project, ".leaf"));
-    const StaticTerm *leaf;
-    assert(leaf_module && static_term_nominal(&terms, leaf_module, NULL, 0, (SourceSpan){0}, &leaf));
-    const StaticTerm *a_family = family(caller_module, leaf);
-    const StaticCreationPath *b = root(target_module, a_family);
-    const StaticCreationPath *a = child(b);
-    (void)child(a);
-    const StaticCreationPath *symbolic;
-    assert(static_creation_root(&guards, caller_environment, &symbolic));
-    assert(symbolic->vertex == NULL);
-    StaticApplicationContext context;
-    assert(static_application_context(&applications, caller_environment, field(caller_module, "fixed"), &context));
-    StaticApplicationInput inputs[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
-        {.formal = application_formal(target_module, 1), .value = a_family}};
-    const StaticApplicationRecord *record;
-    assert(static_application_forward(&applications, target_constructor, inputs, 2, context, &record));
-    assert(record->value == b->owner->value);
-    const StaticCreationPath *output = NULL;
-    StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
-    assert(static_creation_enter(&guards, symbolic, record, &output, &outcome));
-    assert(output && outcome == STATIC_CREATION_ENTERED && output->vertex == b->vertex);
-    StaticGuardClosure closure;
-    assert(static_guard_refresh(&guards, &closure) && closure == STATIC_GUARD_PENDING);
-    assert(guards.status == STATIC_GUARD_OK && symbolic->vertex == NULL && guards.creation_witness == NULL);
-    destroy_guards();
+    for (size_t unequal = 0; unequal < 2; unequal++) {
+        const StaticTerm *text = setup_producers();
+        const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+        const StaticCreationPath *b = producer_root(target_module, text);
+        const StaticCreationPath *a = producer_child(b, "...main result", caller_module, text);
+        (void)producer_child(a, "...leaf result", leaf, integer_type);
+        const StaticCreationPath *symbolic;
+        assert(static_creation_root(&guards, caller_environment, &symbolic) && symbolic->vertex == NULL);
+        const StaticCreationPath *incoming = producer_child(symbolic, "...fixed other result", target_module, text);
+        assert(incoming->vertex == b->vertex);
+        StaticGuardClosure closure;
+        assert(static_guard_refresh(&guards, &closure) && closure == STATIC_GUARD_PENDING);
+        assert(guards.status == STATIC_GUARD_OK && symbolic->vertex == NULL && guards.creation_witness == NULL);
+        assert(static_constraint_equate(&solver, application_symbol("...element"), unequal ? integer_type : text,
+            application_formal(caller_module, 0)->site));
+        bool accepted = static_guard_refresh(&guards, &closure);
+        assert(accepted == !unequal);
+        if (unequal) { assert(guards.creation_witness && guards.rejected_creation_key != guards.earlier_creation_key); }
+        else { assert(closure == STATIC_GUARD_CLOSED && symbolic->vertex == a->vertex); }
+        destroy_guards();
+    }
 }
 
-/** Neither repeated A has a complete key. The cached B owner is concrete, but
- * its known A descendant still has omitted Type/Template inputs. Validation
- * retains both symbolic endpoints without inventing canonical equality.
+/** Known B retains an unknown ordinary A field, while another unknown A root
+ * requires B. Neither unresolved A is guessed equal or unequal to the other.
  */
 static void it_checks_cached_symbolic_descendants_without_publishing_concrete_edges(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/leaf", leaf_source);
-    setup_guards("@<\n...element\n...next\n ...element\n@!\nanchor&\n..integer\n"
-        "fixed&\n.other\n ...element < ..integer\n ...next < .leaf\n",
-        "@<\n...element\n...next\n ...element\n@!\ndeferred&\n.main\n");
-    const StaticModule *leaf_module = static_module_find(&inventory, project_find(&project, ".leaf"));
-    const StaticTerm *leaf;
-    assert(leaf_module && static_term_nominal(&terms, leaf_module, NULL, 0, (SourceSpan){0}, &leaf));
-    const StaticCreationPath *b = root(target_module, leaf);
+    setup_guards("@<\nfirst\n...a\nsecond\n...b\n@!\nanchor&\n..integer\nfixed&\n.other\n",
+        "@<\nfirst\n...a\nsecond\n...b\n@!\ndeferred&\n.main\n");
+    StaticTermCapture captures[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
+        {.formal = application_formal(target_module, 1), .value = integer_type}};
+    const StaticTerm *value;
+    const StaticTermEnvironment *environment;
+    assert(static_term_nominal(&terms, target_module, captures, 2, (SourceSpan){0}, &value));
+    assert(static_term_environment(&terms, target_module, value, &environment));
+    const StaticCreationPath *b;
+    assert(static_creation_root(&guards, environment, &b));
     const StaticCreationPath *deferred = symbolic_child(b, "deferred", caller_constructor);
-    assert(deferred->vertex == NULL && guards.edge_count == 0);
     const StaticCreationPath *symbolic;
     assert(static_creation_root(&guards, caller_environment, &symbolic));
     StaticApplicationContext context;
     assert(static_application_context(&applications, caller_environment, field(caller_module, "fixed"), &context));
-    StaticApplicationInput inputs[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
-        {.formal = application_formal(target_module, 1), .value = leaf}};
+    StaticApplicationInput inputs[] = {{.formal = captures[0].formal, .value = integer_type},
+        {.formal = captures[1].formal, .value = integer_type}};
     const StaticApplicationRecord *record;
     assert(static_application_forward(&applications, target_constructor, inputs, 2, context, &record));
     const StaticCreationPath *output = NULL;
-    StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
+    StaticCreationOutcome outcome;
     assert(static_creation_enter(&guards, symbolic, record, &output, &outcome));
     assert(output && outcome == STATIC_CREATION_ENTERED && output->vertex == b->vertex);
     StaticGuardClosure closure;
@@ -292,14 +260,14 @@ static void it_checks_cached_symbolic_descendants_without_publishing_concrete_ed
     destroy_guards();
 }
 
-/** Execute finite concrete paths, warmed descendants and delayed key merging. */
+/** Execute finite paths, distinct original uses and delayed cache-key merging. */
 static void run(void) {
-    it_preserves_distinct_specializations_and_shared_finite_tails();
-    it_rejects_a_captured_own_constructor_even_with_finite_next_captures();
+    it_preserves_distinct_producer_specializations_and_shared_finite_tails();
     it_rechecks_cached_descendants_before_publishing_a_new_creation();
+    it_keeps_separate_source_uses_of_the_same_producer_key();
     it_rechecks_all_incoming_provenance_when_symbolic_keys_close();
     it_checks_cached_descendants_against_a_still_symbolic_ancestor();
     it_checks_cached_symbolic_descendants_without_publishing_concrete_edges();
 }
-/** Return success after counted guard and source teardown. */
+/** Return success after counted teardown. */
 int main(void) { run(); return 0; }

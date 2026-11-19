@@ -1,8 +1,8 @@
 # Guarded static result equations
 
-**T201 alignment:** [Creation guards](static-guards.md#t201-alignment) records
-the revised [TPL-11](../../spec/language/templates.md#tpl-11) handoff and current
-evidence. An otherwise known application propagates Pending when its repeated
+**Historical T201 integration:** [Archived guard evidence](../../DONE.md#t201-alignment) records
+the [TPL-11](../../spec/language/templates.md#tpl-11) handoff on its original
+inputs. The [current guard contract](static-guards.md) records T210 revalidation. An otherwise known application propagates Pending when its repeated
 ancestry cannot yet compare complete keys. Closed equal keys can produce nominal
 results without recursively evaluating those results; directed definition cycles
 still fail independently. T179's dated evidence below retains its original scope.

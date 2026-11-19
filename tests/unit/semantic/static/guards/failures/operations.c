@@ -1,66 +1,66 @@
 /** @file
- * @brief Prepare exact source-backed guard operations before each independent allocator cutpoint.
+ * @brief Prepare source-backed producer and definition guards before allocator cutpoints.
  */
 #ifndef AMA_GUARD_FAILURE_OPERATIONS
 #define AMA_GUARD_FAILURE_OPERATIONS
 #include "../common.c"
 
-/** Actual result a depends on b; the child field supplies omitted typed inputs. */
-static const char *caller_source = "@<\n...t\n...u\n@>\n...a\n...b\n...b\n..integer\n"
-    "@!\nanchor&\n..integer\nchild&\n.other\n";
-static const char *target_source = "@<\n...t\n...u\n@>\n...out\n..integer\n@!\n";
+/** Named graph inputs remain symbolic until independently anchored. */
+static const char *caller_source = "@...\n...a\n...b\n...b\n..integer\n"
+    "...t value\n...t\n...u value\n...u\n.other\n ...t < ...t\n ...u < ...u\n ...out > ...child\n...text\n..text\n";
+static const char *target_source = "@...\n...out\n...t\n...u value\n...u\n...anchor\n..integer\n";
 
-/** Only one operation is swept; its inputs and existing graph precede injection. */
+/** One operation is swept; its complete prepared inputs precede injection. */
 typedef struct {
     const StaticTermEnvironment *environment;
     const StaticCreationPath *root;
-    const StaticApplicationRecord *application;
+    const AstTypeExpression *expression;
+    StaticTermCapture inputs[2];
     const StaticDefinitionPath *definition;
 } GuardOperation;
 
-/** Exact scoped static result names are independent of their shared value Type. */
+/** Exact scoped result identities remain distinct even when values agree. */
 static const StaticSymbol *named(const char *name) {
     const StaticSymbol *symbol = static_symbol_find(caller_module, static_name_site(project.entry, name));
     assert(symbol); return symbol;
 }
 
-/** Selected applied owners use genuine complete Type arguments. */
+/** Applied producer scopes retain every original concrete input. */
 static const StaticTermEnvironment *concrete_environment(void) {
-    StaticTermCapture captures[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
+    StaticTermCapture inputs[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
         {.formal = application_formal(caller_module, 1), .value = integer_type}};
-    const StaticTerm *value;
     const StaticTermEnvironment *environment;
-    assert(static_term_nominal(&terms, caller_module, captures, 2, (SourceSpan){0}, &value));
-    assert(static_term_environment(&terms, caller_module, value, &environment));
+    assert(static_term_producer_environment(&terms, caller_module, inputs, 2, &environment));
     return environment;
 }
 
-/** All supplied bindings here are Type variables or integer already; exact
- * equations close symbolic keys without any source/body execution.
+/** Exact equations close existing scoped inputs without executing definitions. */
+static void anchor(const StaticGuardOwner *owner) {
+    assert(owner->value == NULL && owner->key->producer_applied);
+    for (const StaticTermCapture *input = owner->key->producer_inputs; input; input = input->next) {
+        assert(static_constraint_equate(&solver, input->value, integer_type, input->formal->site));
+    }
+}
+
+/** Select the actual graph projection and resolve its named input values in
+ * the lexical caller. This prepares no target scope and reads no output value.
  */
-static void anchor(const StaticTerm *value) {
-    for (const StaticTermCapture *capture = value->as.nominal.first_capture; capture; capture = capture->next) {
-        assert(static_constraint_equate(&solver, capture->value, integer_type, capture->formal->site));
-    }
-}
-
-/** Prepare the original FIELD omission descriptor from the selected owner. */
-static const StaticApplicationRecord *application(const StaticTermEnvironment *environment) {
-    const AstTypeExpression *expression = NULL;
+static void prepare_application(GuardOperation *operation) {
     for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
-        if (site->root && site->receiver == NULL && site->statement->kind == AST_DECLARATION &&
-            layout_text_is(site->statement->as.declaration.name->name, "child")) { expression = site->expression; break; }
+        if (site->receiver == NULL && site->origin == target_module->definition) {
+            operation->expression = site->expression; break;
+        }
     }
-    assert(expression);
-    StaticApplicationContext context;
-    const StaticApplicationRecord *record;
-    assert(static_application_context(&applications, environment, expression, &context));
-    assert(static_application_forward(&applications, target_constructor, NULL, 0, context, &record));
-    return record;
+    assert(operation->expression);
+    for (size_t ordinal = 0; ordinal < 2; ordinal++) {
+        operation->inputs[ordinal].formal = application_formal(target_module, ordinal);
+        assert(static_term_symbol(&terms, operation->environment, application_formal(caller_module, ordinal),
+            &operation->inputs[ordinal].value));
+    }
 }
 
-/** Eight public operation partitions include generic/complete roots, symbolic/
- * complete applications, delayed closure and root/dependent static definitions.
+/** Eight partitions cover generic/complete roots, symbolic/complete producer
+ * entry, delayed closure and root/dependent static definitions.
  */
 static GuardOperation prepare(size_t mode) {
     setup_guards(caller_source, target_source);
@@ -69,14 +69,15 @@ static GuardOperation prepare(size_t mode) {
     if (mode < 2) { return operation; }
     assert(static_creation_root(&guards, operation.environment, &operation.root));
     if (mode <= 4) {
-        operation.application = application(operation.environment);
-        if (mode == 3) { anchor(operation.application->value); }
+        prepare_application(&operation);
         if (mode == 4) {
             const StaticCreationPath *child;
             StaticCreationOutcome outcome;
-            assert(static_creation_enter(&guards, operation.root, operation.application, &child, &outcome));
-            anchor(operation.root->owner->value);
-            anchor(child->owner->value);
+            assert(static_creation_producer_enter(&guards, operation.root, operation.expression,
+                operation.inputs, 2, &child, &outcome));
+            assert(outcome == STATIC_CREATION_ENTERED);
+            anchor(operation.root->owner);
+            anchor(child->owner);
         }
         if (mode >= 3) {
             StaticConstraintOutcome outcome;
@@ -90,8 +91,8 @@ static GuardOperation prepare(size_t mode) {
     return operation;
 }
 
-/** Execute just the measured operation and verify untouched output sentinels
- * on failure, independently of any internally retained valid partial records.
+/** Execute only the measured operation and preserve output sentinels on
+ * refusal, independently of retained destructible partial metadata.
  */
 static bool execute(size_t mode, GuardOperation operation) {
     const StaticCreationPath *path = NULL;
@@ -101,7 +102,8 @@ static bool execute(size_t mode, GuardOperation operation) {
     bool success;
     if (mode < 2) { success = static_creation_root(&guards, operation.environment, &path); }
     else if (mode < 4) {
-        success = static_creation_enter(&guards, operation.root, operation.application, &path, &creation);
+        success = static_creation_producer_enter(&guards, operation.root, operation.expression,
+            operation.inputs, 2, &path, &creation);
     } else if (mode == 4) { success = static_guard_refresh(&guards, &closure); }
     else {
         const StaticSymbol *target = named(mode == 6 ? "...b" : "...a");

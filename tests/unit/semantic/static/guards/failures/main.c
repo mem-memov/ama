@@ -29,30 +29,22 @@ static void it_unwinds_every_public_root_enter_refresh_and_definition_allocation
 static void creation_graph(bool cyclic, StaticCreationPath *trace) {
     StaticTermCapture captures[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
         {.formal = application_formal(caller_module, 1), .value = integer_type}};
-    const StaticTerm *value;
-    assert(static_term_nominal(&terms, caller_module, captures, 2, (SourceSpan){0}, &value));
-    const StaticTerm *closed;
-    StaticConstraintOutcome outcome;
-    assert(static_constraint_value(&solver, value, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
+    const StaticTermEnvironment *environment;
+    assert(static_term_producer_environment(&terms, caller_module, captures, 2, &environment));
     StaticCreationVertex *source, *target;
-    assert(guard_vertex(closed, &source));
+    assert(static_guard_vertex(&guards, environment, &source));
     if (cyclic) {
-        StaticTermCapture other[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
-            {.formal = application_formal(target_module, 1), .value = integer_type}};
+        const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
         const StaticTerm *argument;
-        assert(static_term_nominal(&terms, target_module, other, 2, (SourceSpan){0}, &argument));
+        assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &argument));
         captures[0].value = argument;
-        assert(static_term_nominal(&terms, caller_module, captures, 2, (SourceSpan){0}, &value));
-        assert(static_constraint_value(&solver, value, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
-        assert(guard_vertex(closed, &target) && target != source);
-    }
-    else {
+        assert(static_term_producer_environment(&terms, caller_module, captures, 2, &environment));
+    } else {
         captures[0].formal = application_formal(target_module, 0);
         captures[1].formal = application_formal(target_module, 1);
-        assert(static_term_nominal(&terms, target_module, captures, 2, (SourceSpan){0}, &value));
-        assert(static_constraint_value(&solver, value, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
-        assert(guard_vertex(closed, &target));
+        assert(static_term_producer_environment(&terms, target_module, captures, 2, &environment));
     }
+    assert(static_guard_vertex(&guards, environment, &target) && target != source);
     StaticCreationEdge *edge = static_guard_allocate(&guards, sizeof(*edge));
     assert(edge);
     *edge = (StaticCreationEdge){.target = target, .path = trace};
@@ -117,10 +109,12 @@ static void it_guards_path_vertex_definition_and_search_counter_limits(void) {
             const StaticTerm *closed;
             StaticConstraintOutcome outcome;
             assert(static_constraint_value(&solver, integer_type, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
+            const StaticTermEnvironment *environment;
+            assert(static_term_environment(&terms, closed->as.nominal.origin, closed, &environment));
             guards.vertex_count = SIZE_MAX;
             StaticCreationVertex *output = NULL;
             size_t before = allocation_count;
-            assert(!guard_vertex(closed, &output));
+            assert(!static_guard_vertex(&guards, environment, &output));
             assert(output == NULL && allocation_count == before);
         } else {
             assert(static_creation_root(&guards, caller_environment, &root));
@@ -143,12 +137,14 @@ static void it_guards_path_vertex_definition_and_search_counter_limits(void) {
                 size_t before = allocation_count;
                 assert(!static_guard_definition_graph(&guards) && allocation_count == before);
             } else if (mode == 5) {
-                const StaticApplicationRecord *record = application(caller_environment);
+                GuardOperation operation = {.environment = caller_environment};
+                prepare_application(&operation);
                 const StaticCreationPath *child;
                 StaticCreationOutcome outcome;
-                assert(static_creation_enter(&guards, root, record, &child, &outcome));
-                anchor(root->owner->value);
-                anchor(child->owner->value);
+                assert(static_creation_producer_enter(&guards, root, operation.expression,
+                    operation.inputs, 2, &child, &outcome));
+                anchor(root->owner);
+                anchor(child->owner);
                 guards.edge_count = SIZE_MAX;
                 StaticGuardClosure closure = STATIC_GUARD_PENDING;
                 assert(!static_guard_refresh(&guards, &closure));
@@ -168,7 +164,7 @@ static void it_guards_path_vertex_definition_and_search_counter_limits(void) {
     }
 }
 
-/** Missing outputs or copied application handles never expose an expansion;
+/** Missing outputs or copied producer expressions never expose an expansion;
  * a borrowed application error remains the same first diagnostic after propagation.
  */
 static void it_refuses_missing_receivers_and_preserves_borrowed_first_errors(void) {
@@ -177,16 +173,17 @@ static void it_refuses_missing_receivers_and_preserves_borrowed_first_errors(voi
         const StaticCreationPath *output = NULL;
         StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
         StaticGuardClosure closure = STATIC_GUARD_PENDING;
-        StaticApplicationRecord copied = *operation.application;
+        AstTypeExpression copied = *operation.expression;
         bool success;
         if (partition == 0) { success = static_creation_root(&guards, caller_environment, NULL); }
         else if (partition == 1) { success = static_guard_refresh(&guards, NULL); }
         else {
             if (partition == 5) {
-                StaticApplicationOutcome checked;
-                assert(!static_application_check(&applications, &copied, &checked));
+                StaticApplicationContext context;
+                assert(!static_application_context(&applications, operation.environment, &copied, &context));
             }
-            success = static_creation_enter(&guards, operation.root, partition == 2 ? &copied : operation.application,
+            success = static_creation_producer_enter(&guards, operation.root,
+                partition == 2 ? &copied : operation.expression, operation.inputs, 2,
                 partition == 3 ? NULL : &output, partition == 4 ? NULL : &outcome);
         }
         assert(!success && output == NULL && outcome == STATIC_CREATION_PENDING && guards.status == STATIC_GUARD_INVALID);

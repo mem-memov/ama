@@ -2,6 +2,7 @@
  * @brief Normalize ordinary and static producer owners without conflating their categories.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) compares complete keys.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) retains all producer inputs.
+ * [TPL-10](../../../../../spec/language/templates.md#tpl-10) checks queued equations even for empty keys.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns temporary storage.
  */
 #include <stdint.h>
@@ -16,6 +17,10 @@ bool static_guard_owner_key(StaticGuardPlan *plan, const StaticGuardOwner *owner
     const StaticTermEnvironment **output, StaticConstraintOutcome *outcome) {
     StaticTermStore *terms = plan->applications->terms;
     StaticConstraintSolver *solver = plan->applications->solver;
+    StaticConstraintOutcome solved;
+    if (!static_constraint_solve(solver, &solved)) {
+        (void)static_guard_dependencies(plan); return false;
+    }
     if (owner->value != NULL) {
         const StaticTerm *value;
         if (!static_constraint_value(solver, owner->value, &value, outcome)) {

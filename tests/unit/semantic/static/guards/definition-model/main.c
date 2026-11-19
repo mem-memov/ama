@@ -23,7 +23,7 @@ static bool acyclic(unsigned graph) {
 }
 
 /** Inputs are already scoped abstract edges for the graph kernel. Source
- * expression-to-dependency evaluation belongs to T179, not this finite oracle.
+ * expression-to-dependency evaluation belongs to T211, not this finite oracle.
  */
 static void edges(unsigned graph, StaticDefinitionNode **nodes, SourceSpan site, bool reverse) {
     for (size_t index = 0; index < 9; index++) {
@@ -45,8 +45,8 @@ static void edges(unsigned graph, StaticDefinitionNode **nodes, SourceSpan site,
  * definition identities; the third node is an actual original receiver alias.
  */
 static void it_matches_every_three_definition_relation_and_discovery_order(void) {
-    setup_guards("@>\n...a\n..integer\n...b\n..integer\n@!\nanchor&\n..integer\n"
-        "value&\n.other\n ...out > ...alias\n", "@>\n...out\n..integer\n@!\n");
+    setup_guards("@...\n...a\n..integer\n...b\n..integer\n"
+        ".other\n ...out > ...alias\n", "@...\n...out\n..integer\n");
     const char *names[] = {"...a", "...b", "...alias"};
     const StaticSymbol *symbols[3];
     for (size_t index = 0; index < 3; index++) {
@@ -54,11 +54,13 @@ static void it_matches_every_three_definition_relation_and_discovery_order(void)
         assert(symbols[index] && (symbols[index]->role == STATIC_RESULT || symbols[index]->role == STATIC_ALIAS));
     }
     assert(symbols[2]->role == STATIC_ALIAS);
+    const StaticTermEnvironment *environment;
+    assert(static_term_producer_environment(&terms, caller_module, NULL, 0, &environment));
     size_t baseline = live_allocations;
     for (unsigned graph = 0; graph < 512; graph++) {
         for (size_t reverse = 0; reverse < 2; reverse++) {
             const StaticCreationPath *root;
-            assert(static_creation_root(&guards, caller_environment, &root));
+            assert(static_creation_root(&guards, environment, &root));
             StaticDefinitionNode *nodes[3];
             for (size_t index = 0; index < 3; index++) {
                 size_t key = reverse ? 2 - index : index;

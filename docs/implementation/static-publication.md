@@ -1,7 +1,8 @@
 # Complete static producers and immutable publication
 
-**T201 alignment:** [Creation guards](static-guards.md#t201-alignment) records
-the current nominal-cycle/result/publication evidence. Own nominal Type results
+**Historical T201 integration:** [Archived guard evidence](../../DONE.md#t201-alignment) records
+the original nominal-cycle/result/publication evidence. The
+[current guard contract](static-guards.md) records T210 revalidation. Own nominal Type results
 can close their specialization graph, while direct/mutual static projections
 still fail the definition guard. A repeated unknown producer ancestry stays
 Pending and cannot publish until independent evidence closes it. A warm foreign

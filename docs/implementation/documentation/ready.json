@@ -4134,11 +4134,6 @@
         "source": "tests/integration/scaffold/main.c"
       },
       {
-        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
-        "command": "make -C tests/unit/native/scaffold/declarations",
-        "source": "tests/unit/native/scaffold/declarations/main.c"
-      },
-      {
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
@@ -4176,11 +4171,6 @@
       },
       {
         "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      },
-      {
-        "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -4362,11 +4352,6 @@
       },
       {
         "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      },
-      {
-        "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -4654,11 +4639,6 @@
         "source": "tests/unit/compiler/check/main.c"
       },
       {
-        "case": "it_unwinds_every_frontend_allocation_failure",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      },
-      {
         "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
@@ -4851,11 +4831,6 @@
       },
       {
         "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      },
-      {
-        "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -16027,11 +16002,6 @@
         "source": "tests/unit/tools/relocation/references/main.c"
       },
       {
-        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
-        "command": "make -C tests/unit/project/closure",
-        "source": "tests/unit/project/closure/main.c"
-      },
-      {
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
@@ -16779,11 +16749,6 @@
         "source": "tests/unit/library/package/main.c"
       },
       {
-        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
-        "command": "make -C tests/unit/runtime/library",
-        "source": "tests/unit/runtime/library/main.c"
-      },
-      {
         "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
         "command": "make -C tests/unit/library/async",
         "source": "tests/unit/library/async/main.c"
@@ -17204,11 +17169,6 @@
         "case": "it_executes_exported_entries_resumes_and_isolated_native_roots",
         "command": "make -C tests/unit/library/execution",
         "source": "tests/unit/library/execution/main.c"
-      },
-      {
-        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
-        "command": "make -C tests/unit/runtime/library",
-        "source": "tests/unit/runtime/library/main.c"
       },
       {
         "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
@@ -18071,11 +18031,6 @@
       },
       {
         "case": "it_keeps_kernel_references_and_component_controls_distinct",
-        "command": "make -C tests/unit/runtime/library",
-        "source": "tests/unit/runtime/library/main.c"
-      },
-      {
-        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
       },
@@ -29332,11 +29287,6 @@
         "case": "it_detaches_every_wait_before_reporting_a_context_wide_technical_failure",
         "command": "make -C tests/unit/codegen/task-boundaries",
         "source": "tests/unit/codegen/task-boundaries/main.c"
-      },
-      {
-        "case": "it_selects_declared_instance_storage_without_acquiring_reference_targets",
-        "command": "make -C tests/unit/runtime/value-selection",
-        "source": "tests/unit/runtime/value-selection/main.c"
       },
       {
         "source": "tests/unit/documentation/main.c",
@@ -42917,11 +42867,6 @@
         "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
-      },
-      {
-        "case": "it_unwinds_every_frontend_allocation_failure",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
       }
     ]
   },
@@ -42946,11 +42891,6 @@
       },
       {
         "case": "it_composes_owned_frontend_input_snapshots_without_executing_native_c",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      },
-      {
-        "case": "it_unwinds_every_frontend_allocation_failure",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -43011,11 +42951,6 @@
       },
       {
         "case": "it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c",
-        "command": "make -C tests/unit/compiler/check",
-        "source": "tests/unit/compiler/check/main.c"
-      },
-      {
-        "case": "it_builds_complete_control_ir_for_traversal_and_header_trees",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       },
@@ -46252,11 +46187,6 @@
       },
       {
         "case": "it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage",
-        "command": "make -C tests/unit/native/scaffold/declarations",
-        "source": "tests/unit/native/scaffold/declarations/main.c"
-      },
-      {
-        "case": "it_unwinds_every_proposed_frontend_allocation_failure",
         "command": "make -C tests/unit/native/scaffold/declarations",
         "source": "tests/unit/native/scaffold/declarations/main.c"
       },
@@ -65253,11 +65183,6 @@
         "case": "it_preserves_constant_members_suffixes_comments_and_literal_bytes",
         "command": "make -C tests/unit/tools/relocation/references",
         "source": "tests/unit/tools/relocation/references/main.c"
-      },
-      {
-        "case": "it_requires_the_fixed_standard_integer_once_for_intrinsic_interface_parents",
-        "command": "make -C tests/unit/project/closure",
-        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -87306,11 +87231,6 @@
         "source": "tests/unit/library/supervision/main.c"
       },
       {
-        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
-        "command": "make -C tests/unit/runtime/library",
-        "source": "tests/unit/runtime/library/main.c"
-      },
-      {
         "case": "it_accepts_native_completions_cancellation_restart_and_unload_barriers",
         "command": "make -C tests/unit/library/async",
         "source": "tests/unit/library/async/main.c"
@@ -89445,11 +89365,6 @@
       },
       {
         "case": "it_checks_destination_shapes_before_lifecycle_effects",
-        "command": "make -C tests/unit/runtime/library",
-        "source": "tests/unit/runtime/library/main.c"
-      },
-      {
-        "case": "it_rejects_cross_context_foreign_and_obsolete_controls",
         "command": "make -C tests/unit/runtime/library",
         "source": "tests/unit/runtime/library/main.c"
       },
@@ -128275,7 +128190,7 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
@@ -128290,7 +128205,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -128500,12 +128415,7 @@
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -130036,16 +129946,6 @@
         "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
         "command": "make -C tests/unit/semantic/static/constraints/composition",
         "source": "tests/unit/semantic/static/constraints/composition/main.c"
-      },
-      {
-        "source": "tests/unit/semantic/static/constraints/signature/main.c",
-        "case": "it_compares_actual_constructor_signatures_in_independent_read_only_scratch",
-        "command": "make -C tests/unit/semantic/static/constraints/signature"
-      },
-      {
-        "source": "tests/unit/semantic/static/constraints/signature/main.c",
-        "case": "it_preserves_output_and_source_inventory_on_each_signature_scratch_refusal",
-        "command": "make -C tests/unit/semantic/static/constraints/signature"
       },
       {
         "source": "tests/unit/semantic/static/constraints/signature/main.c",
@@ -138335,7 +138235,7 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
@@ -138345,12 +138245,7 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -138370,7 +138265,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -139240,7 +139135,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -139265,12 +139160,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -139466,12 +139356,7 @@
         "source": "tests/unit/semantic/static/guards/failures/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -139491,7 +139376,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -139562,7 +139447,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -139587,12 +139472,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -139723,12 +139603,7 @@
         "source": "tests/unit/semantic/static/guards/failures/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -139748,7 +139623,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -139814,12 +139689,7 @@
         "source": "tests/unit/semantic/static/guards/failures/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -139839,7 +139709,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -139975,12 +139845,7 @@
     "purpose": "Reify complete keys and recheck cached paths only after genuine finite evidence changes.",
     "tests": [
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140000,7 +139865,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -140066,12 +139931,7 @@
         "source": "tests/unit/semantic/static/guards/owner/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140147,12 +140007,7 @@
     "purpose": "Intern full closed nominal creation keys without merging source-equal specializations.",
     "tests": [
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140243,12 +140098,7 @@
     "purpose": "Preserve every original incoming creation use as its endpoint keys become concrete.",
     "tests": [
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140319,12 +140169,7 @@
         "source": "tests/unit/semantic/static/guards/failures/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140425,12 +140270,7 @@
     "purpose": "Normalize symbolic creation owners into exact complete cache vertices.",
     "tests": [
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140546,17 +140386,12 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140611,7 +140446,7 @@
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
       },
       {
-        "case": "it_reuses_fixed_ordinary_namespaces_but_enters_output_producers",
+        "case": "it_reuses_fixed_ordinary_namespaces_without_creation_edges",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
@@ -140667,17 +140502,12 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140743,17 +140573,12 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -140849,7 +140674,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -140975,7 +140800,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -141036,7 +140861,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -141097,7 +140922,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -141158,7 +140983,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -141219,7 +141044,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -141280,7 +141105,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -141426,7 +141251,7 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
@@ -141441,7 +141266,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -141651,12 +141476,7 @@
         "source": "tests/unit/semantic/static/results/evaluate/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -141832,7 +141652,7 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
@@ -141847,7 +141667,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -141897,12 +141717,7 @@
         "source": "tests/unit/semantic/static/guards/failures/main.c"
       },
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -141983,12 +141798,12 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_reuses_fixed_ordinary_namespaces_but_enters_output_producers",
+        "case": "it_reuses_fixed_ordinary_namespaces_without_creation_edges",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       }
@@ -142004,7 +141819,7 @@
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       },
       {
-        "case": "it_requires_ordinary_supplied_type_producers_without_banning_ordinary_source_reuse",
+        "case": "it_requires_static_producer_path_and_refuses_nominal_application_routing",
         "command": "make -C tests/unit/semantic/static/guards/classification",
         "source": "tests/unit/semantic/static/guards/classification/main.c"
       }
@@ -142110,7 +141925,7 @@
   },
   "tests/unit/semantic/static/guards/failures/operations.c": {
     "contract": "docs/implementation/static-symbols.md",
-    "purpose": "Prepare exact source-backed guard operations before each independent allocator cutpoint.",
+    "purpose": "Prepare source-backed producer and definition guards before allocator cutpoints.",
     "tests": [
       {
         "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
@@ -142162,7 +141977,7 @@
   },
   "tests/unit/semantic/static/guards/ancestry/main.c": {
     "contract": "docs/implementation/static-guards.md",
-    "purpose": "Verify closed and unresolved self/mutual recurrence, unequal keys, source provenance and every closed-entry allocation refusal.",
+    "purpose": "Check pending recurrence, exact closed cycles and unequal keys separately from finite nesting.",
     "tests": [
       {
         "case": "it_suspends_unresolved_equal_permuted_and_growing_requests",
@@ -142234,15 +142049,10 @@
   },
   "tests/unit/semantic/static/guards/cache/main.c": {
     "contract": "docs/implementation/static-guards.md",
-    "purpose": "Compose concrete creation caching with lexical provenance and independent symbolic anchors.",
+    "purpose": "Check producer cache provenance, shared finite tails and delayed ordinary key closure.",
     "tests": [
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -142265,6 +142075,11 @@
         "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/cache/main.c",
+        "case": "it_keeps_separate_source_uses_of_the_same_producer_key",
+        "command": "make -C tests/unit/semantic/static/guards/cache"
       }
     ]
   },
@@ -142273,12 +142088,7 @@
     "purpose": "Verify symbolic key closure and cached descendant checks through real source applications.",
     "tests": [
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -142378,7 +142188,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -142401,6 +142211,16 @@
         "case": "it_refuses_foreign_symbols_paths_sites_and_missing_receivers",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/definitions/main.c",
+        "case": "it_checks_equations_for_zero_input_producers_before_roots_and_cached_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/definitions/main.c",
+        "case": "it_preserves_first_receipt_definitions_across_later_equality_receipts",
+        "command": "make -C tests/unit/semantic/static/guards/definitions"
       }
     ]
   },
@@ -142414,7 +142234,7 @@
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
       {
-        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles",
+        "case": "it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles",
         "command": "make -C tests/unit/semantic/static/guards/definitions",
         "source": "tests/unit/semantic/static/guards/definitions/main.c"
       },
@@ -146599,12 +146419,7 @@
     "purpose": "Retain unresolved required scopes in cache-path validation before their complete keys exist.",
     "tests": [
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -146705,12 +146520,7 @@
     "purpose": "Define temporary exact validation classes for complete keys and unresolved lexical owners.",
     "tests": [
       {
-        "case": "it_rejects_a_captured_own_constructor_even_with_finite_next_captures",
-        "command": "make -C tests/unit/semantic/static/guards/cache",
-        "source": "tests/unit/semantic/static/guards/cache/main.c"
-      },
-      {
-        "case": "it_preserves_distinct_specializations_and_shared_finite_tails",
+        "case": "it_preserves_distinct_producer_specializations_and_shared_finite_tails",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
       },
@@ -153094,6 +152904,16 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c",
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/definitions/main.c",
+        "case": "it_checks_equations_for_zero_input_producers_before_roots_and_cached_reads",
+        "command": "make -C tests/unit/semantic/static/guards/definitions"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/definitions/main.c",
+        "case": "it_preserves_first_receipt_definitions_across_later_equality_receipts",
+        "command": "make -C tests/unit/semantic/static/guards/definitions"
       }
     ]
   },

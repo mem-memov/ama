@@ -2,7 +2,6 @@
  * @brief Compose scoped static definitions with creation provenance, equality controls and key closure.
  */
 #include "../common.c"
-#include "semantic/static/bindings/normalize.h"
 
 /** Exact original symbol identity includes its result/alias role and owner. */
 static const StaticSymbol *named(const StaticModule *module, const char *name) {
@@ -10,10 +9,19 @@ static const StaticSymbol *named(const StaticModule *module, const char *name) {
     assert(symbol); return symbol;
 }
 
-/** A result expression is the original site of the dependency it introduces. */
-static SourceSpan result_site(const StaticSymbol *symbol) {
+/** Both pairs and first receipts retain their original defining expression. */
+static const AstTypeExpression *definition_expression(const StaticSymbol *symbol) {
+    if (symbol->role == STATIC_ALIAS) {
+        assert(symbol->receiver && symbol->declaration->kind == AST_STATIC_PROJECTION);
+        return symbol->declaration->as.static_projection;
+    }
     assert(symbol->role == STATIC_RESULT && symbol->declaration->kind == AST_STATIC_RESULT);
-    return symbol->declaration->as.static_result.expression->span;
+    return symbol->declaration->as.static_result.expression;
+}
+
+/** Dependency locations belong to the parent's actual defining source. */
+static SourceSpan result_site(const StaticSymbol *symbol) {
+    return definition_expression(symbol)->span;
 }
 
 /** Results may reference themselves or another result, but their static
@@ -21,8 +29,8 @@ static SourceSpan result_site(const StaticSymbol *symbol) {
  */
 static void it_refuses_direct_and_mutual_active_static_result_definitions(void) {
     for (size_t mutual = 0; mutual < 2; mutual++) {
-        setup_guards(mutual ? "@>\n...a\n...b\n...b\n...a\n@!\nanchor&\n..integer\n" :
-            "@>\n...a\n...a\n...b\n..integer\n@!\nanchor&\n..integer\n", "@!\n");
+        setup_guards(mutual ? "@...\n...a\n...b\n...b\n...a\n...anchor\n..integer\n" :
+            "@...\n...a\n...a\n...b\n..integer\n...anchor\n..integer\n", "@!\n");
         assert(caller_module->parameter_count == 0);
         const StaticCreationPath *root;
         assert(static_creation_root(&guards, caller_environment, &root));
@@ -41,36 +49,30 @@ static void it_refuses_direct_and_mutual_active_static_result_definitions(void) 
     }
 }
 
-/** An ordinary producer's selected output requires a real creation edge but
- * ordinary-only creation cycles are distinct from forbidden definition cycles.
+/** Source-backed graph producer uses retain creation ancestry independently
+ * of the definitions whose selected outputs they supply.
  */
-static const StaticCreationPath *producer(const StaticCreationPath *parent, const AstTypeExpression *expression, const StaticTerm *head) {
-    BindingApplication *requests;
-    assert(binding_normalize_static(&binding_plan, NULL, expression, &requests));
-    assert(requests->input_count == 0 && requests->output_count == 1);
-    const StaticTermApplication *source;
-    assert(static_term_application(&terms, &binding_plan, requests, parent->owner->environment, head, NULL, 0, &source));
-    const StaticApplicationRecord *record;
-    assert(static_application_source(&applications, source, &record));
+static const StaticCreationPath *producer(const StaticCreationPath *parent, const AstTypeExpression *expression) {
     const StaticCreationPath *path;
     StaticCreationOutcome outcome;
-    assert(static_creation_enter(&guards, parent, record, &path, &outcome) && outcome == STATIC_CREATION_ENTERED);
+    assert(static_creation_producer_enter(&guards, parent, expression, NULL, 0, &path, &outcome));
+    assert(outcome == STATIC_CREATION_ENTERED);
     return path;
 }
 
-/** These original source result definitions mutually read ordinary producers'
+/** These original source result definitions mutually read static producers'
  * static results. Previously cached out->a must still be checked when a new
  * root a requests out; the active definition ancestry alone has only a.
  */
-static void it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles(void) {
-    setup_guards("@>\n...a\n.other\n ...out > ...alias\n@!\nanchor&\n..integer\n",
-        "@>\n...out\n.main\n ...a > ...alias\n@!\n");
+static void it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles(void) {
+    setup_guards("@...\n.other\n ...out > ...a\n...anchor\n..integer\n",
+        "@...\n.main\n ...a > ...out\n");
     assert(caller_module->parameter_count == 0 && target_module->parameter_count == 0);
     const StaticSymbol *a = named(caller_module, "...a"), *out = named(target_module, "...out");
     const StaticCreationPath *main_root;
     assert(static_creation_root(&guards, caller_environment, &main_root));
-    const StaticCreationPath *other = producer(main_root, a->declaration->as.static_result.expression, target_constructor);
-    const StaticCreationPath *main_again = producer(other, out->declaration->as.static_result.expression, caller_constructor);
+    const StaticCreationPath *other = producer(main_root, definition_expression(a));
+    const StaticCreationPath *main_again = producer(other, definition_expression(out));
     assert(guards.vertex_count == 2 && guards.edge_count == 2 && main_again->vertex == main_root->vertex);
     const StaticDefinitionPath *out_root, *a_dependency, *a_root, *output = NULL;
     assert(static_definition_enter(&guards, NULL, other, out, (SourceSpan){0}, &out_root));
@@ -81,8 +83,7 @@ static void it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_
     assert(output == NULL && guards.status == STATIC_GUARD_CONFLICT && guards.definition_witness);
     assert(guards.definition_closing_edge && guards.creation_witness == NULL);
     assert(guards.definition_edge_count == 2 && diagnostic_valid(&guards.error));
-    const StaticSymbol *alias = named(caller_module, "...alias");
-    assert(alias->role == STATIC_ALIAS && alias->owner == caller_module);
+    assert(a->role == STATIC_ALIAS && a->owner == caller_module);
     destroy_guards();
 }
 
@@ -91,17 +92,16 @@ static void it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_
  * a cycle merely because the returned Type is already shared elsewhere.
  */
 static void it_preserves_alias_definition_scope_and_idempotent_sibling_reads(void) {
-    setup_guards("@>\n...a\n..integer\n@!\nanchor&\n..integer\nvalue&\n.other\n ...out > ...alias\n",
-        "@>\n...out\n..integer\n@!\n");
+    setup_guards("@...\n...a\n..integer\n.other\n ...out > ...alias\n",
+        "@...\n...out\n..integer\n");
     const StaticCreationPath *root;
     assert(static_creation_root(&guards, caller_environment, &root));
     const AstTypeExpression *expression = NULL;
     for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
-        if (site->root && site->receiver == NULL && site->statement->kind == AST_DECLARATION &&
-            layout_text_is(site->statement->as.declaration.name->name, "value")) { expression = site->expression; break; }
+        if (site->root && site->receiver == NULL && site->statement->kind == AST_STATIC_PROJECTION) { expression = site->expression; break; }
     }
     assert(expression);
-    const StaticCreationPath *other = producer(root, expression, target_constructor);
+    const StaticCreationPath *other = producer(root, expression);
     const StaticSymbol *alias = named(caller_module, "...alias");
     const StaticDefinitionPath *first, *dependency, *again;
     assert(alias->role == STATIC_ALIAS && caller_module->parameter_count == 0);
@@ -115,11 +115,11 @@ static void it_preserves_alias_definition_scope_and_idempotent_sibling_reads(voi
     destroy_guards();
 }
 
-/** Equality cycles and ordinary runtime reference fields do not imply static
+/** Equality cycles do not imply static
  * definition edges. All owner formals, including unused u, close by exact aliases.
  */
 static void it_keeps_anchored_equality_cycles_separate_from_static_definitions(void) {
-    setup_guards("@<\n...t\n...u\n...v\n@>\n...a\n...t\n...b\n...v\n@!\nanchor&\n..integer\n",
+    setup_guards("@...\n...a\n...t\n...unused\n...u\n...b\n...v\n...anchor\n..integer\n",
         "@!\n");
     const StaticCreationPath *root;
     assert(static_creation_root(&guards, caller_environment, &root));
@@ -143,15 +143,13 @@ static void it_keeps_anchored_equality_cycles_separate_from_static_definitions(v
  * turns that retained dependency into a true self cycle, with no creation edge.
  */
 static void it_rechecks_definition_edges_after_scoped_owners_become_equal(void) {
-    setup_guards("@<\n...t\n@>\n...a\n...t\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_guards("@...\n...a\n...t\n...anchor\n..integer\n", "@!\n");
     const StaticSymbol *a = named(caller_module, "...a");
     const StaticCreationPath *generic, *concrete;
     assert(static_creation_root(&guards, caller_environment, &generic));
     StaticTermCapture capture = {.formal = application_formal(caller_module, 0), .value = integer_type};
-    const StaticTerm *type;
     const StaticTermEnvironment *environment;
-    assert(static_term_nominal(&terms, caller_module, &capture, 1, a->site, &type));
-    assert(static_term_environment(&terms, caller_module, type, &environment));
+    assert(static_term_producer_environment(&terms, caller_module, &capture, 1, &environment));
     assert(static_creation_root(&guards, environment, &concrete));
     const StaticDefinitionPath *first, *second;
     assert(static_definition_enter(&guards, NULL, generic, a, (SourceSpan){0}, &first));
@@ -173,8 +171,8 @@ static void it_rechecks_definition_edges_after_scoped_owners_become_equal(void) 
  */
 static void it_refuses_foreign_symbols_paths_sites_and_missing_receivers(void) {
     for (size_t partition = 0; partition < 6; partition++) {
-        setup_guards("@<\n...t\n@>\n...a\n...t\n...b\n..integer\n@!\nanchor&\n..integer\n",
-            "@>\n...out\n..integer\n@!\n");
+        setup_guards("@...\n...a\n...t\n...b\n..integer\n",
+            "@...\n...out\n..integer\n");
         const StaticCreationPath *root;
         assert(static_creation_root(&guards, caller_environment, &root));
         const StaticSymbol *a = named(caller_module, "...a"), *b = named(caller_module, "...b");
@@ -193,10 +191,76 @@ static void it_refuses_foreign_symbols_paths_sites_and_missing_receivers(void) {
     }
 }
 
+/** Empty producer keys still settle queued equations. A previously closed
+ * cached owner must not turn a new contradictory equation into a cache hit.
+ */
+static void it_checks_equations_for_zero_input_producers_before_roots_and_cached_reads(void) {
+    for (size_t cached = 0; cached < 2; cached++) {
+        setup_guards("@...\n...a\n..integer\n", "@!\n");
+        const StaticCreationPath *root = NULL;
+        const StaticDefinitionPath *definition;
+        if (cached) {
+            assert(static_creation_root(&guards, caller_environment, &root));
+            assert(static_definition_enter(&guards, NULL, root, named(caller_module, "...a"),
+                (SourceSpan){0}, &definition));
+        }
+        assert(static_constraint_equate(&solver, integer_type, target_constructor,
+            named(caller_module, "...a")->site));
+        StaticGuardClosure closure = STATIC_GUARD_PENDING;
+        bool accepted = cached ? static_guard_refresh(&guards, &closure) :
+            static_creation_root(&guards, caller_environment, &root);
+        assert(!accepted && guards.status == STATIC_GUARD_CONFLICT);
+        assert(cached || root == NULL);
+        assert(closure == STATIC_GUARD_PENDING && guards.error.message == solver.error.message);
+        destroy_guards();
+    }
+}
+
+/** First receipts define aliases; later receipts constrain the original symbol
+ * and cannot replace its expression or merge it with an equal-valued pair.
+ */
+static void it_preserves_first_receipt_definitions_across_later_equality_receipts(void) {
+    setup_guards("@...\n.other\n ...out > ...alias\n.other\n ...out > ...alias\n...pair\n..integer\n",
+        "@...\n...out\n..integer\n");
+    const StaticSymbol *alias = named(caller_module, "...alias"), *pair = named(caller_module, "...pair");
+    const StaticOccurrence *receipts[2];
+    size_t count = 0;
+    for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
+        if (site->receiver && layout_text_is(site->receiver->receiver, "...alias")) {
+            assert(count < 2 && site->symbol == alias); receipts[count++] = site;
+        }
+    }
+    assert(count == 2 && alias->receiver == receipts[0]->receiver && alias->receiver != receipts[1]->receiver);
+    assert(alias->declaration == receipts[0]->statement && pair->role == STATIC_RESULT);
+    const StaticCreationPath *root;
+    assert(static_creation_root(&guards, caller_environment, &root));
+    const StaticCreationPath *first_producer = producer(root, receipts[0]->statement->as.static_projection);
+    const StaticCreationPath *second_producer = producer(root, receipts[1]->statement->as.static_projection);
+    assert(first_producer != second_producer && first_producer->vertex == second_producer->vertex);
+    const StaticDefinitionPath *definition, *dependency, *again, *pair_definition;
+    assert(static_definition_enter(&guards, NULL, root, alias, (SourceSpan){0}, &definition));
+    assert(static_definition_enter(&guards, definition, first_producer, named(target_module, "...out"),
+        result_site(alias), &dependency));
+    const StaticTerm *alias_value, *pair_value;
+    assert(static_term_symbol(&terms, caller_environment, alias, &alias_value));
+    assert(static_term_symbol(&terms, caller_environment, pair, &pair_value));
+    assert(static_constraint_equate(&solver, alias_value, integer_type, receipts[0]->site));
+    assert(static_constraint_equate(&solver, alias_value, integer_type, receipts[1]->site));
+    assert(static_constraint_equate(&solver, pair_value, integer_type, pair->site));
+    assert(static_definition_enter(&guards, NULL, root, alias, (SourceSpan){0}, &again) && again == definition);
+    assert(static_definition_enter(&guards, NULL, root, pair, (SourceSpan){0}, &pair_definition));
+    assert(pair_definition->node != definition->node && guards.definition_count == 3);
+    assert(guards.definition_edge_count == 1 && alias->declaration == receipts[0]->statement);
+    assert(dependency->node->owner->environment->definition == target_module);
+    destroy_guards();
+}
+
 /** Execute original-source cycles, scoped cache merging and unrelated-relation controls. */
 static void run(void) {
+    it_preserves_first_receipt_definitions_across_later_equality_receipts();
+    it_checks_equations_for_zero_input_producers_before_roots_and_cached_reads();
     it_refuses_direct_and_mutual_active_static_result_definitions();
-    it_rejects_cached_foreign_result_cycles_without_conflating_ordinary_creation_cycles();
+    it_rejects_cached_foreign_result_cycles_without_conflating_producer_creation_cycles();
     it_preserves_alias_definition_scope_and_idempotent_sibling_reads();
     it_keeps_anchored_equality_cycles_separate_from_static_definitions();
     it_rechecks_definition_edges_after_scoped_owners_become_equal();

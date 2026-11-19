@@ -4079,6 +4079,104 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   No specification edit, output evaluation, runtime execution or executable
   specialization admission is claimed; T179/T180/T184 retain those boundaries.
 
+Historical component record retained by T210; this evidence refers to the
+original task inputs and source contract, not the current supported interface.
+
+### T178 historical component evidence
+
+- Guard ownership and lexical owner shapes are implemented. Generic owners bind
+  every original formal to its existing scoped variable; applied owners preserve
+  their original nominal shape. Strict owner leaf passed three cases, including
+  all observed allocations, foreign/missing handles and checked counters
+  (`/tmp/ama-t178-owner.log`, collected exit 0).
+- Immutable symbolic paths retain selected roots, actual lexical parents,
+  original application records and complete rejected ancestry. Source template
+  repetition is checked before target environment preparation or expansion.
+  Strict ancestry leaf passed four cases (`/tmp/ama-t178-ancestry.log`, collected
+  exit 0): equal/permuted/growing/direct and mutual recurrence, finite repeated
+  argument nesting, sibling reuse, idempotent occurrence queries and rejection
+  of an incorrect lexical parent. No canonical key is required for this guard.
+- Actual T173–T177 source handoffs distinguish unapplied constructor metadata,
+  unknown applied origins, plain Type reuse and explicit output-phase producers.
+  Ordinary supplied producers and ordinary self edges remain distinct from
+  repeated-template paths. Strict classification leaf passed two cases
+  (`/tmp/ama-t178-classification.log`, collected exit 0).
+- Complete-key graph refresh and whole cached-descendant checking are implemented.
+  A frame keeps its lexical environment while concrete graph identity
+  uses only T176-normalized closed keys; retain all incoming frames. Normalize
+  until newly derived independent metadata facts stop changing, then record
+  edges and check reachability by full vertex keys. Warm no-change checks may
+  reuse results only while path/equation/metadata/requirement counts and solver
+  dirty state certify no new evidence. These are exact monotone facts, not a
+  retry budget or heuristic.
+- Strict path parent passed its then-current nine cases after graph-refresh
+  composition (`/tmp/ama-t178-path-parent.log`, collected exit 0). Independent
+  matrix closure agrees with the creation checker for all 65536 four-vertex
+  graphs, in both insertion orders: 131072 graph/order combinations. Equal-source
+  unequal Type keys remain distinct; ordinary cycles, self edges, complete search
+  witnesses and immediate successful scratch release are included
+  (`/tmp/ama-t178-graph.log`, collected exit 0).
+- Strict cache leaf passed three real-source compositions
+  (`/tmp/ama-t178-cache.log`, collected exit 0): independent A/B paths with a
+  shared finite Leaf tail, a new edge exposing recurrence through cached
+  descendants, and symbolic scopes becoming a genuine cycle after key closure.
+  External solving with dirty=false cannot hide newly added equation identities.
+  One hundred unchanged refreshes allocate nothing. These are component checks;
+  unexpanded source fields are not claimed as complete program admission.
+- Separate definition node/edge/path records, active checks and scoped-key cycle
+  checking are implemented. Shared refresh is named `static_guard_refresh`
+  because it checks both relations. Combined then-current parent passed thirteen
+  cases (`/tmp/ama-t178-combined-parent.log`, collected exit 0).
+- Six static-definition cases passed (`/tmp/ama-t178-definitions-final.log`, exit
+  0): direct/mutual source results, cached foreign ordinary-producer dependencies,
+  actual receiver aliases, anchored equality controls, scoped-to-concrete merging
+  and malformed foreign handles/sites. The graph model independently enumerates
+  all six topological orders for each of 512 three-definition relations in two
+  discovery orders: 1024 graph/order combinations
+  (`/tmp/ama-t178-definition-model.log`, collected exit 0).
+- Eight public-operation allocation cutpoints and four success/rejection graph
+  scratch cutpoints passed every observed refusal. Checked owner/path/vertex/
+  edge/definition/definition-edge/definition-path counts, both search products,
+  missing outputs and borrowed first-error propagation are covered
+  (`/tmp/ama-t178-failures-final.log`, collected exit 0).
+- Final decomposition places combined orchestration at the guard parent and
+  keeps creation-key normalization, definition-edge changes and definition-path
+  publication in cohesive child files. Full strict guard parent passed 24 cases
+  after that extraction and final counter refinements
+  (`/tmp/ama-t178-final-parent.log`, collected exit 0).
+- Added an explicit negative source composition for a captured own constructor
+  whose next application would terminate: its different finite full key does
+  not exempt the repeated original template. Final cache leaf passed four cases
+  (`/tmp/ama-t178-captured-final.log`, collected exit 0). The global dispatcher and
+  precise per-file/header registry now include all 25 guard cases.
+- Root build passed (`/tmp/ama-t178-build.log`, collected exit 0). Complete
+  per-file/header coverage passed 2597 ready inputs and zero debt
+  (`/tmp/ama-t178-docs-complete.log`, collected exit 0). Markdown navigation passed
+  212 documents, 2914 local links, 214 rules and 108 unchanged grammar productions
+  (`/tmp/ama-t178-markdown.log`, collected exit 0).
+- All 25 guard cases passed strict AddressSanitizer/UBSan
+  (`/tmp/ama-t178-sanitizers.log`, collected exit 0), including both exhaustive
+  graph domains and every allocation refusal. LSan is disabled under the prior
+  established container ptrace restriction; counted zero-live-allocation teardown
+  and immediate successful scratch-release checks remain separate evidence.
+- First complete Doxygen generation passed (`/tmp/ama-t178-doxygen.log`, collected
+  exit 0): 2597 ready inputs/zero debt, 1959 maintained file pages, 7554 documented
+  interfaces, 424 actual destinations and 6182 generated pages. Actual editor
+  navigation `code --goto /home/u/repos/ama/spec/language/templates.md:1510`
+  passed (`/tmp/ama-t178-editor-navigation.log`, collected exit 0); this records
+  command dispatch, not an observed manual GUI click.
+- Full accepted record is archived in DONE. Final archive-input reference refresh
+  uses `/tmp/ama-t178-doxygen-archive.log`; collect its exit status before explicit
+  staging and the per-task commit. No functional jobs remain. Next ready task:
+  T179, after that commit. No specification change or semantic ambiguity.
+- Initial archive refresh passed with the same counts
+  (`/tmp/ama-t178-doxygen-archive-initial.log`, collected exit 0). Staged-diff
+  review then found extra empty EOF lines in the three extracted child files;
+  removed those whitespace-only lines. C tokens and preceding source positions
+  are unchanged. Incremental root rebuild and final reference regeneration use
+  `/tmp/ama-t178-build-final.log` and `/tmp/ama-t178-doxygen-archive.log` before
+  commit; repeating behavioral tests for that token-identical cleanup is unnecessary.
+
 <a id="t200"></a>
 
 - [x] **T200 — Specify closed specialization cycles and fixed constant namespaces.**
@@ -4254,7 +4352,7 @@ this table is navigation, not a parallel semantic definition.
 
 - [x] **T201 — Align creation guards and consumers with closed-key cycles.**
   Status: accepted on input 7469fd4, 2026-11-18; authorized by the user's request to
-  continue under the agreed plan. Step record: [creation guards](docs/implementation/static-guards.md#t201-alignment).
+  continue under the agreed plan. Step record: [creation guards](DONE.md#t201-alignment).
   existing T178/T179/T180 evidence describes the earlier stricter contract.
   Prerequisites: T178, T179, T180, T200.
   Rules: [TPL-11](spec/language/templates.md#tpl-11),
@@ -4300,6 +4398,149 @@ this table is navigation, not a parallel semantic definition.
   The seven replaced unused draft adapter inputs are preserved with hashes at
   /tmp/ama-t201-input-7469fd4. T181's constant sources/tests remain unfinished
   local work and are excluded from this commit. Next ready task: T181.
+
+Historical component record retained by T210; this evidence refers to the
+original task inputs and source contract, not the current supported interface.
+
+ <a id="t201-alignment"></a>
+
+### T201 historical component evidence
+
+T201 is accepted on input 7469fd4 under the user's 2026-11-18 instruction to continue
+the agreed implementation plan. Authority is the revised TPL-11/TPL-12 and
+CONST-03/CONST-05 contracts linked below. T181's unfinished constant sources
+and tests remain intact. Its seven draft guard files are backed up, with exact
+hashes, under /tmp/ama-t201-input-7469fd4 before replacing the unused
+dependency-edge adapter. The ordered record below retains failed runs and their
+resolutions; current acceptance evidence follows them.
+
+Ordered steps and expected observations:
+
+1. Replace origin-only ancestry refusal with exact closed-key comparison and
+   pending unresolved repeats before environment/definition expansion. Remove
+   the unused draft dependency API; classify ordinary nongeneric constant
+   namespaces as fixed-Type reuse, preserving explicit output-phase producers.
+2. Change the existing iterative mixed graph predicate to reject reachable
+   *distinct closed vertices* sharing a template origin. Same-key self edges
+   are traversed with visited suppression, never skipped before other outgoing
+   branches are examined. Partial scopes retain exact identity and no guessed
+   canonical equality. Preserve allocation-free diagnostic witness transfer.
+3. Align result/publication consumers with pending guard entry and verify
+   same-key nominal return versus directed static-definition recursion.
+   Independently checked namespace contexts remain required for constant reuse.
+4. Replace obsolete negative expectations with positive same-key and pending
+   cases, retain growing/unequal-key negatives, exhaust all four-vertex graphs
+   against independent matrix closure, and test reordered/cached/partial routes,
+   late closure, malformed handles and every observed allocation refusal.
+5. Reconcile purpose/contracts and per-file/header evidence, run strict parent
+   compositions, ASan/UBSan/counting, compiler build and documentation gates;
+   archive and commit before T181 resumes.
+
+The graph proof uses finite BFS over concrete vertices and exact unresolved
+scope classes; only unequal fully closed endpoints can prove a creation
+conflict. An unresolved same-origin ancestry prevents further repeated expansion
+and returns Pending without a new producer context. Actual equations/metadata
+permit retry; allocation counts never justify progress. Existing static-definition
+cycle checking remains separate. Detailed result/cost evidence will replace
+the obsolete baseline explanation when implementation acceptance completes.
+
+Step 1/2 results: removed only the backed-up unused namespace-edge draft.
+Implemented pending repeated ancestry, canonical unequal-key witnesses and
+mixed-graph closed-endpoint comparison. The graph leaf passes all 131072
+four-vertex/order combinations (/tmp/ama-t201-graph.log, exit 0).
+The first ancestry run (/tmp/ama-t201-ancestry.log, exit 2) passed the new pending
+and closed-key cases, then exposed extra normalization allocation on an unchanged
+repeated source query. Preserve the established hot-query contract: reuse the
+exact registered parent/application path and refresh its keys, instead of
+preparing its environment again. This is an engineering regression, not a
+language ambiguity. No jobs active; next fix and rerun ancestry, then consumers.
+
+Step 2/3 continuation: the hot-query fix passes ancestry. The first full guard
+run stopped at an obsolete same-key-negative cache expectation
+(/tmp/ama-t201-guards-first.log, exit 2); that case now uses a genuinely unequal
+Leaf key, while late equal/unequal closure has separate independent expectations.
+Guards and publication parents pass on the updated input
+(/tmp/ama-t201-guards-strict.log and /tmp/ama-t201-publication-strict.log, exit 0).
+The new publication/recursion leaf passes five cases including every observed
+self-result publication allocation refusal
+(/tmp/ama-t201-publication-recursion-final.log, exit 0). Its two initial runs
+failed because global graph/path counts omitted the independently required
+integer Type argument; assertions now identify the actual main-template key,
+self edge and absence of a speculative main producer scope. Canonical application
+provenance, not observed counts, determines these expectations. An optional
+fixture initializer is now inline to support narrow consumers under -Werror.
+
+Collected checks: guards parent ASan/UBSan/-Werror exits 0
+(/tmp/ama-t201-guards-sanitizers.log), and publication parent under the same
+configuration exits 0 (/tmp/ama-t201-publication-sanitizers.log). The result
+parent first stopped at its obsolete blanket-origin refusal case, then its
+new unequal-key fixture exposed inconsistent named-input/positional-output
+bindings. Corrected that fixture to positional inputs/outputs as TPL-12 requires.
+The complete result parent now passes under ASan/UBSan/-Werror
+(/tmp/ama-t201-results-sanitizers.log, exit 0), and final uninstrumented
+results/evaluate passes (/tmp/ama-t201-evaluate-final.log, exit 0).
+
+The first root build exited 0 but reported a maybe-uninitialized capacity
+warning in cache/view.c. Its capacity helper returned an external always-false
+error result on refusal; returning literal false after recording the same error
+makes its successful output-write contract visible to GCC, without changing
+observable behavior. The root rerun (/tmp/ama-t201-build-rerun.log) exits 0
+without warnings. Final sanitizer runs additionally pass the counter/allocation
+failure leaf (/tmp/ama-t201-failures-sanitizers-final.log) and the recursive
+publication leaf with stable unchanged-Pending retry assertions
+(/tmp/ama-t201-recursion-sanitizers-final.log), both exit 0.
+
+Final cache review reproduced a genuine cold/warm disagreement: an independently
+cached nominal result could reuse a proof without the new unknown ancestor and
+incorrectly report READY. The cold/warm regression first failed
+(/tmp/ama-t201-cache-ancestry-red.log, exit 2). Cache reads now separate canonical
+value equality from readiness certification. Reuse a proof checked in this actual
+context, or a foreign proof only when every actual ancestor key is closed;
+otherwise retain valid value equations and replay the original RHS in this
+context. The refreshed graph still checks every cached descendant and incoming
+edge. This sufficient exact certificate preserves semantics without demanding
+closure of unrelated unknown outer keys. It costs O(H) time and O(1) scratch for
+H ancestors; replay has the ordinary evaluator's finite-work cost.
+
+The regression then passed (/tmp/ama-t201-cache-ancestry-green.log, exit 0).
+The final recursion leaf has eight cases: cold/warm equal and unequal anchors,
+actual-context proof reuse under unrelated unknown ancestors, and every observed
+foreign-proof replay allocation refusal supplement the original five cases
+(/tmp/ama-t201-cache-proof-composition.log, strict exit 0). Both full consumers
+were rerun after the fix: results and publication pass ASan/UBSan/-Werror
+(/tmp/ama-t201-results-sanitizers-cache.log and
+/tmp/ama-t201-publication-sanitizers-cache.log, collected exit 0). Root make -j4
+also passes without warnings (/tmp/ama-t201-build-cache.log, exit 0).
+
+Current evidence is 32 explicit guard, 32 result and 29 publication cases. The
+creation oracle covers all 65536 four-vertex directed graphs including self-loops,
+in both key/edge discovery orders (131072 comparisons); the separate definition
+oracle retains its 1024 relation/order checks. No compiler execution or complete
+specialization admission is claimed. ASan/UBSan uses O1, strict C11/-Werror,
+-fno-pie/-no-pie, and ASAN_OPTIONS=detect_leaks=0. LSan's established container
+restriction remains explicit; every injected operation still unwinds through
+independent counted allocation ownership checks.
+
+Per-file evidence registers the new ancestry operation and recursive publication
+C/Make leaf, preserves existing registry ordering, and maps every changed code
+input to named executable consumers. Existing standalone header probes remain
+required. Complete per-file/standalone-header acceptance passes 2658 ready inputs
+with zero debts (/tmp/ama-t201-docs-complete-final.log, exit 0), on a HEAD-plus-T201
+isolated tree excluding the unaccepted T181 additions. Markdown audit passes 215
+files, 2965 local links, 214 canonical rules and 108 byte-unchanged grammar
+productions (/tmp/ama-t201-markdown.log, exit 0). First Doxygen generation failed
+because its automatic heading anchor duplicated the explicit t201-alignment
+anchor (/tmp/ama-t201-doxygen.log, exit 1). Renamed only the visible heading,
+retaining the stable explicit link destination. The rerun passes
+(/tmp/ama-t201-doxygen-rerun.log, collected exit 0): 2008 maintained file pages,
+7795 interfaces, 427 canonical/rendered destinations and 6346 generated pages.
+Editor navigation to templates.md:1514 exits 0
+(/tmp/ama-t201-editor-navigation.log); this records command dispatch, not a manual
+GUI click. Complete task evidence is archived in [DONE](DONE.md#t201).
+Final archive-input regeneration uses /tmp/ama-t201-doxygen-archive.log; collect
+its outcome before explicit staging and record it in the task commit. No active
+functional jobs. T181 is next; its partial sources/tests remain excluded from
+T201. Specification bytes have not changed.
 
 <a id="t181"></a>
 
@@ -4733,3 +4974,47 @@ this table is navigation, not a parallel semantic definition.
   Contract: [producer owner foundation](docs/implementation/static-guards.md#t215-producer-owner-foundation).
   This prerequisite separates the representation correction from T210's remaining
   source-fixture migration and full expansion/cache acceptance.
+
+<a id="t210"></a>
+
+- [x] **T210 — Guard definition expansion and every specialization path.**
+  Prerequisites: T207, T209, T215.
+  Rules: [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-11](spec/language/templates.md#tpl-11),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: separate exact static-definition and specialization-creation graphs,
+  original application provenance and pending repeated-key obligations.
+  Steps: revalidate the existing guards against the new graph roles; attribute
+  applications to lexical owners; expose checks that run before any expansion
+  and on every cache path. T183 composes these algorithms with the registry.
+  Accept: finite nested applications and identical closed-key cycles pass;
+  reachable unequal keys of one origin fail even through a closed cycle or late
+  edge. Unknown comparison keys suspend expansion without guessed equality or
+  speculative copies. Supplied Types/fixed namespaces add no invented creation
+  edge, while actual producer uses do. Pair/first-receipt definitions differ
+  from equality checks; direct/mutual static-definition cycles remain errors.
+  Check exact finite graph oracles, root/constraint order, cached dependencies,
+  pending-to-closed transitions, diagnostics and every refusal cleanup. Preserve
+  occurs/eager/value graphs separately. Meet the common per-file tests, Doxygen
+  links and same-task commit criteria.
+  Fixtures: Migrate the live guard fixtures to current source/metadata without weakening
+  creation ancestry or cache-path checks.
+  Evidence (2026-11-19): all nine guard leaves and 43 named cases pass strict
+  C11 and ASan/UBSan. Each configuration checks 262144 creation graph/order/kind
+  combinations and 1024 definition graph/order combinations against independent
+  oracles. Actual current source roles cover finite nesting, unknown/equal/
+  unequal recursion, distinct source uses, warm descendants, late closure,
+  first/equality receipts, all public allocator cutpoints and both graph outcomes.
+  Empty producer maps now settle queued constraints before key normalization;
+  the failed idempotent-read migration check exposed this defect, and direct/
+  cached contradiction regressions pass. Producer map copies read only formal/
+  value fields. The five affected leaves pass both final reruns; compiler build
+  passes. Complete per-file/interface check: 2713 ready inputs, zero debts.
+  Rendered-link and exact staged-byte review remain final commit gates; final
+  counts/outcomes are recorded in the commit. Current contract and full commands:
+  [guard model](docs/implementation/static-guards.md). Obsolete mixed-interface
+  fixtures/sole-purpose captured-Template case and stale case registrations are
+  removed. Historical T178/T201 input/run records are preserved in DONE.
+  T183 owns canonical registry/body/cache composition; T211/T212 own actual
+  output equations and ordinary export bridges. No full-language admission or
+  full static-parent acceptance is inferred from these guard tests.
