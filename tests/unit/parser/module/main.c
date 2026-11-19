@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../common.c"
+#include <stdio.h>
 
 /**
  * Assert that the component keeps unfinished files drafts without literal or comment activation.
@@ -42,6 +43,56 @@ static void it_accepts_empty_constants_and_both_implementation_kinds(void) {
         ParseError error;
         bool parsed = parser_sections(&layout, &sections, &error);
         assert(parsed && sections.kind == kinds[index]);
+        destroy_layout();
+    }
+}
+
+/** The longest static annotation activates an exclusive graph interval, including empty EOF layout. */
+static void it_activates_exclusive_static_graph_sections_without_runtime_intervals(void) {
+    const char *sources[] = {"@...", "# graph\n@...    # exact marker\n", "@...\n...value\n..integer\n"};
+    for (size_t index = 0; index < sizeof(sources) / sizeof(*sources); index++) {
+        setup_test();
+        LayoutStatus read = read_layout(sources[index]);
+        assert(read == LAYOUT_OK);
+        ModuleSections sections;
+        ParseError error;
+        bool parsed = parser_sections(&layout, &sections, &error);
+        assert(parsed && sections.kind == MODULE_STATIC && sections.graph.marker != NULL);
+        assert(layout_text_is(sections.graph.marker->code, "@..."));
+        assert(sections.constants.marker == NULL && sections.parameters.marker == NULL);
+        assert(sections.results.marker == NULL && sections.implementation.marker == NULL);
+        destroy_layout();
+    }
+}
+
+/** No ordinary annotation can precede/follow a static marker; failed output stays unpublished. */
+static void it_rejects_every_mixed_or_repeated_static_annotation(void) {
+    const char *markers[] = {"@=", "@<", "@>", "@!", "@C", "@..."};
+    for (size_t marker = 0; marker < sizeof(markers) / sizeof(*markers); marker++) {
+        for (unsigned order = 0; order < 2; order++) {
+            char text[40];
+            int written = snprintf(text, sizeof(text), "%s\n%s\n",
+                order ? markers[marker] : "@...", order ? "@..." : markers[marker]);
+            assert(written > 0 && (size_t)written < sizeof(text));
+            setup_test();
+            LayoutStatus read = read_layout(text);
+            assert(read == LAYOUT_OK);
+            ModuleSections sections = {.kind = MODULE_NATIVE};
+            ParseError error;
+            bool parsed = parser_sections(&layout, &sections, &error);
+            assert(!parsed && sections.kind == MODULE_NATIVE && diagnostic_valid(&error.diagnostic));
+            destroy_layout();
+        }
+    }
+    const char *drafts[] = {"# @...\n", " |@...\n", "@<\nvalue\n...type\n"};
+    for (size_t index = 0; index < sizeof(drafts) / sizeof(*drafts); index++) {
+        setup_test();
+        LayoutStatus read = read_layout(drafts[index]);
+        assert(read == LAYOUT_OK);
+        ModuleSections sections;
+        ParseError error;
+        bool parsed = parser_sections(&layout, &sections, &error);
+        assert(parsed && sections.kind == MODULE_DRAFT);
         destroy_layout();
     }
 }
@@ -102,6 +153,8 @@ static void it_preserves_precise_layout_expectations_during_parser_adaptation(vo
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_activates_exclusive_static_graph_sections_without_runtime_intervals();
+    it_rejects_every_mixed_or_repeated_static_annotation();
     it_preserves_precise_layout_expectations_during_parser_adaptation();
     it_keeps_unfinished_files_drafts_without_literal_or_comment_activation();
     it_accepts_empty_constants_and_both_implementation_kinds();

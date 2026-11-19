@@ -44,7 +44,7 @@ bool parser_declaration(Parser *parser, size_t indentation, AstNode *node) {
         return parser_fail(parser, parser_site(parser), "A declaration needs its module type on the next code line",
             EXPECT_TYPE_LINE);
     }
-    if (!parser_type_expression(parser, parser->line->code, indentation, &node->as.declaration.type)) {
+    if (!parser_runtime_type(parser, indentation, &node->as.declaration.type)) {
         return false;
     }
     node->span.end = node->as.declaration.type->span.end;

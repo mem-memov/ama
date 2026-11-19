@@ -34,6 +34,7 @@ static void rejected(const char *parameter, const char *module_name) {
 #include "support/paths.c"
 #include "support/failures.c"
 #include "support/lowering.c"
+#include "support/concrete.c"
 
 /** Run actual frontend compositions and ownership prefixes explicitly. */
 static void run(void) {
@@ -42,6 +43,7 @@ static void run(void) {
     it_preserves_existing_concrete_native_check_and_authoring_paths();
     it_unwinds_every_new_frontend_static_admission_allocation_failure();
     it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary();
+    it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication();
 }
 
 /** Return success after all assertions and counted teardown. */

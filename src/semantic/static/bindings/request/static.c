@@ -25,7 +25,7 @@ bool binding_normalize_static(BindingPlan *plan, const BindingInterface *view,
     for (const AstStaticBinding *binding = expression->first; binding != NULL; binding = binding->next) {
         BindingRequest request = {.span = binding->span, .marker = binding->marker, .label = binding->label,
             .direction = binding->kind == AST_STATIC_INPUT ? BINDING_STATIC_INPUT : BINDING_STATIC_OUTPUT,
-            .named = !binding->positional, .omitted = binding->omitted, .syntax.static_binding = binding};
+            .named = true, .syntax.static_binding = binding};
         if (!binding_request_append(plan, application, request)) { return false; }
     }
     binding_application_publish(plan, application, output);

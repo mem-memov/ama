@@ -17,6 +17,7 @@ static bool fail(ParseError *error, SourceSpan span, const char *message, Parser
 /** Return the local section record for an already recognized marker; `@!`/`@C` share implementation storage.
  * Component contract: [SYN-03](../../../spec/language/source-and-names.md#syn-03). */
 static ParsedSection *select_section(ModuleSections *sections, int marker) {
+    if (marker == 5) { return &sections->graph; }
     return marker == 0 ? &sections->constants : marker == 1 ? &sections->parameters
         : marker == 2 ? &sections->results : &sections->implementation;
 }
@@ -52,13 +53,18 @@ static bool read_sections(SourceLayout *layout, ModuleSections *sections, ParseE
             return fail(error, line->code, "Unknown, repeated, indented or out-of-order annotation",
                 EXPECT_SECTION_ORDER);
         }
+        if ((marker == 5 && previous != -1) || sections->kind == MODULE_STATIC) {
+            return fail(error, line->code, "A static module has only its @... annotation",
+                EXPECT_SECTION_ORDER);
+        }
         if (current != NULL) {
             current->end = line;
         }
         current = select_section(sections, marker);
         *current = (ParsedSection){line, line->next, NULL};
         previous = rank;
-        sections->kind = marker == 3 ? MODULE_AMA : marker == 4 ? MODULE_NATIVE : MODULE_CONSTANTS;
+        sections->kind = marker == 5 ? MODULE_STATIC : marker == 3 ? MODULE_AMA
+            : marker == 4 ? MODULE_NATIVE : MODULE_CONSTANTS;
     }
     if (previous == 1 || previous == 2) {
         size_t end = source_length(layout->source);

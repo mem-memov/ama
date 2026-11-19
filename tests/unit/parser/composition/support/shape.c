@@ -19,6 +19,7 @@ static void check_expression(const AstTypeExpression *root, const SourceText *so
         const AstTypeExpression *expression = queue[cursor];
         check_span(expression->span, source);
         check_span(expression->head, source);
+        check_span(expression->selected_export, source);
         assert(expression->head.start == expression->span.start);
         const AstStaticBinding *last = NULL;
         bool outputs = false;
@@ -29,41 +30,20 @@ static void check_expression(const AstTypeExpression *root, const SourceText *so
             check_span(binding->receiver, source);
             if (binding->kind == AST_STATIC_INPUT) {
                 assert(!outputs && binding->receiver.source == NULL);
-                assert((binding->input == NULL) == binding->omitted);
+                assert(binding->input != NULL);
                 if (binding->input != NULL) {
                     assert(count < capacity);
                     queue[count++] = binding->input;
                 }
             } else {
                 assert(binding->kind == AST_STATIC_OUTPUT && binding->input == NULL);
-                assert((binding->receiver.source == NULL) == binding->omitted);
+                assert(binding->receiver.source != NULL);
                 outputs = true;
             }
-            assert(!binding->omitted || binding->positional);
+            assert(binding->label.source != NULL);
             last = binding;
         }
         assert(last == expression->last);
-    }
-    free(queue);
-}
-/** Each signature owns its foreign names and finite nested signatures; no
- * resolution table is consulted to validate their source representation.
- */
-static void check_formal(const AstStaticFormal *root, const SourceText *source) {
-    size_t capacity = source_length(source) + 1, count = 1;
-    const AstStaticFormal **queue = calloc(capacity, sizeof(*queue));
-    assert(root != NULL && queue != NULL);
-    queue[0] = root;
-    for (size_t cursor = 0; cursor < count; cursor++) {
-        const AstStaticFormal *formal = queue[cursor], *last = NULL;
-        check_span(formal->span, source);
-        check_span(formal->name, source);
-        for (const AstStaticFormal *child = formal->first; child != NULL; child = child->next) {
-            assert(count < capacity);
-            queue[count++] = child;
-            last = child;
-        }
-        assert(last == formal->last);
     }
     free(queue);
 }
@@ -151,6 +131,7 @@ static void check_tree(const char *original) {
     queue_block(module.parameters, queue, &count, capacity);
     queue_block(module.results, queue, &count, capacity);
     queue_block(module.body, queue, &count, capacity);
+    queue_block(module.graph, queue, &count, capacity);
     for (size_t cursor = 0; cursor < count; cursor++) {
         const AstNode *node = queue[cursor];
         check_span(node->span, source);
@@ -165,8 +146,7 @@ static void check_tree(const char *original) {
                 last = item;
             }
             assert(initializers == node->as.declaration.initializer_count && last == node->as.declaration.last);
-        } else if (node->kind == AST_STATIC_FORMAL) {
-            check_formal(node->as.static_formal, source);
+
         } else if (node->kind == AST_STATIC_RESULT) {
             check_span(node->as.static_result.name, source);
             check_expression(node->as.static_result.expression, source);

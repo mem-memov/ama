@@ -20,6 +20,7 @@ typedef struct StaticExpressionFrame {
     AstStaticBinding *owner;
     size_t indentation;
     bool outputs_started;
+    bool producer;
 } StaticExpressionFrame;
 
 /** Allocate a finite pending frame before following a nested input expression.
@@ -27,18 +28,18 @@ typedef struct StaticExpressionFrame {
  * retains every partial frame within the AST's failure-cleanup owner.
  */
 static StaticExpressionFrame *expression_frame(Parser *parser, StaticExpressionFrame *parent,
-    AstTypeExpression *expression, AstStaticBinding *owner, size_t indentation) {
+    AstTypeExpression *expression, AstStaticBinding *owner, size_t indentation, bool producer) {
     StaticExpressionFrame *frame = parser_allocate(parser, sizeof(*frame), expression->head);
     if (frame != NULL) {
         *frame = (StaticExpressionFrame){.parent = parent, .expression = expression,
-            .owner = owner, .indentation = indentation};
+            .owner = owner, .indentation = indentation, .producer = producer};
     }
     return frame;
 }
 
 /** Append one source-ordered binding, preserving first/last and monotone spans.
  * Component contract: [TPL-12](../../../spec/language/static-results.md#tpl-12)
- * retains source order for later named/positional and static-output processing.
+ * retains named edge order and input-before-output producer phases.
  */
 static void append_binding(AstTypeExpression *expression, AstStaticBinding *binding) {
     if (expression->last == NULL) { expression->first = binding; }
@@ -61,14 +62,14 @@ static StaticExpressionFrame *close_expression(StaticExpressionFrame *frame) {
 
 /** Advance physical lines or pop a finite pending frame on each transition.
  * Component contract: [TPL-12](../../../spec/language/static-results.md#tpl-12)
- * permits declaration initializers and namespace reads after a static block;
- * stopping before them is structural recognition, not a type-dependent fallback.
+ * keeps nested bindings with their exact physical owner; a nonbinding line
+ * closes frames and is checked by graph orchestration, never by Type lookup.
  */
-bool parser_type_expression(Parser *parser, SourceSpan head, size_t indentation,
+bool parser_type_expression(Parser *parser, SourceSpan head, size_t indentation, bool producer,
     AstTypeExpression **output) {
     AstTypeExpression *expression;
     if (!static_expression_head(parser, head, &expression)) { return false; }
-    StaticExpressionFrame *frame = expression_frame(parser, NULL, expression, NULL, indentation);
+    StaticExpressionFrame *frame = expression_frame(parser, NULL, expression, NULL, indentation, producer);
     if (frame == NULL) { return false; }
     parser->line = parser->line->next;
     while (frame != NULL) {
@@ -87,6 +88,11 @@ bool parser_type_expression(Parser *parser, SourceSpan head, size_t indentation,
         }
         AstStaticBinding *binding;
         if (!static_binding_head(parser, &binding)) { return false; }
+        if (binding->kind == AST_STATIC_OUTPUT && !frame->producer) {
+            return parser_fail(parser, binding->marker,
+                "A static value has named inputs only; select producer outputs in a graph statement",
+                EXPECT_STATIC_BINDING);
+        }
         if (binding->kind == AST_STATIC_INPUT && frame->outputs_started) {
             return parser_fail(parser, binding->marker, "Static inputs must precede outputs", EXPECT_STATIC_BINDING);
         }
@@ -94,7 +100,7 @@ bool parser_type_expression(Parser *parser, SourceSpan head, size_t indentation,
         append_binding(frame->expression, binding);
         parser->line = line->next;
         if (binding->input != NULL) {
-            frame = expression_frame(parser, frame, binding->input, binding, line->indentation);
+            frame = expression_frame(parser, frame, binding->input, binding, line->indentation, false);
             if (frame == NULL) { return false; }
         }
     }

@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Build exact static binding labels, skips and source/receiver heads.
+ * @brief Build complete named static bindings with mandatory operands.
  *
  * [TPL-12](../../../spec/language/static-results.md#tpl-12) separates these
  * compile-time operands from runtime input values and retained result reads.
@@ -24,7 +24,7 @@ bool static_binding_line(const LayoutLine *line) {
     return false;
 }
 
-/** Preserve the complete foreign label or explicit bare positional prefix.
+/** Preserve a complete foreign label; a bare prefix is not a binding name.
  * Component contract: [TPL-12](../../../spec/language/static-results.md#tpl-12)
  * requires exactly one source space before the marker and full atomic names.
  */
@@ -35,24 +35,19 @@ static bool binding_label(Parser *parser, AstStaticBinding *binding, size_t mark
         return parser_fail(parser, text, "A static binding marker needs one preceding space", EXPECT_STATIC_BINDING);
     }
     binding->label = (SourceSpan){text.source, text.start, marker - 1};
-    binding->positional = layout_text_is(binding->label, "...");
-    if (!binding->positional && !parser_static_name(binding->label)) {
+    if (!parser_static_name(binding->label)) {
         return parser_fail(parser, binding->label, "Invalid static binding label", EXPECT_STATIC_BINDING);
     }
     return true;
 }
 
-/** Keep a nonempty static input head or static receiver, or one positional skip.
+/** Keep a nonempty static input head or static receiver.
  * Component contract: [TPL-12](../../../spec/language/static-results.md#tpl-12)
- * permits omitted operands only for bare positional markers.
+ * requires an operand for every named binding.
  */
 static bool binding_operand(Parser *parser, AstStaticBinding *binding) {
     SourceSpan text = parser->line->code;
     size_t end = binding->marker.end;
-    if (end == text.end && binding->positional) {
-        binding->omitted = true;
-        return true;
-    }
     const unsigned char *bytes = source_bytes(text.source);
     if (end >= text.end || bytes[end] != ' ' || end + 1 == text.end) {
         return parser_fail(parser, text, "A named static binding needs its separated operand", EXPECT_STATIC_BINDING);

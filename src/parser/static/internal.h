@@ -24,7 +24,7 @@ bool static_binding_line(const LayoutLine *);
 /** Build one current binding head, including a bare input expression or output
  * receiver; nested input children are the iterative driver's responsibility.
  * Component contract: [TPL-12](../../../spec/language/static-results.md#tpl-12)
- * makes skips explicit and forbids omitted named operands.
+ * requires nonempty named labels and operands; static skips do not exist.
  */
 bool static_binding_head(Parser *, AstStaticBinding **);
 #endif

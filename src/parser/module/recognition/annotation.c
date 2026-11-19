@@ -2,7 +2,7 @@
  * @file
  * @brief Decode already checked section tokens into the grammar's fixed section order.
  * [SYN-03](../../../../spec/language/source-and-names.md#syn-03) defines exactly
- * five annotations; no name spelling or declaration lookup determines section kind.
+ * ordinary sections and the exclusive static marker; no lookup determines kind.
  */
 #include "../internal.h"
 int parser_annotation(const LayoutLine *line) {
@@ -17,6 +17,7 @@ int parser_annotation(const LayoutLine *line) {
         case LEX_RESULTS: return 2;
         case LEX_AMA: return 3;
         case LEX_NATIVE: return 4;
+        case LEX_STATIC_MODULE: return 5;
         default: return -1;
     }
 }

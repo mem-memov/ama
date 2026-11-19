@@ -16,7 +16,7 @@
 bool static_occurrence_append(StaticInventory *, StaticModule *, StaticOccurrence);
 /** Enumerate one optional expression's owned heads/receivers with explicit
  * frames. Contract: [TPL-12](../../../../spec/language/static-results.md#tpl-12)
- * excludes foreign labels and omitted output receivers from local names.
+ * excludes foreign labels from local names.
  */
 bool static_expression_occurrences(StaticInventory *, StaticModule *,
     const AstTypeExpression *, const AstNode *, StaticContext);

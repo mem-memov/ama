@@ -96,7 +96,8 @@ bool project_collect_paths(Project *project, const ProjectModule *module, Depend
     if (!push_block(project, &pending, module->syntax.body)
         || !push_block(project, &pending, module->syntax.results)
         || !push_block(project, &pending, module->syntax.parameters)
-        || !push_block(project, &pending, module->syntax.constants)) {
+        || !push_block(project, &pending, module->syntax.constants)
+        || !push_block(project, &pending, module->syntax.graph)) {
         return false;
     }
     while (pending != NULL) {

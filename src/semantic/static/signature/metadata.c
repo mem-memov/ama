@@ -51,7 +51,7 @@ static bool assign(StaticCategory *category, StaticSignature **signature, Static
     return true;
 }
 
-/** Propagate known local result categories and pattern arguments to a finite
+/** Propagate known local result and constructor-slot categories to a finite
  * fixed point. Producer-result aliases and applied residuals remain recorded.
  * Component contract: [TPL-07](../../../../spec/language/templates.md#tpl-07).
  */
@@ -64,12 +64,6 @@ void static_resolve_metadata(StaticInventory *inventory) {
                 if (symbol->role == STATIC_RESULT) {
                     changed |= assign(&symbol->category, &symbol->signature,
                         static_expression_metadata(inventory, module, symbol->declaration->as.static_result.expression));
-                }
-            }
-            for (StaticPattern *pattern = module->first_pattern; pattern != NULL; pattern = pattern->next) {
-                for (StaticSignatureEntry *entry = pattern->signature->first; entry != NULL; entry = entry->next) {
-                    changed |= assign(&entry->category, &entry->signature,
-                        static_expression_metadata(inventory, module, entry->pending_expression));
                 }
             }
             if (module->constructor_signature == NULL) { continue; }

@@ -1,5 +1,5 @@
 # @file
-# @brief Verify static request snapshots, modes, omissions and actual-origin obligations.
+# @brief Verify named graph requests, frozen residuals and actual-origin obligations.
 # Contract: ../../../../../../docs/implementation/binding-sequences.md.
 ROOT := $(abspath ../../../../../..)
 include ../../../sources.mk

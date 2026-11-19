@@ -167,7 +167,8 @@ Specification clarifications [T200](DONE.md#t200), [T202](DONE.md#t202) and
 [the consistency/planning note](docs/implementation/static-plan-review.md).
 [T203](DONE.md#t203) records the actual source/test ownership audit;
 [T214](DONE.md#t214) removes the unused preview service and retains only live
-operand preparation. T206 is next. T182 remains unfinished with its partial
+operand preparation. [T206](DONE.md#t206) establishes the current source/AST
+boundary; T207 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -182,30 +183,6 @@ T212, not treated as current acceptance of removed inline projections.
 reuse, removal and replacement below; they do not establish current-spec support.
 
 ### Phase 2. Establish current source structure and bindings
-
-<a id="t206"></a>
-
-- [ ] **T206 — Parse separate static modules and simple ordinary Type forms.**
-  Prerequisites: T203, T214.
-  Rules: [SYN-03](spec/language/source-and-names.md#syn-03),
-  [SYN-04](spec/language/source-and-names.md#syn-04),
-  [COMP-01](spec/implementation/compiler.md#comp-01),
-  [TPL-12](spec/language/static-results.md#tpl-12);
-  [canonical EBNF](spec/grammar.md).
-  Boundary: shared lexical/layout components, module-kind activation, immutable
-  AST nodes and source/path spans; no symbol-table-dependent recognition.
-  Steps: recognize `@...` and exclusive module kinds; parse result pairs, named
-  producer uses and finite nested constructor arguments; parse one named export
-  selector in ordinary declarations/constant reads and expose actual path spans.
-  Accept: empty graphs, comments, final virtual newline, Unicode/multiword/hyphen
-  names and arbitrary finite nesting obey exact spacing/indentation. Multiple
-  outputs require named selections. Reject mixed annotations, incomplete pairs,
-  empty/positional static bindings, inputs after outputs, trailing captures and
-  ordinary inline static applications/projections. Runtime positional forms are
-  unchanged. Keep lexical/layout/parser responsibilities separately testable and
-  compose them through the real AST. Cover malformed input and every allocation
-  failure; remove superseded syntax branches with their replacements. Meet the
-  common per-file tests, Doxygen links and same-task commit criteria.
 
 <a id="t207"></a>
 
@@ -230,6 +207,8 @@ reuse, removal and replacement below; they do not establish current-spec support
   introduce no parameter. Test the inventory and real parser/native consumers,
   scope/source spans and all refusals; replace obsolete signature/position tables.
   Meet the common per-file tests, Doxygen links and same-task commit criteria.
+  Fixtures: Migrate the retained scope/inventory fixtures to whole-graph public names; the
+  earlier source-only formal/pattern cases were removed in T206.
 
 <a id="t213"></a>
 
@@ -278,6 +257,8 @@ reuse, removal and replacement below; they do not establish current-spec support
   constructors. Test exact identity/category laws, symbolic-to-actual refinement,
   independent scopes and allocation/size boundaries with real inventory/resolver
   consumers. Meet the common tests, Doxygen links and same-task commit criteria.
+  Fixtures: Rebuild term/metadata fixtures from current source and actual metadata; do not
+  restore explicit expected-signature trees or the removed root-subset mode.
 
 <a id="t209"></a>
 
@@ -301,6 +282,8 @@ reuse, removal and replacement below; they do not establish current-spec support
   exercise metadata/constraint consumers, permutations and allocation refusal.
   Remove obsolete positional/exact-signature branches. Meet the common per-file
   tests, Doxygen links and same-task commit criteria.
+  Fixtures: Migrate the remaining binding/application fixtures from old mixed interfaces;
+  delete static positional/skip-only cases while retaining runtime positions.
 
 <a id="t210"></a>
 
@@ -324,6 +307,8 @@ reuse, removal and replacement below; they do not establish current-spec support
   pending-to-closed transitions, diagnostics and every refusal cleanup. Preserve
   occurs/eager/value graphs separately. Meet the common per-file tests, Doxygen
   links and same-task commit criteria.
+  Fixtures: Migrate the live guard fixtures to current source/metadata without weakening
+  creation ancestry or cache-path checks.
 
 <a id="t183"></a>
 
@@ -377,6 +362,8 @@ reuse, removal and replacement below; they do not establish current-spec support
   guard/registry compositions, definition versus equality cycles, warm/cold order
   and all preparation/publication failures. Meet the common per-file tests,
   Doxygen links and same-task commit criteria.
+  Fixtures: Migrate result/publication fixtures to named graph producers and public binders;
+  discard old ordinary-body static result scenarios.
 
 <a id="t212"></a>
 
@@ -405,6 +392,9 @@ reuse, removal and replacement below; they do not establish current-spec support
   Revalidate retained T181 metadata through actual declaration/graph/constant
   consumers, cycles/provenance, unavailable members and resource failures.
   Meet the common per-file tests, Doxygen links and same-task commit criteria.
+
+  Fixtures: Migrate retained constant fixtures to current graph exports and simple ordinary
+  namespaces; T181 history alone is not current source acceptance.
 
 ### Phase 5. Close and admit ordinary specializations
 
@@ -444,6 +434,8 @@ reuse, removal and replacement below; they do not establish current-spec support
   new-parser/scope/constant/solver compositions, allocation failures and later
   concrete anchors without contextual static-producer closure or old interface
   previews. Reuse partial code only through T203's reviewed file ownership.
+  Fixtures: Migrate the retained connection fixtures to ordinary Type pairs and current
+  export selection; obsolete mixed-interface probes are not acceptance.
 
 <a id="t184"></a>
 
@@ -787,7 +779,7 @@ T196 reviews the actual full evidence.
 
 | Static module template acceptance area | Current task owner |
 |---|---|
-| Placeholder spelling | [T206](#t206) |
+| Placeholder spelling | [T196](#t196) |
 | Placeholder scope | [T207](#t207) |
 | Ordinary-argument inference | [T182](#t182) |
 | Nested field specialization | [T182](#t182) |
@@ -802,9 +794,9 @@ T196 reviews the actual full evidence.
 | Defined static results | [T211](#t211) |
 | Static output composition | [T211](#t211) |
 | Static output lookup | [T211](#t211) |
-| Named-only static interfaces | [T206](#t206) |
+| Named-only static interfaces | [T209](#t209), [T211](#t211) |
 | Static named arity and rejected skips | [T209](#t209), [T211](#t211) |
-| Static binding modes and order | [T206](#t206) |
+| Static binding modes and order | [T209](#t209) |
 | Static result alias introduction | [T207](#t207) |
 | Static alias scope and capture | [T207](#t207) |
 | Static output inference and closure | [T211](#t211) |
@@ -825,8 +817,9 @@ T196 reviews the actual full evidence.
 | Template source delivery | [T191](#t191) |
 | Source distribution resolution | [T191](#t191) |
 
-T206 also owns integration of the unchanged Internal hyphen words, Hyphenated
-name identity and Hyphen context boundaries. T213 owns new AST source lookup and
+[T206](DONE.md#t206) records source integration of the unchanged Internal hyphen
+words, Hyphenated name identity and Hyphen context boundaries; T196 reviews
+their final conformance alongside spelling. T213 owns new AST source lookup and
 dependency closure; T190 owns the native authoring/header consumers. T187/T188
 own compiled storage, label dispatch, state and continuation evidence. T194 owns
 Concrete facade exports, Template export exclusion and the owned-child/independent-

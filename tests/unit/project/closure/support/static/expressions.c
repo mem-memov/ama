@@ -13,7 +13,7 @@ static SourceSpan static_path(const SourceText *source, size_t start, const char
     return span;
 }
 
-/** A placeholder root still owns concrete nested operands; receivers and skips
+/** A placeholder root still owns concrete nested operands; receivers and export selectors
  * add none, while separately written equal paths retain separate exact sites.
  */
 static void it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites(void) {
@@ -28,8 +28,7 @@ static void it_extracts_only_concrete_static_heads_and_preserves_occurrence_site
         .kind = AST_TYPE_MODULE_PATH, .first = &inner_binding, .last = &inner_binding};
     AstTypeExpression repeated = {.head = static_path(source, 25, ".outer"), .kind = AST_TYPE_MODULE_PATH};
     AstStaticBinding output = {.kind = AST_STATIC_OUTPUT, .receiver = static_path(source, 32, "...alias")};
-    AstStaticBinding skip = {.kind = AST_STATIC_INPUT, .positional = true, .omitted = true, .next = &output};
-    AstStaticBinding second = {.kind = AST_STATIC_INPUT, .input = &repeated, .next = &skip};
+    AstStaticBinding second = {.kind = AST_STATIC_INPUT, .input = &repeated, .next = &output};
     AstStaticBinding first = {.kind = AST_STATIC_INPUT, .input = &outer, .next = &second};
     AstTypeExpression root = {.head = static_path(source, 15, "...family"),
         .kind = AST_TYPE_PLACEHOLDER, .first = &first, .last = &output};

@@ -24,9 +24,10 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
     const AstTypeExpression *expression = node->kind == AST_DECLARATION
         ? node->as.declaration.type
         : node->kind == AST_CALL ? node->as.call.namespace_expression : NULL;
-    if (node->kind == AST_STATIC_FORMAL || node->kind == AST_STATIC_RESULT
+    if (node->kind == AST_STATIC_RESULT
         || node->kind == AST_STATIC_PROJECTION
-        || (expression != NULL && (expression->kind != AST_TYPE_MODULE_PATH || expression->first != NULL))) {
+        || (expression != NULL && (expression->kind != AST_TYPE_MODULE_PATH || expression->first != NULL
+            || expression->selected_export.source != NULL))) {
         return semantic_fail(program, node->span,
             "Static syntax requires resolution before the concrete declaration inventory", NULL);
     }
@@ -64,6 +65,14 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
  * Component contract: [NAME-04](../../../spec/language/declarations.md#name-04), [TYPE-06](../../../spec/language/declarations.md#type-06). */
 static bool module_names(SemanticProgram *program, SemanticType *type) {
     const AstModule *syntax = &type->module->syntax;
+    /* [TPL-12](../../../spec/language/static-results.md#tpl-12) makes a static
+     * graph compile-time-only, including an empty graph. T184 must resolve
+     * selected exports before this ordinary concrete inventory can admit them.
+     */
+    if (syntax->sections.kind == MODULE_STATIC) {
+        return semantic_fail(program, syntax->sections.graph.marker->code,
+            "Static modules require resolution before the concrete declaration inventory", NULL);
+    }
     AstBlock blocks[] = {syntax->constants, syntax->parameters, syntax->results, syntax->body};
     for (SymbolRole role = SYMBOL_CONSTANT; role <= SYMBOL_STATE; role++) {
         if (!semantic_walk(program, type, blocks[role], declare, &role)) {
@@ -82,7 +91,8 @@ SemanticStatus semantic_names(SemanticProgram *program) {
             return program->status;
         }
         type->module = module;
-        type->executable = module->syntax.sections.kind != MODULE_CONSTANTS;
+        type->executable = module->syntax.sections.kind == MODULE_AMA
+            || module->syntax.sections.kind == MODULE_NATIVE;
         abi_table_init(&type->abi, program->arena.allocator);
         if (program->last == NULL) {
             program->first = type;

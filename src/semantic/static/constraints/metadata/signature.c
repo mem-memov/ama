@@ -26,7 +26,7 @@ bool static_constraint_signature(StaticConstraintSolver *solver, const StaticSig
     StaticSignatureComparison result;
     SourceArena scratch;
     source_arena_init(&scratch, solver->arena.allocator);
-    bool success = static_signature_compare_arena(&scratch, left, right, STATIC_SIGNATURE_EXACT, &result);
+    bool success = static_signature_compare_arena(&scratch, left, right, &result);
     source_arena_destroy(&scratch);
     if (!success) {
         return static_constraint_failure(solver, STATIC_CONSTRAINT_OUT_OF_MEMORY, site,

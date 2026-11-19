@@ -17,12 +17,13 @@ static bool check_line(const LayoutLine *line, bool *active, ParseError *error) 
     LexStatus status;
     size_t count = 0;
     while ((status = lex_token_next(&cursor, &token)) == LEX_TOKEN) {
-        bool annotation = token.kind >= LEX_CONSTANTS && token.kind <= LEX_NATIVE;
+        bool annotation = token.kind >= LEX_CONSTANTS && token.kind <= LEX_STATIC_MODULE;
         if (annotation && (count != 0 || line->indentation != 0 || token.text.end != line->code.end)) {
             return parser_error_set(error, token.text,
                 "A section annotation occupies its own zero-indent line", EXPECT_SECTION_ORDER);
         }
-        if (annotation && (token.kind == LEX_CONSTANTS || token.kind == LEX_AMA || token.kind == LEX_NATIVE)) {
+        if (annotation && (token.kind == LEX_CONSTANTS || token.kind == LEX_AMA
+            || token.kind == LEX_NATIVE || token.kind == LEX_STATIC_MODULE)) {
             *active = true;
         }
         count++;

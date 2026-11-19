@@ -95,7 +95,7 @@ static void it_checks_every_direction_counter_limit_without_publishing_or_alloca
             if (output) { raw = raw->next->next; }
             request.span = raw->span;
             request.marker = raw->marker;
-            request.omitted = raw->omitted;
+            request.omitted = false;
             request.syntax.static_binding = raw;
         }
         size_t before = allocation_count;

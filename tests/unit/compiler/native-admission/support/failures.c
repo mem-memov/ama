@@ -10,7 +10,7 @@ static void it_unwinds_every_new_frontend_static_admission_allocation_failure(vo
     for (size_t authoring = 0; authoring < 2; authoring++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            prepare_native("@<\n...unused\n@C\n");
+            prepare_native("@<\nunused\n...unused\n@C\n");
             setup_frontend();
             if (failure != 0) { failure_at = failure; }
             ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};

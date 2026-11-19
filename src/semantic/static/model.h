@@ -32,8 +32,8 @@ typedef enum { STATIC_PARAMETER, STATIC_RESULT, STATIC_ALIAS } StaticRole;
  */
 typedef struct StaticSignature StaticSignature;
 
-/** A foreign named slot owns its category/signature description. A deferred
- * description retains the exact source expression requiring later metadata.
+/** An actual named slot owns its category/signature description. A deferred
+ * category remains unresolved until its owning symbol supplies metadata.
  * Component contract: [TPL-07](../../../spec/language/templates.md#tpl-07)
  * matches whole foreign names without importing them into caller scope.
  */
@@ -42,7 +42,6 @@ typedef struct StaticSignatureEntry {
     SourceSpan name;
     StaticCategory category;
     StaticSignature *signature;
-    const AstTypeExpression *pending_expression;
 } StaticSignatureEntry;
 
 /** Finite inventory-owned signature; source order is retained but is not a
@@ -107,18 +106,6 @@ typedef struct StaticOccurrence {
     const ProjectModule *origin;
 } StaticOccurrence;
 
-/** A root input pattern retains its exact expected named bindings for repeated
- * signature checks. Deferred expression metadata is an explicit later obligation.
- * Contract: [TPL-07](../../../spec/language/templates.md#tpl-07).
- */
-typedef struct StaticPattern {
-    struct StaticPattern *next;
-    const StaticOccurrence *occurrence;
-    StaticSignature *signature;
-    bool pending;
-    bool output_phase;
-} StaticPattern;
-
 /** An original qualified constant source has its own AST/dependency identity,
  * separate from atomic static placeholders and fabricated type expressions.
  * [CONST-05](../../../spec/language/declarations.md#const-05) fixes the written namespace.
@@ -149,8 +136,6 @@ struct StaticModule {
     StaticConstantOccurrence *last_constant_source;
     size_t constant_source_count;
     StaticSignature *constructor_signature;
-    StaticPattern *first_pattern;
-    StaticPattern *last_pattern;
 };
 
 #endif

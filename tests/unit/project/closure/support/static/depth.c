@@ -7,9 +7,9 @@
  */
 static void it_loads_deep_static_applications_with_one_definition_and_distinct_requests(void) {
     directory("generated/static depth");
-    file("generated/static depth/node", "@<\n...element\n@!\n");
+    file("generated/static depth/node", "@<\nvalue\n...element\n@!\n");
     size_t depth = 768;
-    const char *head = "@!\nvalue\n.node\n", *binding = "...element < .node\n";
+    const char *head = "@...\n...value\n.node\n", *binding = "...element < .node\n";
     size_t size = strlen(head) + depth * strlen(binding) + depth * (depth + 1) / 2 + 1;
     char *text = malloc(size);
     assert(text != NULL);

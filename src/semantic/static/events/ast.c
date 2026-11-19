@@ -45,7 +45,6 @@ static bool node_occurrences(StaticInventory *inventory, StaticModule *module,
         context = STATIC_CONTEXT_DEFINITION;
     } else if (node->kind == AST_STATIC_PROJECTION) {
         expression = node->as.static_projection;
-        context = STATIC_CONTEXT_BODY;
     } else if (node->kind == AST_CALL) {
         expression = node->as.call.namespace_expression;
         context = STATIC_CONTEXT_NAMESPACE;
@@ -88,7 +87,8 @@ bool static_collect_occurrences(StaticInventory *inventory, StaticModule *module
     if (!push(inventory, &pending, syntax->constants.first, STATIC_CONTEXT_CONSTANT)
         || !push(inventory, &pending, syntax->parameters.first, STATIC_CONTEXT_INPUT)
         || !push(inventory, &pending, syntax->results.first, STATIC_CONTEXT_RESULT)
-        || !push(inventory, &pending, syntax->body.first, STATIC_CONTEXT_BODY)) { return false; }
+        || !push(inventory, &pending, syntax->body.first, STATIC_CONTEXT_BODY)
+        || !push(inventory, &pending, syntax->graph.first, STATIC_CONTEXT_DEFINITION)) { return false; }
     while (pending != NULL) {
         BlockWork *work = pending;
         const AstNode *node = work->node;

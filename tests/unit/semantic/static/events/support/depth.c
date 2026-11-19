@@ -6,7 +6,7 @@
  */
 static void it_collects_deep_expression_owners_without_recursive_c_activation(void) {
     size_t depth = 600;
-    const char *head = "@!\nvalue\n...type\n", *binding = "...slot < ...type\n";
+    const char *head = "@...\n...value\n...type\n", *binding = "...slot < ...type\n";
     size_t size = strlen(head) + depth * strlen(binding) + depth * (depth + 1) / 2 + 1;
     char *text = malloc(size);
     assert(text != NULL);

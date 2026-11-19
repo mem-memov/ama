@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Detect actual cycles among known expected signature edges before recursive comparison.
+ * @brief Detect actual cycles among known actual signature edges before recursive comparison.
  *
  * [TPL-02](../../../../spec/language/templates.md#tpl-02) rejects infinite
  * signature dependencies. This is a finite graph check, independent of runtime
@@ -63,7 +63,7 @@ static bool check(StaticInventory *inventory, SignatureVisit **records, const St
     return true;
 }
 
-/** Check every published root and repeated pattern with shared memoization;
+/** Check every published actual metadata root with shared memoization;
  * shared acyclic subtrees are accepted and visited once, not mistaken for cycles.
  * Contract: [TPL-02](../../../../spec/language/templates.md#tpl-02).
  */
@@ -74,9 +74,6 @@ bool static_signatures_acyclic(StaticInventory *inventory) {
         if (!check(inventory, &records, module->constructor_signature)) { return false; }
         for (const StaticSymbol *symbol = module->first; symbol != NULL; symbol = symbol->next) {
             if (!check(inventory, &records, symbol->signature)) { return false; }
-        }
-        for (const StaticPattern *pattern = module->first_pattern; pattern != NULL; pattern = pattern->next) {
-            if (!check(inventory, &records, pattern->signature)) { return false; }
         }
     }
     return true;

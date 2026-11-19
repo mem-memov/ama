@@ -7,15 +7,10 @@
  */
 static void it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals(void) {
     const char *sources_text[] = {
-        "@<\n...unused\n@C\n",
-        "@<\n...factory\n ...foreign\n@C\n",
         "@<\ninput\n...input type\n@C\n",
-        "@>\noutput\n...result type\n@C\n",
-        "@<\ninput\n...factory\n ...foreign < ...element\n@C\n",
-        "@>\n...returned\n...type\n@C\n",
-        "@<\ninput\n...producer\n ... >\n@C\n"
+        "@>\noutput\n...result type\n@C\n"
     };
-    const char *names[] = {"...unused", "...factory", "...input type", "...result type", "...factory", "...type", "...producer"};
+    const char *names[] = {"...input type", "...result type"};
     for (size_t index = 0; index < sizeof(sources_text) / sizeof(*sources_text); index++) {
         for (size_t authoring = 0; authoring < 2; authoring++) {
             prepare_native(sources_text[index]);
@@ -34,7 +29,7 @@ static void it_rejects_native_own_formals_before_check_capture_or_authoring_abi_
  * the same policy before capturing inputs or accepting the loaded definition.
  */
 static void it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths(void) {
-    prepare_native("@<\n...unused\n@C\n");
+    prepare_native("@<\nunused\n...unused\n@C\n");
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
     assert(module_catalog_build(&frontend.project.catalog, &root, 1) == MODULE_OK);
@@ -43,7 +38,7 @@ static void it_checks_native_admission_on_preloaded_catalog_and_explicit_require
     destroy_frontend();
     directory("generated/required");
     file("generated/required/main", "@!\n");
-    file("generated/required/bad", "@<\n...required unused\n@C\n");
+    file("generated/required/bad", "@<\nunused\n...required unused\n@C\n");
     setup_frontend();
     ModuleRoot required_root = {"generated/required", NULL, 0, MODULE_ROOT_PROJECT};
     const char *required[] = {".bad"};

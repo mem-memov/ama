@@ -8,22 +8,22 @@
 #include <stdio.h>
 
 #include "support/names.c"
-#include "support/expressions.c"
-#include "support/interfaces.c"
+#include "support/graphs.c"
+#include "support/ordinary.c"
+#include "support/failures.c"
 
 /** Explicitly run each component case; failed assertions preserve leaf outputs. */
 void run(void) {
     it_recognizes_atomic_static_names_without_module_lookup();
-    it_preserves_nested_expression_owners_and_initializer_boundaries();
-    it_retains_positional_input_and_output_skips_as_distinct_bindings();
-    it_rejects_static_operand_order_and_indentation_errors_without_publication();
-    it_parses_deep_static_trees_and_unwinds_every_expression_allocation_failure();
-    it_composes_static_interfaces_with_runtime_declarations_in_both_implementations();
-    it_composes_projections_constant_reads_and_initialized_type_expressions();
-    it_rejects_incomplete_static_interfaces_and_execution_suffixes();
-    it_unwinds_every_composed_static_module_allocation_failure();
-    it_parses_deep_signatures_without_c_recursion();
-    it_preserves_output_only_interface_heads_and_explicit_type_controls();
+    it_keeps_empty_static_graphs_separate_from_every_runtime_section();
+    it_preserves_named_pairs_partial_values_and_multiple_producer_outputs();
+    it_obeys_graph_comment_regions_and_does_not_reopen_closed_children();
+    it_keeps_simple_ordinary_type_pairs_and_export_initializers();
+    it_selects_constant_namespaces_without_ordinary_static_applications();
+    it_rejects_old_static_forms_and_invalid_graph_modes();
+    it_rejects_invalid_ordinary_selectors_and_nested_static_blocks();
+    it_parses_deep_input_only_values_without_c_recursion();
+    it_unwinds_every_current_graph_and_selector_parse_allocation_failure();
 }
 
 /** Return success only after all structural assertions and ownership cleanup. */

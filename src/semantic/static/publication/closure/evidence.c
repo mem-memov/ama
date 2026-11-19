@@ -24,7 +24,7 @@ const StaticSymbol *static_publication_receiver(const StaticResultUse *use, cons
 bool static_publication_evidence(StaticPublicationWork *work, const StaticResultUse *use) {
     StaticPublicationPlan *plan = work->plan;
     for (const AstStaticBinding *binding = use->source->expression->first; binding; binding = binding->next) {
-        if (binding->kind != AST_STATIC_OUTPUT || binding->omitted) { continue; }
+        if (binding->kind != AST_STATIC_OUTPUT) { continue; }
         const StaticSymbol *symbol = static_publication_receiver(use, binding);
         if (symbol == NULL) {
             return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, binding->marker,

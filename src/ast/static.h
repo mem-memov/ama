@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Represent source-owned static expressions, bindings and constructor signatures.
+ * @brief Represent source-owned static expressions and named graph bindings.
  *
  * [COMP-02](../../spec/implementation/compiler.md#comp-02) separates immutable
  * syntax from resolved kinds, substitutions and executable layout.
@@ -8,9 +8,9 @@
  * static inputs/results and source order; these records create no runtime slots.
  * [TPL-01](../../spec/language/templates.md#tpl-01) preserves the atomic spelling
  * of placeholder heads. [TPL-07](../../spec/language/templates.md#tpl-07)
- * requires recursive named constructor signatures, while
+ * distinguishes actual constructor metadata, while
  * [TPL-08](../../spec/language/templates.md#tpl-08) requires structural application
- * trees rather than textual substitution; both have separate records here.
+ * trees rather than textual substitution; metadata is not syntax.
  */
 #ifndef AMA_AST_STATIC_H
 #define AMA_AST_STATIC_H
@@ -31,15 +31,15 @@ typedef struct AstTypeExpression AstTypeExpression;
 
 /** Static directions remain distinct from runtime argument/read operations.
  * Component contract: [TPL-12](../../spec/language/static-results.md#tpl-12)
- * gives static bindings independent order, skip syntax and interface positions.
+ * gives static graphs named input/output edges without runtime positions.
  */
 typedef enum { AST_STATIC_INPUT, AST_STATIC_OUTPUT } AstStaticBindingKind;
 
 /** An ordered AST-owned binding borrows original label/marker/receiver bytes.
- * Input expressions belong to the same arena; an empty receiver is an explicit
- * positional output skip. No ordinal normalization or alias binding occurs.
+ * Input expressions belong to the same arena; labels and output receivers are
+ * nonempty complete names. No ordinal normalization or alias binding occurs.
  * Component contract: [TPL-12](../../spec/language/static-results.md#tpl-12)
- * requires preserving named/positional source form before semantic validation.
+ * requires preserving named source edges before semantic validation.
  */
 typedef struct AstStaticBinding {
     struct AstStaticBinding *next;
@@ -48,8 +48,6 @@ typedef struct AstStaticBinding {
     SourceSpan marker;
     SourceSpan receiver;
     AstStaticBindingKind kind;
-    bool positional;
-    bool omitted;
     AstTypeExpression *input;
 } AstStaticBinding;
 
@@ -63,20 +61,10 @@ struct AstTypeExpression {
     AstTypeHeadKind kind;
     AstStaticBinding *first;
     AstStaticBinding *last;
+    /** One ordinary type/namespace export selector, never a static argument.
+     * [TPL-12](../../spec/language/static-results.md#tpl-12) selects a named ready Type.
+     */
+    SourceSpan selected_export;
 };
-
-/** A static formal and optional recursively nonempty signature remain syntax.
- * Source spans borrow the module; all links are AST-owned. Zero children and
- * nonzero children are retained without scope/kind lookup.
- * Component contract: [TPL-07](../../spec/language/templates.md#tpl-07)
- * defines structural named signatures, whose identities are resolved later.
- */
-typedef struct AstStaticFormal {
-    struct AstStaticFormal *next;
-    SourceSpan span;
-    SourceSpan name;
-    struct AstStaticFormal *first;
-    struct AstStaticFormal *last;
-} AstStaticFormal;
 
 #endif

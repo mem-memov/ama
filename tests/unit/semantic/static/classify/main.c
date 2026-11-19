@@ -1,11 +1,11 @@
 /** @file
- * @brief Exercise lexical parameter introductions, receiver precedence and original formal ordering.
+ * @brief Check ordinary Type introductions and separation from graph public binders.
  */
 #include "../common.c"
 #include <stdint.h>
 #include "semantic/static/classify/sites.h"
 
-/** Prepare immutable sorted occurrences and whole-module explicit binders. */
+/** Prepare immutable sorted occurrences after public pair collection. */
 static StaticModule *prepare(void) {
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_explicit(&inventory, module));
@@ -14,105 +14,48 @@ static StaticModule *prepare(void) {
     return module;
 }
 
-/** Obtain a fixture's exact local identity after classification. */
-static const StaticSymbol *named(const StaticModule *module, const char *name) {
-    const StaticSymbol *symbol = static_symbol_find(module,
-        static_name_site(project.entry, name), SIZE_MAX);
-    assert(symbol != NULL);
-    return symbol;
-}
-
-/** Output-only heads introduce Type, including skip actions; explicit controls
- * retain their own declaration position and receivers occupy no formal slots.
+/** All ordinary input/output placeholders introduce Type once, in first written
+ * type-line order. Constants and body uses can precede or follow that interface.
  */
-static void it_classifies_output_only_heads_result_types_and_explicit_controls(void) {
-    const char *cases[] = {
-        "@<\nvalue&\n...type\n ...out > ...alias\n@!\n",
-        "@<\nvalue&\n...type\n ... >\n@!\n",
-        "@<\n...type\nvalue&\n...type\n ...out > ...alias\n@!\n",
-        "@>\nvalue\n...type\n ... >\n@!\n",
-        "@>\n...result\n...type\n ... >\n@!\n"
-    };
-    for (size_t index = 0; index < 5; index++) {
-        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
-        StaticModule *module = prepare();
-        assert(static_classify_names(&inventory, module));
-        const StaticSymbol *type = named(module, "...type");
-        assert(type->category == STATIC_CATEGORY_TYPE && type->role == STATIC_PARAMETER);
-        assert(type->ordinal == 0 && module->parameter_count == 1);
-        if (index == 0 || index == 2) {
-            const StaticSymbol *alias = named(module, "...alias");
-            assert(alias->role == STATIC_ALIAS && alias->category == STATIC_CATEGORY_DEFERRED);
-            assert(alias->receiver != NULL && alias->ordinal == SIZE_MAX);
-        }
-        if (index == 4) { assert(named(module, "...result")->role == STATIC_RESULT); }
-        destroy_static();
+static void it_classifies_ordinary_interface_types_once_in_original_order(void) {
+    setup_static("@=\nshared\n...later\n@<\nfirst&\n...first\nsecond\n...later\n"
+        "@>\nresult\n...result\nagain\n...first\n@!\nstate\n...result\n", STATIC_SCOPE_SOURCE_TEXT);
+    StaticModule *module = prepare();
+    assert(static_classify_names(&inventory, module));
+    assert(module->parameter_count == 3 && module->result_count == 0);
+    const char *names[] = {"...first", "...later", "...result"};
+    for (size_t ordinal = 0; ordinal < 3; ordinal++) {
+        const StaticSymbol *symbol = static_symbol_at(module, STATIC_PARAMETER, ordinal);
+        assert(symbol != NULL && layout_text_is(symbol->name, names[ordinal]));
+        assert(symbol->category == STATIC_CATEGORY_TYPE && symbol->receiver == NULL);
+        assert(static_symbol_find(module, static_name_site(project.entry, names[ordinal]), 0) == symbol);
     }
+    destroy_static();
 }
 
-/** A received name followed by an interface use stays an alias. Reversing the
- * genuine introduction/receiver order retains a whole-module owner parameter.
+/** Neither ordinary noninterface uses nor already collected public pairs create
+ * free ordinary parameters. Full graph free-input collection belongs to T207.
  */
-static void it_uses_source_order_for_aliases_without_turning_later_uses_into_formals(void) {
-    const char *cases[] = {
-        "@<\nsource\n.other\n ...out > ...received\nlater\n...received\n@!\n",
-        "@<\nsource\n...received\nlater\n.other\n ...out > ...received\n@!\n"
-    };
+static void it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions(void) {
+    const char *cases[] = {"@!\nstate\n...body only\n",
+        "@...\n...known\n.other\n...forwarded\n...known\n"};
     for (size_t index = 0; index < 2; index++) {
         setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = prepare();
         assert(static_classify_names(&inventory, module));
-        const StaticSymbol *symbol = named(module, "...received");
-        assert(symbol->role == (index == 0 ? STATIC_ALIAS : STATIC_PARAMETER));
-        assert(module->parameter_count == index);
-        if (index == 0) {
-            assert(static_symbol_find(module, symbol->name, symbol->site.start - 1) == NULL);
-            assert(static_symbol_find(module, symbol->name, symbol->site.start) == symbol);
-        } else { assert(static_symbol_find(module, symbol->name, 0) == symbol); }
+        assert(module->parameter_count == 0 && module->result_count == 2 * index);
         destroy_static();
     }
 }
 
-/** Collected Template patterns determine kind before checking bare forward
- * uses; foreign labels occupy no owner position. Explicit declarations retain
- * their own ordinal despite preceding references.
+/** Every actual ordinary formal allocation is refused once; public collection
+ * and occurrence ownership are prepared before the failure point.
  */
-static void it_collects_whole_interface_template_categories_and_original_introduction_ordinals(void) {
-    setup_static("@<\nforward\n...family\n...type\npattern\n...family\n ...slot < ...type\n"
-        "later\n...last\n@!\n", STATIC_SCOPE_SOURCE_TEXT);
-    StaticModule *module = prepare();
-    assert(static_classify_names(&inventory, module));
-    const StaticSymbol *family = named(module, "...family");
-    assert(family->category == STATIC_CATEGORY_TEMPLATE && family->ordinal == 1);
-    assert(named(module, "...type")->ordinal == 0 && named(module, "...last")->ordinal == 2);
-    assert(module->parameter_count == 3 && family->site.start > family->name.start);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...slot"), SIZE_MAX) == NULL);
-    destroy_static();
-}
-
-/** Neither runtime-body sources nor unknown result applications introduce a
- * free formal. Their eventual use diagnostics belong to the binding phase.
- * An unused receiver may still establish a static alias in a nested body.
- */
-static void it_excludes_body_sources_and_result_only_applied_heads_from_introductions(void) {
-    setup_static("@>\nvalue\n...unknown\n ...slot < ...type\n@!\n"
-        "body\n...body only\n.other\n ...out > ...alias\n", STATIC_SCOPE_SOURCE_TEXT);
-    StaticModule *module = prepare();
-    assert(static_classify_names(&inventory, module));
-    assert(module->parameter_count == 1 && named(module, "...type")->category == STATIC_CATEGORY_TYPE);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...unknown"), SIZE_MAX) == NULL);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...body only"), SIZE_MAX) == NULL);
-    assert(named(module, "...alias")->role == STATIC_ALIAS);
-    destroy_static();
-}
-
-/** Refuse every actual implicit symbol allocation while retaining destructible
- * partial records. Explicit collection and occurrence sorting precede injection.
- */
-static void it_unwinds_every_implicit_classification_allocation_failure(void) {
+static void it_unwinds_every_ordinary_classification_allocation_failure(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_static("@<\nfirst\n...family\n ...slot < ...type\nsecond\n.other\n ...out > ...alias\n@!\n", STATIC_SCOPE_SOURCE_TEXT);
+        setup_static("@<\nfirst\n...first\nsecond\n...second\n@>\nresult\n...result\n@!\n",
+            STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = prepare();
         size_t before = allocation_count;
         if (failure != 0) { failure_at = before + failure; }
@@ -123,14 +66,11 @@ static void it_unwinds_every_implicit_classification_allocation_failure(void) {
     }
 }
 
-/** Execute every lexical-classification partition explicitly. */
+/** Execute current ordinary source classification partitions explicitly. */
 static void run(void) {
-    it_classifies_output_only_heads_result_types_and_explicit_controls();
-    it_uses_source_order_for_aliases_without_turning_later_uses_into_formals();
-    it_collects_whole_interface_template_categories_and_original_introduction_ordinals();
-    it_excludes_body_sources_and_result_only_applied_heads_from_introductions();
-    it_unwinds_every_implicit_classification_allocation_failure();
+    it_classifies_ordinary_interface_types_once_in_original_order();
+    it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions();
+    it_unwinds_every_ordinary_classification_allocation_failure();
 }
-
-/** Return success after every assertion and counted teardown. */
+/** Return success after assertions and counted teardown. */
 int main(void) { run(); return 0; }

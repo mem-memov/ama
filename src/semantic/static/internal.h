@@ -52,8 +52,8 @@ bool static_collect_occurrences(StaticInventory *, StaticModule *);
  * makes alias classification depend on lexical position rather than AST links.
  */
 void static_sort_occurrences(StaticModule *);
-/** Collect explicit input formals and static result names before implicit sites
- * or uses. Raw signature/definition syntax is retained for the next phase.
+/** Collect public static graph pair names before free-input classification
+ * or uses. Exact defining expressions are retained for the next phase.
  * Contract: [TPL-02](../../../spec/language/templates.md#tpl-02),
  * [TPL-12](../../../spec/language/static-results.md#tpl-12).
  */
@@ -74,8 +74,8 @@ const ProjectModule *static_loaded_origin(const StaticModule *, SourceSpan);
  * Contract: [TPL-07](../../../spec/language/templates.md#tpl-07).
  */
 bool static_prepare_signatures(StaticInventory *);
-/** Resolve known metadata, reject finite-signature cycles and known pattern
- * mismatches; deferred applications/projections remain explicit obligations.
+/** Resolve known metadata and reject finite-signature cycles or known Type
+ * applications; deferred applications/projections remain explicit obligations.
  * Contract: [TPL-07](../../../spec/language/templates.md#tpl-07).
  */
 bool static_check_signatures(StaticInventory *);

@@ -1,5 +1,5 @@
 # @file
-# @brief Verify finite explicit signature construction, named equality and failure ownership.
+# @brief Verify finite actual metadata, named equality and failure ownership.
 # Contract: ../../../../../docs/implementation/static-symbols.md.
 ROOT := $(abspath ../../../../..)
 include ../../sources.mk

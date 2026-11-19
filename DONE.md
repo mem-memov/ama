@@ -3653,7 +3653,8 @@ Contracts: [acceptance matrix](spec/implementation/tools-and-conformance.md#acce
   section/body composition performs no lookup or kind inference. Ordinary
   concrete consumers retain their behavior; the old semantic inventory refuses
   unresolved static syntax until T184 composes the resolver before it.
-  Evidence: [component contract and complete step record](docs/implementation/syntax-tree.md#static-syntax-construction-t170).
+  Evidence: [current component contract](docs/implementation/syntax-tree.md#separate-static-syntax),
+  updated by T206. The acceptance below records T170's historical input revision.
   Ten independent static cases cover exact names, nested and positional operands,
   interface/native/body composition, rejection partitions, 600-level expression
   and signature trees, every actual expression/module allocation-failure prefix
@@ -4531,3 +4532,42 @@ this table is navigation, not a parallel semantic definition.
   Final links/task routing, selected evidence merge, Doxygen and staged-byte
   checks are commit gates. No spec change or template-language acceptance is
   claimed; T206 is next. T182's separate local O2 warning remains recorded.
+
+<a id="t206"></a>
+
+- [x] **T206 — Parse separate static modules and simple ordinary Type forms.**
+  Status: source contract accepted on 2026-11-19, based on c28d8a0. Record:
+  [current static source parsing](docs/implementation/static-source.md).
+  Prerequisites: T203, T214.
+  Rules: [SYN-03](spec/language/source-and-names.md#syn-03),
+  [SYN-04](spec/language/source-and-names.md#syn-04),
+  [COMP-01](spec/implementation/compiler.md#comp-01),
+  [TPL-12](spec/language/static-results.md#tpl-12);
+  [canonical EBNF](spec/grammar.md).
+  Boundary: shared lexical/layout components, module-kind activation, immutable
+  AST nodes and source/path spans; no symbol-table-dependent recognition.
+  Steps: recognize `@...` and exclusive module kinds; parse result pairs, named
+  producer uses and finite nested constructor arguments; parse one named export
+  selector in ordinary declarations/constant reads and expose actual path spans.
+  Accept: empty graphs, comments, final virtual newline, Unicode/multiword/hyphen
+  names and arbitrary finite nesting obey exact spacing/indentation. Multiple
+  outputs require named selections. Reject mixed annotations, incomplete pairs,
+  empty/positional static bindings, inputs after outputs, trailing captures and
+  ordinary inline static applications/projections. Runtime positional forms are
+  unchanged. Keep lexical/layout/parser responsibilities separately testable and
+  compose them through the real AST. Cover malformed input and every allocation
+  failure; remove superseded syntax branches with their replacements. Meet the
+  common per-file tests, Doxygen links and same-task commit criteria.
+  Evidence: exclusive static graphs and simple ordinary selectors parse through
+  the shared lexer/layout/AST; obsolete formal/signature/position/skip machinery
+  and its sole-purpose tests are removed. Exact metadata comparison has one live
+  scratch API and actual constraint-cache consumers. Current-source graph,
+  ordinary, dependency, native, metadata, named-request and allocation cases pass
+  in an isolated HEAD-plus-task tree: eleven initial command groups under strict
+  Werror and ASan/UBSan, followed by nine dependent groups under both after final
+  metadata cleanup. Root build passes without warnings. Original literal/source
+  bytes, arbitrarily finite nesting, explicit work frames and failure ownership
+  are preserved. Complete Doxygen passed before final cleanup; the same-input
+  final archive refresh, explicit staging and staged-byte comparison are commit
+  gates. No spec file changed; no complete static semantic/execution claim.
+  Higher live algebraic fixtures retain explicit T207–T212/T182 migration owners.

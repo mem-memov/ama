@@ -1,17 +1,16 @@
 /**
  * @file
- * @brief Resolve available signature categories and retain explicit unresolved pattern obligations.
+ * @brief Check known constructor metadata without expected-signature source declarations.
  *
  * [TPL-07](../../../../spec/language/templates.md#tpl-07) fixes category from
  * declared metadata, never first actual values. [TPL-12](../../../../spec/language/static-results.md#tpl-12)
- * gives output-phase expressions a closed producer Type, while selected aliases
- * require producer metadata. Applications await the application normalization
- * stage; their exact expressions remain in signature entries.
+ * requires producer metadata before selected outputs can be concrete. Applications
+ * await normalization; known bare Type heads cannot accept static arguments.
  */
 #include "internal.h"
 
 /** Known signature disagreement is a present error; projected/application
- * metadata remains a pending pattern for subsequent normalization/resolution.
+ * metadata remains pending for subsequent normalization/resolution.
  * No signature comparison may traverse known cyclic metadata.
  * Contract: [TPL-07](../../../../spec/language/templates.md#tpl-07).
  */
@@ -30,31 +29,6 @@ bool static_check_signatures(StaticInventory *inventory) {
                     return static_invalid(inventory, binding->marker, "A Type is not an applied constructor", site->symbol);
                 }
             }
-        }
-    }
-    for (StaticModule *module = inventory->first; module != NULL; module = module->next) {
-        for (StaticPattern *pattern = module->first_pattern; pattern != NULL; pattern = pattern->next) {
-            StaticMetadata producer = static_expression_metadata(inventory, module, pattern->occurrence->expression);
-            /* The application value may be closed; patterns constrain the head's
-             * expected constructor signature instead of that value's category. */
-            const StaticOccurrence *site = pattern->occurrence;
-            if (site->symbol != NULL) { producer = (StaticMetadata){site->symbol->category, site->symbol->signature}; }
-            else {
-                const StaticModule *origin = static_module_find(inventory, site->origin);
-                producer = origin->constructor_signature == NULL ? (StaticMetadata){STATIC_CATEGORY_TYPE, NULL}
-                    : (StaticMetadata){STATIC_CATEGORY_TEMPLATE, origin->constructor_signature};
-            }
-            if (producer.category == STATIC_CATEGORY_DEFERRED) { pattern->pending = true; continue; }
-            if (producer.category != STATIC_CATEGORY_TEMPLATE) {
-                return static_invalid(inventory, site->site, "An input pattern requires a Template constructor", site->symbol);
-            }
-            StaticSignatureComparison result;
-            if (!static_signature_compare(inventory, pattern->signature, producer.signature,
-                pattern->output_phase ? STATIC_SIGNATURE_PROVIDED : STATIC_SIGNATURE_EXACT, &result)) { return false; }
-            if (result == STATIC_SIGNATURE_DIFFERENT) {
-                return static_invalid(inventory, site->site, "Input pattern disagrees with the declared constructor signature", site->symbol);
-            }
-            pattern->pending = result == STATIC_SIGNATURE_PENDING;
         }
     }
     return true;

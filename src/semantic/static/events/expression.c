@@ -17,7 +17,7 @@ typedef struct ExpressionWork {
     bool root;
 } ExpressionWork;
 
-/** Queue a real owner edge, allocating nothing for an omitted input.
+/** Queue a real owner edge, allocating nothing for an absent expression.
  * Contract: [TPL-12](../../../../spec/language/static-results.md#tpl-12).
  */
 static bool push(StaticInventory *inventory, ExpressionWork **pending,
@@ -48,7 +48,7 @@ bool static_expression_occurrences(StaticInventory *inventory, StaticModule *mod
         for (const AstStaticBinding *binding = work->expression->first; binding != NULL; binding = binding->next) {
             if (binding->kind == AST_STATIC_INPUT) {
                 if (!push(inventory, &pending, binding->input, false)) { return false; }
-            } else if (!binding->omitted) {
+            } else {
                 StaticOccurrence receiver = head;
                 receiver.site = binding->receiver;
                 receiver.receiver = binding;

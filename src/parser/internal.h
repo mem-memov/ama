@@ -61,24 +61,27 @@ bool parser_static_name(SourceSpan);
 /** Parse one static expression from the current physical head line and its
  * exact child binding region; publish only a complete AST-owned tree.
  * Component contract: [TPL-12](../../spec/language/static-results.md#tpl-12)
- * fixes child indentation, inputs-before-outputs and explicit skips.
+ * fixes named operands and input-only values; only a producer root has outputs.
  */
-bool parser_type_expression(Parser *, SourceSpan, size_t, AstTypeExpression **);
-/** Parse a static formal and its recursively nonempty optional signature.
- * Component contract: [TPL-07](../../spec/language/templates.md#tpl-07)
- * requires explicit named signature structure, independent of actual kinds.
+bool parser_type_expression(Parser *, SourceSpan, size_t, bool, AstTypeExpression **);
+/** Parse a simple ordinary type and optional named export before initializers.
+ * [TPL-12](../../spec/language/static-results.md#tpl-12) forbids inline static applications.
  */
-bool parser_static_formal(Parser *, size_t, AstStaticFormal **);
+bool parser_runtime_type(Parser *, size_t, AstTypeExpression **);
+/** Parse an exclusive graph without ordinary statement or symbol lookup.
+ * [TPL-12](../../spec/language/static-results.md#tpl-12) distinguishes pairs and producer uses by syntax.
+ */
+bool parser_static_body(Parser *, ParsedSection, AstBlock *);
 /** Parse a static result name and same-level defining expression.
  * Component contract: [TPL-12](../../spec/language/static-results.md#tpl-12)
  * creates no ordinary result storage or runtime initializer sequence.
  */
 bool parser_static_result(Parser *, size_t, AstNode *);
-/** Compose a static expression with explicit projection or constant-read actions.
+/** Compose a simple ordinary Type namespace with retained constant-read actions.
  * Component contract: [TPL-12](../../spec/language/static-results.md#tpl-12)
  * preserves source-only classification before producer resolution.
  */
-bool parser_static_statement(Parser *, ParseFrame **, AstNode *);
+bool parser_namespace_statement(Parser *, ParseFrame **, AstNode *);
 /** Build an iterative access/index shape; publish output only on full suffix/bracket consumption. Failed partial nodes remain arena-owned.
  * Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01). */
 bool parser_access(Parser *parser, SourceSpan text, AstAccess **output);

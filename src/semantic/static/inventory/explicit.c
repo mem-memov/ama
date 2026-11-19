@@ -1,10 +1,10 @@
 /**
  * @file
- * @brief Collect explicit static formals and result binders before local introduction classification.
+ * @brief Collect named static graph results before free-input classification.
  *
- * [TPL-02](../../../../spec/language/templates.md#tpl-02) gives explicit names
+ * [TPL-02](../../../../spec/language/templates.md#tpl-02) gives graph binders
  * whole-module scope. [TPL-07](../../../../spec/language/templates.md#tpl-07)
- * fixes explicit Type/Template category structurally; foreign signature names
+ * separates deferred Type/Template metadata from source binders; foreign labels
  * are not owner formals. [TPL-12](../../../../spec/language/static-results.md#tpl-12)
  * gives static results their own textual interface order and no free input slot.
  */
@@ -21,11 +21,7 @@ static bool declaration(StaticInventory *inventory, StaticModule *module, const 
     SourceSpan name;
     StaticRole role;
     StaticCategory category;
-    if (node->kind == AST_STATIC_FORMAL) {
-        name = node->as.static_formal->name;
-        role = STATIC_PARAMETER;
-        category = node->as.static_formal->first == NULL ? STATIC_CATEGORY_TYPE : STATIC_CATEGORY_TEMPLATE;
-    } else if (node->kind == AST_STATIC_RESULT) {
+    if (node->kind == AST_STATIC_RESULT) {
         name = node->as.static_result.name;
         role = STATIC_RESULT;
         category = STATIC_CATEGORY_DEFERRED;
@@ -37,8 +33,8 @@ static bool declaration(StaticInventory *inventory, StaticModule *module, const 
     return true;
 }
 
-/** Consume each input/result top-level declaration once. Runtime fields and
- * nested foreign signatures add no local symbol or static interface position.
+/** Consume each public graph pair once. Ordinary fields and nested foreign
+ * labels add no public graph result.
  * Must precede implicit symbol insertion; partial records remain owned on error.
  * Contract: [TPL-02](../../../../spec/language/templates.md#tpl-02),
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12).
@@ -47,7 +43,7 @@ bool static_collect_explicit(StaticInventory *inventory, StaticModule *module) {
     if (inventory->status != STATIC_OK) { return false; }
     assert(module->first == NULL && module->parameter_count == 0 && module->result_count == 0);
     const AstModule *syntax = &module->definition->syntax;
-    AstBlock blocks[] = {syntax->parameters, syntax->results};
+    AstBlock blocks[] = {syntax->graph};
     for (size_t block = 0; block < sizeof(blocks) / sizeof(*blocks); block++) {
         for (const AstNode *node = blocks[block].first; node != NULL; node = node->next) {
             if (!declaration(inventory, module, node)) { return false; }

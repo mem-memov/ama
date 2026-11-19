@@ -73,7 +73,7 @@ typedef enum { AST_ENTRY_CALL, AST_RESUME_CALL, AST_RETAINED_READ, AST_CONSTANT_
 typedef enum {
     AST_DECLARATION, AST_ASSIGNMENT, AST_CALL, AST_BRANCH,
     AST_LOOP, AST_BREAK, AST_RETURN, AST_SUSPEND, AST_FOREACH,
-    AST_STATIC_FORMAL, AST_STATIC_RESULT, AST_STATIC_PROJECTION
+    AST_STATIC_RESULT, AST_STATIC_PROJECTION
 } AstNodeKind;
 /**
  * Forward declaration of an arena-owned structural syntax node; its complete tagged body follows
@@ -130,7 +130,6 @@ struct AstNode {
             bool has_alternative;
             AstBlock alternative;
         } call;
-        AstStaticFormal *static_formal;
         struct {
             SourceSpan name;
             AstTypeExpression *expression;
@@ -172,6 +171,10 @@ typedef struct {
     AstBlock parameters;
     AstBlock results;
     AstBlock body;
+    /** Source-only equation graph; no ordinary body is stored here.
+     * [TPL-12](../../spec/language/static-results.md#tpl-12) separates both phases.
+     */
+    AstBlock graph;
     ParseError error;
     AstWarning *warnings;
     bool valid;

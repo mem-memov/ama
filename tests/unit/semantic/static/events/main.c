@@ -13,6 +13,7 @@
 /** Run each actual collector/sorter component case explicitly. */
 void run(void) {
     it_collects_exact_static_heads_and_receivers_in_all_source_contexts();
+    it_collects_static_graph_owners_without_importing_foreign_labels();
     it_visits_every_runtime_owning_subtree_once_without_following_alias_links();
     it_orders_every_five_record_permutation_and_prefix_stably_without_allocation();
     it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count();

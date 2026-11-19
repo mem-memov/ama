@@ -20,7 +20,7 @@ typedef struct { StaticCategory category; StaticSignature *signature; } StaticMe
  * Contract: [TPL-07](../../../../spec/language/templates.md#tpl-07).
  */
 StaticMetadata static_expression_metadata(const StaticInventory *, const StaticModule *, const AstTypeExpression *);
-/** Monotonically resolve finite known result and pattern slots. Applications
+/** Monotonically resolve finite known result and constructor slots. Applications
  * and projected aliases remain explicit obligations; no default is chosen.
  * Contract: [TPL-12](../../../../spec/language/static-results.md#tpl-12).
  */

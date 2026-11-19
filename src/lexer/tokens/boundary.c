@@ -14,11 +14,10 @@ static bool opens(LexKind kind) {
 static bool suffix(LexKind kind) {
     return kind == LEX_LIST || kind == LEX_REFERENCE_LIST || kind == LEX_REFERENCE_INDEX || kind == LEX_INDEX_OPEN;
 }
-/** Check exact joins without lookup, including a static prefix's two source
- * roles: an adjoining name or a separated positional binding marker.
+/** Check exact joins without lookup; a static prefix always adjoins its name.
  * Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06)
  * fixes adjacency; [TPL-12](../../../spec/language/static-results.md#tpl-12)
- * admits bare three dots only before its static input/output marker.
+ * permits only complete named static operands, never a bare binding prefix.
  */
 bool lex_boundary(LexCursor *cursor, const LexToken *token, bool *reference_prefix) {
     bool separated = cursor->has_previous;
@@ -28,13 +27,12 @@ bool lex_boundary(LexCursor *cursor, const LexToken *token, bool *reference_pref
         return lex_failure(cursor, token->text.start, "The retained-result marker is one compound token", "adjoining >>");
     }
     if (cursor->has_previous && previous == LEX_STATIC_PREFIX) {
-        if (token->kind == LEX_NAME) {
-            separated = false;
-        } else if (token->kind != LEX_INPUT && token->kind != LEX_OUTPUT) {
+        if (token->kind != LEX_NAME) {
             return lex_failure(cursor, token->text.start,
-                "A static prefix requires its adjoining name or positional binding marker",
-                "an adjoining complete name or one space before < or >");
+                "A static prefix requires its adjoining complete name",
+                "an adjoining complete Unicode name");
         }
+        separated = false;
     } else if (cursor->has_previous && (opens(previous) || (previous == LEX_REFERENCE && cursor->reference_prefix))) {
         if (token->kind != LEX_NAME) {
             return lex_failure(cursor, token->text.start, "A compact access opener requires its name", "an adjoining complete Unicode name");

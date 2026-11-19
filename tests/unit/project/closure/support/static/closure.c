@@ -9,14 +9,15 @@ static void prepare_static_closure(void) {
     directory("generated/static project");
     directory("generated/static standard");
     directory("generated/static project/shelf+");
-    file("generated/static project/main", "@<\n...family\n ...element\n"
-        "input&\n...family\n ...element < .outer\n  ...element < ..item-state\n"
-        "@>\n...prepared\n.producer\n ...element < .item-state\n"
-        "@!\n.factory\n ... > ...alias\n...alias\n ...element < .shelf.child\n zero >> ignored\n");
-    file("generated/static project/outer", "@<\n...element\n@!\nback&\n.main\n");
+    file("generated/static project/main", "@...\n...input\n...family\n"
+        " ...element < .outer\n  ...element < ..item-state\n"
+        "...prepared\n.producer\n ...element < .item-state\n"
+        ".factory\n ...family > ...alias\n...selected\n...alias\n"
+        " ...element < .shelf.child\n");
+    file("generated/static project/outer", "@<\nvalue\n...element\n@!\nback&\n.main\n");
     file("generated/static project/item-state", "@!\n");
-    file("generated/static project/producer", "@<\n...element\n@!\n");
-    file("generated/static project/factory", "@>\n...family\n.producer\n@!\n");
+    file("generated/static project/producer", "@<\nvalue\n...element\n@!\n");
+    file("generated/static project/factory", "@...\n...family\n.producer\n");
     file("generated/static project/shelf", "unfinished [\n");
     file("generated/static project/shelf+/child", "@!\n");
     file("generated/static standard/item-state", "@C\n");

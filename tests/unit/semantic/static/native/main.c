@@ -4,21 +4,15 @@
 #include "../common.c"
 #include "semantic/static/native/admission.h"
 
-/** Every native-own introduction category is forbidden, including an unused
- * formal, interface-output-only head and new Type in a result definition.
+/** Every native ordinary interface Type introduction is forbidden, including
+ * an output-only placeholder; no standalone or Template formal syntax exists.
  */
 static void it_rejects_every_native_own_formal_at_its_original_marker_and_introduction(void) {
     const char *cases[] = {
-        "@<\n...unused type\n@C\n",
-        "@<\n...unused family\n ...foreign\n@C\n",
         "@<\nvalue\n...input type\n@C\n",
-        "@>\nvalue\n...result type\n@C\n",
-        "@<\nvalue\n...family\n ...foreign < ...element\n@C\n",
-        "@>\n...returned\n...value type\n@C\n",
-        "@<\nvalue\n...producer type\n ... >\n@C\n"
+        "@>\nvalue\n...result type\n@C\n"
     };
-    const char *names[] = {"...unused type", "...unused family", "...input type", "...result type",
-        "...family", "...value type", "...producer type"};
+    const char *names[] = {"...input type", "...result type"};
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
         setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
@@ -35,15 +29,15 @@ static void it_rejects_every_native_own_formal_at_its_original_marker_and_introd
     }
 }
 
-/** Actual source applications can bind every formal concretely; that cannot
- * legalize the native definition or manufacture a default specialization.
+/** Ordinary typed calls cannot legalize a generic native definition, even if
+ * their argument could constrain its Type in a later inference stage.
  */
 static void it_rejects_a_native_definition_even_when_every_source_use_binds_its_parameter(void) {
-    setup_static("@<\n...type\n@C\n", "@!\nvalue\n.main\n ...type < .other\n");
+    setup_static("@<\nvalue&\n...type\n@C\n", "@!\nvalue\n.main\nknown&\n.other\n &\nvalue !\n < known&\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticModule *other = static_module_find(&inventory, project_find(&project, ".other"));
     assert(other != NULL && other->parameter_count == 0 && other->first_occurrence->origin == project.entry);
-    assert(other->first_occurrence->expression->first != NULL);
+    assert(other->first_occurrence->expression->first == NULL);
     StaticNativeAdmission result = {0};
     size_t before = allocation_count;
     assert(!static_native_admit(&inventory, &result) && allocation_count == before);
@@ -51,21 +45,18 @@ static void it_rejects_a_native_definition_even_when_every_source_use_binds_its_
     destroy_static();
 }
 
-/** Foreign labels, aliases, returned constructor residuals and concrete native
- * dependencies create no native own parameters. Ama definitions may stay generic.
+/** Concrete fields and named exports create no native own parameters. Ordinary
+ * Ama definitions may stay generic; no native definition is specialized.
  */
 static void it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templates(void) {
     const char *main_text[] = {
         "@C\n",
-        "@<\n...type\n@!\n",
-        "@>\n...returned\n.other\n@C\n",
-        "@<\nsource\n.other\n ...foreign result > ...alias\ntarget&\n...alias\n@C\n",
-        "@<\nfield\n.other\n ...foreign slot < .main\n@C\n",
+        "@<\nvalue\n...type\n@!\n",
+        "@<\nfield\n.other\n ...native type\n@C\n",
         "@<\ninput\n.other\n@C\n"
     };
-    const char *other_text[] = {STATIC_SCOPE_SOURCE_TEXT, "@<\n...other type\n@!\n",
-        "@<\n...foreign slot\n@!\n", "@>\n...foreign result\n.other\n@!\n",
-        "@<\n...foreign slot\n@!\n", "@C\n"};
+    const char *other_text[] = {STATIC_SCOPE_SOURCE_TEXT,
+        "@<\nvalue\n...other type\n@!\n", "@...\n...native type\n.main\n", "@C\n"};
     for (size_t index = 0; index < sizeof(main_text) / sizeof(*main_text); index++) {
         setup_static(main_text[index], other_text[index]);
         assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
@@ -79,20 +70,20 @@ static void it_accepts_native_nonformal_metadata_and_does_not_restrict_ama_templ
     }
 }
 
-/** Symbol chains group explicit binders first, but original ordinal zero may
- * be an earlier implicit Type. Definition order is the loaded inventory order.
+/** Original Type-line order fixes the selected prohibited parameter; definition
+ * order is the loaded inventory order.
  */
 static void it_selects_original_formal_order_and_the_first_prohibited_native_definition(void) {
-    setup_static("@<\nfirst\n...implicit type\n...explicit type\n@C\n", "@<\n...other type\n@C\n");
+    setup_static("@<\nfirst\n...implicit type\nsecond\n...second type\n@C\n", "@<\nvalue\n...other type\n@C\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticModule *module = static_module_find(&inventory, project.entry);
-    assert(layout_text_is(module->first->name, "...explicit type") && module->first->ordinal == 1);
+    assert(layout_text_is(module->first->name, "...implicit type") && module->first->ordinal == 0);
     StaticNativeAdmission result = {0};
     assert(!static_native_admit(&inventory, &result));
     assert(result.error.primary.span.source == project.entry->source->text);
     assert(layout_text_is(result.parameter.location.span, "...implicit type"));
     destroy_static();
-    setup_static("@<\n...ama type\n@!\n", "@<\n...native type\n@C\n");
+    setup_static("@<\nvalue\n...ama type\n@!\n", "@<\nvalue\n...native type\n@C\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     assert(!static_native_admit(&inventory, &result));
     assert(result.error.primary.span.source == project_find(&project, ".other")->source->text);
@@ -104,7 +95,7 @@ static void it_selects_original_formal_order_and_the_first_prohibited_native_def
  * scratch cannot invalidate related storage or original source locations.
  */
 static void it_keeps_native_admission_diagnostics_alive_after_inventory_scratch_destruction(void) {
-    setup_static("@<\n...unused\n@C\n", STATIC_SCOPE_SOURCE_TEXT);
+    setup_static("@<\nunused\n...unused\n@C\n", STATIC_SCOPE_SOURCE_TEXT);
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     StaticNativeAdmission result = {0};
     assert(!static_native_admit(&inventory, &result));

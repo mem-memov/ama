@@ -7,9 +7,8 @@
  */
 static void prepare_missing_static_dependency(void) {
     prepare_static_closure();
-    file("generated/static project/main", "@!\nvalue\n.outer\n ...element < .middle\n");
-    file("generated/static project/middle", "@<\n...family\n ...element\n"
-        "@!\nvalue\n...family\n ...element < ..absent\n");
+    file("generated/static project/main", "@...\n...value\n.outer\n ...element < .middle\n");
+    file("generated/static project/middle", "@...\n...value\n...family\n ...element < ..absent\n");
     file("generated/static project/absent", "@!\n");
     int removed = remove("generated/static standard/absent");
     assert(removed == 0 || errno == ENOENT);

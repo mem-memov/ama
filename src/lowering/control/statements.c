@@ -14,7 +14,7 @@
 #include "internal.h"
 
 /** Lower only executable source shapes whose static analysis is complete.
- * Raw static formals/results/projections cannot silently become missing runtime
+ * Raw static graph results/projections cannot silently become missing runtime
  * edges; type terms and projections are resolved before this stage.
  * Contract: [GEN-02](../../../spec/implementation/compiler.md#gen-02),
  * [COMP-02](../../../spec/implementation/compiler.md#comp-02).
@@ -23,7 +23,6 @@ ControlNode *lower_statement(Lowering *lowering, const SemanticStatement *statem
     ControlNode *after, ControlNode *break_target) {
     const AstNode *node = statement->syntax;
     switch (node->kind) {
-        case AST_STATIC_FORMAL:
         case AST_STATIC_RESULT:
         case AST_STATIC_PROJECTION:
             plan_fail(lowering->plan, node->span, "Static source nodes must be resolved before executable lowering");

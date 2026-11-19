@@ -21,6 +21,13 @@ ParseStatus parser_module_parse(AstModule *module, const SourceText *source) {
         return PARSE_OK;
     }
     Parser parser = {module, NULL, NULL, false};
+    if (module->sections.kind == MODULE_STATIC) {
+        if (!parser_static_body(&parser, module->sections.graph, &module->graph)) {
+            return module->error.diagnostic.code == DIAGNOSTIC_OUT_OF_MEMORY ? PARSE_OUT_OF_MEMORY : PARSE_INVALID;
+        }
+        module->valid = true;
+        return PARSE_OK;
+    }
     bool parsed = parser_declarations(&parser, module->sections.constants, &module->constants)
         && parser_declarations(&parser, module->sections.parameters, &module->parameters)
         && parser_declarations(&parser, module->sections.results, &module->results);

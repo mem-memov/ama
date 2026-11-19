@@ -135,8 +135,8 @@ static void it_rejects_global_tabs_and_lone_cr_before_any_literal_or_activation_
 
 /** Fixed annotations, empty literals, self reference and standalone markers retain their exact lexical categories. */
 static void it_recognizes_every_annotation_and_standalone_marker(void) {
-    const char *spellings[] = {"@=", "@<", "@>", "@!", "@C", "&", "%", "<", ">", "?", ":", "{", "}", "^", "|"};
-    const LexKind expected[] = {LEX_CONSTANTS,LEX_PARAMETERS,LEX_RESULTS,LEX_AMA,LEX_NATIVE,
+    const char *spellings[] = {"@=", "@<", "@>", "@!", "@C", "@...", "&", "%", "<", ">", "?", ":", "{", "}", "^", "|"};
+    const LexKind expected[] = {LEX_CONSTANTS,LEX_PARAMETERS,LEX_RESULTS,LEX_AMA,LEX_NATIVE,LEX_STATIC_MODULE,
         LEX_REFERENCE,LEX_CONTINUATION,LEX_INPUT,LEX_OUTPUT,LEX_QUESTION,LEX_COLON,LEX_LOOP_OPEN,
         LEX_LOOP_CLOSE,LEX_BREAK,LEX_LITERAL};
     for (size_t index = 0; index < sizeof(expected) / sizeof(expected[0]); index++) {
@@ -239,20 +239,18 @@ static void it_uses_hyphen_words_in_paths_accesses_and_literal_labels(void) {
     }
 }
 
-/** Three dots form one token before either an atomic static name or a spaced
- * positional binding; four dots and padded component joins are never repaired.
+/** Three dots adjoin complete static names; no positional prefix or padded join is accepted.
  */
 static void it_distinguishes_static_prefixes_from_module_roots_and_binding_separators(void) {
-    const char *valid[] = {"...key-type.part < ..integer", "... <",
-        "... > ...received-type", "... >"};
-    const LexKind kinds[][5] = {
-        {LEX_STATIC_PREFIX, LEX_NAME, LEX_DOT, LEX_NAME, LEX_INPUT},
-        {LEX_STATIC_PREFIX, LEX_INPUT},
-        {LEX_STATIC_PREFIX, LEX_OUTPUT, LEX_STATIC_PREFIX, LEX_NAME},
-        {LEX_STATIC_PREFIX, LEX_OUTPUT}
+    const char *valid[] = {"...key-type.part < ..integer", "...input < ...value",
+        "...output > ...received-type"};
+    const LexKind kinds[][7] = {
+        {LEX_STATIC_PREFIX, LEX_NAME, LEX_DOT, LEX_NAME, LEX_INPUT, LEX_STANDARD_ROOT, LEX_NAME},
+        {LEX_STATIC_PREFIX, LEX_NAME, LEX_INPUT, LEX_STATIC_PREFIX, LEX_NAME},
+        {LEX_STATIC_PREFIX, LEX_NAME, LEX_OUTPUT, LEX_STATIC_PREFIX, LEX_NAME}
     };
-    const size_t checked[] = {5, 2, 4, 2};
-    for (size_t index = 0; index < 4; index++) {
+    const size_t checked[] = {7, 5, 5};
+    for (size_t index = 0; index < 3; index++) {
         setup_test();
         LexCursor cursor;
         assert(begin(valid[index], 0, &cursor));
@@ -261,15 +259,11 @@ static void it_distinguishes_static_prefixes_from_module_roots_and_binding_separ
             assert(lex_token_next(&cursor, &token) == LEX_TOKEN);
             assert(token.kind == kinds[index][ordinal]);
         }
-        if (index == 0) {
-            assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_STANDARD_ROOT);
-            assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_NAME);
-        }
         assert(lex_token_next(&cursor, &token) == LEX_END);
         destroy_layout();
     }
     const char *invalid[] = {"....type", "... type", "...< ..integer",
-        "...type..part", "...type...part"};
+        "...type..part", "...type...part", "... <", "... >", "... > ...received-type"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
         setup_test();
         LexCursor cursor;

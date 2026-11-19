@@ -117,7 +117,7 @@ bool parser_statement(Parser *parser, ParseFrame **frame) {
             && parser_start_call(parser, frame, node, target, mode);
     }
     if (text.end > text.start && bytes[text.start] == '.') {
-        return parser_static_statement(parser, frame, node);
+        return parser_namespace_statement(parser, frame, node);
     }
     return bare_target(parser, frame, node);
 }

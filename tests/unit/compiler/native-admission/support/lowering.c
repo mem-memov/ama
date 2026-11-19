@@ -3,20 +3,20 @@
  */
 
 /** Native prepass integration compiles the whole frontend under strict warnings.
- * All three new AST kinds must be explicitly refused if an invalid semantic
+ * Both static graph AST kinds must be explicitly refused if an invalid semantic
  * producer leaks them into lowering; no runtime node or allocation is created.
  */
 static void it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary(void) {
-    const char *texts[] = {"@<\n...unused\n@!\n", "@>\n...result\n.other\n@!\n", "@!\n.other\n ... >\n"};
-    const AstNodeKind kinds[] = {AST_STATIC_FORMAL, AST_STATIC_RESULT, AST_STATIC_PROJECTION};
-    for (size_t index = 0; index < 3; index++) {
+    const char *texts[] = {"@...\n...result\n.other\n", "@...\n.other\n ...result > ...alias\n"};
+    const AstNodeKind kinds[] = {AST_STATIC_RESULT, AST_STATIC_PROJECTION};
+    for (size_t index = 0; index < 2; index++) {
         setup_test();
         const SourceText *source = NULL;
         assert(source_manager_add(&sources, "lowering boundary", (const unsigned char *)texts[index], strlen(texts[index]), &source) == SOURCE_OK);
         AstModule syntax;
         ast_module_init(&syntax, sources.allocator);
         assert(parser_module_parse(&syntax, source) == PARSE_OK);
-        const AstNode *node = index == 0 ? syntax.parameters.first : index == 1 ? syntax.results.first : syntax.body.first;
+        const AstNode *node = syntax.graph.first;
         assert(node != NULL && node->kind == kinds[index]);
         ProgramPlan plan = {0};
         Lowering lowering = {.plan = &plan};

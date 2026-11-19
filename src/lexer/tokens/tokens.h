@@ -11,6 +11,7 @@
 /** Lexical categories contain no name-binding or declared-type decisions. Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06), [SYN-02](../../../spec/language/source-and-names.md#syn-02). */
 typedef enum {
     LEX_NAME, LEX_LITERAL, LEX_CONSTANTS, LEX_PARAMETERS, LEX_RESULTS, LEX_AMA, LEX_NATIVE,
+    LEX_STATIC_MODULE,
     LEX_READ, LEX_LIST, LEX_REFERENCE_LIST, LEX_REFERENCE_INDEX, LEX_STANDARD_ROOT,
     LEX_DOT, LEX_REFERENCE, LEX_INDEX_OPEN, LEX_INDEX_CLOSE, LEX_EXECUTE, LEX_CONTINUATION,
     LEX_INPUT, LEX_OUTPUT, LEX_QUESTION, LEX_COLON, LEX_LOOP_OPEN, LEX_LOOP_CLOSE, LEX_BREAK,

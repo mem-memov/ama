@@ -1,26 +1,42 @@
 /** @file
- * @brief Verify explicit finite signatures against independent structural partitions.
+ * @brief Verify actual finite metadata signatures against independent structural partitions.
  */
 #include "../common.c"
 #include "semantic/static/signature/signature.h"
 
-/** Two identical foreign name sets deliberately reverse every sibling order. */
+/** Current ordinary Type parameters supply borrowed names for independent metadata
+ * fixtures. No source declaration of an expected constructor signature exists.
+ */
 static const char *signature_source =
-    "@<\n...left\n ...key\n ...family\n  ...value\n  ...other\n"
-    "...right\n ...family\n  ...other\n  ...value\n ...key\n@!\n";
+    "@<\nleft\n...left\nright\n...right\nkey\n...key\nfamily\n...family\n"
+    "value\n...value\nother\n...other\n@!\n";
 
-/** Build two parsed constructor signatures without introducing their members
- * into the local table. Output records own metadata, never source strings.
+/** Construct independent finite name sets in opposite sibling orders. These
+ * literal metadata fixtures exercise comparison, not a removed AST builder.
  */
 static void signatures(StaticSignature **left, StaticSignature **right) {
-    const AstNode *node = project.entry->syntax.parameters.first;
-    assert(node != NULL && node->next != NULL);
-    assert(static_signature_build(&inventory, node->as.static_formal->first, left));
-    assert(static_signature_build(&inventory, node->next->as.static_formal->first, right));
+    StaticSignature *roots = static_allocate(&inventory, 4 * sizeof(*roots));
+    StaticSignatureEntry *slots = static_allocate(&inventory, 8 * sizeof(*slots));
+    assert(roots != NULL && slots != NULL);
+    const char *names[] = {"...key", "...family", "...value", "...other",
+        "...family", "...key", "...other", "...value"};
+    for (size_t index = 0; index < 8; index++) {
+        slots[index].name = static_name_site(project.entry, names[index]);
+        slots[index].category = STATIC_CATEGORY_TYPE;
+        if (index % 2 == 0) { slots[index].next = &slots[index + 1]; }
+    }
+    for (size_t index = 0; index < 4; index++) {
+        roots[index] = (StaticSignature){&slots[2 * index], &slots[2 * index + 1], 2};
+    }
+    slots[1].category = slots[4].category = STATIC_CATEGORY_TEMPLATE;
+    slots[1].signature = &roots[1];
+    slots[4].signature = &roots[3];
+    *left = &roots[0];
+    *right = &roots[2];
 }
 
 /** Exact recursive sets ignore source ordering and preserve foreign provenance. */
-static void it_builds_finite_foreign_signatures_and_matches_reordered_name_sets(void) {
+static void it_matches_reordered_finite_actual_signature_name_sets(void) {
     setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
     StaticSignature *left = NULL, *right = NULL;
     signatures(&left, &right);
@@ -28,11 +44,11 @@ static void it_builds_finite_foreign_signatures_and_matches_reordered_name_sets(
     assert(layout_text_is(left->first->name, "...key"));
     assert(left->first->category == STATIC_CATEGORY_TYPE && left->first->signature == NULL);
     assert(left->last->category == STATIC_CATEGORY_TEMPLATE && left->last->signature->count == 2);
-    assert(left->last->pending_expression == NULL && inventory.first == NULL);
+    assert(inventory.first == NULL);
     StaticSignatureComparison result = STATIC_SIGNATURE_DIFFERENT;
-    assert(static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_EXACT, &result));
+    assert(static_signature_compare_arena(&inventory.arena, left, right, &result));
     assert(result == STATIC_SIGNATURE_EQUAL && !inventory.valid);
-    assert(static_signature_compare(&inventory, right, left, STATIC_SIGNATURE_EXACT, &result));
+    assert(static_signature_compare_arena(&inventory.arena, right, left, &result));
     assert(result == STATIC_SIGNATURE_EQUAL);
     destroy_static();
 }
@@ -58,95 +74,60 @@ static void it_distinguishes_missing_renamed_nested_category_and_pending_slots(v
                 break;
         }
         StaticSignatureComparison result = STATIC_SIGNATURE_EQUAL;
-        assert(static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_EXACT, &result));
+        assert(static_signature_compare_arena(&inventory.arena, left, right, &result));
         assert(result == ((partition == 4 || partition == 5) ? STATIC_SIGNATURE_PENDING : STATIC_SIGNATURE_DIFFERENT));
-        assert(static_signature_compare(&inventory, right, left, STATIC_SIGNATURE_EXACT, &result));
+        assert(static_signature_compare_arena(&inventory.arena, right, left, &result));
         assert(result == ((partition == 4 || partition == 5) ? STATIC_SIGNATURE_PENDING : STATIC_SIGNATURE_DIFFERENT));
         assert(inventory.status == STATIC_OK);
         destroy_static();
     }
 }
 
-/** Duplicate foreign slots fail within either root or nested signature, while
- * identical spelling at distinct levels remains valid and does not capture.
+/** Every comparison allocation refusal preserves the caller result and leaves
+ * owned scratch available to counted teardown; fixtures are prepared first.
  */
-static void it_rejects_same_level_signature_duplicates_at_original_sites(void) {
-    const char *cases[] = {
-        "@<\n...family\n ...slot\n ...slot\n@!\n",
-        "@<\n...family\n ...nested\n  ...slot\n  ...slot\n@!\n"
-    };
-    for (size_t index = 0; index < 2; index++) {
-        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
-        StaticSignature *output = NULL;
-        assert(!static_signature_build(&inventory,
-            project.entry->syntax.parameters.first->as.static_formal->first, &output));
-        assert(output == NULL && inventory.status == STATIC_INVALID);
-        assert(diagnostic_valid(&inventory.error) && inventory.error.related_count == 1);
-        assert(layout_text_is(inventory.error.primary.span, "...slot"));
-        assert(layout_text_is(inventory.related.location.span, "...slot"));
-        assert(inventory.error.primary.span.start > inventory.related.location.span.start);
+static void it_unwinds_every_signature_comparison_allocation_failure(void) {
+    size_t total = 0;
+    for (size_t failure = 0; failure <= total; failure++) {
+        setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
+        StaticSignature *left = NULL, *right = NULL;
+        signatures(&left, &right);
+        StaticSignatureComparison comparison = STATIC_SIGNATURE_DIFFERENT;
+        size_t before = allocation_count;
+        if (failure != 0) { failure_at = before + failure; }
+        bool success = static_signature_compare_arena(&inventory.arena, left, right,
+            &comparison);
+        if (failure == 0) { assert(success); total = allocation_count - before; assert(total != 0); }
+        else {
+            assert(!success && inventory.status == STATIC_OK && !inventory.valid);
+            assert(comparison == STATIC_SIGNATURE_DIFFERENT);
+        }
         destroy_static();
     }
-    setup_static("@<\n...family\n ...slot\n  ...slot\n@!\n", STATIC_SCOPE_SOURCE_TEXT);
-    StaticSignature *output = NULL;
-    assert(static_signature_build(&inventory,
-        project.entry->syntax.parameters.first->as.static_formal->first, &output));
-    assert(output->count == 1 && output->first->signature->count == 1);
-    destroy_static();
 }
 
-/** Every observed allocation refusal leaves caller outputs untouched; no
- * partially built tree or interrupted comparison certifies a usable inventory.
+/** Deep finite actual metadata checks iterative comparison independently of
+ * source syntax. This depth is evidence, never a semantic nesting limit.
  */
-static void it_unwinds_every_signature_build_and_compare_allocation_failure(void) {
-    for (size_t operation = 0; operation < 2; operation++) {
-        size_t total = 0;
-        for (size_t failure = 0; failure <= total; failure++) {
-            setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
-            StaticSignature *left = NULL, *right = NULL, *output = NULL;
-            if (operation == 1) { signatures(&left, &right); }
-            StaticSignatureComparison comparison = STATIC_SIGNATURE_DIFFERENT;
-            size_t before = allocation_count;
-            if (failure != 0) { failure_at = before + failure; }
-            bool success = operation == 0 ? static_signature_build(&inventory,
-                project.entry->syntax.parameters.first->as.static_formal->first, &output) :
-                static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_EXACT, &comparison);
-            if (failure == 0) { assert(success); total = allocation_count - before; assert(total != 0); }
-            else {
-                assert(!success && inventory.status == STATIC_OUT_OF_MEMORY && !inventory.valid);
-                assert(output == NULL && comparison == STATIC_SIGNATURE_DIFFERENT);
-                assert(diagnostic_valid(&inventory.error));
-            }
-            destroy_static();
-        }
-    }
-}
-
-/** Deep syntax exercises explicit work frames in construction and comparison;
- * this fixture depth is evidence, never a language nesting limit.
- */
-static void it_builds_and_compares_deep_signatures_without_recursive_c_activation(void) {
+static void it_compares_deep_signatures_without_recursive_c_activation(void) {
     setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
     enum { DEPTH = 900 };
-    AstStaticFormal formals[DEPTH];
-    memset(formals, 0, sizeof(formals));
+    StaticSignature roots[DEPTH][2];
+    StaticSignatureEntry slots[DEPTH][2];
+    memset(roots, 0, sizeof(roots));
+    memset(slots, 0, sizeof(slots));
     SourceSpan name = static_name_site(project.entry, "...key");
     for (size_t index = 0; index < DEPTH; index++) {
-        formals[index].name = name;
-        if (index + 1 < DEPTH) { formals[index].first = &formals[index + 1]; }
+        for (size_t side = 0; side < 2; side++) {
+            roots[index][side] = (StaticSignature){&slots[index][side], &slots[index][side], 1};
+            slots[index][side].name = name;
+            slots[index][side].category = index + 1 < DEPTH ? STATIC_CATEGORY_TEMPLATE : STATIC_CATEGORY_TYPE;
+            if (index + 1 < DEPTH) { slots[index][side].signature = &roots[index + 1][side]; }
+        }
     }
-    StaticSignature *left = NULL, *right = NULL;
-    assert(static_signature_build(&inventory, formals, &left));
-    assert(static_signature_build(&inventory, formals, &right));
     StaticSignatureComparison result = STATIC_SIGNATURE_DIFFERENT;
-    assert(static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_EXACT, &result));
+    assert(static_signature_compare_arena(&inventory.arena, &roots[0][0], &roots[0][1], &result));
     assert(result == STATIC_SIGNATURE_EQUAL);
-    StaticSignature *cursor = left;
-    for (size_t index = 0; index < DEPTH; index++) {
-        assert(cursor != NULL && cursor->count == 1);
-        cursor = cursor->first->signature;
-    }
-    assert(cursor == NULL);
     destroy_static();
 }
 
@@ -180,48 +161,67 @@ static void it_memoizes_shared_signature_pairs_without_skipping_pending_metadata
         if (pending != 0) { right_slots[LEVELS - 1][1].category = STATIC_CATEGORY_DEFERRED; }
         size_t before = allocation_count;
         StaticSignatureComparison result = STATIC_SIGNATURE_DIFFERENT;
-        assert(static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_EXACT, &result));
+        assert(static_signature_compare_arena(&inventory.arena, left, right, &result));
         assert(result == (pending == 0 ? STATIC_SIGNATURE_EQUAL : STATIC_SIGNATURE_PENDING));
         assert(allocation_count - before == LEVELS);
     }
     destroy_static();
 }
 
-/** Provided mode permits only a root subset; nested constructor signatures
- * retain exact finite name sets. Root excess and renamed names still fail.
+/** Known actual metadata admits shared DAGs and refuses active ancestor edges.
+ * Each measured traversal allocation is refused independently, preserving owned
+ * scratch and the exact distinction between resource failure and a cycle.
  */
-static void it_limits_partial_signature_matching_to_supplied_root_names(void) {
-    setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
-    StaticSignature *left = NULL, *right = NULL;
-    signatures(&left, &right);
-    left->count = 1;
-    left->first = left->last;
-    StaticSignatureComparison result;
-    assert(static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_PROVIDED, &result));
-    assert(result == STATIC_SIGNATURE_EQUAL);
-    assert(static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_EXACT, &result));
-    assert(result == STATIC_SIGNATURE_DIFFERENT);
-    assert(static_signature_compare(&inventory, right, left, STATIC_SIGNATURE_PROVIDED, &result));
-    assert(result == STATIC_SIGNATURE_DIFFERENT);
-    left->first->signature->count--;
-    left->first->signature->first = left->first->signature->last;
-    assert(static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_PROVIDED, &result));
-    assert(result == STATIC_SIGNATURE_DIFFERENT);
-    left->first->name = static_name_site(project.entry, "...left");
-    assert(static_signature_compare(&inventory, left, right, STATIC_SIGNATURE_PROVIDED, &result));
-    assert(result == STATIC_SIGNATURE_DIFFERENT);
-    destroy_static();
+static void it_checks_actual_signature_cycles_sharing_and_every_traversal_refusal(void) {
+    for (size_t shape = 0; shape < 3; shape++) {
+        size_t total = 0;
+        for (size_t failure = 0; failure <= total; failure++) {
+            setup_static(signature_source, STATIC_SCOPE_SOURCE_TEXT);
+            StaticModule *module = static_module_add(&inventory, project.entry);
+            assert(module != NULL);
+            StaticSignature roots[3] = {{0}};
+            StaticSignatureEntry slots[4] = {{0}};
+            SourceSpan name = static_name_site(project.entry, "...key");
+            for (size_t index = 0; index < 4; index++) {
+                slots[index].name = name;
+                slots[index].category = STATIC_CATEGORY_TEMPLATE;
+            }
+            slots[1].name = static_name_site(project.entry, "...family");
+            roots[0] = (StaticSignature){&slots[0], &slots[1], 2};
+            roots[1] = (StaticSignature){&slots[2], &slots[2], 1};
+            roots[2] = (StaticSignature){&slots[3], &slots[3], 1};
+            slots[0].next = &slots[1];
+            slots[0].signature = &roots[1];
+            slots[1].signature = slots[2].signature = &roots[2];
+            if (shape == 0) { slots[3].category = STATIC_CATEGORY_TYPE; }
+            else { slots[3].signature = &roots[shape == 1 ? 2 : 0]; }
+            module->constructor_signature = &roots[0];
+            size_t before = allocation_count;
+            if (failure != 0) { failure_at = before + failure; }
+            bool success = static_signatures_acyclic(&inventory);
+            if (failure == 0) {
+                assert(success == (shape == 0));
+                total = allocation_count - before;
+                assert(total == 3);
+                assert(inventory.status == (shape == 0 ? STATIC_OK : STATIC_INVALID));
+                if (shape != 0) { assert(strstr(inventory.error.message, "Cyclic") != NULL); }
+            } else {
+                assert(!success && inventory.status == STATIC_OUT_OF_MEMORY);
+                assert(diagnostic_valid(&inventory.error));
+            }
+            destroy_static();
+        }
+    }
 }
 
 /** Execute every independent signature partition explicitly. */
 static void run(void) {
-    it_builds_finite_foreign_signatures_and_matches_reordered_name_sets();
+    it_matches_reordered_finite_actual_signature_name_sets();
     it_distinguishes_missing_renamed_nested_category_and_pending_slots();
-    it_rejects_same_level_signature_duplicates_at_original_sites();
-    it_unwinds_every_signature_build_and_compare_allocation_failure();
-    it_builds_and_compares_deep_signatures_without_recursive_c_activation();
+    it_unwinds_every_signature_comparison_allocation_failure();
+    it_compares_deep_signatures_without_recursive_c_activation();
     it_memoizes_shared_signature_pairs_without_skipping_pending_metadata();
-    it_limits_partial_signature_matching_to_supplied_root_names();
+    it_checks_actual_signature_cycles_sharing_and_every_traversal_refusal();
 }
 
 /** Return success only after all assertions and counted teardown pass. */
