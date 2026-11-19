@@ -168,7 +168,9 @@ Specification clarifications [T200](DONE.md#t200), [T202](DONE.md#t202) and
 [T203](DONE.md#t203) records the actual source/test ownership audit;
 [T214](DONE.md#t214) removes the unused preview service and retains only live
 operand preparation. [T206](DONE.md#t206) establishes the current source/AST
-boundary; [T207](DONE.md#t207) establishes whole-graph scope. T213 is next. T182 remains unfinished with its partial
+boundary; [T207](DONE.md#t207) establishes whole-graph scope;
+[T213](DONE.md#t213) checks the complete source closure and occurrence roles.
+T208 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -183,30 +185,6 @@ T212, not treated as current acceptance of removed inline projections.
 reuse, removal and replacement below; they do not establish current-spec support.
 
 ### Phase 2. Establish current source structure and bindings
-
-<a id="t213"></a>
-
-- [ ] **T213 — Resolve static graph dependencies and source module kinds.**
-  Prerequisites: T206.
-  Rules: [SRC-01](spec/language/source-and-names.md#src-01),
-  [SRC-02](spec/language/source-and-names.md#src-02),
-  [DEP-01](spec/implementation/compiler.md#dep-01),
-  [DEP-02](spec/implementation/compiler.md#dep-02),
-  [DEP-03](spec/implementation/compiler.md#dep-03).
-  Boundary: the common source registry, logical origin resolution, required
-  source closure and input invalidation; T206 only extracts syntactic spans.
-  Steps: traverse every new AST path position; load exact roots and resolve
-  ordinary constructor versus static producer roles; retain all source/native
-  dependencies and source-located missing/invalid-kind diagnostics.
-  Accept: pair RHS paths, nested arguments, producer heads, ordinary selector
-  producer paths and constant namespaces enter the actual closure. Static names,
-  selectors and foreign labels are not filesystem paths. Preserve both root
-  kinds, exact duplicate/alias rejection, name+/ mapping, draft rules and native
-  companions. Source-loading cycles do not recursively reload or imply successful
-  validation. Cover shared dependencies, reordered roots, missing/invalid sources,
-  stale input invalidation and allocation cleanup through real parser/registry
-  compositions. No implicit import, new package format or relative path is added.
-  Meet the common per-file tests, Doxygen links and same-task commit criteria.
 
 ### Phase 3. Build finite structural analysis and guarded identities
 
@@ -795,8 +773,8 @@ actual categories, captured values, native consumers and final conformance.
 
 [T206](DONE.md#t206) records source integration of the unchanged Internal hyphen
 words, Hyphenated name identity and Hyphen context boundaries; T196 reviews
-their final conformance alongside spelling. T213 owns new AST source lookup and
-dependency closure; T190 owns the native authoring/header consumers. T187/T188
+their final conformance alongside spelling. [T213](DONE.md#t213) records new AST
+source lookup and dependency closure; T190 owns the native authoring/header consumers. T187/T188
 own compiled storage, label dispatch, state and continuation evidence. T194 owns
 Concrete facade exports, Template export exclusion and the owned-child/independent-
 peer lifecycle acceptance clarified by T205. T192/T193 own editor/relocation

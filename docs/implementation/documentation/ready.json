@@ -15235,6 +15235,16 @@
         "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -15371,6 +15381,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -15552,6 +15572,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -15738,6 +15768,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -48534,6 +48574,21 @@
         "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_retains_occurrence_roles_and_nested_requester_locations",
+        "source": "tests/unit/project/closure/main.c",
+        "command": "make -C tests/unit/project/closure"
       }
     ]
   },
@@ -59355,6 +59410,11 @@
         "case": "it_owns_the_failed_native_input_path_after_project_destruction",
         "command": "make -C tests/unit/project/inputs",
         "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "case": "it_invalidates_static_producers_and_selected_consumers_from_nested_sources",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
       }
     ]
   },
@@ -62806,6 +62866,16 @@
         "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ],
     "standalone_header_command": [
@@ -62927,6 +62997,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -126094,6 +126174,16 @@
         "case": "it_reports_exact_nested_static_requester_chains_and_root_failures",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
       }
     ]
   },
@@ -126103,6 +126193,16 @@
     "tests": [
       {
         "case": "it_loads_all_static_expression_positions_without_importing_placeholders_or_parents",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
       }
@@ -126136,6 +126236,16 @@
     "tests": [
       {
         "case": "it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
       }
@@ -152720,6 +152830,59 @@
         "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
         "command": "make -C tests/unit/semantic/static/explicit"
+      }
+    ]
+  },
+  "src/project/dependencies/registry/kinds.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Check source occurrence roles after the entire loading queue has parsed.",
+    "tests": [
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_retains_occurrence_roles_and_nested_requester_locations",
+        "source": "tests/unit/project/closure/main.c",
+        "command": "make -C tests/unit/project/closure"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/static/kinds.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Exercise parsed occurrence roles against all complete source kinds.",
+    "tests": [
+      {
+        "case": "it_checks_every_static_path_role_against_each_complete_source_kind",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
+        "command": "make -C tests/unit/project/closure",
+        "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "case": "it_retains_occurrence_roles_and_nested_requester_locations",
+        "source": "tests/unit/project/closure/main.c",
+        "command": "make -C tests/unit/project/closure"
+      }
+    ]
+  },
+  "tests/unit/project/inputs/support/static.c": {
+    "contract": "docs/implementation/project-dependencies.md",
+    "purpose": "Verify transitive invalidation through real static graph and selector edges.",
+    "tests": [
+      {
+        "case": "it_invalidates_static_producers_and_selected_consumers_from_nested_sources",
+        "command": "make -C tests/unit/project/inputs",
+        "source": "tests/unit/project/inputs/main.c"
       }
     ]
   }

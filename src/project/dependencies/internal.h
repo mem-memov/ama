@@ -28,6 +28,11 @@ bool project_parse_required(Project *project, ProjectModule *module);
 /** Collect all represented AST path dependencies using finite explicit blocks; no C recursive module/body traversal.
  * Component contract: [DEP-02](../../../spec/implementation/compiler.md#dep-02). */
 bool project_discover(Project *project, ProjectModule *module);
+/** Validate retained source roles only after every registered target has parsed.
+ * Failure retains the exact occurrence and requester chain without publishing a closure.
+ * [TPL-12](../../../spec/language/static-results.md#tpl-12) distinguishes producers and Types.
+ */
+bool project_validate_kinds(Project *);
 /** Copy the complete path, require its exact module and append one source-mapped edge. Partial allocations remain project-owned on failure.
  * Component contract: [DEP-02](../../../spec/implementation/compiler.md#dep-02). */
 bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan path);

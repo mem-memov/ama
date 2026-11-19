@@ -14,7 +14,7 @@ static void prepare_static_closure(void) {
         "...prepared\n.producer\n ...element < .item-state\n"
         ".factory\n ...family > ...alias\n...selected\n...alias\n"
         " ...element < .shelf.child\n");
-    file("generated/static project/outer", "@<\nvalue\n...element\n@!\nback&\n.main\n");
+    file("generated/static project/outer", "@<\nvalue\n...element\n@!\nback&\n.outer\n");
     file("generated/static project/item-state", "@!\n");
     file("generated/static project/producer", "@<\nvalue\n...element\n@!\n");
     file("generated/static project/factory", "@...\n...family\n.producer\n");
@@ -61,7 +61,7 @@ static void it_loads_all_static_expression_positions_without_importing_placehold
         assert(native != project_find(&project, ".item-state") && native->source->native_loaded);
         assert(native->source->native_header != NULL && native->source->native_c != NULL
             && native->source->native_abi != NULL);
-        assert(project_find(&project, ".outer")->first->target == project.entry);
+        assert(project_find(&project, ".outer")->first->target == project_find(&project, ".outer"));
         assert(project_find(&project, ".factory")->first->target == project_find(&project, ".producer"));
         for (const ProjectModule *module = project.first; module != NULL; module = module->next) {
             assert(module->state == PROJECT_MODULE_READY && module->syntax.valid);

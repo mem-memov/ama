@@ -11,13 +11,18 @@
 #include "ast/ast.h"
 #include "diagnostics/adapters/adapters.h"
 
-/** Required-closure statuses distinguish source catalog, draft, syntax, allocation and entry failures. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
+/** Required-closure statuses distinguish source catalog, draft, syntax, source-kind, allocation and entry failures. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef enum {
     PROJECT_OK, PROJECT_CATALOG_ERROR, PROJECT_MISSING, PROJECT_DRAFT,
-    PROJECT_SYNTAX_ERROR, PROJECT_OUT_OF_MEMORY, PROJECT_INVALID_ENTRY
+    PROJECT_SYNTAX_ERROR, PROJECT_OUT_OF_MEMORY, PROJECT_INVALID_ENTRY, PROJECT_INVALID_KIND
 } ProjectStatus;
 /** Registry admission state; loading records exist before parsing to terminate module cycles. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef enum { PROJECT_MODULE_LOADING, PROJECT_MODULE_READY } ProjectModuleState;
+/** Exact syntactic role of a retained source occurrence.
+ * [TPL-12](../../../spec/language/static-results.md#tpl-12) separates ordinary
+ * value constructors from graph producers and explicitly selected exports.
+ */
+typedef enum { PROJECT_ORDINARY_PATH, PROJECT_STATIC_PRODUCER, PROJECT_STATIC_SELECTOR } ProjectPathRole;
 /**
  * Forward name for one exact project-owned loaded module, permitting reference cycles without
  * recursive C type expansion.
@@ -31,6 +36,10 @@ typedef struct ProjectDependency {
     ProjectModule *target;
     /** A fixed language dependency retains its requiring site, which is not a written module-path span. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
     bool implicit;
+    /** Required source kind, checked after parsing the complete closure.
+     * [TPL-12](../../../spec/language/static-results.md#tpl-12) forbids a graph as a Type.
+     */
+    ProjectPathRole role;
 } ProjectDependency;
 /** Project-owned AST plus first-discovery requester context and ordered dependencies; source bytes belong to the catalog. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 struct ProjectModule {

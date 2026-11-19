@@ -4613,3 +4613,33 @@ this table is navigation, not a parallel semantic definition.
   and 432/432 destinations. Final archive generation and exact staged-byte
   comparison remain commit gates. No spec change or executable-template claim;
   actual metadata, source kinds and producer closure retain later task owners.
+
+<a id="t213"></a>
+
+- [x] **T213 — Resolve static graph dependencies and source module kinds.**
+  Prerequisites: T206.
+  Rules: [SRC-01](spec/language/source-and-names.md#src-01),
+  [SRC-02](spec/language/source-and-names.md#src-02),
+  [DEP-01](spec/implementation/compiler.md#dep-01),
+  [DEP-02](spec/implementation/compiler.md#dep-02),
+  [DEP-03](spec/implementation/compiler.md#dep-03).
+  Evidence: occurrence roles survive discovery and are checked after the complete
+  closure has parsed. Thirty-two role/kind combinations, cycles, requester spans,
+  every measured allocation refusal and actual stale-input propagation pass.
+  Project/native/scope/explicit/classify groups pass strict and ASan/UBSan; the
+  isolated compiler build passes. Final documentation and staging remain commit gates. See
+  [the dependency contract](docs/implementation/project-dependencies.md#t213-static-path-roles).
+  Boundary: the common source registry, logical origin resolution, required
+  source closure and input invalidation; T206 only extracts syntactic spans.
+  Steps: traverse every new AST path position; load exact roots and resolve
+  ordinary constructor versus static producer roles; retain all source/native
+  dependencies and source-located missing/invalid-kind diagnostics.
+  Accept: pair RHS paths, nested arguments, producer heads, ordinary selector
+  producer paths and constant namespaces enter the actual closure. Static names,
+  selectors and foreign labels are not filesystem paths. Preserve both root
+  kinds, exact duplicate/alias rejection, name+/ mapping, draft rules and native
+  companions. Source-loading cycles do not recursively reload or imply successful
+  validation. Cover shared dependencies, reordered roots, missing/invalid sources,
+  stale input invalidation and allocation cleanup through real parser/registry
+  compositions. No implicit import, new package format or relative path is added.
+  Meet the common per-file tests, Doxygen links and same-task commit criteria.

@@ -266,3 +266,64 @@ for DEP-03 in the supported source-navigation setup, without a GUI click claim.
 The full task is archived in [DONE](../../DONE.md#t171). Final regeneration checks
 archived/staged maintained bytes before the separate task commit; no spec bytes
 or reviewed conformance fingerprints changed.
+
+## T213: static path roles
+
+Discovery retains the role of each written occurrence:
+ordinary value/namespace, static producer, or explicitly selected static export.
+An expression's nested inputs are ordinary values even when its root is a
+producer. Placeholder heads, binding labels, receivers and selected export names
+never request files. A selected export changes the role of its containing path;
+it does not introduce another dependency.
+
+The loader drains its existing finite registry queue before checking these roles.
+Every target is therefore parsed when its kind is inspected, including forward
+and cyclic requests. A second linear pass over the retained edges rejects the
+first incompatible occurrence with its original source span and finite requester
+chain. No target is reloaded. The pass takes O(V + E) time and constant auxiliary
+storage, apart from existing diagnostic construction on refusal. Failure leaves
+`valid` false and all partial allocations owned until normal project teardown.
+
+This check establishes source-kind compatibility only. Export existence,
+concreteness, inference, specialization cycles and executable-entry admission
+remain with their semantic consumers (T208–T212/T184). A source graph seed is not
+an executable instance. Constants-only dependencies retain their existing shared
+namespace behavior; this pass does not grant them instance storage or execution.
+
+Acceptance evidence (T213, 2026-11-19):
+
+- The real parser/registry composition covers all 32 combinations of eight
+  occurrence positions and four complete kinds: Ama, native, constants-only and
+  static. This establishes source roles, not executable validity of the fixture.
+- Repeated equal paths retain different roles and exact spans; a nested late
+  mismatch preserves both requester locations. Legal and incompatible source
+  cycles share registry records; every measured allocation refusal in both
+  outcomes unwinds without publishing a partial project.
+- Existing closure checks retain both root orders/families, name+/ submodules,
+  duplicate/alias rejection, deep trees, missing/draft/syntax errors and native
+  companions. Actual selected-export and nested-input capture propagates source
+  changes through exactly its static and ordinary consumers.
+- `make -C tests/unit/project -j2` passes with strict O0/Werror/C11 and O1
+  ASan/UBSan. The final extra occurrence/requester case was rerun in both
+  configurations. The same configurations pass native-admission and static
+  scope, explicit and classify leaves. The task-only root `make -j4` passes.
+  Sanitized commands use `-fno-pie`, `-no-pie`, frame pointers and
+  `ASAN_OPTIONS=detect_leaks=0`, the established container restriction;
+  counted allocator teardown independently checks fixture ownership.
+- During fixture review, the historical success case used a graph as an ordinary
+  Type; its loading-cycle assertion was retained with an ordinary self-reference.
+  The new nested-error fixture initially failed at an earlier invalid graph
+  reference; selecting its named export exposes the intended later occurrence.
+  Initial syntax errors in new fixture strings were corrected before acceptance.
+- Per-file registrations include all changed production/header/test inputs.
+  Final Doxygen generation, rendered rule destinations and task-queue/link
+  validation are commit gates; their exact output is retained in the task's
+  commit evidence. No complete `make test` or executable-template conformance
+  claim follows from these bounded checks.
+
+Reproduction uses `C_COMPILER_FLAGS`, not `CFLAGS`: strict flags are
+`-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L`.
+For sanitizers replace O0 by O1, append
+`-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie`, and pass
+`LINKER_FLAGS=-fsanitize=address,undefined -no-pie`. All acceptance runs use an
+isolated HEAD-plus-T213 tree, excluding unrelated unfinished T182 changes.

@@ -51,6 +51,7 @@ static ProjectStatus load_catalog_modules(Project *project, const char *const *r
     for (ProjectModule *module = project->first; module != NULL; module = module->next) {
         if (!project_parse_required(project, module)) { return project->status; }
     }
+    if (!project_validate_kinds(project)) { return project->status; }
     project->valid = true;
     return PROJECT_OK;
 }

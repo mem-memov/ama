@@ -6,11 +6,11 @@
  */
 #include <stdint.h>
 #include "internal.h"
-bool project_collect_path(Project *project, DependencyPaths *paths, SourceSpan path, const char *implicit) {
+bool project_collect_path(Project *project, DependencyPaths *paths, SourceSpan path, const char *implicit, ProjectPathRole role) {
     if (paths->count == SIZE_MAX) { return project_memory_failure(project); }
     DependencyPath *request = source_arena_allocate(&project->arena, sizeof(*request));
     if (request == NULL) { return project_memory_failure(project); }
-    *request = (DependencyPath){.next = paths->first, .path = path, .implicit = implicit};
+    *request = (DependencyPath){.next = paths->first, .path = path, .implicit = implicit, .role = role};
     paths->first = request;
     paths->count++;
     return true;

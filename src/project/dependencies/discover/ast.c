@@ -34,14 +34,14 @@ static bool push_block(Project *project, PendingBlock **pending, AstBlock block)
  * Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool source_dependency(Project *project, DependencyPaths *paths, const AstSource *source) {
     return source == NULL || source->kind != AST_CONSTANT_SOURCE
-        || project_collect_path(project, paths, source->module_path, NULL);
+        || project_collect_path(project, paths, source->module_path, NULL, PROJECT_ORDINARY_PATH);
 }
 
 /** Collect declaration type, initializer, constant namespace and bound-source paths for one represented AST node.
  * Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool node_dependencies(Project *project, DependencyPaths *paths, const AstNode *node) {
     if (node->kind == AST_DECLARATION) {
-        if (!project_collect_expression(project, paths, node->as.declaration.type)) {
+        if (!project_collect_expression(project, paths, node->as.declaration.type, PROJECT_ORDINARY_PATH)) {
             return false;
         }
         for (AstInitializer *value = node->as.declaration.first; value != NULL; value = value->next) {
@@ -50,17 +50,17 @@ static bool node_dependencies(Project *project, DependencyPaths *paths, const As
             }
         }
     } else if (node->kind == AST_STATIC_RESULT) {
-        return project_collect_expression(project, paths, node->as.static_result.expression);
+        return project_collect_expression(project, paths, node->as.static_result.expression, PROJECT_ORDINARY_PATH);
     } else if (node->kind == AST_STATIC_PROJECTION) {
-        return project_collect_expression(project, paths, node->as.static_projection);
+        return project_collect_expression(project, paths, node->as.static_projection, PROJECT_STATIC_PRODUCER);
     } else if (node->kind == AST_ASSIGNMENT) {
         return source_dependency(project, paths, node->as.assignment.source);
     } else if (node->kind == AST_CALL) {
         if (node->as.call.mode == AST_RETAINED_READ && node->as.call.target->whole_list
             && node->as.call.has_selected && !project_collect_path(project, paths,
-                node->as.call.target->span, "..integer")) { return false; }
+                node->as.call.target->span, "..integer", PROJECT_ORDINARY_PATH)) { return false; }
         if (node->as.call.mode == AST_CONSTANT_READ
-            && !project_collect_expression(project, paths, node->as.call.namespace_expression)) {
+            && !project_collect_expression(project, paths, node->as.call.namespace_expression, PROJECT_ORDINARY_PATH)) {
             return false;
         }
         for (AstArgument *argument = node->as.call.first; argument != NULL; argument = argument->next) {
@@ -122,6 +122,7 @@ bool project_discover(Project *project, ProjectModule *module) {
         bool added = request->implicit == NULL ? project_add_dependency(project, module, request->path)
             : project_add_implicit_dependency(project, module, request->implicit, request->path);
         if (!added) { return false; }
+        module->last->role = request->role;
     }
     return true;
 }

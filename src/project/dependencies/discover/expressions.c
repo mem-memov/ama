@@ -17,17 +17,18 @@
 typedef struct PendingExpression {
     struct PendingExpression *next;
     const AstTypeExpression *expression;
+    ProjectPathRole role;
 } PendingExpression;
 
-/** Queue one actual expression edge; omitted positional inputs need no record.
+/** Queue one owning expression edge with its exact syntactic role.
  * Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03)
  * keeps all partial work project-owned on allocation refusal.
  */
-static bool push(Project *project, PendingExpression **pending, const AstTypeExpression *expression) {
+static bool push(Project *project, PendingExpression **pending, const AstTypeExpression *expression, ProjectPathRole role) {
     if (expression == NULL) { return true; }
     PendingExpression *frame = source_arena_allocate(&project->arena, sizeof(*frame));
     if (frame == NULL) { return project_memory_failure(project); }
-    *frame = (PendingExpression){*pending, expression};
+    *frame = (PendingExpression){*pending, expression, role};
     *pending = frame;
     return true;
 }
@@ -40,16 +41,18 @@ static bool push(Project *project, PendingExpression **pending, const AstTypeExp
  * Output aliases are not expression owners. Failure retains all scratch in the
  * project arena and prevents publication of the containing closure.
  */
-bool project_collect_expression(Project *project, DependencyPaths *paths, const AstTypeExpression *expression) {
+bool project_collect_expression(Project *project, DependencyPaths *paths, const AstTypeExpression *expression, ProjectPathRole role) {
     PendingExpression *pending = NULL;
-    if (!push(project, &pending, expression)) { return false; }
+    if (!push(project, &pending, expression, role)) { return false; }
     while (pending != NULL) {
         const AstTypeExpression *current = pending->expression;
+        ProjectPathRole current_role = current->selected_export.source != NULL
+            ? PROJECT_STATIC_SELECTOR : pending->role;
         pending = pending->next;
         if (current->kind == AST_TYPE_MODULE_PATH
-            && !project_collect_path(project, paths, current->head, NULL)) { return false; }
+            && !project_collect_path(project, paths, current->head, NULL, current_role)) { return false; }
         for (const AstStaticBinding *binding = current->first; binding != NULL; binding = binding->next) {
-            if (!push(project, &pending, binding->input)) { return false; }
+            if (!push(project, &pending, binding->input, PROJECT_ORDINARY_PATH)) { return false; }
         }
     }
     return true;

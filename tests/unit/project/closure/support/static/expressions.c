@@ -34,9 +34,9 @@ static void it_extracts_only_concrete_static_heads_and_preserves_occurrence_site
         .kind = AST_TYPE_PLACEHOLDER, .first = &first, .last = &output};
     DependencyPaths paths = {0};
     size_t allocations = allocation_count;
-    assert(project_collect_expression(&project, &paths, NULL));
+    assert(project_collect_expression(&project, &paths, NULL, PROJECT_ORDINARY_PATH));
     assert(paths.count == 0 && allocation_count == allocations);
-    assert(project_collect_expression(&project, &paths, &root));
+    assert(project_collect_expression(&project, &paths, &root, PROJECT_ORDINARY_PATH));
     assert(paths.count == 3);
     project_sort_paths(&paths);
     SourceSpan expected[] = {outer.head, inner.head, repeated.head};
