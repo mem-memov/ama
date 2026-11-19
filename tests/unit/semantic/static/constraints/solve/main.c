@@ -101,9 +101,11 @@ static void it_rejects_direct_and_indirect_infinite_substitution_terms(void) {
  * two other original variables in the same equivalence class.
  */
 static void it_keeps_type_and_template_restrictions_through_a_deferred_alias(void) {
-    setup_constraints("@<\n...family\n ...slot\n...b\n@!\n...family\n ... > ...a\n");
+    setup_metadata_constraints();
     assert(left_variable->category == STATIC_CATEGORY_DEFERRED);
     const StaticTerm *family = constraint_symbol("...family");
+    assert(static_constraint_describe(&solver, right_variable, STATIC_CATEGORY_TYPE, NULL, right_variable->site));
+    assert(static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE, constraint_actual_signature(), family->site));
     assert(static_constraint_equate(&solver, left_variable, right_variable, right_variable->site));
     assert(static_constraint_equate(&solver, left_variable, family, family->site));
     StaticConstraintOutcome outcome;
@@ -111,29 +113,6 @@ static void it_keeps_type_and_template_restrictions_through_a_deferred_alias(voi
     assert(solver.status == STATIC_CONSTRAINT_CONFLICT && strstr(solver.error.message, "categories") != NULL);
     assert(solver.error.related_count == 2 && diagnostic_valid(&solver.error));
     destroy_constraints();
-}
-
-/** Nested foreign signature sets compare by names; independent sibling order
- * is irrelevant, and a changed nested name makes equality impossible.
- */
-static void it_checks_reordered_recursive_signatures_and_known_nested_conflicts(void) {
-    const char *cases[] = {
-        "@<\n...a\n...b\n...left\n ...key\n ...family\n  ...one\n  ...two\n"
-        "...right\n ...family\n  ...two\n  ...one\n ...key\n@!\n",
-        "@<\n...a\n...b\n...left\n ...key\n ...family\n  ...one\n  ...two\n"
-        "...right\n ...family\n  ...two\n  ...different\n ...key\n@!\n"
-    };
-    for (size_t conflict = 0; conflict < 2; conflict++) {
-        setup_constraints(cases[conflict]);
-        const StaticTerm *left = constraint_symbol("...left"), *right = constraint_symbol("...right");
-        assert(static_constraint_equate(&solver, left, right, right->site));
-        StaticConstraintOutcome outcome = STATIC_CONSTRAINT_PENDING;
-        bool success = static_constraint_solve(&solver, &outcome);
-        assert(success == (conflict == 0));
-        if (!conflict) { assert(outcome == STATIC_CONSTRAINT_COMPLETE); }
-        else { assert(solver.status == STATIC_CONSTRAINT_CONFLICT && strstr(solver.error.message, "signatures") != NULL); }
-        destroy_constraints();
-    }
 }
 
 /** A concrete source module can reference its own nominal type; solving that
@@ -151,9 +130,9 @@ static void it_keeps_nominal_reference_cycles_outside_substitution_occurs_checki
 }
 
 /** Even unused captured static inputs remain part of nominal identity; a
- * constructor closure cannot contain itself through a fixed Template argument.
+ * different unused Type bindings cannot collapse into the same nominal identity.
  */
-static void it_preserves_unused_capture_conflicts_and_checks_template_occurrences(void) {
+static void it_preserves_unused_capture_conflicts_without_erasing_values(void) {
     setup_constraints(NULL);
     const StaticTerm *first = nominal(plain_type, plain_type, 2);
     const StaticTerm *second = nominal(first, plain_type, 2);
@@ -162,18 +141,7 @@ static void it_preserves_unused_capture_conflicts_and_checks_template_occurrence
     assert(!static_constraint_solve(&solver, &outcome) && solver.status == STATIC_CONSTRAINT_CONFLICT);
     destroy_constraints();
 
-    setup_constraints("@<\n...a\n...b\n...family\n ...slot\n...slot\n@!\n");
-    const StaticTerm *family = constraint_symbol("...family");
-    StaticTermCapture captures[] = {{.formal = constraint_module->first, .value = plain_type},
-        {.formal = constraint_module->first->next, .value = plain_type},
-        {.formal = constraint_module->first->next->next, .value = family}};
-    const StaticTerm *recursive;
-    assert(static_term_nominal(&term_store, constraint_module, captures, 3, family->site, &recursive));
-    assert(recursive->category == STATIC_CATEGORY_TEMPLATE && recursive->as.nominal.residual_count == 1);
-    assert(static_constraint_equate(&solver, family, recursive, family->site));
-    assert(!static_constraint_solve(&solver, &outcome));
-    assert(solver.status == STATIC_CONSTRAINT_CONFLICT && strstr(solver.error.message, "infinite"));
-    destroy_constraints();
+
 }
 
 /** Execute separate finite-model success and contradiction partitions. */
@@ -183,9 +151,8 @@ static void run(void) {
     it_rejects_distinct_origins_and_conflicting_repeated_bindings();
     it_rejects_direct_and_indirect_infinite_substitution_terms();
     it_keeps_type_and_template_restrictions_through_a_deferred_alias();
-    it_checks_reordered_recursive_signatures_and_known_nested_conflicts();
     it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking();
-    it_preserves_unused_capture_conflicts_and_checks_template_occurrences();
+    it_preserves_unused_capture_conflicts_without_erasing_values();
 }
 /** Return success only after every assertion and counted teardown. */
 int main(void) { run(); return 0; }

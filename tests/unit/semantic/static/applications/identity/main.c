@@ -6,12 +6,11 @@
 #include "semantic/static/terms/store.h"
 #include "semantic/static/constraints/solver.h"
 
-/** Valid projection sites permit producer-input inference, independent result
- * variables and distinct declaration nodes without preparing any runtime state.
+/** Ordinary field expressions supply two distinct lexical sites and one
+ * independently parameterized containing owner.
  */
-static const char *caller_source = "@<\n...owner type\n@!\nfirst\n.other\n ...result > ...alias\n"
-    "second\n.other\n ... >\n";
-static const char *producer_source = "@<\n...slot\n@>\n...result\n...slot\n@!\n";
+static const char *caller_source = "@<\nowner\n...owner type\n@!\nfirst\n.other\nsecond\n.other\n";
+static const char *producer_source = "@<\nargument\n...slot\n@!\n";
 
 /** Resolve real parsed field expression identities in source order. */
 static const AstTypeExpression *field_expression(const StaticModule *module, size_t index) {
@@ -27,9 +26,9 @@ static const AstTypeExpression *field_expression(const StaticModule *module, siz
 }
 
 /** One expression/owner key reuses a term; distinct lexical occurrences and
- * owner specializations differ. A producer input at that expression stays separate.
+ * owner specializations differ. These are ordinary field expressions, not producers.
  */
-static void it_separates_result_owner_occurrence_and_producer_input_keys(void) {
+static void it_separates_result_owner_and_occurrence_keys(void) {
     setup_static(caller_source, producer_source);
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *caller = static_module_find(&inventory, project.entry);
@@ -40,7 +39,7 @@ static void it_separates_result_owner_occurrence_and_producer_input_keys(void) {
     const StaticTermEnvironment *environment, *applied;
     assert(static_term_environment(&store, caller, NULL, &environment));
     const AstTypeExpression *first_site = field_expression(caller, 0), *second_site = field_expression(caller, 1);
-    const StaticTerm *first, *second, *again, *input, *parameter;
+    const StaticTerm *first, *second, *again, *parameter;
     assert(static_term_expression_result(&store, environment, first_site, &first));
     assert(static_term_expression_result(&store, environment, second_site, &second));
     size_t before = allocation_count;
@@ -48,8 +47,6 @@ static void it_separates_result_owner_occurrence_and_producer_input_keys(void) {
     assert(first == again && first != second && allocation_count == before);
     assert(first->category == STATIC_CATEGORY_DEFERRED && first->as.variable.symbol == NULL);
     assert(first->as.variable.role == STATIC_VARIABLE_APPLICATION);
-    assert(static_term_inference(&store, environment, producer->first, NULL, first_site, &input));
-    assert(first != input && input->as.variable.role == STATIC_VARIABLE_PRODUCER);
     assert(static_term_symbol(&store, environment, caller->first, &parameter));
     StaticTermCapture capture = {.formal = caller->first, .value = parameter};
     const StaticTerm *owner;
@@ -66,6 +63,32 @@ static void it_separates_result_owner_occurrence_and_producer_input_keys(void) {
     assert(solver.error.related[0].location.span.start == first_site->span.start);
     assert(strcmp(solver.error.related[0].name, ".main") == 0);
     static_constraint_destroy(&solver);
+    static_term_store_destroy(&store);
+    destroy_static();
+}
+
+/** Real graph producer inputs, their expression result and public aliases have
+ * separate keys; repeating the same source use preserves each exact identity.
+ */
+static void it_keeps_graph_input_result_and_public_alias_keys_distinct(void) {
+    setup_static("@...\n.other\n ...out > ...alias\n", "@...\n...out\n...slot\n");
+    assert(static_inventory_collect(&inventory) == STATIC_OK);
+    const StaticModule *caller = static_module_find(&inventory, project.entry);
+    const StaticModule *producer = static_module_find(&inventory, project_find(&project, ".other"));
+    const StaticSymbol *formal = static_symbol_at(producer, STATIC_PARAMETER, 0);
+    const StaticSymbol *alias = static_symbol_at(caller, STATIC_RESULT, 0);
+    const AstTypeExpression *site = caller->first_occurrence->expression;
+    StaticTermStore store;
+    static_term_store_init(&store, &inventory, sources.allocator);
+    const StaticTermEnvironment *environment;
+    assert(static_term_environment(&store, caller, NULL, &environment));
+    const StaticTerm *result, *input, *public, *repeat;
+    assert(static_term_expression_result(&store, environment, site, &result));
+    assert(static_term_inference(&store, environment, formal, NULL, site, &input));
+    assert(static_term_symbol(&store, environment, alias, &public));
+    assert(result != input && input != public && result != public);
+    assert(input->as.variable.role == STATIC_VARIABLE_PRODUCER && public->as.variable.role == STATIC_VARIABLE_DERIVED);
+    assert(static_term_inference(&store, environment, formal, NULL, site, &repeat) && repeat == input);
     static_term_store_destroy(&store);
     destroy_static();
 }
@@ -115,7 +138,8 @@ static void it_unwinds_expression_result_allocation_and_foreign_site_refusals(vo
 
 /** Run exact identity, diagnostic and preparation-failure partitions. */
 static void run(void) {
-    it_separates_result_owner_occurrence_and_producer_input_keys();
+    it_separates_result_owner_and_occurrence_keys();
+    it_keeps_graph_input_result_and_public_alias_keys_distinct();
     it_unwinds_expression_result_allocation_and_foreign_site_refusals();
 }
 /** Return success after assertions and full counted teardown. */

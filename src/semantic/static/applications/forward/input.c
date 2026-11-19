@@ -1,14 +1,14 @@
 /** @file
- * @brief Own source/generated static input snapshots without renumbering written positions.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves explicit skips.
+ * @brief Own named source/generated static input snapshots without changing their identities.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves explicit named source bindings.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns partial links.
  */
 #include <stdint.h>
 #include "../internal.h"
 
-/** A generated entry may follow a written skip of the same formal; only its
- * nonnull value supplies that binding. No source counter is advanced here.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates generation from positions.
+/** Snapshot one supplied or generated map entry without changing source order.
+ * [TPL-08](../../../../../spec/language/templates.md#tpl-08) distinguishes omission
+ * from a supplied value and keeps generated inference separate from residuals.
  */
 bool static_application_input(StaticApplicationPlan *plan, StaticApplicationRecord *record, StaticApplicationInput input) {
     if (record->input_count == SIZE_MAX) {

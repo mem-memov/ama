@@ -4,13 +4,14 @@
 #include "../common.c"
 #include <stdint.h>
 
-/** Interleaved interfaces include a free Type first introduced by a static
- * result definition; constructor expected foreign names remain separate.
+/** Ordinary Type formals are introduced by runtime pairs, including a result;
+ * named static outputs belong only to the separate graph fixture.
  */
-static const char *interface_source = "@=\nshared\n.other\n@<\n...explicit type\n"
-    "first&\n...implicit input\n...factory\n ...foreign\nsecond[]\n...explicit type\n"
-    "@>\n...static one\n...implicit result\nruntime\n...explicit type\n"
-    "...static two\n...factory\n@!\n";
+static const char *interface_source = "@=\nshared\n.other\n@<\nfirst&\n...explicit type\n"
+    "second[]\n...implicit input\nfactory\n...factory\n@>\nruntime\n...explicit type\n"
+    "introduced\n...implicit result\n@!\n";
+static const char *graph_source = "@...\n...static one\n...implicit result\n"
+    "...static two\n...explicit type\n";
 
 /** Exact fixture lookup after static acceptance, never a foreign-signature search. */
 static const StaticSymbol *symbol(const StaticModule *module, const char *text) {
@@ -30,7 +31,7 @@ static bool name_is(BindingName name, const char *text) {
 
 /** Execute each independent snapshot observation and ownership partition. */
 static void run(void) {
-    it_freezes_four_original_interface_sequences_with_result_introduced_formals();
+    it_freezes_independent_ordinary_and_graph_interface_sequences();
     it_filters_exact_fixed_identities_without_reordering_or_mutating_other_snapshots();
     it_rejects_invalid_capture_sets_before_allocating_or_changing_sources();
     it_selects_shared_constant_surfaces_and_preserves_empty_sequences();

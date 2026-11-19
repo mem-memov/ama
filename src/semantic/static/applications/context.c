@@ -1,20 +1,12 @@
 /** @file
  * @brief Derive contextual omission from original lexical syntax rather than lookup guesses.
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) distinguishes field and partial omission.
+ * [TPL-04](../../../../spec/language/templates.md#tpl-04) gives every ordinary
+ * declaration the same owner-plus-field inference identity, including inputs.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) overrides every context for output phases.
  * [CONST-03](../../../../spec/language/declarations.md#const-03) keeps namespaces independent.
  */
 #include "internal.h"
-
-/** Any output action, including a skip, requests producer-input inference.
- * [TPL-12](../../../../spec/language/static-results.md#tpl-12) defines uniform producer closure.
- */
-static bool outputs(const AstTypeExpression *expression) {
-    for (const AstStaticBinding *binding = expression->first; binding; binding = binding->next) {
-        if (binding->kind == AST_STATIC_OUTPUT) { return true; }
-    }
-    return false;
-}
 
 /** Registered source role determines policy; namespace sources embedded in a
  * declaration remain namespaces rather than becoming that declaration's field.
@@ -31,11 +23,15 @@ bool static_application_context(StaticApplicationPlan *plan, const StaticTermEnv
         if (site->receiver != NULL || site->expression != expression) { continue; }
         StaticApplicationContext context = {.policy = STATIC_OMIT_PARTIAL, .environment = environment,
             .expression = expression, .site = expression->span};
+        if ((site->origin != NULL && site->origin->syntax.sections.kind == MODULE_STATIC)
+            || expression->selected_export.source != NULL) {
+            return static_application_fail(plan, STATIC_APPLY_INVALID, expression->head,
+                "Static producers and export selectors require their separate graph consumer", NULL);
+        }
         if (site->statement && site->statement->kind == AST_DECLARATION) { context.declaration = site->statement; }
-        if (outputs(expression)) { context.policy = STATIC_OMIT_PRODUCER; }
-        else if (site->root && site->context == STATIC_CONTEXT_NAMESPACE) { context.policy = STATIC_OMIT_NAMESPACE; }
+        if (site->root && site->context == STATIC_CONTEXT_NAMESPACE) { context.policy = STATIC_OMIT_NAMESPACE; }
         else if (site->root && context.declaration != NULL) {
-            context.policy = site->context == STATIC_CONTEXT_INPUT ? STATIC_OMIT_INPUT : STATIC_OMIT_FIELD;
+            context.policy = STATIC_OMIT_FIELD;
         }
         *output = context;
         return true;
@@ -44,7 +40,7 @@ bool static_application_context(StaticApplicationPlan *plan, const StaticTermEnv
         "Application expression does not belong to its lexical owner", NULL);
 }
 
-/** Pure prepared partial/input/namespace maps need no syntax. Generation always
+/** Pure prepared partial/namespace maps need no syntax. Generation always
  * uses registered sites; a supplied source policy cannot override its actual role.
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) fixes lexical inference identity.
  */
@@ -66,7 +62,7 @@ bool static_application_context_valid(StaticApplicationPlan *plan, StaticApplica
                 "Application requests do not match their original expression", NULL);
         }
     }
-    if ((unsigned)context.policy > (unsigned)STATIC_OMIT_PRODUCER) {
+    if ((unsigned)context.policy > (unsigned)STATIC_OMIT_NAMESPACE) {
         return static_application_fail(plan, STATIC_APPLY_INVALID, context.site, "Unknown omission policy", NULL);
     }
     if (context.source != NULL) {
@@ -79,7 +75,7 @@ bool static_application_context_valid(StaticApplicationPlan *plan, StaticApplica
         }
     }
     if (context.expression == NULL) {
-        if (context.policy != STATIC_OMIT_FIELD && context.policy != STATIC_OMIT_PRODUCER &&
+        if (context.policy != STATIC_OMIT_FIELD &&
             context.declaration == NULL && (context.environment == NULL ||
             static_term_has_environment(plan->terms, context.environment))) { return true; }
     } else {

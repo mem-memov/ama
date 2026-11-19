@@ -22,24 +22,25 @@ static void it_distinguishes_pending_queries_from_final_required_underdeterminat
     destroy_constraints();
 }
 
-/** An application-derived expected slot waits for independent fully known
- * metadata. Supplying that fact resolves the check without source mutation.
+/** A partial constructor's local residuals are bound, but its captured Type
+ * variables still need independent anchors. Solving does not mutate its payload.
  */
-static void it_resumes_pending_signature_checks_from_independent_resolved_metadata(void) {
-    setup_constraints("@<\n...a\n...b\n...inner\n ...value\n...known\n ...slot\n"
-        "input\n...family\n ...slot < ...inner\n  ...value < ...a\n@!\n");
-    const StaticTerm *family = constraint_symbol("...family"), *known = constraint_symbol("...known");
-    assert(family->signature->first->category == STATIC_CATEGORY_DEFERRED);
-    assert(static_constraint_equate(&solver, family, known, family->site));
+static void it_resumes_captured_type_closure_from_later_independent_equalities(void) {
+    setup_constraints(NULL);
+    StaticTermCapture capture = {.formal = static_symbol_at(constraint_module, STATIC_PARAMETER, 0), .value = left_variable};
+    const StaticTerm *partial;
+    assert(static_term_nominal(&term_store, constraint_module, &capture, 1, left_variable->site, &partial));
+    assert(static_constraint_require(&solver, partial, partial->site));
     StaticConstraintOutcome outcome;
     assert(static_constraint_solve(&solver, &outcome) && outcome == STATIC_CONSTRAINT_PENDING);
-    assert(static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE, known->signature, family->site));
-    size_t before = allocation_count, facts = solver.metadata_count;
-    assert(static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE, known->signature, family->site));
-    assert(allocation_count == before && solver.metadata_count == facts && facts == 1);
-    assert(static_constraint_solve(&solver, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
-    assert(family->signature->first->category == STATIC_CATEGORY_DEFERRED && inventory.valid);
+    assert(static_constraint_equate(&solver, left_variable, plain_type, left_variable->site));
     assert(static_constraint_finish(&solver));
+    const StaticTerm *closed = NULL;
+    assert(static_constraint_value(&solver, partial, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
+    assert(closed != partial && closed->category == STATIC_CATEGORY_TEMPLATE && closed->ground);
+    assert(closed->as.nominal.residual_count == 1 && closed->as.nominal.first_capture->value == plain_type);
+    assert(partial->as.nominal.first_capture->value == left_variable && !partial->ground);
+    assert(solver.metadata_count == 0 && inventory.valid);
     destroy_constraints();
 }
 
@@ -47,9 +48,8 @@ static void it_resumes_pending_signature_checks_from_independent_resolved_metada
  * contradictory metadata fact is refused rather than overriding the first.
  */
 static void it_keeps_metadata_evidence_separate_from_origin_evidence(void) {
-    setup_constraints("@<\n...family\n ...slot\n...b\n@!\n...family\n ... > ...a\n");
-    const StaticTerm *family = constraint_symbol("...family");
-    assert(static_constraint_describe(&solver, left_variable, STATIC_CATEGORY_TEMPLATE, family->signature, left_variable->site));
+    setup_metadata_constraints();
+    assert(static_constraint_describe(&solver, left_variable, STATIC_CATEGORY_TEMPLATE, constraint_actual_signature(), left_variable->site));
     assert(static_constraint_require(&solver, left_variable, left_variable->site));
     StaticConstraintOutcome outcome;
     assert(static_constraint_solve(&solver, &outcome) && outcome == STATIC_CONSTRAINT_PENDING);
@@ -114,9 +114,11 @@ static void it_normalizes_partial_results_and_retains_local_residuals(void) {
  */
 static void it_refuses_invalid_metadata_and_value_query_contracts(void) {
     for (size_t partition = 0; partition < 9; partition++) {
-        setup_constraints("@<\n...a\n...b\n...known\n ...slot\n...inner\n ...value\n"
-            "input\n...family\n ...slot < ...inner\n  ...value < ...a\n@!\n");
-        const StaticTerm *family = constraint_symbol("...family"), *known = constraint_symbol("...known");
+        setup_metadata_constraints();
+        const StaticTerm *family = constraint_symbol("...family");
+        const StaticSignature *known = constraint_actual_signature();
+        StaticSignatureEntry unresolved = {.name = known->first->name, .category = STATIC_CATEGORY_DEFERRED};
+        StaticSignature pending = {.first = &unresolved, .last = &unresolved, .count = 1};
         StaticTerm copied = *left_variable;
         StaticSignature empty = {0};
         StaticConstraintOutcome outcome = STATIC_CONSTRAINT_PENDING;
@@ -127,8 +129,8 @@ static void it_refuses_invalid_metadata_and_value_query_contracts(void) {
             case 1: success = static_constraint_describe(&solver, left_variable, STATIC_CATEGORY_DEFERRED, NULL, left_variable->site); break;
             case 2: success = static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE, &empty, family->site); break;
             case 3: success = static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE, NULL, family->site); break;
-            case 4: success = static_constraint_describe(&solver, left_variable, STATIC_CATEGORY_TYPE, known->signature, left_variable->site); break;
-            case 5: success = static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE, family->signature, family->site); break;
+            case 4: success = static_constraint_describe(&solver, left_variable, STATIC_CATEGORY_TYPE, known, left_variable->site); break;
+            case 5: success = static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE, &pending, family->site); break;
             case 6: success = static_constraint_value(&solver, left_variable, NULL, &outcome); break;
             case 7: success = static_constraint_value(&solver, left_variable, &value, NULL); break;
             case 8: success = static_constraint_solve(&solver, NULL); break;
@@ -140,46 +142,14 @@ static void it_refuses_invalid_metadata_and_value_query_contracts(void) {
     }
 }
 
-/** A nominal constructor with no free captured variables can still await its
- * declared interface description. Neither groundness nor an equality with a
- * described constructor silently resolves that independent obligation.
- */
-static void it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely(void) {
-    for (size_t required = 0; required < 2; required++) {
-        setup_constraints("@<\n...a\n...b\n...inner\n ...value\n...known\n ...slot\n"
-            "input\n...family\n ...slot < ...inner\n  ...value < ...a\n@!\n");
-        const StaticTerm *family = constraint_symbol("...family"), *known = constraint_symbol("...known");
-        const StaticTerm *term = NULL;
-        if (required) {
-            assert(static_term_nominal(&term_store, constraint_module, NULL, 0, family->site, &term));
-            assert(term->ground && term->category == STATIC_CATEGORY_TEMPLATE);
-            assert(static_constraint_require(&solver, term, family->site));
-        } else { assert(static_constraint_equate(&solver, family, known, family->site)); }
-        StaticConstraintOutcome outcome;
-        assert(static_constraint_solve(&solver, &outcome) && outcome == STATIC_CONSTRAINT_PENDING);
-        if (required) {
-            const StaticTerm *value = plain_type;
-            assert(static_constraint_value(&solver, term, &value, &outcome));
-            assert(value == plain_type && outcome == STATIC_CONSTRAINT_PENDING);
-        }
-        assert(!static_constraint_finish(&solver));
-        assert(solver.status == STATIC_CONSTRAINT_UNRESOLVED && diagnostic_valid(&solver.error));
-        assert(solver.error.primary.span.source == family->site.source);
-        assert(solver.error.primary.span.start == family->site.start);
-        if (!required) { assert(strstr(solver.error.message, "signature") != NULL); }
-        destroy_constraints();
-    }
-}
-
 /** Execute closure, metadata and iterative result partitions independently. */
 static void run(void) {
     it_distinguishes_pending_queries_from_final_required_underdetermination();
-    it_resumes_pending_signature_checks_from_independent_resolved_metadata();
+    it_resumes_captured_type_closure_from_later_independent_equalities();
     it_keeps_metadata_evidence_separate_from_origin_evidence();
     it_normalizes_shared_deep_values_without_recursive_or_exponential_expansion();
     it_normalizes_partial_results_and_retains_local_residuals();
     it_refuses_invalid_metadata_and_value_query_contracts();
-    it_finalizes_ground_signature_and_unrequired_metadata_obligations_precisely();
 }
 /** Return success after assertions and complete counted teardown. */
 int main(void) { run(); return 0; }

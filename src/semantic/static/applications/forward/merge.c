@@ -17,15 +17,15 @@ static bool contains(const StaticTermCapture *captures, size_t count, const Stat
     return false;
 }
 
-/** Only field/producer policies create holes, with different original site keys.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves producer identity.
+/** Only ordinary field policy creates field holes. Static producer inputs have
+ * their own graph solver. [TPL-04](../../../../../spec/language/templates.md#tpl-04)
+ * fixes identity to the declaring owner and field, regardless of written section.
  */
 static bool infer(StaticApplicationPlan *plan, StaticApplicationRecord *record,
     const StaticSymbol *formal, const StaticTerm **value) {
     StaticApplicationContext context = record->context;
     if (!static_term_inference(plan->terms, context.environment, formal,
-        context.policy == STATIC_OMIT_FIELD ? context.declaration : NULL,
-        context.policy == STATIC_OMIT_PRODUCER ? context.expression : NULL, value)) {
+        context.declaration, NULL, value)) {
         (void)static_application_dependencies(plan);
         return false;
     }
@@ -53,7 +53,6 @@ bool static_application_merge(StaticApplicationPlan *plan, StaticApplicationReco
         captures[count++] = (StaticTermCapture){.formal = item->formal, .value = item->value};
     }
     for (const StaticApplicationInput *input = record->first; input; input = input->next) {
-        if (input->value == NULL) { continue; }
         captures[count++] = (StaticTermCapture){.formal = input->formal, .value = input->value};
         record->applied = true;
     }
@@ -61,7 +60,7 @@ bool static_application_merge(StaticApplicationPlan *plan, StaticApplicationReco
         const StaticSymbol *formal = static_symbol_at(origin, STATIC_PARAMETER, ordinal);
         if (contains(captures, count, formal)) { continue; }
         if (record->context.policy == STATIC_OMIT_PARTIAL) { continue; }
-        if (record->context.policy == STATIC_OMIT_INPUT || record->context.policy == STATIC_OMIT_NAMESPACE) {
+        if (record->context.policy == STATIC_OMIT_NAMESPACE) {
             return static_application_fail(plan, STATIC_APPLY_CONFLICT, record->context.site,
                 "This type expression requires explicit coverage of every residual formal", formal);
         }

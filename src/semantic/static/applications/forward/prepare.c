@@ -23,11 +23,11 @@ static bool unknown(StaticApplicationPlan *plan, StaticApplicationRecord *record
     }
     if (record->input_count == 0 && (record->context.policy == STATIC_OMIT_PARTIAL || category == STATIC_CATEGORY_TYPE)) {
         record->value = record->head;
-        record->pending_origin = record->context.policy == STATIC_OMIT_PRODUCER;
+        record->pending_origin = false;
         return true;
     }
     if (record->input_count == 0 && category == STATIC_CATEGORY_TEMPLATE &&
-        (record->context.policy == STATIC_OMIT_INPUT || record->context.policy == STATIC_OMIT_NAMESPACE)) {
+        record->context.policy == STATIC_OMIT_NAMESPACE) {
         return static_application_fail(plan, STATIC_APPLY_CONFLICT, record->context.site,
             "This type expression requires explicit coverage of every residual formal", NULL);
     }

@@ -12,7 +12,7 @@ static const size_t orders[][3] = {{0,1,2},{0,2,1},{1,0,2},{1,2,0},{2,0,1},{2,1,
  * constructed original capture map, not with another application path alone.
  */
 static void it_matches_all_three_slot_maps_permutations_and_staged_partitions(void) {
-    setup_applications(NULL, "@<\n...a\n...b\n...c\n@!\n");
+    setup_applications(NULL, "@<\nfirst\n...a\nsecond\n...b\nthird\n...c\n@!\n");
     StaticTermCapture caller_fixed[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
         {.formal = application_formal(caller_module, 1), .value = integer_type}};
     const StaticTerm *other_type;
@@ -53,76 +53,79 @@ static void it_matches_all_three_slot_maps_permutations_and_staged_partitions(vo
     destroy_applications();
 }
 
-/** Use positional requests and reversed declared foreign order. The actual
- * constructor's source order still controls positions; skips leave exact slots
- * open. Every retained d binding survives all 27 fixed/residual combinations.
+/** Each a/b/c is independently residual, supplied, or already captured; d is
+ * always retained and unused. Enumerate every named source permutation against
+ * independently built B and B-minus-P maps, including empty P and partial R.
  */
-static void it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order(void) {
+static void it_recovers_all_named_partial_maps_and_permutations_without_signature_declarations(void) {
+    const char *names[] = {"...a", "...b", "...c"};
     for (size_t model = 0; model < 27; model++) {
-        char caller[512];
-        int length = snprintf(caller, sizeof(caller), "@<\n...family\n ...c\n ...b\n ...a\n"
-            "@>\n...result\n...family\n");
-        assert(length > 0 && (size_t)length < sizeof(caller));
-        size_t digits = model;
-        for (size_t slot = 0; slot < 3; slot++, digits /= 3) {
-            size_t state = digits % 3;
-            const char *line = state == 0 ? " ... <\n" : state == 1 ? " ... < ..integer\n" :
-                " ... < .other\n  ...a < ..integer\n  ...b < ..integer\n"
-                "  ...c < ..integer\n  ...d < ..integer\n";
-            size_t added = strlen(line);
-            assert((size_t)length + added < sizeof(caller));
-            memcpy(caller + length, line, added + 1); length += (int)added;
-        }
-        assert((size_t)length + strlen("@!\nanchor&\n..integer\n") < sizeof(caller));
-        strcpy(caller + length, "@!\nanchor&\n..integer\n");
-        setup_applications(caller, "@<\n...a\n...b\n...c\n...d\n@!\n");
-        StaticTermCapture full[4];
-        for (size_t slot = 0; slot < 4; slot++) {
-            full[slot] = (StaticTermCapture){.formal = application_formal(target_module, slot), .value = integer_type};
-        }
-        const StaticTerm *other_type;
-        assert(static_term_nominal(&terms, target_module, full, 4, (SourceSpan){0}, &other_type));
-        const AstTypeExpression *expression = NULL;
-        for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
-            if (site->root && site->receiver == NULL && site->statement->kind == AST_STATIC_RESULT) {
-                expression = site->expression; break;
+        size_t states[3], digits = model;
+        for (size_t slot = 0; slot < 3; slot++, digits /= 3) { states[slot] = digits % 3; }
+        for (size_t permutation = 0; permutation < 6; permutation++) {
+            char caller[384];
+            int used = snprintf(caller, sizeof(caller), "@...\n...result\n...family\n");
+            assert(used > 0 && (size_t)used < sizeof(caller));
+            for (size_t index = 0; index < 3; index++) {
+                size_t slot = orders[permutation][index];
+                if (states[slot] != 1) { continue; }
+                int added = snprintf(caller + used, sizeof(caller) - (size_t)used,
+                    " %s < ..integer\n", names[slot]);
+                assert(added > 0 && (size_t)added < sizeof(caller) - (size_t)used);
+                used += added;
             }
+            int added = snprintf(caller + used, sizeof(caller) - (size_t)used,
+                "...integer type\n..integer\n");
+            assert(added > 0 && (size_t)added < sizeof(caller) - (size_t)used);
+            setup_applications(caller, "@<\nfirst\n...a\nsecond\n...b\nthird\n...c\nfourth\n...d\n@!\n");
+            StaticTermCapture full[4];
+            for (size_t slot = 0; slot < 4; slot++) {
+                full[slot] = (StaticTermCapture){.formal = application_formal(target_module, slot), .value = integer_type};
+            }
+            const StaticTerm *other_type;
+            assert(static_term_nominal(&terms, target_module, full, 4, (SourceSpan){0}, &other_type));
+            StaticTermCapture actual_map[4] = {full[3]}, preceding_map[4] = {full[3]};
+            size_t actual_count = 1, preceding_count = 1;
+            for (size_t slot = 0; slot < 3; slot++) {
+                if (states[slot] == 0) { continue; }
+                StaticTermCapture capture = {.formal = application_formal(target_module, slot),
+                    .value = states[slot] == 1 ? integer_type : other_type};
+                actual_map[actual_count++] = capture;
+                if (states[slot] == 2) { preceding_map[preceding_count++] = capture; }
+            }
+            const StaticTerm *actual, *expected;
+            assert(static_term_nominal(&terms, target_module, actual_map, actual_count, (SourceSpan){0}, &actual));
+            assert(static_term_nominal(&terms, target_module, preceding_map, preceding_count, (SourceSpan){0}, &expected));
+            const AstTypeExpression *expression = caller_module->first_occurrence->expression;
+            assert(layout_text_is(expression->head, "...family"));
+            BindingApplication *requests;
+            assert(binding_normalize_static(&binding_plan, NULL, expression, &requests));
+            StaticTermOperand operands[3] = {{0}};
+            size_t count = 0;
+            for (const BindingRequest *request = requests->first; request; request = request->next) {
+                assert(request->named && !request->omitted && count < 3);
+                operands[count++] = (StaticTermOperand){.request = request, .value = integer_type};
+            }
+            const StaticTermApplication *source;
+            assert(static_term_application(&terms, &binding_plan, requests, caller_environment,
+                application_symbol("...family"), operands, count, &source));
+            const StaticApplicationRecord *record;
+            assert(static_application_recover(&applications, source, actual, &record));
+            assert(record->constructor == expected && record->value == actual);
+            assert(expected->as.nominal.capture_count == preceding_count);
+            assert(expected->as.nominal.residual_count == 4 - preceding_count);
+            assert(actual->as.nominal.capture_count == actual_count && actual->as.nominal.residual_count == 4 - actual_count);
+            assert(record->input_count == count && expected->as.nominal.last_capture->formal == full[3].formal);
+            assert(expected->as.nominal.last_capture->value == integer_type);
+            destroy_applications();
         }
-        assert(expression);
-        BindingApplication *requests;
-        assert(binding_normalize_static(&binding_plan, NULL, expression, &requests));
-        StaticTermOperand operands[3];
-        StaticTermCapture captures[4] = {full[3]};
-        size_t count = 0;
-        digits = model;
-        for (const BindingRequest *request = requests->first; request; request = request->next, digits /= 3) {
-            size_t state = digits % 3;
-            if (state == 0) { assert(request->omitted); continue; }
-            const StaticTerm *value = state == 1 ? integer_type : other_type;
-            operands[count] = (StaticTermOperand){.request = request, .value = value};
-            captures[count + 1] = (StaticTermCapture){.formal = application_formal(target_module, request->source_ordinal), .value = value};
-            count++;
-        }
-        const StaticTerm *actual, *expected;
-        assert(static_term_nominal(&terms, target_module, captures, count + 1, expression->span, &actual));
-        assert(static_term_nominal(&terms, target_module, full + 3, 1, expression->span, &expected));
-        const StaticTermApplication *source;
-        assert(static_term_application(&terms, &binding_plan, requests, caller_environment,
-            application_symbol("...family"), operands, count, &source));
-        const StaticApplicationRecord *record;
-        assert(static_application_recover(&applications, source, actual, &record));
-        assert(record->constructor == expected);
-        assert(record->value == actual);
-        assert(record->first->formal == application_formal(target_module, 0));
-        assert(record->last->formal == application_formal(target_module, 2));
-        destroy_applications();
     }
 }
 
-/** Execute complete finite map and positional recovery domains. */
+/** Execute complete finite map and named recovery domains. */
 static void run(void) {
     it_matches_all_three_slot_maps_permutations_and_staged_partitions();
-    it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order();
+    it_recovers_all_named_partial_maps_and_permutations_without_signature_declarations();
 }
 /** Return success after counted complete-domain teardown. */
 int main(void) { run(); return 0; }

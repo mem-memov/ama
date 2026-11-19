@@ -1,57 +1,50 @@
 /** @file
- * @brief Prepare actual producer metadata independently of reversed caller signatures for request tests.
+ * @brief Prepare named graph request fixtures with an independently selected actual constructor.
  */
 #ifndef AMA_BINDING_REQUEST_TEST_COMMON
 #define AMA_BINDING_REQUEST_TEST_COMMON
 #include "common.c"
 #include "semantic/static/bindings/normalize.h"
 
-/** Caller signatures deliberately reverse foreign slot declaration order;
- * actual producer order remains a,b and is selected as an independent fact.
- */
-static const char *request_prefix = "@<\n...type\n...expected\n ...b\n ...a\n"
-    "input&\n...type\nsource[]\n...type\n@>\n...return type\n...type\n@!\n";
+/** Ordinary formals are Type slots introduced through runtime declarations. */
+static const char *request_producer = "@<\nfirst&\n...a\nsecond[]\n...b\n"
+    "@>\nx&\n...a\ny[]\n...b\n@!\n";
 
-/** Static and runtime producer interfaces interleave without sharing counters. */
-static const char *request_producer = "@<\n...a\nfirst&\n...a\n...b\nsecond[]\n...b\n"
-    "@>\n...out\n...a\nx&\n...a\n...second\n...b\ny[]\n...b\n@!\n";
-
-/** Allocate temporary fixture text; its caller releases it after source capture. */
+/** Add only the exclusive graph marker; callers supply complete graph statements. */
 static char *request_text(const char *body) {
-    size_t size = strlen(request_prefix) + strlen(body) + 1;
+    size_t size = strlen("@...\n") + strlen(body) + 1;
     char *text = malloc(size);
     assert(text != NULL);
-    memcpy(text, request_prefix, strlen(request_prefix));
-    memcpy(text + strlen(request_prefix), body, strlen(body) + 1);
+    strcpy(text, "@...\n");
+    strcat(text, body);
     return text;
 }
 
-/** Materialize a real generic caller and selected producer in the narrow domain. */
-static inline void setup_requests(const char *body) {
+/** Select the actual other definition explicitly, never by inspecting a body string. */
+static inline void setup_request_definitions(const char *body, const char *other) {
     char *text = request_text(body);
-    setup_binding(text, request_producer);
+    setup_binding(text, other);
     free(text);
 }
-
-/** Preserve real standard/import dependencies for syntax requiring those roots. */
+/** Use a known ordinary constructor for Type/Template applications. */
+static inline void setup_requests(const char *body) {
+    setup_request_definitions(body, request_producer);
+}
+/** Preserve real configured standard/import dependencies for named graph sources. */
 static inline void setup_request_roots(const char *body, const ModuleRoot *roots, size_t root_count) {
     char *text = request_text(body);
     setup_binding_roots(text, request_producer, roots, root_count);
     free(text);
 }
-
-/** Find an actual body expression occurrence, not a foreign signature member. */
+/** Select the exact original root occurrence in the graph, not a foreign label. */
 static inline const StaticOccurrence *request_head(const char *text) {
     const StaticModule *module = binding_module(project.entry);
     for (const StaticOccurrence *site = module->first_occurrence; site != NULL; site = site->next) {
-        if (site->receiver == NULL && site->root && layout_text_is(site->site, text)
-            && (site->context == STATIC_CONTEXT_BODY || site->context == STATIC_CONTEXT_NAMESPACE)) { return site; }
+        if (site->receiver == NULL && site->root && layout_text_is(site->site, text)) { return site; }
     }
-    assert(false);
-    return NULL;
+    assert(false); return NULL;
 }
-
-/** Build the independently selected producer's constructor snapshot. */
+/** Snapshot the explicitly supplied actual ordinary constructor's full residuals. */
 static inline BindingInterface *request_interface(void) {
     BindingInterface *view = NULL;
     assert(binding_source_interface(&binding_plan, binding_module(project_find(&project, ".other")),

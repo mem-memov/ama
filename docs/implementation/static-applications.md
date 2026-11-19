@@ -11,7 +11,7 @@ The current remaining acceptance owners are T209–T212 and T182–T198 in
 [TODO](../../TODO.md); the T177 results below are historical evidence for their
 recorded inputs, not acceptance of removed source forms.
 
-## Current boundary after T208
+## Current boundary after T209
 
 The [current metadata contract](static-metadata.md) defines all-use minimum
 requirements. The public expected-signature injection API and its three source
@@ -26,10 +26,11 @@ formal slots require Type; a static graph is not a nominal constructor value.
 Unknown actual metadata remains pending without a guessed origin or signature.
 
 T208's current-source tests compose actual inventory and nominal metadata with
-prepared forward application. Historical request/recovery and omission adapters
-remain owned by T209/T211/T212 for migration to exclusive named static graphs
-and concrete export selection. Their older source fixtures are not evidence of
-current source acceptance. Static producers require complete inputs and may
+prepared forward application. T209 migrates named source normalization and exact nominal recovery under
+[the equation contract](static-equations.md), including field inference for
+ordinary input declarations. Static skips and ordinary producer policies are
+removed. Producer graph expansion and concrete export admission retain their
+separate T211/T212 owners. Static producers require complete inputs and may
 return Types or Templates; their outputs are never presumed to be Type merely
 because an output binding is present.
 
@@ -45,9 +46,11 @@ adds only explicitly permitted, deterministic scoped variables; it never adds an
 enclosing formal or runs an initializer. The current source consumers separately own root/namespace closure. Actual
 metadata never supplies a closed expected signature for a free graph input.
 
-The former recovery proof depended on a closed independently declared expected
-signature. T209 owns its replacement from explicit nonexpanding equations; that
-former assumption does not establish current recovery acceptance.
+Recovery now uses the explicit applied set P and the known nominal result
+(D, B, S). Every P name must be fixed in B; the only candidate is
+(D, B minus P, S union P). Forward normalization and the result equation check
+all supplied values and all retained captures. The [current proof and evidence](static-equations.md)
+replace the former closed expected-signature assumption.
 
 Nested composition connects original expressions through independent result
 variables. T176's exact equations propagate captured RHS facts in either

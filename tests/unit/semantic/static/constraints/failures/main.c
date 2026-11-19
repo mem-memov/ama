@@ -17,11 +17,11 @@ static const StaticTerm *symbolic_value(void) {
 }
 
 /** Exercise one operation without accepting any guessed result after refusal. */
-static bool operation(size_t kind, const StaticTerm *value, const StaticTerm *known,
+static bool operation(size_t kind, const StaticTerm *value, const StaticSignature *known,
     const StaticTerm **output, StaticConstraintOutcome *outcome) {
     if (kind == 0 || kind == 1) { return static_constraint_solve(&solver, outcome); }
     if (kind == 2) {
-        return static_constraint_describe(&solver, value, STATIC_CATEGORY_TEMPLATE, known->signature, value->site);
+        return static_constraint_describe(&solver, value, STATIC_CATEGORY_TEMPLATE, known, value->site);
     }
     if (kind == 3 || kind == 6) { return static_constraint_value(&solver, value, output, outcome); }
     return static_constraint_finish(&solver);
@@ -35,10 +35,11 @@ static void it_unwinds_every_solve_metadata_value_and_finalization_allocation_re
     for (size_t kind = 0; kind < 7; kind++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_constraints(kind == 2 ? "@<\n...a\n...b\n...inner\n ...value\n...known\n ...slot\n"
-                "input\n...family\n ...slot < ...inner\n  ...value < ...a\n@!\n" : NULL);
-            const StaticTerm *value = left_variable, *known = plain_type;
-            if (kind == 2) { value = constraint_symbol("...family"); known = constraint_symbol("...known"); }
+            if (kind == 2) { setup_metadata_constraints(); }
+            else { setup_constraints(NULL); }
+            const StaticTerm *value = left_variable;
+            const StaticSignature *known = NULL;
+            if (kind == 2) { value = constraint_symbol("...family"); known = constraint_actual_signature(); }
             else {
                 value = symbolic_value();
                 if (kind == 6) {
@@ -93,16 +94,17 @@ static void it_unwinds_every_solve_metadata_value_and_finalization_allocation_re
  */
 static void it_refuses_saturated_variable_metadata_and_generated_equation_counts(void) {
     for (size_t kind = 0; kind < 5; kind++) {
-        setup_constraints((kind == 1 || kind == 4) ? "@<\n...family\n ...slot\n...b\n@!\n...family\n ... > ...a\n" : NULL);
+        if (kind == 1 || kind == 4) { setup_metadata_constraints(); }
+        else { setup_constraints(NULL); }
         if (kind == 3) {
             size_t before = allocation_count;
             assert(!static_constraint_lookup_capacity(&solver, SIZE_MAX));
             assert(allocation_count == before && solver.variables == NULL);
         } else if (kind == 4) {
-            const StaticTerm *family = constraint_symbol("...family");
+            const StaticSignature *signature = constraint_actual_signature();
             solver.signature_count = SIZE_MAX;
             size_t before = allocation_count;
-            assert(!static_constraint_describe(&solver, left_variable, STATIC_CATEGORY_TEMPLATE, family->signature, left_variable->site));
+            assert(!static_constraint_describe(&solver, left_variable, STATIC_CATEGORY_TEMPLATE, signature, left_variable->site));
             assert(allocation_count == before && solver.first_signature == NULL);
             solver.signature_count = 0;
         } else if (kind == 1) {

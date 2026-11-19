@@ -2,40 +2,48 @@
  * @brief Verify original source ordinals, exact capture identity and disjoint interface surfaces.
  */
 
-/** All four arities/identities have independent expected source ordering. Static
- * metadata introduces no runtime field; signature names occupy no input slot.
+/** Each module kind exposes only its own surfaces. Dense internal ordinals
+ * preserve original identities without creating positional static syntax.
  */
-static void it_freezes_four_original_interface_sequences_with_result_introduced_formals(void) {
-    setup_binding(interface_source, STATIC_SCOPE_SOURCE_TEXT);
-    const StaticModule *module = binding_module(project.entry);
-    BindingInterface *view = NULL;
-    assert(binding_source_interface(&binding_plan, module, BINDING_MODULE_SURFACE, NULL, 0, &view));
-    assert(view == binding_plan.first_interface && view == binding_plan.last_interface);
-    assert(view->kind == BINDING_SOURCE_INTERFACE && view->origin == module);
-    size_t arities[] = {4, 2, 2, 1};
-    const char *names[][4] = {{"...explicit type", "...implicit input", "...factory", "...implicit result"},
-        {"...static one", "...static two"}, {"first", "second"}, {"runtime"}};
-    for (size_t direction = 0; direction < BINDING_SEQUENCE_COUNT; direction++) {
-        const BindingSequence *sequence = &view->sequences[direction];
-        assert(sequence->count == arities[direction]);
-        const BindingSlot *slot = sequence->first;
-        for (size_t ordinal = 0; ordinal < arities[direction]; ordinal++) {
-            assert(slot != NULL && name_is(slot->name, names[direction][ordinal]));
-            assert(slot->original_ordinal == ordinal && slot->sequence_ordinal == ordinal);
-            assert(source_span_valid(slot->name.site) && slot->intrinsic_field == NULL);
-            if (direction < BINDING_RUNTIME_INPUT) {
-                assert(slot->static_symbol == symbol(module, names[direction][ordinal]));
-                assert(slot->runtime_declaration == NULL);
-            } else { assert(slot->runtime_declaration != NULL && slot->static_symbol == NULL); }
-            slot = slot->next;
+static void it_freezes_independent_ordinary_and_graph_interface_sequences(void) {
+    for (size_t graph = 0; graph < 2; graph++) {
+        setup_binding(graph ? graph_source : interface_source, STATIC_SCOPE_SOURCE_TEXT);
+        const StaticModule *module = binding_module(project.entry);
+        BindingInterface *view = NULL;
+        assert(binding_source_interface(&binding_plan, module, BINDING_MODULE_SURFACE, NULL, 0, &view));
+        assert(view == binding_plan.first_interface && view == binding_plan.last_interface);
+        assert(view->kind == BINDING_SOURCE_INTERFACE && view->origin == module);
+        const size_t arities[][4] = {{4,0,3,2},{2,2,0,0}};
+        const char *ordinary[][4] = {{"...explicit type", "...implicit input", "...factory", "...implicit result"},
+            {NULL}, {"first", "second", "factory"}, {"runtime", "introduced"}};
+        const char *static_names[][4] = {{"...implicit result", "...explicit type"},
+            {"...static one", "...static two"}, {NULL}, {NULL}};
+        for (size_t direction = 0; direction < BINDING_SEQUENCE_COUNT; direction++) {
+            const BindingSequence *sequence = &view->sequences[direction];
+            assert(sequence->count == arities[graph][direction]);
+            const BindingSlot *slot = sequence->first;
+            for (size_t ordinal = 0; ordinal < sequence->count; ordinal++) {
+                const char *name = graph ? static_names[direction][ordinal] : ordinary[direction][ordinal];
+                assert(slot != NULL && name_is(slot->name, name));
+                assert(slot->original_ordinal == ordinal && slot->sequence_ordinal == ordinal);
+                assert(source_span_valid(slot->name.site) && slot->intrinsic_field == NULL);
+                if (direction < BINDING_RUNTIME_INPUT) {
+                    assert(slot->static_symbol == symbol(module, name) && slot->runtime_declaration == NULL);
+                } else { assert(slot->runtime_declaration != NULL && slot->static_symbol == NULL); }
+                slot = slot->next;
+            }
+            assert(slot == NULL);
+            if (sequence->count == 0) { assert(sequence->first == NULL && sequence->last == NULL); }
+            else { assert(sequence->last->next == NULL); }
         }
-        assert(slot == NULL && sequence->last->next == NULL);
+        if (!graph) {
+            assert(view->sequences[BINDING_RUNTIME_INPUT].first->reference);
+            assert(view->sequences[BINDING_RUNTIME_INPUT].first->next->list);
+            assert(symbol(module, "...factory")->category == STATIC_CATEGORY_TYPE);
+            assert(symbol(module, "...factory")->signature == NULL);
+        }
+        destroy_binding();
     }
-    assert(view->sequences[BINDING_RUNTIME_INPUT].first->reference);
-    assert(view->sequences[BINDING_RUNTIME_INPUT].last->list);
-    assert(!view->sequences[BINDING_RUNTIME_OUTPUT].first->reference);
-    assert(symbol(module, "...factory")->signature->count == 1);
-    destroy_binding();
 }
 
 /** Capture enumeration order never becomes positional order. Previously
@@ -68,7 +76,7 @@ static void it_filters_exact_fixed_identities_without_reordering_or_mutating_oth
  */
 static void it_rejects_invalid_capture_sets_before_allocating_or_changing_sources(void) {
     for (size_t partition = 0; partition < 6; partition++) {
-        setup_binding(interface_source, "@<\n...explicit type\n@!\n");
+        setup_binding(partition == 1 ? graph_source : interface_source, "@<\nargument\n...explicit type\n@!\n");
         const StaticModule *module = binding_module(project.entry);
         const StaticModule *other = binding_module(project_find(&project, ".other"));
         const StaticSymbol *captures[] = {symbol(module, "...explicit type"), symbol(module, "...explicit type")};
@@ -99,7 +107,7 @@ static void it_selects_shared_constant_surfaces_and_preserves_empty_sequences(vo
     assert(view->sequences[BINDING_RUNTIME_INPUT].count == 0);
     assert(view->sequences[BINDING_RUNTIME_OUTPUT].count == 1);
     assert(name_is(view->sequences[BINDING_RUNTIME_OUTPUT].first->name, "shared"));
-    assert(view->sequences[BINDING_STATIC_INPUT].count == 4 && view->sequences[BINDING_STATIC_OUTPUT].count == 2);
+    assert(view->sequences[BINDING_STATIC_INPUT].count == 4 && view->sequences[BINDING_STATIC_OUTPUT].count == 0);
     destroy_binding();
     setup_binding("@!\n", STATIC_SCOPE_SOURCE_TEXT);
     assert(binding_source_interface(&binding_plan, binding_module(project.entry), BINDING_MODULE_SURFACE, NULL, 0, &view));
@@ -120,8 +128,8 @@ static void it_preserves_other_sequences_when_all_static_inputs_are_fixed(void) 
     BindingInterface *view = NULL;
     assert(binding_source_interface(&binding_plan, module, BINDING_MODULE_SURFACE, captures, 4, &view));
     assert(view->sequences[BINDING_STATIC_INPUT].count == 0 && view->sequences[BINDING_STATIC_INPUT].first == NULL);
-    assert(view->sequences[BINDING_STATIC_OUTPUT].count == 2 && view->sequences[BINDING_RUNTIME_INPUT].count == 2
-        && view->sequences[BINDING_RUNTIME_OUTPUT].count == 1);
+    assert(view->sequences[BINDING_STATIC_OUTPUT].count == 0 && view->sequences[BINDING_RUNTIME_INPUT].count == 3
+        && view->sequences[BINDING_RUNTIME_OUTPUT].count == 2);
     assert(module->parameter_count == 4 && captures[0]->ordinal == 3 && captures[3]->ordinal == 0);
     destroy_binding();
 }

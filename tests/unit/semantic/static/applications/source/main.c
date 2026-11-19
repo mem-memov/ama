@@ -1,124 +1,125 @@
 /** @file
- * @brief Verify positional re-normalization preserves original RHS syntax and skips.
+ * @brief Compose named source requests with later actual origins and complete use requirements.
  */
 #include "../common.c"
 #include "semantic/static/bindings/normalize.h"
 
-/** The head fixes a; source positions must therefore select b and c. */
-static const char *caller_source = "@<\n...constructor\n ...b\n ...c\n@>\n...family\n"
-    "...constructor\n ... <\n ... < ..integer\n@!\nanchor&\n..integer\n";
-static const char *target_source = "@<\n...a\n...b\n...c\n@!\n";
+/** Ordinary constructor formals are introduced through runtime name/type pairs. */
+static const char *target_source = "@<\nfirst\n...a\nsecond\n...b\nthird\n...c\n@!\n";
 
-/** Select the original static result expression. */
-static const AstTypeExpression *expression(void) {
+/** Locate an original result expression by its public owner, not foreign labels. */
+static const AstTypeExpression *expression(const char *result) {
     for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
-        if (site->root && site->receiver == NULL && site->statement->kind == AST_STATIC_RESULT) {
-            return site->expression;
-        }
+        if (site->receiver == NULL && site->root && site->statement->kind == AST_STATIC_RESULT
+            && layout_text_is(site->statement->as.static_result.name, result)) { return site->expression; }
     }
     assert(false); return NULL;
 }
 
-/** Compose actual T173/T175 records while the request interface is unknown. */
-static const StaticTermApplication *prepare(const StaticTerm *head) {
+/** Preserve one exact RHS term per named request while the actual head is open. */
+static const StaticTermApplication *prepare(const char *result) {
+    const AstTypeExpression *syntax = expression(result);
     BindingApplication *requests;
-    assert(binding_normalize_static(&binding_plan, NULL, expression(), &requests));
-    assert(requests->input_count == 2 && requests->pending);
-    const BindingRequest *written = requests->first;
-    assert(written && written->omitted && written->next && !written->next->omitted);
-    StaticTermOperand operand = {.request = written->next, .value = integer_type};
+    assert(binding_normalize_static(&binding_plan, NULL, syntax, &requests));
+    StaticTermOperand operands[2];
+    size_t count = 0;
+    for (const BindingRequest *input = requests->first; input; input = input->next) {
+        assert(input->direction == BINDING_STATIC_INPUT && count < 2);
+        operands[count++] = (StaticTermOperand){.request = input, .value = integer_type};
+    }
     const StaticTermApplication *source;
-    assert(static_term_application(&terms, &binding_plan, requests, caller_environment, head, &operand, 1, &source));
+    assert(static_term_application(&terms, &binding_plan, requests, caller_environment,
+        application_symbol("...family"), operands, count, &source));
     return source;
 }
 
-/** Known and later discovered heads filter captures before positional binding. */
-static void it_rebinds_positions_after_origin_discovery_without_reopening_captures(void) {
-    for (size_t delayed = 0; delayed < 3; delayed++) {
-        setup_applications(caller_source, target_source);
-        StaticTermCapture fixed = {.formal = application_formal(target_module, 0), .value = integer_type};
-        const StaticTerm *partial;
-        assert(static_term_nominal(&terms, target_module, &fixed, 1, (SourceSpan){0}, &partial));
-        const StaticTerm *head = delayed ? application_symbol("...constructor") : partial;
-        const StaticTermApplication *source = prepare(head);
-        const StaticApplicationRecord *record;
-        if (delayed == 1) {
-            assert(static_application_source(&applications, source, &record));
-            assert(record->pending_origin && record->value == NULL && record->context.result != NULL);
-            assert(record->context.source == source && record->context.requests == NULL);
-            assert(static_constraint_equate(&solver, head, partial, expression()->span));
+/** Later actual origin discovery supplies full residual metadata. Named c,b
+ * source order remains independent of the original a,b,c declaration order.
+ */
+static void it_renormalizes_named_requests_against_later_actual_residual_metadata(void) {
+    setup_applications("@...\n...result\n...family\n ...c < ..integer\n ...b < ..integer\n"
+        "...integer type\n..integer\n", target_source);
+    const StaticTermApplication *source = prepare("...result");
+    const StaticApplicationRecord *pending, *record;
+    assert(static_application_source(&applications, source, &pending));
+    assert(pending->pending_origin && pending->value == NULL && pending->context.result != NULL);
+    StaticTermCapture fixed = {.formal = application_formal(target_module, 0), .value = integer_type};
+    const StaticTerm *partial;
+    assert(static_term_nominal(&terms, target_module, &fixed, 1, source->source->expression->span, &partial));
+    assert(static_constraint_equate(&solver, source->head, partial, source->source->expression->span));
+    assert(static_application_source(&applications, source, &record));
+    assert(!record->pending_origin && record->value->category == STATIC_CATEGORY_TYPE);
+    assert(record->context.requests != source->source && record->context.source == source);
+    assert(record->first->formal == application_formal(target_module, 2));
+    assert(record->last->formal == application_formal(target_module, 1));
+    assert(record->first->value == integer_type && record->last->value == integer_type);
+    assert(record->value->as.nominal.capture_count == 3);
+    assert(record->value->as.nominal.first_capture->formal == fixed.formal);
+    assert(record->value->as.nominal.first_capture->value == integer_type);
+    assert(record->context.requests->first->source_ordinal == 0);
+    assert(record->context.requests->first->slot->original_ordinal == 2);
+    assert(source->source->first->slot == NULL && source->first->value == integer_type);
+    StaticApplicationOutcome outcome;
+    assert(static_application_check(&applications, record, &outcome) && outcome == STATIC_APPLY_RESOLVED);
+    destroy_applications();
+}
+
+/** Recovery preserves additional residuals needed by another use of the same
+ * family; an actually missing name conflicts at that other original use.
+ */
+static void it_checks_all_minimum_uses_after_recovery_without_closing_the_signature(void) {
+    for (size_t absent = 0; absent < 2; absent++) {
+        const char *graph = absent
+            ? "@...\n...first\n...family\n ...b < ..integer\n...second\n...family\n ...missing < ..integer\n"
+            : "@...\n...first\n...family\n ...b < ..integer\n...second\n...family\n ...c < ..integer\n";
+        setup_applications(graph, target_source);
+        StaticTermCapture captures[] = {
+            {.formal = application_formal(target_module, 0), .value = integer_type},
+            {.formal = application_formal(target_module, 1), .value = integer_type}
+        };
+        const StaticTerm *actual;
+        assert(static_term_nominal(&terms, target_module, captures, 2, (SourceSpan){0}, &actual));
+        const StaticTermApplication *source = prepare("...first");
+        const StaticApplicationRecord *record = NULL;
+        bool success = static_application_recover(&applications, source, actual, &record);
+        assert(success == !absent);
+        if (absent) {
+            assert(record == NULL && applications.status == STATIC_APPLY_CONFLICT);
+            assert(layout_text_is(applications.error.primary.span, "...missing"));
+        } else {
+            assert(record->value == actual && record->value->category == STATIC_CATEGORY_TEMPLATE);
+            const StaticTerm *head = static_constraint_root(&solver, source->head);
+            assert(head->as.nominal.capture_count == 1 && head->as.nominal.residual_count == 2);
+            assert(head->as.nominal.first_capture->formal == application_formal(target_module, 0));
         }
-        if (delayed == 2) {
-            StaticTermCapture expected_captures[] = {fixed,
-                {.formal = application_formal(target_module, 2), .value = integer_type}};
-            const StaticTerm *expected;
-            assert(static_term_nominal(&terms, target_module, expected_captures, 2, (SourceSpan){0}, &expected));
-            assert(static_application_recover(&applications, source, expected, &record));
-            assert(static_constraint_root(&solver, head) == partial);
-        } else { assert(static_application_source(&applications, source, &record)); }
-        assert(!record->pending_origin && record->input_count == 2 && record->context.requests != source->source);
-        assert(record->first->formal == application_formal(target_module, 1) && record->first->value == NULL);
-        assert(record->last->formal == application_formal(target_module, 2) && record->last->value == integer_type);
-        assert(record->value->as.nominal.capture_count == 2 && record->value->as.nominal.residual_count == 1);
-        assert(record->value->as.nominal.first_capture->formal == fixed.formal);
-        assert(record->value->as.nominal.first_residual->formal == record->first->formal);
-        assert(static_constraint_root(&solver, record->context.result) == record->value);
-        StaticApplicationOutcome outcome;
-        assert(static_application_check(&applications, record, &outcome) && outcome == STATIC_APPLY_RESOLVED);
         destroy_applications();
     }
 }
 
-/** Membership precedes following a copied record's internals. */
-static void it_refuses_copied_source_records_without_publishing(void) {
-    setup_applications(caller_source, target_source);
-    const StaticTermApplication *source = prepare(target_constructor);
-    StaticTermApplication copied = *source;
-    const StaticApplicationRecord *output = NULL;
-    assert(!static_application_source(&applications, &copied, &output));
-    assert(output == NULL && applications.count == 0 && applications.status == STATIC_APPLY_INVALID);
-    destroy_applications();
-}
-
-/** An output skip still creates the producer phase. Input positions count only
- * written inputs; an omitted input becomes a producer hole after normalization,
- * and static output selection uses its own original result sequence.
+/** Static producer outputs need their own graph equations. A constant output
+ * cannot establish a constructor origin or determine an omitted producer input.
  */
-static void it_preserves_separate_output_positions_and_uniform_producer_inference(void) {
-    setup_applications("@<\n...constructor\n ...b\n ...c\n@>\n...family\n"
-        "...constructor\n ... <\n ... < ..integer\n ... >\n@!\nanchor&\n..integer\n",
-        "@<\n...a\n...b\n...c\n@>\n...result\n..integer\n@!\n");
-    StaticTermCapture fixed = {.formal = application_formal(target_module, 0), .value = integer_type};
-    const StaticTerm *partial;
-    assert(static_term_nominal(&terms, target_module, &fixed, 1, expression()->span, &partial));
-    const StaticTermApplication *source = prepare(partial);
-    const StaticApplicationRecord *record;
-    assert(static_application_source(&applications, source, &record));
-    assert(record->context.policy == STATIC_OMIT_PRODUCER && record->input_count == 3);
-    assert(record->context.requests->input_count == 2 && record->context.requests->output_count == 1);
-    const BindingRequest *output = record->context.requests->last;
-    assert(output->direction == BINDING_STATIC_OUTPUT && output->omitted);
-    assert(output->slot->static_symbol == static_symbol_at(target_module, STATIC_RESULT, 0));
-    assert(record->first->formal == application_formal(target_module, 1) && record->first->value == NULL);
-    assert(record->first->next->formal == application_formal(target_module, 2));
-    assert(record->first->next->value == integer_type);
-    assert(record->last->generated && record->last->formal == record->first->formal);
-    const StaticTerm *hole = record->last->value;
-    assert(hole->as.variable.role == STATIC_VARIABLE_PRODUCER);
-    assert(hole->as.variable.producer == expression() && hole != record->context.result);
-    StaticConstraintOutcome solved;
-    assert(static_constraint_solve(&solver, &solved) && solved == STATIC_CONSTRAINT_PENDING);
-    assert(static_constraint_equate(&solver, hole, integer_type, expression()->span));
-    assert(static_constraint_solve(&solver, &solved) && solved == STATIC_CONSTRAINT_COMPLETE);
-    assert(caller_module->parameter_count == 1 && applications.count == 1);
+static void it_refuses_noninjective_producer_recovery_before_inventing_type_equations(void) {
+    setup_applications("@...\n.other\n ...out > ...alias\n...integer type\n..integer\n",
+        "@...\n...out\n..integer\n...unused\n...free\n");
+    const AstTypeExpression *syntax = caller_module->first_occurrence->expression;
+    BindingApplication *requests;
+    assert(binding_normalize_static(&binding_plan, NULL, syntax, &requests));
+    const StaticTerm *head = application_symbol("...alias");
+    const StaticTermApplication *source;
+    assert(static_term_application(&terms, &binding_plan, requests, caller_environment, head, NULL, 0, &source));
+    const StaticApplicationRecord *output = NULL;
+    assert(!static_application_recover(&applications, source, integer_type, &output));
+    assert(output == NULL && applications.status == STATIC_APPLY_INVALID);
+    assert(solver.first_equation == NULL && static_constraint_root(&solver, head) == head);
     destroy_applications();
 }
 
-/** Execute source composition and foreign-owner refusal. */
+/** Execute actual request/origin and minimum-requirement compositions. */
 static void run(void) {
-    it_rebinds_positions_after_origin_discovery_without_reopening_captures();
-    it_refuses_copied_source_records_without_publishing();
-    it_preserves_separate_output_positions_and_uniform_producer_inference();
+    it_refuses_noninjective_producer_recovery_before_inventing_type_equations();
+    it_renormalizes_named_requests_against_later_actual_residual_metadata();
+    it_checks_all_minimum_uses_after_recovery_without_closing_the_signature();
 }
-/** Return success after counted teardown. */
+/** Return success after complete counted teardown. */
 int main(void) { run(); return 0; }

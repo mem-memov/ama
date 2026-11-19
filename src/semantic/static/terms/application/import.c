@@ -48,7 +48,7 @@ static bool valid_operands(StaticTermStore *store, const BindingApplication *app
     if (count > application->input_count || (count != 0 && operands == NULL)) { return false; }
     size_t required = 0;
     for (const BindingRequest *request = application->first; request; request = request->next) {
-        if (request->direction != BINDING_STATIC_INPUT || request->omitted) { continue; }
+        if (request->direction != BINDING_STATIC_INPUT) { continue; }
         required++;
         if (operand_value(operands, count, request) == NULL) { return false; }
     }
@@ -87,7 +87,7 @@ bool static_term_application(StaticTermStore *store, const BindingPlan *plan,
         StaticTermInput *input = static_term_allocate(store, sizeof(*input));
         if (input == NULL) { return false; }
         input->request = request;
-        input->value = request->omitted ? NULL : operand_value(operands, count, request);
+        input->value = operand_value(operands, count, request);
         if (application->last != NULL) { application->last->next = input; }
         else { application->first = input; }
         application->last = input;

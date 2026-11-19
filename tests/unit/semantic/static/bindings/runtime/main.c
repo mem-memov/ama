@@ -1,10 +1,10 @@
 /** @file
  * @brief Compose actual ordinary call syntax with runtime and intrinsic interface snapshots.
  */
-#include "../request-common.c"
+#include "../runtime-common.c"
 
-/** Close the producer's two static inputs as already declared on worker; the
- * runtime operation uses its own input/output sequences, not those captures.
+/** Supply the runtime surface with its independently fixed Type formal identities.
+ * Type-value closure belongs to typed consumers, not request normalization.
  */
 static BindingInterface *runtime_interface(void) {
     const StaticModule *module = binding_module(project_find(&project, ".other"));
@@ -31,7 +31,7 @@ static const AstNode *operation(const char *name) {
 /** Explicit static field bindings determine worker's nominal producer without
  * becoming ordinary call positions or executing any input initialization.
  */
-static const char *worker_declaration = "worker\n.other\n ...a < ...type\n ...b < ...type\n";
+static const char *worker_declaration = "worker\n.other\n";
 
 /** Concatenate a maintained declaration and operation body for real parsing. */
 static void setup_worker(const char *body) {
@@ -40,7 +40,7 @@ static void setup_worker(const char *body) {
     assert(text != NULL);
     memcpy(text, worker_declaration, strlen(worker_declaration));
     memcpy(text + strlen(worker_declaration), body, strlen(body) + 1);
-    setup_requests(text);
+    setup_runtime_requests(text);
     free(text);
 }
 

@@ -6,14 +6,14 @@
 #include "semantic/static/terms/application.h"
 #include "semantic/static/constraints/solver.h"
 
-/** Actual source slot identities, not the caller's reversed expected signature,
- * determine equations. A concrete standard type anchors both producer inputs and
+/** Actual named source slot identities determine equations without a declared
+ * expected signature. A concrete standard type anchors both producer inputs and
  * the caller's repeated input; the constructor retains its own local residuals.
  */
 static void it_composes_actual_binding_slots_scoped_terms_and_typed_equalities(void) {
     ModuleRoot roots[] = {{STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT},
         {"../../../../../../stdlib/modules", NULL, 0, MODULE_ROOT_STANDARD}};
-    setup_request_roots("anchor\n..integer\n...expected\n ... < ...type\n ... < ...type\n ... >\n", roots, 2);
+    setup_request_roots("...request result\n...expected\n ...a < ...type\n ...b < ...type\n...anchor\n..integer\n", roots, 2);
     const StaticModule *caller = binding_module(project.entry);
     const StaticModule *producer = binding_module(project_find(&project, ".other"));
     const StaticModule *integer = binding_module(project_find(&project, "..integer"));
@@ -59,7 +59,7 @@ static void it_composes_actual_binding_slots_scoped_terms_and_typed_equalities(v
     assert(value == concrete && outcome == STATIC_CONSTRAINT_COMPLETE);
     assert(static_constraint_value(&solver, head, &value, &outcome));
     assert(value == constructor && value->as.nominal.residual_count == 2 && value->ground);
-    assert(request->output_count == 1 && request->last->omitted && inventory.valid);
+    assert(request->output_count == 0 && request->last->named && !request->last->omitted && inventory.valid);
     static_constraint_destroy(&solver);
     static_term_store_destroy(&terms);
     destroy_binding();

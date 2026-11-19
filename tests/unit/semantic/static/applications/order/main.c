@@ -1,17 +1,17 @@
 /** @file
- * @brief Compare mixed-introduction canonical maps and residuals with actual input snapshots.
+ * @brief Compare interface-introduction canonical maps and residuals with actual input snapshots.
  */
 #include <stdint.h>
 #include "../../common.c"
 #include "semantic/static/terms/store.h"
 #include "semantic/static/bindings/owner.h"
 
-/** Source text interleaves implicit inputs, an explicit formal and a result-only
- * free Type introduction. Collector allocation order is deliberately different.
+/** Source introduces distinct ordinary Type parameters through input and result
+ * declarations; internal storage order cannot replace original formal identity.
  */
-static void it_keeps_mixed_introduction_ordinals_in_captures_residuals_and_snapshots(void) {
-    setup_static("@<\nfirst\n...implicit first\n...explicit second\nlast\n...implicit last\n"
-        "@>\n...exported\n...implicit result\n@!\n", "@!\n");
+static void it_keeps_interface_introduction_ordinals_in_captures_residuals_and_snapshots(void) {
+    setup_static("@<\nfirst\n...implicit first\nsecond\n...explicit second\nlast\n...implicit last\n"
+        "@>\nexported\n...implicit result\n@!\n", "@!\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *module = static_module_find(&inventory, project.entry);
     const char *names[] = {"...implicit first", "...explicit second", "...implicit last", "...implicit result"};
@@ -21,9 +21,7 @@ static void it_keeps_mixed_introduction_ordinals_in_captures_residuals_and_snaps
         assert(formals[index] && formals[index]->role == STATIC_PARAMETER && formals[index]->ordinal == index);
         assert(static_symbol_at(module, STATIC_PARAMETER, index) == formals[index]);
     }
-    assert(module->parameter_count == 4 && module->first == formals[1]);
-    const StaticSymbol *result = static_symbol_at(module, STATIC_RESULT, 0);
-    assert(result && layout_text_is(result->name, "...exported"));
+    assert(module->parameter_count == 4 && static_symbol_at(module, STATIC_RESULT, 0) == NULL);
     assert(static_symbol_at(module, STATIC_PARAMETER, 4) == NULL);
     assert(static_symbol_at(module, STATIC_RESULT, 1) == NULL);
     assert(static_symbol_at(module, STATIC_ALIAS, 0) == NULL);
@@ -74,6 +72,6 @@ static void it_keeps_mixed_introduction_ordinals_in_captures_residuals_and_snaps
 }
 
 /** Run the independently specified text-order/capture/snapshot agreement law. */
-static void run(void) { it_keeps_mixed_introduction_ordinals_in_captures_residuals_and_snapshots(); }
+static void run(void) { it_keeps_interface_introduction_ordinals_in_captures_residuals_and_snapshots(); }
 /** Return success after all assertions and complete counted teardown. */
 int main(void) { run(); return 0; }

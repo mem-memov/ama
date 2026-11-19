@@ -53,7 +53,7 @@ static void it_uses_the_shared_constant_surface_for_constant_reads(void) {
 static void it_normalizes_selected_intrinsic_methods_without_parent_argument_positions(void) {
     ModuleRoot roots[] = {{STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT},
         {"../../../../../../stdlib/modules", NULL, 0, MODULE_ROOT_STANDARD}};
-    setup_request_roots("items[]\n...type\nitems[]\n append !\n  source& < input&\n  element& > appended&\n", roots, 2);
+    setup_runtime_roots("items[]\n...type\nitems[]\n append !\n  source& < input&\n  element& > appended&\n", roots, 2);
     assert(project_find(&project, "..integer") != NULL);
     const AstNode *parent = operation("items");
     assert(parent->as.call.first == NULL && parent->as.call.input_count == 0 && parent->as.call.output_count == 0);

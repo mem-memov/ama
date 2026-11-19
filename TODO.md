@@ -171,7 +171,8 @@ operand preparation. [T206](DONE.md#t206) establishes the current source/AST
 boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 [T213](DONE.md#t213) checks the complete source closure and occurrence roles.
 [T208](DONE.md#t208) establishes actual metadata and all-use requirements.
-T209 is next. T182 remains unfinished with its partial
+[T209](DONE.md#t209) establishes named application and finite structural equations.
+T210 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -188,31 +189,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 2. Establish current source structure and bindings
 
 ### Phase 3. Build finite structural analysis and guarded identities
-
-<a id="t209"></a>
-
-- [ ] **T209 — Apply named constructors and solve nonexpanding equations.**
-  Prerequisites: T208.
-  Rules: [TPL-07](spec/language/templates.md#tpl-07),
-  [TPL-08](spec/language/templates.md#tpl-08),
-  [TPL-10](spec/language/templates.md#tpl-10).
-  Boundary: structural terms, named input application, partial normalization,
-  equality/congruence/occurs checks and exact nominal constructor recovery.
-  Steps: normalize known applications; propagate minimum requirements; solve
-  finite structural equalities and uniquely justified B-minus-P recovery while
-  retaining unanchored obligations. Do not unfold definitions at this stage.
-  Accept: direct/staged/reordered inputs agree and preserve unused captures;
-  independent partial applications do not mutate or combine the original family.
-  Reject duplicate/unknown/fixed labels, category conflicts, unequal nominal
-  origins and infinite terms. Unknown-to-unknown equalities, literals and
-  noninjective outputs invent no origin or missing binding. Preserve extra
-  residuals and require actual named compatibility rather than exact expected
-  signature equality. Derive finite solver progress/cost and recovery uniqueness;
-  exercise metadata/constraint consumers, permutations and allocation refusal.
-  Remove obsolete positional/exact-signature branches. Meet the common per-file
-  tests, Doxygen links and same-task commit criteria.
-  Fixtures: Migrate the remaining binding/application fixtures from old mixed interfaces;
-  delete static positional/skip-only cases while retaining runtime positions.
 
 <a id="t210"></a>
 
@@ -719,17 +695,17 @@ actual categories, captured values, native consumers and final conformance.
 | Explicit constant namespaces | [T212](#t212) |
 | Specialized constant lifecycle | [T186](#t186) |
 | Concrete operation checks | [T185](#t185) |
-| Template parameter signatures | [T209](#t209) |
-| Partial composition | [T209](#t209) |
+| Template parameter signatures | [T211](#t211) |
+| Partial composition | [T211](#t211) |
 | Explicit static input categories | [T211](#t211) |
 | Defined static results | [T211](#t211) |
 | Static output composition | [T211](#t211) |
 | Static output lookup | [T211](#t211) |
-| Named-only static interfaces | [T209](#t209), [T211](#t211) |
-| Static named arity and rejected skips | [T209](#t209), [T211](#t211) |
-| Static binding modes and order | [T209](#t209) |
+| Named-only static interfaces | [T211](#t211) |
+| Static named arity and rejected skips | [T211](#t211) |
+| Static binding modes and order | [T211](#t211) |
 | Static result alias introduction | [T211](#t211) |
-| Static alias scope and capture | [T209](#t209) |
+| Static alias scope and capture | [T211](#t211) |
 | Static output inference and closure | [T211](#t211) |
 | Complete producer closure | [T211](#t211) |
 | Ordinary static-export boundary | [T212](#t212) |
@@ -740,7 +716,7 @@ actual categories, captured values, native consumers and final conformance.
 | Finite repeated composition | [T210](#t210) |
 | Definition-generated recursion | [T210](#t210) |
 | Creation-graph provenance | [T210](#t210) |
-| Constructor origins and captures | [T209](#t209) |
+| Constructor origins and captures | [T211](#t211) |
 | Cache-independent path checks | [T183](#t183) |
 | Native template rejection | [T190](#t190) |
 | Concrete native template arguments | [T190](#t190) |

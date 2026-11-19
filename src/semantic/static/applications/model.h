@@ -8,12 +8,12 @@
 #define AMA_STATIC_APPLICATION_MODEL_H
 #include "../terms/application.h"
 
-/** Partial expressions keep local binders; input/namespace roots require coverage;
- * fields and explicit producers generate different scoped inference identities.
- * [TPL-08](../../../../spec/language/templates.md#tpl-08) fixes omission by context.
+/** Partial expressions retain local residuals; every ordinary declaration uses
+ * stable field inference, while constant namespaces must be independently closed.
+ * [TPL-04](../../../../spec/language/templates.md#tpl-04) covers interface fields
+ * as well as body fields; static producers have a separate graph evaluator.
  */
-typedef enum { STATIC_OMIT_PARTIAL, STATIC_OMIT_INPUT, STATIC_OMIT_FIELD,
-    STATIC_OMIT_NAMESPACE, STATIC_OMIT_PRODUCER } StaticOmissionPolicy;
+typedef enum { STATIC_OMIT_PARTIAL, STATIC_OMIT_FIELD, STATIC_OMIT_NAMESPACE } StaticOmissionPolicy;
 
 /** Source-free prepared maps may omit syntax except when generating inference.
  * Source-backed policies must agree with the registered expression's actual role.
@@ -30,10 +30,10 @@ typedef struct {
     SourceSpan site;
 } StaticApplicationContext;
 
-/** A null value is an explicit positional skip, never an unknown RHS value.
- * Generated entries are separate from the original written counter positions.
+/** Each named binding owns a nonnull static value; omitted partial formals
+ * have no map entry. Generated entries remain separate from written requests.
  * Array inputs ignore next/generated; published links are plan-owned snapshots.
- * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves skips.
+ * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves partial maps.
  */
 typedef struct StaticApplicationInput {
     struct StaticApplicationInput *next;

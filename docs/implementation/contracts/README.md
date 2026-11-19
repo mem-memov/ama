@@ -254,3 +254,8 @@ The [actual static metadata contract](../static-metadata.md) owns T208's
 immutable actual descriptions and minimum requirements derived from complete
 source use sets. It separates these requirements from complete signature
 equality and from later producer/equation admission.
+
+The [named application/equation contract](../static-equations.md) owns T209's
+named map normalization and nonexpanding B-minus-P recovery. Source-only static
+producers and export selection remain separate consumers, so their noninjective
+outputs cannot manufacture a nominal constructor origin through this interface.

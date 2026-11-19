@@ -5,12 +5,12 @@
 #include "../../bindings/request-common.c"
 #include "semantic/static/terms/application.h"
 
-/** Known actual positions retain original formal identity; pending requests and
- * skips remain explicit. Equal inputs never merge distinct application uses.
+/** Known named slots retain original formal identity; pending requests
+ * retain their complete labels. Equal inputs never merge distinct application uses.
  */
-static void it_preserves_actual_slots_skips_and_distinct_use_provenance(void) {
+static void it_preserves_named_slots_and_distinct_use_provenance(void) {
     for (size_t known = 0; known < 2; known++) {
-        setup_requests("...expected\n ... < ...type\n ... <\n ... > ...received\n");
+        setup_requests("...request result\n...expected\n ...a < ...type\n ...b < ...type\n");
         const StaticModule *caller = binding_module(project.entry);
         const StaticOccurrence *head = request_head("...expected");
         assert(static_name_site(project.entry, "...expected").source == head->site.source);
@@ -22,15 +22,16 @@ static void it_preserves_actual_slots_skips_and_distinct_use_provenance(void) {
         const StaticTermEnvironment *environment;
         const StaticTerm *value, *constructor;
         assert(static_term_environment(&store, caller, NULL, &environment));
-        assert(static_term_symbol(&store, environment, caller->first, &value));
+        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, "...type")), &value));
         assert(static_term_symbol(&store, environment, head->symbol, &constructor));
-        StaticTermOperand operand = {.request = request->first, .value = value};
+        StaticTermOperand operands[] = {{.request = request->first, .value = value},
+            {.request = request->first->next, .value = value}};
         const StaticTermApplication *first, *second;
-        assert(static_term_application(&store, &binding_plan, request, environment, constructor, &operand, 1, &first));
-        assert(static_term_application(&store, &binding_plan, request, environment, constructor, &operand, 1, &second));
+        assert(static_term_application(&store, &binding_plan, request, environment, constructor, operands, 2, &first));
+        assert(static_term_application(&store, &binding_plan, request, environment, constructor, operands, 2, &second));
         assert(first != second && first->head == second->head && first->source == request);
-        assert(first->input_count == 2 && first->first->value == value && first->last->value == NULL);
-        assert(first->last->request->omitted && request->output_count == 1);
+        assert(first->input_count == 2 && first->first->value == value && first->last->value == value);
+        assert(first->last->request->named && request->output_count == 0);
         if (known) {
             assert(first->first->request->slot->static_symbol == binding_module(project_find(&project, ".other"))->first);
         } else { assert(first->first->request->slot == NULL && request->pending); }
@@ -49,7 +50,7 @@ static void it_preserves_actual_slots_skips_and_distinct_use_provenance(void) {
 static void it_unwinds_every_application_record_allocation_refusal(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_requests("...expected\n ... < ...type\n ... <\n ... >\n");
+        setup_requests("...request result\n...expected\n ...a < ...type\n ...b < ...type\n");
         const StaticModule *caller = binding_module(project.entry);
         const StaticOccurrence *head = request_head("...expected");
         assert(static_name_site(project.entry, "...expected").source == head->site.source);
@@ -60,15 +61,16 @@ static void it_unwinds_every_application_record_allocation_refusal(void) {
         const StaticTermEnvironment *environment;
         const StaticTerm *value, *constructor;
         assert(static_term_environment(&store, caller, NULL, &environment));
-        assert(static_term_symbol(&store, environment, caller->first, &value));
+        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, "...type")), &value));
         assert(static_term_symbol(&store, environment, head->symbol, &constructor));
-        StaticTermOperand operand = {.request = request->first, .value = value};
+        StaticTermOperand operands[] = {{.request = request->first, .value = value},
+            {.request = request->first->next, .value = value}};
         const StaticTermApplication *prior, *output;
-        assert(static_term_application(&store, &binding_plan, request, environment, constructor, &operand, 1, &prior));
+        assert(static_term_application(&store, &binding_plan, request, environment, constructor, operands, 2, &prior));
         output = prior;
         size_t before = allocation_count;
         if (failure) { failure_at = before + failure; }
-        bool success = static_term_application(&store, &binding_plan, request, environment, constructor, &operand, 1, &output);
+        bool success = static_term_application(&store, &binding_plan, request, environment, constructor, operands, 2, &output);
         if (!failure) { assert(success); total = allocation_count - before; assert(total); }
         else {
             assert(!success && output == prior && prior->next == NULL);
@@ -86,7 +88,7 @@ static void it_unwinds_every_application_record_allocation_refusal(void) {
  */
 static void it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses(void) {
     for (size_t invalid = 0; invalid < 3; invalid++) {
-        setup_requests("...expected\n ... < ...type\n ... < ...type\n ... >\n");
+        setup_requests("...request result\n...expected\n ...a < ...type\n ...b < ...other type\n");
         const StaticModule *caller = binding_module(project.entry);
         const StaticOccurrence *head = request_head("...expected");
         BindingApplication *request;
@@ -94,16 +96,18 @@ static void it_preserves_reordered_operands_and_refuses_foreign_or_saturated_use
         StaticTermStore store;
         static_term_store_init(&store, &inventory, sources.allocator);
         const StaticTermEnvironment *environment, *foreign;
-        const StaticTerm *value, *constructor;
+        const StaticTerm *value, *second_value, *constructor;
         assert(static_term_environment(&store, caller, NULL, &environment));
         assert(static_term_environment(&store, binding_module(project_find(&project, ".other")), NULL, &foreign));
-        assert(static_term_symbol(&store, environment, caller->first, &value));
+        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, "...type")), &value));
         assert(static_term_symbol(&store, environment, head->symbol, &constructor));
-        StaticTermOperand operands[] = {{.request = request->first->next, .value = constructor},
+        assert(static_term_symbol(&store, environment, static_symbol_find(caller,
+            static_name_site(project.entry, "...other type")), &second_value));
+        StaticTermOperand operands[] = {{.request = request->first->next, .value = second_value},
             {.request = request->first, .value = value}};
         const StaticTermApplication *application;
         assert(static_term_application(&store, &binding_plan, request, environment, constructor, operands, 2, &application));
-        assert(application->first->value == value && application->last->value == constructor);
+        assert(application->first->value == value && application->last->value == second_value);
         const StaticTermApplication *output = application;
         BindingApplication copied = *request;
         if (invalid == 2) { store.application_count = SIZE_MAX; }
@@ -120,7 +124,7 @@ static void it_preserves_reordered_operands_and_refuses_foreign_or_saturated_use
 
 /** Exercise real scope, request and term components together. */
 static void run(void) {
-    it_preserves_actual_slots_skips_and_distinct_use_provenance();
+    it_preserves_named_slots_and_distinct_use_provenance();
     it_unwinds_every_application_record_allocation_refusal();
     it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses();
 }

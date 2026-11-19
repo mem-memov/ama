@@ -1,9 +1,9 @@
 /**
  * @file
- * @brief Represent immutable four-sequence interface snapshots without runtime values.
+ * @brief Represent separate ordinary and graph interface snapshots without runtime values.
  *
- * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates actual
- * static input/output positions from expected named signatures.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires named
+ * static inputs/outputs, separate from ordinary positional runtime interfaces.
  * [CALL-06](../../../../spec/language/calls-and-results.md#call-06) gives ordinary
  * inputs/results independent positions. [LIST-04](../../../../spec/language/lists.md#list-04)
  * provides canonical source-independent intrinsic field metadata.

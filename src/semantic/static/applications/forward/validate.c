@@ -15,7 +15,7 @@ static bool residual(const StaticTerm *constructor, const StaticSymbol *formal) 
 }
 
 /** An unknown actual origin remains pending; input IDs themselves must still be
- * genuine accepted source formals and nonnull values must be owned terms.
+ * genuine accepted source formals and every supplied value must be an owned term.
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) preserves exact identities.
  */
 bool static_application_inputs_valid(StaticApplicationPlan *plan, const StaticTerm *constructor,
@@ -25,12 +25,12 @@ bool static_application_inputs_valid(StaticApplicationPlan *plan, const StaticTe
     }
     if (constructor->kind == STATIC_TERM_NOMINAL && count > constructor->as.nominal.residual_count) {
         return static_application_fail(plan, STATIC_APPLY_CONFLICT, site,
-            "Static input positions exceed the actual residual interface", NULL);
+            "Static input bindings exceed the actual residual interface", NULL);
     }
     for (size_t index = 0; index < count; index++) {
         const StaticSymbol *formal = inputs[index].formal;
         if (!static_term_has_symbol(plan->terms, formal) || formal->role != STATIC_PARAMETER ||
-            (inputs[index].value != NULL && !static_term_has_value(plan->terms, inputs[index].value))) {
+            !static_term_has_value(plan->terms, inputs[index].value)) {
             return static_application_fail(plan, STATIC_APPLY_INVALID, inputs[index].site,
                 "Prepared input requires original formal and owned value identities", NULL);
         }

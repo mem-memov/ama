@@ -32,7 +32,7 @@ static void it_keeps_runtime_omissions_and_named_storage_labels_in_independent_s
             raw = raw->next;
         }
         assert(request == NULL && view->sequences[BINDING_RUNTIME_INPUT].first == first);
-        assert(first->next->sequence_ordinal == 1 && view->sequences[BINDING_STATIC_OUTPUT].count == 2);
+        assert(first->next->sequence_ordinal == 1 && view->sequences[BINDING_STATIC_OUTPUT].count == 0);
         destroy_binding();
     }
 }

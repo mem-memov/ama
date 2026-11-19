@@ -4674,3 +4674,36 @@ this table is navigation, not a parallel semantic definition.
   consumers. Meet the common tests, Doxygen links and same-task commit criteria.
   Fixtures: Rebuild term/metadata fixtures from current source and actual metadata; do not
   restore explicit expected-signature trees or the removed root-subset mode.
+
+<a id="t209"></a>
+
+- [x] **T209 — Apply named constructors and solve nonexpanding equations.**
+  Prerequisites: T208.
+  Rules: [TPL-04](spec/language/templates.md#tpl-04),
+  [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-08](spec/language/templates.md#tpl-08),
+  [TPL-10](spec/language/templates.md#tpl-10).
+  Evidence: named-only static maps, stable field inference and exact B-minus-P
+  recovery preserve actual captures/residuals and all minimum uses. Retired static
+  positional/skip and producer/input omission branches and sole-purpose tests
+  are removed; ordinary runtime positions remain covered. Five parent/groups
+  (24 leaves) pass strict and ASan/UBSan; actual metadata refinement is rerun in
+  both configurations. Root build/native admission and complete documentation
+  checks pass (2708 inputs, zero debts). Final rendering/staging remain commit gates. See [the equation contract](docs/implementation/static-equations.md).
+  Boundary: structural terms, named input application, partial normalization,
+  equality/congruence/occurs checks and exact nominal constructor recovery.
+  Steps: normalize known applications; propagate minimum requirements; solve
+  finite structural equalities and uniquely justified B-minus-P recovery while
+  retaining unanchored obligations. Do not unfold definitions at this stage.
+  Accept: direct/staged/reordered inputs agree and preserve unused captures;
+  independent partial applications do not mutate or combine the original family.
+  Reject duplicate/unknown/fixed labels, category conflicts, unequal nominal
+  origins and infinite terms. Unknown-to-unknown equalities, literals and
+  noninjective outputs invent no origin or missing binding. Preserve extra
+  residuals and require actual named compatibility rather than exact expected
+  signature equality. Derive finite solver progress/cost and recovery uniqueness;
+  exercise metadata/constraint consumers, permutations and allocation refusal.
+  Remove obsolete positional/exact-signature branches. Meet the common per-file
+  tests, Doxygen links and same-task commit criteria.
+  Fixtures: Migrate the remaining binding/application fixtures from old mixed interfaces;
+  delete static positional/skip-only cases while retaining runtime positions.

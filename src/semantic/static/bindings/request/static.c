@@ -2,8 +2,8 @@
  * @file
  * @brief Normalize one static expression's own input/output requests without descending into nested owners.
  *
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) gives every
- * expression level its own mode and counters, leaves unknown origins pending,
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires every
+ * expression level to use explicit names, leaves unknown origins pending,
  * and preserves actual residual snapshots throughout all requests.
  */
 #include <assert.h>
@@ -12,7 +12,7 @@
 
 /** Preserve complete structural requests and borrowed operands. Nested input
  * expressions remain their own later applications; no textual substitution or
- * selected-output execution occurs during positional/name resolution.
+ * selected-output execution occurs during named resolution.
  * Contract: [TPL-12](../../../../../spec/language/static-results.md#tpl-12).
  */
 bool binding_normalize_static(BindingPlan *plan, const BindingInterface *view,

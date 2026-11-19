@@ -1,7 +1,8 @@
 /** @file
  * @brief Classify source-backed creation and resolve repeated keys before expanding definitions.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) permits exact-key cycles and suspends unknown repeats.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires output producers.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) keeps graph producers
+ * separate from ordinary nominal applications.
  * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04) retains the full rejected path.
  */
 #include "../internal.h"
@@ -23,13 +24,12 @@ static bool application(StaticGuardPlan *plan, const StaticCreationPath *parent,
         "Creation application must belong to its exact lexical owner path");
 }
 
-/** Classify already checked structural values. Unapplied constructors and plain
- * supplied Types and fixed ordinary constant namespaces carry no new edge,
- * while every explicit output phase requires its producer even if its head was
- * a Type parameter or ordinary module. Namespace reuse still needs independent
- * required-type validation by the caller; it is not default-instance creation.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) overrides plain reuse.
- * [CONST-03](../../../../../spec/language/declarations.md#const-03) keeps fixed namespace lookup separate.
+/** Classify ordinary constructor values only. Separate static producers do not
+ * enter this nominal application path. Bare supplied Types and closed ordinary
+ * constant namespaces reuse their known identity without creating a new edge.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) separates creation
+ * from reuse; [TPL-12](../../../../../spec/language/static-results.md#tpl-12)
+ * keeps graph producers outside ordinary Type/Template values.
  */
 static StaticCreationOutcome classify(StaticGuardPlan *plan, const StaticApplicationRecord *record,
     const StaticTerm **value) {
@@ -40,12 +40,11 @@ static StaticCreationOutcome classify(StaticGuardPlan *plan, const StaticApplica
     (void)signature;
     if (category == STATIC_CATEGORY_TEMPLATE) { return STATIC_CREATION_METADATA; }
     if (category == STATIC_CATEGORY_DEFERRED) { return STATIC_CREATION_PENDING; }
-    bool producer = record->context.policy == STATIC_OMIT_PRODUCER;
-    if (!producer && !record->applied && record->context.expression->kind == AST_TYPE_PLACEHOLDER) {
+    if (!record->applied && record->context.expression->kind == AST_TYPE_PLACEHOLDER) {
         return STATIC_CREATION_REUSE;
     }
     *value = static_constraint_root(plan->applications->solver, record->value);
-    if (!producer && record->context.policy == STATIC_OMIT_NAMESPACE &&
+    if (record->context.policy == STATIC_OMIT_NAMESPACE &&
         (*value)->kind == STATIC_TERM_NOMINAL && (*value)->as.nominal.origin->parameter_count == 0) {
         return STATIC_CREATION_REUSE;
     }

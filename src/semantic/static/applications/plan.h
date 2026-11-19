@@ -56,7 +56,8 @@ void static_application_plan_destroy(StaticApplicationPlan *);
 bool static_application_context(StaticApplicationPlan *, const StaticTermEnvironment *,
     const AstTypeExpression *, StaticApplicationContext *);
 /** Merge an actual constructor's captures with a count-sized original-slot
- * input array. Null values are skips. New bindings cannot reopen captured slots.
+ * input array. Every supplied value is nonnull; omission is absence from the map.
+ * New bindings cannot reopen captured slots.
  * Pending origins retain a snapshot without inventing a module. Source policies
  * control omission; value/record output is untouched on failure.
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) defines partial application.
@@ -72,7 +73,7 @@ bool static_application_forward(StaticApplicationPlan *, const StaticTerm *,
 bool static_application_source(StaticApplicationPlan *, const StaticTermApplication *,
     const StaticApplicationRecord **);
 /** Constrain a source application by independently known nominal result facts.
- * Recover its unknown constructor by exact declared residual names, retaining
+ * Recover its unknown constructor from explicit named inputs, retaining
  * all other captures; unknown origins remain Pending. Never search definitions.
  * [TPL-10](../../../../spec/language/templates.md#tpl-10) fixes unique recovery.
  */

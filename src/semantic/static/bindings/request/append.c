@@ -2,8 +2,8 @@
  * @file
  * @brief Validate and append requests against frozen independent interface sequences.
  *
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) fixes actual
- * residual positions and forbids mode mixing/input-after-output.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires named
+ * static residuals and forbids input-after-output.
  * [CALL-06](../../../../../spec/language/calls-and-results.md#call-06) makes
  * explicit skips consume positions. [CALL-08](../../../../../spec/language/calls-and-results.md#call-08)
  * preserves runtime label storage forms. [COMP-04](../../../../../spec/implementation/compiler.md#comp-04)
@@ -22,7 +22,7 @@ static bool named(BindingName name, SourceSpan label) {
     return name.length == length && memcmp(name.bytes, source_bytes(label.source) + label.start, length) == 0;
 }
 
-/** Resolve a name or ordinal in the unchanged snapshot. No successful earlier
+/** Resolve a whole name, or an ordinary runtime ordinal, in the unchanged snapshot. No successful earlier
  * binding removes a slot or renumbers subsequent positional requests.
  * Contract: [TPL-12](../../../../../spec/language/static-results.md#tpl-12).
  */
@@ -72,6 +72,9 @@ bool binding_request_append(BindingPlan *plan, BindingApplication *application, 
     assert((size_t)request.direction < BINDING_SEQUENCE_COUNT);
     assert((application->kind == BINDING_STATIC_APPLICATION) == (request.direction < BINDING_RUNTIME_INPUT));
     assert(!request.named || source_span_valid(request.label));
+    if (application->kind == BINDING_STATIC_APPLICATION && (!request.named || request.omitted)) {
+        return binding_invalid(plan, request.span, "Static requests require a name and an operand");
+    }
     bool output = request.direction == BINDING_STATIC_OUTPUT || request.direction == BINDING_RUNTIME_OUTPUT;
     BindingMode mode = request.named ? BINDING_MODE_NAMED : BINDING_MODE_POSITIONAL;
     if (application->mode != BINDING_MODE_EMPTY && application->mode != mode) {

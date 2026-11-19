@@ -3,16 +3,16 @@
  */
 #include "../common.c"
 
-/** Direct, staged and reordered maps have one normalized value; a skip stays
+/** Direct, staged and reordered maps have one normalized value; an omitted formal stays
  * residual and later completion retains all fixed bindings, even unused ones.
  */
-static void it_normalizes_direct_staged_reordered_and_skipped_original_maps(void) {
+static void it_normalizes_direct_staged_reordered_and_omitted_original_maps(void) {
     setup_applications(NULL, NULL);
     const StaticSymbol *a = application_formal(target_module, 0), *b = application_formal(target_module, 1);
     StaticApplicationContext context = {.policy = STATIC_OMIT_PARTIAL};
     StaticApplicationInput inputs[] = {{.formal = a, .value = integer_type, .site = a->site},
         {.formal = b, .value = integer_type, .site = b->site}};
-    const StaticApplicationRecord *direct, *first, *staged, *reordered, *skip, *identity;
+    const StaticApplicationRecord *direct, *first, *staged, *reordered, *omitted, *identity;
     assert(static_application_forward(&applications, target_constructor, inputs, 2, context, &direct));
     assert(static_application_forward(&applications, target_constructor, inputs, 1, context, &first));
     assert(first->value->category == STATIC_CATEGORY_TEMPLATE && first->value->as.nominal.residual_count == 1);
@@ -23,10 +23,9 @@ static void it_normalizes_direct_staged_reordered_and_skipped_original_maps(void
     assert(direct->value->as.nominal.first_capture->formal == a);
     assert(static_application_forward(&applications, target_constructor, NULL, 0, context, &identity));
     assert(identity->value == target_constructor && !identity->applied);
-    inputs[0].value = NULL;
-    assert(static_application_forward(&applications, target_constructor, inputs, 2, context, &skip));
-    assert(skip->value->category == STATIC_CATEGORY_TEMPLATE && skip->value->as.nominal.first_residual->formal == a);
-    assert(skip->first->value == NULL && skip->last->value == integer_type && skip->input_count == 2);
+    assert(static_application_forward(&applications, target_constructor, &inputs[1], 1, context, &omitted));
+    assert(omitted->value->category == STATIC_CATEGORY_TEMPLATE && omitted->value->as.nominal.first_residual->formal == a);
+    assert(omitted->first->formal == b && omitted->first->value == integer_type && omitted->input_count == 1);
     StaticApplicationOutcome outcome;
     assert(static_application_check(&applications, direct, &outcome) && outcome == STATIC_APPLY_RESOLVED);
     assert(target_module->parameter_count == 2 && inventory.valid);
@@ -59,49 +58,7 @@ static void it_rejects_rebinding_duplicates_foreign_formals_and_wrong_categories
     }
 }
 
-/** A Template value's local residuals remain valid arguments with an exact
- * named contract. A completely applied Type is never implicitly reopened.
- */
-static void it_preserves_template_arguments_and_refuses_closed_type_reopening(void) {
-    for (size_t closed = 0; closed < 2; closed++) {
-        setup_applications("@<\n...a\n...b\n...family\n ...slot\n@!\nanchor&\n..integer\n",
-            "@<\n...slot\n@!\n");
-        const StaticSymbol *family = application_formal(caller_module, 2);
-        const StaticTerm *actual = target_constructor;
-        StaticApplicationContext context = {.policy = STATIC_OMIT_PARTIAL};
-        if (closed) {
-            StaticApplicationInput slot = {.formal = application_formal(target_module, 0), .value = integer_type};
-            const StaticApplicationRecord *complete;
-            assert(static_application_forward(&applications, target_constructor, &slot, 1, context, &complete));
-            actual = complete->value;
-        }
-        StaticApplicationInput input = {.formal = family, .value = actual, .site = family->site};
-        const StaticApplicationRecord *record = NULL;
-        bool success = static_application_forward(&applications, caller_constructor, &input, 1, context, &record);
-        assert(success == !closed);
-        if (!closed) {
-            assert(record->value->category == STATIC_CATEGORY_TEMPLATE && record->value->as.nominal.capture_count == 1);
-            assert(record->value->as.nominal.first_capture->value == target_constructor);
-            StaticApplicationOutcome outcome;
-            assert(static_application_check(&applications, record, &outcome) && outcome == STATIC_APPLY_RESOLVED);
-        } else { assert(record == NULL && applications.status == STATIC_APPLY_CONFLICT); }
-        destroy_applications();
-    }
-}
 
-/** Exact residual names matter even for equally sized constructor interfaces. */
-static void it_rejects_renamed_template_slots_without_guessing_an_adapter(void) {
-    setup_applications("@<\n...a\n...b\n...family\n ...slot\n@!\nanchor&\n..integer\n",
-        "@<\n...different slot\n@!\n");
-    const StaticSymbol *family = application_formal(caller_module, 2);
-    StaticApplicationInput input = {.formal = family, .value = target_constructor, .site = family->site};
-    const StaticApplicationRecord *output = NULL;
-    assert(!static_application_forward(&applications, caller_constructor, &input, 1,
-        (StaticApplicationContext){.policy = STATIC_OMIT_PARTIAL}, &output));
-    assert(output == NULL && applications.status == STATIC_APPLY_CONFLICT);
-    assert(strstr(applications.error.message, "signature") && applications.error.related_count == 1);
-    destroy_applications();
-}
 
 /** A bare Type reference can normalize before its origin is known, but later
  * checking must examine its resolved inherited captures rather than skipping
@@ -126,12 +83,34 @@ static void it_rechecks_inherited_captures_after_a_symbolic_identity_gets_an_ori
     destroy_applications();
 }
 
+/** Omitted formals are absent, while a supplied null value is an invalid map.
+ * A fully applied Type can be forwarded but can never be reopened as Template.
+ */
+static void it_refuses_missing_values_and_closed_type_reopening(void) {
+    for (size_t partition = 0; partition < 2; partition++) {
+        setup_applications(NULL, NULL);
+        StaticApplicationInput inputs[] = {
+            {.formal = application_formal(target_module, 0), .value = integer_type},
+            {.formal = application_formal(target_module, 1), .value = integer_type}
+        };
+        StaticApplicationContext context = {.policy = STATIC_OMIT_PARTIAL};
+        const StaticApplicationRecord *complete, *output;
+        assert(static_application_forward(&applications, target_constructor, inputs, 2, context, &complete));
+        output = complete;
+        const StaticTerm *head = partition == 0 ? target_constructor : complete->value;
+        if (partition == 0) { inputs[0].value = NULL; }
+        assert(!static_application_forward(&applications, head, inputs, 1, context, &output));
+        assert(output == complete && applications.count == 1 && complete->next == NULL);
+        assert(applications.status == (partition == 0 ? STATIC_APPLY_INVALID : STATIC_APPLY_CONFLICT));
+        destroy_applications();
+    }
+}
+
 /** Execute independent algebraic and kind/signature refusal partitions. */
 static void run(void) {
-    it_normalizes_direct_staged_reordered_and_skipped_original_maps();
+    it_normalizes_direct_staged_reordered_and_omitted_original_maps();
     it_rejects_rebinding_duplicates_foreign_formals_and_wrong_categories();
-    it_preserves_template_arguments_and_refuses_closed_type_reopening();
-    it_rejects_renamed_template_slots_without_guessing_an_adapter();
+    it_refuses_missing_values_and_closed_type_reopening();
     it_rechecks_inherited_captures_after_a_symbolic_identity_gets_an_origin();
 }
 /** Return success after assertions and complete counted teardown. */

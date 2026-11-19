@@ -1,7 +1,7 @@
 /** @file
  * @brief Rebind original requests to independently known actual residual interfaces.
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves capture maps.
- * [TPL-12](../../../../spec/language/static-results.md#tpl-12) fixes actual positional order.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires explicit whole-name matching.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns failed preparation.
  */
 #include <stdint.h>

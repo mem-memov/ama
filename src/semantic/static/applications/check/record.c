@@ -5,6 +5,7 @@
  */
 #include <assert.h>
 #include "../internal.h"
+#include "../../signature/usage/usage.h"
 
 /** Written/generated inputs retain their actual source sites; an inherited
  * capture falls back to this application site without a synthetic source.
@@ -35,6 +36,23 @@ static bool capture(StaticApplicationPlan *plan, const StaticApplicationRecord *
     return true;
 }
 
+/** A supplied graph value must support every recorded use of its local name.
+ * Other unresolved operands stay represented in the inventory for the producer
+ * solver; this local snapshot never certifies whole-graph closure.
+ * [TPL-07](../../../../../spec/language/templates.md#tpl-07) forbids first-use contracts.
+ */
+static bool known_usage(StaticApplicationPlan *plan, const StaticApplicationRecord *record) {
+    if (record->head->kind != STATIC_TERM_VARIABLE) { return true; }
+    const StaticSymbol *symbol = record->head->as.variable.symbol;
+    if (symbol == NULL || symbol->owner->definition->syntax.sections.kind != MODULE_STATIC) { return true; }
+    StaticCategory category;
+    const StaticSignature *signature;
+    static_application_description(plan, record->head, &category, &signature);
+    StaticUsageResult checked = static_usage_check(plan->terms->inventory, symbol, category, signature);
+    return checked.status != STATIC_USAGE_CONFLICT || static_application_fail(plan, STATIC_APPLY_CONFLICT,
+        checked.site, checked.message, symbol);
+}
+
 /** Construction may yield a useful symbolic candidate while a separate binding
  * check still waits for independent metadata. Closure/admission is not implied.
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) preserves symbolic dependencies.
@@ -42,6 +60,7 @@ static bool capture(StaticApplicationPlan *plan, const StaticApplicationRecord *
 bool static_application_validate(StaticApplicationPlan *plan, const StaticApplicationRecord *record,
     StaticApplicationOutcome *output) {
     if (record->pending_origin || record->value == NULL) { *output = STATIC_APPLY_PENDING; return true; }
+    if (!known_usage(plan, record)) { return false; }
     bool pending = false;
     const StaticTerm *value = static_constraint_root(plan->solver, record->value);
     if (value->kind == STATIC_TERM_NOMINAL) {

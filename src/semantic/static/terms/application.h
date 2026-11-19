@@ -8,11 +8,11 @@
 #include "store.h"
 #include "../bindings/owner.h"
 
-/** Supplied operands name exact nonomitted input requests, not positions guessed
+/** Supplied operands name exact named input requests, not positions guessed
  * from expected signatures. [TPL-08](../../../../spec/language/templates.md#tpl-08).
  */
 typedef struct { const BindingRequest *request; const StaticTerm *value; } StaticTermOperand;
-/** Source-order input record retains skips and unknown actual slots. The
+/** Source-order input record retains named values and unknown actual slots. The
  * original request owns provenance. [TPL-12](../../../../spec/language/static-results.md#tpl-12).
  */
 typedef struct StaticTermInput {
@@ -34,7 +34,7 @@ typedef struct StaticTermApplication {
     size_t input_count;
 } StaticTermApplication;
 /** Import an accepted static request with exactly one prepared term per explicit
- * input; skipped positions have no value. No implicit inference is performed.
+ * named input. Omitted partial formals have no request. No inference is performed.
  * Publish only on success. [TPL-08](../../../../spec/language/templates.md#tpl-08).
  */
 bool static_term_application(StaticTermStore *, const BindingPlan *, const BindingApplication *,

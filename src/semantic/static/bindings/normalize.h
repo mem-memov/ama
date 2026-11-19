@@ -2,8 +2,8 @@
  * @file
  * @brief Normalize source requests against independently selected actual interface snapshots.
  *
- * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires snapshot
- * positions, independent static counters and pending unknown origins.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires named
+ * static requests against full actual metadata and pending unknown origins.
  * [CALL-06](../../../../spec/language/calls-and-results.md#call-06) preserves
  * ordinary positional skips and direction order.
  * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) keeps selected

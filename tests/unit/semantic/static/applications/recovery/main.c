@@ -5,9 +5,10 @@
 #include "semantic/static/bindings/normalize.h"
 
 /** Independent lexical parameters and two known one-slot constructor signatures. */
-static const char *caller_source = "@<\n...outer\n ...b\n...inner\n ...c\n...element\n"
-    "@>\n...result\n...outer\n ...b < ...inner\n  ...c < ...element\n@!\nanchor&\n..integer\n";
-static const char *target_source = "@<\n...a\n...b\n...c\n@!\n";
+static const char *caller_source = "@...\n...result\n...outer\n ...b < ...inner\n"
+    "  ...c < ...element\n...integer type\n..integer\n";
+static const char *target_source = "@<\nfirst argument\n...a\nsecond argument\n...b\n"
+    "third argument\n...c\n@!\n";
 
 /** Exact registered head spelling selects this fixture's outer/inner syntax. */
 static const AstTypeExpression *expression(const char *name) {
