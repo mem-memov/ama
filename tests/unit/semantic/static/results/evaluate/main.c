@@ -1,318 +1,142 @@
 /** @file
- * @brief Verify iterative static output equations against independently expected nominal values and guards.
+ * @brief Verify current graph values, anchored omitted inputs, exact alias reads and true definition-cycle refusal.
  */
 #include "../common.c"
 
-/** Register the exact caller as an explicit compilation context. */
-static const StaticResultContext *root_context(const StaticTermEnvironment *environment) {
-    const StaticCreationPath *root;
+/** Build only actual graph syntax; there are no ordinary static sections. */
+static void setup_values(const char *caller, const char *target) {
+    setup_guards(caller, target);
+    initialize_results();
+}
+
+/** Register an explicitly supplied compilation context before evaluating values. */
+static const StaticResultContext *value_context(const StaticTermEnvironment *environment) {
+    const StaticCreationPath *path;
     const StaticResultContext *context;
-    assert(static_creation_root(&guards, environment, &root));
-    assert(static_result_context(&results, root, &context));
+    assert(static_creation_root(&guards, environment, &path));
+    assert(static_result_context(&results, path, &context));
     return context;
 }
 
-/** Report a real structural failure with its original compiler diagnostic. */
-static bool evaluate(const StaticResultContext *context, const AstTypeExpression *expression,
-    StaticResultOutcome *outcome) {
-    bool success = static_result_evaluate(&results, context, expression, outcome);
-    if (!success) { fprintf(stderr, "Static evaluation failure: %s\n", results.error.message); }
-    return success;
+/** Inspect actual canonical metadata through the public finite solver query. */
+static const StaticTerm *defined_value(const StaticTermEnvironment *environment, const char *name) {
+    const StaticSymbol *symbol = result_named(environment->definition, name);
+    const StaticTerm *term, *value;
+    StaticConstraintOutcome outcome;
+    assert(static_term_symbol(&terms, environment, symbol, &term));
+    assert(static_constraint_value(&solver, term, &value, &outcome));
+    assert(outcome == STATIC_CONSTRAINT_COMPLETE);
+    return value;
 }
 
-/** Nested source inputs retain caller scope, while actual output fields bind
- * producer scope and aliases retain selected values rather than producer Types.
+/** A pair denotes the ordinary value, while its owner is a compiler-only
+ * producer map. Checked metadata does not complete ordinary body admission.
  */
-static void it_evaluates_nested_inputs_and_actual_selected_output_values(void) {
-    setup_guards("@!\nanchor&\n..integer\nfield&\n.other\n ...slot < ..integer\n ...out > ...alias\nsame&\n...alias\n", result_target_source);
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
+static void it_evaluates_concrete_pairs_and_caches_by_complete_producer_owner_keys(void) {
+    setup_values("@...\n...out\n..integer\n", "@...\n...out\n..integer\n");
+    const StaticResultContext *context = value_context(caller_environment);
     StaticResultOutcome outcome;
-    assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_READY);
-    const StaticTerm *alias, *value;
-    StaticConstraintOutcome solved;
-    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...alias"), &alias));
-    assert(static_constraint_value(&solver, alias, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
-    assert(evaluate(context, result_field("same"), &outcome) && outcome == STATIC_RESULT_READY);
-    assert(results.cache_count >= 2 && caller_module->parameter_count == 0);
+    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, "...out"), &outcome));
+    assert(outcome == STATIC_RESULT_READY && defined_value(caller_environment, "...out") == integer_type);
+    assert(context->creation->owner->value == NULL && results.cache_count == 1);
+    assert(results.first_cache->owner == context->registry_use->candidate->key);
+    assert(results.first_cache->value == integer_type && results.first_graph->context == context);
+    assert(!context->registry_use->candidate->local_complete);
     destroy_results();
 }
 
-/** A returned family retains its own local residual, and later source inputs
- * instantiate it through the same ordinary structural application machinery.
+/** An existing pair supplies real equality evidence for an omitted foreign
+ * input. The receipt does not redefine that pair or add a definition edge.
  */
-static void it_returns_partial_families_and_uses_them_as_actual_heads(void) {
-    setup_guards("@!\nanchor&\n..integer\nfactory&\n.other\n ...slot < ..integer\n ...family > ...family alias\nfield&\n...family alias\n ... < ..integer\n", "@<\n...slot\n@>\n...family\n.other\n@!\n");
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
+static void it_infers_omitted_inputs_from_existing_receiver_definitions_without_false_data_cycles(void) {
+    setup_values("@...\n...known\n..integer\n.other\n ...out > ...known\n", "@...\n...out\n...type\n");
+    const StaticResultContext *context = value_context(caller_environment);
     StaticResultOutcome outcome;
-    assert(evaluate(context, result_field("factory"), &outcome) && outcome == STATIC_RESULT_READY);
-    const StaticTerm *alias, *value;
-    StaticConstraintOutcome solved;
-    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...family alias"), &alias));
-    assert(static_constraint_value(&solver, alias, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value == target_constructor && value->as.nominal.residual_count == 1);
-    assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_READY);
-    StaticResultUse *field;
-    assert(static_result_use(&results, context, result_field("field"), NULL, &field));
-    assert(static_constraint_value(&solver, field->source->value, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value->as.nominal.residual_count == 0);
-    assert(value->as.nominal.first_capture->value == integer_type);
+    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, "...known"), &outcome));
+    assert(outcome == STATIC_RESULT_READY);
+    assert(static_result_evaluate(&results, context, result_projection(0), &outcome));
+    StaticResultUse *use;
+    assert(static_result_use(&results, context, result_projection(0), NULL, &use));
+    assert(use->source->value == NULL && use->producer_request->input_count == 1);
+    const StaticTerm *input;
+    StaticConstraintOutcome closed;
+    /* The receiver binds the public result first; its defining forwarding
+     * equation is checked independently rather than guessed from that receipt. */
+    assert(static_result_evaluate_definition(&results, use->producer,
+        result_named(target_module, "...out"), &outcome));
+    assert(static_constraint_value(&solver, use->producer_request->inputs[0].value, &input, &closed));
+    assert(closed == STATIC_CONSTRAINT_COMPLETE && input == integer_type);
+    assert(static_result_evaluate(&results, context, result_projection(0), &outcome));
+    assert(outcome == STATIC_RESULT_READY && use->closed);
+    assert(defined_value(caller_environment, "...known") == integer_type);
+    assert(guards.definition_edge_count == 0 && caller_module->parameter_count == 0);
     destroy_results();
 }
 
-/** Independent captures distinguish generic and applied definition environments
- * without requiring unrelated root closure for selected result equations.
+/** Equal-key creation cycles remain allowed, but A.alias -> B.out -> A.alias
+ * is a true value-definition cycle and must fail before unbounded evaluation.
  */
-static void it_reads_scoped_results_in_applied_environments(void) {
+static void it_rejects_real_selected_alias_cycles_even_when_creation_keys_are_equal(void) {
+    setup_values("@...\n.other\n ...out > ...alias\n...anchor\n..integer\n",
+        "@...\n.main\n ...alias > ...out\n");
+    const StaticResultContext *context = value_context(caller_environment);
+    StaticResultOutcome outcome = STATIC_RESULT_PENDING;
+    assert(!static_result_evaluate_definition(&results, context, result_named(caller_module, "...alias"), &outcome));
+    assert(outcome == STATIC_RESULT_PENDING && results.status == STATIC_RESULT_CONFLICT);
+    assert(guards.status == STATIC_GUARD_CONFLICT && guards.repeated_definition_ancestor);
+    assert(guards.creation_witness == NULL && results.error.message == guards.error.message);
+    assert(diagnostic_valid(&results.error));
+    destroy_results();
+}
+
+/** Type and partially applied constructor inputs are values; forwarding a
+ * Template preserves its original full residual signature and captures.
+ */
+static void it_forwards_supplied_type_and_template_metadata_without_rebinding_their_origins(void) {
     setup_results();
-    const StaticTermEnvironment *applied = result_applied_environment();
-    const StaticResultContext *context = root_context(applied);
-    const StaticSymbol *first = result_named(caller_module, "...first");
-    const StaticResultDefinition *definition;
-    assert(static_result_definition(&results, applied, first, &definition));
+    const StaticTermEnvironment *environment = result_applied_environment();
+    const StaticResultContext *context = value_context(environment);
     StaticResultOutcome outcome;
-    assert(static_result_evaluate_definition(&results, context, first, &outcome) && outcome == STATIC_RESULT_READY);
-    const StaticTerm *value;
-    StaticConstraintOutcome solved;
-    assert(static_constraint_value(&solver, definition->value, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
+    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, "...first"), &outcome));
+    assert(outcome == STATIC_RESULT_READY && defined_value(environment, "...first") == integer_type);
+    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, "...partial"), &outcome));
+    assert(outcome == STATIC_RESULT_READY && defined_value(environment, "...partial") == result_family_constructor);
+    assert(result_family_constructor->category == STATIC_CATEGORY_TEMPLATE);
+    assert(result_family_constructor->as.nominal.residual_count == 1);
+    assert(caller_module->parameter_count == 2);
     destroy_results();
 }
 
-/** A skipped selected output does not excuse a different invalid output's
- * definition. Producer validation includes the entire declared output set.
+/** A received parameter is metadata by value even when represented by another
+ * module's derived term. Its known value is supplied input IR; the callee must
+ * not search for a foreign context or invent a definition-read edge.
  */
-static void it_checks_unselected_output_definition_cycles_before_returning(void) {
-    setup_guards("@!\nanchor&\n..integer\nfield&\n.other\n ... >\n", "@>\n...good\n..integer\n...bad\n...bad\n@!\n");
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
-    StaticResultOutcome outcome = STATIC_RESULT_READY;
-    assert(!static_result_evaluate(&results, context, result_field("field"), &outcome));
-    assert(outcome == STATIC_RESULT_READY && results.status == STATIC_RESULT_CONFLICT);
-    assert(guards.repeated_definition_ancestor != NULL && results.definition_use_count >= 2);
-    destroy_results();
-}
-
-/** Unknown actual origins remain equations; no output name chooses a module. */
-static void it_retains_pending_unknown_producer_origins_without_guessing(void) {
-    setup_guards("@<\n...family\n ...slot\n@!\nanchor&\n..integer\nfield&\n...family\n ...slot < ..integer\n ...out > ...alias\n", result_target_source);
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
+static void it_forwards_derived_argument_metadata_without_reading_a_foreign_definition(void) {
+    setup_values("@...\n...provided\n..integer\n", "@...\n...out\n...type\n");
+    const StaticTerm *provided;
+    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...provided"), &provided));
+    assert(provided->as.variable.role == STATIC_VARIABLE_DERIVED);
+    /* This exact fact agrees with the supplying pair's ordinary integer Type;
+     * it is argument evidence, not evaluation of that pair inside the callee. */
+    assert(static_constraint_equate(&solver, provided, integer_type, provided->site));
+    StaticTermCapture input = {.formal = application_formal(target_module, 0), .value = provided};
+    const StaticTermEnvironment *environment;
+    assert(static_term_producer_environment(&terms, target_module, &input, 1, &environment));
+    const StaticResultContext *context = value_context(environment);
     StaticResultOutcome outcome;
-    assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_PENDING);
-    assert(results.definition_use_count == 0 && guards.path_count == 2);
+    assert(static_result_evaluate_definition(&results, context, result_named(target_module, "...out"), &outcome));
+    assert(outcome == STATIC_RESULT_READY && defined_value(environment, "...out") == integer_type);
+    assert(guards.definition_edge_count == 0 && results.context_count == 1);
     destroy_results();
 }
 
-/** An existing explicit result receiver is an independent equality anchor,
- * not a read of its own value definition through a fictitious dependency.
- */
-static void it_equates_existing_result_receivers_without_definition_self_cycles(void) {
-    setup_guards("@>\n...expected\n..integer\n@!\nanchor&\n..integer\nfield&\n.other\n ...slot < ..integer\n ...out > ...expected\n", result_target_source);
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
-    StaticResultOutcome outcome;
-    assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_READY);
-    assert(guards.repeated_definition_ancestor == NULL);
-    const StaticTerm *expected, *value;
-    StaticConstraintOutcome solved;
-    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...expected"), &expected));
-    assert(static_constraint_value(&solver, expected, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
-    destroy_results();
-}
-
-/** Producer inference remains open even when the selected output is constant;
- * selected equations do not authorize publishing a complete producer cache.
- */
-static void it_keeps_constant_results_uncached_for_unresolved_producer_inputs(void) {
-    setup_guards("@!\nanchor&\n..integer\nfield&\n.other\n ...out > ...alias\n", "@<\n...unused\n@>\n...out\n..integer\n@!\n");
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
-    StaticResultOutcome outcome;
-    assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_READY);
-    StaticResultUse *use;
-    assert(static_result_use(&results, context, result_field("field"), NULL, &use));
-    assert(!use->closed && use->producer != NULL && results.cache_count == 0);
-    const StaticTerm *alias, *value;
-    StaticConstraintOutcome solved;
-    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...alias"), &alias));
-    assert(static_constraint_value(&solver, alias, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
-    destroy_results();
-}
-
-/** A repeated producer waits on unknown keys, rejects proven unequal keys,
- * or expands its outputs after exact closure. A constant output never invents
- * missing input evidence, even if that result value is independently known.
- */
-static void it_checks_creation_ancestry_before_expanding_producer_definitions(void) {
-    const char *omitted = "@<\n...slot\n@>\n...out\n..integer\n@!\nanchor&\n..integer\nfield&\n.main\n ... >\n";
-    const char *explicit = "@<\n...slot\n@>\n...out\n..integer\n@!\nanchor&\n..integer\nfield&\n.main\n ... < ..integer\n ... >\n";
-    for (size_t mode = 0; mode < 4; mode++) {
-        setup_guards(mode < 2 ? omitted : explicit, result_target_source);
-        static_result_init(&results, &guards, sources.allocator);
-        const StaticTermEnvironment *environment = caller_environment;
-        if (mode != 0) {
-            const StaticTerm *argument = integer_type;
-            if (mode == 2) {
-                StaticTermCapture other = {.formal = application_formal(target_module, 0), .value = integer_type};
-                assert(static_term_nominal(&terms, target_module, &other, 1, (SourceSpan){0}, &argument));
-            }
-            StaticTermCapture capture = {.formal = application_formal(caller_module, 0), .value = argument};
-            const StaticTerm *owner;
-            assert(static_term_nominal(&terms, caller_module, &capture, 1, (SourceSpan){0}, &owner));
-            assert(static_term_environment(&terms, caller_module, owner, &environment));
-        }
-        const StaticResultContext *context = root_context(environment);
-        StaticResultOutcome outcome = STATIC_RESULT_READY;
-        bool success = static_result_evaluate(&results, context, result_field("field"), &outcome);
-        assert(success == (mode != 2));
-        if (mode < 2) {
-            assert(outcome == STATIC_RESULT_PENDING && guards.status == STATIC_GUARD_OK);
-            assert(results.definition_use_count == 0 && guards.repeated_ancestor == NULL);
-        } else if (mode == 2) {
-            assert(outcome == STATIC_RESULT_READY && guards.repeated_ancestor == context->creation);
-            assert(results.definition_use_count == 0 && guards.rejected_creation_value != guards.earlier_creation_value);
-        } else {
-            assert(outcome == STATIC_RESULT_READY && guards.status == STATIC_GUARD_OK);
-            assert(results.definition_use_count == 1 && guards.repeated_ancestor == NULL);
-        }
-        destroy_results();
-    }
-}
-
-/** Sweep every allocation in a real output evaluation, including continuations,
- * solver work, application normalization, both guard graphs and cache storage.
- * No failed attempt publishes an outcome; all owners unwind to zero allocations.
- */
-static void it_unwinds_every_iterative_output_evaluation_allocation_refusal(void) {
-    size_t total = 0;
-    for (size_t failure = 0; failure <= total; failure++) {
-        setup_guards("@!\nanchor&\n..integer\nfield&\n.other\n ...slot < ..integer\n ...out > ...alias\n", result_target_source);
-        static_result_init(&results, &guards, sources.allocator);
-        const StaticResultContext *context = root_context(caller_environment);
-        StaticResultOutcome outcome = STATIC_RESULT_PENDING;
-        size_t before = allocation_count;
-        if (failure) { failure_at = before + failure; }
-        bool success = static_result_evaluate(&results, context, result_field("field"), &outcome);
-        if (!failure) { assert(success && outcome == STATIC_RESULT_READY); total = allocation_count - before; assert(total > 0); }
-        else { assert(!success && outcome == STATIC_RESULT_PENDING && results.status == STATIC_RESULT_OUT_OF_MEMORY); }
-        failure_at = 0;
-        destroy_results();
-    }
-}
-
-/** Positional skips advance only the output sequence. Every producer output
- * is checked, while the expression value remains its whole producer Type.
- */
-static void it_preserves_positional_output_skips_and_whole_producer_types(void) {
-    setup_guards("@!\nanchor&\n..integer\nfield&\n.other\n ... >\n ... > ...selected\n", "@>\n...first\n..integer\n...second\n..integer\n@!\n");
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
-    StaticResultOutcome outcome;
-    assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_READY);
-    StaticResultUse *use;
-    assert(static_result_use(&results, context, result_field("field"), NULL, &use));
-    const StaticTerm *value, *selected;
-    StaticConstraintOutcome solved;
-    assert(static_constraint_value(&solver, use->source->value, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value->as.nominal.origin == target_module);
-    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...selected"), &selected));
-    assert(static_constraint_value(&solver, selected, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
-    assert(results.definition_use_count == 2);
-    destroy_results();
-}
-
-/** Actual static interfaces reject runtime fields, absent names and too many
- * output positions before any body/default/native behavior can be reached.
- */
-static void it_rejects_absent_runtime_and_over_arity_static_output_requests(void) {
-    const char *callers[] = {
-        "@!\nanchor&\n..integer\nfield&\n.other\n ...missing > ...alias\n",
-        "@!\nanchor&\n..integer\nfield&\n.other\n ...runtime > ...alias\n",
-        "@!\nanchor&\n..integer\nfield&\n.other\n ... >\n ... >\n"
-    };
-    for (size_t index = 0; index < 3; index++) {
-        setup_guards(callers[index], "@>\n...out\n..integer\nruntime\n..integer\n@!\n");
-        static_result_init(&results, &guards, sources.allocator);
-        const StaticResultContext *context = root_context(caller_environment);
-        StaticResultOutcome outcome = STATIC_RESULT_READY;
-        assert(!static_result_evaluate(&results, context, result_field("field"), &outcome));
-        assert(outcome == STATIC_RESULT_READY && results.status == STATIC_RESULT_CONFLICT);
-        assert(diagnostic_valid(&results.error) && results.definition_use_count == 0);
-        destroy_results();
-    }
-}
-
-/** Public invalid receivers and copied contexts fail before publishing work;
- * an unchanged Pending retry retains semantic records rather than new frames.
- */
-static void it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity(void) {
-    for (size_t mode = 0; mode < 3; mode++) {
-        setup_guards("@<\n...family\n ...slot\n@!\nanchor&\n..integer\nfield&\n...family\n ...slot < ..integer\n ...out > ...alias\n", result_target_source);
-        static_result_init(&results, &guards, sources.allocator);
-        const StaticResultContext *context = root_context(caller_environment);
-        StaticResultContext copied = *context;
-        StaticResultOutcome outcome = STATIC_RESULT_READY;
-        if (mode < 2) {
-            assert(!static_result_evaluate(&results, mode == 0 ? context : &copied,
-                result_field("field"), mode == 0 ? NULL : &outcome));
-            assert(results.status == STATIC_RESULT_INVALID && results.use_count == 0 && outcome == STATIC_RESULT_READY);
-        } else {
-            assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_PENDING);
-            size_t applications_before = applications.count, uses_before = results.use_count, paths_before = guards.path_count;
-            assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_PENDING);
-            assert(applications.count == applications_before && results.use_count == uses_before && guards.path_count == paths_before);
-        }
-        destroy_results();
-    }
-}
-
-/** Finite written nesting repeats one template in two sibling creation edges,
- * not a forbidden producer-to-itself edge. The selected value is the inner Type.
- */
-static void it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner(void) {
-    setup_guards("@!\nanchor&\n..integer\nfield&\n.other\n ...slot < .other\n  ...slot < ..integer\n ...out > ...alias\n", result_target_source);
-    static_result_init(&results, &guards, sources.allocator);
-    const StaticResultContext *context = root_context(caller_environment);
-    StaticResultOutcome outcome;
-    assert(evaluate(context, result_field("field"), &outcome) && outcome == STATIC_RESULT_READY);
-    const StaticTerm *alias, *value;
-    StaticConstraintOutcome solved;
-    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...alias"), &alias));
-    assert(static_constraint_value(&solver, alias, &value, &solved));
-    assert(solved == STATIC_CONSTRAINT_COMPLETE && value->as.nominal.origin == target_module);
-    assert(value->as.nominal.first_capture->value == integer_type);
-    size_t siblings = 0;
-    for (const StaticCreationPath *path = guards.first_path; path; path = path->next) {
-        if (path->owner->environment->definition == target_module) {
-            assert(path->parent == context->creation);
-            siblings++;
-        }
-    }
-    assert(siblings == 2 && guards.repeated_ancestor == NULL);
-    destroy_results();
-}
-
-/** Execute structural results, applied scope, all-output validation and Pending. */
+/** Run current source graph value and exact dependency partitions. */
 static void run(void) {
-    it_evaluates_nested_inputs_and_actual_selected_output_values();
-    it_returns_partial_families_and_uses_them_as_actual_heads();
-    it_reads_scoped_results_in_applied_environments();
-    it_checks_unselected_output_definition_cycles_before_returning();
-    it_retains_pending_unknown_producer_origins_without_guessing();
-    it_equates_existing_result_receivers_without_definition_self_cycles();
-    it_keeps_constant_results_uncached_for_unresolved_producer_inputs();
-    it_checks_creation_ancestry_before_expanding_producer_definitions();
-    it_unwinds_every_iterative_output_evaluation_allocation_refusal();
-    it_preserves_positional_output_skips_and_whole_producer_types();
-    it_rejects_absent_runtime_and_over_arity_static_output_requests();
-    it_rejects_invalid_evaluation_handles_and_preserves_pending_work_identity();
-    it_attributes_finite_repeated_constructor_inputs_to_the_common_lexical_owner();
+    it_forwards_derived_argument_metadata_without_reading_a_foreign_definition();
+    it_evaluates_concrete_pairs_and_caches_by_complete_producer_owner_keys();
+    it_infers_omitted_inputs_from_existing_receiver_definitions_without_false_data_cycles();
+    it_rejects_real_selected_alias_cycles_even_when_creation_keys_are_equal();
+    it_forwards_supplied_type_and_template_metadata_without_rebinding_their_origins();
 }
-/** Return success after counted owner teardown. */
+/** Return only after counted ownership teardown. */
 int main(void) { run(); return 0; }

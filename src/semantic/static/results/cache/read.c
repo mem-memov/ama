@@ -39,7 +39,7 @@ bool static_result_cache_read(StaticResultPlan *plan, StaticResultDefinitionUse 
     }
     StaticGuardClosure closure;
     if (!static_guard_refresh(plan->guards, &closure)) { (void)static_result_dependencies(plan); return false; }
-    const StaticTerm *owner = use->path->node->concrete;
+    const StaticTermEnvironment *owner = use->path->node->concrete_key;
     if (owner != NULL) {
         for (const StaticResultCache *cached = plan->first_cache; cached; cached = cached->next) {
             if (cached->owner != owner || cached->symbol != use->definition->symbol) { continue; }

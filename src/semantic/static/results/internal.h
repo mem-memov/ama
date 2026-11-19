@@ -1,5 +1,6 @@
 /** @file
  * @brief Share checked source-owner allocation and first-error operations for static result preparation.
+ * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves source and omitted-input identities.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial records.
  * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves original diagnostic storage.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) checks actual scope paths.
@@ -91,4 +92,39 @@ bool static_result_operands(StaticResultPlan *, const StaticResultSource *,
  */
 bool static_result_application(StaticResultPlan *, const StaticResultSource *,
     const StaticTermApplication *, const StaticApplicationRecord **);
+/** Check exact original source-record membership without dereferencing a copy.
+ * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves lexical source authority.
+ */
+bool static_result_has_source(const StaticResultPlan *, const StaticResultSource *);
+/** Prepare one named producer use, validating actual foreign labels and retaining
+ * every input in original formal order. Missing inputs have deterministic lexical
+ * holes. No guard entry, body evaluation or producer Type is created. Source and
+ * receiver must be owned/existing; output is unchanged on any refusal.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires complete producer inputs later.
+ */
+bool static_result_prepare_producer(StaticResultPlan *, const StaticResultSource *, const StaticResultProducer **);
+/** Enter a prepared actual named producer before following its definitions.
+ * Caller validated the use and receiver and prepared its full input map.
+ * A repeated unknown origin remains Pending with no speculative child context.
+ * Existing contexts refresh actual graph/key checks on every retry.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) checks ancestry before expansion.
+ */
+bool static_result_apply_producer(StaticResultPlan *, StaticResultUse *, StaticApplicationOutcome *);
+/** Require all public definitions and root producer statements independently of
+ * a current value-read path. Exact actual-context requests are idempotent; a
+ * closed-key recurrence links to an already required actual ancestor witness.
+ * Independent paths retain their own replay opportunity, never a guessed root.
+ * Ordinary contexts have no static graph and succeed with null output. On failure
+ * the output remains unchanged; partial source/guard work stays owned.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) closes known identity cycles.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) checks every producer definition.
+ */
+bool static_result_require_graph(StaticResultPlan *, const StaticResultContext *, StaticResultGraph **);
+/** Advance every independent root of one actual graph witness once. This does
+ * not recursively wait for dependent graph certificates. Local source values
+ * and actual guards must pass before recording the canonical local certificate;
+ * ordinary body/admission obligations remain in the registry dependency graph.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) permits finite validation groups.
+ */
+bool static_result_graph_pass(StaticResultPlan *, StaticResultGraph *, StaticResultOutcome *);
 #endif

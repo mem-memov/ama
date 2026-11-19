@@ -12,13 +12,12 @@ static void it_binds_original_results_and_first_alias_receivers_without_conflati
     const StaticResultDefinition *alias, *first, *partial, *again;
     assert(static_result_definition(&results, caller_environment, alias_symbol, &alias));
     assert(alias_symbol->role == STATIC_ALIAS && alias->receiver == alias_symbol->receiver);
-    assert(alias->source->expression == result_field("first") && alias->source->expression != result_field("second"));
-    assert(alias->source->head == target_constructor);
+    assert(alias->source->expression == result_projection(0) && alias->source->expression != result_projection(1));
+    assert(alias->source->producer == target_module && alias->source->head == NULL && alias->source->value == NULL);
     assert(alias->value->as.variable.role == STATIC_VARIABLE_DERIVED && alias->value->as.variable.symbol == alias_symbol);
-    assert(alias->source->value->as.variable.role == STATIC_VARIABLE_APPLICATION && alias->source->value != alias->value);
-    assert(alias->source->value->as.variable.symbol == NULL);
+    assert(target_constructor == NULL && caller_constructor == NULL);
     const StaticResultSource *read;
-    assert(static_result_source(&results, caller_environment, result_field("same"), &read));
+    assert(static_result_source(&results, caller_environment, result_pair("...same"), &read));
     assert(read->head == alias->value && read->value != alias->value);
     assert(static_result_definition(&results, caller_environment, result_named(caller_module, "...first"), &first));
     assert(static_result_definition(&results, caller_environment, result_named(caller_module, "...partial"), &partial));
@@ -46,7 +45,7 @@ static void it_preserves_applied_type_and_template_captures_in_distinct_scopes(v
     assert(static_result_definition(&results, applied, partial_symbol, &partial));
     assert(generic != first && generic->source->expression == first->source->expression);
     assert(generic->value != first->value && generic->source->value != first->source->value);
-    assert(first->source->head == integer_type && partial->source->head == target_constructor);
+    assert(first->source->head == integer_type && partial->source->head == result_family_constructor);
     assert(first->value->as.variable.environment == applied && generic->value->as.variable.environment == caller_environment);
     assert(caller_module->parameter_count == 2 && target_module->parameter_count == 1);
     assert(solver.equation_count == 0 && terms.environment_count == 2);
@@ -59,7 +58,7 @@ static void it_preserves_applied_type_and_template_captures_in_distinct_scopes(v
 static void it_refuses_foreign_sources_definitions_receivers_and_count_overflow(void) {
     for (size_t mode = 0; mode < 9; mode++) {
         setup_results();
-        AstTypeExpression copied_expression = *result_field("first");
+        AstTypeExpression copied_expression = *result_projection(0);
         StaticTermEnvironment copied_environment = *caller_environment;
         StaticSymbol copied_symbol = *result_named(caller_module, "...first");
         const StaticResultSource *source = NULL;
@@ -72,7 +71,7 @@ static void it_refuses_foreign_sources_definitions_receivers_and_count_overflow(
         bool success;
         if (mode < 5) {
             success = static_result_source(&results, mode == 1 ? &copied_environment : caller_environment,
-                mode == 0 ? &copied_expression : mode == 2 ? result_named(target_module, "...out")->declaration->as.static_result.expression : result_field("first"),
+                mode == 0 ? &copied_expression : mode == 2 ? result_named(target_module, "...out")->declaration->as.static_result.expression : result_projection(0),
                 mode == 4 ? NULL : &source);
         } else {
             success = static_result_definition(&results, mode == 7 ? foreign : caller_environment,
@@ -80,7 +79,7 @@ static void it_refuses_foreign_sources_definitions_receivers_and_count_overflow(
         }
         assert(!success && source == NULL && definition == NULL && allocation_count == before);
         assert(results.status == ((mode == 3 || mode == 8) ? STATIC_RESULT_OUT_OF_MEMORY : STATIC_RESULT_INVALID));
-        assert(!static_result_source(&results, caller_environment, result_field("first"), &source));
+        assert(!static_result_source(&results, caller_environment, result_projection(0), &source));
         assert(allocation_count == before);
         destroy_results();
     }
@@ -100,7 +99,7 @@ static void it_unwinds_every_source_and_definition_preparation_allocation_refusa
             const StaticResultDefinition *definition = NULL;
             size_t before = allocation_count;
             if (failure) { failure_at = before + failure; }
-            bool success = mode == 0 ? static_result_source(&results, environment, result_field("first"), &source) :
+            bool success = mode == 0 ? static_result_source(&results, environment, result_projection(0), &source) :
                 static_result_definition(&results, environment,
                     result_named(caller_module, mode == 1 ? "...first" : mode == 2 ? "...alias" : "...partial"), &definition);
             if (!failure) { assert(success); total = allocation_count - before; assert(total > 0); }

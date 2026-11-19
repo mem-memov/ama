@@ -24,16 +24,16 @@ void *static_publication_allocate(StaticPublicationPlan *, size_t);
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) prevents name capture.
  */
 const StaticSymbol *static_publication_receiver(const StaticResultUse *, const AstStaticBinding *);
-/** Close the exact reachable source proof graph, including existing receiver
- * definitions as independent roots rather than invented definition-cycle edges.
- * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates dependency graphs.
- */
-bool static_publication_dependencies_closed(StaticPublicationPlan *, StaticResultUse *, bool *);
 /** Refine only while genuine equation/metadata/requirement or checked context evidence changes;
  * require closed source dependencies before returning a canonical value.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) forbids guessed inverses.
  */
 bool static_publication_close(StaticPublicationPlan *, StaticResultUse *, const StaticTerm **);
+/** Close one actual static-module root and its full public output graph.
+ * No synthetic call expression or producer Type is created.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12).
+ */
+bool static_publication_close_graph(StaticPublicationPlan *, StaticResultGraph *);
 /** Construct ordered closed outputs and immutable aliases before exposing the
  * source publication. Failure keeps partial descriptors owned.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires complete results.

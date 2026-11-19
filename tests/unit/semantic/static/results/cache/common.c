@@ -16,7 +16,7 @@ static const StaticResultContext *cache_context(const StaticTermEnvironment *env
 
 /** Bare received Type/Template forwarding has no application inputs or outputs:
  * its value is exactly its scoped head. These equations model that independent
- * simple law without claiming that the iterative evaluator already exists.
+ * simple law at the independent cache boundary, without running the evaluator.
  */
 static StaticResultDefinitionUse *checked_bare(const StaticResultContext *context, const char *name) {
     StaticResultDefinitionUse *definition;

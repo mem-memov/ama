@@ -99,4 +99,14 @@ bool static_registry_complete_local(StaticRegistryPlan *, StaticRegistryUse *);
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) checks every closed-cycle branch.
  */
 bool static_registry_refresh_checks(StaticRegistryPlan *, StaticRegistryCheckState *);
+/** Equate all existing variables in one original owner environment with their
+ * canonical equivalents after its key closes. Unknown keys add no equations.
+ * New canonical variables are not revisited during this finite scan; later
+ * source variables can be included by another call. No role list or runtime
+ * instance/value identity is merged. Partial equations remain owned on failure,
+ * and the state receiver changes only on success. Body validation is separate.
+ * [TPL-05](../../../../spec/language/templates.md#tpl-05) makes one complete-key specialization.
+ * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves original lexical operations.
+ */
+bool static_registry_scope_environment(StaticRegistryPlan *, StaticRegistryUse *, StaticRegistryKeyState *);
 #endif

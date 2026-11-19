@@ -5130,3 +5130,204 @@ T201. Specification bytes have not changed.
   No source/executable acceptance is inferred for T211/T182/T184/T185, and no
   spec change or compatibility layer was introduced. Unrelated T182 work remains
   untouched. The earlier pending-checkpoint text is historical, not active work.
+
+<a id="t211"></a>
+
+- [x] **T211 — Resolve named graph results and complete producer inputs.**
+  Prerequisites: T207, T209, T210, T183, T213.
+  Rules: [TPL-08](spec/language/templates.md#tpl-08),
+  [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: result-pair values, explicit named producer outputs, scoped
+  application equations and producer closure through the guarded registry.
+  Steps: derive structural definitions and receiver equations; retain deterministic
+  omitted-input variables; solve/refine guarded demands and validate all graph
+  definitions. Apply guards before following each dependency, including unknown
+  keys and cache hits, rather than expanding first and checking afterwards.
+  Accept: multiple outputs, public intermediate names, forwarding and partial
+  returned families preserve exact metadata. Existing receivers add equality;
+  fresh names supply no anchor. Every producer input must close, including one
+  unused by selected results; every public output retains validation obligations.
+  Reject unknown/repeated output labels, implicit first results, producer-as-value
+  uses, static-definition cycles and unresolved/noninvertible input requirements.
+  Register closed identities with outstanding ordinary checks, never claim final
+  executable admission or require T185 prematurely. Test real parser/scope/solver/
+  guard/registry compositions, definition versus equality cycles, warm/cold order
+  and all preparation/publication failures. Meet the common per-file tests,
+  Doxygen links and same-task commit criteria.
+  Fixtures: Migrate result/publication fixtures to named graph producers and public binders;
+  discard old ordinary-body static result scenarios.
+  Active step (2026-11-19, after T183 commit 6bf7ea8): reviewed current result/
+  publication sources and direct consumers. Existing source binding still tries
+  to make a nominal Type for a static producer; evaluation/publication assume
+  that obsolete producer value and ordinary output slots. Result fixtures still
+  use removed ordinary static sections and positional/skip interfaces.
+  Plan: (1) separate ordinary value expressions from named producer uses at the
+  source boundary, migrate source/context tests and preserve exact definitions;
+  (2) prepare named producer inputs/receipts with stable omitted-formal holes,
+  enter compiler-only guard scopes and integrate canonical registry analysis;
+  (3) migrate iterative definition/equality evaluation, complete all public
+  output/input closure and immutable publication; (4) replace obsolete fixtures,
+  remove dead adapters, cover actual producer/ordinary-return composition,
+  order/cache/cycle/allocation failures and run required build/docs gates.
+  Constants/export consumers remain T212 and runtime connections T182; preserve
+  their unowned changes. Do not fake a static producer Type to keep old code
+  working. Initial source preparation tests will explicitly require null ordinary
+  head/value for producer uses and no runtime/static-result-slot allocation.
+  Step 1 now separates bound ordinary expressions from named producer uses:
+  a producer source retains only its actual module origin, with no head/value
+  term or nominal wrapper. Migrated the shared source fixture and source/context
+  leaves to actual static graphs plus a separate ordinary constructor value.
+  Nine named source/context cases pass strict C11, including exact first-receipt
+  definitions, Type/Template producer captures, copied/foreign identities,
+  definition-cycle guard ordering, count limits and every measured allocation
+  refusal. Snapshot `/tmp/ama-t211-source-e56ayztl`; command `make -C
+  tests/unit/semantic/static/results source context` with strict flags; log/exit
+  `/tmp/ama-t211-source-first.{log,exit}` (collected 0). No active jobs remain.
+  This is intermediate step evidence. Evaluator/operands/publication still assume
+  the obsolete nominal producer value and must be migrated before those leaves
+  are run or the task is accepted. Next: named request preparation and stable
+  omitted producer-input maps, then guarded registry/evaluation integration.
+  Step 2 core preparation now passes four initial strict cases: full named maps,
+  stable per-occurrence omitted holes, zero-input producers, exact handles and
+  every measured preparation allocation refusal (`/tmp/ama-t211-producers-first`
+  log/exit, collected 0, snapshot `/tmp/ama-t211-source-z3_s4pyp`). Added unknown/
+  repeated input/output-label cases. Their first run correctly refused the
+  labels but the test expected the internal Invalid bucket rather than the
+  established language-conflict propagation; preserve the actual binding diagnostic
+  and expect Conflict per the existing application/guard error contract. Original
+  failed log/exit `/tmp/ama-t211-source-producers.{log,exit}` (collected 2).
+  Constructor/context wiring is being migrated to borrow T183's actual registry;
+  tests now own names/registry before the result owner. No producer/evaluator
+  Source/context/producer rerun passed all 14 named cases after actual registry
+  constructor/context wiring: `/tmp/ama-t211-registry-source.exit` is 0, snapshot
+  `/tmp/ama-t211-source-53zb1ke5` (collected). Explicit input/omission preparation
+  is now used by the guarded producer-entry branch; the old ordinary term-operator
+  path is not reused to fabricate a producer value.
+  All four guarded-entry cases pass strict C11 in snapshot
+  `/tmp/ama-t211-source-8g1po6ru`; `/tmp/ama-t211-entry-guard.exit` is 0 (collected).
+  They cover unknown-key suspension before scoped expansion, later exact-key
+  closure, different-key rejection, stable cached scopes and every measured
+  guard/context/registry/name allocation refusal. No active jobs remain.
+  Its first compile found an unused shared test helper, moved to its sole leaf;
+  its next run overconstrained refusal by banning legitimate normalized comparison
+  metadata. The corrected assertion forbids publication of the rejected raw
+  variable scope/path/context. Original failed logs/exits are
+  `/tmp/ama-t211-entry-first` and `/tmp/ama-t211-entry-rerun` (both 2).
+  Evaluator design: separate whole-producer validation roots from actual value
+  reads. All public outputs/receipt-only statements must be checked, but unrelated
+  outputs must not become artificial value dependencies of the triggering alias.
+  The contract includes an acyclic value-read example with a same-key creation
+  cycle. Canonicalize all static variables (including omitted-input holes) of
+  equal closed owner keys before sharing body analysis; field/role-specific
+  special cases must not leave hidden context-dependent specialization inputs.
+  Next: migrate iterative selected-output reads,
+  queue independent graph validation, canonical result-cache keys and complete
+  producer publication; remove old skip/positional/ordinary static-section paths.
+  Whole-environment canonicalization is implemented as a shared registry
+  operation, using the same binding core as single-variable queries. It scans
+  only the finite term prefix present at entry, preserves full identities across
+  every role and skips tautological equations. It is used before producer entry.
+  Existing four scope cases, three new environment cases and all four entry
+  cases pass strict C11 with this integration. Snapshot
+  `/tmp/ama-t211-source-8cl7oopg`; collected exits
+  `/tmp/ama-t211-environments.exit` and `/tmp/ama-t211-entry-environments.exit`
+  are both 0. No active jobs remain.
+  Next graph-validation design: retain one proof witness per actual context;
+  link a same-key recurrence to an already required actual ancestor witness,
+  without expanding its body again. Independent incoming paths may replay
+  provenance even when their canonical key is already active, because a first
+  path with unknown ancestors must not block a later path that can infer inputs.
+  This is exact ancestry-based closure, not a global first-visit heuristic.
+  Separate guarded selected-value reads from independent validation work for
+  every pair, first receipt and producer statement. No final T211 acceptance,
+  sanitizer/build/docs result or commit is claimed.
+  Whole-graph requirement preparation now passes five strict cases, including
+  equality-only statement retention, independent actual root witnesses sharing
+  one key, ordinary-context exclusion, every allocation refusal and graph/work
+  count limits. Snapshot `/tmp/ama-t211-source-ey4mgl1v`, collected
+  `/tmp/ama-t211-graphs-roots.exit` 0. Initial compile exposed an unrelated shared
+  fixture constant; the graph suite now uses only its own zero-input fixture
+  (`/tmp/ama-t211-graphs-first.exit`, 2). No warning suppression was added.
+  Evaluator migration is implemented but not accepted: source AST symbol roles
+  now determine local definition reads; supplied parameter terms do not trigger
+  foreign-context searches. Named producer statements generate receiver equations
+  without inventing producer values, and aliases separately enter their exact
+  selected foreign definition under the actual alias path. Zero-binding ordinary
+  value expressions impose the general Type/Template identity equation. Definition
+  cache keys now use full owner environments, including compiler-only producers.
+  Current evaluator cases now pass: five value cases, four entry cases and five
+  graph-requirement cases (`/tmp/ama-t211-values-graphs.exit`, 0), plus four
+  finite validation-group cases (`/tmp/ama-t211-groups-first.exit`, 0). Sessions
+  2407/70515 were collected. These cover accepted same-key validation cycles,
+  rejected definition cycles, receiver-driven inference and stable underdetermination.
+  Publication closure now follows tagged source/definition/graph proof handles,
+  retaining real producer roots without a fabricated Type or call. Complete
+  bundles enumerate pair results and forwarded public aliases in source order.
+  Five new scope/publication cases pass strict C11 in snapshot
+  `/tmp/ama-t211-source-oiiqsas7`; `/tmp/ama-t211-publication-scopes-final.exit` 0.
+  Initial test failures were fixture defects: missing main and an unreferenced
+  integer fixture dependency; neither changed language behavior.
+  Active step: migrate remaining cache/prepare/publication fixtures, deleting
+  obsolete ordinary static sections and positional/skip cases. The cache
+  migration run exposed a test selecting a fresh root instead of the actual
+  alias-path RHS; the test now retains that registered definition handle.
+  Cache/prepare migration now passes 12 named cases, including the three
+  included operand-cache cases (`/tmp/ama-t211-cache-prepare-rerun.exit`, 0).
+  Actual source/publication fixtures replace obsolete ordinary static sections,
+  positional static arguments and skips. Deleted the obsolete context matrix,
+  the ordinary-Type definition adapter field and the unused result status.
+  Updated current result/publication contracts instead of preserving competing
+  historical API descriptions. The working per-file registry preserves T182's
+  unrelated rows; task-only registry is `/tmp/ama-t211-ready-task.json`.
+  Full results/publication/registry/guards pass strict C11 before the final
+  additions (`/tmp/ama-t211-strict-parent-rerun.exit`, 0), and all current
+  publication cases, including an independent root after a blocked first path,
+  pass (`/tmp/ama-t211-publication-new.exit`, 0). The full four components also
+  pass ASan/UBSan (`/tmp/ama-t211-sanitizers.exit`, 0; session 21840 collected).
+  LSan remains unavailable in this environment; allocation refusal and counted
+  teardown are independent ownership evidence. The recursive validation-group
+  publication allocation sweep subsequently passes ASan/UBSan too
+  (`/tmp/ama-t211-recursive-sanitizers.exit`, 0; collect session 89532).
+  Active final jobs: strict four-component rerun session 15858, snapshot
+  `/tmp/ama-t211-source-99ylh3oq`, `/tmp/ama-t211-final-strict.{log,exit}`;
+  complete per-file/header check session 22273,
+  `/tmp/ama-t211-final-complete.{log,exit}`; root build session 82815,
+  `/tmp/ama-t211-final-build.{log,exit}`. Initial documentation gate found one
+  stale Makefile test mapping after fixture migration; the registry now maps
+  current cases, including explicitly included operand cases. Successful prior
+  corrected gate: 2785 ready rows, zero debt
+  (`/tmp/ama-t211-docs-complete-rerun.exit`, 0; session 85189 collected).
+  Next: collect final jobs, review final code/registry preservation, prepare the
+  prospective archived task and render/check Doxygen on those exact inputs.
+  No final T211 acceptance or commit is claimed yet.
+
+  Acceptance (2026-11-19): final current-source snapshot
+  `/tmp/ama-t211-source-99ylh3oq` matches all 83 owned code paths and the
+  task-only coverage registry. All 145 named cases pass strict C11 across
+  `results` (44), `publication` (21), `registry` (37) and `guards` (43):
+  `make -j4 -C tests/unit/semantic/static results publication registry guards`
+  with `C_COMPILER_FLAGS=-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic
+  -D_POSIX_C_SOURCE=200809L`; `/tmp/ama-t211-final-strict.exit` is 0.
+  The same four components pass ASan/UBSan with O1, the same strict warnings,
+  `-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie` and
+  `LINKER_FLAGS=-fsanitize=address,undefined -no-pie`;
+  `/tmp/ama-t211-sanitizers.exit` is 0. The final recursive allocation-refusal
+  extension also passes those flags (`/tmp/ama-t211-recursive-sanitizers.exit`,
+  0). `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+  `UBSAN_OPTIONS=halt_on_error=1`; unavailable LSan is not claimed. Counted
+  teardown independently covers owned records after every measured refusal.
+  Root `make -j4` passes (`/tmp/ama-t211-final-build.exit`, 0).
+  Complete per-file/header validation passes with 2785 ready rows and zero debt
+  (`/tmp/ama-t211-final-complete.exit`, 0). All listed sessions were collected.
+  Removed the obsolete ordinary-context matrix and its leaf Makefile, old
+  ordinary-producer closure evidence operation, the unused ordinary-Type
+  definition adapter field and unused result status. Kept useful receiver
+  lookup as its own current publication operation. Current examples/contracts
+  replace obsolete APIs instead of documenting alternatives.
+  The final documentation tree includes this archive and the T212 queue.
+  `make docs` must generate and check that exact tree before copying these
+  prospective records to the working tree or committing; its collected log is
+  `/tmp/ama-t211-final-docs.log`. No specification changes, runtime/executable
+  admission claims, or unrelated T182 changes are included. Earlier active-step
+  text is the chronological work record, not an unfinished acceptance claim.

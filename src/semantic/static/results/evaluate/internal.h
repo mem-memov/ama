@@ -15,13 +15,10 @@ typedef struct StaticResultFrame {
     struct StaticResultFrame *parent;
     StaticResultUse *expression;
     StaticResultDefinitionUse *definition;
-    const StaticResultContext *context;
-    const StaticTermInput *input;
-    size_t output;
+    const BindingRequest *input;
     unsigned phase;
     bool pending;
     bool closed;
-    bool found_context;
 } StaticResultFrame;
 
 /** Scratch frames expire at the end of one finite evaluation attempt.
@@ -62,4 +59,22 @@ bool static_result_receivers(StaticResultPlan *, StaticResultUse *);
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires complete producers.
  */
 bool static_result_closed(StaticResultPlan *, const StaticTerm *, bool *);
+/** Read the alias's exact defining foreign output under its own definition
+ * ancestry. A suspended producer has no context and returns Pending without a
+ * fabricated target. Root validation of other outputs remains independent.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves actual value edges.
+ */
+bool static_result_alias_read(StaticResultPlan *, StaticResultDefinitionUse *,
+    StaticResultDefinitionUse **, bool *);
+/** Query full named producer input and selected value closure without inventing
+ * an expression value for the producer itself.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) closes every producer input.
+ */
+bool static_result_producer_closed(StaticResultPlan *, StaticResultUse *, bool *);
+/** Drive an already initialized exact-root stack and always release its scratch
+ * arena, including after push/step failure. Graph passes use their prepared root
+ * handles rather than reconstructing a potentially different root occurrence.
+ * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns attempt cleanup.
+ */
+bool static_result_run(StaticResultEvaluation *, bool);
 #endif

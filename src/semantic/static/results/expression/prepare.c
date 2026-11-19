@@ -1,5 +1,5 @@
 /** @file
- * @brief Prepare one source operator with lexical child values and unchanged skip provenance.
+ * @brief Prepare one source operator with lexical child values and explicit named producer maps.
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) substitutes scoped structure.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates input and output actions.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns partial preparation.
@@ -27,15 +27,25 @@ bool static_result_prepare(StaticResultPlan *plan, StaticResultUse *use) {
     if (!static_result_has_use(plan, use)) {
         return static_result_fail(plan, STATIC_RESULT_INVALID, (SourceSpan){0}, "Invalid expression preparation handle");
     }
-    if (use->prepared != NULL) { return true; }
-    const StaticTermApplication *prepared;
-    if (!static_result_operands(plan, use->source, &prepared)) { return false; }
-    for (const StaticTermInput *input = prepared->first; input; input = input->next) {
-        if (input->value == NULL) { continue; }
+    if (use->requests != NULL) { return true; }
+    const StaticTermApplication *prepared = NULL;
+    const StaticResultProducer *producer = NULL;
+    const BindingApplication *requests;
+    if (use->source->producer) {
+        if (!static_result_prepare_producer(plan, use->source, &producer)) { return false; }
+        requests = producer->requests;
+    } else {
+        if (!static_result_operands(plan, use->source, &prepared)) { return false; }
+        requests = prepared->source;
+    }
+    for (const BindingRequest *input = requests->first; input; input = input->next) {
+        if (input->direction != BINDING_STATIC_INPUT) { continue; }
         StaticResultUse *child;
-        if (!static_result_use(plan, use->context, input->request->syntax.static_binding->input,
+        if (!static_result_use(plan, use->context, input->syntax.static_binding->input,
             use->definition_path, &child)) { return false; }
     }
+    use->requests = requests;
     use->prepared = prepared;
+    use->producer_request = producer;
     return true;
 }

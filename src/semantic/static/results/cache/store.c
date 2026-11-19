@@ -7,24 +7,34 @@
 #include <stdint.h>
 #include "../internal.h"
 
-/** Selected value closure is independent of unrelated global requirements, but
- * all three selected terms must close. The RHS expression is its full producer
- * Type, so unused omitted producer inputs cannot disappear behind an output.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves complete bindings.
+/** Owner closure uses the full compiler-only producer map. A named producer
+ * RHS has no own value; its checked closed flag includes every input and selected
+ * result. Pair RHS metadata retains a separate ordinary value to compare.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves unused input closure.
  */
 static bool values(StaticResultPlan *plan, const StaticResultDefinitionUse *use,
-    const StaticTerm **owner, const StaticTerm **rhs, const StaticTerm **value, bool *closed) {
-    const StaticTerm *inputs[] = {use->context->creation->owner->value, use->rhs->source->value, use->definition->value};
-    const StaticTerm **outputs[] = {owner, rhs, value};
-    StaticConstraintSolver *solver = plan->guards->applications->solver;
+    const StaticTermEnvironment **owner, const StaticTerm **rhs, const StaticTerm **value, bool *closed) {
     *closed = false;
-    for (size_t index = 0; index < 3; index++) {
-        StaticConstraintOutcome outcome;
-        if (!static_constraint_value(solver, inputs[index], outputs[index], &outcome)) {
+    StaticRegistryUse *registered;
+    StaticRegistryKeyState keys;
+    if (!static_registry_use(plan->registry, use->context->creation, &registered, &keys)) {
+        (void)static_result_dependencies(plan); return false;
+    }
+    if (keys == STATIC_REGISTRY_KEY_PENDING) { return true; }
+    StaticConstraintSolver *solver = plan->guards->applications->solver;
+    StaticConstraintOutcome outcome;
+    *rhs = NULL;
+    if (use->rhs->source->value) {
+        if (!static_constraint_value(solver, use->rhs->source->value, rhs, &outcome)) {
             (void)static_result_dependencies(plan); return false;
         }
         if (outcome == STATIC_CONSTRAINT_PENDING) { return true; }
     }
+    if (!static_constraint_value(solver, use->definition->value, value, &outcome)) {
+        (void)static_result_dependencies(plan); return false;
+    }
+    if (outcome == STATIC_CONSTRAINT_PENDING) { return true; }
+    *owner = registered->candidate->key;
     *closed = true;
     return true;
 }
@@ -45,7 +55,8 @@ bool static_result_cache_store(StaticResultPlan *plan, StaticResultDefinitionUse
         return static_result_fail(plan, STATIC_RESULT_INVALID, use->definition->symbol->site,
             "Checked static definition RHS does not match its original source");
     }
-    const StaticTerm *owner, *rhs, *value;
+    const StaticTermEnvironment *owner;
+    const StaticTerm *rhs, *value;
     bool closed;
     if (!values(plan, use, &owner, &rhs, &value, &closed)) { return false; }
     if (!closed || !use->rhs->closed) { *output = false; return true; }

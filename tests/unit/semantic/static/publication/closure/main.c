@@ -1,147 +1,91 @@
 /** @file
- * @brief Verify exact receiver inference, unresolved producer rejection and immutable static results.
+ * @brief Verify exact producer input closure and refusal of noninvertible static inference.
  */
 #include "../common.c"
+#include "semantic/static/publication/closure/internal.h"
 
-/** A receiver's independently declared result Type closes an omitted producer
- * input. Its definition is a root, not a fictitious dependency from the producer.
- */
-static void it_closes_omitted_inputs_from_independent_existing_result_receivers(void) {
-    setup_publications("@>\n...expected\n..integer\n@!\nanchor&\n..integer\nfield&\n.other\n ...out > ...expected\n", result_target_source);
-    const StaticResultContext *context = publication_context(caller_environment);
-    const StaticPublication *publication;
-    bool success = static_publication_resolve(&publications, context, result_field("field"), &publication);
-    if (!success) { fprintf(stderr, "Publication failure: %s\n", publications.error.message); }
-    assert(success && publication->value->as.nominal.origin == target_module);
-    assert(publication->value->as.nominal.first_capture->value == integer_type);
-    assert(publication->output_count == 1 && publication->first_output->value == integer_type);
-    assert(publications.alias_count == 0 && guards.repeated_definition_ancestor == NULL);
-    const StaticPublication *again;
-    assert(static_publication_resolve(&publications, context, result_field("field"), &again));
-    assert(again == publication && publications.count == 1);
-    destroy_publications();
-}
-
-/** Neither a new alias nor an output skip anchors a missing identity input;
- * even a known constant result cannot determine an unused producer parameter.
- */
-static void it_rejects_fresh_aliases_skips_and_unused_input_underdetermination(void) {
-    const char *callers[] = {
-        "@!\nanchor&\n..integer\nfield&\n.other\n ...out > ...alias\n",
-        "@!\nanchor&\n..integer\nfield&\n.other\n ... >\n",
-        "@>\n...expected\n..integer\n@!\nanchor&\n..integer\nfield&\n.other\n ...out > ...expected\n"
-    };
-    for (size_t mode = 0; mode < 3; mode++) {
-        setup_publications(callers[mode], mode == 2 ? "@<\n...slot\n@>\n...out\n..integer\n@!\n" : result_target_source);
-        const StaticResultContext *context = publication_context(caller_environment);
-        const StaticPublication *publication = NULL;
-        assert(!static_publication_resolve(&publications, context, result_field("field"), &publication));
-        assert(publication == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
-        assert(publications.count == 0 && publications.alias_count == 0 && diagnostic_valid(&publications.error));
-        destroy_publications();
-    }
-}
-
-/** Publication retains returned constructor origin and local residuals, while
- * requiring all producer captures, including otherwise unused family arguments.
- */
-static void it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes(void) {
-    setup_results();
-    static_publication_init(&publications, &results, sources.allocator);
-    const StaticTermEnvironment *applied = result_applied_environment();
-    const StaticResultContext *context = publication_context(applied);
-    const StaticResultDefinition *definition;
-    assert(static_result_definition(&results, applied, result_named(caller_module, "...partial"), &definition));
-    const StaticPublication *publication;
-    assert(static_publication_resolve(&publications, context, definition->source->expression, &publication));
-    assert(publication->value == target_constructor && publication->value->as.nominal.residual_count == 1);
-    assert(publication->output_count == 0 && publications.alias_count == 0);
-    destroy_publications();
-}
-
-/** An output that preserves only one of two inputs cannot determine the other.
- * Supplying the lost input explicitly leaves one uniquely recoverable value.
- */
-static void it_refuses_to_invent_inputs_lost_by_a_noninvertible_output(void) {
+/** One output does not determine an independent second input; explicit binding does. */
+static void it_requires_all_inputs_even_when_one_selected_output_is_known(void) {
     for (size_t supplied = 0; supplied < 2; supplied++) {
         setup_publications(supplied ?
-            "@>\n...expected\n..integer\n@!\nanchor&\n..integer\nfield&\n.other\n ...key < ..integer\n ...out > ...expected\n" :
-            "@>\n...expected\n..integer\n@!\nanchor&\n..integer\nfield&\n.other\n ...out > ...expected\n",
-            "@<\n...key\n...value\n@>\n...out\n...value\n@!\n");
+            "@...\n...expected\n..integer\n.other\n ...key < ..integer\n ...out > ...expected\n" :
+            "@...\n...expected\n..integer\n.other\n ...out > ...expected\n",
+            "@...\n...out\n...value\n...other\n...key\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticPublication *publication = NULL;
-        bool success = static_publication_resolve(&publications, context, result_field("field"), &publication);
+        bool success = static_publication_resolve(&publications, context, result_projection(0), &publication);
         assert(success == (supplied != 0));
         if (success) {
-            assert(publication->value->as.nominal.capture_count == 2);
-            assert(publication->value->as.nominal.first_capture->value == integer_type);
-            assert(publication->value->as.nominal.last_capture->value == integer_type);
-        } else { assert(publication == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED); }
+            assert(publication->value == NULL && publication->output_count == 2);
+            assert(publication->first_output->value == integer_type);
+            assert(publication->first_output->next->value == integer_type);
+            assert(publication->context->registry_use->candidate->key->producer_applied &&
+                publication->context->registry_use->candidate->key->definition->parameter_count == 2);
+        } else {
+            assert(publication == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
+        }
         destroy_publications();
     }
 }
 
-/** A known selected receiver does not identify the unknown producer origin.
- * Formal names/signature alone do not justify choosing a filesystem module.
- */
-static void it_rejects_unknown_producer_origins_even_with_known_selected_receivers(void) {
-    setup_publications("@<\n...factory\n ...slot\n@>\n...expected\n..integer\n@!\nanchor&\n..integer\nfield&\n...factory\n ...slot < ..integer\n ...out > ...expected\n", result_target_source);
+/** A concrete constant output supplies no evidence for an unrelated free input. */
+static void it_refuses_unused_input_underdetermination_without_publishing_aliases(void) {
+    setup_publications("@...\n...expected\n..integer\n.other\n ...out > ...expected\n",
+        "@...\n...out\n..integer\n...other\n...unused\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticPublication *publication = NULL;
-    assert(!static_publication_resolve(&publications, context, result_field("field"), &publication));
-    assert(publication == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
-    assert(publications.count == 0 && publications.alias_count == 0);
+    assert(!static_publication_resolve(&publications, context, result_projection(0), &publication));
+    assert(publication == NULL && publications.count == 0 && publications.alias_count == 0);
+    assert(publications.status == STATIC_PUBLICATION_UNRESOLVED);
     destroy_publications();
 }
 
-/** Known value equations do not manufacture a required source context. A first
- * attempt can register that actual context without adding any new value facts;
- * it must then recheck the previously missing foreign definition provenance.
+/** A metadata expression may close without the unrelated lexical owner's full key;
+ * requesting the whole root must still reject that incomplete owner.
  */
-static void it_treats_new_checked_source_contexts_as_real_provenance_evidence(void) {
-    setup_publications("@<\n...type\n@!\nanchor&\n..integer\nfield&\n...type\n ...out > ...alias\n",
-        "@>\n...out\n.other\n@!\n");
-    const StaticTermEnvironment *foreign_environment;
-    assert(static_term_environment(&terms, target_module, target_constructor, &foreign_environment));
-    const StaticSymbol *foreign_symbol = result_named(target_module, "...out");
-    const StaticTerm *foreign;
-    assert(static_term_symbol(&terms, foreign_environment, foreign_symbol, &foreign));
-    StaticTermCapture capture = {.formal = application_formal(caller_module, 0), .value = foreign};
-    const StaticTerm *owner;
-    const StaticTermEnvironment *environment;
-    assert(static_term_nominal(&terms, caller_module, &capture, 1, (SourceSpan){0}, &owner));
-    assert(static_term_environment(&terms, caller_module, owner, &environment));
-    const StaticResultContext *context = publication_context(environment);
-    const StaticResultDefinition *definition;
-    const StaticResultSource *field;
-    assert(static_result_definition(&results, foreign_environment, foreign_symbol, &definition));
-    assert(static_result_source(&results, environment, result_field("field"), &field));
-    const StaticTerm *alias;
-    assert(static_term_symbol(&terms, environment, result_named(caller_module, "...alias"), &alias));
-    assert(static_constraint_equate(&solver, foreign, target_constructor, foreign_symbol->site));
-    assert(static_constraint_equate(&solver, definition->source->value, target_constructor, foreign_symbol->site));
-    assert(static_constraint_equate(&solver, foreign, definition->source->value, foreign_symbol->site));
-    assert(static_constraint_equate(&solver, field->value, target_constructor, foreign_symbol->site));
-    assert(static_constraint_equate(&solver, foreign, alias, foreign_symbol->site));
-    assert(static_constraint_require(&solver, target_constructor, foreign_symbol->site));
-    StaticConstraintOutcome solved;
-    assert(static_constraint_solve(&solver, &solved));
-    size_t contexts = results.context_count;
-    const StaticPublication *publication = NULL;
-    bool success = static_publication_resolve(&publications, context, result_field("field"), &publication);
-    if (!success) { fprintf(stderr, "Provenance closure failure: %s\n", publications.error.message); }
-    assert(success && publication->value == target_constructor && results.context_count > contexts);
+static void it_separates_intermediate_value_facts_from_whole_root_publication(void) {
+    setup_publications("@...\n...known\n..integer\n...other\n...unknown\n.other\n ...out > ...known\n",
+        "@...\n...out\n..integer\n");
+    const StaticResultContext *context = publication_context(caller_environment);
+    const StaticPublication *value, *root = NULL;
+    assert(static_publication_resolve(&publications, context, result_pair("...known"), &value));
+    assert(value->value == integer_type && value->context == NULL);
+    assert(!static_publication_scope(&publications, context, &root));
+    assert(root == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
+    assert(value->value == integer_type && publications.count == 1);
     destroy_publications();
 }
 
-/** Execute independent anchors, missing producer inputs and returned residuals. */
-static void run(void) {
-    it_closes_omitted_inputs_from_independent_existing_result_receivers();
-    it_rejects_fresh_aliases_skips_and_unused_input_underdetermination();
-    it_publishes_closed_producers_returning_partial_constructors_in_applied_scopes();
-    it_refuses_to_invent_inputs_lost_by_a_noninvertible_output();
-    it_rejects_unknown_producer_origins_even_with_known_selected_receivers();
-    it_treats_new_checked_source_contexts_as_real_provenance_evidence();
+/** Tagged proof payloads must be registered before any dereference. Invalid
+ * domains and copied handles preserve the caller's outcome and first error.
+ */
+static void it_refuses_foreign_closure_handles_and_missing_outcome_receivers(void) {
+    for (size_t kind = 0; kind < 5; kind++) {
+        setup_publications("@...\n...out\n..integer\n", "@...\n");
+        const StaticResultContext *context = publication_context(caller_environment);
+        StaticResultGraph *graph;
+        assert(static_result_require_graph(&results, context, &graph));
+        StaticResultGraph copied = *graph;
+        StaticPublicationItem root = {.kind = STATIC_CLOSURE_GRAPH, .as.graph = kind == 3 ? &copied : graph};
+        if (kind < 3) { root = (StaticPublicationItem){.kind = kind == 0 ? STATIC_CLOSURE_SOURCE :
+            kind == 1 ? STATIC_CLOSURE_DEFINITION : (StaticPublicationWorkKind)99}; }
+        bool outcome = true;
+        assert(!static_publication_dependencies_closed(&publications, root, kind == 4 ? NULL : &outcome));
+        assert(outcome && publications.status == STATIC_PUBLICATION_INVALID);
+        const char *message = publications.error.message;
+        assert(!static_publication_dependencies_closed(&publications,
+            (StaticPublicationItem){.kind = STATIC_CLOSURE_GRAPH, .as.graph = graph}, &outcome));
+        assert(outcome && publications.error.message == message);
+        destroy_publications();
+    }
 }
-/** Return success after counted teardown. */
+
+/** Explicitly execute the independent closure partitions. */
+static void run(void) {
+    it_refuses_foreign_closure_handles_and_missing_outcome_receivers();
+    it_requires_all_inputs_even_when_one_selected_output_is_known();
+    it_refuses_unused_input_underdetermination_without_publishing_aliases();
+    it_separates_intermediate_value_facts_from_whole_root_publication();
+}
+/** Counted teardown must finish before successful process exit. */
 int main(void) { run(); return 0; }

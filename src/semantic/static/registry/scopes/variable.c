@@ -27,18 +27,7 @@ bool static_registry_scope_variable(StaticRegistryPlan *plan, StaticRegistryUse 
     StaticRegistryKeyState key_state;
     if (!static_registry_use(plan, use->path, &refreshed, &key_state)) { return false; }
     if (key_state == STATIC_REGISTRY_KEY_PENDING) { *state = key_state; return true; }
-    StaticVariableIdentity identity = variable->as.variable;
-    identity.environment = use->candidate->key;
-    const StaticTerm *canonical;
-    bool prepared = identity.role == STATIC_VARIABLE_FORMAL ?
-        static_term_symbol(terms, identity.environment, identity.symbol, &canonical) :
-        static_term_variable(terms, identity, variable->category, variable->signature, variable->site, &canonical);
-    if (!prepared || !static_constraint_equate(plan->guards->applications->solver,
-        variable, canonical, variable->site)) {
-        (void)static_registry_dependencies(plan);
-        return false;
-    }
-    *output = canonical;
+    if (!static_registry_bind_scope(plan, use, variable, output)) { return false; }
     *state = key_state;
     return true;
 }

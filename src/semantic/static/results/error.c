@@ -21,6 +21,12 @@ bool static_result_fail(StaticResultPlan *plan, StaticResultStatus status, Sourc
  */
 bool static_result_dependencies(StaticResultPlan *plan) {
     if (plan->status != STATIC_RESULT_OK) { return false; }
+    if (plan->registry->status != STATIC_REGISTRY_OK) {
+        plan->status = plan->registry->status == STATIC_REGISTRY_OUT_OF_MEMORY ? STATIC_RESULT_OUT_OF_MEMORY :
+            plan->registry->status == STATIC_REGISTRY_INVALID ? STATIC_RESULT_INVALID : STATIC_RESULT_CONFLICT;
+        plan->error = plan->registry->error;
+        return false;
+    }
     if (static_guard_dependencies(plan->guards)) { return true; }
     StaticGuardStatus status = plan->guards->status;
     plan->status = status == STATIC_GUARD_OUT_OF_MEMORY ? STATIC_RESULT_OUT_OF_MEMORY :

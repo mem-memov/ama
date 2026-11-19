@@ -18,7 +18,13 @@ bool static_result_apply(StaticResultPlan *plan, StaticResultUse *use, StaticApp
     if (output == NULL || !static_result_has_use(plan, use)) {
         return static_result_fail(plan, STATIC_RESULT_INVALID, (SourceSpan){0}, "Invalid static application use or outcome receiver");
     }
-    if (!static_result_prepare(plan, use) || !static_result_application(plan, use->source, use->prepared, &use->application)) { return false; }
+    if (!static_result_prepare(plan, use)) { return false; }
+    StaticRegistryKeyState owner_state;
+    if (!static_registry_scope_environment(plan->registry, use->context->registry_use, &owner_state)) {
+        (void)static_result_dependencies(plan); return false;
+    }
+    if (use->source->producer) { return static_result_apply_producer(plan, use, output); }
+    if (!static_result_application(plan, use->source, use->prepared, &use->application)) { return false; }
     StaticApplicationOutcome checked;
     if (!static_application_check(plan->guards->applications, use->application, &checked)) {
         (void)static_result_dependencies(plan); return false;

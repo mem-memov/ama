@@ -1,5 +1,5 @@
 /** @file
- * @brief Own static result preparation separately from borrowed guard and term lifetimes.
+ * @brief Own static result preparation separately from borrowed registry, guard and term lifetimes.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) retains failed construction.
  */
 #include <assert.h>
@@ -9,9 +9,9 @@
 /** Initializing this owner cannot execute or resolve any static expression.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) separates ownership.
  */
-void static_result_init(StaticResultPlan *plan, StaticGuardPlan *guards, SourceAllocator allocator) {
-    assert(guards && guards->status == STATIC_GUARD_OK);
-    *plan = (StaticResultPlan){.guards = guards};
+void static_result_init(StaticResultPlan *plan, StaticRegistryPlan *registry, SourceAllocator allocator) {
+    assert(registry && registry->status == STATIC_REGISTRY_OK && registry->guards->status == STATIC_GUARD_OK);
+    *plan = (StaticResultPlan){.registry = registry, .guards = registry->guards};
     source_arena_init(&plan->arena, allocator);
 }
 

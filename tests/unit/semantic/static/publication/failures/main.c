@@ -5,18 +5,26 @@
 
 /** Every allocation of a real inferred producer/output publication may fail;
  * outputs stay untouched and partially checked descriptors remain destructible.
+ * Include finite cyclic validation groups and their transitive closure scratch.
  */
 static void it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal(void) {
-    for (size_t mode = 0; mode < 2; mode++) {
+    for (size_t mode = 0; mode < 4; mode++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_publications(mode == 0 ? "@!\nanchor&\n..integer\nfield&\n.other\n ...slot < ..integer\n ...out > ...alias\n" :
-                "@>\n...expected\n..integer\n@!\nanchor&\n..integer\nfield&\n.other\n ...out > ...expected\n", result_target_source);
+            if (mode == 3) {
+                setup_publications("@...\n.other\n ...selected > ...out\n",
+                    "@...\n...selected\n..integer\n.main\n ...out > ...unselected\n");
+            } else {
+                setup_publications(mode == 1 ?
+                    "@...\n...expected\n..integer\n.other\n ...out > ...expected\n" :
+                    "@...\n.other\n ...slot < ..integer\n ...out > ...alias\n", result_target_source);
+            }
             const StaticResultContext *context = publication_context(caller_environment);
             const StaticPublication *publication = NULL;
             size_t before = allocation_count;
             if (failure) { failure_at = before + failure; }
-            bool success = static_publication_resolve(&publications, context, result_field("field"), &publication);
+            bool success = mode >= 2 ? static_publication_scope(&publications, context, &publication) :
+                static_publication_resolve(&publications, context, result_projection(0), &publication);
             if (!failure) { assert(success); total = allocation_count - before; assert(total > 0); }
             else { assert(!success && publication == NULL && publications.status == STATIC_PUBLICATION_OUT_OF_MEMORY); }
             failure_at = 0;
@@ -30,17 +38,17 @@ static void it_unwinds_every_producer_closure_and_alias_publication_allocation_r
  */
 static void it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures(void) {
     for (size_t mode = 0; mode < 4; mode++) {
-        setup_publications("@!\nanchor&\n..integer\nfield&\n.other\n ...slot < ..integer\n ...out > ...alias\n", result_target_source);
+        setup_publications("@...\n.other\n ...slot < ..integer\n ...out > ...alias\n", result_target_source);
         const StaticResultContext *context = publication_context(caller_environment);
         StaticResultContext copied = *context;
         const StaticPublication *publication = NULL;
         if (mode == 2) { publications.count = SIZE_MAX; }
         if (mode == 3) { publications.alias_count = SIZE_MAX; }
         assert(!static_publication_resolve(&publications, mode == 1 ? &copied : context,
-            result_field("field"), mode == 0 ? NULL : &publication));
+            result_projection(0), mode == 0 ? NULL : &publication));
         assert(publication == NULL && publications.status == (mode < 2 ? STATIC_PUBLICATION_INVALID : STATIC_PUBLICATION_OUT_OF_MEMORY));
         const char *message = publications.error.message;
-        assert(!static_publication_resolve(&publications, context, result_field("field"), &publication));
+        assert(!static_publication_resolve(&publications, context, result_projection(0), &publication));
         assert(publications.error.message == message);
         destroy_publications();
     }
@@ -59,7 +67,7 @@ static void it_rechecks_equations_before_reusing_a_prior_publication(void) {
     const StaticPublication *publication;
     assert(static_publication_resolve(&publications, context, definition->source->expression, &publication));
     assert(publication->value == integer_type);
-    assert(static_constraint_equate(&solver, definition->source->value, environment->owner_type, definition->symbol->site));
+    assert(static_constraint_equate(&solver, definition->source->value, result_family_constructor, definition->symbol->site));
     const StaticPublication *output = NULL;
     assert(!static_publication_resolve(&publications, context, definition->source->expression, &output));
     assert(output == NULL && publications.status == STATIC_PUBLICATION_CONFLICT && publication->value == integer_type);

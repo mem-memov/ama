@@ -24,16 +24,30 @@ bool static_result_context(StaticResultPlan *plan, const StaticCreationPath *cre
     if (output == NULL || !static_guard_has_path(plan->guards, creation)) {
         return static_result_fail(plan, STATIC_RESULT_INVALID, (SourceSpan){0}, "Invalid required static evaluation scope");
     }
+    const StaticResultContext *existing = NULL;
     for (const StaticResultContext *context = plan->first_context; context; context = context->next) {
-        if (context->creation == creation) { *output = context; return true; }
+        if (context->creation == creation) { existing = context; break; }
     }
-    if (plan->context_count == SIZE_MAX) {
+    if (!existing && plan->context_count == SIZE_MAX) {
         return static_result_fail(plan, STATIC_RESULT_OUT_OF_MEMORY, creation->site,
             "Static result scope count exceeds representable storage");
     }
+    if (existing) {
+        StaticGuardClosure closure;
+        if (!static_guard_refresh(plan->guards, &closure)) {
+            (void)static_result_dependencies(plan); return false;
+        }
+        *output = existing;
+        return true;
+    }
+    StaticRegistryUse *registered;
+    StaticRegistryKeyState state;
+    if (!static_registry_use(plan->registry, creation, &registered, &state)) {
+        (void)static_result_dependencies(plan); return false;
+    }
     StaticResultContext *context = static_result_allocate(plan, sizeof(*context));
     if (context == NULL) { return false; }
-    *context = (StaticResultContext){.creation = creation, .next = plan->first_context};
+    *context = (StaticResultContext){.creation = creation, .registry_use = registered, .next = plan->first_context};
     plan->first_context = context;
     plan->context_count++;
     *output = context;

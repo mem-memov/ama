@@ -6,18 +6,24 @@
  */
 #ifndef AMA_STATIC_RESULT_MODEL_H
 #define AMA_STATIC_RESULT_MODEL_H
-#include "../guards/plan.h"
+#include "../registry/plan.h"
 
-/** One original expression/environment key. The expression result is distinct
- * from every derived output/receiver variable, even when later values are equal.
- * Definition evaluation and provenance uses are separate later operations.
- * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves producer denotation.
+/** One original expression/environment key. Ordinary expressions have their
+ * own value variable; named producer uses retain only their actual module origin,
+ * never an invented Type or expression-value variable. Selected outputs remain
+ * independent derived definition variables in both cases.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates values and producers.
  */
 typedef struct StaticResultSource {
     struct StaticResultSource *next;
     const StaticTermEnvironment *environment;
     const AstTypeExpression *expression;
     const StaticOccurrence *occurrence;
+    /** Actual static-module origin for a named producer use; its head/value are
+     * null because a producer is not a metadata value. Ordinary expressions
+     * have null producer and nonnull head/value. [TPL-12](../../../../spec/language/static-results.md#tpl-12).
+     */
+    const StaticModule *producer;
     const StaticTerm *head;
     const StaticTerm *value;
 } StaticResultSource;
@@ -27,6 +33,24 @@ typedef struct StaticResultSource {
  * separate from the creation/definition checks retained by each actual use.
  */
 typedef struct StaticResultOperands StaticResultOperands;
+/** Independent whole-graph validation proof, separate from value-read ancestry.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves exact scoped metadata and its validation obligations.
+ */
+typedef struct StaticResultGraph StaticResultGraph;
+
+/** One named producer request has a complete original-formal input map. Missing
+ * written bindings use stable lexical inference variables, not new free inputs.
+ * The result arena owns the array/record and borrows source, requests and terms.
+ * It is neither a metadata value nor a checked producer environment.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates input closure and residual Templates.
+ */
+typedef struct StaticResultProducer {
+    struct StaticResultProducer *next;
+    const StaticResultSource *source;
+    const BindingApplication *requests;
+    const StaticTermCapture *inputs;
+    size_t input_count;
+} StaticResultProducer;
 
 /** An explicit result reads its defining expression. An alias reads the exact
  * selected output at its original receiver, not that producer expression's own
@@ -49,6 +73,7 @@ typedef struct StaticResultDefinition {
 typedef struct StaticResultContext {
     struct StaticResultContext *next;
     const StaticCreationPath *creation;
+    StaticRegistryUse *registry_use;
 } StaticResultContext;
 
 /** Ready concerns present static structural work, not executable admission or
@@ -75,6 +100,7 @@ typedef struct StaticResultDefinitionUse {
     const StaticResultContext *context;
     const StaticDefinitionPath *path;
     StaticResultUse *rhs;
+    struct StaticResultDefinitionUse *selected;
     const StaticResultUse *checked_rhs;
     StaticResultOutcome outcome;
     bool active;
@@ -101,13 +127,42 @@ struct StaticResultUse {
     const StaticResultSource *source;
     const StaticResultContext *context;
     const StaticDefinitionPath *definition_path;
+    const BindingApplication *requests;
     const StaticTermApplication *prepared;
+    const StaticResultProducer *producer_request;
+    StaticResultGraph *required_graph;
     const StaticApplicationRecord *application;
     const StaticResultContext *producer;
     StaticResultDependency *first_dependency;
     StaticResultOutcome outcome;
     bool active;
     bool closed;
+};
+
+/** Exactly one root alternative is nonnull. These are validation obligations,
+ * not value-definition edges from whichever definition requested the producer.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) checks every public result and statement.
+ */
+typedef struct StaticResultGraphWork {
+    struct StaticResultGraphWork *next;
+    StaticResultUse *expression;
+    StaticResultDefinitionUse *definition;
+} StaticResultGraphWork;
+
+/** One actual incoming context witnesses the canonical graph's local checks.
+ * A same-key ancestral recurrence links to an existing ancestor witness instead
+ * of expanding again. Independent incoming paths can retain different witnesses.
+ * The result arena owns records; contexts/source uses are longer-lived siblings.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves pending ancestry without a first-visit heuristic.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates validation and definition cycles.
+ */
+struct StaticResultGraph {
+    StaticResultGraph *next;
+    const StaticResultContext *context;
+    StaticResultGraphWork *first;
+    StaticResultGraphWork *last;
+    size_t work_count;
+    bool local_complete;
 };
 
 /** Cache independently computed, checked, closed definition values by their
@@ -118,7 +173,7 @@ struct StaticResultUse {
  */
 typedef struct StaticResultCache {
     struct StaticResultCache *next;
-    const StaticTerm *owner;
+    const StaticTermEnvironment *owner;
     const StaticSymbol *symbol;
     const StaticTerm *value;
     const StaticResultUse *rhs;

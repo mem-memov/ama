@@ -9,7 +9,7 @@
 #include "../results/plan.h"
 
 /** Canonical selected values retain original output identities and declaration
- * order, including outputs skipped by the caller.
+ * order, including public outputs not selected by the caller.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) validates every output.
  */
 typedef struct StaticPublishedOutput {
@@ -35,6 +35,11 @@ typedef struct StaticPublishedAlias {
 typedef struct StaticPublication {
     struct StaticPublication *next;
     const StaticResultUse *use;
+    /** Actual static producer scope for a result bundle; null for an ordinary
+     * metadata value. Root bundles have no written use, rather than fake syntax.
+     * [TPL-12](../../../../spec/language/static-results.md#tpl-12).
+     */
+    const StaticResultContext *context;
     const StaticTerm *value;
     StaticPublishedOutput *first_output;
     size_t output_count;
@@ -79,4 +84,12 @@ void static_publication_destroy(StaticPublicationPlan *);
  */
 bool static_publication_resolve(StaticPublicationPlan *, const StaticResultContext *,
     const AstTypeExpression *, const StaticPublication **);
+/** Publish all named exports of an actual static-module root after full input
+ * and public-definition closure. No producer Type, synthetic call expression or
+ * ordinary instance is constructed. Root and source bundle values are null;
+ * output entries hold actual Type/Template metadata. Output remains unchanged
+ * on refusal, including count/allocation failures; partial records stay owned.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) supports independently named export selection.
+ */
+bool static_publication_scope(StaticPublicationPlan *, const StaticResultContext *, const StaticPublication **);
 #endif

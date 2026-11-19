@@ -8,18 +8,36 @@
 
 /** No result record may outlive its guard/value/source dependencies. */
 static StaticResultPlan results;
+/** Registry names and candidates outlive result records but not source owners. */
+static IdentityRegistry result_identities;
+static StaticRegistryPlan result_registry;
 
-/** Two original projections use one alias; only its first receiver defines it. */
-static const char *result_caller_source = "@<\n...type\n...family\n ...slot\n@>\n...first\n...type\n"
-    "...partial\n...family\n@!\nanchor&\n..integer\nfirst&\n.other\n ...out > ...alias\n"
-    "second&\n.other\n ...out > ...alias\nsame&\n...alias\n";
-static const char *result_target_source = "@<\n...slot\n@>\n...out\n...slot\n@!\n";
+/** Initialize the actual canonical registry before the borrowing result owner. */
+static inline void initialize_results(void) {
+    identity_registry_init(&result_identities, sources.allocator);
+    static_registry_init(&result_registry, &guards, &result_identities, sources.allocator);
+    static_result_init(&results, &result_registry, sources.allocator);
+}
+
+
+/** Two named producer statements share one receiver; the first defines it.
+ * A separate ordinary constructor supplies actual Template metadata.
+ */
+static const char *result_caller_source = "@...\n...first\n...type\n...partial\n...family\n"
+    ".other\n ...out > ...alias\n.other\n ...out > ...alias\n...same\n...alias\n...anchor\n..integer\n...constructor anchor\n.family\n";
+static const char *result_target_source = "@...\n...out\n...slot\n";
+/** An ordinary constructor is a Template value; a static producer is not. */
+static const StaticTerm *result_family_constructor;
 
 /** The guard fixture already proves no runtime setup occurs for these source records. */
 static inline void setup_results(void) {
+    directory(STATIC_SCOPE_ROOT_DIRECTORY);
+    file("generated/static scope/family", "@<\nvalue\n...slot\n@!\n");
     setup_guards(result_caller_source, result_target_source);
+    const StaticModule *family = static_module_find(&inventory, project_find(&project, ".family"));
+    assert(family && static_term_nominal(&terms, family, NULL, 0, (SourceSpan){0}, &result_family_constructor));
     size_t before = allocation_count;
-    static_result_init(&results, &guards, sources.allocator);
+    initialize_results();
     assert(results.status == STATIC_RESULT_OK && allocation_count == before);
 }
 
@@ -38,14 +56,34 @@ static inline const AstTypeExpression *result_field(const char *name) {
     assert(false); return NULL;
 }
 
-/** Applied caller scope keeps Type and one-slot Template arguments distinct. */
+/** Select an exact result-pair expression by its public source binder. */
+static inline const AstTypeExpression *result_pair(const char *name) {
+    const StaticSymbol *symbol = result_named(caller_module, name);
+    assert(symbol->declaration && symbol->declaration->kind == AST_STATIC_RESULT);
+    return symbol->declaration->as.static_result.expression;
+}
+
+/** Fixture statement ordinal is lexical source order, not a static argument
+ * position. Only root named producer statements participate in this selector.
+ */
+static inline const AstTypeExpression *result_projection(size_t ordinal) {
+    for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
+        if (site->receiver == NULL && site->root && site->statement->kind == AST_STATIC_PROJECTION &&
+            site->statement->as.static_projection == site->expression) {
+            if (ordinal-- == 0) { return site->expression; }
+        }
+    }
+    assert(false); return NULL;
+}
+
+/** Applied compiler-only scope retains Type and Template arguments without
+ * manufacturing an ordinary producer Type or runtime instance.
+ */
 static inline const StaticTermEnvironment *result_applied_environment(void) {
     StaticTermCapture captures[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
-        {.formal = application_formal(caller_module, 1), .value = target_constructor}};
-    const StaticTerm *value;
+        {.formal = application_formal(caller_module, 1), .value = result_family_constructor}};
     const StaticTermEnvironment *environment;
-    assert(static_term_nominal(&terms, caller_module, captures, 2, (SourceSpan){0}, &value));
-    assert(static_term_environment(&terms, caller_module, value, &environment));
+    assert(static_term_producer_environment(&terms, caller_module, captures, 2, &environment));
     return environment;
 }
 
@@ -53,6 +91,8 @@ static inline const StaticTermEnvironment *result_applied_environment(void) {
 static void destroy_results(void) {
     static_result_destroy(&results);
     assert(results.guards == NULL && results.first_source == NULL && results.first_definition == NULL);
+    static_registry_destroy(&result_registry);
+    identity_registry_destroy(&result_identities);
     destroy_guards();
 }
 #endif

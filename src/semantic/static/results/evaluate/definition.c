@@ -1,11 +1,11 @@
 /** @file
- * @brief Evaluate original static definitions while keeping aliases distinct from their producer Types.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) defines immutable selected results.
+ * @brief Evaluate pair definitions and exact alias reads without inventing data dependencies on other outputs.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves structural definitions and immutable first receipts.
  */
 #include "internal.h"
 
-/** Selected queries do not use unrelated root closure as a cache predicate.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) closes actual producers.
+/** Selected metadata closure is independent of unrelated global requirements.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12).
  */
 bool static_result_closed(StaticResultPlan *plan, const StaticTerm *term, bool *closed) {
     const StaticTerm *value;
@@ -17,9 +17,10 @@ bool static_result_closed(StaticResultPlan *plan, const StaticTerm *term, bool *
     return true;
 }
 
-/** Explicit outputs equate their own RHS; aliases receive their value only
- * through their exact original receiver equation in the producer expression.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves denotation.
+/** Pair RHS values equate directly. An alias separately enters the exact
+ * selected foreign definition under its own path, even when its producer's
+ * independent validation roots already computed that value.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) guards real definition cycles.
  */
 bool static_result_definition_step(StaticResultEvaluation *evaluation) {
     StaticResultFrame *frame = evaluation->top;
@@ -30,10 +31,19 @@ bool static_result_definition_step(StaticResultEvaluation *evaluation) {
         frame->phase = 1;
         return static_result_push_expression(evaluation, use->rhs);
     }
-    if (use->definition->symbol->role == STATIC_RESULT &&
-        !static_constraint_equate(plan->guards->applications->solver, use->definition->value,
-            use->rhs->source->value, use->definition->symbol->site)) {
-        (void)static_result_dependencies(plan); return false;
+    if (frame->phase == 1) {
+        frame->phase = 2;
+        if (use->definition->symbol->role == STATIC_RESULT) {
+            if (!static_constraint_equate(plan->guards->applications->solver, use->definition->value,
+                use->rhs->source->value, use->definition->symbol->site)) {
+                (void)static_result_dependencies(plan); return false;
+            }
+        } else {
+            bool pending;
+            if (!static_result_alias_read(plan, use, &use->selected, &pending)) { return false; }
+            frame->pending |= pending;
+            if (!pending) { return static_result_push_definition(evaluation, use->selected); }
+        }
     }
     bool closed;
     if (!static_result_closed(plan, use->definition->value, &closed)) { return false; }

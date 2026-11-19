@@ -12,7 +12,7 @@ static StaticPublicationPlan publications;
 /** Initialize the publication owner without semantic work or allocation. */
 static void setup_publications(const char *caller, const char *target) {
     setup_guards(caller, target);
-    static_result_init(&results, &guards, sources.allocator);
+    initialize_results();
     size_t before = allocation_count;
     static_publication_init(&publications, &results, sources.allocator);
     assert(allocation_count == before && publications.status == STATIC_PUBLICATION_OK);

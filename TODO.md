@@ -176,7 +176,9 @@ boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 [T210](DONE.md#t210) validates current creation/definition guard paths.
 [T216](DONE.md#t216) supplies exact complete-key encoding and checked names.
 [T183](DONE.md#t183) supplies canonical candidates, guarded use retention and
-finite dependency-check groups. T211 is next. T182 remains unfinished with its partial
+finite dependency-check groups. [T211](DONE.md#t211) supplies named result
+  equations, complete producer publication and independent validation witnesses.
+T212 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -195,33 +197,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 3. Build finite structural analysis and guarded identities
 
 ### Phase 4. Resolve static graphs and independent ordinary exports
-
-<a id="t211"></a>
-
-- [ ] **T211 — Resolve named graph results and complete producer inputs.**
-  Prerequisites: T207, T209, T210, T183, T213.
-  Rules: [TPL-08](spec/language/templates.md#tpl-08),
-  [TPL-10](spec/language/templates.md#tpl-10),
-  [TPL-12](spec/language/static-results.md#tpl-12).
-  Boundary: result-pair values, explicit named producer outputs, scoped
-  application equations and producer closure through the guarded registry.
-  Steps: derive structural definitions and receiver equations; retain deterministic
-  omitted-input variables; solve/refine guarded demands and validate all graph
-  definitions. Apply guards before following each dependency, including unknown
-  keys and cache hits, rather than expanding first and checking afterwards.
-  Accept: multiple outputs, public intermediate names, forwarding and partial
-  returned families preserve exact metadata. Existing receivers add equality;
-  fresh names supply no anchor. Every producer input must close, including one
-  unused by selected results; every public output retains validation obligations.
-  Reject unknown/repeated output labels, implicit first results, producer-as-value
-  uses, static-definition cycles and unresolved/noninvertible input requirements.
-  Register closed identities with outstanding ordinary checks, never claim final
-  executable admission or require T185 prematurely. Test real parser/scope/solver/
-  guard/registry compositions, definition versus equality cycles, warm/cold order
-  and all preparation/publication failures. Meet the common per-file tests,
-  Doxygen links and same-task commit criteria.
-  Fixtures: Migrate result/publication fixtures to named graph producers and public binders;
-  discard old ordinary-body static result scenarios.
 
 <a id="t212"></a>
 
@@ -652,29 +627,29 @@ whole-program admission; component certificates do not replace those checks.
 | Explicit constant namespaces | [T212](#t212) |
 | Specialized constant lifecycle | [T186](#t186) |
 | Concrete operation checks | [T185](#t185) |
-| Template parameter signatures | [T211](#t211) |
-| Partial composition | [T211](#t211) |
-| Explicit static input categories | [T211](#t211) |
-| Defined static results | [T211](#t211) |
-| Static output composition | [T211](#t211) |
-| Static output lookup | [T211](#t211) |
-| Named-only static interfaces | [T211](#t211) |
-| Static named arity and rejected skips | [T211](#t211) |
-| Static binding modes and order | [T211](#t211) |
-| Static result alias introduction | [T211](#t211) |
-| Static alias scope and capture | [T211](#t211) |
-| Static output inference and closure | [T211](#t211) |
-| Complete producer closure | [T211](#t211) |
+| Template parameter signatures | [T196](#t196) |
+| Partial composition | [T196](#t196) |
+| Explicit static input categories | [T196](#t196) |
+| Defined static results | [T196](#t196) |
+| Static output composition | [T196](#t196) |
+| Static output lookup | [T196](#t196) |
+| Named-only static interfaces | [T196](#t196) |
+| Static named arity and rejected skips | [T196](#t196) |
+| Static binding modes and order | [T196](#t196) |
+| Static result alias introduction | [T196](#t196) |
+| Static alias scope and capture | [T196](#t196) |
+| Static output inference and closure | [T196](#t196) |
+| Complete producer closure | [T196](#t196) |
 | Ordinary static-export boundary | [T212](#t212) |
-| Static evaluation boundary and cycles | [T211](#t211) |
-| Returned constructor creation provenance | [T211](#t211) |
+| Static evaluation boundary and cycles | [T196](#t196) |
+| Returned constructor creation provenance | [T196](#t196) |
 | List implementation boundary | [T195](#t195) |
 | Specialization analysis and diagnostics | [T189](#t189) |
-| Finite repeated composition | [T211](#t211), [T182](#t182) |
-| Definition-generated recursion | [T211](#t211), [T182](#t182) |
-| Creation-graph provenance | [T211](#t211), [T182](#t182) |
-| Constructor origins and captures | [T211](#t211) |
-| Cache-independent path checks | [T211](#t211), [T184](#t184) |
+| Finite repeated composition | [T196](#t196), [T182](#t182) |
+| Definition-generated recursion | [T196](#t196), [T182](#t182) |
+| Creation-graph provenance | [T196](#t196), [T182](#t182) |
+| Constructor origins and captures | [T196](#t196) |
+| Cache-independent path checks | [T196](#t196), [T184](#t184) |
 | Native template rejection | [T190](#t190) |
 | Concrete native template arguments | [T190](#t190) |
 | Concrete native composition | [T190](#t190) |

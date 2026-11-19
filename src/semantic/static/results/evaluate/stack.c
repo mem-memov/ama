@@ -21,7 +21,7 @@ static StaticResultFrame *frame(StaticResultEvaluation *evaluation) {
 }
 
 /** An active source equation is unresolved work rather than an invented
- * definition cycle. Actual named definition cycles are rejected by T178 first.
+ * definition cycle. Actual named definition cycles are rejected by their separate guard first.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates graphs.
  */
 bool static_result_push_expression(StaticResultEvaluation *evaluation, StaticResultUse *use) {

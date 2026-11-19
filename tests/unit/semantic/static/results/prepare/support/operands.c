@@ -13,7 +13,7 @@ static const char *operand_caller_source =
 /** Own real source/term/guard dependencies before a fresh result plan. */
 static void setup_operand_sources(void) {
     setup_guards(operand_caller_source, "@!\n");
-    static_result_init(&results, &guards, sources.allocator);
+    initialize_results();
 }
 
 /** Enter one explicitly named same-Type dependency through the actual guarded application operation. */

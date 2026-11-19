@@ -14,9 +14,9 @@ static void it_preserves_scope_use_and_definition_ancestry_with_idempotent_reque
     assert(static_result_context(&results, root, &context));
     assert(static_result_context(&results, root, &again_context) && context == again_context);
     StaticResultUse *first, *again;
-    assert(static_result_use(&results, context, result_field("first"), NULL, &first));
+    assert(static_result_use(&results, context, result_projection(0), NULL, &first));
     size_t before = allocation_count;
-    assert(static_result_use(&results, context, result_field("first"), NULL, &again));
+    assert(static_result_use(&results, context, result_projection(0), NULL, &again));
     assert(first == again && allocation_count == before && first->application == NULL && first->outcome == STATIC_RESULT_PENDING);
     StaticResultDefinitionUse *definition, *again_definition;
     const StaticSymbol *symbol = result_named(caller_module, "...first");
@@ -42,8 +42,8 @@ static void it_preserves_scope_use_and_definition_ancestry_with_idempotent_reque
  * the original source definition requests itself through its RHS.
  */
 static void it_checks_definition_ancestry_before_returning_existing_work_records(void) {
-    setup_guards("@>\n...a\n...a\n@!\nanchor&\n..integer\n", "@!\n");
-    static_result_init(&results, &guards, sources.allocator);
+    setup_guards("@...\n...a\n...a\n...anchor\n..integer\n", "@!\n");
+    initialize_results();
     const StaticCreationPath *root;
     const StaticResultContext *context;
     assert(static_creation_root(&guards, caller_environment, &root));
@@ -75,20 +75,20 @@ static void it_refuses_foreign_contexts_definition_paths_receivers_and_counter_w
         StaticResultUse *use = NULL;
         StaticResultDefinitionUse *definition = NULL;
         const StaticResultSource *source;
-        assert(static_result_source(&results, caller_environment, result_field("first"), &source));
+        assert(static_result_source(&results, caller_environment, result_projection(0), &source));
         if (mode == 3) { results.context_count = SIZE_MAX; }
         if (mode == 4) { results.use_count = SIZE_MAX; }
         if (mode == 5) { results.definition_use_count = SIZE_MAX; }
         bool success;
         if (mode == 0) { success = static_result_context(&results, &copied_root, &context_output); }
-        else if (mode == 1) { success = static_result_use(&results, &copied_context, result_field("first"), NULL, &use); }
-        else if (mode == 2) { success = static_result_use(&results, context, result_field("first"), NULL, NULL); }
+        else if (mode == 1) { success = static_result_use(&results, &copied_context, result_projection(0), NULL, &use); }
+        else if (mode == 2) { success = static_result_use(&results, context, result_projection(0), NULL, NULL); }
         else if (mode == 3) {
             const StaticTermEnvironment *applied = result_applied_environment();
             const StaticCreationPath *other;
             assert(static_creation_root(&guards, applied, &other));
             success = static_result_context(&results, other, &context_output);
-        } else if (mode == 4) { success = static_result_use(&results, context, result_field("first"), NULL, &use); }
+        } else if (mode == 4) { success = static_result_use(&results, context, result_projection(0), NULL, &use); }
         else if (mode == 5) {
             success = static_result_definition_use(&results, context, result_named(caller_module, "...first"), NULL,
                 (SourceSpan){0}, &definition);
@@ -121,7 +121,7 @@ static void it_unwinds_every_context_and_persistent_use_allocation_refusal(void)
             size_t before = allocation_count;
             if (failure) { failure_at = before + failure; }
             bool success = mode == 0 ? static_result_context(&results, root, &context_output) :
-                mode == 1 ? static_result_use(&results, context, result_field("first"), NULL, &use) :
+                mode == 1 ? static_result_use(&results, context, result_projection(0), NULL, &use) :
                 static_result_definition_use(&results, context, result_named(caller_module, "...first"), NULL, (SourceSpan){0}, &definition);
             if (!failure) { assert(success); total = allocation_count - before; assert(total > 0); }
             else {
@@ -147,8 +147,8 @@ static void it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_
         assert(static_result_context(&results, root, &context));
         StaticResultUse *parent, *child;
         StaticResultDefinitionUse *definition;
-        assert(static_result_use(&results, context, result_field("first"), NULL, &parent));
-        assert(static_result_use(&results, context, result_field("second"), NULL, &child));
+        assert(static_result_use(&results, context, result_projection(0), NULL, &parent));
+        assert(static_result_use(&results, context, result_projection(1), NULL, &child));
         assert(static_result_definition_use(&results, context, result_named(caller_module, "...first"),
             NULL, (SourceSpan){0}, &definition));
         StaticResultUse copied_parent = *parent, copied_child = *child;

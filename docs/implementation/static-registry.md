@@ -435,3 +435,18 @@ T185 concrete operation checks. Whole `make test`, current end-to-end template
 execution and final conformance are not claimed by this component acceptance.
 No language rule was changed, no compatibility implementation was introduced,
 and no runtime instance storage/state is shared by this registry.
+
+## T211 whole-environment scope binding
+
+`static_registry_scope_environment` extends single-variable scope binding to the
+finite term prefix present at entry. Every variable whose environment is the
+actual source scope is rebound by its full identity with only the environment
+replaced by the proven canonical key. Both operations use the same private core;
+formal captures preserve supplied metadata, self-equalities add no solver work,
+and unknown owner keys remain Pending. Variables created after the snapshot are
+handled by a later query. The scan does not iterate newly appended canonical
+variables and therefore terminates. Its cost is the finite prefix scan plus each
+existing identity-interning/equality operation, with no invented source-linear
+claim. `registry/environments` covers every role, late variables, independent
+scope keys, invalid receivers and every observed allocation refusal. This sharing
+is compiler metadata equality; runtime instance state remains independent.

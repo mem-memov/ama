@@ -9,7 +9,7 @@
  * phases and unconditional scratch teardown.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) bounds each attempt.
  */
-static bool run(StaticResultEvaluation *evaluation, bool success) {
+bool static_result_run(StaticResultEvaluation *evaluation, bool success) {
     while (success && evaluation->top) {
         success = evaluation->top->expression ? static_result_expression_step(evaluation) :
             static_result_definition_step(evaluation);
@@ -29,11 +29,13 @@ bool static_result_evaluate(StaticResultPlan *plan, const StaticResultContext *c
     if (output == NULL) {
         return static_result_fail(plan, STATIC_RESULT_INVALID, (SourceSpan){0}, "Missing static evaluation outcome receiver");
     }
+    StaticResultGraph *graph;
+    if (!static_result_require_graph(plan, context, &graph)) { return false; }
     StaticResultUse *use;
     if (!static_result_use(plan, context, expression, NULL, &use)) { return false; }
     StaticResultEvaluation evaluation = {.plan = plan};
     source_arena_init(&evaluation.arena, plan->arena.allocator);
-    bool success = run(&evaluation, static_result_push_expression(&evaluation, use));
+    bool success = static_result_run(&evaluation, static_result_push_expression(&evaluation, use));
     if (success) { *output = use->outcome; }
     return success;
 }
@@ -48,11 +50,13 @@ bool static_result_evaluate_definition(StaticResultPlan *plan, const StaticResul
     if (output == NULL) {
         return static_result_fail(plan, STATIC_RESULT_INVALID, (SourceSpan){0}, "Missing static definition outcome receiver");
     }
+    StaticResultGraph *graph;
+    if (!static_result_require_graph(plan, context, &graph)) { return false; }
     StaticResultDefinitionUse *use;
     if (!static_result_definition_use(plan, context, symbol, NULL, (SourceSpan){0}, &use)) { return false; }
     StaticResultEvaluation evaluation = {.plan = plan};
     source_arena_init(&evaluation.arena, plan->arena.allocator);
-    bool success = run(&evaluation, static_result_push_definition(&evaluation, use));
+    bool success = static_result_run(&evaluation, static_result_push_definition(&evaluation, use));
     if (success) { *output = use->outcome; }
     return success;
 }

@@ -28,10 +28,6 @@ struct StaticDefinitionNode {
     StaticDefinitionNode *next;
     const StaticGuardOwner *owner;
     const StaticSymbol *symbol;
-    /** Ordinary adapter view; null for compiler-only graph producer identities.
-     * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates producers from values.
-     */
-    const StaticTerm *concrete;
     const StaticTermEnvironment *concrete_key;
     StaticDefinitionNode *representative;
     size_t ordinal;

@@ -48,4 +48,11 @@ bool static_registry_retain(StaticRegistryPlan *, const StaticCreationPath *, St
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) checks all reachable obligations.
  */
 void static_registry_close_checks(StaticRegistryPlan *, StaticRegistryKeyState, StaticRegistryCheckState *);
+/** Bind an already validated original variable after its use key closes and
+ * guards refresh. Preserve every lexical identity component except the proven
+ * equal owner. Public callers own validation and receiver publication.
+ * [TPL-05](../../../../spec/language/templates.md#tpl-05) shares metadata only.
+ */
+bool static_registry_bind_scope(StaticRegistryPlan *, const StaticRegistryUse *,
+    const StaticTerm *, const StaticTerm **);
 #endif

@@ -38,7 +38,7 @@ bool static_publication_resolve(StaticPublicationPlan *plan, const StaticResultC
     }
     StaticPublication *publication = static_publication_allocate(plan, sizeof(*publication));
     if (publication == NULL) { return false; }
-    *publication = (StaticPublication){.use = use, .value = value};
+    *publication = (StaticPublication){.use = use, .context = use->source->producer ? use->producer : NULL, .value = value};
     if (!static_publication_outputs(plan, publication)) { return false; }
     publication->next = plan->first;
     plan->first = publication;

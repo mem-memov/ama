@@ -30,25 +30,24 @@ static bool output(StaticPublicationPlan *plan, const StaticTermEnvironment *env
 }
 
 /** Actual slot identities connect normalized receiver requests to closed output
- * values. Skips still consume positions but create no alias descriptor.
+ * values. Only named static receivers create alias descriptors.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves actual output order.
  */
 bool static_publication_outputs(StaticPublicationPlan *plan, StaticPublication *publication) {
     const StaticResultUse *use = publication->use;
-    const BindingApplication *requests = use->application->context.requests;
-    if (requests == NULL || requests->output_count == 0) { return true; }
-    if (use->producer == NULL) {
-        return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, use->source->expression->span,
-            "Closed static output phase has no checked producer context");
-    }
-    const StaticTermEnvironment *environment = use->producer->creation->owner->environment;
+    const StaticResultContext *context = publication->context;
+    if (!context) { return true; }
+    const StaticTermEnvironment *environment = context->registry_use->candidate->key;
     const StaticModule *module = environment->definition;
     StaticPublishedOutput **tail = &publication->first_output;
-    for (size_t ordinal = 0; ordinal < module->result_count; ordinal++) {
-        if (!output(plan, environment, static_symbol_at(module, STATIC_RESULT, ordinal), tail)) { return false; }
+    for (const StaticSymbol *symbol = module->first; symbol; symbol = symbol->next) {
+        if (symbol->role != STATIC_RESULT && symbol->role != STATIC_ALIAS) { continue; }
+        if (!output(plan, environment, symbol, tail)) { return false; }
         tail = &(*tail)->next;
         publication->output_count++;
     }
+    if (!use) { return true; }
+    const BindingApplication *requests = use->requests;
     for (const BindingRequest *request = requests->first; request; request = request->next) {
         if (request->direction != BINDING_STATIC_OUTPUT || request->omitted) { continue; }
         const StaticSymbol *symbol = static_publication_receiver(use, request->syntax.static_binding);

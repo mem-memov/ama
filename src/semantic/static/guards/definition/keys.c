@@ -22,7 +22,6 @@ bool static_guard_definition_keys(StaticGuardPlan *plan, StaticGuardClosure *clo
                 "A complete static-definition owner changed after normalization");
         }
         node->concrete_key = value;
-        node->concrete = value->owner_type;
     }
     for (StaticDefinitionNode *node = plan->first_definition; node; node = node->next) {
         node->representative = node;

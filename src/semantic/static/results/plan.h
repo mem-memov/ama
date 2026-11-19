@@ -14,18 +14,24 @@
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves unresolved evidence.
  */
 typedef enum { STATIC_RESULT_OK, STATIC_RESULT_INVALID, STATIC_RESULT_CONFLICT,
-    STATIC_RESULT_OUT_OF_MEMORY, STATIC_RESULT_UNRESOLVED } StaticResultStatus;
+    STATIC_RESULT_OUT_OF_MEMORY } StaticResultStatus;
 
-/** Destroy before guards and every borrowed application/solver/value/source
+/** Destroy before the registry, guards and every borrowed application/solver/value/source
  * owner. Solver-retained signatures must use solver-owned storage, not this
  * shorter-lived arena; equations borrow only original terms and source spans.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) separates lifetimes.
  */
 typedef struct {
     SourceArena arena;
+    StaticRegistryPlan *registry;
     StaticGuardPlan *guards;
+    StaticResultGraph *first_graph;
+    StaticResultGraph *last_graph;
+    size_t graph_count;
     StaticResultSource *first_source;
     size_t source_count;
+    StaticResultProducer *first_producer_request;
+    size_t producer_request_count;
     StaticResultOperands *first_operands;
     size_t operand_count;
     StaticResultDefinition *first_definition;
@@ -43,16 +49,18 @@ typedef struct {
     Diagnostic error;
 } StaticResultPlan;
 
-/** Borrow healthy compatible guard/source/value owners without allocation.
+/** Borrow one healthy registry and its compatible guard/source/value owners without allocation.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) separates ownership.
  */
-void static_result_init(StaticResultPlan *, StaticGuardPlan *, SourceAllocator);
+void static_result_init(StaticResultPlan *, StaticRegistryPlan *, SourceAllocator);
 /** Release partial source/evaluation records without following borrowed edges.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) bounds teardown.
  */
 void static_result_destroy(StaticResultPlan *);
 /** Bind an exact original expression to its scoped head and separate internal
- * result variable. Preserve occurrence identity and reuse an existing key.
+ * result variable for ordinary metadata values. A named static producer instead
+ * retains its module origin with null head/value; it has no own Type/Template.
+ * Preserve occurrence identity and reuse an existing key.
  * No application, output lookup, body expansion or receiver equation occurs.
  * Output is untouched on refusal; partial allocations stay owned.
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) binds source structure.

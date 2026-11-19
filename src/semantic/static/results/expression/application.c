@@ -15,6 +15,12 @@
 bool static_result_application(StaticResultPlan *plan, const StaticResultSource *source,
     const StaticTermApplication *prepared, const StaticApplicationRecord **application) {
     StaticApplicationPlan *applications = plan->guards->applications;
+    /* With no bindings this is identity for every Type/Template completion,
+     * including a still-unknown category. No constructor origin is guessed. */
+    if (prepared->input_count == 0 && prepared->source->output_count == 0 &&
+        !static_constraint_equate(applications->solver, source->head, source->value, source->expression->span)) {
+        (void)static_result_dependencies(plan); return false;
+    }
     StaticConstraintOutcome solved;
     if (!static_constraint_solve(applications->solver, &solved)) {
         (void)static_result_dependencies(plan); return false;

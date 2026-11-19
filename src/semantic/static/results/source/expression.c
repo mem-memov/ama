@@ -23,12 +23,22 @@ static const StaticOccurrence *occurrence(const StaticTermEnvironment *environme
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) forbids name capture.
  */
 static bool head(StaticResultPlan *plan, const StaticTermEnvironment *environment,
-    const StaticOccurrence *site, const StaticTerm **output) {
+    const StaticOccurrence *site, const StaticTerm **output, const StaticModule **producer) {
     StaticTermStore *terms = plan->guards->applications->terms;
     if (site->expression->kind == AST_TYPE_PLACEHOLDER && site->symbol != NULL) {
         if (static_term_symbol(terms, environment, site->symbol, output)) { return true; }
     } else if (site->expression->kind == AST_TYPE_MODULE_PATH && site->origin != NULL) {
         const StaticModule *module = static_module_find(terms->inventory, site->origin);
+        if (module && module->definition->syntax.sections.kind == MODULE_STATIC) {
+            if (site->statement->kind != AST_STATIC_PROJECTION ||
+                site->statement->as.static_projection != site->expression) {
+                return static_result_fail(plan, STATIC_RESULT_INVALID, site->site,
+                    "A static producer has named outputs rather than a Type or Template value");
+            }
+            *producer = module;
+            *output = NULL;
+            return true;
+        }
         if (module != NULL && static_term_nominal(terms, module, NULL, 0, site->expression->head, output)) { return true; }
     }
     if (!static_result_dependencies(plan)) { return false; }
@@ -57,15 +67,16 @@ bool static_result_source(StaticResultPlan *plan, const StaticTermEnvironment *e
         return static_result_fail(plan, STATIC_RESULT_OUT_OF_MEMORY, site->site,
             "Static expression source count exceeds representable storage");
     }
-    const StaticTerm *head_value, *value;
-    if (!head(plan, environment, site, &head_value)) { return false; }
-    if (!static_term_expression_result(terms, environment, expression, &value)) {
+    const StaticTerm *head_value, *value = NULL;
+    const StaticModule *producer = NULL;
+    if (!head(plan, environment, site, &head_value, &producer)) { return false; }
+    if (producer == NULL && !static_term_expression_result(terms, environment, expression, &value)) {
         (void)static_result_dependencies(plan); return false;
     }
     StaticResultSource *source = static_result_allocate(plan, sizeof(*source));
     if (source == NULL) { return false; }
     *source = (StaticResultSource){.environment = environment, .expression = expression,
-        .occurrence = site, .head = head_value, .value = value, .next = plan->first_source};
+        .occurrence = site, .producer = producer, .head = head_value, .value = value, .next = plan->first_source};
     plan->first_source = source;
     plan->source_count++;
     *output = source;

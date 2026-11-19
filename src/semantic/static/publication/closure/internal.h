@@ -1,23 +1,36 @@
 /** @file
- * @brief Describe a finite selected-source closure worklist distinct from definition-cycle checks.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves receiver equality cycles and full producers.
- * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) bounds attempt scratch.
+ * @brief Define exact selected-source and whole-graph closure work, independent of definition-cycle checking.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) permits finite validation groups with complete producers.
+ * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns attempt-local queue storage.
  */
 #ifndef AMA_STATIC_PUBLICATION_CLOSURE_INTERNAL_H
 #define AMA_STATIC_PUBLICATION_CLOSURE_INTERNAL_H
 #include "../internal.h"
 
-/** One actual source occurrence is checked once per closure attempt, including
- * when independent receiver relationships form a permitted equality cycle.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates equality and definitions.
+/** Distinct proof domains are never inferred from a nonexistent producer value.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves exact scoped metadata and its validation obligations.
+ */
+typedef enum { STATIC_CLOSURE_SOURCE, STATIC_CLOSURE_DEFINITION, STATIC_CLOSURE_GRAPH } StaticPublicationWorkKind;
+/** One exact retained handle, tagged before any payload is followed.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12).
+ */
+typedef struct {
+    StaticPublicationWorkKind kind;
+    union {
+        const StaticResultUse *source;
+        const StaticResultDefinitionUse *definition;
+        const StaticResultGraph *graph;
+    } as;
+} StaticPublicationItem;
+/** Visited identity is a domain plus actual registered object, not source text.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) closes finite validation cycles.
  */
 typedef struct StaticPublicationWorkNode {
     struct StaticPublicationWorkNode *next;
-    const StaticResultUse *use;
+    StaticPublicationItem item;
 } StaticPublicationWorkNode;
-
-/** Queue membership is exact handle identity; unrelated roots never enter it.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) closes required producers.
+/** Queue storage expires after one exact closure query, including any refusal.
+ * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03).
  */
 typedef struct {
     StaticPublicationPlan *plan;
@@ -27,17 +40,17 @@ typedef struct {
     bool closed;
 } StaticPublicationWork;
 
-/** Queue a checked source occurrence once, preserving finite receiver cycles.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) retains actual scope.
+/** Validate and enqueue one registered proof once; output work remains owned.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12).
  */
-bool static_publication_enqueue(StaticPublicationWork *, const StaticResultUse *);
-/** Include a guarded definition's checked RHS proof, including cache witnesses.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) forbids cached incomplete producers.
+bool static_publication_enqueue(StaticPublicationWork *, StaticPublicationItem);
+/** Visit one tagged proof and enqueue its actual dependencies, without evaluating
+ * unrelated roots or manufacturing definition-read edges.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12).
  */
-bool static_publication_definition(StaticPublicationWork *, const StaticResultDefinitionUse *);
-/** Evaluate original existing receiver definitions as independent roots and
- * queue their checked source dependencies, without adding definition edges.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates constraints.
+bool static_publication_visit(StaticPublicationWork *, StaticPublicationItem);
+/** Query the exact reachable metadata closure of a source or root graph.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12).
  */
-bool static_publication_evidence(StaticPublicationWork *, const StaticResultUse *);
+bool static_publication_dependencies_closed(StaticPublicationPlan *, StaticPublicationItem, bool *);
 #endif

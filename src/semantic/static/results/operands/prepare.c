@@ -9,17 +9,6 @@
 #include <stdint.h>
 #include "internal.h"
 
-/** Check source identity before following any borrowed source payload.
- * [TPL-08](../../../../../spec/language/templates.md#tpl-08) requires an original
- * source/environment identity; a copied record is not another registered key.
- */
-static bool registered(const StaticResultPlan *plan, const StaticResultSource *source) {
-    for (const StaticResultSource *item = plan->first_source; item; item = item->next) {
-        if (item == source) { return true; }
-    }
-    return false;
-}
-
 /** Reuse one immutable preparation or publish a complete new cache entry.
  * Lookup does not solve equations or change an actual use's provenance/state.
  * Failure keeps output/count/cache links unchanged; partial child owners remain
@@ -28,7 +17,7 @@ static bool registered(const StaticResultPlan *plan, const StaticResultSource *s
 bool static_result_operands(StaticResultPlan *plan, const StaticResultSource *source,
     const StaticTermApplication **output) {
     if (!static_result_dependencies(plan)) { return false; }
-    if (output == NULL || !registered(plan, source)) {
+    if (output == NULL || !static_result_has_source(plan, source)) {
         return static_result_fail(plan, STATIC_RESULT_INVALID, (SourceSpan){0},
             "Invalid original operand source or receiver");
     }
