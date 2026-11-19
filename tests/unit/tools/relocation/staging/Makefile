@@ -2,7 +2,6 @@
 # @brief Check exact staged relocation bytes and independently resolved final bindings.
 ROOT := $(abspath ../../../../..)
 include $(ROOT)/tests/unit/planning/sources.mk
-SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/identity))
 include $(ROOT)/tests/unit/compiler/sources.mk
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/library))
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/native/toolchain))

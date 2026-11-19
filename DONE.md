@@ -5572,3 +5572,87 @@ T201. Specification bytes have not changed.
   log is `/tmp/ama-t217-final-docs.log`. T182 runtime/lexical/source work remains
   unfinished and outside this task's code/test staging and acceptance. Earlier
   active-step notes are chronological evidence, not unfinished acceptance claims.
+
+<a id="t218"></a>
+
+- [x] **T218 — Remove redundant identity-source dependencies from test consumers.**
+  Status: complete. Historical checkpoint states below are superseded by the final acceptance record.
+  Prerequisites: T216.
+  Rules: [TEST-06](spec/implementation/tools-and-conformance.md#test-06),
+  [ARCH-03](spec/implementation/compiler.md#arch-03).
+  Boundary: explicit dependency fragments for library, native scaffold and
+  relocation component suites; no product code or specification changes.
+  Problem: semantic/sources.mk already owns source/identity. Seven consumers
+  inherit it through planning/sources.mk and append it again, so their link
+  command repeats the same object and fails with multiple strong definitions.
+  The actual failure is `/tmp/ama-t182-whole-project.log`, relocation/staging.
+  Steps: (1) remove only provably inherited duplicate identity declarations;
+  retain direct parser-only consumers' necessary identity dependencies;
+  (2) check expanded source/object sets and run every affected library/scaffold/
+  relocation consumer; (3) document the dependency ownership, archive and commit
+  this prerequisite separately, preserving all unfinished T182 changes.
+  Accept: every retained source/identity unit is still present exactly once in
+  each affected link closure; all actual component assertions and failure-prefix
+  cases pass. Do not suppress duplicate-symbol linker errors or hide missing
+  dependencies behind a fallback, ignore flag or permissive link option.
+
+  Exact closure audit passes `/tmp/ama-t218-closures-final.exit`, 0: thirteen
+  actual consumers retain all seven identity translation units exactly once;
+  two parser-only ABI controls retain their direct identity dependency, while
+  the independent scaffold filesystem control still has none. Every expanded
+  object target is unique. The original failed staging snapshot independently
+  reproduces every identity unit twice. The first audit incorrectly classified
+  the narrow filesystem suite as a shared-fragment consumer; its original
+  `/tmp/ama-t218-closures.exit` remains 1, and the corrected negative control
+  now proves its dependency set stays unchanged. No product/test harness code
+  or linker policy changes are needed: remove seven redundant declarations.
+  Current isolated acceptance source is `/tmp/ama-t218-source-y02cmqx4`: HEAD
+  plus only seven Make fragments and the shared dependency-ownership contract,
+  excluding all unfinished T182 source/tests and its native CLI fixture repair.
+  Active jobs: library four leaves session 40563,
+  `/tmp/ama-t218-library.{log,exit}`; complete scaffold parent session 76646,
+  `/tmp/ama-t218-scaffold.{log,exit}`; relocation staging/transaction parents
+  session 87152, `/tmp/ama-t218-relocation.{log,exit}`. Outputs are independent.
+  Next collect every result, resolve actual failures within their correct owner,
+  then prepare task-only TODO/DONE and exact-source Doxygen acceptance. T218 is
+  not complete yet; T182 remains separately unfinished.
+
+  Library (four leaves) and complete scaffold (five leaves) parents are collected
+  as exit 0; sessions 40563/76646. Parser-only ABI controls are exit 0,
+  `/tmp/ama-t218-parser-controls.exit` (session 23667 collected). The relocation
+  parent is collected as exit 2, session 87152: its application case requires a
+  source device different from `/tmp`, while the isolated snapshot and its
+  generated sources both reside on `/tmp`. The failure is exactly the explicit
+  device-ID assertion, not a linker or relocation implementation refusal.
+  Run the same compiled application test from an owned fresh workspace working
+  directory with its own generated tree; the executable/compiled source stays
+  frozen in the isolated snapshot. Verified devices are 2101 and 37, recorded
+  in `/tmp/ama-t218-cross-filesystem.json`. This full unmodified test is active
+  as session 53817; `/tmp/ama-t218-application-cross-filesystem.{log,exit}`.
+  Its measured allocation-prefix matrix is 1154 positions and its real I/O
+  refusal matrix is 1066 positions. No prefix/case is skipped. Workspace scratch
+  is deleted only after successful process completion; preserve on failure.
+  A missing exit receipt remains running, not success. Final docs must include
+  the added filesystem-domain explanation in the shared build/fixture contract.
+
+  Final acceptance (2026-11-19): remove only the seven redundant inherited
+  dependency declarations. Every affected expanded object closure is unique;
+  all seven identity units remain present once, and parser-only/direct and
+  identity-free controls preserve their original boundary. Four library leaves,
+  the complete five-leaf native scaffold parent, relocation staging and all four
+  transaction phases pass their actual assertions and measured failure matrices.
+  Two parser-only ABI controls pass independently. The original relocation
+  parent receipt remains exit 2 for the `/tmp` device-domain assertion; the same
+  unmodified application executable passes its complete 1154-allocation and
+  1066-I/O matrix from an owned workspace directory on device 2101 against `/tmp`
+  device 37 (`/tmp/ama-t218-application-cross-filesystem.exit`, 0). Source and
+  executable remain the task-only frozen snapshot; workspace scratch is removed.
+  All sessions are collected. Closure audit and original before-fix duplicate
+  control are `/tmp/ama-t218-closures-final.{log,exit}`. Library, scaffold and ABI
+  receipts are `/tmp/ama-t218-{library,scaffold,parser-controls}.{log,exit}`, all 0.
+  Complete maintained-file/header coverage and exact-source Doxygen validation
+  pass `/tmp/ama-t218-final-docs.{log,exit}`. Task/route/link checks retain 214
+  canonical rules and 108 unchanged EBNF productions. No product code, source
+  syntax or specification is changed by T218; unfinished T182 work and its native
+  CLI fixture correction are excluded from this task's staging. Exact staged
+  source/documentation bytes must match the accepted documentation snapshot.

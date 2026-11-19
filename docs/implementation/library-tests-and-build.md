@@ -63,6 +63,30 @@ output. Recursive test-harness and incremental-build tests copy the maintained
 Make rules into isolated generated projects, leaving repository inputs untouched.
 Successful leaves clean generated output; failures preserve it for diagnosis.
 
+The actual cross-filesystem relocation case creates its destination under `/tmp`
+and checks different device IDs. Its fresh generated source tree must live on
+another explicitly selected writable filesystem. An isolated compiled test can
+run from a dedicated workspace directory with its own `generated/` tree while
+its executable and authored inputs remain in the frozen snapshot. Record the
+observed source/destination device IDs and retain the complete assertions and
+failure-prefix checks. Repository `make test` uses the workspace directly.
+
+## Explicit dependency ownership
+
+`tests/unit/semantic/sources.mk` provides the complete source/identity component.
+Every consumer of `planning/sources.mk` inherits that dependency through the
+semantic fragment. Library, native-scaffold and relocation consumers therefore
+use the inherited translation units once. Parser-only ABI consumers still declare
+identity directly because their frontend fragment does not provide it.
+
+Each explicit object target has one maintained source and one selected build
+configuration. Including the same target twice cannot supply another component;
+it repeats the same strong definitions in the link command. Dependency fragments
+declare only additional components beyond their mandatory includes. Expanded
+source/object closure checks and real consumer builds verify that every retained
+identity unit is present exactly once. This preserves the existing harness and
+its compile/run/cleanup/failure contracts.
+
 ## Header checks and authored fragments
 
 Ordinary C headers compile independently under strict C11. An authored native

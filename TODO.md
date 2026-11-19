@@ -181,6 +181,10 @@ finite dependency-check groups. [T211](DONE.md#t211) supplies named result
 [T212](DONE.md#t212) supplies independent concrete export selection and
 current constant Type/namespace evidence. T182 is next, with its retained partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
+
+[T218](DONE.md#t218) removes redundant inherited identity-source dependencies
+from library/native/relocation test consumers before T182 acceptance continues.
+
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
 T212, not treated as current acceptance of removed inline projections.
@@ -215,7 +219,7 @@ reuse, removal and replacement below; they do not establish current-spec support
   T214 unused-preview removal before resuming the remaining work.
   Its local continuation note remains with the unfinished working-tree files,
   outside T202; the specification task establishes no implementation acceptance.
-  Prerequisites: T207, T209, T212, T217.
+  Prerequisites: T207, T209, T212, T217, T218.
   Rules: [TYPE-06](spec/language/declarations.md#type-06),
   [NAME-06](spec/language/declarations.md#name-06),
   [TPL-03](spec/language/templates.md#tpl-03),
@@ -675,7 +679,7 @@ consumers of the same resolved identities. T196 reviews every other canonical
 row and existing product regression, and T197/T198 complete release/reference
 acceptance. No historical hash refresh or routing label establishes support.
 
-The next unused task ID is **T218**.
+The next unused task ID is **T219**.
 
 ## Useful verification commands
 
