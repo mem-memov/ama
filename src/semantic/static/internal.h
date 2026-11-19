@@ -33,7 +33,7 @@ bool static_same_name(SourceSpan, SourceSpan);
  * Contract: [TPL-02](../../../spec/language/templates.md#tpl-02).
  */
 StaticModule *static_module_add(StaticInventory *, const ProjectModule *);
-/** Append one new local name; duplicate names fail regardless of alias visibility.
+/** Append one new local name; duplicate names fail regardless of declaration role.
  * Ordinals stay unassigned until collection finishes. Caller supplies valid
  * source spans from this module, an inventory-owned module, a valid role and
  * a category appropriate for this construction phase.
@@ -58,6 +58,17 @@ void static_sort_occurrences(StaticModule *);
  * [TPL-12](../../../spec/language/static-results.md#tpl-12).
  */
 bool static_collect_explicit(StaticInventory *, StaticModule *);
+/** Collect source-ordered first receipts after pair collection; later receipts
+ * reuse the pair/first-alias identity. Borrow valid graph syntax; partial records
+ * remain inventory-owned on failure. [TPL-12](../../../spec/language/static-results.md#tpl-12).
+ */
+bool static_collect_receivers(StaticInventory *, StaticModule *);
+/** Assign dense internal indices for a complete parameter or public output
+ * group from distinct defining offsets, without allocation or relinking.
+ * [TPL-02](../../../spec/language/templates.md#tpl-02),
+ * [TPL-12](../../../spec/language/static-results.md#tpl-12) retain deterministic identities.
+ */
+void static_order_symbols(StaticModule *, StaticRole);
 /** Bind every collected local use to its exact visible symbol or loaded path
  * occurrence. Unknown names never introduce body parameters.
  * Contract: [TPL-02](../../../spec/language/templates.md#tpl-02),

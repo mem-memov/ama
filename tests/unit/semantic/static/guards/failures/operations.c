@@ -20,7 +20,7 @@ typedef struct {
 
 /** Exact scoped static result names are independent of their shared value Type. */
 static const StaticSymbol *named(const char *name) {
-    const StaticSymbol *symbol = static_symbol_find(caller_module, static_name_site(project.entry, name), SIZE_MAX);
+    const StaticSymbol *symbol = static_symbol_find(caller_module, static_name_site(project.entry, name));
     assert(symbol); return symbol;
 }
 

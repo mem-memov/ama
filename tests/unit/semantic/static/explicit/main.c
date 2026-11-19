@@ -2,10 +2,12 @@
  * @brief Check public graph pair provenance and exclusion of foreign labels and ordinary fields.
  */
 #include "../common.c"
-#include <stdint.h>
+#include "semantic/static/bindings/owner.h"
+#include "support/graph.c"
+#include "support/permutations.c"
 
 /** Graph pairs are public binders; nested labels belong to the callee interface.
- * Free-input inference and producer-receiver binders belong to the next scope phase.
+ * Free-input classification remains separate from the public-binder pass.
  */
 static const char *explicit_source = "@...\n...first type\n...type\n"
     "...second family\n...factory\n ...foreign key < ...type\n"
@@ -24,15 +26,15 @@ static void it_collects_graph_pairs_without_importing_free_inputs_or_foreign_lab
         assert(symbol != NULL && layout_text_is(symbol->name, names[index]));
         assert(symbol->category == STATIC_CATEGORY_DEFERRED && symbol->declaration == node);
         assert(symbol->role == STATIC_RESULT && symbol->ordinal == index);
-        assert(static_symbol_find(module, symbol->name, 0) == symbol);
+        assert(static_symbol_find(module, symbol->name) == symbol);
         assert(symbol->site.source == project.entry->source->text && symbol->site.start == symbol->name.start);
         symbol = symbol->next;
         node = node->next;
     }
     assert(symbol == NULL && !inventory.valid);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...foreign key"), 0) == NULL);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...foreign element"), 0) == NULL);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...type"), 0) == NULL);
+    assert(static_symbol_find(module, static_name_site(project.entry, "...foreign key")) == NULL);
+    assert(static_symbol_find(module, static_name_site(project.entry, "...foreign element")) == NULL);
+    assert(static_symbol_find(module, static_name_site(project.entry, "...type")) == NULL);
     destroy_static();
 }
 
@@ -87,6 +89,13 @@ static void it_unwinds_every_public_pair_collection_allocation_failure(void) {
 
 /** Run pair collection independently of free-input and alias classification. */
 void run(void) {
+    it_keeps_pair_roles_for_every_three_statement_permutation();
+    it_uses_the_first_lexical_receipt_as_the_alias_definition();
+    it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts();
+    it_collects_pairs_before_receipts_and_retains_first_alias_definition();
+    it_exposes_every_public_alias_in_the_actual_source_interface();
+    it_binds_forward_alias_uses_without_creating_external_inputs();
+    it_unwinds_every_public_receipt_collection_allocation_failure();
     it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels();
     it_rejects_duplicate_public_pairs_with_original_headers();
     it_excludes_ordinary_and_native_type_lines_from_public_graph_collection();

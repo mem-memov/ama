@@ -50,7 +50,7 @@ static void it_matches_every_three_definition_relation_and_discovery_order(void)
     const char *names[] = {"...a", "...b", "...alias"};
     const StaticSymbol *symbols[3];
     for (size_t index = 0; index < 3; index++) {
-        symbols[index] = static_symbol_find(caller_module, static_name_site(project.entry, names[index]), SIZE_MAX);
+        symbols[index] = static_symbol_find(caller_module, static_name_site(project.entry, names[index]));
         assert(symbols[index] && (symbols[index]->role == STATIC_RESULT || symbols[index]->role == STATIC_ALIAS));
     }
     assert(symbols[2]->role == STATIC_ALIAS);

@@ -19,7 +19,7 @@ static void it_composes_actual_binding_slots_scoped_terms_and_typed_equalities(v
     const StaticModule *integer = binding_module(project_find(&project, "..integer"));
     const StaticOccurrence *site = request_head("...expected");
     const StaticSymbol *caller_symbol = static_symbol_find(caller,
-        static_name_site(project.entry, "...type"), SIZE_MAX);
+        static_name_site(project.entry, "...type"));
     BindingApplication *request;
     assert(binding_normalize_static(&binding_plan, request_interface(), site->expression, &request));
     StaticTermStore terms;

@@ -4571,3 +4571,45 @@ this table is navigation, not a parallel semantic definition.
   final archive refresh, explicit staging and staged-byte comparison are commit
   gates. No spec file changed; no complete static semantic/execution claim.
   Higher live algebraic fixtures retain explicit T207–T212/T182 migration owners.
+
+<a id="t207"></a>
+
+- [x] **T207 — Collect ordinary Type formals and whole-graph static scopes.**
+  Status: accepted on 2026-11-19, based on 46524d5. Record:
+  [scope contract and current steps](docs/implementation/static-symbols.md#t207-whole-graph-scope).
+  Prerequisites: T206.
+  Rules: [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-12](spec/language/static-results.md#tpl-12),
+  [TPL-13](spec/language/templates.md#tpl-13),
+  [NAME-06](spec/language/declarations.md#name-06).
+  Boundary: immutable source-owned parameter/result identities and label roles;
+  runtime receiver/foreach classification remains T182's responsibility.
+  Steps: collect ordinary input/result Type introductions; collect all static
+  pair and receiver binders before free inputs; classify unique definitions,
+  first defining receipts and later equality receipts independently of solver
+  order. Reject own free native Type formals before authoring-header generation.
+  Accept: forward result uses are not accidental inputs; every graph result is
+  public; pair definitions take their declared role regardless of textual order;
+  repeated receipts constrain one immutable name. Foreign labels and equal names
+  in independent modules never introduce or capture local formals. Reject duplicate
+  pairs, new body/shared parameters and standalone ordinary static declarations.
+  Include result-only/unused native parameters and concrete export selectors that
+  introduce no parameter. Test the inventory and real parser/native consumers,
+  scope/source spans and all refusals; replace obsolete signature/position tables.
+  Meet the common per-file tests, Doxygen links and same-task commit criteria.
+  Fixtures: Migrate the retained scope/inventory fixtures to whole-graph public names; the
+  earlier source-only formal/pattern cases were removed in T206.
+  Evidence: pair headers precede first-receipt collection; every binder is public
+  and whole-module, and graph inputs are the exact remaining local head set.
+  Alias/public counters and deterministic record indices match actual output
+  snapshots. Ordinary input/result Type introductions, shared/body/namespace
+  reuse and native own-formal refusal preserve their independent contracts.
+  The obsolete lookup position and classifier-created aliases are removed.
+  Exact provenance, all six independent statement orders, repeated/forward
+  receipts, cross-module names, duplicates, overflow and every measured
+  allocation refusal are tested. Ten command groups pass strict Werror and
+  ASan/UBSan on a task-only tree; root build passes without warnings. Initial
+  Doxygen passes 2700 ready files, zero debts, 2042 file pages, 7917 interfaces
+  and 432/432 destinations. Final archive generation and exact staged-byte
+  comparison remain commit gates. No spec change or executable-template claim;
+  actual metadata, source kinds and producer closure retain later task owners.

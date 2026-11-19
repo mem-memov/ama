@@ -5,7 +5,7 @@
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03) requires explicit
  * scratch ownership. [TPL-02](../../../spec/language/templates.md#tpl-02) and
  * [TPL-12](../../../spec/language/static-results.md#tpl-12) require exact module
- * namespaces and source-position alias visibility without runtime storage.
+ * namespaces and whole-module input/output visibility without runtime storage.
  */
 #ifndef AMA_SEMANTIC_STATIC_INVENTORY_H
 #define AMA_SEMANTIC_STATIC_INVENTORY_H
@@ -60,17 +60,18 @@ void static_inventory_destroy(StaticInventory *);
  */
 const StaticModule *static_module_find(const StaticInventory *, const ProjectModule *);
 
-/** Find an inserted complete name at an original source byte position.
- * Parameters/results are module-wide; aliases require position >= introduction.
+/** Find an inserted complete name in its whole declaring module.
+ * Inputs, pair results and receipt aliases have the same visibility.
  * Component contract: [TPL-12](../../../spec/language/static-results.md#tpl-12).
  * No foreign names, normalization, inference or filesystem lookup is added.
  */
-const StaticSymbol *static_symbol_find(const StaticModule *, SourceSpan, size_t);
+const StaticSymbol *static_symbol_find(const StaticModule *, SourceSpan);
 
 /** Select an original input/result by its dense role ordinal, independently of
  * allocation-chain order. Borrow a collected module with completed ordinals;
- * return null for absent modules, aliases, unsupported roles or out-of-range
- * positions. This query neither validates nor changes the inventory.
+ * return null for absent modules, unsupported group selectors or out-of-range
+ * ordinals. STATIC_RESULT includes both pair and receipt definitions; ordinals
+ * are internal identities, not positional static syntax. No validation or mutation.
  * Contract: [TPL-02](../../../spec/language/templates.md#tpl-02),
  * [TPL-12](../../../spec/language/static-results.md#tpl-12).
  */

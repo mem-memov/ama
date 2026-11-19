@@ -1,5 +1,5 @@
 /** @file
- * @brief Verify static identity, alias visibility, duplicate failure and allocation ownership.
+ * @brief Verify whole-module static identity, public counters, duplicates and allocation ownership.
  */
 #include "../common.c"
 #include <stdint.h>
@@ -7,7 +7,7 @@
 /** Equal complete spellings match within their explicit module, while case,
  * suffixes and defining modules remain independent. No lookup allocates.
  */
-static void it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility(void) {
+static void it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup(void) {
     setup_static(STATIC_SCOPE_SOURCE_TEXT, STATIC_SCOPE_SOURCE_TEXT);
     const ProjectModule *main = project.entry, *other = project_find(&project, ".other");
     StaticModule *left = static_module_add(&inventory, main), *right = static_module_add(&inventory, other);
@@ -22,26 +22,24 @@ static void it_keeps_exact_module_scoped_static_identities_and_forward_alias_vis
     StaticSymbol *independent = static_symbol_add(&inventory, right, foreign, foreign, STATIC_PARAMETER, STATIC_CATEGORY_TYPE);
     assert(parameter != NULL && output != NULL && received != NULL && independent != NULL);
     assert(parameter != independent && parameter->owner != independent->owner);
-    assert(left->parameter_count == 1 && left->result_count == 1 && received->category == STATIC_CATEGORY_DEFERRED);
+    assert(left->parameter_count == 1 && left->result_count == 2 && received->category == STATIC_CATEGORY_DEFERRED);
     assert(left->first == parameter && left->last == received && received->next == NULL);
     before = allocation_count;
     assert(static_module_find(&inventory, main) == left && static_module_find(&inventory, other) == right);
-    assert(static_symbol_find(left, foreign, 0) == parameter);
-    assert(static_symbol_find(right, name, 0) == independent);
-    assert(static_symbol_find(left, result, 0) == output);
-    assert(static_symbol_find(left, alias, alias.start - 1) == NULL);
-    assert(static_symbol_find(left, alias, alias.start) == received);
-    assert(static_symbol_find(left, alias, source_length(main->source->text)) == received);
-    assert(static_symbol_find(left, static_name_site(main, "...Same"), 0) == NULL);
-    assert(static_symbol_find(left, static_name_site(main, "...same-long"), 0) == NULL);
-    assert(static_symbol_find(NULL, name, 0) == NULL && allocation_count == before);
+    assert(static_symbol_find(left, foreign) == parameter);
+    assert(static_symbol_find(right, name) == independent);
+    assert(static_symbol_find(left, result) == output);
+    assert(static_symbol_find(left, alias) == received);
+    assert(static_symbol_find(left, static_name_site(main, "...Same")) == NULL);
+    assert(static_symbol_find(left, static_name_site(main, "...same-long")) == NULL);
+    assert(static_symbol_find(NULL, name) == NULL && allocation_count == before);
     assert(!static_same_name(static_name_site(main, "...café"), static_name_site(main, "...cafe\xcc\x81")));
     assert(parameter->ordinal == SIZE_MAX && output->ordinal == SIZE_MAX && !inventory.valid);
     destroy_static();
 }
 
-/** No combination of roles can redeclare the same local name, even before a
- * stored alias is visible. Duplicate failure keeps the chain/counts and first
+/** No combination of roles can redeclare the same local name.
+ * Duplicate failure keeps the chain/counts and first
  * source diagnostic unchanged, with no reporting allocation.
  */
 static void it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation(void) {
@@ -96,34 +94,38 @@ static void it_unwinds_every_static_record_allocation_failure_and_retains_the_fi
     }
 }
 
-/** Inject maximum counters to exercise arithmetic refusal without allocating
- * an impossible fixture. Alias insertion does not consume either interface.
+/** Each role consumes exactly one of the two groups. A full group refuses
+ * before allocation, while insertion into the independent group still works.
  */
-static void it_checks_both_interface_counter_limits_without_counting_aliases(void) {
-    for (StaticRole role = STATIC_PARAMETER; role <= STATIC_RESULT; role++) {
+static void it_checks_both_interface_counter_limits_including_public_aliases(void) {
+    for (StaticRole role = STATIC_PARAMETER; role <= STATIC_ALIAS; role++) {
         setup_static(STATIC_SCOPE_SOURCE_TEXT, STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = static_module_add(&inventory, project.entry);
         assert(module != NULL);
-        module->parameter_count = SIZE_MAX;
-        module->result_count = SIZE_MAX;
-        SourceSpan alias = static_name_site(project.entry, "...alias");
-        StaticSymbol *received = static_symbol_add(&inventory, module, alias, alias, STATIC_ALIAS, STATIC_CATEGORY_DEFERRED);
-        assert(received != NULL && module->parameter_count == SIZE_MAX && module->result_count == SIZE_MAX);
+        size_t *full = role == STATIC_PARAMETER ? &module->parameter_count : &module->result_count;
+        size_t *other = role == STATIC_PARAMETER ? &module->result_count : &module->parameter_count;
+        *full = SIZE_MAX;
+        SourceSpan result = static_name_site(project.entry, "...result");
+        StaticRole independent_role = role == STATIC_PARAMETER ? STATIC_RESULT : STATIC_PARAMETER;
+        StaticSymbol *existing = static_symbol_add(&inventory, module, result, result,
+            independent_role, STATIC_CATEGORY_TYPE);
+        assert(existing != NULL && *full == SIZE_MAX && *other == 1);
         size_t before = allocation_count;
         SourceSpan name = static_name_site(project.entry, "...same");
         assert(static_symbol_add(&inventory, module, name, name, role, STATIC_CATEGORY_TYPE) == NULL);
         assert(inventory.status == STATIC_OUT_OF_MEMORY && allocation_count == before);
-        assert(module->first == received && module->last == received && received->next == NULL);
+        assert(module->first == existing && module->last == existing && existing->next == NULL);
+        assert(*full == SIZE_MAX && *other == 1);
         destroy_static();
     }
 }
 
 /** Execute all independent primitive contracts; no complete collector is claimed. */
 void run(void) {
-    it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility();
+    it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup();
     it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation();
     it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error();
-    it_checks_both_interface_counter_limits_without_counting_aliases();
+    it_checks_both_interface_counter_limits_including_public_aliases();
 }
 
 /** Return success only after every assertion and counted owner cleanup. */

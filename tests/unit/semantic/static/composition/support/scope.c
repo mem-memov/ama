@@ -37,12 +37,45 @@ static void it_binds_closed_graph_pairs_in_public_order_without_runtime_storage(
     destroy_static();
 }
 
-/** A body-only placeholder cannot become an undeclared free formal. */
-static void it_rejects_ordinary_body_only_placeholder_types_at_original_sources(void) {
-    setup_static("@!\nvalue\n...unknown\n", STATIC_SCOPE_SOURCE_TEXT);
-    assert(static_inventory_collect(&inventory) == STATIC_INVALID && !inventory.valid && inventory.attempted);
-    assert(diagnostic_valid(&inventory.error));
-    assert(layout_text_is(inventory.error.primary.span, "...unknown"));
+/** Shared/body/namespace uses cannot introduce a free ordinary Type, including
+ * a declaration in a handler or after a structurally empty loop.
+ */
+static void it_rejects_new_parameters_outside_ordinary_interfaces(void) {
+    const char *cases[] = {
+        "@!\nvalue\n...unknown\n",
+        "@=\nvalue\n...unknown\n@!\n",
+        "@!\n...unknown\n zero >> value\n",
+        "@!\nworker\n.other\nworker !\n:\n value\n ...unknown\n",
+        "@!\ncondition\n.other\ncondition\n{\n}\nvalue\n...unknown\n"
+    };
+    for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
+        setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
+        assert(static_inventory_collect(&inventory) == STATIC_INVALID && !inventory.valid && inventory.attempted);
+        assert(diagnostic_valid(&inventory.error));
+        assert(layout_text_is(inventory.error.primary.span, "...unknown"));
+        destroy_static();
+    }
+}
+
+/** An ordinary output-only Type introduction supplies earlier shared uses and
+ * later body/constant namespaces without creating static public graph outputs.
+ */
+static void it_binds_result_introduced_types_through_shared_body_and_namespace_uses(void) {
+    setup_static("@=\nshared\n...result type\n@>\nresult\n...result type\n"
+        "@!\nstate\n...result type\n...result type\n zero >> value\n", STATIC_SCOPE_SOURCE_TEXT);
+    assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
+    const StaticModule *module = static_module_find(&inventory, project.entry);
+    const StaticSymbol *formal = named("...result type");
+    assert(module->parameter_count == 1 && module->result_count == 0);
+    assert(formal->role == STATIC_PARAMETER && formal->category == STATIC_CATEGORY_TYPE && formal->ordinal == 0);
+    assert(formal->declaration == project.entry->syntax.results.first);
+    assert(module->first_occurrence->site.start < formal->site.start);
+    size_t uses = 0;
+    for (const StaticOccurrence *site = module->first_occurrence; site != NULL; site = site->next) {
+        assert(site->symbol == formal && site->receiver == NULL);
+        uses++;
+    }
+    assert(uses == 4);
     destroy_static();
 }
 

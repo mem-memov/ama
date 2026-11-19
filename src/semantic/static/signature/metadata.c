@@ -68,7 +68,7 @@ void static_resolve_metadata(StaticInventory *inventory) {
             }
             if (module->constructor_signature == NULL) { continue; }
             for (StaticSignatureEntry *entry = module->constructor_signature->first; entry != NULL; entry = entry->next) {
-                const StaticSymbol *symbol = static_symbol_find(module, entry->name, entry->name.start);
+                const StaticSymbol *symbol = static_symbol_find(module, entry->name);
                 changed |= assign(&entry->category, &entry->signature,
                     (StaticMetadata){symbol->category, symbol->signature});
             }

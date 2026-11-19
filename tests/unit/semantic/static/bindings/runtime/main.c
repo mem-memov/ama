@@ -9,8 +9,8 @@
 static BindingInterface *runtime_interface(void) {
     const StaticModule *module = binding_module(project_find(&project, ".other"));
     const StaticSymbol *captures[] = {
-        static_symbol_find(module, static_name_site(module->definition, "...a"), 0),
-        static_symbol_find(module, static_name_site(module->definition, "...b"), 0)};
+        static_symbol_find(module, static_name_site(module->definition, "...a")),
+        static_symbol_find(module, static_name_site(module->definition, "...b"))};
     BindingInterface *view = NULL;
     assert(binding_source_interface(&binding_plan, module, BINDING_MODULE_SURFACE, captures, 2, &view));
     assert(view->sequences[BINDING_STATIC_INPUT].count == 0);

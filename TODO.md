@@ -168,7 +168,7 @@ Specification clarifications [T200](DONE.md#t200), [T202](DONE.md#t202) and
 [T203](DONE.md#t203) records the actual source/test ownership audit;
 [T214](DONE.md#t214) removes the unused preview service and retains only live
 operand preparation. [T206](DONE.md#t206) establishes the current source/AST
-boundary; T207 is next. T182 remains unfinished with its partial
+boundary; [T207](DONE.md#t207) establishes whole-graph scope. T213 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -183,32 +183,6 @@ T212, not treated as current acceptance of removed inline projections.
 reuse, removal and replacement below; they do not establish current-spec support.
 
 ### Phase 2. Establish current source structure and bindings
-
-<a id="t207"></a>
-
-- [ ] **T207 — Collect ordinary Type formals and whole-graph static scopes.**
-  Prerequisites: T206.
-  Rules: [TPL-02](spec/language/templates.md#tpl-02),
-  [TPL-12](spec/language/static-results.md#tpl-12),
-  [TPL-13](spec/language/templates.md#tpl-13),
-  [NAME-06](spec/language/declarations.md#name-06).
-  Boundary: immutable source-owned parameter/result identities and label roles;
-  runtime receiver/foreach classification remains T182's responsibility.
-  Steps: collect ordinary input/result Type introductions; collect all static
-  pair and receiver binders before free inputs; classify unique definitions,
-  first defining receipts and later equality receipts independently of solver
-  order. Reject own free native Type formals before authoring-header generation.
-  Accept: forward result uses are not accidental inputs; every graph result is
-  public; pair definitions take their declared role regardless of textual order;
-  repeated receipts constrain one immutable name. Foreign labels and equal names
-  in independent modules never introduce or capture local formals. Reject duplicate
-  pairs, new body/shared parameters and standalone ordinary static declarations.
-  Include result-only/unused native parameters and concrete export selectors that
-  introduce no parameter. Test the inventory and real parser/native consumers,
-  scope/source spans and all refusals; replace obsolete signature/position tables.
-  Meet the common per-file tests, Doxygen links and same-task commit criteria.
-  Fixtures: Migrate the retained scope/inventory fixtures to whole-graph public names; the
-  earlier source-only formal/pattern cases were removed in T206.
 
 <a id="t213"></a>
 
@@ -775,12 +749,14 @@ This is navigation to task owners, not a second definition of language rules
 or completed evidence. Exact obligations remain in the
 [canonical acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix).
 T203 audits the current source/test mapping; T168 remains historical evidence.
-T196 reviews the actual full evidence.
+T196 reviews the actual full evidence. [T207](DONE.md#t207) records accepted
+source-scope and native own-formal rejection; remaining owners below cover
+actual categories, captured values, native consumers and final conformance.
 
 | Static module template acceptance area | Current task owner |
 |---|---|
 | Placeholder spelling | [T196](#t196) |
-| Placeholder scope | [T207](#t207) |
+| Placeholder scope | [T196](#t196) |
 | Ordinary-argument inference | [T182](#t182) |
 | Nested field specialization | [T182](#t182) |
 | Specialization identity | [T183](#t183) |
@@ -790,15 +766,15 @@ T196 reviews the actual full evidence.
 | Concrete operation checks | [T185](#t185) |
 | Template parameter signatures | [T208](#t208) |
 | Partial composition | [T209](#t209) |
-| Explicit static input categories | [T207](#t207) |
+| Explicit static input categories | [T208](#t208) |
 | Defined static results | [T211](#t211) |
 | Static output composition | [T211](#t211) |
 | Static output lookup | [T211](#t211) |
 | Named-only static interfaces | [T209](#t209), [T211](#t211) |
 | Static named arity and rejected skips | [T209](#t209), [T211](#t211) |
 | Static binding modes and order | [T209](#t209) |
-| Static result alias introduction | [T207](#t207) |
-| Static alias scope and capture | [T207](#t207) |
+| Static result alias introduction | [T211](#t211) |
+| Static alias scope and capture | [T209](#t209) |
 | Static output inference and closure | [T211](#t211) |
 | Complete producer closure | [T211](#t211) |
 | Ordinary static-export boundary | [T212](#t212) |
@@ -811,7 +787,7 @@ T196 reviews the actual full evidence.
 | Creation-graph provenance | [T210](#t210) |
 | Constructor origins and captures | [T208](#t208) |
 | Cache-independent path checks | [T183](#t183) |
-| Native template rejection | [T207](#t207) |
+| Native template rejection | [T190](#t190) |
 | Concrete native template arguments | [T190](#t190) |
 | Concrete native composition | [T190](#t190) |
 | Template source delivery | [T191](#t191) |

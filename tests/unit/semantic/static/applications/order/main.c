@@ -17,7 +17,7 @@ static void it_keeps_mixed_introduction_ordinals_in_captures_residuals_and_snaps
     const char *names[] = {"...implicit first", "...explicit second", "...implicit last", "...implicit result"};
     const StaticSymbol *formals[4];
     for (size_t index = 0; index < 4; index++) {
-        formals[index] = static_symbol_find(module, static_name_site(project.entry, names[index]), SIZE_MAX);
+        formals[index] = static_symbol_find(module, static_name_site(project.entry, names[index]));
         assert(formals[index] && formals[index]->role == STATIC_PARAMETER && formals[index]->ordinal == index);
         assert(static_symbol_at(module, STATIC_PARAMETER, index) == formals[index]);
     }

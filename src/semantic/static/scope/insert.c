@@ -46,9 +46,8 @@ StaticSymbol *static_symbol_add(StaticInventory *inventory, StaticModule *module
             return NULL;
         }
     }
-    size_t *count = role == STATIC_PARAMETER ? &module->parameter_count
-        : role == STATIC_RESULT ? &module->result_count : NULL;
-    if (count != NULL && *count == SIZE_MAX) { (void)static_memory_failure(inventory); return NULL; }
+    size_t *count = role == STATIC_PARAMETER ? &module->parameter_count : &module->result_count;
+    if (*count == SIZE_MAX) { (void)static_memory_failure(inventory); return NULL; }
     StaticSymbol *symbol = static_allocate(inventory, sizeof(*symbol));
     if (symbol == NULL) { return NULL; }
     *symbol = (StaticSymbol){.owner = module, .name = name, .site = site,
@@ -56,6 +55,6 @@ StaticSymbol *static_symbol_add(StaticInventory *inventory, StaticModule *module
     if (module->last == NULL) { module->first = symbol; }
     else { module->last->next = symbol; }
     module->last = symbol;
-    if (count != NULL) { (*count)++; }
+    (*count)++;
     return symbol;
 }

@@ -18,7 +18,7 @@ const StaticSymbol *static_publication_receiver(const StaticResultUse *use, cons
 
 /** A fresh alias supplies no additional information. Existing result/alias
  * definitions are independent roots; their actual RHS dependencies still enter
- * T178 through T179. Parameters retain their current external evidence.
+ * T178 through T179. Whole-graph collection excludes receiver names from inputs.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) permits receiver inference.
  */
 bool static_publication_evidence(StaticPublicationWork *work, const StaticResultUse *use) {
@@ -30,7 +30,7 @@ bool static_publication_evidence(StaticPublicationWork *work, const StaticResult
             return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, binding->marker,
                 "Static publication receiver has no accepted lexical symbol");
         }
-        if (symbol->role == STATIC_PARAMETER || (symbol->role == STATIC_ALIAS && symbol->receiver == binding)) { continue; }
+        if (symbol->role == STATIC_ALIAS && symbol->receiver == binding) { continue; }
         StaticResultOutcome outcome;
         if (!static_result_evaluate_definition(plan->results, use->context, symbol, &outcome)) {
             (void)static_publication_dependencies(plan); return false;

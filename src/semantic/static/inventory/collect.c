@@ -4,7 +4,7 @@
  *
  * [TPL-02](../../../../spec/language/templates.md#tpl-02) requires whole-
  * interface collection before uses. [TPL-12](../../../../spec/language/static-results.md#tpl-12)
- * establishes aliases lexically. [TPL-07](../../../../spec/language/templates.md#tpl-07)
+ * fixes public binders before free inputs, independently of solve order. [TPL-07](../../../../spec/language/templates.md#tpl-07)
  * validates known signatures while preserving pending metadata obligations.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) publishes validity
  * only after complete success and leaves failed construction owned.

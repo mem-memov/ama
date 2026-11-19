@@ -1,10 +1,10 @@
 /**
  * @file
- * @brief Query exact static module identities and source-position name visibility.
+ * @brief Query exact static module identities and whole-module names.
  *
  * [TPL-02](../../../../spec/language/templates.md#tpl-02) compares complete
  * scoped names. [TPL-12](../../../../spec/language/static-results.md#tpl-12)
- * gives aliases forward visibility while parameters/results remain module-wide.
+ * makes all local input/output names visible throughout their module.
  */
 #include <assert.h>
 #include <string.h>
@@ -30,15 +30,15 @@ const StaticModule *static_module_find(const StaticInventory *inventory, const P
     return NULL;
 }
 
-/** Equal spelling cannot make a later alias visible earlier. Lookup neither
- * changes records nor invents an enclosing/foreign scope.
+/** Query every collected name throughout the module. Lookup neither changes
+ * records nor invents an enclosing/foreign scope or a source-position cutoff.
  * Contract: [TPL-12](../../../../spec/language/static-results.md#tpl-12).
  */
-const StaticSymbol *static_symbol_find(const StaticModule *module, SourceSpan name, size_t position) {
+const StaticSymbol *static_symbol_find(const StaticModule *module, SourceSpan name) {
     if (module == NULL) { return NULL; }
     for (const StaticSymbol *symbol = module->first; symbol != NULL; symbol = symbol->next) {
         if (static_same_name(symbol->name, name)) {
-            return symbol->role != STATIC_ALIAS || position >= symbol->site.start ? symbol : NULL;
+            return symbol;
         }
     }
     return NULL;

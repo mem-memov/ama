@@ -48737,7 +48737,7 @@
         "source": "tests/unit/semantic/types/main.c"
       },
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -48752,7 +48752,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -48862,7 +48862,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -53845,7 +53845,7 @@
         "source": "tests/unit/semantic/composition/main.c"
       },
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -53860,7 +53860,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -53970,7 +53970,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -126157,7 +126157,7 @@
     "purpose": "Preserve first static-inventory failures with original source sites and no reporting allocation.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126172,7 +126172,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126282,18 +126282,18 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       }
     ]
   },
   "src/semantic/static/model.h": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Represent scoped static identities separately from runtime semantic fields.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126308,7 +126308,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126418,7 +126418,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -126466,6 +126466,66 @@
         "source": "tests/unit/semantic/static/constants/qualified/main.c",
         "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_static_application_of_a_known_concrete_type",
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ],
     "standalone_header_command": [
@@ -126489,7 +126549,7 @@
     "purpose": "Own stable static inventory records and release partial construction deterministically.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126504,7 +126564,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126614,7 +126674,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       }
@@ -126625,7 +126685,7 @@
     "purpose": "Own static module inventories and expose exact source-scoped queries.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126640,7 +126700,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126750,7 +126810,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -126783,6 +126843,66 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_static_application_of_a_known_concrete_type",
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ],
     "standalone_header_command": [
@@ -126806,7 +126926,7 @@
     "purpose": "Declare static inventory construction and allocation-free failure boundaries.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126821,7 +126941,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -126931,7 +127051,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -126979,6 +127099,66 @@
         "source": "tests/unit/semantic/static/constants/qualified/main.c",
         "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_static_application_of_a_known_concrete_type",
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ],
     "standalone_header_command": [
@@ -127002,120 +127182,160 @@
     "purpose": "Insert distinct static definitions and local names with stable ownership.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "source": "tests/unit/semantic/static/scope/main.c",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
+        "command": "make -C tests/unit/semantic/static/scope"
       },
       {
+        "source": "tests/unit/semantic/static/scope/main.c",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
+        "command": "make -C tests/unit/semantic/static/scope"
+      },
+      {
+        "source": "tests/unit/semantic/static/scope/main.c",
         "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "command": "make -C tests/unit/semantic/static/scope"
       },
       {
+        "source": "tests/unit/semantic/static/scope/main.c",
         "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "command": "make -C tests/unit/semantic/static/scope"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_classifies_ordinary_interface_types_once_in_original_order",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_unwinds_every_ordinary_classification_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_rejects_duplicate_public_pairs_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_pair_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       }
     ]
   },
   "src/semantic/static/scope/lookup.c": {
     "contract": "docs/implementation/static-symbols.md",
-    "purpose": "Query exact static module identities and source-position name visibility.",
+    "purpose": "Query exact static module identities and whole-module names.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "source": "tests/unit/semantic/static/scope/main.c",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
+        "command": "make -C tests/unit/semantic/static/scope"
       },
       {
+        "source": "tests/unit/semantic/static/scope/main.c",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
+        "command": "make -C tests/unit/semantic/static/scope"
+      },
+      {
+        "source": "tests/unit/semantic/static/scope/main.c",
         "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "command": "make -C tests/unit/semantic/static/scope"
       },
       {
+        "source": "tests/unit/semantic/static/scope/main.c",
         "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "command": "make -C tests/unit/semantic/static/scope"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_classifies_ordinary_interface_types_once_in_original_order",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_unwinds_every_ordinary_classification_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_rejects_duplicate_public_pairs_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_pair_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       }
     ]
   },
@@ -127124,7 +127344,7 @@
     "purpose": "Own counted project-backed static records and exact source-name fixtures.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -127139,7 +127359,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -127249,7 +127469,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -127540,7 +127760,7 @@
     "purpose": "Dispatch independent static scope and inventory component suites.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -127555,7 +127775,7 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -127665,7 +127885,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -128693,27 +128913,27 @@
   },
   "tests/unit/semantic/static/scope/main.c": {
     "contract": "docs/implementation/static-symbols.md",
-    "purpose": "Verify static identity, alias visibility, duplicate failure and allocation ownership.",
+    "purpose": "Verify whole-module static identity, public counters, duplicates and allocation ownership.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "source": "tests/unit/semantic/static/scope/main.c",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
+        "command": "make -C tests/unit/semantic/static/scope"
       },
       {
+        "source": "tests/unit/semantic/static/scope/main.c",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
+        "command": "make -C tests/unit/semantic/static/scope"
+      },
+      {
+        "source": "tests/unit/semantic/static/scope/main.c",
         "case": "it_rejects_every_duplicate_role_pair_without_mutation_or_diagnostic_allocation",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "command": "make -C tests/unit/semantic/static/scope"
       },
       {
+        "source": "tests/unit/semantic/static/scope/main.c",
         "case": "it_unwinds_every_static_record_allocation_failure_and_retains_the_first_error",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
-      },
-      {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
-        "command": "make -C tests/unit/semantic/static/scope",
-        "source": "tests/unit/semantic/static/scope/main.c"
+        "command": "make -C tests/unit/semantic/static/scope"
       }
     ]
   },
@@ -128722,7 +128942,7 @@
     "purpose": "Build independent static ownership and exact scope operations against semantic components.",
     "tests": [
       {
-        "case": "it_keeps_exact_module_scoped_static_identities_and_forward_alias_visibility",
+        "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       },
@@ -128737,55 +128957,100 @@
         "source": "tests/unit/semantic/static/scope/main.c"
       },
       {
-        "case": "it_checks_both_interface_counter_limits_without_counting_aliases",
+        "case": "it_checks_both_interface_counter_limits_including_public_aliases",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
       }
     ]
   },
   "src/semantic/static/inventory/explicit.c": {
-    "contract": "docs/implementation/static-source.md",
-    "purpose": "Collect named static graph results before free-input classification.",
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Collect all static graph pair and receipt binders before free-input classification.",
     "tests": [
       {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
-        "command": "make -C tests/unit/semantic/static/explicit",
-        "source": "tests/unit/semantic/static/explicit/main.c"
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
-        "command": "make -C tests/unit/semantic/static/explicit",
-        "source": "tests/unit/semantic/static/explicit/main.c"
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_rejects_duplicate_public_pairs_with_original_headers",
-        "command": "make -C tests/unit/semantic/static/explicit",
-        "source": "tests/unit/semantic/static/explicit/main.c"
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_unwinds_every_public_pair_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/explicit",
-        "source": "tests/unit/semantic/static/explicit/main.c"
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_classifies_ordinary_interface_types_once_in_original_order",
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
-        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_ordinary_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
       }
     ]
   },
@@ -128870,7 +129135,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       }
@@ -129008,7 +129273,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       }
@@ -129082,48 +129347,63 @@
     ]
   },
   "tests/unit/semantic/static/explicit/main.c": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Check public graph pair provenance and exclusion of foreign labels and ordinary fields.",
     "tests": [
       {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
-        "command": "make -C tests/unit/semantic/static/explicit",
-        "source": "tests/unit/semantic/static/explicit/main.c"
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
-        "command": "make -C tests/unit/semantic/static/explicit",
-        "source": "tests/unit/semantic/static/explicit/main.c"
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_rejects_duplicate_public_pairs_with_original_headers",
-        "command": "make -C tests/unit/semantic/static/explicit",
-        "source": "tests/unit/semantic/static/explicit/main.c"
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
         "case": "it_unwinds_every_public_pair_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/explicit",
-        "source": "tests/unit/semantic/static/explicit/main.c"
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
-      },
-      {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       }
     ]
   },
@@ -129302,7 +129582,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -129314,84 +129594,134 @@
     ]
   },
   "src/semantic/static/classify/names.c": {
-    "contract": "docs/implementation/static-source.md",
-    "purpose": "Classify ordinary interface Type parameters after public-pair collection.",
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Classify ordinary Type formals or graph set-complement inputs after every public binder.",
     "tests": [
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_classifies_ordinary_interface_types_once_in_original_order",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_unwinds_every_ordinary_classification_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_static_application_of_a_known_concrete_type",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ]
   },
   "src/semantic/static/classify/sites.h": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Identify syntactic interface introduction candidates before category resolution.",
     "tests": [
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_classifies_ordinary_interface_types_once_in_original_order",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_unwinds_every_ordinary_classification_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_static_application_of_a_known_concrete_type",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ],
     "standalone_header_command": [
@@ -129415,24 +129745,89 @@
     "purpose": "Orchestrate one whole-project static lexical inventory before later application inference.",
     "tests": [
       {
-        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_rejects_duplicate_public_pairs_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_pair_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_classifies_ordinary_interface_types_once_in_original_order",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_ordinary_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
       }
     ]
   },
@@ -129456,7 +129851,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -129552,7 +129947,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -129618,7 +130013,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -129789,7 +130184,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -129845,7 +130240,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -129872,7 +130267,7 @@
     ]
   },
   "src/semantic/static/signature/metadata.c": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Propagate independently known static categories to a finite monotone fixed point.",
     "tests": [
       {
@@ -129916,7 +130311,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -129972,7 +130367,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -130028,7 +130423,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -130076,43 +130471,68 @@
     ]
   },
   "tests/unit/semantic/static/classify/main.c": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Check ordinary Type introductions and separation from graph public binders.",
     "tests": [
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_classifies_ordinary_interface_types_once_in_original_order",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
         "case": "it_unwinds_every_ordinary_classification_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/classify",
-        "source": "tests/unit/semantic/static/classify/main.c"
+        "command": "make -C tests/unit/semantic/static/classify"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_static_application_of_a_known_concrete_type",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ]
   },
@@ -130136,40 +130556,45 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       }
     ]
   },
   "tests/unit/semantic/static/composition/main.c": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Run parser/project/static-inventory acceptance and resource partitions.",
     "tests": [
       {
-        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
-      },
-      {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_rejects_static_application_of_a_known_concrete_type",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ]
   },
@@ -130185,33 +130610,38 @@
     ]
   },
   "tests/unit/semantic/static/composition/support/scope.c": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Compose current ordinary Type interfaces and closed graph pair identities.",
     "tests": [
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
-        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
+        "command": "make -C tests/unit/semantic/static/composition"
       },
       {
+        "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_rejects_static_application_of_a_known_concrete_type",
-        "command": "make -C tests/unit/semantic/static/composition",
-        "source": "tests/unit/semantic/static/composition/main.c"
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ]
   },
@@ -130260,7 +130690,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -130316,7 +130746,7 @@
         "source": "tests/unit/semantic/static/composition/main.c"
       },
       {
-        "case": "it_rejects_ordinary_body_only_placeholder_types_at_original_sources",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
       },
@@ -131599,7 +132029,7 @@
     ]
   },
   "tests/unit/semantic/static/bindings/interface/main.c": {
-    "contract": "docs/implementation/binding-sequences.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Compose source/static inventories with exact four-sequence snapshot construction.",
     "tests": [
       {
@@ -132079,7 +132509,7 @@
     ]
   },
   "tests/unit/semantic/static/bindings/failures/main.c": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Check all normalization allocation refusals, prior publications and bounded counter invariants.",
     "tests": [
       {
@@ -132222,7 +132652,7 @@
     ]
   },
   "tests/unit/semantic/static/bindings/runtime/main.c": {
-    "contract": "docs/implementation/binding-sequences.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Compose actual ordinary call syntax with runtime and intrinsic interface snapshots.",
     "tests": [
       {
@@ -133799,7 +134229,7 @@
     ]
   },
   "tests/unit/semantic/static/terms/identity/main.c": {
-    "contract": "docs/implementation/static-terms.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Verify lexical static identity without specialization or equation solving.",
     "tests": [
       {
@@ -135996,7 +136426,7 @@
     ]
   },
   "tests/unit/semantic/static/constraints/common.c": {
-    "contract": "docs/implementation/static-constraints.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Own counted finite constraint fixtures over actual scoped source records.",
     "tests": [
       {
@@ -136446,13 +136876,38 @@
     ]
   },
   "tests/unit/semantic/static/constraints/composition/main.c": {
-    "contract": "docs/implementation/static-constraints.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Check actual input-slot equations against independently selected producer and standard type facts.",
     "tests": [
       {
-        "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
-        "command": "make -C tests/unit/semantic/static/constraints/composition",
-        "source": "tests/unit/semantic/static/constraints/composition/main.c"
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_static_application_of_a_known_concrete_type",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition"
       }
     ]
   },
@@ -138419,7 +138874,7 @@
     ]
   },
   "tests/unit/semantic/static/applications/common.c": {
-    "contract": "docs/implementation/static-applications.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Own actual source, term, solution and application owners in their declared borrow order.",
     "tests": [
       {
@@ -139318,7 +139773,7 @@
     ]
   },
   "tests/unit/semantic/static/applications/order/main.c": {
-    "contract": "docs/implementation/static-applications.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Compare mixed-introduction canonical maps and residuals with actual input snapshots.",
     "tests": [
       {
@@ -139434,38 +139889,93 @@
     ]
   },
   "src/semantic/static/scope/ordinal.c": {
-    "contract": "docs/implementation/static-applications.md",
-    "purpose": "Read original static interface positions independently of collector allocation order.",
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Read deterministic static interface identities independently of collector allocation order.",
     "tests": [
       {
-        "case": "it_keeps_mixed_introduction_ordinals_in_captures_residuals_and_snapshots",
-        "command": "make -C tests/unit/semantic/static/applications/order",
-        "source": "tests/unit/semantic/static/applications/order/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
-        "command": "make -C tests/unit/semantic/static/applications/source",
-        "source": "tests/unit/semantic/static/applications/source/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_refuses_copied_source_records_without_publishing",
-        "command": "make -C tests/unit/semantic/static/applications/source",
-        "source": "tests/unit/semantic/static/applications/source/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_preserves_separate_output_positions_and_uniform_producer_inference",
-        "command": "make -C tests/unit/semantic/static/applications/source",
-        "source": "tests/unit/semantic/static/applications/source/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_matches_all_three_slot_maps_permutations_and_staged_partitions",
-        "command": "make -C tests/unit/semantic/static/applications/model",
-        "source": "tests/unit/semantic/static/applications/model/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
       },
       {
-        "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
-        "command": "make -C tests/unit/semantic/static/applications/model",
-        "source": "tests/unit/semantic/static/applications/model/main.c"
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_rejects_duplicate_public_pairs_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_pair_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_classifies_ordinary_interface_types_once_in_original_order",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_ordinary_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
       }
     ]
   },
@@ -141839,7 +142349,7 @@
     ]
   },
   "tests/unit/semantic/static/guards/failures/operations.c": {
-    "contract": "docs/implementation/static-guards.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Prepare exact source-backed guard operations before each independent allocator cutpoint.",
     "tests": [
       {
@@ -142077,7 +142587,7 @@
     ]
   },
   "tests/unit/semantic/static/guards/definition-model/main.c": {
-    "contract": "docs/implementation/static-guards.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Exhaust all three-definition relations including alias nodes and nonempty cycle witnesses.",
     "tests": [
       {
@@ -142099,7 +142609,7 @@
     ]
   },
   "tests/unit/semantic/static/guards/definitions/main.c": {
-    "contract": "docs/implementation/static-guards.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Compose scoped static definitions with creation provenance, equality controls and key closure.",
     "tests": [
       {
@@ -145352,7 +145862,7 @@
     ]
   },
   "tests/unit/semantic/static/results/common.c": {
-    "contract": "docs/implementation/static-projections.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Own result preparation before its borrowed guards, applications and immutable sources.",
     "tests": [
       {
@@ -147047,7 +147557,7 @@
     ]
   },
   "src/semantic/static/publication/closure/evidence.c": {
-    "contract": "docs/implementation/static-source.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Supply independent original receiver definitions without inventing producer dependency edges.",
     "tests": [
       {
@@ -150910,7 +151420,7 @@
     ]
   },
   "tests/unit/semantic/static/constants/catalog/main.c": {
-    "contract": "docs/implementation/static-constants.md",
+    "contract": "docs/implementation/static-symbols.md",
     "purpose": "Verify qualified source ownership, exact loaded provenance and inventory failure boundaries.",
     "tests": [
       {
@@ -151840,6 +152350,376 @@
         "case": "it_unwinds_every_named_graph_request_allocation_failure",
         "command": "make -C tests/unit/semantic/static/bindings/static",
         "source": "tests/unit/semantic/static/bindings/static/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/inventory/order.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Assign deterministic source-defined record indices within static input or public output groups.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_rejects_duplicate_public_pairs_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_pair_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_classifies_ordinary_interface_types_once_in_original_order",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_ordinary_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      }
+    ]
+  },
+  "src/semantic/static/inventory/receivers.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Collect first receipt definitions after every static graph pair is already known.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_rejects_duplicate_public_pairs_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_pair_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_classifies_ordinary_interface_types_once_in_original_order",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_ordinary_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/classify/support/graph.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Check exact graph input set complements, nested source order and unconstrained metadata.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_classifies_ordinary_interface_types_once_in_original_order",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_collects_graph_inputs_from_nested_sources_after_all_public_names",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_keeps_equal_graph_input_spellings_in_independent_module_scopes",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_graph_input_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/classify/main.c",
+        "case": "it_unwinds_every_ordinary_classification_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/classify"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_closed_graph_pairs_in_public_order_without_runtime_storage",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_binds_result_introduced_types_through_shared_body_and_namespace_uses",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_new_parameters_outside_ordinary_interfaces",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_rejects_static_application_of_a_known_concrete_type",
+        "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/composition/main.c",
+        "case": "it_unwinds_every_whole_static_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/composition"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/explicit/support/graph.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Verify whole-graph pair priority, first receipts, forward aliases and public snapshots.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_rejects_duplicate_public_pairs_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_pair_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/explicit/support/permutations.c": {
+    "contract": "docs/implementation/static-symbols.md",
+    "purpose": "Exhaust independent statement orders and distinguish source-defined first receipts.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_binds_forward_alias_uses_without_creating_external_inputs",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_collects_pairs_before_receipts_and_retains_first_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_excludes_ordinary_and_native_type_lines_from_public_graph_collection",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_exposes_every_public_alias_in_the_actual_source_interface",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_keeps_pair_roles_for_every_three_statement_permutation",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_rejects_duplicate_public_pairs_with_original_headers",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_pair_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_unwinds_every_public_receipt_collection_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/explicit"
+      },
+      {
+        "source": "tests/unit/semantic/static/explicit/main.c",
+        "case": "it_uses_the_first_lexical_receipt_as_the_alias_definition",
+        "command": "make -C tests/unit/semantic/static/explicit"
       }
     ]
   }

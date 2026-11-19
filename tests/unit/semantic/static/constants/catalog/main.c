@@ -37,7 +37,7 @@ static void it_collects_all_original_sources_and_exact_loaded_dependency_occurre
         if (site->next == NULL) { assert(site == module->last_constant_source); }
     }
     assert(count == 10 && lists == 1);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...other.value"), 0)->role == STATIC_PARAMETER);
+    assert(static_symbol_find(module, static_name_site(project.entry, "...other.value"))->role == STATIC_PARAMETER);
     destroy_static();
 }
 

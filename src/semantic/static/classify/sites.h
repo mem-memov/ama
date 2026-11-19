@@ -17,9 +17,10 @@
  */
 StaticCategory static_introduction_candidate(const StaticOccurrence *);
 
-/** Collect implicit owner parameters and aliases after explicit declarations.
+/** Collect free inputs after all public pair and receipt binders.
  * Input occurrences must already be sorted by source offset. Ordinary parameters
- * come only from input/output Type lines, never a standalone formal declaration.
+ * come only from input/output Type lines; graph inputs are the complement of
+ * public binders among local source heads, with deferred actual metadata.
  * Contract: [TPL-02](../../../../spec/language/templates.md#tpl-02),
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12).
  */

@@ -19,7 +19,7 @@ static const StaticTerm *plain_type;
 /** Look up complete original source names; helpers never infer another scope. */
 static inline const StaticTerm *constraint_symbol(const char *name) {
     const StaticSymbol *symbol = static_symbol_find(constraint_module,
-        static_name_site(project.entry, name), SIZE_MAX);
+        static_name_site(project.entry, name));
     assert(symbol != NULL);
     const StaticTerm *value;
     assert(static_term_symbol(&term_store, constraint_environment, symbol, &value));

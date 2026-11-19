@@ -14,7 +14,7 @@ static const char *interface_source = "@=\nshared\n.other\n@<\n...explicit type\
 
 /** Exact fixture lookup after static acceptance, never a foreign-signature search. */
 static const StaticSymbol *symbol(const StaticModule *module, const char *text) {
-    const StaticSymbol *found = static_symbol_find(module, static_name_site(module->definition, text), SIZE_MAX);
+    const StaticSymbol *found = static_symbol_find(module, static_name_site(module->definition, text));
     assert(found != NULL);
     return found;
 }

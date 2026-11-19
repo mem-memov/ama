@@ -60,7 +60,7 @@ struct StaticSignature {
 typedef struct StaticModule StaticModule;
 
 /** One inventory-owned local name with explicit role and original syntax.
- * site is its introduction; aliases become visible at that site's start.
+ * site is its defining source occurrence; every name has whole-module visibility.
  * Role ordinals are assigned only by completed interface collection. Borrowed
  * syntax/source bytes outlive this record; no value or instance is stored here.
  * Component contract: [TPL-02](../../../spec/language/templates.md#tpl-02),

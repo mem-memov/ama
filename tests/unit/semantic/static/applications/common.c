@@ -55,7 +55,7 @@ static void setup_applications(const char *caller, const char *target) {
  * across another template's foreign signature.
  */
 static inline const StaticTerm *application_symbol(const char *name) {
-    const StaticSymbol *symbol = static_symbol_find(caller_module, static_name_site(project.entry, name), SIZE_MAX);
+    const StaticSymbol *symbol = static_symbol_find(caller_module, static_name_site(project.entry, name));
     assert(symbol != NULL);
     const StaticTerm *value;
     assert(static_term_symbol(&terms, caller_environment, symbol, &value));

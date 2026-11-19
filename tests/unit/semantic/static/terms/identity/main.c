@@ -68,7 +68,7 @@ static void it_preserves_producer_roles_and_deferred_alias_metadata(void) {
     assert(static_term_inference(&store, environment, module->first, NULL, site->expression, &producer));
     assert(static_term_inference(&store, environment, module->first, NULL, site->expression, &again));
     assert(producer == again && producer->as.variable.role == STATIC_VARIABLE_PRODUCER);
-    const StaticSymbol *symbol = static_symbol_find(module, static_name_site(project.entry, "...alias"), SIZE_MAX);
+    const StaticSymbol *symbol = static_symbol_find(module, static_name_site(project.entry, "...alias"));
     assert(symbol && symbol->role == STATIC_ALIAS);
     assert(static_term_symbol(&store, environment, symbol, &alias));
     assert(alias->category == STATIC_CATEGORY_DEFERRED && alias->as.variable.role == STATIC_VARIABLE_DERIVED);

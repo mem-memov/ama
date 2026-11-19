@@ -6,7 +6,7 @@
 
 /** Exact original symbol identity includes its result/alias role and owner. */
 static const StaticSymbol *named(const StaticModule *module, const char *name) {
-    const StaticSymbol *symbol = static_symbol_find(module, static_name_site(module->definition, name), SIZE_MAX);
+    const StaticSymbol *symbol = static_symbol_find(module, static_name_site(module->definition, name));
     assert(symbol); return symbol;
 }
 

@@ -14,6 +14,8 @@ static StaticModule *prepare(void) {
     return module;
 }
 
+#include "support/graph.c"
+
 /** All ordinary input/output placeholders introduce Type once, in first written
  * type-line order. Constants and body uses can precede or follow that interface.
  */
@@ -28,13 +30,13 @@ static void it_classifies_ordinary_interface_types_once_in_original_order(void) 
         const StaticSymbol *symbol = static_symbol_at(module, STATIC_PARAMETER, ordinal);
         assert(symbol != NULL && layout_text_is(symbol->name, names[ordinal]));
         assert(symbol->category == STATIC_CATEGORY_TYPE && symbol->receiver == NULL);
-        assert(static_symbol_find(module, static_name_site(project.entry, names[ordinal]), 0) == symbol);
+        assert(static_symbol_find(module, static_name_site(project.entry, names[ordinal])) == symbol);
     }
     destroy_static();
 }
 
 /** Neither ordinary noninterface uses nor already collected public pairs create
- * free ordinary parameters. Full graph free-input collection belongs to T207.
+ * free ordinary parameters; public graph binders are excluded from free inputs.
  */
 static void it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions(void) {
     const char *cases[] = {"@!\nstate\n...body only\n",
@@ -68,6 +70,9 @@ static void it_unwinds_every_ordinary_classification_allocation_failure(void) {
 
 /** Execute current ordinary source classification partitions explicitly. */
 static void run(void) {
+    it_collects_graph_inputs_from_nested_sources_after_all_public_names();
+    it_keeps_equal_graph_input_spellings_in_independent_module_scopes();
+    it_unwinds_every_graph_input_classification_allocation_failure();
     it_classifies_ordinary_interface_types_once_in_original_order();
     it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions();
     it_unwinds_every_ordinary_classification_allocation_failure();

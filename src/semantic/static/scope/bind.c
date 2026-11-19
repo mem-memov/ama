@@ -4,14 +4,14 @@
  *
  * [TPL-02](../../../../spec/language/templates.md#tpl-02) forbids undeclared
  * body parameters. [TPL-12](../../../../spec/language/static-results.md#tpl-12)
- * prevents a later alias from repairing an earlier source. Concrete paths reuse
+ * gives collected public definitions whole-graph visibility. Concrete paths reuse
  * [DEP-02](../../../../spec/implementation/compiler.md#dep-02)'s loaded identity.
  */
 #include "../internal.h"
 
 /** Scan original lexical order, keeping foreign labels outside local lookup.
- * Inputs and source heads precede their own receivers, so self-sourcing a new
- * alias fails even though its later receiver already has an inventory record.
+ * All graph binders are collected before this walk; a forward use resolves to
+ * its exact definition. Static-definition cycles are a later distinct check.
  * Contract: [TPL-02](../../../../spec/language/templates.md#tpl-02),
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12).
  */
@@ -24,9 +24,9 @@ bool static_bind_occurrences(StaticInventory *inventory, StaticModule *module) {
                 return static_invalid(inventory, site->site, "Static path has no loaded dependency identity", NULL);
             }
         } else {
-            site->symbol = static_symbol_find(module, site->site, site->site.start);
+            site->symbol = static_symbol_find(module, site->site);
             if (site->symbol == NULL) {
-                return static_invalid(inventory, site->site, "Static name is not visible at this source position", NULL);
+                return static_invalid(inventory, site->site, "Static name has no declaration in this module", NULL);
             }
             if (site->receiver == NULL && site->symbol->category == STATIC_CATEGORY_TYPE) {
                 for (const AstStaticBinding *binding = site->expression->first; binding != NULL; binding = binding->next) {
