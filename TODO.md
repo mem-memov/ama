@@ -174,6 +174,7 @@ boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 [T209](DONE.md#t209) establishes named application and finite structural equations.
 [T215](DONE.md#t215) establishes exact compiler-only producer owner keys.
 [T210](DONE.md#t210) validates current creation/definition guard paths.
+[T216](DONE.md#t216) supplies exact complete-key encoding and checked names.
 T183 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
@@ -195,7 +196,7 @@ reuse, removal and replacement below; they do not establish current-spec support
 <a id="t183"></a>
 
 - [ ] **T183 — Register exact specialization identities and guarded cache reuse.**
-  Prerequisites: T208, T209, T210, T213.
+  Prerequisites: T208, T209, T210, T213, T216.
   Rules: [TPL-05](spec/language/templates.md#tpl-05),
   [TPL-11](spec/language/templates.md#tpl-11),
   [NAME-01](spec/implementation/compiler.md#name-01),
@@ -217,6 +218,13 @@ reuse, removal and replacement below; they do not establish current-spec support
   hidden in cached grandchildren or outgoing branches of same-key cycles;
   exact-key closure retains every outgoing check. Unrelated paths do not form false
   source-only cycles. Inject key collisions and allocation failure explicitly.
+  Next step (T216 accepted): retain complete normalized candidate identities and
+  separate each incoming use's pending/check state from metadata identity.
+  Compose source-backed guard paths, canonical candidates and exact finite
+  dependency closure; ordinary/executable validation stays with later tasks.
+  [Registry contract](docs/implementation/static-registry.md) records the shared
+  boundary. T216 owns the in-progress encoder and test infrastructure changes;
+  no T183 candidate/use implementation or acceptance is claimed yet.
 
 ### Phase 4. Resolve static graphs and independent ordinary exports
 
@@ -714,7 +722,7 @@ consumers of the same resolved identities. T196 reviews every other canonical
 row and existing product regression, and T197/T198 complete release/reference
 acceptance. No historical hash refresh or routing label establishes support.
 
-The next unused task ID is **T216**.
+The next unused task ID is **T217**.
 
 ## Useful verification commands
 

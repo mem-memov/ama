@@ -238,6 +238,11 @@ without a second parser, implicit execution or guessed outcome.
 logical/physical relocations, historical receipt replay, native execution and fresh
 verified rebuilds over one complete owned workspace.
 
+[Specialization key encoding and registry](../static-registry.md) separates
+T216's accepted normalized-key/collision-checked naming service from T183's
+pending candidate/use states and dependency closure. Neither registration nor
+a key name is executable admission.
+
 [Static creation and definition guards](../static-guards.md) retain exact
 canonical-key reachability, pending repeated scopes and separate static-value
 cycle checking. T201 composes these guards with

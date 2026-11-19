@@ -5018,3 +5018,39 @@ T201. Specification bytes have not changed.
   T183 owns canonical registry/body/cache composition; T211/T212 own actual
   output equations and ordinary export bridges. No full-language admission or
   full static-parent acceptance is inferred from these guard tests.
+
+<a id="t216"></a>
+
+- [x] **T216 — Encode complete specialization keys and collision-checked names.**
+  Prerequisites: T209, T210.
+  Rules: [TPL-05](spec/language/templates.md#tpl-05),
+  [NAME-01](spec/implementation/compiler.md#name-01),
+  [NAME-02](spec/implementation/compiler.md#name-02).
+  Boundary: normalized applied owner maps, exact UTF-8/postorder descriptors and
+  the existing SHA-256 identity service; no candidate/body/runtime admission.
+  Steps: validate closed maps; discover shared nominal values in original formal
+  order; measure/write a lossless versioned descriptor; compose existing complete
+  identity framing and collision checks. Configure test roots from actual leaf
+  authority so test decomposition has no fixed-directory-depth assumption.
+  Accept: exact ASCII/Unicode byte/hash vectors, original zero-input names,
+  Type/Template/producer separation, source-backed staged/alias equivalence,
+  root and full residual/capture distinctions, shared DAG depth without C
+  recursion, checked arithmetic, malformed/open handles, every allocation
+  refusal and forced unequal-key digest collision. Strict/sanitizer, real
+  compiler/header/documentation/link checks and same-task commit are required.
+  Contract: [key representation](docs/implementation/static-registry.md).
+  Evidence (2026-11-19): 16 key cases pass strict C11 and ASan/UBSan.
+  The actual nested parent target, old guard-owner smoke leaf and root compiler
+  build pass. Vectors independently verify descriptor bytes and SHA-256 names,
+  including Unicode; laws cover real staged applications, solved aliases, root/
+  residual/capture distinctions, construction-order independence and shared
+  metadata DAG depths through 1024. All measured codec/full-name allocations,
+  invalid/open handles, exact size/counter boundaries and forced digest collision
+  are checked with counted teardown and stable receivers. Initial missing link
+  dependencies and missing standalone-header registrations were corrected with
+  actual checks, not changed expectations. Complete documentation gate: 2729
+  ready inputs and zero debts. Final rendered-link/staged-byte gates and counts
+  are recorded in the task commit. Full contract/commands/logs:
+  [key encoding and registry](docs/implementation/static-registry.md).
+  Candidate/use states, dependency closure and executable admission remain T183
+  and its consumers; naming creates no runtime instance or module source file.

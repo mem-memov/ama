@@ -33,7 +33,7 @@ static inline const StaticSymbol *application_formal(const StaticModule *module,
  */
 static void setup_applications(const char *caller, const char *target) {
     ModuleRoot roots[] = {{STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT},
-        {"../../../../../../stdlib/modules", NULL, 0, MODULE_ROOT_STANDARD}};
+        {TEST_STANDARD_ROOT, NULL, 0, MODULE_ROOT_STANDARD}};
     setup_static_with_roots(caller ? caller : "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nanchor&\n..integer\n",
         target ? target : "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\n", roots, 2);
     assert(static_inventory_collect(&inventory) == STATIC_OK);

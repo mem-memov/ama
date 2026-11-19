@@ -54760,6 +54760,31 @@
         "case": "it_releases_every_partial_resolved_value_binding_and_access",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
       }
     ]
   },
@@ -128738,6 +128763,86 @@
         "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
         "source": "tests/unit/semantic/static/usage/main.c",
         "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_distinguishes_equal_arity_residuals_and_all_fixed_captures",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_root_kind_for_identical_module_basenames",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_checks_counted_writer_arithmetic_and_exact_field_boundaries",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_postorder_counter_overflow_with_owned_partial_scratch",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_rejects_injected_digest_collisions_without_merging_static_identities",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_invalid_naming_arguments_without_partial_names",
+        "command": "make -C tests/unit/semantic/static registry"
       }
     ]
   },
@@ -138608,6 +138713,31 @@
         "case": "it_recovers_all_named_partial_maps_and_permutations_without_signature_declarations",
         "source": "tests/unit/semantic/static/applications/model/main.c",
         "command": "make -C tests/unit/semantic/static/applications/model"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
       }
     ]
   },
@@ -153133,6 +153263,772 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c",
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph"
+      }
+    ]
+  },
+  "src/semantic/static/registry/identity/collect.c": {
+    "purpose": "Discover shared nominal key values in canonical postorder without recursive expansion.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ]
+  },
+  "src/semantic/static/registry/identity/key.h": {
+    "purpose": "Encode complete specialization owner maps for exact generated-name registration.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_rejects_injected_digest_collisions_without_merging_static_identities",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_invalid_naming_arguments_without_partial_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/registry/identity/encode.c": {
+    "purpose": "Compose finite DAG discovery, exact measurement and arena-owned specialization descriptors.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ]
+  },
+  "src/semantic/static/registry/identity/internal.h": {
+    "purpose": "Separate canonical DAG discovery from checked UTF-8 key measurement/writing.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_checks_counted_writer_arithmetic_and_exact_field_boundaries",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_postorder_counter_overflow_with_owned_partial_scratch",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/registry/identity/emit.c": {
+    "purpose": "Serialize canonical owner maps and postorder nominal DAG records without expanding sharing.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_distinguishes_equal_arity_residuals_and_all_fixed_captures",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_root_kind_for_identical_module_basenames",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      }
+    ]
+  },
+  "src/semantic/static/registry/identity/writer.c": {
+    "purpose": "Measure/write exact counted UTF-8 key fields with checked arithmetic.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_checks_counted_writer_arithmetic_and_exact_field_boundaries",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/Makefile": {
+    "purpose": "Dispatch exact specialization key and candidate registry component checks.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_distinguishes_equal_arity_residuals_and_all_fixed_captures",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_root_kind_for_identical_module_basenames",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_checks_counted_writer_arithmetic_and_exact_field_boundaries",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_postorder_counter_overflow_with_owned_partial_scratch",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_rejects_injected_digest_collisions_without_merging_static_identities",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_invalid_naming_arguments_without_partial_names",
+        "command": "make -C tests/unit/semantic/static registry"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/identity/common.c": {
+    "purpose": "Compose counted source/term/solver/guard fixtures with independently owned key storage.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_distinguishes_equal_arity_residuals_and_all_fixed_captures",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_root_kind_for_identical_module_basenames",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_postorder_counter_overflow_with_owned_partial_scratch",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_rejects_injected_digest_collisions_without_merging_static_identities",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_invalid_naming_arguments_without_partial_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/identity/Makefile": {
+    "purpose": "Dispatch key vectors, algebraic laws and resource/validation boundaries.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_distinguishes_equal_arity_residuals_and_all_fixed_captures",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_root_kind_for_identical_module_basenames",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_checks_counted_writer_arithmetic_and_exact_field_boundaries",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_postorder_counter_overflow_with_owned_partial_scratch",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_rejects_injected_digest_collisions_without_merging_static_identities",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_invalid_naming_arguments_without_partial_names",
+        "command": "make -C tests/unit/semantic/static registry"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/identity/failures/main.c": {
+    "purpose": "Check key validation, arithmetic, exact hash collisions and every observed allocation refusal.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_checks_counted_writer_arithmetic_and_exact_field_boundaries",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_postorder_counter_overflow_with_owned_partial_scratch",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_rejects_injected_digest_collisions_without_merging_static_identities",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_invalid_naming_arguments_without_partial_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/identity/failures/Makefile": {
+    "purpose": "Verify static key failures against the real source/term/naming components.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_open_foreign_and_malformed_owner_keys_without_publication",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_checks_counted_writer_arithmetic_and_exact_field_boundaries",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_postorder_counter_overflow_with_owned_partial_scratch",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_rejects_injected_digest_collisions_without_merging_static_identities",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_invalid_naming_arguments_without_partial_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/identity/vectors/main.c": {
+    "purpose": "Verify independent specialization descriptor/hash vectors and original zero-input names.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/identity/vectors/Makefile": {
+    "purpose": "Verify static key vectors against the real source/term/naming components.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/identity/laws/main.c": {
+    "purpose": "Verify key equality under actual partial application and solver aliases, plus full-key distinctions.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_distinguishes_equal_arity_residuals_and_all_fixed_captures",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_root_kind_for_identical_module_basenames",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/identity/laws/Makefile": {
+    "purpose": "Verify static key laws against the real source/term/naming components.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_named_partial_staging_and_solved_alias_identity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_distinguishes_equal_arity_residuals_and_all_fixed_captures",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_keeps_full_residual_names_beyond_origin_capture_and_arity",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_preserves_root_kind_for_identical_module_basenames",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_ignores_unrelated_allocation_and_term_construction_order",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/laws/main.c",
+        "case": "it_factors_deep_shared_nominal_dags_without_c_recursion",
+        "command": "make -C tests/unit/semantic/static/registry/identity/laws"
+      }
+    ]
+  },
+  "src/semantic/static/registry/identity/register.c": {
+    "purpose": "Register complete static keys through existing SHA-256 collision checks with temporary codec ownership.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_encodes_a_complete_owner_with_a_counted_postorder_value_table",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_unicode_formals_and_origins_with_a_stable_name_vector",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/vectors/main.c",
+        "case": "it_preserves_zero_input_type_names_and_separates_static_producer_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/vectors"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_rejects_injected_digest_collisions_without_merging_static_identities",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
+        "case": "it_refuses_invalid_naming_arguments_without_partial_names",
+        "command": "make -C tests/unit/semantic/static/registry/identity/failures"
       }
     ]
   }
