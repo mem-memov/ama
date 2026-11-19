@@ -6253,3 +6253,58 @@ T201. Specification bytes have not changed.
   unchanged root-selection precondition. Full-language conformance remains
   separately T196-owned; no specification or conformance fingerprint changed.
   Final archive rendering receipt: /tmp/ama-t187-archive-docs.log. Next: T188.
+
+<a id="t188"></a>
+
+- [x] **T188 — Emit and run specialized stackless programs.**
+  Prerequisites: T187.
+  Status: completed; [contract and step record](docs/implementation/specialized-execution.md).
+  Rules: [GEN-01](spec/implementation/compiler.md#gen-01),
+  [GEN-02](spec/implementation/compiler.md#gen-02),
+  [STACK-04](spec/implementation/compiler.md#stack-04),
+  [TPL-05](spec/language/templates.md#tpl-05).
+  Boundary: project assembly, per-specialization code/layout emission and
+  existing runtime/native-entry dispatch.
+  Steps: (1) emit validated specialization plans through narrow codegen children;
+  (2) compile/run nested/partial/static-result projects; (3) exercise runtime
+  identity, state, startup and continuation consumers under relevant sanitizers.
+  Accept: one type/code identity for equivalent specializations with independent
+  instances, results, busy state, owned state, references and continuations.
+  T186 identified duplicate C descriptions for two captures of `.container`;
+  this task replaces path-only type/role naming with complete owner keys.
+  Constants obey per-context sharing and cleanup; ordinary and explicit `%`
+  copies preserve their distinct rules. Verify labels/one assembly, native entry
+  inlining and no Ama C-call recursion; test malformed closure rejection and
+  allocation/native lifecycle failures through compiled execution.
+
+  Completed from 87b26e5: one structural owner-key service now supplies both
+  constant member naming and scaffold Type/view/member naming. Old embedded
+  codec and path-only scaffold identity implementations are removed. Each role
+  is independently framed after the complete owner descriptor. Ordinary model
+  prefixes use Type identity; only concrete `@C` companions receive the unchanged
+  native namespace category/key. Captured ordering compares full encoded keys
+  within original module-path order, never digests or discovery order.
+
+  Eight actual generated compositions cover distinct/equal captures, immutable
+  shared values, independent private native state, retained interfaces, checked
+  references, Busy self-reference refusal, yields, explicit continuation versus
+  ordinary copies, closed nested static assemblies, partial Template passing,
+  and refusal to infer static producer inputs from ordinary calls. Original
+  source/provenance and one descriptor per admitted concrete key remain intact;
+  existing label dispatch and checked native entry inlining implement execution.
+  All 1398 successful-trace generation allocation positions refuse publication
+  and unwind exactly. Five owner/role component cases cover foreign/null/open/
+  aliased receivers, category separation and every 3/6/7 allocation position.
+
+  Both new suites passed strict and ASan/UBSan checks with counted teardown;
+  the native scaffold parent and root production compiler build passed. Full
+  workspace strict O2/Werror make -k -j4 test completed with exit 2 solely from
+  T196's pre-existing conformance specification-review refusal; other branches
+  passed. All 3218 frozen maintained inputs stayed byte-identical. This is
+  explicitly not a green full-language conformance claim. No specification or
+  conformance fingerprints were changed. Detailed corrected fixture attempts,
+  invariants/costs, exact commands and receipts are in the
+  [accepted contract](docs/implementation/specialized-execution.md).
+  Complete per-file/header checks and Doxygen rendering validate current source
+  links and interfaces. Final archive receipt: /tmp/ama-t188-archive-docs.log.
+  Next ready task: T189.

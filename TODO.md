@@ -191,8 +191,9 @@ those equations with real guarded contexts and complete required-Type closure.
 [T185](DONE.md#t185) supplies ordinary operation/capability checks and finite
 specialization admission through the actual frontend. [T186](DONE.md#t186) supplies
 full-owner constant identities and checked startup/cleanup composition.
-[T187](DONE.md#t187) validates concrete storage, lifecycle and control planning;
-T188 is next: complete specialized C emission and execution.
+[T187](DONE.md#t187) validates concrete storage, lifecycle and control planning.
+[T188](DONE.md#t188) supplies full-owner generated names and compiled specialized
+execution. T189 is next: complete specialization diagnostics and source maps.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -218,30 +219,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 5. Close and admit ordinary specializations
 
 ### Phase 6. Lower and execute concrete programs
-
-<a id="t188"></a>
-
-- [ ] **T188 — Emit and run specialized stackless programs.**
-  Prerequisites: T187.
-  Rules: [GEN-01](spec/implementation/compiler.md#gen-01),
-  [GEN-02](spec/implementation/compiler.md#gen-02),
-  [STACK-04](spec/implementation/compiler.md#stack-04),
-  [TPL-05](spec/language/templates.md#tpl-05).
-  Boundary: project assembly, per-specialization code/layout emission and
-  existing runtime/native-entry dispatch.
-  Steps: (1) emit validated specialization plans through narrow codegen children;
-  (2) compile/run nested/partial/static-result projects; (3) exercise runtime
-  identity, state, startup and continuation consumers under relevant sanitizers.
-  Accept: one type/code identity for equivalent specializations with independent
-  instances, results, busy state, owned state, references and continuations.
-  T186 composition finding: `native/scaffold/model/types.c` still keys emitted
-  ordinary type descriptions by source path; two captures of `.container` produce
-  duplicate C type descriptions. Exercise and correct this full-owner emission
-  boundary here; evidence is recorded in the T186 contract.
-  Constants obey per-context sharing and cleanup; ordinary and explicit `%`
-  copies preserve their distinct rules. Verify labels/one assembly, native entry
-  inlining and no Ama C-call recursion; test malformed closure rejection and
-  allocation/native lifecycle failures through compiled execution.
 
 <a id="t189"></a>
 

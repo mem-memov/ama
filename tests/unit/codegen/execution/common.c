@@ -183,7 +183,11 @@ static void prepare_project(const char *main_source) {
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT}, {TEST_STDLIB, NULL, 0, TEST_STDLIB_KIND}};
     bool checked = compiler_frontend_check(&frontend, roots, 2, ".main");
-    if (!checked) { fprintf(stderr, "Frontend failed: %s\n", frontend.error.message); }
+    if (!checked) {
+        fprintf(stderr, "Frontend failed: %s\n", frontend.error.message);
+        SourceSpan site = frontend.error.primary.span;
+        if (site.source) { fprintf(stderr, "Original source: %s, bytes %zu..%zu\n", source_path(site.source), site.start, site.end); }
+    }
     assert(checked);
     native_scaffold_init(&assembly, &frontend, sources.allocator);
     ScaffoldOptions options = {.directory = "generated/output", .sdk = TEST_SDK};
@@ -213,6 +217,7 @@ static void prepare_project(const char *main_source) {
     options.flags = flags;
     options.flag_count = flag_count;
     bool built = project_codegen_build(&assembly, options);
+    if (!built && assembly.error.message) { fprintf(stderr, "Code generation failed: %s\n", assembly.error.message); }
     assert(built);
     if (host_launcher != NULL) {
         for (ScaffoldArtifact *artifact = assembly.first; artifact != NULL; artifact = artifact->next) {

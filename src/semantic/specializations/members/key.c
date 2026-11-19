@@ -7,7 +7,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "key.h"
-#include "semantic/static/closure/plan.h"
+#include "semantic/specializations/identity/key.h"
 
 /** Match pointer membership before following caller-supplied declaration payloads.
  * [CONST-06](../../../../spec/language/declarations.md#const-06) scopes a member to one concrete owner.
@@ -21,19 +21,6 @@ static const SemanticType *owner(const SemanticProgram *program, const SemanticS
     return NULL;
 }
 
-/** The source codec owns its exact status domain; key construction has no digest
- * registration and therefore no collision to resolve with a fallback name.
- * [NAME-02](../../../../spec/implementation/compiler.md#name-02) preserves refusal.
- */
-static IdentityStatus key_status(StaticKeyStatus status) {
-    switch (status) {
-        case STATIC_KEY_OK: return IDENTITY_OK;
-        case STATIC_KEY_OUT_OF_MEMORY: return IDENTITY_OUT_OF_MEMORY;
-        case STATIC_KEY_LIMIT: return IDENTITY_LIMIT;
-        default: return IDENTITY_INVALID;
-    }
-}
-
 IdentityStatus semantic_constant_key(const SemanticProgram *program, const SemanticSymbol *symbol,
     SourceArena *arena, QualifiedIdentity *output) {
     if (!program || program->status != SEMANTIC_OK || !program->relations_valid || !arena || !output) {
@@ -41,16 +28,9 @@ IdentityStatus semantic_constant_key(const SemanticProgram *program, const Seman
     }
     const SemanticType *type = owner(program, symbol);
     if (!type || symbol->role != SYMBOL_CONSTANT || !source_span_valid(symbol->name)) { return IDENTITY_INVALID; }
-    QualifiedIdentity base = {.module_path = type->module->source->logical_path};
-    if (type->specialization) {
-        if (!program->type_closure || !program->type_closure->closed) { return IDENTITY_INVALID; }
-        StaticRegistryPlan *registry = program->type_closure->connections->constants->publications->results->registry;
-        StaticKeyEncoding key;
-        IdentityStatus status = key_status(static_key_encode(registry->guards->applications->terms,
-            type->specialization->context->registry_use->candidate->key, arena, &key));
-        if (status != IDENTITY_OK) { return status; }
-        base = key.qualified;
-    }
+    QualifiedIdentity base;
+    IdentityStatus status = semantic_type_key(program, type, arena, &base);
+    if (status != IDENTITY_OK) { return status; }
     if (base.member_count == SIZE_MAX || base.member_count + 1 > SIZE_MAX / sizeof(const char *)) { return IDENTITY_LIMIT; }
     size_t length = symbol->name.end - symbol->name.start;
     if (length == SIZE_MAX) { return IDENTITY_LIMIT; }

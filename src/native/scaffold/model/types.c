@@ -10,21 +10,7 @@
  */
 #include <string.h>
 #include "native/scaffold/internal.h"
-
-/** Register one complete supported nominal/member/native-namespace key and retain exact collision/allocation failure; temporary member arrays are copied during registration.
- * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01), [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04), [TYPE-06](../../../../spec/language/declarations.md#type-06). */
-static const IdentityName *identity(NativeScaffold *scaffold, const PlannedType *type,
-    IdentityCategory category, const char *member, SourceSpan site) {
-    QualifiedIdentity key = {category, type->type->module->source->logical_path,
-        member == NULL ? NULL : &member, member == NULL ? 0u : 1u, site};
-    const IdentityName *name = NULL;
-    IdentityStatus status = identity_register(&scaffold->identities, key, &name);
-    if (status != IDENTITY_OK) {
-        scaffold_error(scaffold, status == IDENTITY_COLLISION ? DIAGNOSTIC_IDENTITY_COLLISION
-            : DIAGNOSTIC_OUT_OF_MEMORY, "A generated native identity could not be registered", NULL);
-    }
-    return name;
-}
+#include "identity.h"
 
 /** Create ordered field/member records with original names and category-separated identities; all strings/records belong to the scaffold.
  * Component contract: [NAME-01](../../../../spec/implementation/compiler.md#name-01), [ERROR-04](../../../../spec/implementation/diagnostics.md#error-04), [TYPE-06](../../../../spec/language/declarations.md#type-06). */
@@ -39,7 +25,7 @@ static bool members(NativeScaffold *scaffold, ScaffoldType *type) {
         }
         memcpy(text, source_bytes(span.source) + span.start, span.end - span.start);
         member->field = field;
-        member->identity = identity(scaffold, type->plan, field->symbol->role == SYMBOL_STATE
+        member->identity = scaffold_identity(scaffold, type->plan->type, field->symbol->role == SYMBOL_STATE
             ? IDENTITY_STATE_MEMBER : IDENTITY_INTERFACE_MEMBER, text, span);
         if (member->identity == NULL) {
             return false;
@@ -56,9 +42,15 @@ static bool names(NativeScaffold *scaffold, ScaffoldType *type) {
     static const char *const roles[] = {"read", "write", "reference-storage", "reference-read", "reference-write",
         "list-storage", "list-read", "list-write", "reference-list-storage", "reference-list-read",
         "reference-list-write", "parameters", "results"};
-    type->native_prefix = identity(scaffold, type->plan, IDENTITY_NATIVE_NAMESPACE, NULL, (SourceSpan){0});
+    /* Only concrete @C leaves establish AMA_NATIVE contexts. Ordinary model
+     * prefixes identify full Types, not native companion namespaces.
+     * [NAME-05](../../../../spec/implementation/native-interface.md#name-05)
+     * [TPL-13](../../../../spec/language/templates.md#tpl-13) */
+    IdentityCategory prefix = type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
+        ? IDENTITY_NATIVE_NAMESPACE : IDENTITY_TYPE;
+    type->native_prefix = scaffold_identity(scaffold, type->plan->type, prefix, NULL, (SourceSpan){0});
     for (size_t index = 0; index < SCAFFOLD_ROLE_COUNT; index++) {
-        type->names[index] = identity(scaffold, type->plan, IDENTITY_TYPE, roles[index], (SourceSpan){0});
+        type->names[index] = scaffold_identity(scaffold, type->plan->type, IDENTITY_TYPE, roles[index], (SourceSpan){0});
         if (type->names[index] == NULL) {
             return false;
         }
@@ -84,6 +76,19 @@ static bool paths(NativeScaffold *scaffold, ScaffoldType *type) {
     return scaffold->error.message == NULL;
 }
 
+/** Preserve logical path order and break captured-owner ties by complete framed
+ * encodings, rather than discovery order or digest bytes.
+ * [COMP-05](../../../../spec/implementation/compiler.md#comp-05) requires deterministic output.
+ * [NAME-02](../../../../spec/implementation/compiler.md#name-02) retains exact identity equality.
+ */
+static bool precedes(const ScaffoldType *left, const ScaffoldType *right) {
+    int path = strcmp(left->plan->type->module->source->logical_path, right->plan->type->module->source->logical_path);
+    if (path) { return path < 0; }
+    size_t a = left->native_prefix->encoding_length, b = right->native_prefix->encoding_length;
+    int key = memcmp(left->native_prefix->encoding, right->native_prefix->encoding, a < b ? a : b);
+    return key < 0 || (key == 0 && a < b);
+}
+
 bool scaffold_model(NativeScaffold *scaffold) {
     for (const PlannedType *plan = scaffold->frontend->plan.first; plan != NULL; plan = plan->next) {
         ScaffoldType *type = scaffold_allocate(scaffold, sizeof(*type));
@@ -95,8 +100,7 @@ bool scaffold_model(NativeScaffold *scaffold) {
             return false;
         }
         ScaffoldType **position = &scaffold->types;
-        const char *path = plan->type->module->source->logical_path;
-        while (*position != NULL && strcmp((*position)->plan->type->module->source->logical_path, path) < 0) {
+        while (*position != NULL && precedes(*position, type)) {
             position = &(*position)->next;
         }
         type->next = *position;

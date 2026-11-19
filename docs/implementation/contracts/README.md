@@ -291,3 +291,7 @@ remaining ordinary layout emission boundary stated explicitly.
 The [concrete planning contract](../specialized-planning.md) records T187's
 accepted semantic-to-resolved-storage/control composition, concrete lifecycle
 policies and exact failure checks.
+
+The [specialized execution contract](../specialized-execution.md) records T188's
+accepted complete-owner C identities, partial/nested static composition, actual
+stackless execution and complete managed-allocation refusal boundaries.

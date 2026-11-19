@@ -1,5 +1,5 @@
 # @file
-# @brief Dispatch independent child suites: declarations contracts ownership filesystem publication.
+# @brief Dispatch independent native model, declaration and publication contract suites.
 # Contract: ../../../../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
-SUBDIRECTORIES := declarations contracts ownership filesystem publication
+SUBDIRECTORIES := specializations declarations contracts ownership filesystem publication
 include ../../../parent.mk

@@ -10324,6 +10324,46 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_distinct_captured_constants_and_concrete_module_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_reports_concrete_shared_initialization_failure_without_entering_the_root",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_preserves_independent_captured_instances_references_and_explicit_continuation_copies",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_nested_static_composition_through_an_explicitly_closed_static_assembly",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_a_partial_family_completed_by_another_static_producer",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_busy_captured_self_references_without_merging_equal_key_instance_state",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
+        "command": "make -C tests/unit/codegen/specializations"
       }
     ]
   },
@@ -41947,6 +41987,46 @@
         "source": "tests/unit/codegen/specialized-constant-execution/main.c",
         "case": "it_reports_specialized_constant_construction_failure_before_root_execution",
         "command": "make -C tests/unit/codegen/specialized-constant-execution"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_distinct_captured_constants_and_concrete_module_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_reports_concrete_shared_initialization_failure_without_entering_the_root",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_preserves_independent_captured_instances_references_and_explicit_continuation_copies",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_nested_static_composition_through_an_explicitly_closed_static_assembly",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_a_partial_family_completed_by_another_static_producer",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_busy_captured_self_references_without_merging_equal_key_instance_state",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
+        "command": "make -C tests/unit/codegen/specializations"
       }
     ]
   },
@@ -42800,6 +42880,46 @@
         "case": "it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure",
         "command": "make -C tests/unit/codegen/parallel-contexts",
         "source": "tests/unit/codegen/parallel-contexts/main.c"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_distinct_captured_constants_and_concrete_module_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_reports_concrete_shared_initialization_failure_without_entering_the_root",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_preserves_independent_captured_instances_references_and_explicit_continuation_copies",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_nested_static_composition_through_an_explicitly_closed_static_assembly",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_a_partial_family_completed_by_another_static_producer",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_busy_captured_self_references_without_merging_equal_key_instance_state",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
+        "command": "make -C tests/unit/codegen/specializations"
       }
     ]
   },
@@ -46371,6 +46491,31 @@
         "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
         "command": "make -C tests/unit/native/scaffold/contracts",
         "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
       }
     ]
   },
@@ -166767,6 +166912,31 @@
         "source": "tests/unit/codegen/specialized-constants/main.c",
         "case": "it_unwinds_every_specialized_constant_naming_allocation_refusal",
         "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
       }
     ]
   },
@@ -167029,6 +167199,463 @@
         "source": "tests/unit/planning/specializations/main.c",
         "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
         "command": "make -C tests/unit/planning/specializations"
+      }
+    ]
+  },
+  "tests/unit/codegen/specializations/main.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Execute actual captured code/constants, state, references, continuations, nested/partial composition and refusal boundaries.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_distinct_captured_constants_and_concrete_module_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_reports_concrete_shared_initialization_failure_without_entering_the_root",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_preserves_independent_captured_instances_references_and_explicit_continuation_copies",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_nested_static_composition_through_an_explicitly_closed_static_assembly",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_a_partial_family_completed_by_another_static_producer",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_busy_captured_self_references_without_merging_equal_key_instance_state",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
+        "command": "make -C tests/unit/codegen/specializations"
+      }
+    ]
+  },
+  "tests/unit/codegen/specializations/Makefile": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Compose actual generated-specialization execution dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_distinct_captured_constants_and_concrete_module_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_reports_concrete_shared_initialization_failure_without_entering_the_root",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_preserves_independent_captured_instances_references_and_explicit_continuation_copies",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_nested_static_composition_through_an_explicitly_closed_static_assembly",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_a_partial_family_completed_by_another_static_producer",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_busy_captured_self_references_without_merging_equal_key_instance_state",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
+        "command": "make -C tests/unit/codegen/specializations"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/specializations/main.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Run complete owner and role key contracts with every allocation refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/specializations/Makefile": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Build real semantic owner and registry operation tests.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/specializations/support/fixture.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Own two closed captures and counted registry lifetime.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/specializations/support/keys.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Check structural owner/role keys, native leaf categories and refused foreign/incomplete inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ]
+  },
+  "tests/unit/native/scaffold/specializations/support/failures.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Refuse all 3 owner and 6/7 registration allocation positions independently.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ]
+  },
+  "src/semantic/specializations/identity/key.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Qualify complete admitted semantic owners through the canonical structural codec.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ]
+  },
+  "src/semantic/specializations/identity/key.h": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Expose temporary arena ownership and unchanged receiver rules for complete owner keys.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/native/scaffold/model/identity.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Append optional roles and register complete owners before temporary teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ]
+  },
+  "src/native/scaffold/model/identity.h": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Expose synchronous full owner/category/role registration and preserved failures.",
+    "tests": [
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_preserves_full_owner_role_keys_and_concrete_native_namespace_identity",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changing_output",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_refuses_native_namespace_category_for_captured_ordinary_owners",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_owner_key_allocation_without_publishing_partial_keys",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      },
+      {
+        "source": "tests/unit/native/scaffold/specializations/main.c",
+        "case": "it_unwinds_every_scaffold_owner_role_registration_allocation_and_preserves_first_failure",
+        "command": "make -C tests/unit/native/scaffold/specializations"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/specializations/support/fixture.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Share frozen two-capture source definitions between actual execution and allocation refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_distinct_captured_constants_and_concrete_module_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
+        "command": "make -C tests/unit/codegen/specializations"
+      }
+    ]
+  },
+  "tests/unit/codegen/specializations/support/model.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Check full-key model ordering/code reuse and exhaustive pre-publication refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_distinct_captured_constants_and_concrete_module_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
+        "command": "make -C tests/unit/codegen/specializations"
+      }
+    ]
+  },
+  "tests/unit/codegen/specializations/support/continuations.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Execute distinct captures, checked references and ordinary/continuation copies.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_preserves_independent_captured_instances_references_and_explicit_continuation_copies",
+        "command": "make -C tests/unit/codegen/specializations"
+      }
+    ]
+  },
+  "tests/unit/codegen/specializations/support/composition.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Execute explicitly closed nested composition and reject runtime inference of producer inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_nested_static_composition_through_an_explicitly_closed_static_assembly",
+        "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "command": "make -C tests/unit/codegen/specializations"
+      }
+    ]
+  },
+  "tests/unit/codegen/specializations/support/partial.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Pass a partially applied Template to another static producer and execute its concrete result.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_executes_a_partial_family_completed_by_another_static_producer",
+        "command": "make -C tests/unit/codegen/specializations"
+      }
+    ]
+  },
+  "tests/unit/codegen/specializations/support/busy.c": {
+    "contract": "docs/implementation/specialized-execution.md",
+    "purpose": "Refuse captured self-reference reentry while keeping equal-key instances independent.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specializations/main.c",
+        "case": "it_refuses_busy_captured_self_references_without_merging_equal_key_instance_state",
+        "command": "make -C tests/unit/codegen/specializations"
       }
     ]
   }
