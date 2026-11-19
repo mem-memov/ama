@@ -6,6 +6,7 @@
  * positive origin/ownership proofs separate from mandatory runtime validation.
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Keep name/type resolution, compatibility, graph relations and diagnostics distinct from parsing and emission.
+ * [COMP-04](../../spec/implementation/compiler.md#comp-04) preserves original failure classification during reporting.
  */
 #ifndef AMA_SEMANTIC_INTERNAL_H
 #define AMA_SEMANTIC_INTERNAL_H
@@ -21,11 +22,13 @@ bool semantic_walk(SemanticProgram *program, SemanticType *type, AstBlock block,
 /** Compare two valid borrowed spans by exact length/bytes, without case or Unicode normalization.
  * Component contract: [COPY-06](../../spec/language/values-and-references.md#copy-06), [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool semantic_same_text(SourceSpan left, SourceSpan right);
-/** Publish a borrowed primary site/message and optional original related declaration, returning false without allocation.
+/** Preserve any existing failure; otherwise publish a borrowed primary site/message and optional original related declaration, returning false without allocation.
+ * [COMP-04](../../spec/implementation/compiler.md#comp-04) keeps the first cause through composed refusal.
  * Component contract: [COPY-06](../../spec/language/values-and-references.md#copy-06), [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool semantic_fail(SemanticProgram *program, SourceSpan span, const char *message,
     const SemanticSymbol *related);
-/** Publish out-of-memory status/message without allocating reporting storage.
+/** Preserve any existing failure; otherwise publish out-of-memory status/message without allocating reporting storage.
+ * [COMP-04](../../spec/implementation/compiler.md#comp-04) keeps the first cause through composed refusal.
  * Component contract: [COPY-06](../../spec/language/values-and-references.md#copy-06), [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool semantic_memory_failure(SemanticProgram *program);
 /** Allocate/zero semantic-owned scratch or return null with an allocation-free failure; partial records survive until destroy.

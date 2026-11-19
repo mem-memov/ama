@@ -1,6 +1,6 @@
 # Complete semantic composition
 
-T040 checks the complete current semantic boundary under
+T040 checks the direct concrete-source semantic composition under
 [COMP-02](../../spec/implementation/compiler.md#comp-02),
 [COMP-04](../../spec/implementation/compiler.md#comp-04),
 [ARCH-05](../../spec/implementation/compiler.md#arch-05),
@@ -8,6 +8,13 @@ T040 checks the complete current semantic boundary under
 [TEST-07](../../spec/implementation/tools-and-conformance.md#test-07).
 It composes the individually verified T030–T039 components; it does not claim
 that later IR/runtime/emission work is complete.
+
+The [T185 specialized composition](specialized-semantics.md) feeds closed
+specialization descriptors into these ordinary checks, retaining full capture
+identity and actual incoming evidence. It separately certifies finite candidate
+groups before the frontend requests constant and resolved plans. The source-only
+six-stage sequence below remains the independent concrete component/relocation
+entry; it does not repeat inference for a projected closed inventory.
 
 ## One explicit stage sequence
 

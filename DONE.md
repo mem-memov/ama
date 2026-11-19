@@ -6092,3 +6092,62 @@ T201. Specification bytes have not changed.
   Final documentation receipt: `/tmp/ama-t184-archive-docs.log`. Markdown/rule/
   EBNF, task routing, editor navigation, staged diff and byte matching complete
   scoped acceptance. Next ready implementation task: T185.
+
+<a id="t185"></a>
+
+- [x] **T185 — Apply ordinary operation, ownership and lifecycle checks.**
+  Prerequisites: T184.
+  Rules: [TPL-06](spec/language/templates.md#tpl-06),
+  [TYPE-05](spec/language/declarations.md#type-05),
+  [COPY-06](spec/language/values-and-references.md#copy-06),
+  [PROTO-07](spec/implementation/native-interface.md#proto-07).
+  Status: completed; [implementation and continuation record](docs/implementation/specialized-semantics.md).
+  Boundary: resolved semantic capability/access/storage checks and separate
+  eager-construction/copy relations over concrete specializations.
+  Steps: (1) route substituted fields, defaults and operations through ordinary
+  checkers; (2) compute ownership/clone/default requirements on concrete types;
+  (3) admit successful candidates and compose generic calls, refs, lists and
+  native protocol declarations. Failed candidates cannot reach lowering.
+  Accept: literal/default/copy/condition/index/lifecycle requirements pass only
+  when supported; supplied arguments and unreachable branches do not hide bad
+  defaults/operations. Distinguish valid nominal reference/list cycles from
+  eager cycles and owned noncopyable paths; check storage exactness, no implicit
+  conversion/private-field access and no expansion of the deferred list scope.
+
+  Completed from f069f7d: the actual frontend consumes one ordinary semantic
+  vertex per complete specialization key. Fixed lexical fields, source/interface
+  ordinals, refs/lists/locals/defaults and original source provenance survive the
+  adapter. Namespace reads use original syntax and complete caller/target keys;
+  bare source-path lookup refuses ambiguous captures. TYPE-01 rejects namespace
+  metadata used as runtime values. Clone and eager relations remain distinct.
+  Checked candidate groups are certified only after all ordinary checks pass.
+
+  Explicit library export/schema roots and concrete catalog-definition roots
+  share one checked root-preparation service; open definitions get no invented
+  instances. Source registration plus complete encoded capture-key order preserves
+  deterministic semantic/IR enumeration. The obsolete compiler-only rejection of
+  valid closed exports is removed and replaced by real generic/static-export
+  completion checks. The direct concrete relocation service remains product-used;
+  T193 owns its migration, so no live implementation is deleted as a test oracle.
+
+  The [contract and step evidence](docs/implementation/specialized-semantics.md)
+  records exact ownership, invariants, costs, corrected failures and receipts.
+  Strict compiler/specialization parents and both ASan/UBSan parents passed,
+  including every 18/57/71 allocation position. Actual library lifecycle and
+  editor workspace probes preserve existing behavior. Root-array overflow,
+  explicit versus definition-only requests, reversed capture evidence, invalid
+  defaults, unreachable operations, index/condition/copy capability, noncopyable
+  state, eager/nominal cycles and namespace-as-value boundaries are covered.
+  First-error reporting preserves allocation refusal through outer member lookup.
+
+  Full aggregate receipt before the allocation-free captured relation-key repair:
+  /tmp/ama-t185-final-whole-project.log. All other branches passed and all 2982
+  frozen inputs matched. The later repair passed current affected parent and
+  sanitizer checks; zero-input names and direct relocation keys are unchanged.
+  Scoped acceptance
+  preserves the independently established T196 conformance-review limitation;
+  it never treats that aggregate as a green full-language conformance result.
+  Exact versioned receipts and input proofs are retained in the component note. Specification and conformance fingerprints remain unchanged.
+  Doxygen, complete per-file/header coverage, source navigation, Markdown/rule/
+  grammar checks, task routing and staged review complete task acceptance.
+  Next ready task: T186, specialization-scoped constant lifecycle planning.

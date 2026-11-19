@@ -4,11 +4,13 @@
  *
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Set initialization credits before fallible work; destroy plans before semantics and loaded sources.
+ * [TPL-06](../../spec/language/templates.md#tpl-06) requires closed specialized ordinary checks before planning.
  * [TPL-13](../../spec/language/templates.md#tpl-13) also gates preloaded catalog
  * checks before input capture and semantic/header preparation.
  */
 #include <assert.h>
 #include "internal.h"
+#include "semantic/specializations/check.h"
 
 /**
  * Initialize source/project owners and empty semantic/plan credits with the supplied allocator;
@@ -62,7 +64,8 @@ bool compiler_frontend_finish(CompilerFrontend *frontend,
     }
     semantic_program_init(&frontend->semantic, &frontend->project, frontend->allocator);
     frontend->semantic_initialized = true;
-    if (semantic_analyze_authoring(&frontend->semantic, authoring) != SEMANTIC_OK) {
+    if (semantic_specializations_check(&frontend->semantic, &frontend->specializations.closure, authoring) != SEMANTIC_OK
+        || semantic_constants(&frontend->semantic) != SEMANTIC_OK) {
         frontend->error = frontend->semantic.error;
         return false;
     }
@@ -104,5 +107,6 @@ bool compiler_frontend_check_catalog(CompilerFrontend *frontend, const ModuleRoo
         return false;
     }
     return compiler_frontend_admit(frontend) && compiler_frontend_capture(frontend, roots, count)
+        && compiler_frontend_select_roots(frontend, required, required_count, COMPILER_ROOTS_CONCRETE_DEFINITIONS)
         && compiler_frontend_finish(frontend, NULL);
 }

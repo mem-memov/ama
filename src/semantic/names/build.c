@@ -17,9 +17,9 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
     (void)loop_depth;
     (void)loop;
     /* [COMP-02](../../../spec/implementation/compiler.md#comp-02) keeps
-     * unadapted static syntax out of this raw concrete-only inventory. T185 owns
-     * consuming T184's closed Type descriptors here; ignoring these nodes would
-     * incorrectly publish ordinary runtime types for unprocessed programs.
+     * static syntax out of the direct concrete relocation inventory. T193 owns
+     * migration of its remaining source/staging consumers. Ignoring these nodes
+     * would publish runtime types for unprocessed source.
      */
     const AstTypeExpression *expression = node->kind == AST_DECLARATION
         ? node->as.declaration.type
@@ -67,7 +67,8 @@ static bool module_names(SemanticProgram *program, SemanticType *type) {
     const AstModule *syntax = &type->module->syntax;
     /* [TPL-12](../../../spec/language/static-results.md#tpl-12) makes a static
      * graph compile-time-only, including an empty graph. T184 closes selected
-     * exports; T185 must adapt this raw-source consumer to their descriptors.
+     * exports for the frontend. T193 migrates the remaining direct relocation
+     * source consumer to static-aware metadata.
      */
     if (syntax->sections.kind == MODULE_STATIC) {
         return semantic_fail(program, syntax->sections.graph.marker->code,

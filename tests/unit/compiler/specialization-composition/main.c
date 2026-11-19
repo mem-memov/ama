@@ -1,6 +1,7 @@
 /** @file
- * @brief Verify actual frontend Type-stage ownership, explicit multi-root checking and pre-admission outputs.
+ * @brief Verify real frontend specialization ownership, ordinary admission, exact root policies and planning.
  */
+#include <stdint.h>
 #include "../common.c"
 #include "compiler/internal.h"
 
@@ -75,6 +76,68 @@ static void it_checks_concrete_projects_through_the_public_frontend_entry(void) 
     destroy_frontend();
 }
 
+/** Actual frontend completion consumes a closed generic body and its inferred runtime result. */
+static void it_checks_generic_operations_through_the_actual_frontend_adapter(void) {
+    prepare_sources("@!\nknown\n.value\nworker\n.worker\nworker !\n < known\n > fresh\n");
+    file("generated/project/worker", "@<\ninput\n...slot\n@>\noutput\n...slot\n@!\noutput\n input\n");
+    setup_frontend();
+    assert(check_project() && frontend.valid && frontend.plan.valid);
+    assert(frontend.semantic.type_closure == &frontend.specializations.closure);
+    const SemanticType *entry = frontend.plan.entry->type;
+    assert(entry->symbol_count == 3);
+    SemanticSymbol *known = entry->first, *worker = known->next, *fresh = worker->next;
+    assert(fresh && !fresh->next && fresh->inferred && fresh->type == known->type);
+    assert(worker->type->specialization->context->registry_use->candidate->local_complete);
+    assert(worker->type->statements);
+    destroy_frontend();
+}
+
+/** Static producer output is compile-time metadata; its selected Type reaches ordinary planning. */
+static void it_plans_closed_static_exports_as_compile_time_metadata(void) {
+    prepare_sources("@!\nvalue\n.factory\n ...result\n");
+    file("generated/project/factory", "@...\n...result\n.value\n");
+    setup_frontend();
+    assert(check_project() && frontend.valid && frontend.plan.valid);
+    for (const SemanticType *type = frontend.semantic.first; type; type = type->next) {
+        assert(type->module->syntax.sections.kind != MODULE_STATIC);
+    }
+    assert(frontend.plan.entry->type->first->type->module == project_find(&frontend.project, ".value"));
+    destroy_frontend();
+}
+
+/** Arithmetic refusal cannot touch names, allocate a partial root array or start Type analysis. */
+static void it_refuses_type_root_array_overflow_before_allocation(void) {
+    prepare_sources("@!\nvalue\n.value\n");
+    setup_frontend();
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
+    assert(compiler_frontend_load(&frontend, &root, 1, ".main"));
+    size_t before = allocation_count;
+    assert(!compiler_frontend_select_roots(&frontend, NULL, SIZE_MAX, COMPILER_ROOTS_EXPLICIT));
+    assert(allocation_count == before && !frontend.specialization_initialized);
+    assert(frontend.error.code == DIAGNOSTIC_OUT_OF_MEMORY && !frontend.semantic_initialized);
+    destroy_frontend();
+}
+
+/** Catalog definitions remain open; explicitly requested executable Types must close. */
+static void it_distinguishes_catalog_definition_and_explicit_type_root_requests(void) {
+    for (size_t explicit = 0; explicit < 2; explicit++) {
+        prepare_sources("@!\nvalue\n.value\n");
+        file("generated/project/extra", "@<\ninput\n...slot\n@!\n");
+        setup_frontend();
+        ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
+        const char *required[] = {".extra"};
+        assert(compiler_frontend_load_required(&frontend, &root, 1, ".main", required, 1));
+        bool valid = compiler_frontend_select_roots(&frontend, required, 1,
+            explicit ? COMPILER_ROOTS_EXPLICIT : COMPILER_ROOTS_CONCRETE_DEFINITIONS);
+        assert(valid == !explicit);
+        if (valid) {
+            assert(compiler_frontend_finish(&frontend, NULL));
+            assert(!semantic_find_type(&frontend.semantic, ".extra"));
+        } else { assert(!frontend.semantic_initialized && !frontend.plan_initialized); }
+        destroy_frontend();
+    }
+}
+
 /** Unused required source definitions still undergo lexical checks before root expansion. */
 static void it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning(void) {
     prepare_sources("@!\nanchor&\n.value\n");
@@ -115,6 +178,10 @@ static void run(void) {
     it_exposes_closed_generic_type_candidates_before_ordinary_admission();
     it_composes_explicit_multi_root_closure_with_the_real_frontend();
     it_checks_concrete_projects_through_the_public_frontend_entry();
+    it_checks_generic_operations_through_the_actual_frontend_adapter();
+    it_plans_closed_static_exports_as_compile_time_metadata();
+    it_refuses_type_root_array_overflow_before_allocation();
+    it_distinguishes_catalog_definition_and_explicit_type_root_requests();
     it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning();
     it_rejects_root_lists_that_omit_the_loaded_frontend_entry();
 }

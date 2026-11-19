@@ -3,7 +3,8 @@
  * @brief Preserve both storage/type declarations and native copy-capability causes.
  *
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
- * Nominal mismatch and storage-form mismatch remain distinct causes, and transitive copy errors retain their native seed.
+ * Existing failures retain their original payload; enrichment begins only while
+ * the semantic owner is healthy. Nominal mismatch and storage-form mismatch remain distinct causes, and transitive copy errors retain their native seed.
  * [TYPE-06](../../../spec/language/declarations.md#type-06) Mismatch locations come from uniform explicit/inferred symbol metadata.
  */
 #include "semantic/internal.h"
@@ -26,6 +27,7 @@ static const char *destination_role(bool reference, bool list) {
 
 bool semantic_incompatible(SemanticProgram *program, SemanticType *type, bool reference,
     bool list, const SemanticSource *source, const SemanticSymbol *destination) {
+    if (program->status != SEMANTIC_OK) { return false; }
     semantic_fail(program, source->site, "Source and destination types or storage forms differ", NULL);
     program->error.subject = source->type->module->source->logical_path;
     program->error.expected = type->module->source->logical_path;
@@ -46,6 +48,7 @@ bool semantic_incompatible(SemanticProgram *program, SemanticType *type, bool re
 
 bool semantic_capability_error(SemanticProgram *program, SemanticType *type,
     AbiOperation operation, SourceSpan site, const SemanticSymbol *declaration, const char *message) {
+    if (program->status != SEMANTIC_OK) { return false; }
     semantic_fail(program, site, message, declaration);
     program->error.subject = type->module->source->logical_path;
     SemanticType *contract = operation == ABI_CLONE && type->clone_seed != NULL ? type->clone_seed : type;

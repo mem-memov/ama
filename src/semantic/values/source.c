@@ -22,7 +22,7 @@ SemanticSource *semantic_source(SemanticProgram *program, SemanticType *type,
         return source;
     }
     if (syntax->kind == AST_CONSTANT_SOURCE) {
-        return semantic_constant_source(program, source, initializing) ? source : NULL;
+        return semantic_constant_source(program, type, source, initializing) ? source : NULL;
     }
     if (syntax->kind == AST_SELF_REFERENCE_SOURCE) {
         return semantic_self_source(program, type, source, initializing) ? source : NULL;

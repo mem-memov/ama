@@ -2,6 +2,7 @@
  * @brief Compose explicit export closure loading, typed validation and component naming.
  * [EMBED-01](../../../spec/implementation/c-library.md#embed-01) separates
  * checked library configuration from executable generation and implicit roots.
+ * [TPL-11](../../../spec/language/templates.md#tpl-11) registers the exact export/schema request as required Type roots.
  */
 #include <assert.h>
 #include <stdint.h>
@@ -39,6 +40,10 @@ bool library_build_resolve(LibraryBuild *build, const ModuleRoot *roots, size_t 
         return false;
     }
     if (!library_capture_inputs(build)) { return false; }
+    if (!compiler_frontend_select_roots(&build->frontend, required, required_count, COMPILER_ROOTS_EXPLICIT)) {
+        build->error = build->frontend.error;
+        return false;
+    }
     if (!compiler_frontend_finish(&build->frontend, NULL)) {
         build->error = build->frontend.error;
         return false;

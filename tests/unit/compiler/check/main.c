@@ -236,11 +236,10 @@ static void it_retains_hyphenated_names_and_exact_type_identities_in_both_roots(
 }
 
 /** Source-invalid expressions fail before Type analysis; open required Types
- * and static executable roots fail in the new static phase. A closed export
- * reaches the still concrete-only consumer, whose adapter remains T185 work.
+ * and static executable roots fail in the required-Type phase.
  * No failing stage may publish a resolved runtime plan.
  */
-static void it_refuses_incomplete_or_unadapted_static_work_at_its_actual_stage(void) {
+static void it_refuses_incomplete_or_invalid_static_work_at_its_actual_stage(void) {
     const struct {
         const char *source;
         const char *factory;
@@ -252,7 +251,6 @@ static void it_refuses_incomplete_or_unadapted_static_work_at_its_actual_stage(v
     } cases[] = {
         {"@<\nargument\n...type\n@!\n", "@!\n", "not uniquely determined", true, true, false, false},
         {"@...\n...result\n.value\n", "@!\n", "Selected root must be an original ordinary module", true, true, false, false},
-        {"@!\nfield\n.factory\n ...result\n", "@...\n...result\n.value\n", "Static syntax requires resolution", true, true, true, true},
         {"@...\n...result\n.value\n ...slot < .value\n", "@!\n", "A Type is not an applied constructor", false, false, false, false}
     };
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
@@ -274,7 +272,7 @@ static void it_refuses_incomplete_or_unadapted_static_work_at_its_actual_stage(v
 
 /** Run production frontend compositions and rejection/cleanup partitions. */
 void run(void) {
-    it_refuses_incomplete_or_unadapted_static_work_at_its_actual_stage();
+    it_refuses_incomplete_or_invalid_static_work_at_its_actual_stage();
     it_retains_hyphenated_names_and_exact_type_identities_in_both_roots();
     it_types_list_interfaces_and_complete_service_ir_without_inspecting_native_c();
     it_builds_complete_control_ir_for_traversal_and_header_trees();

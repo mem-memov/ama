@@ -23,6 +23,17 @@ static void it_checks_unused_active_importers_without_parsing_incomplete_drafts(
     assert(strcmp(definition.symbol->owner->module->source->logical_path,".worker") == 0);
     destroy_editor();
 }
+/** Open active templates remain checked source definitions without fabricated runtime Types. */
+static void it_preserves_uninstantiated_templates_without_default_workspace_instances(void) {
+    project_fixture("@!\n");
+    file("generated/project/generic", "@<\ninput\n...slot\n@!\n");
+    setup_editor();
+    assert(workspace() && analysis.indexed && analysis.workspace);
+    assert(project_find(&analysis.frontend.project, ".generic"));
+    assert(!semantic_find_type(&analysis.frontend.semantic, ".generic"));
+    destroy_editor();
+}
+
 /** A broken unused active module is a real workspace blocker, while ordinary entry-only analysis remains independent. */
 static void it_rejects_invalid_unused_active_modules_without_publishing_partial_identities(void) {
     project_fixture("@!\n");
@@ -68,6 +79,7 @@ static void it_owns_root_configuration_and_releases_every_failed_workspace_prefi
 /** Each case uses the same production catalog, activation classifier, parser, resolver and planner. */
 void run(void) {
     it_checks_unused_active_importers_without_parsing_incomplete_drafts();
+    it_preserves_uninstantiated_templates_without_default_workspace_instances();
     it_rejects_invalid_unused_active_modules_without_publishing_partial_identities();
     it_owns_root_configuration_and_releases_every_failed_workspace_prefix();
 }

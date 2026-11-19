@@ -6,6 +6,8 @@
  * Borrow roots/options during one attempt and retain diagnostics in the frontend owner.
  * [TPL-13](../../spec/language/templates.md#tpl-13) requires native definition
  * admission before authoring/header preparation.
+ * [TPL-06](../../spec/language/templates.md#tpl-06) keeps open catalog definitions symbolic.
+ * [TPL-11](../../spec/language/templates.md#tpl-11) validates exact selected Type roots.
  */
 #ifndef AMA_COMPILER_FRONTEND_INTERNAL_H
 #define AMA_COMPILER_FRONTEND_INTERNAL_H
@@ -39,6 +41,18 @@ bool compiler_frontend_admit(CompilerFrontend *);
  * [TPL-11](../../spec/language/templates.md#tpl-11) preserves selected roots.
  */
 bool compiler_frontend_specialize(CompilerFrontend *, const ProjectModule *const *, size_t);
+/** Explicit export/schema requests require every named root; catalog definition
+ * checks require the entry plus concrete ordinary definitions. Open templates
+ * and static producers remain definitions until actual applications require them.
+ * [TPL-06](../../spec/language/templates.md#tpl-06) validates required specializations.
+ */
+typedef enum { COMPILER_ROOTS_EXPLICIT, COMPILER_ROOTS_CONCRETE_DEFINITIONS } CompilerRootPolicy;
+/** Prepare exact original module roots from the caller's loaded name set, always
+ * including the selected entry. Array storage belongs to the frontend Project
+ * arena; no runtime object is created. Refusal retains owned partial metadata.
+ * [TPL-11](../../spec/language/templates.md#tpl-11) forbids guessed/default roots.
+ */
+bool compiler_frontend_select_roots(CompilerFrontend *, const char *const *, size_t, CompilerRootPolicy);
 /** Capture the successfully loaded immutable project and exact entry policy before semantic completion. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_capture(CompilerFrontend *, const ModuleRoot *, size_t);
 /**

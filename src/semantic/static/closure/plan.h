@@ -34,7 +34,7 @@ typedef enum { STATIC_CLOSURE_OK, STATIC_CLOSURE_INVALID, STATIC_CLOSURE_CONFLIC
  * candidate-local executable certificate belongs here.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) requires reverse dependency teardown.
  */
-typedef struct {
+typedef struct StaticClosurePlan {
     SourceArena arena;
     StaticConnectionPlan *connections;
     StaticClosureEntry *first;

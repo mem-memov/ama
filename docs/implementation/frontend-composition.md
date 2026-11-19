@@ -17,6 +17,13 @@ accepts an explicit selected-root list for shared multi-root checking. The
 original T045 evidence below predates that extra phase; T184 records its current
 stage-prefix, Type-candidate, teardown and consumer evidence separately.
 
+T185's [ordinary specialization adapter](specialized-semantics.md) now consumes
+the closed graph in the actual frontend. Library exports/schemas and catalog
+checks provide their explicit required-root policies. Closed generic operations
+and selected static exports reach ordinary validation/planning; failed checks
+cannot publish a valid frontend. T186–T188 extend/revalidate specialized constant
+lifecycle, resolved plans and actual generated execution.
+
 ## Boundary and ownership
 
 The public `compiler_frontend_check` loads the requested closure, seals its input

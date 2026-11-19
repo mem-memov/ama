@@ -3,6 +3,8 @@
  * @brief Link exact nominal value types and check initializer visibility.
  *
  * [TYPE-01](../../../spec/language/declarations.md#type-01)
+ * [TPL-05](../../../spec/language/templates.md#tpl-05) requires unique source-path
+ * lookups to refuse ambiguity instead of selecting an arbitrary capture map.
  * A constants-only namespace is not an instance type; source-order initializer visibility remains separate from loading cycles.
  * [TYPE-06](../../../spec/language/declarations.md#type-06) Inferred types already name exact known identities and need no invented type-path line.
  */
@@ -10,14 +12,16 @@
 #include "semantic/internal.h"
 
 SemanticType *semantic_find_type(const SemanticProgram *program, const char *logical_path) {
+    SemanticType *selected = NULL;
     if (logical_path != NULL) {
         for (SemanticType *type = program->first; type != NULL; type = type->next) {
             if (strcmp(type->module->source->logical_path, logical_path) == 0) {
-                return type;
+                if (selected) { return NULL; }
+                selected = type;
             }
         }
     }
-    return NULL;
+    return selected;
 }
 
 bool semantic_link_types(SemanticProgram *program) {

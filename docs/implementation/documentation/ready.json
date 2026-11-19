@@ -4328,6 +4328,26 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_generic_operations_through_the_actual_frontend_adapter",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_plans_closed_static_exports_as_compile_time_metadata",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_refuses_type_root_array_overflow_before_allocation",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -4871,6 +4891,26 @@
       {
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_generic_operations_through_the_actual_frontend_adapter",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_plans_closed_static_exports_as_compile_time_metadata",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_refuses_type_root_array_overflow_before_allocation",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
         "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
@@ -30758,6 +30798,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/diagnostics/main.c",
+        "case": "it_preserves_first_semantic_failure_across_outer_refusal_reporting",
+        "command": "make -C tests/unit/semantic/diagnostics"
       }
     ]
   },
@@ -30792,7 +30837,7 @@
       },
       {
         "source": "tests/unit/compiler/check/main.c",
-        "case": "it_refuses_incomplete_or_unadapted_static_work_at_its_actual_stage",
+        "case": "it_refuses_incomplete_or_invalid_static_work_at_its_actual_stage",
         "command": "make -C tests/unit/compiler/check"
       }
     ]
@@ -30920,6 +30965,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
       }
     ]
   },
@@ -31265,6 +31315,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_distinguishes_specialized_relation_keys_and_orders_owner_members",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -31656,6 +31711,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/diagnostics/main.c",
+        "case": "it_preserves_first_semantic_failure_across_outer_refusal_reporting",
+        "command": "make -C tests/unit/semantic/diagnostics"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -31742,6 +31807,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/diagnostics/main.c",
+        "case": "it_preserves_first_semantic_failure_across_outer_refusal_reporting",
+        "command": "make -C tests/unit/semantic/diagnostics"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -32386,6 +32461,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
       }
     ]
   },
@@ -32702,6 +32782,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
       }
     ]
   },
@@ -32979,6 +33069,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -38718,7 +38828,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
+  "tests/integration/parser/grammar/project/程序": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -38804,7 +38914,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/\u4e2d\u95f4": {
+  "tests/integration/project/closure/project/中间": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40103,7 +40213,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143": {
+  "tests/integration/semantic/types/project/元": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40114,7 +40224,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.abi": {
+  "tests/integration/semantic/types/project/元.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40125,7 +40235,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.c": {
+  "tests/integration/semantic/types/project/元.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -40136,7 +40246,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u5143.h": {
+  "tests/integration/semantic/types/project/元.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -40162,7 +40272,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73": {
+  "tests/integration/semantic/types/project/米": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40173,7 +40283,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.abi": {
+  "tests/integration/semantic/types/project/米.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40184,7 +40294,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.c": {
+  "tests/integration/semantic/types/project/米.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -40195,7 +40305,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/\u7c73.h": {
+  "tests/integration/semantic/types/project/米.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -40408,7 +40518,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/other/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40434,7 +40544,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/商店/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -43085,7 +43195,7 @@
         "command": "make -C tests/unit/compiler/check"
       },
       {
-        "case": "it_refuses_incomplete_or_unadapted_static_work_at_its_actual_stage",
+        "case": "it_refuses_incomplete_or_invalid_static_work_at_its_actual_stage",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -54198,6 +54308,11 @@
         "case": "it_rejects_unowned_snapshot_copies_without_using_shape_as_identity",
         "command": "make -C tests/unit/semantic/static/bindings/failures",
         "source": "tests/unit/semantic/static/bindings/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
       }
     ]
   },
@@ -54513,6 +54628,11 @@
         "case": "it_identifies_a_noncopyable_native_seed_inside_a_composed_type",
         "command": "make -C tests/unit/semantic/diagnostics",
         "source": "tests/unit/semantic/diagnostics/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/diagnostics/main.c",
+        "case": "it_preserves_first_semantic_failure_across_outer_refusal_reporting",
+        "command": "make -C tests/unit/semantic/diagnostics"
       }
     ]
   },
@@ -64264,6 +64384,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
       }
     ]
   },
@@ -65791,6 +65916,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ],
     "standalone_header_command": [
@@ -65867,6 +66012,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -66359,6 +66524,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -109399,6 +109584,11 @@
         "case": "it_owns_root_configuration_and_releases_every_failed_workspace_prefix",
         "command": "make -C tests/unit/editor/workspace",
         "source": "tests/unit/editor/workspace/main.c"
+      },
+      {
+        "source": "tests/unit/editor/workspace/main.c",
+        "case": "it_preserves_uninstantiated_templates_without_default_workspace_instances",
+        "command": "make -C tests/unit/editor/workspace"
       }
     ]
   },
@@ -133743,6 +133933,26 @@
       {
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_generic_operations_through_the_actual_frontend_adapter",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_plans_closed_static_exports_as_compile_time_metadata",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_refuses_type_root_array_overflow_before_allocation",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
         "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
@@ -163761,6 +163971,26 @@
         "source": "tests/unit/semantic/static/closure/scheduler/main.c",
         "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
         "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ],
     "standalone_header_command": [
@@ -165048,6 +165278,26 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_generic_operations_through_the_actual_frontend_adapter",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_plans_closed_static_exports_as_compile_time_metadata",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_refuses_type_root_array_overflow_before_allocation",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -165121,6 +165371,1146 @@
         "source": "tests/unit/compiler/composition/main.c",
         "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
         "command": "make -C tests/unit/compiler/composition"
+      }
+    ]
+  },
+  "src/semantic/specializations/inventory/vertices.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ]
+  },
+  "src/semantic/specializations/inventory/build.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_orders_full_keys_independently_of_call_evidence_order",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ]
+  },
+  "src/semantic/specializations/inventory/fields.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_constant_namespaces_as_runtime_field_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      }
+    ]
+  },
+  "src/semantic/specializations/inventory/foreach.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ]
+  },
+  "src/semantic/specializations/inventory.h": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/specializations/inventory/internal.h": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_orders_full_keys_independently_of_call_evidence_order",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/semantic/specializations/Makefile": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_fully_checked_generic_calls_and_finite_nominal_groups",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_rejects_unsupported_substituted_operations_before_admission",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_eager_cycles_without_rejecting_type_identity_closure",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_unwinds_every_ordinary_admission_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_named_static_exports_and_all_candidate_dependencies",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_checks_definition_only_closure_without_runtime_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_noncopyable_storage_without_inventing_copy_operations",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      }
+    ]
+  },
+  "tests/unit/semantic/specializations/inventory/Makefile": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ]
+  },
+  "tests/unit/semantic/specializations/inventory/main.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Project full-key closed specialization metadata into ordinary semantic checking with fixed lexical fields and counted teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_orders_full_keys_independently_of_call_evidence_order",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ]
+  },
+  "src/semantic/specializations/namespace.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Resolve original qualified and saved constant namespaces by complete caller and target specialization evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      }
+    ]
+  },
+  "src/semantic/specializations/namespace.h": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Resolve original qualified and saved constant namespaces by complete caller and target specialization evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/semantic/specializations/namespaces/Makefile": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Resolve original qualified and saved constant namespaces by complete caller and target specialization evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_distinguishes_specialized_relation_keys_and_orders_owner_members",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      }
+    ]
+  },
+  "tests/unit/semantic/specializations/namespaces/main.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Resolve original qualified and saved constant namespaces by complete caller and target specialization evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_distinguishes_specialized_relation_keys_and_orders_owner_members",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      }
+    ]
+  },
+  "tests/unit/semantic/specializations/common.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Compose counted closed Type owners and ordinary semantic fixtures with exact source lookup and reverse destruction.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_distinct_captures_and_equal_key_reuse",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_links_nominal_cycles_before_ordinary_ownership_checks",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_projects_selected_static_exports_without_producer_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_requires_closed_inputs_without_inventing_default_instances",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_refuses_reuse_and_foreign_project_provenance",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_unwinds_every_projection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_preserves_all_section_roles_and_native_protocol_consumption",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_composes_distinct_eager_and_clone_relations_on_projected_types",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_checks_substituted_defaults_even_when_call_inputs_are_supplied",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_qualified_and_saved_namespaces_from_original_evidence",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_resolves_multiple_specializations_of_one_constant_namespace",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_refuses_unregistered_source_identity_without_namespace_guessing",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_fully_checked_generic_calls_and_finite_nominal_groups",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_rejects_unsupported_substituted_operations_before_admission",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_eager_cycles_without_rejecting_type_identity_closure",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_unwinds_every_ordinary_admission_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_named_static_exports_and_all_candidate_dependencies",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_checks_definition_only_closure_without_runtime_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_noncopyable_storage_without_inventing_copy_operations",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_orders_full_keys_independently_of_call_evidence_order",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ]
+  },
+  "src/semantic/specializations/check.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Check complete ordinary specialization operations and ownership relations before publishing finite-group candidate certificates.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_fully_checked_generic_calls_and_finite_nominal_groups",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_rejects_unsupported_substituted_operations_before_admission",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_eager_cycles_without_rejecting_type_identity_closure",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_unwinds_every_ordinary_admission_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_named_static_exports_and_all_candidate_dependencies",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_checks_definition_only_closure_without_runtime_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_noncopyable_storage_without_inventing_copy_operations",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_constant_namespaces_as_runtime_field_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      }
+    ]
+  },
+  "src/semantic/specializations/check.h": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Check complete ordinary specialization operations and ownership relations before publishing finite-group candidate certificates.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_fully_checked_generic_calls_and_finite_nominal_groups",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_rejects_unsupported_substituted_operations_before_admission",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_eager_cycles_without_rejecting_type_identity_closure",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_unwinds_every_ordinary_admission_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_named_static_exports_and_all_candidate_dependencies",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_checks_definition_only_closure_without_runtime_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_noncopyable_storage_without_inventing_copy_operations",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/semantic/specializations/admission/Makefile": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Check complete ordinary specialization operations and ownership relations before publishing finite-group candidate certificates.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_fully_checked_generic_calls_and_finite_nominal_groups",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_rejects_unsupported_substituted_operations_before_admission",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_eager_cycles_without_rejecting_type_identity_closure",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_unwinds_every_ordinary_admission_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_named_static_exports_and_all_candidate_dependencies",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_checks_definition_only_closure_without_runtime_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_noncopyable_storage_without_inventing_copy_operations",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      }
+    ]
+  },
+  "tests/unit/semantic/specializations/admission/main.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Check complete ordinary specialization operations and ownership relations before publishing finite-group candidate certificates.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_fully_checked_generic_calls_and_finite_nominal_groups",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_rejects_unsupported_substituted_operations_before_admission",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_eager_cycles_without_rejecting_type_identity_closure",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_unwinds_every_ordinary_admission_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_named_static_exports_and_all_candidate_dependencies",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_checks_definition_only_closure_without_runtime_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_admits_noncopyable_storage_without_inventing_copy_operations",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/admission/main.c",
+        "case": "it_refuses_constant_namespaces_as_runtime_field_types",
+        "command": "make -C tests/unit/semantic/specializations/admission"
+      }
+    ]
+  },
+  "src/compiler/roots.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Select exact caller-requested Type roots using explicit export or concrete-definition policies without runtime instances.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_refuses_type_root_array_overflow_before_allocation",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/editor/workspace/main.c",
+        "case": "it_checks_unused_active_importers_without_parsing_incomplete_drafts",
+        "command": "make -C tests/unit/editor/workspace"
+      },
+      {
+        "source": "tests/unit/editor/workspace/main.c",
+        "case": "it_preserves_uninstantiated_templates_without_default_workspace_instances",
+        "command": "make -C tests/unit/editor/workspace"
+      },
+      {
+        "source": "tests/unit/library/resolution/main.c",
+        "case": "it_resolves_explicit_exports_and_complete_owned_schemas",
+        "command": "make -C tests/unit/library/resolution"
+      },
+      {
+        "source": "tests/unit/library/resolution/main.c",
+        "case": "it_unwinds_every_library_resolution_allocation",
+        "command": "make -C tests/unit/library/resolution"
+      }
+    ]
+  },
+  "src/semantic/specializations/inventory/order.c": {
+    "contract": "docs/implementation/specialized-semantics.md",
+    "purpose": "Enumerate source-origin groups deterministically and sort complete capture encodings without allocation.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/specializations/inventory/main.c",
+        "case": "it_orders_full_keys_independently_of_call_evidence_order",
+        "command": "make -C tests/unit/semantic/specializations/inventory"
       }
     ]
   }

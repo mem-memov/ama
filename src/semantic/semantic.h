@@ -15,6 +15,8 @@
  * [TYPE-06](../../spec/language/declarations.md#type-06) keeps inferred field
  * metadata independent from explicit declaration syntax;
  * [NAME-06](../../spec/language/declarations.md#name-06) retains lexical local cells separately.
+ * [TPL-06](../../spec/language/templates.md#tpl-06) separates closed Type inference from operation admission.
+ * [TPL-05](../../spec/language/templates.md#tpl-05) retains closed specialization provenance separately from module paths.
  * Borrow the loaded project; only successful stage outputs are consumable. Only successful explicit/inferred stages publish usable metadata.
  */
 #ifndef AMA_SEMANTIC_PROGRAM_H
@@ -33,6 +35,21 @@ typedef enum { SYMBOL_CONSTANT, SYMBOL_PARAMETER, SYMBOL_RESULT, SYMBOL_STATE } 
  * Forward name for one nominal module type owned by the semantic program.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 typedef struct SemanticType SemanticType;
+/** Borrow original closed-body and lexical field provenance for specialized
+ * inventories; [TPL-05](../../spec/language/templates.md#tpl-05) preserves captures
+ * and [TYPE-06](../../spec/language/declarations.md#type-06) fixes lexical identity.
+ */
+typedef struct StaticClosureEntry StaticClosureEntry;
+/** Borrow the required-Type worklist through semantic destruction.
+ * [TPL-06](../../spec/language/templates.md#tpl-06) separates its closed-Type
+ * certificate from subsequent ordinary operation checks.
+ */
+typedef struct StaticClosurePlan StaticClosurePlan;
+/** Borrow the original lexical field identity without classifying it again.
+ * [TYPE-06](../../spec/language/declarations.md#type-06) preserves first receivers
+ * and exact foreach scope independently from Type substitution.
+ */
+typedef struct StaticRuntimeField StaticRuntimeField;
 /**
  * Forward name for an immutable-value construction plan whose storage belongs to semantic
  * analysis.
@@ -74,6 +91,10 @@ typedef struct SemanticInitializer {
 typedef struct SemanticSymbol {
     struct SemanticSymbol *next;
     const AstNode *declaration;
+    /** Original lexical field in a closed specialization inventory; borrowed.
+     * [TYPE-06](../../spec/language/declarations.md#type-06) forbids reclassification.
+     */
+    const StaticRuntimeField *original;
     SourceSpan name;
     SourceSpan spelling;
     SourceSpan site;
@@ -106,6 +127,10 @@ typedef struct SemanticForeachBinding {
 struct SemanticType {
     SemanticType *next;
     const ProjectModule *module;
+    /** Borrow one required full-key descriptor; equal source paths alone do not
+     * identify a Type under [TPL-05](../../spec/language/templates.md#tpl-05).
+     */
+    const StaticClosureEntry *specialization;
     SemanticSymbol *first;
     SemanticSymbol *last;
     size_t symbol_count;
@@ -245,6 +270,13 @@ typedef struct {
     DiagnosticRelated related[3];
     bool names_attempted;
     bool names_valid;
+    /** Borrow the complete fixed lexical/Type inventory; the closure and all its
+     * source/term owners outlive this semantic program. Its certificate ensures
+     * [TYPE-06](../../spec/language/declarations.md#type-06) forbids classifying
+     * these source occurrences again, and
+     * [TPL-06](../../spec/language/templates.md#tpl-06) still requires ordinary checks.
+     */
+    StaticClosurePlan *type_closure;
     bool native_attempted;
     bool native_valid;
     SemanticType *list_integer;
@@ -296,10 +328,10 @@ SemanticStatus semantic_relations(SemanticProgram *program);
 /** Consume valid ordered shared prerequisites into startup/reverse-cleanup plans; no runtime construction occurs.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 SemanticStatus semantic_constants(SemanticProgram *program);
-/** Resolve an exact NUL-terminated supported logical identity in the borrowed type inventory or return null.
+/** Resolve a unique NUL-terminated source path; absent or capture-ambiguous paths return null.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 SemanticType *semantic_find_type(const SemanticProgram *program, const char *logical_path);
-/** Resolve exact original path-span bytes without normalization or creating an instance.
+/** Resolve unique original path-span bytes; absent or capture-ambiguous paths return null.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 SemanticType *semantic_type(const SemanticProgram *program, SourceSpan path);
 /** Resolve one exact declared base name in its explicit owner inventory; no spelling-based inference or storage-suffix overloading.

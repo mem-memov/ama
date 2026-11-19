@@ -4,6 +4,8 @@
  * [TYPE-06](../../../spec/language/declarations.md#type-06) requires immediate
  * inferred types; [NAME-06](../../../spec/language/declarations.md#name-06)
  * derives local scope from written foreach bodies, independently of runtime contents.
+ * [TPL-06](../../../spec/language/templates.md#tpl-06) allows a complete required
+ * Type-closure certificate to supply these bindings without repeating inference.
  */
 #include <assert.h>
 #include "internal.h"
@@ -41,6 +43,10 @@ static bool event(Inference *inference, const InferenceEvent *current) {
 SemanticStatus semantic_infer(SemanticProgram *program) {
     assert(program->names_valid && program->native_valid && !program->inference_attempted);
     program->inference_attempted = true;
+    if (program->type_closure) {
+        program->inference_valid = true;
+        return SEMANTIC_OK;
+    }
     if (!semantic_link_types(program)) { return program->status; }
     for (SemanticType *type = program->first; type != NULL; type = type->next) {
         Inference inference = {.program = program, .type = type};

@@ -1,10 +1,18 @@
 # Semantic analysis and resolved plans
 
-This describes the semantic subset audited in T001; [TODO](../../TODO.md) tracks adaptation under
-NAME-04, TYPE-01/TYPE-05 and COMP-01/COMP-02 of the
-[specification](../../spec/README.md). The public boundary is
-[semantic.h](../../src/semantic/semantic.h). Passing an earlier stage never
-certifies an unimplemented later stage.
+[Specialized ordinary semantics](specialized-semantics.md) supplies the current
+closed-Type frontend boundary under TPL-06 and TYPE-01/TYPE-05. It projects one
+concrete semantic owner per full specialization key before invoking the native,
+initializer, access, control and relation services described below. Its retained
+closure/source owners outlive all projected metadata. Closed fields and lexical
+cells are not inferred a second time.
+
+The direct concrete-source entry points below also remain in use by relocation
+reference/staging validation; [T193](../../TODO.md#t193) owns their static-aware
+migration. Their source-order fixture evidence is a bounded component contract,
+not a claim that a raw inventory accepts open/static source constructs. The
+public data boundary is [semantic.h](../../src/semantic/semantic.h). Successful
+Type closure alone does not certify ordinary operations or generated execution.
 
 [Exact transfers and lexical self](typed-transfers.md) records T032's storage
 matrix, constant/indexed source handling and staged executable boundary.

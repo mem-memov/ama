@@ -9,7 +9,7 @@
 #define AMA_SEMANTIC_SOURCE_INTERNAL_H
 #include "semantic/internal.h"
 /** Resolve a qualified immutable member and its original declaration/visibility context; false records an exact semantic failure. Component contract: [TYPE-05](../../../../spec/language/declarations.md#type-05), [REF-01](../../../../spec/language/values-and-references.md#ref-01). */
-bool semantic_constant_source(SemanticProgram *, SemanticSource *, const SemanticSymbol *);
+bool semantic_constant_source(SemanticProgram *, SemanticType *, SemanticSource *, const SemanticSymbol *);
 /** Resolve named local/module accesses and source-mode flags; borrowed syntax and resulting views retain the semantic owner's lifetime. Component contract: [TYPE-05](../../../../spec/language/declarations.md#type-05), [REF-01](../../../../spec/language/values-and-references.md#ref-01). */
 bool semantic_instance_source(SemanticProgram *, SemanticType *, SemanticSource *, const SemanticSymbol *);
 /** Type a nonowning scalar self handle as the lexical module; shared initialization has no such instance. Component contract: [TYPE-05](../../../../spec/language/declarations.md#type-05), [REF-01](../../../../spec/language/values-and-references.md#ref-01). */

@@ -278,3 +278,8 @@ outputs cannot manufacture a nominal constructor origin through this interface.
 The [guarded closure contract](../static-closure.md) records [T184](../../../DONE.md#t184)'s accepted
 composition of ordinary evidence and actual incoming specialization requirements.
 It separates accepted Type closure from T185 ordinary/executable admission.
+
+The [specialized ordinary semantics contract](../specialized-semantics.md) records
+T185's checked projection, ordinary operations, exact frontend root selection
+and finite candidate-group admission. T186–T188 own subsequent specialized
+constant lifecycle, resolved planning and generated execution acceptance.

@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../typed-common.c"
+#include "semantic/internal.h"
 
 /**
  * Assert that the component reports both nominal types and original declarations. The explicit
@@ -62,11 +63,38 @@ static void it_identifies_a_noncopyable_native_seed_inside_a_composed_type(void)
     destroy_semantic();
 }
 
+/** First failures retain their classification, location and related payload without allocation. */
+static void it_preserves_first_semantic_failure_across_outer_refusal_reporting(void) {
+    for (size_t memory_first = 0; memory_first < 2; memory_first++) {
+        prepare_types();
+        assert(resolve_text("@!\nsource\n.value\n") == SEMANTIC_OK);
+        SemanticSymbol *symbol = semantic_find_type(&semantic, ".main")->first;
+        size_t before = allocation_count;
+        if (memory_first) { assert(!semantic_memory_failure(&semantic)); }
+        else { assert(!semantic_fail(&semantic, symbol->site, "First original failure", symbol)); }
+        Diagnostic original = semantic.error;
+        SemanticStatus status = semantic.status;
+        assert(!semantic_fail(&semantic, symbol->name, "Later missing-name error", symbol));
+        assert(!semantic_memory_failure(&semantic));
+        SemanticSource source = {.site = symbol->site, .type = symbol->type, .declaration = symbol};
+        assert(!semantic_incompatible(&semantic, symbol->type, false, false, &source, symbol));
+        assert(!semantic_capability_error(&semantic, symbol->type, ABI_CLONE, symbol->site, symbol, "Later capability error"));
+        assert(semantic.status == status && semantic.error.code == original.code);
+        assert(semantic.error.message == original.message && semantic.error.related == original.related);
+        assert(semantic.error.related_count == original.related_count);
+        assert(semantic.error.primary.span.source == original.primary.span.source);
+        assert(semantic.error.primary.span.start == original.primary.span.start);
+        assert(allocation_count == before && diagnostic_valid(&semantic.error));
+        destroy_semantic();
+    }
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_preserves_first_semantic_failure_across_outer_refusal_reporting();
     it_reports_both_nominal_types_and_original_declarations();
     it_preserves_callee_parameter_context_for_literal_capability_errors();
     it_identifies_a_noncopyable_native_seed_inside_a_composed_type();

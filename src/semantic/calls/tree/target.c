@@ -1,9 +1,12 @@
 /** @file
  * @brief Resolve root targets in the caller and selected targets only in the parent's declared result interface.
  * [CALL-09](../../../../spec/language/calls-and-results.md#call-09) requires
- * exact suffixes and parent identity, without copying or private-name fallback.
+ * exact suffixes and parent identity without copying or private-name fallback.
+ * [CONST-03](../../../../spec/language/declarations.md#const-03) resolves saved
+ * namespaces from closed lexical specialization evidence.
  */
 #include "../internal.h"
+#include "semantic/specializations/namespace.h"
 #include "semantic/lists/internal.h"
 /** A selected result keeps its declaration's identity; nested indices resolve in the initiating caller. Component contract: [CALL-09](../../../../spec/language/calls-and-results.md#call-09). */
 static bool selected(SemanticProgram *program, SemanticType *caller, SemanticStatement *statement) {
@@ -23,7 +26,7 @@ bool semantic_call_target(SemanticProgram *program, SemanticType *caller, Semant
     const AstNode *node = statement->syntax;
     if (node->as.call.mode == AST_CONSTANT_READ) {
         statement->operation_kind = SEMANTIC_CONSTANT_OPERATION;
-        statement->namespace_type = semantic_type(program, node->as.call.namespace_expression->head);
+        statement->namespace_type = semantic_read_namespace(program, caller, node);
         return statement->namespace_type != NULL || semantic_fail(program, node->span,
             "The constant namespace is unavailable", NULL);
     }

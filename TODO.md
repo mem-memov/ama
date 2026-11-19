@@ -188,7 +188,9 @@ finite dependency-check groups. [T211](DONE.md#t211) supplies named result
 current constant Type/namespace evidence. [T182](DONE.md#t182) supplies accepted
 source-bound runtime fields and typed connections. [T184](DONE.md#t184) composes
 those equations with real guarded contexts and complete required-Type closure.
-T185 is next: ordinary operation/capability checks and specialization admission.
+[T185](DONE.md#t185) supplies ordinary operation/capability checks and finite
+specialization admission through the actual frontend. T186 is next: specialized
+constant lifecycle planning.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -212,26 +214,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 4. Resolve static graphs and independent ordinary exports
 
 ### Phase 5. Close and admit ordinary specializations
-
-<a id="t185"></a>
-
-- [ ] **T185 — Apply ordinary operation, ownership and lifecycle checks.**
-  Prerequisites: T184.
-  Rules: [TPL-06](spec/language/templates.md#tpl-06),
-  [TYPE-05](spec/language/declarations.md#type-05),
-  [COPY-06](spec/language/values-and-references.md#copy-06),
-  [PROTO-07](spec/implementation/native-interface.md#proto-07).
-  Boundary: resolved semantic capability/access/storage checks and separate
-  eager-construction/copy relations over concrete specializations.
-  Steps: (1) route substituted fields, defaults and operations through ordinary
-  checkers; (2) compute ownership/clone/default requirements on concrete types;
-  (3) admit successful candidates and compose generic calls, refs, lists and
-  native protocol declarations. Failed candidates cannot reach lowering.
-  Accept: literal/default/copy/condition/index/lifecycle requirements pass only
-  when supported; supplied arguments and unreachable branches do not hide bad
-  defaults/operations. Distinguish valid nominal reference/list cycles from
-  eager cycles and owned noncopyable paths; check storage exactness, no implicit
-  conversion/private-field access and no expansion of the deferred list scope.
 
 <a id="t186"></a>
 
@@ -546,7 +528,7 @@ whole-program admission; component certificates do not replace those checks.
 | Dependent constant declarations | [T196](#t196) |
 | Explicit constant namespaces | [T196](#t196) |
 | Specialized constant lifecycle | [T186](#t186) |
-| Concrete operation checks | [T185](#t185) |
+| Concrete operation checks | [T196](#t196) |
 | Template parameter signatures | [T196](#t196) |
 | Partial composition | [T196](#t196) |
 | Explicit static input categories | [T196](#t196) |

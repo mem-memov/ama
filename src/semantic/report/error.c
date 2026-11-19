@@ -3,12 +3,14 @@
  * @brief Build allocation-free semantic failures with original primary/related declarations.
  *
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
- * Diagnostic views borrow semantic/project storage; reporting does not guess repairs or allocate a fallback message.
+ * Preserve the first failure so outer lookups cannot replace allocation refusal
+ * with a misleading missing-name error. Diagnostic views borrow semantic/project storage; reporting does not guess repairs or allocate a fallback message.
  * [TYPE-06](../../../spec/language/declarations.md#type-06) Original symbol sites preserve inferred/local context without fabricated syntax.
  */
 #include "semantic/internal.h"
 
 bool semantic_memory_failure(SemanticProgram *program) {
+    if (program->status != SEMANTIC_OK) { return false; }
     program->status = SEMANTIC_OUT_OF_MEMORY;
     program->error = (Diagnostic){.code = DIAGNOSTIC_OUT_OF_MEMORY,
         .message = "Semantic analysis could not allocate storage"};
@@ -17,6 +19,7 @@ bool semantic_memory_failure(SemanticProgram *program) {
 
 bool semantic_fail(SemanticProgram *program, SourceSpan span, const char *message,
     const SemanticSymbol *related) {
+    if (program->status != SEMANTIC_OK) { return false; }
     program->status = SEMANTIC_INVALID;
     program->error = (Diagnostic){.code = DIAGNOSTIC_TYPE_MISMATCH,
         .message = message, .primary = {.span = span}};
