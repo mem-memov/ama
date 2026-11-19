@@ -177,6 +177,63 @@ static void it_unwinds_every_allocation_failure_without_leaking_or_publishing_pa
     }
 }
 
+/** Each failed native constructor releases its own resource; only successfully completed
+ * constants acquire destructor obligations, discharged once in reverse creation order.
+ */
+static void it_unwinds_each_successful_constant_prefix_in_reverse_without_destroying_failed_native_values(void) {
+    for (size_t failure = 0; failure <= 4; failure++) {
+        setup_program();
+        AmaConstantStorage storage[4] = {0};
+        AmaProgramConstant declarations[4] = {0};
+        AmaProgramSource initializers[4] = {0};
+        unsigned char bytes[4] = {11, 22, 33, 44};
+        for (size_t index = 0; index < 4; index++) {
+            initializers[index] = (AmaProgramSource){.kind = AMA_SOURCE_LITERAL,
+                .literal = {&bytes[index], 1}, .type_id = 1};
+            declarations[index] = (AmaProgramConstant){.storage = &storage[index], .type_id = 1,
+                .initializers = &initializers[index], .initializer_count = 1};
+        }
+        program.constants = declarations;
+        program.constant_count = 4;
+        failed_constructor = failure;
+        AmaHandle root = {0};
+        AmaStatus status = ama_program_constants_initialize(&program);
+        assert(status.code == (failure ? AMA_INVALID_LITERAL : AMA_OK));
+        assert(root_type.pool.live_count == 0 && leaf_type.pool.live_count == 0);
+        size_t successful = failure ? failure - 1 : 4;
+        status = ama_program_stop(&program, root, status);
+        assert(status.code == (failure ? AMA_INVALID_LITERAL : AMA_OK));
+        assert(destroyed == successful);
+        for (size_t index = 0; index < successful; index++) {
+            assert(destruction_order[index] == bytes[successful - index - 1]);
+        }
+        for (size_t index = 0; index < 4; index++) { assert(storage[index].items == NULL && storage[index].count == 0); }
+        destroy_test();
+    }
+}
+
+/** Destruction failure cannot skip another completed shared value or replace an
+ * already recorded primary error; a second stop must not repeat native cleanup.
+ */
+static void it_finishes_shared_cleanup_after_each_destructor_failure_and_preserves_the_primary_error(void) {
+    for (size_t primary = 0; primary < 2; primary++) {
+        for (size_t failure = 1; failure <= 2; failure++) {
+            setup_program();
+            AmaStatus status = ama_program_constants_initialize(&program);
+            assert(status.code == AMA_OK);
+            failed_destructor = failure;
+            status = primary ? ama_status_make(AMA_NATIVE_FAILURE, NULL, 0) : ama_status_success();
+            status = ama_program_stop(&program, (AmaHandle){0}, status);
+            assert(status.code == (primary ? AMA_NATIVE_FAILURE : AMA_IO_FAILURE));
+            assert(destroyed == 2 && shared_values[0].items == NULL && shared_values[1].items == NULL);
+            status = ama_program_stop(&program, (AmaHandle){0}, status);
+            assert(status.code == (primary ? AMA_NATIVE_FAILURE : AMA_IO_FAILURE));
+            assert(destroyed == 2);
+            destroy_test();
+        }
+    }
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
@@ -188,6 +245,8 @@ void run(void) {
     it_never_creates_the_root_after_constant_failure();
     it_constructs_compound_constants_using_earlier_fields_and_reverse_cleanup();
     it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots();
+    it_unwinds_each_successful_constant_prefix_in_reverse_without_destroying_failed_native_values();
+    it_finishes_shared_cleanup_after_each_destructor_failure_and_preserves_the_primary_error();
 }
 
 /**

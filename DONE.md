@@ -6151,3 +6151,55 @@ T201. Specification bytes have not changed.
   Doxygen, complete per-file/header coverage, source navigation, Markdown/rule/
   grammar checks, task routing and staged review complete task acceptance.
   Next ready task: T186, specialization-scoped constant lifecycle planning.
+
+<a id="t186"></a>
+
+- [x] **T186 — Plan and execute specialization-scoped constant lifecycles.**
+  Prerequisites: T183, T185, T212.
+  Rules: [CONST-02](spec/language/declarations.md#const-02),
+  [CONST-06](spec/language/declarations.md#const-06),
+  [LIFE-03](spec/implementation/native-interface.md#life-03).
+  Status: completed; [contract and step record](docs/implementation/specialized-constants.md).
+  Boundary: concrete constant dependency graphs, startup plans and context-local
+  constant storage/cleanup; no mutable state in the specialization cache.
+  Steps: (1) key vertices by full specialization/member ordinal and order ready
+  vertices exactly; (2) integrate initialization and successful-prefix unwind;
+  (3) compose real runtime constant/list/native lifecycle consumers.
+  Accept: equivalent namespaces share one table per context; different bindings
+  and contexts remain independent. Reject value cycles while accepting harmless
+  self-typed constants; no body execution supplies values. Failure before root
+  startup cleans exactly the successful creations in reverse order, including
+  partial native construction; copies preserve immutable shared originals.
+  Generated whole-project startup evidence is completed with T188.
+
+  Completed from 0281859: generated shared names now use complete framed owner
+  substitutions plus original members. The path-only naming implementation is
+  removed. Equal owners reuse one identity; distinct captures/members retain
+  separate immutable plans and storage. Concrete zero-input identities remain
+  exactly their canonical single-member keys. Temporary key buffers expire only
+  after the naming registry owns their encodings.
+
+  Actual frontend/scaffold cases verify four distinct captured member keys,
+  equivalent-owner reuse, exact qualified components, foreign/nonshared/null
+  refusals and preserved receivers. Every eight naming-allocation positions
+  unwinds counted resources and preserves the first diagnostic. Empty self-typed
+  constants pass; actual cross-module shared-value cycles fail before planning.
+
+  Generated execution verifies literal, copy, default and typed empty-list shared
+  values, repeated namespace use, private-copy mutation preserving originals,
+  distinct tables/payloads in two leased contexts, and shared literal failure
+  before root/body execution. Runtime composition injects every four constructor
+  prefix failures and each of two destructor failures, verifies reverse successful
+  cleanup, preserves primary errors and forbids duplicate cleanup on another stop.
+  ASan/UBSan checks passed for all three affected leaves; existing compiled reads
+  and assembly checks passed at strict O2/Werror. Counted teardown is independent
+  evidence; LeakSanitizer is unavailable. The production compiler build and
+  complete Doxygen/per-file checks are collected before applying this archive.
+
+  The [full contract/evidence](docs/implementation/specialized-constants.md)
+  records corrected test setup failures and exact receipts. Two-capture ordinary
+  layout emission remains T188's existing scope: its current path-only type-name
+  consumer produces duplicate C descriptions. This task does not claim that
+  whole-project capability or full-language conformance, whose stale review gate
+  remains T196-owned. No specification or conformance fingerprints were changed.
+  Final archive rendering receipt: /tmp/ama-t186-archive-docs.log. Next: T187.

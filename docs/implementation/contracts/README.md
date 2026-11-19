@@ -283,3 +283,7 @@ The [specialized ordinary semantics contract](../specialized-semantics.md) recor
 T185's checked projection, ordinary operations, exact frontend root selection
 and finite candidate-group admission. T186–T188 own subsequent specialized
 constant lifecycle, resolved planning and generated execution acceptance.
+
+The [specialization constant contract](../specialized-constants.md) records T186's
+accepted full-owner/member naming and startup/lifecycle composition, with T188's
+remaining ordinary layout emission boundary stated explicitly.

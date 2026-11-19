@@ -4,9 +4,11 @@
  *
  * [NAME-01](../../../spec/implementation/compiler.md#name-01)
  * Runtime type ordinals are assembly-local registry keys, not cross-build external identities. Source names use complete registered keys.
+ * [CONST-06](../../../spec/language/declarations.md#const-06) keeps captured owners distinct in shared names.
  * [TYPE-06](../../../spec/language/declarations.md#type-06) Exact semantic base names do not require a synthetic declaration AST.
  */
 #include "codegen/internal.h"
+#include "semantic/specializations/members/key.h"
 
 /**
  * Return the exact descriptor pointer ordinal starting at one, or zero if absent. This is an
@@ -32,23 +34,25 @@ const ScaffoldMember *codegen_member(const ScaffoldType *type, const SemanticSym
 }
 
 /**
- * Register a full module/category/member identity using exact source bytes and return
- * scaffold-owned generated C spelling. Preserve collision/allocation failure; no
- * transliteration.
- * Component contract: [NAME-01](../../../spec/implementation/compiler.md#name-01), [TYPE-06](../../../spec/language/declarations.md#type-06). */
+ * Register the complete owner substitution plus original member and return
+ * scaffold-owned generated C spelling. Registration copies the framed identity
+ * before temporary descriptors expire. Preserve the first collision/allocation
+ * failure and publish no runtime storage here.
+ * [CONST-06](../../../spec/language/declarations.md#const-06) separates captured namespaces.
+ * [NAME-02](../../../spec/implementation/compiler.md#name-02) compares complete keys before sharing names.
+ */
 const char *codegen_constant_name(NativeScaffold *scaffold, const SemanticConstantPlan *constant) {
-    SourceSpan name = constant->symbol->name;
-    size_t length = name.end - name.start;
-    char *member = scaffold_allocate(scaffold, length + 1);
-    if (member == NULL) { return NULL; }
-    for (size_t index = 0; index < length; index++) { member[index] = (char)source_bytes(name.source)[name.start + index]; }
-    const char *component = member;
-    QualifiedIdentity key = {IDENTITY_CONSTANT, constant->symbol->owner->module->source->logical_path,
-        &component, 1, name};
+    if (scaffold->error.message) { return NULL; }
+    SourceArena temporary;
+    source_arena_init(&temporary, scaffold->arena.allocator);
+    QualifiedIdentity key;
+    IdentityStatus status = semantic_constant_key(&scaffold->frontend->semantic, constant->symbol, &temporary, &key);
     const IdentityName *identity = NULL;
-    IdentityStatus status = identity_register(&scaffold->identities, key, &identity);
+    if (status == IDENTITY_OK) { status = identity_register(&scaffold->identities, key, &identity); }
+    source_arena_destroy(&temporary);
     if (status != IDENTITY_OK) {
-        scaffold_error(scaffold, status == IDENTITY_COLLISION ? DIAGNOSTIC_IDENTITY_COLLISION : DIAGNOSTIC_OUT_OF_MEMORY,
+        scaffold_error(scaffold, status == IDENTITY_COLLISION ? DIAGNOSTIC_IDENTITY_COLLISION
+                : status == IDENTITY_OUT_OF_MEMORY || status == IDENTITY_LIMIT ? DIAGNOSTIC_OUT_OF_MEMORY : DIAGNOSTIC_TYPE_MISMATCH,
             "Cannot register a qualified shared value identity", NULL);
         return NULL;
     }

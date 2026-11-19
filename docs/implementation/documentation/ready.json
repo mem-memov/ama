@@ -2927,6 +2927,31 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_distinguishes_specialized_constant_names_and_reuses_equal_owners",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_preserves_concrete_constant_identity_and_refuses_foreign_members",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_unwinds_every_specialized_constant_naming_allocation_refusal",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constant-execution/main.c",
+        "case": "it_constructs_specialized_constants_once_per_context_without_executing_namespace_bodies",
+        "command": "make -C tests/unit/codegen/specialized-constant-execution"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constant-execution/main.c",
+        "case": "it_reports_specialized_constant_construction_failure_before_root_execution",
+        "command": "make -C tests/unit/codegen/specialized-constant-execution"
       }
     ]
   },
@@ -41817,6 +41842,31 @@
         "case": "it_rejects_inspection_after_generated_host_failure_cleanup",
         "command": "make -C tests/unit/codegen/debugger",
         "source": "tests/unit/codegen/debugger/main.c"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_distinguishes_specialized_constant_names_and_reuses_equal_owners",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_preserves_concrete_constant_identity_and_refuses_foreign_members",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_unwinds_every_specialized_constant_naming_allocation_refusal",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constant-execution/main.c",
+        "case": "it_constructs_specialized_constants_once_per_context_without_executing_namespace_bodies",
+        "command": "make -C tests/unit/codegen/specialized-constant-execution"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constant-execution/main.c",
+        "case": "it_reports_specialized_constant_construction_failure_before_root_execution",
+        "command": "make -C tests/unit/codegen/specialized-constant-execution"
       }
     ]
   },
@@ -52863,6 +52913,16 @@
         "case": "it_unwinds_every_allocation_failure_without_leaking_or_publishing_partial_roots",
         "command": "make -C tests/unit/runtime/program",
         "source": "tests/unit/runtime/program/main.c"
+      },
+      {
+        "source": "tests/unit/runtime/program/main.c",
+        "case": "it_unwinds_each_successful_constant_prefix_in_reverse_without_destroying_failed_native_values",
+        "command": "make -C tests/unit/runtime/program"
+      },
+      {
+        "source": "tests/unit/runtime/program/main.c",
+        "case": "it_finishes_shared_cleanup_after_each_destructor_failure_and_preserves_the_primary_error",
+        "command": "make -C tests/unit/runtime/program"
       }
     ]
   },
@@ -166511,6 +166571,147 @@
         "source": "tests/unit/semantic/specializations/inventory/main.c",
         "case": "it_orders_full_keys_independently_of_call_evidence_order",
         "command": "make -C tests/unit/semantic/specializations/inventory"
+      }
+    ]
+  },
+  "src/semantic/specializations/members/key.c": {
+    "contract": "docs/implementation/specialized-constants.md",
+    "purpose": "Compose full owner/member constant keys with exact source membership and partial-arena ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_distinguishes_specialized_constant_names_and_reuses_equal_owners",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_preserves_concrete_constant_identity_and_refuses_foreign_members",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_unwinds_every_specialized_constant_naming_allocation_refusal",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      }
+    ]
+  },
+  "src/semantic/specializations/members/key.h": {
+    "contract": "docs/implementation/specialized-constants.md",
+    "purpose": "Expose structural specialization-member key construction independently of generated spelling.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_distinguishes_specialized_constant_names_and_reuses_equal_owners",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_preserves_concrete_constant_identity_and_refuses_foreign_members",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_unwinds_every_specialized_constant_naming_allocation_refusal",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/codegen/specialized-constants/Makefile": {
+    "contract": "docs/implementation/specialized-constants.md",
+    "purpose": "Compose actual specialized frontend storage and scaffold identity consumers.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_distinguishes_specialized_constant_names_and_reuses_equal_owners",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_preserves_concrete_constant_identity_and_refuses_foreign_members",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_unwinds_every_specialized_constant_naming_allocation_refusal",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_distinguishes_empty_self_typed_constants_from_actual_value_dependency_cycles",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      }
+    ]
+  },
+  "tests/unit/codegen/specialized-constants/main.c": {
+    "contract": "docs/implementation/specialized-constants.md",
+    "purpose": "Check owner/member key separation, concrete key preservation and every naming allocation refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_distinguishes_specialized_constant_names_and_reuses_equal_owners",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_preserves_concrete_constant_identity_and_refuses_foreign_members",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_unwinds_every_specialized_constant_naming_allocation_refusal",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constants/main.c",
+        "case": "it_distinguishes_empty_self_typed_constants_from_actual_value_dependency_cycles",
+        "command": "make -C tests/unit/codegen/specialized-constants"
+      }
+    ]
+  },
+  "tests/unit/codegen/specialized-constant-execution/main.c": {
+    "contract": "docs/implementation/specialized-constants.md",
+    "purpose": "Execute specialization constant startup, equal-owner reuse, independent contexts and native literal failure.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specialized-constant-execution/main.c",
+        "case": "it_constructs_specialized_constants_once_per_context_without_executing_namespace_bodies",
+        "command": "make -C tests/unit/codegen/specialized-constant-execution"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constant-execution/main.c",
+        "case": "it_reports_specialized_constant_construction_failure_before_root_execution",
+        "command": "make -C tests/unit/codegen/specialized-constant-execution"
+      }
+    ]
+  },
+  "tests/unit/codegen/specialized-constant-execution/Makefile": {
+    "contract": "docs/implementation/specialized-constants.md",
+    "purpose": "Compile and execute the actual specialization constant lifecycle composition.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specialized-constant-execution/main.c",
+        "case": "it_constructs_specialized_constants_once_per_context_without_executing_namespace_bodies",
+        "command": "make -C tests/unit/codegen/specialized-constant-execution"
+      },
+      {
+        "source": "tests/unit/codegen/specialized-constant-execution/main.c",
+        "case": "it_reports_specialized_constant_construction_failure_before_root_execution",
+        "command": "make -C tests/unit/codegen/specialized-constant-execution"
       }
     ]
   }

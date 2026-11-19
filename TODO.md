@@ -189,8 +189,9 @@ current constant Type/namespace evidence. [T182](DONE.md#t182) supplies accepted
 source-bound runtime fields and typed connections. [T184](DONE.md#t184) composes
 those equations with real guarded contexts and complete required-Type closure.
 [T185](DONE.md#t185) supplies ordinary operation/capability checks and finite
-specialization admission through the actual frontend. T186 is next: specialized
-constant lifecycle planning.
+specialization admission through the actual frontend. [T186](DONE.md#t186) supplies
+full-owner constant identities and checked startup/cleanup composition. T187 is
+next: concrete resolved storage and control planning.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -214,25 +215,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 4. Resolve static graphs and independent ordinary exports
 
 ### Phase 5. Close and admit ordinary specializations
-
-<a id="t186"></a>
-
-- [ ] **T186 — Plan and execute specialization-scoped constant lifecycles.**
-  Prerequisites: T183, T185, T212.
-  Rules: [CONST-02](spec/language/declarations.md#const-02),
-  [CONST-06](spec/language/declarations.md#const-06),
-  [LIFE-03](spec/implementation/native-interface.md#life-03).
-  Boundary: concrete constant dependency graphs, startup plans and context-local
-  constant storage/cleanup; no mutable state in the specialization cache.
-  Steps: (1) key vertices by full specialization/member ordinal and order ready
-  vertices exactly; (2) integrate initialization and successful-prefix unwind;
-  (3) compose real runtime constant/list/native lifecycle consumers.
-  Accept: equivalent namespaces share one table per context; different bindings
-  and contexts remain independent. Reject value cycles while accepting harmless
-  self-typed constants; no body execution supplies values. Failure before root
-  startup cleans exactly the successful creations in reverse order, including
-  partial native construction; copies preserve immutable shared originals.
-  Generated whole-project startup evidence is completed with T188.
 
 ### Phase 6. Lower and execute concrete programs
 
@@ -272,6 +254,10 @@ reuse, removal and replacement below; they do not establish current-spec support
   identity, state, startup and continuation consumers under relevant sanitizers.
   Accept: one type/code identity for equivalent specializations with independent
   instances, results, busy state, owned state, references and continuations.
+  T186 composition finding: `native/scaffold/model/types.c` still keys emitted
+  ordinary type descriptions by source path; two captures of `.container` produce
+  duplicate C type descriptions. Exercise and correct this full-owner emission
+  boundary here; evidence is recorded in the T186 contract.
   Constants obey per-context sharing and cleanup; ordinary and explicit `%`
   copies preserve their distinct rules. Verify labels/one assembly, native entry
   inlining and no Ama C-call recursion; test malformed closure rejection and
@@ -527,7 +513,7 @@ whole-program admission; component certificates do not replace those checks.
 | Specialization identity | [T196](#t196) |
 | Dependent constant declarations | [T196](#t196) |
 | Explicit constant namespaces | [T196](#t196) |
-| Specialized constant lifecycle | [T186](#t186) |
+| Specialized constant lifecycle | [T186](DONE.md#t186) |
 | Concrete operation checks | [T196](#t196) |
 | Template parameter signatures | [T196](#t196) |
 | Partial composition | [T196](#t196) |
