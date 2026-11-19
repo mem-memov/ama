@@ -193,7 +193,9 @@ specialization admission through the actual frontend. [T186](DONE.md#t186) suppl
 full-owner constant identities and checked startup/cleanup composition.
 [T187](DONE.md#t187) validates concrete storage, lifecycle and control planning.
 [T188](DONE.md#t188) supplies full-owner generated names and compiled specialized
-execution. T189 is next: complete specialization diagnostics and source maps.
+execution. [T189](DONE.md#t189) supplies original-source diagnostics through
+static normalization and compiled execution. T190 is next: concrete native/template
+compositions.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -219,28 +221,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 5. Close and admit ordinary specializations
 
 ### Phase 6. Lower and execute concrete programs
-
-<a id="t189"></a>
-
-- [ ] **T189 — Accept end-to-end specialization diagnostics and source maps.**
-  Prerequisites: T184, T185, T188.
-  Rules: [COMP-04](spec/implementation/compiler.md#comp-04),
-  [NAME-03](spec/implementation/compiler.md#name-03),
-  [DEBUG-01](spec/implementation/diagnostics.md#debug-01).
-  Boundary: structured semantic/expansion diagnostics, rendering, generated C
-  mappings and execution traces; each earlier task already reports local errors.
-  Steps: (1) reconcile original definition/application/related-site chains;
-  (2) compose check-only, generated-C errors and runtime traces;
-  (3) verify stable outcomes across cache/order changes and low-memory failures.
-  Accept: malformed names, kind/signature conflicts, occurs failures, unknown
-  evidence, incomplete producers and each distinct cycle identify responsible
-  original sites. Include pair definitions versus equality receipts, preserved
-  extra residuals and independent-bridge closure errors. Unicode/multiword/hyphen
-  paths round-trip; virtual identities
-  do not pretend to be source files, and diagnostics remain valid through cleanup.
-  A failed compilation must not leave partial output masquerading as a usable
-  build or overwrite handwritten native companions. Static evaluation neither
-  executes runtime code nor produces fictitious runtime stack entries.
 
 <a id="t190"></a>
 
@@ -489,7 +469,7 @@ whole-program admission; component certificates do not replace those checks.
 | Static evaluation boundary and cycles | [T196](#t196) |
 | Returned constructor creation provenance | [T196](#t196) |
 | List implementation boundary | [T195](#t195) |
-| Specialization analysis and diagnostics | [T189](#t189) |
+| Specialization analysis and diagnostics | [T189](DONE.md#t189) |
 | Finite repeated composition | [T196](#t196) |
 | Definition-generated recursion | [T196](#t196) |
 | Creation-graph provenance | [T196](#t196) |

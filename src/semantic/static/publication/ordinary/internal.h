@@ -17,4 +17,15 @@ bool static_ordinary_has(const StaticPublicationPlan *, const StaticOrdinaryType
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) forbids contextual completion.
  */
 bool static_ordinary_export(StaticPublicationPlan *, StaticOrdinaryType *);
+/** Attach this actual selector without allocating, changing the primary cause,
+ * or turning its caller into a producer inference/creation input.
+ * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04) preserves requiring-site provenance.
+ */
+void static_ordinary_error_context(StaticPublicationPlan *, StaticOrdinaryType *);
+/** Reject a selected non-Type with its actual export definition and an original
+ * residual witness, preserving all prior error state and complete metadata.
+ * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04) links responsible original declarations.
+ */
+bool static_ordinary_export_failure(StaticPublicationPlan *, StaticOrdinaryType *, StaticPublicationStatus,
+    const char *, const StaticTerm *);
 #endif

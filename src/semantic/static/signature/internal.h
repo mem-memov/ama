@@ -41,4 +41,9 @@ StaticMetadata static_head_metadata(const StaticInventory *, const StaticModule 
  * Contract: [TPL-12](../../../../spec/language/static-results.md#tpl-12).
  */
 void static_resolve_metadata(StaticInventory *);
+/** Preserve an actual known constructor interface alongside the original
+ * signature-use failure, without allocation or changing earlier errors.
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) retains responsible original sites.
+ */
+bool static_signature_error(StaticInventory *, SourceSpan, const char *, const StaticSymbol *, const ProjectModule *);
 #endif

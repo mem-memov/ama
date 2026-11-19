@@ -52,6 +52,9 @@ DiagnosticRenderStatus diagnostic_render(FILE *output, const Diagnostic *diagnos
             return DIAGNOSTIC_RENDER_IO_ERROR;
         }
     }
+    for (const DiagnosticContext *node = diagnostic->contexts; node; node = node->next) {
+        if (!write_related(output, &node->related)) { return DIAGNOSTIC_RENDER_IO_ERROR; }
+    }
     return fflush(output) == 0 && !ferror(output)
         ? DIAGNOSTIC_RENDER_OK : DIAGNOSTIC_RENDER_IO_ERROR;
 }

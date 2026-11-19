@@ -69,6 +69,7 @@ bool static_constraint_bind(StaticConstraintSolver *solver, const StaticTerm *va
         }
     }
     record->value = value;
+    record->reason = equation;
     solver->dirty = true;
     *changed = true;
     return true;

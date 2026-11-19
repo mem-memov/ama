@@ -19,12 +19,30 @@ static bool location_valid(DiagnosticLocation location) {
             || strcmp(location.path, source_path(location.span.source)) == 0);
 }
 
+/** Reject cyclic borrowed chains before traversing their locations; no depth
+ * budget or heap scratch is needed.
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04) requires valid finite diagnostic records.
+ */
+static bool contexts_valid(const DiagnosticContext *head) {
+    const DiagnosticContext *slow = head, *fast = head;
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast) { return false; }
+    }
+    for (const DiagnosticContext *node = head; node; node = node->next) {
+        if (!node->related.role || !*node->related.role || !location_valid(node->related.location)) { return false; }
+    }
+    return true;
+}
+
 bool diagnostic_valid(const Diagnostic *diagnostic) {
     if (diagnostic == NULL || diagnostic->code < 0
         || diagnostic->code >= DIAGNOSTIC_CODE_COUNT
         || diagnostic->message == NULL || *diagnostic->message == 0
         || !location_valid(diagnostic->primary)
-        || (diagnostic->related_count != 0 && diagnostic->related == NULL)) {
+        || (diagnostic->related_count != 0 && diagnostic->related == NULL)
+        || !contexts_valid(diagnostic->contexts)) {
         return false;
     }
     for (size_t index = 0; index < diagnostic->related_count; index++) {

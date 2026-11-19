@@ -6,3 +6,5 @@ SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/semantic))
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/identity))
 # Configure fixture filesystem authority from each actual leaf, not folder depth.
 TEST_DEFINES += -DTEST_STANDARD_ROOT=\"$(ROOT)/stdlib/modules\"
+
+SOURCES += diagnostics/record/context.c

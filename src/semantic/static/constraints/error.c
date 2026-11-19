@@ -11,7 +11,7 @@
  * lexical occurrence is retained directly as the term site.
  * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves real sources.
  */
-static DiagnosticRelated definition(const StaticTerm *term, const char *role) {
+DiagnosticRelated static_constraint_definition(const StaticTerm *term, const char *role) {
     if (term->kind == STATIC_TERM_VARIABLE) {
         const StaticSymbol *symbol = term->as.variable.symbol;
         if (symbol == NULL) {
@@ -40,7 +40,7 @@ bool static_constraint_failure(StaticConstraintSolver *solver, StaticConstraintS
     const char *roles[] = {"left static definition", "right static definition"};
     for (size_t index = 0; index < 2; index++) {
         if (terms[index] == NULL) { continue; }
-        solver->related[solver->error.related_count++] = definition(terms[index], roles[index]);
+        solver->related[solver->error.related_count++] = static_constraint_definition(terms[index], roles[index]);
     }
     if (solver->error.related_count != 0) { solver->error.related = solver->related; }
     return false;

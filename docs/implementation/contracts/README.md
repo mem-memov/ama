@@ -295,3 +295,6 @@ policies and exact failure checks.
 The [specialized execution contract](../specialized-execution.md) records T188's
 accepted complete-owner C identities, partial/nested static composition, actual
 stackless execution and complete managed-allocation refusal boundaries.
+
+The [specialization diagnostic contract](../specialization-diagnostics.md) records
+T189's accepted original-source frontend, generated-C and runtime trace compositions.

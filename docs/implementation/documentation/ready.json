@@ -5462,6 +5462,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_adds_caller_owned_context_without_replacing_primary_or_existing_related_notes",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_validates_deep_diagnostic_contexts_and_rejects_cycles_without_recursion",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -5648,6 +5668,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_adds_caller_owned_context_without_replacing_primary_or_existing_related_notes",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_validates_deep_diagnostic_contexts_and_rejects_cycles_without_recursion",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/diagnostics/render/main.c",
+        "case": "it_renders_caller_contexts_after_original_notes_and_refuses_context_cycles_before_output",
+        "command": "make -C tests/unit/diagnostics/render"
       }
     ]
   },
@@ -5806,6 +5841,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/diagnostics/render/main.c",
+        "case": "it_renders_caller_contexts_after_original_notes_and_refuses_context_cycles_before_output",
+        "command": "make -C tests/unit/diagnostics/render"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -42027,6 +42077,16 @@
         "source": "tests/unit/codegen/specializations/main.c",
         "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
         "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/specialization-diagnostics/main.c",
+        "case": "it_preserves_unicode_multiword_hyphen_paths_through_captured_runtime_failure",
+        "command": "make -C tests/unit/codegen/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/codegen/specialization-diagnostics/main.c",
+        "case": "it_maps_native_c_errors_to_original_unicode_companions_and_preserves_previous_output",
+        "command": "make -C tests/unit/codegen/specialization-diagnostics"
       }
     ]
   },
@@ -43326,6 +43386,66 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_identifies_the_original_input_declaration_for_unanchored_required_types",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_distinguishes_original_eager_ownership_and_shared_value_cycle_locations",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_definition_cycles_without_fabricating_runtime_invocations",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_occurs_refusal_with_original_variable_and_constructor_definitions",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_changing_key_creation_at_its_actual_original_required_path",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_rejects_malformed_static_names_at_the_original_source_line",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -43924,6 +44044,16 @@
         "case": "it_retains_both_original_names_for_an_identity_collision",
         "command": "make -C tests/unit/diagnostics/record",
         "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_adds_caller_owned_context_without_replacing_primary_or_existing_related_notes",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_validates_deep_diagnostic_contexts_and_rejects_cycles_without_recursion",
+        "command": "make -C tests/unit/diagnostics/record"
       }
     ]
   },
@@ -43965,6 +44095,16 @@
         "case": "it_publishes_neither_diagnostic_nor_related_note_on_invalid_adaptation",
         "command": "make -C tests/unit/diagnostics/record",
         "source": "tests/unit/diagnostics/record/main.c"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_adds_caller_owned_context_without_replacing_primary_or_existing_related_notes",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_validates_deep_diagnostic_contexts_and_rejects_cycles_without_recursion",
+        "command": "make -C tests/unit/diagnostics/record"
       }
     ]
   },
@@ -43991,6 +44131,11 @@
         "case": "it_escapes_source_mapping_paths_without_rewriting_unicode",
         "command": "make -C tests/unit/diagnostics/render",
         "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "source": "tests/unit/diagnostics/render/main.c",
+        "case": "it_renders_caller_contexts_after_original_notes_and_refuses_context_cycles_before_output",
+        "command": "make -C tests/unit/diagnostics/render"
       }
     ]
   },
@@ -44027,6 +44172,11 @@
         "case": "it_rejects_invalid_mapping_before_output_and_reports_immediate_io_failure",
         "command": "make -C tests/unit/diagnostics/render",
         "source": "tests/unit/diagnostics/render/main.c"
+      },
+      {
+        "source": "tests/unit/diagnostics/render/main.c",
+        "case": "it_renders_caller_contexts_after_original_notes_and_refuses_context_cycles_before_output",
+        "command": "make -C tests/unit/diagnostics/render"
       }
     ]
   },
@@ -55340,6 +55490,16 @@
         "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
         "case": "it_unwinds_full_name_registration_and_retains_only_owned_name_data",
         "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -127648,6 +127808,11 @@
         "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_rejects_static_application_of_a_known_concrete_type",
         "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ],
     "standalone_header_command": [
@@ -130930,6 +131095,11 @@
         "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
         "source": "tests/unit/semantic/static/usage/main.c",
         "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -131208,6 +131378,11 @@
         "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
         "source": "tests/unit/semantic/static/usage/main.c",
         "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ],
     "standalone_header_command": [
@@ -135992,6 +136167,16 @@
         "source": "tests/unit/semantic/static/terms/runtime/main.c",
         "case": "it_unwinds_every_runtime_hole_allocation_and_counter_refusal",
         "command": "make -C tests/unit/semantic/static/terms/runtime"
+      },
+      {
+        "source": "tests/unit/semantic/static/constraints/solve/main.c",
+        "case": "it_preserves_causal_binding_graphs_without_failure_allocations",
+        "command": "make -C tests/unit/semantic/static/constraints/solve"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -136244,6 +136429,16 @@
         "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
         "command": "make -C tests/unit/semantic/static/constraints/composition",
         "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constraints/solve/main.c",
+        "case": "it_preserves_causal_binding_graphs_without_failure_allocations",
+        "command": "make -C tests/unit/semantic/static/constraints/solve"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ],
     "standalone_header_command": [
@@ -136451,6 +136646,16 @@
         "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
         "command": "make -C tests/unit/semantic/static/constraints/composition",
         "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constraints/solve/main.c",
+        "case": "it_preserves_causal_binding_graphs_without_failure_allocations",
+        "command": "make -C tests/unit/semantic/static/constraints/solve"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ],
     "standalone_header_command": [
@@ -137160,6 +137365,16 @@
         "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
         "command": "make -C tests/unit/semantic/static/constraints/composition",
         "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constraints/solve/main.c",
+        "case": "it_preserves_causal_binding_graphs_without_failure_allocations",
+        "command": "make -C tests/unit/semantic/static/constraints/solve"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -137322,6 +137537,16 @@
         "case": "it_composes_actual_binding_slots_scoped_terms_and_typed_equalities",
         "command": "make -C tests/unit/semantic/static/constraints/composition",
         "source": "tests/unit/semantic/static/constraints/composition/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/constraints/solve/main.c",
+        "case": "it_preserves_causal_binding_graphs_without_failure_allocations",
+        "command": "make -C tests/unit/semantic/static/constraints/solve"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -138036,6 +138261,16 @@
         "case": "it_preserves_unused_capture_conflicts_without_erasing_values",
         "source": "tests/unit/semantic/static/constraints/solve/main.c",
         "command": "make -C tests/unit/semantic/static/constraints/solve"
+      },
+      {
+        "source": "tests/unit/semantic/static/constraints/solve/main.c",
+        "case": "it_preserves_causal_binding_graphs_without_failure_allocations",
+        "command": "make -C tests/unit/semantic/static/constraints/solve"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -157069,6 +157304,21 @@
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
         "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -157115,6 +157365,21 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ],
     "standalone_header_command": [
@@ -157434,6 +157699,21 @@
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
         "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ],
     "standalone_header_command": [
@@ -167656,6 +167936,328 @@
         "source": "tests/unit/codegen/specializations/main.c",
         "case": "it_refuses_busy_captured_self_references_without_merging_equal_key_instance_state",
         "command": "make -C tests/unit/codegen/specializations"
+      }
+    ]
+  },
+  "tests/unit/codegen/specialization-diagnostics/main.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Verify original Unicode captured-caller runtime failure paths.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specialization-diagnostics/main.c",
+        "case": "it_preserves_unicode_multiword_hyphen_paths_through_captured_runtime_failure",
+        "command": "make -C tests/unit/codegen/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/codegen/specialization-diagnostics/main.c",
+        "case": "it_maps_native_c_errors_to_original_unicode_companions_and_preserves_previous_output",
+        "command": "make -C tests/unit/codegen/specialization-diagnostics"
+      }
+    ]
+  },
+  "tests/unit/codegen/specialization-diagnostics/Makefile": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Build actual compiler, native scaffold, generated execution and trace dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/specialization-diagnostics/main.c",
+        "case": "it_preserves_unicode_multiword_hyphen_paths_through_captured_runtime_failure",
+        "command": "make -C tests/unit/codegen/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/codegen/specialization-diagnostics/main.c",
+        "case": "it_maps_native_c_errors_to_original_unicode_companions_and_preserves_previous_output",
+        "command": "make -C tests/unit/codegen/specialization-diagnostics"
+      }
+    ]
+  },
+  "tests/unit/compiler/specialization-diagnostics/main.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Check original producer and required selection provenance through actual frontend refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_identifies_the_original_input_declaration_for_unanchored_required_types",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_distinguishes_original_eager_ownership_and_shared_value_cycle_locations",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_definition_cycles_without_fabricating_runtime_invocations",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_occurs_refusal_with_original_variable_and_constructor_definitions",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_changing_key_creation_at_its_actual_original_required_path",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_rejects_malformed_static_names_at_the_original_source_line",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      }
+    ]
+  },
+  "tests/unit/compiler/specialization-diagnostics/Makefile": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Build frontend and allocation-free rendering production dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_identifies_the_original_input_declaration_for_unanchored_required_types",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_distinguishes_original_eager_ownership_and_shared_value_cycle_locations",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_definition_cycles_without_fabricating_runtime_invocations",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_occurs_refusal_with_original_variable_and_constructor_definitions",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_changing_key_creation_at_its_actual_original_required_path",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_rejects_malformed_static_names_at_the_original_source_line",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      }
+    ]
+  },
+  "src/diagnostics/record/context.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Attach immutable caller-owned attribution without allocating or replacing primary/related evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_adds_caller_owned_context_without_replacing_primary_or_existing_related_notes",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_validates_deep_diagnostic_contexts_and_rejects_cycles_without_recursion",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      }
+    ]
+  },
+  "src/semantic/static/publication/ordinary/diagnostic.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Retain the actual ordinary selector requiring an independent static producer.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      }
+    ]
+  },
+  "tests/unit/diagnostics/record/support/contexts.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Verify attribution immutability, idempotence, rejected rebinding and deep/cyclic record domains.",
+    "tests": [
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_adds_caller_owned_context_without_replacing_primary_or_existing_related_notes",
+        "command": "make -C tests/unit/diagnostics/record"
+      },
+      {
+        "source": "tests/unit/diagnostics/record/main.c",
+        "case": "it_validates_deep_diagnostic_contexts_and_rejects_cycles_without_recursion",
+        "command": "make -C tests/unit/diagnostics/record"
+      }
+    ]
+  },
+  "tests/unit/diagnostics/render/support/contexts.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Render original notes and caller contexts in declared order, refusing cycles before output.",
+    "tests": [
+      {
+        "source": "tests/unit/diagnostics/render/main.c",
+        "case": "it_renders_caller_contexts_after_original_notes_and_refuses_context_cycles_before_output",
+        "command": "make -C tests/unit/diagnostics/render"
+      }
+    ]
+  },
+  "src/semantic/static/signature/diagnostic.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Retain actual known constructor interfaces without allocating on signature refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      }
+    ]
+  },
+  "tests/unit/compiler/specialization-diagnostics/support/families.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Check original constructor/category, eager/shared-cycle and preserved extra residual provenance.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_distinguishes_original_eager_ownership_and_shared_value_cycle_locations",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_rejects_malformed_static_names_at_the_original_source_line",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      }
+    ]
+  },
+  "tests/unit/compiler/specialization-diagnostics/support/graphs.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Check definition-cycle, occurs, changing-key and pair/equality source witnesses.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_static_definition_cycles_without_fabricating_runtime_invocations",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_occurs_refusal_with_original_variable_and_constructor_definitions",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_changing_key_creation_at_its_actual_original_required_path",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      }
+    ]
+  },
+  "src/semantic/static/constraints/evidence.c": {
+    "contract": "docs/implementation/specialization-diagnostics.md",
+    "purpose": "Retain causal variable definitions and earlier binding equations in a failed static equality diagnostic.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constraints/solve/main.c",
+        "case": "it_preserves_causal_binding_graphs_without_failure_allocations",
+        "command": "make -C tests/unit/semantic/static/constraints/solve"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   }

@@ -144,8 +144,46 @@ static void it_preserves_unused_capture_conflicts_without_erasing_values(void) {
 
 }
 
+/** Normalization must retain both original sides of earlier equations, even
+ * when their explanation graph is cyclic; rendering needs no new allocation. */
+static void it_preserves_causal_binding_graphs_without_failure_allocations(void) {
+    for (size_t order = 0; order < 2; order++) {
+        setup_constraints(NULL);
+        StaticConstraintOutcome outcome;
+        if (order) {
+            assert(static_constraint_equate(&solver, right_variable, plain_type, right_variable->site));
+            assert(static_constraint_solve(&solver, &outcome));
+        }
+        assert(static_constraint_equate(&solver, left_variable, right_variable, left_variable->site));
+        assert(static_constraint_solve(&solver, &outcome));
+        if (!order) {
+            assert(static_constraint_equate(&solver, right_variable, plain_type, right_variable->site));
+            assert(static_constraint_solve(&solver, &outcome));
+        }
+        const StaticTerm *other = nominal(plain_type, plain_type, 2);
+        assert(static_constraint_equate(&solver, left_variable, other, left_variable->site));
+        size_t before = allocation_count;
+        failure_at = before + 1;
+        assert(!static_constraint_solve(&solver, &outcome));
+        assert(allocation_count == before && solver.status == STATIC_CONSTRAINT_CONFLICT);
+        assert(diagnostic_valid(&solver.error));
+        bool left = false, right = false;
+        size_t count = 0;
+        for (const DiagnosticContext *node = solver.error.contexts; node; node = node->next) {
+            assert(++count <= 4);
+            if (strcmp(node->related.role, "original static variable definition") != 0) { continue; }
+            left |= node->related.location.span.start == left_variable->site.start;
+            right |= node->related.location.span.start == right_variable->site.start;
+        }
+        assert(left && right && count == 4);
+        failure_at = 0;
+        destroy_constraints();
+    }
+}
+
 /** Execute separate finite-model success and contradiction partitions. */
 static void run(void) {
+    it_preserves_causal_binding_graphs_without_failure_allocations();
     it_retains_unanchored_cycles_and_accepts_a_later_concrete_anchor();
     it_decomposes_complete_and_partial_nominals_without_opening_residual_binders();
     it_rejects_distinct_origins_and_conflicting_repeated_bindings();

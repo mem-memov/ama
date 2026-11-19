@@ -81,4 +81,13 @@ bool static_constraint_signature(StaticConstraintSolver *, const StaticSignature
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) bounds scratch lifetime.
  */
 void *static_constraint_scratch(StaticConstraintSolver *, SourceArena *, size_t);
+/** Extract an original scoped variable or nominal definition without allocation.
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves source identity rather than a normalized representative's incidental site.
+ */
+DiagnosticRelated static_constraint_definition(const StaticTerm *, const char *);
+/** Attach retained variable/binding reasons along the failing equation and its
+ * derivation parents; never alter the primary cause or existing related notes.
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) retains complete actual equality provenance.
+ */
+void static_constraint_equation_context(StaticConstraintSolver *, const StaticConstraintEquation *);
 #endif

@@ -54,7 +54,7 @@ bool diagnostic_from_module(const ModuleIssue *issue,
     }
     ModuleExplanation explanation = explanations[issue->status];
     Diagnostic diagnostic = {explanation.code, explanation.message, NULL,
-        {{0}, issue->path}, explanation.cause, explanation.expected, explanation.help, NULL, 0};
+        {{0}, issue->path}, explanation.cause, explanation.expected, explanation.help, NULL, 0, NULL};
     if (issue->source != NULL) {
         if (issue->offset >= source_length(issue->source)) {
             return false;

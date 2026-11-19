@@ -47,6 +47,15 @@ typedef struct {
     const char *name;
 } DiagnosticRelated;
 
+/** Caller-owned immutable attribution chain supplementing existing related notes.
+ * The node and all borrowed source/prose views outlive diagnostic consumption.
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04) retains each actual requiring site without allocating during failure reporting.
+ */
+typedef struct DiagnosticContext {
+    DiagnosticRelated related;
+    const struct DiagnosticContext *next;
+} DiagnosticContext;
+
 /** Borrowed allocation-free diagnostic view; all strings, sources and related arrays outlive consumers. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [SYN-01](../../../spec/language/source-and-names.md#syn-01). */
 typedef struct {
     DiagnosticCode code;
@@ -58,7 +67,19 @@ typedef struct {
     const char *help;
     const DiagnosticRelated *related;
     size_t related_count;
+    const DiagnosticContext *contexts;
 } Diagnostic;
+
+/** Add a caller-owned attribution node without replacing the primary error or
+ * existing notes. A previously attached node is idempotent only for equal
+ * location/prose; its contents remain immutable. Reject invalid records/locations
+ * and attempted node rebinding without mutation. New nodes must
+ * not overlap diagnostic storage, belong to another live diagnostic chain, or
+ * expire before any copied diagnostic view. Shared suffixes remain immutable.
+ * Nodes render newest attribution first after the original related array.
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04) preserves failure provenance under allocation refusal.
+ */
+bool diagnostic_add_context(Diagnostic *, DiagnosticContext *, DiagnosticRelated);
 
 /* Allocation-free borrowed record. Text/related arrays/sources must outlive all
  * consumers. Optional prose is NULL, not invented from guessed corrections.

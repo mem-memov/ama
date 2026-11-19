@@ -1,6 +1,7 @@
 /** @file
  * @brief Separate finite equations and variable solutions from immutable static values.
  * [TPL-10](../../../../spec/language/templates.md#tpl-10) preserves shared structural terms.
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) retains original binding reasons and owns allocation-free diagnostic work links.
  */
 #ifndef AMA_STATIC_CONSTRAINT_MODEL_H
 #define AMA_STATIC_CONSTRAINT_MODEL_H
@@ -26,6 +27,18 @@ typedef struct StaticConstraintVariable {
     const StaticTerm *variable;
     const StaticTerm *value;
     const StaticTerm *representative;
+    /** A successful binding retains its exact original equation. Diagnostic
+     * frames are owned here, never allocated after observing a conflict.
+     * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves definitions and equality receipts through normalization.
+     */
+    const StaticConstraintEquation *reason;
+    DiagnosticContext definition_context;
+    DiagnosticContext binding_context;
+    /** Failure-only work links visit each causal variable once without allocating.
+     * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves causal notes even after memory refusal.
+     */
+    struct StaticConstraintVariable *evidence_next;
+    bool evidence_seen;
 } StaticConstraintVariable;
 
 /** Caller-selected closure obligations do not make other free variables concrete.

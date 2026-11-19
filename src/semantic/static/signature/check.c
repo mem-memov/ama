@@ -27,13 +27,13 @@ bool static_check_signatures(StaticInventory *inventory) {
             StaticUsageResult checked = static_usage_expression(inventory, module,
                 site->expression, actual.category, actual.signature, NULL);
             if (checked.status == STATIC_USAGE_CONFLICT) {
-                return static_invalid(inventory, checked.site, checked.message, NULL);
+                return static_signature_error(inventory, checked.site, checked.message, NULL, site->origin);
             }
         }
         for (const StaticSymbol *symbol = module->first; symbol != NULL; symbol = symbol->next) {
             StaticUsageResult checked = static_usage_check(inventory, symbol, symbol->category, symbol->signature);
             if (checked.status == STATIC_USAGE_CONFLICT) {
-                return static_invalid(inventory, checked.site, checked.message, symbol);
+                return static_signature_error(inventory, checked.site, checked.message, symbol, NULL);
             }
         }
     }

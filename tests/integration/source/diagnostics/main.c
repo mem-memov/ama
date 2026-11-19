@@ -27,7 +27,7 @@ static void it_composes_source_lookup_identity_spans_and_human_diagnostics(void)
     IdentityStatus registered = identity_register(&identities, identity, &name);
     assert(registered == IDENTITY_OK);
     Diagnostic diagnostic = {DIAGNOSTIC_SYNTAX, "Example source context", name->source_name,
-        {name->declaration, NULL}, NULL, NULL, NULL, NULL, 0};
+        {name->declaration, NULL}, NULL, NULL, NULL, NULL, 0, NULL};
     expect_diagnostic(&diagnostic, "expected.txt");
     destroy_test();
 }

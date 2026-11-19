@@ -8,6 +8,7 @@
 #include "../common.c"
 #include "diagnostics/adapters/adapters.h"
 #include "support/invariants.c"
+#include "support/contexts.c"
 
 /**
  * Assert that the component keeps primary cause expected help and multiple related spans
@@ -22,7 +23,7 @@ static void it_keeps_primary_cause_expected_help_and_multiple_related_spans_sepa
     };
     Diagnostic diagnostic = {DIAGNOSTIC_TYPE_MISMATCH, "Incompatible declared type", "商品",
         {{source, 3, 9}, NULL}, "Source and destination types differ", ".shop.item",
-        "Use a value with the declared type", notes, 2};
+        "Use a value with the declared type", notes, 2, NULL};
     assert(diagnostic_valid(&diagnostic));
     assert(diagnostic.primary.span.source == source && diagnostic.related_count == 2);
     assert(strcmp(diagnostic_code_name(diagnostic.code), "type-mismatch") == 0);
@@ -113,6 +114,8 @@ void run(void) {
     it_rejects_invalid_spans_mismatched_paths_and_missing_related_arrays();
     it_adapts_every_source_failure_without_allocating_messages();
     it_retains_both_original_names_for_an_identity_collision();
+    it_adds_caller_owned_context_without_replacing_primary_or_existing_related_notes();
+    it_validates_deep_diagnostic_contexts_and_rejects_cycles_without_recursion();
 }
 
 /**

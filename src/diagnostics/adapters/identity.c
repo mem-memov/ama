@@ -18,7 +18,7 @@ bool diagnostic_from_identity_collision(const IdentityName *previous,
     Diagnostic diagnostic = {DIAGNOSTIC_IDENTITY_COLLISION,
         "Distinct qualified identities have the same internal digest", requested_name,
         {requested_span, NULL}, "Full encoded identities differ despite an equal SHA-256 digest",
-        NULL, "Rename one conflicting module or declaration and recompile", &note, 1};
+        NULL, "Rename one conflicting module or declaration and recompile", &note, 1, NULL};
     if (!diagnostic_valid(&diagnostic)) {
         return false;
     }

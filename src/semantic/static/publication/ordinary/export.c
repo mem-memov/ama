@@ -34,18 +34,21 @@ static bool root(StaticPublicationPlan *plan, StaticOrdinaryType *type) {
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) fixes this phase boundary.
  */
 bool static_ordinary_export(StaticPublicationPlan *plan, StaticOrdinaryType *type) {
-    if (!root(plan, type)) { return false; }
+    if (!root(plan, type)) { static_ordinary_error_context(plan, type); return false; }
     const StaticPublication *publication;
-    if (!static_publication_scope(plan, type->producer_context, &publication)) { return false; }
+    if (!static_publication_scope(plan, type->producer_context, &publication)) {
+        static_ordinary_error_context(plan, type);
+        return false;
+    }
     const StaticPublishedOutput *selected = publication->first_output;
     while (selected && selected->symbol != type->selected) { selected = selected->next; }
     if (!selected) {
-        return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, type->expression->selected_export,
-            "Closed static publication has no original selected export");
+        return static_ordinary_export_failure(plan, type, STATIC_PUBLICATION_INVALID,
+            "Closed static publication has no original selected export", NULL);
     }
     if (selected->value->kind != STATIC_TERM_NOMINAL || selected->value->category != STATIC_CATEGORY_TYPE) {
-        return static_publication_fail(plan, STATIC_PUBLICATION_CONFLICT, type->expression->selected_export,
-            "An ordinary export selector requires a complete Type rather than a Template");
+        return static_ordinary_export_failure(plan, type, STATIC_PUBLICATION_CONFLICT,
+            "An ordinary export selector requires a complete Type rather than a Template", selected->value);
     }
     StaticConstraintSolver *solver = plan->results->guards->applications->solver;
     StaticConstraintOutcome solved;

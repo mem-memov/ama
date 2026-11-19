@@ -1,6 +1,7 @@
 /**
  * @file
  * @brief Own static module inventories and expose exact source-scoped queries.
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04) owns original constructor attribution until diagnostic rendering finishes.
  *
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03) requires explicit
  * scratch ownership. [TPL-02](../../../spec/language/templates.md#tpl-02) and
@@ -31,6 +32,10 @@ typedef struct {
     StaticStatus status;
     Diagnostic error;
     DiagnosticRelated related;
+    /** Original known constructor attribution; metadata remains owned through failure rendering.
+     * [COMP-04](../../../spec/implementation/compiler.md#comp-04) keeps signature applications linked to their real interface.
+     */
+    DiagnosticContext error_context;
     bool attempted;
     bool valid;
 } StaticInventory;

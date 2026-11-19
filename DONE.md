@@ -6308,3 +6308,49 @@ T201. Specification bytes have not changed.
   Complete per-file/header checks and Doxygen rendering validate current source
   links and interfaces. Final archive receipt: /tmp/ama-t188-archive-docs.log.
   Next ready task: T189.
+
+<a id="t189"></a>
+
+- [x] **T189 — Accept end-to-end specialization diagnostics and source maps.**
+  Prerequisites: T184, T185, T188.
+  Status: completed; [contract and step record](docs/implementation/specialization-diagnostics.md).
+  Rules: [COMP-04](spec/implementation/compiler.md#comp-04),
+  [NAME-03](spec/implementation/compiler.md#name-03),
+  [DEBUG-01](spec/implementation/diagnostics.md#debug-01).
+  Boundary: structured semantic/expansion diagnostics, rendering, generated C
+  mappings and execution traces; each earlier task already reports local errors.
+  Steps: (1) reconcile original definition/application/related-site chains;
+  (2) compose check-only, generated-C errors and runtime traces;
+  (3) verify stable outcomes across cache/order changes and low-memory failures.
+  Accept: malformed names, kind/signature conflicts, occurs failures, unknown
+  evidence, incomplete producers and each distinct cycle identify responsible
+  original sites. Include pair definitions versus equality receipts, preserved
+  extra residuals and independent-bridge closure errors. Unicode/multiword/hyphen
+  paths round-trip; virtual identities
+  do not pretend to be source files, and diagnostics remain valid through cleanup.
+  A failed compilation must not leave partial output masquerading as a usable
+  build or overwrite handwritten native companions. Static evaluation neither
+  executes runtime code nor produces fictitious runtime stack entries.
+
+  Completed from 8d0cad7. Allocation-free diagnostic context records preserve
+  actual ordinary selectors, known constructor interfaces, original result
+  definitions, equality receipts and residual-formal witnesses. Binding reasons
+  form a finite visited graph, retaining both original operands after solver
+  normalization; primary errors and prior related notes remain intact. No static
+  producer gains inference from its ordinary consumer.
+
+  Twelve actual frontend partitions, two generated native/runtime cases and
+  direct context/solver cases cover the required error families, declaration/root
+  order changes, Unicode/multiword/hyphen paths, handwritten/previous-output
+  protection and all 1599 measured frontend allocation refusals. Strict builds,
+  relevant consumer parents and ASan/UBSan passed; counted teardown is separate
+  from unavailable LSan. The component contract records original failing probes,
+  corrections, commands and exact receipts. Replaced diagnostic extraction is
+  shared; no unused competing implementation or sole-purpose legacy test was
+  retained. No specification or conformance fingerprints changed.
+
+  Documentation acceptance: 2983 ready inputs with zero debt; actual Doxygen
+  checked 2271 maintained file pages, 8842 interfaces and 443/443 canonical/page
+  destinations. Regenerate after this archival prose and require fingerprints
+  to match staged final inputs. T196 still owns the separately established stale
+  conformance-review gate; this is not a new full-language conformance claim.

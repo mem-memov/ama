@@ -23,7 +23,10 @@ bool static_constraint_solve(StaticConstraintSolver *solver, StaticConstraintOut
         solver->pending_right = NULL;
         solver->pending_site = (SourceSpan){0};
         for (const StaticConstraintEquation *equation = solver->first_equation; equation; equation = equation->next) {
-            if (!static_constraint_process(solver, equation, &changed, &pending)) { return false; }
+            if (!static_constraint_process(solver, equation, &changed, &pending)) {
+                static_constraint_equation_context(solver, equation);
+                return false;
+            }
         }
         if (!static_constraint_classes(solver, &pending)) { return false; }
     } while (changed);

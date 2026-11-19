@@ -1,5 +1,7 @@
 /** @file
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) owns original selector and residual attribution through failure reporting.
  * @brief Bind ordinary Type obligations and independently concrete static exports.
+ * [TPL-08](../../../../spec/language/templates.md#tpl-08) retains the complete residual set while diagnostics select a concrete unfilled witness.
  * [TYPE-01](../../../../spec/language/declarations.md#type-01) separates consumer Types from static producers.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires independent producer closure.
  * [CONST-03](../../../../spec/language/declarations.md#const-03) requires complete constant namespaces.
@@ -37,6 +39,16 @@ typedef struct StaticOrdinaryType {
     const StaticSymbol *selected;
     const StaticResultContext *producer_context;
     const StaticPublication *publication;
+    /** Error attribution is owned here and borrows this actual selector's source.
+     * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves caller context without allocating on failure.
+     */
+    DiagnosticContext error_context;
+    /** One actual residual is a sufficient witness that a returned Template is
+     * not Type; this frame does not limit or truncate attribution ancestry.
+     * [TPL-08](../../../../spec/language/templates.md#tpl-08) retains every original residual in metadata.
+     * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) points to the actual unfilled declaration.
+     */
+    DiagnosticContext residual_context;
 } StaticOrdinaryType;
 
 /** Register original simple ordinary Type syntax in an exact environment
