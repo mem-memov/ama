@@ -92,7 +92,7 @@ generation are introduced.
 | Actual baseline | T203 | Evidence-based reuse/adapt/remove map, including unfinished T182 ownership |
 | Cleanup, source and binding | T214, T206, T207, T213 | Remove unused preview API; establish exclusive module kinds, immutable AST, scopes and exact source closure |
 | Finite structural foundation | T208, T209, T210, T183 | Actual metadata, open requirements, nonexpanding equations, guards and canonical candidate registry |
-| Static graphs and ordinary bridge | T211, T212 | Named producer equations, complete inputs and independent concrete export selection |
+| Static graphs and ordinary bridge | T211, T212, T217 | Named producer equations, complete inputs and independent concrete export selection |
 | Ordinary closure and admission | T182, T184, T185, T186 | Runtime typed connections, checked concrete groups and constant lifecycle plans |
 | Execution | T187–T190 | Resolved storage/control plans, compiled execution, diagnostics and concrete native composition |
 | Product consumers | T191–T195 | Source delivery, editor/relocation, C facades and useful list algorithms |
@@ -204,8 +204,8 @@ reuse, removal and replacement below; they do not establish current-spec support
 <a id="t182"></a>
 
 - [ ] **T182 — Generate ordinary typed-connection and nested-field constraints.**
-  Status: retained unfinished work; use T203's completed audit and wait for the
-  new foundations above.
+  Status: active after accepted T211/T212; use T203's completed ownership audit
+  to revalidate the retained unfinished source/typed foundations.
   AMB-013 is resolved by excluding computed ordinary interfaces; do not implement
   the obsolete preview exception or treat old mixed-interface probes as support.
   Partial foundations pass 24 lexical/typed-scope and five congruence sanitizer
@@ -215,7 +215,7 @@ reuse, removal and replacement below; they do not establish current-spec support
   T214 unused-preview removal before resuming the remaining work.
   Its local continuation note remains with the unfinished working-tree files,
   outside T202; the specification task establishes no implementation acceptance.
-  Prerequisites: T207, T209, T212.
+  Prerequisites: T207, T209, T212, T217.
   Rules: [TYPE-06](spec/language/declarations.md#type-06),
   [NAME-06](spec/language/declarations.md#name-06),
   [TPL-03](spec/language/templates.md#tpl-03),
@@ -239,6 +239,44 @@ reuse, removal and replacement below; they do not establish current-spec support
   previews. Reuse partial code only through T203's reviewed file ownership.
   Fixtures: Migrate the retained connection fixtures to ordinary Type pairs and current
   export selection; obsolete mixed-interface probes are not acceptance.
+
+  Resume checkpoint (2026-11-19, after T212 commit aac8c3a): all prerequisites
+  are accepted; AMB-013 remains resolved by the static/ordinary separation.
+  No jobs from T211/T212 remain active. Read the retained scoped-field/lexical/
+  congruence code and evidence before resuming. Reproduced the recorded O2
+  warning in `/tmp/ama-t182-current-xg2oa2s8`:
+  `/tmp/ama-t182-current-build-before.exit` is 0 but the log reports the known
+  maybe-uninitialized owner output (session 94939 to collect). The helper now
+  records its exact refusal then returns literal false, making its successful
+  output contract visible without a default value. Runtime/typed metadata APIs
+  now reject static graph modules before accessing a nonexistent ordinary owner.
+  Migrate retained fixture inputs to actual ordinary name/Type pairs and remove
+  the dead preview-counter assertion. A paired input adds one actual field to
+  the typed fixture (eight fields: five explicit Type sources, three holes), so
+  its independent expected counts were updated accordingly. Revalidation and
+  the new static-scope refusal cases are next; no current-source T182 acceptance
+  or commit is claimed.
+
+  Current foundation revalidation is collected: 25 connection cases and nine
+  source-event cases pass through the actual parent dispatcher in
+  `/tmp/ama-t182-current-t8m3vufn` (`/tmp/ama-t182-current-dispatch.exit`, 0;
+  session 37007 collected). Four runtime-hole and five congruence cases pass
+  real leaf commands (`/tmp/ama-t182-current-{runtime-holes,congruence}.exit`,
+  both 0; sessions 18210/34144 collected). Optimized strict root build passes
+  with `-O2 -g -Wall -Wextra -Werror -std=c11 -pedantic
+  -D_POSIX_C_SOURCE=200809L` (`/tmp/ama-t182-current-build-fixed.exit`, 0;
+  session 79087 collected). The first parent command did not dispatch the
+  unregistered connections directory and its directory-shaped leaf targets were
+  no-ops; they were rerun through real Makefile entries. Connections are now
+  explicitly included in the static parent. Source-event fixtures now use real
+  static suppliers for selectors/projections; a duplicate-role fixture introduces
+  its static Type through an actual input pair rather than a bare input name.
+  Failed fixture runs `/tmp/ama-t182-current-foundations.exit` and
+  `/tmp/ama-t182-current-connections-rerun.exit` are retained as exit 2, not passes.
+  T217 is the newly separated ready prerequisite for finite ordinary annotation
+  equations. T182 remains unfinished; its lexical/runtime work stays outside
+  T217 staging and no body-inference acceptance is claimed.
+
 
 <a id="t184"></a>
 
@@ -637,7 +675,7 @@ consumers of the same resolved identities. T196 reviews every other canonical
 row and existing product regression, and T197/T198 complete release/reference
 acceptance. No historical hash refresh or routing label establishes support.
 
-The next unused task ID is **T217**.
+The next unused task ID is **T218**.
 
 ## Useful verification commands
 

@@ -62,8 +62,12 @@ even when its captured underlying term is a foreign derived variable; evaluation
 does not search unrelated contexts for a similarly named definition. An alias
 reads the exact foreign slot selected at its original first receipt, under the
 alias's own definition path. Receiver equality adds no definition-read edge.
-Zero-binding ordinary expressions obey `head = value` for both Type and Template,
-including before their category is known; this supplies no guessed origin.
+Zero-binding supplied values and static partial expressions obey `head = value`
+for both Type and Template, including before their category is known. An ordinary
+FIELD-policy generic module path instead instantiates source-owned omission
+variables under TPL-04; its field Type is not the residual constructor. Neither
+operation supplies a guessed origin. [T217](../../DONE.md#t217) covers this
+contextual distinction and source-only ordinary annotation consumers.
 
 Whole-producer validation is queued independently. Consider `.a`:
 

@@ -5462,3 +5462,113 @@ T201. Specification bytes have not changed.
   are included. Runtime ordinary inference/admission, constant construction,
   execution and release acceptance retain T182/T184–T198 ownership. Earlier
   active-step text is chronological evidence, not an unfinished acceptance claim.
+
+<a id="t217"></a>
+
+- [x] **T217 — Bind simple ordinary annotation equations without body expansion.**
+  Prerequisites: T209, T211, T212.
+  Rules: [TYPE-01](spec/language/declarations.md#type-01),
+  [TPL-04](spec/language/templates.md#tpl-04),
+  [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-11](spec/language/templates.md#tpl-11),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: reusable ordinary annotation metadata in exact source environments,
+  separate from actual incoming contexts and guarded body validation.
+  Steps: (1) repair the zero-binding identity equation so ordinary generic fields
+  instantiate their omitted parameters under FIELD policy; (2) share exact
+  ordinary source/selector registration between actual uses and source-only
+  metadata; (3) expose finite simple-annotation equations and independently
+  concrete exports without inventing an ordinary root or executing a body.
+  Accept: bare Type/Template forwarding in static graphs retains identity;
+  generic ordinary fields get independent source-owned omission variables and
+  later exact anchors. A namespace cannot infer an open constructor. Supplied
+  nominal environments can expose interface equations while actual expansion
+  still requires real contexts and TPL-11 checks; unknown/different ancestry is
+  not certified by metadata work. Static exports must close independently before
+  any consumer equality. Preserve actual validation dependencies and immutable
+  source identity, check every observed refusal/header boundary, and run current
+  result/publication/constant compositions plus sanitizers/build/Doxygen before
+  archiving and committing. No computed ordinary interface or removed preview
+  exception is restored. T182 consumes this prerequisite for typed operations.
+  Active step (2026-11-19): a real two-field regression is failing with the
+  expected Type/Template conflict before the fix, proving the current unconditional
+  head/value identity is invalid under ordinary generic FIELD omission.
+  Snapshot `/tmp/ama-t182-current-xui_52h2`,
+  `/tmp/ama-t182-generic-field-before.exit` 2; collect session 14880.
+  The test requires two fields of the same constructor to receive distinct later
+  integer/text anchors. No specification change or unresolved behavior is involved.
+  Source-only ordinary registration and finite equation APIs are implemented.
+  Actual and metadata records share source environment/value identity while
+  retaining separate actual contexts. Metadata normal expressions create no
+  ordinary root/use; exports may require only their independent static root.
+  Final normal validation refuses source-only records. A common publication
+  fact snapshot now includes required registry dependencies as well as solver/
+  graph facts; allocation/application snapshots do not count as progress.
+  Moved that shared snapshot out of closure, deleting the former file paths.
+  The first compile exposed a transitive private-header dependency in closure/
+  solve.c after the move; it now includes its actual tagged-work contract
+  explicitly (`/tmp/ama-t217-first.exit`, 2; session 60188 collected).
+  Five new annotation cases pass in the first two-leaf run, while the generic
+  regression exposed its own uninitialized pending-value receiver: the documented
+  solver API leaves that output unchanged on Pending. The test now initializes
+  it and checks real field-hole identity/shape rather than assuming structural
+  READY implies closed metadata. `/tmp/ama-t217-annotations-first.exit` is 2
+  (session 86891 collected). The corrected two-leaf run passes 15 cases
+  (`/tmp/ama-t217-annotations-rerun.exit`, 0; collect session 48418).
+  Added a seventh annotation case for real unknown/equal/unequal repeated
+  ancestry after metadata inference, then launched the complete result/
+  publication/constant composition: session 1031, snapshot
+  `/tmp/ama-t217-source-zxc8sbp1`, `/tmp/ama-t217-composition.{log,exit}`.
+  The current contract explains field instantiation versus static partial values,
+  source/actual proof separation, independent exports and exact fact progress.
+  Current result/publication/constant composition passes 119 strict C11 cases
+  (`results` 44, `publication` 37, `constants` 38), snapshot
+  `/tmp/ama-t217-source-zxc8sbp1`, `/tmp/ama-t217-composition.exit` 0;
+  session 1031 is collected. This includes the added true pending/equal/unequal
+  ancestry composition after source-only inference. Sanitizers run the same
+  three parents in `/tmp/ama-t217-source-wjpg3sqn`, session 69536,
+  `/tmp/ama-t217-sanitizers.{log,exit}`. The task-only per-file registry has
+  2797 entries; working registry preserves T182's 563 pre-existing additions.
+  Next complete sanitizer/build/header/documentation gates and archive T217.
+  Sanitizer composition is collected exit 0 (session 69536); all 119 cases
+  pass ASan/UBSan. The optimized strict isolated root build also passes
+  (`/tmp/ama-t217-build.exit`, 0; collect session 81617). Source/header changes
+  after the sanitizer input only clarify/wrap the optional-context contract;
+  no executable tokens or declarations changed. Complete per-file/header gate
+  is session 14639, `/tmp/ama-t217-complete.{log,exit}`, snapshot
+  `/tmp/ama-t217-source-ojwmf1xl`. Final Doxygen inputs must include the task
+  archive/next queue and exact current comments. No final task acceptance or
+  commit is claimed yet.
+
+  Acceptance (2026-11-19): current simple annotation equations and actual-use
+  separation pass 119 strict C11 cases across results (44), publication (37)
+  and constants (38). Command: `make -j4 -C tests/unit/semantic/static results
+  publication constants`, with `C_COMPILER_FLAGS=-O0 -g -Wall -Wextra -Werror
+  -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L`;
+  `/tmp/ama-t217-composition.exit` is 0. The same three parents pass O1
+  ASan/UBSan with strict warnings, `-fsanitize=address,undefined
+  -fno-omit-frame-pointer -fno-pie`, and
+  `LINKER_FLAGS=-fsanitize=address,undefined -no-pie`;
+  `/tmp/ama-t217-sanitizers.exit` is 0. Use
+  `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+  `UBSAN_OPTIONS=halt_on_error=1`; unavailable LSan is not claimed. Counted
+  teardown independently covers every observed source/equation refusal.
+  Isolated root `make -j4` passes O2 with the same strict C11 warnings and
+  `-Werror` (`/tmp/ama-t217-build.exit`, 0). Complete per-file/standalone-header
+  validation passes with 2797 ready inputs and zero debt
+  (`/tmp/ama-t217-complete.exit`, 0). All listed jobs are collected.
+  Subsequent header edits only clarify/wrap the optional-provenance comment;
+  the final Doxygen gate compiles that exact header and checks current inputs.
+  The former unconditional identity law now correctly distinguishes ordinary
+  FIELD instantiation from partial graph/Type forwarding. Exact source facts
+  require no invented ordinary root or body. Independent static exports retain
+  complete supplier checks, and actual uses retain their own validation edges.
+  Metadata does not bypass unknown/unequal ancestry; equal grounded keys resume.
+  Existing Type/Template/namespace, graph-cycle and constant contracts regressions
+  remain passing. No parser, grammar, specification or runtime behavior is added.
+  Final prospective documentation tree `/tmp/ama-t217-source-xxkuiocr` includes
+  this archive and T182 continuation. `make docs` must generate/check those exact
+  maintained inputs before copying final records or committing; its collected
+  log is `/tmp/ama-t217-final-docs.log`. T182 runtime/lexical/source work remains
+  unfinished and outside this task's code/test staging and acceptance. Earlier
+  active-step notes are chronological evidence, not unfinished acceptance claims.

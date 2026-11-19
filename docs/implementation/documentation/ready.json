@@ -145482,7 +145482,7 @@
     ]
   },
   "src/semantic/static/publication/closure/solve.c": {
-    "contract": "docs/implementation/static-publication.md",
+    "contract": "docs/implementation/static-ordinary-types.md",
     "purpose": "Refine actual source and root-graph metadata to a finite evidence-driven fixed point.",
     "tests": [
       {
@@ -145569,6 +145569,86 @@
         "source": "tests/unit/semantic/static/publication/failures/main.c",
         "case": "it_rechecks_equations_before_reusing_a_prior_publication",
         "command": "make -C tests/unit/semantic/static/publication/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_resolves_named_exports_as_concrete_types_without_producer_instances",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_distinguishes_selected_type_outputs_from_other_template_outputs",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_keeps_normal_ordinary_type_inference_and_actual_source_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
       }
     ]
   },
@@ -145927,6 +146007,191 @@
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_preserves_unknown_ancestor_obligations_in_cold_and_warm_orders",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_replays_independent_roots_after_a_first_path_with_unknown_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_refuses_changed_keys_on_a_repeated_original_producer",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_resolves_named_exports_as_concrete_types_without_producer_instances",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_distinguishes_selected_type_outputs_from_other_template_outputs",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_keeps_normal_ordinary_type_inference_and_actual_source_provenance",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_publishes_all_public_names_and_reuses_the_actual_root",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_infers_omitted_inputs_and_publishes_a_valueless_producer_bundle",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_closes_cyclic_validation_with_acyclic_export_definitions",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_rejects_an_unselected_value_cycle_without_exposing_partial_outputs",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_refuses_unanchored_producers_at_a_stable_fixed_point",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_refuses_invalid_root_handles_ordinary_roots_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/values/main.c",
+        "case": "it_reuses_equal_aliases_without_merging_producer_occurrences",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/values/main.c",
+        "case": "it_preserves_returned_constructor_residuals_without_producer_types",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/values/main.c",
+        "case": "it_publishes_every_declared_output_even_when_only_one_is_selected",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/values/main.c",
+        "case": "it_rejects_conflicting_existing_receivers_without_rebinding",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_requires_all_inputs_even_when_one_selected_output_is_known",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_refuses_unused_input_underdetermination_without_publishing_aliases",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_separates_intermediate_value_facts_from_whole_root_publication",
+        "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_refuses_foreign_closure_handles_and_missing_outcome_receivers",
         "command": "make -C tests/unit/semantic/static/publication"
       }
     ]
@@ -149230,6 +149495,106 @@
         "source": "tests/unit/semantic/static/results/producers/main.c",
         "case": "it_rejects_unknown_and_repeated_named_inputs_and_outputs",
         "command": "make -C tests/unit/semantic/static/results/producers"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_resolves_named_exports_as_concrete_types_without_producer_instances",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_distinguishes_selected_type_outputs_from_other_template_outputs",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_keeps_normal_ordinary_type_inference_and_actual_source_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/groups/main.c",
+        "case": "it_closes_same_key_validation_cycles_without_inventing_value_definition_cycles",
+        "command": "make -C tests/unit/semantic/static/results/groups"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/groups/main.c",
+        "case": "it_solves_anchored_receiver_equations_across_all_required_graphs",
+        "command": "make -C tests/unit/semantic/static/results/groups"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/groups/main.c",
+        "case": "it_leaves_unanchored_inputs_pending_without_fabricated_defaults_or_progress",
+        "command": "make -C tests/unit/semantic/static/results/groups"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/groups/main.c",
+        "case": "it_rejects_an_unselected_definition_cycle_even_after_a_selected_value_is_known",
+        "command": "make -C tests/unit/semantic/static/results/groups"
       }
     ]
   },
@@ -153495,203 +153860,6 @@
       }
     ]
   },
-  "src/semantic/static/publication/closure/progress.c": {
-    "contract": "docs/implementation/static-publication.md",
-    "purpose": "Observe real finite static facts and proof obligations instead of allocation or retry activity.",
-    "tests": [
-      {
-        "source": "tests/unit/semantic/static/publication/closure/main.c",
-        "case": "it_requires_all_inputs_even_when_one_selected_output_is_known",
-        "command": "make -C tests/unit/semantic/static/publication/closure"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/closure/main.c",
-        "case": "it_refuses_unused_input_underdetermination_without_publishing_aliases",
-        "command": "make -C tests/unit/semantic/static/publication/closure"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/closure/main.c",
-        "case": "it_separates_intermediate_value_facts_from_whole_root_publication",
-        "command": "make -C tests/unit/semantic/static/publication/closure"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/closure/main.c",
-        "case": "it_refuses_foreign_closure_handles_and_missing_outcome_receivers",
-        "command": "make -C tests/unit/semantic/static/publication/closure"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_publishes_all_public_names_and_reuses_the_actual_root",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_infers_omitted_inputs_and_publishes_a_valueless_producer_bundle",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_closes_cyclic_validation_with_acyclic_export_definitions",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_rejects_an_unselected_value_cycle_without_exposing_partial_outputs",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_refuses_unanchored_producers_at_a_stable_fixed_point",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_refuses_invalid_root_handles_ordinary_roots_and_count_overflow",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/recursion/main.c",
-        "case": "it_preserves_unknown_ancestor_obligations_in_cold_and_warm_orders",
-        "command": "make -C tests/unit/semantic/static/publication/recursion"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/recursion/main.c",
-        "case": "it_replays_independent_roots_after_a_first_path_with_unknown_ancestry",
-        "command": "make -C tests/unit/semantic/static/publication/recursion"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/recursion/main.c",
-        "case": "it_refuses_changed_keys_on_a_repeated_original_producer",
-        "command": "make -C tests/unit/semantic/static/publication/recursion"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/recursion/main.c",
-        "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
-        "command": "make -C tests/unit/semantic/static/publication/recursion"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/failures/main.c",
-        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/publication/failures"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/failures/main.c",
-        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
-        "command": "make -C tests/unit/semantic/static/publication/failures"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/failures/main.c",
-        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
-        "command": "make -C tests/unit/semantic/static/publication/failures"
-      }
-    ]
-  },
-  "src/semantic/static/publication/closure/progress.h": {
-    "contract": "docs/implementation/static-publication.md",
-    "purpose": "Describe finite evidence that can justify another static metadata refinement attempt.",
-    "tests": [
-      {
-        "source": "tests/unit/semantic/static/publication/closure/main.c",
-        "case": "it_requires_all_inputs_even_when_one_selected_output_is_known",
-        "command": "make -C tests/unit/semantic/static/publication/closure"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/closure/main.c",
-        "case": "it_refuses_unused_input_underdetermination_without_publishing_aliases",
-        "command": "make -C tests/unit/semantic/static/publication/closure"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/closure/main.c",
-        "case": "it_separates_intermediate_value_facts_from_whole_root_publication",
-        "command": "make -C tests/unit/semantic/static/publication/closure"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/closure/main.c",
-        "case": "it_refuses_foreign_closure_handles_and_missing_outcome_receivers",
-        "command": "make -C tests/unit/semantic/static/publication/closure"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_publishes_all_public_names_and_reuses_the_actual_root",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_infers_omitted_inputs_and_publishes_a_valueless_producer_bundle",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_closes_cyclic_validation_with_acyclic_export_definitions",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_rejects_an_unselected_value_cycle_without_exposing_partial_outputs",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_refuses_unanchored_producers_at_a_stable_fixed_point",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/scopes/main.c",
-        "case": "it_refuses_invalid_root_handles_ordinary_roots_and_count_overflow",
-        "command": "make -C tests/unit/semantic/static/publication/scopes"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/recursion/main.c",
-        "case": "it_preserves_unknown_ancestor_obligations_in_cold_and_warm_orders",
-        "command": "make -C tests/unit/semantic/static/publication/recursion"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/recursion/main.c",
-        "case": "it_replays_independent_roots_after_a_first_path_with_unknown_ancestry",
-        "command": "make -C tests/unit/semantic/static/publication/recursion"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/recursion/main.c",
-        "case": "it_refuses_changed_keys_on_a_repeated_original_producer",
-        "command": "make -C tests/unit/semantic/static/publication/recursion"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/recursion/main.c",
-        "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
-        "command": "make -C tests/unit/semantic/static/publication/recursion"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/failures/main.c",
-        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/publication/failures"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/failures/main.c",
-        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
-        "command": "make -C tests/unit/semantic/static/publication/failures"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/failures/main.c",
-        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
-        "command": "make -C tests/unit/semantic/static/publication/failures"
-      }
-    ],
-    "standalone_header_command": [
-      "cc",
-      "-std=c11",
-      "-D_POSIX_C_SOURCE=200809L",
-      "-Wall",
-      "-Wextra",
-      "-Werror",
-      "-pedantic",
-      "-I.",
-      "-Isrc",
-      "-x",
-      "c",
-      "-fsyntax-only",
-      "-"
-    ]
-  },
   "src/semantic/static/publication/closure/queue.c": {
     "contract": "docs/implementation/static-publication.md",
     "purpose": "Deduplicate exact registered metadata proof handles before following their dependency graph.",
@@ -155351,6 +155519,46 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
       }
     ]
   },
@@ -155397,6 +155605,46 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
       }
     ]
   },
@@ -155550,6 +155798,46 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
       }
     ]
   },
@@ -155596,6 +155884,46 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
       }
     ]
   },
@@ -155642,6 +155970,46 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
       }
     ],
     "standalone_header_command": [
@@ -155749,6 +156117,536 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      }
+    ]
+  },
+  "src/semantic/static/publication/ordinary/equations.c": {
+    "purpose": "Generate only original ordinary annotation facts without expanding an ordinary body.",
+    "contract": "docs/implementation/static-ordinary-types.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_resolves_named_exports_as_concrete_types_without_producer_instances",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_distinguishes_selected_type_outputs_from_other_template_outputs",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_keeps_normal_ordinary_type_inference_and_actual_source_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      }
+    ]
+  },
+  "src/semantic/static/publication/progress.c": {
+    "purpose": "Observe real finite static facts and proof obligations instead of allocation or retry activity.",
+    "contract": "docs/implementation/static-ordinary-types.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_resolves_named_exports_as_concrete_types_without_producer_instances",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_distinguishes_selected_type_outputs_from_other_template_outputs",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_keeps_normal_ordinary_type_inference_and_actual_source_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_requires_all_inputs_even_when_one_selected_output_is_known",
+        "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_refuses_unused_input_underdetermination_without_publishing_aliases",
+        "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_separates_intermediate_value_facts_from_whole_root_publication",
+        "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_refuses_foreign_closure_handles_and_missing_outcome_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_publishes_all_public_names_and_reuses_the_actual_root",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_infers_omitted_inputs_and_publishes_a_valueless_producer_bundle",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_closes_cyclic_validation_with_acyclic_export_definitions",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_rejects_an_unselected_value_cycle_without_exposing_partial_outputs",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_refuses_unanchored_producers_at_a_stable_fixed_point",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_refuses_invalid_root_handles_ordinary_roots_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_preserves_unknown_ancestor_obligations_in_cold_and_warm_orders",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_replays_independent_roots_after_a_first_path_with_unknown_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_refuses_changed_keys_on_a_repeated_original_producer",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures"
+      }
+    ]
+  },
+  "src/semantic/static/publication/progress.h": {
+    "purpose": "Describe finite evidence that can justify another static metadata refinement attempt.",
+    "contract": "docs/implementation/static-ordinary-types.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_resolves_named_exports_as_concrete_types_without_producer_instances",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_distinguishes_selected_type_outputs_from_other_template_outputs",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_keeps_normal_ordinary_type_inference_and_actual_source_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_requires_all_inputs_even_when_one_selected_output_is_known",
+        "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_refuses_unused_input_underdetermination_without_publishing_aliases",
+        "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_separates_intermediate_value_facts_from_whole_root_publication",
+        "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/closure/main.c",
+        "case": "it_refuses_foreign_closure_handles_and_missing_outcome_receivers",
+        "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_publishes_all_public_names_and_reuses_the_actual_root",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_infers_omitted_inputs_and_publishes_a_valueless_producer_bundle",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_closes_cyclic_validation_with_acyclic_export_definitions",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_rejects_an_unselected_value_cycle_without_exposing_partial_outputs",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_refuses_unanchored_producers_at_a_stable_fixed_point",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/scopes/main.c",
+        "case": "it_refuses_invalid_root_handles_ordinary_roots_and_count_overflow",
+        "command": "make -C tests/unit/semantic/static/publication/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_preserves_unknown_ancestor_obligations_in_cold_and_warm_orders",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_replays_independent_roots_after_a_first_path_with_unknown_ancestry",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_refuses_changed_keys_on_a_repeated_original_producer",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/recursion/main.c",
+        "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
+        "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_unwinds_every_producer_closure_and_alias_publication_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures",
+        "command": "make -C tests/unit/semantic/static/publication/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/failures/main.c",
+        "case": "it_rechecks_equations_before_reusing_a_prior_publication",
+        "command": "make -C tests/unit/semantic/static/publication/failures"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/semantic/static/publication/annotations/Makefile": {
+    "purpose": "Verify finite ordinary annotation facts without invented ordinary contexts.",
+    "contract": "docs/implementation/static-ordinary-types.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/annotations/main.c": {
+    "purpose": "Verify source-only ordinary annotation equations and independent export evidence.",
+    "contract": "docs/implementation/static-ordinary-types.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/annotations/main.c",
+        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/publication/annotations"
       }
     ]
   }

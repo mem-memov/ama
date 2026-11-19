@@ -76,7 +76,7 @@ can supply inference facts without becoming false dependencies.
 
 Repeat only if an exact component of the evidence tuple changes: unique equations,
 metadata facts, requirements, actual contexts, graph witnesses, closed definition
-caches, or completed local graphs. Term allocation, application snapshots,
+caches, completed local graphs, or required registry dependencies. Term allocation, application snapshots,
 attempt counts, depth limits and timeouts are not progress. Stable unresolved
 work fails with its original producer location.
 

@@ -2,6 +2,7 @@
  * @brief Register ordinary Type forms while keeping selected static exports disconnected from consumer inference.
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) requires one exact public selector.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) prevents ordinary factory binding blocks.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) separates actual contexts and source facts.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns partial obligations.
  */
 #include <stdint.h>
@@ -11,8 +12,8 @@
  * dereferencing expression data; static graph definitions are another domain.
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) fixes ordinary forms.
  */
-static const StaticOccurrence *occurrence(const StaticResultContext *context, const AstTypeExpression *expression) {
-    const StaticModule *module = context->creation->owner->environment->definition;
+static const StaticOccurrence *occurrence(const StaticTermEnvironment *environment, const AstTypeExpression *expression) {
+    const StaticModule *module = environment->definition;
     if (module->definition->syntax.sections.kind == MODULE_STATIC) { return NULL; }
     for (const StaticOccurrence *site = module->first_occurrence; site; site = site->next) {
         if (site->receiver == NULL && site->root && site->expression == expression) { return site; }
@@ -46,36 +47,40 @@ static bool selector(StaticPublicationPlan *plan, const StaticOccurrence *site, 
  * output: only the independent export operation can add that equality later.
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) forbids receiver-driven factory inference.
  */
-bool static_ordinary_type(StaticPublicationPlan *plan, const StaticResultContext *context,
-    const AstTypeExpression *expression, StaticOrdinaryType **output) {
+static bool prepare(StaticPublicationPlan *plan, const StaticResultContext *context,
+    const StaticTermEnvironment *environment, const AstTypeExpression *expression, StaticOrdinaryType **output) {
     if (!static_publication_dependencies(plan)) { return false; }
-    if (!output || !static_result_has_context(plan->results, context)) {
+    if (!output || !static_term_has_environment(plan->results->guards->applications->terms, environment)) {
         return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, (SourceSpan){0}, "Invalid ordinary Type context or receiver");
     }
-    const StaticOccurrence *site = occurrence(context, expression);
+    const StaticOccurrence *site = occurrence(environment, expression);
     if (!site) {
         return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, (SourceSpan){0}, "Ordinary Type syntax is not an original root occurrence");
     }
     for (StaticOrdinaryType *record = plan->first_type; record; record = record->next) {
-        if (record->context == context && record->expression == expression) { *output = record; return true; }
+        if (record->context == context && record->environment == environment && record->expression == expression) { *output = record; return true; }
     }
     if (plan->type_count == SIZE_MAX) {
         return static_publication_fail(plan, STATIC_PUBLICATION_OUT_OF_MEMORY, expression->span,
             "Ordinary Type record count exceeds representable storage");
     }
-    StaticOrdinaryType prepared = {.context = context, .expression = expression};
+    StaticOrdinaryType prepared = {.context = context, .environment = environment, .expression = expression};
     if (!selector(plan, site, &prepared)) { return false; }
-    const StaticTermEnvironment *environment = context->creation->owner->environment;
     StaticConstraintSolver *solver = plan->results->guards->applications->solver;
     if (prepared.producer) {
         if (!static_term_expression_result(solver->terms, environment, expression, &prepared.value)) {
             (void)static_publication_dependencies(plan); return false;
         }
     } else {
-        if (!static_result_use(plan->results, context, expression, NULL, &prepared.source)) {
+        if (context) {
+            if (!static_result_use(plan->results, context, expression, NULL, &prepared.source)) {
+                (void)static_publication_dependencies(plan); return false;
+            }
+            prepared.annotation = prepared.source->source;
+        } else if (!static_result_source(plan->results, environment, expression, &prepared.annotation)) {
             (void)static_publication_dependencies(plan); return false;
         }
-        prepared.value = prepared.source->source->value;
+        prepared.value = prepared.annotation->value;
     }
     if (!static_constraint_describe(solver, prepared.value, STATIC_CATEGORY_TYPE, NULL, expression->span) ||
         !static_constraint_require(solver, prepared.value, expression->span)) {
@@ -89,4 +94,26 @@ bool static_ordinary_type(StaticPublicationPlan *plan, const StaticResultContext
     plan->type_count++;
     *output = record;
     return true;
+}
+
+/** Actual incoming identity is checked before accessing its environment. Metadata
+ * registration alone cannot create this provenance or authorize body expansion.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) retains guarded actual uses.
+ */
+bool static_ordinary_type(StaticPublicationPlan *plan, const StaticResultContext *context,
+    const AstTypeExpression *expression, StaticOrdinaryType **output) {
+    if (!static_publication_dependencies(plan)) { return false; }
+    if (!static_result_has_context(plan->results, context)) {
+        return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, (SourceSpan){0}, "Invalid actual ordinary Type context");
+    }
+    return prepare(plan, context, context->creation->owner->environment, expression, output);
+}
+
+/** Exact nominal/generic source environments expose only original finite Type
+ * annotations, with no manufactured incoming context or readiness certificate.
+ * [TYPE-01](../../../../../spec/language/declarations.md#type-01) preserves source Type identity.
+ */
+bool static_ordinary_source(StaticPublicationPlan *plan, const StaticTermEnvironment *environment,
+    const AstTypeExpression *expression, StaticOrdinaryType **output) {
+    return prepare(plan, NULL, environment, expression, output);
 }

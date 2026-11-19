@@ -21,7 +21,7 @@ static bool root(StaticPublicationPlan *plan, StaticOrdinaryType *type) {
             (void)static_publication_dependencies(plan); return false;
         }
     }
-    if (!static_registry_depend(plan->results->registry, type->context->registry_use,
+    if (type->context && !static_registry_depend(plan->results->registry, type->context->registry_use,
         type->producer_context->registry_use, type->expression->span)) {
         (void)static_publication_dependencies(plan); return false;
     }

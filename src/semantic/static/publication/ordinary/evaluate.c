@@ -12,7 +12,7 @@
 bool static_ordinary_evaluate(StaticPublicationPlan *plan, StaticOrdinaryType *type,
     StaticResultOutcome *output) {
     if (!static_publication_dependencies(plan)) { return false; }
-    if (!output || !static_ordinary_has(plan, type)) {
+    if (!output || !static_ordinary_has(plan, type) || !type->context) {
         return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, (SourceSpan){0}, "Invalid ordinary Type work or outcome receiver");
     }
     StaticResultOutcome outcome;

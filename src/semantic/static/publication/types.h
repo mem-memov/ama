@@ -3,15 +3,20 @@
  * [TYPE-01](../../../../spec/language/declarations.md#type-01) separates consumer Types from static producers.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) requires independent producer closure.
  * [CONST-03](../../../../spec/language/declarations.md#const-03) requires complete constant namespaces.
+ * [TPL-04](../../../../spec/language/templates.md#tpl-04) permits original per-field annotation equations.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) keeps metadata separate from actual expansion.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial metadata.
  */
 #ifndef AMA_STATIC_ORDINARY_TYPES_H
 #define AMA_STATIC_ORDINARY_TYPES_H
 #include "plan.h"
 
-/** One original ordinary Type occurrence under an actual incoming context.
+/** One original ordinary Type occurrence in an exact source environment, with
+ * optional actual incoming provenance.
  * value is the consumer-local Type variable, not the supplying producer's output.
- * Normal forms retain a result source. Export forms instead retain the exact
+ * A null context denotes source-only metadata, never an invented actual root.
+ * Normal forms retain an annotation source; actual uses additionally retain
+ * guarded work. Export forms instead retain the exact
  * static module/public symbol and its independent root/publication proof.
  * No equation connects an export to value before independent closure succeeds.
  * The publication arena owns records; all pointers borrow longer-lived metadata.
@@ -21,14 +26,37 @@
 typedef struct StaticOrdinaryType {
     struct StaticOrdinaryType *next;
     const StaticResultContext *context;
+    const StaticTermEnvironment *environment;
     const AstTypeExpression *expression;
     const StaticTerm *value;
     StaticResultUse *source;
+    const StaticResultSource *annotation;
+    const StaticTermApplication *prepared;
+    const StaticApplicationRecord *application;
     const StaticModule *producer;
     const StaticSymbol *selected;
     const StaticResultContext *producer_context;
     const StaticPublication *publication;
 } StaticOrdinaryType;
+
+/** Register original simple ordinary Type syntax in an exact environment
+ * without inventing an actual incoming context. It owns only source metadata
+ * and consumer Type obligations; no body or definition is read. This is not a
+ * checked/executable use. Output stays unchanged on failure.
+ * [TYPE-01](../../../../spec/language/declarations.md#type-01) limits ordinary annotation forms.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) separates source facts and guarded expansion.
+ */
+bool static_ordinary_source(StaticPublicationPlan *, const StaticTermEnvironment *,
+    const AstTypeExpression *, StaticOrdinaryType **);
+/** Generate finite ordinary annotation equations or resolve an independently
+ * concrete named export. No ordinary root/body is created or validated; actual
+ * uses still require their registered context and guarded evaluation. Changed
+ * means new structural facts or required validation proofs, never allocations.
+ * Failed outcome stays unchanged and partial facts remain owned.
+ * [TPL-04](../../../../spec/language/templates.md#tpl-04) permits per-field omission equations.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) forbids consumer-driven export inference.
+ */
+bool static_ordinary_equations(StaticPublicationPlan *, StaticOrdinaryType *, bool *);
 
 /** Register exact syntax/context and a Type obligation without using ordinary
  * receiver or initializer evidence to determine a static supplier. Normal field
@@ -41,7 +69,8 @@ bool static_ordinary_type(StaticPublicationPlan *, const StaticResultContext *,
     const AstTypeExpression *, StaticOrdinaryType **);
 /** Advance normal structural inference, or independently close a static supplier
  * before adding the consumer equality. A static export cannot remain open for
- * later runtime-call evidence. Normal READY certifies structural work, not value
+ * later runtime-call evidence. This operation requires an actual context;
+ * source-only metadata must use the equation operation instead. Normal READY certifies structural work, not value
  * closure: bare unknown Type forwarding may already be READY. Final resolution
  * separately requires a concrete Type. Failures preserve the outcome receiver and leave
  * partial records owned; ordinary Pending remains a nonfailure.
@@ -50,6 +79,8 @@ bool static_ordinary_type(StaticPublicationPlan *, const StaticResultContext *,
 bool static_ordinary_evaluate(StaticPublicationPlan *, StaticOrdinaryType *, StaticResultOutcome *);
 /** Require a complete ordinary Type and retained source/producer publication.
  * Returned metadata is borrowed canonical identity, never runtime storage.
+ * Source-only exports can resolve independently; a normal annotation needs its
+ * actual incoming context for this validation operation.
  * Existing results are rechecked against current equations before reuse; failures
  * preserve output and previously published immutable descriptors.
  * [TYPE-01](../../../../spec/language/declarations.md#type-01) excludes residual Templates.

@@ -4,7 +4,8 @@
  * [TPL-10](../../../../../spec/language/templates.md#tpl-10) permits only structural inference facts.
  */
 #include <assert.h>
-#include "progress.h"
+#include "internal.h"
+#include "../progress.h"
 
 /** Drain newly required witnesses too; each value walk uses an explicit stack.
  * Whole-graph validation is not recursively placed on a value-definition path.

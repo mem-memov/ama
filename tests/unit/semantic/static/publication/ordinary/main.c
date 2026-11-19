@@ -112,6 +112,49 @@ static void it_rejects_an_unselected_definition_cycle_before_connecting_the_cons
     destroy_publications();
 }
 
+/** A simple ordinary generic path instantiates its omitted field parameters;
+ * it is not identity with the residual constructor. Different fields can infer
+ * different complete keys from later independent Type evidence.
+ */
+static void it_instantiates_generic_field_parameters_independently_before_later_anchors(void) {
+    setup_publications("@!\nfirst\n.other\nsecond\n.other\nanchor&\n..integer\ntext anchor&\n..text\n",
+        "@<\nvalue\n...slot\n@!\n");
+    StaticOrdinaryType *fields[] = {ordinary("first"), ordinary("second")};
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticTerm *text_type;
+    bool success = static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &text_type);
+    assert(success);
+    const StaticTerm *arguments[] = {integer_type, text_type};
+    for (size_t index = 0; index < 2; index++) {
+        StaticResultOutcome outcome;
+        success = static_ordinary_evaluate(&publications, fields[index], &outcome);
+        if (!success) { fprintf(stderr, "Generic field inference: %s\n", publications.error.message); }
+        assert(success);
+        const StaticTerm *application = fields[index]->source->application->value;
+        assert(application->kind == STATIC_TERM_NOMINAL && application->category == STATIC_CATEGORY_TYPE);
+        assert(application->as.nominal.origin == target_module && application->as.nominal.residual_count == 0);
+        const StaticTerm *hole = application->as.nominal.first_capture->value;
+        assert(hole->kind == STATIC_TERM_VARIABLE && hole->as.variable.role == STATIC_VARIABLE_FIELD);
+        assert(hole->as.variable.declaration == fields[index]->annotation->occurrence->statement);
+        const StaticTerm *pending_value = NULL;
+        StaticConstraintOutcome pending;
+        success = static_constraint_value(&solver, fields[index]->value, &pending_value, &pending);
+        assert(success && pending == STATIC_CONSTRAINT_PENDING && pending_value == NULL);
+        StaticTermCapture slot = {.formal = application_formal(target_module, 0), .value = arguments[index]};
+        const StaticTerm *expected, *resolved;
+        success = static_term_nominal(&terms, target_module, &slot, 1, (SourceSpan){0}, &expected);
+        assert(success);
+        success = static_constraint_equate(&solver, fields[index]->value, expected, fields[index]->expression->span);
+        assert(success);
+        success = static_ordinary_resolve(&publications, fields[index], &resolved);
+        assert(success && resolved == expected);
+        assert(resolved->as.nominal.first_capture->value == arguments[index]);
+    }
+    assert(fields[0]->publication->value != fields[1]->publication->value);
+    assert(target_constructor->as.nominal.residual_count == 1);
+    destroy_publications();
+}
+
 /** Every measured prepare/export/publication allocation may refuse; no output
  * is published and the actual source/solver owners remain safely destructible.
  */
@@ -184,6 +227,7 @@ static void run(void) {
     it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols();
     it_keeps_normal_ordinary_type_inference_and_actual_source_provenance();
     it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer();
+    it_instantiates_generic_field_parameters_independently_before_later_anchors();
     it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal();
     it_refuses_copied_handles_missing_receivers_and_counter_overflow();
 }

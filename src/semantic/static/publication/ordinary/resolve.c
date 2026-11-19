@@ -12,7 +12,7 @@
 bool static_ordinary_resolve(StaticPublicationPlan *plan, StaticOrdinaryType *type,
     const StaticTerm **output) {
     if (!static_publication_dependencies(plan)) { return false; }
-    if (!output || !static_ordinary_has(plan, type)) {
+    if (!output || !static_ordinary_has(plan, type) || (!type->context && !type->producer)) {
         return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, (SourceSpan){0}, "Invalid ordinary Type resolution handle or receiver");
     }
     if (type->producer) {
