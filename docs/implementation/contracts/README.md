@@ -287,3 +287,7 @@ constant lifecycle, resolved planning and generated execution acceptance.
 The [specialization constant contract](../specialized-constants.md) records T186's
 accepted full-owner/member naming and startup/lifecycle composition, with T188's
 remaining ordinary layout emission boundary stated explicitly.
+
+The [concrete planning contract](../specialized-planning.md) records T187's
+accepted semantic-to-resolved-storage/control composition, concrete lifecycle
+policies and exact failure checks.

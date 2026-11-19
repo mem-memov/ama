@@ -8400,6 +8400,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -8890,6 +8900,16 @@
         "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -14443,6 +14463,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_concrete_lifecycle_ownership_and_explicit_saved_position_modes",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -14514,6 +14544,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_concrete_lifecycle_ownership_and_explicit_saved_position_modes",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -15058,6 +15098,31 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_concrete_lifecycle_ownership_and_explicit_saved_position_modes",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -15164,6 +15229,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -48152,6 +48232,31 @@
         "case": "it_unwinds_every_complete_structured_lowering_allocation",
         "command": "make -C tests/unit/planning/structured",
         "source": "tests/unit/planning/structured/main.c"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_concrete_lifecycle_ownership_and_explicit_saved_position_modes",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -68806,6 +68911,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -68837,6 +68957,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -68935,6 +69065,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -68981,6 +69126,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -69174,6 +69334,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   },
@@ -166712,6 +166887,148 @@
         "source": "tests/unit/codegen/specialized-constant-execution/main.c",
         "case": "it_reports_specialized_constant_construction_failure_before_root_execution",
         "command": "make -C tests/unit/codegen/specialized-constant-execution"
+      }
+    ]
+  },
+  "tests/unit/planning/specializations/main.c": {
+    "contract": "docs/implementation/specialized-planning.md",
+    "purpose": "Run exact full-specialization planning compositions.",
+    "tests": [
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_concrete_lifecycle_ownership_and_explicit_saved_position_modes",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
+      }
+    ]
+  },
+  "tests/unit/planning/specializations/Makefile": {
+    "contract": "docs/implementation/specialized-planning.md",
+    "purpose": "Build actual frontend and planning production dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_concrete_lifecycle_ownership_and_explicit_saved_position_modes",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
+      }
+    ]
+  },
+  "tests/unit/planning/specializations/support/fixture.c": {
+    "contract": "docs/implementation/specialized-planning.md",
+    "purpose": "Own two closed bindings and unused partial static result source evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_concrete_lifecycle_ownership_and_explicit_saved_position_modes",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
+      }
+    ]
+  },
+  "tests/unit/planning/specializations/support/storage.c": {
+    "contract": "docs/implementation/specialized-planning.md",
+    "purpose": "Check exact concrete owner/field storage mapping and static/runtime separation.",
+    "tests": [
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_full_specialization_identity_and_all_storage_forms_without_static_runtime_objects",
+        "command": "make -C tests/unit/planning/specializations"
+      }
+    ]
+  },
+  "tests/unit/planning/specializations/support/control.c": {
+    "contract": "docs/implementation/specialized-planning.md",
+    "purpose": "Check exact body/interface call links and two saved positions per concrete worker.",
+    "tests": [
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_links_each_call_to_its_exact_concrete_body_and_interface",
+        "command": "make -C tests/unit/planning/specializations"
+      }
+    ]
+  },
+  "tests/unit/planning/specializations/support/lifecycle.c": {
+    "contract": "docs/implementation/specialized-planning.md",
+    "purpose": "Check concrete clone/reference policies, reverse field cleanup and saved-position modes.",
+    "tests": [
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_preserves_concrete_lifecycle_ownership_and_explicit_saved_position_modes",
+        "command": "make -C tests/unit/planning/specializations"
+      }
+    ]
+  },
+  "tests/unit/planning/specializations/support/failures.c": {
+    "contract": "docs/implementation/specialized-planning.md",
+    "purpose": "Reject ten cross-capture IR corruptions and all 379 successful-trace allocation positions.",
+    "tests": [
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_rejects_cross_capture_storage_control_lifecycle_and_scoped_cell_operands",
+        "command": "make -C tests/unit/planning/specializations"
+      },
+      {
+        "source": "tests/unit/planning/specializations/main.c",
+        "case": "it_unwinds_every_concrete_planning_allocation_and_refuses_selector_exhaustion",
+        "command": "make -C tests/unit/planning/specializations"
       }
     ]
   }

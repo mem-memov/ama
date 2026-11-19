@@ -190,8 +190,9 @@ source-bound runtime fields and typed connections. [T184](DONE.md#t184) composes
 those equations with real guarded contexts and complete required-Type closure.
 [T185](DONE.md#t185) supplies ordinary operation/capability checks and finite
 specialization admission through the actual frontend. [T186](DONE.md#t186) supplies
-full-owner constant identities and checked startup/cleanup composition. T187 is
-next: concrete resolved storage and control planning.
+full-owner constant identities and checked startup/cleanup composition.
+[T187](DONE.md#t187) validates concrete storage, lifecycle and control planning;
+T188 is next: complete specialized C emission and execution.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -217,27 +218,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 5. Close and admit ordinary specializations
 
 ### Phase 6. Lower and execute concrete programs
-
-<a id="t187"></a>
-
-- [ ] **T187 — Build concrete resolved storage, lifecycle and control plans.**
-  Prerequisites: T185, T186.
-  Rules: [COMP-02](spec/implementation/compiler.md#comp-02),
-  [GEN-03](spec/implementation/compiler.md#gen-03),
-  [GEN-04](spec/implementation/compiler.md#gen-04),
-  [RT-02](spec/implementation/runtime.md#rt-02).
-  Boundary: semantic-to-planning handoff, concrete layout descriptors and
-  explicit typed transfer/control/lifecycle plans.
-  Steps: (1) map validated specialization identities and members to resolved
-  plans; (2) exclude complete static graphs and their metadata from runtime
-  storage/control while preserving ordinary runtime interface ordinals;
-  (3) test actual semantic/planning/codegen-model handoffs.
-  Accept: every runtime type/layout is closed; plans retain source provenance,
-  full nominal distinctions, correct refs/lists/constants and stable pool roles.
-  No emitter-side inference, implicit default instances or state save/restore.
-  Check arithmetic/layout/allocation failures, unused static results and
-  separate static/runtime graphs; retain static metadata only where needed
-  for compilation/debug descriptions, not as runtime template objects.
 
 <a id="t188"></a>
 

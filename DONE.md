@@ -6203,3 +6203,53 @@ T201. Specification bytes have not changed.
   whole-project capability or full-language conformance, whose stale review gate
   remains T196-owned. No specification or conformance fingerprints were changed.
   Final archive rendering receipt: /tmp/ama-t186-archive-docs.log. Next: T187.
+
+<a id="t187"></a>
+
+- [x] **T187 — Build concrete resolved storage, lifecycle and control plans.**
+  Prerequisites: T185, T186.
+  Status: completed; [contract and step record](docs/implementation/specialized-planning.md).
+  Rules: [COMP-02](spec/implementation/compiler.md#comp-02),
+  [GEN-03](spec/implementation/compiler.md#gen-03),
+  [GEN-04](spec/implementation/compiler.md#gen-04),
+  [RT-02](spec/implementation/runtime.md#rt-02).
+  Boundary: semantic-to-planning handoff, concrete layout descriptors and
+  explicit typed transfer/control/lifecycle plans.
+  Steps: (1) map validated specialization identities and members to resolved
+  plans; (2) exclude complete static graphs and their metadata from runtime
+  storage/control while preserving ordinary runtime interface ordinals;
+  (3) test actual semantic/planning/codegen-model handoffs.
+  Accept: every runtime type/layout is closed; plans retain source provenance,
+  full nominal distinctions, correct refs/lists/constants and stable pool roles.
+  No emitter-side inference, implicit default instances or state save/restore.
+  Check arithmetic/layout/allocation failures, unused static results and
+  separate static/runtime graphs; retain static metadata only where needed
+  for compilation/debug descriptions, not as runtime template objects.
+
+  Completed from 0f00f7a: the actual admitted frontend maps each concrete
+  semantic owner to one resolved plan, keeps equal-key reuse separate from owned
+  instance slots, preserves original symbols/source/interface ordinals, and
+  excludes static producers and unused partial exports from runtime objects.
+  Existing product planning operations already satisfy this handoff; no parallel
+  planner, emitter inference or unnecessary production rewrite was introduced.
+
+  The independent component leaf checks two bindings of one yielding worker,
+  repeated equal bindings, all four storage forms, empty shared lists, scoped
+  foreach references and original fixed frame/cell state. Exact calls retain
+  concrete body/interface targets, input/result types and explicit return edges.
+  Lifecycle checks cover construction order, reverse cleanup, owned versus
+  reference copying and distinct ordinary/continuation saved-position policies.
+  Ten independent cross-capture/inventory corruptions are refused without
+  allocation or valid publication. All 379 allocation positions of the concrete
+  successful planning trace unwind to the exact live-owner baseline. Selector
+  exhaustion refuses increment rather than wrapping a continuation.
+
+  Strict O2/Werror leaf and complete planning parent passed; the five-case leaf
+  also passed ASan/UBSan with counted teardown (LeakSanitizer unavailable).
+  Corrected initial test expectations are recorded, not mistaken for compiler
+  defects. Complete per-file/header coverage and actual Doxygen rendering precede
+  the commit. The [contract and receipts](docs/implementation/specialized-planning.md)
+  state invariants, storage mapping costs, borrowing, exact run scope and the
+  unchanged root-selection precondition. Full-language conformance remains
+  separately T196-owned; no specification or conformance fingerprint changed.
+  Final archive rendering receipt: /tmp/ama-t187-archive-docs.log. Next: T188.
