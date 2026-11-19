@@ -6031,3 +6031,64 @@ T201. Specification bytes have not changed.
   must contain exactly this task's source/tests/contracts/coverage and archive,
   matching the accepted documentation snapshot byte for byte. No specification
   edit or executable-template support is claimed. Next ready task is T184.
+
+<a id="t184"></a>
+
+- [x] **T184 — Orchestrate the complete guarded specialization closure.**
+  Prerequisites: T182, T183, T211, T212.
+  Rules: [TPL-06](spec/language/templates.md#tpl-06),
+  [TPL-10](spec/language/templates.md#tpl-10),
+  [TPL-11](spec/language/templates.md#tpl-11),
+  [COMP-02](spec/implementation/compiler.md#comp-02).
+  Boundary: reusable frontend semantic pipeline and required-specialization
+  worklist, with explicit child operations and publication/cleanup ownership.
+  Steps: (1) compose source loading, lexical classification, constraints,
+  separate graph equations, independent export references and guarded demands;
+  (2) reach exact closure before exposing closed type candidates for ordinary
+  validation; (3) test real check-only and multi-root frontend stage handoffs.
+  Accept: all required runtime types and producer inputs close; residual returned
+  constructors remain compile-time values only. No expansion bypasses the T201
+  guard contracts revalidated in T210, including unresolved repeated-key
+  obligations, and no cache bypasses path validation. Reordered independent
+  constraints/roots preserve acceptance; malformed definitions and skipped
+  branches remain checked.
+  Check every allocation/publication failure and safe frontend teardown; this
+  closure result still requires the ordinary checks in T185 before lowering.
+
+  Completed 2026-11-19 from `1b25657`: exact ordinary/source equation passes,
+  independently selected exports/constants, attributed supplied-Type validation,
+  canonical body representatives and evidence-driven required-Type closure are
+  composed into the real frontend. Every loaded definition gets lexical checks;
+  only explicit roots and attributed dependencies create required contexts.
+  Selected frontend roots must include the actual entry. Guarded Type closure
+  never substitutes for T185 ordinary capability/admission or T187 lowering.
+  The [component contract and full step ledger](docs/implementation/static-closure.md)
+  preserves invariants, ownership, costs, decisions, failed attempts and evidence.
+
+  Acceptance: strict O0/Werror compiler and guard/registry parents, complete
+  compiler/closure ASan/UBSan parents, and final targeted optimized/sanitizer
+  compositions passed. Eleven scheduler cases cover generic calls, output-only
+  inference, direct/saved constants, required empty references, exact-key cycles,
+  changing-key refusal, root-order independence, exports and certificate
+  invalidation. All 2748 allocation-refusal positions across four complete shapes
+  and 471 owned-compiler positions unwind counted resources. LSan is unavailable;
+  counted teardown is separate evidence. Independent ordinary semantics confirm
+  every required concrete field's source identity, nominal Type, role and storage
+  in the four composite fixtures. Obsolete bridge-only support/tests were removed;
+  nominal rejection and compiled execution assertions remain intact.
+
+  Final `make -k -j4 test` at strict O2/Werror completed with exit 2 solely from
+  the pre-existing conformance specification-digest review refusal, owned by T196
+  (`/tmp/ama-t184-final-whole-project.log`, session 30152). All other independent
+  branches passed, including the corrected scalar/layout leaves, actual compiled
+  execution, native/library/editor/relocation consumers and full failure matrices.
+  All 3135 frozen operational inputs remained byte-identical through that run.
+  This is explicitly not a green whole-product conformance claim; no spec or
+  conformance fingerprints were changed. Four originating-file Doxygen links
+  were repaired only in three first file-purpose comments; every following byte
+  stayed unchanged. Complete 2921-file/header coverage has zero debt. The final
+  rendered reference is checked against this exact prospective archive before
+  applying it; canonical links, actual interfaces and source hashes must pass.
+  Final documentation receipt: `/tmp/ama-t184-archive-docs.log`. Markdown/rule/
+  EBNF, task routing, editor navigation, staged diff and byte matching complete
+  scoped acceptance. Next ready implementation task: T185.

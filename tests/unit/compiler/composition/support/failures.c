@@ -27,7 +27,25 @@ static void it_preserves_exact_failed_stage_diagnostics_and_invalid_project_owne
             assert(!frontend.project.valid && !frontend.semantic_initialized);
             assert(frontend.project.status == (shape == 0 ? PROJECT_DRAFT : shape == 7 ? PROJECT_INVALID_ENTRY : PROJECT_SYNTAX_ERROR));
         } else {
-            assert(frontend.project.valid && frontend.semantic_initialized && !frontend.semantic.constants_valid);
+            assert(frontend.project.valid && frontend.specialization_initialized);
+            CompilerSpecialization types;
+            compiler_specialization_init(&types, &frontend.static_inventory, sources.allocator);
+            const ProjectModule *roots[] = {frontend.project.entry};
+            bool types_valid = compiler_specialization_check(&types, roots, 1);
+            /* Storage-form and foreach-Type contradictions fail before ordinary
+             * native/value/control checks; this independent owner uses the same
+             * immutable Project, not the public frontend's derived records. */
+            bool type_failure = shape == 3 || shape == 4;
+            assert(types_valid == !type_failure);
+            assert(frontend.specializations.valid == types_valid);
+            if (type_failure) {
+                assert(!frontend.semantic_initialized && !frontend.plan_initialized);
+                compare_diagnostics(&frontend.error, &types.error);
+                compiler_specialization_destroy(&types);
+                destroy_frontend();
+                continue;
+            }
+            assert(frontend.semantic_initialized && !frontend.semantic.constants_valid);
             SemanticProgram staged;
             semantic_program_init(&staged, &frontend.project, sources.allocator);
             SemanticStatus status = staged_semantics(&staged, NULL);
@@ -40,6 +58,7 @@ static void it_preserves_exact_failed_stage_diagnostics_and_invalid_project_owne
             assert(frontend.semantic.relations_attempted == staged.relations_attempted);
             assert(frontend.semantic.constants_attempted == staged.constants_attempted);
             semantic_program_destroy(&staged);
+            compiler_specialization_destroy(&types);
         }
         destroy_frontend();
     }
@@ -52,6 +71,7 @@ static void it_unwinds_every_complete_frontend_source_semantic_and_plan_allocati
     assert(checked);
     size_t count = allocation_count;
     destroy_frontend();
+    bool failed_specialization = false;
     bool failed_semantic = false;
     bool failed_plan = false;
     for (size_t failure = 1; failure <= count; failure++) {
@@ -60,9 +80,10 @@ static void it_unwinds_every_complete_frontend_source_semantic_and_plan_allocati
         checked = check_composed();
         assert(!checked && !frontend.valid && frontend.error.code == DIAGNOSTIC_OUT_OF_MEMORY);
         assert(diagnostic_valid(&frontend.error));
+        failed_specialization |= frontend.specialization_initialized && !frontend.semantic_initialized;
         failed_semantic |= frontend.semantic_initialized;
         failed_plan |= frontend.plan_initialized;
         destroy_frontend();
     }
-    assert(failed_semantic && failed_plan);
+    assert(failed_specialization && failed_semantic && failed_plan);
 }

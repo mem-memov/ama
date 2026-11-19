@@ -274,3 +274,7 @@ The [named application/equation contract](../static-equations.md) owns T209's
 named map normalization and nonexpanding B-minus-P recovery. Source-only static
 producers and export selection remain separate consumers, so their noninjective
 outputs cannot manufacture a nominal constructor origin through this interface.
+
+The [guarded closure contract](../static-closure.md) records [T184](../../../DONE.md#t184)'s accepted
+composition of ordinary evidence and actual incoming specialization requirements.
+It separates accepted Type closure from T185 ordinary/executable admission.

@@ -8,6 +8,7 @@
 #include "../../semantic/composition/support/compare.c"
 #include "support/projection/storage.c"
 #include "support/projection/control.c"
+#include "support/types.c"
 #include "support/projects.c"
 #include "support/failures.c"
 #include "support/authoring.c"

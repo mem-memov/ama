@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Compose semantic analysis and planning with explicit partial-owner lifetime.
+ * @brief Compose guarded Type closure, ordinary semantics and planning with explicit partial-owner lifetime.
  *
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Set initialization credits before fallible work; destroy plans before semantics and loaded sources.
@@ -23,7 +23,7 @@ void compiler_frontend_init(CompilerFrontend *frontend, SourceAllocator allocato
 
 /**
  * Destroy initialized plan before semantic state, then proposed ABI sources and project storage;
- * release static metadata before Project/source destruction and reset the owner
+ * release guarded Type analysis and static metadata before Project/source destruction and reset the owner
  * so borrowed outputs expire together.
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 void compiler_frontend_destroy(CompilerFrontend *frontend) {
@@ -32,6 +32,9 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
     }
     if (frontend->semantic_initialized) {
         semantic_program_destroy(&frontend->semantic);
+    }
+    if (frontend->specialization_initialized) {
+        compiler_specialization_destroy(&frontend->specializations);
     }
     if (frontend->static_initialized) {
         static_inventory_destroy(&frontend->static_inventory);
@@ -44,10 +47,19 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
 
 /**
  * Analyze the loaded closure using an optional explicit authoring contract, then build resolved
- * plans. Record initialization before fallible work and retain the first stage diagnostic.
+ * plans. First close the explicitly selected entry's Types, or consume an
+ * already completed explicit multi-root analysis. Record initialization before
+ * fallible work and retain the first stage diagnostic.
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_finish(CompilerFrontend *frontend,
     const SemanticNativeAuthoring *authoring) {
+    if (!frontend->specialization_initialized) {
+        const ProjectModule *roots[] = {frontend->project.entry};
+        if (!compiler_frontend_specialize(frontend, roots, 1)) { return false; }
+    } else if (!frontend->specializations.valid) {
+        frontend->error = frontend->specializations.error;
+        return false;
+    }
     semantic_program_init(&frontend->semantic, &frontend->project, frontend->allocator);
     frontend->semantic_initialized = true;
     if (semantic_analyze_authoring(&frontend->semantic, authoring) != SEMANTIC_OK) {

@@ -93,6 +93,17 @@ bool static_guard_owner(StaticGuardPlan *, const StaticTermEnvironment *, const 
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) requires root provenance.
  */
 bool static_creation_root(StaticGuardPlan *, const StaticTermEnvironment *, const StaticCreationPath **);
+/** Require validation of an already known ordinary Type without creating a
+ * constructor edge. The source span belongs to the original registered consumer.
+ * Complete normalized Types publish an attributed path with required_from set
+ * and no creation parent; this is not a new selected root. Pending leaves the
+ * path receiver unchanged and prepares no target scope. Output changes only on
+ * success; partial allocations remain owned on failure. Outgoing applications
+ * of the required Type must still be checked through the returned context.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) validates supplied Types without reopening their constructors.
+ */
+bool static_guard_require_type(StaticGuardPlan *, const StaticCreationPath *,
+    const StaticTerm *, SourceSpan, const StaticCreationPath **, StaticConstraintOutcome *);
 /** Check a source-backed application of this exact lexical owner before any
  * definition expansion. Finite argument expressions use their common lexical
  * parent. Only ENTERED publishes a path; other successful outcomes leave it

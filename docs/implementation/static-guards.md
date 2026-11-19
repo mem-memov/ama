@@ -220,8 +220,12 @@ execution, filesystem lookup or generated-source effect belongs here.
 
 ## Invariants and exact checks
 
-An ancestry frame is an original root or an application whose recorded lexical
-environment equals its parent's expanded-definition environment. Inductively it
+A creation-ancestry frame is an original selected root, an attributed known-Type
+requirement, or an application whose recorded lexical environment equals its
+parent's expanded-definition environment. A known-Type requirement has no
+creation parent: its separate `required_from` link retains the actual consumer
+for validation, not a constructor edge. See the active
+[T184 closure contract](static-closure.md#attributed-reuse-of-a-known-type). Inductively it
 is a real creation path; captured Types and syntactic argument nesting add no
 invented edges. Repeated complete keys are compared by exact canonical identity,
 including every unused argument/capture. Unknown comparisons suspend entry

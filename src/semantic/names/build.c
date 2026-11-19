@@ -17,8 +17,8 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
     (void)loop_depth;
     (void)loop;
     /* [COMP-02](../../../spec/implementation/compiler.md#comp-02) keeps
-     * unresolved static syntax out of this concrete-only inventory. T184 owns
-     * the future specialization composition; ignoring these nodes would
+     * unadapted static syntax out of this raw concrete-only inventory. T185 owns
+     * consuming T184's closed Type descriptors here; ignoring these nodes would
      * incorrectly publish ordinary runtime types for unprocessed programs.
      */
     const AstTypeExpression *expression = node->kind == AST_DECLARATION
@@ -66,8 +66,8 @@ static bool declare(SemanticProgram *program, SemanticType *type, const AstNode 
 static bool module_names(SemanticProgram *program, SemanticType *type) {
     const AstModule *syntax = &type->module->syntax;
     /* [TPL-12](../../../spec/language/static-results.md#tpl-12) makes a static
-     * graph compile-time-only, including an empty graph. T184 must resolve
-     * selected exports before this ordinary concrete inventory can admit them.
+     * graph compile-time-only, including an empty graph. T184 closes selected
+     * exports; T185 must adapt this raw-source consumer to their descriptors.
      */
     if (syntax->sections.kind == MODULE_STATIC) {
         return semantic_fail(program, syntax->sections.graph.marker->code,

@@ -80,6 +80,7 @@ static void it_matches_complete_frontend_outputs_to_independent_explicit_stages(
         semantic_program_init(&staged, &frontend.project, sources.allocator);
         SemanticStatus status = staged_semantics(&staged, NULL);
         assert(status == SEMANTIC_OK);
+        compare_required_types(&staged);
         compare_programs(&frontend.semantic, &staged);
         ProgramPlan planned;
         program_plan_init(&planned, &staged, sources.allocator);

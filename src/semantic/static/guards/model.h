@@ -36,6 +36,12 @@ typedef struct StaticCreationEdge StaticCreationEdge;
 typedef struct StaticCreationPath {
     struct StaticCreationPath *next;
     const struct StaticCreationPath *parent;
+    /** An actual consumer requiring validation of a supplied known Type.
+     * This attribution is not a constructor edge or a selected compilation root.
+     * Creation ancestry follows parent; registry validation also follows this link.
+     * [TPL-11](../../../../spec/language/templates.md#tpl-11) separates Type reuse from creation.
+     */
+    const struct StaticCreationPath *required_from;
     const StaticGuardOwner *owner;
     const StaticApplicationRecord *application;
     SourceSpan site;

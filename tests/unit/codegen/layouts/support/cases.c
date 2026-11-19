@@ -56,7 +56,8 @@ static void it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_id
         assert(length > 0 && (size_t)length < sizeof(source));
         file("generated/project/main", source);
         begin_layout(false);
-        assert(frontend.semantic_initialized && frontend.semantic.native_valid && frontend.semantic.status == SEMANTIC_INVALID);
+        assert(frontend.specialization_initialized && !frontend.specializations.valid && !frontend.semantic_initialized);
+        assert(frontend.specializations.constraints.status == STATIC_CONSTRAINT_CONFLICT);
         assert(!frontend.plan_initialized && diagnostic_valid(&frontend.error));
         assert(frontend.error.primary.span.source == frontend.project.entry->source->text);
         destroy_frontend();

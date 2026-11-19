@@ -43,9 +43,12 @@ bool static_registry_use(StaticRegistryPlan *plan, const StaticCreationPath *pat
     StaticRegistryUse *use;
     if (!static_registry_retain(plan, path, &use) || !static_registry_bind(plan, use)) { return false; }
     /* Published ancestry is finite and immutable. Iteration retains required
-     * parent validation without growing the C stack or fabricating an edge. */
+     * parent validation without growing the C stack or fabricating an edge.
+     * Supplied-Type requirements retain validation attribution only; their
+     * required_from link must not become a constructor-creation edge. */
     StaticRegistryUse *child = use;
-    for (const StaticCreationPath *parent = path->parent; parent; parent = parent->parent) {
+    for (const StaticCreationPath *parent = path->parent ? path->parent : path->required_from;
+        parent; parent = parent->parent ? parent->parent : parent->required_from) {
         StaticRegistryUse *owner;
         if (!static_registry_retain(plan, parent, &owner) || !static_registry_bind(plan, owner) ||
             !static_registry_depend(plan, owner, child, child->path->site)) { return false; }

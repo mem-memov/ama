@@ -13,9 +13,10 @@
 #include "planning/plan.h"
 #include "project/inputs/inputs.h"
 #include "semantic/static/native/admission.h"
+#include "specializations/analysis.h"
 
 /**
- * Own project/source graph, scoped static inventory/native admission, exact input
+ * Own project/source graph, scoped static inventory/native admission, guarded Type closure, exact input
  * snapshot, optional authoring ABI, semantic graph and plan. Initialization
  * flags make every failed stage safely destructible; all exported views expire at destruction.
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
@@ -24,6 +25,7 @@ typedef struct {
     ProjectInputs inputs;
     StaticInventory static_inventory;
     StaticNativeAdmission native_admission;
+    CompilerSpecialization specializations;
     SemanticProgram semantic;
     ProgramPlan plan;
     Diagnostic error;
@@ -31,6 +33,7 @@ typedef struct {
     SourceManager proposed_sources;
     bool authoring;
     bool static_initialized;
+    bool specialization_initialized;
     bool semantic_initialized;
     bool plan_initialized;
     bool attempted;

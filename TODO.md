@@ -64,6 +64,12 @@ An implementation task, including one in this queue, is not permission to amend
    Commit the completed task with its evidence and a descriptive task-ID message;
    do not include unrelated user changes. Leave blocked or failing tasks unchecked.
 
+The user reiterated on 2026-11-19: remove obsolete implementation code together
+with tests dedicated solely to it. Retained tests must exercise the current
+specification and implementation; keep independently useful regression coverage
+when migrating a live consumer. Removal and exhaustive behavioral/failure checks
+belong to each affected task's acceptance, not a compatibility layer.
+
 ## Sprint: static module templates
 
 This sprint implements the approved [Stage 11](spec/implementation/plan.md#stage-11-static-templates-with-explicit-design-boundaries).
@@ -180,8 +186,9 @@ finite dependency-check groups. [T211](DONE.md#t211) supplies named result
   equations, complete producer publication and independent validation witnesses.
 [T212](DONE.md#t212) supplies independent concrete export selection and
 current constant Type/namespace evidence. [T182](DONE.md#t182) supplies accepted
-source-bound runtime fields and typed connections. T184 is next and composes
-those equations with real guarded contexts before T185 body/capability admission.
+source-bound runtime fields and typed connections. [T184](DONE.md#t184) composes
+those equations with real guarded contexts and complete required-Type closure.
+T185 is next: ordinary operation/capability checks and specialization admission.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -205,29 +212,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 4. Resolve static graphs and independent ordinary exports
 
 ### Phase 5. Close and admit ordinary specializations
-
-<a id="t184"></a>
-
-- [ ] **T184 — Orchestrate the complete guarded specialization closure.**
-  Prerequisites: T182, T183, T211, T212.
-  Rules: [TPL-06](spec/language/templates.md#tpl-06),
-  [TPL-10](spec/language/templates.md#tpl-10),
-  [TPL-11](spec/language/templates.md#tpl-11),
-  [COMP-02](spec/implementation/compiler.md#comp-02).
-  Boundary: reusable frontend semantic pipeline and required-specialization
-  worklist, with explicit child operations and publication/cleanup ownership.
-  Steps: (1) compose source loading, lexical classification, constraints,
-  separate graph equations, independent export references and guarded demands;
-  (2) reach exact closure before exposing closed type candidates for ordinary
-  validation; (3) test real check-only and multi-root frontend stage handoffs.
-  Accept: all required runtime types and producer inputs close; residual returned
-  constructors remain compile-time values only. No expansion bypasses the T201
-  guard contracts revalidated in T210, including unresolved repeated-key
-  obligations, and no cache bypasses path validation. Reordered independent
-  constraints/roots preserve acceptance; malformed definitions and skipped
-  branches remain checked.
-  Check every allocation/publication failure and safe frontend teardown; this
-  closure result still requires the ordinary checks in T185 before lowering.
 
 <a id="t185"></a>
 
@@ -556,9 +540,9 @@ whole-program admission; component certificates do not replace those checks.
 |---|---|
 | Placeholder spelling | [T196](#t196) |
 | Placeholder scope | [T196](#t196) |
-| Ordinary-argument inference | [T184](#t184), [T196](#t196) |
-| Nested field specialization | [T184](#t184), [T196](#t196) |
-| Specialization identity | [T184](#t184), [T196](#t196) |
+| Ordinary-argument inference | [T196](#t196) |
+| Nested field specialization | [T196](#t196) |
+| Specialization identity | [T196](#t196) |
 | Dependent constant declarations | [T196](#t196) |
 | Explicit constant namespaces | [T196](#t196) |
 | Specialized constant lifecycle | [T186](#t186) |
@@ -581,11 +565,11 @@ whole-program admission; component certificates do not replace those checks.
 | Returned constructor creation provenance | [T196](#t196) |
 | List implementation boundary | [T195](#t195) |
 | Specialization analysis and diagnostics | [T189](#t189) |
-| Finite repeated composition | [T196](#t196), [T184](#t184) |
-| Definition-generated recursion | [T196](#t196), [T184](#t184) |
-| Creation-graph provenance | [T196](#t196), [T184](#t184) |
+| Finite repeated composition | [T196](#t196) |
+| Definition-generated recursion | [T196](#t196) |
+| Creation-graph provenance | [T196](#t196) |
 | Constructor origins and captures | [T196](#t196) |
-| Cache-independent path checks | [T196](#t196), [T184](#t184) |
+| Cache-independent path checks | [T196](#t196) |
 | Native template rejection | [T190](#t190) |
 | Concrete native template arguments | [T190](#t190) |
 | Concrete native composition | [T190](#t190) |

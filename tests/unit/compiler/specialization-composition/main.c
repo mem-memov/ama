@@ -1,0 +1,122 @@
+/** @file
+ * @brief Verify actual frontend Type-stage ownership, explicit multi-root checking and pre-admission outputs.
+ */
+#include "../common.c"
+#include "compiler/internal.h"
+
+/** Native companions deliberately fail if any check-only stage compiles C. */
+static void prepare_sources(const char *main_text) {
+    directory("generated/project");
+    file("generated/project/main", main_text);
+    file("generated/project/extra", "@!\nanchor&\n.value\n");
+    file("generated/project/value", "@C\n");
+    file("generated/project/value.h", "#error Check-only analysis must not compile native C\n");
+    file("generated/project/value.c", "#error Check-only analysis must not execute native code\n");
+    file("generated/project/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n");
+}
+
+/** Explicit selected roots retain the loaded frontend AST/source identities. */
+static void it_exposes_closed_generic_type_candidates_before_ordinary_admission(void) {
+    prepare_sources("@<\ninput\n...slot\n@>\noutput\n...slot\n@!\nknown\n.value\ninput\n known\noutput\n input\n");
+    setup_frontend();
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
+    assert(compiler_frontend_load(&frontend, &root, 1, ".main"));
+    const ProjectModule *selected[] = {frontend.project.entry};
+    assert(compiler_frontend_specialize(&frontend, selected, 1));
+    assert(frontend.specialization_initialized && frontend.specializations.valid && frontend.specializations.closure.closed);
+    assert(!frontend.semantic_initialized && !frontend.plan_initialized && !frontend.valid);
+    const StaticModule *origin = static_module_find(&frontend.static_inventory, frontend.project.entry);
+    bool found = false;
+    for (const StaticRegistryCandidate *candidate = frontend.specializations.registry.first_candidate; candidate; candidate = candidate->next) {
+        if (candidate->key->definition == origin) {
+            found = true;
+            assert(candidate->key->owner_type->as.nominal.capture_count == 1);
+            assert(candidate->key->owner_type->as.nominal.first_capture->value->as.nominal.origin->definition ==
+                project_find(&frontend.project, ".value"));
+        }
+        assert(!candidate->local_complete);
+    }
+    assert(found);
+    destroy_frontend();
+}
+
+/** Reversed explicit roots preserve entry identity and full concrete planning. */
+static void it_composes_explicit_multi_root_closure_with_the_real_frontend(void) {
+    for (size_t reverse = 0; reverse < 2; reverse++) {
+        prepare_sources("@!\nvalue\n.value\n |literal\n");
+        setup_frontend();
+        ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
+        const char *required[] = {".extra"};
+        assert(compiler_frontend_load_required(&frontend, &root, 1, ".main", required, 1));
+        const ProjectModule *extra = project_find(&frontend.project, ".extra");
+        const ProjectModule *selected[] = {reverse ? extra : frontend.project.entry,
+            reverse ? frontend.project.entry : extra};
+        assert(compiler_frontend_specialize(&frontend, selected, 2));
+        assert(compiler_frontend_finish(&frontend, NULL));
+        assert(frontend.valid && frontend.plan.valid && frontend.specializations.valid);
+        assert(frontend.plan.entry->type->module == frontend.project.entry);
+        bool seen_main = false, seen_extra = false;
+        for (const StaticClosureEntry *entry = frontend.specializations.closure.first; entry; entry = entry->next) {
+            if (entry->scope->environment->definition->definition == frontend.project.entry) { seen_main = true; }
+            if (entry->scope->environment->definition->definition == extra) { seen_extra = true; }
+        }
+        assert(seen_main && seen_extra);
+        destroy_frontend();
+    }
+}
+
+/** The ordinary public check entry performs the same Type stage before planning. */
+static void it_checks_concrete_projects_through_the_public_frontend_entry(void) {
+    prepare_sources("@!\nvalue\n.value\n |literal\n");
+    setup_frontend();
+    assert(check_project());
+    assert(frontend.specialization_initialized && frontend.specializations.valid && frontend.specializations.closure.closed);
+    assert(frontend.semantic_initialized && frontend.plan_initialized && frontend.valid);
+    destroy_frontend();
+}
+
+/** Unused required source definitions still undergo lexical checks before root expansion. */
+static void it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning(void) {
+    prepare_sources("@!\nanchor&\n.value\n");
+    file("generated/project/extra", "@<\ninput\n...slot\n@!\nmissing !\n");
+    setup_frontend();
+    ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
+    const char *required[] = {".extra"};
+    assert(compiler_frontend_load_required(&frontend, &root, 1, ".main", required, 1));
+    assert(!compiler_frontend_finish(&frontend, NULL));
+    assert(frontend.specialization_initialized && !frontend.specializations.valid);
+    assert(!frontend.semantic_initialized && !frontend.plan_initialized && !frontend.valid);
+    assert(frontend.error.primary.span.source == project_find(&frontend.project, ".extra")->source->text);
+    destroy_frontend();
+}
+
+/** An explicit list cannot omit the entry that finish would otherwise plan,
+ * even when another independently selected module is a valid ordinary root. */
+static void it_rejects_root_lists_that_omit_the_loaded_frontend_entry(void) {
+    for (size_t empty = 0; empty < 2; empty++) {
+        prepare_sources("@!\nanchor&\n.value\n");
+        setup_frontend();
+        ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
+        const char *required[] = {".extra"};
+        assert(compiler_frontend_load_required(&frontend, &root, 1, ".main", required, 1));
+        const ProjectModule *selected[] = {project_find(&frontend.project, ".extra")};
+        assert(!compiler_frontend_specialize(&frontend, empty ? NULL : selected, empty ? 0 : 1));
+        assert(frontend.specialization_initialized && !frontend.specializations.valid);
+        assert(diagnostic_valid(&frontend.error) && frontend.error.primary.span.source == frontend.project.entry->source->text);
+        assert(!frontend.semantic_initialized && !frontend.plan_initialized && !frontend.valid);
+        assert(!compiler_frontend_finish(&frontend, NULL));
+        assert(!frontend.semantic_initialized && !frontend.plan_initialized);
+        destroy_frontend();
+    }
+}
+
+/** Dispatch current-stage evidence; no generated execution is claimed here. */
+static void run(void) {
+    it_exposes_closed_generic_type_candidates_before_ordinary_admission();
+    it_composes_explicit_multi_root_closure_with_the_real_frontend();
+    it_checks_concrete_projects_through_the_public_frontend_entry();
+    it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning();
+    it_rejects_root_lists_that_omit_the_loaded_frontend_entry();
+}
+/** Counted outer teardown releases plans, semantic borrowers, Type owners and sources. */
+int main(void) { run(); return 0; }

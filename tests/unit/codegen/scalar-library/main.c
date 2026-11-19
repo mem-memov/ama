@@ -69,7 +69,8 @@ static void it_keeps_project_integer_names_and_standard_integer_types_distinct(v
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {TEST_STDLIB, NULL, 0, MODULE_ROOT_STANDARD}};
     bool checked = compiler_frontend_check(&frontend, roots, 2, ".main");
-    assert(!checked && frontend.semantic_initialized && frontend.semantic.status == SEMANTIC_INVALID);
+    assert(!checked && frontend.specialization_initialized && !frontend.specializations.valid);
+    assert(frontend.specializations.constraints.status == STATIC_CONSTRAINT_CONFLICT && !frontend.semantic_initialized);
     assert(diagnostic_valid(&frontend.error) && frontend.error.code == DIAGNOSTIC_TYPE_MISMATCH);
     destroy_frontend();
 }
@@ -89,7 +90,8 @@ static void it_rejects_implicit_conversions_between_standard_scalar_types(void) 
             ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
                 {TEST_STDLIB, NULL, 0, MODULE_ROOT_STANDARD}};
             bool checked = compiler_frontend_check(&frontend, roots, 2, ".main");
-            assert(!checked && frontend.semantic_initialized && frontend.semantic.status == SEMANTIC_INVALID);
+            assert(!checked && frontend.specialization_initialized && !frontend.specializations.valid);
+            assert(frontend.specializations.constraints.status == STATIC_CONSTRAINT_CONFLICT && !frontend.semantic_initialized);
             assert(diagnostic_valid(&frontend.error) && frontend.error.code == DIAGNOSTIC_TYPE_MISMATCH);
             destroy_frontend();
         }

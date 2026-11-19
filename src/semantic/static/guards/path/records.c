@@ -23,7 +23,7 @@ bool static_guard_has_path(const StaticGuardPlan *plan, const StaticCreationPath
 bool static_guard_path(StaticGuardPlan *plan, const StaticCreationPath *parent, const StaticGuardOwner *owner,
     const StaticApplicationRecord *application, SourceSpan site, const StaticCreationPath **output) {
     for (const StaticCreationPath *path = plan->first_path; path; path = path->next) {
-        if (path->parent == parent && path->owner == owner && path->application == application &&
+        if (path->required_from == NULL && path->parent == parent && path->owner == owner && path->application == application &&
             (application != NULL || (path->site.source == site.source &&
             path->site.start == site.start && path->site.end == site.end))) {
             *output = path; return true;

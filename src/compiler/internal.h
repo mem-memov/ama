@@ -30,6 +30,15 @@ bool compiler_frontend_load_required(CompilerFrontend *, const ModuleRoot *, siz
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03).
  */
 bool compiler_frontend_admit(CompilerFrontend *);
+/** Own guarded Type analysis for exactly the explicit ordinary roots after
+ * source/native admission. Roots must include the loaded entry module that
+ * finish will plan; standalone definition-only analysis uses the child owner.
+ * Check once; false retains source-backed diagnostics
+ * and safe teardown. Successful Type closure still needs ordinary admission.
+ * [TPL-06](../../spec/language/templates.md#tpl-06) separates inference and checks.
+ * [TPL-11](../../spec/language/templates.md#tpl-11) preserves selected roots.
+ */
+bool compiler_frontend_specialize(CompilerFrontend *, const ProjectModule *const *, size_t);
 /** Capture the successfully loaded immutable project and exact entry policy before semantic completion. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_capture(CompilerFrontend *, const ModuleRoot *, size_t);
 /**

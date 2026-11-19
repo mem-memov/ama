@@ -4142,7 +4142,7 @@
   },
   "src/compiler/frontend.c": {
     "contract": "docs/implementation/compiler-and-emission.md",
-    "purpose": "Compose semantic analysis and planning with explicit partial-owner lifetime.",
+    "purpose": "Compose guarded Type closure, ordinary semantics and planning with explicit partial-owner lifetime.",
     "tests": [
       {
         "case": "it_returns_the_same_typed_graph_that_compilation_will_consume_without_running_c",
@@ -4303,6 +4303,31 @@
         "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
         "command": "make -C tests/integration/native-admission",
         "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_exposes_closed_generic_type_candidates_before_ordinary_admission",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_explicit_multi_root_closure_with_the_real_frontend",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_concrete_projects_through_the_public_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -4489,6 +4514,31 @@
         "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
         "command": "make -C tests/integration/native-admission",
         "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_exposes_closed_generic_type_candidates_before_ordinary_admission",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_explicit_multi_root_closure_with_the_real_frontend",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_concrete_projects_through_the_public_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -4797,6 +4847,31 @@
         "case": "it_refuses_native_authoring_before_creating_companions_or_headers",
         "command": "make -C tests/integration/native-admission",
         "source": "tests/integration/native-admission/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_exposes_closed_generic_type_candidates_before_ordinary_admission",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_explicit_multi_root_closure_with_the_real_frontend",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_concrete_projects_through_the_public_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -8733,11 +8808,6 @@
       },
       {
         "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
       },
@@ -30706,11 +30776,6 @@
         "source": "tests/unit/compiler/native-admission/main.c"
       },
       {
-        "case": "it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
         "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
@@ -30724,6 +30789,11 @@
         "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/check/main.c",
+        "case": "it_refuses_incomplete_or_unadapted_static_work_at_its_actual_stage",
+        "command": "make -C tests/unit/compiler/check"
       }
     ]
   },
@@ -42841,6 +42911,61 @@
         "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_exposes_closed_generic_type_candidates_before_ordinary_admission",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_explicit_multi_root_closure_with_the_real_frontend",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_concrete_projects_through_the_public_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -42960,7 +43085,7 @@
         "command": "make -C tests/unit/compiler/check"
       },
       {
-        "case": "it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundary",
+        "case": "it_refuses_incomplete_or_unadapted_static_work_at_its_actual_stage",
         "command": "make -C tests/unit/compiler/check",
         "source": "tests/unit/compiler/check/main.c"
       }
@@ -128923,6 +129048,141 @@
         "source": "tests/unit/semantic/static/constants/failures/main.c",
         "case": "it_unwinds_every_direct_and_exported_namespace_selection_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_closes_fields_from_actual_body_equations_without_admission",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_separates_literal_obligations_from_field_type_closure",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_continues_past_unknown_calls_and_retries_with_new_evidence",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_composes_foreach_and_local_assignments",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_preserves_outputs_on_conflict_or_invalid_context",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_unwinds_every_composed_pass_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
       }
     ]
   },
@@ -133459,6 +133719,31 @@
         "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_exposes_closed_generic_type_candidates_before_ordinary_admission",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_explicit_multi_root_closure_with_the_real_frontend",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_concrete_projects_through_the_public_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -133498,11 +133783,6 @@
       },
       {
         "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
       },
@@ -133569,11 +133849,6 @@
         "source": "tests/unit/compiler/native-admission/main.c"
       },
       {
-        "case": "it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
         "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
@@ -133636,11 +133911,6 @@
         "source": "tests/unit/compiler/native-admission/main.c"
       },
       {
-        "case": "it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
         "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
@@ -133672,11 +133942,6 @@
         "source": "tests/unit/compiler/native-admission/main.c"
       },
       {
-        "case": "it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
         "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
@@ -133704,11 +133969,6 @@
       },
       {
         "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication",
         "command": "make -C tests/unit/compiler/native-admission",
         "source": "tests/unit/compiler/native-admission/main.c"
       },
@@ -139653,6 +139913,31 @@
         "source": "tests/unit/semantic/static/publication/recursion/main.c",
         "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
         "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
       }
     ],
     "standalone_header_command": [
@@ -139900,6 +140185,31 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c",
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
       }
     ],
     "standalone_header_command": [
@@ -141011,6 +141321,31 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c",
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
       }
     ]
   },
@@ -150413,42 +150748,6 @@
       }
     ]
   },
-  "tests/unit/compiler/native-admission/support/concrete.c": {
-    "contract": "docs/implementation/static-source.md",
-    "purpose": "Verify unresolved graph kinds and export selectors cannot leak into concrete runtime types.",
-    "tests": [
-      {
-        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_refuses_static_graphs_and_selected_types_before_concrete_inventory_publication",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      }
-    ]
-  },
   "tests/unit/parser/static/support/failures.c": {
     "contract": "docs/implementation/static-source.md",
     "purpose": "Verify current graph mode refusals, unbounded iterative nesting and allocation teardown.",
@@ -153502,6 +153801,31 @@
         "source": "tests/unit/semantic/static/registry/candidates/main.c",
         "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
         "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
       }
     ]
   },
@@ -162809,6 +163133,1994 @@
         "source": "tests/unit/semantic/static/terms/runtime/main.c",
         "case": "it_unwinds_every_runtime_hole_allocation_and_counter_refusal",
         "command": "make -C tests/unit/semantic/static/terms/runtime"
+      }
+    ]
+  },
+  "src/semantic/static/closure/ordinary/internal.h": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Separate finite source-call enumeration from ordinary-pass orchestration.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_closes_fields_from_actual_body_equations_without_admission",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_separates_literal_obligations_from_field_type_closure",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_continues_past_unknown_calls_and_retries_with_new_evidence",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_composes_foreach_and_local_assignments",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_preserves_outputs_on_conflict_or_invalid_context",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_unwinds_every_composed_pass_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/closure/ordinary/pass.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Compose finite ordinary equations before final actual field-Type validation.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_closes_fields_from_actual_body_equations_without_admission",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_separates_literal_obligations_from_field_type_closure",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_continues_past_unknown_calls_and_retries_with_new_evidence",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_composes_foreach_and_local_assignments",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_preserves_outputs_on_conflict_or_invalid_context",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_unwinds_every_composed_pass_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      }
+    ]
+  },
+  "src/semantic/static/closure/ordinary/pass.h": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Compose ordinary Type evidence under actual checked incoming provenance.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_closes_fields_from_actual_body_equations_without_admission",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_separates_literal_obligations_from_field_type_closure",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_continues_past_unknown_calls_and_retries_with_new_evidence",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_composes_foreach_and_local_assignments",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_preserves_outputs_on_conflict_or_invalid_context",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_unwinds_every_composed_pass_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/closure/ordinary/calls.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Enumerate actual source-owned call events without skipping unresolved targets or branches.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_closes_fields_from_actual_body_equations_without_admission",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_separates_literal_obligations_from_field_type_closure",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_continues_past_unknown_calls_and_retries_with_new_evidence",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_composes_foreach_and_local_assignments",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_preserves_outputs_on_conflict_or_invalid_context",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_unwinds_every_composed_pass_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/Makefile": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Dispatch independently testable guarded specialization closure components.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_closes_fields_from_actual_body_equations_without_admission",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_separates_literal_obligations_from_field_type_closure",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_continues_past_unknown_calls_and_retries_with_new_evidence",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_composes_foreach_and_local_assignments",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_preserves_outputs_on_conflict_or_invalid_context",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_unwinds_every_composed_pass_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/ordinary/Makefile": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Test ordinary refinement through real guarded source and equation owners.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_closes_fields_from_actual_body_equations_without_admission",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_separates_literal_obligations_from_field_type_closure",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_continues_past_unknown_calls_and_retries_with_new_evidence",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_composes_foreach_and_local_assignments",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_preserves_outputs_on_conflict_or_invalid_context",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_unwinds_every_composed_pass_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/ordinary/main.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify real ordinary equation-pass composition without treating metadata as admission.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_closes_fields_from_actual_body_equations_without_admission",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_separates_literal_obligations_from_field_type_closure",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_continues_past_unknown_calls_and_retries_with_new_evidence",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_composes_foreach_and_local_assignments",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_preserves_outputs_on_conflict_or_invalid_context",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/ordinary/main.c",
+        "case": "it_unwinds_every_composed_pass_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/ordinary"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/requirements/main.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify known-Type validation provenance without changing the constructor-creation graph.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/requirements/Makefile": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify attributed known-Type requirements and separate registry validation edges.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      }
+    ]
+  },
+  "src/semantic/static/guards/path/require.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Attribute required known-Type validation without inventing constructor edges or selected roots.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_attributes_required_types_without_creating_edges_or_selected_roots",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_checks_outgoing_creation_from_reused_types",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_suspends_unknown_requirements_without_preparing_a_scope",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_refuses_foreign_requirement_provenance_and_template_values",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/requirements/main.c",
+        "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/requirements"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/worklist/main.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify finite required-context scheduling metadata without candidate admission or runtime merging.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/worklist/Makefile": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify required-context retention and exact representative selection through real semantic owners.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      }
+    ]
+  },
+  "src/semantic/static/closure/plan.h": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Own required ordinary-body scheduling independently of Type identity and executable admission.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/closure/internal.h": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Share first-error and owned-allocation operations for the guarded closure worklist.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/closure/error.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Preserve first worklist and borrowed semantic diagnostics through failed closure preparation.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "src/semantic/static/closure/owner.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Own partial required-context worklists without owning their static source/equation dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "src/semantic/static/closure/worklist/collect.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Retain every actual ordinary use while selecting exact-key representatives for finite body scheduling.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_retains_actual_paths_and_shares_only_exact_candidate_identity",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_merges_pending_work_only_after_independent_keys_close",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_leaves_static_producer_contexts_out_of_ordinary_body_work",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_refuses_invalid_receivers_and_checked_queue_count_overflow",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/worklist/main.c",
+        "case": "it_unwinds_every_required_context_collection_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/worklist"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "src/semantic/static/closure/worklist/step.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Refine all required ordinary representatives and preserve every newly discovered guarded dependency.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "src/semantic/static/closure/worklist/resolve.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Require exact whole-worklist Type closure after evidence-driven refinement stabilizes.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/scheduler/main.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify complete Type inference across actual required bodies without claiming executable admission.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/closure/scheduler/Makefile": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify whole-worklist Type refinement and guarded required-definition composition.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "src/semantic/static/closure/demands/type.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Connect complete known-Type requirements to actual guarded result contexts and registry dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "src/semantic/static/closure/demands/constants.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Resolve direct qualified transfers through independently fixed namespace Types and actual required contexts.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "src/semantic/static/closure/demands/internal.h": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Separate attributed Type, operation and constant requirements from worklist orchestration.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/closure/demands/operations.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Require immediate source/list call Types and independently selected saved constant namespaces.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "src/semantic/static/closure/demands/fields.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Require every original field's scalar or list-element definition without executing defaults.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_generic_calls_and_requires_their_actual_definitions",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_infers_callee_output_types_from_required_body_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_direct_and_saved_constant_receivers_without_value_execution",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_bad_required_definitions_behind_empty_references",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_unanchored_required_types_instead_of_guessing",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_closes_same_key_reference_cycles_without_repeated_body_expansion",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_preserves_independent_root_acceptance_in_both_discovery_orders",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_requires_exported_types_without_reinterpreting_static_producers_as_instances",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_rejects_changing_key_creation_through_ordinary_call_equations",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_unwinds_every_whole_worklist_resolution_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/semantic/static/closure/scheduler/main.c",
+        "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
+        "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      }
+    ]
+  },
+  "tests/unit/compiler/specializations/main.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify compiler-owned static-stage handoffs, definition-time checks and complete failure-prefix teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      }
+    ]
+  },
+  "tests/unit/compiler/specializations/Makefile": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify owned compiler specialization stages through real source, scope and required-Type components.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      }
+    ]
+  },
+  "src/compiler/specializations/roots.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Register only explicit original ordinary compilation roots with checked creation provenance.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      }
+    ]
+  },
+  "src/compiler/specializations/owner.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Own static semantic children in dependency order without owning the original source inventory.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      }
+    ]
+  },
+  "src/compiler/specializations/internal.h": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Separate definition-time source checks, selected roots and whole-Type closure orchestration.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/compiler/specializations/analysis.h": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Own the compiler's static equation, guarded registry and required-Type analysis stages.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/compiler/specializations/definitions.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Check lexical runtime bindings even in open or otherwise uninstantiated loaded ordinary definitions.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      }
+    ]
+  },
+  "src/compiler/specializations/check.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Compose definition-time binding, explicit root registration and complete guarded Type closure.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_closes_selected_root_types_through_owned_semantic_stages",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_checks_definitions_without_inventing_roots_or_type_defaults",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_rejects_bad_lexical_bindings_in_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_preserves_explicit_multiple_roots_in_either_order",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_refuses_invalid_or_static_root_selections",
+        "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/specializations/main.c",
+        "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
+        "command": "make -C tests/unit/compiler/specializations"
+      }
+    ]
+  },
+  "tests/unit/compiler/specialization-composition/main.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify actual frontend Type-stage ownership, explicit multi-root checking and pre-admission outputs.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_exposes_closed_generic_type_candidates_before_ordinary_admission",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_explicit_multi_root_closure_with_the_real_frontend",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_concrete_projects_through_the_public_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      }
+    ]
+  },
+  "tests/unit/compiler/specialization-composition/Makefile": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Verify real frontend source, guarded Type-closure and concrete-consumer handoffs.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_exposes_closed_generic_type_candidates_before_ordinary_admission",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_explicit_multi_root_closure_with_the_real_frontend",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_concrete_projects_through_the_public_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      }
+    ]
+  },
+  "src/compiler/specialize.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Attach guarded required-Type analysis to the loaded frontend with explicit partial-owner lifetime.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_exposes_closed_generic_type_candidates_before_ordinary_admission",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_explicit_multi_root_closure_with_the_real_frontend",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_checks_concrete_projects_through_the_public_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_invalid_uninstantiated_loaded_definitions_before_semantic_planning",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/support/types.c": {
+    "contract": "docs/implementation/static-closure.md",
+    "purpose": "Compare required concrete Type fields with independently resolved ordinary semantic bindings.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
       }
     ]
   }

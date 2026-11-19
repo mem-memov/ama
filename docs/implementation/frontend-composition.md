@@ -10,6 +10,13 @@ It extends [semantic composition](semantic-composition.md) through
 [structured lowering](structured-lowering.md); execution adapters remain separate
 implementation tasks.
 
+T184 extends this composition with
+[guarded Type closure](static-closure.md) before ordinary semantics/planning.
+The frontend retains that child owner through semantic/plan destruction and
+accepts an explicit selected-root list for shared multi-root checking. The
+original T045 evidence below predates that extra phase; T184 records its current
+stage-prefix, Type-candidate, teardown and consumer evidence separately.
+
 ## Boundary and ownership
 
 The public `compiler_frontend_check` loads the requested closure, seals its input
