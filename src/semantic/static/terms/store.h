@@ -58,6 +58,16 @@ void static_term_store_destroy(StaticTermStore *);
  * Contract: [TPL-08](../../../../spec/language/templates.md#tpl-08).
  */
 bool static_term_environment(StaticTermStore *, const StaticModule *, const StaticTerm *, const StaticTermEnvironment **);
+/** Intern an explicit full input map for a static graph producer without making
+ * it a nominal Type. Every original formal occurs once; values belong to this
+ * store and may still be symbolic. Array order is immaterial. The map is copied
+ * in declaration order. No solving, body expansion or admission occurs here.
+ * Output and environment count remain unchanged on refusal; partial storage is
+ * reclaimed with the store. [TPL-12](../../../../spec/language/static-results.md#tpl-12).
+ */
+bool static_term_producer_environment(StaticTermStore *, const StaticModule *,
+    const StaticTermCapture *, size_t, const StaticTermEnvironment **);
+
 /** Resolve a whole-module local symbol in its explicit environment. An applied
  * owner's formal returns its supplied value; generic formals/results/aliases
  * have stable scoped variables. No text lookup or equation solving occurs.

@@ -4707,3 +4707,29 @@ this table is navigation, not a parallel semantic definition.
   tests, Doxygen links and same-task commit criteria.
   Fixtures: Migrate the remaining binding/application fixtures from old mixed interfaces;
   delete static positional/skip-only cases while retaining runtime positions.
+
+<a id="t215"></a>
+
+- [x] **T215 — Give static producer owners exact compiler-only identities.**
+  Prerequisites: T207, T209, T213.
+  Rules: [TPL-11](spec/language/templates.md#tpl-11),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: full producer input maps and shared guard owner normalization;
+  no runtime Type/Template representation for static modules.
+  Steps: intern raw scopes, normalize every input through the solver, generalize
+  creation/definition keys and expose a source-backed producer entry guard.
+  Accept: complete map identity, permutations, unused inputs, lexical membership,
+  unknown repeated-key suspension before new scope preparation, same/unequal
+  closed-key recurrence, independent definition-cycle rejection, exhaustive
+  concrete creation-graph oracle and allocation refusal cleanup. Strict and
+  sanitizer checks, per-file documentation coverage and generated links pass.
+  Evidence (2026-11-19): eight producer cases and ordinary owner checks pass
+  strict C11 and ASan/UBSan. Both ordinary and producer-key graph oracles exhaust
+  65536 graphs in two insertion orders each (262144 graph/order/category cases
+  per configuration). Immutable-term parent and final compiler build pass.
+  Complete documentation check reports 2713 ready inputs, zero debts. Rendered
+  link validation passes after adding the producer rule to the file-level purpose
+  comment; final rendering/staged-byte review remain commit gates.
+  Contract: [producer owner foundation](docs/implementation/static-guards.md#t215-producer-owner-foundation).
+  This prerequisite separates the representation correction from T210's remaining
+  source-fixture migration and full expansion/cache acceptance.

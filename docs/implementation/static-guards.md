@@ -2,6 +2,124 @@
 
 <a id="t201-alignment"></a>
 
+## T215 producer owner foundation
+
+Static graph producers have compiler identities but are not Type/Template values
+([TPL-12](../../spec/language/static-results.md#tpl-12)). The old nominal-only
+owner representation could not identify a real graph producer after T208 correctly
+forbade nominal construction from static modules. T215 separates that identity
+without changing the ordinary term algebra. T210 owns the remaining migration and
+full expansion/cache-path acceptance; this foundation is not whole-program
+admission.
+
+### Representation and contract
+
+`static_term_producer_environment` accepts an inventory-owned static definition
+and an array containing exactly one store-owned term for every original input
+formal. Array order and caller list links are irrelevant. It copies bindings in
+original declaration order and interns `(definition, full raw input map)`.
+Generic and explicitly applied scopes remain distinct even for zero inputs.
+Parameters in an applied producer read their supplied terms; derived results
+remain variables in that exact scope. No body executes or expands here. Type and
+Template categories remain unchanged, and unknown variables are not defaults.
+
+Guard owners retain the original lexical environment and either an ordinary
+nominal shape or a complete compiler-only producer map. Normalization asks the
+constraint solver about every input, including unused inputs. Only complete
+normalized maps become canonical creation/definition keys. Equal original symbol
+plus equal complete owner key merges definition nodes; equal values of different
+symbols do not. Ordinary result adapters retain their existing ordinary owner
+term view pending their separate T211/T212 migration; producer guard checks use
+the complete owner environment, never that optional term view.
+
+`static_creation_producer_enter` requires an original producer expression from
+its published parent's lexical definition. Source occurrences select the actual
+loaded static origin; a caller cannot supply another origin by name resemblance.
+The full map is checked before dereference. A temporary candidate map permits
+ancestry comparisons before publishing any producer scope. An unresolved repeated
+ancestor suspends entry before candidate scope preparation. Every complete
+ancestor comparison is checked: identical keys may close a creation cycle;
+different keys of the same origin are rejected with both compiler identities.
+Every original source use retains a path, including distinct uses of one producer
+under a common parent. Cache graph checks use the same normalized keys and retain
+all original edges. Definition cycles are checked independently.
+
+### Invariants, bounds and ownership
+
+Membership and cardinality plus uniqueness establish an exact total input map.
+Interning compares original formal identities and already interned child term
+identities; by induction on term construction, permutations cannot change raw
+identity. This does not assert solved equality for unknown variables. Complete
+identity is obtained only through solver queries. Maps of different origins or
+any unequal input remain distinct, including unused bindings and Template residual
+metadata already retained in child terms.
+
+Each scan visits a finite list or an input-count-bounded array. Let P be the
+input count, M/S the inventory module/symbol counts, T the term count and E the
+scope count. Membership and duplicate validation costs
+O(M + P(M + S + T) + P²); searching E scopes costs O(E P²) with array lookup.
+Source-order publication additionally costs O(P S + P²). Published scope storage
+is O(P). Normalization uses O(P) temporary storage plus the solver queries and
+these validation/interning operations;
+no source-body recursion occurs. The existing finite reachability checker keeps
+its graph invariants and compares canonical environments instead of nominal-only
+values. Scope interning is not admission and cannot bypass the definition graph.
+
+Borrowed source and terms outlive guards. Producer scopes and copied maps belong
+to the term arena; comparison/normalization scratch is released on every return.
+No incomplete environment is linked or counted after map allocation refusal.
+Other partial guard records remain owned until unconditional guard teardown.
+Receivers are written only on successful publication; pending entry leaves the
+path receiver untouched. No rollback of solver metadata is promised.
+
+### T215 acceptance (2026-11-19)
+
+The producer leaf checks raw-map reuse, permutations, unused inputs, invalid
+membership/duplicates, zero inputs, pending-to-closed recurrence, equal/unequal
+keys, independent definition recursion and each observed allocation refusal.
+The ordinary owner leaf and exhaustive four-vertex graph oracle check unchanged
+ordinary semantics and canonical graph behavior. Initial fixture mistakes were
+corrected: a graph producer must be used as an actual projection, not an ordinary
+result Type path; persistent canonical environments are prepared before the graph
+oracle's guard-only allocation baseline. A distinct-Type graph case initially
+named a nonexistent standard bit module; the fixture now uses the existing text
+module. The documentation compile probe also exposed old direct vertex calls in
+the failure fixture; they now prepare the new owner-key interface through the
+same support helper exercised by the graph oracle. The initial rendered-link gate found TPL-12 only on a struct member page;
+its explanation is now also in the file-purpose comment and the rendered check
+passes. The final task snapshot is `/tmp/ama-t215-check-5_43gf9k`; its separate
+sanitizer tree ends in `-san`. No working T182 changes enter these trees.
+
+Acceptance commands use `make -C tests/unit/semantic/static/guards/producer`,
+`make -C tests/unit/semantic/static/guards/owner`,
+`make -C tests/unit/semantic/static/guards/graph`,
+`make -C tests/unit/semantic/static/terms`, and
+`make`. Strict flags are `-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic
+-D_POSIX_C_SOURCE=200809L`. Sanitizer leaves use `-O1`, the same warnings/C11,
+`-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie`, and linker flags
+`-fsanitize=address,undefined -no-pie`. `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1`
+and `UBSAN_OPTIONS=halt_on_error=1` retain the established container restriction;
+counted allocation teardown independently checks leaks.
+
+All three guard leaves pass in both configurations. The two graph cases check
+262144 graph/order/category combinations per configuration against independent
+transitive closure. Eight producer cases include all raw two-input maps over
+three actual values in both input orders, including a residual Template; its
+complete compiler key is also normalized. Allocation sweeps cover map construction,
+generic roots and actual source-backed successful and rejected entry, with no
+fixed allocation-count assumptions. Final source-backed refusal reruns are
+`/tmp/ama-t215-producer-{strict,san}-refusal-final.log`; other guard runs use
+`/tmp/ama-t215-*-accepted-*.log`. The immutable-term parent and final compiler
+build pass. The complete per-file gate reports 2713 inputs and zero debts.
+
+Rendered documentation uses Doxygen 1.11.0, Python 3.14.4 and markdown-it-py
+3.0.0. `make docs-complete` and actual Doxygen generation/link validation pass;
+final counts are recorded in the commit. Source-relative canonical links were
+resolved by the generator and the independent local-link review. These checks
+are neither whole-language conformance nor acceptance of the old remaining
+fixtures. T210 retains ancestry/cache/definition fixture revalidation; T211/T212
+retain producer equations, selected outputs and result-adapter composition.
+
 ## T201 implementation alignment
 
 T201 is accepted on input 7469fd4 under the user's 2026-11-18 instruction to continue

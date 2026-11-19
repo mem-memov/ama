@@ -45,4 +45,9 @@ bool static_term_has_value(const StaticTermStore *, const StaticTerm *);
  */
 bool static_term_variable(StaticTermStore *, StaticVariableIdentity, StaticCategory,
     const StaticSignature *, SourceSpan, const StaticTerm **);
+/** Validate complete compiler-only producer maps before any scope publication.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves original inputs.
+ */
+bool static_term_producer_inputs_valid(StaticTermStore *, const StaticModule *,
+    const StaticTermCapture *, size_t);
 #endif

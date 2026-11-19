@@ -59,11 +59,42 @@ static void witness(void) {
         length++;
     }
     assert(length <= 4);
-    assert(item->vertex->value->as.nominal.origin == guards.closing_edge->target->value->as.nominal.origin);
+    assert(item->vertex->key->definition == guards.closing_edge->target->key->definition);
     assert(item->vertex != guards.closing_edge->target);
     assert(guards.earlier_creation_value == item->vertex->value);
     assert(guards.rejected_creation_value == guards.closing_edge->target->value);
     assert(diagnostic_valid(&guards.error));
+}
+
+/** Run the independent matrix oracle against supplied canonical owner keys.
+ * Scope storage outlives each guard-only allocation baseline.
+ */
+static void exercise(const StaticTermEnvironment **environments) {
+    StaticCreationPath trace = {.site = static_name_site(project.entry, "...a")};
+    size_t baseline = live_allocations;
+    for (unsigned graph = 0; graph < 65536; graph++) {
+        bool expected = forbidden(graph);
+        for (size_t reverse = 0; reverse < 2; reverse++) {
+            StaticCreationVertex *vertices[4];
+            for (size_t index = 0; index < 4; index++) {
+                size_t key = reverse ? 3 - index : index;
+                if (environments[key]->owner_type) {
+                    assert(guard_vertex(environments[key]->owner_type, &vertices[key]));
+                } else {
+                    assert(static_guard_vertex(&guards, environments[key], &vertices[key]));
+                }
+            }
+            graph_edges(graph, vertices, &trace, reverse != 0);
+            size_t before = live_allocations;
+            bool accepted = static_guard_creation_graph(&guards);
+            assert(accepted == !expected);
+            if (accepted) { assert(live_allocations == before && guards.status == STATIC_GUARD_OK); }
+            else { assert(guards.status == STATIC_GUARD_CONFLICT); witness(); }
+            static_guard_destroy(&guards);
+            assert(live_allocations == baseline && applications.status == STATIC_APPLY_OK);
+            static_guard_init(&guards, &applications, sources.allocator);
+        }
+    }
 }
 
 /** Exhaust 65536 directed graphs including self edges, in both insertion orders.
@@ -83,37 +114,45 @@ static void it_matches_all_four_vertex_graphs_and_insertion_orders(void) {
     map[0].value = values[2];
     assert(static_term_nominal(&terms, caller_module, map, 2, (SourceSpan){0}, &values[1]));
     values[3] = integer_type;
+    const StaticTermEnvironment *environments[4];
     for (size_t index = 0; index < 4; index++) {
+        assert(static_term_environment(&terms, values[index]->as.nominal.origin, values[index], &environments[index]));
         const StaticTerm *closed;
         StaticConstraintOutcome outcome;
         assert(static_constraint_value(&solver, values[index], &closed, &outcome));
         assert(outcome == STATIC_CONSTRAINT_COMPLETE && closed == values[index]);
     }
-    StaticCreationPath trace = {.site = static_name_site(project.entry, "...a")};
-    size_t baseline = live_allocations;
-    for (unsigned graph = 0; graph < 65536; graph++) {
-        bool expected = forbidden(graph);
-        for (size_t reverse = 0; reverse < 2; reverse++) {
-            StaticCreationVertex *vertices[4];
-            for (size_t index = 0; index < 4; index++) {
-                size_t key = reverse ? 3 - index : index;
-                assert(static_guard_vertex(&guards, values[key], &vertices[key]));
-            }
-            graph_edges(graph, vertices, &trace, reverse != 0);
-            size_t before = live_allocations;
-            bool accepted = static_guard_creation_graph(&guards);
-            assert(accepted == !expected);
-            if (accepted) { assert(live_allocations == before && guards.status == STATIC_GUARD_OK); }
-            else { assert(guards.status == STATIC_GUARD_CONFLICT); witness(); }
-            static_guard_destroy(&guards);
-            assert(live_allocations == baseline && applications.status == STATIC_APPLY_OK);
-            static_guard_init(&guards, &applications, sources.allocator);
-        }
-    }
+    exercise(environments);
+    destroy_guards();
+}
+
+/** Apply the same complete graph domain to compiler-only producers; no nominal
+ * value represents either graph origin. One input changes to a distinct Type.
+ */
+static void it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders(void) {
+    const char *source = "@...\n...first\n...a\n...second\n...b\n...integer\n..integer\n...text\n..text\n";
+    setup_guards(source, source);
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticTerm *text_type;
+    assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &text_type));
+    const StaticTermEnvironment *environments[4];
+    StaticTermCapture map[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
+        {.formal = application_formal(caller_module, 1), .value = integer_type}};
+    assert(static_term_producer_environment(&terms, caller_module, map, 2, &environments[0]));
+    map[0].value = text_type;
+    assert(static_term_producer_environment(&terms, caller_module, map, 2, &environments[1]));
+    map[0] = (StaticTermCapture){.formal = application_formal(target_module, 0), .value = integer_type};
+    map[1].formal = application_formal(target_module, 1);
+    assert(static_term_producer_environment(&terms, target_module, map, 2, &environments[2]));
+    assert(static_term_environment(&terms, integer_type->as.nominal.origin, integer_type, &environments[3]));
+    exercise(environments);
     destroy_guards();
 }
 
 /** Execute the exact finite graph domain and independent matrix oracle. */
-static void run(void) { it_matches_all_four_vertex_graphs_and_insertion_orders(); }
+static void run(void) {
+    it_matches_all_four_vertex_graphs_and_insertion_orders();
+    it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders();
+}
 /** Return success after counted exhaustive-domain teardown. */
 int main(void) { run(); return 0; }

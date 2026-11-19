@@ -11,23 +11,24 @@
  */
 bool static_guard_definition_keys(StaticGuardPlan *plan, StaticGuardClosure *closure) {
     for (StaticDefinitionNode *node = plan->first_definition; node; node = node->next) {
-        const StaticTerm *value;
+        const StaticTermEnvironment *value;
         StaticConstraintOutcome outcome;
-        if (!static_constraint_value(plan->applications->solver, node->owner->value, &value, &outcome)) {
+        if (!static_guard_owner_key(plan, node->owner, &value, &outcome)) {
             (void)static_guard_dependencies(plan); return false;
         }
         if (outcome == STATIC_CONSTRAINT_PENDING) { *closure = STATIC_GUARD_PENDING; continue; }
-        if (node->concrete != NULL && node->concrete != value) {
+        if (node->concrete_key != NULL && node->concrete_key != value) {
             return static_guard_fail(plan, STATIC_GUARD_CONFLICT, node->symbol->site,
                 "A complete static-definition owner changed after normalization");
         }
-        node->concrete = value;
+        node->concrete_key = value;
+        node->concrete = value->owner_type;
     }
     for (StaticDefinitionNode *node = plan->first_definition; node; node = node->next) {
         node->representative = node;
-        if (node->concrete == NULL) { continue; }
+        if (node->concrete_key == NULL) { continue; }
         for (StaticDefinitionNode *other = plan->first_definition; other; other = other->next) {
-            if (other->symbol == node->symbol && other->concrete == node->concrete &&
+            if (other->symbol == node->symbol && other->concrete_key == node->concrete_key &&
                 other->ordinal < node->representative->ordinal) { node->representative = other; }
         }
     }

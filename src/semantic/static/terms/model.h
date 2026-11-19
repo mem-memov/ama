@@ -7,6 +7,8 @@
  * separates local residual binders from surrounding free/inference variables.
  * [TPL-10](../../../../spec/language/templates.md#tpl-10) keeps source and
  * term structure distinct from equation solutions and executable layout.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) gives static
+ * producers compiler-only input-map identities without making them Type values.
  */
 #ifndef AMA_STATIC_TERM_MODEL_H
 #define AMA_STATIC_TERM_MODEL_H
@@ -99,14 +101,21 @@ struct StaticTerm {
     union { StaticVariableIdentity variable; StaticNominalTerm nominal; } as;
 };
 
-/** Generic definitions have no owner_type. Applied environments borrow a fully
- * bound nominal owner Type, which can still contain surrounding symbolic values;
- * later solving/substitution closes those values, not runtime observations.
+/** Generic definitions have no applied key. Ordinary applied environments borrow
+ * a fully bound nominal Type; static producers retain a separate complete input
+ * map. Both may contain symbolic values until the solver closes them.
  * Contract: [TPL-08](../../../../spec/language/templates.md#tpl-08).
  */
 struct StaticTermEnvironment {
     StaticTermEnvironment *next;
     const StaticModule *definition;
     const StaticTerm *owner_type;
+    /** Complete original input map for an applied static producer; these compiler
+     * keys are not Type/Template values. Null also represents a zero-input map;
+     * producer_applied distinguishes it from a generic scope.
+     * [TPL-12](../../../../spec/language/static-results.md#tpl-12).
+     */
+    const StaticTermCapture *producer_inputs;
+    bool producer_applied;
 };
 #endif

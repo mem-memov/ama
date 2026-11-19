@@ -10,7 +10,7 @@
  * describes the owner shape and does not turn residual metadata into new holes.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) preserves parameter scope.
  */
-static bool generic(StaticGuardPlan *plan, const StaticTermEnvironment *environment, const StaticTerm **output) {
+static bool generic(StaticGuardPlan *plan, const StaticTermEnvironment *environment, const StaticTerm **output, const StaticTermEnvironment **key) {
     size_t count = environment->definition->parameter_count;
     if (count > SIZE_MAX / sizeof(StaticTermCapture)) {
         return static_guard_fail(plan, STATIC_GUARD_OUT_OF_MEMORY, (SourceSpan){0},
@@ -24,6 +24,12 @@ static bool generic(StaticGuardPlan *plan, const StaticTermEnvironment *environm
         if (!static_term_symbol(terms, environment, captures[ordinal].formal, &captures[ordinal].value)) {
             (void)static_guard_dependencies(plan); return false;
         }
+    }
+    if (environment->definition->definition->syntax.sections.kind == MODULE_STATIC) {
+        if (!static_term_producer_environment(terms, environment->definition, captures, count, key)) {
+            (void)static_guard_dependencies(plan); return false;
+        }
+        return true;
     }
     if (!static_term_nominal(terms, environment->definition, captures, count, (SourceSpan){0}, output)) {
         (void)static_guard_dependencies(plan); return false;
@@ -48,10 +54,11 @@ bool static_guard_owner(StaticGuardPlan *plan, const StaticTermEnvironment *envi
             "Static guard owner count exceeds representable storage");
     }
     const StaticTerm *value = environment->owner_type;
-    if (value == NULL && !generic(plan, environment, &value)) { return false; }
+    const StaticTermEnvironment *key = environment;
+    if (value == NULL && !environment->producer_applied && !generic(plan, environment, &value, &key)) { return false; }
     StaticGuardOwner *owner = static_guard_allocate(plan, sizeof(*owner));
     if (owner == NULL) { return false; }
-    *owner = (StaticGuardOwner){.environment = environment, .value = value, .next = plan->first_owner};
+    *owner = (StaticGuardOwner){.environment = environment, .value = value, .key = key, .next = plan->first_owner};
     plan->first_owner = owner;
     plan->owner_count++;
     *output = owner;

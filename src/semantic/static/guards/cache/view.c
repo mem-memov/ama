@@ -50,7 +50,7 @@ bool static_creation_view(StaticGuardPlan *plan, SourceArena *scratch, StaticCre
         if (vertex->ordinal >= plan->vertex_count) {
             return static_guard_fail(plan, STATIC_GUARD_INVALID, (SourceSpan){0}, "Invalid concrete creation vertex ordinal");
         }
-        view.nodes[vertex->ordinal] = (StaticCreationViewNode){.vertex = vertex, .origin = vertex->value->as.nominal.origin};
+        view.nodes[vertex->ordinal] = (StaticCreationViewNode){.vertex = vertex, .origin = vertex->key->definition};
         actual++;
     }
     if (actual != plan->vertex_count) {

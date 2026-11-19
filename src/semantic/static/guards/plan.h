@@ -62,6 +62,8 @@ typedef struct {
      * from unresolved scopes. [COMP-04](../../../../spec/implementation/compiler.md#comp-04)
      * reports both specializations alongside their original applications.
      */
+    const StaticTermEnvironment *earlier_creation_key;
+    const StaticTermEnvironment *rejected_creation_key;
     const StaticTerm *earlier_creation_value;
     const StaticTerm *rejected_creation_value;
     SourceSpan rejected_site;
@@ -102,6 +104,17 @@ bool static_creation_root(StaticGuardPlan *, const StaticTermEnvironment *, cons
  */
 bool static_creation_enter(StaticGuardPlan *, const StaticCreationPath *,
     const StaticApplicationRecord *, const StaticCreationPath **, StaticCreationOutcome *);
+/** Guard an actual source-written static producer use with its complete explicit
+ * input map before preparing the producer environment. Pending comparisons do
+ * not publish a target scope/path. Expression must belong to the lexical parent
+ * and name a loaded static producer; Type/Template forwarding uses other paths.
+ * Only ENTERED writes the path receiver. Raw map construction is not admission.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) guards before expansion.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves producer identity.
+ */
+bool static_creation_producer_enter(StaticGuardPlan *, const StaticCreationPath *,
+    const AstTypeExpression *, const StaticTermCapture *, size_t,
+    const StaticCreationPath **, StaticCreationOutcome *);
 /** Normalize registered creation/definition keys and retain all original edges.
  * Check cached descendants and definition cycles after complete-key merging.
  * Pending keys remain scoped records. Closure concerns these registered owners

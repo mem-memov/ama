@@ -23,4 +23,12 @@ static void destroy_guards(void) {
     assert(guards.applications == NULL && guards.first_owner == NULL && guards.owner_count == 0);
     destroy_applications();
 }
+/** Prepare an ordinary canonical scope for concrete-graph fixture calls.
+ * Full owner normalization is the production guard consumer's responsibility.
+ */
+static inline bool guard_vertex(const StaticTerm *value, StaticCreationVertex **output) {
+    const StaticTermEnvironment *environment;
+    if (!static_term_environment(&terms, value->as.nominal.origin, value, &environment)) { return false; }
+    return static_guard_vertex(&guards, environment, output);
+}
 #endif

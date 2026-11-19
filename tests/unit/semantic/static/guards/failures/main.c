@@ -35,7 +35,7 @@ static void creation_graph(bool cyclic, StaticCreationPath *trace) {
     StaticConstraintOutcome outcome;
     assert(static_constraint_value(&solver, value, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
     StaticCreationVertex *source, *target;
-    assert(static_guard_vertex(&guards, closed, &source));
+    assert(guard_vertex(closed, &source));
     if (cyclic) {
         StaticTermCapture other[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
             {.formal = application_formal(target_module, 1), .value = integer_type}};
@@ -44,14 +44,14 @@ static void creation_graph(bool cyclic, StaticCreationPath *trace) {
         captures[0].value = argument;
         assert(static_term_nominal(&terms, caller_module, captures, 2, (SourceSpan){0}, &value));
         assert(static_constraint_value(&solver, value, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
-        assert(static_guard_vertex(&guards, closed, &target) && target != source);
+        assert(guard_vertex(closed, &target) && target != source);
     }
     else {
         captures[0].formal = application_formal(target_module, 0);
         captures[1].formal = application_formal(target_module, 1);
         assert(static_term_nominal(&terms, target_module, captures, 2, (SourceSpan){0}, &value));
         assert(static_constraint_value(&solver, value, &closed, &outcome) && outcome == STATIC_CONSTRAINT_COMPLETE);
-        assert(static_guard_vertex(&guards, closed, &target));
+        assert(guard_vertex(closed, &target));
     }
     StaticCreationEdge *edge = static_guard_allocate(&guards, sizeof(*edge));
     assert(edge);
@@ -120,7 +120,7 @@ static void it_guards_path_vertex_definition_and_search_counter_limits(void) {
             guards.vertex_count = SIZE_MAX;
             StaticCreationVertex *output = NULL;
             size_t before = allocation_count;
-            assert(!static_guard_vertex(&guards, closed, &output));
+            assert(!guard_vertex(closed, &output));
             assert(output == NULL && allocation_count == before);
         } else {
             assert(static_creation_root(&guards, caller_environment, &root));

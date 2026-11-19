@@ -7,17 +7,18 @@
 #define AMA_STATIC_GUARD_MODEL_H
 #include "../applications/plan.h"
 
-/** A symbolic owner retains its lexical environment and fully bound nominal
- * shape, whose captured variables need not yet have concrete solutions.
+/** A symbolic owner retains its lexical environment and either an ordinary
+ * nominal shape or a compiler-only producer input map. Both may remain symbolic.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) retains unresolved environments.
  */
 typedef struct StaticGuardOwner {
     struct StaticGuardOwner *next;
     const StaticTermEnvironment *environment;
     const StaticTerm *value;
+    const StaticTermEnvironment *key;
 } StaticGuardOwner;
 
-/** Concrete vertices are keyed by complete nominal identity, never source name.
+/** Concrete vertices are keyed by complete normalized owner identity, never source name.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves distinct specializations.
  */
 typedef struct StaticCreationVertex StaticCreationVertex;
@@ -42,7 +43,7 @@ typedef struct StaticCreationPath {
     StaticCreationEdge *edge;
 } StaticCreationPath;
 
-/** One immutable provenance edge; endpoints are complete canonical Types.
+/** One immutable provenance edge; endpoints are complete canonical owner keys.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) retains all use locations.
  */
 struct StaticCreationEdge {
@@ -58,6 +59,7 @@ struct StaticCreationEdge {
 struct StaticCreationVertex {
     StaticCreationVertex *next;
     const StaticTerm *value;
+    const StaticTermEnvironment *key;
     size_t ordinal;
     StaticCreationEdge *first;
     StaticCreationEdge *last;

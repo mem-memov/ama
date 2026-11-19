@@ -172,6 +172,7 @@ boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 [T213](DONE.md#t213) checks the complete source closure and occurrence roles.
 [T208](DONE.md#t208) establishes actual metadata and all-use requirements.
 [T209](DONE.md#t209) establishes named application and finite structural equations.
+[T215](DONE.md#t215) establishes exact compiler-only producer owner keys.
 T210 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
@@ -193,7 +194,7 @@ reuse, removal and replacement below; they do not establish current-spec support
 <a id="t210"></a>
 
 - [ ] **T210 — Guard definition expansion and every specialization path.**
-  Prerequisites: T207, T209.
+  Prerequisites: T207, T209, T215.
   Rules: [TPL-10](spec/language/templates.md#tpl-10),
   [TPL-11](spec/language/templates.md#tpl-11),
   [TPL-12](spec/language/static-results.md#tpl-12).
@@ -214,6 +215,11 @@ reuse, removal and replacement below; they do not establish current-spec support
   links and same-task commit criteria.
   Fixtures: Migrate the live guard fixtures to current source/metadata without weakening
   creation ancestry or cache-path checks.
+  Active step (2026-11-19): T215 has delivered separate producer maps and
+  owner-key normalization. Next migrate the remaining guard fixtures to current
+  source roles and test full lexical expansion/cache integration, including
+  unresolved intermediate scopes, first/equality receipt distinctions and all
+  guarded refusal paths. No whole-compiler conformance is claimed.
 
 <a id="t183"></a>
 
@@ -735,7 +741,7 @@ consumers of the same resolved identities. T196 reviews every other canonical
 row and existing product regression, and T197/T198 complete release/reference
 acceptance. No historical hash refresh or routing label establishes support.
 
-The next unused task ID is **T215**.
+The next unused task ID is **T216**.
 
 ## Useful verification commands
 

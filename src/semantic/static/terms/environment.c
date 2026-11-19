@@ -18,7 +18,7 @@ bool static_term_environment(StaticTermStore *store, const StaticModule *definit
         return static_term_invalid(store, (SourceSpan){0}, "Invalid static environment identity");
     }
     for (StaticTermEnvironment *item = store->first_environment; item != NULL; item = item->next) {
-        if (item->definition == definition && item->owner_type == owner) {
+        if (item->definition == definition && item->owner_type == owner && !item->producer_applied) {
             *output = item;
             return true;
         }

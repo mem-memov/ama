@@ -9,6 +9,7 @@
 #define AMA_STATIC_GUARD_INTERNAL_H
 #include "plan.h"
 #include "../applications/internal.h"
+#include "../terms/internal.h"
 
 /** Allocate zeroed owned records while healthy; errors require no allocation.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial preparation.
@@ -26,6 +27,11 @@ bool static_guard_dependencies(StaticGuardPlan *);
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves incoming uses.
  */
 bool static_guard_has_path(const StaticGuardPlan *, const StaticCreationPath *);
+/** Compare a borrowed candidate owner without publishing its symbolic scope.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) suspends unknown repeats.
+ */
+bool static_guard_owner_ancestry(StaticGuardPlan *, const StaticCreationPath *,
+    const StaticGuardOwner *, SourceSpan, bool *);
 /** Compare repeated actual template origins by complete keys before expansion.
  * Pending keys suspend this request, without guessing equality or another scope.
  * Closed unequal keys retain both canonical identities and the original path.
@@ -37,11 +43,17 @@ bool static_guard_ancestry(StaticGuardPlan *, const StaticCreationPath *, const 
  */
 bool static_guard_path(StaticGuardPlan *, const StaticCreationPath *, const StaticGuardOwner *,
     const StaticApplicationRecord *, SourceSpan, const StaticCreationPath **);
-/** Intern one already normalized complete nominal Type as a concrete graph key.
+/** Intern one already normalized complete owner environment as a graph key.
  * Caller proves normalization/closure through T176; this helper chooses no key.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves concrete identities.
  */
-bool static_guard_vertex(StaticGuardPlan *, const StaticTerm *, StaticCreationVertex **);
+bool static_guard_vertex(StaticGuardPlan *, const StaticTermEnvironment *, StaticCreationVertex **);
+/** Normalize every owner input using the solver before sharing a concrete key.
+ * Output is unchanged while pending. Producer environments never become Types.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) preserves producer keys.
+ */
+bool static_guard_owner_key(StaticGuardPlan *, const StaticGuardOwner *,
+    const StaticTermEnvironment **, StaticConstraintOutcome *);
 /** Add every newly concrete path edge once without dropping original uses.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves incoming provenance.
  */

@@ -22,6 +22,12 @@ bool static_term_symbol(StaticTermStore *store, const StaticTermEnvironment *env
         }
         return static_term_invalid(store, symbol->site, "Applied owner lacks an original formal capture");
     }
+    if (symbol->role == STATIC_PARAMETER && environment->producer_applied) {
+        for (const StaticTermCapture *input = environment->producer_inputs; input; input = input->next) {
+            if (input->formal == symbol) { *output = input->value; return true; }
+        }
+        return static_term_invalid(store, symbol->site, "Static producer lacks an original input binding");
+    }
     StaticVariableIdentity identity = {.environment = environment, .symbol = symbol,
         .role = symbol->role == STATIC_PARAMETER ? STATIC_VARIABLE_FORMAL : STATIC_VARIABLE_DERIVED};
     return static_term_variable(store, identity, symbol->category, symbol->signature, symbol->site, output);

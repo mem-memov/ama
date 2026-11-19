@@ -133682,6 +133682,51 @@
         "case": "it_checks_existing_constructor_bindings_instead_of_overwriting_them",
         "command": "make -C tests/unit/semantic/static/applications/recovery",
         "source": "tests/unit/semantic/static/applications/recovery/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ],
     "standalone_header_command": [
@@ -133809,6 +133854,51 @@
         "case": "it_checks_existing_constructor_bindings_instead_of_overwriting_them",
         "command": "make -C tests/unit/semantic/static/applications/recovery",
         "source": "tests/unit/semantic/static/applications/recovery/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ],
     "standalone_header_command": [
@@ -133916,6 +134006,51 @@
         "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
         "command": "make -C tests/unit/semantic/static/terms/failures",
         "source": "tests/unit/semantic/static/terms/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ],
     "standalone_header_command": [
@@ -134018,6 +134153,51 @@
         "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
         "command": "make -C tests/unit/semantic/static/terms/failures",
         "source": "tests/unit/semantic/static/terms/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -134152,6 +134332,51 @@
         "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
         "command": "make -C tests/unit/semantic/static/terms/failures",
         "source": "tests/unit/semantic/static/terms/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -139133,6 +139358,56 @@
         "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/recursion",
         "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ],
     "standalone_header_command": [
@@ -139340,6 +139615,56 @@
         "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ],
     "standalone_header_command": [
@@ -139577,6 +139902,56 @@
         "case": "it_refuses_foreign_or_incorrect_lexical_parent_handles",
         "command": "make -C tests/unit/semantic/static/guards/ancestry",
         "source": "tests/unit/semantic/static/guards/ancestry/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ],
     "standalone_header_command": [
@@ -139714,6 +140089,56 @@
         "case": "it_unwinds_every_public_root_enter_refresh_and_definition_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -139765,6 +140190,51 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -139902,6 +140372,51 @@
         "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/recursion",
         "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -139953,6 +140468,51 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -140226,6 +140786,56 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -140287,6 +140897,56 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ],
     "standalone_header_command": [
@@ -140668,6 +141328,56 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -141215,6 +141925,51 @@
         "case": "it_checks_cached_symbolic_descendants_without_publishing_concrete_edges",
         "command": "make -C tests/unit/semantic/static/guards/cache",
         "source": "tests/unit/semantic/static/guards/cache/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -141263,6 +142018,51 @@
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph",
         "source": "tests/unit/semantic/static/guards/graph/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -141300,6 +142100,11 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -145847,6 +146652,51 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -147901,6 +148751,56 @@
         "case": "it_unwinds_every_nominal_self_result_publication_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/recursion",
         "source": "tests/unit/semantic/static/publication/recursion/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   },
@@ -152138,6 +153038,281 @@
         "case": "it_unwinds_every_normalization_allocation_failure_without_mutating_prior_results",
         "source": "tests/unit/semantic/static/bindings/failures/main.c",
         "command": "make -C tests/unit/semantic/static/bindings/failures"
+      }
+    ]
+  },
+  "src/semantic/static/guards/identity/normalize.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Normalize ordinary and static producer owners without conflating their categories.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      }
+    ]
+  },
+  "src/semantic/static/guards/path/producer.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Check actual static producer ancestry before exposing a new symbolic producer scope.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      }
+    ]
+  },
+  "src/semantic/static/terms/producer/environment.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Intern compiler-only static producer scopes by their complete input maps.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/producer/main.c": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Check compiler-only graph owner maps, solver closure and definition cycles.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/producer/Makefile": {
+    "contract": "docs/implementation/static-guards.md",
+    "purpose": "Verify compiler-only producer keys, recursive entry and all allocation refusals.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_preserves_producer_maps_without_manufacturing_nominal_types",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_rejects_definition_recursion_in_a_closed_static_producer",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_producer_map_and_root_preparation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_suspends_unknown_producer_recursion_and_checks_closed_keys",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_interns_all_input_permutations_and_preserves_unused_values",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_invalid_producer_maps_before_publication",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_unwinds_every_source_backed_producer_entry_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/producer/main.c",
+        "case": "it_refuses_foreign_producer_sites_and_receivers_without_allocation",
+        "command": "make -C tests/unit/semantic/static/guards/producer"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/graph/main.c",
+        "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
+        "command": "make -C tests/unit/semantic/static/guards/graph"
       }
     ]
   }

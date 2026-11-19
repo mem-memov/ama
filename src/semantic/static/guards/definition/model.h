@@ -21,14 +21,18 @@ typedef struct StaticDefinitionEdge {
 } StaticDefinitionEdge;
 
 /** A source result or receiver alias in one lexical producer environment.
- * Concrete identity additionally uses its complete normalized owner Type.
+ * Concrete identity uses the complete normalized ordinary or producer owner key.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates definition and equality cycles.
  */
 struct StaticDefinitionNode {
     StaticDefinitionNode *next;
     const StaticGuardOwner *owner;
     const StaticSymbol *symbol;
+    /** Ordinary adapter view; null for compiler-only graph producer identities.
+     * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates producers from values.
+     */
     const StaticTerm *concrete;
+    const StaticTermEnvironment *concrete_key;
     StaticDefinitionNode *representative;
     size_t ordinal;
     StaticDefinitionEdge *first;

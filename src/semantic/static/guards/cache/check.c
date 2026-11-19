@@ -24,6 +24,8 @@ static bool reject(StaticGuardPlan *plan, StaticCreationSearch *current,
     plan->closing_edge = edge;
     plan->closing_creation_path = path;
     plan->rejected_origin = origin;
+    plan->earlier_creation_key = root->vertex->key;
+    plan->rejected_creation_key = target->vertex->key;
     plan->earlier_creation_value = root->vertex->value;
     plan->rejected_creation_value = target->vertex->value;
     plan->rejected_site = path->site;

@@ -13,7 +13,7 @@
 static bool reject(StaticGuardPlan *plan, const StaticCreationPath *parent,
     const StaticCreationPath *ancestor, const StaticTerm *earlier,
     const StaticTerm *target, SourceSpan site) {
-    const StaticModule *origin = target->as.nominal.origin;
+    const StaticModule *origin = ancestor->owner->environment->definition;
     plan->rejected_path = parent;
     plan->repeated_ancestor = ancestor;
     plan->rejected_origin = origin;
@@ -42,20 +42,33 @@ bool static_guard_ancestry(StaticGuardPlan *plan, const StaticCreationPath *pare
     const StaticTerm *value, SourceSpan site, bool *pending) {
     *pending = false;
     const StaticModule *origin = value->as.nominal.origin;
+    StaticTermEnvironment environment = {.definition = origin, .owner_type = value};
+    StaticGuardOwner owner = {.environment = &environment, .key = &environment, .value = value};
+    return static_guard_owner_ancestry(plan, parent, &owner, site, pending);
+}
+
+/** Compare both ordinary and compiler-only producer keys through the same
+ * normalization boundary; no unknown repeated key permits another scope.
+ * [TPL-11](../../../../../spec/language/templates.md#tpl-11) requires complete comparisons.
+ */
+bool static_guard_owner_ancestry(StaticGuardPlan *plan, const StaticCreationPath *parent,
+    const StaticGuardOwner *owner, SourceSpan site, bool *pending) {
+    *pending = false;
+    const StaticModule *origin = owner->environment->definition;
     if (origin->parameter_count == 0) { return true; }
-    StaticConstraintSolver *solver = plan->applications->solver;
     for (const StaticCreationPath *ancestor = parent; ancestor; ancestor = ancestor->parent) {
         if (ancestor->owner->environment->definition != origin) { continue; }
-        const StaticTerm *earlier, *target;
+        const StaticTermEnvironment *earlier = NULL, *target = NULL;
         StaticConstraintOutcome left, right;
-        if (!static_constraint_value(solver, ancestor->owner->value, &earlier, &left) ||
-            !static_constraint_value(solver, value, &target, &right)) {
-            (void)static_guard_dependencies(plan); return false;
-        }
-        if (left == STATIC_CONSTRAINT_PENDING || right == STATIC_CONSTRAINT_PENDING) {
+        if (!static_guard_owner_key(plan, ancestor->owner, &earlier, &left)) { return false; }
+        if (left == STATIC_CONSTRAINT_PENDING) { *pending = true; continue; }
+        if (!static_guard_owner_key(plan, owner, &target, &right)) { return false; }
+        if (right == STATIC_CONSTRAINT_PENDING) {
             *pending = true;
         } else if (earlier != target) {
-            return reject(plan, parent, ancestor, earlier, target, site);
+            plan->earlier_creation_key = earlier;
+            plan->rejected_creation_key = target;
+            return reject(plan, parent, ancestor, earlier->owner_type, target->owner_type, site);
         }
     }
     return true;

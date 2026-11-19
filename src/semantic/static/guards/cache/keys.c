@@ -13,14 +13,14 @@
 bool static_guard_creation_keys(StaticGuardPlan *plan, StaticGuardClosure *closure) {
     *closure = STATIC_GUARD_CLOSED;
     for (StaticCreationPath *path = plan->first_path; path; path = path->next) {
-        const StaticTerm *value;
+        const StaticTermEnvironment *value;
         StaticConstraintOutcome outcome;
-        if (!static_constraint_value(plan->applications->solver, path->owner->value, &value, &outcome)) {
+        if (!static_guard_owner_key(plan, path->owner, &value, &outcome)) {
             (void)static_guard_dependencies(plan); return false;
         }
         if (outcome == STATIC_CONSTRAINT_PENDING) { *closure = STATIC_GUARD_PENDING; continue; }
         if (path->vertex != NULL) {
-            if (path->vertex->value != value) {
+            if (path->vertex->key != value) {
                 return static_guard_fail(plan, STATIC_GUARD_CONFLICT, path->site,
                     "A complete creation key changed after prior normalization");
             }
