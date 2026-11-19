@@ -42087,6 +42087,46 @@
         "source": "tests/unit/codegen/specialization-diagnostics/main.c",
         "case": "it_maps_native_c_errors_to_original_unicode_companions_and_preserves_previous_output",
         "command": "make -C tests/unit/codegen/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_executes_all_required_native_capabilities_after_template_substitution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_missing_native_capabilities_without_generating_specialized_companions",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_reports_native_literal_failure_before_entering_a_specialized_body",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_executes_native_owned_reference_and_list_fields_from_closed_static_exports",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_open_static_suppliers_for_every_native_storage_form",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_invalid_native_entry_types_and_preserves_authored_and_previous_outputs",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_checks_selected_native_lifecycle_statuses_through_template_execution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_preserves_actual_overaligned_native_layout_after_substitution",
+        "command": "make -C tests/unit/codegen/native-templates"
       }
     ]
   },
@@ -168258,6 +168298,162 @@
         "source": "tests/unit/compiler/specialization-diagnostics/main.c",
         "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
         "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      }
+    ]
+  },
+  "tests/unit/codegen/native-templates/main.c": {
+    "contract": "docs/implementation/native-template-composition.md",
+    "purpose": "Compile concrete native operations through ordinary Ama template substitution.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_executes_all_required_native_capabilities_after_template_substitution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_missing_native_capabilities_without_generating_specialized_companions",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_reports_native_literal_failure_before_entering_a_specialized_body",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_executes_native_owned_reference_and_list_fields_from_closed_static_exports",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_open_static_suppliers_for_every_native_storage_form",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_invalid_native_entry_types_and_preserves_authored_and_previous_outputs",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_checks_selected_native_lifecycle_statuses_through_template_execution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_preserves_actual_overaligned_native_layout_after_substitution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      }
+    ]
+  },
+  "tests/unit/codegen/native-templates/Makefile": {
+    "contract": "docs/implementation/native-template-composition.md",
+    "purpose": "Build concrete native/template composition against actual scaffold and codegen consumers.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_executes_all_required_native_capabilities_after_template_substitution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_missing_native_capabilities_without_generating_specialized_companions",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_reports_native_literal_failure_before_entering_a_specialized_body",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_executes_native_owned_reference_and_list_fields_from_closed_static_exports",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_open_static_suppliers_for_every_native_storage_form",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_invalid_native_entry_types_and_preserves_authored_and_previous_outputs",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_checks_selected_native_lifecycle_statuses_through_template_execution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_preserves_actual_overaligned_native_layout_after_substitution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      }
+    ]
+  },
+  "tests/unit/codegen/native-templates/support/capabilities.c": {
+    "contract": "docs/implementation/native-template-composition.md",
+    "purpose": "Check actual native operations selected by a closed ordinary template.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_executes_all_required_native_capabilities_after_template_substitution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_missing_native_capabilities_without_generating_specialized_companions",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_reports_native_literal_failure_before_entering_a_specialized_body",
+        "command": "make -C tests/unit/codegen/native-templates"
+      }
+    ]
+  },
+  "tests/unit/codegen/native-templates/support/exports.c": {
+    "contract": "docs/implementation/native-template-composition.md",
+    "purpose": "Check concrete export runtime fields and isolated generated native headers.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_executes_native_owned_reference_and_list_fields_from_closed_static_exports",
+        "command": "make -C tests/unit/codegen/native-templates"
+      }
+    ]
+  },
+  "tests/unit/codegen/native-templates/support/refusals.c": {
+    "contract": "docs/implementation/native-template-composition.md",
+    "purpose": "Refuse open native field suppliers, invalid concrete ABI signatures and malformed selected lifecycle results.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_open_static_suppliers_for_every_native_storage_form",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_refuses_invalid_native_entry_types_and_preserves_authored_and_previous_outputs",
+        "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_checks_selected_native_lifecycle_statuses_through_template_execution",
+        "command": "make -C tests/unit/codegen/native-templates"
+      }
+    ]
+  },
+  "tests/unit/codegen/native-templates/support/alignment.c": {
+    "contract": "docs/implementation/native-template-composition.md",
+    "purpose": "Require actual over-aligned payload addresses across specialized native scalar/list operations.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/native-templates/main.c",
+        "case": "it_preserves_actual_overaligned_native_layout_after_substitution",
+        "command": "make -C tests/unit/codegen/native-templates"
       }
     ]
   }

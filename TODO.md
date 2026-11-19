@@ -194,8 +194,8 @@ full-owner constant identities and checked startup/cleanup composition.
 [T187](DONE.md#t187) validates concrete storage, lifecycle and control planning.
 [T188](DONE.md#t188) supplies full-owner generated names and compiled specialized
 execution. [T189](DONE.md#t189) supplies original-source diagnostics through
-static normalization and compiled execution. T190 is next: concrete native/template
-compositions.
+static normalization and compiled execution. [T190](DONE.md#t190) validates concrete
+native/template compositions. T191 is next: source delivery and exact invalidation.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -221,28 +221,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 5. Close and admit ordinary specializations
 
 ### Phase 6. Lower and execute concrete programs
-
-<a id="t190"></a>
-
-- [ ] **T190 — Compile concrete native/template compositions.**
-  Prerequisites: T207, T212, T185, T187, T188.
-  Rules: [TPL-13](spec/language/templates.md#tpl-13),
-  [CABI-01](spec/implementation/native-interface.md#cabi-01),
-  [CABI-05](spec/implementation/native-interface.md#cabi-05),
-  [CABI-06](spec/implementation/native-interface.md#cabi-06).
-  Boundary: native semantic views, scaffold/header models, layout/toolchain
-  verification and handwritten concrete native companions.
-  Steps: (1) instantiate Ama templates with concrete native types; (2) integrate
-  concrete static-export field/dependency Types inside ordinary `@C` modules;
-  (3) independently compile generated headers and run actual native compositions.
-  Accept: required native default/copy/literal/condition/index capabilities and
-  lifecycle/layout contracts are checked after substitution; unsupported ones
-  fail. Bound aliases/static outputs do not add owner formals or ABI slots.
-  Declared Ama refs remain visible and checked, never opaque native payloads.
-  Cover concrete owned/ref/list fields and rejection of open dependencies;
-  introduce no generic native hooks or specialization-specific authoring API.
-  Revalidate native constructor/destructor behavior with the current selected
-  Types; own-child embedding cleanup receives full host acceptance in T194.
 
 ### Phase 7. Connect product consumers and algorithm examples
 
@@ -475,9 +453,9 @@ whole-program admission; component certificates do not replace those checks.
 | Creation-graph provenance | [T196](#t196) |
 | Constructor origins and captures | [T196](#t196) |
 | Cache-independent path checks | [T196](#t196) |
-| Native template rejection | [T190](#t190) |
-| Concrete native template arguments | [T190](#t190) |
-| Concrete native composition | [T190](#t190) |
+| Native template rejection | [T190](DONE.md#t190) |
+| Concrete native template arguments | [T190](DONE.md#t190) |
+| Concrete native composition | [T190](DONE.md#t190) |
 | Template source delivery | [T191](#t191) |
 | Source distribution resolution | [T191](#t191) |
 

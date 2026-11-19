@@ -298,3 +298,6 @@ stackless execution and complete managed-allocation refusal boundaries.
 
 The [specialization diagnostic contract](../specialization-diagnostics.md) records
 T189's accepted original-source frontend, generated-C and runtime trace compositions.
+
+The [native template composition contract](../native-template-composition.md)
+records T190's accepted concrete capability, typed-interface and lifecycle checks.
