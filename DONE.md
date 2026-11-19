@@ -4643,3 +4643,34 @@ this table is navigation, not a parallel semantic definition.
   stale input invalidation and allocation cleanup through real parser/registry
   compositions. No implicit import, new package format or relative path is added.
   Meet the common per-file tests, Doxygen links and same-task commit criteria.
+
+<a id="t208"></a>
+
+- [x] **T208 — Model actual static metadata and minimum usage requirements.**
+  Prerequisites: T207, T213.
+  Rules: [TPL-05](spec/language/templates.md#tpl-05),
+  [TPL-07](spec/language/templates.md#tpl-07),
+  [TPL-08](spec/language/templates.md#tpl-08).
+  Evidence: all-use membership preserves complete actual residuals/captures;
+  bare forwarding classes propagate requirements without expansion or allocation.
+  Producers are separate from ordinary nominal values. The unused expectation
+  injection API, three source files and sole-purpose leaf are removed. Nine
+  current-source groups pass strict and ASan/UBSan; root build/native admission
+  and 2704-file complete documentation checks pass. Final rendering and exact
+  staged-byte comparison remain commit gates. See [the metadata contract](docs/implementation/static-metadata.md).
+  Boundary: immutable Type/Template/producer descriptions, formal identities,
+  fixed captures, full actual residual signatures and symbolic use requirements.
+  Steps: retain complete actual metadata; collect compatible requirements from
+  all applications/forwarding uses; check supplied actuals without closing the
+  requirement set to the first signature encountered. This component expands
+  neither producer definitions nor recursive runtime bodies.
+  Accept: additional actual residuals survive; a forwarded-only input retains
+  its supplied category, origin and captures. All uses constrain an input and
+  each partial result has its own residual map. Reject wrong categories, missing
+  named members and incompatible requirements; no first-actual contract, capability
+  search or implicit Type reopening. Distinguish static producers from ordinary
+  constructors. Test exact identity/category laws, symbolic-to-actual refinement,
+  independent scopes and allocation/size boundaries with real inventory/resolver
+  consumers. Meet the common tests, Doxygen links and same-task commit criteria.
+  Fixtures: Rebuild term/metadata fixtures from current source and actual metadata; do not
+  restore explicit expected-signature trees or the removed root-subset mode.

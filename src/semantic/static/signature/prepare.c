@@ -19,7 +19,7 @@
 static bool append(StaticInventory *inventory, StaticSignature *signature, SourceSpan name) {
     for (const StaticSignatureEntry *prior = signature->first; prior != NULL; prior = prior->next) {
         if (static_same_name(prior->name, name)) {
-            return static_invalid(inventory, name, "Duplicate constructor pattern slot", NULL);
+            return static_invalid(inventory, name, "Duplicate ordinary constructor formal", NULL);
         }
     }
     if (signature->count == SIZE_MAX) { return static_memory_failure(inventory); }
@@ -38,7 +38,7 @@ static bool append(StaticInventory *inventory, StaticSignature *signature, Sourc
  * Component contract: [TPL-07](../../../../spec/language/templates.md#tpl-07).
  */
 static bool constructor(StaticInventory *inventory, StaticModule *module) {
-    if (module->parameter_count == 0) { return true; }
+    if (module->definition->syntax.sections.kind == MODULE_STATIC || module->parameter_count == 0) { return true; }
     module->constructor_signature = static_allocate(inventory, sizeof(*module->constructor_signature));
     if (module->constructor_signature == NULL) { return false; }
     for (size_t ordinal = 0; ordinal < module->parameter_count; ordinal++) {

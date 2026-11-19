@@ -49,14 +49,4 @@ bool static_application_inputs_valid(StaticApplicationPlan *, const StaticTerm *
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves partial identity.
  */
 bool static_application_merge(StaticApplicationPlan *, StaticApplicationRecord *);
-/** Read independently refined expected metadata or the original declaration.
- * [TPL-08](../../../../spec/language/templates.md#tpl-08) keeps argument scope separate.
- */
-const StaticSignature *static_application_expected(const StaticApplicationPlan *,
-    const StaticApplicationRecord *, const StaticSymbol *);
-/** Publish a complete residual description only when every local slot's expected
- * metadata is independently known; the solver owns the resulting snapshot.
- * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves local binders.
- */
-bool static_application_residual_metadata(StaticApplicationPlan *, const StaticApplicationRecord *);
 #endif

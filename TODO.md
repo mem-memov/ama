@@ -170,7 +170,8 @@ Specification clarifications [T200](DONE.md#t200), [T202](DONE.md#t202) and
 operand preparation. [T206](DONE.md#t206) establishes the current source/AST
 boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 [T213](DONE.md#t213) checks the complete source closure and occurrence roles.
-T208 is next. T182 remains unfinished with its partial
+[T208](DONE.md#t208) establishes actual metadata and all-use requirements.
+T209 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -187,30 +188,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 2. Establish current source structure and bindings
 
 ### Phase 3. Build finite structural analysis and guarded identities
-
-<a id="t208"></a>
-
-- [ ] **T208 — Model actual static metadata and minimum usage requirements.**
-  Prerequisites: T207, T213.
-  Rules: [TPL-05](spec/language/templates.md#tpl-05),
-  [TPL-07](spec/language/templates.md#tpl-07),
-  [TPL-08](spec/language/templates.md#tpl-08).
-  Boundary: immutable Type/Template/producer descriptions, formal identities,
-  fixed captures, full actual residual signatures and symbolic use requirements.
-  Steps: retain complete actual metadata; collect compatible requirements from
-  all applications/forwarding uses; check supplied actuals without closing the
-  requirement set to the first signature encountered. This component expands
-  neither producer definitions nor recursive runtime bodies.
-  Accept: additional actual residuals survive; a forwarded-only input retains
-  its supplied category, origin and captures. All uses constrain an input and
-  each partial result has its own residual map. Reject wrong categories, missing
-  named members and incompatible requirements; no first-actual contract, capability
-  search or implicit Type reopening. Distinguish static producers from ordinary
-  constructors. Test exact identity/category laws, symbolic-to-actual refinement,
-  independent scopes and allocation/size boundaries with real inventory/resolver
-  consumers. Meet the common tests, Doxygen links and same-task commit criteria.
-  Fixtures: Rebuild term/metadata fixtures from current source and actual metadata; do not
-  restore explicit expected-signature trees or the removed root-subset mode.
 
 <a id="t209"></a>
 
@@ -742,9 +719,9 @@ actual categories, captured values, native consumers and final conformance.
 | Explicit constant namespaces | [T212](#t212) |
 | Specialized constant lifecycle | [T186](#t186) |
 | Concrete operation checks | [T185](#t185) |
-| Template parameter signatures | [T208](#t208) |
+| Template parameter signatures | [T209](#t209) |
 | Partial composition | [T209](#t209) |
-| Explicit static input categories | [T208](#t208) |
+| Explicit static input categories | [T211](#t211) |
 | Defined static results | [T211](#t211) |
 | Static output composition | [T211](#t211) |
 | Static output lookup | [T211](#t211) |
@@ -763,7 +740,7 @@ actual categories, captured values, native consumers and final conformance.
 | Finite repeated composition | [T210](#t210) |
 | Definition-generated recursion | [T210](#t210) |
 | Creation-graph provenance | [T210](#t210) |
-| Constructor origins and captures | [T208](#t208) |
+| Constructor origins and captures | [T209](#t209) |
 | Cache-independent path checks | [T183](#t183) |
 | Native template rejection | [T190](#t190) |
 | Concrete native template arguments | [T190](#t190) |

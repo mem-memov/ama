@@ -16,18 +16,24 @@
  */
 bool static_check_signatures(StaticInventory *inventory) {
     if (inventory->status != STATIC_OK) { return false; }
+    static_prepare_usage_groups(inventory);
     static_resolve_metadata(inventory);
     if (!static_signatures_acyclic(inventory)) { return false; }
     for (const StaticModule *module = inventory->first; module != NULL; module = module->next) {
         for (const StaticOccurrence *site = module->first_occurrence; site != NULL; site = site->next) {
-            if (site->receiver != NULL) { continue; }
-            bool type = site->symbol != NULL ? site->symbol->category == STATIC_CATEGORY_TYPE
-                : static_module_find(inventory, site->origin)->constructor_signature == NULL;
-            if (!type) { continue; }
-            for (const AstStaticBinding *binding = site->expression->first; binding != NULL; binding = binding->next) {
-                if (binding->kind == AST_STATIC_INPUT) {
-                    return static_invalid(inventory, binding->marker, "A Type is not an applied constructor", site->symbol);
-                }
+            if (site->receiver != NULL || site->symbol != NULL) { continue; }
+            if (site->origin->syntax.sections.kind == MODULE_STATIC) { continue; }
+            StaticMetadata actual = static_head_metadata(inventory, module, site->expression);
+            StaticUsageResult checked = static_usage_expression(inventory, module,
+                site->expression, actual.category, actual.signature, NULL);
+            if (checked.status == STATIC_USAGE_CONFLICT) {
+                return static_invalid(inventory, checked.site, checked.message, NULL);
+            }
+        }
+        for (const StaticSymbol *symbol = module->first; symbol != NULL; symbol = symbol->next) {
+            StaticUsageResult checked = static_usage_check(inventory, symbol, symbol->category, symbol->signature);
+            if (checked.status == STATIC_USAGE_CONFLICT) {
+                return static_invalid(inventory, checked.site, checked.message, symbol);
             }
         }
     }

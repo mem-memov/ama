@@ -35,8 +35,6 @@ typedef struct {
     StaticApplicationRecord *first;
     StaticApplicationRecord *last;
     size_t count;
-    StaticApplicationExpectation *first_expectation;
-    size_t expectation_count;
     StaticApplicationStatus status;
     Diagnostic error;
     DiagnosticRelated related;
@@ -85,13 +83,4 @@ bool static_application_recover(StaticApplicationPlan *, const StaticTermApplica
  * [TPL-07](../../../../spec/language/templates.md#tpl-07) requires exact contracts.
  */
 bool static_application_check(StaticApplicationPlan *, const StaticApplicationRecord *, StaticApplicationOutcome *);
-/** Supply independently resolved expected metadata for a captured or residual
- * Template formal in this candidate context. Preserve all original known names/
- * categories and any already resolved whole residual description. Signature
- * storage/source bytes remain immutable until solver destruction. This does not
- * infer a signature from the actual argument or evaluate a definition.
- * [TPL-07](../../../../spec/language/templates.md#tpl-07) fixes expected contracts.
- */
-bool static_application_expect(StaticApplicationPlan *, const StaticApplicationRecord *,
-    const StaticSymbol *, const StaticSignature *, SourceSpan);
 #endif

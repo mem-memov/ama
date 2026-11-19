@@ -46,6 +46,7 @@ bool static_term_nominal(StaticTermStore *store, const StaticModule *origin,
     const StaticTermCapture *captures, size_t count, SourceSpan site, const StaticTerm **output) {
     if (store->status != STATIC_TERM_OK) { return false; }
     if (output == NULL || !static_term_has_module(store, origin) ||
+        origin->definition->syntax.sections.kind == MODULE_STATIC ||
         !valid_captures(store, origin, captures, count)) {
         return static_term_invalid(store, site, "Invalid normalized nominal capture record");
     }

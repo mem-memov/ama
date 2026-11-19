@@ -249,3 +249,8 @@ T181's [dependent constant metadata contract](../static-constants.md) owns share
 declaration Type obligations, exact qualified-source provenance, explicit/fixed
 namespace selection and typed initializer equality. Constant values, construction
 capabilities and executable admission remain separate later consumers.
+
+The [actual static metadata contract](../static-metadata.md) owns T208's
+immutable actual descriptions and minimum requirements derived from complete
+source use sets. It separates these requirements from complete signature
+equality and from later producer/equation admission.

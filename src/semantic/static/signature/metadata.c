@@ -21,23 +21,29 @@ static const StaticOccurrence *head(const StaticModule *module, const AstTypeExp
 }
 
 /** Read independently available metadata only. Input applications require
- * normalization before their residual category can be published; an output
- * phase promises a closed producer Type but does not execute it.
+ * normalization before their residual category can be published. Static graph
+ * producers and selected outputs await their own independent equations.
  * Component contract: [TPL-07](../../../../spec/language/templates.md#tpl-07).
  */
-StaticMetadata static_expression_metadata(const StaticInventory *inventory, const StaticModule *module,
+StaticMetadata static_head_metadata(const StaticInventory *inventory, const StaticModule *module,
     const AstTypeExpression *expression) {
-    bool inputs = false;
-    for (const AstStaticBinding *binding = expression->first; binding != NULL; binding = binding->next) {
-        if (binding->kind == AST_STATIC_OUTPUT) { return (StaticMetadata){STATIC_CATEGORY_TYPE, NULL}; }
-        inputs = true;
-    }
-    if (inputs) { return (StaticMetadata){0}; }
+    if (expression->selected_export.source != NULL) { return (StaticMetadata){0}; }
     const StaticOccurrence *site = head(module, expression);
     if (site->symbol != NULL) { return (StaticMetadata){site->symbol->category, site->symbol->signature}; }
     const StaticModule *origin = static_module_find(inventory, site->origin);
+    if (origin->definition->syntax.sections.kind == MODULE_STATIC) { return (StaticMetadata){0}; }
     return origin->constructor_signature == NULL ? (StaticMetadata){STATIC_CATEGORY_TYPE, NULL}
         : (StaticMetadata){STATIC_CATEGORY_TEMPLATE, origin->constructor_signature};
+}
+
+/** Applied and selected results await their own equations; a producer is never
+ * guessed to return Type merely because a named output is present.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) permits Template outputs.
+ */
+StaticMetadata static_expression_metadata(const StaticInventory *inventory, const StaticModule *module,
+    const AstTypeExpression *expression) {
+    if (expression->first != NULL) { return (StaticMetadata){0}; }
+    return static_head_metadata(inventory, module, expression);
 }
 
 /** Publish one previously deferred metadata pair at most once. Information is

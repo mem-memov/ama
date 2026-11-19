@@ -10,7 +10,7 @@
  */
 static void it_rejects_foreign_handles_and_saturated_counters_without_publication(void) {
     for (size_t operation = 0; operation < 10; operation++) {
-        setup_static("@<\n...type\n@!\n", "@!\n");
+        setup_static("@<\nargument\n...type\n@!\n", "@!\n");
         assert(static_inventory_collect(&inventory) == STATIC_OK);
         const StaticModule *module = static_module_find(&inventory, project.entry);
         const StaticModule *plain = static_module_find(&inventory, project_find(&project, ".other"));

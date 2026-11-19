@@ -9,6 +9,7 @@
 #ifndef AMA_STATIC_SIGNATURE_INTERNAL_H
 #define AMA_STATIC_SIGNATURE_INTERNAL_H
 #include "signature.h"
+#include "usage/usage.h"
 #include "../internal.h"
 
 /** Deferred carries no assumed category; Template borrows an owned signature.
@@ -20,6 +21,21 @@ typedef struct { StaticCategory category; StaticSignature *signature; } StaticMe
  * Contract: [TPL-07](../../../../spec/language/templates.md#tpl-07).
  */
 StaticMetadata static_expression_metadata(const StaticInventory *, const StaticModule *, const AstTypeExpression *);
+/** Freeze exact bare local forwarding classes with canonical source representatives.
+ * Applied/producer equations belong to subsequent normalizers, not this relation.
+ * [TPL-07](../../../../spec/language/templates.md#tpl-07) propagates all use requirements.
+ */
+void static_prepare_usage_groups(StaticInventory *);
+/** Inspect one application against its actual head metadata without closing a
+ * minimum requirement set. Pending is evidence still owed by later solving.
+ * [TPL-07](../../../../spec/language/templates.md#tpl-07) preserves residuals.
+ */
+StaticUsageResult static_usage_expression(const StaticInventory *, const StaticModule *,
+    const AstTypeExpression *, StaticCategory, const StaticSignature *, const StaticSymbol *);
+/** Read independently known head metadata, not the result of its application.
+ * [TPL-07](../../../../spec/language/templates.md#tpl-07) separates actuals and operations.
+ */
+StaticMetadata static_head_metadata(const StaticInventory *, const StaticModule *, const AstTypeExpression *);
 /** Monotonically resolve finite known result and constructor slots. Applications
  * and projected aliases remain explicit obligations; no default is chosen.
  * Contract: [TPL-12](../../../../spec/language/static-results.md#tpl-12).

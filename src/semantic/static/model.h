@@ -74,6 +74,11 @@ typedef struct StaticSymbol {
     StaticRole role;
     StaticCategory category;
     StaticSignature *signature;
+    /** Exact bare-forwarding class, frozen before inventory publication.
+     * [TPL-07](../../../spec/language/templates.md#tpl-07) propagates all use requirements.
+     * Every member stores its canonical representative; this is not a solved Type binding.
+     */
+    const struct StaticSymbol *usage_group;
     const AstNode *declaration;
     const AstStaticBinding *receiver;
     size_t ordinal;

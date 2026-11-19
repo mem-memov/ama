@@ -1,8 +1,9 @@
 /** @file
- * @brief Check every inherited and new binding against its original declared category and signature.
- * [TPL-07](../../../../../spec/language/templates.md#tpl-07) requires exact recursive contracts.
+ * @brief Check inherited and new ordinary constructor bindings against original Type slots.
+ * [TPL-02](../../../../../spec/language/templates.md#tpl-02) makes every ordinary formal Type.
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) preserves unused inherited captures.
  */
+#include <assert.h>
 #include "../internal.h"
 
 /** Written/generated inputs retain their actual source sites; an inherited
@@ -16,9 +17,9 @@ static SourceSpan input_site(const StaticApplicationRecord *record, const Static
     return record->context.site;
 }
 
-/** Pending metadata is not filled from its first actual. Known category or
- * signature disagreement is an immediate error even when other slots are open.
- * [TPL-07](../../../../../spec/language/templates.md#tpl-07) fixes expected signatures independently.
+/** Pending metadata is not filled from its first actual. A known
+ * category disagreement is an immediate error even when other slots are open.
+ * [TPL-07](../../../../../spec/language/templates.md#tpl-07) preserves actual metadata.
  */
 static bool capture(StaticApplicationPlan *plan, const StaticApplicationRecord *record,
     const StaticTermCapture *binding, bool *pending) {
@@ -26,22 +27,10 @@ static bool capture(StaticApplicationPlan *plan, const StaticApplicationRecord *
     const StaticSignature *signature;
     static_application_description(plan, binding->value, &category, &signature);
     if (category == STATIC_CATEGORY_DEFERRED) { *pending = true; return true; }
-    if (category != binding->formal->category) {
+    assert(binding->formal->category == STATIC_CATEGORY_TYPE);
+    if (category != STATIC_CATEGORY_TYPE) {
         return static_application_fail(plan, STATIC_APPLY_CONFLICT, input_site(record, binding->formal),
             "Static argument has the wrong Type or Template category", binding->formal);
-    }
-    if (category == STATIC_CATEGORY_TEMPLATE) {
-        StaticSignatureComparison comparison;
-        if (!static_constraint_signature(plan->solver, static_application_expected(plan, record, binding->formal), signature,
-            input_site(record, binding->formal), &comparison)) {
-            (void)static_application_dependencies(plan);
-            return false;
-        }
-        if (comparison == STATIC_SIGNATURE_DIFFERENT) {
-            return static_application_fail(plan, STATIC_APPLY_CONFLICT, input_site(record, binding->formal),
-                "Static argument has a different residual constructor signature", binding->formal);
-        }
-        if (comparison == STATIC_SIGNATURE_PENDING) { *pending = true; }
     }
     return true;
 }

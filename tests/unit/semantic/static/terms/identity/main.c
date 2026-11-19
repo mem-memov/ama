@@ -9,7 +9,7 @@
  * records and do not allocate. All owners tear down before borrowed sources.
  */
 static void it_preserves_scoped_symbols_and_reuses_exact_keys(void) {
-    setup_static("@<\n...type\n@!\nfirst\n...type\nsecond\n...type\n", "@<\n...type\n@!\n");
+    setup_static("@<\nargument\n...type\n@!\nfirst\n...type\nsecond\n...type\n", "@<\nargument\n...type\n@!\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *main_module = static_module_find(&inventory, project.entry);
     const StaticModule *other_module = static_module_find(&inventory, project_find(&project, ".other"));
@@ -54,7 +54,7 @@ static void it_preserves_scoped_symbols_and_reuses_exact_keys(void) {
  * Deferred aliases retain their unresolved category instead of becoming Type.
  */
 static void it_preserves_producer_roles_and_deferred_alias_metadata(void) {
-    setup_static("@<\n...type\n@!\nfield\n...type\n ... > ...alias\n", "@!\n");
+    setup_static("@...\n.other\n ...out > ...alias\n", "@...\n...out\n...input\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *module = static_module_find(&inventory, project.entry);
     StaticTermStore store;
@@ -62,18 +62,20 @@ static void it_preserves_producer_roles_and_deferred_alias_metadata(void) {
     const StaticTermEnvironment *environment;
     assert(static_term_environment(&store, module, NULL, &environment));
     const StaticOccurrence *site = module->first_occurrence;
-    while (site && site->context != STATIC_CONTEXT_BODY) { site = site->next; }
+    while (site && site->origin == NULL) { site = site->next; }
     assert(site && site->expression);
+    const StaticModule *origin = static_module_find(&inventory, project_find(&project, ".other"));
+    const StaticSymbol *formal = static_symbol_find(origin, static_name_site(origin->definition, "...input"));
     const StaticTerm *producer, *again, *alias;
-    assert(static_term_inference(&store, environment, module->first, NULL, site->expression, &producer));
-    assert(static_term_inference(&store, environment, module->first, NULL, site->expression, &again));
+    assert(static_term_inference(&store, environment, formal, NULL, site->expression, &producer));
+    assert(static_term_inference(&store, environment, formal, NULL, site->expression, &again));
     assert(producer == again && producer->as.variable.role == STATIC_VARIABLE_PRODUCER);
     const StaticSymbol *symbol = static_symbol_find(module, static_name_site(project.entry, "...alias"));
     assert(symbol && symbol->role == STATIC_ALIAS);
     assert(static_term_symbol(&store, environment, symbol, &alias));
     assert(alias->category == STATIC_CATEGORY_DEFERRED && alias->as.variable.role == STATIC_VARIABLE_DERIVED);
     AstTypeExpression copied = *site->expression;
-    assert(!static_term_inference(&store, environment, module->first, NULL, &copied, &again));
+    assert(!static_term_inference(&store, environment, formal, NULL, &copied, &again));
     assert(again == producer && store.status == STATIC_TERM_INVALID);
     static_term_store_destroy(&store);
     destroy_static();
@@ -86,7 +88,7 @@ static void it_unwinds_environment_and_variable_allocation_failures(void) {
     for (size_t operation = 0; operation < 2; operation++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_static("@<\n...type\n@!\n", "@!\n");
+            setup_static("@<\nargument\n...type\n@!\n", "@!\n");
             assert(static_inventory_collect(&inventory) == STATIC_OK);
             const StaticModule *module = static_module_find(&inventory, project.entry);
             StaticTermStore store;

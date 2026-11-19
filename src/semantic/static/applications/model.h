@@ -60,15 +60,4 @@ typedef struct StaticApplicationRecord {
     bool applied;
     bool pending_origin;
 } StaticApplicationRecord;
-/** Independent expected-signature evidence belongs to this exact application
- * context, never to the first supplied actual. Signature storage outlives the
- * borrowed solver. [TPL-07](../../../../spec/language/templates.md#tpl-07).
- */
-typedef struct StaticApplicationExpectation {
-    struct StaticApplicationExpectation *next;
-    const StaticApplicationRecord *record;
-    const StaticSymbol *formal;
-    const StaticSignature *signature;
-    SourceSpan site;
-} StaticApplicationExpectation;
 #endif

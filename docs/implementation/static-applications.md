@@ -7,73 +7,31 @@ Authority: [TPL-07](../../spec/language/templates.md#tpl-07),
 [TPL-10](../../spec/language/templates.md#tpl-10),
 [TPL-12](../../spec/language/static-results.md#tpl-12),
 [CONST-03](../../spec/language/declarations.md#const-03).
-No specification change is authorized. Definition expansion and creation guards
-remain T178/T179; executable/constant admission remains T180/T184/T186.
+The current remaining acceptance owners are T209–T212 and T182–T198 in
+[TODO](../../TODO.md); the T177 results below are historical evidence for their
+recorded inputs, not acceptance of removed source forms.
 
-## Contract and intended operations
+## Current boundary after T208
 
-Operate on finite prepared source/application records, not runtime samples.
-Borrow one healthy term store, its solver and binding plan; own application work,
-validation obligations and diagnostics separately. Existing source and value
-payloads remain immutable. A successful candidate is compile-time structure,
-not an executable specialization or a published static output. Pending metadata
-and unknown actual origins remain explicit; no expected interface substitutes
-for an actual declaration order or proves an unknown nominal origin.
+The [current metadata contract](static-metadata.md) defines all-use minimum
+requirements. The public expected-signature injection API and its three source
+files have been deleted with their sole-purpose test leaf. It is not a supported
+way to declare, infer or admit a constructor interface.
 
-A known constructor supplies exact original origin, fixed captures and ordered
-residual formals. Normalize requests against a snapshot of those actual residuals,
-then merge new bindings without reopening fixed ones. Preserve every original
-capture, including unused arguments. Source order and staged application cannot
-change the normalized map. Check categories and complete recursive named
-signatures independently of positional order. Check deferred descriptions only
-when independent metadata is available; never fill an expected signature by
-trying its first actual argument. Guarded later consumers may supply resolved
-metadata without rewriting declarations.
+Ordinary constructor values retain their exact original definition, every fixed
+capture and all residual formals. Prepared maps bind distinct original Type slots
+without reopening captured ones. Direct, staged and reordered maps preserve that
+identity; a successful symbolic candidate is not executable admission. Ordinary
+formal slots require Type; a static graph is not a nominal constructor value.
+Unknown actual metadata remains pending without a guessed origin or signature.
 
-Omission policy is explicit. Static arguments/results preserve local residuals.
-Root runtime inputs require explicit coverage. Field/shared/runtime-result roots
-generate deterministic T175 field inference terms. Constant namespaces introduce
-no such terms and must become independently closed Types before member lookup.
-Any static output phase, including a skip, instead generates per-expression
-producer-input inference terms and requires the entire producer to close under
-TPL-12; output definition evaluation/publication is outside this component.
-These policies never create a source-visible owner parameter or execute a body.
-
-Recover an unknown constructor only from known nominal application information
-and its independently declared complete expected residual signature. Normalize
-written positions using the actual original declaration order, never the order
-of expected signature entries. Applied original names P must be fixed in actual
-R = (D, B, S). Recover exactly `(D, B minus P, S union P)` and equate removed
-bindings with their supplied expressions. Retain all other bindings and existing
-residuals. Check the recovered signature and any earlier constructor binding.
-Unknown origins/signatures remain Pending; there is no constructor or partition
-search. Root input coverage and nested partial patterns remain distinct cases.
-
-Nested unresolved applications need their own internal result variable. Its
-identity is lexical environment plus original expression, separate from every
-omitted producer input and field inference key. It adds no user placeholder or
-owner formal. A later known result can drive recovery of an inner constructor;
-an independently known head can drive forward application. Keep these operator
-records outside the immutable value DAG, and add exact T176 equations when their
-finite structure becomes known. No definition/layout is unfolded here.
-
-## Ordered steps and acceptance
-
-1. Add scoped internal expression-result identities and source-backed diagnostics;
-   distinguish repeated expression uses, different sites/owners, producer-input
-   variables and field variables. Refuse foreign syntax and every allocation.
-2. Implement actual-origin forward maps and context-specific omission records;
-   compose real T173 snapshots, skips, fixed filtering and T175 interning. Check
-   direct/staged/reordered equivalence, independent fields, output-phase override,
-   namespace/input coverage and known/deferred category/signature errors.
-3. Implement exact nominal recovery and equality handoffs, including captured
-   unused bindings, partial actuals, repeated disagreement, positional snapshots,
-   missing fixed P slots and unknown-origin Pending outcomes. Compose nested
-   recovery/forward applications through explicit expression-result equations.
-4. Prove preservation, uniqueness, finite progress and ownership/cost bounds.
-   Refuse each observed preparation allocation and counter edge; test actual
-   parsed source and independent algebraic/order models. Register per-file/header
-   evidence, run strict affected parents/sanitizers/build/docs, archive and commit.
+T208's current-source tests compose actual inventory and nominal metadata with
+prepared forward application. Historical request/recovery and omission adapters
+remain owned by T209/T211/T212 for migration to exclusive named static graphs
+and concrete export selection. Their older source fixtures are not evidence of
+current source acceptance. Static producers require complete inputs and may
+return Types or Templates; their outputs are never presumed to be Type merely
+because an output binding is present.
 
 ## Preservation, progress and costs
 
@@ -84,20 +42,12 @@ original formals locally bound. Disjoint map union is associative and independen
 of traversal order, so direct, staged and reordered applications intern the same
 identity. All previously fixed bindings survive, including unused ones. Inference
 adds only explicitly permitted, deterministic scoped variables; it never adds an
-enclosing formal or runs an initializer. Coverage refuses missing root inputs
-and namespace arguments. Independent expected metadata preserves each previously
-known category/name; an actual argument cannot define its expected signature.
+enclosing formal or runs an initializer. The current source consumers separately own root/namespace closure. Actual
+metadata never supplies a closed expected signature for a free graph input.
 
-Recovery's candidate is unique: actual D fixes original identities, expected
-signature E fixes possible open identities, and every actual residual S must be
-inside E. Retain exactly B outside E. Re-normalize actual source requests against
-that candidate, preserving RHS identity by original syntax. The complete forward
-result must equal the independently supplied actual R. This enforces both that
-every applied name is fixed in R and that no removed fixed name is left unapplied.
-Thus E equals S union P and the retained map is B minus P. Known names/categories
-and complete recursive signature disagreements fail immediately. Pending nested
-metadata remains a separate obligation. Unknown origins remain pending without
-searching a filesystem, choosing a constructor or enumerating partitions.
+The former recovery proof depended on a closed independently declared expected
+signature. T209 owns its replacement from explicit nonexpanding equations; that
+former assumption does not establish current recovery acceptance.
 
 Nested composition connects original expressions through independent result
 variables. T176's exact equations propagate captured RHS facts in either
@@ -130,7 +80,7 @@ and error propagation allocates nothing. Destruction order is application plan,
 solver, term store, binding plan, inventory/project/source and allocator. Do not
 free independent signature/source storage while the solver borrows it.
 
-## Step results and continuation
+## Historical T177 step results
 
 - Added an internal application-result variable role keyed by exact environment
   and original expression. Unlike field/producer holes it has no formal symbol
@@ -253,7 +203,7 @@ free independent signature/source storage while the solver borrows it.
   this more precise registry before committing; no functional change or retest
   is needed for that evidence-only correction.
 
-## Reproduction
+## Historical T177 reproduction
 
 - Strict parent: `make -C tests/unit/semantic/static C_COMPILER_FLAGS='-O0 -g
   -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L'`.

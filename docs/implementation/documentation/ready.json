@@ -126636,6 +126636,26 @@
         "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_rejects_static_application_of_a_known_concrete_type",
         "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ],
     "standalone_header_command": [
@@ -127794,26 +127814,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -128373,26 +128373,6 @@
         "case": "it_applies_uniform_producer_inference_to_namespaces_and_nested_arguments",
         "command": "make -C tests/unit/semantic/static/applications/policy",
         "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
       },
       {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
@@ -129018,6 +128998,26 @@
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
         "case": "it_unwinds_every_initializer_registration_and_resolution_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -130070,6 +130070,26 @@
         "case": "it_rejects_static_application_of_a_known_concrete_type",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -130358,6 +130378,26 @@
         "case": "it_unwinds_every_whole_static_collection_allocation_failure",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ],
     "standalone_header_command": [
@@ -130429,6 +130469,26 @@
         "case": "it_unwinds_every_whole_static_collection_allocation_failure",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -130485,6 +130545,26 @@
         "case": "it_unwinds_every_whole_static_collection_allocation_failure",
         "command": "make -C tests/unit/semantic/static/composition",
         "source": "tests/unit/semantic/static/composition/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -134190,6 +134270,26 @@
         "case": "it_rejects_foreign_handles_and_saturated_counters_without_publication",
         "command": "make -C tests/unit/semantic/static/terms/failures",
         "source": "tests/unit/semantic/static/terms/failures/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -134241,6 +134341,11 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -137186,26 +137291,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -137254,6 +137339,26 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ],
     "standalone_header_command": [
@@ -137320,26 +137425,6 @@
         "case": "it_applies_uniform_producer_inference_to_namespaces_and_nested_arguments",
         "command": "make -C tests/unit/semantic/static/applications/policy",
         "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
       },
       {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
@@ -137443,26 +137528,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -137564,26 +137629,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -137632,6 +137677,26 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ],
     "standalone_header_command": [
@@ -137698,26 +137763,6 @@
         "case": "it_applies_uniform_producer_inference_to_namespaces_and_nested_arguments",
         "command": "make -C tests/unit/semantic/static/applications/policy",
         "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
       },
       {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
@@ -137877,26 +137922,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -137945,6 +137970,26 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ],
     "standalone_header_command": [
@@ -138019,294 +138064,6 @@
       }
     ]
   },
-  "src/semantic/static/applications/check/expected.c": {
-    "contract": "docs/implementation/static-applications.md",
-    "purpose": "Select expected slot metadata from independent context facts rather than actual values.",
-    "tests": [
-      {
-        "case": "it_normalizes_direct_staged_reordered_and_skipped_original_maps",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rejects_rebinding_duplicates_foreign_formals_and_wrong_categories",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_preserves_template_arguments_and_refuses_closed_type_reopening",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rejects_renamed_template_slots_without_guessing_an_adapter",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rechecks_inherited_captures_after_a_symbolic_identity_gets_an_origin",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_infers_independent_shared_result_and_body_field_bindings",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_preserves_partial_static_result_definitions",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_requires_explicit_input_and_namespace_coverage_without_implicit_holes",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_applies_uniform_producer_inference_to_namespaces_and_nested_arguments",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_composes_nested_recovery_without_losing_unused_fixed_bindings",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_refuses_applied_slots_that_are_still_residual_in_the_actual",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_checks_existing_constructor_bindings_instead_of_overwriting_them",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_matches_all_three_slot_maps_permutations_and_staged_partitions",
-        "command": "make -C tests/unit/semantic/static/applications/model",
-        "source": "tests/unit/semantic/static/applications/model/main.c"
-      },
-      {
-        "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
-        "command": "make -C tests/unit/semantic/static/applications/model",
-        "source": "tests/unit/semantic/static/applications/model/main.c"
-      }
-    ]
-  },
-  "src/semantic/static/applications/check/refine.c": {
-    "contract": "docs/implementation/static-applications.md",
-    "purpose": "Admit complete independent expected-signature facts while preserving known source constraints.",
-    "tests": [
-      {
-        "case": "it_normalizes_direct_staged_reordered_and_skipped_original_maps",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rejects_rebinding_duplicates_foreign_formals_and_wrong_categories",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_preserves_template_arguments_and_refuses_closed_type_reopening",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rejects_renamed_template_slots_without_guessing_an_adapter",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rechecks_inherited_captures_after_a_symbolic_identity_gets_an_origin",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_infers_independent_shared_result_and_body_field_bindings",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_preserves_partial_static_result_definitions",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_requires_explicit_input_and_namespace_coverage_without_implicit_holes",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_applies_uniform_producer_inference_to_namespaces_and_nested_arguments",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_composes_nested_recovery_without_losing_unused_fixed_bindings",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_refuses_applied_slots_that_are_still_residual_in_the_actual",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_checks_existing_constructor_bindings_instead_of_overwriting_them",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_matches_all_three_slot_maps_permutations_and_staged_partitions",
-        "command": "make -C tests/unit/semantic/static/applications/model",
-        "source": "tests/unit/semantic/static/applications/model/main.c"
-      },
-      {
-        "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
-        "command": "make -C tests/unit/semantic/static/applications/model",
-        "source": "tests/unit/semantic/static/applications/model/main.c"
-      }
-    ]
-  },
-  "src/semantic/static/applications/check/residuals.c": {
-    "contract": "docs/implementation/static-applications.md",
-    "purpose": "Compose independently known residual contracts into solver-owned immutable descriptions.",
-    "tests": [
-      {
-        "case": "it_normalizes_direct_staged_reordered_and_skipped_original_maps",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rejects_rebinding_duplicates_foreign_formals_and_wrong_categories",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_preserves_template_arguments_and_refuses_closed_type_reopening",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rejects_renamed_template_slots_without_guessing_an_adapter",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_rechecks_inherited_captures_after_a_symbolic_identity_gets_an_origin",
-        "command": "make -C tests/unit/semantic/static/applications/forward",
-        "source": "tests/unit/semantic/static/applications/forward/main.c"
-      },
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_infers_independent_shared_result_and_body_field_bindings",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_preserves_partial_static_result_definitions",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_requires_explicit_input_and_namespace_coverage_without_implicit_holes",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_applies_uniform_producer_inference_to_namespaces_and_nested_arguments",
-        "command": "make -C tests/unit/semantic/static/applications/policy",
-        "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_composes_nested_recovery_without_losing_unused_fixed_bindings",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_refuses_applied_slots_that_are_still_residual_in_the_actual",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_checks_existing_constructor_bindings_instead_of_overwriting_them",
-        "command": "make -C tests/unit/semantic/static/applications/recovery",
-        "source": "tests/unit/semantic/static/applications/recovery/main.c"
-      },
-      {
-        "case": "it_matches_all_three_slot_maps_permutations_and_staged_partitions",
-        "command": "make -C tests/unit/semantic/static/applications/model",
-        "source": "tests/unit/semantic/static/applications/model/main.c"
-      },
-      {
-        "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
-        "command": "make -C tests/unit/semantic/static/applications/model",
-        "source": "tests/unit/semantic/static/applications/model/main.c"
-      }
-    ]
-  },
   "src/semantic/static/applications/check/record.c": {
     "contract": "docs/implementation/static-applications.md",
     "purpose": "Check every inherited and new binding against its original declared category and signature.",
@@ -138337,26 +138094,6 @@
         "source": "tests/unit/semantic/static/applications/forward/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_infers_independent_shared_result_and_body_field_bindings",
         "command": "make -C tests/unit/semantic/static/applications/policy",
         "source": "tests/unit/semantic/static/applications/policy/main.c"
@@ -138400,6 +138137,26 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -138433,26 +138190,6 @@
         "source": "tests/unit/semantic/static/applications/forward/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_infers_independent_shared_result_and_body_field_bindings",
         "command": "make -C tests/unit/semantic/static/applications/policy",
         "source": "tests/unit/semantic/static/applications/policy/main.c"
@@ -138496,6 +138233,11 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -138549,26 +138291,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -138617,6 +138339,11 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -138670,26 +138397,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -138738,6 +138445,11 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -138791,26 +138503,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -138859,6 +138551,11 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
+      },
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -138910,26 +138607,6 @@
         "case": "it_applies_uniform_producer_inference_to_namespaces_and_nested_arguments",
         "command": "make -C tests/unit/semantic/static/applications/policy",
         "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
       },
       {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
@@ -139031,26 +138708,6 @@
         "case": "it_applies_uniform_producer_inference_to_namespaces_and_nested_arguments",
         "command": "make -C tests/unit/semantic/static/applications/policy",
         "source": "tests/unit/semantic/static/applications/policy/main.c"
-      },
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
       },
       {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
@@ -139559,26 +139216,6 @@
         "source": "tests/unit/semantic/static/applications/policy/main.c"
       },
       {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
         "case": "it_rebinds_positions_after_origin_discovery_without_reopening_captures",
         "command": "make -C tests/unit/semantic/static/applications/source",
         "source": "tests/unit/semantic/static/applications/source/main.c"
@@ -139627,58 +139264,26 @@
         "case": "it_recovers_all_partial_maps_using_actual_order_instead_of_signature_order",
         "command": "make -C tests/unit/semantic/static/applications/model",
         "source": "tests/unit/semantic/static/applications/model/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/static/applications/metadata/main.c": {
-    "contract": "docs/implementation/static-applications.md",
-    "purpose": "Verify pending expected interfaces use independent metadata rather than first-actual guessing.",
-    "tests": [
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
       },
       {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       },
       {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       },
       {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/static/applications/metadata/Makefile": {
-    "contract": "docs/implementation/static-applications.md",
-    "purpose": "Verify independent expected signatures refine captures, residuals and generated holes.",
-    "tests": [
-      {
-        "case": "it_refines_captured_and_residual_expectations_without_rewriting_source",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       },
       {
-        "case": "it_refines_generated_template_holes_without_choosing_a_constructor",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_refuses_foreign_pending_and_conflicting_expected_signature_facts",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
-      },
-      {
-        "case": "it_unwinds_every_independent_expected_metadata_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/applications/metadata",
-        "source": "tests/unit/semantic/static/applications/metadata/main.c"
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   },
@@ -152883,6 +152488,177 @@
         "case": "it_invalidates_static_producers_and_selected_consumers_from_nested_sources",
         "command": "make -C tests/unit/project/inputs",
         "source": "tests/unit/project/inputs/main.c"
+      }
+    ]
+  },
+  "src/semantic/static/signature/usage/expression.c": {
+    "contract": "docs/implementation/static-metadata.md",
+    "purpose": "Check one named application without replacing the actual residual map.",
+    "tests": [
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      }
+    ]
+  },
+  "src/semantic/static/signature/usage/groups.c": {
+    "contract": "docs/implementation/static-metadata.md",
+    "purpose": "Form finite exact classes of bare local result-forwarding equalities.",
+    "tests": [
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      }
+    ]
+  },
+  "src/semantic/static/signature/usage/symbol.c": {
+    "contract": "docs/implementation/static-metadata.md",
+    "purpose": "Conjoin every immutable use requirement of one scoped graph name.",
+    "tests": [
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      }
+    ]
+  },
+  "src/semantic/static/signature/usage/usage.h": {
+    "contract": "docs/implementation/static-metadata.md",
+    "purpose": "Check minimum operations against immutable actual constructor metadata.",
+    "tests": [
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/semantic/static/usage/Makefile": {
+    "contract": "docs/implementation/static-metadata.md",
+    "purpose": "Verify all-use minimum requirements against full actual metadata.",
+    "tests": [
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/usage/main.c": {
+    "contract": "docs/implementation/static-metadata.md",
+    "purpose": "Compose current source inventories, immutable nominal values and minimum use checks.",
+    "tests": [
+      {
+        "case": "it_preserves_additional_residuals_captures_and_actual_admission_order",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_checks_known_source_applications_and_separates_static_producers",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
+      },
+      {
+        "case": "it_propagates_requirements_through_aliases_cycles_and_self_operands",
+        "source": "tests/unit/semantic/static/usage/main.c",
+        "command": "make -C tests/unit/semantic/static/usage"
       }
     ]
   }
