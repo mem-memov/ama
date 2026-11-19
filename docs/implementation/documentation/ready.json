@@ -42127,6 +42127,26 @@
         "source": "tests/unit/codegen/native-templates/main.c",
         "case": "it_preserves_actual_overaligned_native_layout_after_substitution",
         "command": "make -C tests/unit/codegen/native-templates"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reuses_source_library_types_and_code_across_root_orders_without_sharing_instances",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reports_imported_native_literal_failure_before_entering_the_library_template",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_rebuilds_changed_external_native_headers_in_actual_consumers",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
+        "command": "make -C tests/unit/codegen/source-delivery"
       }
     ]
   },
@@ -43020,6 +43040,26 @@
         "source": "tests/unit/codegen/specializations/main.c",
         "case": "it_unwinds_every_captured_project_generation_allocation_before_publication",
         "command": "make -C tests/unit/codegen/specializations"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reuses_source_library_types_and_code_across_root_orders_without_sharing_instances",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reports_imported_native_literal_failure_before_entering_the_library_template",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_rebuilds_changed_external_native_headers_in_actual_consumers",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
+        "command": "make -C tests/unit/codegen/source-delivery"
       }
     ]
   },
@@ -43486,6 +43526,26 @@
         "source": "tests/unit/compiler/specialization-diagnostics/main.c",
         "case": "it_rejects_malformed_static_names_at_the_original_source_line",
         "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_invalidates_exact_source_library_consumers_and_preserves_noop_snapshots",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_conflicting_library_names_in_both_root_orders",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_missing_required_library_sources_without_namespace_fallback",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_unclosed_delivered_templates_at_the_ordinary_selection",
+        "command": "make -C tests/unit/compiler/source-delivery"
       }
     ]
   },
@@ -168454,6 +168514,220 @@
         "source": "tests/unit/codegen/native-templates/main.c",
         "case": "it_preserves_actual_overaligned_native_layout_after_substitution",
         "command": "make -C tests/unit/codegen/native-templates"
+      }
+    ]
+  },
+  "tests/unit/compiler/source-delivery/main.c": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Compare exact frontend snapshots for distributed open-template sources and native dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_invalidates_exact_source_library_consumers_and_preserves_noop_snapshots",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_conflicting_library_names_in_both_root_orders",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_missing_required_library_sources_without_namespace_fallback",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_unclosed_delivered_templates_at_the_ordinary_selection",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      }
+    ]
+  },
+  "tests/unit/compiler/source-delivery/Makefile": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Build source-delivery checking against the real frontend and source renderer.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_invalidates_exact_source_library_consumers_and_preserves_noop_snapshots",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_conflicting_library_names_in_both_root_orders",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_missing_required_library_sources_without_namespace_fallback",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_unclosed_delivered_templates_at_the_ordinary_selection",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      }
+    ]
+  },
+  "tests/unit/compiler/source-delivery/common.c": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Own a source-only template library physically separate from its consuming project.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_invalidates_exact_source_library_consumers_and_preserves_noop_snapshots",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reuses_source_library_types_and_code_across_root_orders_without_sharing_instances",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reports_imported_native_literal_failure_before_entering_the_library_template",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_conflicting_library_names_in_both_root_orders",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_missing_required_library_sources_without_namespace_fallback",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_unclosed_delivered_templates_at_the_ordinary_selection",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_rebuilds_changed_external_native_headers_in_actual_consumers",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      }
+    ]
+  },
+  "tests/unit/compiler/source-delivery/support/inputs.c": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Compare exact source graph invalidation against declared independent consumer sets.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_invalidates_exact_source_library_consumers_and_preserves_noop_snapshots",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      }
+    ]
+  },
+  "tests/unit/codegen/source-delivery/main.c": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Compile independently rooted open templates with canonical code and private instance state.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reuses_source_library_types_and_code_across_root_orders_without_sharing_instances",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reports_imported_native_literal_failure_before_entering_the_library_template",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_rebuilds_changed_external_native_headers_in_actual_consumers",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      }
+    ]
+  },
+  "tests/unit/codegen/source-delivery/Makefile": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Build actual source-distribution consumer execution and native toolchain tests.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reuses_source_library_types_and_code_across_root_orders_without_sharing_instances",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reports_imported_native_literal_failure_before_entering_the_library_template",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_rebuilds_changed_external_native_headers_in_actual_consumers",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      }
+    ]
+  },
+  "tests/unit/codegen/source-delivery/support/reuse.c": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Compare copied canonical identities and generated project C across separate consumers.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reuses_source_library_types_and_code_across_root_orders_without_sharing_instances",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_reports_imported_native_literal_failure_before_entering_the_library_template",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      }
+    ]
+  },
+  "tests/unit/compiler/source-delivery/support/refusals.c": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Refuse conflicting delivered names, missing source families and incomplete selections.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_conflicting_library_names_in_both_root_orders",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_missing_required_library_sources_without_namespace_fallback",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/source-delivery/main.c",
+        "case": "it_refuses_unclosed_delivered_templates_at_the_ordinary_selection",
+        "command": "make -C tests/unit/compiler/source-delivery"
+      }
+    ]
+  },
+  "tests/unit/codegen/source-delivery/support/dependencies.c": {
+    "contract": "docs/implementation/template-source-delivery.md",
+    "purpose": "Rebuild actual external C effects and refuse missing native inputs without partial publication.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_rebuilds_changed_external_native_headers_in_actual_consumers",
+        "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/source-delivery/main.c",
+        "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
+        "command": "make -C tests/unit/codegen/source-delivery"
       }
     ]
   }

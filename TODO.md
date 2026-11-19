@@ -195,7 +195,8 @@ full-owner constant identities and checked startup/cleanup composition.
 [T188](DONE.md#t188) supplies full-owner generated names and compiled specialized
 execution. [T189](DONE.md#t189) supplies original-source diagnostics through
 static normalization and compiled execution. [T190](DONE.md#t190) validates concrete
-native/template compositions. T191 is next: source delivery and exact invalidation.
+native/template compositions. [T191](DONE.md#t191) validates source delivery and
+exact invalidation. T192 is next: editor binding and rename integration.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -223,27 +224,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 6. Lower and execute concrete programs
 
 ### Phase 7. Connect product consumers and algorithm examples
-
-<a id="t191"></a>
-
-- [ ] **T191 — Deliver open templates as source and invalidate consumers exactly.**
-  Prerequisites: T213, T183, T188, T190.
-  Rules: [TPL-13](spec/language/templates.md#tpl-13),
-  [DEP-03](spec/implementation/compiler.md#dep-03),
-  [COMP-05](spec/implementation/compiler.md#comp-05).
-  Boundary: existing configured roots, project/native source closure, incremental
-  input fingerprints and actual independent source-distribution consumers.
-  Steps: (1) load an open template library and required companions in a separate
-  consumer project with separate static-assembly and ordinary-template sources;
-  (2) build/run that consumer's own specializations;
-  (3) test repeat/reordered imports, changed inputs and missing dependencies.
-  Accept: full root/origin/formal/capture identity survives reuse; compatible
-  imports share type/code without instance state. Reject name conflicts, absent
-  Ama/native/external C dependencies and unresolved bindings exactly.
-  Changed graph definitions/outputs, Type uses and native inputs invalidate
-  affected results; no-op builds remain current. Use existing source delivery,
-  not a new package manager, file format, virtual filename or binary-only
-  template interface.
 
 <a id="t192"></a>
 
@@ -456,8 +436,8 @@ whole-program admission; component certificates do not replace those checks.
 | Native template rejection | [T190](DONE.md#t190) |
 | Concrete native template arguments | [T190](DONE.md#t190) |
 | Concrete native composition | [T190](DONE.md#t190) |
-| Template source delivery | [T191](#t191) |
-| Source distribution resolution | [T191](#t191) |
+| Template source delivery | [T191](DONE.md#t191) |
+| Source distribution resolution | [T191](DONE.md#t191) |
 
 [T206](DONE.md#t206) records source integration of the unchanged Internal hyphen
 words, Hyphenated name identity and Hyphen context boundaries; T196 reviews

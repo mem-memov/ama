@@ -6400,3 +6400,53 @@ T201. Specification bytes have not changed.
   changed, and no obsolete competing code/test version was retained. T194 still
   owns full foreign-child host cleanup; T196 owns the known separate conformance
   review gate. Next task: T191 source delivery and exact invalidation.
+
+<a id="t191"></a>
+
+- [x] **T191 — Deliver open templates as source and invalidate consumers exactly.**
+  Prerequisites: T213, T183, T188, T190.
+  Status: completed; [contract and step record](docs/implementation/template-source-delivery.md).
+  Rules: [TPL-13](spec/language/templates.md#tpl-13),
+  [DEP-03](spec/implementation/compiler.md#dep-03),
+  [COMP-05](spec/implementation/compiler.md#comp-05).
+  Boundary: existing configured roots, project/native source closure, incremental
+  input fingerprints and actual independent source-distribution consumers.
+  Steps: (1) load an open template library and required companions in a separate
+  consumer project with separate static-assembly and ordinary-template sources;
+  (2) build/run that consumer's own specializations;
+  (3) test repeat/reordered imports, changed inputs and missing dependencies.
+  Accept: full root/origin/formal/capture identity survives reuse; compatible
+  imports share type/code without instance state. Reject name conflicts, absent
+  Ama/native/external C dependencies and unresolved bindings exactly.
+  Changed graph definitions/outputs, Type uses and native inputs invalidate
+  affected results; no-op builds remain current. Use existing source delivery,
+  not a new package manager, file format, virtual filename or binary-only
+  template interface.
+
+  Completed from 3609cb4 using existing source delivery and dependency
+  mechanisms. A separate physical library supplies open ordinary templates,
+  static assemblies and concrete native companions to a separate consuming
+  project. Both root orders produce identical complete owner encoding and
+  generated C, while actual private counters observe 1,1,2 and forwarded values
+  remain 17,17,23. No binary template interface, package format or runtime static
+  object was added. A narrow test-fixture root handoff retains the previous
+  default roots exactly and does not alter product resolution.
+
+  Four frontend and four compiled cases cover ten independently specified input
+  mutations, unchanged snapshots, exact unaffected source units, named-root
+  conflicts, missing module families, unresolved ordinary selections, imported
+  literal failure, actual external C rebuilding and missing native/external
+  inputs. Changing the external helper changes real values to 22,22,28; missing
+  files remain absent and failed compilation preserves prior outputs. Source
+  snapshots are not represented as machine-code caches or C-include proofs.
+
+  Both new leaves passed strict O2/Werror and ASan/UBSan, including generated
+  executables; existing default-root native and exact input-graph consumers
+  passed. Counted teardown is separate from unavailable LSan. Complete metadata
+  passed 2998 ready inputs with zero debt; actual Doxygen checked 2283 file pages,
+  8879 interfaces and 445/445 destinations. Regenerate after this archival prose
+  and require staged/rendered hashes to match before commit. The linked contract
+  retains commands, corrected fixture probes and ownership/invalidation arguments.
+  No production or specification change, obsolete competing implementation or
+  conformance fingerprint refresh was introduced. T196 still owns the known
+  independent conformance review gate. Next ready task: T192 editor integration.

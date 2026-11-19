@@ -50,6 +50,13 @@ static TestNativeHookEmitter native_hook_override;
  * qualification. The callback must never write maintained library sources.
  */
 static void (*native_fixture_completion)(NativeScaffold *);
+/** Optional explicit source roots, borrowed until project execution finishes.
+ * Both pointer and count must be supplied together; ordinary fixtures retain
+ * their two declared default roots. This configures source delivery, not native
+ * symbol lookup or an alternate namespace-resolution policy.
+ */
+static const ModuleRoot *project_roots_override;
+static size_t project_roots_override_count;
 #ifndef TEST_STDLIB_KIND
 #define TEST_STDLIB_KIND MODULE_ROOT_PROJECT
 #endif
@@ -182,7 +189,10 @@ static void prepare_project(const char *main_source) {
     native_fixture("worker", "@<\ninput\n.value\n |7\n@>\noutput\n.value\n input\nother\n.value\n |99\n@C\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT}, {TEST_STDLIB, NULL, 0, TEST_STDLIB_KIND}};
-    bool checked = compiler_frontend_check(&frontend, roots, 2, ".main");
+    assert((project_roots_override != NULL) == (project_roots_override_count != 0));
+    bool checked = compiler_frontend_check(&frontend,
+        project_roots_override ? project_roots_override : roots,
+        project_roots_override ? project_roots_override_count : 2, ".main");
     if (!checked) {
         fprintf(stderr, "Frontend failed: %s\n", frontend.error.message);
         SourceSpan site = frontend.error.primary.span;
