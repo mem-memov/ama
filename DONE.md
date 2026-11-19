@@ -5054,3 +5054,79 @@ T201. Specification bytes have not changed.
   [key encoding and registry](docs/implementation/static-registry.md).
   Candidate/use states, dependency closure and executable admission remain T183
   and its consumers; naming creates no runtime instance or module source file.
+
+<a id="t183"></a>
+
+- [x] **T183 — Register exact specialization identities and guarded cache reuse.**
+  Prerequisites: T208, T209, T210, T213, T216.
+  Rules: [TPL-05](spec/language/templates.md#tpl-05),
+  [TPL-11](spec/language/templates.md#tpl-11),
+  [NAME-01](spec/implementation/compiler.md#name-01),
+  [NAME-02](spec/implementation/compiler.md#name-02).
+  Boundary: the early compile-time candidate registry, full-key encoding and cache
+  dependency/provenance records, separate from instance allocation.
+  Steps: (1) key complete normalized bindings by original identity/formal order;
+  (2) intern structurally valid closed candidate keys with retained dependencies
+  and explicit pending-check state; (3) check each incoming ancestry and cached
+  descendants under alternate demand paths.
+  Accept: direct/partial/alias-equivalent bindings share identity; different
+  roots/origins/unused bindings/captures/residual signatures do not merge.
+  Interning is not executable admission; T185 supplies ordinary validation.
+  This task does not depend on T182 or resolved ordinary body members: compose
+  actual metadata/term/guard components over finite candidate graphs first.
+  Keep candidate, pending, checked and failed states explicit; T211 may retain
+  validation obligations while naming an already closed nominal identity.
+  Cold/warm caches and reordered roots agree, including unequal-key paths
+  hidden in cached grandchildren or outgoing branches of same-key cycles;
+  exact-key closure retains every outgoing check. Unrelated paths do not form false
+  source-only cycles. Inject key collisions and allocation failure explicitly.
+  Historical implementation checkpoint (2026-11-19, superseded by acceptance below): implement candidate/use association
+  before body/cache closure. Published guard paths retain separate use handles;
+  unknown keys retain no candidate/name, while closed normalized maps intern one
+  identity. Registration remains NEW rather than body/executable checked.
+  Core ownership, first-error propagation and key promotion APIs are implemented;
+  four source/term/guard/naming compositions pass strict C11. The initial repeat
+  query assertion exposed redundant normalization of an already closed use;
+  after a successful guard refresh, its immutable key association is now reused.
+  Rerun: `/tmp/ama-t183-candidates-key-reuse.log`, collected exit 0; initial
+  failed run retained at `/tmp/ama-t183-candidates-initial.log`. Current isolated
+  snapshot: `/tmp/ama-t183-registry-fbj6fq5_`; selected-input list:
+  `/tmp/ama-t183-registry-task-paths.json`. No active jobs remain.
+  Canonical scope association and finite group checks are implemented. The
+  registry automatically retains actual parent chains and every guard-demanded
+  path, keeping validation dependencies separate from constructor-creation edges.
+  Four affected leaves pass strict C11 after that change (including an independent
+  8192-composition reachability oracle). Earlier complete registry strict and
+  ASan/UBSan runs also passed; recorded intermediate evidence is in the contract.
+  Intermediate strict, ASan/UBSan and root-build runs passed, including every
+  automatic-ancestry allocation refusal and the one-time analysis claim. Final
+  maintained code is frozen in `/tmp/ama-t183-registry-16pf7nj_` and its `-san`
+  sibling. Entire 33-case registry acceptance: strict session 1992,
+  `/tmp/ama-t183-accept-strict.{log,exit}`; ASan/UBSan session 91462,
+  `/tmp/ama-t183-accept-san.{log,exit}`. Documentation/build-only snapshot
+  `/tmp/ama-t183-registry-x5yh4acy` has task-only coverage (2755 rows, excludes
+  unrelated T182 work): docs-complete session 91637,
+  `/tmp/ama-t183-doc-complete.{log,exit}`; root build session 18573,
+  `/tmp/ama-t183-accept-build.{log,exit}`. Collect all outcomes before closure.
+  No specification ambiguity is open. Final generated documentation/link gates,
+  evidence review, archival and commit remain unfinished.
+  [Registry contract](docs/implementation/static-registry.md) records the boundary.
+
+  Acceptance (2026-11-19): all jobs above were collected; no job remains active.
+  All 34 named registry cases pass strict C11 and ASan/UBSan, including the
+  independent 8192-composition graph oracle in both configurations. Complete
+  parent exits `/tmp/ama-t183-accept-{strict,san}.exit` are 0; the final additional
+  counter-boundary case and full candidate leaf exits
+  `/tmp/ama-t183-counters-{strict,san}.exit` are 0. Root build exit
+  `/tmp/ama-t183-accept-build.exit` is 0. Complete per-file coverage gate passes
+  with 2755 ready rows and zero debt. The contract records exact flags, ownership,
+  mathematical invariant/termination bounds, failure fixes, source-backed cached
+  graph compositions and the unavailable-LSan boundary.
+  Final documentation inputs include this archive and the next-task queue;
+  `make docs-complete` and `make docs` must pass on this prospective final tree
+  before this record is copied into the working tree or committed. Their collected
+  logs are `/tmp/ama-t183-doc-final-complete.log` and
+  `/tmp/ama-t183-doc-final.log`; final rendered counts belong to the task commit.
+  No source/executable acceptance is inferred for T211/T182/T184/T185, and no
+  spec change or compatibility layer was introduced. Unrelated T182 work remains
+  untouched. The earlier pending-checkpoint text is historical, not active work.

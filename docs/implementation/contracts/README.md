@@ -240,7 +240,9 @@ verified rebuilds over one complete owned workspace.
 
 [Specialization key encoding and registry](../static-registry.md) separates
 T216's accepted normalized-key/collision-checked naming service from T183's
-pending candidate/use states and dependency closure. Neither registration nor
+canonical candidate/use states, one-time local-analysis claims and exact finite
+dependency closure. Actual guarded ancestry survives cache reuse, including
+pending keys and every outgoing branch. Neither registration nor
 a key name is executable admission.
 
 [Static creation and definition guards](../static-guards.md) retain exact

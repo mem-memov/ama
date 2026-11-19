@@ -1,9 +1,9 @@
 # Exact specialization registry
 
-## T183 scope and current step
+## T183 implemented boundary
 
 The key component is accepted under [T216](../../DONE.md#t216).
-[T183](../../TODO.md#t183) consumes it for candidate/use/dependency lifecycle.
+[T183](../../DONE.md#t183) consumes it for candidate/use/dependency lifecycle.
 [The specification](../../spec/README.md) remains authoritative:
 [TPL-05](../../spec/language/templates.md#tpl-05) defines complete nominal keys,
 [TPL-11](../../spec/language/templates.md#tpl-11) constrains creation paths, and
@@ -18,7 +18,7 @@ separate creation/definition relations. T183 composes these foundations before
 T211 evaluates graph outputs. Ordinary operation checks and executable admission
 remain T185/later consumer responsibilities.
 
-## Planned steps and acceptance
+## Steps and acceptance
 
 1. T216: validate complete normalized owner maps and encode their original formal
    identities, all values and full residual metadata. Reuse existing root/category
@@ -52,7 +52,7 @@ path parsing or adding another hashing implementation. The original identity
 must remain owned beside the digest; a forced collision is a diagnosed refusal,
 never a new suffix or merged candidate.
 
-The implementation will retain a finite shared representation of reachable
+The implementation retains a finite shared representation of reachable
 nominal value metadata rather than recursively repeating shared subtrees in a
 flat name. Original formal order determines traversal; construction-order term
 ordinals and addresses cannot become serialized identity. Exact framing and
@@ -60,7 +60,7 @@ category tags must permit reconstruction of the full key. Detailed representatio
 size bounds and interface/failure contracts are recorded with the first code step
 before acceptance.
 
-## Planned registry ownership and effects (T183)
+## Registry ownership and effects (T183)
 
 The registry borrows static inventory, terms, solver/guards and the existing
 identity owner; each must outlive its records. It owns compiler-only candidate,
@@ -77,8 +77,8 @@ for each interface as it is implemented.
 
 ## Evidence
 
-The key codec and complete naming handoff are implemented under T216; T183
-candidate/use/closure APIs remain unfinished. The initial
+The key codec and complete naming handoff were accepted under T216 before
+T183 implemented candidate/use/check closure. The initial
 link check exposed a missing source-identity dependency in the semantic test
 source list; declaring that actual dependency fixed the rerun. Test fixtures now
 receive the standard-library directory from each leaf's explicit ROOT authority,
@@ -230,3 +230,208 @@ changed to satisfy that metadata check. The final snapshot is
 `/tmp/ama-t183-check-vccm79o1`; task-only code/coverage excludes unrelated T182 work.
 Root reconfiguration derives fixture standard-library paths from each actual
 leaf's ROOT instead of testing an assumed relative directory depth.
+
+## T183 candidate/use step evidence
+
+The first registry layer now borrows a healthy guard plan and initialized identity
+registry, owns only candidate/use records, and retains every actual guard-published
+path. `static_registry_use` normalizes the path owner after refreshing actual
+cached guard edges. Unknown keys produce a stable pending use without a name or
+candidate; later equations may associate that same handle with a complete key.
+Complete canonical environments intern one candidate/name while distinct paths
+remain distinct uses. Candidate state stays NEW: this is not source-body closure,
+ordinary checking or executable admission. `static_registry_refresh_keys` is
+explicitly only a key-association query.
+
+A failed name registration or guard operation keeps its first diagnostic and
+valid partial records owned. Public receivers are unchanged on refusal, but an
+internal use can already be linked; no whole-operation rollback is claimed.
+Names outlive the registry, and source/term/guard owners outlive all borrowed
+references. New candidate/use tests cover actual closed-key sharing, independent
+key evidence, every measured preparation allocation and foreign/missing handles.
+All four initial cases pass strict C11 in `/tmp/ama-t183-registry-fbj6fq5_`
+(`/tmp/ama-t183-candidates-key-reuse.log`, collected exit 0). The initial repeated-
+query assertion found redundant re-normalization; closed associations now reuse
+their key only after the caller has successfully refreshed the actual guard graph.
+The initial failure log is retained at `/tmp/ama-t183-candidates-initial.log`.
+This is step evidence, not completed T183 acceptance. Further T183 work must retain source/body dependencies and close finite cached groups;
+no current API treats NEW key registration as a completed check.
+
+## T183 canonical local scope and finite check groups
+
+`static_registry_scope_variable` accepts an exact owned use handle and one
+registered variable from that use's original environment. It first refreshes
+actual guard constraints. An unknown owner key returns Pending without publishing
+a value or adding an equation. A closed key replaces only the environment in a
+copy of the complete lexical variable identity; original declaration, symbol,
+expression and role remain intact. Formal variables read actual input captures.
+The solver receives an equality between the original and canonical values.
+This shares compile-time analysis, never runtime variables, references or state.
+The operation is constant-depth and uses existing exact term interning; it does
+not recursively substitute nominal structures or expand definitions.
+
+Three scope cases pass strict C11, including every measured allocation refusal,
+foreign/copied handles, foreign/local scope separation, distinct declarations,
+pending-to-concrete formal substitution and propagation of equations from a
+local field hole to the same canonical field. Command: `make -C
+ tests/unit/semantic/static/registry/scopes` with the strict flags recorded above;
+`/tmp/ama-t183-scope-boundaries.exit` is 0. Reviewed snapshot:
+`/tmp/ama-t183-registry-vdvj9rgk`. This is intermediate evidence, not final acceptance.
+
+The check lifecycle now separates three facts: a known candidate identity, a
+calling phase's completed local checks, and completion of every reachable
+validation dependency. `static_registry_complete_local` is an explicit compiler
+phase certificate: its caller must have performed the local checks and enumerated
+the dependencies. The registry is not a body evaluator. T211/T185 remain owners
+of static/ordinary source checking and executable admission respectively.
+`static_registry_depend` retains original endpoint use handles and source spans;
+these are validation obligations, not constructor-creation edges. The calling
+phase must separately register every actual creation with the guards. The
+registry never uses a validation edge to manufacture or waive creation ancestry.
+
+For a finite candidate graph, `static_registry_refresh_checks` initializes a
+provisional checked set with exactly the locally complete vertices. It repeatedly
+removes a vertex with an outgoing dependency whose target is unknown or outside
+the set. At termination this is the greatest subset closed under outgoing
+validation dependencies. Equivalently, a vertex is checked iff every reachable
+vertex has a complete local certificate and no reachable dependency key is open.
+This equivalence supplies an independent reachability oracle for tests.
+
+The invariant is that every removed vertex reaches a missing obligation; every
+vertex retained at the fixed point satisfies all local/outgoing obligations.
+Each changing pass removes at least one of V vertices. Time is
+O(V + (V+1)E), extra space O(1), excluding underlying key/guard normalization.
+No recursive stack or speculative specialization is needed. Cycles with complete
+local checks close together. Adding a dependency invalidates prior checked states
+and keeps local evidence; unknown endpoint keys remain explicit use records.
+A sticky registry failure invalidates all its certificates as FAILED while
+retaining names/keys only for diagnostics and cleanup.
+
+The first exhaustive-test launch failed in fixture setup because the fixture
+loaded text but omitted the integer module required by the shared guard helper.
+This was a test prerequisite error, not a changed expected result; the fixture
+now explicitly loads both. Initial log: `/tmp/ama-t183-checks-first.log`, exit 2.
+The rerun is `/tmp/ama-t183-checks-rerun.log`; collect its exit before claiming
+acceptance. It compares all 512 three-vertex directed graphs, eight local-check
+subsets and two registration/edge orders (8192 compositions) against independent
+reflexive reachability, plus a late unknown-key dependency on a warm candidate.
+
+### Automatic retention of demanded creation paths
+
+A use query now iterates its immutable published parent chain and retains a
+validation dependency for each actual parent/child pair. It never manufactures
+an extra creation edge or follows a C recursion stack. Group refresh additionally
+imports every already guard-demanded path, so querying only a deep descendant
+cannot omit its ancestors and an unqueried required root cannot disappear from
+acceptance. Additional non-creation validation requirements remain explicit via
+`static_registry_depend`. Duplicate exact endpoint uses reuse the obligation;
+source-distinct endpoint handles remain distinct records even when their keys
+share a candidate.
+
+Key registration and fixed-point checking share no runtime instance state.
+Names remain stable across pending/checked/failed states, but failure leaves them
+usable only as diagnostic metadata. Checked here means the calling phase's local
+certificates and this finite dependency relation passed; ordinary body checking,
+static output evaluation and final executable admission still belong to their
+later task owners. This contract does not claim those consumers already exist.
+
+### Intermediate composition evidence
+
+The first complete parent strict run failed to compile the new forced-collision
+case because the test omitted the SHA-256 declaration header. Adding its explicit
+include fixed that test dependency. Original log:
+`/tmp/ama-t183-registry-strict.log` (exit 2). The rerun of the complete registry
+parent passed strict C11, and its separate ASan/UBSan run also passed:
+`/tmp/ama-t183-registry-strict-rerun.exit` and
+`/tmp/ama-t183-registry-san.exit` are both 0.
+
+After automatic ancestry retention, all four affected leaves (`candidates scopes
+checks cache`) passed strict C11 in `/tmp/ama-t183-registry-e6bnb109`:
+`/tmp/ama-t183-ancestry-strict.exit` is 0. These include exact scope substitution
+for ordinary and compiler-only producer owners, the exhaustive 8192-composition
+reachability oracle, pending target promotion, sticky errors, counter overflow,
+forced name collision, cached-grandchild rejection in both root orders and a
+new outgoing branch through a checked same-key cycle. The guarded creation
+fixtures resolve actual named input maps but do not evaluate graph outputs;
+that remains T211's explicit boundary.
+
+The final added case measures/refuses every allocation during automatic ancestry
+retention, including partial names and dependency records. It is running with
+final code in `/tmp/ama-t183-registry-4s09t8p6`; final strict cache log/exit:
+`/tmp/ama-t183-cache-final-strict.{log,exit}`. The entire 32-case registry has a
+separate final ASan/UBSan tree with log/exit
+`/tmp/ama-t183-final-san.{log,exit}`. Root build uses
+`/tmp/ama-t183-final-build.{log,exit}`. Collect all results before closing T183.
+
+### Single local-analysis claim
+
+`static_registry_begin_local` claims local analysis at most once per closed
+canonical candidate. Unknown keys return Pending and no claim. Repeated incoming
+uses of a started candidate retain their guard checks but do not request another
+expansion. A separate `local_started` bit is necessary: group refresh may already
+classify an unstarted candidate as Pending, and Pending alone must not suppress
+its first real analysis. A completed local certificate implies started analysis;
+a caller with independently completed checks may record that certificate directly.
+Neither claiming nor active reuse proves dependency completion. This makes the
+finite closed-cycle protocol available to T211 without putting body evaluation
+inside the identity registry or using a speculative recursion cutoff.
+
+A new actual source/term/guard case covers unknown claim refusal, first analysis
+after a Pending group refresh, two incoming paths sharing one active candidate,
+and separate local/group completion. Invalid copied handles and absent receivers
+are included in sticky failure cases. Reviewed final-claim snapshot:
+`/tmp/ama-t183-registry-1k36bv8z`; strict check log/exit:
+`/tmp/ama-t183-claims-strict.{log,exit}` (collect before final acceptance).
+
+
+## T183 behavior acceptance and final boundary
+
+All 34 named registry cases passed strict C11 and ASan/UBSan. The complete
+33-case parent runs used frozen snapshot `/tmp/ama-t183-registry-16pf7nj_`
+and its separate `-san` sibling; logs/exits:
+`/tmp/ama-t183-accept-strict.{log,exit}` and
+`/tmp/ama-t183-accept-san.{log,exit}`, both collected exit 0. The final extra
+counter-overflow case and all six candidate cases passed both configurations in
+`/tmp/ama-t183-registry-13n4_f8r` and its separate `-san` sibling:
+`/tmp/ama-t183-counters-strict.{log,exit}` and
+`/tmp/ama-t183-counters-san.{log,exit}`, both exit 0. Production operations were
+unchanged between those runs; the only header change adds the TPL-05 file-purpose
+link, and the test change adds use/candidate counter-overflow partitions.
+
+Commands were `make -C tests/unit/semantic/static registry` for the complete
+parent and `make -C tests/unit/semantic/static/registry/candidates` for the final
+extra case. Strict flags were `-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic
+-D_POSIX_C_SOURCE=200809L`. Sanitizer flags used `-O1` instead of `-O0` and added
+`-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie`, with
+`LINKER_FLAGS=-fsanitize=address,undefined -no-pie`,
+`ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+`UBSAN_OPTIONS=halt_on_error=1`. LSan remains unavailable in this environment;
+counted fixture teardown independently checks every owned allocation, including
+each measured refusal during scope/key/name/ancestry/dependency preparation.
+No sanitizer run is represented as leak-sanitizer evidence.
+
+The exhaustive closure domain is all 512 directed three-vertex graphs, eight
+local-check subsets and two opposite use/edge insertion orders: 8192 actual
+source/term/guard/registry compositions in each configuration. An independent
+reflexive reachability oracle determines the expected group states. Separate
+actual producer paths cover cached grandchildren in both root orders, outgoing
+branches through same-key cycles, automatic ancestor and guard-demand retention,
+and borrowed failure diagnostics. Forced full-key digest collisions, all dense
+counter boundaries, invalid handles, unknown-key promotion and ordinary/producer
+canonical scopes have explicit cases. None of these fixtures pretends to evaluate
+a static result body or perform ordinary executable checks.
+
+A clean root `make` passed in `/tmp/ama-t183-registry-x5yh4acy`:
+`/tmp/ama-t183-accept-build.exit` is 0. The per-file task-only registry has 2755
+reviewed rows and zero explicit debts; `make docs-complete` passed there:
+`/tmp/ama-t183-doc-complete.exit` is 0. Final generated-rule destination validation
+is a separate task closure gate, recorded in the archived task/commit after it
+passes. The broader root tree preserves unrelated unfinished T182 changes;
+these isolated acceptance snapshots deliberately exclude them.
+
+T211 now supplies actual source graph equation evaluation and its completion
+certificates; T182 supplies ordinary typed connections, T184 group admission and
+T185 concrete operation checks. Whole `make test`, current end-to-end template
+execution and final conformance are not claimed by this component acceptance.
+No language rule was changed, no compatibility implementation was introduced,
+and no runtime instance storage/state is shared by this registry.

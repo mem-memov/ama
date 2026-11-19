@@ -153630,6 +153630,96 @@
         "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
         "case": "it_refuses_invalid_naming_arguments_without_partial_names",
         "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static registry"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static registry"
       }
     ]
   },
@@ -154029,6 +154119,1407 @@
         "source": "tests/unit/semantic/static/registry/identity/failures/main.c",
         "case": "it_refuses_invalid_naming_arguments_without_partial_names",
         "command": "make -C tests/unit/semantic/static/registry/identity/failures"
+      }
+    ]
+  },
+  "src/semantic/static/registry/plan.h": {
+    "purpose": "Own candidate/use metadata while borrowing guards, terms and collision-checked names.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/registry/error.c": {
+    "purpose": "Preserve first registry diagnostics and borrowed guard failures without reporting allocation.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "src/semantic/static/registry/model.h": {
+    "purpose": "Separate closed specialization identities from incoming-use checking state.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/registry/owner.c": {
+    "purpose": "Own candidate/use allocations without owning borrowed names, guards or source values.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "src/semantic/static/registry/internal.h": {
+    "purpose": "Share exact registry membership, key interning and first-error ownership boundaries.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/registry/keys/use.c": {
+    "purpose": "Retain actual guard paths while binding known owner keys to shared candidates.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      }
+    ]
+  },
+  "src/semantic/static/registry/keys/path.c": {
+    "purpose": "Retain one exact creation-path use before associating its canonical key.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      }
+    ]
+  },
+  "src/semantic/static/registry/keys/candidate.c": {
+    "purpose": "Intern complete canonical owner identities before any source body expansion.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      }
+    ]
+  },
+  "src/semantic/static/registry/keys/refresh.c": {
+    "purpose": "Rebind required pending uses after independent constraints settle and recheck actual guard graphs.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      }
+    ]
+  },
+  "src/semantic/static/registry/checks/membership.c": {
+    "purpose": "Validate actual registry-owned use handles before following their scoped paths.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "src/semantic/static/registry/checks/closure.c": {
+    "purpose": "Compute the exact finite group certificate after actual use keys and guards refresh.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "src/semantic/static/registry/checks/dependency.c": {
+    "purpose": "Retain validation obligations without inventing constructor-creation edges.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "src/semantic/static/registry/checks/refresh.c": {
+    "purpose": "Close finite validation groups by exact backwards propagation of pending obligations.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "src/semantic/static/registry/checks/begin.c": {
+    "purpose": "Claim one local analysis per closed specialization without admitting active cycles.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "src/semantic/static/registry/checks/local.c": {
+    "purpose": "Accept explicit local phase completion independently of dependency closure.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "src/semantic/static/registry/scopes/variable.c": {
+    "purpose": "Associate original local static variables with their closed specialization scope.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/common.c": {
+    "purpose": "Own counted registry fixtures while retaining longer-lived source, guard and name owners.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/checks/main.c": {
+    "purpose": "Compare real registry group completion with exhaustive finite reachability expectations.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/checks/Makefile": {
+    "purpose": "Compare finite candidate-check closure against independent graph reachability.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_closes_exactly_all_locally_complete_reachable_groups",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_reopens_warm_checks_until_late_target_keys_and_local_checks_close",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_keeps_failed_checks_sticky_and_releases_partial_dependencies",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/checks/main.c",
+        "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
+        "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/candidates/main.c": {
+    "purpose": "Compose actual source/term/guard paths with candidate interning and pending key promotion.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/candidates/Makefile": {
+    "purpose": "Verify shared closed candidate identities and retained pending incoming paths.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_shares_equal_candidate_keys_without_merging_incoming_uses",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_promotes_pending_uses_only_after_independent_complete_key_evidence",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_unwinds_every_use_and_candidate_preparation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_propagates_full_key_name_collisions_without_publishing_candidates",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/candidates/main.c",
+        "case": "it_refuses_use_and_candidate_counter_overflow_before_publication",
+        "command": "make -C tests/unit/semantic/static/registry/candidates"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/scopes/main.c": {
+    "purpose": "Verify canonical local Type equations, unknown owners and distinct source operations.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/scopes/Makefile": {
+    "purpose": "Check exact scope rebasing and its ownership and failure boundaries.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_equal_scopes_and_preserves_local_occurrences",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_releases_every_partial_scope_preparation_on_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_refuses_nonlocal_variables_and_unowned_use_handles",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/scopes/main.c",
+        "case": "it_canonicalizes_producer_formals_and_derived_graph_names",
+        "command": "make -C tests/unit/semantic/static/registry/scopes"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/cache/main.c": {
+    "purpose": "Check cached descendants and same-key-cycle branches through actual producer creation paths.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/cache/common.c": {
+    "purpose": "Provide actual three-origin producer source paths for cached candidate compositions.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/registry/cache/Makefile": {
+    "purpose": "Compose actual cached producer creation guards with registry certificates and failure propagation.",
+    "contract": "docs/implementation/static-registry.md",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_rechecks_warm_cached_grandchildren_in_both_root_orders",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_checks_new_outgoing_branches_of_a_checked_same_key_cycle",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
+      },
+      {
+        "source": "tests/unit/semantic/static/registry/cache/main.c",
+        "case": "it_releases_partial_ancestry_and_dependencies_at_every_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/registry/cache"
       }
     ]
   }

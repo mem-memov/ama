@@ -175,7 +175,8 @@ boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 [T215](DONE.md#t215) establishes exact compiler-only producer owner keys.
 [T210](DONE.md#t210) validates current creation/definition guard paths.
 [T216](DONE.md#t216) supplies exact complete-key encoding and checked names.
-T183 is next. T182 remains unfinished with its partial
+[T183](DONE.md#t183) supplies canonical candidates, guarded use retention and
+finite dependency-check groups. T211 is next. T182 remains unfinished with its partial
 files and failed-run evidence. Follow the recorded ownership/disposition map.
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -192,39 +193,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 2. Establish current source structure and bindings
 
 ### Phase 3. Build finite structural analysis and guarded identities
-
-<a id="t183"></a>
-
-- [ ] **T183 — Register exact specialization identities and guarded cache reuse.**
-  Prerequisites: T208, T209, T210, T213, T216.
-  Rules: [TPL-05](spec/language/templates.md#tpl-05),
-  [TPL-11](spec/language/templates.md#tpl-11),
-  [NAME-01](spec/implementation/compiler.md#name-01),
-  [NAME-02](spec/implementation/compiler.md#name-02).
-  Boundary: the early compile-time candidate registry, full-key encoding and cache
-  dependency/provenance records, separate from instance allocation.
-  Steps: (1) key complete normalized bindings by original identity/formal order;
-  (2) intern structurally valid closed candidate keys with retained dependencies
-  and explicit pending-check state; (3) check each incoming ancestry and cached
-  descendants under alternate demand paths.
-  Accept: direct/partial/alias-equivalent bindings share identity; different
-  roots/origins/unused bindings/captures/residual signatures do not merge.
-  Interning is not executable admission; T185 supplies ordinary validation.
-  This task does not depend on T182 or resolved ordinary body members: compose
-  actual metadata/term/guard components over finite candidate graphs first.
-  Keep candidate, pending, checked and failed states explicit; T211 may retain
-  validation obligations while naming an already closed nominal identity.
-  Cold/warm caches and reordered roots agree, including unequal-key paths
-  hidden in cached grandchildren or outgoing branches of same-key cycles;
-  exact-key closure retains every outgoing check. Unrelated paths do not form false
-  source-only cycles. Inject key collisions and allocation failure explicitly.
-  Next step (T216 accepted): retain complete normalized candidate identities and
-  separate each incoming use's pending/check state from metadata identity.
-  Compose source-backed guard paths, canonical candidates and exact finite
-  dependency closure; ordinary/executable validation stays with later tasks.
-  [Registry contract](docs/implementation/static-registry.md) records the shared
-  boundary. T216 owns the in-progress encoder and test infrastructure changes;
-  no T183 candidate/use implementation or acceptance is claimed yet.
 
 ### Phase 4. Resolve static graphs and independent ordinary exports
 
@@ -668,8 +636,10 @@ T203 audits the current source/test mapping; T168 remains historical evidence.
 T196 reviews the actual full evidence. [T207](DONE.md#t207) records accepted
 source-scope and native own-formal rejection; remaining owners below cover
 actual categories, captured values, native consumers and final conformance.
-[T210](DONE.md#t210) supplies exact guard algorithms and current component
-acceptance; remaining creation owners cover registry/body/equation integration.
+[T210](DONE.md#t210) supplies exact guard algorithms, and
+[T183](DONE.md#t183) accepts canonical candidate/check-group composition.
+The remaining owners below cover actual graph/body/equation consumers and final
+whole-program admission; component certificates do not replace those checks.
 
 | Static module template acceptance area | Current task owner |
 |---|---|
@@ -677,7 +647,7 @@ acceptance; remaining creation owners cover registry/body/equation integration.
 | Placeholder scope | [T196](#t196) |
 | Ordinary-argument inference | [T182](#t182) |
 | Nested field specialization | [T182](#t182) |
-| Specialization identity | [T183](#t183) |
+| Specialization identity | [T184](#t184), [T196](#t196) |
 | Dependent constant declarations | [T212](#t212) |
 | Explicit constant namespaces | [T212](#t212) |
 | Specialized constant lifecycle | [T186](#t186) |
@@ -700,11 +670,11 @@ acceptance; remaining creation owners cover registry/body/equation integration.
 | Returned constructor creation provenance | [T211](#t211) |
 | List implementation boundary | [T195](#t195) |
 | Specialization analysis and diagnostics | [T189](#t189) |
-| Finite repeated composition | [T183](#t183) |
-| Definition-generated recursion | [T183](#t183) |
-| Creation-graph provenance | [T183](#t183) |
+| Finite repeated composition | [T211](#t211), [T182](#t182) |
+| Definition-generated recursion | [T211](#t211), [T182](#t182) |
+| Creation-graph provenance | [T211](#t211), [T182](#t182) |
 | Constructor origins and captures | [T211](#t211) |
-| Cache-independent path checks | [T183](#t183) |
+| Cache-independent path checks | [T211](#t211), [T184](#t184) |
 | Native template rejection | [T190](#t190) |
 | Concrete native template arguments | [T190](#t190) |
 | Concrete native composition | [T190](#t190) |
