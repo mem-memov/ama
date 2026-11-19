@@ -81,6 +81,16 @@ bool static_term_symbol(StaticTermStore *, const StaticTermEnvironment *, const 
  */
 bool static_term_inference(StaticTermStore *, const StaticTermEnvironment *, const StaticSymbol *,
     const AstNode *, const AstTypeExpression *, const StaticTerm **);
+/** Intern a Type hole for an original simple assignment/output receiver, or
+ * a foreach binding when access is null. The statement must belong to this exact
+ * lexical module's catalog; no static symbol or AST Type expression is invented.
+ * Identity borrows only longer-lived source/environment owners. This registers
+ * a hole, not a source-visible name or permission to declare a fresh field.
+ * Output stays untouched on refusal; repeated exact keys allocate nothing.
+ * [TYPE-06](../../../../spec/language/declarations.md#type-06) fixes runtime field identities before Type solving.
+ */
+bool static_term_runtime_type(StaticTermStore *, const StaticTermEnvironment *,
+    const AstNode *, const AstAccess *, const StaticTerm **);
 /** Construct an immutable nominal from unique exact original formal/value pairs.
  * Captures are a count-sized array; next links are ignored. Input order is
  * irrelevant; omitted original formals become local residuals.

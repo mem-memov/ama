@@ -9,6 +9,7 @@
 #include "support/ordering.c"
 #include "support/failures.c"
 #include "support/depth.c"
+#include "support/statements.c"
 
 /** Run each actual collector/sorter component case explicitly. */
 void run(void) {
@@ -18,6 +19,9 @@ void run(void) {
     it_orders_every_five_record_permutation_and_prefix_stably_without_allocation();
     it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count();
     it_collects_deep_expression_owners_without_recursive_c_activation();
+    it_catalogs_original_statement_owners_without_control_alias_duplicates();
+    it_preserves_written_section_roles_in_the_original_statement_catalog();
+    it_rejects_statement_counter_overflow_before_catalog_publication();
 }
 
 /** Return success only after all ownership and assertion checks. */

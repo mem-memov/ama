@@ -25,4 +25,9 @@ bool static_expression_occurrences(StaticInventory *, StaticModule *,
  * [CONST-02](../../../../spec/language/declarations.md#const-02) preserves source identity.
  */
 bool static_constant_occurrences(StaticInventory *, StaticModule *, const AstNode *);
+/** Retain one original owning statement and section context before collecting
+ * its operands. Count/allocation refusal leaves the catalog chain unchanged.
+ * [TYPE-06](../../../../spec/language/declarations.md#type-06) needs syntax identity before Type solving.
+ */
+bool static_statement_append(StaticInventory *, StaticModule *, const AstNode *, StaticContext);
 #endif

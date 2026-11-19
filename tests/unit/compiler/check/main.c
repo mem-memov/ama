@@ -235,33 +235,34 @@ static void it_retains_hyphenated_names_and_exact_type_identities_in_both_roots(
     destroy_frontend();
 }
 
-/**
- * Refuse unresolved static syntax before publishing a concrete semantic graph;
- * this admission check prevents silent erasure before T184 supplies resolution.
- * Known nongeneric applications fail earlier in scoped checking; unresolved
- * valid static forms still reach the legacy concrete-only boundary.
+/** Current ordinary placeholder/export forms and static graphs must be resolved
+ * before the concrete-only consumer publishes a graph. Known invalid Type
+ * applications fail during source checking. T189 replaces this temporary
+ * consumer boundary after guarded specialization is integrated.
  */
 static void it_refuses_unresolved_static_syntax_at_the_concrete_semantic_boundary(void) {
-    const char *cases[] = {
-        "@<\n...type\n@!\n", "@>\n...result\n.value\n@!\n",
-        "@!\n.factory\n ... > ...alias\n", "@!\nfield\n.value\n ... < .value\n",
-        "@!\n.value\n ... < .value\n zero >> result\n"
+    const struct {
+        const char *source;
+        const char *factory;
+        const char *diagnostic;
+        bool source_valid;
+    } cases[] = {
+        {"@<\nargument\n...type\n@!\n", "@!\n", "Static syntax requires resolution", true},
+        {"@...\n...result\n.value\n", "@!\n", "Static modules require resolution", true},
+        {"@!\nfield\n.factory\n ...result\n", "@...\n...result\n.value\n", "Static syntax requires resolution", true},
+        {"@...\n...result\n.value\n ...slot < .value\n", "@!\n", "A Type is not an applied constructor", false}
     };
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
         prepare_project();
-        file("generated/project/main", cases[index]);
-        file("generated/project/factory", "@!\n");
+        file("generated/project/main", cases[index].source);
+        file("generated/project/factory", cases[index].factory);
         setup_frontend();
         assert(!check_project() && !frontend.valid);
         assert(diagnostic_valid(&frontend.error));
-        const char *expected = index < 3 ? "Static syntax requires resolution" : "A Type is not an applied constructor";
-        assert(strstr(frontend.error.message, expected) != NULL);
+        assert(strstr(frontend.error.message, cases[index].diagnostic) != NULL);
         assert(frontend.static_initialized && !frontend.plan_initialized);
-        if (index < 3) {
-            assert(frontend.static_inventory.valid && frontend.semantic_initialized);
-        } else {
-            assert(!frontend.static_inventory.valid && !frontend.semantic_initialized);
-        }
+        assert(frontend.static_inventory.valid == cases[index].source_valid);
+        assert(frontend.semantic_initialized == cases[index].source_valid);
         destroy_frontend();
     }
 }

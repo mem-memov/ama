@@ -85,6 +85,26 @@ bool static_constraint_solve(StaticConstraintSolver *, StaticConstraintOutcome *
  */
 bool static_constraint_describe(StaticConstraintSolver *, const StaticTerm *, StaticCategory,
     const StaticSignature *, SourceSpan);
+/** Query equality entailed by present equations, including unresolved symbolic
+ * terms. True is a proof under every completion; false means not yet established,
+ * not disequality. Solve existing facts, compare full finite structure, and add
+ * no equations/requirements or definition expansions. Query scratch is released
+ * on every outcome; failure leaves output untouched. This does not close a
+ * specialization key or replace TPL-11's concrete creation-path comparison.
+ * [TPL-10](../../../../spec/language/templates.md#tpl-10) preserves exact structural inference.
+ */
+bool static_constraint_equivalent(StaticConstraintSolver *, const StaticTerm *, const StaticTerm *, bool *);
+/** Read a proven nominal outer constructor after solving current equations,
+ * without requiring its captures to close or substituting their children.
+ * Pending means no origin is known; the nominal output is then unchanged.
+ * Complete returns an immutable borrowed nominal term, possibly symbolic or
+ * residual, not a concrete specialization/admission certificate. Existing
+ * requirements may remain Pending. Failure leaves both outputs unchanged.
+ * [TPL-10](../../../../spec/language/templates.md#tpl-10) permits interface facts only from a proven origin.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) separately guards actual definition expansion.
+ */
+bool static_constraint_nominal(StaticConstraintSolver *, const StaticTerm *,
+    const StaticTerm **, StaticConstraintOutcome *);
 /** Finalize the present evidence: a stable Pending result becomes a precise
  * underdetermination error. Call incremental solve while further evidence remains.
  * [TPL-10](../../../../spec/language/templates.md#tpl-10) rejects required unknowns.

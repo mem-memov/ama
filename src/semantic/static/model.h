@@ -123,6 +123,16 @@ typedef struct StaticConstantOccurrence {
     const ProjectModule *origin;
 } StaticConstantOccurrence;
 
+/** An original owning statement and its written section role, independent of
+ * Type solving or runtime execution. Control aliases are not additional owners.
+ * [TYPE-06](../../../spec/language/declarations.md#type-06) separates lexical classification from Type constraints.
+ */
+typedef struct StaticStatement {
+    struct StaticStatement *next;
+    const AstNode *syntax;
+    StaticContext context;
+} StaticStatement;
+
 /** One definition's local namespace, with independent parameter/result counts.
  * Component contract: [TPL-02](../../../spec/language/templates.md#tpl-02)
  * makes identical spellings in different definitions independent identities.
@@ -140,6 +150,9 @@ struct StaticModule {
     StaticConstantOccurrence *first_constant_source;
     StaticConstantOccurrence *last_constant_source;
     size_t constant_source_count;
+    StaticStatement *first_statement;
+    StaticStatement *last_statement;
+    size_t statement_count;
     StaticSignature *constructor_signature;
 };
 

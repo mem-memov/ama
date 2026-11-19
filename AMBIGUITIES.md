@@ -950,7 +950,7 @@ Each entry must contain:
 ## AMB-013 — Computed interface Types behind a suspended template application
 
 - **Status:** Resolved by the user's static-module redesign, specified by T202.
-- **Task:** [T182](TODO.md#t182) exposed the question; [T202](DONE.md#t202) owns
+- **Task:** [T182](DONE.md#t182) exposed the question; [T202](DONE.md#t202) owns
   the specification change. T182's unfinished source/test foundations remain
   outside the specification delivery and must be audited under [T203](DONE.md#t203).
 - **Requirements:** [TPL-02](spec/language/templates.md#tpl-02),

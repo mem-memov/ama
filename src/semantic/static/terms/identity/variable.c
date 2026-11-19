@@ -11,7 +11,8 @@
  */
 static bool same_identity(StaticVariableIdentity left, StaticVariableIdentity right) {
     return left.role == right.role && left.environment == right.environment &&
-        left.symbol == right.symbol && left.declaration == right.declaration && left.producer == right.producer;
+        left.symbol == right.symbol && left.declaration == right.declaration && left.producer == right.producer &&
+        left.runtime_access == right.runtime_access;
 }
 
 /** Publish only complete vertices; prior records survive any allocation refusal.

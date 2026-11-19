@@ -270,3 +270,23 @@ jobs remain. The archive-input reference refresh uses
 `/tmp/ama-t176-doxygen-archive.log`; collect its actual result before the task
 commit. Next ready task is T177. No specification change, executable specialization
 support or full-sprint conformance refresh is claimed.
+
+## Symbolic head and congruence queries used by T182
+
+`static_constraint_nominal` first solves present finite equations, then follows
+an exact representative. A nominal representative fixes its outer origin under
+every completion, even while its captured children remain unknown. An unbound
+representative proves no origin and reports Pending without changing the nominal
+output. The immutable returned children are not a fully substituted value or a
+concrete key. Reading this shape cannot discharge any actual expansion guard.
+The query adds no equations or requirements and costs the existing solve plus
+an acyclic representative walk, allocating only through the solver's existing
+solve operations. Four [nominal query cases](../../tests/unit/semantic/static/constraints/nominal/main.c)
+cover unknown roots, symbolic captures, aliases, foreign handles and every
+observed allocation refusal.
+
+`static_constraint_equivalent` additionally proves symbolic congruence without
+closing either term. [Its independent finite partition/DAG cases](../../tests/unit/semantic/static/constraints/equivalent/main.c)
+and the [connection contract](static-connections.md#ownership-congruence-and-exact-progress)
+record the exact free-constructor proof and query scratch bounds. Neither query
+unfolds a module body or guesses a constructor from an expected signature.

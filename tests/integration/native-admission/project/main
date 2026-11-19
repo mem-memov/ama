@@ -1,6 +1,9 @@
 # @file
-# @brief Bind the native definition concretely without legalizing its own free formal.
+# @brief Supply a concrete ordinary argument without legalizing the native definition's own Type formal.
 @!
+known
+.plain
 instance
 .bad
- ...type < .plain
+instance !
+ < &known

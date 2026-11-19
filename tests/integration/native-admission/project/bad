@@ -1,5 +1,6 @@
 # @file
-# @brief Supply a native definition with an otherwise unused own static Type formal.
+# @brief Supply a native definition whose ordinary reference input introduces a forbidden Type formal.
 @<
+value&
 ...type
 @C

@@ -7,6 +7,8 @@
  * separates local residual binders from surrounding free/inference variables.
  * [TPL-10](../../../../spec/language/templates.md#tpl-10) keeps source and
  * term structure distinct from equation solutions and executable layout.
+ * [TYPE-06](../../../../spec/language/declarations.md#type-06) keys runtime
+ * receiver/foreach holes by original source and environment identities.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) gives static
  * producers compiler-only input-map identities without making them Type values.
  */
@@ -64,7 +66,7 @@ typedef struct {
  * Contract: [TPL-10](../../../../spec/language/templates.md#tpl-10).
  */
 typedef enum { STATIC_VARIABLE_FORMAL, STATIC_VARIABLE_DERIVED,
-    STATIC_VARIABLE_FIELD, STATIC_VARIABLE_PRODUCER, STATIC_VARIABLE_APPLICATION } StaticVariableRole;
+    STATIC_VARIABLE_FIELD, STATIC_VARIABLE_PRODUCER, STATIC_VARIABLE_APPLICATION, STATIC_VARIABLE_RUNTIME } StaticVariableRole;
 
 /** Inference keys retain both lexical occurrence and original residual formal.
  * A symbol reference instead uses the owner's exact local symbol identity.
@@ -77,6 +79,10 @@ typedef struct {
     const StaticSymbol *symbol;
     const AstNode *declaration;
     const AstTypeExpression *producer;
+    /** Original simple runtime receiver; null for a foreach-header Type hole.
+     * [TYPE-06](../../../../spec/language/declarations.md#type-06) preserves lexical field identity.
+     */
+    const AstAccess *runtime_access;
 } StaticVariableIdentity;
 
 /** Value graphs contain normalized nominal records and scoped variables only;

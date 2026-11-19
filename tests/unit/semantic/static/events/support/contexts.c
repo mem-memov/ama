@@ -28,7 +28,7 @@ static const char *expanded_event_source = "@!\nroot !\n selected !\n :\n"
  * runtime branch/handler nesting does not change the static module scope.
  */
 static void it_collects_exact_static_heads_and_receivers_in_all_source_contexts(void) {
-    setup_static(event_source, STATIC_SCOPE_SOURCE_TEXT);
+    setup_static(event_source, "@...\n...selected export\n...selected type\n");
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_occurrences(&inventory, module));
     static_sort_occurrences(module);
@@ -60,7 +60,7 @@ static void it_collects_exact_static_heads_and_receivers_in_all_source_contexts(
  * heads and receivers retain their exact owned expression and source context.
  */
 static void it_collects_static_graph_owners_without_importing_foreign_labels(void) {
-    setup_static(graph_event_source, STATIC_SCOPE_SOURCE_TEXT);
+    setup_static(graph_event_source, "@...\n...out\n...slot\n");
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_occurrences(&inventory, module));
     static_sort_occurrences(module);

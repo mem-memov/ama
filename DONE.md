@@ -5656,3 +5656,378 @@ T201. Specification bytes have not changed.
   syntax or specification is changed by T218; unfinished T182 work and its native
   CLI fixture correction are excluded from this task's staging. Exact staged
   source/documentation bytes must match the accepted documentation snapshot.
+
+<a id="t182"></a>
+
+- [x] **T182 — Generate ordinary typed-connection and nested-field constraints.**
+  Status: complete for source-bound field/interface/Type-constraint generation.
+  Actual whole-project guarded scheduling, body/capability admission and executable
+  lowering retain T184/T185/T187 ownership. Historical checkpoint states below
+  are superseded by the final scoped acceptance record. Product-wide conformance
+  remains explicitly pending T196; its unchanged baseline refusal is not a pass.
+  Prerequisites: T207, T209, T212, T217, T218.
+  Rules: [TYPE-06](spec/language/declarations.md#type-06),
+  [NAME-06](spec/language/declarations.md#name-06),
+  [TPL-03](spec/language/templates.md#tpl-03),
+  [TPL-04](spec/language/templates.md#tpl-04).
+  Boundary: runtime declaration/source-order inference, foreach locals and
+  semantic input/result/default/assignment/reference connections.
+  Steps: (1) resolve the recorded O2 return-contract warning under its actual
+  contract, without inventing a fallback; classify lexical receivers and locals
+  before solving, keeping static
+  names separate; (2) generate equations from typed connections and deferred
+  constant evidence; (3) compose two/three-level owner/field applications.
+  Accept: later anchors refine existing terms without rebinding; independent
+  fields can differ while one field/concrete owner agrees across all uses.
+  Check empty typed references/lists, self-reference and unused typed defaults,
+  local lifetime, later explicit/inferred names and suffix mismatches.
+  Literals, runtime contents, first execution and unknown-to-unknown copying
+  provide no invented anchor; unresolved/inconsistent required types fail.
+  Use current ordinary name/type pairs and ready export evidence. Test real
+  new-parser/scope/constant/solver compositions, allocation failures and later
+  concrete anchors without contextual static-producer closure or old interface
+  previews. Reuse partial code only through T203's reviewed file ownership.
+  Fixtures: Migrate the retained connection fixtures to ordinary Type pairs and current
+  export selection; obsolete mixed-interface probes are not acceptance.
+
+  Resume checkpoint (2026-11-19, after T212 commit aac8c3a): all prerequisites
+  are accepted; AMB-013 remains resolved by the static/ordinary separation.
+  No jobs from T211/T212 remain active. Read the retained scoped-field/lexical/
+  congruence code and evidence before resuming. Reproduced the recorded O2
+  warning in `/tmp/ama-t182-current-xg2oa2s8`:
+  `/tmp/ama-t182-current-build-before.exit` is 0 but the log reports the known
+  maybe-uninitialized owner output (session 94939 to collect). The helper now
+  records its exact refusal then returns literal false, making its successful
+  output contract visible without a default value. Runtime/typed metadata APIs
+  now reject static graph modules before accessing a nonexistent ordinary owner.
+  Migrate retained fixture inputs to actual ordinary name/Type pairs and remove
+  the dead preview-counter assertion. A paired input adds one actual field to
+  the typed fixture (eight fields: five explicit Type sources, three holes), so
+  its independent expected counts were updated accordingly. Revalidation and
+  the new static-scope refusal cases are next; no current-source T182 acceptance
+  or commit is claimed.
+
+  Current foundation revalidation is collected: 25 connection cases and nine
+  source-event cases pass through the actual parent dispatcher in
+  `/tmp/ama-t182-current-t8m3vufn` (`/tmp/ama-t182-current-dispatch.exit`, 0;
+  session 37007 collected). Four runtime-hole and five congruence cases pass
+  real leaf commands (`/tmp/ama-t182-current-{runtime-holes,congruence}.exit`,
+  both 0; sessions 18210/34144 collected). Optimized strict root build passes
+  with `-O2 -g -Wall -Wextra -Werror -std=c11 -pedantic
+  -D_POSIX_C_SOURCE=200809L` (`/tmp/ama-t182-current-build-fixed.exit`, 0;
+  session 79087 collected). The first parent command did not dispatch the
+  unregistered connections directory and its directory-shaped leaf targets were
+  no-ops; they were rerun through real Makefile entries. Connections are now
+  explicitly included in the static parent. Source-event fixtures now use real
+  static suppliers for selectors/projections; a duplicate-role fixture introduces
+  its static Type through an actual input pair rather than a bare input name.
+  Failed fixture runs `/tmp/ama-t182-current-foundations.exit` and
+  `/tmp/ama-t182-current-connections-rerun.exit` are retained as exit 2, not passes.
+  T217 is the newly separated ready prerequisite for finite ordinary annotation
+  equations. T182 remains unfinished; its lexical/runtime work stays outside
+  T217 staging and no body-inference acceptance is claimed.
+
+
+
+  Resume after T217 commit 1b036c3: the annotation prerequisite is accepted.
+  Explicit typed fields now borrow publication-owned ordinary annotation records,
+  including independently selected exports, instead of assuming every Type line
+  is a normal result source. Add separate finite metadata-annotation and actual
+  guarded field-validation operations. Metadata may expose facts without an
+  ordinary root; actual validation must retain its real incoming context and
+  every required field Type. Neither phase marks the ordinary body admitted.
+  Tests of this consumer handoff, pending/known fields, static exports and all
+  observed operation refusals are the current step. No semantic ambiguity or
+  specification change is involved; T182 remains unfinished and uncommitted.
+  The annotation consumer now passes all 31 connection cases (25 retained plus
+  six new cases), strict C11 in `/tmp/ama-t182-current-kcngk1vk`,
+  `/tmp/ama-t182-annotations-consumer.exit` 0; session 33611 is no longer active. Cases cover
+  metadata without an ordinary root, known versus required-Pending field Types,
+  independent static exports and later actual validation edges, foreign handles,
+  and every observed annotation/validation allocation refusal. New APIs do not
+  mark registry body checks complete. Next implement source/receiver transfer
+  equations and foreach links, then ordinary call/selection/constant obligations.
+
+  Local equation checkpoint: foreach element/binder equalities and original
+  assignment source/receiver equalities are implemented in separate components.
+  Assignment sources retain exact original statement/access identities, storage
+  forms and full self Type. No ordinary metadata scope is promoted to a body
+  admission. Six annotation, seven assignment and six foreach cases pass ASan/
+  UBSan in `/tmp/ama-t182-current-9nu2d2zf`
+  (`/tmp/ama-t182-local-sanitizers.exit`, 0; session 71468 collected), including
+  sibling-local composition and every observed allocation refusal. The first
+  strict composition used an older fixture lacking the common integer metadata
+  anchor in an invalid-output case; its exit 2 is retained, not a pass. The
+  fixture is corrected in the accepted sanitizer snapshot. Five initializer/
+  default cases are added next; their first run exposed a test dereference of
+  an intentionally absent generic registry candidate, now corrected to allow
+  Pending keys without body admission. Sanitizer diagnostic run session 62011
+  uses `/tmp/ama-t182-current-4qa3ngt9` and
+  `/tmp/ama-t182-initializers-sanitizers.{log,exit}`; collect its result, then
+  rerun the corrected source. No current final task acceptance is claimed.
+  Current work is initializer/default checks, then ordinary call/selection and
+  independent qualified-constant obligations; T182 remains incomplete.
+
+  Collected local-equation evidence: all 49 connection cases pass the actual
+  parent dispatcher in `/tmp/ama-t182-current-4q1_zvx0`
+  (`/tmp/ama-t182-equations-composition.exit`, 0; session 99194 collected).
+  Five corrected initializer cases pass ASan/UBSan in
+  `/tmp/ama-t182-current-kbadl9lb`
+  (`/tmp/ama-t182-initializers-fixed-sanitizers.exit`, 0; session 50237 collected).
+  The diagnostic sanitizer run confirmed the test's null candidate dereference
+  at main.c:32 and remains exit 2 (session 62011 collected). Four known nominal
+  shape query cases pass strict C11 in `/tmp/ama-t182-current-beybdjmw`
+  (`/tmp/ama-t182-nominal.exit`, 0; session 92274 collected). The new narrow query
+  exposes a proven constructor with possibly symbolic captures, never guesses an
+  origin or closes an ordinary body. It is the next call-interface prerequisite
+  within T182. Register all new source/test/build files in per-file coverage.
+
+  Call equation checkpoint: five original-operation interface cases and six
+  input/result equation cases pass strict C11 in
+  `/tmp/ama-t182-current-h1dhsxq7` (`/tmp/ama-t182-bindings.exit`, 0;
+  session 83397 collected). The additional two/three-level finite repeated
+  template composition case passes with all seven binding cases in
+  `/tmp/ama-t182-current-5oxjivca`
+  (`/tmp/ama-t182-nested-bindings.exit`, 0; session 44468 collected).
+  All twelve operation/binding cases pass ASan/UBSan in
+  `/tmp/ama-t182-current-0qu9j1zc`
+  (`/tmp/ama-t182-calls-sanitizers.exit`, 0; session 6761 collected).
+  Four nominal-shape cases also pass ASan/UBSan
+  (`/tmp/ama-t182-nominal-sanitizers.exit`, 0; session 29634 collected).
+  The pre-call documentation checkpoint checks 2862 maintained inputs with zero
+  debt (`/tmp/ama-t182-equations-docs-complete.exit`, 0; session 55100 collected).
+  New actual interfaces are metadata only: no callee context/body is admitted,
+  no unknown origin is guessed and selected operations see public results only.
+  Named/positional/skip and both inference directions are covered. New operation
+  files are registered in per-file documentation coverage.
+  Current source adds retained qualified constant transfer obligations to all
+  three consumers (assignment, declaration/default initializer, call input),
+  plus explicit resolution against an independently supplied actual namespace.
+  Successful resolution makes retried local equation collection ready without
+  constructing constant values or an implicit namespace root. Six new constant
+  cases run in `/tmp/ama-t182-current-rrg3rtr1`, session 94680,
+  `/tmp/ama-t182-qualified.{log,exit}`. Next collect and verify this bridge,
+  revalidate affected source consumers, then cover explicit constant reads,
+  list-service interfaces and remaining actual path/field composition obligations.
+  No ambiguity or specification edit is involved; T182 is still incomplete.
+
+  Final functional checkpoint: all five explicit shared-read cases pass strict
+  C11 in `/tmp/ama-t182-current-4v3s2el4`
+  (`/tmp/ama-t182-reads.exit`, 0; session 89349 collected). Six qualified transfer
+  cases pass in `/tmp/ama-t182-current-rrg3rtr1`
+  (`/tmp/ama-t182-qualified.exit`, 0; session 94680 collected). Their four-leaf
+  consumer composition (25 cases at that revision) passes ASan/UBSan in
+  `/tmp/ama-t182-current-iqjp984c`
+  (`/tmp/ama-t182-qualified-composition-sanitizers.exit`, 0; session 2009 collected).
+  Five intrinsic list cases pass strict C11 in
+  `/tmp/ama-t182-current-supn90dv`
+  (`/tmp/ama-t182-lists-fixed.exit`, 0; session 11563 collected). The original
+  negative retained-method fixture parsed as an ordinary assignment with an
+  undeclared source; the explicit resume marker now tests the intended forbidden
+  method mode. Failed logs `/tmp/ama-t182-lists{,-diagnostic}.exit` remain 2;
+  sessions 70312/1152 are collected. Four-way source consumers retain explicit
+  constant namespace provenance and never infer it from receiver Types.
+  Two further invariants pass in `/tmp/ama-t182-current-a35oirv6`
+  (`/tmp/ama-t182-field-invariants.exit`, 0; session 22765 to collect): unknown-to-
+  unknown copying cannot finish a required Type; distinct field applications may
+  differ, while proven equal owners join corresponding inferred body-field Types.
+  Current connection dispatch contains 79 named cases. Existing HEAD coverage
+  rows and test mappings are all preserved; 87 task-owned maintained files are
+  added to the mapping (2884 total rows). Keep prior row order to avoid unrelated
+  JSON churn. No specification files are changed.
+
+  Active acceptance jobs, frozen source at 2026-11-19:
+  - Whole-project optimized strict `make -j4 test` in
+    `/tmp/ama-t182-current-0l7eli3o`, session 83406,
+    `/tmp/ama-t182-whole-project.{log,exit}`.
+  - Current complete connections plus source-event parent ASan/UBSan composition
+    in `/tmp/ama-t182-current-i40tk1jw`, session 6729,
+    `/tmp/ama-t182-final-components-sanitizers.{log,exit}`.
+  - All maintained-file/header documentation coverage in the same snapshot,
+    session 84767, `/tmp/ama-t182-final-components-complete.{log,exit}`.
+  Outputs are disjoint. Do not edit these snapshot inputs or count a missing
+  exit receipt as success. After collecting gates, resolve actual failures;
+  then archive only after task acceptance, render Doxygen on the exact prospective
+  staged documentation/source inputs, inspect the staged diff and commit T182.
+  Only then continue to T184. Current working TODO remains unfinished.
+
+  Acceptance results collected: complete current connections (79 cases) and
+  source events (nine cases) pass ASan/UBSan; session 6729 is collected and
+  `/tmp/ama-t182-final-components-sanitizers.exit` is 0. Maintained-file/header
+  coverage checks all 2884 inputs with zero debt (session 84767 collected,
+  `/tmp/ama-t182-final-components-complete.exit`, 0). Markdown/rule/grammar
+  audit passes 49 documents, 1609 links, 214 indexed rules and 108 unchanged
+  productions with negative controls (`/tmp/ama-t182-doc-check.exit`, 0).
+  Actual editor navigation to LIST-04 passes at canonical source line 77
+  (`/tmp/ama-t182-navigation.exit`, 0). A stale T217 TODO link in the component
+  note was corrected to DONE before final archival/rendering.
+  Whole-project `make test` is collected as exit 2 (session 83406), not a pass.
+  Root compilation is optimized/Werror clean. The two actual blockers are
+  duplicated identity objects in relocation staging (now separately owned by
+  prerequisite T218) and the obsolete native CLI fixture. The real check command
+  pinpoints its bare `...type` syntax error before native admission. Replace
+  the fixture with an ordinary reference input Type placeholder and ordinary
+  concrete source call, preserving all policy/location/no-publication assertions.
+  Both corrected integration cases pass under optimized strict flags in
+  `/tmp/ama-t182-current-d0w1sb0m`
+  (`/tmp/ama-t182-native-fixture.exit`, 0; session 63663 collected).
+  The fixture changes remain with T182, outside T218 staging. After T218's
+  separate commit, rerun whole-project acceptance on all current sources and
+  complete prospective archive/Doxygen/staged-byte checks before T182 commit.
+
+  Resume after supporting commit ac04f23 (T218): its seven duplicate Make source
+  declarations are removed and independently accepted; all T182 source/tests,
+  current CLI fixture repair and progress remain outside that commit. T218's
+  source-only documentation acceptance is separate from T182 executable support.
+  Workspace `make test-clean` passed
+  `/tmp/ama-t182-workspace-test-clean.exit`, 0 (session 39913 collected).
+  The complete optimized/Werror `make -j4 test` now runs from the repository
+  workspace, preserving the cross-filesystem relocation test domain. Active
+  session is 32185; receipts `/tmp/ama-t182-workspace-whole.{log,exit}`.
+  Freeze 2915 maintained code/fixture/build/canonical requirement inputs in
+  `/tmp/ama-t182-workspace-inputs.json`; workflow Markdown remains writable.
+  Do not change operational inputs during this gate. Next collect actual whole-
+  project results, compare all frozen inputs and resolve genuine failures before
+  prospective T182 archival and exact-input Doxygen/staged-byte acceptance.
+
+  Complete normal workspace run is collected as exit 2 (session 32185). All
+  2915 frozen operational inputs remain identical
+  (`/tmp/ama-t182-workspace-input-check.json`). The remaining unhandled failure
+  is conformance's current-repository assertion: its saved specification digest
+  predates current spec. The same `make conformance-check` fails before any
+  implementation checks in the accepted HEAD-only T218 snapshot, with no T182
+  code (`/tmp/ama-t182-head-conformance-baseline.exit`, 2). Canonical spec and
+  matrix.json are unchanged by this work. T196 owns the actual evidence review;
+  do not update signatures just to make this task's aggregate gate green.
+
+  A read-only final progress audit reproduced a real T182 edge: the independent
+  shared-initializer service can supply every equality before its qualified
+  transfer is validated. The bridge then changes its equation-ready proof flag
+  without changing equation count. A cross-component regression fails exactly
+  on `assert(changed)` in `/tmp/ama-t182-current-luvj_vou`
+  (`/tmp/ama-t182-constant-proof-before{,-diagnostic}.exit`, both 2;
+  session 17477 collected). After the normal workspace gate finished, change
+  only the resolver's progress measure to include the first checked namespace/
+  storage proof. Repeated validation stays unchanged. This is finite monotone
+  evidence, not allocation-based progress or a retry bound. The flag certifies
+  submitted equations and storage/namespace checks, not global consistency or
+  executable admission. The new seventh constant case is registered; the whole
+  connection dispatcher now has 80 named cases.
+  All five affected constant consumers (33 cases) pass ASan/UBSan in
+  `/tmp/ama-t182-current-mchpw7xc`
+  (`/tmp/ama-t182-proof-progress-sanitizers.exit`, 0; session 78791 to collect).
+
+  Current exhaustive aggregate run uses `make -k -j4 test` so every independent
+  configured branch runs even after the known conformance review failure; its
+  nonzero result remains visible. Session 25015,
+  `/tmp/ama-t182-keepgoing-whole.{log,exit}`. Cleanup passed first; session 53890
+  is collected. Frozen inputs are `/tmp/ama-t182-keepgoing-inputs.json` (2915).
+  Keep operational files unchanged. After collecting all results, investigate
+  every additional actual failure; baseline-only conformance refusal remains
+  explicitly owned by T196. Prospective T182 archive/docs may be prepared in an
+  isolated snapshot, but working task completion waits for its scoped acceptance
+  and exact-source documentation gates; never report the full product green.
+
+  Keep-going regression exposes a second retired-syntax fixture in
+  compiler/check's temporary concrete-consumer guard test. Preserve the active
+  production guard until T189, remove the bare/positional/ordinary-inline static
+  examples, and use current paired ordinary placeholders, a real `@...` graph,
+  named export annotation and named invalid-Type constructor application. Exact
+  source/semantic/plan-stage assertions remain per case. The complete corrected
+  compiler/check leaf passes strict C11 in isolated
+  `/tmp/ama-t182-current-mchpw7xc`
+  (`/tmp/ama-t182-current-boundary.exit`, 0; session 39357 collected).
+  Workspace operational inputs are still frozen until session 25015 completes;
+  only the documentation candidate contains this validated replacement so far.
+
+  Prospective archive/link/plan audits pass: fifteen remaining tasks, 55 prerequisite
+  edges and 37/37 routed canonical areas after T182 archival. Its AMBIGUITIES
+  navigation changes only the resolved task link from TODO to DONE, preserving
+  every user answer. Fifty-one Markdown sources, 1623 links, 214 canonical rules
+  and 108 unchanged productions pass negative controls. The first prospective
+  documentation run checks all 2884 maintained files/headers with zero debt,
+  then correctly refuses a missing TYPE-06 link on the originating terms/model.h
+  file page (`/tmp/ama-t182-docs-before-origin-link.exit`, 2; session 10527 collected).
+  The rule was visible only in a nested member's page. Add an explanatory TYPE-06
+  link to that file's purpose block; its entire post-comment C text is unchanged.
+  This repair is currently candidate-only to preserve the active workspace gate.
+  Re-render against the final candidate, then apply those two post-run edits only
+  after the operational input comparison and targeted acceptance. Task remains
+  unfinished; no aggregate conformance green status or spec change is claimed.
+
+  Corrected prospective Doxygen acceptance passes
+  `/tmp/ama-t182-final-docs.exit`, 0 (session 4768 collected): 2884 ready inputs,
+  zero debt, 2190 maintained file pages, 8544 interfaces, 437/437 canonical
+  destinations and 6902 generated pages. Candidate source is
+  `/tmp/ama-t182-current-1_un902m`; it includes the validated current compiler/
+  check fixture and comment-only originating-page link while the actual workspace
+  still retains frozen pre-correction operational bytes for session 25015.
+  `/tmp/ama-t182-post-gate-sync.py` is prepared but not executed: require the
+  aggregate receipt, verify every original input, then apply only those two
+  candidate changes and rerun the corrected compiler/check leaf under strict
+  optimized flags. Do not accept any additional unexplained aggregate failure.
+  After final observations are recorded, refresh the prospective archive once,
+  revalidate exact generated source/navigation inputs, compare staged bytes and
+  commit only T182. T184 must start after that scoped acceptance/commit.
+
+  Final scoped regression is collected. `make -k -j4 test` finishes exit 2,
+  session 25015, after attempting every independent configured branch. The only
+  unhandled assertions are the known current-repository conformance fingerprint
+  guard and the retired-syntax compiler/check fixture. Intentional negative
+  documentation-interface compiler probes fail as asserted by their successful
+  parent cases. All 2915 operational inputs match the frozen run exactly.
+  Post-run synchronization applies only the validated current-syntax test data
+  and the terms/model.h purpose comment; its post-comment C text is identical.
+  The complete corrected workspace compiler/check leaf passes optimized strict
+  C11/Werror (`/tmp/ama-t182-final-compiler-check.exit`, 0; session 27867 collected).
+  Root optimized strict rebuild passes
+  (`/tmp/ama-t182-final-build.exit`, 0; session 7631 collected). Every post-run
+  operational input still matches `/tmp/ama-t182-post-gate-inputs.json`.
+  Thus the remaining aggregate limitation is the pre-existing T196 conformance
+  review, not an unhandled T182 code regression; the aggregate is still reported
+  as non-green. No specification or conformance fingerprint is changed.
+  All functional jobs are collected. Refresh prospective archive/links with
+  these actual observations, render the exact final workflow source inputs,
+  inspect the complete task-only staged diff and commit T182. Next is T184.
+
+  Final scoped acceptance (2026-11-19): original lexical names are fixed before
+  Type solving; ordinary annotations, source/receiver/default/input/result and
+  foreach equations preserve exact original identities and storage forms. Known
+  symbolic nominal heads expose metadata only. Public selected results and all
+  six canonical list methods have distinct source/intrinsic identities. Qualified
+  and explicit constant reads require independently checked namespace contexts;
+  their destinations never infer a namespace. Same-owner field joins require
+  exact symbolic congruence. Unknown copying/literals supply no concrete anchor.
+  Full actual paths, body/native/value construction and runtime state remain the
+  separate later consumers. No unused preview service or fake Type root returns.
+  Eighty named connection cases include two/three-level finite repeated-template
+  composition, independent/equal owners, later anchors, empties/defaults, first
+  encounters/local lifetimes, exact suffixes, foreign handles and every measured
+  allocation refusal. Initial complete 79-case connections plus nine events pass
+  ASan/UBSan; the final progress correction and new case pass all 33 affected
+  constant-consumer cases under ASan/UBSan. Four nominal-head, five independent
+  congruence and four runtime-hole cases pass their recorded checks. All source
+  operational inputs stay byte-identical through each corresponding run.
+  Optimized/Werror root compilation and exhaustive independent regression
+  branches are recorded by `/tmp/ama-t182-keepgoing-whole.{log,exit}`. This
+  aggregate retains the known unreviewed conformance-ledger failure; it is not
+  reported as a green whole-product suite. The same canonical-digest refusal
+  occurs on accepted HEAD without T182 in
+  `/tmp/ama-t182-head-conformance-baseline.{log,exit}`. Spec/matrix fingerprints
+  are not refreshed here; T196 owns the actual review. Every additional real
+  regression is resolved: replace the retired-syntax concrete-boundary fixtures
+  with current paired placeholders/static graphs/named applications. The full
+  corrected compiler/check leaf passes optimized/Werror in the workspace
+  (`/tmp/ama-t182-final-compiler-check.exit`, 0), and optimized strict root rebuild
+  passes `/tmp/ama-t182-final-build.exit`, 0. The model-purpose repair changes
+  only its first comment and restores the originating TYPE-06 page link. Final
+  operational source checks confirm the remaining bytes stayed unchanged.
+  Complete current per-file/header coverage and initial successful rendering
+  are `/tmp/ama-t182-docs-before-final-observation.{log,exit}`, 0. Only the final
+  DONE observation text changes afterwards; operational/header inputs stay
+  identical. Exact final-archive Doxygen acceptance is
+  `/tmp/ama-t182-final-docs.{log,exit}`. Canonical source navigation, Markdown/
+  requirement/grammar and task/route checks are retained separately. The stage
+  must contain exactly this task's source/tests/contracts/coverage and archive,
+  matching the accepted documentation snapshot byte for byte. No specification
+  edit or executable-template support is claimed. Next ready task is T184.

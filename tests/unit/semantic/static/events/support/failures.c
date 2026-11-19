@@ -6,10 +6,12 @@
  */
 static void it_unwinds_every_occurrence_collection_allocation_failure_and_checked_count(void) {
     const char *scenarios[] = {event_source, graph_event_source, expanded_event_source};
+    const char *targets[] = {"@...\n...selected export\n...selected type\n",
+        "@...\n...out\n...slot\n", STATIC_SCOPE_SOURCE_TEXT};
     for (size_t scenario = 0; scenario < sizeof(scenarios) / sizeof(*scenarios); scenario++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_static(scenarios[scenario], STATIC_SCOPE_SOURCE_TEXT);
+            setup_static(scenarios[scenario], targets[scenario]);
             StaticModule *module = static_module_add(&inventory, project.entry);
             assert(module != NULL);
             size_t before = allocation_count;

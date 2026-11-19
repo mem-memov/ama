@@ -82,6 +82,8 @@ static bool child_blocks(StaticInventory *inventory, BlockWork **pending, const 
 bool static_collect_occurrences(StaticInventory *inventory, StaticModule *module) {
     if (inventory->status != STATIC_OK) { return false; }
     assert(module->first_occurrence == NULL && module->occurrence_count == 0);
+    assert(module->first_constant_source == NULL && module->constant_source_count == 0);
+    assert(module->first_statement == NULL && module->statement_count == 0);
     const AstModule *syntax = &module->definition->syntax;
     BlockWork *pending = NULL;
     if (!push(inventory, &pending, syntax->constants.first, STATIC_CONTEXT_CONSTANT)
@@ -94,7 +96,8 @@ bool static_collect_occurrences(StaticInventory *inventory, StaticModule *module
         const AstNode *node = work->node;
         if (node == NULL) { pending = work->next; continue; }
         work->node = node->next;
-        if (!static_constant_occurrences(inventory, module, node)
+        if (!static_statement_append(inventory, module, node, work->context)
+            || !static_constant_occurrences(inventory, module, node)
             || !node_occurrences(inventory, module, node, work->context)
             || !child_blocks(inventory, &pending, node)) { return false; }
     }

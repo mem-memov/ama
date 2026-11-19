@@ -257,6 +257,14 @@ declaration Type obligations, exact qualified-source provenance, explicit/fixed
 namespace selection and typed initializer equality. Constant values, construction
 capabilities and executable admission remain separate later consumers.
 
+The [source-bound runtime field and connection contract](../static-connections.md)
+owns original lexical identities, source/default/input/result equations and exact
+symbolic owner congruence. Canonical intrinsic list ports and independently checked
+constant namespaces supply Type facts without inventing runtime values or callee
+roots. [Component suites](../../../tests/unit/semantic/static/connections/Makefile)
+and finite nominal-shape/congruence queries separate these facts from T184's
+actual guarded closure and T185's body/capability admission.
+
 The [actual static metadata contract](../static-metadata.md) owns T208's
 immutable actual descriptions and minimum requirements derived from complete
 source use sets. It separates these requirements from complete signature

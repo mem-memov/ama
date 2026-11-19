@@ -179,11 +179,12 @@ boundary; [T207](DONE.md#t207) establishes whole-graph scope;
 finite dependency-check groups. [T211](DONE.md#t211) supplies named result
   equations, complete producer publication and independent validation witnesses.
 [T212](DONE.md#t212) supplies independent concrete export selection and
-current constant Type/namespace evidence. T182 is next, with its retained partial
-files and failed-run evidence. Follow the recorded ownership/disposition map.
+current constant Type/namespace evidence. [T182](DONE.md#t182) supplies accepted
+source-bound runtime fields and typed connections. T184 is next and composes
+those equations with real guarded contexts before T185 body/capability admission.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
-from library/native/relocation test consumers before T182 acceptance continues.
+from library/native/relocation test consumers used by these components.
 
 Historical
 [constant analysis](docs/implementation/static-constants.md) is revalidated in
@@ -204,83 +205,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 4. Resolve static graphs and independent ordinary exports
 
 ### Phase 5. Close and admit ordinary specializations
-
-<a id="t182"></a>
-
-- [ ] **T182 — Generate ordinary typed-connection and nested-field constraints.**
-  Status: active after accepted T211/T212; use T203's completed ownership audit
-  to revalidate the retained unfinished source/typed foundations.
-  AMB-013 is resolved by excluding computed ordinary interfaces; do not implement
-  the obsolete preview exception or treat old mixed-interface probes as support.
-  Partial foundations pass 24 lexical/typed-scope and five congruence sanitizer
-  cases; full step/failure/checkpoint evidence is in the owning note. O2 root
-  build has a recorded return-contract warning; T182 is not accepted or committed.
-  No jobs active; follow T203's file ownership and the explicitly authorized
-  T214 unused-preview removal before resuming the remaining work.
-  Its local continuation note remains with the unfinished working-tree files,
-  outside T202; the specification task establishes no implementation acceptance.
-  Prerequisites: T207, T209, T212, T217, T218.
-  Rules: [TYPE-06](spec/language/declarations.md#type-06),
-  [NAME-06](spec/language/declarations.md#name-06),
-  [TPL-03](spec/language/templates.md#tpl-03),
-  [TPL-04](spec/language/templates.md#tpl-04).
-  Boundary: runtime declaration/source-order inference, foreach locals and
-  semantic input/result/default/assignment/reference connections.
-  Steps: (1) resolve the recorded O2 return-contract warning under its actual
-  contract, without inventing a fallback; classify lexical receivers and locals
-  before solving, keeping static
-  names separate; (2) generate equations from typed connections and deferred
-  constant evidence; (3) compose two/three-level owner/field applications.
-  Accept: later anchors refine existing terms without rebinding; independent
-  fields can differ while one field/concrete owner agrees across all uses.
-  Check empty typed references/lists, self-reference and unused typed defaults,
-  local lifetime, later explicit/inferred names and suffix mismatches.
-  Literals, runtime contents, first execution and unknown-to-unknown copying
-  provide no invented anchor; unresolved/inconsistent required types fail.
-  Use current ordinary name/type pairs and ready export evidence. Test real
-  new-parser/scope/constant/solver compositions, allocation failures and later
-  concrete anchors without contextual static-producer closure or old interface
-  previews. Reuse partial code only through T203's reviewed file ownership.
-  Fixtures: Migrate the retained connection fixtures to ordinary Type pairs and current
-  export selection; obsolete mixed-interface probes are not acceptance.
-
-  Resume checkpoint (2026-11-19, after T212 commit aac8c3a): all prerequisites
-  are accepted; AMB-013 remains resolved by the static/ordinary separation.
-  No jobs from T211/T212 remain active. Read the retained scoped-field/lexical/
-  congruence code and evidence before resuming. Reproduced the recorded O2
-  warning in `/tmp/ama-t182-current-xg2oa2s8`:
-  `/tmp/ama-t182-current-build-before.exit` is 0 but the log reports the known
-  maybe-uninitialized owner output (session 94939 to collect). The helper now
-  records its exact refusal then returns literal false, making its successful
-  output contract visible without a default value. Runtime/typed metadata APIs
-  now reject static graph modules before accessing a nonexistent ordinary owner.
-  Migrate retained fixture inputs to actual ordinary name/Type pairs and remove
-  the dead preview-counter assertion. A paired input adds one actual field to
-  the typed fixture (eight fields: five explicit Type sources, three holes), so
-  its independent expected counts were updated accordingly. Revalidation and
-  the new static-scope refusal cases are next; no current-source T182 acceptance
-  or commit is claimed.
-
-  Current foundation revalidation is collected: 25 connection cases and nine
-  source-event cases pass through the actual parent dispatcher in
-  `/tmp/ama-t182-current-t8m3vufn` (`/tmp/ama-t182-current-dispatch.exit`, 0;
-  session 37007 collected). Four runtime-hole and five congruence cases pass
-  real leaf commands (`/tmp/ama-t182-current-{runtime-holes,congruence}.exit`,
-  both 0; sessions 18210/34144 collected). Optimized strict root build passes
-  with `-O2 -g -Wall -Wextra -Werror -std=c11 -pedantic
-  -D_POSIX_C_SOURCE=200809L` (`/tmp/ama-t182-current-build-fixed.exit`, 0;
-  session 79087 collected). The first parent command did not dispatch the
-  unregistered connections directory and its directory-shaped leaf targets were
-  no-ops; they were rerun through real Makefile entries. Connections are now
-  explicitly included in the static parent. Source-event fixtures now use real
-  static suppliers for selectors/projections; a duplicate-role fixture introduces
-  its static Type through an actual input pair rather than a bare input name.
-  Failed fixture runs `/tmp/ama-t182-current-foundations.exit` and
-  `/tmp/ama-t182-current-connections-rerun.exit` are retained as exit 2, not passes.
-  T217 is the newly separated ready prerequisite for finite ordinary annotation
-  equations. T182 remains unfinished; its lexical/runtime work stays outside
-  T217 staging and no body-inference acceptance is claimed.
-
 
 <a id="t184"></a>
 
@@ -632,8 +556,8 @@ whole-program admission; component certificates do not replace those checks.
 |---|---|
 | Placeholder spelling | [T196](#t196) |
 | Placeholder scope | [T196](#t196) |
-| Ordinary-argument inference | [T182](#t182) |
-| Nested field specialization | [T182](#t182) |
+| Ordinary-argument inference | [T184](#t184), [T196](#t196) |
+| Nested field specialization | [T184](#t184), [T196](#t196) |
 | Specialization identity | [T184](#t184), [T196](#t196) |
 | Dependent constant declarations | [T196](#t196) |
 | Explicit constant namespaces | [T196](#t196) |
@@ -657,9 +581,9 @@ whole-program admission; component certificates do not replace those checks.
 | Returned constructor creation provenance | [T196](#t196) |
 | List implementation boundary | [T195](#t195) |
 | Specialization analysis and diagnostics | [T189](#t189) |
-| Finite repeated composition | [T196](#t196), [T182](#t182) |
-| Definition-generated recursion | [T196](#t196), [T182](#t182) |
-| Creation-graph provenance | [T196](#t196), [T182](#t182) |
+| Finite repeated composition | [T196](#t196), [T184](#t184) |
+| Definition-generated recursion | [T196](#t196), [T184](#t184) |
+| Creation-graph provenance | [T196](#t196), [T184](#t184) |
 | Constructor origins and captures | [T196](#t196) |
 | Cache-independent path checks | [T196](#t196), [T184](#t184) |
 | Native template rejection | [T190](#t190) |

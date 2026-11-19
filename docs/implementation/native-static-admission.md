@@ -173,3 +173,17 @@ this evidence. Final archive-input documentation refresh is logged in
 individual task commit. T175 follows. Field uniqueness/concrete closure and
 actual template/native generation remain their existing T184/T190 work; this
 policy task neither changes the specification nor claims that later support.
+
+## Current ordinary-call fixture alignment in T182
+
+The whole-project regression run found that the CLI fixture still used a bare
+static input and inline static bindings in an ordinary variable declaration.
+Those source forms were removed by the static/ordinary split. The real `--check`
+command therefore stopped in syntax parsing before the policy tested here.
+The maintained fixture now introduces `...type` through an ordinary reference
+input pair and supplies a concrete owned `.plain` value through `&known` in an
+ordinary call. Both the entry-native and reachable-native cases must still
+report the own-parameter policy with the original `@C` and introduction locations,
+and authoring must still leave every companion/header publication path absent.
+No native implementation policy or compiler diagnostic is weakened to accept the
+obsolete source form. T190 retains the later complete native authoring consumers.
