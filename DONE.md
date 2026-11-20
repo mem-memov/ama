@@ -6644,3 +6644,50 @@ T201. Specification bytes have not changed.
   was introduced. The linked record retains corrected fixture probes, commands
   and results. Regenerate archived inputs and compare final staged/rendered
   hashes before commit. T196 is next, including the independent conformance gate.
+
+<a id="t196"></a>
+
+- [x] **T196 — Review current requirement and acceptance evidence.**
+  Completed 2026-11-20: [canonical review and evidence](docs/implementation/conformance/template-review.md).
+  Prerequisites: T189, T190, T191, T192, T193, T194, T195.
+  Rules: [TEST-07](spec/implementation/tools-and-conformance.md#test-07),
+  [TEST-08](spec/implementation/tools-and-conformance.md#test-08),
+  [ARCH-06](spec/implementation/compiler.md#arch-06).
+  Boundary: component arguments, per-file registry and reviewed conformance
+  matrix; use the actual current canonical registry rather than frozen counts.
+  Steps: (1) reconcile all current rules/acceptance rows with named component and
+  distinct real-consumer cases; (2) run the recorded affected behavior and
+  evidence-gate checks; (3) refresh reviewed mappings/fingerprints only after
+  inspecting the corresponding sources, arguments and results.
+  Accept: enumerate every current canonical requirement and acceptance row
+  from the specification (baseline: 214 rules, 150 rows, 37 template areas),
+  including the new model and lifecycle clarification. All have accurate
+  evidence or an explicit applicable deferred boundary. The list rewrite is
+  excluded, not falsely implemented. No stale baseline hash refresh substitutes
+  for tests; unresolved mandatory coverage or documentation debt blocks completion.
+  Record actual counts/revision/commands and pass make conformance-check plus
+  its focused unit suite before claiming current conformance.
+
+  Acceptance: all 214 canonical requirements and 150 exact ordered acceptance
+  rows have explicit reviewed arguments and 56 used evidence groups. The 14 new
+  requirements, 42 new areas and eight changed existing areas are mapped to
+  actual current source/contract boundaries and distinct component/composition
+  witnesses: 353 registered triples across 163 C case sources. Removed analyzer
+  and receiver-replay anchors are replaced by actual classification/projection
+  sources. Type refinement, static graphs, full-key identity, separate recursion
+  checks, constants, native leaves, source tools, generic algorithms and concrete
+  facade/owned-child peers have current evidence; the foundational list rewrite
+  remains explicitly unclaimed. No prefix-based evidence inference was used.
+  Reviewed exact fingerprints cover 24 spec files, 3028 maintained inputs and
+  116 argument documents. The complete conformance gate and strict independent
+  schema/canonical/provenance/actual-interface/current-repository suite pass.
+  Its current scenario derives counts from canonical inputs instead of a frozen
+  pre-template baseline; no checker guard was weakened. Fresh strict source
+  delivery, native-template, specialized-constant and diagnostic consumers pass,
+  supplementing the accepted same-production-byte T193–T195 behavior/sanitizers.
+  Per-file validation checks 3028 inputs with zero debt. Actual Doxygen checks
+  2297 file pages, 8908 interfaces and 451/451 canonical destinations.
+  The linked review records actual source deltas, arguments, commands and results.
+  Regenerate archival inputs and compare staged/rendered hashes before commit.
+  No specification or production source changed. Whole clean release/resource
+  verification remains T197, followed by T198 final documentation closure.

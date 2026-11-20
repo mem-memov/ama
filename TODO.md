@@ -204,8 +204,8 @@ relocated execution and concrete-only pipeline retirement.
 [T194](DONE.md#t194) now supplies static/shared concrete
 facade consumers, exact export refusals and template-backed child/peer lifecycle
 checks. [T195](DONE.md#t195) supplies actual generic list examples, partial
-composition and owned/reference/live-boundary execution evidence. T196 is next:
-review current conformance records.
+composition and owned/reference/live-boundary execution evidence. [T196](DONE.md#t196) now records current conformance review and passing
+complete gates. T197 is next: clean release acceptance.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -235,28 +235,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 7. Connect product consumers and algorithm examples
 
 ### Phase 8. Review evidence and deliver
-
-<a id="t196"></a>
-
-- [ ] **T196 — Review current requirement and acceptance evidence.**
-  Prerequisites: T189, T190, T191, T192, T193, T194, T195.
-  Rules: [TEST-07](spec/implementation/tools-and-conformance.md#test-07),
-  [TEST-08](spec/implementation/tools-and-conformance.md#test-08),
-  [ARCH-06](spec/implementation/compiler.md#arch-06).
-  Boundary: component arguments, per-file registry and reviewed conformance
-  matrix; use the actual current canonical registry rather than frozen counts.
-  Steps: (1) reconcile all current rules/acceptance rows with named component and
-  distinct real-consumer cases; (2) run the recorded affected behavior and
-  evidence-gate checks; (3) refresh reviewed mappings/fingerprints only after
-  inspecting the corresponding sources, arguments and results.
-  Accept: enumerate every current canonical requirement and acceptance row
-  from the specification (baseline: 214 rules, 150 rows, 37 template areas),
-  including the new model and lifecycle clarification. All have accurate
-  evidence or an explicit applicable deferred boundary. The list rewrite is
-  excluded, not falsely implemented. No stale baseline hash refresh substitutes
-  for tests; unresolved mandatory coverage or documentation debt blocks completion.
-  Record actual counts/revision/commands and pass make conformance-check plus
-  its focused unit suite before claiming current conformance.
 
 <a id="t197"></a>
 

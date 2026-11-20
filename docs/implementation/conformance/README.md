@@ -1,22 +1,21 @@
 # Current requirement and acceptance evidence
 
-**Template design update (T157, 2026-11-17).** The specification now includes
-TPL-01 through TPL-10 and new acceptance scenarios. The matrix below remains
-reviewed evidence for the pre-template **200-requirement / 108-row baseline**;
-its fingerprints do not establish current whole-specification conformance.
-No template implementation or executable acceptance was added by this
-documentation task, and the complete current-conformance gate is not satisfied.
-[T158's design review](../../../DONE.md) is complete; the
-[T167 sprint plan](../../../TODO.md#sprint-static-module-templates) orders the
-implementation and acceptance work, starting with the T168 boundary audit.
-Implement the settled feature and review its evidence before updating that claim.
-Do not refresh old fingerprints or attach unrelated tests to manufacture coverage.
+The language is defined by [the specification](../../../spec/README.md). The
+T196 review connects **214 requirements**, **150 acceptance rows** and **56
+evidence groups** to current maintained implementation, component arguments and
+named tests. Counts come from the actual canonical index/tables, not the old
+pre-template baseline. [The review](template-review.md) records the changed
+obligations, delivered task evidence, exact algorithms and acceptance commands.
 
-The language is defined by [the specification](../../../spec/README.md). This
-pre-template review connects **200 requirements** and **108 acceptance rows** to the
-implementation, component arguments and named executable tests. It does not
-replace those requirements or turn the historical starting audit into a current
-coverage claim.
+Open executable templates and static modules are compilation inputs. Concrete
+ordinary runtime Types pass guarded closure and ordinary admission before layout.
+The list foundation remains the existing intrinsic implementation; template
+algorithms are verified without claiming the deferred foundational rewrite.
+Native definitions remain concrete leaves, and C exports use concrete facades.
+
+This evidence mapping is separate from the complete clean release and final
+documentation gates owned by T197/T198. Its checker compiles case interfaces;
+actual behavior follows from the recorded executed component/composition runs.
 
 [The machine-readable matrix](matrix.json) contains an individual explanation
 for every obligation. Each explanation names evidence groups. A group names its

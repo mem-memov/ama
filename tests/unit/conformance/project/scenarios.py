@@ -191,7 +191,8 @@ def canonical_cases():
 def current():
     """Require the complete actually reviewed repository matrix and all selected real C interfaces."""
     result = check.check(ROOT, ROOT / 'docs/implementation/conformance/matrix.json', True)
-    require(result['requirements'] == 200 and result['acceptance_rows'] == 108 and result['complete'],
+    require(result['requirements'] == len(canonical.requirements(ROOT))
+            and result['acceptance_rows'] == len(canonical.acceptance(ROOT)) and result['complete'],
             'current conformance inventory is incomplete')
 
 
