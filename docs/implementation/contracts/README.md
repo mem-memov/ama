@@ -49,11 +49,12 @@ receiver lifetime, including real concurrent and typed Ama acceptance.
 
 ## Before implementation
 
-The [T168 template audit](../audit/template-sprint.md) traces the concrete-only
-AST/semantic assumptions and assigns their adaptation to T169–T198, including
-independent and actual-consumer test homes. Its passing pre-template cases do
-not certify static specialization; preserve that distinction when adding the
-new static-term and specialization components.
+The [T168 template audit](../audit/template-sprint.md) preserves the original
+concrete-only assumptions and adaptation owners. The delivered static/ordinary
+components now have [current reviewed evidence](../conformance/README.md),
+[clean release results](../conformance/template-release.md) and the linked
+component/consumer contracts below. Historical passing cases do not automatically
+certify a future change; review its actual affected boundary and evidence.
 
 Identify one responsibility and its smallest meaningful public boundary. Link the
 applicable specification requirements and state the algorithm's complete domain.

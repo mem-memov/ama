@@ -3,7 +3,7 @@
 The whole [spec/](spec/README.md) directory is authoritative. The
 [requirement index](spec/requirements.md) locates all 214 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
-engineering work needed to implement those contracts. It neither changes the
+active engineering work for those contracts. It neither changes the
 language nor grants permission to edit the specification.
 
 ## How to use this queue
@@ -70,272 +70,43 @@ specification and implementation; keep independently useful regression coverage
 when migrating a live consumer. Removal and exhaustive behavioral/failure checks
 belong to each affected task's acceptance, not a compatibility layer.
 
-## Sprint: static module templates
-
-This sprint implements the approved [Stage 11](spec/implementation/plan.md#stage-11-static-templates-with-explicit-design-boundaries).
-The [T167 planning record](DONE.md#t167) preserves the original sprint.
-[T202](DONE.md#t202) defines the new static-module source model;
-[T205](DONE.md#t205) resolves its subsequent lifecycle clarification.
-[T204](DONE.md#t204) records the consistency review and replaces the remaining
-implementation plan.
-The user authorized sequential implementation on 2026-11-18, including focused
-tests, code documentation, exact algorithms and a separate commit per completed
-task. Specification changes still require their own explicit authorization.
-
-The deliverable is compile-time specialization with exact inference, composition,
-partial constructors, separate named `@...` graphs, independently concrete
-export selectors and concrete native/source/C-library consumers. Keep the existing
-intrinsic list foundation. Relative paths remain explicitly deferred. The
-[AMB-006](AMBIGUITIES.md#amb-006) rewrite, new raw-storage API, generic native ABI,
-binary-only open-template format, static natural-number parameters and dependent
-types are outside this sprint. No runtime template objects or specialization
-generation are introduced.
-
-### Dependency order and checkpoints
-
-| Phase | Tasks | Assessable result |
-|---|---|---|
-| Actual baseline | T203 | Evidence-based reuse/adapt/remove map, including unfinished T182 ownership |
-| Cleanup, source and binding | T214, T206, T207, T213 | Remove unused preview API; establish exclusive module kinds, immutable AST, scopes and exact source closure |
-| Finite structural foundation | T208, T209, T210, T183 | Actual metadata, open requirements, nonexpanding equations, guards and canonical candidate registry |
-| Static graphs and ordinary bridge | T211, T212, T217 | Named producer equations, complete inputs and independent concrete export selection |
-| Ordinary closure and admission | T182, T184, T185, T186 | Runtime typed connections, checked concrete groups and constant lifecycle plans |
-| Execution | T187–T190 | Resolved storage/control plans, compiled execution, diagnostics and concrete native composition |
-| Product consumers | T191–T195 | Source delivery, editor/relocation, C facades and useful list algorithms |
-| Acceptance and delivery | T196–T198 | Current evidence, clean release and generated reference |
-
-The presentation is a topological order, not a promise that all tasks are one
-linear algorithm. Explicit prerequisites below govern readiness. Components may
-exchange symbolic terms and deferred obligations; completing an early component
-does not claim whole-program closure. Every task is accepted and committed on
-its own. Do not batch completed tasks into a phase commit.
-
-This is a specification-led plan, not a source audit. T168 and T169–T181/T201
-remain completed historical prerequisites for their recorded contracts. Their
-implementation is neither discarded nor accepted automatically for the changed
-model. T203 must inspect the actual code, tests, contracts and dirty T182 inputs,
-identify reusable parts and assign every replacement to its current task.
-Exact source/test paths and narrower implementation steps follow that evidence;
-this plan does not invent existing support or mandatory empty directory levels.
-
-T183 deliberately precedes static graph evaluation. It accepts normalized closed
-candidate keys and pending validation state without requiring ordinary body
-checking. T211 consumes that guarded registry; T212 provides independent Type
-identities and constant evidence; T182 then generates ordinary typed connections.
-T184/T185 finish closure and ordinary admission. No dependency from the early
-registry back to T182 is allowed, and no earlier component promises executable
-admission. This avoids both a task cycle and premature validation of mutually
-referencing nominal groups.
-
-Four ordering constraints are essential:
-
-- Distinguish ordinary and static module kinds before collecting interfaces.
-  Ordinary input/result Type lines introduce Type formals; static graphs collect
-  every public binder before free inputs and derive requirements from all uses.
-  Reject generic native definitions before preparing native authoring headers.
-- Classify runtime receivers and foreach locals before solving their types.
-  Later evidence refines terms and cannot change bindings.
-- Equality, normalization and pattern components initially operate on finite
-  terms without unfolding definitions. Guard active static-definition and
-  creation ancestry before any consumer expands a definition, even before a
-  concrete specialization key exists and on every relevant cache path.
-- Admit executable specializations only after closure and ordinary checks.
-  An interned candidate key is not executable admission. Keep term equality,
-  source loading, static-output dependencies, creation paths, eager ownership and
-  constant-value dependencies as distinct relations.
-
-### Record every implementation step
-
-Use the common completion criteria and the
-[task template](docs/development/task-template.md) for every task below.
-Before its first edit, record the actual input revision, affected files and
-consumers, success/failure partitions, exact contract, invariant/progress/cost
-argument, test commands and the ordered steps. The task-specific steps below
-are the initial plan; refine engineering details after inspecting that boundary.
-
-After each meaningful step, record its purpose, actual findings/changes,
-decisions and reasons, commands/configuration, observed result and limitations,
-and next action. Keep these in TODO or its linked owning component contract;
-link that record here instead of creating a second backlog. Each task includes
-implementation, tests, Doxygen purpose/contract comments with clickable canonical
-rule links, and per-file evidence for production, headers, fixtures and support.
-Do not postpone those obligations to T198.
-
-During long work, retain the current task/step, active jobs/session handles and
-logs, blockers, next action and pending checks. Preserve failed runs and their
-resolution. Before continuing, collect active results and check input freshness.
-On acceptance, move the full record to DONE and commit that task's complete
-change. A newly discovered semantic ambiguity follows the stop/record/ask
-procedure above; this queue grants no permission to change spec.
-
-Specification clarifications [T200](DONE.md#t200), [T202](DONE.md#t202) and
-[T205](DONE.md#t205) are accepted. The complete bounded review is recorded in
-[the consistency/planning note](docs/implementation/static-plan-review.md).
-[T203](DONE.md#t203) records the actual source/test ownership audit;
-[T214](DONE.md#t214) removes the unused preview service and retains only live
-operand preparation. [T206](DONE.md#t206) establishes the current source/AST
-boundary; [T207](DONE.md#t207) establishes whole-graph scope;
-[T213](DONE.md#t213) checks the complete source closure and occurrence roles.
-[T208](DONE.md#t208) establishes actual metadata and all-use requirements.
-[T209](DONE.md#t209) establishes named application and finite structural equations.
-[T215](DONE.md#t215) establishes exact compiler-only producer owner keys.
-[T210](DONE.md#t210) validates current creation/definition guard paths.
-[T216](DONE.md#t216) supplies exact complete-key encoding and checked names.
-[T183](DONE.md#t183) supplies canonical candidates, guarded use retention and
-finite dependency-check groups. [T211](DONE.md#t211) supplies named result
-  equations, complete producer publication and independent validation witnesses.
-[T212](DONE.md#t212) supplies independent concrete export selection and
-current constant Type/namespace evidence. [T182](DONE.md#t182) supplies accepted
-source-bound runtime fields and typed connections. [T184](DONE.md#t184) composes
-those equations with real guarded contexts and complete required-Type closure.
-[T185](DONE.md#t185) supplies ordinary operation/capability checks and finite
-specialization admission through the actual frontend. [T186](DONE.md#t186) supplies
-full-owner constant identities and checked startup/cleanup composition.
-[T187](DONE.md#t187) validates concrete storage, lifecycle and control planning.
-[T188](DONE.md#t188) supplies full-owner generated names and compiled specialized
-execution. [T189](DONE.md#t189) supplies original-source diagnostics through
-static normalization and compiled execution. [T190](DONE.md#t190) validates concrete
-native/template compositions. [T191](DONE.md#t191) validates source delivery and
-exact invalidation. [T192](DONE.md#t192) supplies original static editor bindings,
-full captured-owner rename proofs and checked source transactions.
-[T193](DONE.md#t193) supplies shared guarded
-original/final source checking, structural static binding preservation, actual
-relocated execution and concrete-only pipeline retirement.
-[T194](DONE.md#t194) now supplies static/shared concrete
-facade consumers, exact export refusals and template-backed child/peer lifecycle
-checks. [T195](DONE.md#t195) supplies actual generic list examples, partial
-composition and owned/reference/live-boundary execution evidence. [T196](DONE.md#t196) now records current conformance review and passing
-complete gates. [T197](DONE.md#t197) supplies the successful complete clean
-release, stable-input proof and normal/sanitized public consumers. T198 is next:
-final documentation delivery.
-
-[T218](DONE.md#t218) removes redundant inherited identity-source dependencies
-from library/native/relocation test consumers used by these components.
-
-Historical
-[constant analysis](docs/implementation/static-constants.md) is revalidated in
-T212, not treated as current acceptance of removed inline projections.
-
 ## Current tasks
 
-### Phase 1. Actual implementation baseline
+No active tasks remain in the static-module/template sprint. The complete
+[task records and evidence](DONE.md) preserve every accepted task; the next
+unused task ID is **T219**. Add newly authorized work here before implementation.
 
-[T203](DONE.md#t203) completed the source/test audit. Its
-[exact dispositions](docs/implementation/audit/static-module-alignment.md) govern
-reuse, removal and replacement below; they do not establish current-spec support.
+## Sprint: static module templates
 
-### Phase 2. Establish current source structure and bindings
+The sprint is complete. [T198](DONE.md#t198) closes its generated documentation;
+[T197](DONE.md#t197) records the complete clean release and public consumers;
+[T196](DONE.md#t196) records current requirement/acceptance evidence.
+The [original plan](DONE.md#t167), [revised plan](DONE.md#t204),
+[baseline audit](docs/implementation/audit/template-sprint.md) and individual
+component notes retain dependencies, decisions, rejected probes and actual checks.
 
-### Phase 3. Build finite structural analysis and guarded identities
+Delivered behavior includes ordinary compile-time specialization, exact typed
+inference, partial constructors, named `@...` graphs, independently concrete
+export selectors, specialization-aware constants/plans/execution/diagnostics,
+concrete native and C-library consumers, checked source/editor/relocation tools,
+and [generic algorithms over intrinsic lists](examples/template-lists/README.md).
+No runtime Template objects or runtime Type generation are introduced.
 
-### Phase 4. Resolve static graphs and independent ordinary exports
-
-### Phase 5. Close and admit ordinary specializations
-
-### Phase 6. Lower and execute concrete programs
-
-### Phase 7. Connect product consumers and algorithm examples
-
-### Phase 8. Review evidence and deliver
-
-<a id="t198"></a>
-
-- [ ] **T198 — Close the sprint with generated technical documentation.**
-  Prerequisites: T197.
-  Rules: [ARCH-06](spec/implementation/compiler.md#arch-06);
-  [documentation delivery](docs/documentation.md).
-  Boundary: final maintained comments, component/usage/evidence documents and
-  Doxygen generation inputs; generated pages remain unversioned.
-  Steps: (1) reconcile current documentation and completed-task evidence,
-  leaving no unfinished task/debt hidden in DONE; (2) finish maintained inputs,
-  including archival/queue changes, re-review evidence affected since T196 and
-  refresh only its justified fingerprints, then rerun make conformance-check;
-  run make docs-complete, make docs and make docs-reproducible serially;
-  (3) verify the final manifest, source-rule destinations and reproducible output.
-  Accept: every maintained code file has its required purpose/contract/testing
-  evidence, and clickable source/generated rule links resolve. The generated
-  reference describes final TODO/DONE and all delivered code, not an earlier
-  checkpoint. Record exact tool versions/counts and delivery command; regenerate
-  if any maintained input changes after generation. Commit final inputs/evidence,
-  and report supported behavior and remaining out-of-sprint limits accurately.
+Relative paths, the [AMB-006](AMBIGUITIES.md#amb-006) foundational list rewrite,
+new raw-storage APIs, generic native ABI, binary-only open-template distribution,
+static natural-number parameters and dependent types remain outside this sprint.
+They are scope boundaries, not silently completed implementation tasks.
 
 ## Acceptance routing
 
-This is navigation to task owners, not a second definition of language rules
-or completed evidence. Exact obligations remain in the
-[canonical acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix).
-T203 audits the current source/test mapping; T168 remains historical evidence.
-T196 reviews the actual full evidence. [T207](DONE.md#t207) records accepted
-source-scope and native own-formal rejection; remaining owners below cover
-actual categories, captured values, native consumers and final conformance.
-[T210](DONE.md#t210) supplies exact guard algorithms, and
-[T183](DONE.md#t183) accepts canonical candidate/check-group composition.
-The remaining owners below cover actual graph/body/equation consumers and final
-whole-program admission; component certificates do not replace those checks.
+Use [the canonical requirement index](spec/requirements.md) and
+[acceptance matrix](spec/implementation/tools-and-conformance.md#acceptance-matrix)
+for obligations, [current conformance evidence](docs/implementation/conformance/README.md)
+for reviewed sources/arguments/component and real-consumer witnesses, and
+[the release guide](docs/implementation/conformance/release.md) for reproducible
+commands, supported configurations and limits. This queue defines no alternative
+language rules or implementation-coverage claims.
 
-| Static module template acceptance area | Current task owner |
-|---|---|
-| Placeholder spelling | [T196](#t196) |
-| Placeholder scope | [T196](#t196) |
-| Ordinary-argument inference | [T196](#t196) |
-| Nested field specialization | [T196](#t196) |
-| Specialization identity | [T196](#t196) |
-| Dependent constant declarations | [T196](#t196) |
-| Explicit constant namespaces | [T196](#t196) |
-| Specialized constant lifecycle | [T186](DONE.md#t186) |
-| Concrete operation checks | [T196](#t196) |
-| Template parameter signatures | [T196](#t196) |
-| Partial composition | [T196](#t196) |
-| Explicit static input categories | [T196](#t196) |
-| Defined static results | [T196](#t196) |
-| Static output composition | [T196](#t196) |
-| Static output lookup | [T196](#t196) |
-| Named-only static interfaces | [T196](#t196) |
-| Static named arity and rejected skips | [T196](#t196) |
-| Static binding modes and order | [T196](#t196) |
-| Static result alias introduction | [T196](#t196) |
-| Static alias scope and capture | [T196](#t196) |
-| Static output inference and closure | [T196](#t196) |
-| Complete producer closure | [T196](#t196) |
-| Ordinary static-export boundary | [T196](#t196) |
-| Static evaluation boundary and cycles | [T196](#t196) |
-| Returned constructor creation provenance | [T196](#t196) |
-| List implementation boundary | [T195](#t195) |
-| Specialization analysis and diagnostics | [T189](DONE.md#t189) |
-| Finite repeated composition | [T196](#t196) |
-| Definition-generated recursion | [T196](#t196) |
-| Creation-graph provenance | [T196](#t196) |
-| Constructor origins and captures | [T196](#t196) |
-| Cache-independent path checks | [T196](#t196) |
-| Native template rejection | [T190](DONE.md#t190) |
-| Concrete native template arguments | [T190](DONE.md#t190) |
-| Concrete native composition | [T190](DONE.md#t190) |
-| Template source delivery | [T191](DONE.md#t191) |
-| Source distribution resolution | [T191](DONE.md#t191) |
-
-[T206](DONE.md#t206) records source integration of the unchanged Internal hyphen
-words, Hyphenated name identity and Hyphen context boundaries; T196 reviews
-their final conformance alongside spelling. [T213](DONE.md#t213) records new AST
-source lookup and dependency closure; T190 owns the native authoring/header consumers. T187/T188
-own compiled storage, label dispatch, state and continuation evidence. T194 owns
-Concrete facade exports, Template export exclusion and the owned-child/independent-
-peer lifecycle acceptance clarified by T205. T192/T193 own editor/relocation
-consumers of the same resolved identities. T196 reviews every other canonical
-row and existing product regression, and T197/T198 complete release/reference
-acceptance. No historical hash refresh or routing label establishes support.
-
-The next unused task ID is **T219**.
-
-## Useful verification commands
-
-Use focused suites for the changed component, then its real parent composition.
-The normal project entry points remain `make`, `make test`,
-`make -C tests/unit/driver/request` and `make test-clean`; exact new leaf paths
-belong in the evidence for their owning tasks. Successful leaves clean outputs;
-failed leaves preserve them for diagnosis. Run broad checks when required by the
-changed contracts or the release phase, rather than repeatedly rebuilding
-unrelated components after a documentation-only edit.
-
-For completed-stage requirement routing, see the
-[archived coverage map](DONE.md#requirement-coverage-map). Current conformance
-remains the separate [reviewed evidence matrix](docs/implementation/conformance/README.md).
+The generated file/interface reference is rebuilt from maintained Doxygen
+comments with `make docs`; `make docs-reproducible` checks identical repeated
+output. Preserve the source/staged-input manifest agreement after any later edit.

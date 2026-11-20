@@ -79,8 +79,9 @@ Duplicate JSON keys, unexpected fields, incomplete inventories, duplicate rows,
 unknown groups, stale files, changed arguments and open claims fail the complete
 gate. Partial review may explicitly retain an `open` claim when invoking the
 checker without `--complete`; it must explain the gap and never passes the
-complete target. The pre-template matrix has no open rows, but is not a current
-template-support claim; see the T157 notice above.
+complete target. The current reviewed matrix has no open rows. Its explicit
+list-provider/dependent-type scope boundaries remain documented in the canonical
+specification and release guide; they are not silently counted as new features.
 
 The scripts read maintained inputs and write only temporary compiler probes
 under the ordinary build workspace. They do not execute Ama/native constructors,
