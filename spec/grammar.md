@@ -323,8 +323,8 @@ are defined in [Declarations and scope](language/declarations.md).
 | Annotation | Section or module kind |
 |---|---|
 | `@=` | Shared immutable constants |
-| `@<` | Runtime input and compile-time phantom declarations |
-| `@>` | Runtime result and compile-time phantom declarations |
+| `@<` | Runtime input declarations |
+| `@>` | Runtime result declarations |
 | `@!` | Ama implementation |
 | `@C` | Companion C implementation |
 | `@...` | Entire static marker or producer, with no other annotation sections |
@@ -380,10 +380,8 @@ first-output fallback or implicit runtime type generation. The declaration
 type and every required dependency must pass the existing finite-composition
 and admission checks; syntactic nesting does not waive those checks.
 
-[TPL-16](language/phantom-types.md#tpl-16) classifies a declaration with an
-established phantom result role as compile-time-only. Its name must be unsuffixed and it accepts no
-initializer/default. It contributes no runtime argument/result position or
-storage. A direct marker remains invalid as a declaration Type under TPL-14;
+Every ordinary name/type declaration denotes runtime storage. A direct marker
+remains invalid as a declaration Type under TPL-14;
 references/lists/constants also require ordinary runtime-capable Types.
 
 ```text
@@ -447,13 +445,13 @@ bodies, or runtime instances. Every static input and output binding is named:
 its label and operand are complete placeholder/type expressions as shown above.
 There are no positional static bindings, bare `...` markers, operandless
 bindings, skips, or a trailing capture of the expression's own Type. Ordinary
-runtime positional arguments and results enumerate runtime declarations only;
-phantom declarations occupy no positions.
+runtime positional arguments and results enumerate their respective interface
+declarations.
 
 A `<static-definition>` is a pair: a public receiver name followed by a
-same-level value expression. Its RHS denotes an ordinary Type, a static marker,
-a phantom declaration Type or a partial constructor (Template), never a nonempty static producer
-itself. Named inputs may apply the constructor, and their right-hand expressions may nest further
+same-level value expression. Its RHS denotes an ordinary Type, a static marker
+or a partial constructor (Template), never a nonempty static producer itself.
+Named inputs may apply the constructor, and their right-hand expressions may nest further
 ordinary constructor applications. Its head can also be a supplied Type or
 Template name. Without inputs, a supplied name forwards its value unchanged.
 The expression's caller writes the leading indentation or operand separator;
@@ -492,9 +490,6 @@ and then use those aliases as values. A marker path is a value-expression head,
 has no outputs and accepts no input bindings. Its path shares `<module-path>`
 syntax; marker versus producer versus ordinary constructor is resolved after
 parsing, without alternate tokenization.
-The intrinsic `..type.phantom` constructor uses the same named application
-shape; [TPL-16](language/phantom-types.md#tpl-16) checks its single marker argument.
-Its result can be forwarded as Type metadata without creating runtime storage.
 
 ```text
 @...
@@ -650,7 +645,7 @@ Recognize the shape before name/type lookup:
 - A declaration name followed by a same-level type-expression head is a
   declaration; nested named inputs and an optional single export selector
   precede its ordinary initializers.
-- `@<` and `@>` contain runtime or phantom name/type declarations. A leading
+- `@<` and `@>` contain runtime name/type declarations. A leading
   `...name` receiver and same-level value expression form a static definition
   only inside an `@...` module. Static binding lines have named `<` or `>`;
   runtime arguments remain inside their ordinary operation's argument block.

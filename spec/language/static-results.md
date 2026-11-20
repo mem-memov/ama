@@ -26,7 +26,11 @@ In this chapter:
 A static module describes how types fit together. It can fix a dictionary's key
 type, return a family of dictionaries whose value type remains open, or supply
 several related concrete types to a program. The compiler solves these
-relationships before generating executable code.
+relationships before generating executable code. Its purpose is to generate
+concrete ordinary module types from reusable definitions, instead of requiring
+the programmer to write a separate source module for every needed combination.
+Static modules assemble those definitions; module contracts and tests establish
+algorithm-specific behavior under [CORE-06](../introduction.md#core-06).
 
 The running program then creates ordinary values and calls ordinary modules.
 A static specialization is a compiler object, not a value passed to an ordinary
@@ -60,8 +64,7 @@ uses. Invalid graph statements do not make a file an empty marker.
 
 Its values are Type and Template metadata under
 [TPL-01/TPL-07/TPL-08](templates.md#tpl-01). A Type denotes one ordinary module
-type, a static type marker or a phantom Type under
-[TPL-16](phantom-types.md#tpl-16). A Template retains an actual original
+type or a static type marker. A Template retains an actual original
 constructor, its fixed captures and its still-unfilled named formals. A static producer's
 own specialization records its inputs and outputs for compilation; it does not
 provide an additional ordinary application Type or an executable instance.
@@ -133,14 +136,13 @@ executed. Apply this check after placeholder substitution and named static
 export selection as well as for a direct marker path. A marker cannot be an
 executable entry, native definition or compiled-library export root.
 
-A marker may be the checked static argument of the standard phantom constructor
-under [TPL-16](phantom-types.md#tpl-16). That creates a distinct compile-only
-phantom Type, not marker storage: substituting the marker directly as a runtime
-field Type still fails. Ordinary interface expressions introduce parameters
-under TPL-02/TPL-15, including marker-constrained phantom parameters. No runtime
-sample marker, implicit instance, numeric static argument, static type-case
-dispatch or recursion exception is introduced. The existing definition,
-substitution and creation checks remain required.
+Markers are static identities carried by the existing Type/Template graph;
+they do not add a runtime declaration category or an exception to TYPE-01.
+Ordinary interface expressions introduce parameters under TPL-02/TPL-15, but a
+marker substitution must still be rejected wherever an ordinary storable Type
+is required. No runtime sample marker, implicit instance, numeric static
+argument, static type-case dispatch or recursion exception is introduced. The
+existing definition, substitution and creation checks remain required.
 
 **Example: two complete marker files.** File `.marks.node` contains:
 
@@ -211,10 +213,10 @@ its key fixed to text and its value formal still open. `...integer type` is the
 supplied integer Type. None of these definitions creates a dictionary or integer
 instance.
 
-A result expression may be an ordinary constructor path, a marker path, the
-standard phantom constructor under TPL-16, a supplied Type or a supplied
-Template. A concrete Type cannot be applied again as a constructor. Applying
-named inputs to a Template uses its actual residual formals under
+A result expression may be an ordinary constructor path, a marker path, a
+supplied Type or a supplied Template. A concrete Type cannot be applied again
+as a constructor. Applying named inputs to a Template uses its actual residual
+formals under
 TPL-08. Any omitted residual formals remain open: the expression returns a
 Template until all its formals are filled. Supplying a partial Template is not
 the same operation as leaving the identity of a producer input unknown.
@@ -493,8 +495,8 @@ number
 Recognize named bindings and the bare selector from their source shapes before
 loading the path's file. Semantic resolution then requires that the head denote
 a static producer and that its exact exported name exist. Under an ordinary
-constructor, marker or phantom-constructor head, a bare export selector is an
-error; do not reinterpret it as an input binding or initializer. It declares no
+constructor or marker head, a bare export selector is an error; do not
+reinterpret it as an input binding or initializer. It declares no
 free placeholder, alias or ordinary variable in the using module.
 
 The declaration may remain symbolic in an open ordinary template. Its named
@@ -510,10 +512,9 @@ input or authorize an arbitrary inverse for a noninjective output.
 
 The final declaration expression must yield one complete Type under TPL-15.
 Runtime storage requires an ordinary Type; a marker, a residual Template and
-the producer itself cannot type that storage. A selected closed phantom Type
-instead follows TPL-16's compile-only declaration restrictions. A determined
-producer may export other Template-valued results without invalidating the
-selected Type, but every required output must pass checking.
+the producer itself cannot type that storage. A determined producer may export
+other Template-valued results without invalidating the selected Type, but every
+required output must pass checking.
 
 A complete nominal identity can be referenced while its required definition
 group is still being checked. Do not require every ordinary body in a finite
@@ -635,7 +636,11 @@ ownership and native-boundary obligations of the resulting ordinary types.
 Static expressions cannot inspect runtime values, list lengths/contents,
 initialization flags, branch results or native effects. Numeric static arguments,
 value-indexed types and arbitrary compile-time Ama execution are outside this
-Type/Template graph.
+Type/Template graph. Structural checking establishes exact concrete identities,
+finite admissible composition and compatibility with ordinary operations; it
+does not prove a comparator's ordering laws or another algorithm-specific
+contract. Those properties belong to module and composition tests under
+[CORE-06](../introduction.md#core-06).
 
 An exact checker can proceed as follows:
 

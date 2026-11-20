@@ -17,9 +17,7 @@ In this chapter:
 An Ama runtime name identifies storage. Its type is a module, and its suffix
 says whether that storage owns a value, holds a reference, owns a list, or holds a list of
 references. Keeping those two decisions separate makes ownership visible at the
-place where a name is used. A phantom declaration under
-[TPL-16](phantom-types.md#tpl-16) instead names compile-only metadata: it uses
-the same readable declaration shape but creates no runtime storage.
+place where a name is used.
 
 **Explanation.** Most declarations create fields of the containing instance.
 They are constructed when that instance is created, even if their written
@@ -41,9 +39,7 @@ defines what transfers between these storage forms do.
 **TYPE-01.** Every runtime variable has an ordinary module Type capable of
 runtime storage. A static marker under [TPL-14](static-results.md#tpl-14) cannot
 be its Type, reference target or list element/target, including after
-substitution or static export selection. A phantom declaration is the explicit
-compile-only exception defined by [TPL-16](phantom-types.md#tpl-16); it does not
-create a marker instance or a runtime variable with a nonstorable Type.
+substitution or static export selection.
 
 An explicit runtime declaration answers three questions in order: what is the
 name and storage form, which type expression defines its Type, and what are its
@@ -51,10 +47,10 @@ initial contents? Write the name and type-expression head on separate lines at
 the same indentation. A type expression starts with a module path or scoped
 Type placeholder permitted by [TPL-01/TPL-02](templates.md#tpl-01). The storage
 marker directly adjoins the name; it never belongs to the type line and never
-has an intervening space. Ordinary `@<` and `@>` contain name/type pairs,
-including phantom declarations, not standalone static inputs or static output
-definitions. Eligible placeholders in their type expressions introduce or reuse
-Type parameters under TPL-02; body and shared declarations may only reuse
+has an intervening space. Ordinary `@<` and `@>` contain runtime name/type pairs,
+not standalone static inputs or static output definitions. Eligible placeholders
+in their type expressions introduce or reuse Type parameters under TPL-02; body
+and shared declarations may only reuse
 parameters already introduced by that whole interface.
 
 Type expressions may supply named constructor/producer inputs, nest structural
@@ -79,8 +75,7 @@ namespace. The producer is not instantiated. It may also receive named inputs
 before the selector under TPL-15. Checking the complete declaration may combine
 those structural equations with the other permitted typed connections; every
 required producer input must close before admission. A residual Template or
-direct marker cannot type runtime storage. A closed phantom Type may appear
-only in the compile-only declaration form of TPL-16.
+direct marker cannot type runtime storage.
 
 There are two ways to omit an explicit type line. A receiver can introduce a
 persistent field whose type comes from its source or selected result (TYPE-06).
@@ -128,8 +123,7 @@ the receiver's source location, with ordinary default initialization under
 TYPE-06. Blocks never make construction conditional on execution.
 The scoped foreach binding itself is not a persistent body declaration: its
 runtime activation follows FLOW-05, while ordinary declarations in that loop's
-body still follow this unconditional construction order. Compile-only phantom
-declarations contribute no runtime initialization step under TPL-16.
+body still follow this unconditional construction order.
 
 ### Data representations belong to modules
 
@@ -154,10 +148,8 @@ lifecycle protocol.
 For eager construction, form a type edge for every runtime owned scalar field
 and for every owning-list field with one or more element initializers. Reference
 fields, reference-list fields and initially empty owning lists add no eager edge.
-Phantom declarations add no runtime field and therefore no eager-construction
-edge under TPL-16. Reject
-a cycle in this eager-construction graph: every such edge requires at least one
-child construction before its owner can finish. Check initializer value
+Reject a cycle in this eager-construction graph: every such edge requires at
+least one child construction before its owner can finish. Check initializer value
 dependencies separately; absence of an eager cycle does not authorize reading
 an uninitialized source. Module loading and clone-capability graphs have different
 edges and must not be substituted for this graph.
@@ -214,10 +206,10 @@ or suspended enclosing loop.
 
 <a id="state-02"></a>
 
-**STATE-02.** Runtime parameters and results are interface storage. Phantom
-interface declarations contribute no runtime parameter/result cell under
-TPL-16. An entry-start call reinitializes them for the invocation before running the body. Install parameters
-in declaration order, choosing each supplied source/literal or its declared
+**STATE-02.** Runtime parameters and results are interface storage. An
+entry-start call reinitializes them for the invocation before running the body.
+Install parameters in declaration order, choosing each supplied source/literal
+or its declared
 default, then initialize results in declaration order under CALL-08. A later
 default observes the already installed earlier fields, including supplied inputs.
 Do not default-construct a supplied parameter and then overwrite it. Their final
@@ -262,8 +254,8 @@ another. See [Asynchrony and parallelism](async-and-parallelism.md).
 <a id="name-04"></a>
 
 **NAME-04.** Each module has one declaration namespace covering shared constants,
-parameters, results, phantom declarations under TPL-16, and persistent body
-declarations, including declarations inside branches/loops and receiver-inferred
+parameters, results and persistent body declarations, including declarations
+inside branches/loops and receiver-inferred
 declarations under TYPE-06.
 A complete base name may be declared only once in that module. `item`, `item&`,
 `item[]`, and `item&[]` share the base name `item` and cannot coexist as separate
@@ -309,9 +301,7 @@ Ordinary interface Type parameters belong to the static namespace of
 [TPL-02](templates.md#tpl-02), not this runtime field table. Static graph inputs
 and public result names follow [TPL-12](static-results.md#tpl-12) in their own
 module; selecting an export does not introduce that name into the ordinary
-module or import the graph's other names. A phantom declaration reserves its
-ordinary base name under NAME-04, but visibility never makes it a runtime value,
-source, receiver or callable target; its allowed uses follow TPL-16.
+module or import the graph's other names.
 
 #### Blocks and reuse
 
@@ -1014,8 +1004,7 @@ absent from the interface. Every required constructor substitution, selected
 Type and producer input must be fully determined before construction. This
 closure may use the permitted structural equations from the declaration and
 its typed initializer; it cannot use runtime values or an arbitrary inverse of
-a producer output. A phantom declaration creates no immutable shared value and
-is not a shared constant under TPL-16.
+a producer output.
 
 Resolve dependent declarations for each required concrete specialization.
 Their types, storage forms, construction, literals and copy sources must satisfy

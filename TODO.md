@@ -73,7 +73,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions and phantom declarations. The next unused task ID is **T227**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T228**.
 T221/T226 implementation has not been requested.
 [T222](BACKLOG.md#t222), [T223](BACKLOG.md#t223), and [T224](BACKLOG.md#t224)
 are backlog items awaiting future design or implementation authorization.
@@ -99,19 +99,22 @@ are backlog items awaiting future design or implementation authorization.
 
 <a id="t226"></a>
 
-- [ ] **T226 — Implement phantom declarations and complete declaration expressions.**
+- [ ] **T226 — Implement complete declaration type expressions.**
   Status: planned; awaits a separate implementation request. Prerequisites:
-  T221 and T225. Contracts: [TPL-15](spec/language/templates.md#tpl-15),
-  [TPL-16](spec/language/phantom-types.md#tpl-16) and their
+  T221, T225 and T227. Contract: [TPL-15](spec/language/templates.md#tpl-15) and its
   [acceptance scenarios](spec/implementation/tools-and-conformance.md#static-module-templates).
+  T227 withdraws the former phantom implementation scope; ordinary declaration
+  expressions remain required, as explicitly reaffirmed by the user on 2026-11-20.
   Steps: inventory actual expression/interface consumers; implement structured
-  parsing, scoped introductions and exact normalized inference; validate marker
-  roles and full keys; exclude phantom declarations from runtime layout,
-  interface positions, ownership/lifecycle and native/C transport; align source,
-  editor and relocation tools with the same parsed structure.
-  Accept: meaningful granular/component/composition and failure tests cover the
-  positive and rejected scenarios, generic versus fixed marks, aliases, interface
-  role stability, zero phantom storage and preserved ordinary owner semantics.
+  parsing, scoped introductions and exact normalized inference; require one
+  concrete ordinary runtime-capable Type per used concrete specialization;
+  preserve full specialization identity and ordinary storage/interface rules;
+  align source, editor and relocation tools with the same parsed structure.
+  Accept: meaningful granular/component/composition and failure tests cover
+  nested named applications, partial intermediate constructors, selected exports,
+  bare placeholders, aliases, exact inference and all required producer inputs.
+  Reject residual/ambiguous final Types, unknown body placeholders, direct marker
+  storage and native own parameters; preserve ordinary lifecycle and C transport.
   Renew conformance evidence only after implementation/argument review, then
   pass the required consumer, conformance and documentation gates. The earlier
   accepted matrix remains historical evidence, not support for these new rules.
@@ -119,13 +122,14 @@ are backlog items awaiting future design or implementation authorization.
 ## Next sprint discussion
 
 Static marker notation is specified by [TPL-14](spec/language/static-results.md#tpl-14);
-its implementation is T221. [T225](DONE.md#t225) specifies declaration type expressions and
-[phantom declarations](spec/language/phantom-types.md#tpl-16); T226 owns their
-subsequent implementation. The earlier [candidate discussion](DONE.md#t219)
-is historical motivation. A producer input absent from an exported Type's key
-does not tag that Type; phantom marker bindings remain part of the ordinary
-owner's complete specialization identity. Localization and relative paths
-remain separate backlog questions. No compiler work is authorized by T225.
+its implementation is T221. [TPL-15](spec/language/templates.md#tpl-15) permits
+ordinary declaration type constructors that yield one fully determined concrete
+Type; T226 owns implementation. [T227](DONE.md#t227) retains that rule while
+removing the phantom feature and stating [CORE-06](spec/introduction.md#core-06):
+static modules generate concrete module combinations; module contracts and tests
+establish behavioral evidence. Existing compiler safety checks remain mandatory.
+Localization and relative paths remain separate backlog questions. These
+specification changes do not authorize compiler implementation.
 
 ## Sprint: static module templates
 

@@ -6914,6 +6914,8 @@ T201. Specification bytes have not changed.
 <a id="t225"></a>
 
 - [x] **T225 — Specify phantom types and complete declaration type expressions.**
+  Historical scope: [T227](#t227) withdraws the phantom portion and retires
+  TPL-16; TPL-15 remains current. Results and counts below describe T225's edition.
   Status: completed specification change; specification-only authorization from the user's
   2026-11-20 approval of the preceding design. Prerequisites: T220.
   Deliverable: describe `..type.phantom`, marker-constrained substitutions,
@@ -6936,7 +6938,7 @@ T201. Specification bytes have not changed.
   retain their restricted syntax. Standalone graphs and public results stay in
   static modules.
 
-  [TPL-16](spec/language/phantom-types.md#tpl-16) defines the exact standard
+  Historical result, withdrawn by [T227](#t227): former TPL-16 defined the exact standard
   constructor and its single `...mark` formal. Fixed and generic marks, aliases,
   structural evidence and nominal compatibility are explained with examples.
   A marker must resolve through substitutions to a TPL-14 marker, regardless of
@@ -6971,8 +6973,9 @@ T201. Specification bytes have not changed.
   and reviewed conformance fingerprints remain untouched. README, backlog context
   and release/evidence guides now identify the expanded pending target without
   claiming implementation. [T221](TODO.md#t221) owns the marker foundation;
-  [T226](TODO.md#t226) owns expression/phantom implementation and renewed evidence
-  under a separate request. Localization remains [T223](BACKLOG.md#t223).
+  [T226](TODO.md#t226) originally owned expression/phantom implementation and
+  renewed evidence under a separate request; T227 narrows it to TPL-15.
+  Localization remains [T223](BACKLOG.md#t223).
 
   make docs exits 0 (/tmp/ama-t225-docs-initial.log): 3028 ready inputs and zero
   debts; Doxygen 1.11.0 renders 2297 maintained file pages and 8908 interfaces,
@@ -6983,3 +6986,73 @@ T201. Specification bytes have not changed.
   and make docs (/tmp/ama-t225-docs-final.log) from final maintained inputs. Require
   success and verify all generated-input fingerprints against sources and reviewed
   staged task bytes before committing. Generated technical pages stay unversioned.
+
+<a id="t227"></a>
+
+- [x] **T227 — Remove phantom types and state the generation/testing boundary.**
+  Status: completed specification-only task; the user's 2026-11-20 request explicitly withdraws
+  phantom types and authorizes this specification change. Prerequisites: T225.
+  Deliverable: remove the phantom constructor, declaration roles, grammar and
+  dependent contracts; retain TPL-15 declaration expressions and TPL-14 markers.
+  Explain that static modules assemble concrete module specializations so users
+  need not handwrite each combination; behavioral/domain guarantees belong to
+  documented module contracts and tests. Retain necessary compatibility,
+  ownership/lifecycle, capability and finite-generation checks.
+  User clarification (2026-11-20): retain ordinary template constructors when
+  their concrete use yields one fully determined Type, including nested bindings
+  and named static-export selection; generic definitions may remain symbolic.
+  Steps: remove obsolete semantics and reconcile affected chapters; add CORE-06
+  and acceptance obligations; align current planning/status and historical links;
+  check specification coherence, grammar, navigation and generated documentation.
+  Accept: one consistent contract, no remaining phantom feature or dangling
+  references, passed documentation checks and final source/staged provenance.
+  No compiler implementation or accepted conformance-evidence changes are in scope.
+  Results: removed the constructor chapter and every dependent declaration,
+  grammar, call, copy, runtime, native/C, source and library exception. TPL-16 is
+  retired without a replacement contract or navigation stub. CORE-06 is the
+  canonical generation/testing policy: generate required concrete modules from
+  definitions; test behavioral/domain contracts through ordinary interfaces.
+  Compatibility, layout, capability, ownership/lifecycle and finite-generation
+  checks remain mandatory; passing tests cannot waive them or select Types.
+  The policy explicitly scopes finite test evidence and retains ARCH-05/ARCH-06
+  correctness arguments. Examples cover ordering, occurrence preservation,
+  hashing and variant-tag/payload agreement; acceptance obligations match them.
+  TPL-15 remains valid for ordinary interfaces, bodies and shared declarations,
+  including symbolic generic definitions, exact inference, nested named bindings
+  and one selected named export. Required concrete uses must settle one ordinary
+  runtime-capable Type and all producer inputs. TPL-14 markers and existing
+  aliases remain unchanged. T226 now owns only complete declaration expressions;
+  marker implementation remains T221. Neither implementation is authorized here.
+  Localization's example now uses the existing integer identity; release/evidence
+  guides distinguish the current target from the accepted historical baseline.
+  Historical T225 results are labelled as withdrawn in the phantom portion;
+  their original acceptance counts remain historical facts, not current rules.
+
+  Review: independent language/graph, runtime/native and cross-chapter passes
+  found no remaining contradiction. python3 /tmp/ama-t227-spec-check.py passes:
+  24 specification chapters, 217 canonical requirements, 113 unique/aligned/fully
+  referenced EBNF definitions, local/canonical links and 227 unique task IDs.
+  Grammar production lines are byte-identical to HEAD; explanatory rules changed.
+  An initial review probe assumed the wrong ::= column; corrected exact comparison
+  against HEAD passes without changing the grammar. The post-archive diff check
+  found one surplus blank line at EOF; it was removed before the final rerun.
+  git diff --check passes after normalization.
+  A repository-wide maintained-Markdown scan finds no current phantom contract,
+  constructor or chapter link; only explicit historical records and task scope
+  mention the withdrawn feature, and the index reserves its retired identifier.
+
+  make conformance-check exits 2 with "specification changed; conformance review
+  is required" (/tmp/ama-t227-conformance.log), the expected refusal of the older
+  accepted matrix. Compiler/library/test sources, per-file evidence, reviewed
+  conformance fingerprints and implementation coverage claims remain untouched.
+  No executable acceptance claim is made for this documentation-only change.
+  make docs exits 0 (/tmp/ama-t227-docs-initial.log): 3028 ready inputs, zero debts,
+  Doxygen 1.11.0, Python 3.14.4 and markdown-it-py 3.0.0; 2297 maintained file pages,
+  8908 interfaces and 457/457 canonical destinations. All 2538 input fingerprints
+  match the reviewed source edition.
+
+  Final delivery: after this archive/queue update, rerun the structural check
+  and make docs (/tmp/ama-t227-docs-final.log) from final maintained inputs.
+  Require successful completion, then verify every manifest input against source
+  and reviewed staged bytes before the task commit. Generated pages remain
+  unversioned. No other task is completed by this specification change.

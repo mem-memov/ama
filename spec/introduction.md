@@ -8,8 +8,9 @@ a reference, or a list, so a program can construct behavior and then invoke it
 through the same ordinary call rules.
 
 Static modules, marked `@...`, instead connect types and templates during
-compilation. They have no runtime instance or mutable state; their results
-provide types for ordinary declarations. See
+compilation. Their purpose is to generate the concrete modules a program needs
+without making its author write each combination by hand. They have no runtime
+instance or mutable state; their results provide types for ordinary declarations. See
 [static modules](language/static-results.md#tpl-12) after learning ordinary calls.
 
 **Explanation.** Think of a module as a description of storage and behavior, and
@@ -157,6 +158,56 @@ names, not source-language keywords or library-defined parsing rules. Most paths
 in examples are illustrative. `..integer` is a required nominal standard-library
 identity with the exact capabilities specified for indices and list results;
 it is not an interchangeable example type.
+
+## Generation and confidence in behavior
+
+**Explanation.** A sorting module should be reusable for different element and
+comparison modules. Static composition supplies each required concrete
+specialization. It does not establish that the comparison orders elements
+consistently or that sorting preserves every input element. Those are behavioral
+contracts, checked by the module's tests and the tests of its real compositions.
+
+<a id="core-06"></a>
+
+**CORE-06.** Static modules construct and compose types and templates so the
+compiler can generate concrete ordinary modules from their definitions. They
+remove repetitive specialization work from the programmer. Each used executable
+specialization must be fully concrete and satisfy the ordinary language checks
+before code generation, under [TPL-06](language/templates.md#tpl-06). Static
+composition follows the structural equations and finite-generation rules in
+[TPL-10](language/templates.md#tpl-10) and
+[TPL-11](language/templates.md#tpl-11); it does not execute arbitrary Ama bodies
+during compilation.
+
+The language does not add runtime type queries, dispatch on type metadata,
+dependent types or a proof language to establish domain-specific
+behavior. Express observable domain distinctions through ordinary module
+interfaces and values. Specify behavioral properties in module contracts, and
+require test evidence for those contracts instead of encoding such properties
+as additional type-level logic. Tests must cover representative examples,
+properties, boundaries, relevant invalid inputs and operation sequences; compare
+against an independent reference implementation when one is applicable. A finite
+set of successful tests establishes evidence for the covered cases, not a
+universal proof over untested inputs. Exhaustive claims must state the finite
+domain actually checked.
+
+This separation retains the compiler's required checks of type compatibility,
+layout, ownership, reference validity, lifecycle, operation capabilities and
+finite specialization. Passing tests never admits a program that fails those
+checks, changes its inferred types or selects its generated implementation.
+Conversely, passing the compiler does not establish a behavioral contract:
+tests must reject a faulty implementation even when it is well typed. The
+implementation's general correctness arguments remain required by
+[ARCH-05](implementation/compiler.md#arch-05) and
+[ARCH-06](implementation/compiler.md#arch-06), alongside the tests.
+
+**Examples.** For sorting, test ordering and preservation of all input
+occurrences, including duplicates. For a hash-based collection, test that equal
+keys have equal hashes and that lookup survives the documented updates. For a
+module that uses an enumeration to identify the active alternative, test that
+its tag agrees with its stored payload and that invalid operations produce the
+documented failure. These properties are checked through ordinary inputs,
+outputs and effects; they do not require inspecting a type at runtime.
 
 ## How to continue reading
 

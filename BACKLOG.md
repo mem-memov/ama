@@ -44,23 +44,22 @@ copy here. Follow the [development standard](docs/development/README.md).
 - [ ] **T223 — Design localized standard-library names without replacing the compiler.**
   Status: open design question; recorded from the user's 2026-11-20 request.
   The request authorizes this backlog record, not a specification or compiler
-  change. Prerequisites: none for discussion; reconcile the chosen design with
-  the [phantom constructor contract](spec/language/phantom-types.md#tpl-16)
-  before implementation.
+  change. Prerequisites: none for discussion; preserve canonical nominal
+  identities and compiler-recognized library roles in any chosen design.
 
 ### Purpose and proposed direction
 
 Allow a project to select a standard library with names in its own language
-while using the same compiler executable. The user's illustrative mapping is:
+while using the same compiler executable. An illustrative mapping is:
 
 ```text
-..type.phantom -> ..тип.фантомный
+..integer -> ..целое
 ```
 
-The canonical constructor `..type.phantom` is specified by
-[TPL-16](spec/language/phantom-types.md#tpl-16). The translated path above
-illustrates the localization goal and remains a proposal, without introducing
-another constructor identity or claiming implementation support.
+The canonical `..integer` identity is required by
+[LIB-01](spec/language/library.md#lib-01). The translated path illustrates the
+localization goal and remains a proposal; it introduces no alternative identity
+or implementation claim.
 The goal includes compiler-recognized library roles, beyond choosing Unicode
 names for ordinary user modules.
 

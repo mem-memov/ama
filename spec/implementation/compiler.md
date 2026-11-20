@@ -36,6 +36,14 @@ same generated code with independent mutable runtime state. Native hooks and
 linked libraries used concurrently must meet the parallel chapter's reentrancy
 requirements.
 
+The generation and testing boundary follows [CORE-06](../introduction.md#core-06):
+static composition removes repetitive construction of concrete modules from
+the programmer, while behavioral contracts belong to the tests of modules and
+their real compositions. Keep type, ownership, lifecycle and finite-generation
+checks in the compiler; test outcomes do not choose specializations or waive
+those checks. Generating a well-typed implementation does not certify its
+domain-specific behavior.
+
 Here a project assembly means the assembly of one independently compiled Ama
 component. A larger C application can link several such components; each keeps
 its own generated control flow and explicit context boundaries.
@@ -451,12 +459,6 @@ through substitution or through an exported alias, before planning runtime
 slots, native layouts or C transport. Marker metadata creates no runtime pool,
 field, lifecycle action or dispatch label. Do not erase a marker from the key
 of a producer or constructor that captures it.
-
-Classify phantom declarations under [TPL-16](../language/phantom-types.md#tpl-16)
-after resolving their Types. Preserve names, marker constraints, source spans
-and full nominal keys for checking, while excluding them from runtime fields,
-argument/result sequences, ownership and lifecycle plans. A phantom declaration
-is not an ordinary object whose representation is removed by optional optimization.
 
 Ordinary typed connections and declaration expressions refine their scoped Type
 terms; static graphs solve their own finite structural equations. TPL-15 permits

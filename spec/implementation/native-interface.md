@@ -186,8 +186,6 @@ add no C entry arguments, output storage or native execution protocol.
 Declaration type expressions follow [TPL-15](../language/templates.md#tpl-15)
 and must resolve to one complete admissible Type. They do not permit an `@C`
 definition to introduce its own free parameters or static output definitions.
-Phantom declarations under [TPL-16](../language/phantom-types.md#tpl-16) contribute
-no C arguments, output storage, field-access operations or native protocol calls.
 The generated header and the companion keep the existing typed-field and
 resource contracts, including declared concrete Ama ownership and references
 under CABI-03/CABI-05.
@@ -207,11 +205,9 @@ the ordinary cleanup rules.
 
 **CABI-02.** Type interpretation must follow declared module identity and its
 registered representation, not an unchecked guess based on a parameter's name.
-Complete specialization identities retain phantom bindings under
-[TPL-16](../language/phantom-types.md#tpl-16). Equal physical layouts do not
-authorize treating differently marked ordinary Types as interchangeable C
-arguments, outputs or views. Omitting phantom storage must not omit the owning
-Type's identity from checked interface metadata.
+Equal physical layouts do not authorize treating different nominal Types as
+interchangeable C arguments, outputs or views. Checked interface metadata must
+preserve each Type's complete nominal identity.
 Native modules may use `void *` internally for opaque resources, but such a
 pointer is not a general Ama reference, arithmetic value, or freely castable
 language-level universal value.
@@ -693,9 +689,7 @@ will coincide at runtime.
 Derive capability over the finite resolved type graph. Add an edge `T → U` for
 each owned scalar or owning-list runtime field of `T` whose element type is `U`,
 including runtime parameters, results and persistent fields, but excluding shared
-constants and all non-owning edges. Phantom declarations under
-[TPL-16](../language/phantom-types.md#tpl-16) introduce no ownership edge or clone
-requirement; the ordinary containing Type retains its own normal copy checks.
+constants and all non-owning edges.
 Initially mark every executable type as potentially copyable. Remove each native
 type lacking `=`, then repeatedly remove any type
 with an owned edge to a removed type, until no change occurs. The remaining set
@@ -843,10 +837,7 @@ on which it may depend are initialized. Native hooks do not own these fields.
 Construct each field by its selected initializer or source-clone path. In a
 clone, construct children from source data rather than running their declaration
 defaults first. Declaration-order construction does not mean default construction
-followed by overwriting resources. Phantom declarations are excluded from this
-construction and cleanup sequence under
-[TPL-16](../language/phantom-types.md#tpl-16); an ordinary containing module
-retains its own instance identity and lifecycle requirements.
+followed by overwriting resources.
 
 New-instance construction uses the reserved final identity and instance context
 from RT-12 before evaluating any field initializer. A standalone `&` may form

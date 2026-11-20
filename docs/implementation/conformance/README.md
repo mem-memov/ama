@@ -8,8 +8,9 @@ reviewed edition. [The review](template-review.md) records the changed
 obligations, delivered task evidence, exact algorithms and acceptance commands.
 
 T220 adds [TPL-14](../../../spec/language/static-results.md#tpl-14) and its marker
-acceptance scenario. T225 adds [declaration expressions](../../../spec/language/templates.md#tpl-15)
-and [phantom declarations](../../../spec/language/phantom-types.md#tpl-16).
+acceptance scenario. T225 adds [declaration expressions](../../../spec/language/templates.md#tpl-15),
+retained by [T227](../../../DONE.md#t227), which also states the
+[generation/testing policy](../../../spec/introduction.md#core-06).
 [T221](../../../TODO.md#t221) and [T226](../../../TODO.md#t226) own implementation
 and renewed evidence review. The existing matrix does not claim these new
 capabilities and retains

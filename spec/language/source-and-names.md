@@ -118,9 +118,6 @@ without changing existing top-level companion names.
 <a id="src-04"></a>
 
 **SRC-04.** A module path identifies a source definition, not a callable object.
-The compiler-recognized standard constructor `..type.phantom` follows
-[TPL-16](phantom-types.md#tpl-16) and supplies phantom declaration Types without
-an executable instance.
 An ordinary definition provides a runtime type; an empty static definition
 provides a nominal marker under [TPL-14](static-results.md#tpl-14). A nonempty
 static definition provides a graph producer whose named ordinary Type export

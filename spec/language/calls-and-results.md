@@ -62,9 +62,7 @@ invocation or retained-instance read. Parameters and requested results appear on
 indented lines. Inputs precede all output-phase actions. An operation's ordinary
 bindings use named or positional mode consistently; CALL-09 selectors are separate
 actions. Positional binding order follows runtime interface declaration order;
-ordinary Type placeholders do not add positions. Phantom declarations under
-[TPL-16](phantom-types.md#tpl-16) are excluded from both named binding lookup and
-positional input/result sequences. Static modules have a separate
+ordinary Type placeholders do not add positions. Static modules have a separate
 named interface under [TPL-12](static-results.md#tpl-12), with no positional
 static bindings or runtime slots.
 
@@ -96,8 +94,6 @@ complete admissible Type before execution; an expression supplies only the exact
 constraints allowed by that rule. A selected static producer must determine all
 its inputs through explicit substitutions or permitted structural equations
 before publication; an unconstrained input cannot be guessed from an output name.
-Phantom declarations contribute no runtime input or result values under
-[TPL-16](phantom-types.md#tpl-16); ordinary bindings cannot supply or receive them.
 Static graph outputs cannot be selected by retained instance `>>` reads or a
 CALL-09 method action. The selected instance already has one fixed concrete
 specialization before execution. Omission/defaults and result transfers retain the semantics here;
@@ -114,8 +110,6 @@ copy boundary. A reference scalar copies only its checked identity, and a refere
 list copies its handle entries, without cloning their targets. The source remains
 unchanged and no module body executes as part of copying. Native resources require
 independent clone capability; copying is not raw-byte duplication or shared ownership.
-The copied owner's complete nominal Type retains its phantom bindings under
-TPL-16, although those declarations contribute no runtime state to copy.
 
 #### Receiving a value does not preserve its continuation
 
@@ -171,8 +165,7 @@ Acquiring `&item` likewise refers to the declared object, not its module type.
 ## Binding inputs and outputs
 
 **Explanation.** Positional bindings follow runtime interface declaration order.
-Named bindings select a runtime declaration by its interface label. Phantom
-declarations are excluded from both forms under [TPL-16](phantom-types.md#tpl-16).
+Named bindings select a declaration by its interface label.
 An operation uses one mode consistently across its ordinary input and output
 bindings; selected-result operations are separate actions.
 
@@ -186,8 +179,8 @@ one position in its respective parameter or result sequence. A skipped entry
 input keeps its declared default after the normal `!` reset; it does not retain
 a previous invocation's input. A skipped output causes no result copy or hidden
 receiver allocation, while the target still computes and retains that result.
-Input and output position counters are independent and follow runtime interface
-order, skipping phantom declarations under [TPL-16](phantom-types.md#tpl-16).
+Input and output position counters are independent and follow interface
+declaration order.
 
 For an interface with three parameters and three results:
 
@@ -389,9 +382,8 @@ instance's interface under CALL-08.
 #### A selector names the parent’s declared result
 
 The selector uses the existing scalar/reference/list/indexed target spellings,
-but resolves its base name exclusively in the enclosing target's runtime `@>`
-interface or LIST-04's intrinsic service/method interface. A phantom declaration
-is not a selectable result under [TPL-16](phantom-types.md#tpl-16). Require the
+but resolves its base name exclusively in the enclosing target's `@>`
+interface or LIST-04's intrinsic service/method interface. Require the
 corresponding storage form; indexed selectors use the
 same owning-list/reference-list distinction as ordinary indexed targets.
 There is no fallback to a caller variable, module path, parameter, constant,

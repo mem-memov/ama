@@ -67,10 +67,11 @@ and select a named export if they determine one closed Type for each concrete
 use. Selecting a Type does not run a body or create a producer instance.
 Standalone static equations and public static results remain in `@...`.
 
-[Phantom declarations](phantom-types.md#tpl-16) may also appear in an ordinary
-interface or body. They describe compile-time marks and contribute no instance
-field, runtime interface position or construction action. The containing
-ordinary module retains its normal instances and execution behavior.
+Static composition generates the concrete ordinary modules a program needs,
+so the programmer can reuse definitions instead of writing each specialization.
+Behavioral contracts remain the responsibility of module tests under
+[CORE-06](../introduction.md#core-06); the compiler still checks the safety of the
+generated modules.
 
 Starting `job !` prepares a fresh interface, then executes the body from entry.
 It preserves permanent body state. Resuming `job %` uses its saved position and

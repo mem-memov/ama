@@ -195,14 +195,15 @@ result names and an explicit named-export bridge to ordinary field types.
 The template, static-module and grammar chapters define the source forms;
 this roadmap does not preserve an alternative older interface.
 
+Follow [CORE-06](../introduction.md#core-06): static modules automate concrete
+module generation; behavioral contracts require tests of the modules and their
+real compositions. Keep those tests distinct from the compiler's mandatory
+structural, ownership, lifecycle and finite-generation checks.
+
 Recognize a layout-only `@...` body as the nominal static marker in
 [TPL-14](../language/static-results.md#tpl-14). Preserve marker Type identity in
 static aliases, bindings, constraints and source tools while keeping it outside
-all runtime storage and C boundaries. Implement the separately specified
-[phantom constructor](../language/phantom-types.md#tpl-16) with marker constraints
-and complete specialization identities. Phantom declarations contribute no
-runtime storage, interface positions, native ABI fields or lifecycle edges;
-ordinary owners retain their own identity and lifecycle.
+all runtime storage and C boundaries.
 
 Plan narrow components in prerequisite order: placeholder/name recognition;
 ordinary interface inventory; static graph parsing and whole-graph binder/input

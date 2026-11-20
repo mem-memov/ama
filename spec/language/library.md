@@ -12,6 +12,9 @@ The compiler checks how those contracts are connected.
 This makes the public library interface important. A reader should be able to
 discover an operation's accepted values, effects, results, and failures from its
 module contract. Calling a library module does not change the parsing of Ama.
+Static library composition supplies concrete ordinary module types without
+requiring handwritten variants; behavioral contracts are checked by module
+tests under [CORE-06](../introduction.md#core-06).
 
 The intrinsic list interface is an explicit exception to ordinary module-valued
 methods: its six entries are part of the collection contract. Their English
@@ -26,9 +29,6 @@ without inspecting that representation.
 The library implementation must provide the following agreed capabilities.
 Missing capabilities are implementation gaps, not alternative language rules:
 
-- The compiler-recognized static constructor `..type.phantom` under
-  [TPL-16](phantom-types.md#tpl-16). It accepts one marker Type and supplies a
-  phantom declaration Type; its contract introduces no runtime library instance.
 - Integer/index types with literal decoding, ranges, arithmetic, comparison,
   overflow behavior, and checked conversion to host allocation/index sizes.
 - A truth-capable type and a registered condition conversion contract.

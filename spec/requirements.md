@@ -6,6 +6,8 @@ Each requirement is defined once in its canonical chapter. This index is
 navigation, not a second statement of behavior. Start with the chapter if
 you need the model, examples, or reasons behind a rule.
 
+`TPL-16` is retired and must not be reassigned; see [T227](../DONE.md#t227).
+
 ## Language purpose and core
 
 | Requirement | Chapter section |
@@ -15,6 +17,7 @@ you need the model, examples, or reasons behind a rule.
 | [CORE-03](introduction.md#core-03) | Why the core stays small |
 | [CORE-04](introduction.md#core-04) | Native foundations and their limits |
 | [CORE-05](introduction.md#core-05) | Native foundations and their limits |
+| [CORE-06](introduction.md#core-06) | Concrete module generation and behavioral test evidence |
 
 ## Source identity
 
@@ -78,7 +81,6 @@ you need the model, examples, or reasons behind a rule.
 | [TPL-13](language/templates.md#tpl-13) | Concrete native modules and template source distribution |
 | [TPL-14](language/static-results.md#tpl-14) | Nominal static markers declared by an empty `@...` file |
 | [TPL-15](language/templates.md#tpl-15) | Complete structural type expressions in ordinary declarations |
-| [TPL-16](language/phantom-types.md#tpl-16) | Marker-constrained phantom declarations without runtime storage |
 
 ## Literal data
 

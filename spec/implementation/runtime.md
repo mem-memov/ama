@@ -97,10 +97,6 @@ in [compact physical storage](#compact-physical-storage-with-unchanged-logical-s
 below and [GEN-03](compiler.md#gen-03). Preserve every permitted observation of
 logical state; representation changes alone cannot relax identity, lifetime,
 acquisition, continuation, cleanup, or native/host-interface contracts.
-Phantom declarations under [TPL-16](../language/phantom-types.md#tpl-16) do not
-contribute logical instance state or runtime interface positions. Excluding them
-is required by their static role; it does not erase the containing ordinary
-instance's identity or lifecycle, nor merge different marked specializations.
 Active foreach cursors and declared scoped reference cells are compiler-visible
 control storage in that instance, not opaque native payloads or separate heap
 activations. Each lexical foreach needs at most one cursor/cell per active

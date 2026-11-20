@@ -47,6 +47,14 @@ inputs. Ordinary templates infer Types through normal calls, results and other
 typed connections. Declaration expressions add explicit composition without
 runtime template objects, a general compile-time interpreter or dependent types.
 
+The purpose of this machinery is to generate the concrete ordinary modules an
+algorithm needs, so the programmer does not handwrite a source module for every
+combination of types. It checks that the composition is well defined and safe
+to represent and execute. Algorithmic laws and application-specific behavioral
+invariants belong to module contracts and their tests under
+[CORE-06](../introduction.md#core-06); static composition is not a second program
+that inspects runtime data or proves those laws.
+
 **Design status.** This chapter defines target behavior, not an implementation
 claim. The [decision registry](../../AMBIGUITIES.md#open-template-design-questions)
 records decisions and the implementation queue records remaining work. The list
@@ -81,8 +89,7 @@ as an already scoped Type namespace under [CONST-03](declarations.md#const-03).
 They are not runtime value sources, variables, indices, entry/resume targets,
 literals or dotted member accesses. A normal variable's type line may use one
 bare Type name or the declaration expression of TPL-15; neither makes the
-declared field an ordinary first-class static value. Compile-only phantom fields
-have the separate contract of [TPL-16](phantom-types.md#tpl-16).
+declared field an ordinary first-class static value.
 
 **Examples: spellings, not complete modules.**
 
@@ -101,10 +108,9 @@ have the separate contract of [TPL-16](phantom-types.md#tpl-16).
 <a id="tpl-02"></a>
 
 **TPL-02.** In an ordinary executable module, each declaration in `@<` and `@>`
-is a name/type pair under [TYPE-01](declarations.md#type-01), including the
-compile-only phantom declarations of [TPL-16](phantom-types.md#tpl-16). An
-eligible local `...name` in such a declaration's type expression introduces
-one Type parameter of that module. Eligible occurrences are the entire bare
+is a name/type pair under [TYPE-01](declarations.md#type-01). An eligible local
+`...name` in such a declaration's type expression introduces one Type parameter
+of that module. Eligible occurrences are the entire bare
 type expression and the local source operands of its structural bindings under
 TPL-15. A foreign input label, a selected export label and a module-path
 component never introduce a local parameter. An already scoped name is reused,
@@ -114,16 +120,10 @@ Collect introductions from both complete interface sections before checking
 uses. Repeated eligible occurrences of the same complete name denote the same
 parameter; different names denote independent parameters until a typed
 connection equates them. New parameters may be introduced in results as well
-as inputs. A placeholder constrained to a marker by TPL-16 is still a Type
-parameter; it does not become a runtime argument or a Template parameter.
-
-A bare parameter used as the whole Type of an ordinary field retains the
-runtime-Type constraint of TYPE-01. It cannot later erase that field by taking
-a marker or phantom declaration Type. A phantom declaration instead has the
-statically established constructor role of TPL-16; an eligible placeholder in
-its marker argument describes its mark, not a runtime field. This distinction
-preserves ordinary inference from runtime inputs without making the number of
-runtime inputs depend on a guessed parameter category.
+as inputs. Each ordinary interface declaration retains its declared runtime
+storage form. A bare parameter used as the whole Type of a field must resolve
+to an ordinary storable Type under TYPE-01; substituting a static marker cannot
+erase that field or remove an input or result position.
 
 An ordinary interface cannot contain a standalone static formal, a static
 result-pair definition, a public static output alias or a constructor signature.
@@ -149,10 +149,9 @@ deterministic metadata; it introduces no positional static source interface.
 A parameter's Type is separate from the variable's storage form. The same ordinary
 Type can describe an owned value, a reference target, an owning list's element or
 a reference list's target. Substitution never adds/removes `&`, `[]` or `&[]`.
-An open constructor or static marker is not a valid runtime field type. The
-phantom constructor accepts markers as static arguments under TPL-16; this does
-not authorize storing a marker directly. Static-module free inputs, public
-definitions and scopes follow TPL-12 instead of these interface rules.
+An open constructor or static marker is not a valid runtime field type.
+Static-module free inputs, public definitions and scopes follow TPL-12 instead
+of these interface rules.
 
 **Example: ordinary interface fragment.**
 
@@ -242,20 +241,13 @@ result.
 
 One uniquely determined Type is a necessary condition, not an exemption from
 the rest of the language. A runtime declaration must produce an ordinary
-storable Type under TYPE-01. The only compile-only field form is the phantom
-declaration of TPL-16. A marker cannot type runtime storage directly. A returned
-Template may be an intermediate static argument where its actual formal
-category permits it; it cannot remain the declared field's final Type.
-
-Determine the declaration role from its resolved expression and structural
-constraints, including known aliases and selected exports. A bare ordinary
-field-Type parameter remains runtime constrained under TPL-02. If an applied
-producer's result role is still unknown, retain that obligation until genuine
-static evidence determines it. Do not assume a field phantom, remove an input
-or result position, or select a parameter value merely to make an ordinary
-binding's supplied argument count fit. The fixed runtime interface is then the
-projection specified by TPL-16; ordinary runtime input inference remains in
-force for its runtime fields.
+storable Type under TYPE-01. A marker cannot type runtime storage directly.
+A returned Template may be an intermediate static argument where its actual
+formal category permits it; it cannot remain the declared field's final Type.
+Every ordinary declaration keeps its written runtime storage and interface
+position. Structural solving does not add, remove or reclassify fields to make
+a call fit. An unresolved expression remains an obligation until actual type
+evidence determines it or the required specialization is rejected.
 
 Solve only the structural equations of TPL-10 from independently identified
 constructor/producer origins. Never search candidate modules, enumerate
@@ -645,10 +637,9 @@ fully concrete and pass ordinary Ama checks before code generation or runtime
 construction. An open definition or partial constructor is compiler metadata,
 not an executable value or an incompletely initialized runtime instance. Every
 runtime field, reference target and list element has one concrete ordinary
-nominal Type. Static markers and phantom Types remain compile-time metadata
-under [TPL-14](static-results.md#tpl-14) and
-[TPL-16](phantom-types.md#tpl-16); being Type does not make them instantiable.
-Phantom declarations contribute no runtime field, argument or result cell.
+nominal Type. Static markers remain compile-time metadata under
+[TPL-14](static-results.md#tpl-14); belonging to Type does not make a marker
+instantiable.
 
 Check source syntax, lexical scope and resolvable names at definition time.
 After substitution, check every required operation, storage form, input/result
@@ -662,6 +653,9 @@ capability-based search for a Type. A concrete module passed as an ordinary
 value or reference may provide methods used by an algorithm, but every call must
 match that actual module's ordinary interface. Type checking does not prove
 ordering, hashing or other algebraic laws that the library algorithm requires.
+Document these as module contracts and verify them with module and composition
+tests under [CORE-06](../introduction.md#core-06). No runtime type reflection or
+type-directed branch is introduced to select behavior from a marker or alias.
 
 An output-only Type parameter is allowed under TPL-02, but an actual declared
 producer's result cannot change Type between invocations. A field inference
@@ -739,19 +733,18 @@ configuration syntax is outside the current sprint.
 
 | Category | Meaning |
 |---|---|
-| Type | One ordinary module Type, closed static marker under [TPL-14](static-results.md#tpl-14), or phantom Type under [TPL-16](phantom-types.md#tpl-16), possibly symbolic before its enclosing inputs close |
-| Template | An ordinary type constructor or the standard phantom constructor, with at least one residual named formal and any prior fixed captures |
+| Type | One ordinary module Type or closed static marker under [TPL-14](static-results.md#tpl-14), possibly symbolic before its enclosing inputs close |
+| Template | An ordinary type constructor with at least one residual named formal and any prior fixed captures |
 
 An unapplied nongeneric ordinary module denotes Type. An executable template's
 path denotes Template until its residual formals are bound; complete application
 produces Type. A marker path denotes its closed Type and accepts no bindings.
-The standard phantom constructor and its closed compile-only Types follow
-TPL-16; they do not add a third static category. A nonempty static module is a
-producer of named static values under TPL-12, not an ordinary Type, Template,
-runtime value or third first-class static function category. Its named outputs
-may themselves be ordinary Types, markers, phantom Types or Templates. All
-Types use exact nominal equality; ordinary runtime storage separately requires
-an ordinary Type under TYPE-01/TPL-14/TPL-16.
+A nonempty static module is a producer of named static values under TPL-12,
+not an ordinary Type, Template, runtime value or third first-class static
+function category. Its named outputs
+may themselves be ordinary Types, markers or Templates. All Types use exact
+nominal equality; ordinary runtime storage separately requires an ordinary
+Type under TYPE-01/TPL-14.
 
 A constructor's actual signature is its complete set of residual original formal
 names with their categories and applicable nested requirements. Its fixed map
@@ -819,18 +812,18 @@ mandatory under the existing list contract.
 
 **TPL-08.** Static substitution acts on resolved structure and scoped formal
 identities, never source text. Resolve a concrete value-expression path to its
-exact original ordinary module definition, static marker or standard phantom
-constructor under TPL-16, or a static name to its supplying static environment. A nonempty static producer path is used
+exact original ordinary module definition or static marker, or a static name
+to its supplying static environment. A nonempty static producer path is used
 only through named output selection under TPL-12.
 Capture neither unrelated names in another module nor a foreign binding label.
 TPL-12 defines the separate graph syntax and visibility rules.
 
-A static value expression has an ordinary path, marker path, the standard
-phantom constructor path under TPL-16, or visible Type/Template name as head.
-A named input is `...formal < expression`, indented one level below that head, with one separator on each side of `<`. Its complete
-left name belongs to the selected constructor. Its right side belongs to the supplying module and
-may have its own deeper named input block. Deeper bindings apply only to their
-immediate expression. At one level all inputs use the same supplying scope;
+A static value expression has an ordinary path, marker path or visible
+Type/Template name as head. A named input is `...formal < expression`, indented
+one level below that head, with one separator on each side of `<`. Its complete
+left name belongs to the selected constructor. Its right side belongs to the
+supplying module and may have its own deeper named input block. Deeper bindings
+apply only to their immediate expression. At one level all inputs use the same supplying scope;
 a foreign label does not define a source for another binding.
 
 Unknown names, duplicate inputs at one application, category conflicts and
@@ -947,7 +940,6 @@ Runtime `<`, `>`, empty positional bindings and literal inputs retain their
 ordinary call/default meanings. They are not compile-time partial application.
 A Template cannot be stored in a variable, checked reference, list or runtime
 result; an instance of a concrete ordinary Type built from it is an Ama value.
-The compile-only phantom declarations of TPL-16 do not store Template values.
 
 ## Static result interfaces
 
@@ -1025,8 +1017,6 @@ specialization. The symbols below are explanatory metanotation, not new syntax.
    binding equations; unequal origins conflict regardless of layout/capabilities.
    A marker is a closed Type leaf with no bindings under TPL-14; compare its
    original identity without inventing constructor formals or runtime structure.
-   Phantom Types preserve their checked marker capture under TPL-16; their lack
-   of runtime storage does not erase that capture from equations or identity.
 2. Merge unknowns or equate them with structural static expressions. Preserve
    all earlier equations and inferred category/usage obligations. Reject wrong
    categories, inconsistent bindings and infinite substitution terms with an
