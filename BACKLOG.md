@@ -12,31 +12,6 @@ Allocate task IDs across BACKLOG, TODO and DONE without reuse. Move an agreed
 item into TODO with its existing ID and decisions; do not leave a second task
 copy here. Follow the [development standard](docs/development/README.md).
 
-## Reference notation
-
-<a id="t222"></a>
-
-- [ ] **T222 — Require a space after the reference-formation operator.**
-  Status: backlog only; recorded from the user's 2026-11-20 request. No
-  specification or implementation change is authorized by this backlog entry.
-  Prerequisites: none; independent of T221.
-  Desired spelling: exactly one ASCII space between prefix `&` and its owned
-  operand: `& item`, `& items[position]`, and `input& < & item`.
-  The reference suffix stays adjoining (`target&`); standalone self-reference
-  `&` has no operand and gains no trailing space. Reference semantics stay intact.
-  Current contracts still require the joined prefix under
-  [REF-01](spec/language/values-and-references.md#ref-01),
-  [SYN-06](spec/language/source-and-names.md#syn-06) and the
-  [grammar](spec/grammar.md#accesses-and-sources).
-  Steps when separately authorized: align those rules, examples and acceptance
-  scenarios; update recognition and affected source tools/fixtures using source
-  structure, preserving literal/comment data; document and verify the change.
-  Accept: test one-space formation with simple, multiword and indexed operands;
-  reject joined operands, repeated spaces, TAB and a line break in place of the
-  separator. Preserve suffix/self-reference parsing and all reference behavior.
-  Complete component/composition, source-tool and conformance/documentation
-  checks before marking this language change implemented.
-
 ## Standard-library internationalization
 
 <a id="t223"></a>
@@ -109,7 +84,7 @@ cases for incomplete, reordered, conflicting or incompatible resources, and
 acceptance tests for identical behavior and preserved type checks with the same
 compiler executable. Only then plan specification changes and implementation.
 
-### Record of this backlog update
+### Historical record of this backlog update
 
 Created this file at the user's request and transferred T222 from TODO with its
 original ID and complete pending record. Updated workflow/navigation to keep
@@ -117,6 +92,8 @@ future ideas, selected work and completed evidence in separate files with one
 shared ID sequence. This update changes neither language requirements nor the
 compiler; T222 and T223 remain unfinished. Documentation navigation, unique task
 IDs and generated-reference input fingerprints are the checks for this update.
+The later sprint selection moves [T222](TODO.md#t222) back into TODO; its
+unfinished implementation record is maintained there.
 
 ## Native C library dependencies
 

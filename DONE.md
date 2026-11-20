@@ -7162,3 +7162,36 @@ T201. Specification bytes have not changed.
   fingerprint equality before the task commit. Generated pages remain
   unversioned. This specification task does not implement the newly named
   commands or revised source syntax.
+
+<a id="t238"></a>
+
+- [x] **T238 — Include reference-formation spacing in the project sprint.**
+  Status: completed planning-only task, requested by the user on 2026-11-20.
+  Prerequisites: T230 and the existing T222 backlog decision. Deliverable:
+  transfer T222 into the selected sprint with its ID and exact acceptance
+  boundary, ordering lexical foundations before consumers and final acceptance.
+  No language rules, implementation, tests or evidence registries change.
+  Steps/results: inspected the development standard, queue and canonical rule
+  links; transferred the full pending T222 record without a duplicate; selected
+  T231 -> T222 -> T232, and included T222 in T237's final acceptance. Independent
+  read-only review confirmed no dependency cycle and preservation of all test
+  partitions. The change remains exactly one ASCII space after prefix `&`;
+  adjoining suffix `target&`, standalone self-reference and reference semantics
+  remain intact. T222 is unfinished; specification amendment and implementation
+  await their explicit authorization. BACKLOG retains only its historical
+  transfer note and navigation to the current TODO record.
+  Checks from /home/u/repos/ama: python3 /tmp/ama-t238-doc-check.py passes
+  (238 unique IDs across TODO/BACKLOG/DONE, links/transforms valid, 231 canonical
+  requirements and 141 EBNF productions unchanged); git diff --check passes.
+  Specification, compiler, library, fixtures, tools and reviewed evidence are
+  untouched. No compiler execution or implementation coverage is claimed.
+  Initial make docs exits 2 after coverage passes (3028 ready inputs, zero
+  debts): renaming the queue heading broke a conformance-guide reference.
+  Restoring its stable heading fixes that navigation without altering the plan.
+  python3 tools/documentation/build.py --doxygen doxygen exits 0 after the fix:
+  Doxygen 1.11.0, Python 3.14.4, markdown-it-py 3.0.0; 2297 maintained file pages,
+  8908 interfaces and 473/473 canonical destinations. Logs:
+  /tmp/ama-t238-docs-initial.log and /tmp/ama-t238-docs-retry.log.
+  Final delivery gate after archival: rerun structural/link checks and make docs
+  (/tmp/ama-t238-docs-final.log); require exit 0 and matching source/staged
+  manifest fingerprints before commit. Generated documentation stays unversioned.

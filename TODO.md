@@ -73,9 +73,10 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T238**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T239**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
-project tools. T221/T226 and T231–T237/T224 implementation has not been requested.
+project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
+T221/T226 and T231–T237/T224/T222 implementation has not been requested.
 
 <a id="t221"></a>
 
@@ -123,8 +124,10 @@ project tools. T221/T226 and T231–T237/T224 implementation has not been reques
 The user authorized T230 specification work, not implementation of this queue.
 All tasks below remain planned until an implementation request. Execute in the
 listed prerequisite order, with granular component/composition tests, documented
-invariants and a commit for every accepted task. T221/T226 remain required;
-perform them after T231/T232 establish the new source/configuration foundations.
+invariants and a commit for every accepted task. T222 is selected for this sprint;
+align its specification only after explicit authorization for that amendment.
+T221/T226 remain required; perform them after T231/T222/T232 establish the
+source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 
 <a id="t231"></a>
@@ -138,11 +141,38 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   native, static, constant and source-tool consumers; cover duplicate selection,
   missing local holes, Unicode and malformed version/separator boundaries.
 
+<a id="t222"></a>
+
+- [ ] **T222 — Require a space after the reference-formation operator.**
+  Status: selected for this sprint by the user's 2026-11-20 request; transferred
+  from BACKLOG with its original ID. Prerequisite: T231. The intended spelling
+  was recorded earlier on 2026-11-20; implementation and the required
+  specification amendment still need separate explicit authorization.
+  Desired spelling: exactly one ASCII space between prefix `&` and its owned
+  operand: `& item`, `& items[position]`, and `input& < & item`.
+  The reference suffix stays adjoining (`target&`); standalone self-reference
+  `&` has no operand and gains no trailing space. Reference semantics stay intact.
+  Current contracts still require the joined prefix under
+  [REF-01](spec/language/values-and-references.md#ref-01),
+  [SYN-06](spec/language/source-and-names.md#syn-06) and the
+  [grammar](spec/grammar.md#accesses-and-sources).
+  Steps when separately authorized: align those rules, examples and acceptance
+  scenarios; update recognition and affected source tools/fixtures using source
+  structure, preserving literal/comment data; document and verify the change.
+  Complete this narrow notation change before T232 and later consumers adopt
+  the revised source forms; keep it independent of reference ownership/lifetime.
+  Accept: test one-space formation with simple, multiword and indexed operands;
+  reject joined operands, repeated spaces, TAB and a line break in place of the
+  separator. Preserve suffix/self-reference parsing and all reference behavior.
+  Complete component/composition, source-tool and conformance/documentation
+  checks before marking this language change implemented.
+
 <a id="t232"></a>
 
 - [ ] **T232 — Implement shared configuration, scoped aliases and normalization.**
-  Prerequisite: T231. Implement PKG-03/04 and SRC-06 through narrow UTF-8/INI,
-  table/scope, parsed-path and normalization components shared by compiler/tools.
+  Prerequisites: T231 and T222. Implement PKG-03/04 and SRC-06 through narrow
+  UTF-8/INI, table/scope, parsed-path and normalization components shared by
+  compiler/tools.
   Enforce package/local alias boundaries and explicit src-to-tests dependencies
   under PKG-09 while preserving caller-supplied test types. Track effective
   config/companion presence in caches. Accept positive, malformed, duplicate,
@@ -214,10 +244,11 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t237"></a>
 
 - [ ] **T237 — Accept the complete project/path/tooling implementation.**
-  Prerequisites: T224, T233..236, T221 and T226. Audit every retained current-rule
-  component and per-file test/documentation owner; remove obsolete alternatives
+  Prerequisites: T224, T233..236, T221, T222 and T226. Audit every retained
+  current-rule component and per-file test/documentation owner; remove obsolete alternatives
   and tests that only preserve them. Exercise the canonical project/path matrix
-  through real preparation, compile/run, native/static/C-library, isolated tests,
+  and reference-notation matrix through real preparation, compile/run,
+  native/static/C-library, isolated tests,
   promotion and relocation consumers. Review correctness arguments and evidence
   before renewing conformance fingerprints. Pass required focused/composite/full
   checks, failure/sanitizer gates and final Doxygen/source-link/provenance checks;
