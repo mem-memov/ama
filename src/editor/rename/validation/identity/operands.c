@@ -5,11 +5,6 @@
  */
 #include <string.h>
 #include "internal.h"
-/** Complete logical identities remain unchanged when only variable base names are edited. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
-bool rename_same_type(const SemanticType *old, const SemanticType *fresh) {
-    return old == NULL ? fresh == NULL : fresh != NULL
-        && strcmp(old->module->source->logical_path,fresh->module->source->logical_path) == 0;
-}
 /** Original half-open boundaries map exactly into the candidate's retained source. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_span(const RenameIdentity *check, SourceSpan old, SourceSpan fresh) {
     SourceSpan mapped;
@@ -31,7 +26,7 @@ bool rename_same_access(const RenameIdentity *check, const SemanticAccess *old, 
 bool rename_same_source(const RenameIdentity *check, const SemanticSource *old, const SemanticSource *fresh) {
     if (old == NULL) { return fresh == NULL; }
     if (fresh == NULL || old->kind != fresh->kind || old->reference != fresh->reference || old->list != fresh->list
-        || !rename_same_type(old->type,fresh->type) || !rename_same_symbol(check,old->constant,fresh->constant)
+        || !rename_same_type(check,old->type,fresh->type) || !rename_same_symbol(check,old->constant,fresh->constant)
         || !rename_same_symbol(check,old->declaration,fresh->declaration) || !rename_same_span(check,old->site,fresh->site)
         || !rename_same_access(check,old->access,fresh->access)) { return false; }
     if (old->syntax == NULL) { return fresh->syntax == NULL; }

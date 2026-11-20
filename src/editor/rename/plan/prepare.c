@@ -14,11 +14,11 @@ bool editor_rename_prepare(EditorRename *plan, const EditorAnalysis *workspace, 
         return editor_rename_fail(plan,DIAGNOSTIC_TYPE_MISMATCH,"Rename requires a complete checked workspace",(SourceSpan){0});
     }
     EditorDefinition target;
-    if (!editor_definition(workspace,module,offset,&target) || target.symbol == NULL) {
+    if (!editor_definition(workspace,module,offset,&target) || (!target.original && !target.static_symbol)) {
         return editor_rename_fail(plan,DIAGNOSTIC_TYPE_MISMATCH,"The selected spelling has no variable declaration",(SourceSpan){0});
     }
     plan->workspace = workspace;
-    plan->target = target.symbol;
+    plan->target = target;
     if (!editor_rename_name(plan,name,length) || !editor_rename_files(plan)) { return false; }
     plan->prepared = true;
     return true;

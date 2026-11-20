@@ -1,8 +1,8 @@
 # Identity-aware Ama name edits
 
 T108 builds on [editor snapshots](editor-analysis.md) and exposes
-[the rename API](../../src/editor/rename/rename.h). A rename selects one checked
-variable, interface field, constant or foreach-local declaration. It edits only
+[the rename API](../../src/editor/rename/rename.h). A rename selects one original
+variable, interface field, constant, foreach-local or static graph declaration. It edits only
 source occurrences resolved to that declaration. Equal text in another namespace,
 a literal, a comment or an unrelated scope keeps its original bytes.
 
@@ -111,16 +111,28 @@ alpha-renaming for the statically resolved Ama program, including unchanged uses
 that could otherwise be silently captured. No spelling fallback repairs a failed
 correspondence.
 
-Source and edit coordinate indexes use exact ordered binary lookup. Declaration
-correspondences are sorted by owner/source position and looked up by binary
-search. Control aliases compare their unique AST source identity without
+Source and edit coordinate indexes use exact ordered binary lookup. Concrete owner correspondence compares complete nominal capture graphs, including
+original formal identities and residuals; matching module paths alone is insufficient.
+An explicit iterative memoized work list expands each term pair once. A static
+formal rename changes its mapped source name, not the correspondence of its origin.
+Every old owner must have exactly one candidate owner, and the mapping must be
+injective. Declaration correspondence then requires the mapped owner, Type and
+original source position; exact finite scans avoid discovery-order assumptions.
+Occurrence alternatives are compared as sets with exactly one mate in both
+directions, retaining source-only and all concrete evidence.
+
+For T original/candidate owners, Q vertices in the largest compared term-pair
+graph and D declarations, these direct exact scans take O(T² Q² + D²) time
+and O(T + D + T² Q) candidate-owned scratch space in the worst case. Memoized
+pairs are bounded by the finite product of the input vertex sets. No depth limit,
+name fallback or hash-only equality changes the answer. Control aliases compare their unique AST source identity without
 recursively following cycles. Whole-catalog membership checking uses finite exact
 catalog scans. All source/index/replacement memory has explicit owner teardown;
 every allocation-failure prefix leaves source documents untouched.
 
 ## Executable evidence
 
-`make -C tests/unit/editor/rename` has three component/composition leaves:
+`make -C tests/unit/editor/rename` has four component/composition leaves:
 
 - `plan`: callee labels versus same-spelled caller values; unused importing
   modules; qualified constants; Unicode replacement names; CRLF/comment/literal
@@ -141,3 +153,24 @@ candidate text publication, retained old source views, exact physical identity,
 UTF-8 rejection and each override allocation failure. The full editor tree and
 source catalog leaf are exercised under ASan/UBSan. Per-file named cases and
 standalone headers are recorded in [ready.json](documentation/ready.json).
+
+## Static source names and multiple concrete captures
+
+T192 replaces the single concrete-symbol target with an original source definition
+view. Ordinary replacement names remain complete base names; static replacement
+names must include exactly their three-dot prefix and pass the shared production
+static-name recognizer. No implicit prefix is inserted. Graph declarations,
+first/equality receipts, free formals and foreign actual labels retain their own
+source namespaces. Open ordinary templates can be renamed without fabricating an
+executable Type.
+
+Selecting a shared higher-order label with distinct actual formal origins is
+ambiguous and refused. Selecting just one constructor formal is also refused if
+its edited label would affect another actual origin at the same source interval.
+The service does not invent a coordinated rename of distinct declarations.
+
+The `static` leaf exercises full Type correspondence for multiple captures,
+Unicode composite formal names and constructor labels, named graph outputs and
+ordinary selectors, uninstantiated fields, invalid whole names, multi-origin
+refusal and every measured static candidate allocation failure. Existing
+transaction/native-version checks remain in `composition`.

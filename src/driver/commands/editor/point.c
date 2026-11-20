@@ -10,7 +10,7 @@ static bool definition(const DriverOptions *options, const EditorAnalysis *analy
     EditorDefinition value;
     if (!editor_definition(analysis,options->query_module,options->offset,&value)) { return tool_json_raw(writer,"null"); }
     return tool_json_raw(writer,"{\"declaration\":") && tool_source_span(writer,value.definition)
-        && tool_json_raw(writer,",\"symbol\":") && tool_source_symbol(writer,value.symbol)
+        && tool_json_raw(writer,",\"symbol\":") && driver_editor_declaration(writer,&value)
         && tool_json_raw(writer,",\"type\":") && tool_source_type(writer,value.type) && tool_json_raw(writer,"}");
 }
 /** Intrinsic signatures use their actual static field descriptors and currently resolved nominal element/integer types. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06), [LIST-04](../../../../spec/language/lists.md#list-04). */

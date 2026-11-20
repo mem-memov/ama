@@ -17,8 +17,12 @@ bool driver_editor_item(DriverEditorArray *);
 bool driver_editor_response(const DriverOptions *, const EditorAnalysis *, ToolJsonWriter *, Diagnostic *);
 /** Emit exact checked definition/completion/call/binding observations at one explicit byte position. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_editor_point(const DriverOptions *, const EditorAnalysis *, ToolJsonWriter *);
+/** Emit an original declaration with only uniquely justified concrete metadata.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) keeps static source interfaces separate from runtime fields.
+ */
+bool driver_editor_declaration(ToolJsonWriter *, const EditorDefinition *);
 /** Emit one symbol for interface/completion enumeration; callback false preserves writer failure. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
-bool driver_editor_symbol(void *, const SemanticSymbol *);
+bool driver_editor_symbol(void *, const EditorDefinition *);
 /** Emit the exact complete original/replacement file versions and source edits after fresh rename validation. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool driver_editor_rename(const DriverOptions *, const EditorRename *, ToolJsonWriter *);
 #endif

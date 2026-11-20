@@ -7,7 +7,8 @@
  * [COMP-01](../../../spec/implementation/compiler.md#comp-01) forbids consulting
  * declarations to recognize its syntax.
  */
-#include "../internal.h"
+#include "names.h"
+#include "lexer/tokens/tokens.h"
 
 /** Consume exactly three leading dots and nonempty adjoining named components.
  * Each component strictly advances the cursor; dots are source separators, not

@@ -6,9 +6,7 @@
 #include "../analysis/internal.h"
 /** Declaration names include inferred and foreach-local cells, while only explicit declarations have written type paths. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static bool symbol(EditorAnalysis *analysis, const SemanticSymbol *field) {
-    if (!editor_index_add(analysis, field->name, field, field->type, true)) { return false; }
-    if (field->declaration != NULL
-        && !editor_index_add(analysis, field->type_site, NULL, field->type, false)) { return false; }
+    if (!editor_index_add(analysis, (EditorOccurrence){.spelling=field->name,.symbol=field,.type=field->type,.declaration=true})) { return false; }
     for (const SemanticInitializer *item = field->initializers; item != NULL; item = item->next) {
         if (!editor_index_source(analysis, item->source)) { return false; }
     }
@@ -17,29 +15,28 @@ static bool symbol(EditorAnalysis *analysis, const SemanticSymbol *field) {
 /** Binding syntax labels identify the callee field; source/receiver spellings identify caller storage. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static bool binding(EditorAnalysis *analysis, const SemanticBinding *item) {
     if (item->field != NULL && item->syntax->label != NULL
-        && !editor_index_add(analysis, item->syntax->label->name, item->field, item->field->type, false)) { return false; }
+        && !editor_index_add(analysis, (EditorOccurrence){.spelling=item->syntax->label->name,.symbol=item->field,.type=item->field->type})) { return false; }
     return editor_index_source(analysis, item->source) && editor_index_access(analysis, item->receiver);
 }
 /** All nested operations already occur once in the semantic statement inventory; aliases require no recursive traversal. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 static bool statement(EditorAnalysis *analysis, const SemanticStatement *item) {
     if (!editor_index_access(analysis, item->access) || !editor_index_access(analysis, item->condition.access)
         || !editor_index_source(analysis, item->source)) { return false; }
-    if (item->syntax->kind == AST_CALL && item->syntax->as.call.namespace_expression != NULL
-        && !editor_index_add(analysis, item->syntax->as.call.namespace_expression->head, NULL, item->namespace_type, false)) { return false; }
     for (const SemanticBinding *argument = item->bindings; argument != NULL; argument = argument->next) {
         if (!binding(analysis, argument)) { return false; }
     }
     if (item->traversal != NULL) {
         const SemanticForeachBinding *loop = item->traversal;
-        if (!editor_index_add(analysis, loop->syntax->as.traversal.collection,
-                loop->collection, loop->collection->type, false)
-            || !editor_index_add(analysis, loop->syntax->as.traversal.binder,
-                loop->binding, loop->binding->type, loop->introduced)) { return false; }
+        if (!editor_index_add(analysis, (EditorOccurrence){.spelling=loop->syntax->as.traversal.collection,
+                .symbol=loop->collection,.type=loop->collection->type})
+            || !editor_index_add(analysis, (EditorOccurrence){.spelling=loop->syntax->as.traversal.binder,
+                .symbol=loop->binding,.type=loop->binding->type,.declaration=loop->introduced})) { return false; }
     }
     return true;
 }
 /** Publish no metadata until every contributing type, field and operand has been indexed and ordered consistently. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [CALL-08](../../../spec/language/calls-and-results.md#call-08). */
 bool editor_index_build(EditorAnalysis *analysis) {
+    if (!editor_index_static(analysis)) { return false; }
     for (const SemanticType *type = analysis->frontend.semantic.first; type != NULL; type = type->next) {
         for (const SemanticSymbol *field = type->first; field != NULL; field = field->next) {
             if (!symbol(analysis, field)) { return false; }
@@ -51,5 +48,5 @@ bool editor_index_build(EditorAnalysis *analysis) {
             if (!statement(analysis, item)) { return false; }
         }
     }
-    return editor_index_order(analysis);
+    return editor_index_runtime_source(analysis) && editor_index_static_labels(analysis) && editor_index_order(analysis);
 }

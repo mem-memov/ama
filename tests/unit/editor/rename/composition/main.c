@@ -59,7 +59,7 @@ static void it_publishes_all_versioned_documents_together_and_preserves_rejected
     }
     assert(!editor_rename_publish(&rename_plan,publish,&store) && store.calls == 3);
     assert(rename_plan.diagnostic.code == DIAGNOSTIC_IO_FAILURE);
-    assert(changed_file(".external") != NULL && text_is(rename_plan.target->name,"argument"));
+    assert(changed_file(".external") != NULL && text_is(rename_plan.target.definition,"argument"));
     store = (Documents){0};
     destroy_rename();
 }

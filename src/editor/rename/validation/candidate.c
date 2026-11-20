@@ -9,7 +9,7 @@ static bool native_input(EditorRename *plan, const char *path) {
     if (path == NULL) { return true; }
     bool changed = false;
     if (!project_inputs_changed(&plan->candidate.frontend.inputs,PROJECT_INPUT_FILE,path,&changed) || changed) {
-        (void)editor_rename_fail(plan,DIAGNOSTIC_CHANGED_INPUT,"Native input changed after rename preparation",plan->target->name);
+        (void)editor_rename_fail(plan,DIAGNOSTIC_CHANGED_INPUT,"Native input changed after rename preparation",plan->target.definition);
         plan->diagnostic.subject = path;
         return false;
     }
@@ -21,7 +21,7 @@ bool editor_rename_candidate(EditorRename *plan) {
     for (const EditorRenameFile *file = plan->first; file != NULL; file = file->next) {
         const ModuleSource *source = NULL;
         if (module_catalog_find(catalog,file->original->logical_path,&source) != MODULE_OK) {
-            return editor_rename_fail(plan,DIAGNOSTIC_CHANGED_INPUT,"Rename source disappeared from its candidate",plan->target->name);
+            return editor_rename_fail(plan,DIAGNOSTIC_CHANGED_INPUT,"Rename source disappeared from its candidate",plan->target.definition);
         }
         ModuleStatus status = module_catalog_override(catalog,source,source_bytes(file->replacement),source_length(file->replacement));
         if (status != MODULE_OK) {
@@ -34,12 +34,12 @@ bool editor_rename_candidate(EditorRename *plan) {
     if (!editor_workspace_finish(&plan->candidate)) {
         plan->diagnostic = plan->candidate.diagnostic;
         if (plan->diagnostic.message == NULL) {
-            return editor_rename_fail(plan,DIAGNOSTIC_OUT_OF_MEMORY,"Rename candidate analysis allocation failed",plan->target->name);
+            return editor_rename_fail(plan,DIAGNOSTIC_OUT_OF_MEMORY,"Rename candidate analysis allocation failed",plan->target.definition);
         }
         return false;
     }
     if (project_inputs_compare(&plan->candidate.frontend.inputs,&plan->workspace->frontend.inputs) != SOURCE_OK) {
-        return editor_rename_fail(plan,DIAGNOSTIC_RENAME_CONFLICT,"Rename input snapshots could not be compared",plan->target->name);
+        return editor_rename_fail(plan,DIAGNOSTIC_RENAME_CONFLICT,"Rename input snapshots could not be compared",plan->target.definition);
     }
     for (const ModuleSource *old = plan->workspace->frontend.project.catalog.first; old != NULL; old = old->next) {
         if (old->native_loaded && (!native_input(plan,old->native_c) || !native_input(plan,old->native_header)

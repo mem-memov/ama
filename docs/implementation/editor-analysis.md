@@ -36,9 +36,10 @@ views are consumed before frontend/source storage disappears.
 | API | Result and boundary |
 | --- | --- |
 | `editor_highlights` | Production layout/lexer categories and exact source/literal spans. A temporary layout is destroyed before return; source spans survive with the snapshot. |
-| `editor_definition` | Exact checked symbol/type and original declaration spelling at a half-open byte interval. A module identity targets its source-file start; absent matches preserve the destination. |
+| `editor_binding_targets` | Every accepted original/concrete target at one source spelling, with no preferred alternative. |
+| `editor_definition` | One original declaration only when all targets agree; concrete symbol/Type fields are present only when unique. Different origins and absent matches preserve the destination. |
 | `editor_completions` | Exact names visible at an executable source point, with their checked type, reference/list shape, role and declaration. This is lexical availability, not ranked suggestions or grammar repair. |
-| `editor_signature` | Declared input/result/constant fields of an exact checked module type. Private state is not offered as an external interface. |
+| `editor_signature` | Original runtime interface fields or named static input/output interfaces. Static fields acquire no runtime ordinals; private ordinary state is excluded. |
 | `editor_operation` | Checked call metadata at its written target, including intrinsic list service/method descriptors without fabricated nominal types. |
 | `editor_binding` | Callee field/type/storage at a written label or positional marker; intrinsic fields retain their static interface descriptors. |
 | `editor_diagnostics` | First compiler error plus valid AST warnings, with original primary/related locations and explicit warning severity. Selected-source fallback inspection never duplicates warnings. |
@@ -67,21 +68,23 @@ label and receiver supply the occurrences instead. Positional transfers invent
 no named callee spelling.
 
 Each occurrence retains its exact semantic identity. Equal spellings in different
-owners or disjoint foreach scopes remain distinct. Duplicate aliases at the same
-source range must agree on identity; disagreement fails indexing rather than
-choosing a plausible target. Iterative binary-bin merge sorting costs O(R log R)
+owners or disjoint foreach scopes remain distinct. Records at the same source range are grouped, retaining every distinct actual
+target. Exact tuple duplicates merge their declaration flag; differing source
+objects for one physical source interval are an internal conflict, never guessed
+as one file. Iterative binary-bin merge sorting costs O(R log R)
 for R collected records, uses bounded nonrecursive merge administration, and
-produces deterministic physical-path/byte-range order. A final pass merges only
-identical records, preserving a declaration flag. Arena storage is O(R).
+produces deterministic physical-path/byte-range order. A final pass groups source intervals and merges only identical target tuples.
+Exact membership scans cost O(sum G²) over equal-span groups of sizes G;
+no discovery order picks a preferred target. Arena storage is O(R).
 Definition/call/binding queries scan finite retained inventories without allocation.
 
-Completions call semantic inventory predicates under
+Completions call source inventory predicates under
 [NAME-06](../../spec/language/declarations.md#name-06). Explicit module fields are
 visible throughout their module. Inferred fields appear only at their introducing
 receiver and later points. A newly introduced foreach reference is available
 only inside its body; a later same-named persistent field remains a different
-identity. Constructor source points exclude runtime locals and use the same pure
-initialization-order/constant-only predicate used by compiler diagnostics.
+identity. Constructor source points exclude runtime locals and use the compiler source inventory
+initialization order and constant-only constraints.
 No editor-specific symbol resolution or declaration-order policy is copied into
 an independent grammar/type system.
 
@@ -111,3 +114,25 @@ and is exercised through the constructor and scope cases as well as ordinary
 semantic suites. ASan/UBSan checks all editor leaves; strict full-project checking
 covers the shared lexer/semantic structures and backend consumers. Per-file cases
 and standalone headers are registered in [ready.json](documentation/ready.json).
+
+## Original static bindings and concrete contexts
+
+T192 indexes the production static inventory, source runtime fields and accepted
+normalized actual applications. Written producer paths navigate to the original
+producer; selected exports and actual foreign labels navigate to their own
+original declarations. Atomic three-dot names include all dotted/spaced parts.
+A source spelling can retain several concrete specialization owners or several
+foreign origins. `editor_binding_targets` exposes all evidence; singular
+navigation is available only for one original source range. It never selects
+the first capture. The concrete-only operation and binding APIs return unavailable
+when the module has more than one concrete context.
+
+Completion/signature visitors receive temporary `EditorDefinition` records rather
+than raw concrete symbols. Source names are available for uninstantiated ordinary
+templates and compiler-only static graphs. Ordinary lexical visibility reuses the
+compiler's original local lookup and construction order. Whole-module graph names
+remain visible forward. Callback records must be copied if retained; their borrowed
+source/metadata pointers expire with the snapshot.
+
+See [T192 contract and evidence](static-editor-bindings.md) for the index grouping,
+actual interface attribution, refusal boundaries and measured acceptance.

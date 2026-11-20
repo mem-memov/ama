@@ -9,7 +9,7 @@ static bool binding(const RenameIdentity *check, const SemanticBinding *old, con
     return old->position == fresh->position && old->reference == fresh->reference && old->list == fresh->list
         && old->transfer == fresh->transfer && old->intrinsic == fresh->intrinsic
         && old->syntax->kind == fresh->syntax->kind && old->syntax->omitted == fresh->syntax->omitted
-        && rename_same_symbol(check,old->field,fresh->field) && rename_same_type(old->type,fresh->type)
+        && rename_same_symbol(check,old->field,fresh->field) && rename_same_type(check,old->type,fresh->type)
         && rename_same_span(check,old->syntax->span,fresh->syntax->span)
         && rename_same_span(check,old->syntax->marker,fresh->syntax->marker)
         && rename_same_source(check,old->source,fresh->source) && rename_same_access(check,old->receiver,fresh->receiver);
@@ -17,7 +17,7 @@ static bool binding(const RenameIdentity *check, const SemanticBinding *old, con
 /** A selected condition retains storage/result shape and source identity rather than a coincidentally equal declared type. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 static bool selection(const RenameIdentity *check, SemanticSelection old, SemanticSelection fresh) {
     return old.reference == fresh.reference && old.list == fresh.list && old.intrinsic == fresh.intrinsic && old.position == fresh.position
-        && rename_same_type(old.type,fresh.type) && rename_same_symbol(check,old.field,fresh.field)
+        && rename_same_type(check,old.type,fresh.type) && rename_same_symbol(check,old.field,fresh.field)
         && rename_same_access(check,old.access,fresh.access);
 }
 /** New-local versus reused-reference traversal behavior is observable even when a captured candidate compiles successfully. Component contract: [CALL-08](../../../../../spec/language/calls-and-results.md#call-08), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
@@ -43,9 +43,9 @@ bool rename_same_statement(const RenameIdentity *check, const SemanticStatement 
     if (!rename_same_link(check,old,fresh) || old->empty_body != fresh->empty_body || old->negative_branch != fresh->negative_branch
         || old->operation_kind != fresh->operation_kind || old->list_method != fresh->list_method || old->transfer != fresh->transfer
         || old->intrinsic_target != fresh->intrinsic_target || old->target_reference != fresh->target_reference || old->intrinsic_result != fresh->intrinsic_result
-        || !rename_same_type(old->namespace_type,fresh->namespace_type)
-        || !rename_same_type(old->list_interface.element,fresh->list_interface.element)
-        || !rename_same_type(old->list_interface.integer,fresh->list_interface.integer)
+        || !rename_same_type(check,old->namespace_type,fresh->namespace_type)
+        || !rename_same_type(check,old->list_interface.element,fresh->list_interface.element)
+        || !rename_same_type(check,old->list_interface.integer,fresh->list_interface.integer)
         || old->list_interface.reference != fresh->list_interface.reference
         || !rename_same_link(check,old->enclosing_operation,fresh->enclosing_operation)
         || !rename_same_link(check,old->enclosing_loop,fresh->enclosing_loop)

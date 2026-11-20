@@ -1,4 +1,4 @@
 # @file
 # @brief Dispatch exact structured output transport contracts for user-facing tools.
-SUBDIRECTORIES := json
+SUBDIRECTORIES := source json
 include ../../../parent.mk

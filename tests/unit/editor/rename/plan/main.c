@@ -13,7 +13,7 @@ static void it_renames_callee_labels_in_unused_importers_without_changing_caller
     assert(main != NULL && strcmp((const char *)source_bytes(main->replacement),
         "@!\nworker\n.worker\nargument\n.cell\nworker !\n new argument < argument\n") == 0);
     assert(validate() && rename_plan.validated);
-    assert(text_is(rename_plan.target->name,"argument"));
+    assert(text_is(rename_plan.target.definition,"argument"));
     destroy_rename();
 }
 /** Qualified constant labels and declaration names change while paths/comments and another owner remain exact. */
@@ -74,7 +74,7 @@ static void it_preserves_intrinsic_labels_while_renaming_index_operands(void) {
     const EditorRenameFile *main = changed_file(".main");
     assert(main != NULL && strstr((const char *)source_bytes(main->replacement),"values[cursor] !") != NULL);
     assert(strstr((const char *)source_bytes(main->replacement),"position < ordinal") != NULL);
-    assert(text_is(rename_plan.target->name,"position"));
+    assert(text_is(rename_plan.target.definition,"position"));
     destroy_rename();
 }
 /** Prepare and revalidate hyphenated replacement names through the common

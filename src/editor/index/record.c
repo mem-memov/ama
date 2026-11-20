@@ -7,8 +7,8 @@
 #include <string.h>
 #include "../analysis/internal.h"
 /** Append one resolved spelling; the final stable merge removes only identical semantic records. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [ARCH-06](../../../spec/implementation/compiler.md#arch-06). */
-bool editor_index_add(EditorAnalysis *analysis, SourceSpan span, const SemanticSymbol *symbol,
-    const SemanticType *type, bool declaration) {
+bool editor_index_add(EditorAnalysis *analysis, EditorOccurrence value) {
+    SourceSpan span = value.spelling;
     if (span.source == NULL || span.start == span.end) { return true; }
     if (!source_span_valid(span)) { return false; }
     EditorOccurrence *record = source_arena_allocate(&analysis->arena, sizeof(*record));
@@ -16,7 +16,13 @@ bool editor_index_add(EditorAnalysis *analysis, SourceSpan span, const SemanticS
         analysis->diagnostic = (Diagnostic){.code=DIAGNOSTIC_OUT_OF_MEMORY,.message="Editor index allocation failed"};
         return false;
     }
-    *record = (EditorOccurrence){.spelling=span,.symbol=symbol,.type=type,.declaration=declaration};
+    if (value.symbol) {
+        value.original = value.symbol->original;
+        value.module = value.symbol->owner->module;
+        if (value.symbol->owner->specialization) { value.runtime = value.symbol->owner->specialization->scope->runtime; }
+    } else if (value.static_symbol) { value.module = value.static_symbol->owner->definition; }
+    *record = value;
+    record->next = record->alternatives = NULL;
     if (analysis->last == NULL) { analysis->first = record; }
     else { analysis->last->next = record; }
     analysis->last = record;
@@ -41,6 +47,16 @@ static EditorOccurrence *merge(EditorOccurrence *left, EditorOccurrence *right) 
     tail->next = left == NULL ? right : left;
     return head.next;
 }
+/** Exact duplicate evidence contributes one target, while distinct concrete
+ * symbols and distinct foreign origins remain alternatives at the same span.
+ * [COMP-02](../../../spec/implementation/compiler.md#comp-02) preserves every accepted context rather than selecting its first projection.
+ */
+static bool same_target(const EditorOccurrence *left, const EditorOccurrence *right) {
+    return left->symbol == right->symbol && left->type == right->type
+        && left->static_symbol == right->static_symbol && left->module == right->module
+        && left->original == right->original && left->runtime == right->runtime;
+}
+
 /** Binary merge bins bound stack space by size_t bit count; every record moves O(log R) times. Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04), [ARCH-06](../../../spec/implementation/compiler.md#arch-06). */
 bool editor_index_order(EditorAnalysis *analysis) {
     EditorOccurrence *bins[sizeof(size_t) * CHAR_BIT] = {0};
@@ -60,16 +76,21 @@ bool editor_index_order(EditorAnalysis *analysis) {
         analysis->first = merge(bins[level], analysis->first);
     }
     for (EditorOccurrence *record = analysis->first; record != NULL; record = record->next) {
+        EditorOccurrence *tail = record;
         while (record->next != NULL && compare(record, record->next) == 0) {
             EditorOccurrence *duplicate = record->next;
-            if (record->spelling.source != duplicate->spelling.source || record->symbol != duplicate->symbol
-                || record->type != duplicate->type) {
+            if (record->spelling.source != duplicate->spelling.source) {
                 analysis->diagnostic = (Diagnostic){.code=DIAGNOSTIC_TYPE_MISMATCH,
-                    .message="Editor index found conflicting resolved identities",.primary={.span=record->spelling}};
+                    .message="Editor index found conflicting source owners",.primary={.span=record->spelling}};
                 return false;
             }
             record->declaration = record->declaration || duplicate->declaration;
             record->next = duplicate->next;
+            duplicate->next = NULL;
+            EditorOccurrence *prior = record;
+            while (prior && !same_target(prior, duplicate)) { prior = prior->alternatives; }
+            if (prior) { prior->declaration = prior->declaration || duplicate->declaration; }
+            else { tail->alternatives = duplicate; tail = duplicate; }
         }
         analysis->last = record;
     }

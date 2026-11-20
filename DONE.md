@@ -6450,3 +6450,49 @@ T201. Specification bytes have not changed.
   No production or specification change, obsolete competing implementation or
   conformance fingerprint refresh was introduced. T196 still owns the known
   independent conformance review gate. Next ready task: T192 editor integration.
+
+<a id="t192"></a>
+
+- [x] **T192 — Integrate static bindings with editor analysis and rename.**
+  Prerequisites: T206, T207, T208, T211, T212, T184, T189.
+  Status: accepted; [contract and step record](docs/implementation/static-editor-bindings.md).
+  Rules: [COMP-01](spec/implementation/compiler.md#comp-01),
+  [NAME-06](spec/language/declarations.md#name-06),
+  [TPL-02](spec/language/templates.md#tpl-02),
+  [TPL-12](spec/language/static-results.md#tpl-12).
+  Boundary: existing editor snapshots/index/query/rename consumers of the common
+  frontend; preserve their documented transaction and failure contracts.
+  Steps: (1) index graph pairs, defining/equality receipts, free inputs, foreign
+  labels and ordinary export selectors;
+  (2) route navigation/diagnostics/rename through resolved source identities;
+  (3) exercise actual workspace queries and checked rename transactions.
+  Accept: same-spelled foreign parameters and actual signature labels do not
+  collapse; navigation/rename respect whole-graph visibility, ordinary source-
+  ordered receiver scope, full atomic names and retained captures. Preserve the
+  existing checked transaction contract when labels have multiple actual origins;
+  do not invent a rename interpretation for an unspecified case. No generated
+  specialization source file or duplicated parser.
+  Cover incomplete/error snapshots, Unicode/hyphens, stale versions and capture
+  rejection; failed transactions preserve workspace bytes.
+
+  Acceptance: original static/module/foreign-formal navigation, source signatures
+  and lexical completion retain all concrete captures without selecting a first
+  Type. Whole Unicode names, forward graph pairs, defining/equality receipts,
+  open ordinary fields and named export selectors use original source identities.
+  Checked rename now proves a full nominal-capture owner/declaration bijection
+  and all source target alternatives; multi-origin labels are refused. The shared
+  production static-name recognizer replaces duplicate declarations; the obsolete
+  typed-only visibility API and module-path-only rename proof were removed.
+  JSON diagnostics retain producer/caller contexts without failure allocations.
+
+  Strict editor/driver/parser/output consumer suites and the compiler build passed.
+  The full editor/output parents and final static rename leaf passed ASan/UBSan;
+  final static candidate acceptance refuses each of 4140 measured allocations,
+  preserving source bytes and counted teardown. LeakSanitizer remains unavailable.
+  Complete metadata/header coverage checks 3020 inputs with zero debt. Actual
+  Doxygen checks 2302 maintained file pages, 8942 interfaces and 446/446 canonical
+  destinations; regenerate after this archival prose and compare final staged
+  hashes with its manifest. Commands, probe failures, exact graph invariants and
+  lifetime/transaction limits are recorded in the linked contract. No spec or
+  conformance fingerprint changes. T196 retains the independent pre-existing
+  conformance review failure. Next ready task: T193 relocation.

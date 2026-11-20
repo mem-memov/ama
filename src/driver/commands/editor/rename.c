@@ -29,7 +29,7 @@ bool driver_editor_rename(const DriverOptions *options, const EditorRename *rena
     if (!tool_json_raw(writer,"{\"schema\":\"ama.rename.v1\",\"entry\":") || !tool_json_string(writer,options->entry)
         || !tool_json_raw(writer,",\"module\":") || !tool_json_string(writer,options->query_module)
         || !tool_json_raw(writer,",\"name\":") || !tool_source_bytes(writer,options->rename_name)
-        || !tool_json_raw(writer,",\"declaration\":") || !tool_source_span(writer,rename->target->name)
+        || !tool_json_raw(writer,",\"declaration\":") || !tool_source_span(writer,rename->target.definition)
         || !tool_json_raw(writer,",\"files\":[")) { return false; }
     bool first = true;
     for (const EditorRenameFile *value = rename->first; value != NULL; value = value->next) {

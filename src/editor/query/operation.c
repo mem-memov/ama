@@ -3,12 +3,12 @@
  * [LIST-04](../../../spec/language/lists.md#list-04) keeps intrinsic interfaces separate from module instances;
  * [COMP-02](../../../spec/implementation/compiler.md#comp-02) supplies checked IR directly.
  */
-#include "../analysis/analysis.h"
+#include "context.h"
 /** Only the written target/path interval identifies this call; enclosing binding/body ranges are not a guess. Component contract: [LIST-04](../../../spec/language/lists.md#list-04), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_operation(const EditorAnalysis *analysis, const char *module, size_t offset,
     const SemanticStatement **output) {
-    if (!analysis->indexed || output == NULL) { return false; }
-    const SemanticType *type = semantic_find_type(&analysis->frontend.semantic,module);
+    if (!analysis || !analysis->indexed || output == NULL) { return false; }
+    const SemanticType *type = editor_query_type(analysis,module);
     if (type == NULL || offset >= source_length(type->module->source->text)) { return false; }
     for (const SemanticStatement *item = type->statements; item != NULL; item = item->next) {
         if (item->syntax->kind != AST_CALL) { continue; }
@@ -25,8 +25,8 @@ bool editor_operation(const EditorAnalysis *analysis, const char *module, size_t
 /** A positional marker or written label identifies one checked interface binding, including intrinsic fields without source declarations. Component contract: [LIST-04](../../../spec/language/lists.md#list-04), [COMP-02](../../../spec/implementation/compiler.md#comp-02). */
 bool editor_binding(const EditorAnalysis *analysis, const char *module, size_t offset,
     const SemanticBinding **output) {
-    if (!analysis->indexed || output == NULL) { return false; }
-    const SemanticType *type = semantic_find_type(&analysis->frontend.semantic,module);
+    if (!analysis || !analysis->indexed || output == NULL) { return false; }
+    const SemanticType *type = editor_query_type(analysis,module);
     if (type == NULL || offset >= source_length(type->module->source->text)) { return false; }
     for (const SemanticStatement *item = type->statements; item != NULL; item = item->next) {
         for (const SemanticBinding *binding = item->bindings; binding != NULL; binding = binding->next) {

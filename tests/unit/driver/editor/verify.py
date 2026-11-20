@@ -50,5 +50,33 @@ elif mode == "draft":
 elif mode == "invalid":
     assert value["state"] == "invalid" and value["diagnostics"]
     assert value["signature"]["available"] is False and value["point"]["definition"] is None
+elif mode == "static-interface":
+    assert value["state"] == "complete" and value["signature"]["available"]
+    assert value["signature"]["parameters"] == []
+    results = value["signature"]["results"]
+    assert {item["name"]["utf8"] for item in results} == {"...left", "...right"}
+    assert all(item["role"] == "type-result" for item in results)
+    declaration = value["point"]["definition"]
+    assert declaration["declaration"]["path"]["utf8"].endswith("/box")
+    assert declaration["symbol"]["name"]["utf8"] == "...slot"
+    assert declaration["symbol"]["role"] == "type-parameter"
+    assert declaration["type"] is None
+elif mode == "capture-source":
+    assert value["state"] == "complete" and value["signature"]["available"]
+    parameters = value["signature"]["parameters"]
+    assert len(parameters) == 1 and parameters[0]["name"]["utf8"] == "value"
+    assert parameters[0]["type"] is None and parameters[0]["position"] == "0"
+    declaration = value["point"]["definition"]
+    assert declaration["symbol"]["name"]["utf8"] == "value"
+    assert declaration["symbol"]["type"] is None and declaration["type"] is None
+    assert declaration["declaration"]["path"]["utf8"].endswith("/box")
+elif mode == "static-related":
+    assert value["state"] == "invalid" and not value["signature"]["available"]
+    assert value["point"]["definition"] is None
+    related = value["diagnostics"][0]["related"]
+    callers = [item for item in related if item["role"] == "ordinary declaration requiring this static export"]
+    assert len(callers) == 1
+    assert callers[0]["location"]["span"]["path"]["utf8"].endswith("/main")
+    assert callers[0]["location"]["span"]["line"] == "4"
 else:
     raise AssertionError(mode)

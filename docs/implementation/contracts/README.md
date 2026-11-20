@@ -304,3 +304,6 @@ records T190's accepted concrete capability, typed-interface and lifecycle check
 
 The [template source delivery contract](../template-source-delivery.md) records
 T191's accepted separate-root execution and exact invalidation checks.
+
+The [static editor binding contract](../static-editor-bindings.md) records T192's
+active original-source navigation and checked-rename integration.

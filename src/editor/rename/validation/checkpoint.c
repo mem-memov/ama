@@ -47,7 +47,7 @@ bool editor_rename_checkpoint(EditorRename *plan) {
     plan->source_count = count;
     return true;
 changed:
-    return editor_rename_fail(plan,DIAGNOSTIC_CHANGED_INPUT,"Workspace source inventory or bytes changed after rename preparation",plan->target->name);
+    return editor_rename_fail(plan,DIAGNOSTIC_CHANGED_INPUT,"Workspace source inventory or bytes changed after rename preparation",plan->target.definition);
 memory:
-    return editor_rename_fail(plan,DIAGNOSTIC_OUT_OF_MEMORY,"Rename source checkpoint allocation failed",plan->target->name);
+    return editor_rename_fail(plan,DIAGNOSTIC_OUT_OF_MEMORY,"Rename source checkpoint allocation failed",plan->target.definition);
 }

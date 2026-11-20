@@ -69,14 +69,32 @@ static bool render(EditorRename *plan, EditorRenameFile *file) {
     allocator.release(allocator.context,buffer.bytes);
     return status == SOURCE_OK;
 }
+/** Every target at an edited spelling must denote the one selected source
+ * declaration. A shared label with another actual origin cannot be renamed as
+ * a single declaration without changing that other binding.
+ * [ARCH-06](../../../../spec/implementation/compiler.md#arch-06) preserves the existing one-declaration alpha-renaming contract.
+ */
+static bool selected(const EditorRename *plan, const EditorOccurrence *item) {
+    return plan->target.static_symbol ? item->static_symbol == plan->target.static_symbol
+        : plan->target.original && item->original == plan->target.original;
+}
+
 /** A same-name request is an explicit no-op. Equal text belonging to other identities never enters the edit set. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [ARCH-06](../../../../spec/implementation/compiler.md#arch-06). */
 bool editor_rename_files(EditorRename *plan) {
-    SourceSpan old = plan->target->name;
+    SourceSpan old = plan->target.definition;
     size_t length = old.end-old.start;
     if (length == plan->name.end-plan->name.start
         && memcmp(source_bytes(old.source)+old.start,source_bytes(plan->name.source)+plan->name.start,length) == 0) { return true; }
     for (const EditorOccurrence *item = plan->workspace->first; item != NULL; item = item->next) {
-        if (item->symbol == plan->target && !occurrence(plan,item->spelling)) { goto failed; }
+        bool matches = false, other = false;
+        for (const EditorOccurrence *target = item; target; target = target->alternatives) {
+            if (selected(plan,target)) { matches = true; } else { other = true; }
+        }
+        if (matches && other) {
+            return editor_rename_fail(plan,DIAGNOSTIC_RENAME_CONFLICT,
+                "Rename label has more than one original declaration",item->spelling);
+        }
+        if (matches && !occurrence(plan,item->spelling)) { goto failed; }
     }
     for (EditorRenameFile *file = plan->first; file != NULL; file = file->next) {
         if (!render(plan,file)) { goto failed; }

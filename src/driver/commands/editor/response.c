@@ -11,9 +11,9 @@ bool driver_editor_item(DriverEditorArray *array) {
     return array->writer->status == TOOL_JSON_OK;
 }
 /** Callback borrows the declaration only for this synchronous emission. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
-bool driver_editor_symbol(void *context, const SemanticSymbol *symbol) {
+bool driver_editor_symbol(void *context, const EditorDefinition *symbol) {
     DriverEditorArray *array = context;
-    return driver_editor_item(array) && tool_source_symbol(array->writer,symbol);
+    return driver_editor_item(array) && driver_editor_declaration(array->writer,symbol);
 }
 /** Error/warning ordering remains the analysis API's original deterministic order. Component contract: [COMP-02](../../../../spec/implementation/compiler.md#comp-02). */
 static bool diagnostic(void *context, const Diagnostic *value, bool warning) {
@@ -34,7 +34,7 @@ static bool highlight(void *context, const EditorHighlight *value) {
 static bool signature(const DriverOptions *options, const EditorAnalysis *analysis, ToolJsonWriter *writer) {
     const char *names[] = {"constants","parameters","results"};
     const SymbolRole roles[] = {SYMBOL_CONSTANT,SYMBOL_PARAMETER,SYMBOL_RESULT};
-    bool available = analysis->indexed && semantic_find_type(&analysis->frontend.semantic,options->query_module) != NULL;
+    bool available = analysis->indexed && project_find(&analysis->frontend.project,options->query_module) != NULL;
     if (!tool_json_raw(writer,"{\"available\":") || !tool_json_boolean(writer,available)) { return false; }
     for (size_t index = 0; index < sizeof(roles)/sizeof(*roles); index++) {
         DriverEditorArray array = {writer,true};

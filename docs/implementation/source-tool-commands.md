@@ -141,3 +141,19 @@ versioned document service. T115 composes those services with real project build
 
 Per-file cases, header checks and final task evidence belong in
 [ready.json](documentation/ready.json) and [TODO.md](../../TODO.md).
+
+## Static and captured source observations
+
+T192 exposes named static inputs/results/aliases with source declaration locations,
+static category and owning module. It invents no runtime position for them.
+An ordinary source field used under several concrete captures retains its original
+shape and source role; its concrete Type is null when contexts disagree. Unique
+ordinary-symbol JSON retains its established fields. A static producer remains a
+source module, never the ordinary Type it exports. Diagnostics serialize both
+flat related notes and persistent producer/caller context notes in renderer order.
+
+Source completion/signature and source rename remain available without a unique
+concrete runtime owner. Raw operation/binding metadata requires one concrete owner;
+multi-origin singular definitions and affected single-origin rename plans are
+refused. See [editor analysis](editor-analysis.md) and
+[rename preservation](editor-rename.md) for precise ownership and transactions.

@@ -5,7 +5,9 @@
 /** Bounded observations retain checked symbols rather than guessing names from displayed text. */
 typedef struct { const SemanticSymbol *items[64]; size_t count; bool stop; } Symbols;
 /** Record deterministic finite metadata, optionally ending enumeration after its first result. */
-static bool collect(void *context, const SemanticSymbol *field) {
+static bool collect(void *context, const EditorDefinition *definition) {
+    const SemanticSymbol *field = definition->symbol;
+    assert(field);
     Symbols *symbols = context;
     assert(symbols->count < sizeof(symbols->items)/sizeof(*symbols->items));
     symbols->items[symbols->count++] = field;

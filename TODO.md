@@ -196,7 +196,9 @@ full-owner constant identities and checked startup/cleanup composition.
 execution. [T189](DONE.md#t189) supplies original-source diagnostics through
 static normalization and compiled execution. [T190](DONE.md#t190) validates concrete
 native/template compositions. [T191](DONE.md#t191) validates source delivery and
-exact invalidation. T192 is next: editor binding and rename integration.
+exact invalidation. [T192](DONE.md#t192) supplies original static editor bindings,
+full captured-owner rename proofs and checked source transactions. T193 is next:
+source directory relocation.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -224,29 +226,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 6. Lower and execute concrete programs
 
 ### Phase 7. Connect product consumers and algorithm examples
-
-<a id="t192"></a>
-
-- [ ] **T192 — Integrate static bindings with editor analysis and rename.**
-  Prerequisites: T206, T207, T208, T211, T212, T184, T189.
-  Rules: [COMP-01](spec/implementation/compiler.md#comp-01),
-  [NAME-06](spec/language/declarations.md#name-06),
-  [TPL-02](spec/language/templates.md#tpl-02),
-  [TPL-12](spec/language/static-results.md#tpl-12).
-  Boundary: existing editor snapshots/index/query/rename consumers of the common
-  frontend; preserve their documented transaction and failure contracts.
-  Steps: (1) index graph pairs, defining/equality receipts, free inputs, foreign
-  labels and ordinary export selectors;
-  (2) route navigation/diagnostics/rename through resolved source identities;
-  (3) exercise actual workspace queries and checked rename transactions.
-  Accept: same-spelled foreign parameters and actual signature labels do not
-  collapse; navigation/rename respect whole-graph visibility, ordinary source-
-  ordered receiver scope, full atomic names and retained captures. Preserve the
-  existing checked transaction contract when labels have multiple actual origins;
-  do not invent a rename interpretation for an unspecified case. No generated
-  specialization source file or duplicated parser.
-  Cover incomplete/error snapshots, Unicode/hyphens, stale versions and capture
-  rejection; failed transactions preserve workspace bytes.
 
 <a id="t193"></a>
 

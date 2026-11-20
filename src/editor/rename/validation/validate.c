@@ -19,7 +19,7 @@ bool editor_rename_validate(EditorRename *plan) {
     if (!editor_workspace_configuration(&plan->candidate,plan->workspace->roots,plan->workspace->root_count,plan->workspace->entry)) {
         plan->diagnostic = plan->candidate.diagnostic;
         if (plan->diagnostic.message == NULL) {
-            return editor_rename_fail(plan,DIAGNOSTIC_OUT_OF_MEMORY,"Rename candidate configuration allocation failed",plan->target->name);
+            return editor_rename_fail(plan,DIAGNOSTIC_OUT_OF_MEMORY,"Rename candidate configuration allocation failed",plan->target.definition);
         }
         return false;
     }
@@ -35,7 +35,7 @@ bool editor_rename_publish(EditorRename *plan, EditorRenameWriter writer, void *
     if (plan->first == NULL) { return true; }
     if (!editor_rename_validate(plan)) { return false; }
     if (!writer(context,plan->first)) {
-        return editor_rename_fail(plan,DIAGNOSTIC_IO_FAILURE,"Rename document transaction was rejected",plan->target->name);
+        return editor_rename_fail(plan,DIAGNOSTIC_IO_FAILURE,"Rename document transaction was rejected",plan->target.definition);
     }
     return true;
 }

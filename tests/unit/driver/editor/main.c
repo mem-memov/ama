@@ -57,6 +57,52 @@ static void it_exposes_checked_unicode_snapshots_and_versioned_rename_plans(void
     verify("rename","generated/rename.json");
     unchanged();
 }
+/** Static interfaces and multi-capture source variables retain original source
+ * metadata in actual CLI JSON, without choosing one concrete parameter Type. */
+static void it_reports_static_source_definitions_and_ambiguous_capture_metadata(void) {
+    const char *box = "@<\nvalue\n...slot\n@>\nresult\n...slot\n value\n@!\nresult\n value\n";
+    const char *factory = "@...\n...left\n.box\n ...slot < .left\n...right\n.box\n ...slot < .right\n";
+    write_file("generated/project/main", "@!\nfirst\n.factory\n ...left\nsecond\n.factory\n ...right\n");
+    write_file("generated/project/left", "@!\n");
+    write_file("generated/project/right", "@!\n");
+    write_file("generated/project/box", box);
+    write_file("generated/project/factory", factory);
+    const char *modules[] = {".factory", ".box"};
+    const char *modes[] = {"static-interface", "capture-source"};
+    const char *sources[] = {factory, box};
+    const char *needles[] = {"...slot <", "value"};
+    for (size_t index = 0; index < 2; index++) {
+        const char *found = strstr(sources[index], needles[index]);
+        assert(found);
+        char offset[64];
+        assert(snprintf(offset,sizeof(offset),"%zu",(size_t)(found-sources[index])) > 0);
+        char *arguments[] = {"ama","--editor","generated/project",".main","--module",(char *)modules[index],"--offset",offset};
+        FILE *output = fopen("generated/static-editor.json","wb"), *errors = tmpfile();
+        assert(output && errors);
+        assert(driver_run(8,arguments,output,errors) == EXIT_SUCCESS);
+        assert(fclose(output) == 0 && fclose(errors) == 0);
+        verify(modes[index],"generated/static-editor.json");
+    }
+    write_file("generated/project/main",original);
+    const char *files[] = {"generated/project/left","generated/project/right","generated/project/box","generated/project/factory"};
+    for (size_t index = 0; index < sizeof(files)/sizeof(files[0]); index++) { assert(unlink(files[index]) == 0); }
+}
+
+/** Failure snapshots must preserve compiler-owned source attribution even
+ * when no checked runtime fields or editor index can be published. */
+static void it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots(void) {
+    write_file("generated/project/main", "@!\nvalue\n.factory\n ...out\n");
+    write_file("generated/project/factory", "@...\n...out\n...missing\n");
+    char *arguments[] = {"ama","--editor","generated/project",".main","--offset","4"};
+    FILE *output = fopen("generated/static-error.json","wb"), *errors = tmpfile();
+    assert(output && errors);
+    assert(driver_run(6,arguments,output,errors) == EXIT_SUCCESS);
+    assert(fclose(output) == 0 && fclose(errors) == 0);
+    verify("static-related","generated/static-error.json");
+    write_file("generated/project/main",original);
+    assert(unlink("generated/project/factory") == 0);
+}
+
 /** Intentionally incomplete/invalid source exposes lexical observations and explicit state, never guessed semantic metadata. */
 static void it_reports_draft_and_invalid_source_without_fabricating_definitions(void) {
     const char *bodies[] = {"multi word # trailing\r\n # indented\r\n|#  literal  \r\n", "@!\nvalue\n"};
@@ -185,6 +231,8 @@ static void it_refuses_output_failure_without_applying_any_document_changes(void
 /** Each independent source-tool effect and refusal is explicit in the C harness. */
 void run(void) {
     it_exposes_checked_unicode_snapshots_and_versioned_rename_plans();
+    it_reports_static_source_definitions_and_ambiguous_capture_metadata();
+    it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots();
     it_reports_draft_and_invalid_source_without_fabricating_definitions();
     it_exposes_nominal_intrinsic_and_related_diagnostic_metadata();
     it_refuses_invalid_names_and_outside_source_offsets();

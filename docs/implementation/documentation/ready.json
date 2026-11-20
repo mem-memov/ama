@@ -13867,6 +13867,41 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -106754,6 +106789,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -106886,6 +106926,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -107018,6 +107068,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -107084,6 +107169,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ],
     "standalone_header_command": [
@@ -107326,6 +107446,51 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_reports_static_source_definitions_and_ambiguous_capture_metadata",
+        "command": "make -C tests/unit/driver/editor"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots",
+        "command": "make -C tests/unit/driver/editor"
       }
     ],
     "standalone_header_command": [
@@ -107473,6 +107638,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -107539,6 +107714,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -107605,6 +107815,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -107917,6 +108162,41 @@
         "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
         "command": "make -C tests/unit/editor/rename/composition",
         "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -108795,6 +109075,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ],
     "standalone_header_command": [
@@ -108916,6 +109231,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -109022,6 +109372,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -109234,6 +109619,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -109340,6 +109760,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -109446,6 +109901,46 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_forward_graph_bindings_and_defining_and_equality_receipts",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -109552,6 +110047,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -109764,6 +110294,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -109870,6 +110435,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -109976,6 +110576,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -110082,6 +110717,46 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_forward_graph_bindings_and_defining_and_equality_receipts",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ],
     "standalone_header_command": [
@@ -110203,6 +110878,41 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -110452,6 +111162,41 @@
         "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
         "command": "make -C tests/unit/editor/rename/composition",
         "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -110483,6 +111228,41 @@
         "case": "it_rejects_changed_source_inventory_and_bytes_before_candidate_application",
         "command": "make -C tests/unit/editor/rename/validation",
         "source": "tests/unit/editor/rename/validation/main.c"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -110545,6 +111325,41 @@
         "case": "it_rejects_changed_native_companion_inputs_before_source_publication",
         "command": "make -C tests/unit/editor/rename/composition",
         "source": "tests/unit/editor/rename/composition/main.c"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -110617,6 +111432,41 @@
         "source": "tests/unit/editor/rename/plan/main.c",
         "case": "it_renames_to_hyphenated_complete_names_without_changing_other_bytes",
         "command": "make -C tests/unit/editor/rename/plan"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -122927,6 +123777,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_reports_static_source_definitions_and_ambiguous_capture_metadata",
+        "command": "make -C tests/unit/driver/editor"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots",
+        "command": "make -C tests/unit/driver/editor"
       }
     ],
     "standalone_header_command": [
@@ -123008,6 +123868,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_reports_static_source_definitions_and_ambiguous_capture_metadata",
+        "command": "make -C tests/unit/driver/editor"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots",
+        "command": "make -C tests/unit/driver/editor"
       }
     ]
   },
@@ -123140,6 +124010,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_reports_static_source_definitions_and_ambiguous_capture_metadata",
+        "command": "make -C tests/unit/driver/editor"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots",
+        "command": "make -C tests/unit/driver/editor"
       }
     ]
   },
@@ -123488,6 +124368,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_preserves_flat_and_context_diagnostic_attribution_without_failure_allocations",
+        "command": "make -C tests/unit/tools/output/source"
+      },
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_refuses_cyclic_or_invalid_diagnostics_before_any_output",
+        "command": "make -C tests/unit/tools/output/source"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots",
+        "command": "make -C tests/unit/driver/editor"
       }
     ]
   },
@@ -124088,6 +124983,16 @@
         "case": "it_reports_refused_process_requests_without_partial_plans",
         "command": "make -C tests/integration/tools/source",
         "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_reports_static_source_definitions_and_ambiguous_capture_metadata",
+        "command": "make -C tests/unit/driver/editor"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots",
+        "command": "make -C tests/unit/driver/editor"
       }
     ]
   },
@@ -124149,6 +125054,16 @@
         "case": "it_reports_refused_process_requests_without_partial_plans",
         "command": "make -C tests/integration/tools/source",
         "source": "tests/integration/tools/source/main.c"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_reports_static_source_definitions_and_ambiguous_capture_metadata",
+        "command": "make -C tests/unit/driver/editor"
+      },
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_preserves_static_producer_caller_attribution_in_invalid_editor_snapshots",
+        "command": "make -C tests/unit/driver/editor"
       }
     ]
   },
@@ -124246,6 +125161,16 @@
         "case": "it_retains_write_and_flush_failures_without_closing_streams",
         "command": "make -C tests/unit/tools/output/json",
         "source": "tests/unit/tools/output/json/main.c"
+      },
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_preserves_flat_and_context_diagnostic_attribution_without_failure_allocations",
+        "command": "make -C tests/unit/tools/output/source"
+      },
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_refuses_cyclic_or_invalid_diagnostics_before_any_output",
+        "command": "make -C tests/unit/tools/output/source"
       }
     ]
   },
@@ -126510,6 +127435,41 @@
         "case": "it_unwinds_every_current_graph_and_selector_parse_allocation_failure",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
       }
     ]
   },
@@ -158933,6 +159893,56 @@
         "source": "tests/unit/semantic/static/connections/constants/main.c",
         "case": "it_reports_new_transfer_proof_even_when_another_consumer_supplied_all_equations",
         "command": "make -C tests/unit/semantic/static/connections/constants"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ],
     "standalone_header_command": [
@@ -168729,6 +169739,698 @@
         "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
         "command": "make -C tests/unit/codegen/source-delivery"
       }
+    ]
+  },
+  "tests/unit/editor/static-bindings/main.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Require original static definitions while preserving distinct concrete captures.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "tests/unit/editor/static-bindings/Makefile": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Build actual editor static binding navigation against the common frontend.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "src/editor/index/static/source.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Index original static definitions, module heads and exact known foreign labels from the accepted inventory.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "src/editor/index/runtime/source.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Retain lexical declarations and uses independently of concrete specialization inventory.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_static_paths_exports_and_parameter_labels_to_original_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_original_declarations_across_multiple_concrete_captures",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings"
+      }
+    ]
+  },
+  "src/editor/query/context.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Refuse singular typed observations when a source module has several capture contexts.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "src/editor/query/context.h": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Select a concrete editor context only when one actual Type exists.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/editor/index/static/labels.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Retain actual named binding origins from all accepted static interface contexts.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "src/semantic/static/connections/runtime/fields/visibility.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Expose source lexical and construction visibility independently of concrete Types.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields",
+        "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_excludes_uninitialized_constructor_fields_without_mutating_semantic_diagnostics",
+        "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
+        "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "src/driver/commands/editor/declaration.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Describe original ordinary or static declarations without manufacturing a specialization.",
+    "tests": [
+      {
+        "source": "tests/unit/driver/editor/main.c",
+        "case": "it_reports_static_source_definitions_and_ambiguous_capture_metadata",
+        "command": "make -C tests/unit/driver/editor"
+      }
+    ]
+  },
+  "tests/unit/editor/static-bindings/support/completions.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Observe source runtime and graph interfaces independently of capture variants.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_source_interfaces_without_selecting_the_first_capture",
+        "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_enumerates_whole_graph_static_results_without_runtime_slots",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "tests/unit/editor/static-bindings/support/operations.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Refuse singular concrete operation metadata across multiple captured contexts.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "tests/unit/editor/static-bindings/support/foreign.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Distinguish shared labels from their actual higher-order constructor formal origins.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_retains_multiple_actual_foreign_formal_origins_without_choosing_one",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "tests/unit/editor/static-bindings/support/names.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Preserve Unicode atomic graph names and first definitions across equality receipts.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
+        "command": "make -C tests/unit/editor/static-bindings"
+      }
+    ]
+  },
+  "tests/unit/tools/output/source/main.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Verify full diagnostic JSON attribution and refusal before invalid partial output.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_preserves_flat_and_context_diagnostic_attribution_without_failure_allocations",
+        "command": "make -C tests/unit/tools/output/source"
+      },
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_refuses_cyclic_or_invalid_diagnostics_before_any_output",
+        "command": "make -C tests/unit/tools/output/source"
+      }
+    ]
+  },
+  "tests/unit/tools/output/source/Makefile": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Check source diagnostic JSON against independent decoding and original locations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_preserves_flat_and_context_diagnostic_attribution_without_failure_allocations",
+        "command": "make -C tests/unit/tools/output/source"
+      },
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_refuses_cyclic_or_invalid_diagnostics_before_any_output",
+        "command": "make -C tests/unit/tools/output/source"
+      }
+    ]
+  },
+  "tests/unit/tools/output/source/verify.py": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Independently decode full diagnostic attribution and Unicode source coordinates.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/output/source/main.c",
+        "case": "it_preserves_flat_and_context_diagnostic_attribution_without_failure_allocations",
+        "command": "make -C tests/unit/tools/output/source"
+      }
+    ]
+  },
+  "src/editor/rename/validation/identity/types.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Preserve original static bindings and complete concrete specialization identities during exact source rename.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_forward_graph_bindings_and_defining_and_equality_receipts",
+        "command": "make -C tests/unit/editor/rename/static"
+      }
+    ]
+  },
+  "src/editor/rename/validation/identity/occurrences.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Preserve original static bindings and complete concrete specialization identities during exact source rename.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_forward_graph_bindings_and_defining_and_equality_receipts",
+        "command": "make -C tests/unit/editor/rename/static"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/static/main.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Preserve original static bindings and complete concrete specialization identities during exact source rename.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_forward_graph_bindings_and_defining_and_equality_receipts",
+        "command": "make -C tests/unit/editor/rename/static"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/static/support/refusals.c": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Preserve original static bindings and complete concrete specialization identities during exact source rename.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
+      }
+    ]
+  },
+  "tests/unit/editor/rename/static/Makefile": {
+    "contract": "docs/implementation/static-editor-bindings.md",
+    "purpose": "Preserve original static bindings and complete concrete specialization identities during exact source rename.",
+    "tests": [
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_forward_graph_bindings_and_defining_and_equality_receipts",
+        "command": "make -C tests/unit/editor/rename/static"
+      }
+    ]
+  },
+  "src/parser/static/names.h": {
+    "contract": "docs/implementation/syntax-tree.md",
+    "purpose": "Share the one production recognizer for complete three-dot static names with exact editor rename validation.",
+    "tests": [
+      {
+        "case": "it_recognizes_atomic_static_names_without_module_lookup",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_keeps_simple_ordinary_type_pairs_and_export_initializers",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_obeys_graph_comment_regions_and_does_not_reopen_closed_children",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_parses_deep_input_only_values_without_c_recursion",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_preserves_named_pairs_partial_values_and_multiple_producer_outputs",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_rejects_old_static_forms_and_invalid_graph_modes",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_selects_constant_namespaces_without_ordinary_static_applications",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "case": "it_unwinds_every_current_graph_and_selector_parse_allocation_failure",
+        "command": "make -C tests/unit/parser/static",
+        "source": "tests/unit/parser/static/main.c"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_one_original_field_across_distinct_specializations",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_static_formals_and_their_actual_constructor_labels",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_named_graph_outputs_and_ordinary_selection_sites",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_incomplete_or_malformed_static_replacement_names",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_uninstantiated_template_fields_without_fabricating_runtime_types",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_unwinds_every_static_candidate_correspondence_allocation",
+        "command": "make -C tests/unit/editor/rename/static"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   }
 }

@@ -4,6 +4,7 @@
  * [NAME-04](../../../../spec/language/declarations.md#name-04) forbids storage suffix overloading.
  */
 #include "../internal.h"
+#include "parser/static/names.h"
 /** Name validation never trims, normalizes, appends a suffix or interprets embedded punctuation as code. Component contract: [SYN-06](../../../../spec/language/source-and-names.md#syn-06), [NAME-04](../../../../spec/language/declarations.md#name-04). */
 bool editor_rename_name(EditorRename *plan, const unsigned char *bytes, size_t length) {
     const SourceText *source = NULL;
@@ -22,7 +23,12 @@ bool editor_rename_name(EditorRename *plan, const unsigned char *bytes, size_t l
     if (!valid) { return false; }
     SourceSpan full = {source,0,length}, name = {0};
     size_t cursor = 0;
-    if (!lex_name(full,&cursor,&name) || cursor != length || name.start != 0 || name.end != length) {
+    if (plan->target.static_symbol) {
+        if (!parser_static_name(full)) {
+            return editor_rename_fail(plan,DIAGNOSTIC_SYNTAX,"Replacement must be one complete three-dot static name",full);
+        }
+        name = full;
+    } else if (!lex_name(full,&cursor,&name) || cursor != length || name.start != 0 || name.end != length) {
         return editor_rename_fail(plan,DIAGNOSTIC_SYNTAX,"Replacement must be one complete Ama base name",full);
     }
     plan->name = name;

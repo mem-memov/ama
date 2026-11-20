@@ -21,7 +21,7 @@ static void it_rejects_invalid_complete_names_without_preparing_source_edits(voi
     editor_rename_init(&rename_plan,sources.allocator);
     const unsigned char nul[] = {'n',0,'x'};
     assert(!editor_rename_prepare(&rename_plan,&analysis,".main",offset,nul,sizeof(nul)));
-    assert(rename_plan.diagnostic.code == DIAGNOSTIC_SYNTAX && text_is(rename_plan.target->name,"value"));
+    assert(rename_plan.diagnostic.code == DIAGNOSTIC_SYNTAX && text_is(rename_plan.target.definition,"value"));
     destroy_rename();
 }
 /** A duplicate module namespace entry fails the actual compiler, not an editor spelling heuristic. */

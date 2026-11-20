@@ -45,6 +45,16 @@ const StaticRuntimeField *static_runtime_local(const StaticRuntimeModule *, Sour
  * [TYPE-06](../../../../spec/language/declarations.md#type-06) hoists explicit lookup independently of encounters.
  */
 const StaticRuntimeField *static_runtime_declaration(const StaticRuntimeModule *, const AstNode *);
+/** Find the original field whose actual initializer source contains a byte point.
+ * [NAME-06](../../../../spec/language/declarations.md#name-06) separates construction-time and body scope without a concrete instance.
+ */
+const StaticRuntimeField *static_runtime_initializing_at(const StaticRuntimeModule *, size_t);
+/** Inspect source field availability using accepted lexical scope and original
+ * construction order. Inputs borrow one accepted module; no mutation/allocation.
+ * [NAME-06](../../../../spec/language/declarations.md#name-06) preserves explicit, inferred and foreach visibility before Type substitution.
+ */
+bool static_runtime_available(const StaticRuntimeModule *, const StaticRuntimeField *, SourceSpan, const StaticRuntimeField *);
+
 /** Collect all explicit runtime declarations before processing any variable use.
  * [TYPE-06](../../../../spec/language/declarations.md#type-06) forbids late inferred shadowing.
  */

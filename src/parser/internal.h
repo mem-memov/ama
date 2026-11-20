@@ -8,6 +8,7 @@
 #ifndef AMA_PARSER_INTERNAL_H
 #define AMA_PARSER_INTERNAL_H
 
+#include "static/names.h"
 #include "ast/ast.h"
 #include "ast/static.h"
 #include "lexer/tokens/tokens.h"
@@ -53,11 +54,7 @@ void parser_skip_layout(Parser *parser);
 /** Test a complete Project/Standard root path span without mutation, trimming or registry lookup.
  * Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01). */
 bool parser_path(SourceSpan text);
-/** Recognize one complete three-dot-prefixed static name without lookup.
- * Component contract: [TPL-01](../../spec/language/templates.md#tpl-01)
- * treats the whole dotted spelling as an atomic scoped name, not a module path.
- */
-bool parser_static_name(SourceSpan);
+
 /** Parse one static expression from the current physical head line and its
  * exact child binding region; publish only a complete AST-owned tree.
  * Component contract: [TPL-12](../../spec/language/static-results.md#tpl-12)
