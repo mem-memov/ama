@@ -14,10 +14,10 @@ contract, and commit the completed task before beginning the next one. Follow
 prerequisites and presentation order rather than numeric ID order.
 
 [Completed tasks and acceptance evidence](DONE.md) belong in DONE.md. Keep
-unfinished work here. Once all required checks pass, move the complete task
-record to DONE.md in the same commit as its implementation, tests, documentation
+selected unfinished work here; future proposals belong in [BACKLOG.md](BACKLOG.md).
+Once all required checks pass, move the complete task record to DONE.md in the same commit as its implementation, tests, documentation
 and queue update. Do not discard decisions, failed-run facts or limitations.
-Allocate IDs across both files; preserve old IDs and never reuse them.
+Allocate IDs across TODO, BACKLOG and DONE; preserve old IDs and never reuse them.
 
 Use the [development standard](docs/development/README.md) and its
 [task record template](docs/development/task-template.md). A task needs an
@@ -73,7 +73,9 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies the marker notation. The next unused task ID is
-**T223**. T221 and T222 are planned below; implementation has not been requested.
+**T224**. T221 is planned below; implementation has not been requested.
+[T222](BACKLOG.md#t222) and [T223](BACKLOG.md#t223) are backlog items awaiting
+future design or implementation authorization.
 
 <a id="t221"></a>
 
@@ -93,29 +95,6 @@ belong to each affected task's acceptance, not a compatibility layer.
   then pass current conformance and documentation gates. The T196/T197 matrix
   remains an earlier accepted baseline until this alignment; do not refresh
   fingerprints merely to make its newer-specification refusal disappear.
-
-<a id="t222"></a>
-
-- [ ] **T222 — Require a space after the reference-formation operator.**
-  Status: backlog only; recorded from the user's 2026-11-20 request. No
-  specification or implementation change is authorized by this backlog entry.
-  Prerequisites: none; independent of T221.
-  Desired spelling: exactly one ASCII space between prefix `&` and its owned
-  operand: `& item`, `& items[position]`, and `input& < & item`.
-  The reference suffix stays adjoining (`target&`); standalone self-reference
-  `&` has no operand and gains no trailing space. Reference semantics stay intact.
-  Current contracts still require the joined prefix under
-  [REF-01](spec/language/values-and-references.md#ref-01),
-  [SYN-06](spec/language/source-and-names.md#syn-06) and the
-  [grammar](spec/grammar.md#accesses-and-sources).
-  Steps when separately authorized: align those rules, examples and acceptance
-  scenarios; update recognition and affected source tools/fixtures using source
-  structure, preserving literal/comment data; document and verify the change.
-  Accept: test one-space formation with simple, multiword and indexed operands;
-  reject joined operands, repeated spaces, TAB and a line break in place of the
-  separator. Preserve suffix/self-reference parsing and all reference behavior.
-  Complete component/composition, source-tool and conformance/documentation
-  checks before marking this language change implemented.
 
 ## Next sprint discussion
 

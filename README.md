@@ -20,9 +20,9 @@ The [release guide](docs/implementation/conformance/release.md) gives reproducib
 commands, supported configurations and the limits of that evidence.
 [Executable examples](docs/implementation/examples.md) and
 [generic list algorithms](examples/template-lists/README.md) show supported workflows;
-[TODO.md](TODO.md) lists active work; [DONE.md](DONE.md) preserves completed tasks
-and their acceptance evidence. The
-[audit](docs/implementation/audit/README.md) describes the original implementation
+[TODO.md](TODO.md) lists selected work; [BACKLOG.md](BACKLOG.md) holds future
+proposals; [DONE.md](DONE.md) preserves completed tasks and their acceptance
+evidence. The [audit](docs/implementation/audit/README.md) describes the original implementation
 before its replacement and is historical evidence.
 `./ama --check ROOT .module` validates dependencies, syntax, types and typed plans without emitting or
 compiling C. `./ama --status ROOT .module` reports source activation without
@@ -74,7 +74,8 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
 - [Standard library](stdlib/README.md): library boundaries and native companions.
 - [Executable examples](docs/implementation/examples.md): stateful methods, self-reference,
   live list mutation, independent continuations and owned file-operation failures.
-- [Implementation backlog](TODO.md): remaining engineering and verification work.
+- [Work queue](TODO.md): selected engineering and verification tasks.
+- [Product backlog](BACKLOG.md): future changes and open design questions.
 - [Completed work](DONE.md): task history, decisions and acceptance evidence.
 
 ## Language outline

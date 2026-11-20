@@ -34,8 +34,11 @@ checkbox was copied. Keep IDs stable when splitting or reordering work; allocate
 new IDs for independently accepted follow-up tasks. Preserve historical results
 as dated/task-specific evidence rather than presenting old counts as current.
 
-Keep active tasks in [TODO.md](../../TODO.md), completed task records in
-[DONE.md](../../DONE.md), and allocate IDs across both files without reuse.
+Keep future proposals in [BACKLOG.md](../../BACKLOG.md), selected active tasks
+in [TODO.md](../../TODO.md), and completed task records in [DONE.md](../../DONE.md).
+A backlog entry does not authorize implementation or specification changes.
+Move an agreed item into TODO with its existing ID and decisions, without
+duplicating its record. Allocate IDs across all three files without reuse.
 Once acceptance passes, move the complete task record to DONE in the same commit
 that updates the queue and delivers its work. Preserve its dependencies, decisions,
 results and limitations. Do not archive unfinished tasks or unresolved
@@ -54,7 +57,8 @@ Use the [task record template](task-template.md). The TODO entry is sufficient
 for a small change. For a larger task, link its design/evidence note from TODO
 and keep the active step and acceptance record there. Reuse an existing component
 contract when it already owns the responsibility. Do not create a second copy
-of requirements, a separate prose file for every command, or a parallel backlog.
+of requirements, a separate prose file for every command, or another backlog
+beside [BACKLOG.md](../../BACKLOG.md).
 
 Break the task into steps that each produce something assessable: a specified
 interface, an invariant argument, an independently tested operation, a real

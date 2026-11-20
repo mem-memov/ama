@@ -6,7 +6,8 @@ or reconstructing hidden dependencies.
 
 [The specification in `spec/`](spec/README.md) is the source of truth.
 [Its grammar](spec/grammar.md) defines source forms; [VALUE_ABI.md](VALUE_ABI.md) explains
-the native contract. [TODO.md](TODO.md) tracks active work;
+the native contract. [TODO.md](TODO.md) tracks selected active work;
+[BACKLOG.md](BACKLOG.md) holds future proposals and open design questions;
 [DONE.md](DONE.md) preserves completed tasks and acceptance evidence. Change the
 specification only after explicit user authorization for the particular change;
 implementation, refactoring, or TODO work does not grant it.

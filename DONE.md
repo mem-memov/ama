@@ -7,9 +7,9 @@ specification or a promise that old inventory counts describe later revisions.
 The current product authority remains [spec/](spec/README.md).
 
 Use [TODO.md](TODO.md) for active tasks, current completion criteria and useful
-verification commands. Allocate new IDs across both files; never reuse an
-archived ID. Move a completed task here with its full evidence in the same
-commit that removes it from the active queue. Do not archive unfinished work or
+verification commands; use [BACKLOG.md](BACKLOG.md) for future proposals.
+Allocate new IDs across TODO, BACKLOG and DONE; never reuse an archived ID.
+Move a completed task here with its full evidence in the same commit that removes it from the active queue. Do not archive unfinished work or
 an unresolved documentation-debt owner. The
 [development standard](docs/development/README.md) defines the workflow.
 
