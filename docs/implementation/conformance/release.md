@@ -1,165 +1,139 @@
 # Reproducing the current implementation
 
-Start with [the specification](../../../spec/README.md) for language semantics,
-[the library guide](../../../stdlib/README.md) for public module interfaces,
-and [the matrix guide](README.md) for requirement evidence. This report describes
-verified implementation workflows; it does not introduce language requirements.
+Read [the specification](../../../spec/README.md) for semantics,
+[the library guide](../../../stdlib/README.md) for native/ordinary interfaces,
+and [the evidence matrix](README.md) for requirement coverage. This guide records
+current accepted workflows; it does not define another language contract.
 
-**T157 scope notice (2026-11-17).** These checks describe the pre-template
-implementation baseline. The new [template contracts](../../../spec/language/templates.md)
-and acceptance rows are not implemented or covered by the retained matrix.
-Current whole-specification conformance needs new reviewed evidence after the
-[open design decisions](../../../AMBIGUITIES.md#open-template-design-questions)
-are resolved; do not reinterpret the historical results below as that evidence.
+## Clean template sprint acceptance
 
-## What has been checked
+[T197's execution record](template-release.md) verifies the current implementation
+after [T196's conformance review](template-review.md). A fresh `make clean`, strict
+release compiler build and one complete `make -k -j4 test` all pass. The full test
+run took 3014.517 seconds and preserved all 3054 captured source/specification/
+registry/matrix inputs. Assertions remain enabled by the test leaf's `-UNDEBUG`.
+No partial successful branch substitutes for that complete parent exit.
 
-The reviewed matrix connects all **200 requirements** and **108 acceptance rows**
-through **41 evidence groups**. Each obligation has its own argument and links
-to actual component boundaries, contracts, named component cases and distinct
-composition cases. The live registry covers 2335 maintained inputs, 1246 named C
-cases in 194 unit and 26 integration case translation units, with 240 distinct
-command strings. These are inventory counts, not statement-coverage percentages.
+The current matrix connects **214 requirements**, **150 acceptance rows** and
+**56 evidence groups**. The complete per-file registry contains **3028** inputs,
+**1860** distinct registered C cases across **336** case-source files, and
+**359** command strings. The full run executes 336 outer C test commands.
+These are inventory/evidence counts, not statement-coverage percentages.
 
-[Toolchain acceptance](../toolchain-acceptance.md) records the actual GCC 15.2.0,
-x86_64 Linux, C11/LP64 profile, strict release checks, native-entry probes and
-sanitizer results. [Product reproduction](../product-reproducibility.md) checks
-clean and reused outputs, transitive changes and diagnostic source locations.
-[Resource acceptance](../resource-acceptance.md) records allocation/I/O failure,
-interruption and recovery observations rather than treating an aborted process
-as a managed failure.
+The run includes static graph parsing and solving, finite full-key creation
+checks, ordinary specialization admission and storage, native O0/O2/toolchain
+checks, specialized constants, compiled source/native consumers, independent
+contexts, source/editor/debugger tools, relocation recovery and explicit
+cooperative/parallel execution. Expected failing interface/native/resource
+fixtures are checked by their enclosing assertions; diagnostic words alone do
+not indicate a failing test run.
 
-The T121 example check used a fresh detached checkout at implementation commit
-94b1c0c. It rebuilt the compiler with the strict release flags below, executed
-every command in the following table and regenerated Doxygen twice with identical
-bytes. Subsequent T121 changes are this report and navigation prose only.
-Generated outputs remain outside maintained source inventory.
+The supported observed configuration is GCC 15.2.0, C11/LP64 on x86_64 Linux,
+GNU Make 4.4.1 and Python 3.14.4. [Toolchain evidence](../toolchain-acceptance.md)
+and [resource evidence](../resource-acceptance.md) describe the actual boundaries.
+T197 also runs current public C-library and async-host examples under ASan/UBSan.
+LeakSanitizer and ThreadSanitizer acceptance are not claimed; owned resource,
+callback, acquisition and code-pin counters provide separate teardown evidence.
 
-## Run the examples
+## Build and run
 
-Run from the repository root. Each example script requires a fresh output path;
-choose another path for another run. No prebuilt compiler or generated C files
-need to be copied into the checkout.
+Use fresh output directories. From the repository root:
 
 ```sh
-make C_COMPILER_FLAGS='-O2 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L -DNDEBUG'
+make clean
+make -j4 C_COMPILER_FLAGS='-O2 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L -DNDEBUG'
+make -k -j4 test C_COMPILER_FLAGS='-O2 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L -DNDEBUG'
 ./ama --emit examples/async .main --out /tmp/ama-async-example --sdk src --standard-root stdlib/modules --compile
 /tmp/ama-async-example/program
+./ama --emit examples/template-lists .main --out /tmp/ama-template-example --sdk src --standard-root stdlib/modules --compile
+/tmp/ama-template-example/program
 python3 tools/examples/c_library/run.py --out /tmp/ama-c-example
 python3 tools/examples/async_host/run.py --out /tmp/ama-async-host-example
-make -C tests/integration/examples
-make -C tests/integration/objects
-make -C tests/unit/codegen/parallel-supervision
 ```
 
-| Command family | Observable result and contract |
+| Example | Observed behavior |
 |---|---|
-| Async program | Prints completed, then cancelled; [explicit polling and resumption](../../../examples/async/README.md). |
-| C-library script | Builds and runs standalone static/shared consumers and native-parent static/shared compositions; retained text, independent suspension, supervised child failure and explicit reset are checked. [Commands and API ownership](../c-library-examples.md). |
-| Async host script | Reports asynchronous component lifetime accepted after delayed/duplicate completion and unload-lifetime checks; [host example](../../../examples/async-host/README.md). |
-| Integration examples | Checks state, self-reference, live list mutation, ordinary versus continuation copying and owned file-probe failure; [scenario commands](../examples.md). |
-| Object examples | Checks constructor-owned methods, independent state and resource cleanup against the expected trace; [stateful example](../examples.md). |
-| Parallel supervision | Checks isolated overlapping execution, peer continuation/cancellation and cleanup; [parallel example](../../../examples/parallel/README.md). |
+| [Async Ama](../../../examples/async/README.md) | Exact stdout `completed`, then `cancelled`; a late result cannot revive cancelled enrollment. |
+| [Generic lists](../../../examples/template-lists/README.md) | Executes silently, retaining reversed integer/text outputs assembled through a partial constructor; tests independently observe ownership/order/aliasing. |
+| [Public C libraries](../c-library-examples.md) | Static/shared standalone hosts and native-parent compositions verify owned values, independent saved state, child failure policy and explicit reset. |
+| [Async native host](../../../examples/async-host/README.md) | Native worker completion, duplicates/cancellation and unload lifetime pass through the checked public boundary. |
+| [Objects and language scenarios](../examples.md) | Full integration tests exercise constructor-owned methods, state, references, live list edits, copy modes and resource cleanup. |
+| [Parallel supervision](../../../examples/parallel/README.md) | Full tests execute isolated contexts, explicit messages, peer continuation/cancellation and cleanup. |
 
-The scripts intentionally exercise child failure and invalid service construction;
-their expected runtime diagnostics are compatible with a successful harness exit.
-The parallel harness likewise deliberately reports receiver failures. Require
-each command's successful exit and the harness's assertions rather than classifying
-acceptance from a search for the word error.
+For the public native examples, repeat with `--sanitize` and separate output
+paths. T197 uses `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+`UBSAN_OPTIONS=halt_on_error=1`. Both normal and instrumented example scripts
+return zero. Their deliberately failed child/invalid-service cases remain
+expected observations inside successful harnesses.
+
+## Types, identity and resource bounds
+
+Static modules, partial constructors and inferred Types exist only during
+compilation. Every required executable dependency becomes a concrete Type and
+passes ordinary operation/default/capability/lifecycle checks before layout.
+Equal full specialization keys share Type/code identity; runtime instances,
+results, references, continuations and contexts retain independent state.
+Static outputs add no runtime object or C result slots.
+
+[Creation guards](../static-guards.md) accept finite written nesting and closed
+same-key cycles while rejecting reachable unequal keys of one constructor origin.
+They retain all incoming/outgoing provenance through cold/warm caches and late
+constraints. Type equations, static definition cycles, eager ownership and
+constant value dependencies are separate checks. No arbitrary semantic depth,
+specialization count, cache-order choice or timeout substitutes for those laws.
+
+[The typed storage plan](../specialized-planning.md) and actual compiled consumers
+check concrete layout, stable instance slots and saved-position modes. Optional
+representation/storage elimination remains subject to its proof contract;
+this release does not claim every permitted optimization is implemented.
+
+[Resource tests](../resource-acceptance.md) enumerate measured allocation/I/O
+refusal points and real durable interruption states, compare exact originals
+and recover repeatedly. T197 observes 529 application interruption checkpoints,
+1066 application I/O checkpoints and independent pending/terminal rollback/commit
+recovery partitions. Counted ownership and structured cleanup remain necessary
+alongside sanitizers. A managed OOM/refusal is distinct from a process abort.
 
 ## Choose an embedding boundary
 
-For an ordinary C application, use the generated
-[public header](../c-library-header.md), explicit
-[context lifecycle](../c-library-lifecycle.md),
-[typed transport](../c-library-transport.md), and
-[entry/resume outcomes](../c-library-execution.md). The packaged static/shared
-[component artifacts](../c-library-packaging.md) isolate symbols and track code
-lifetime. Consumers in the example compile without compiler-private SDK headers.
+A normal C application uses the self-contained [public header](../c-library-header.md),
+explicit [context lifecycle](../c-library-lifecycle.md),
+[owned typed transport](../c-library-transport.md) and
+[entry/resume outcomes](../c-library-execution.md). Static/shared
+[packaging](../c-library-packaging.md) isolates component symbols and preserves
+code lifetime. Open templates ship as source; concrete ordinary facades expose
+closed generic algorithms under [T194's checked boundary](../static-library-facades.md).
 
-For a native Ama module owning a compiled Ama child, use
-[exclusive child-context ownership](../c-library-nested.md) and
-[child suspension/supervision](../c-library-supervision.md). A child yield returns
-normally to its native parent; it does not unwind a C stack into an outer Ama
-continuation. The parallel supervision example exercises a generated C bridge,
-not an SDK-free prebuilt-library consumer.
+A native Ama adapter may exclusively own a separately compiled child context
+under the [foreign resource contract](../c-library-nested.md). A child yield
+returns normally through all C helpers before any outer Ama yield. Explicit
+[parent policy](../c-library-supervision.md) controls later steps and failure;
+independent peers survive disposal of another parent and its owned child.
+Native companions use the [value ABI](../../../VALUE_ABI.md) and verified
+[authoring workflow](../native-scaffolding.md). Check-only success does not
+validate arbitrary handwritten native C or foreign library thread safety.
 
-Native Ama companions follow the [fixed value ABI](../../../VALUE_ABI.md),
-[scaffolding workflow](../native-scaffolding.md) and
-[verified toolchain boundary](../native-toolchain.md). Check-only success cannot
-validate arbitrary handwritten native C or replace compile/object verification.
+## Scope and final documentation
 
-## Tooling and practical limits
+Use [source commands](../source-tool-commands.md), the
+[debugger client](../debugger-client.md) and checked relocation/recovery tools
+against explicit roots. Relocation rewrites actual resolved Ama paths while
+preserving atomic static names and all unrelated bytes; handwritten C paths and
+external build configuration remain outside that rewrite contract.
 
-[Source commands](../source-tool-commands.md),
-[debugger client](../debugger-client.md), and
-[relocation commands](../relocation-commands.md) document the implemented
-protocols and invocation boundaries. They do not imply an installed IDE plugin.
-Paths, proposal transactions and relocation recovery have their own executable
-evidence in the matrix.
-
-Asynchronous execution is cooperative. Hosts explicitly poll/resume and retain
-native completion endpoints; callbacks cannot retain borrowed Ama state or run
-Ama. Parallel contexts have separate mutable instance storage and exchange
-explicit messages. Context isolation is not an operating-system security sandbox.
-
-The supported generated backend is the tested GCC/target profile, not a universal
-binary ABI or a claim about other platforms. The file example is a small owned
-synchronous fopen/close probe, not a complete standard filesystem library.
-ASan/UBSan and counted-ownership checks pass in their recorded scopes. LeakSanitizer
-is unavailable under this environment's ptrace restriction. The installed TSan
-crashes on an isolated C11-thread probe; the checked concurrency harness uses
-POSIX launch/join, with positive and intentional-race controls. See the
-[exact instrumentation evidence](../toolchain-acceptance.md) before generalizing.
-
-## Rebuild the evidence and reference
+Dependent numeric/runtime-driven Types, a new template-based intrinsic list
+provider, unsupported target/toolchain profiles and arbitrary foreign native
+behavior are not claimed. The existing list foundation and its busy/refusal,
+checked reference and live-boundary contracts remain in force.
 
 ```sh
-make test
 make conformance-check
 make docs-complete
+make docs
 make docs-reproducible
 ```
 
-The conformance gate checks exact obligations, hashes and compiled C interfaces;
-it does not execute every referenced behavioral test. Run the test commands too.
-Doxygen generates the reference under docs/technical, including per-file pages,
-interfaces and resolved canonical-rule links. The
-[documentation guide](../../documentation.md) explains coverage manifests,
-fingerprints, tools and reproducible generation. Generated reference pages are
-local build outputs; this checkpoint does not publish a release externally.
-
-## Final clean acceptance checkpoint
-
-T122 repeats the release check after T121, beginning with `make clean` and then
-running the complete `make -j4 test` with the strict O2/Werror/NDEBUG flags shown
-above. The combined command exits successfully: all 194 unit and 26 integration
-test programs pass in this one run. Assertions remain enabled by the leaf
-harness's `-UNDEBUG`. This supersedes the split-branch result recorded at T120;
-it does not rewrite that earlier run's history.
-
-The full run includes the real CLI, compiled library/host compositions, native
-O0/O2 positive and negative toolchain probes, editor/debugger/relocation tools,
-and generated runtime/task/parallel execution. Relocation application again
-visits 1324 allocation, 1066 I/O and 529 process-interruption checkpoints;
-recovery failure and interruption cases run through the same recursive parent.
-The [resource report](../resource-acceptance.md) describes their exact oracles.
-
-The obsolete action/outcome list implementation paths remain removed. A current
-IR operation spelling such as `CONTROL_ACQUIRE_LIST` denotes admission to the
-typed list service, not the removed constant-selector dispatcher. Historical
-audit findings remain unchanged. Derived guides now refer to actual stable
-pools, current public component interfaces and the reviewed conformance report
-instead of presenting those implemented facilities as future work.
-
-Current conformance, complete per-file documentation and local-link checks pass.
-The documentation generator now delivers its checked provenance manifest inside
-the generated folder, including exact Doxyfile fingerprints and tool versions.
-The existing C/assert documentation leaf passes after this packaging change;
-it verifies the actual rendered fixture's complete manifest and source stability.
-The compiler, runtime and their fixtures are unchanged from the full clean run.
-Two complete Doxygen generations from the final checkpoint inputs have identical
-file membership and bytes. All 154 roadmap tasks have unique identities; T135
-is the separate final documentation delivery after this checkpoint. No compiler
-semantics or canonical specification bytes changed during T121/T122, and nothing
-was published outside the repository.
+The generated technical reference comes from maintained Doxygen comments and
+validated canonical links. T198 owns final archival reconciliation and identical
+repeated generation; the clean compiler/runtime acceptance above remains a
+separate executed result. Generated pages are not hand-maintained specifications.

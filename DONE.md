@@ -6691,3 +6691,48 @@ T201. Specification bytes have not changed.
   Regenerate archival inputs and compare staged/rendered hashes before commit.
   No specification or production source changed. Whole clean release/resource
   verification remains T197, followed by T198 final documentation closure.
+
+<a id="t197"></a>
+
+- [x] **T197 — Accept a clean sprint release and its resource/toolchain boundary.**
+  Completed 2026-11-20: [clean run, live checkpoint and evidence](docs/implementation/conformance/template-release.md).
+  Prerequisites: T196.
+  Rules: [TEST-05](spec/implementation/tools-and-conformance.md#test-05),
+  [STACK-04](spec/implementation/compiler.md#stack-04),
+  [COMP-05](spec/implementation/compiler.md#comp-05),
+  [ARCH-06](spec/implementation/compiler.md#arch-06).
+  Boundary: complete compiler/test/toolchain and release consumers under the
+  existing [release contract](docs/implementation/conformance/release.md).
+  Steps: (1) state clean-build configurations and resource/failure partitions;
+  (2) run isolated clean builds/full tests, relevant sanitizer/toolchain probes
+  and real examples/library/tool workflows; (3) review reproducibility and
+  specialization growth/state-storage evidence with exact bounds and versions.
+  Accept: make and make test pass from the recorded clean state; finite nesting,
+  growing rejection, cache/order invariance, native inlining and instance/context
+  isolation have actual results. Check invalidation, allocation cleanup and
+  publication failures. Do not overlap jobs owning the same outputs; record tool
+  failures honestly. No arbitrary semantic specialization/depth budget is added.
+
+  Acceptance: actual make clean, strict O2/Werror/C11/NDEBUG compiler build
+  and one complete make -k -j4 test all pass. The full tree returns zero in
+  3014.517 seconds, with 336 outer C test invocations and all 3054 captured
+  source/spec/registry/matrix inputs unchanged. No partial branch result is
+  substituted for the full parent outcome. The run includes current templates,
+  finite/growing creation checks, cache/order laws, native inlining/layout,
+  independent states/contexts, source tools and actual runtime/task/parallel
+  consumers. Measured allocation/I/O cleanup and publication/recovery include
+  529 application interruptions, 1066 application I/O checkpoints and independent
+  pending/terminal commit/rollback partitions. All normal and ASan/UBSan public
+  C-library/async-host examples pass in fresh outputs; async/template programs
+  also build/run with exact expected stdout. Every operation preserves inputs.
+  The current release guide replaces obsolete baseline-only claims and records
+  toolchain, ownership, native boundaries, explicit out-of-scope behavior and
+  optional optimization/instrumentation limits. No semantic budget or production
+  code workaround was introduced; no LSan/TSan result is claimed.
+  Final conformance passes for 214 requirements/150 rows/56 groups; per-file
+  validation checks 3028 inputs with zero debt. Actual Doxygen verifies
+  2297 file pages, 8908 interfaces and 452/452 canonical destinations.
+  The linked note retains exact commands, live-to-completed job receipts,
+  times/tool versions, stable input proof and individual example logs. Regenerate
+  archival inputs and compare staged/rendered hashes before commit. T198 remains
+  final documentation reconciliation and reproducible delivery.

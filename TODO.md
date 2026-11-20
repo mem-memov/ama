@@ -205,7 +205,9 @@ relocated execution and concrete-only pipeline retirement.
 facade consumers, exact export refusals and template-backed child/peer lifecycle
 checks. [T195](DONE.md#t195) supplies actual generic list examples, partial
 composition and owned/reference/live-boundary execution evidence. [T196](DONE.md#t196) now records current conformance review and passing
-complete gates. T197 is next: clean release acceptance.
+complete gates. [T197](DONE.md#t197) supplies the successful complete clean
+release, stable-input proof and normal/sanitized public consumers. T198 is next:
+final documentation delivery.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -235,26 +237,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 7. Connect product consumers and algorithm examples
 
 ### Phase 8. Review evidence and deliver
-
-<a id="t197"></a>
-
-- [ ] **T197 — Accept a clean sprint release and its resource/toolchain boundary.**
-  Prerequisites: T196.
-  Rules: [TEST-05](spec/implementation/tools-and-conformance.md#test-05),
-  [STACK-04](spec/implementation/compiler.md#stack-04),
-  [COMP-05](spec/implementation/compiler.md#comp-05),
-  [ARCH-06](spec/implementation/compiler.md#arch-06).
-  Boundary: complete compiler/test/toolchain and release consumers under the
-  existing [release contract](docs/implementation/conformance/release.md).
-  Steps: (1) state clean-build configurations and resource/failure partitions;
-  (2) run isolated clean builds/full tests, relevant sanitizer/toolchain probes
-  and real examples/library/tool workflows; (3) review reproducibility and
-  specialization growth/state-storage evidence with exact bounds and versions.
-  Accept: make and make test pass from the recorded clean state; finite nesting,
-  growing rejection, cache/order invariance, native inlining and instance/context
-  isolation have actual results. Check invalidation, allocation cleanup and
-  publication failures. Do not overlap jobs owning the same outputs; record tool
-  failures honestly. No arbitrary semantic specialization/depth budget is added.
 
 <a id="t198"></a>
 
