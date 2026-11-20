@@ -72,9 +72,18 @@ belong to each affected task's acceptance, not a compatibility layer.
 
 ## Current tasks
 
-No active tasks remain in the static-module/template sprint. The complete
-[task records and evidence](DONE.md) preserve every accepted task; the next
-unused task ID is **T219**. Add newly authorized work here before implementation.
+No implementation task is active. [T219](DONE.md#t219) records the next-sprint
+scope decision and initial design assessment. The next unused task ID is
+**T220**; add newly authorized implementation work before starting it.
+
+## Next sprint discussion
+
+Phantom Type parameters are a [design candidate](DONE.md#t219), not an accepted
+implementation task. Assess nominal domain/unit tags using existing specialization keys,
+then decide whether a dedicated parameter without a runtime field is needed.
+A producer input absent from an exported Type's key does not tag that Type.
+Syntax, storage guarantees and the implementation plan require a design decision;
+this candidate grants no authorization to change `spec/`.
 
 ## Sprint: static module templates
 
@@ -94,7 +103,7 @@ No runtime Template objects or runtime Type generation are introduced.
 
 Relative paths, the [AMB-006](AMBIGUITIES.md#amb-006) foundational list rewrite,
 new raw-storage APIs, generic native ABI, binary-only open-template distribution,
-static natural-number parameters and dependent types remain outside this sprint.
+and static natural-number parameters remain outside this completed sprint.
 They are scope boundaries, not silently completed implementation tasks.
 
 ## Acceptance routing

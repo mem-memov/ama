@@ -6778,3 +6778,66 @@ T201. Specification bytes have not changed.
   No specification or implementation semantics changed. Current release evidence
   remains the accepted complete T197 clean build/full test and normal/sanitized
   public consumers. No active task remains in this sprint after this delivery.
+
+<a id="t219"></a>
+
+- [x] **T219 — Remove the dependent-type backlog goal and assess phantom types.**
+  Completed 2026-11-20. Prerequisites: T198.
+  Authorization: the user requested next-sprint planning and explicitly said,
+  "Цель внедрить зависимые типы удаляем полностью из бэклога", then requested
+  an assessment of phantom types' usefulness and implementation difficulty.
+  Boundary: backlog and design discussion only. No specification, grammar,
+  compiler, library, test or conformance claim changes were authorized or made.
+
+  Decision: dependent-type implementation is removed as a project backlog goal,
+  rather than rescheduled to a later sprint. Historical task/decision evidence
+  remains intact. Existing Type-dependent constants and ordinary specialization
+  are current language features, not cancelled dependent-type work. Canonical
+  exclusions of value-indexed types remain unchanged; this task introduces no
+  numeric static category or new recursion rule. Phantom types remain a candidate
+  for discussion, not an approved feature or an implementation commitment.
+
+  Assessment: [TPL-05](spec/language/templates.md#tpl-05) preserves all bindings,
+  including those unused by the body, and
+  [TYPE-05](spec/language/declarations.md#type-05) compares the complete nominal
+  specialization identity. This supplies the key/equality foundation for domain
+  tags. [TPL-02](spec/language/templates.md#tpl-02) introduces ordinary Type
+  parameters through real input/output fields. An unused marker reference can
+  therefore model distinct tagged specializations without requiring a live marker
+  target, but its logical runtime field still exists. A guaranteed parameter
+  with no runtime field needs a design decision preserving static/ordinary phase
+  separation. [TPL-12](spec/language/static-results.md#tpl-12) forwards Type identity:
+  a producer input absent from a returned constructor's key cannot brand that
+  returned Type merely by appearing in the producer's own key. The
+  [Rust documentation](https://doc.rust-lang.org/core/marker/struct.PhantomData.html)
+  provides a comparison between phantom parameters and an explicit marker field;
+  its ownership/lifetime system is not an adopted Ama requirement.
+
+  Useful applications include unit/domain tags, distinct entity identifiers,
+  coordinate systems and processing stages. A shared payload representation
+  does not authorize cross-tag assignment. Tags distinguish compile-time domains,
+  not separate runtime objects of the same Type. A validation tag alone cannot
+  prove that validation executed, because construction does not execute bodies
+  under [TYPE-04](spec/language/declarations.md#type-04). Typestate tags alone
+  cannot consume old copied values or invalidate aliases. They supply neither
+  list-bound proofs nor arithmetic normalization of physical dimensions.
+
+  Cost assessment: nominal tagging reuses finite scoped substitutions and exact
+  key equality. A storage-free declaration, its diagnostics/source-tool support
+  and tests would still need a separately agreed contract and work plan.
+  Storage/code elimination remains a distinct proof obligation under
+  [RT-02](spec/implementation/runtime.md#rt-02); complete-key shared state and
+  lifecycle observations must survive. No generic native ABI is implied under
+  [TPL-13](spec/language/templates.md#tpl-13). Recommend library prototypes before
+  choosing whether new syntax is justified. No delivery-date estimate or
+  unexecuted prototype is presented as implementation evidence.
+
+  Acceptance: the queue contains no dependent-type goal and no prematurely
+  approved phantom implementation task; the next unused ID is T220. Initial
+  git diff --check, make docs-complete and make docs pass. The per-file gate
+  checks 3028 ready inputs with zero debt. Doxygen 1.11.0 checks 2297 maintained
+  file pages, 8908 documented interfaces and 453/453 canonical destinations.
+  After archiving these records, rebuild the final reference with make docs
+  and verify its TODO/DONE fingerprints before commit. Documentation-only
+  acceptance makes no new compiler execution claim; existing T197 release
+  evidence retains its recorded boundary.
