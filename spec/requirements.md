@@ -77,6 +77,8 @@ you need the model, examples, or reasons behind a rule.
 | [TPL-12](language/static-results.md#tpl-12) | Static module graphs, named bindings, public exports and ordinary type selection |
 | [TPL-13](language/templates.md#tpl-13) | Concrete native modules and template source distribution |
 | [TPL-14](language/static-results.md#tpl-14) | Nominal static markers declared by an empty `@...` file |
+| [TPL-15](language/templates.md#tpl-15) | Complete structural type expressions in ordinary declarations |
+| [TPL-16](language/phantom-types.md#tpl-16) | Marker-constrained phantom declarations without runtime storage |
 
 ## Literal data
 

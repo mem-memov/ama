@@ -45,7 +45,8 @@ copy here. Follow the [development standard](docs/development/README.md).
   Status: open design question; recorded from the user's 2026-11-20 request.
   The request authorizes this backlog record, not a specification or compiler
   change. Prerequisites: none for discussion; reconcile the chosen design with
-  any subsequently accepted phantom-type contract before implementation.
+  the [phantom constructor contract](spec/language/phantom-types.md#tpl-16)
+  before implementation.
 
 ### Purpose and proposed direction
 
@@ -56,8 +57,10 @@ while using the same compiler executable. The user's illustrative mapping is:
 ..type.phantom -> ..тип.фантомный
 ```
 
-These phantom paths illustrate the localization goal; they do not declare
-existing library modules or adopt the still-discussed phantom constructor.
+The canonical constructor `..type.phantom` is specified by
+[TPL-16](spec/language/phantom-types.md#tpl-16). The translated path above
+illustrates the localization goal and remains a proposal, without introducing
+another constructor identity or claiming implementation support.
 The goal includes compiler-recognized library roles, beyond choosing Unicode
 names for ordinary user modules.
 

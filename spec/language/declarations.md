@@ -17,7 +17,9 @@ In this chapter:
 An Ama runtime name identifies storage. Its type is a module, and its suffix
 says whether that storage owns a value, holds a reference, owns a list, or holds a list of
 references. Keeping those two decisions separate makes ownership visible at the
-place where a name is used.
+place where a name is used. A phantom declaration under
+[TPL-16](phantom-types.md#tpl-16) instead names compile-only metadata: it uses
+the same readable declaration shape but creates no runtime storage.
 
 **Explanation.** Most declarations create fields of the containing instance.
 They are constructed when that instance is created, even if their written
@@ -36,28 +38,35 @@ defines what transfers between these storage forms do.
 
 <a id="type-01"></a>
 
-**TYPE-01.** Every variable has an ordinary module Type capable of runtime
-storage. A static marker under [TPL-14](static-results.md#tpl-14) cannot be its
-Type, reference target or list element/target, including after substitution or
-static export selection. An explicit declaration answers three questions in
-order: what is the name and storage form, which module
-defines its type, and what are its initial contents?
+**TYPE-01.** Every runtime variable has an ordinary module Type capable of
+runtime storage. A static marker under [TPL-14](static-results.md#tpl-14) cannot
+be its Type, reference target or list element/target, including after
+substitution or static export selection. A phantom declaration is the explicit
+compile-only exception defined by [TPL-16](phantom-types.md#tpl-16); it does not
+create a marker instance or a runtime variable with a nonstorable Type.
 
-Write the name and type on separate lines at the same indentation. A type line
-starts with a module path or one bare scoped Type placeholder permitted by
-[TPL-01/TPL-02](templates.md#tpl-01). The storage marker directly adjoins the
-name; it never belongs to the type line and never has an intervening space.
-Ordinary `@<` and `@>` contain only these runtime declarations, not standalone
-static inputs or static output definitions. A placeholder used there introduces
-or reuses an ordinary template's Type parameter; body and shared declarations
-may only reuse parameters already introduced by that interface.
+An explicit runtime declaration answers three questions in order: what is the
+name and storage form, which type expression defines its Type, and what are its
+initial contents? Write the name and type-expression head on separate lines at
+the same indentation. A type expression starts with a module path or scoped
+Type placeholder permitted by [TPL-01/TPL-02](templates.md#tpl-01). The storage
+marker directly adjoins the name; it never belongs to the type line and never
+has an intervening space. Ordinary `@<` and `@>` contain name/type pairs,
+including phantom declarations, not standalone static inputs or static output
+definitions. Eligible placeholders in their type expressions introduce or reuse
+Type parameters under TPL-02; body and shared declarations may only reuse
+parameters already introduced by that whole interface.
 
-Complex Type/Template applications, partial composition and static output reads
-belong exclusively to static modules under [TPL-12](static-results.md#tpl-12).
-An ordinary declaration may select one public export of a static module: write
-its path as the type line and the exact exported `...name` one space deeper,
-before any ordinary initializer. For example, assume `.integer dictionary`
-is a static module exporting a concrete Type named `...dictionary type`:
+Type expressions may supply named constructor/producer inputs, nest structural
+applications and select one exact named static export under
+[TPL-15](templates.md#tpl-15). The final Type must be uniquely concrete for each
+required concrete owner specialization. There is no standalone static graph,
+static output alias or positional static binding in an ordinary declaration.
+Initializers follow the completed type expression; they remain ordinary
+runtime initialization under TYPE-02 rather than static equations.
+
+**Example: selecting a ready Type.** Assume `.integer dictionary` is a static
+module exporting a concrete ordinary Type named `...dictionary type`:
 
 ```text
 items
@@ -65,15 +74,13 @@ items
  ...dictionary type
 ```
 
-The selector is not a binding, new parameter or runtime initializer. The selected
-export must be a concrete ordinary Type from a fully determined static producer,
-independently of this ordinary declaration's contextual constraints. A residual
-Template or marker cannot type runtime storage. The static producer itself has
-no instance and cannot serve as the field's runtime type without selecting an export. No
-static `<`/`>` bindings, nested applications, or static output aliases may appear
-in ordinary declarations, constant reads or executable statements. The ordinary
-inference rules of [TPL-03/TPL-04](templates.md#tpl-03) still determine omitted
-ordinary template substitutions where that context permits inference.
+The selector belongs to the producer, not the using module's local parameter
+namespace. The producer is not instantiated. It may also receive named inputs
+before the selector under TPL-15. Checking the complete declaration may combine
+those structural equations with the other permitted typed connections; every
+required producer input must close before admission. A residual Template or
+direct marker cannot type runtime storage. A closed phantom Type may appear
+only in the compile-only declaration form of TPL-16.
 
 There are two ways to omit an explicit type line. A receiver can introduce a
 persistent field whose type comes from its source or selected result (TYPE-06).
@@ -107,8 +114,8 @@ targets&[]
 
 <a id="type-02"></a>
 
-**TYPE-02.** A scalar has at most one initializer. A list can have several, with each
-initializer creating exactly one element. A whole list is not an element
+**TYPE-02.** A runtime scalar has at most one initializer. A list can have
+several, with each initializer creating exactly one element. A whole list is not an element
 initializer: initialization never implicitly splices one list into another or
 creates nested lists. Every source must have a compatible type and already be
 initialized.
@@ -121,7 +128,8 @@ the receiver's source location, with ordinary default initialization under
 TYPE-06. Blocks never make construction conditional on execution.
 The scoped foreach binding itself is not a persistent body declaration: its
 runtime activation follows FLOW-05, while ordinary declarations in that loop's
-body still follow this unconditional construction order.
+body still follow this unconditional construction order. Compile-only phantom
+declarations contribute no runtime initialization step under TPL-16.
 
 ### Data representations belong to modules
 
@@ -143,9 +151,11 @@ dynamic list does not itself require recursively allocating its target type.
 Unsupported default construction must be diagnosed or fail through the defined
 lifecycle protocol.
 
-For eager construction, form a type edge for every owned scalar field and for
-every owning-list field with one or more element initializers. Reference fields,
-reference-list fields and initially empty owning lists add no eager edge. Reject
+For eager construction, form a type edge for every runtime owned scalar field
+and for every owning-list field with one or more element initializers. Reference
+fields, reference-list fields and initially empty owning lists add no eager edge.
+Phantom declarations add no runtime field and therefore no eager-construction
+edge under TPL-16. Reject
 a cycle in this eager-construction graph: every such edge requires at least one
 child construction before its owner can finish. Check initializer value
 dependencies separately; absence of an eager cycle does not authorize reading
@@ -190,7 +200,7 @@ selects an instance to execute/read; that is distinct from transferring a handle
 
 <a id="state-01"></a>
 
-**STATE-01.** Body declarations describe permanent instance state, including
+**STATE-01.** Runtime body declarations describe permanent instance state, including
 ones inferred at assignment/output receivers and ones written inside branches
 or loops.
 Their initialization runs once at instance creation, not whenever execution
@@ -204,8 +214,9 @@ or suspended enclosing loop.
 
 <a id="state-02"></a>
 
-**STATE-02.** Parameters and results are interface storage. An entry-start call
-reinitializes them for the invocation before running the body. Install parameters
+**STATE-02.** Runtime parameters and results are interface storage. Phantom
+interface declarations contribute no runtime parameter/result cell under
+TPL-16. An entry-start call reinitializes them for the invocation before running the body. Install parameters
 in declaration order, choosing each supplied source/literal or its declared
 default, then initialize results in declaration order under CALL-08. A later
 default observes the already installed earlier fields, including supplied inputs.
@@ -251,8 +262,9 @@ another. See [Asynchrony and parallelism](async-and-parallelism.md).
 <a id="name-04"></a>
 
 **NAME-04.** Each module has one declaration namespace covering shared constants,
-parameters, results, and persistent body declarations, including declarations
-inside branches/loops and receiver-inferred declarations under TYPE-06.
+parameters, results, phantom declarations under TPL-16, and persistent body
+declarations, including declarations inside branches/loops and receiver-inferred
+declarations under TYPE-06.
 A complete base name may be declared only once in that module. `item`, `item&`,
 `item[]`, and `item&[]` share the base name `item` and cannot coexist as separate
 declarations. Storage suffixes express kind, not separate name namespaces.
@@ -297,7 +309,9 @@ Ordinary interface Type parameters belong to the static namespace of
 [TPL-02](templates.md#tpl-02), not this runtime field table. Static graph inputs
 and public result names follow [TPL-12](static-results.md#tpl-12) in their own
 module; selecting an export does not introduce that name into the ordinary
-module or import the graph's other names.
+module or import the graph's other names. A phantom declaration reserves its
+ordinary base name under NAME-04, but visibility never makes it a runtime value,
+source, receiver or callable target; its allowed uses follow TPL-16.
 
 #### Blocks and reuse
 
@@ -862,10 +876,11 @@ ordering law. Such meanings belong to the actual library's contract. If another
 parameter's type also declares `minimum`, explicitly selecting its namespace
 keeps the two owners separate without a name conflict.
 
-A supplied Template may be applied in a separate static module, whose concrete
-export can then select the constant namespace. Ordinary code cannot apply a
-Template inline. A Template's usage requirements do not promise an `empty
-list[]` constant: validate the member against the final concrete Type.
+A supplied Template may be applied in a static module, whose concrete export
+can then select the constant namespace. A declaration can also use the
+structural expression of TPL-15, but a constant read itself does not accept an
+inline application block. A Template's usage requirements do not promise an
+`empty list[]` constant: validate the member against the final concrete Type.
 
 ### Named enumeration values
 
@@ -989,16 +1004,18 @@ separately; they are not themselves constant-value dependencies.
 <a id="const-06"></a>
 
 **CONST-06.** A shared declaration may reuse Type parameters introduced by its
-ordinary module's input/output variable types under
+ordinary module's input/output declaration type expressions under
 [TPL-02](templates.md#tpl-02). Collect that interface before resolving the
-declaration even though `@=` is written first. Its type uses TYPE-01's ordinary
-forms: a module path, one bare existing Type parameter, or a static-module path
-with one named concrete-export selector. Complex static applications and
-projections belong to `@...` modules. A shared declaration introduces no new
-static parameter, and neither its initializer nor its type may introduce a
-placeholder absent from the interface. Required ordinary template substitutions
-must be determined before construction. A selected static producer must be
-fully determined independently of the shared declaration's context.
+declaration even though `@=` is written first. Its type uses the declaration
+expressions of TYPE-01/TPL-15, including named structural applications and exact
+named static-export selection. A shared declaration introduces no new static
+parameter, and neither its initializer nor its type may introduce a placeholder
+absent from the interface. Every required constructor substitution, selected
+Type and producer input must be fully determined before construction. This
+closure may use the permitted structural equations from the declaration and
+its typed initializer; it cannot use runtime values or an arbitrary inverse of
+a producer output. A phantom declaration creates no immutable shared value and
+is not a shared constant under TPL-16.
 
 Resolve dependent declarations for each required concrete specialization.
 Their types, storage forms, construction, literals and copy sources must satisfy

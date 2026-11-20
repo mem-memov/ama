@@ -7,10 +7,12 @@ current accepted workflows; it does not define another language contract.
 
 The T197 results below precede the T220
 [static-marker rule](../../../spec/language/static-results.md#tpl-14).
-Marker implementation and current-specification conformance remain
-[T221](../../../TODO.md#t221); the complete gate refuses the earlier matrix
-against the newer target until that work is accepted. These recorded release
-results do not establish marker support.
+Marker implementation remains [T221](../../../TODO.md#t221); the later T225
+[declaration-expression](../../../spec/language/templates.md#tpl-15) and
+[phantom-type](../../../spec/language/phantom-types.md#tpl-16) contracts await
+[T226](../../../TODO.md#t226). The complete gate refuses the earlier matrix
+against the newer target until the required alignment is accepted. These
+recorded release results do not establish support for the new contracts.
 
 ## Clean template sprint acceptance
 

@@ -10,8 +10,11 @@ The last accepted implementation baseline maps **214 requirements** and
 **150 acceptance rows** in the
 [reviewed conformance evidence](docs/implementation/conformance/README.md).
 The specification additionally defines
-[static type markers](spec/language/static-results.md#tpl-14); implementation and
-renewed conformance acceptance are pending [T221](TODO.md#t221).
+[static type markers](spec/language/static-results.md#tpl-14),
+[declaration type expressions](spec/language/templates.md#tpl-15) and
+[phantom declarations](spec/language/phantom-types.md#tpl-16). Implementation and
+renewed conformance acceptance are pending [T221](TODO.md#t221) and
+[T226](TODO.md#t226).
 [Ordinary templates](spec/language/templates.md) and separate
 [static modules](spec/language/static-results.md) provide compile-time inference,
 partial composition and concrete specializations. Native definitions remain

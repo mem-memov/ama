@@ -24,9 +24,13 @@ graph form: named Type/Template bindings, partial composition, public results,
 and the selection of a concrete named export as an ordinary field type.
 A file containing only `@...` and valid layout declares a nominal
 [static type marker](language/static-results.md#tpl-14), which can be passed
-through static Type connections and has no runtime instances. Complex
-static expressions stay in static modules; ordinary declarations retain the
-readable name/type pair. The examples explain both the model and its limits.
+through static Type connections and has no runtime instances.
+[Phantom declarations](language/phantom-types.md) attach such a marker to an
+ordinary specialization without a runtime field or argument. Ordinary
+declarations retain the readable name/type pair and may contain structural
+[type expressions](language/templates.md#tpl-15) that yield one complete Type
+for each concrete specialization. Standalone equation graphs and public static
+results remain in static modules. The examples explain the model and its limits.
 The [finite-composition rule](language/templates.md#tpl-11) permits explicitly
 nested uses of the same template and recursive definitions returning to exactly
 the same closed specialization. It rejects creation paths between different
@@ -66,6 +70,7 @@ program is well typed and what happens when it executes.
 | [Declarations and scope](language/declarations.md) | Explicit and inferred declarations, initialization, constants, and visibility |
 | [Ordinary module templates](language/templates.md) | Interface Type parameters, typed-connection inference, specialization identity, finite composition, dependent constants, native boundaries and source distribution |
 | [Static modules and returned types](language/static-results.md) | Named equation graphs, Type/Template inputs, partial composition, public exports, ordinary type selection and compile-time evaluation boundaries |
+| [Phantom types](language/phantom-types.md) | Marker-constrained named declarations, specialization identity and absence of runtime storage or arguments |
 | [Values and references](language/values-and-references.md) | Independent copies, checked references, identity, and resource lifetime |
 | [Calls and results](language/calls-and-results.md) | Entry, resume, retained reads, method chains, and refusal handlers |
 | [Control flow](language/control-flow.md) | Branches, condition loops, repeat boundaries, and early completion |

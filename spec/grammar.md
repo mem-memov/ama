@@ -307,10 +307,13 @@ are defined in [Declarations and scope](language/declarations.md).
 <declarations(n)>            ::= <layout(n)> { <declaration(n)> <layout(n)> }
 <body(n)>                    ::= <layout(n)> { <statement(n)> <layout(n)> }
 <declaration(n)>             ::= <indent(n)> <declaration-name> <line-end>
-                                 <layout(n)> <indent(n)> <runtime-type(n)>
+                                 <layout(n)> <indent(n)> <declaration-type(n)>
                                  <initializers(n+1)>
-<runtime-type(n)>            ::= <type-name> <line-end>
+<declaration-type(n)>        ::= <type-name> <line-end> <type-arguments(n+1)>
                                  [ <layout(n+1)> <export-selector(n+1)> ]
+<type-arguments(n)>          ::= <layout(n)> { <type-argument(n)> <layout(n)> }
+<type-argument(n)>           ::= <indent(n)> <placeholder-type> <space> "<" <space>
+                                 <declaration-type(n)>
 <export-selector(n)>         ::= <indent(n)> <placeholder-type> <line-end>
 <initializers(n)>            ::= <layout(n)> { <initializer(n)> <layout(n)> }
 <initializer(n)>             ::= <literal-line(n)>
@@ -320,8 +323,8 @@ are defined in [Declarations and scope](language/declarations.md).
 | Annotation | Section or module kind |
 |---|---|
 | `@=` | Shared immutable constants |
-| `@<` | Ordinary input variable declarations |
-| `@>` | Ordinary result variable declarations |
+| `@<` | Runtime input and compile-time phantom declarations |
+| `@>` | Runtime result and compile-time phantom declarations |
 | `@!` | Ama implementation |
 | `@C` | Companion C implementation |
 | `@...` | Entire static marker or producer, with no other annotation sections |
@@ -350,30 +353,38 @@ declarations need not parse. Marker text in comments/literals and companion
 files does not activate a draft. See SYN-03–SYN-05 in
 [Module sections and unfinished files](language/source-and-names.md#module-sections-and-unfinished-files).
 
-Every ordinary declaration retains a variable-name line and a type line. A type
-line is a concrete module path or one complete placeholder spelling. A plain
-placeholder in an ordinary input or result type introduces a Type parameter
-under [TPL-02](language/templates.md#tpl-02); shared/body declarations may only
-reuse established parameters. Ordinary declarations cannot declare standalone
-static formals, static results, or named static input/output binding blocks.
-A path to an ordinary template in a shared/body/runtime-result declaration
-retains the field-inference rules of [TPL-08](language/templates.md#tpl-08),
-rather than acquiring a static argument list in ordinary code. An ordinary
-runtime input path must already denote a complete Type; use a bare Type
-placeholder to accept a generic complete input Type.
+Every ordinary declaration retains a name line and a type-expression head at
+the same indentation. Named `<type-argument>` lines supply structural static
+substitutions one level deeper; each right-hand expression can have further
+named arguments. An optional bare `<export-selector>` follows all arguments
+at that same child level. It selects one named output of the head's static
+producer. The selector is childless and introduces no alias or parameter;
+there is no ordinary `>` static output-binding form. Distinguish the named
+argument, selector and ordinary initializer by their source shapes without
+loading a definition or consulting declared names. Initializers follow the
+complete type expression and do not belong to a nested argument expression.
 
-A path selecting a nonempty `@...` producer must instead have exactly one indented
-`<export-selector>` line. It names that producer's public output; it is not an
-ordinary source, a new free parameter, or a static application. The selected
-value must be a concrete ordinary Type, and the producer must be independently
-determined without using the consuming runtime declaration as an inference
-source. A residual Template or static marker is not a variable type, including
-when obtained through a placeholder or named export. A direct marker path does
-not become a runtime type by omitting the selector. See
-[TPL-12](language/static-results.md#tpl-12) for producer determination, dependency
-checking and export publication. A selector cannot follow a Type placeholder
-or an ordinary module path, and it cannot contain `<`, `>`, or constructor
-arguments. Recognition of the selector shape does not inspect the filesystem.
+Free placeholder operands in ordinary interface type expressions introduce
+Type parameters under [TPL-02](language/templates.md#tpl-02); labels select the
+callee's formals/exports and never introduce parameters. Shared/body declarations
+may only reuse the collected interface parameters. Standalone static formals,
+result pairs and graph statements remain exclusive to `@...`.
+
+[TPL-15](language/templates.md#tpl-15) requires one closed final Type for each
+used concrete specialization. Nested operands may carry Types or Templates as
+required by the selected constructor's contract. A static producer needs the
+explicit named selector even if it exports only one result; it must have all
+inputs determined before publishing that result under TPL-12. Ordinary
+constructors produce their own Type and take no export selector. There is no
+first-output fallback or implicit runtime type generation. The declaration
+type and every required dependency must pass the existing finite-composition
+and admission checks; syntactic nesting does not waive those checks.
+
+[TPL-16](language/phantom-types.md#tpl-16) classifies a declaration with an
+established phantom result role as compile-time-only. Its name must be unsuffixed and it accepts no
+initializer/default. It contributes no runtime argument/result position or
+storage. A direct marker remains invalid as a declaration Type under TPL-14;
+references/lists/constants also require ordinary runtime-capable Types.
 
 ```text
 handler
@@ -436,11 +447,12 @@ bodies, or runtime instances. Every static input and output binding is named:
 its label and operand are complete placeholder/type expressions as shown above.
 There are no positional static bindings, bare `...` markers, operandless
 bindings, skips, or a trailing capture of the expression's own Type. Ordinary
-runtime positional arguments and results are unaffected.
+runtime positional arguments and results enumerate runtime declarations only;
+phantom declarations occupy no positions.
 
 A `<static-definition>` is a pair: a public receiver name followed by a
-same-level value expression. Its RHS denotes an ordinary Type, a static marker
-or a partial ordinary constructor (Template), never a nonempty static producer
+same-level value expression. Its RHS denotes an ordinary Type, a static marker,
+a phantom declaration Type or a partial constructor (Template), never a nonempty static producer
 itself. Named inputs may apply the constructor, and their right-hand expressions may nest further
 ordinary constructor applications. Its head can also be a supplied Type or
 Template name. Without inputs, a supplied name forwards its value unchanged.
@@ -475,11 +487,14 @@ A `<static-producer-use>` selects at least one explicitly named result of an
 all output bindings at that level. The statement is a set of result equations,
 not an effectful call and not an ordinary constructor's own-Type capture.
 Its producer's kind and output labels are checked after resolution. A static
-producer cannot be used as a value-expression head; obtain its named outputs
+producer cannot be used as a `<static-value>` head; obtain its named outputs
 and then use those aliases as values. A marker path is a value-expression head,
 has no outputs and accepts no input bindings. Its path shares `<module-path>`
 syntax; marker versus producer versus ordinary constructor is resolved after
 parsing, without alternate tokenization.
+The intrinsic `..type.phantom` constructor uses the same named application
+shape; [TPL-16](language/phantom-types.md#tpl-16) checks its single marker argument.
+Its result can be forwarded as Type metadata without creating runtime storage.
 
 ```text
 @...
@@ -514,8 +529,8 @@ signature, forbid unused additional parameters, or choose a constructor from
 its capabilities. An application keeps the actual constructor's unapplied
 residual parameters; separate applications do not mutate a shared binding map.
 
-In ordinary templates, by contrast, only input/result variable types introduce
-free parameters. Their Type equations come from the typed connections under
+In ordinary templates, only interface declaration type expressions introduce
+free parameters. Their Type equations come from explicit bindings and typed connections under
 [TPL-03](language/templates.md#tpl-03): inputs, explicitly typed output receivers,
 defaults, declaration initializers, assignments, reference bindings and aliases.
 A literal or an otherwise unconstrained receiver supplies no concrete type
@@ -598,10 +613,11 @@ continuation
  % original
 ```
 
-Static equations belong only to `@...` modules. An ordinary body has no
-standalone static projection, static alias definition pair, or static input or
-output binding block. A declaration's export selector reads a prepared Type;
-it does not create a static equation in that ordinary module.
+Standalone static equation graphs belong only to `@...` modules. An ordinary
+body has no static alias-definition pair or public static output binding.
+Its declarations may contain the structural input bindings and single named
+selection of TPL-15; these contribute declaration type constraints, not graph
+statements or runtime operations.
 
 **Example: later static evidence, with ordinary execution order.** Assume
 `.forward` is the template defined in [TPL-04](language/templates.md#tpl-04):
@@ -631,9 +647,10 @@ are constructed under the ordinary declaration-order rules.
 
 Recognize the shape before name/type lookup:
 
-- A declaration name followed by a same-level type line is a declaration;
-  an optional single export selector precedes its ordinary initializers.
-- `@<` and `@>` contain only ordinary variable declarations. A leading
+- A declaration name followed by a same-level type-expression head is a
+  declaration; nested named inputs and an optional single export selector
+  precede its ordinary initializers.
+- `@<` and `@>` contain runtime or phantom name/type declarations. A leading
   `...name` receiver and same-level value expression form a static definition
   only inside an `@...` module. Static binding lines have named `<` or `>`;
   runtime arguments remain inside their ordinary operation's argument block.
@@ -667,8 +684,10 @@ source. Static graph statements are not executable statement alternatives.
                                  <layout(n+1)> <resume-arguments(n+1)>
 <read-call(n)>               ::= <indent(n)> <call-target> <line-end>
                                  <layout(n+1)> <read-arguments(n+1)>
-<constant-read(n)>           ::= <indent(n)> <runtime-type(n)>
+<constant-read(n)>           ::= <indent(n)> <constant-namespace(n)>
                                  <constant-read-arguments(n+1)>
+<constant-namespace(n)>      ::= <type-name> <line-end>
+                                 [ <layout(n+1)> <export-selector(n+1)> ]
 <execution-arguments(n)>     ::= { <parameter-line(n)> <layout(n)> }
                                  { <execution-output-action(n)> }
 <resume-arguments(n)>        ::= { <execution-output-action(n)> }
@@ -731,11 +750,11 @@ set; the list interface restricts that set during static checking.
 
 ### Constant namespace shape
 
-The namespace uses the same `<runtime-type>` form as an ordinary declaration:
+The restricted `<constant-namespace>` form permits
 an ordinary module path, a visible Type placeholder, or a static module path
 with exactly one indented named export selector. It has no static argument or
 result bindings. A placeholder denotes its complete Type; it cannot be applied
-as a constructor in ordinary code.
+as a constructor inside this constant-read namespace.
 
 The namespace must already resolve to one concrete ordinary Type under
 [CONST-06](language/declarations.md#const-06) before constant-member lookup.
@@ -786,16 +805,18 @@ and `...element type.zero` does not mean the `zero` constant of
 
 ### Binding form and order
 
-All static input and output bindings are named and have operands. They occur
-only in the `@...` graph productions above; no static binding has a positional
-counter or an empty skip. At one producer use, input bindings precede output
+All static input and output bindings are named and have operands. Static input
+bindings also occur in declaration type expressions under TPL-15; named static
+output bindings and result aliases belong to `@...` graphs. No static binding
+has a positional counter or an empty skip. At one producer use, input bindings precede output
 bindings. An alias-definition RHS and its nested constructor values have input
 bindings only. Formal/result labels resolve to the selected producer's interface,
 while operands resolve in the supplying lexical scope. Scope, partial
 application and use-derived signature constraints follow
 [TPL-07](language/templates.md#tpl-07),
 [TPL-08](language/templates.md#tpl-08), and
-[TPL-12](language/static-results.md#tpl-12).
+[TPL-12](language/static-results.md#tpl-12) and
+[TPL-15](language/templates.md#tpl-15).
 
 One operation uses either named or positional ordinary bindings across both
 inputs and outputs. Input/output counters are independent and follow interface

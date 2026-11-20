@@ -26,6 +26,9 @@ without inspecting that representation.
 The library implementation must provide the following agreed capabilities.
 Missing capabilities are implementation gaps, not alternative language rules:
 
+- The compiler-recognized static constructor `..type.phantom` under
+  [TPL-16](phantom-types.md#tpl-16). It accepts one marker Type and supplies a
+  phantom declaration Type; its contract introduces no runtime library instance.
 - Integer/index types with literal decoding, ranges, arithmetic, comparison,
   overflow behavior, and checked conversion to host allocation/index sizes.
 - A truth-capable type and a registered condition conversion contract.

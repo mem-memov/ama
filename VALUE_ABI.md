@@ -13,6 +13,10 @@ collision-checked hashes of complete qualified identities, including their
 category. The compiler retains source identities and emits `#line` mappings.
 Matching C layouts do not establish Ama type compatibility.
 
+The specification's [phantom declarations](spec/language/phantom-types.md#tpl-16)
+add no runtime ABI fields, arguments or results. Enclosing ordinary Types retain
+their complete marker-bearing nominal identities in checked C boundaries.
+
 Handwritten native companions qualify their module-owned C names through
 `AMA_NATIVE(local_name)` under NAME-05. ABI records name local identifiers, not
 global C functions. The generated context uses the same collision-checked module

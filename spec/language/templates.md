@@ -8,6 +8,7 @@ In this chapter:
 - [Explanation: two kinds of work](#explanation-two-kinds-of-work)
 - [Placeholder spelling](#placeholder-spelling)
 - [Parameters and their scope](#parameters-and-their-scope)
+- [Type expressions in ordinary declarations](#type-expressions-in-ordinary-declarations)
 - [Inferring types from typed connections](#inferring-types-from-typed-connections)
 - [Nested template instances](#nested-template-instances)
 - [Specialization identity and independent state](#specialization-identity-and-independent-state)
@@ -39,10 +40,11 @@ A file with only `@...` and layout instead declares a nominal static type
 marker under [TPL-14](static-results.md#tpl-14).
 
 **Design rationale.** This division keeps code that manipulates values easy to
-read. A standalone `...name` is not hidden among runtime input declarations;
-complex type assembly has an explicit home. Simple executable templates still
-infer their Types through normal calls, results and other typed connections.
-Static modules give libraries composition and partial application without adding
+read. An ordinary declaration remains a name/type pair, even when its type
+expression assembles or selects a Type. Standalone equations and public static
+results have an explicit home in `@...`; they are not hidden among runtime
+inputs. Ordinary templates infer Types through normal calls, results and other
+typed connections. Declaration expressions add explicit composition without
 runtime template objects, a general compile-time interpreter or dependent types.
 
 **Design status.** This chapter defines target behavior, not an implementation
@@ -74,11 +76,13 @@ components, four leading dots, doubled internal dots, a terminating dot and
 spaces adjoining dots are invalid. There is no positional static marker.
 Structural indentation and operand separators remain outside the name.
 
-Static names occur only in the roles defined by TPL-02, TPL-08 and TPL-12, and
+Static names occur only in the roles defined by TPL-02, TPL-08, TPL-12 and TPL-15, and
 as an already scoped Type namespace under [CONST-03](declarations.md#const-03).
 They are not runtime value sources, variables, indices, entry/resume targets,
 literals or dotted member accesses. A normal variable's type line may use one
-bare Type name; that does not make the variable itself a static value.
+bare Type name or the declaration expression of TPL-15; neither makes the
+declared field an ordinary first-class static value. Compile-only phantom fields
+have the separate contract of [TPL-16](phantom-types.md#tpl-16).
 
 **Examples: spellings, not complete modules.**
 
@@ -97,40 +101,58 @@ bare Type name; that does not make the variable itself a static value.
 <a id="tpl-02"></a>
 
 **TPL-02.** In an ordinary executable module, each declaration in `@<` and `@>`
-is an ordinary name/type pair under [TYPE-01](declarations.md#type-01). A bare
-`...name` on such a declaration's type line introduces one Type parameter of
-that module. Collect all these introductions from both sections before checking
-uses. Repeated use of the same complete name denotes the same parameter;
-different names denote independent parameters until a typed connection equates
-them. New parameters may be introduced in results as well as inputs.
+is a name/type pair under [TYPE-01](declarations.md#type-01), including the
+compile-only phantom declarations of [TPL-16](phantom-types.md#tpl-16). An
+eligible local `...name` in such a declaration's type expression introduces
+one Type parameter of that module. Eligible occurrences are the entire bare
+type expression and the local source operands of its structural bindings under
+TPL-15. A foreign input label, a selected export label and a module-path
+component never introduce a local parameter. An already scoped name is reused,
+not redeclared.
+
+Collect introductions from both complete interface sections before checking
+uses. Repeated eligible occurrences of the same complete name denote the same
+parameter; different names denote independent parameters until a typed
+connection equates them. New parameters may be introduced in results as well
+as inputs. A placeholder constrained to a marker by TPL-16 is still a Type
+parameter; it does not become a runtime argument or a Template parameter.
+
+A bare parameter used as the whole Type of an ordinary field retains the
+runtime-Type constraint of TYPE-01. It cannot later erase that field by taking
+a marker or phantom declaration Type. A phantom declaration instead has the
+statically established constructor role of TPL-16; an eligible placeholder in
+its marker argument describes its mark, not a runtime field. This distinction
+preserves ordinary inference from runtime inputs without making the number of
+runtime inputs depend on a guessed parameter category.
 
 An ordinary interface cannot contain a standalone static formal, a static
-result definition, a constructor signature or a static application/projection
-block. The same prohibition on complex static operations applies in ordinary
-shared declarations, body declarations, defaults and constant namespaces.
-Several runtime declarations may share a bare placeholder Type, but indented
-static input/output bindings may not follow that type line. Static composition
-belongs in an `@...` module, including when its result will later type an
-ordinary field.
+result-pair definition, a public static output alias or a constructor signature.
+Type expressions may contain the structural bindings and named selection of
+TPL-15. They do not turn the enclosing module into an `@...` producer or create
+an independently executable graph of static statements. Ordinary initializers,
+defaults, constant reads and executable statements do not acquire static
+`<`/`>` bindings merely because a declaration's type admits them.
 
-A body or `@=` type line may reuse any Type parameter collected from the whole
-ordinary interface. It cannot introduce another free parameter. This remains
-true in unreachable branches and empty loops. Shared declarations may reuse
-parameters even though `@=` precedes the interface in source order. A constant
-namespace may reuse a collected Type, not introduce one.
+A body or `@=` type expression may reuse any Type parameter collected from the
+whole ordinary interface. It cannot introduce another free parameter. This
+remains true in unreachable branches and empty loops. Shared declarations may
+reuse parameters even though `@=` precedes the interface in source order. A
+constant namespace may reuse a collected Type, not introduce one.
 
 The parameter identity is the original defining module identity plus the complete
 static name. Physical submodule nesting does not inherit parameters. Canonical
 formal order is first introduction in `@<`, then first introduction in `@>`, in
-each section's textual declaration order. This order supports deterministic
-metadata; it introduces no positional static source interface.
+each section's textual declaration order, traversing each expression in source
+order and excluding foreign labels and selectors. This order supports
+deterministic metadata; it introduces no positional static source interface.
 
-A parameter's ordinary Type is separate from the variable's storage form. The same Type
-can describe an owned value, a reference target, an owning list's element or a
-reference list's target. Substitution never adds/removes `&`, `[]` or `&[]`.
-An open constructor or static marker is not a valid runtime field type.
-Static-module free inputs, public definitions and scopes follow TPL-12 instead
-of these interface rules.
+A parameter's Type is separate from the variable's storage form. The same ordinary
+Type can describe an owned value, a reference target, an owning list's element or
+a reference list's target. Substitution never adds/removes `&`, `[]` or `&[]`.
+An open constructor or static marker is not a valid runtime field type. The
+phantom constructor accepts markers as static arguments under TPL-16; this does
+not authorize storing a marker directly. Static-module free inputs, public
+definitions and scopes follow TPL-12 instead of these interface rules.
 
 **Example: ordinary interface fragment.**
 
@@ -169,6 +191,136 @@ An explicitly typed receiver or another permitted typed connection can determine
 this result-only parameter. A static assembly can also apply `.default result`
 by its named Type formal. Every invocation of one declared concrete producer
 still has the same fixed result Type.
+
+## Type expressions in ordinary declarations
+
+**Explanation.** A library may construct a dictionary Type from key and value
+Types without requiring the programmer to create a separate assembly file for
+every combination. The declaration still says which field is being declared
+and then describes its one Type. A generic definition can describe that Type
+symbolically; every concrete specialization must settle it before execution.
+
+<a id="tpl-15"></a>
+
+**TPL-15.** An explicit declaration in an ordinary module's interface, body or
+shared section may use a structural type expression. A native module remains
+concrete under TPL-13; this rule does not add an Ama body to `@C`. Its head is a
+concrete module path or an
+already scoped static Type name. Explicit constructor inputs use the named
+`...formal < expression` form of TPL-08, one level below their expression head.
+Their right-hand expressions may nest further applications. All labels are
+resolved in the actual callee; local operands use the enclosing ordinary
+module's static scope under TPL-02. There are no positional static bindings,
+implicit name matching or textual substitutions. Own ordinary-module parameters
+remain Type parameters; a free Template-valued constructor input belongs to a
+static module under TPL-07/TPL-12.
+
+For a static producer head, supply zero or more named inputs followed by exactly
+one bare named export selector at the same child indentation. The selector names
+the selected producer's export, not a new local name; it has no children or
+storage suffix. It is mandatory even for a single-output producer. Ordinary
+initializers follow the completed type expression at their usual depth. Source
+structure distinguishes named input bindings, the bare export selector and
+ordinary initializer lines before module lookup; an unknown or inappropriate
+callee cannot change that parse. No static `...output > ...receiver` alias or
+result-pair definition occurs in an ordinary type expression.
+
+The expression must yield exactly one fully determined Type for each required
+concrete specialization of its enclosing module before executable admission,
+layout or construction. An open generic definition may retain symbolic
+expressions and constraints. At the declaration's final ordinary-constructor
+head, an omitted formal contributes the field inference variable specified by
+TPL-04. Nested argument expressions retain TPL-08's distinction between complete
+Type and partially applied Template; an argument's actual formal determines
+which category is accepted. An omitted producer input contributes the
+application-local variable specified by TPL-12. These omissions do not introduce
+another free parameter of the owner. Explicit arguments and all permitted typed
+connections contribute simultaneous equalities under TPL-03/TPL-10. The final
+declared Type has no residual formals, and all inputs of every required static
+producer must be fully determined, including inputs not reflected in the chosen
+result.
+
+One uniquely determined Type is a necessary condition, not an exemption from
+the rest of the language. A runtime declaration must produce an ordinary
+storable Type under TYPE-01. The only compile-only field form is the phantom
+declaration of TPL-16. A marker cannot type runtime storage directly. A returned
+Template may be an intermediate static argument where its actual formal
+category permits it; it cannot remain the declared field's final Type.
+
+Determine the declaration role from its resolved expression and structural
+constraints, including known aliases and selected exports. A bare ordinary
+field-Type parameter remains runtime constrained under TPL-02. If an applied
+producer's result role is still unknown, retain that obligation until genuine
+static evidence determines it. Do not assume a field phantom, remove an input
+or result position, or select a parameter value merely to make an ordinary
+binding's supplied argument count fit. The fixed runtime interface is then the
+projection specified by TPL-16; ordinary runtime input inference remains in
+force for its runtime fields.
+
+Solve only the structural equations of TPL-10 from independently identified
+constructor/producer origins. Never search candidate modules, enumerate
+possible arguments, invent an inverse for a noninjective producer output or
+choose among multiple possible Types. Contradiction, missing evidence and a
+required undetermined input are errors, including in unused branches of a used
+specialization. Source loading, static-definition cycles, specialization
+creation under TPL-11, eager ownership, constant dependencies, capabilities and
+native-boundary checks remain separate obligations. A pending recursive key
+cannot justify speculative expansion or successful admission.
+
+Only `@...` contains standalone static equations, result-pair declarations and
+public static outputs. Declaration expressions inspect no runtime value and
+execute no body, initializer, native hook or arbitrary type-level program.
+They provide structural assembly at a declaration site, not another module
+kind or a runtime means of passing constructors.
+
+**Example: concrete construction in an ordinary body.** Assume `.dictionary`
+introduces `...key type` and `...value type` in its ordinary interface:
+
+```text
+@!
+items
+.dictionary
+ ...key type < ..text
+ ...value type < ..integer
+```
+
+The owned `items` field has `Dictionary(Text, Integer)` Type. Its Type is
+assembled during compilation; normal owned construction happens separately.
+
+**Example: finite nested construction.** Assume `.box` has the ordinary Type
+formal `...element type`. A complete ordinary module can contain:
+
+```text
+@!
+boxed items
+.box
+ ...element type < .dictionary
+  ...key type < ..text
+  ...value type < ..integer
+```
+
+The inner bindings belong to `.dictionary`; the outer binding belongs to `.box`.
+The result is one concrete `Box(Dictionary(Text, Integer))` Type. Indentation
+expresses structural arguments, not runtime execution or an ownership edge by
+itself; the resulting definitions still determine construction under TYPE-04.
+
+**Example: a generic interface expression.** With the same dictionary:
+
+```text
+@<
+items
+.dictionary
+ ...key type < ...key
+ ...value type < ...value
+
+@!
+```
+
+The local parameters are `...key` and `...value`, in that order. The callee
+labels `...key type` and `...value type` are not parameters of this module.
+An actual dictionary's full nominal specialization metadata can determine the
+two inputs by TPL-10's exact decomposition. A type with a different original
+constructor cannot match by layout or supported operations.
 
 ## Inferring types from typed connections
 
@@ -493,8 +645,10 @@ fully concrete and pass ordinary Ama checks before code generation or runtime
 construction. An open definition or partial constructor is compiler metadata,
 not an executable value or an incompletely initialized runtime instance. Every
 runtime field, reference target and list element has one concrete ordinary
-nominal Type. A closed static marker remains compile-time metadata under
-[TPL-14](static-results.md#tpl-14); being Type does not make it instantiable.
+nominal Type. Static markers and phantom Types remain compile-time metadata
+under [TPL-14](static-results.md#tpl-14) and
+[TPL-16](phantom-types.md#tpl-16); being Type does not make them instantiable.
+Phantom declarations contribute no runtime field, argument or result cell.
 
 Check source syntax, lexical scope and resolvable names at definition time.
 After substitution, check every required operation, storage form, input/result
@@ -519,10 +673,11 @@ residual parameters without leaving a producer input unknown.
 
 Closed nominal identities can be registered and referred to while their finite
 mutually dependent group is still being checked under TPL-11. Registration is
-not admission and does not waive any checks. In particular, the ordinary bridge
-to a static export must know its concrete identity independently of the consuming
-runtime context, but need not demand completed validation of every mutually
-referencing body before that identity can participate in checking.
+not admission and does not waive any checks. In particular, an ordinary type
+expression may contribute structural equations while its enclosing definition
+is open under TPL-15. A complete identity can participate in checking before
+every mutually referencing body has finished validation; every required producer
+input and actual definition obligation must nevertheless close before admission.
 
 ## Concrete native modules and template source distribution
 
@@ -584,17 +739,19 @@ configuration syntax is outside the current sprint.
 
 | Category | Meaning |
 |---|---|
-| Type | One ordinary module Type or closed static marker under [TPL-14](static-results.md#tpl-14), possibly symbolic before its enclosing inputs close |
-| Template | An ordinary type constructor with at least one residual named formal and any prior fixed captures |
+| Type | One ordinary module Type, closed static marker under [TPL-14](static-results.md#tpl-14), or phantom Type under [TPL-16](phantom-types.md#tpl-16), possibly symbolic before its enclosing inputs close |
+| Template | An ordinary type constructor or the standard phantom constructor, with at least one residual named formal and any prior fixed captures |
 
 An unapplied nongeneric ordinary module denotes Type. An executable template's
 path denotes Template until its residual formals are bound; complete application
 produces Type. A marker path denotes its closed Type and accepts no bindings.
-A nonempty static module is a producer of named static values under TPL-12,
-not an ordinary Type, Template, runtime value or third first-class static
-function category. Its named outputs may themselves be ordinary Types, markers
-or Templates. Both kinds of Type use exact nominal equality; ordinary runtime
-storage separately requires an ordinary Type under TYPE-01/TPL-14.
+The standard phantom constructor and its closed compile-only Types follow
+TPL-16; they do not add a third static category. A nonempty static module is a
+producer of named static values under TPL-12, not an ordinary Type, Template,
+runtime value or third first-class static function category. Its named outputs
+may themselves be ordinary Types, markers, phantom Types or Templates. All
+Types use exact nominal equality; ordinary runtime storage separately requires
+an ordinary Type under TYPE-01/TPL-14/TPL-16.
 
 A constructor's actual signature is its complete set of residual original formal
 names with their categories and applicable nested requirements. Its fixed map
@@ -662,15 +819,15 @@ mandatory under the existing list contract.
 
 **TPL-08.** Static substitution acts on resolved structure and scoped formal
 identities, never source text. Resolve a concrete value-expression path to its
-exact original ordinary module definition or static marker, or a static name
-to its supplying static environment. A nonempty static producer path is used
+exact original ordinary module definition, static marker or standard phantom
+constructor under TPL-16, or a static name to its supplying static environment. A nonempty static producer path is used
 only through named output selection under TPL-12.
 Capture neither unrelated names in another module nor a foreign binding label.
 TPL-12 defines the separate graph syntax and visibility rules.
 
-A static value expression has an ordinary path, marker path or visible
-Type/Template name as head. A named input is `...formal < expression`, indented
-one level below that head, with one separator on each side of `<`. Its complete
+A static value expression has an ordinary path, marker path, the standard
+phantom constructor path under TPL-16, or visible Type/Template name as head.
+A named input is `...formal < expression`, indented one level below that head, with one separator on each side of `<`. Its complete
 left name belongs to the selected constructor. Its right side belongs to the supplying module and
 may have its own deeper named input block. Deeper bindings apply only to their
 immediate expression. At one level all inputs use the same supplying scope;
@@ -760,10 +917,12 @@ must first expose its selected output through an explicit graph receiver.
 TPL-11 assigns every written application to its lexical owner rather than
 inventing an outer-to-inner creation edge from indentation alone.
 
-### Ordinary declarations keep simple Types
+### Ordinary declarations produce one Type
 
-No static binding block occurs in an ordinary module. To use a deliberately
-assembled Type, select a named ready output under TPL-12:
+Declaration expressions follow TPL-15. A simple path or bare placeholder remains
+the shortest form. Named arguments can assemble a Type directly, and a static
+producer head selects exactly one named output. An assembly without inputs
+keeps the concise ready-Type form:
 
 ```text
 nested
@@ -771,33 +930,31 @@ nested
  ...nested box
 ```
 
-At a shared/body/runtime-result field whose ordinary type path names an open
-executable template, preserve TPL-04's field inference. Introduce fresh inference
-variables for that field's omitted Type formals, keyed by concrete owner,
-lexical field and original residual formal. Normal typed connections may solve
-them. Different fields are independent; one field keeps one specialization.
-This is compiler inference, not runtime partial storage or a new owner parameter.
-An ordinary runtime input may instead use a bare Type placeholder to accept an
-entire supplied concrete Type. An open concrete template path with unresolved
-input formals is not a complete input Type pattern; no implicit decomposition
-or complex application block is introduced there.
+At an ordinary field whose known type origin names an open executable template,
+preserve TPL-04's field inference for omitted Type formals. Its variables are
+keyed by concrete owner, lexical field and original residual formal. Normal
+typed connections may solve them. Explicit named arguments add equations to
+that same specialization; they do not create a second independent field type.
+Different fields remain independent, and one field keeps one specialization.
+This is compiler inference, not runtime partial storage or another owner
+parameter. The result must close under TPL-15 before executable admission.
 
-The indented selector of an actual static module is distinct from field
-inference. It must independently determine one ready Type under TPL-12; an
-ordinary receiver or call cannot complete that producer through the bridge.
-A constant namespace likewise receives no fresh field inference variables.
-Its Type must be known independently under CONST-03.
+A constant namespace is a read expression rather than a declaration. It
+receives no fresh field inference variables or inline constructor bindings;
+its Type must be known independently under CONST-03.
 
 Runtime `<`, `>`, empty positional bindings and literal inputs retain their
 ordinary call/default meanings. They are not compile-time partial application.
 A Template cannot be stored in a variable, checked reference, list or runtime
-result; an instance of a concrete Type built from it is an ordinary Ama value.
+result; an instance of a concrete ordinary Type built from it is an Ama value.
+The compile-only phantom declarations of TPL-16 do not store Template values.
 
 ## Static result interfaces
 
 [TPL-12](static-results.md#tpl-12) defines the exclusive `@...` source form,
 public result pairs, multiple named results, free input collection, exact graph
-dependencies and the named ready-Type bridge into ordinary declarations.
+dependencies and named export selection. TPL-15 integrates that selection with
+ordinary declaration expressions.
 It separates static result-definition dependencies from equalities and from
 specialization creation. The examples show how to pass partial constructors
 between producers without introducing runtime objects or implicit type lookup.
@@ -868,6 +1025,8 @@ specialization. The symbols below are explanatory metanotation, not new syntax.
    binding equations; unequal origins conflict regardless of layout/capabilities.
    A marker is a closed Type leaf with no bindings under TPL-14; compare its
    original identity without inventing constructor formals or runtime structure.
+   Phantom Types preserve their checked marker capture under TPL-16; their lack
+   of runtime storage does not erase that capture from equations or identity.
 2. Merge unknowns or equate them with structural static expressions. Preserve
    all earlier equations and inferred category/usage obligations. Reject wrong
    categories, inconsistent bindings and infinite substitution terms with an
@@ -888,7 +1047,8 @@ specialization. The symbols below are explanatory metanotation, not new syntax.
    residual formals of its known ordinary template origin. Typed inputs/results,
    defaults, copies and references generate TPL-03 equalities. A bare ordinary
    Type parameter receives a complete nominal Type, not an implicitly extracted
-   family. No constructor-application patterns are added to ordinary interfaces.
+   family. Declaration expressions under TPL-15 contribute explicit structural
+   application patterns; their origins and foreign labels must already resolve.
 5. Static graph definitions and selected outputs contribute TPL-12 equations.
    Inspect only independently known producer origins and their finite structural
    definitions, retaining all actual definition/application obligations. Never
@@ -935,14 +1095,14 @@ speculative copies. Static value definitions and eager ownership retain their
 separate cycle checks. Extra passes, depth limits, timeouts and heuristics do not
 replace these contracts.
 
-The separation also resolves the old interface-preview boundary recorded in
-[AMB-013](../../AMBIGUITIES.md#amb-013). An ordinary input Type is a bare parameter,
-a fixed ordinary Type or an independently closed selected export. It cannot
-contain a static program that must be previewed while its owner's recursive key
-is still unknown. Static modules solve their own finite equations separately;
-the bridge does not infer their inputs from the consuming runtime interface.
-This deliberately excludes that circular interface construction rather than
-claiming that a later compiler pass makes an ambiguous dependency safe.
+An ordinary type expression can now contain an explicit constructor application
+or named producer projection under TPL-15. This does not authorize the circular
+interface preview discussed in [AMB-013](../../AMBIGUITIES.md#amb-013). Retain
+its equations without admitting an incomplete recursive specialization. Only
+actual structural evidence may determine a pending key; declaration context is
+one permitted source of those equations, not permission to guess a producer's
+inputs, assume a pending key equal or ignore a definition cycle. Extra compiler
+passes do not weaken these checks.
 
 Supported implementations need component and composition evidence for the
 canonical acceptance scenarios. Earlier mixed-interface or pre-template tests

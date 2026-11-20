@@ -78,6 +78,15 @@ results under [TPL-12](../language/static-results.md#tpl-12) contribute no runti
 C result fields or operations for returning types. A facade's named static
 export selections must resolve independently of the host call context.
 
+The runtime schema excludes phantom declarations under
+[TPL-16](../language/phantom-types.md#tpl-16). They add no C argument, result,
+field, transport buffer or lifecycle operation. Enclosing ordinary Types keep
+their complete marker-bearing specialization identities in checked descriptors
+and schema comparisons. Equal runtime layouts do not permit substitution
+between different marked Types, and a C call cannot supply or choose a missing
+marker at runtime. A phantom Type itself is not an executable export root or
+a transportable runtime interface value.
+
 The configuration is a compiler/build input, not new Ama syntax or another
 `.abi` protocol. Export selection does not change the module's nominal identity
 or expose private fields. An explicit facade may provide a narrower interface

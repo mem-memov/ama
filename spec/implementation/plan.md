@@ -185,8 +185,10 @@ Deliverable: a reproducible build with a conformance report, not merely a workin
 ### Stage 11: Ordinary templates and separate static modules
 
 The target contract separates ordinary runtime declarations from structural
-Type/Template computation. Ordinary input/output variable types introduce bare
-Type parameters under [TPL-02](../language/templates.md#tpl-02). Static modules
+Type/Template computation. Ordinary input/output declaration expressions introduce
+scoped Type operands under [TPL-02](../language/templates.md#tpl-02).
+[TPL-15](../language/templates.md#tpl-15) admits named structural applications
+and export selections that settle one Type per concrete specialization. Static modules
 use the exclusive `@...` graph form under
 [TPL-12](../language/static-results.md#tpl-12), with named applications, public
 result names and an explicit named-export bridge to ordinary field types.
@@ -196,8 +198,11 @@ this roadmap does not preserve an alternative older interface.
 Recognize a layout-only `@...` body as the nominal static marker in
 [TPL-14](../language/static-results.md#tpl-14). Preserve marker Type identity in
 static aliases, bindings, constraints and source tools while keeping it outside
-all runtime storage and C boundaries. This recognition does not introduce an
-ordinary phantom-formal declaration; that remains a separate design decision.
+all runtime storage and C boundaries. Implement the separately specified
+[phantom constructor](../language/phantom-types.md#tpl-16) with marker constraints
+and complete specialization identities. Phantom declarations contribute no
+runtime storage, interface positions, native ABI fields or lifecycle edges;
+ordinary owners retain their own identity and lifecycle.
 
 Plan narrow components in prerequisite order: placeholder/name recognition;
 ordinary interface inventory; static graph parsing and whole-graph binder/input
@@ -205,8 +210,8 @@ classification; exact Type/Template usage requirements; named constructor
 applications, partial residuals and fixed captures; public result definitions
 and actual-origin named reads; exact structural equations within static graphs
 and ordinary typed constraints within their permitted context; pending
-repeated-key comparisons without speculative expansion; independent
-static-producer closure and named export selection;
+repeated-key comparisons without speculative expansion; complete
+static-producer input determination and named export selection;
 then validation of definition dependencies, nominal creation paths, ownership,
 constants, operations and layout. Preserve ordinary runtime positional calls,
 receiver/foreach lexical classification and initialization semantics.
@@ -221,10 +226,12 @@ unknown equality is permitted. Proven decreasing static recursion and natural
 number parameters remain deferred with dependent types.
 
 Resolve dependent shared constants and explicit namespaces using ordinary Type
-parameters or independently complete static exports. No inline static bindings
-or projections belong in ordinary declarations, constant reads or native
-interfaces. A literal, requested member name or runtime receiving field cannot
-choose a static producer's missing arguments.
+parameters and complete declaration expressions under TPL-15. Constant-read
+namespaces still resolve independently under CONST-03 and accept no inline
+binding block. Declaration expressions and typed connections supply only exact
+permitted equations; a literal or requested member name cannot choose a static
+producer's missing arguments. Concrete native declarations follow the same
+expression checking while own free native parameters remain forbidden.
 
 Then implement specialized layouts/emission and source diagnostics, concrete
 `@C` validation and ordinary source-package dependency closure under

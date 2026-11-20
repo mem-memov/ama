@@ -6910,3 +6910,76 @@ T201. Specification bytes have not changed.
   verify every generated-input fingerprint against source/staged bytes before
   the task commit. Generated technical pages remain unversioned. Specification
   acceptance does not establish implementation support.
+
+<a id="t225"></a>
+
+- [x] **T225 — Specify phantom types and complete declaration type expressions.**
+  Status: completed specification change; specification-only authorization from the user's
+  2026-11-20 approval of the preceding design. Prerequisites: T220.
+  Deliverable: describe `..type.phantom`, marker-constrained substitutions,
+  compile-time-only named fields and specialization identity; admit structural
+  declaration type expressions yielding one closed Type per concrete use.
+  Preserve the static graph boundary, existing finite-recursion checks, native
+  concreteness and direct marker storage prohibition. Localization stays deferred.
+  Steps: define the two canonical contracts and EBNF; reconcile all affected
+  language/runtime/native/tool rules; audit examples, requirement and acceptance
+  navigation; record implementation ownership without claiming compiler support.
+  Accept: no competing restrictions remain, syntax/links/IDs and documented
+  positive/negative scenarios agree, documentation checks pass, and generated
+  reference fingerprints match final maintained inputs. No compiler changes or
+  refreshed conformance claims belong to this task.
+  Results: [TPL-15](spec/language/templates.md#tpl-15) admits named structural
+  declaration expressions and one childless named export selector. Each required
+  concrete owner must settle one closed admissible Type and every applied producer
+  input. Interfaces collect eligible Type operands, excluding foreign labels;
+  body/shared expressions reuse their scope. Independent constant-read namespaces
+  retain their restricted syntax. Standalone graphs and public results stay in
+  static modules.
+
+  [TPL-16](spec/language/phantom-types.md#tpl-16) defines the exact standard
+  constructor and its single `...mark` formal. Fixed and generic marks, aliases,
+  structural evidence and nominal compatibility are explained with examples.
+  A marker must resolve through substitutions to a TPL-14 marker, regardless of
+  the parameter's spelling. Ordinary bare whole-field Type formals remain runtime
+  constrained; an explicit or established phantom role does not change interface
+  arity by guessing. A fixed mark introduces no extra outer formal, while every
+  real formal affecting a mark remains in the owner's complete specialization key.
+
+  Phantom declarations have no runtime values, storage, addresses, arguments,
+  result positions, defaults, copy/lifecycle edges, busy or continuation state.
+  References, lists, constants and runtime operations on them are invalid. Their
+  ordinary owners retain normal instances and lifecycle; marked nominal types
+  stay distinct through native/C boundaries despite equal layouts. Direct marker
+  storage, native own-formal rejection and finite creation checks remain intact.
+  Related call, declaration, graph, runtime, native/C, library, source, glossary,
+  grammar, compiler, roadmap and acceptance contracts now express one model.
+  Two new acceptance scenarios and the revised existing scenarios define the
+  future positive/negative, role, identity and boundary evidence.
+
+  Review: three independent read-only passes checked the type-expression/grammar,
+  phantom/category and cross-runtime/ABI boundaries. They found a fixed-marker key
+  overstatement and an orphaned old EBNF production. The first structural check
+  failed on runtime-type after declaration-type replaced it. Correcting the
+  restricted constant-read production preserved CONST-03; no expected behavior
+  was weakened. Rerun python3 /tmp/ama-t225-spec-check.py passes for 25 canonical
+  chapters, 217 requirements, 113 unique/aligned/fully referenced EBNF definitions,
+  local/canonical links and 226 unique task IDs. git diff --check passes.
+
+  make conformance-check exits 2 with "specification changed; conformance review
+  is required" (/tmp/ama-t225-conformance.log), the expected refusal of the older
+  accepted matrix. Implementation, native/library/test code, the per-file registry
+  and reviewed conformance fingerprints remain untouched. README, backlog context
+  and release/evidence guides now identify the expanded pending target without
+  claiming implementation. [T221](TODO.md#t221) owns the marker foundation;
+  [T226](TODO.md#t226) owns expression/phantom implementation and renewed evidence
+  under a separate request. Localization remains [T223](BACKLOG.md#t223).
+
+  make docs exits 0 (/tmp/ama-t225-docs-initial.log): 3028 ready inputs and zero
+  debts; Doxygen 1.11.0 renders 2297 maintained file pages and 8908 interfaces,
+  checking 458/458 referenced canonical destinations. All 2539 input fingerprints
+  match the reviewed source edition. No compiler-execution acceptance is claimed.
+
+  Final delivery: after this archival update, rerun the structural document check
+  and make docs (/tmp/ama-t225-docs-final.log) from final maintained inputs. Require
+  success and verify all generated-input fingerprints against sources and reviewed
+  staged task bytes before committing. Generated technical pages stay unversioned.

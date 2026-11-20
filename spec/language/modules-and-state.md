@@ -52,7 +52,7 @@ An executable module can have three kinds of instance fields:
 
 - Runtime parameters in `@<` accept typed inputs when a call starts from entry.
 - Runtime results in `@>` retain typed outputs after completion or a yield.
-- Declarations in `@!` describe permanent body state, constructed once with the
+- Runtime declarations in `@!` describe permanent body state, constructed once with the
   instance, including declarations written inside branches or loops.
 
 `@=` instead declares immutable constants shared by instances within an
@@ -61,10 +61,16 @@ execution context. They are not part of any instance's ownership tree.
 A separate static module begins with `@...` and describes a graph of Type and
 Template equations under [TPL-12](static-results.md#tpl-12). It has no instance,
 runtime fields or executable body. An ordinary template introduces Type
-placeholders through the single-line types of its input and result variables;
-complex type composition belongs to static modules. Selecting a named static
-export as a field type does not run a body, create a producer instance or
-initialize a method.
+parameters through its input/result declaration type expressions under
+[TPL-02/TPL-15](templates.md#tpl-02). Such expressions may compose constructors
+and select a named export if they determine one closed Type for each concrete
+use. Selecting a Type does not run a body or create a producer instance.
+Standalone static equations and public static results remain in `@...`.
+
+[Phantom declarations](phantom-types.md#tpl-16) may also appear in an ordinary
+interface or body. They describe compile-time marks and contribute no instance
+field, runtime interface position or construction action. The containing
+ordinary module retains its normal instances and execution behavior.
 
 Starting `job !` prepares a fresh interface, then executes the body from entry.
 It preserves permanent body state. Resuming `job %` uses its saved position and

@@ -182,8 +182,12 @@ from its resolved concrete runtime interface under that rule. A separate static
 module under [TPL-12](../language/static-results.md#tpl-12) has no native entry
 or runtime ABI; a concrete export selected as an ordinary native field type
 contributes that field's normal resolved Type. Static graph inputs and outputs
-add no C entry arguments, output storage or native execution protocol. Inline
-static bindings and static output definitions are not native-interface forms.
+add no C entry arguments, output storage or native execution protocol.
+Declaration type expressions follow [TPL-15](../language/templates.md#tpl-15)
+and must resolve to one complete admissible Type. They do not permit an `@C`
+definition to introduce its own free parameters or static output definitions.
+Phantom declarations under [TPL-16](../language/phantom-types.md#tpl-16) contribute
+no C arguments, output storage, field-access operations or native protocol calls.
 The generated header and the companion keep the existing typed-field and
 resource contracts, including declared concrete Ama ownership and references
 under CABI-03/CABI-05.
@@ -203,6 +207,11 @@ the ordinary cleanup rules.
 
 **CABI-02.** Type interpretation must follow declared module identity and its
 registered representation, not an unchecked guess based on a parameter's name.
+Complete specialization identities retain phantom bindings under
+[TPL-16](../language/phantom-types.md#tpl-16). Equal physical layouts do not
+authorize treating differently marked ordinary Types as interchangeable C
+arguments, outputs or views. Omitting phantom storage must not omit the owning
+Type's identity from checked interface metadata.
 Native modules may use `void *` internally for opaque resources, but such a
 pointer is not a general Ama reference, arithmetic value, or freely castable
 language-level universal value.
@@ -682,10 +691,13 @@ The compiler does not accept copying a noncopyable type by guessing that aliases
 will coincide at runtime.
 
 Derive capability over the finite resolved type graph. Add an edge `T → U` for
-each owned scalar or owning-list field of `T` whose element type is `U`, including
-parameters, results and persistent fields, but excluding shared constants and
-all non-owning edges. Initially mark every executable type as potentially
-copyable. Remove each native type lacking `=`, then repeatedly remove any type
+each owned scalar or owning-list runtime field of `T` whose element type is `U`,
+including runtime parameters, results and persistent fields, but excluding shared
+constants and all non-owning edges. Phantom declarations under
+[TPL-16](../language/phantom-types.md#tpl-16) introduce no ownership edge or clone
+requirement; the ordinary containing Type retains its own normal copy checks.
+Initially mark every executable type as potentially copyable. Remove each native
+type lacking `=`, then repeatedly remove any type
 with an owned edge to a removed type, until no change occurs. The remaining set
 is the greatest fixed point of “native payload is copyable and every owned
 dependency is copyable”. This terminates after at most one removal per type.
@@ -824,14 +836,17 @@ Example:
 **LIFE-01.** Native storage is fresh, constructing, live, or finalized; compiler
 bookkeeping records which owned fields and native payloads are live. Fresh means
 suitably aligned storage whose resource representation has not been constructed;
-zero-filled bytes alone do not imply a live value. Construct owned Ama fields
-in declaration order (parameters, results, then persistent body declarations)
-without executing module bodies. Construct the native payload after the fields
+zero-filled bytes alone do not imply a live value. Construct owned Ama runtime
+fields in declaration order (runtime parameters, results, then persistent body
+declarations) without executing module bodies. Construct the native payload after the fields
 on which it may depend are initialized. Native hooks do not own these fields.
 Construct each field by its selected initializer or source-clone path. In a
 clone, construct children from source data rather than running their declaration
 defaults first. Declaration-order construction does not mean default construction
-followed by overwriting resources.
+followed by overwriting resources. Phantom declarations are excluded from this
+construction and cleanup sequence under
+[TPL-16](../language/phantom-types.md#tpl-16); an ordinary containing module
+retains its own instance identity and lifecycle requirements.
 
 New-instance construction uses the reserved final identity and instance context
 from RT-12 before evaluating any field initializer. A standalone `&` may form

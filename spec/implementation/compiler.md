@@ -429,11 +429,13 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | C backend | Types, includes, native bodies, labels, dispatch, mappings | Project C artifacts |
 | Toolchain verifier | Required inlining and target constraints | Conformance result |
 
-**Explanation.** Ordinary template interfaces contain runtime name/type pairs.
-Their bare Type placeholders contribute compile-time parameters without adding
-runtime slots. Complex applications and Type/Template output reads belong to
-separate `@...` graphs under
-[TPL-12](../language/static-results.md#tpl-12). Parse those graphs structurally;
+**Explanation.** Ordinary template interfaces contain name/type-expression
+pairs under [TPL-02/TPL-15](../language/templates.md#tpl-02). Collect free
+interface operand placeholders as scoped Type parameters; foreign binding and
+export labels are not local introductions. A declaration expression can compose
+constructors and select one export, and must yield one closed Type for every
+used concrete specialization. Standalone graphs and public static outputs belong
+to `@...` under [TPL-12](../language/static-results.md#tpl-12). Parse those graphs structurally;
 collect all local result binders before identifying free inputs. Their named
 connections have no positional sequence or runtime frame. Preserve atomic names,
 lexical identities and the distinction between producer labels and local names.
@@ -450,9 +452,15 @@ slots, native layouts or C transport. Marker metadata creates no runtime pool,
 field, lifecycle action or dispatch label. Do not erase a marker from the key
 of a producer or constructor that captures it.
 
-Ordinary typed connections refine their scoped Type terms; static graphs solve
-their own finite structural equations. The ordinary named-export bridge does not
-transfer consuming-context constraints into a static producer. Follow
+Classify phantom declarations under [TPL-16](../language/phantom-types.md#tpl-16)
+after resolving their Types. Preserve names, marker constraints, source spans
+and full nominal keys for checking, while excluding them from runtime fields,
+argument/result sequences, ownership and lifecycle plans. A phantom declaration
+is not an ordinary object whose representation is removed by optional optimization.
+
+Ordinary typed connections and declaration expressions refine their scoped Type
+terms; static graphs solve their own finite structural equations. TPL-15 permits
+actual typed evidence to constrain an applied producer's inputs. Follow
 [TPL-10](../language/templates.md#tpl-10) for exact inference and
 [TPL-11](../language/templates.md#tpl-11) for pending key comparisons; never
 preview a static program inside a suspended ordinary interface, guess equality,
@@ -475,9 +483,11 @@ including unused inputs and unselected public definitions. Outputs may provide
 exact structural equations while validation remains pending, but useful
 equations are not proof of successful producer validation. Static computation
 cannot inspect runtime values, execute Ama/native bodies or initialize state.
-A normal type declaration selecting a named static export requires independent
-producer closure; constraints from the consuming ordinary context cannot pick
-that assembly's inputs. Keep nominal closure distinct from final validation of
+A normal declaration selecting a named static export must determine every
+producer input before publication, including inputs absent from that output's
+identity. Explicit bindings and permitted structural equations can determine
+them; no arbitrary inverse or default constructor may supply missing evidence.
+Keep nominal closure distinct from final validation of
 mutually required closed definitions.
 
 Specialization-creation dependencies follow TPL-11. The graph records actual

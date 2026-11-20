@@ -855,9 +855,10 @@ items[]
 The compiler knows the exact element type from the declaration even when the
 list has no entries. A parameterized list implementation therefore has type
 information available before any insertion; it need not obtain a sample element
-or wait for the first method call. Named application in static modules is
-defined by [TPL-07/TPL-08](templates.md#tpl-07) and
-[TPL-12](static-results.md#tpl-12); it is not an inline ordinary declaration form.
+or wait for the first method call. Named application and composition follow
+[TPL-07/TPL-08](templates.md#tpl-07), with static graphs under
+[TPL-12](static-results.md#tpl-12) and complete ordinary declaration expressions
+under [TPL-15](templates.md#tpl-15).
 Choosing the list implementation interface,
 the exact formal receiving that declaration-supplied identity and the primitive
 storage/lifecycle operations remains

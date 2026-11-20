@@ -62,7 +62,9 @@ invocation or retained-instance read. Parameters and requested results appear on
 indented lines. Inputs precede all output-phase actions. An operation's ordinary
 bindings use named or positional mode consistently; CALL-09 selectors are separate
 actions. Positional binding order follows runtime interface declaration order;
-ordinary Type placeholders do not add positions. Static modules have a separate
+ordinary Type placeholders do not add positions. Phantom declarations under
+[TPL-16](phantom-types.md#tpl-16) are excluded from both named binding lookup and
+positional input/result sequences. Static modules have a separate
 named interface under [TPL-12](static-results.md#tpl-12), with no positional
 static bindings or runtime slots.
 
@@ -87,11 +89,15 @@ receivers provide compile-time evidence under [TPL-03](templates.md#tpl-03),
 together with typed defaults, declaration initializers, assignments and
 reference/alias connections. A receiver with unresolved generic arguments
 contributes equations rather than an independent concrete anchor. A new receiver
-under TYPE-06 does not choose a type merely by existing. Ordinary type lines
-contain no inline static applications or projections; named Type/Template
-composition belongs to `@...` modules under
-[TPL-07/TPL-08](templates.md#tpl-07) and [TPL-12](static-results.md#tpl-12).
-An independently determined concrete static export may type a runtime field.
+under TYPE-06 does not choose a type merely by existing. Ordinary declaration
+type expressions may apply named bindings and select concrete static exports
+under [TPL-15](templates.md#tpl-15). Every used declaration must determine one
+complete admissible Type before execution; an expression supplies only the exact
+constraints allowed by that rule. A selected static producer must determine all
+its inputs through explicit substitutions or permitted structural equations
+before publication; an unconstrained input cannot be guessed from an output name.
+Phantom declarations contribute no runtime input or result values under
+[TPL-16](phantom-types.md#tpl-16); ordinary bindings cannot supply or receive them.
 Static graph outputs cannot be selected by retained instance `>>` reads or a
 CALL-09 method action. The selected instance already has one fixed concrete
 specialization before execution. Omission/defaults and result transfers retain the semantics here;
@@ -101,13 +107,15 @@ they do not partially bind a static template or choose a new runtime type.
 
 Every requested result, including one received into a TYPE-06 inferred field,
 transfers its complete value state by TYPE-05 and COPY-01 through COPY-07. An
-owned scalar copies any native payload, parameters, retained results, persistent
-fields, and recursively owned children/lists; compiler-visible internal references
+owned scalar copies any native payload, runtime parameters, retained results,
+persistent fields, and recursively owned children/lists; compiler-visible internal references
 follow the copied ownership tree. A whole owning list copies all elements in one
 copy boundary. A reference scalar copies only its checked identity, and a reference
 list copies its handle entries, without cloning their targets. The source remains
 unchanged and no module body executes as part of copying. Native resources require
 independent clone capability; copying is not raw-byte duplication or shared ownership.
+The copied owner's complete nominal Type retains its phantom bindings under
+TPL-16, although those declarations contribute no runtime state to copy.
 
 #### Receiving a value does not preserve its continuation
 
@@ -162,7 +170,11 @@ Acquiring `&item` likewise refers to the declared object, not its module type.
 
 ## Binding inputs and outputs
 
-**Explanation.** Positional bindings follow interface declaration order. Named bindings select a declaration by its interface label. An operation uses one mode consistently across its ordinary input and output bindings; selected-result operations are separate actions.
+**Explanation.** Positional bindings follow runtime interface declaration order.
+Named bindings select a runtime declaration by its interface label. Phantom
+declarations are excluded from both forms under [TPL-16](phantom-types.md#tpl-16).
+An operation uses one mode consistently across its ordinary input and output
+bindings; selected-result operations are separate actions.
 
 ### Leaving positional inputs or outputs unused
 
@@ -174,7 +186,8 @@ one position in its respective parameter or result sequence. A skipped entry
 input keeps its declared default after the normal `!` reset; it does not retain
 a previous invocation's input. A skipped output causes no result copy or hidden
 receiver allocation, while the target still computes and retains that result.
-Input and output position counters are independent and follow interface order.
+Input and output position counters are independent and follow runtime interface
+order, skipping phantom declarations under [TPL-16](phantom-types.md#tpl-16).
 
 For an interface with three parameters and three results:
 
@@ -297,13 +310,14 @@ and of whether bindings are named or positional:
    source selection or conflicting replacement is a technical failure, not `:`.
    A supplied standalone `&` therefore identifies the initiating caller, including
    inside a CALL-09 selected operation; it does not select the input receiver.
-4. For entry-start only, install parameters in declaration order. For each, choose
-   exactly one construction path: copy the supplied source, construct the supplied literal,
-   or use its declared initializer/default when omitted. Construct over fresh
+4. For entry-start only, install runtime parameters in declaration order. For each,
+   choose exactly one construction path: copy the supplied source, construct the
+   supplied literal, or use its declared initializer/default when omitted. Construct over fresh
    replacement storage under LIFE-01 through LIFE-04. Do not construct the default
    and then overwrite a supplied value. Later defaults see already installed
-   earlier parameters. Then reinitialize results in declaration order, so result
-   defaults also see the installed parameters. No target body runs before success.
+   earlier runtime parameters. Then reinitialize runtime results in declaration
+   order, so result defaults also see the installed parameters. No target body
+   runs before success.
    Evaluate declared defaults in the callee's instance context; their standalone
    `&` identifies the callee's existing stable identity, not replacement storage.
 5. For entry-start/resume only, record the return connection and execute. Resume
@@ -342,7 +356,7 @@ uses the order in REF-03.
 <a id="call-09"></a>
 
 **CALL-09.** An output-phase action may directly execute, resume, or read a named
-`@>` result of its enclosing operation without transferring it into caller
+runtime `@>` result of its enclosing operation without transferring it into caller
 storage. LIST-04 extends the same structural selection to intrinsic list members
 and their typed ephemeral outputs, with its explicit mode/lifetime restrictions:
 
@@ -375,8 +389,9 @@ instance's interface under CALL-08.
 #### A selector names the parent’s declared result
 
 The selector uses the existing scalar/reference/list/indexed target spellings,
-but resolves its base name exclusively in the enclosing target's declared `@>`
-interface or LIST-04's intrinsic service/method interface. Require the
+but resolves its base name exclusively in the enclosing target's runtime `@>`
+interface or LIST-04's intrinsic service/method interface. A phantom declaration
+is not a selectable result under [TPL-16](phantom-types.md#tpl-16). Require the
 corresponding storage form; indexed selectors use the
 same owning-list/reference-list distinction as ordinary indexed targets.
 There is no fallback to a caller variable, module path, parameter, constant,

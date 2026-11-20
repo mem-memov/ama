@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 215 current requirements;
+[requirement index](spec/requirements.md) locates all 217 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 active engineering work for those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -72,8 +72,9 @@ belong to each affected task's acceptance, not a compatibility layer.
 
 ## Current tasks
 
-[T220](DONE.md#t220) specifies the marker notation. The next unused task ID is
-**T225**. T221 is planned below; implementation has not been requested.
+[T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
+type expressions and phantom declarations. The next unused task ID is **T227**.
+T221/T226 implementation has not been requested.
 [T222](BACKLOG.md#t222), [T223](BACKLOG.md#t223), and [T224](BACKLOG.md#t224)
 are backlog items awaiting future design or implementation authorization.
 
@@ -96,16 +97,35 @@ are backlog items awaiting future design or implementation authorization.
   remains an earlier accepted baseline until this alignment; do not refresh
   fingerprints merely to make its newer-specification refusal disappear.
 
+<a id="t226"></a>
+
+- [ ] **T226 — Implement phantom declarations and complete declaration expressions.**
+  Status: planned; awaits a separate implementation request. Prerequisites:
+  T221 and T225. Contracts: [TPL-15](spec/language/templates.md#tpl-15),
+  [TPL-16](spec/language/phantom-types.md#tpl-16) and their
+  [acceptance scenarios](spec/implementation/tools-and-conformance.md#static-module-templates).
+  Steps: inventory actual expression/interface consumers; implement structured
+  parsing, scoped introductions and exact normalized inference; validate marker
+  roles and full keys; exclude phantom declarations from runtime layout,
+  interface positions, ownership/lifecycle and native/C transport; align source,
+  editor and relocation tools with the same parsed structure.
+  Accept: meaningful granular/component/composition and failure tests cover the
+  positive and rejected scenarios, generic versus fixed marks, aliases, interface
+  role stability, zero phantom storage and preserved ordinary owner semantics.
+  Renew conformance evidence only after implementation/argument review, then
+  pass the required consumer, conformance and documentation gates. The earlier
+  accepted matrix remains historical evidence, not support for these new rules.
+
 ## Next sprint discussion
 
 Static marker notation is specified by [TPL-14](spec/language/static-results.md#tpl-14);
-its implementation is T221. Phantom Type parameters without runtime fields
-remain a [design candidate](DONE.md#t219). Assess nominal domain/unit tags using
-existing specialization keys, then decide whether a dedicated parameter without
-a runtime field is needed.
-A producer input absent from an exported Type's key does not tag that Type.
-Syntax, storage guarantees and the implementation plan require a design decision;
-this candidate grants no authorization to change `spec/`.
+its implementation is T221. [T225](DONE.md#t225) specifies declaration type expressions and
+[phantom declarations](spec/language/phantom-types.md#tpl-16); T226 owns their
+subsequent implementation. The earlier [candidate discussion](DONE.md#t219)
+is historical motivation. A producer input absent from an exported Type's key
+does not tag that Type; phantom marker bindings remain part of the ordinary
+owner's complete specialization identity. Localization and relative paths
+remain separate backlog questions. No compiler work is authorized by T225.
 
 ## Sprint: static module templates
 

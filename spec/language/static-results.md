@@ -34,8 +34,10 @@ input. A dictionary instance created from an exported dictionary Type is an
 ordinary value; the factory that supplied its Type is not that instance.
 
 **Design rationale.** Separate static modules make the phase visible in source.
-Ordinary declarations retain their name/type shape, and ordinary template
-interfaces use simple Type placeholders. Named static bindings identify the
+Ordinary declarations retain their name/type shape. Their structural Type
+expressions can apply named constructors and select one export under
+[TPL-15](templates.md#tpl-15); standalone equations and public static results
+remain in `@...`. Named static bindings identify the
 intended parameter or result without depending on declaration order. The
 compiler substitutes structural Type/Template expressions; it does not execute
 arbitrary Ama or native code to discover types.
@@ -58,8 +60,9 @@ uses. Invalid graph statements do not make a file an empty marker.
 
 Its values are Type and Template metadata under
 [TPL-01/TPL-07/TPL-08](templates.md#tpl-01). A Type denotes one ordinary module
-type or a static type marker. A Template retains an actual original constructor,
-its fixed captures and its still-unfilled named formals. A static producer's
+type, a static type marker or a phantom Type under
+[TPL-16](phantom-types.md#tpl-16). A Template retains an actual original
+constructor, its fixed captures and its still-unfilled named formals. A static producer's
 own specialization records its inputs and outputs for compilation; it does not
 provide an additional ordinary application Type or an executable instance.
 
@@ -70,14 +73,14 @@ native hook or refusal handler in this graph. Static names use the complete
 `...name` spelling under TPL-01; names and substitutions are not source-text
 replacement.
 
-Only static modules contain explicit static input-binding blocks, result pairs
-and named static output bindings. Ordinary modules use their simple type
-declarations and the explicit named export reference defined
-[below](#using-an-exported-type-in-ordinary-code). An ordinary simple template
-path retains the field inference allowed by [TPL-04](templates.md#tpl-04);
-that compiler inference introduces no static binding block. Ordinary modules
-do not contain a static graph or become static producers when a Type placeholder
-appears in an ordinary input or output.
+Only static modules contain standalone static result pairs, producer-use graph
+statements and named static output bindings. Ordinary declaration type
+expressions may contain named static input bindings and select one export under
+[TPL-15](templates.md#tpl-15) and the source form
+[below](#using-an-exported-type-in-ordinary-code). An ordinary template path
+retains field inference for omitted formals under
+[TPL-04](templates.md#tpl-04). These declarations do not create standalone static
+graphs or turn the enclosing module into a static producer.
 
 ## Static type markers
 
@@ -130,12 +133,14 @@ executed. Apply this check after placeholder substitution and named static
 export selection as well as for a direct marker path. A marker cannot be an
 executable entry, native definition or compiled-library export root.
 
-This rule introduces marker identities, not a new declaration of phantom
-formals in ordinary templates. Their formals still arise through runtime
-interface fields under TPL-02; substituting a marker into such a field fails
-the runtime-Type check. No runtime sample marker, implicit instance, numeric
-static argument, static type-case dispatch or recursion exception is introduced.
-The existing definition, substitution and creation checks remain required.
+A marker may be the checked static argument of the standard phantom constructor
+under [TPL-16](phantom-types.md#tpl-16). That creates a distinct compile-only
+phantom Type, not marker storage: substituting the marker directly as a runtime
+field Type still fails. Ordinary interface expressions introduce parameters
+under TPL-02/TPL-15, including marker-constrained phantom parameters. No runtime
+sample marker, implicit instance, numeric static argument, static type-case
+dispatch or recursion exception is introduced. The existing definition,
+substitution and creation checks remain required.
 
 **Example: two complete marker files.** File `.marks.node` contains:
 
@@ -206,10 +211,10 @@ its key fixed to text and its value formal still open. `...integer type` is the
 supplied integer Type. None of these definitions creates a dictionary or integer
 instance.
 
-A result expression may be an ordinary constructor path, a marker path, a
-supplied Type or a supplied Template. A concrete Type cannot be applied again
-as a constructor.
-Applying named inputs to a Template uses its actual residual formals under
+A result expression may be an ordinary constructor path, a marker path, the
+standard phantom constructor under TPL-16, a supplied Type or a supplied
+Template. A concrete Type cannot be applied again as a constructor. Applying
+named inputs to a Template uses its actual residual formals under
 TPL-08. Any omitted residual formals remain open: the expression returns a
 Template until all its formals are filled. Supplying a partial Template is not
 the same operation as leaving the identity of a producer input unknown.
@@ -443,9 +448,11 @@ not an unresolved producer specialization.
 
 ## Using an exported Type in ordinary code
 
-An ordinary declaration can select one named export of a static module. Its
-type position contains the static module's concrete path; the first meaningful
-indented line is exactly one complete exported name:
+An ordinary declaration can select one named export of a static producer as
+part of its type expression under [TPL-15](templates.md#tpl-15). Its head
+contains the static module's concrete path. Zero or more named input bindings
+may follow, then exactly one complete bare exported name at the same child
+indentation. A closed assembly retains the shortest form:
 
 ```text
 first
@@ -458,12 +465,23 @@ second
 ```
 
 Both fields have the same dictionary Type and independent runtime storage. The
-static module is not instantiated as an ordinary parameter or field.
+static module is not instantiated as an ordinary parameter or field. A producer
+with open inputs can receive them explicitly. For example, assume `.assemble`
+has inputs `...key` and `...value` and exports `...dictionary type`:
+
+```text
+items
+.assemble
+ ...key < ..text
+ ...value < ..integer
+ ...dictionary type
+```
 
 The selector is mandatory even when the producer exports only one name. It has
-no ordinal form, bindings, suffixes or children. Comments and blank lines may
-separate the path and selector under the layout rules. Ordinary initializers,
-when allowed for the selected Type, follow the selector at their usual depth:
+no ordinal form, suffix or children. Input bindings precede it; they belong to
+the producer head and do not apply the selected export again. Comments and
+blank lines follow the ordinary layout rules. Initializers, when permitted,
+follow the completed type expression at their usual depth:
 
 ```text
 number
@@ -472,27 +490,37 @@ number
  |0
 ```
 
-Recognize this selector from its source shape without loading the path's file.
-Semantic resolution then requires that the concrete path denote a static
-module and that its exact exported name exist. Under an ordinary module path,
-the selector is an error; it is not reinterpreted as a static input binding or
-another source form. It declares no free placeholder, alias or ordinary variable
-in the using module.
+Recognize named bindings and the bare selector from their source shapes before
+loading the path's file. Semantic resolution then requires that the head denote
+a static producer and that its exact exported name exist. Under an ordinary
+constructor, marker or phantom-constructor head, a bare export selector is an
+error; do not reinterpret it as an input binding or initializer. It declares no
+free placeholder, alias or ordinary variable in the using module.
 
-The supplying static specialization must be fully determined independently of
-the ordinary declaration and its call/input/result constraints. This reference
-cannot fill omitted factory inputs or use the ordinary expected Type to infer
-them. Use a closed static assembly that explicitly supplies the parameterized
-factory's inputs. The selected export must be a complete ordinary Type, not a
-marker, Template or the static producer itself. A closed producer may export other
-Template-valued results; they do not invalidate this Type-valued selection.
+The declaration may remain symbolic in an open ordinary template. Its named
+inputs, selected-output equation and other permitted typed connections are
+solved together under TPL-03/TPL-10. Omitted producer inputs retain distinct
+application-local inference variables under
+[inference and complete producers](#inference-and-complete-producers); they are
+not additional owner parameters. Before the concrete outer specialization is
+admitted, every required producer input must be fully determined, including
+inputs absent from the selected result. A concrete expected result may supply
+structural evidence, but cannot select an unknown producer, invent a discarded
+input or authorize an arbitrary inverse for a noninjective output.
 
-An independently known complete nominal identity can be referenced while the
-required definition group is still being checked. Do not require every ordinary
-body in a finite nominal cycle to have finished validation before that identity
-can be named. Before executable admission, finish the producer, every required
-output and every actual dependency check. This reference grants no early
-successful validation or skipped definition.
+The final declaration expression must yield one complete Type under TPL-15.
+Runtime storage requires an ordinary Type; a marker, a residual Template and
+the producer itself cannot type that storage. A selected closed phantom Type
+instead follows TPL-16's compile-only declaration restrictions. A determined
+producer may export other Template-valued results without invalidating the
+selected Type, but every required output must pass checking.
+
+A complete nominal identity can be referenced while its required definition
+group is still being checked. Do not require every ordinary body in a finite
+nominal cycle to have finished validation before that identity can be named.
+Before executable admission, finish the producer, every required output and
+every actual dependency check. This reference grants no early successful
+validation, equal-pending-key assumption or skipped definition.
 
 ## Composition and specialization identity
 
@@ -591,11 +619,13 @@ unbounded chain to search for an answer. An unresolved required obligation after
 refinements are exhausted is underdetermined. Check actual static-definition
 cycles independently even when a nominal specialization key closes.
 
-The ordinary interface boundary is deliberately narrower: an ordinary input or
-result cannot contain a computed projection `Factory(X).out`. It uses simple
-Type declarations, or a named export whose identity is determined independently
-of that ordinary context. No extra compiler pass or interface-preview exception
-is implied by this rule.
+Ordinary declarations may contain a named projection as part of the structural
+type expression of TPL-15. Its explicit origin, scoped equations and selected
+result are checked under these same rules. Do not admit a pending recursive
+specialization merely to preview its interface, assume an unresolved key equal,
+or follow a cyclic static value definition. A concrete ordinary context supplies
+equations, not a cycle-check or complete-producer exception. Extra compiler
+passes do not change these obligations.
 
 ## Checking and implementation
 
@@ -664,7 +694,8 @@ one of them.
 | Hide an invalid constructor application in an unselected output | Invalid required producer specialization |
 | Omit the ordinary named selector or select by ordinal | Missing or invalid static export reference |
 | Select a partial Template as an ordinary field Type | Concrete Type required |
-| Infer factory inputs from the ordinary field or its calls | Static export is not independently determined |
+| Leave a producer input unresolved after combining the declaration and permitted typed connections | Complete producer required |
+| Use a declaration's expected Type to guess an unknown producer or an unused input | Missing structural evidence |
 | Depend on runtime data, list length, native effects or initialization flags | Runtime-dependent static definition |
 
 These source forms are requirements, not evidence of compiler support.
