@@ -73,9 +73,9 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies the marker notation. The next unused task ID is
-**T224**. T221 is planned below; implementation has not been requested.
-[T222](BACKLOG.md#t222) and [T223](BACKLOG.md#t223) are backlog items awaiting
-future design or implementation authorization.
+**T225**. T221 is planned below; implementation has not been requested.
+[T222](BACKLOG.md#t222), [T223](BACKLOG.md#t223), and [T224](BACKLOG.md#t224)
+are backlog items awaiting future design or implementation authorization.
 
 <a id="t221"></a>
 
@@ -123,7 +123,8 @@ concrete native and C-library consumers, checked source/editor/relocation tools,
 and [generic algorithms over intrinsic lists](examples/template-lists/README.md).
 No runtime Template objects or runtime Type generation are introduced.
 
-Relative paths, the [AMB-006](AMBIGUITIES.md#amb-006) foundational list rewrite,
+[Relative paths and relocation support](BACKLOG.md#t224), the
+[AMB-006](AMBIGUITIES.md#amb-006) foundational list rewrite,
 new raw-storage APIs, generic native ABI, binary-only open-template distribution,
 and static natural-number parameters remain outside this completed sprint.
 They are scope boundaries, not silently completed implementation tasks.

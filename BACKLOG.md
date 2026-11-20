@@ -115,3 +115,36 @@ future ideas, selected work and completed evidence in separate files with one
 shared ID sequence. This update changes neither language requirements nor the
 compiler; T222 and T223 remain unfinished. Documentation navigation, unique task
 IDs and generated-reference input fingerprints are the checks for this update.
+
+## Relative module paths and directory relocation
+
+<a id="t224"></a>
+
+- [ ] **T224 — Add relative module paths and support them in directory relocation.**
+  Status: backlog only; recorded from the user's 2026-11-20 request. The request
+  authorizes recording this future change, not specification or implementation
+  changes. Prerequisites: agree on relative-path syntax and resolution rules
+  before implementation; assess interaction with [T223](#t223).
+  Purpose: shorten references to nearby modules without changing their intended
+  targets. Earlier candidates `./a`, `../a`, and `../../a` remain proposals;
+  this entry does not select their syntax or interpretation.
+  Design: define the resolution base, permitted parent traversal, root boundaries,
+  and interaction with existing `.`/`..` roots, `...` placeholders and physical
+  `name+/` storage. Specify how relative and rooted spellings resolve to module
+  identities under [SRC-01](spec/language/source-and-names.md#src-01) and
+  [SRC-02](spec/language/source-and-names.md#src-02).
+  Required companion work: extend the directory relocation utility under
+  [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01) through
+  [TOOL-04](spec/implementation/tools-and-conformance.md#tool-04) to resolve and
+  rewrite relative module references. Recompute affected paths when the referring
+  module, its target, or both move, including references from outside the moved
+  folder. Preserve the resolved dependency graph under the planned identity
+  mapping, even when the target's identity stays unchanged but its relative
+  spelling must change. Use resolved source structure rather than text replacement;
+  retain preview, preflight, byte-preservation and recoverable-transaction behavior.
+  Accept when separately authorized: align specification and grammar, implement
+  shared resolution in the compiler and source tools, and test mixed rooted and
+  relative references, nested/Unicode/multiword paths, `name+/` storage, all three
+  importer/target move combinations, moves of their common ancestor, root-boundary
+  cases and rejected unresolved/conflicting rewrites. Verify that relocation
+  preview and apply preserve intended targets and leave literals/comments intact.
