@@ -42080,6 +42080,11 @@
         "source": "tests/unit/codegen/relocation/main.c",
         "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
         "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen template-algorithms"
       }
     ]
   },
@@ -44287,6 +44292,11 @@
       {
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
+        "command": "make -C tests/unit/documentation"
+      },
+      {
+        "case": "it_checks_current_coverage_and_exposes_unclosed_debt",
+        "source": "tests/unit/documentation/main.c",
         "command": "make -C tests/unit/documentation"
       }
     ]
@@ -169602,6 +169612,422 @@
         "case": "it_supervises_nested_suspension_without_retaining_c_activations",
         "source": "tests/unit/library/supervision/main.c",
         "command": "make -C tests/unit/library/supervision"
+      }
+    ]
+  },
+  "tests/unit/codegen/template-algorithms/main.c": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_explicitly_typed_empty_lists_without_sample_elements",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_preserves_missing_reference_refusal_for_concrete_algorithm_types",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_rejects_invalid_algorithm_categories_storage_and_copy_capabilities",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "tests/unit/codegen/template-algorithms/Makefile": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_explicitly_typed_empty_lists_without_sample_elements",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_preserves_missing_reference_refusal_for_concrete_algorithm_types",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_rejects_invalid_algorithm_categories_storage_and_copy_capabilities",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "tests/unit/codegen/template-algorithms/support/fixture.c": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_explicitly_typed_empty_lists_without_sample_elements",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_preserves_missing_reference_refusal_for_concrete_algorithm_types",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_rejects_invalid_algorithm_categories_storage_and_copy_capabilities",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "tests/unit/codegen/template-algorithms/support/owned.c": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_explicitly_typed_empty_lists_without_sample_elements",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "tests/unit/codegen/template-algorithms/support/references.c": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "tests/unit/codegen/template-algorithms/support/refusals.c": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_preserves_missing_reference_refusal_for_concrete_algorithm_types",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "tests/unit/codegen/template-algorithms/support/invalid.c": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_rejects_invalid_algorithm_categories_storage_and_copy_capabilities",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/main": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/integer-family": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/reverse-references": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/mirror": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/reverse-owned": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/assembly": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/complete": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/drain-reverse": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      }
+    ]
+  },
+  "examples/template-lists/paired-reverse": {
+    "contract": "docs/implementation/template-list-algorithms.md",
+    "purpose": "Compile and execute generic list algorithms with exact static composition, ownership, live boundaries and refusal behavior.",
+    "tests": [
+      {
+        "case": "it_executes_the_exact_maintained_standalone_example",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_executes_nested_partial_list_composition_and_independent_instances",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_mirrors_and_drains_owned_lists_with_live_boundary_correction",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
+      },
+      {
+        "case": "it_reverses_reference_memberships_without_copying_or_destroying_targets",
+        "source": "tests/unit/codegen/template-algorithms/main.c",
+        "command": "make -C tests/unit/codegen/template-algorithms"
       }
     ]
   }

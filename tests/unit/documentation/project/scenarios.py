@@ -254,16 +254,25 @@ def coverage_scenario():
     host_example = root / 'examples/async-host/project/main'
     host_example.parent.mkdir(parents=True)
     host_example.write_text('@!\n')
+    generic_example = root / 'examples/independent-family/algorithm'
+    generic_example.parent.mkdir(parents=True)
+    generic_example.write_text('@!\n')
+    generated_example = generic_example.parent / 'generated/temporary'
+    generated_example.parent.mkdir(parents=True)
+    generated_example.write_text('@!\n')
     def inventory_listing(command, cwd):
         require(command[0] == 'git' and cwd == root, 'unexpected inventory source')
-        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0component.exports\0examples/async/main\0examples/async/README.md\0examples/async-host/project/main\0'
+        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0component.exports\0examples/async/main\0examples/async/README.md\0examples/async-host/project/main\0examples/independent-family/algorithm\0examples/independent-family/generated/temporary\0'
     try:
         (home / 'debt.json').write_text('{}')
         subprocess.check_output = inventory_listing
         maintained = original_inventory(root)
         require({'tests/fixture/expected-error.txt', 'stdlib/README.md', 'component.exports',
-                 'examples/async/main', 'examples/async-host/project/main'} <= maintained,
+                 'examples/async/main', 'examples/async-host/project/main',
+                 'examples/independent-family/algorithm'} <= maintained,
                 'closed non-C inputs vanished with historical debt')
+        require('examples/independent-family/generated/temporary' not in maintained,
+                'generated example became a maintained input')
         require('examples/async/README.md' not in maintained, 'example prose became executable inventory')
     finally:
         subprocess.check_output = original_listing

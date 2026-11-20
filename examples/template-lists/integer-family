@@ -1,0 +1,5 @@
+# Bind only the left Type; the returned Template keeps its own right formal.
+@...
+...family
+.paired-reverse
+ ...left < ..integer

@@ -1,0 +1,22 @@
+# Compose two inferred ordinary reverse instances without constructing types in the body.
+@<
+left[]
+...left
+right[]
+...right
+@>
+left result[]
+...left
+right result[]
+...right
+@!
+first
+.reverse-owned
+second
+.reverse-owned
+first !
+ < left[]
+ > left result[]
+second !
+ < right[]
+ > right result[]

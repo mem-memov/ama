@@ -6597,3 +6597,50 @@ T201. Specification bytes have not changed.
   archived inputs and compare staged/rendered hashes before the task commit.
   No production/spec/fingerprint change was needed; T196 retains the independent
   conformance review gate. Next ready task: T195.
+
+<a id="t195"></a>
+
+- [x] **T195 — Exercise useful generic algorithms over existing intrinsic lists.**
+  Completed 2026-11-20: [contract, invariants and evidence](docs/implementation/template-list-algorithms.md).
+  Prerequisites: T185, T186, T188, T190, T191, T211, T212.
+  Rules: [TPL-09](spec/language/templates.md#tpl-09),
+  [TPL-04](spec/language/templates.md#tpl-04),
+  [FLOW-05](spec/language/lists.md#flow-05),
+  [LIST-10](spec/language/lists.md#list-10).
+  Boundary: maintained executable Ama examples and integration cases, using
+  existing list methods and ordinary modules for state/methods.
+  Steps: (1) document algorithm inputs, preconditions, invariants and expected
+  effects independently of outputs; (2) implement examples of typed list
+  processing and nested composition, with a separate static assembly returning
+  a partial constructor;
+  (3) compile/run several concrete types and negative applications.
+  Accept: empty explicitly typed lists need no sample; owned/ref forms, live
+  traversal insertion/deletion, busy/refusal and copy behavior remain unchanged.
+  Include equal specialization instances with independent state, multiple named
+  static outputs and wrong-operation/category cases. Ordinary algorithm bodies
+  contain no complex static applications or runtime Template values. Examples
+  teach useful composition; no base-list provider, new allocator/storage API or
+  privileged generic code.
+
+  Acceptance: exact maintained standalone Ama sources compile and execute;
+  integer/text paired reverse uses nested ordinary composition and a partial
+  Template completed by a separate static producer, with multiple named outputs.
+  Owning reverse, mirror and current-element draining preserve the caller input;
+  live insert-before-boundary and deletion visit the exact intended originals.
+  Empty owning/reference lists require no sample. Repeated reference memberships
+  reverse in order, retain target aliases and never destroy targets when removed.
+  Equal-key instances keep independent result storage. Invalid storage forms,
+  Type/Template categories, unknown formals, open results and noncopyable element
+  operations are refused without an executable certificate. Ordinary missing
+  reference refusal and list/specialization busy/copy/lifecycle regressions pass.
+  Final strict examples, the standalone CLI build/run, six related regression
+  leaves, documentation inventory tests and actual algorithm ASan/UBSan pass.
+  The coverage tool now includes all maintained extensionless Ama example
+  families, retaining prose/generated exclusions with actual counterexample tests.
+  Per-file validation checks 3028 inputs with zero debt; actual Doxygen verifies
+  2297 file pages, 8908 interfaces and 450/450 canonical destinations.
+  The readable tutorial states the exact invariants, ownership and O(n²) cost of
+  front edits. No base-list provider, compiler privilege or specification change
+  was introduced. The linked record retains corrected fixture probes, commands
+  and results. Regenerate archived inputs and compare final staged/rendered
+  hashes before commit. T196 is next, including the independent conformance gate.

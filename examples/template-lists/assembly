@@ -1,0 +1,13 @@
+# Named concrete exports and an explicitly composed partial constructor.
+@...
+...integers
+.reverse-owned
+ ...element < ..integer
+...texts
+.reverse-owned
+ ...element < ..text
+.integer-family
+ ...family > ...partial
+.complete
+ ...family < ...partial
+ ...ready > ...paired

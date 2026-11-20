@@ -23,6 +23,10 @@ with `DOXYGEN` and `DOCUMENTATION_PYTHON`. The bootstrap evidence uses Doxygen
 - `make docs-clean` removes the generated site, staged views, reports and warnings.
 - `make -C tests/unit/documentation` runs the independent C/assert contract leaf.
 
+Maintained extensionless files below `examples/` are Ama source inputs, regardless
+of example family. Prose and generated/build trees are excluded. New examples
+therefore require per-file evidence without adding directory-specific exceptions.
+
 `ready.json` maps each reviewed file to a purpose, contract, named C tests and
 executable commands. `debt.json` assigns every other current audited input to a
 specific TODO owner, records its exact fingerprint and preserves T001's known

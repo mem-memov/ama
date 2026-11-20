@@ -314,3 +314,6 @@ transaction/recovery acceptance.
 
 T194: [concrete template facades at the C boundary](../static-library-facades.md)
 composes named static exports with actual package and isolated-child consumers.
+
+T195: [generic list algorithm examples](../template-list-algorithms.md)
+verify actual maintained Ama sources over the unchanged intrinsic list methods.

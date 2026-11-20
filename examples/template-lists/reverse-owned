@@ -1,0 +1,17 @@
+# Copy elements into reverse order; caller input and element identities stay independent.
+@<
+items[]
+...element
+@>
+result[]
+...element
+@!
+result[]
+ clear !
+items[item&]
+{
+ result[]
+  insert !
+   < |0
+   < item&
+}

@@ -32,7 +32,7 @@ def inventory(root):
             continue
         is_code = path.suffix in ('.c', '.h', '.inc', '.py', '.sh', '.mk', '.abi', '.exports') or path.name in ('Makefile', 'Doxyfile')
         is_fixture = (relative.startswith('tests/') and '/project/' in relative) or (relative.startswith('stdlib/modules/') and path.suffix != '.md')
-        is_ama_example = path.suffix == '' and relative.startswith(('examples/async/', 'examples/async-host/project/'))
+        is_ama_example = path.suffix == '' and relative.startswith('examples/')
         is_observation = (relative.startswith('tests/') and path.name in (
             'expected.txt', 'expected-error.txt', 'expected-abi-error.txt',
             'expected-ambiguity.txt'))

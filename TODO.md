@@ -203,7 +203,9 @@ original/final source checking, structural static binding preservation, actual
 relocated execution and concrete-only pipeline retirement.
 [T194](DONE.md#t194) now supplies static/shared concrete
 facade consumers, exact export refusals and template-backed child/peer lifecycle
-checks. T195 is next: useful generic list algorithms.
+checks. [T195](DONE.md#t195) supplies actual generic list examples, partial
+composition and owned/reference/live-boundary execution evidence. T196 is next:
+review current conformance records.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -231,29 +233,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 6. Lower and execute concrete programs
 
 ### Phase 7. Connect product consumers and algorithm examples
-
-<a id="t195"></a>
-
-- [ ] **T195 — Exercise useful generic algorithms over existing intrinsic lists.**
-  Prerequisites: T185, T186, T188, T190, T191, T211, T212.
-  Rules: [TPL-09](spec/language/templates.md#tpl-09),
-  [TPL-04](spec/language/templates.md#tpl-04),
-  [FLOW-05](spec/language/lists.md#flow-05),
-  [LIST-10](spec/language/lists.md#list-10).
-  Boundary: maintained executable Ama examples and integration cases, using
-  existing list methods and ordinary modules for state/methods.
-  Steps: (1) document algorithm inputs, preconditions, invariants and expected
-  effects independently of outputs; (2) implement examples of typed list
-  processing and nested composition, with a separate static assembly returning
-  a partial constructor;
-  (3) compile/run several concrete types and negative applications.
-  Accept: empty explicitly typed lists need no sample; owned/ref forms, live
-  traversal insertion/deletion, busy/refusal and copy behavior remain unchanged.
-  Include equal specialization instances with independent state, multiple named
-  static outputs and wrong-operation/category cases. Ordinary algorithm bodies
-  contain no complex static applications or runtime Template values. Examples
-  teach useful composition; no base-list provider, new allocator/storage API or
-  privileged generic code.
 
 ### Phase 8. Review evidence and deliver
 
