@@ -1,6 +1,0 @@
-# @file
-# @brief Supply a native definition whose ordinary reference input introduces a forbidden Type formal.
-@<
-value&
-...type
-@C

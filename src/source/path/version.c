@@ -32,29 +32,32 @@ static bool decimal_field(const unsigned char *bytes, size_t length, size_t *cur
  * [SRC-03](../../../spec/language/source-and-names.md#src-03) validates all variant
  * scalars, including isolated internal hyphens, without normalizing their bytes.
  */
-bool module_version_component(const unsigned char *bytes, size_t length) {
+size_t module_version_prefix(const unsigned char *bytes, size_t length) {
     if (bytes == NULL || length == 0 || bytes[0] != 'v') {
-        return false;
+        return 0;
     }
     size_t cursor = 1;
     for (size_t field = 0; field < 3; field++) {
         if (!decimal_field(bytes, length, &cursor)) {
-            return false;
+            return 0;
         }
         if (field != 2) {
             if (cursor == length || bytes[cursor] != '.') {
-                return false;
+                return 0;
             }
             cursor++;
         }
     }
-    if (cursor == length) {
-        return true;
-    }
-    if (bytes[cursor] != '-') {
-        return false;
-    }
+    if (cursor == length || bytes[cursor] != '-') { return cursor; }
     cursor++;
-    size_t error_offset;
-    return unicode_identifier(bytes + cursor, length - cursor, &error_offset);
+    size_t width = unicode_word_prefix(bytes + cursor, length - cursor);
+    return width == 0 ? 0 : cursor + width;
+}
+
+/** Require the prefix to cover the entire original byte view; leftover bytes
+ * cannot be normalized away under [PKG-01](../../../spec/project/packages.md#pkg-01).
+ */
+bool module_version_component(const unsigned char *bytes, size_t length) {
+    size_t width = module_version_prefix(bytes, length);
+    return width != 0 && width == length;
 }

@@ -8,15 +8,6 @@
 #include "internal.h"
 #include "source/unicode/unicode.h"
 
-/** Exclusions match exact root-relative paths and descendants, never shared textual prefixes. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [SRC-05](../../../../spec/language/source-and-names.md#src-05). */
-static bool excluded(const ModuleRoot *root, const char *relative) {
-    for (size_t index = 0; index < root->excluded_count; index++) {
-        size_t length = strlen(root->excluded[index]);
-        if (strncmp(relative,root->excluded[index],length) == 0 && (relative[length] == 0 || relative[length] == '/')) { return true; }
-    }
-    return false;
-}
-
 /** A moved plus directory receives no implicit sibling move; check its exact final regular anchor. Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [SRC-05](../../../../spec/language/source-and-names.md#src-05). */
 static bool anchor(RelocationPreview *preview, const char *parent, const char *base) {
     const char *path = source_arena_join(&preview->arena,parent,"/",base);
@@ -35,7 +26,7 @@ bool relocation_visit(RelocationWalk *walk, const RelocationDirectory *directory
     const char *relative = source_arena_join(&preview->arena,directory->relative,*directory->relative == 0 ? "" : "/",name);
     const char *path = source_arena_join(&preview->arena,directory->path,strcmp(directory->path,"/") == 0 ? "" : "/",name);
     if (relative == NULL || path == NULL) { return relocation_fail(preview,RELOCATION_OUT_OF_MEMORY,directory->path,NULL); }
-    if (excluded(walk->root,relative)) { return true; }
+    if (module_path_excluded(walk->root,relative)) { return true; }
     size_t length = strlen(name), error;
     if (!utf8_validate((const unsigned char *)name,length,&error)) { return relocation_fail(preview,RELOCATION_UNSUPPORTED_PATH,path,NULL); }
     bool plus = length != 0 && name[length-1] == '+';
@@ -48,7 +39,7 @@ bool relocation_visit(RelocationWalk *walk, const RelocationDirectory *directory
     PathProbe probe = relocation_probe(preview,path,&physical,&metadata);
     if (probe != PATH_FOUND) { return relocation_fail(preview,probe == PATH_UNSUPPORTED
         ? RELOCATION_UNSUPPORTED_PATH : RELOCATION_IO_ERROR,path,NULL); }
-    const char *logical = source_arena_join(&preview->arena,directory->logical,".",base);
+    const char *logical = source_arena_join(&preview->arena,directory->logical,"/",base);
     if (logical == NULL) { return relocation_fail(preview,RELOCATION_OUT_OF_MEMORY,path,NULL); }
     if (S_ISDIR(metadata.st_mode)) {
         return (!plus || anchor(preview,directory->path,base)) && relocation_queue(walk,path,relative,logical);

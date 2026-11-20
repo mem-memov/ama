@@ -15,7 +15,7 @@ static const StaticTypedField *field_named(const StaticTypedScope *scope, const 
 
 /** Independent known assignment evidence closes the original interface hole. */
 static void it_closes_fields_from_actual_body_equations_without_admission(void) {
-    setup_connections("@<\ninput\n...slot\n@!\nknown\n..integer\ninput\n known\n", "@!\n");
+    setup_connections("@<\ninput\n.slot\n@!\nknown\n//integer\ninput\n known\n", "@!\n");
     const StaticResultContext *actual = publication_context(caller_environment);
     StaticOrdinaryPass report;
     assert(static_closure_ordinary_pass(&connections, actual, &report));
@@ -35,7 +35,7 @@ static void it_closes_fields_from_actual_body_equations_without_admission(void) 
 /** A literal supplies capability work, never a guessed Type anchor. */
 static void it_separates_literal_obligations_from_field_type_closure(void) {
     for (size_t known = 0; known < 2; known++) {
-        setup_connections(known ? "@!\nvalue\n..integer\n |7\n" : "@<\nvalue\n...slot\n |7\n@!\nanchor&\n..integer\n", "@!\n");
+        setup_connections(known ? "@!\nvalue\n//integer\n |7\n" : "@<\nvalue\n.slot\n |7\n@!\nanchor&\n//integer\n", "@!\n");
         const StaticResultContext *actual = publication_context(caller_environment);
         StaticOrdinaryPass report;
         assert(static_closure_ordinary_pass(&connections, actual, &report));
@@ -48,7 +48,7 @@ static void it_separates_literal_obligations_from_field_type_closure(void) {
 
 /** A Pending first call must not suppress a later independently known result. */
 static void it_continues_past_unknown_calls_and_retries_with_new_evidence(void) {
-    setup_connections("@<\nunknown\n...slot\n@!\nunknown !\nworker\n.other\nworker !\n > fresh\n", "@>\nvalue\n..integer\n@!\n");
+    setup_connections("@<\nunknown\n.slot\n@!\nunknown !\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n > fresh\n", "@>\nvalue\n//integer\n@!\n");
     const StaticResultContext *actual = publication_context(caller_environment);
     StaticOrdinaryPass report;
     assert(static_closure_ordinary_pass(&connections, actual, &report));
@@ -71,7 +71,7 @@ static void it_continues_past_unknown_calls_and_retries_with_new_evidence(void) 
 
 /** Empty traversal bodies still constrain their original local reference. */
 static void it_composes_foreach_and_local_assignments(void) {
-    setup_connections("@!\nvalues[]\n..integer\nvalues[item&]\n{\n borrowed&\n  item&\n}\n", "@!\n");
+    setup_connections("@!\nvalues[]\n//integer\nvalues[item&]\n{\n borrowed&\n  item&\n}\n", "@!\n");
     const StaticResultContext *actual = publication_context(caller_environment);
     StaticOrdinaryPass report;
     assert(static_closure_ordinary_pass(&connections, actual, &report));
@@ -88,7 +88,7 @@ static void it_composes_foreach_and_local_assignments(void) {
 /** Conflicting child evidence and invalid provenance preserve report receivers. */
 static void it_preserves_outputs_on_conflict_or_invalid_context(void) {
     for (size_t kind = 0; kind < 3; kind++) {
-        setup_connections("@!\nfirst\n..integer\nsecond\n..text\nfirst\n second\n", "@!\n");
+        setup_connections("@!\nfirst\n//integer\nsecond\n//text\nfirst\n second\n", "@!\n");
         const StaticResultContext *actual = publication_context(caller_environment);
         StaticResultContext copied = *actual;
         StaticOrdinaryPass report = {.fields_closed = true, .transfers_ready = true};
@@ -104,8 +104,8 @@ static void it_preserves_outputs_on_conflict_or_invalid_context(void) {
 static void it_unwinds_every_composed_pass_allocation_refusal(void) {
     size_t total = 0;
     for (size_t cut = 0; cut <= total; cut++) {
-        setup_connections("@<\ninput\n...slot\n@!\nknown\n..integer\ninput\n known\nworker\n.other\nworker !\n > fresh\n",
-            "@>\nvalue\n..integer\n@!\n");
+        setup_connections("@<\ninput\n.slot\n@!\nknown\n//integer\ninput\n known\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n > fresh\n",
+            "@>\nvalue\n//integer\n@!\n");
         const StaticResultContext *actual = publication_context(caller_environment);
         StaticOrdinaryPass report = {.transfers_ready = true};
         size_t before = allocation_count;

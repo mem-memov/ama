@@ -1,8 +1,8 @@
-project/bad.abi:3:1: error[syntax]: An ABI symbol can be bound only once
+project/packages/test/fixture/v1.0.0/src/bad.abi:3:1: error[syntax]: An ABI symbol can be bound only once
     3 | + duplicate
     span: bytes [23, 24)
     expected: a previously unbound ABI symbol
     help: Remove the duplicate record; each ABI symbol has one binding
-project/bad.abi:1:1: note: previous binding
+project/packages/test/fixture/v1.0.0/src/bad.abi:1:1: note: previous binding
     1 | + initialize
     span: bytes [0, 1)

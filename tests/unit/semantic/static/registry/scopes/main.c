@@ -7,7 +7,7 @@
  * distinct declarations; applied formals read the supplied concrete Type.
  */
 static void it_canonicalizes_equal_scopes_and_preserves_local_occurrences(void) {
-    setup_registry("@<\nvalue\n...type\n@!\nfirst&\n..integer\nsecond&\n..integer\n", "@!\n");
+    setup_registry("@<\nvalue\n.type\n@!\nfirst&\n//integer\nsecond&\n//integer\n", "@!\n");
     const StaticSymbol *formal = application_formal(caller_module, 0);
     const StaticTerm *parameter;
     assert(static_term_symbol(&terms, caller_environment, formal, &parameter));
@@ -53,7 +53,7 @@ static void it_canonicalizes_equal_scopes_and_preserves_local_occurrences(void) 
 static void it_releases_every_partial_scope_preparation_on_allocation_refusal(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+        setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
         const StaticSymbol *formal = application_formal(caller_module, 0);
         const StaticTerm *parameter;
         assert(static_term_symbol(&terms, caller_environment, formal, &parameter));
@@ -88,7 +88,7 @@ static void it_releases_every_partial_scope_preparation_on_allocation_refusal(vo
  */
 static void it_refuses_nonlocal_variables_and_unowned_use_handles(void) {
     for (size_t partition = 0; partition < 6; partition++) {
-        setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@<\nvalue\n...type\n@!\n");
+        setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@<\nvalue\n.type\n@!\n");
         const StaticCreationPath *path;
         assert(static_creation_root(&guards, caller_environment, &path));
         StaticRegistryUse *use;
@@ -116,7 +116,7 @@ static void it_refuses_nonlocal_variables_and_unowned_use_handles(void) {
  * derived graph names remain canonical scoped variables rather than new inputs.
  */
 static void it_canonicalizes_producer_formals_and_derived_graph_names(void) {
-    setup_registry("@...\n...out\n...type\n...anchor\n..integer\n", "@!\n");
+    setup_registry("@...\n.out\n.type\n.anchor\n//integer\n", "@!\n");
     const StaticSymbol *formal = application_formal(caller_module, 0);
     const StaticTerm *parameter;
     assert(static_term_symbol(&terms, caller_environment, formal, &parameter));
@@ -129,7 +129,7 @@ static void it_canonicalizes_producer_formals_and_derived_graph_names(void) {
     const StaticTerm *canonical;
     assert(static_registry_scope_variable(&registry, use, parameter, &canonical, &state));
     assert(canonical == integer_type && use->candidate->key->producer_applied);
-    const StaticSymbol *derived = static_symbol_find(caller_module, static_name_site(project.entry, "...out"));
+    const StaticSymbol *derived = static_symbol_find(caller_module, static_name_site(project.entry, ".out"));
     assert(derived && derived != formal);
     const StaticTerm *original, *direct;
     assert(static_term_symbol(&terms, caller_environment, derived, &original));

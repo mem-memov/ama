@@ -6,6 +6,7 @@
  */
 static void it_protects_the_parent_until_a_refused_link_abandons_the_chain(void) {
     directory("generated/project");
-    file("generated/project/holder", "@>\nself&\n.holder\n &\nmethod\n.worker\n@!\n");
-    execute_project("@!\nobject\n.holder\nprobe\n.worker\nobject\n self& !\n :\n  probe !\n   < |55\n method !\n  < |999\nobject\n method !\n  < |66\n", "55:1:9\n66:1:9\n", true);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/holder", "@>\nself&\n/test/fixture/v1.0.0/src/holder\n &\nmethod\n/test/fixture/v1.0.0/src/worker\n@!\n");
+    execute_project("@!\nobject\n/test/fixture/v1.0.0/src/holder\nprobe\n/test/fixture/v1.0.0/src/worker\nobject\n self& !\n :\n  probe !\n   < |55\n method !\n  < |999\nobject\n method !\n  < |66\n", "55:1:9\n66:1:9\n", true);
 }

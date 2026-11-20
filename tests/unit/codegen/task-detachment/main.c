@@ -26,7 +26,8 @@ static void execute_detachment(const char *scenario) {
         closed = fclose(task);
         assert(closed == 0);
         directory("generated/project");
-        file("generated/project/task", text);
+    fixture_package_prepare("generated/project", "fixture");
+        file("generated/project/packages/test/fixture/v1.0.0/src/task", text);
     }
     fprintf(stderr, "detachment scenario: %s\n", scenario);
     execute_project(source, "", true);

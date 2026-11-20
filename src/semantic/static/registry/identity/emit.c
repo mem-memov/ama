@@ -13,7 +13,7 @@
  */
 static void origin(StaticKeyWriter *writer, const StaticModule *module) {
     const char *path = module->definition->source->logical_path;
-    static_key_bytes(writer, path[1] == '.' ? "2" : "1", 1);
+    static_key_bytes(writer, path[1] == '/' ? "2" : "1", 1);
     static_key_text(writer, path, strlen(path));
 }
 

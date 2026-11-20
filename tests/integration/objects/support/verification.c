@@ -5,7 +5,7 @@
  * the statically valid traversal plan must all finish frontend checking.
  */
 static void it_checks_the_constructor_project_and_complete_failure_entries(void) {
-    const char *entries[] = {".main", ".failure body", ".failure construction", ".traversal"};
+    const char *entries[] = {"/test/fixture/v1.0.0/src/main", "/test/fixture/v1.0.0/src/failure body", "/test/fixture/v1.0.0/src/failure construction", "/test/fixture/v1.0.0/src/traversal"};
     for (size_t index = 0; index < sizeof(entries) / sizeof(*entries); index++) {
         setup_test();
         char *arguments[] = {AMA_EXECUTABLE, "--check", "project", (char *)entries[index], NULL};
@@ -25,5 +25,5 @@ static void it_checks_the_constructor_project_and_complete_failure_entries(void)
  * copied native resource and immutable seed through complete runtime cleanup.
  */
 static void it_executes_live_traversal_with_complete_resource_cleanup(void) {
-    compile_and_run_object(".traversal", "count=1\ndrop=1\ndrop=0\n", NULL, false);
+    compile_and_run_object("/test/fixture/v1.0.0/src/traversal", "count=1\ndrop=1\ndrop=0\n", NULL, false);
 }

@@ -120,7 +120,7 @@ and standalone headers are registered in [ready.json](documentation/ready.json).
 T192 indexes the production static inventory, source runtime fields and accepted
 normalized actual applications. Written producer paths navigate to the original
 producer; selected exports and actual foreign labels navigate to their own
-original declarations. Atomic three-dot names include all dotted/spaced parts.
+original declarations. Atomic single-dot names include all dotted/spaced parts.
 A source spelling can retain several concrete specialization owners or several
 foreign origins. `editor_binding_targets` exposes all evidence; singular
 navigation is available only for one original source range. It never selects

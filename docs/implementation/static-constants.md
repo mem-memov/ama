@@ -72,7 +72,7 @@ binding syntax. An open template cannot be completed by the desired member or
 destination. Select own shared storage only after concrete namespace closure and
 an explicitly checked matching ordinary context. Preserve fixed-Type reuse
 provenance without adding a constructor creation edge. Same text at a different
-source occurrence cannot replace missing dependency evidence. Bare three-dot
+source occurrence cannot replace missing dependency evidence. Bare single-dot
 names remain atomic Type placeholders, not qualified value sources.
 
 ## Typed initializer evidence

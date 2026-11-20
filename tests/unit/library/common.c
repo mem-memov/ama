@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include "../source/common.c"
+#include "../fixtures/package.h"
 #include "library/model.h"
 /** A complete no-interface export configuration, independent of actual module discovery. */
 static const char library_prefix[] = "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | x86_64-linux-gnu\ncalling-convention | c\n";
@@ -18,6 +19,7 @@ static inline void directory(const char *path) {
 /** Write complete immutable fixture bytes before any compiler owner borrows them. */
 static inline void file(const char *path, const char *text) {
     FILE *stream = fopen(path, "wb");
+    if (stream == NULL) { perror(path); }
     assert(stream != NULL);
     size_t written = fwrite(text, 1, strlen(text), stream);
     int closed = fclose(stream);

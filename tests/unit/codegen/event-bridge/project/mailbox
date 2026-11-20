@@ -1,18 +1,18 @@
 # The scheduler owns data and readiness as declared fields of one mailbox.
 @<
 next data
-..bytes
+//bytes
 next code
-..integer
+//integer
 @>
 data
-..bytes
+//bytes
 code
-..integer
+//integer
 ready
-..task.flag
+//task/flag
 delivered
-..task.flag
+//task/flag
 @!
 data
  next data

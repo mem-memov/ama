@@ -1,0 +1,19 @@
+@<
+message
+//text
+reset
+//std/condition
+ |0
+propagate
+//std/condition
+ |1
+@>
+response
+//text
+previous
+//std/condition
+waiting
+//std/condition
+failure
+//failure
+@C

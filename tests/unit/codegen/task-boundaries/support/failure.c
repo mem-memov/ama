@@ -4,7 +4,7 @@
 /** Restore the maintained typed native callback provider after generic fixture declaration generation. */
 static void failure_native_body(NativeScaffold *scaffold) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
-        if (strcmp(type->plan->type->module->source->logical_path, ".retainer") != 0) { continue; }
+        if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/retainer") != 0) { continue; }
         char source[32768];
         boundary_source("project/retainer.c", source);
         file(type->body_path, source);
@@ -13,7 +13,7 @@ static void failure_native_body(NativeScaffold *scaffold) {
 
 /** Produce one technical error, not an ordinary cancellation result or a recoverable busy refusal. */
 static bool failure_entry(FILE *body, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".crash") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/crash") != 0) { return false; }
     int written = fputs("*status=ama_status_make(AMA_NATIVE_FAILURE,\"Forced task failure\",19); return;\n", body);
     assert(written != EOF);
     return true;
@@ -28,7 +28,7 @@ static void it_detaches_every_wait_before_reporting_a_context_wide_technical_fai
         int length = snprintf(input, sizeof(input), "project/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(input));
         boundary_source(input, source);
-        length = snprintf(output, sizeof(output), "generated/project/%s", names[index]);
+        length = snprintf(output, sizeof(output), "generated/project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(output));
         file(output, source);
     }

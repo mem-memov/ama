@@ -9,7 +9,7 @@
  * Naming leaves the candidate NEW; it is not a body/executable certificate.
  */
 static void it_shares_equal_candidate_keys_without_merging_incoming_uses(void) {
-    setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
     StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
     const StaticTermEnvironment *concrete = key_ordinary(caller_module, &input, 1);
     const StaticCreationPath *first_path, *second_path;
@@ -37,7 +37,7 @@ static void it_shares_equal_candidate_keys_without_merging_incoming_uses(void) {
  * actual equations later promote that same path to a complete candidate.
  */
 static void it_promotes_pending_uses_only_after_independent_complete_key_evidence(void) {
-    setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
     const StaticCreationPath *path;
     assert(static_creation_root(&guards, caller_environment, &path));
     StaticRegistryUse *use, *again;
@@ -62,7 +62,7 @@ static void it_promotes_pending_uses_only_after_independent_complete_key_evidenc
 static void it_unwinds_every_use_and_candidate_preparation_allocation_refusal(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+        setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
         StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
         const StaticCreationPath *path;
         assert(static_creation_root(&guards, key_ordinary(caller_module, &input, 1), &path));
@@ -84,7 +84,7 @@ static void it_unwinds_every_use_and_candidate_preparation_allocation_refusal(vo
 /** Foreign path copies and missing receivers fail before candidate publication. */
 static void it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnostics(void) {
     for (size_t partition = 0; partition < 4; partition++) {
-        setup_registry("@!\nanchor&\n..integer\n", "@!\n");
+        setup_registry("@!\nanchor&\n//integer\n", "@!\n");
         const StaticCreationPath *path;
         assert(static_creation_root(&guards, caller_environment, &path));
         StaticCreationPath copied = *path;
@@ -107,7 +107,7 @@ static void it_refuses_foreign_paths_and_missing_receivers_with_sticky_diagnosti
  * than treating its existing name record as the requested specialization.
  */
 static void it_propagates_full_key_name_collisions_without_publishing_candidates(void) {
-    setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
     StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
     const StaticTermEnvironment *key = key_ordinary(caller_module, &input, 1);
     const StaticCreationPath *path;
@@ -119,7 +119,7 @@ static void it_propagates_full_key_name_collisions_without_publishing_candidates
     assert(identity_encode(&registry_names.arena, encoded.qualified, &actual) == IDENTITY_OK);
     unsigned char digest[32];
     identity_sha256(actual.bytes, actual.length, digest);
-    QualifiedIdentity fake = {.category = IDENTITY_TYPE, .module_path = ".other"};
+    QualifiedIdentity fake = {.category = IDENTITY_TYPE, .module_path = "/test/fixture/v1.0.0/src/other"};
     assert(identity_encode(&registry_names.arena, fake, &other) == IDENTITY_OK);
     const IdentityName *existing;
     assert(identity_insert(&registry_names, other, digest, &existing) == IDENTITY_OK);
@@ -138,7 +138,7 @@ static void it_propagates_full_key_name_collisions_without_publishing_candidates
  */
 static void it_refuses_use_and_candidate_counter_overflow_before_publication(void) {
     for (unsigned partition = 0; partition < 2; partition++) {
-        setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+        setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
         StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
         const StaticCreationPath *path;
         assert(static_creation_root(&guards, key_ordinary(caller_module, &input, 1), &path));

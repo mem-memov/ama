@@ -1,9 +1,0 @@
-# @file
-# @brief Supply a concrete ordinary argument without legalizing the native definition's own Type formal.
-@!
-known
-.plain
-instance
-.bad
-instance !
- < &known

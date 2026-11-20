@@ -4,16 +4,18 @@
 /** Repeated visits preserve each owned native payload; early completion returns to the correct immediate caller label. */
 static void it_returns_through_nested_no_binding_calls_without_reinitializing_caller_state(void) {
     directory("generated/project");
-    file("generated/project/outer", "@!\nchild\n.inner\nunused\n.worker\nchild !\n>\nunused !\n");
-    file("generated/project/inner", "@!\nprobe\n.worker\nprobe !\n>\nprobe !\n");
-    execute_project("@!\nfirst\n.outer\nsecond\n.outer\nfirst !\nsecond !\nfirst !\n", "7:1:0\n7:1:0\n7:2:0\n", true);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/outer", "@!\nchild\n/test/fixture/v1.0.0/src/inner\nunused\n/test/fixture/v1.0.0/src/worker\nchild !\n>\nunused !\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/inner", "@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n>\nprobe !\n");
+    execute_project("@!\nfirst\n/test/fixture/v1.0.0/src/outer\nsecond\n/test/fixture/v1.0.0/src/outer\nfirst !\nsecond !\nfirst !\n", "7:1:0\n7:1:0\n7:2:0\n", true);
 }
 
 /** A hostile host-side fixture corrupts service metadata outside the native contract; dispatch must reject both an unknown selector and a valid selector owned by another caller type. */
 static void it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch(void) {
     directory("generated/project");
-    file("generated/project/outer", "@!\nchild\n.inner\nchild !\n");
-    file("generated/project/inner", "@!\nprobe\n.worker\nprobe !\nprobe !\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/outer", "@!\nchild\n/test/fixture/v1.0.0/src/inner\nchild !\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/inner", "@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\nprobe !\n");
     file("generated/return-fault.h", "static void fault_return_link(void);\n");
     forced_header = "generated/return-fault.h";
     corrupt_return_link = true;
@@ -40,7 +42,7 @@ static void it_rejects_unknown_and_foreign_type_return_selectors_before_dispatch
             mode == 0 ? "UINT64_MAX" : "outer->metadata.service.return_link.continuation");
         assert(length > 0 && (size_t)length < sizeof(launcher));
         host_launcher = launcher;
-        execute_project("@!\nouter\n.outer\nouter !\n", "7:1:0\n", false);
+        execute_project("@!\nouter\n/test/fixture/v1.0.0/src/outer\nouter !\n", "7:1:0\n", false);
     }
     host_launcher = NULL;
     corrupt_return_link = false;

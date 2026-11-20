@@ -8,24 +8,24 @@
 /** Static producer edges have explicit named maps; the fixed edges make
  * concrete cached descendants independent of the current owner's unknown input.
  */
-static const char *main_source = "@...\n...out\n...element\n"
-    ".other\n ...element < ...element\n ...out > ...other result\n"
-    ".other\n ...element < ..text\n ...out > ...fixed other result\n"
-    ".leaf\n ...element < ..integer\n ...out > ...leaf result\n"
-    ".leaf\n ...element < ..integer\n ...out > ...second leaf result\n"
-    "...anchor\n..integer\n...text\n..text\n";
-static const char *other_source = "@...\n...out\n...element\n"
-    ".main\n ...element < ...element\n ...out > ...main result\n"
-    ".leaf\n ...element < ..integer\n ...out > ...leaf result\n";
-static const char *leaf_source = "@...\n...out\n...element\n"
-    ".main\n ...element < ..text\n ...out > ...main result\n";
+static const char *main_source = "@...\n.out\n.element\n"
+    "/test/fixture/v1.0.0/src/other\n .element < .element\n .out > .other result\n"
+    "/test/fixture/v1.0.0/src/other\n .element < //text\n .out > .fixed other result\n"
+    "/test/fixture/v1.0.0/src/leaf\n .element < //integer\n .out > .leaf result\n"
+    "/test/fixture/v1.0.0/src/leaf\n .element < //integer\n .out > .second leaf result\n"
+    ".anchor\n//integer\n.text\n//text\n";
+static const char *other_source = "@...\n.out\n.element\n"
+    "/test/fixture/v1.0.0/src/main\n .element < .element\n .out > .main result\n"
+    "/test/fixture/v1.0.0/src/leaf\n .element < //integer\n .out > .leaf result\n";
+static const char *leaf_source = "@...\n.out\n.element\n"
+    "/test/fixture/v1.0.0/src/main\n .element < //text\n .out > .main result\n";
 
 /** Load three actual graph origins and an independent concrete argument Type. */
 static const StaticTerm *setup_producers(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/leaf", leaf_source);
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/leaf", leaf_source);
     setup_registry(main_source, other_source);
-    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
     const StaticTerm *type;
     assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &type));
     return type;

@@ -12,6 +12,8 @@
 #include <string.h>
 #include "source/path/version.h"
 #include "source/path/logical.h"
+#include "source/path/syntax.h"
+#include "source/unicode/unicode.h"
 
 /** Exercise canonical decimal/variant examples with Unicode and isolated hyphens. */
 static void it_accepts_exact_canonical_versions(void) {
@@ -239,8 +241,131 @@ static void it_accepts_deep_finite_namespaces_without_a_semantic_depth_cap(void)
     assert(valid);
 }
 
+/** Raw source forms include noncanonical roots/components but never optional
+ * separators, empty components, old module dots or slashes in static names.
+ */
+static void it_separates_raw_path_syntax_from_canonical_identity(void) {
+    const char *valid[] = {"/a", "//a/b", "./a", "../a", "../../a", "~a",
+        "~vendor tools/item name", "/a/../b/./c", "//./integer", "/a/..",
+        "/acme/p/v1.2.3-speed/src/a", "/供应/包/v1.0.0-速度/src/项", "~a/v2.4.14"};
+    for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) {
+        size_t length = strlen(valid[index]);
+        assert(module_path_syntax((const unsigned char *)valid[index], length));
+        assert(module_path_prefix((const unsigned char *)valid[index], length) == length);
+    }
+    const char *invalid[] = {"", "/", "//", "///a", "./", "../", "~", "~/a",
+        "~ a", "~a/", "/a/", "/a//b", "/a.b", ".T", "...T", "/a/.../b",
+        "/a/v01.2.3", "/a/v1.2.03", "/a/v1.2.3-", "/a/v1.2.3-a b",
+        "/ a", "/a /b", "/a/ b", "/a  b", "/a/2b", "/a/\xff", "/a\t"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
+        assert(!module_path_syntax((const unsigned char *)invalid[index], strlen(invalid[index])));
+    }
+    assert(!module_path_syntax(NULL, 0));
+    assert(!module_path_syntax(NULL, 99));
+}
+
+/** Token prefixes stop before structural operators, preserving exact bounded
+ * input bytes; complete-span predicates reject those same remaining suffixes.
+ */
+static void it_bounds_shared_name_version_and_path_prefixes(void) {
+    const char *cases[] = {"//item[]", "~name name/a !", "./a < value", "../a&", "/a\0b"};
+    const size_t available[] = {8, 14, 11, 5, 4};
+    const size_t expected[] = {6, 12, 3, 4, 2};
+    for (size_t index = 0; index < 5; index++) {
+        assert(module_path_prefix((const unsigned char *)cases[index], available[index]) == expected[index]);
+        assert(!module_path_syntax((const unsigned char *)cases[index], available[index]));
+    }
+    const unsigned char exact[] = {'/', '/', 'a'};
+    assert(module_path_syntax(exact, sizeof(exact)));
+    assert(module_path_prefix(exact, 2) == 0);
+    assert(unicode_name_prefix(NULL, 100) == 0);
+    const char *names[] = {"a b!", "a  b", "a ", "a 2", "\xff", "a-", "a-b c_2[]"};
+    const size_t widths[] = {3, 1, 1, 1, 0, 1, 7};
+    for (size_t index = 0; index < 7; index++) {
+        assert(unicode_name_prefix((const unsigned char *)names[index], strlen(names[index])) == widths[index]);
+    }
+    assert(module_version_prefix((const unsigned char *)"v1.2.3/a", 8) == 6);
+    assert(module_version_prefix((const unsigned char *)"v1.2.3-a!", 9) == 8);
+    assert(module_version_prefix((const unsigned char *)"v1.2.3-", 7) == 0);
+}
+
+/** Map a finite test spelling to its disjoint length block and base-four word.
+ * The alphabet is . / a ~; membership generation below uses grammar expansion,
+ * not the production recognizer's byte-scanning algorithm.
+ */
+static size_t finite_path_index(const char *text, size_t length) {
+    size_t base = 0, power = 1, value = 0;
+    for (size_t index = 0; index < length; index++) {
+        base += power;
+        power *= 4;
+        const char *letter = strchr("./a~", text[index]);
+        assert(letter != NULL);
+        value = value * 4 + (size_t)(letter - "./a~");
+    }
+    return base + value;
+}
+
+/** Expand every component choice whose resulting path fits seven bytes.
+ * Names in this alphabet are exactly a^n, and the other components are . and ...
+ * Each recursion adds at least two bytes; the finite test bound proves termination.
+ */
+static void generate_finite_paths(bool *members, char *text, size_t length) {
+    const char *components[] = {".", "..", "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa"};
+    for (size_t index = 0; index < sizeof(components) / sizeof(*components); index++) {
+        size_t width = strlen(components[index]);
+        if (width > 7 - length) { continue; }
+        memcpy(text + length, components[index], width);
+        size_t end = length + width;
+        members[finite_path_index(text, end)] = true;
+        if (end + 1 < 7) {
+            text[end] = '/';
+            generate_finite_paths(members, text, end + 1);
+        }
+    }
+}
+
+/** Exhaust all 21,845 strings of lengths 0..7 over ./a~ against an independently
+ * expanded finite grammar set, including every root and malformed join.
+ */
+static void it_matches_the_complete_bounded_raw_path_language(void) {
+    bool members[21845] = {false};
+    char text[7];
+    const char *roots[] = {"/", "//", "./", "../"};
+    for (size_t root = 0; root < 4; root++) {
+        size_t length = strlen(roots[root]);
+        memcpy(text, roots[root], length);
+        generate_finite_paths(members, text, length);
+    }
+    text[0] = '~';
+    for (size_t width = 1; width <= 6; width++) {
+        memset(text + 1, 'a', width);
+        size_t end = 1 + width;
+        members[finite_path_index(text, end)] = true;
+        if (end + 1 < 7) {
+            text[end] = '/';
+            generate_finite_paths(members, text, end + 1);
+        }
+    }
+    size_t possibilities = 1;
+    for (size_t length = 0; length <= 7; length++) {
+        for (size_t ordinal = 0; ordinal < possibilities; ordinal++) {
+            size_t remainder = ordinal;
+            for (size_t index = 0; index < length; index++) {
+                text[index] = "./a~"[remainder % 4];
+                remainder /= 4;
+            }
+            bool expected = members[finite_path_index(text, length)];
+            assert(module_path_syntax((const unsigned char *)text, length) == expected);
+        }
+        possibilities *= 4;
+    }
+}
+
 /** Register every independently specified version and logical endpoint case explicitly. */
 void run(void) {
+    it_separates_raw_path_syntax_from_canonical_identity();
+    it_bounds_shared_name_version_and_path_prefixes();
+    it_matches_the_complete_bounded_raw_path_language();
     it_accepts_exact_canonical_versions();
     it_rejects_noncanonical_or_incomplete_versions();
     it_reads_only_the_supplied_byte_view();

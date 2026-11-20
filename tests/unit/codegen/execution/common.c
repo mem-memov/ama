@@ -58,7 +58,7 @@ static void (*native_fixture_completion)(NativeScaffold *);
 static const ModuleRoot *project_roots_override;
 static size_t project_roots_override_count;
 #ifndef TEST_STDLIB_KIND
-#define TEST_STDLIB_KIND MODULE_ROOT_PROJECT
+#define TEST_STDLIB_KIND MODULE_ROOT_STANDARD
 #endif
 
 /**
@@ -67,16 +67,16 @@ static size_t project_roots_override_count;
  */
 static void native_fixture(const char *name, const char *interface) {
     char path[160];
-    int length = snprintf(path, sizeof(path), "generated/project/%s", name);
+    int length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s", name);
     assert(length > 0 && (size_t)length < sizeof(path));
     file(path, interface);
-    length = snprintf(path, sizeof(path), "generated/project/%s.h", name);
+    length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s.h", name);
     assert(length > 0);
     file(path, "struct AMA_NATIVE(State) { size_t number; size_t calls; const void *address; };\n");
-    length = snprintf(path, sizeof(path), "generated/project/%s.c", name);
+    length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s.c", name);
     assert(length > 0);
     file(path, "/* Test writes the typed implementation after declaration generation. */\n");
-    length = snprintf(path, sizeof(path), "generated/project/%s.abi", name);
+    length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s.abi", name);
     assert(length > 0);
     file(path, "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
 }
@@ -92,7 +92,7 @@ static void executable_native(const ScaffoldType *type) {
     assert(emitted);
     int written = fputs("#include <assert.h>\n#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n", body);
     assert(written != EOF);
-    if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
+    if (strcmp(type->plan->type->module->source->logical_path,"/test/fixture/v1.0.0/src/recursive")==0) {
         written = fputs("static __attribute__((noinline)) size_t AMA_NATIVE(sum)(size_t number) { return number==0 ? 0 : number+AMA_NATIVE(sum)(number-1); }\n",body);
         assert(written != EOF);
     }
@@ -101,13 +101,13 @@ static void executable_native(const ScaffoldType *type) {
         type->names[SCAFFOLD_RESULTS]->internal_name);
     assert(written >= 0);
     if (native_entry_override == NULL || !native_entry_override(body, type)) {
-        if (strcmp(type->plan->type->module->source->logical_path,".showindex")==0) {
+        if (strcmp(type->plan->type->module->source->logical_path,"/test/fixture/v1.0.0/src/showindex")==0) {
             written = fputs("printf(\"value=%zu\\n\",parameters->AMA_INPUT(0)->payload->value);\n",body);
             assert(written != EOF);
-        } else if (strcmp(type->plan->type->module->source->logical_path,".recursive")==0) {
+        } else if (strcmp(type->plan->type->module->source->logical_path,"/test/fixture/v1.0.0/src/recursive")==0) {
             written = fputs("size_t total=AMA_NATIVE(sum)(parameters->AMA_INPUT(0)->payload->number); results->AMA_OUTPUT(0)->payload->number=total; printf(\"sum=%zu\\n\",total);\n",body);
             assert(written != EOF);
-        } else if (strcmp(type->plan->type->module->source->logical_path,".decrement")==0) {
+        } else if (strcmp(type->plan->type->module->source->logical_path,"/test/fixture/v1.0.0/src/decrement")==0) {
             written = fputs("size_t number=parameters->AMA_INPUT(0)->payload->number; results->AMA_OUTPUT(0)->payload->number=number==0 ? 0 : number-1; printf(\"count=%zu\\n\",number);\n",body);
             assert(written != EOF);
         } else if (type->plan->type->counts[SYMBOL_PARAMETER] == 2) {
@@ -122,11 +122,11 @@ static void executable_native(const ScaffoldType *type) {
             assert(written != EOF);
         }
     }
-    if (corrupt_return_link && strcmp(type->plan->type->module->source->logical_path, ".worker") == 0) {
+    if (corrupt_return_link && strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/worker") == 0) {
         written = fputs("fault_return_link();\n", body);
         assert(written != EOF);
     }
-    if (native_execution_gate && strcmp(type->plan->type->module->source->logical_path, ".gate") == 0) {
+    if (native_execution_gate && strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/gate") == 0) {
         written = fputs("test_execution_gate();\n", body);
         assert(written != EOF);
     }
@@ -165,7 +165,7 @@ static void executable_native(const ScaffoldType *type) {
                 : " { *destination=*source; destination->address=destination; return ama_status_make(AMA_OK,NULL,1); }\n";
         }
         if (fail_native_destroy && operation == ABI_DESTROY
-            && strcmp(type->plan->type->module->source->logical_path, ".worker") == 0) {
+            && strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/worker") == 0) {
             implementation = busy_native_destroy
                 ? " { assert(state->address==state); return ama_status_make(AMA_BUSY,\"cleanup\",7); }\n"
                 : " { assert(state->address==state); return ama_status_make(AMA_NATIVE_FAILURE,\"cleanup\",7); }\n";
@@ -184,15 +184,16 @@ static void executable_native(const ScaffoldType *type) {
  */
 static void prepare_project(const char *main_source) {
     directory("generated/project");
-    file("generated/project/main", main_source);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", main_source);
     native_fixture("value", "@C\n");
-    native_fixture("worker", "@<\ninput\n.value\n |7\n@>\noutput\n.value\n input\nother\n.value\n |99\n@C\n");
+    native_fixture("worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n |7\n@>\noutput\n/test/fixture/v1.0.0/src/value\n input\nother\n/test/fixture/v1.0.0/src/value\n |99\n@C\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT}, {TEST_STDLIB, NULL, 0, TEST_STDLIB_KIND}};
     assert((project_roots_override != NULL) == (project_roots_override_count != 0));
     bool checked = compiler_frontend_check(&frontend,
         project_roots_override ? project_roots_override : roots,
-        project_roots_override ? project_roots_override_count : 2, ".main");
+        project_roots_override ? project_roots_override_count : 2, "/test/fixture/v1.0.0/src/main");
     if (!checked) {
         fprintf(stderr, "Frontend failed: %s\n", frontend.error.message);
         SourceSpan site = frontend.error.primary.span;
@@ -240,7 +241,7 @@ static void prepare_project(const char *main_source) {
     for (const ScaffoldType *type = assembly.types; type != NULL; type = type->next) {
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE
             && strncmp(source_path(type->plan->type->module->source->text),
-                "generated/project/", sizeof("generated/project/") - 1) == 0) { executable_native(type); }
+                "generated/project/packages/test/fixture/v1.0.0/src/", sizeof("generated/project/packages/test/fixture/v1.0.0/src/") - 1) == 0) { executable_native(type); }
     }
     if (native_fixture_completion != NULL) { native_fixture_completion(&assembly); }
 }

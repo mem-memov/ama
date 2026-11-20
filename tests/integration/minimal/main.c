@@ -25,8 +25,8 @@ static int run_minimal(const char *program, bool sanitized) {
 /** Compare maintained expected effects only after verified compilation; separate streams prevent compiler acknowledgements from becoming program output. */
 static void compile_and_run_minimal(bool sanitized) {
     setup_test();
-    char *ordinary[] = {AMA_EXECUTABLE, "--emit", "project", ".main", "--out", "generated/ordinary", "--sdk", TEST_SDK, "--compile", NULL};
-    char *instrumented[] = {AMA_EXECUTABLE, "--emit", "project", ".main", "--out", "generated/sanitized", "--sdk", TEST_SDK, "--compile",
+    char *ordinary[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--out", "generated/ordinary", "--sdk", TEST_SDK, "--compile", NULL};
+    char *instrumented[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--out", "generated/sanitized", "--sdk", TEST_SDK, "--compile",
         "--c-flag", "-fsanitize=address,undefined", "--c-flag", "-fno-omit-frame-pointer", "--c-flag", "-fno-pie", "--c-flag", "-no-pie", NULL};
     int result = run_compiler_arguments(sanitized ? instrumented : ordinary);
     char diagnostic[8192];
@@ -53,12 +53,12 @@ static void compile_and_run_minimal(bool sanitized) {
 /** The project closure and native contracts must check without invoking C or executing native bodies. */
 static void it_checks_the_complete_minimal_project(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE, "--check", "project", ".main", NULL};
+    char *arguments[] = {AMA_EXECUTABLE, "--check", "project", "/test/fixture/v1.0.0/src/main", NULL};
     int result = run_compiler_arguments(arguments);
     char acknowledgement[128], diagnostic[1024];
     read_stream(output, acknowledgement, sizeof(acknowledgement));
     read_stream(errors, diagnostic, sizeof(diagnostic));
-    assert(result == EXIT_SUCCESS && strcmp(acknowledgement, "checked .main\n") == 0 && diagnostic[0] == '\0');
+    assert(result == EXIT_SUCCESS && strcmp(acknowledgement, "checked /test/fixture/v1.0.0/src/main\n") == 0 && diagnostic[0] == '\0');
     destroy_test();
 }
 

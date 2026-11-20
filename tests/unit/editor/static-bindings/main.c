@@ -8,14 +8,14 @@
  * the static producer and returned ordinary Type remain separate definitions. */
 static void static_fixture(bool multiple) {
     project_fixture(multiple
-        ? "@!\nfirst\n.factory\n ...left\nsecond\n.factory\n ...right\n"
-        : "@!\nfirst\n.factory\n ...left\n");
-    file("generated/project/left", "@!\n");
-    file("generated/project/right", "@!\n");
-    file("generated/project/box", "@<\nvalue\n...slot\n@>\nresult\n...slot\n value\n@!\nresult\n value\n");
-    file("generated/project/factory", multiple
-        ? "@...\n...left\n.box\n ...slot < .left\n...right\n.box\n ...slot < .right\n"
-        : "@...\n...left\n.box\n ...slot < .left\n");
+        ? "@!\nfirst\n/test/fixture/v1.0.0/src/factory\n .left\nsecond\n/test/fixture/v1.0.0/src/factory\n .right\n"
+        : "@!\nfirst\n/test/fixture/v1.0.0/src/factory\n .left\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/left", "@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/right", "@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/box", "@<\nvalue\n.slot\n@>\nresult\n.slot\n value\n@!\nresult\n value\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", multiple
+        ? "@...\n.left\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/left\n.right\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/right\n"
+        : "@...\n.left\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/left\n");
 }
 
 #include "support/completions.c"
@@ -30,15 +30,15 @@ static void it_navigates_static_paths_exports_and_parameter_labels_to_original_d
     setup_editor();
     assert(analyze(&analysis) && analysis.indexed && analysis.state == EDITOR_COMPLETE);
     const SourceText *main = analysis.selected->text;
-    const SourceText *factory = project_find(&analysis.frontend.project, ".factory")->source->text;
-    const SourceText *box = project_find(&analysis.frontend.project, ".box")->source->text;
+    const SourceText *factory = project_find(&analysis.frontend.project, "/test/fixture/v1.0.0/src/factory")->source->text;
+    const SourceText *box = project_find(&analysis.frontend.project, "/test/fixture/v1.0.0/src/box")->source->text;
     EditorDefinition definition;
-    assert(editor_definition(&analysis, ".main", point(main, ".factory"), &definition));
+    assert(editor_definition(&analysis, "/test/fixture/v1.0.0/src/main", point(main, "/test/fixture/v1.0.0/src/factory"), &definition));
     assert(definition.definition.source == factory);
-    assert(editor_definition(&analysis, ".main", point(main, "...left"), &definition));
-    assert(definition.definition.source == factory && text_is(definition.definition, "...left"));
-    assert(editor_definition(&analysis, ".factory", point(factory, "...slot <"), &definition));
-    assert(definition.definition.source == box && text_is(definition.definition, "...slot"));
+    assert(editor_definition(&analysis, "/test/fixture/v1.0.0/src/main", point(main, ".left"), &definition));
+    assert(definition.definition.source == factory && text_is(definition.definition, ".left"));
+    assert(editor_definition(&analysis, "/test/fixture/v1.0.0/src/factory", point(factory, ".slot <"), &definition));
+    assert(definition.definition.source == box && text_is(definition.definition, ".slot"));
     destroy_editor();
 }
 
@@ -48,13 +48,13 @@ static void it_retains_original_declarations_across_multiple_concrete_captures(v
     static_fixture(true);
     setup_editor();
     assert(analyze(&analysis) && analysis.indexed && analysis.state == EDITOR_COMPLETE);
-    const SourceText *box = project_find(&analysis.frontend.project, ".box")->source->text;
+    const SourceText *box = project_find(&analysis.frontend.project, "/test/fixture/v1.0.0/src/box")->source->text;
     EditorDefinition definition;
-    assert(editor_definition(&analysis, ".box", point(box, "value"), &definition));
+    assert(editor_definition(&analysis, "/test/fixture/v1.0.0/src/box", point(box, "value"), &definition));
     assert(definition.definition.source == box && text_is(definition.definition, "value"));
     assert(definition.original && !definition.symbol && !definition.type);
     const EditorOccurrence *targets;
-    assert(editor_binding_targets(&analysis, ".box", point(box, "value"), &targets));
+    assert(editor_binding_targets(&analysis, "/test/fixture/v1.0.0/src/box", point(box, "value"), &targets));
     size_t concrete = 0;
     const SemanticType *first_owner = NULL;
     for (const EditorOccurrence *target = targets; target; target = target->alternatives) {
@@ -67,9 +67,9 @@ static void it_retains_original_declarations_across_multiple_concrete_captures(v
     assert(concrete == 2);
     const EditorOccurrence sentinel = {0};
     targets = &sentinel;
-    assert(!editor_binding_targets(NULL, ".box", 0, &targets) && targets == &sentinel);
+    assert(!editor_binding_targets(NULL, "/test/fixture/v1.0.0/src/box", 0, &targets) && targets == &sentinel);
     assert(!editor_binding_targets(&analysis, NULL, 0, &targets) && targets == &sentinel);
-    assert(!editor_binding_targets(&analysis, ".box", source_length(box), &targets) && targets == &sentinel);
+    assert(!editor_binding_targets(&analysis, "/test/fixture/v1.0.0/src/box", source_length(box), &targets) && targets == &sentinel);
     destroy_editor();
 }
 

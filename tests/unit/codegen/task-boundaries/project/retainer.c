@@ -4,8 +4,8 @@
  * requires wait detachment before failed returns; native endpoints and owned bytes
  * contain no Ama handle, view or payload address.
  */
-#include "ama_n_d2428efd14daaa304f9b7880ff26f283437ea6852eb1aa2c4b93e3fb1421d52b.interface.h"
-#include "ama_n_d2428efd14daaa304f9b7880ff26f283437ea6852eb1aa2c4b93e3fb1421d52b.begin.h"
+#include "ama_n_7198aa6bea571660cde5ac49c780ac37700437ff596d16920c53918ff606474e.interface.h"
+#include "ama_n_7198aa6bea571660cde5ac49c780ac37700437ff596d16920c53918ff606474e.begin.h"
 #include "native/events/assembly.h"
 #include <assert.h>
 #include <stdio.h>
@@ -25,8 +25,8 @@ static AmaStatus AMA_NATIVE(capture)(const ama_t_3211b272d4ffc58b35668036530071d
     return ama_native_event_submission_clone(&operation->payload->submission, resource);
 }
 /** Retain two endpoints and prepare bytes before failure; publication is deliberately delayed until the host observes failed. */
-AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const ama_t_c74ee271ec997854ec6b2124f7a5aed984020193bccc96c4a07b5d1bce2b4377 *parameters,
-    ama_t_7414622b0ef26b2554a63dc37fb3728d1eb7bc0e45a917caa481edbc717ed451 *results, const AmaNativeServices *services, AmaStatus *status) {
+AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const ama_t_4b6376af42f3de26bcdc9c0f027da71f0f02dd73fd4046304fe106ded375abc9 *parameters,
+    ama_t_956f7576a1f00c5b67f9515792a3193a08f5dea6f44ba8e59a8dde29b75f1257 *results, const AmaNativeServices *services, AmaStatus *status) {
     (void)state; (void)results; (void)services;
     AMA_NATIVE(captures)++;
     *status = parameters->AMA_INPUT(0)->with_read(parameters->AMA_INPUT(0)->storage, AMA_NATIVE(capture), &AMA_NATIVE(endpoints)[0]);
@@ -53,4 +53,4 @@ static void AMA_NATIVE(acknowledge)(void) {
     }
     puts("callbacks=closed,closed");
 }
-#include "ama_n_d2428efd14daaa304f9b7880ff26f283437ea6852eb1aa2c4b93e3fb1421d52b.end.h"
+#include "ama_n_7198aa6bea571660cde5ac49c780ac37700437ff596d16920c53918ff606474e.end.h"

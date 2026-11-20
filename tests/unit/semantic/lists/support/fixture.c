@@ -21,11 +21,11 @@ static void prepare_lists(void) {
 }
 /** Parse the exact two-root closure and consume each semantic phase only after its predecessor succeeds. */
 static SemanticStatus resolve_list(const char *text) {
-    file("generated/program/main", text);
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
     setup_semantic();
     ModuleRoot roots[] = {{"generated/program", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    ProjectStatus loaded = project_load(&project, roots, 2, ".main");
+    ProjectStatus loaded = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
     if (loaded != PROJECT_OK) { fprintf(stderr, "List fixture: %s\n%s\n", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);

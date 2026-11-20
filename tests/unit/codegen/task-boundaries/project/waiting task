@@ -1,19 +1,19 @@
 # Its continuation must not run when a different task technically fails the context.
 @<
 source&
-..task.events
+//task/events
 @>
 operation&
-..task.operation
+//task/operation
 phase
-..task.phase
+//task/phase
 @!
 owned operation
-..task.operation
+//task/operation
 awaiting
-..task.phase.awaiting
+//task/phase/awaiting
 probe
-.worker
+/test/fixture/v1.0.0/src/worker
 operation&
  &owned operation
 owned operation !

@@ -5,10 +5,10 @@
 #include "semantic/static/bindings/normalize.h"
 
 /** Independent lexical parameters and two known one-slot constructor signatures. */
-static const char *caller_source = "@...\n...result\n...outer\n ...b < ...inner\n"
-    "  ...c < ...element\n...integer type\n..integer\n";
-static const char *target_source = "@<\nfirst argument\n...a\nsecond argument\n...b\n"
-    "third argument\n...c\n@!\n";
+static const char *caller_source = "@...\n.result\n.outer\n .b < .inner\n"
+    "  .c < .element\n.integer type\n//integer\n";
+static const char *target_source = "@<\nfirst argument\n.a\nsecond argument\n.b\n"
+    "third argument\n.c\n@!\n";
 
 /** Exact registered head spelling selects this fixture's outer/inner syntax. */
 static const AstTypeExpression *expression(const char *name) {
@@ -47,10 +47,10 @@ static void it_composes_nested_recovery_without_losing_unused_fixed_bindings(voi
     for (size_t early_inner = 0; early_inner < 2; early_inner++) {
         setup_applications(caller_source, target_source);
         const StaticTerm *inner_actual = actual(integer_type), *outer_actual = actual(inner_actual);
-        const StaticTerm *element = application_symbol("...element"), *inner_result;
-        assert(static_term_expression_result(&terms, caller_environment, expression("...inner"), &inner_result));
-        const StaticTermApplication *inner = prepare("...inner", element);
-        const StaticTermApplication *outer = prepare("...outer", inner_result);
+        const StaticTerm *element = application_symbol(".element"), *inner_result;
+        assert(static_term_expression_result(&terms, caller_environment, expression(".inner"), &inner_result));
+        const StaticTermApplication *inner = prepare(".inner", element);
+        const StaticTermApplication *outer = prepare(".outer", inner_result);
         const StaticApplicationRecord *record;
         if (early_inner) {
             assert(static_application_recover(&applications, inner, inner_result, &record));
@@ -85,7 +85,7 @@ static void it_refuses_applied_slots_that_are_still_residual_in_the_actual(void)
         {.formal = application_formal(target_module, 2), .value = integer_type}};
     const StaticTerm *partial;
     assert(static_term_nominal(&terms, target_module, captures, 2, (SourceSpan){0}, &partial));
-    const StaticTermApplication *source = prepare("...outer", integer_type);
+    const StaticTermApplication *source = prepare(".outer", integer_type);
     const StaticApplicationRecord *record = NULL;
     assert(!static_application_recover(&applications, source, partial, &record));
     assert(record == NULL && applications.status == STATIC_APPLY_CONFLICT);
@@ -102,9 +102,9 @@ static void it_checks_existing_constructor_bindings_instead_of_overwriting_them(
         {.formal = application_formal(target_module, 2), .value = integer_type}};
     const StaticTerm *bound;
     assert(static_term_nominal(&terms, target_module, captures, 2, (SourceSpan){0}, &bound));
-    const StaticTerm *head = application_symbol("...outer");
-    assert(static_constraint_equate(&solver, head, bound, expression("...outer")->span));
-    const StaticTermApplication *source = prepare("...outer", integer_type);
+    const StaticTerm *head = application_symbol(".outer");
+    assert(static_constraint_equate(&solver, head, bound, expression(".outer")->span));
+    const StaticTermApplication *source = prepare(".outer", integer_type);
     const StaticApplicationRecord *record = NULL;
     assert(!static_application_recover(&applications, source, different, &record));
     assert(record == NULL && applications.status == STATIC_APPLY_CONFLICT);

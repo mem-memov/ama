@@ -1,0 +1,31 @@
+# Nine nodes force growth of both the node pool and the native counter pool.
+@!
+first
+/test/fixture/v1.0.0/src/node
+second
+/test/fixture/v1.0.0/src/node
+ first
+third
+/test/fixture/v1.0.0/src/node
+ first
+fourth
+/test/fixture/v1.0.0/src/node
+ first
+fifth
+/test/fixture/v1.0.0/src/node
+ first
+sixth
+/test/fixture/v1.0.0/src/node
+ first
+seventh
+/test/fixture/v1.0.0/src/node
+ first
+eighth
+/test/fixture/v1.0.0/src/node
+ first
+ninth
+/test/fixture/v1.0.0/src/node
+ first
+first !
+second !
+first !

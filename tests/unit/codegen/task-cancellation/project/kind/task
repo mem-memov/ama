@@ -1,40 +1,40 @@
 # Commit only at a resumed task boundary; native arrival merely supplies data.
 @<
 owner&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 @>
 self&
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
  &
 phase
-..task.phase
+//task/phase
 outcome&
-..task.outcome
+//task/outcome
 token
-..task.token
+//task/token
 @!
 operation
-..task.operation
+//task/operation
 detach
-..task.operation.detach
+//task/operation/detach
 owned outcome
-..task.outcome
+//task/outcome
 fresh outcome
-..task.outcome
+//task/outcome
 awaiting phase
-..task.phase.awaiting
+//task/phase/awaiting
 completed phase
-..task.phase.completed
+//task/phase/completed
 true
-..std.condition
+//std/condition
  |1
 false
-..std.condition
+//std/condition
  |0
 cancelled
-..std.condition
+//std/condition
 delivered
-..std.condition
+//std/condition
 owned outcome
  fresh outcome
 outcome&
@@ -58,7 +58,7 @@ initial cancellation
   > phase
  %
 pending
-..std.condition
+//std/condition
  |1
 pending
  true

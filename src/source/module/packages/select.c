@@ -12,7 +12,8 @@
  * [SRC-02](../../../../spec/language/source-and-names.md#src-02) rejects repeated
  * physical roots even when they contain no source modules or package versions.
  */
-static ModuleStatus verify_roots(ModuleCatalog *catalog, const ModuleRoot *roots, size_t count) {
+static ModuleStatus verify_roots(ModuleCatalog *catalog, const ModuleRoot *roots,
+    size_t count, const ModulePackageReader *reader) {
     for (size_t index = 0; index < count; index++) {
         if (roots[index].kind != MODULE_ROOT_PROJECT && roots[index].kind != MODULE_ROOT_STANDARD) {
             return module_fail(catalog, MODULE_INVALID_PATH, NULL);
@@ -20,15 +21,18 @@ static ModuleStatus verify_roots(ModuleCatalog *catalog, const ModuleRoot *roots
         if (roots[index].kind == MODULE_ROOT_STANDARD) {
             continue;
         }
-        ModuleStatus status = module_verify_root(catalog, roots[index].path);
-        if (status != MODULE_OK) {
-            return status;
+        if (roots[index].path == NULL || roots[index].path[0] == 0) {
+            return module_fail(catalog, MODULE_INVALID_PATH, NULL);
         }
         const char *path = source_arena_copy(&catalog->arena, roots[index].path);
         if (path == NULL) {
             return module_fail(catalog, MODULE_OUT_OF_MEMORY, NULL);
         }
-        status = module_remember_directory(catalog, path);
+        struct stat metadata;
+        ModuleStatus status = reader->root(reader->context, catalog, path, &metadata);
+        if (status == MODULE_OK) {
+            status = module_remember_directory_metadata(catalog, path, &metadata);
+        }
         if (status != MODULE_OK) {
             return status;
         }
@@ -40,18 +44,20 @@ static ModuleStatus verify_roots(ModuleCatalog *catalog, const ModuleRoot *roots
  * [PKG-02](../../../../spec/project/packages.md#pkg-02) makes local selection a
  * version-level decision, so no source/configuration is loaded during either pass.
  */
-ModuleStatus module_packages_select(ModuleCatalog *catalog, const ModuleRoot *roots,
-    size_t count, ModulePackage **output) {
-    if (catalog == NULL || output == NULL || (count != 0 && roots == NULL)
+ModuleStatus module_packages_select_view(ModuleCatalog *catalog, const ModuleRoot *roots,
+    size_t count, const ModulePackageReader *reader, ModulePackage **output) {
+    if (catalog == NULL || output == NULL || reader == NULL
+        || reader->root == NULL || reader->child == NULL || reader->entries == NULL
+        || (count != 0 && roots == NULL)
         || catalog->first != NULL || catalog->directories != NULL || catalog->built) {
         return MODULE_INVALID_PATH;
     }
-    ModuleStatus status = verify_roots(catalog, roots, count);
+    ModuleStatus status = verify_roots(catalog, roots, count, reader);
     ModulePackage *selected = NULL;
     for (size_t pass = 0; status == MODULE_OK && pass < 2; pass++) {
         for (size_t index = 0; status == MODULE_OK && index < count; index++) {
             if (roots[index].kind == MODULE_ROOT_PROJECT) {
-                PackageScan scan = {.catalog = catalog, .root = &roots[index],
+                PackageScan scan = {.catalog = catalog, .reader = reader, .root = &roots[index],
                     .selected = &selected, .local = pass == 0};
                 status = package_discover(&scan);
             }

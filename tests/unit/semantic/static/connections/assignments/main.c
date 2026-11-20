@@ -26,7 +26,7 @@ static void expect_type(const StaticTypedScope *scope, const char *name, const S
 
 /** All exact source storage categories propagate their declared module Type. */
 static void it_propagates_owned_reference_list_index_acquire_continuation_and_self_types(void) {
-    setup_connections("@!\nowned\n..integer\nindex\n..integer\nvalues[]\n..integer\nrefs&[]\n..integer\n"
+    setup_connections("@!\nowned\n//integer\nindex\n//integer\nvalues[]\n//integer\nrefs&[]\n//integer\n"
         "copy\n owned\nborrowed&\n &owned\ncopy ref&\n borrowed&\ncopy list[]\n values[]\n"
         "copy refs&[]\n refs&[]\nselected\n values[index]\nselected ref&\n refs&[index]\n"
         "saved\n % borrowed&\nself&\n &\n", "@!\n");
@@ -46,7 +46,7 @@ static void it_propagates_owned_reference_list_index_acquire_continuation_and_se
 
 /** Qualified constants need independent namespace evidence rather than caller lookup. */
 static void it_retains_deferred_sources_without_guessing_a_type_from_payloads(void) {
-    setup_connections("@!\nfrom constant\n .other.constant\n", "@=\nconstant\n..integer\n |1\n@!\n");
+    setup_connections("@!\nfrom constant\n /test/fixture/v1.0.0/src/other/constant\n", "@=\nconstant\n//integer\n |1\n@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_assignments(&actual);
     bool changed;
@@ -65,7 +65,7 @@ static void it_retains_deferred_sources_without_guessing_a_type_from_payloads(vo
 
 /** A literal initializer has no intrinsic Type and leaves the operand untouched. */
 static void it_keeps_literal_initializer_capability_work_separate_from_type_sources(void) {
-    setup_connections("@!\nknown\n..integer\n |123\n", "@!\n");
+    setup_connections("@!\nknown\n//integer\n |123\n", "@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_assignments(&actual);
     const StaticRuntimeEvent *event = scope->runtime->first_event;
@@ -80,7 +80,7 @@ static void it_keeps_literal_initializer_capability_work_separate_from_type_sour
 
 /** Copying an unknown source preserves underdetermination until an independent anchor exists. */
 static void it_never_uses_unknown_to_unknown_copying_as_a_concrete_type_anchor(void) {
-    setup_connections("@<\nsource\n...slot\n@!\nanchor\n..integer\ncopy\n source\n", "@!\n");
+    setup_connections("@<\nsource\n.slot\n@!\nanchor\n//integer\ncopy\n source\n", "@!\n");
     const StaticResultContext *actual;
     (void)prepare_assignments(&actual);
     bool changed;
@@ -93,7 +93,7 @@ static void it_never_uses_unknown_to_unknown_copying_as_a_concrete_type_anchor(v
 
 /** Explicit receiver Type disagreement is a solver conflict, without rebinding. */
 static void it_rejects_incompatible_explicit_type_equations(void) {
-    setup_connections("@!\nsource\n..integer\ntarget\n..text\ntarget\n source\n", "@!\n");
+    setup_connections("@!\nsource\n//integer\ntarget\n//text\ntarget\n source\n", "@!\n");
     const StaticResultContext *actual;
     (void)prepare_assignments(&actual);
     bool changed;
@@ -107,9 +107,9 @@ static void it_rejects_incompatible_explicit_type_equations(void) {
 /** Exact suffixes and continuation direct identity are checked before capabilities. */
 static void it_rejects_storage_mismatches_and_direct_continuation_self_copy(void) {
     const char *sources[] = {
-        "@!\nsource\n..integer\ntarget&\n source\n",
-        "@!\nsource[]\n..integer\ntarget\n source[]\n",
-        "@!\nsource\n..integer\nsource\n % source\n"
+        "@!\nsource\n//integer\ntarget&\n source\n",
+        "@!\nsource[]\n//integer\ntarget\n source[]\n",
+        "@!\nsource\n//integer\nsource\n % source\n"
     };
     for (size_t kind = 0; kind < sizeof(sources) / sizeof(*sources); kind++) {
         setup_connections(sources[kind], "@!\n");
@@ -126,7 +126,7 @@ static void it_rejects_storage_mismatches_and_direct_continuation_self_copy(void
 /** Foreign context pointers and missing outputs cannot certify own-body work. */
 static void it_refuses_foreign_contexts_and_absent_assignment_outputs(void) {
     for (size_t kind = 0; kind < 3; kind++) {
-        setup_connections("@!\nanchor\n..integer\n", "@!\n");
+        setup_connections("@!\nanchor\n//integer\n", "@!\n");
         const StaticResultContext *actual = publication_context(caller_environment);
         StaticResultContext copied = *actual;
         bool changed = true;
@@ -142,7 +142,7 @@ static void it_refuses_foreign_contexts_and_absent_assignment_outputs(void) {
 static void it_unwinds_every_assignment_equation_allocation_refusal(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_connections("@!\nsource\n..integer\ntarget\n source\n", "@!\n");
+        setup_connections("@!\nsource\n//integer\ntarget\n source\n", "@!\n");
         const StaticResultContext *actual = publication_context(caller_environment);
         size_t before = allocation_count;
         if (failure) { failure_at = before + failure; }

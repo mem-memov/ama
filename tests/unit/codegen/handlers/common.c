@@ -10,8 +10,9 @@
  */
 static void prepare_handler_tree(void) {
     directory("generated/project");
-    file("generated/project/branch", "@>\nlive\n.worker\nmissing&\n.worker\n@!\nresult\n.value\n |77\nprobe\n.worker\n");
-    file("generated/project/middle", "@>\nbranch\n.branch\n@!\n");
-    file("generated/project/box", "@>\nmiddle\n.middle\n@!\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/branch", "@>\nlive\n/test/fixture/v1.0.0/src/worker\nmissing&\n/test/fixture/v1.0.0/src/worker\n@!\nresult\n/test/fixture/v1.0.0/src/value\n |77\nprobe\n/test/fixture/v1.0.0/src/worker\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/middle", "@>\nbranch\n/test/fixture/v1.0.0/src/branch\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/box", "@>\nmiddle\n/test/fixture/v1.0.0/src/middle\n@!\n");
 }
 #endif

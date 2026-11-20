@@ -1,9 +1,9 @@
 # Canonical signed arbitrary-precision integer; see stdlib/README.md.
 @=
 zero
-..integer
+//integer
  |0
 one
-..integer
+//integer
  |1
 @C

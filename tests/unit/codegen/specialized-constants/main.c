@@ -11,13 +11,14 @@ static NativeScaffold scaffold;
 /** Produce two concrete namespaces and reuse one of them through another read. */
 static void setup_constants(void) {
     directory("generated/project");
-    file("generated/project/main", "@!\n.factory\n ...numbers\n first[] >> xs[]\n.factory\n ...texts\n second[] >> ys[]\n.factory\n ...numbers\n second[] >> again[]\n");
-    file("generated/project/factory", "@...\n...numbers\n.container\n ...slot < ..integer\n...texts\n.container\n ...slot < ..text\n");
-    file("generated/project/container", "@=\nfirst[]\n...slot\nsecond[]\n...slot\n@<\ninput\n...slot\n@!\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\n/test/fixture/v1.0.0/src/factory\n .numbers\n first[] >> xs[]\n/test/fixture/v1.0.0/src/factory\n .texts\n second[] >> ys[]\n/test/fixture/v1.0.0/src/factory\n .numbers\n second[] >> again[]\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.numbers\n/test/fixture/v1.0.0/src/container\n .slot < //integer\n.texts\n/test/fixture/v1.0.0/src/container\n .slot < //text\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/container", "@=\nfirst[]\n.slot\nsecond[]\n.slot\n@<\ninput\n.slot\n@!\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {TEST_STANDARD_ROOT, NULL, 0, MODULE_ROOT_STANDARD}};
-    assert(compiler_frontend_check(&frontend, roots, 2, ".main"));
+    assert(compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main"));
     native_scaffold_init(&scaffold, &frontend, sources.allocator);
 }
 
@@ -30,7 +31,7 @@ static void destroy_constants(void) {
 /** Equal owners reuse one table; different captures retain distinct member names and storage. */
 static void it_distinguishes_specialized_constant_names_and_reuses_equal_owners(void) {
     setup_constants();
-    const ProjectModule *container = project_find(&frontend.project, ".container");
+    const ProjectModule *container = project_find(&frontend.project, "/test/fixture/v1.0.0/src/container");
     const SemanticConstantPlan *constants[4] = {NULL, NULL, NULL, NULL};
     size_t count = 0;
     for (const SemanticConstantPlan *constant = frontend.semantic.constant_first; constant; constant = constant->next) {
@@ -46,7 +47,7 @@ static void it_distinguishes_specialized_constant_names_and_reuses_equal_owners(
     for (size_t index = 0; index < 4; index++) {
         assert(semantic_constant_key(&frontend.semantic, constants[index]->symbol, &temporary, &keys[index]) == IDENTITY_OK);
         assert(keys[index].category == IDENTITY_CONSTANT && keys[index].member_count == 3);
-        assert(strcmp(keys[index].module_path, ".container") == 0);
+        assert(strcmp(keys[index].module_path, "/test/fixture/v1.0.0/src/container") == 0);
         assert(strcmp(keys[index].members[0], "ama-static-key-v1") == 0);
         SourceSpan member = constants[index]->symbol->name;
         assert(strlen(keys[index].members[2]) == member.end - member.start);
@@ -77,12 +78,12 @@ static void it_preserves_concrete_constant_identity_and_refuses_foreign_members(
     setup_constants();
     const SemanticConstantPlan *zero = NULL;
     for (const SemanticConstantPlan *constant = frontend.semantic.constant_first; constant; constant = constant->next) {
-        if (strcmp(constant->symbol->owner->module->source->logical_path, "..integer") == 0
+        if (strcmp(constant->symbol->owner->module->source->logical_path, "//integer") == 0
             && constant->symbol->role_ordinal == 0) { zero = constant; break; }
     }
     assert(zero);
     const char *parts[] = {"zero"};
-    QualifiedIdentity expected = {IDENTITY_CONSTANT, "..integer", parts, 1, zero->symbol->name};
+    QualifiedIdentity expected = {IDENTITY_CONSTANT, "//integer", parts, 1, zero->symbol->name};
     const IdentityName *name;
     assert(identity_register(&scaffold.identities, expected, &name) == IDENTITY_OK);
     assert(strcmp(name->internal_name, codegen_constant_name(&scaffold, zero)) == 0);
@@ -91,7 +92,7 @@ static void it_preserves_concrete_constant_identity_and_refuses_foreign_members(
     QualifiedIdentity output = expected;
     assert(semantic_constant_key(&frontend.semantic, zero->symbol, &temporary, &output) == IDENTITY_OK);
     assert(output.member_count == 1 && strcmp(output.members[0], "zero") == 0);
-    assert(strcmp(output.module_path, "..integer") == 0);
+    assert(strcmp(output.module_path, "//integer") == 0);
     output = expected;
     SemanticSymbol copied = *zero->symbol;
     assert(semantic_constant_key(&frontend.semantic, &copied, &temporary, &output) == IDENTITY_INVALID);
@@ -119,7 +120,7 @@ static void it_unwinds_every_specialized_constant_naming_allocation_refusal(void
     for (size_t cut = 0; cut <= total; cut++) {
         setup_constants();
         const SemanticConstantPlan *target = frontend.semantic.constant_first;
-        const ProjectModule *container = project_find(&frontend.project, ".container");
+        const ProjectModule *container = project_find(&frontend.project, "/test/fixture/v1.0.0/src/container");
         while (target && target->symbol->owner->module != container) { target = target->next; }
         assert(target);
         size_t before = allocation_count;
@@ -143,19 +144,20 @@ static void it_unwinds_every_specialized_constant_naming_allocation_refusal(void
  */
 static void it_distinguishes_empty_self_typed_constants_from_actual_value_dependency_cycles(void) {
     directory("generated/project");
-    file("generated/project/main", "@=\nchildren[]\n.main\n@!\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@=\nchildren[]\n/test/fixture/v1.0.0/src/main\n@!\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {TEST_STANDARD_ROOT, NULL, 0, MODULE_ROOT_STANDARD}};
-    assert(compiler_frontend_check(&frontend, roots, 2, ".main"));
+    assert(compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main"));
     assert(frontend.semantic.constants_valid && frontend.plan.shared_first);
     assert(frontend.plan.shared_first->immutable && frontend.plan.shared_first->form == STORAGE_OWNING_LIST);
     assert(frontend.plan.shared_first->constant->symbol->owner == frontend.plan.shared_first->constant->symbol->type);
     destroy_frontend();
-    file("generated/project/main", "@=\nfirst\n..integer\n .palette.value\n@!\n");
-    file("generated/project/palette", "@=\nvalue\n..integer\n .main.first\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@=\nfirst\n//integer\n /test/fixture/v1.0.0/src/palette/value\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/palette", "@=\nvalue\n//integer\n /test/fixture/v1.0.0/src/main/first\n");
     setup_frontend();
-    assert(!compiler_frontend_check(&frontend, roots, 2, ".main"));
+    assert(!compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main"));
     assert(frontend.semantic.resolved && !frontend.semantic.relations_valid && !frontend.semantic.constants_valid);
     assert(diagnostic_valid(&frontend.error));
     destroy_frontend();

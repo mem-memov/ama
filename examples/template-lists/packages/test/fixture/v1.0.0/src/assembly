@@ -1,0 +1,13 @@
+# Named concrete exports and an explicitly composed partial constructor.
+@...
+.integers
+/test/fixture/v1.0.0/src/reverse-owned
+ .element < //integer
+.texts
+/test/fixture/v1.0.0/src/reverse-owned
+ .element < //text
+/test/fixture/v1.0.0/src/integer-family
+ .family > .partial
+/test/fixture/v1.0.0/src/complete
+ .family < .partial
+ .ready > .paired

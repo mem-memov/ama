@@ -1,13 +1,13 @@
 # The private native registration must retire even if this continuation never resumes.
 @<
 source&
-..task.events
+//task/events
 @>
 token
-..task.token
+//task/token
 @!
 operation
-..task.operation
+//task/operation
 operation !
  < source&
  > token
@@ -16,5 +16,5 @@ source&
   < token
 %
 probe
-.worker
+/test/fixture/v1.0.0/src/worker
 probe !

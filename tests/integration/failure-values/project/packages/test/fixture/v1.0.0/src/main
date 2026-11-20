@@ -1,0 +1,22 @@
+# Construct, inspect and clear one owned application failure through the actual CLI.
+@!
+builder
+//failure/make
+report
+/test/fixture/v1.0.0/src/report
+builder !
+ < |expected application failure
+ > outcome
+outcome
+?
+ outcome
+  description >> message
+ report !
+  < message
+outcome !
+outcome
+:
+ outcome
+  description >> message
+ report !
+  < message

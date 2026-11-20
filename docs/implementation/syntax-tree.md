@@ -78,7 +78,7 @@ scope lookup, infer substitutions, determine a producer, or generate a Type.
 
 `@...` selects one exclusive module graph stored in `AstModule.graph`. Ordinary
 sections and the runtime body remain empty. A public static pair has a complete
-three-dot name and a same-indent value head. A producer use has a concrete path,
+single-dot name and a same-indent value head. A producer use has a concrete path,
 zero or more named inputs and at least one named output. All inputs precede
 outputs. Values nest through named input edges only. There are no static skips,
 positions, standalone formal/signature declarations, or ordinary inline static

@@ -1,0 +1,11 @@
+@<
+message
+//text
+@>
+response
+//text
+previous
+//std/condition
+waiting
+//std/condition
+@C

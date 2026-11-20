@@ -34,7 +34,7 @@ static void verify(const char *mode, const char *responses) {
 }
 /** Repeated inspection is identical until explicit resume advances the saved traversal boundary. */
 static void it_inspects_real_yields_original_names_and_terminal_state(void) {
-    build(".main", "generated/project", "generated/ama-debugger");
+    build("/test/fixture/v1.0.0/src/main", "generated/project", "generated/ama-debugger");
     setup_test();
     require(tool_run_debugger("generated/ama-debugger", "generated/accepted.jsonl",
         "run\ninspect\ninspect\nresume\ninspect\nresume\ninspect\nquit\n") == EXIT_SUCCESS);
@@ -66,7 +66,7 @@ static void it_refuses_existing_response_files_without_changing_them(void) {
 }
 /** An accepted native construction failure disposes state; inspection rejects rather than reconstructing dead objects. */
 static void it_reports_real_native_failure_and_rejects_dead_state_inspection(void) {
-    build(".failed", "generated/failed-project", "generated/failed-debugger");
+    build("/test/fixture/v1.0.0/src/failed", "generated/failed-project", "generated/failed-debugger");
     setup_test();
     require(tool_run_debugger("generated/failed-debugger", "generated/failed.jsonl", "run\ninspect\nquit\n") == EXIT_FAILURE);
     verify("failed", "generated/failed.jsonl");

@@ -7,6 +7,7 @@
  */
 #include <string.h>
 #include "internal.h"
+#include "packages/packages.h"
 
 void module_catalog_init(ModuleCatalog *catalog, SourceAllocator allocator) {
     *catalog = (ModuleCatalog){0};
@@ -36,8 +37,21 @@ ModuleStatus module_catalog_build(ModuleCatalog *catalog,
         return MODULE_INVALID_PATH;
     }
     catalog->attempted = true;
+    ModulePackage *packages = NULL;
+    ModuleStatus status = module_packages_select(catalog, roots, root_count, &packages);
+    if (status != MODULE_OK) {
+        return status;
+    }
     for (size_t index = 0; index < root_count; index++) {
-        ModuleStatus status = module_walk_root(catalog, &roots[index]);
+        if (roots[index].kind == MODULE_ROOT_STANDARD) {
+            status = module_walk_root(catalog, &roots[index]);
+            if (status != MODULE_OK) {
+                return status;
+            }
+        }
+    }
+    for (const ModulePackage *package = packages; package != NULL; package = package->next) {
+        status = module_package_index(catalog, package);
         if (status != MODULE_OK) {
             return status;
         }

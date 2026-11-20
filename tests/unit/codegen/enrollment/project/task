@@ -1,21 +1,21 @@
 # A task consumes an already published wait; entry preserves its owned worker state.
 @<
 record&
-.record
+/test/fixture/v1.0.0/src/record
 wait&
-.registration
+/test/fixture/v1.0.0/src/registration
 @>
 owner record&
-.record
+/test/fixture/v1.0.0/src/record
 phase
-..task.phase
+//task/phase
 @!
 probe
-.worker
+/test/fixture/v1.0.0/src/worker
 awaiting
-..task.phase.awaiting
+//task/phase/awaiting
 completed
-..task.phase.completed
+//task/phase/completed
 owner record&
  record&
 wait&

@@ -4,9 +4,9 @@
 /** Readable main source diagnostics accompany each real semantic-to-plan composition. */
 static void prepare_structured_types(void) {
     prepare_types();
-    file("generated/program/producer", "@<\ninput\n.value\n@>\nleft\n.worker\nright&\n.worker\n@!\n");
-    file("generated/program/worker", "@<\ninput\n.value\n@>\nvalue\n.value\ncondition\n.value\nnext&\n.worker\n@!\n%\n");
-    file("generated/program/value.h", "#error Structured IR must not compile native C\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/producer", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\nleft\n/test/fixture/v1.0.0/src/worker\nright&\n/test/fixture/v1.0.0/src/worker\n@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\nvalue\n/test/fixture/v1.0.0/src/value\ncondition\n/test/fixture/v1.0.0/src/value\nnext&\n/test/fixture/v1.0.0/src/worker\n@!\n%\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/value.h", "#error Structured IR must not compile native C\n");
     directory("generated/standard");
     file("generated/standard/integer", "@C\n");
     file("generated/standard/integer.h", "#error Static plans must not inspect native bridge declarations\n");
@@ -16,11 +16,11 @@ static void prepare_structured_types(void) {
 /** Compose a two-root complete plan, printing an authored fixture's exact failing source when needed. */
 static void prepare_structured(const char *text) {
     prepare_structured_types();
-    file("generated/program/main", text);
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
     setup_project();
     ModuleRoot roots[] = {{"generated/program", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    ProjectStatus loaded = project_load(&project, roots, 2, ".main");
+    ProjectStatus loaded = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
     if (loaded != PROJECT_OK) { fprintf(stderr, "Structured source: %s\n%s\n", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);

@@ -27,16 +27,16 @@ static bool references_site(const Diagnostic *error, const SourceText *source, s
 
 /** An unresolved producer must identify both its source definition and the real ordinary selection that requires it. */
 static void it_links_incomplete_static_producer_definitions_to_their_original_required_selection(void) {
-    directory("generated/project");
-    file("generated/project/main", "@!\nvalue\n.factory\n ...out\n");
-    file("generated/project/factory", "@...\n...out\n...missing\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\nvalue\n/test/fixture/v1.0.0/src/factory\n .out\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.out\n.missing\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {TEST_STANDARD_ROOT, NULL, 0, MODULE_ROOT_STANDARD}};
-    assert(!compiler_frontend_check(&frontend, roots, 2, ".main"));
+    assert(!compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main"));
     const Diagnostic *error = &frontend.error;
     assert(diagnostic_valid(error) && !frontend.valid && !frontend.plan_initialized);
-    const ProjectModule *factory = project_find(&frontend.project, ".factory");
+    const ProjectModule *factory = project_find(&frontend.project, "/test/fixture/v1.0.0/src/factory");
     assert(factory && references_site(error, factory->source->text, 1, SIZE_MAX));
     size_t before = allocation_count;
     assert(diagnostic_render(stderr, error) == DIAGNOSTIC_RENDER_OK && allocation_count == before);
@@ -46,12 +46,12 @@ static void it_links_incomplete_static_producer_definitions_to_their_original_re
 
 /** Unknown ordinary input types must identify their actual declaration or annotation, rather than only the module marker. */
 static void it_identifies_the_original_input_declaration_for_unanchored_required_types(void) {
-    directory("generated/project");
-    file("generated/project/main", "@<\ninput\n...slot\n@!\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@<\ninput\n.slot\n@!\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {TEST_STANDARD_ROOT, NULL, 0, MODULE_ROOT_STANDARD}};
-    assert(!compiler_frontend_check(&frontend, roots, 2, ".main"));
+    assert(!compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main"));
     assert(diagnostic_valid(&frontend.error) && !frontend.valid && !frontend.plan_initialized);
     assert(diagnostic_render(stderr, &frontend.error) == DIAGNOSTIC_RENDER_OK);
     assert(references_site(&frontend.error, frontend.project.entry->source->text, 2, 3));
@@ -60,9 +60,9 @@ static void it_identifies_the_original_input_declaration_for_unanchored_required
 
 /** Every failed frontend allocation keeps an owned, renderable error; context attachment never needs another allocation after the cause. */
 static void it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal(void) {
-    directory("generated/project");
-    file("generated/project/main", "@!\nvalue\n.factory\n ...out\n");
-    file("generated/project/factory", "@...\n...out\n...missing\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\nvalue\n/test/fixture/v1.0.0/src/factory\n .out\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.out\n.missing\n");
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {TEST_STANDARD_ROOT, NULL, 0, MODULE_ROOT_STANDARD}};
     size_t total = 0;
@@ -70,7 +70,7 @@ static void it_preserves_renderable_producer_failures_under_every_frontend_alloc
         setup_frontend();
         size_t before = allocation_count;
         if (cut) { failure_at = before + cut; }
-        assert(!compiler_frontend_check(&frontend, roots, 2, ".main"));
+        assert(!compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main"));
         assert(diagnostic_valid(&frontend.error) && !frontend.valid);
         if (!cut) { total = allocation_count - before; assert(total); }
         else { assert(frontend.error.code == DIAGNOSTIC_OUT_OF_MEMORY); }

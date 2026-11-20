@@ -57,7 +57,7 @@ void editor_rename_init(EditorRename *, SourceAllocator);
 /** Destroy candidate/index/new-source storage before the borrowed original workspace may disappear. Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 void editor_rename_destroy(EditorRename *);
 /** Plan one original variable/interface/constant/local/static rename at an indexed source spelling. Requires a complete
- * workspace analysis; new_name is one exact Ama base name or complete three-dot static name. Comments, literals, paths and suffixes stay intact.
+ * workspace analysis; new_name is one exact Ama base name or complete single-dot static name. Comments, literals, paths and suffixes stay intact.
  * No filesystem writes occur. False retains a structured diagnostic and publishes prepared=false.
  * Component contract: [NAME-06](../../../spec/language/declarations.md#name-06), [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool editor_rename_prepare(EditorRename *, const EditorAnalysis *, const char *module, size_t offset,

@@ -4,9 +4,9 @@
 #include "../common.c"
 
 /** Distinct source applications cover unchanged, permuted and growing captures. */
-static const char *caller_source = "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nanchor&\n..integer\nchild&\n.other\n"
-    "direct&\n.main\nsame&\n.main\npermuted&\n.main\ngrowing&\n.main\nnested&\n.other\n";
-static const char *target_source = "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nback&\n.main\n";
+static const char *caller_source = "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\nanchor&\n//integer\nchild&\n/test/fixture/v1.0.0/src/other\n"
+    "direct&\n/test/fixture/v1.0.0/src/main\nsame&\n/test/fixture/v1.0.0/src/main\npermuted&\n/test/fixture/v1.0.0/src/main\ngrowing&\n/test/fixture/v1.0.0/src/main\nnested&\n/test/fixture/v1.0.0/src/other\n";
+static const char *target_source = "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\nback&\n/test/fixture/v1.0.0/src/main\n";
 
 /** Registered declaration syntax determines the lexical owner, independently of
  * whichever constructor is supplied through the prepared head.
@@ -42,7 +42,7 @@ static void it_suspends_unresolved_equal_permuted_and_growing_requests(void) {
         setup_guards(caller_source, target_source);
         const StaticCreationPath *root;
         assert(static_creation_root(&guards, caller_environment, &root));
-        const StaticTerm *a = application_symbol("...a"), *b = application_symbol("...b");
+        const StaticTerm *a = application_symbol(".a"), *b = application_symbol(".b");
         StaticApplicationInput inputs[] = {{.formal = application_formal(caller_module, 0), .value = a},
             {.formal = application_formal(caller_module, 1), .value = b}};
         if (mode == 2) { inputs[0].value = b; inputs[1].value = a; }
@@ -88,7 +88,7 @@ static void it_suspends_mutual_symbolic_recurrence_without_an_extra_scope(void) 
 static void it_closes_identical_keys_and_rejects_closed_permutation_or_growth(void) {
     for (size_t mode = 0; mode < 3; mode++) {
         setup_guards(caller_source, target_source);
-        const StaticTerm *a = application_symbol("...a"), *b = application_symbol("...b");
+        const StaticTerm *a = application_symbol(".a"), *b = application_symbol(".b");
         StaticTermCapture captures[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
             {.formal = application_formal(target_module, 1), .value = integer_type}};
         const StaticTerm *other;
@@ -141,8 +141,8 @@ static void it_retries_pending_comparisons_only_after_independent_owner_evidence
             {.formal = application_formal(target_module, 1), .value = integer_type}};
         const StaticTerm *other;
         assert(static_term_nominal(&terms, target_module, captures, 2, (SourceSpan){0}, &other));
-        assert(static_constraint_equate(&solver, application_symbol("...a"), integer_type, (SourceSpan){0}));
-        assert(static_constraint_equate(&solver, application_symbol("...b"), unequal ? other : integer_type, (SourceSpan){0}));
+        assert(static_constraint_equate(&solver, application_symbol(".a"), integer_type, (SourceSpan){0}));
+        assert(static_constraint_equate(&solver, application_symbol(".b"), unequal ? other : integer_type, (SourceSpan){0}));
         bool accepted = static_creation_enter(&guards, root, record, &output, &outcome);
         assert(accepted == !unequal);
         if (!unequal) { assert(outcome == STATIC_CREATION_ENTERED && output->vertex == root->vertex); }
@@ -156,8 +156,8 @@ static void it_retries_pending_comparisons_only_after_independent_owner_evidence
  */
 static void it_closes_mutual_reference_and_empty_list_keys(void) {
     for (size_t lists = 0; lists < 2; lists++) {
-        const char *a_source = lists ? "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nanchor&\n..integer\nchild[]\n.other\n" : caller_source;
-        const char *b_source = lists ? "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nback[]\n.main\n" : target_source;
+        const char *a_source = lists ? "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\nanchor&\n//integer\nchild[]\n/test/fixture/v1.0.0/src/other\n" : caller_source;
+        const char *b_source = lists ? "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\nback[]\n/test/fixture/v1.0.0/src/main\n" : target_source;
         setup_guards(a_source, b_source);
         StaticTermCapture captures[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
             {.formal = application_formal(caller_module, 1), .value = integer_type}};
@@ -189,8 +189,8 @@ static void it_unwinds_every_closed_repeat_entry_allocation_refusal(void) {
     size_t total = 0;
     for (size_t cut = 0; cut <= total; cut++) {
         setup_guards(caller_source, target_source);
-        assert(static_constraint_equate(&solver, application_symbol("...a"), integer_type, (SourceSpan){0}));
-        assert(static_constraint_equate(&solver, application_symbol("...b"), integer_type, (SourceSpan){0}));
+        assert(static_constraint_equate(&solver, application_symbol(".a"), integer_type, (SourceSpan){0}));
+        assert(static_constraint_equate(&solver, application_symbol(".b"), integer_type, (SourceSpan){0}));
         const StaticCreationPath *root, *output = NULL;
         assert(static_creation_root(&guards, caller_environment, &root));
         StaticApplicationInput inputs[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
@@ -211,15 +211,15 @@ static void it_unwinds_every_closed_repeat_entry_allocation_refusal(void) {
  * cannot create a false outer-to-inner creation edge or ban finite repeated nesting.
  */
 static void it_accepts_finite_nested_and_sibling_applications_of_one_origin(void) {
-    setup_guards("@...\n...nested\n.other\n ...a < .other\n  ...a < ..integer\n  ...b < ..integer\n ...b < ..integer\n...anchor\n..integer\n",
-        "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\n");
+    setup_guards("@...\n.nested\n/test/fixture/v1.0.0/src/other\n .a < /test/fixture/v1.0.0/src/other\n  .a < //integer\n  .b < //integer\n .b < //integer\n.anchor\n//integer\n",
+        "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\n");
     const StaticCreationPath *root, *outer, *inner;
     assert(static_creation_root(&guards, caller_environment, &root));
-    const AstTypeExpression *outer_expression = field(caller_module, "...nested"), *inner_expression = NULL;
+    const AstTypeExpression *outer_expression = field(caller_module, ".nested"), *inner_expression = NULL;
     for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
         if (!site->root && site->receiver == NULL && site->statement && site->statement->kind == AST_STATIC_RESULT &&
-            layout_text_is(site->statement->as.static_result.name, "...nested") &&
-            layout_text_is(site->expression->head, ".other")) { inner_expression = site->expression; break; }
+            layout_text_is(site->statement->as.static_result.name, ".nested") &&
+            layout_text_is(site->expression->head, "/test/fixture/v1.0.0/src/other")) { inner_expression = site->expression; break; }
     }
     assert(inner_expression);
     StaticApplicationInput inputs[] = {{.formal = application_formal(target_module, 0), .value = integer_type},

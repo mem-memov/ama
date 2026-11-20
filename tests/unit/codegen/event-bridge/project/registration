@@ -1,28 +1,28 @@
 # The checked task reference and both scalar stamps are declared Ama fields.
 @<
 target&
-.task
+/test/fixture/v1.0.0/src/task
 run epoch
-..task.generation
+//task/generation
 wait generation
-..task.generation
+//task/generation
 operation
-..task.token
+//task/token
 result&
-.mailbox
+/test/fixture/v1.0.0/src/mailbox
 @>
 task&
-.task
+/test/fixture/v1.0.0/src/task
 epoch
-..task.generation
+//task/generation
 generation
-..task.generation
+//task/generation
 live
-..task.flag
+//task/flag
 token
-..task.token
+//task/token
 mailbox&
-.mailbox
+/test/fixture/v1.0.0/src/mailbox
 @!
 task&
  target&

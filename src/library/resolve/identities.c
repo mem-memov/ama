@@ -4,6 +4,7 @@
  * names to component identity, complete export identity and the declared C ABI.
  */
 #include <stdint.h>
+#include <string.h>
 #include "../internal.h"
 /** Register the exact framed tuple, preserving unequal-key collision as a hard failure. Component contract: [EMBED-06](../../../spec/implementation/c-library.md#embed-06). */
 static bool identity(LibraryBuild *build, const char *module, const char *role,
@@ -29,10 +30,25 @@ static bool identity(LibraryBuild *build, const char *module, const char *role,
     }
     return false;
 }
+/** Anchor generated component helpers to the least complete exported module
+ * path. A verified configuration has at least one export. The finite minimum
+ * is independent of traversal/link order, and full configuration frames remain
+ * part of every key under [EMBED-06](../../../spec/implementation/c-library.md#embed-06).
+ * Unlike a fabricated module spelling, this anchor satisfies the canonical
+ * identity boundary in [NAME-01](../../../spec/implementation/compiler.md#name-01).
+ */
+static const char *component_anchor(const LibraryBuild *build) {
+    const char *anchor = build->exports->module;
+    for (const LibraryExport *item = build->exports->next; item != NULL; item = item->next) {
+        if (strcmp(item->module, anchor) < 0) { anchor = item->module; }
+    }
+    return anchor;
+}
+
 bool library_resolve_identities(LibraryBuild *build) {
     if (!library_identity_parts(build)) { return false; }
     SourceSpan site = {build->configuration, 0, source_length(build->configuration)};
-    if (!identity(build, ".Ama C component", "component", build->component, build->abi, site, &build->identity)) { return false; }
+    if (!identity(build, component_anchor(build), "component", build->component, build->abi, site, &build->identity)) { return false; }
     for (LibrarySchema *schema = build->schemas; schema != NULL; schema = schema->next) {
         const char *role = schema->kind == LIBRARY_LIST ? "owning list schema" : "owned scalar schema";
         const char *module = schema->type->module->source->logical_path;

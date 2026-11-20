@@ -4,11 +4,15 @@
 /** Physical absence of D cannot hide a logical collision in another root of the same family. */
 static void it_rejects_collisions_aliases_and_orphan_plus_directories(void) {
     setup("collisions");
-    folder("left"); folder("left/old"); folder("left/new"); folder("right");
-    file("left/old/value","@!\n"); file("left/new/value","@!\n");
+    package("left", "fixture"); package("left", "target");
+    folder("right"); folder("right/packages"); folder("right/packages/test");
+    folder("right/packages/test/target");
+    file("left/packages/test/fixture/v1.0.0/src/value","@!\n");
+    file("left/packages/test/target/v1.0.0/src/value","@!\n");
     ModuleRoot roots[] = {{.path=path("left"),.kind=MODULE_ROOT_PROJECT},
         {.path=path("right"),.kind=MODULE_ROOT_PROJECT}};
-    RelocationRequest request = {roots,2,path("left/old"),path("right/new"),NULL};
+    RelocationRequest request = {roots,2,path("left/packages/test/fixture/v1.0.0"),
+        path("right/packages/test/target/v1.0.0"),NULL};
     assert(!relocation_preview_build(&preview,&request) && preview.status == RELOCATION_COLLISION);
     untouched(&request);
     reset_preview();
@@ -19,18 +23,18 @@ static void it_rejects_collisions_aliases_and_orphan_plus_directories(void) {
     finish();
 
     setup("anchors");
-    folder("project"); folder("project/old+");
-    file("project/old","unfinished definition\n"); file("project/old+/child","@!\n");
+    package("project", "fixture"); folder("project/packages/test/fixture/v1.0.0/src/old+");
+    file("project/packages/test/fixture/v1.0.0/src/old","unfinished definition\n"); file("project/packages/test/fixture/v1.0.0/src/old+/child","@!\n");
     ModuleRoot root = {.path=path("project"),.kind=MODULE_ROOT_PROJECT};
-    request = (RelocationRequest){&root,1,path("project/old+"),path("project/new+"),NULL};
+    request = (RelocationRequest){&root,1,path("project/packages/test/fixture/v1.0.0/src/old+"),path("project/packages/test/fixture/v1.0.0/src/new+"),NULL};
     assert(!relocation_preview_build(&preview,&request) && preview.status == RELOCATION_ORPHAN);
     untouched(&request);
     reset_preview();
-    file("project/new","unfinished definition\n");
+    file("project/packages/test/fixture/v1.0.0/src/new","unfinished definition\n");
     assert(relocation_preview_build(&preview,&request));
-    assert(strcmp(module(".old.child")->after_identity,".new.child") == 0);
-    assert(strcmp(module(".old")->after_identity,".old") == 0);
-    assert(!module(".old")->active && !module(".new")->active);
+    assert(strcmp(module("/test/fixture/v1.0.0/src/old/child")->after_identity,"/test/fixture/v1.0.0/src/new/child") == 0);
+    assert(strcmp(module("/test/fixture/v1.0.0/src/old")->after_identity,"/test/fixture/v1.0.0/src/old") == 0);
+    assert(!module("/test/fixture/v1.0.0/src/old")->active && !module("/test/fixture/v1.0.0/src/new")->active);
     untouched(&request);
     finish();
 }
@@ -38,16 +42,16 @@ static void it_rejects_collisions_aliases_and_orphan_plus_directories(void) {
 /** Syntax errors in unused modules block preview; incomplete draft bodies retain their ordinary exclusion. */
 static void it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies(void) {
     setup("invalid-unused");
-    folder("project"); folder("project/old");
-    file("project/old/value","@!\n"); file("project/unused","@!\n ?\n");
+    package("project", "fixture"); folder("project/packages/test/fixture/v1.0.0/src/old");
+    file("project/packages/test/fixture/v1.0.0/src/old/value","@!\n"); file("project/packages/test/fixture/v1.0.0/src/unused","@!\n ?\n");
     ModuleRoot root = {.path=path("project"),.kind=MODULE_ROOT_PROJECT};
-    RelocationRequest request = {&root,1,path("project/old"),path("project/new"),NULL};
+    RelocationRequest request = {&root,1,path("project/packages/test/fixture/v1.0.0/src/old"),path("project/packages/test/fixture/v1.0.0/src/new"),NULL};
     assert(!relocation_preview_build(&preview,&request) && preview.status == RELOCATION_INVALID_SOURCE);
     assert(preview.diagnostic.primary.span.source != NULL && !preview.ready);
     untouched(&request);
     reset_preview();
-    file("project/unused","unfinished definition\n .missing\n");
-    assert(relocation_preview_build(&preview,&request) && !module(".unused")->active);
+    file("project/packages/test/fixture/v1.0.0/src/unused","unfinished definition\n /test/fixture/v1.0.0/src/missing\n");
+    assert(relocation_preview_build(&preview,&request) && !module("/test/fixture/v1.0.0/src/unused")->active);
     untouched(&request);
     finish();
 }
@@ -55,10 +59,10 @@ static void it_rejects_invalid_unused_active_sources_but_accepts_draft_bodies(vo
 /** Fail each actual measured production allocation; every failure preserves source paths and releases its complete prefix. */
 static void it_releases_every_failed_preparation_prefix_without_touching_files(void) {
     setup("allocation-failures");
-    folder("project"); folder("project/old");
-    file("project/old/value","@!\n"); file("project/draft","unfinished definition\n .missing\n");
+    package("project", "fixture"); folder("project/packages/test/fixture/v1.0.0/src/old");
+    file("project/packages/test/fixture/v1.0.0/src/old/value","@!\n"); file("project/packages/test/fixture/v1.0.0/src/draft","unfinished definition\n /test/fixture/v1.0.0/src/missing\n");
     ModuleRoot root = {.path=path("project"),.kind=MODULE_ROOT_PROJECT};
-    RelocationRequest request = {&root,1,path("project/old"),path("project/new"),NULL};
+    RelocationRequest request = {&root,1,path("project/packages/test/fixture/v1.0.0/src/old"),path("project/packages/test/fixture/v1.0.0/src/new"),NULL};
     allocation_count = 0;
     assert(relocation_preview_build(&preview,&request));
     size_t measured = allocation_count;

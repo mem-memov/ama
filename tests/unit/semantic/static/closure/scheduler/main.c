@@ -39,8 +39,8 @@ static const StaticTerm *field_type(const StaticResultContext *actual, const cha
 /** Ordinary inputs can specialize an actual callee and its independently saved result. */
 static void it_closes_generic_calls_and_requires_their_actual_definitions(void) {
     const StaticResultContext *root = setup_scheduler(
-        "@!\nknown\n..integer\nworker\n.other\nworker !\n < known\n > fresh\n",
-        "@<\ninput\n...slot\n@>\noutput\n...slot\n@!\noutput\n input\n");
+        "@!\nknown\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n > fresh\n",
+        "@<\ninput\n.slot\n@>\noutput\n.slot\n@!\noutput\n input\n");
     assert(static_closure_resolve(&closure) && closure.closed);
     assert(field_type(root, "fresh") == integer_type);
     bool found = false;
@@ -57,8 +57,8 @@ static void it_closes_generic_calls_and_requires_their_actual_definitions(void) 
 /** Callee body equations may supply output Type evidence before its key closes. */
 static void it_infers_callee_output_types_from_required_body_equations(void) {
     const StaticResultContext *root = setup_scheduler(
-        "@!\nanchor&\n..integer\nworker\n.other\nworker !\n > fresh\n",
-        "@>\noutput\n...slot\n@!\nknown\n..integer\noutput\n known\n");
+        "@!\nanchor&\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n > fresh\n",
+        "@>\noutput\n.slot\n@!\nknown\n//integer\noutput\n known\n");
     assert(static_closure_resolve(&closure) && closure.closed);
     assert(field_type(root, "fresh") == integer_type);
     destroy_scheduler();
@@ -68,8 +68,8 @@ static void it_infers_callee_output_types_from_required_body_equations(void) {
 static void it_closes_direct_and_saved_constant_receivers_without_value_execution(void) {
     for (size_t saved = 0; saved < 2; saved++) {
         const StaticResultContext *root = setup_scheduler(saved ?
-            "@!\n.other\n value >> received\n" : "@!\nreceived\n .other.value\n",
-            "@=\nvalue\n..integer\n |7\n@!\n");
+            "@!\n/test/fixture/v1.0.0/src/other\n value >> received\n" : "@!\nreceived\n /test/fixture/v1.0.0/src/other/value\n",
+            "@=\nvalue\n//integer\n |7\n@!\n");
         assert(static_closure_resolve(&closure) && closure.closed);
         assert(field_type(root, "received") == integer_type);
         assert(result_registry.dependency_count > 0);
@@ -81,8 +81,8 @@ static void it_closes_direct_and_saved_constant_receivers_without_value_executio
 
 /** Empty references require their Type's actual body even without any call. */
 static void it_rejects_bad_required_definitions_behind_empty_references(void) {
-    (void)setup_scheduler("@!\nanchor&\n..integer\nunused&\n.other\n",
-        "@!\nfirst\n..integer\nsecond\n..text\nfirst\n second\n");
+    (void)setup_scheduler("@!\nanchor&\n//integer\nunused&\n/test/fixture/v1.0.0/src/other\n",
+        "@!\nfirst\n//integer\nsecond\n//text\nfirst\n second\n");
     assert(!static_closure_resolve(&closure) && !closure.closed);
     assert(closure.status == STATIC_CLOSURE_CONFLICT && diagnostic_valid(&closure.error));
     destroy_scheduler();
@@ -90,7 +90,7 @@ static void it_rejects_bad_required_definitions_behind_empty_references(void) {
 
 /** A literal never selects the missing interface Type; final closure refuses it. */
 static void it_rejects_unanchored_required_types_instead_of_guessing(void) {
-    (void)setup_scheduler("@<\ninput\n...slot\n |7\n@!\nanchor&\n..integer\n", "@!\n");
+    (void)setup_scheduler("@<\ninput\n.slot\n |7\n@!\nanchor&\n//integer\n", "@!\n");
     assert(!static_closure_resolve(&closure) && !closure.closed);
     assert(closure.status == STATIC_CLOSURE_UNRESOLVED && diagnostic_valid(&closure.error));
     destroy_scheduler();
@@ -98,7 +98,7 @@ static void it_rejects_unanchored_required_types_instead_of_guessing(void) {
 
 /** Exact-key nominal reference recursion must close with one body per key. */
 static void it_closes_same_key_reference_cycles_without_repeated_body_expansion(void) {
-    (void)setup_scheduler("@<\ninput\n...slot\n@!\nanchor\n..integer\ninput\n anchor\nself&\n.main\n &\n", "@!\n");
+    (void)setup_scheduler("@<\ninput\n.slot\n@!\nanchor\n//integer\ninput\n anchor\nself&\n/test/fixture/v1.0.0/src/main\n &\n", "@!\n");
     assert(static_closure_resolve(&closure) && closure.closed);
     size_t own_bodies = 0;
     for (const StaticClosureEntry *entry = closure.first; entry; entry = entry->next) {
@@ -113,9 +113,9 @@ static void it_closes_same_key_reference_cycles_without_repeated_body_expansion(
 /** Distinct independent selected keys of one source remain separate in either order. */
 static void it_preserves_independent_root_acceptance_in_both_discovery_orders(void) {
     for (size_t reverse = 0; reverse < 2; reverse++) {
-        setup_connections("@<\ninput\n...slot\n@!\ninteger anchor&\n..integer\ntext anchor&\n..text\n", "@!\n");
+        setup_connections("@<\ninput\n.slot\n@!\ninteger anchor&\n//integer\ntext anchor&\n//text\n", "@!\n");
         static_closure_init(&closure, &connections, sources.allocator);
-        const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+        const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
         const StaticTerm *text_type;
         assert(static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &text_type));
         const StaticTerm *values[] = {integer_type, text_type};
@@ -143,7 +143,7 @@ static void it_preserves_independent_root_acceptance_in_both_discovery_orders(vo
 
 /** A ready named export supplies its Type; the static producer has no runtime body entry. */
 static void it_requires_exported_types_without_reinterpreting_static_producers_as_instances(void) {
-    const StaticResultContext *root = setup_scheduler("@!\nvalue\n.other\n ...out\n", "@...\n...out\n..integer\n");
+    const StaticResultContext *root = setup_scheduler("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n//integer\n");
     assert(static_closure_resolve(&closure) && closure.closed);
     assert(field_type(root, "value") == integer_type && publications.count > 0);
     for (const StaticClosureEntry *entry = closure.first; entry; entry = entry->next) {
@@ -154,7 +154,7 @@ static void it_requires_exported_types_without_reinterpreting_static_producers_a
 
 /** Changing-key recursion must fail before another repeated ordinary body expands. */
 static void it_rejects_changing_key_creation_through_ordinary_call_equations(void) {
-    (void)setup_scheduler("@<\ninput\n...slot\n@!\nanchor\n..integer\ninput\n anchor\ntext\n..text\nchild&\n.main\nchild& !\n < text\n", "@!\n");
+    (void)setup_scheduler("@<\ninput\n.slot\n@!\nanchor\n//integer\ninput\n anchor\ntext\n//text\nchild&\n/test/fixture/v1.0.0/src/main\nchild& !\n < text\n", "@!\n");
     assert(!static_closure_resolve(&closure) && !closure.closed);
     assert(guards.status == STATIC_GUARD_CONFLICT && guards.rejected_origin == caller_module);
     assert(closure.status == STATIC_CLOSURE_CONFLICT && diagnostic_valid(&closure.error));
@@ -165,15 +165,15 @@ static void it_rejects_changing_key_creation_through_ordinary_call_equations(voi
  * proof publication, body scheduling, normalized keys and solver scratch. */
 static void it_unwinds_every_whole_worklist_resolution_allocation_refusal(void) {
     const char *callers[] = {
-        "@!\nreceived\n .other.value\n",
-        "@!\nknown\n..integer\nworker\n.other\nworker !\n < known\n > fresh\n",
-        "@<\ninput\n...slot\n@!\nanchor\n..integer\ninput\n anchor\nself&\n.main\n &\n",
-        "@!\nvalue\n.other\n ...out\n"};
+        "@!\nreceived\n /test/fixture/v1.0.0/src/other/value\n",
+        "@!\nknown\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n > fresh\n",
+        "@<\ninput\n.slot\n@!\nanchor\n//integer\ninput\n anchor\nself&\n/test/fixture/v1.0.0/src/main\n &\n",
+        "@!\nvalue\n/test/fixture/v1.0.0/src/other\n .out\n"};
     const char *targets[] = {
-        "@=\nvalue\n..integer\n |7\n@!\n",
-        "@<\ninput\n...slot\n@>\noutput\n...slot\n@!\noutput\n input\n",
+        "@=\nvalue\n//integer\n |7\n@!\n",
+        "@<\ninput\n.slot\n@>\noutput\n.slot\n@!\noutput\n input\n",
         "@!\n",
-        "@...\n...out\n..integer\n"};
+        "@...\n.out\n//integer\n"};
     for (size_t phase = 0; phase < sizeof(callers) / sizeof(*callers); phase++) {
         size_t total = 0;
         for (size_t cut = 0; cut <= total; cut++) {
@@ -195,7 +195,7 @@ static void it_unwinds_every_whole_worklist_resolution_allocation_refusal(void) 
  * is a preparation phase; only a new complete resolution can certify it again. */
 static void it_invalidates_previous_closure_on_phase_refusal_or_collection(void) {
     for (size_t phase = 0; phase < 3; phase++) {
-        (void)setup_scheduler("@!\nanchor&\n..integer\n", "@!\n");
+        (void)setup_scheduler("@!\nanchor&\n//integer\n", "@!\n");
         assert(static_closure_resolve(&closure) && closure.closed);
         StaticTerm copied = *integer_type;
         if (phase == 0) {

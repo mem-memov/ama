@@ -9,8 +9,8 @@
 
 #include <stdio.h>
 #include <string.h>
-// Fixed NAME-05 context for the fixture identity .fixtures.buffer.
-#define AMA_NATIVE(local_name) ama_n_4ffcc431ebde113cdcb60bdfa069b06f88794220e2237eb06f95c8819b3f0e57_##local_name
+// Fixed NAME-05 context for the fixture identity /test/fixture/v1.0.0/src/fixtures/buffer.
+#define AMA_NATIVE(local_name) ama_n_8be7d506080a13c6aacf712f924b5bb774a8782a5c786540d9d4e49ad7ed49ae_##local_name
 #include "project/buffer.c"
 #include "native/status/index.h"
 

@@ -71,7 +71,7 @@ The complete strict existing staging leaf passed with the new static producer
 case (`/tmp/ama-t193-shared-semantic-staging.log`). Its strengthened full-key test
 also passed (`/tmp/ama-t193-static-return-identity.log`): moving only the static
 producer preserves the exact registered returned `.box` owner encoding including
-all captures. Descriptive three-dot names, comments and CRLF remain byte-exact.
+all captures. Descriptive single-dot names, comments and CRLF remain byte-exact.
 The full original reference leaf passed
 (`/tmp/ama-t193-original-reference-regressions.log`). A direct captured-catalog
 component leaf passed (`/tmp/ama-t193-captured-catalog-fixed.log`): closed static
@@ -265,7 +265,7 @@ specification or conformance fingerprint changes.
 The existing exact reference graph check establishes the injective source-origin
 map F and verifies every final requiring interval/target with full multiplicity.
 Only parsed real module-path intervals are replaced. A canonical replacement
-remains a module path (one or two root dots); atomic three-dot names, binder names,
+remains a module path (one or two leading slashes); atomic single-dot names, binder names,
 roles, source nesting and all other tokens remain unchanged. Thus the original
 and final syntax structures correspond through the exact edit coordinate map.
 

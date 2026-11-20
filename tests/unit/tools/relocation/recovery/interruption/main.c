@@ -74,10 +74,10 @@ static void it_recovers_every_registered_process_interruption(void) {
         assert(recovered && recovery.ready && recovery.finished);
         bool committed = recovery.transaction.committed;
         assert(recovery.rolled_back == !committed);
-        importer(committed ? "@!\nvalue\n.new.a\n" : "@!\nvalue\n.old.a\n");
+        importer(committed ? "@!\nvalue\n/test/fixture/v1.0.0/src/new/a\n" : "@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n");
         struct stat metadata;
-        assert(lstat(path(committed ? "project/new/a" : "project/old/a"),&metadata) == 0);
-        assert(lstat(path(committed ? "project/old" : "project/new"),&metadata) != 0 && errno == ENOENT);
+        assert(lstat(path(committed ? "project/packages/test/fixture/v1.0.0/src/new/a" : "project/packages/test/fixture/v1.0.0/src/old/a"),&metadata) == 0);
+        assert(lstat(path(committed ? "project/packages/test/fixture/v1.0.0/src/old" : "project/packages/test/fixture/v1.0.0/src/new"),&metadata) != 0 && errno == ENOENT);
         relocation_recovery_destroy(&recovery);
         relocation_recovery_init(&recovery,sources.allocator);
         assert(relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=record}));
@@ -129,7 +129,7 @@ static void it_recovers_every_interrupted_recovery_process(void) {
             bool result = relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=record});
             if (!result) { fprintf(stderr,"Interrupted recovery %u:%zu/%zu failed: %s\n",committed,ordinal,measured,recovery.transaction.error.message); }
             assert(result && recovery.finished && recovery.transaction.committed == (committed != 0));
-            importer(committed ? "@!\nvalue\n.new.a\n" : "@!\nvalue\n.old.a\n");
+            importer(committed ? "@!\nvalue\n/test/fixture/v1.0.0/src/new/a\n" : "@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n");
             relocation_recovery_destroy(&recovery);
             relocation_recovery_init(&recovery,sources.allocator);
             assert(relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=record}));

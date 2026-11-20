@@ -10,7 +10,7 @@ static bool insertion_busy_value;
 static void complete_insertion_native(NativeScaffold *model) {
     bool found = false;
     for (const ScaffoldType *type = model->types; type != NULL; type = type->next) {
-        if (strcmp(type->plan->type->module->source->logical_path, "..integer") != 0) { continue; }
+        if (strcmp(type->plan->type->module->source->logical_path, "//integer") != 0) { continue; }
         assert(!found);
         found = true;
         const char *path = source_path(type->plan->type->module->source->text);
@@ -23,10 +23,10 @@ static void complete_insertion_native(NativeScaffold *model) {
 /** Preserve the full machine-size range and reserved negative-index refusal. */
 static const char *insertion_integer_hook(const ScaffoldType *type, AbiOperation operation) {
     const char *logical = type->plan->type->module->source->logical_path;
-    if (insertion_busy_value && strcmp(logical, ".value") == 0 && operation == ABI_DEFAULT) {
+    if (insertion_busy_value && strcmp(logical, "/test/fixture/v1.0.0/src/value") == 0 && operation == ABI_DEFAULT) {
         return " { *destination=(AMA_NATIVE(State)){.address=destination}; puts(\"construct\"); return ama_status_make(AMA_BUSY,NULL,0); }\n";
     }
-    if (strcmp(logical, "..integer") != 0) { return NULL; }
+    if (strcmp(logical, "//integer") != 0) { return NULL; }
     if (operation == ABI_INDEX) {
         return " { assert(state->address==state); if(state->negative) return ama_status_make(AMA_INVALID_INDEX,NULL,0); *result=state->number; return ama_status_success(); }\n";
     }

@@ -20,12 +20,12 @@ static StaticModule *prepare(void) {
  * type-line order. Constants and body uses can precede or follow that interface.
  */
 static void it_classifies_ordinary_interface_types_once_in_original_order(void) {
-    setup_static("@=\nshared\n...later\n@<\nfirst&\n...first\nsecond\n...later\n"
-        "@>\nresult\n...result\nagain\n...first\n@!\nstate\n...result\n", STATIC_SCOPE_SOURCE_TEXT);
+    setup_static("@=\nshared\n.later\n@<\nfirst&\n.first\nsecond\n.later\n"
+        "@>\nresult\n.result\nagain\n.first\n@!\nstate\n.result\n", STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = prepare();
     assert(static_classify_names(&inventory, module));
     assert(module->parameter_count == 3 && module->result_count == 0);
-    const char *names[] = {"...first", "...later", "...result"};
+    const char *names[] = {".first", ".later", ".result"};
     for (size_t ordinal = 0; ordinal < 3; ordinal++) {
         const StaticSymbol *symbol = static_symbol_at(module, STATIC_PARAMETER, ordinal);
         assert(symbol != NULL && layout_text_is(symbol->name, names[ordinal]));
@@ -39,8 +39,8 @@ static void it_classifies_ordinary_interface_types_once_in_original_order(void) 
  * free ordinary parameters; public graph binders are excluded from free inputs.
  */
 static void it_excludes_body_uses_and_public_graph_binders_from_ordinary_introductions(void) {
-    const char *cases[] = {"@!\nstate\n...body only\n",
-        "@...\n...known\n.other\n...forwarded\n...known\n"};
+    const char *cases[] = {"@!\nstate\n.body only\n",
+        "@...\n.known\n/test/fixture/v1.0.0/src/other\n.forwarded\n.known\n"};
     for (size_t index = 0; index < 2; index++) {
         setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = prepare();
@@ -56,7 +56,7 @@ static void it_excludes_body_uses_and_public_graph_binders_from_ordinary_introdu
 static void it_unwinds_every_ordinary_classification_allocation_failure(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_static("@<\nfirst\n...first\nsecond\n...second\n@>\nresult\n...result\n@!\n",
+        setup_static("@<\nfirst\n.first\nsecond\n.second\n@>\nresult\n.result\n@!\n",
             STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = prepare();
         size_t before = allocation_count;

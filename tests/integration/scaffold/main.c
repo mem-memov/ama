@@ -7,6 +7,7 @@
  */
 #include <sys/stat.h>
 #include "../common.c"
+#include "../../unit/fixtures/package.h"
 
 /**
  * Write a complete explicit fixture file and check final close; callers provide a test-owned
@@ -28,9 +29,10 @@ static void write_file(const char *path, const char *text) {
 static void it_creates_unicode_native_companions_and_refreshes_only_owned_outputs(void) {
     int created = mkdir("generated/project", 0700);
     assert(created == 0);
-    write_file("generated/project/模块", "@C\n");
+    fixture_package_prepare("generated/project", "fixture");
+    write_file("generated/project/packages/test/fixture/v1.0.0/src/模块", "@C\n");
     setup_test();
-    char *create[] = {AMA_EXECUTABLE, "--native", "generated/project", ".模块", "--out", "generated/输出 files",
+    char *create[] = {AMA_EXECUTABLE, "--native", "generated/project", "/test/fixture/v1.0.0/src/模块", "--out", "generated/输出 files",
         "--sdk", TEST_SDK, "--create", "--protocols", "|=?[]", "--c-flag", "-DTEST_LABEL=\"two words\"", NULL};
     int result = run_compiler_arguments(create);
     char message[4096];
@@ -38,12 +40,12 @@ static void it_creates_unicode_native_companions_and_refreshes_only_owned_output
     assert(result == EXIT_SUCCESS && message[0] == 0);
     destroy_test();
     setup_test();
-    char *check[] = {AMA_EXECUTABLE, "--check", "generated/project", ".模块", NULL};
+    char *check[] = {AMA_EXECUTABLE, "--check", "generated/project", "/test/fixture/v1.0.0/src/模块", NULL};
     result = run_compiler_arguments(check);
     assert(result == EXIT_SUCCESS);
     destroy_test();
     setup_test();
-    char *refresh[] = {AMA_EXECUTABLE, "--native", "generated/project", ".模块", "--out", "generated/输出 files",
+    char *refresh[] = {AMA_EXECUTABLE, "--native", "generated/project", "/test/fixture/v1.0.0/src/模块", "--out", "generated/输出 files",
         "--sdk", TEST_SDK, "--c-flag", "-DTEST_LABEL=\"two words\"", NULL};
     result = run_compiler_arguments(refresh);
     assert(result == EXIT_SUCCESS);
@@ -55,7 +57,7 @@ static void it_creates_unicode_native_companions_and_refreshes_only_owned_output
     assert(result == EXIT_FAILURE && strstr(message, "conflicts") != NULL);
     destroy_test();
     setup_test();
-    char *overwrite[] = {AMA_EXECUTABLE, "--native", "generated/project", ".模块", "--out", "generated/输出 files",
+    char *overwrite[] = {AMA_EXECUTABLE, "--native", "generated/project", "/test/fixture/v1.0.0/src/模块", "--out", "generated/输出 files",
         "--sdk", TEST_SDK, "--create", "--overwrite", "--c-flag", "-DTEST_LABEL=\"two words\"", NULL};
     result = run_compiler_arguments(overwrite);
     assert(result == EXIT_SUCCESS);
@@ -92,7 +94,7 @@ static void it_checks_exported_commands_without_shell_splitting_unicode_paths_or
  */
 static void it_rejects_invalid_protocols_and_accidental_overwrite_requests(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE, "--native", "generated/project", ".模块", "--out", "generated/输出 files",
+    char *arguments[] = {AMA_EXECUTABLE, "--native", "generated/project", "/test/fixture/v1.0.0/src/模块", "--out", "generated/输出 files",
         "--sdk", TEST_SDK, "--create", "--protocols", "||", NULL};
     int result = run_compiler_arguments(arguments);
     char message[4096];
@@ -100,7 +102,7 @@ static void it_rejects_invalid_protocols_and_accidental_overwrite_requests(void)
     assert(result == EXIT_FAILURE && strstr(message, "unique optional symbols") != NULL);
     destroy_test();
     setup_test();
-    char *overwrite[] = {AMA_EXECUTABLE, "--native", "generated/project", ".模块", "--out", "generated/输出 files",
+    char *overwrite[] = {AMA_EXECUTABLE, "--native", "generated/project", "/test/fixture/v1.0.0/src/模块", "--out", "generated/输出 files",
         "--sdk", TEST_SDK, "--overwrite", NULL};
     result = run_compiler_arguments(overwrite);
     assert(result == EXIT_FAILURE);

@@ -12,7 +12,7 @@ if mode == "editor":
     assert definition["symbol"]["name"]["utf8"] == "старое имя"
     assert definition["declaration"]["start"] == "4"
     assert definition["declaration"]["line"] == "2" and definition["declaration"]["column"] == "1"
-    assert value["point"]["operation"]["namespace"] == ".cell"
+    assert value["point"]["operation"]["namespace"] == "/test/fixture/v1.0.0/src/cell"
     assert any(item["name"]["utf8"] == "старое имя" for item in value["point"]["completions"]["items"])
     comments = [item for item in value["highlights"]["items"] if item["comment"]]
     assert len(comments) == 1 and comments[0]["category"] is None
@@ -20,7 +20,7 @@ if mode == "editor":
 elif mode == "rename":
     assert value["schema"] == "ama.rename.v1" and len(value["files"]) == 1
     file = value["files"][0]
-    original = pathlib.Path("generated/project/main").read_bytes()
+    original = pathlib.Path("generated/project/packages/test/fixture/v1.0.0/src/main").read_bytes()
     assert bytes.fromhex(file["original"]["hex"]) == original
     expected = original.replace("старое имя\r\n".encode(), "новое имя\r\n".encode()).replace("старое имя !".encode(), "новое имя !".encode())
     assert bytes.fromhex(file["replacement"]["hex"]) == expected
@@ -29,15 +29,15 @@ elif mode == "rename":
     assert file["replacement"]["utf8"].encode() == expected
 elif mode == "binding":
     binding = value["point"]["binding"]
-    assert binding["field"]["owner"] == ".worker" and binding["field"]["role"] == "parameter"
+    assert binding["field"]["owner"] == "/test/fixture/v1.0.0/src/worker" and binding["field"]["role"] == "parameter"
     assert binding["field"]["name"]["utf8"] == "argument" and binding["position"] == "0"
-    assert binding["type"] == ".cell" and binding["intrinsic_name"] is None
+    assert binding["type"] == "/test/fixture/v1.0.0/src/cell" and binding["intrinsic_name"] is None
 elif mode == "intrinsic":
     call = value["point"]["operation"]
     assert call["kind"] == "list-method" and call["namespace"] is None
-    assert call["intrinsic"]["method"] == "append" and call["element_type"] == ".cell"
-    assert call["intrinsic"]["parameters"] == [{"name": "source", "reference": True, "type": ".cell"}]
-    assert call["intrinsic"]["results"][0]["type"] == ".cell"
+    assert call["intrinsic"]["method"] == "append" and call["element_type"] == "/test/fixture/v1.0.0/src/cell"
+    assert call["intrinsic"]["parameters"] == [{"name": "source", "reference": True, "type": "/test/fixture/v1.0.0/src/cell"}]
+    assert call["intrinsic"]["results"][0]["type"] == "/test/fixture/v1.0.0/src/cell"
     assert value["point"]["definition"] is None
 elif mode == "related":
     error = value["diagnostics"][0]
@@ -54,11 +54,11 @@ elif mode == "static-interface":
     assert value["state"] == "complete" and value["signature"]["available"]
     assert value["signature"]["parameters"] == []
     results = value["signature"]["results"]
-    assert {item["name"]["utf8"] for item in results} == {"...left", "...right"}
+    assert {item["name"]["utf8"] for item in results} == {".left", ".right"}
     assert all(item["role"] == "type-result" for item in results)
     declaration = value["point"]["definition"]
     assert declaration["declaration"]["path"]["utf8"].endswith("/box")
-    assert declaration["symbol"]["name"]["utf8"] == "...slot"
+    assert declaration["symbol"]["name"]["utf8"] == ".slot"
     assert declaration["symbol"]["role"] == "type-parameter"
     assert declaration["type"] is None
 elif mode == "capture-source":

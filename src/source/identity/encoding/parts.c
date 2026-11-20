@@ -28,7 +28,7 @@ void identity_encoding_parts(unsigned char *cursor, QualifiedIdentity identity, 
     size_t start = shape->root_width;
     for (size_t index = 0; index < shape->module_count; index++) {
         size_t end = start;
-        while (identity.module_path[end] != 0 && identity.module_path[end] != '.') { end++; }
+        while (identity.module_path[end] != 0 && identity.module_path[end] != '/') { end++; }
         append_part(&cursor, identity.module_path + start, end - start);
         start = end + (identity.module_path[end] != 0);
     }

@@ -6,24 +6,24 @@
 /** Static producer edges have explicit named maps; the fixed edges make
  * concrete cached descendants independent of the current owner's unknown input.
  */
-static const char *main_source = "@...\n...out\n...element\n"
-    ".other\n ...element < ...element\n ...out > ...other result\n"
-    ".other\n ...element < ..text\n ...out > ...fixed other result\n"
-    ".leaf\n ...element < ..integer\n ...out > ...leaf result\n"
-    ".leaf\n ...element < ..integer\n ...out > ...second leaf result\n"
-    "...anchor\n..integer\n...text\n..text\n";
-static const char *other_source = "@...\n...out\n...element\n"
-    ".main\n ...element < ...element\n ...out > ...main result\n"
-    ".leaf\n ...element < ..integer\n ...out > ...leaf result\n";
-static const char *leaf_source = "@...\n...out\n...element\n"
-    ".main\n ...element < ..text\n ...out > ...main result\n";
+static const char *main_source = "@...\n.out\n.element\n"
+    "/test/fixture/v1.0.0/src/other\n .element < .element\n .out > .other result\n"
+    "/test/fixture/v1.0.0/src/other\n .element < //text\n .out > .fixed other result\n"
+    "/test/fixture/v1.0.0/src/leaf\n .element < //integer\n .out > .leaf result\n"
+    "/test/fixture/v1.0.0/src/leaf\n .element < //integer\n .out > .second leaf result\n"
+    ".anchor\n//integer\n.text\n//text\n";
+static const char *other_source = "@...\n.out\n.element\n"
+    "/test/fixture/v1.0.0/src/main\n .element < .element\n .out > .main result\n"
+    "/test/fixture/v1.0.0/src/leaf\n .element < //integer\n .out > .leaf result\n";
+static const char *leaf_source = "@...\n.out\n.element\n"
+    "/test/fixture/v1.0.0/src/main\n .element < //text\n .out > .main result\n";
 
 /** Load three actual graph origins and an independent concrete argument Type. */
 static const StaticTerm *setup_producers(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/leaf", leaf_source);
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/leaf", leaf_source);
     setup_guards(main_source, other_source);
-    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
     const StaticTerm *type;
     assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &type));
     return type;
@@ -70,13 +70,13 @@ static const StaticCreationPath *producer_child(const StaticCreationPath *parent
  */
 static void it_preserves_distinct_producer_specializations_and_shared_finite_tails(void) {
     const StaticTerm *text = setup_producers();
-    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/leaf"));
     const StaticCreationPath *a = producer_root(caller_module, integer_type);
-    const StaticCreationPath *b_child = producer_child(a, "...other result", target_module, integer_type);
-    const StaticCreationPath *first_leaf = producer_child(b_child, "...leaf result", leaf, integer_type);
+    const StaticCreationPath *b_child = producer_child(a, ".other result", target_module, integer_type);
+    const StaticCreationPath *first_leaf = producer_child(b_child, ".leaf result", leaf, integer_type);
     const StaticCreationPath *b = producer_root(target_module, text);
-    const StaticCreationPath *a_child = producer_child(b, "...main result", caller_module, text);
-    const StaticCreationPath *second_leaf = producer_child(a_child, "...leaf result", leaf, integer_type);
+    const StaticCreationPath *a_child = producer_child(b, ".main result", caller_module, text);
+    const StaticCreationPath *second_leaf = producer_child(a_child, ".leaf result", leaf, integer_type);
     assert(a->vertex != a_child->vertex && b->vertex != b_child->vertex);
     assert(first_leaf->vertex == second_leaf->vertex && first_leaf != second_leaf);
     assert(guards.vertex_count == 5 && guards.edge_count == 4 && guards.path_count == 6);
@@ -96,16 +96,16 @@ static void it_preserves_distinct_producer_specializations_and_shared_finite_tai
 static void it_rechecks_cached_descendants_before_publishing_a_new_creation(void) {
     for (size_t root_first = 0; root_first < 2; root_first++) {
         const StaticTerm *text = setup_producers();
-        const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+        const StaticModule *leaf = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/leaf"));
         const StaticCreationPath *leaf_root = root_first ? producer_root(leaf, text) : NULL;
         const StaticCreationPath *b = producer_root(target_module, text);
-        const StaticCreationPath *a = producer_child(b, "...main result", caller_module, text);
-        (void)producer_child(a, "...leaf result", leaf, integer_type);
+        const StaticCreationPath *a = producer_child(b, ".main result", caller_module, text);
+        (void)producer_child(a, ".leaf result", leaf, integer_type);
         if (!root_first) { leaf_root = producer_root(leaf, text); }
         StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = text};
         const StaticCreationPath *output = NULL;
         StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
-        assert(!static_creation_producer_enter(&guards, leaf_root, projection(leaf, "...main result"),
+        assert(!static_creation_producer_enter(&guards, leaf_root, projection(leaf, ".main result"),
             &input, 1, &output, &outcome));
         assert(output == NULL && outcome == STATIC_CREATION_PENDING && guards.status == STATIC_GUARD_CONFLICT);
         assert(guards.creation_witness && guards.closing_edge && guards.vertex_count == 4 && guards.edge_count == 3);
@@ -120,14 +120,14 @@ static void it_rechecks_cached_descendants_before_publishing_a_new_creation(void
  */
 static void it_keeps_separate_source_uses_of_the_same_producer_key(void) {
     (void)setup_producers();
-    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/leaf"));
     const StaticCreationPath *a = producer_root(caller_module, integer_type);
-    const StaticCreationPath *first = producer_child(a, "...leaf result", leaf, integer_type);
-    const StaticCreationPath *second = producer_child(a, "...second leaf result", leaf, integer_type);
+    const StaticCreationPath *first = producer_child(a, ".leaf result", leaf, integer_type);
+    const StaticCreationPath *second = producer_child(a, ".second leaf result", leaf, integer_type);
     assert(first != second && first->vertex == second->vertex && first->edge != second->edge);
     size_t live = live_allocations;
-    assert(producer_child(a, "...leaf result", leaf, integer_type) == first);
-    assert(producer_child(a, "...second leaf result", leaf, integer_type) == second);
+    assert(producer_child(a, ".leaf result", leaf, integer_type) == first);
+    assert(producer_child(a, ".second leaf result", leaf, integer_type) == second);
     assert(live_allocations == live && guards.path_count == 3 && guards.edge_count == 2);
     destroy_guards();
 }
@@ -162,8 +162,8 @@ static const StaticCreationPath *symbolic_child(const StaticCreationPath *parent
  */
 static void it_rechecks_all_incoming_provenance_when_symbolic_keys_close(void) {
     for (size_t unequal = 0; unequal < 2; unequal++) {
-        setup_guards("@<\nfirst\n...a\nsecond\n...b\n@!\nanchor&\n..integer\nchild&\n.other\n",
-            "@<\nfirst\n...a\nsecond\n...b\n@!\nback&\n.main\n");
+        setup_guards("@<\nfirst\n.a\nsecond\n.b\n@!\nanchor&\n//integer\nchild&\n/test/fixture/v1.0.0/src/other\n",
+            "@<\nfirst\n.a\nsecond\n.b\n@!\nback&\n/test/fixture/v1.0.0/src/main\n");
         const StaticCreationPath *a, *b;
         assert(static_creation_root(&guards, caller_environment, &a));
         (void)symbolic_child(a, "child", target_constructor);
@@ -205,18 +205,18 @@ static void it_rechecks_all_incoming_provenance_when_symbolic_keys_close(void) {
 static void it_checks_cached_descendants_against_a_still_symbolic_ancestor(void) {
     for (size_t unequal = 0; unequal < 2; unequal++) {
         const StaticTerm *text = setup_producers();
-        const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+        const StaticModule *leaf = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/leaf"));
         const StaticCreationPath *b = producer_root(target_module, text);
-        const StaticCreationPath *a = producer_child(b, "...main result", caller_module, text);
-        (void)producer_child(a, "...leaf result", leaf, integer_type);
+        const StaticCreationPath *a = producer_child(b, ".main result", caller_module, text);
+        (void)producer_child(a, ".leaf result", leaf, integer_type);
         const StaticCreationPath *symbolic;
         assert(static_creation_root(&guards, caller_environment, &symbolic) && symbolic->vertex == NULL);
-        const StaticCreationPath *incoming = producer_child(symbolic, "...fixed other result", target_module, text);
+        const StaticCreationPath *incoming = producer_child(symbolic, ".fixed other result", target_module, text);
         assert(incoming->vertex == b->vertex);
         StaticGuardClosure closure;
         assert(static_guard_refresh(&guards, &closure) && closure == STATIC_GUARD_PENDING);
         assert(guards.status == STATIC_GUARD_OK && symbolic->vertex == NULL && guards.creation_witness == NULL);
-        assert(static_constraint_equate(&solver, application_symbol("...element"), unequal ? integer_type : text,
+        assert(static_constraint_equate(&solver, application_symbol(".element"), unequal ? integer_type : text,
             application_formal(caller_module, 0)->site));
         bool accepted = static_guard_refresh(&guards, &closure);
         assert(accepted == !unequal);
@@ -230,8 +230,8 @@ static void it_checks_cached_descendants_against_a_still_symbolic_ancestor(void)
  * requires B. Neither unresolved A is guessed equal or unequal to the other.
  */
 static void it_checks_cached_symbolic_descendants_without_publishing_concrete_edges(void) {
-    setup_guards("@<\nfirst\n...a\nsecond\n...b\n@!\nanchor&\n..integer\nfixed&\n.other\n",
-        "@<\nfirst\n...a\nsecond\n...b\n@!\ndeferred&\n.main\n");
+    setup_guards("@<\nfirst\n.a\nsecond\n.b\n@!\nanchor&\n//integer\nfixed&\n/test/fixture/v1.0.0/src/other\n",
+        "@<\nfirst\n.a\nsecond\n.b\n@!\ndeferred&\n/test/fixture/v1.0.0/src/main\n");
     StaticTermCapture captures[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
         {.formal = application_formal(target_module, 1), .value = integer_type}};
     const StaticTerm *value;

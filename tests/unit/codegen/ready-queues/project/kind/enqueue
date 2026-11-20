@@ -1,15 +1,15 @@
 # Coalesce readiness across queues before appending one current enrollment at the tail.
 @<
 queue&
-.kind.queue
+/test/fixture/v1.0.0/src/kind/queue
 record&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 @>
 accepted
-..std.condition
+//std/condition
 @!
 true
-..std.condition
+//std/condition
  |1
 record&
  epoch >> epoch

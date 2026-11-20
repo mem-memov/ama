@@ -3,14 +3,14 @@
  */
 /** A candidate changes only selected text; invalid UTF-8 retains its diagnostic source without changing the selected record. */
 static void it_overrides_candidate_text_without_changing_identity_or_old_source_views(void) {
-    directory("generated/overlay");
-    file("generated/overlay/item","@!\n");
-    file("generated/overlay/native","@C\n");
+    prepare_package("generated/overlay");
+    file("generated/overlay/packages/test/fixture/v1.0.0/src/item","@!\n");
+    file("generated/overlay/packages/test/fixture/v1.0.0/src/native","@C\n");
     setup_catalog();
     ModuleRoot root = {"generated/overlay",NULL,0,MODULE_ROOT_PROJECT};
     assert(module_catalog_build(&catalog,&root,1) == MODULE_OK);
     const ModuleSource *item = NULL, *native = NULL;
-    assert(module_catalog_find(&catalog,".item",&item) == MODULE_OK);
+    assert(module_catalog_find(&catalog,"/test/fixture/v1.0.0/src/item",&item) == MODULE_OK);
     const SourceText *before = item->text;
     dev_t device = item->device;
     ino_t inode = item->inode;
@@ -23,7 +23,7 @@ static void it_overrides_candidate_text_without_changing_identity_or_old_source_
     const unsigned char invalid[] = {255};
     assert(module_catalog_override(&catalog,item,invalid,sizeof(invalid)) == MODULE_INVALID_UTF8 && item->text == accepted);
     assert(catalog.issue.source != NULL && catalog.issue.offset == 0 && source_bytes(catalog.issue.source)[0] == 255);
-    assert(module_catalog_find(&catalog,".native",&native) == MODULE_OK);
+    assert(module_catalog_find(&catalog,"/test/fixture/v1.0.0/src/native",&native) == MODULE_OK);
     assert(module_catalog_load_native(&catalog,native) == MODULE_OK);
     assert(module_catalog_override(&catalog,native,replacement,sizeof(replacement)-1) == MODULE_INVALID_PATH);
     destroy_catalog();
@@ -35,7 +35,7 @@ static void it_unwinds_every_candidate_source_override_allocation(void) {
     setup_catalog();
     assert(module_catalog_build(&catalog,&root,1) == MODULE_OK);
     const ModuleSource *item = NULL;
-    assert(module_catalog_find(&catalog,".item",&item) == MODULE_OK);
+    assert(module_catalog_find(&catalog,"/test/fixture/v1.0.0/src/item",&item) == MODULE_OK);
     size_t baseline = allocation_count;
     assert(module_catalog_override(&catalog,item,bytes,sizeof(bytes)-1) == MODULE_OK);
     size_t total = allocation_count-baseline;
@@ -43,7 +43,7 @@ static void it_unwinds_every_candidate_source_override_allocation(void) {
     for (size_t failure = 1; failure <= total; failure++) {
         setup_catalog();
         assert(module_catalog_build(&catalog,&root,1) == MODULE_OK);
-        assert(module_catalog_find(&catalog,".item",&item) == MODULE_OK);
+        assert(module_catalog_find(&catalog,"/test/fixture/v1.0.0/src/item",&item) == MODULE_OK);
         const SourceText *before = item->text;
         failure_at = allocation_count+failure;
         assert(module_catalog_override(&catalog,item,bytes,sizeof(bytes)-1) == MODULE_OUT_OF_MEMORY);

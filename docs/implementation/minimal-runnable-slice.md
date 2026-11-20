@@ -11,8 +11,8 @@ and Ama excerpts. This acceptance composes
 The ordinary `main` owns one runner and calls it twice. The runner owns nine
 independent nodes and invokes its first, second, then first node. Each node owns
 one address-sensitive native counter. Its
-[representation](../../tests/integration/minimal/project/counter.h) and
-[implementation](../../tests/integration/minimal/project/counter.c) use the
+[representation](../../tests/integration/minimal/project/packages/test/fixture/v1.0.0/src/counter.h) and
+[implementation](../../tests/integration/minimal/project/packages/test/fixture/v1.0.0/src/counter.c) use the
 actual native authoring scaffold's qualified declarations and checked ABI.
 
 One node uses default construction; eight copy that earlier node. Consequently

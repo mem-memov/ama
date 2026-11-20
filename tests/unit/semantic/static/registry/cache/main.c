@@ -36,17 +36,17 @@ static void assert_registry_propagates_creation_failure(void) {
 static void it_rechecks_warm_cached_grandchildren_in_both_root_orders(void) {
     for (unsigned first = 0; first < 2; first++) {
         const StaticTerm *text = setup_producers();
-        const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+        const StaticModule *leaf = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/leaf"));
         const StaticCreationPath *root = first ? producer_root(leaf, text) : NULL;
         const StaticCreationPath *b = producer_root(target_module, text);
-        const StaticCreationPath *a = producer_child(b, "...main result", caller_module, text);
-        (void)producer_child(a, "...leaf result", leaf, integer_type);
+        const StaticCreationPath *a = producer_child(b, ".main result", caller_module, text);
+        (void)producer_child(a, ".leaf result", leaf, integer_type);
         if (!first) { root = producer_root(leaf, text); }
         check_existing_paths();
         StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = text};
         const StaticCreationPath *output = NULL;
         StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
-        assert(!static_creation_producer_enter(&guards, root, projection(leaf, "...main result"),
+        assert(!static_creation_producer_enter(&guards, root, projection(leaf, ".main result"),
             &input, 1, &output, &outcome));
         assert(output == NULL && outcome == STATIC_CREATION_PENDING);
         assert_registry_propagates_creation_failure();
@@ -60,15 +60,15 @@ static void it_rechecks_warm_cached_grandchildren_in_both_root_orders(void) {
 static void it_checks_new_outgoing_branches_of_a_checked_same_key_cycle(void) {
     const StaticTerm *text = setup_producers();
     const StaticCreationPath *a = producer_root(caller_module, integer_type);
-    const StaticCreationPath *b = producer_child(a, "...other result", target_module, integer_type);
-    const StaticCreationPath *again = producer_child(b, "...main result", caller_module, integer_type);
+    const StaticCreationPath *b = producer_child(a, ".other result", target_module, integer_type);
+    const StaticCreationPath *again = producer_child(b, ".main result", caller_module, integer_type);
     assert(a != again && a->vertex == again->vertex);
     check_existing_paths();
     assert(registry.candidate_count == 2 && registry.use_count == 3);
     StaticTermCapture input = {.formal = application_formal(target_module, 0), .value = text};
     const StaticCreationPath *output = NULL;
     StaticCreationOutcome outcome = STATIC_CREATION_PENDING;
-    assert(!static_creation_producer_enter(&guards, a, projection(caller_module, "...fixed other result"),
+    assert(!static_creation_producer_enter(&guards, a, projection(caller_module, ".fixed other result"),
         &input, 1, &output, &outcome));
     assert(output == NULL && outcome == STATIC_CREATION_PENDING);
     assert_registry_propagates_creation_failure();
@@ -81,10 +81,10 @@ static void it_checks_new_outgoing_branches_of_a_checked_same_key_cycle(void) {
  */
 static void it_retains_guard_demanded_paths_and_ancestors_without_caller_enumeration(void) {
     const StaticTerm *text = setup_producers();
-    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, ".leaf"));
+    const StaticModule *leaf = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/leaf"));
     const StaticCreationPath *a = producer_root(caller_module, integer_type);
-    const StaticCreationPath *b = producer_child(a, "...other result", target_module, integer_type);
-    const StaticCreationPath *tail = producer_child(b, "...leaf result", leaf, integer_type);
+    const StaticCreationPath *b = producer_child(a, ".other result", target_module, integer_type);
+    const StaticCreationPath *tail = producer_child(b, ".leaf result", leaf, integer_type);
     StaticRegistryUse *use;
     StaticRegistryKeyState state;
     assert(static_registry_use(&registry, tail, &use, &state) && state == STATIC_REGISTRY_KEY_CLOSED);
@@ -112,7 +112,7 @@ static void it_releases_partial_ancestry_and_dependencies_at_every_allocation_re
     for (size_t failure = 0; failure <= total; failure++) {
         (void)setup_producers();
         const StaticCreationPath *a = producer_root(caller_module, integer_type);
-        const StaticCreationPath *b = producer_child(a, "...other result", target_module, integer_type);
+        const StaticCreationPath *b = producer_child(a, ".other result", target_module, integer_type);
         size_t before = allocation_count;
         if (failure) { failure_at = before + failure; }
         StaticRegistryUse *output = NULL;

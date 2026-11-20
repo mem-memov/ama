@@ -37,10 +37,10 @@ static void expect_relations(const char *text, bool valid) {
  */
 static void it_distinguishes_loading_eager_construction_and_clone_cycles(void) {
     prepare_types();
-    expect_relations("@!\nchildren[]\n.main\nparent&\n.main\n", true);
-    expect_relations("@!\nchild\n.main\n", false);
+    expect_relations("@!\nchildren[]\n/test/fixture/v1.0.0/src/main\nparent&\n/test/fixture/v1.0.0/src/main\n", true);
+    expect_relations("@!\nchild\n/test/fixture/v1.0.0/src/main\n", false);
     native_fixture("main", "+ initialize\n- destroy\n| literal\n= clone\n");
-    expect_relations("@<\nchildren[]\n.main\n |element\n@C\n", false);
+    expect_relations("@<\nchildren[]\n/test/fixture/v1.0.0/src/main\n |element\n@C\n", false);
 }
 
 /**
@@ -50,18 +50,18 @@ static void it_distinguishes_loading_eager_construction_and_clone_cycles(void) {
  */
 static void it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_edges(void) {
     prepare_types();
-    file("generated/program/worker", "@!\nchildren[]\n.worker\n");
-    SemanticStatus status = resolve_text("@!\nworker\n.worker\ncopy\n.worker\n worker\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\nchildren[]\n/test/fixture/v1.0.0/src/worker\n");
+    SemanticStatus status = resolve_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\ncopy\n/test/fixture/v1.0.0/src/worker\n worker\n");
     assert(status == SEMANTIC_OK && semantic.last->cloneable);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
     destroy_semantic();
-    file("generated/program/worker", "@!\nchildren[]\n.worker\nresource\n.resource\n");
-    status = resolve_text("@!\nworker\n.worker\ncopy\n.worker\n worker\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\nchildren[]\n/test/fixture/v1.0.0/src/worker\nresource\n/test/fixture/v1.0.0/src/resource\n");
+    status = resolve_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\ncopy\n/test/fixture/v1.0.0/src/worker\n worker\n");
     assert(status == SEMANTIC_INVALID);
     destroy_semantic();
-    file("generated/program/worker", "@!\nchildren[]\n.worker\nresource&\n.resource\n");
-    expect_relations("@!\nworker\n.worker\ncopy\n.worker\n worker\n", true);
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\nchildren[]\n/test/fixture/v1.0.0/src/worker\nresource&\n/test/fixture/v1.0.0/src/resource\n");
+    expect_relations("@!\nworker\n/test/fixture/v1.0.0/src/worker\ncopy\n/test/fixture/v1.0.0/src/worker\n worker\n", true);
 }
 
 /**
@@ -71,20 +71,20 @@ static void it_accepts_recursive_empty_lists_and_propagates_noncopyable_owned_ed
  */
 static void it_orders_constants_by_declarations_and_actual_value_reads(void) {
     prepare_types();
-    file("generated/program/worker", "@=\nvalue\n.value\n |ready\n");
-    SemanticStatus status = resolve_text("@=\nfirst\n.value\n .worker.value\nsecond\n.value\n first\n@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nvalue\n/test/fixture/v1.0.0/src/value\n |ready\n");
+    SemanticStatus status = resolve_text("@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/value\nsecond\n/test/fixture/v1.0.0/src/value\n first\n@!\n");
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
     GraphVertex *order = semantic.constants.order;
     const SemanticSymbol *constant = order->value;
-    assert(strcmp(constant->owner->module->source->logical_path, ".worker") == 0);
+    assert(strcmp(constant->owner->module->source->logical_path, "/test/fixture/v1.0.0/src/worker") == 0);
     constant = order->order_next->value;
     assert(constant->role_ordinal == 0 && constant->owner == semantic_entry());
     assert(order->order_next->order_next->order_next == NULL);
     destroy_semantic();
-    file("generated/program/worker", "@=\nvalue\n.value\n .main.value\n");
-    expect_relations("@=\nvalue\n.value\n .worker.value\n@!\n", false);
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nvalue\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/main/value\n");
+    expect_relations("@=\nvalue\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/value\n@!\n", false);
 }
 
 /**
@@ -94,11 +94,23 @@ static void it_orders_constants_by_declarations_and_actual_value_reads(void) {
  */
 static void it_follows_owned_field_construction_reads_without_treating_shared_types_as_cycles(void) {
     prepare_types();
-    expect_relations("@=\nself\n.main\n@!\n", true);
-    file("generated/program/worker", "@=\nvalue\n.value\n .main.second\n@!\nfield\n.value\n .worker.value\n");
-    expect_relations("@=\nfirst\n.worker\nsecond\n.value\n |ready\n@!\n", false);
-    file("generated/program/worker", "@!\nvalue\n.value\nreference&\n.value\n &value\n");
-    expect_relations("@=\nconstant\n.worker\n@!\n", false);
+    expect_relations("@=\nself\n/test/fixture/v1.0.0/src/main\n@!\n", true);
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nvalue\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/main/second\n@!\nfield\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/value\n");
+    expect_relations("@=\nfirst\n/test/fixture/v1.0.0/src/worker\nsecond\n/test/fixture/v1.0.0/src/value\n |ready\n@!\n", false);
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\nvalue\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\n &value\n");
+    expect_relations("@=\nconstant\n/test/fixture/v1.0.0/src/worker\n@!\n", false);
+}
+
+/** Map a diagnostic witness to one exact vertex in the independent finite
+ * graph. Complete canonical identities, not character positions or basenames,
+ * identify the expected vertex after source namespace changes.
+ */
+static size_t model_vertex_index(const char *name, const char *const *names, size_t count) {
+    for (size_t index = 0; index < count; index++) {
+        if (strcmp(name, names[index]) == 0) { return index; }
+    }
+    assert(false);
+    return count;
 }
 
 /**
@@ -113,7 +125,7 @@ static void it_orders_every_three_vertex_graph_or_reports_a_real_cycle(void) {
         DependencyGraph graph;
         dependency_graph_init(&graph, sources.allocator);
         GraphVertex *vertices[3];
-        const char *names[] = {".a", ".b", ".c"};
+        const char *names[] = {"/test/fixture/v1.0.0/src/a", "/test/fixture/v1.0.0/src/b", "/test/fixture/v1.0.0/src/c"};
         for (size_t index = 0; index < 3; index++) {
             vertices[index] = dependency_vertex(&graph, &identities[index], names[index], 0, (SourceSpan){0});
             assert(vertices[index] != NULL);
@@ -140,10 +152,10 @@ static void it_orders_every_three_vertex_graph_or_reports_a_real_cycle(void) {
         assert(status == (cyclic ? GRAPH_CYCLE : GRAPH_OK));
         if (cyclic) {
             assert(diagnostic_valid(&graph.error) && graph.error.related_count > 0);
-            size_t first = (size_t)(graph.error.subject[1] - 'a');
+            size_t first = model_vertex_index(graph.error.subject, names, 3);
             size_t from = first;
             for (size_t index = 0; index < graph.error.related_count; index++) {
-                size_t to = (size_t)(graph.error.related[index].name[1] - 'a');
+                size_t to = model_vertex_index(graph.error.related[index].name, names, 3);
                 assert(from < 3 && to < 3 && (bits & (1u << (from * 3 + to))) != 0);
                 from = to;
             }
@@ -174,12 +186,12 @@ static void it_orders_every_three_vertex_graph_or_reports_a_real_cycle(void) {
  */
 static void graph_interface(char *text, size_t capacity, unsigned edges, size_t vertex) {
     const char *names[] = {"main", "left", "right"};
-    int written = snprintf(text, capacity, "@<\nleft&\n.left\nright&\n.right\n");
+    int written = snprintf(text, capacity, "@<\nleft&\n/test/fixture/v1.0.0/src/left\nright&\n/test/fixture/v1.0.0/src/right\n");
     assert(written > 0 && (size_t)written < capacity);
     size_t used = (size_t)written;
     for (size_t target = 0; target < 3; target++) {
         if ((edges & (1u << (vertex * 3 + target))) != 0) {
-            written = snprintf(text + used, capacity - used, "field%zu[]\n.%s\n", target, names[target]);
+            written = snprintf(text + used, capacity - used, "field%zu[]\n/test/fixture/v1.0.0/src/%s\n", target, names[target]);
             assert(written > 0 && (size_t)written < capacity - used);
             used += (size_t)written;
         }
@@ -204,9 +216,9 @@ static void it_matches_clone_capability_to_reachability_of_a_noncopyable_native_
         char other_text[256];
         graph_interface(main_text, sizeof(main_text), bits, 0);
         graph_interface(other_text, sizeof(other_text), bits, 1);
-        file("generated/program/left", other_text);
+        file("generated/program/packages/test/fixture/v1.0.0/src/left", other_text);
         graph_interface(other_text, sizeof(other_text), bits, 2);
-        file("generated/program/right", other_text);
+        file("generated/program/packages/test/fixture/v1.0.0/src/right", other_text);
         SemanticStatus status = resolve_text(main_text);
         assert(status == SEMANTIC_OK);
         bool reaches[3][3] = {{false}};
@@ -222,7 +234,7 @@ static void it_matches_clone_capability_to_reachability_of_a_noncopyable_native_
                 }
             }
         }
-        const char *paths[] = {".main", ".left", ".right"};
+        const char *paths[] = {"/test/fixture/v1.0.0/src/main", "/test/fixture/v1.0.0/src/left", "/test/fixture/v1.0.0/src/right"};
         for (size_t vertex = 0; vertex < 3; vertex++) {
             SemanticType *type = semantic_find_type(&semantic, paths[vertex]);
             assert(type != NULL && type->cloneable == (vertex != 2 && !reaches[vertex][2]));
@@ -238,7 +250,7 @@ static void it_matches_clone_capability_to_reachability_of_a_noncopyable_native_
  */
 static void it_cleans_successful_and_cyclic_relation_plans_after_every_allocation_failure(void) {
     prepare_types();
-    const char *texts[] = {"@=\nfirst\n.value\n |one\nsecond\n.value\n first\n@!\n", "@!\nchild\n.main\n"};
+    const char *texts[] = {"@=\nfirst\n/test/fixture/v1.0.0/src/value\n |one\nsecond\n/test/fixture/v1.0.0/src/value\n first\n@!\n", "@!\nchild\n/test/fixture/v1.0.0/src/main\n"};
     for (size_t test = 0; test < 2; test++) {
         SemanticStatus status = resolve_text(texts[test]);
         assert(status == SEMANTIC_OK);

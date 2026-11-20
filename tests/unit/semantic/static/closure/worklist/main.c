@@ -9,7 +9,7 @@ static StaticClosurePlan closure;
 
 /** Initialize the worklist without allocating or selecting any hidden root. */
 static void setup_worklist(void) {
-    setup_connections("@<\nvalue\n...slot\nsecond value\n...second slot\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_connections("@<\nvalue\n.slot\nsecond value\n.second slot\n@!\nanchor&\n//integer\n", "@!\n");
     size_t before = allocation_count;
     static_closure_init(&closure, &connections, sources.allocator);
     assert(allocation_count == before && closure.status == STATIC_CLOSURE_OK);
@@ -59,8 +59,8 @@ static void it_retains_actual_paths_and_shares_only_exact_candidate_identity(voi
  * prove equality, even for the exact same source template and interface. */
 static void it_merges_pending_work_only_after_independent_keys_close(void) {
     setup_worklist();
-    const StaticTerm *left = application_symbol("...slot");
-    const StaticTerm *right = application_symbol("...second slot");
+    const StaticTerm *left = application_symbol(".slot");
+    const StaticTerm *right = application_symbol(".second slot");
     const AstNode *declaration = caller_module->first_statement->syntax;
     const StaticResultContext *first = root_with(left), *second = root_with(right);
     assert(first != second);
@@ -79,7 +79,7 @@ static void it_merges_pending_work_only_after_independent_keys_close(void) {
 
 /** Static producer contexts stay in graph publication and create no runtime scope. */
 static void it_leaves_static_producer_contexts_out_of_ordinary_body_work(void) {
-    setup_connections("@!\nanchor&\n..integer\n", "@...\n...out\n..integer\n");
+    setup_connections("@!\nanchor&\n//integer\n", "@...\n.out\n//integer\n");
     static_closure_init(&closure, &connections, sources.allocator);
     const StaticTermEnvironment *environment;
     assert(static_term_producer_environment(&terms, target_module, NULL, 0, &environment));

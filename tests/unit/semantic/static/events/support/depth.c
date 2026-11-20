@@ -6,7 +6,7 @@
  */
 static void it_collects_deep_expression_owners_without_recursive_c_activation(void) {
     size_t depth = 600;
-    const char *head = "@...\n...value\n...type\n", *binding = "...slot < ...type\n";
+    const char *head = "@...\n.value\n.type\n", *binding = ".slot < .type\n";
     size_t size = strlen(head) + depth * strlen(binding) + depth * (depth + 1) / 2 + 1;
     char *text = malloc(size);
     assert(text != NULL);
@@ -24,7 +24,7 @@ static void it_collects_deep_expression_owners_without_recursive_c_activation(vo
     assert(module->occurrence_count == depth + 1);
     const StaticOccurrence *record = module->first_occurrence;
     for (size_t index = 0; index <= depth; index++) {
-        assert(record != NULL && layout_text_is(record->site, "...type"));
+        assert(record != NULL && layout_text_is(record->site, ".type"));
         assert(record->root == (index == 0) && record->receiver == NULL);
         record = record->next;
     }

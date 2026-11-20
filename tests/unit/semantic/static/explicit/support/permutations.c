@@ -6,8 +6,8 @@
  * and the free-input set. No equation-solver scheduling participates in scope.
  */
 static void it_keeps_pair_roles_for_every_three_statement_permutation(void) {
-    const char *parts[] = {"...declared\n...input\n", "...forward\n...declared\n",
-        ".other\n ...out > ...declared\n"};
+    const char *parts[] = {".declared\n.input\n", ".forward\n.declared\n",
+        "/test/fixture/v1.0.0/src/other\n .out > .declared\n"};
     const size_t orders[][3] = {{0,1,2},{0,2,1},{1,0,2},{1,2,0},{2,0,1},{2,1,0}};
     size_t size = strlen("@...\n") + strlen(parts[0]) + strlen(parts[1]) + strlen(parts[2]) + 1;
     for (size_t permutation = 0; permutation < 6; permutation++) {
@@ -29,11 +29,11 @@ static void it_keeps_pair_roles_for_every_three_statement_permutation(void) {
         const StaticModule *module = static_module_find(&inventory, project.entry);
         assert(module->parameter_count == 1 && module->result_count == 2);
         const StaticSymbol *input = static_symbol_at(module, STATIC_PARAMETER, 0);
-        assert(layout_text_is(input->name, "...input") && input->category == STATIC_CATEGORY_DEFERRED);
-        const StaticSymbol *declared = static_symbol_find(module, static_name_site(project.entry, "...declared"));
+        assert(layout_text_is(input->name, ".input") && input->category == STATIC_CATEGORY_DEFERRED);
+        const StaticSymbol *declared = static_symbol_find(module, static_name_site(project.entry, ".declared"));
         assert(declared != NULL && declared->role == STATIC_RESULT && declared->receiver == NULL);
         assert(declared->declaration->kind == AST_STATIC_RESULT);
-        assert(layout_text_is(declared->declaration->as.static_result.name, "...declared"));
+        assert(layout_text_is(declared->declaration->as.static_result.name, ".declared"));
         for (const StaticOccurrence *site = module->first_occurrence; site != NULL; site = site->next) {
             if (site->receiver != NULL) { assert(site->symbol == declared); }
         }
@@ -46,8 +46,8 @@ static void it_keeps_pair_roles_for_every_three_statement_permutation(void) {
  */
 static void it_uses_the_first_lexical_receipt_as_the_alias_definition(void) {
     const char *cases[] = {
-        "@...\n.other\n ...out > ...alias\n.other\n ...second > ...alias\n",
-        "@...\n.other\n ...second > ...alias\n.other\n ...out > ...alias\n"
+        "@...\n/test/fixture/v1.0.0/src/other\n .out > .alias\n/test/fixture/v1.0.0/src/other\n .second > .alias\n",
+        "@...\n/test/fixture/v1.0.0/src/other\n .second > .alias\n/test/fixture/v1.0.0/src/other\n .out > .alias\n"
     };
     for (size_t index = 0; index < 2; index++) {
         setup_static(cases[index], public_graph_producer);
@@ -59,7 +59,7 @@ static void it_uses_the_first_lexical_receipt_as_the_alias_definition(void) {
         assert(alias != NULL && alias->role == STATIC_ALIAS && alias->declaration == first);
         assert(alias->receiver == first->as.static_projection->first);
         assert(alias->receiver != first->next->as.static_projection->first);
-        assert(layout_text_is(alias->receiver->label, index == 0 ? "...out" : "...second"));
+        assert(layout_text_is(alias->receiver->label, index == 0 ? ".out" : ".second"));
         destroy_static();
     }
 }
@@ -68,7 +68,7 @@ static void it_uses_the_first_lexical_receipt_as_the_alias_definition(void) {
  * duplicate nor replaces the original pair header in its related diagnostic.
  */
 static void it_reports_pair_duplicates_against_pair_headers_not_earlier_receipts(void) {
-    setup_static("@...\n.other\n ...out > ...same\n...same\n...input\n...same\n...input\n",
+    setup_static("@...\n/test/fixture/v1.0.0/src/other\n .out > .same\n.same\n.input\n.same\n.input\n",
         public_graph_producer);
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && !static_collect_explicit(&inventory, module));

@@ -1,6 +1,0 @@
-ama-library | 1
-component | workflow.component
-abi | ama-c-1
-target | test
-calling-convention | c
-export | run | .old.sequence | entry

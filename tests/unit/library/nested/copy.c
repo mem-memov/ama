@@ -4,14 +4,15 @@
 /** Absence of native '=' propagates through ordinary ownership before any C code runs. */
 static void it_rejects_ordinary_and_continuation_copy_of_the_child_owner(void) {
     setup_test(); directory("generated/copy-root");
-    const char *programs[]={"@!\noriginal\n.adapter\ncopy\n original\n",
-        "@!\noriginal\n.adapter\ncopy\n % original\n"};
+    fixture_package_prepare("generated/copy-root", "copy");
+    const char *programs[]={"@!\noriginal\n/test/fixture/v1.0.0/src/adapter\ncopy\n original\n",
+        "@!\noriginal\n/test/fixture/v1.0.0/src/adapter\ncopy\n % original\n"};
     for(size_t i=0;i<sizeof(programs)/sizeof(*programs);i++) {
-        file("generated/copy-root/main",programs[i]);
+        file("generated/copy-root/packages/test/copy/v1.0.0/src/main",programs[i]);
         CompilerFrontend frontend; compiler_frontend_init(&frontend,sources.allocator);
         ModuleRoot roots[]={{.path="generated/copy-root",.kind=MODULE_ROOT_PROJECT},
             {.path="project",.kind=MODULE_ROOT_PROJECT},{.path=TEST_STANDARD_ROOT,.kind=MODULE_ROOT_STANDARD}};
-        bool valid=compiler_frontend_check(&frontend,roots,3,".main");
+        bool valid=compiler_frontend_check(&frontend,roots,3,"/test/copy/v1.0.0/src/main");
         assert(!valid && frontend.error.code==DIAGNOSTIC_TYPE_MISMATCH);
         assert(strstr(frontend.error.message,"independent copying")!=NULL);
         assert(frontend.error.cause!=NULL && strstr(frontend.error.cause,"no declared =")!=NULL);
@@ -22,8 +23,9 @@ static void it_rejects_ordinary_and_continuation_copy_of_the_child_owner(void) {
 /** The public C transport cannot export an Ama reference as if it were an independent text value. */
 static void it_rejects_reference_transport_across_the_component_boundary(void) {
     setup_test(); directory("generated/copy-root");
-    file("generated/copy-root/reference","@>\ninner&\n..text\n@!\n");
-    const SourceText *source=configuration("schema | text | text | ..text\nexport | run | .reference | read\noutput | run | inner | text\n");
+    fixture_package_prepare("generated/copy-root", "copy");
+    file("generated/copy-root/packages/test/copy/v1.0.0/src/reference","@>\ninner&\n//text\n@!\n");
+    const SourceText *source=configuration("schema | text | text | //text\nexport | run | /test/copy/v1.0.0/src/reference | read\noutput | run | inner | text\n");
     LibraryBuild build; library_build_init(&build,sources.allocator);
     bool parsed=library_configuration_parse(&build,source); assert(parsed);
     ModuleRoot roots[]={{.path="generated/copy-root",.kind=MODULE_ROOT_PROJECT},

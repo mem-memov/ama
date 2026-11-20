@@ -1,9 +1,9 @@
 # Malformed format is ordinary application data in the failure result.
 @!
 decode
-.decode
+/test/fixture/v1.0.0/src/decode
 inspect
-.inspectfailure
+/test/fixture/v1.0.0/src/inspectfailure
 decode !
  < |not a message
  < |0

@@ -7,12 +7,12 @@
 /** Ordinary interfaces retain only name/type pairs; every template path in a
  * declaration has its own stable inference identity, including the input field.
  */
-static const char *caller_source = "@=\nshared\n.other\n@<\nfirst argument\n...a\n"
-    "second argument\n...b\ninput&\n.other\n@>\nreturned&\n.other\n"
-    "@!\nanchor&\n..integer\nfirst&\n.other\nsecond&\n.other\n"
-    ".other\n constant >> namespace target\n...a\n zero >> known namespace target\n";
-static const char *target_source = "@=\nconstant\n...a\n@<\nfirst argument\n...a\n"
-    "second argument\n...b\n@>\nresult\n...a\n@!\n";
+static const char *caller_source = "@=\nshared\n/test/fixture/v1.0.0/src/other\n@<\nfirst argument\n.a\n"
+    "second argument\n.b\ninput&\n/test/fixture/v1.0.0/src/other\n@>\nreturned&\n/test/fixture/v1.0.0/src/other\n"
+    "@!\nanchor&\n//integer\nfirst&\n/test/fixture/v1.0.0/src/other\nsecond&\n/test/fixture/v1.0.0/src/other\n"
+    "/test/fixture/v1.0.0/src/other\n constant >> namespace target\n.a\n zero >> known namespace target\n";
+static const char *target_source = "@=\nconstant\n.a\n@<\nfirst argument\n.a\n"
+    "second argument\n.b\n@>\nresult\n.a\n@!\n";
 
 /** Select an actual independently concrete containing specialization. */
 static const StaticTermEnvironment *owner_environment(void) {
@@ -82,8 +82,8 @@ static void it_infers_independent_shared_input_result_and_body_fields(void) {
  * than introducing a field hole or an extra free parameter of the graph.
  */
 static void it_preserves_partial_static_result_definitions(void) {
-    setup_applications("@...\n...family result\n.other\n ...a < ..integer\n"
-        "...integer type\n..integer\n", target_source);
+    setup_applications("@...\n.family result\n/test/fixture/v1.0.0/src/other\n .a < //integer\n"
+        ".integer type\n//integer\n", target_source);
     const StaticOccurrence *site = caller_module->first_occurrence;
     assert(site->statement->kind == AST_STATIC_RESULT);
     StaticApplicationContext context;
@@ -108,7 +108,7 @@ static void it_requires_independently_closed_namespaces_without_field_inference(
         const StaticOccurrence *namespace = NULL;
         for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
             if (site->context == STATIC_CONTEXT_NAMESPACE
-                && layout_text_is(site->expression->head, open ? ".other" : "...a")) { namespace = site; break; }
+                && layout_text_is(site->expression->head, open ? "/test/fixture/v1.0.0/src/other" : ".a")) { namespace = site; break; }
         }
         assert(namespace != NULL);
         StaticApplicationContext context;
@@ -140,13 +140,13 @@ static void it_requires_independently_closed_namespaces_without_field_inference(
  */
 static void it_routes_producers_and_export_selectors_outside_nominal_application(void) {
     const char *sources[] = {
-        "@...\n.other\n ...out > ...alias\n...integer type\n..integer\n",
-        "@!\nanchor&\n..integer\nfield\n.other\n ...out\n"
+        "@...\n/test/fixture/v1.0.0/src/other\n .out > .alias\n.integer type\n//integer\n",
+        "@!\nanchor&\n//integer\nfield\n/test/fixture/v1.0.0/src/other\n .out\n"
     };
     for (size_t selector = 0; selector < 2; selector++) {
-        setup_applications(sources[selector], "@...\n...out\n...free\n");
+        setup_applications(sources[selector], "@...\n.out\n.free\n");
         const StaticOccurrence *site = caller_module->first_occurrence;
-        while (site != NULL && site->origin != project_find(&project, ".other")) { site = site->next; }
+        while (site != NULL && site->origin != project_find(&project, "/test/fixture/v1.0.0/src/other")) { site = site->next; }
         assert(site != NULL);
         StaticApplicationContext context = {.policy = STATIC_OMIT_NAMESPACE};
         assert(!static_application_context(&applications, caller_environment, site->expression, &context));

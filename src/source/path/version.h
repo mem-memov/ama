@@ -23,4 +23,12 @@
  */
 bool module_version_component(const unsigned char *bytes, size_t length);
 
+/** Return a complete canonical version prefix, leaving following punctuation
+ * outside the result. NULL/incomplete numeric fields or an empty variant fail
+ * with zero. Bounded, allocation-free, O(length) time and O(1) space.
+ * [PKG-01](../../../spec/project/packages.md#pkg-01) fixes three decimal fields;
+ * lexical consumers still reject an inadmissible unconsumed suffix.
+ */
+size_t module_version_prefix(const unsigned char *bytes, size_t length);
+
 #endif

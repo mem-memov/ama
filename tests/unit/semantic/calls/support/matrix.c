@@ -9,25 +9,25 @@ static void it_matches_all_storage_forms_for_inputs_and_each_output_mode(void) {
         for (size_t destination = 0; destination < 4; destination++) {
             char worker[256];
             char text[512];
-            int length = snprintf(worker, sizeof(worker), "@<\ninput%s\n.value\n@>\noutput%s\n.value\n@!\n",
+            int length = snprintf(worker, sizeof(worker), "@<\ninput%s\n/test/fixture/v1.0.0/src/value\n@>\noutput%s\n/test/fixture/v1.0.0/src/value\n@!\n",
                 forms[destination], forms[source]);
             assert(length > 0 && (size_t)length < sizeof(worker));
-            file("generated/program/worker", worker);
-            length = snprintf(text, sizeof(text), "@!\nsource%s\n.value\nworker\n.worker\nworker !\n < source%s\n", forms[source], forms[source]);
+            file("generated/program/packages/test/fixture/v1.0.0/src/worker", worker);
+            length = snprintf(text, sizeof(text), "@!\nsource%s\n/test/fixture/v1.0.0/src/value\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < source%s\n", forms[source], forms[source]);
             assert(length > 0 && (size_t)length < sizeof(text));
             expect_resolved(text, source == destination);
             const char *modes[] = {" !\n >", " %\n >", "\n >>"};
             for (size_t mode = 0; mode < 3; mode++) {
-                length = snprintf(text, sizeof(text), "@!\nreceiver%s\n.value\nworker\n.worker\nworker%s receiver%s\n",
+                length = snprintf(text, sizeof(text), "@!\nreceiver%s\n/test/fixture/v1.0.0/src/value\nworker\n/test/fixture/v1.0.0/src/worker\nworker%s receiver%s\n",
                     forms[destination], modes[mode], forms[destination]);
                 assert(length > 0 && (size_t)length < sizeof(text));
                 expect_resolved(text, source == destination);
             }
             if (source == 0 || source == 2) {
-                length = snprintf(worker, sizeof(worker), "@=\noutput%s\n.value\n", forms[source]);
+                length = snprintf(worker, sizeof(worker), "@=\noutput%s\n/test/fixture/v1.0.0/src/value\n", forms[source]);
                 assert(length > 0 && (size_t)length < sizeof(worker));
-                file("generated/program/worker", worker);
-                length = snprintf(text, sizeof(text), "@!\nreceiver%s\n.value\n.worker\n >> receiver%s\n", forms[destination], forms[destination]);
+                file("generated/program/packages/test/fixture/v1.0.0/src/worker", worker);
+                length = snprintf(text, sizeof(text), "@!\nreceiver%s\n/test/fixture/v1.0.0/src/value\n/test/fixture/v1.0.0/src/worker\n >> receiver%s\n", forms[destination], forms[destination]);
                 assert(length > 0 && (size_t)length < sizeof(text));
                 expect_resolved(text, source == destination);
             }

@@ -1,7 +1,7 @@
 # Simulate native callbacks that retain their own endpoints and bytes beyond context failure.
 @<
 first&
-..task.operation
+//task/operation
 second&
-..task.operation
+//task/operation
 @C

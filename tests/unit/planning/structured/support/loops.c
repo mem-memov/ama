@@ -3,10 +3,10 @@
  */
 /** Every test starts at its own lexical root; conversion precedes complete header release and no grant enters the body. */
 static void it_repeats_complete_headers_and_releases_protection_before_body_or_exit(void) {
-    const char *bodies[] = {"", "   %\n", "   local\n   .value\n"};
+    const char *bodies[] = {"", "   %\n", "   local\n   /test/fixture/v1.0.0/src/value\n"};
     for (size_t shape = 0; shape < sizeof(bodies) / sizeof(*bodies); shape++) {
         char text[1024];
-        int size = snprintf(text, sizeof(text), "@!\nproducer\n.producer\nsource\n.value\nproducer !\n < source\n left %%\n  condition\n  {\n%s  }\n", bodies[shape]);
+        int size = snprintf(text, sizeof(text), "@!\nproducer\n/test/fixture/v1.0.0/src/producer\nsource\n/test/fixture/v1.0.0/src/value\nproducer !\n < source\n left %%\n  condition\n  {\n%s  }\n", bodies[shape]);
         assert(size > 0 && (size_t)size < sizeof(text));
         prepare_structured(text);
         PlannedLoop *loop = plan.entry->loops;
@@ -31,7 +31,7 @@ static void it_repeats_complete_headers_and_releases_protection_before_body_or_e
 }
 /** A refused header link unwinds before its handler; ^ in that handler exits the incoming outer loop, not the refused loop. */
 static void it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_abandonment(void) {
-    prepare_structured("@!\nouter\n.value\nproducer\n.producer\nouter\n{\n producer !\n  left %\n   condition\n   {\n    ^\n   }\n  :\n   ^\n}\n");
+    prepare_structured("@!\nouter\n/test/fixture/v1.0.0/src/value\nproducer\n/test/fixture/v1.0.0/src/producer\nouter\n{\n producer !\n  left %\n   condition\n   {\n    ^\n   }\n  :\n   ^\n}\n");
     PlannedLoop *outer = plan.entry->loops;
     PlannedLoop *inner = outer->next;
     assert(outer != NULL && inner != NULL && inner->parent == outer && inner->header != NULL);
@@ -47,7 +47,7 @@ static void it_keeps_header_handlers_in_the_incoming_loop_context_after_chain_ab
 }
 /** A header can convert an intrinsic owned result directly while its method/service frames remain protected. */
 static void it_converts_intrinsic_header_results_without_an_intermediate_receiver(void) {
-    prepare_structured("@!\nitems[]\n.value\nitems[]\n length !\n  value\n  {\n  }\n");
+    prepare_structured("@!\nitems[]\n/test/fixture/v1.0.0/src/value\nitems[]\n length !\n  value\n  {\n  }\n");
     PlannedLoop *loop = plan.entry->loops;
     assert(loop != NULL && loop->statement->condition.intrinsic && loop->statement->condition.field == NULL);
     assert(loop->statement->condition.type == semantic.list_integer && loop->test->frame != NULL);

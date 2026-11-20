@@ -3,9 +3,9 @@
  */
 /** Canonical forms from modules, declarations, values, calls, continuations, lists and control chapters. */
 static const char *const documented_forms[] = {
-    "@<\namount\n..integer\n |1\n@>\nresult\n..integer\n@!\nresult\n amount\n",
-    "@=\nred\n.palette\n |red # data  \n@<\ninput\n.value\n@>\noutput\n.value\n@!\noutput\n input\n",
-    "@<\ninput\n.value\n@>\noutput\n.value\n@C\n",
+    "@<\namount\n//integer\n |1\n@>\nresult\n//integer\n@!\nresult\n amount\n",
+    "@=\nred\n/test/fixture/v1.0.0/src/palette\n |red # data  \n@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\noutput\n input\n",
+    "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@C\n",
     "@!\nis ready\n:\n handle not ready !\n",
     "@!\nis ready\n?\n start work !\n:\n report delay !\n",
     "@!\nis ready\n{\n # loop body pending\n}\ncontinue work !\n",
@@ -16,12 +16,12 @@ static const char *const documented_forms[] = {
     "@!\nitems[]\n append !\n  value < item\n remove !\n  index < position\n :\n  recover !\n",
     "@!\nitems[item&]\n{\n items[]\n  remove !\n   index < position\n  append !\n   value < item&\n}\n",
     "@!\nsource&[current item&]\n{\n %\n ^\n}\n",
-    "@>\nself&\n.main\n &\n@!\ncopy\n source\n",
-    "@!\nmodule\n method !\n  > result\n :\n  result\n  ..integer\n   |0\n",
+    "@>\nself&\n/test/fixture/v1.0.0/src/main\n &\n@!\ncopy\n source\n",
+    "@!\nmodule\n method !\n  > result\n :\n  result\n  //integer\n   |0\n",
     "@!\nmodule !\n < |literal # raw  \n > new variable\n module method %\n  > other\n :\n  recover !\n:\n >\n",
-    "@!\n..palette\n red >> color\nitems&[positions[next position]] !\n < &owned value\n > reference&\n",
-    "@!\nmessage\n..text\n |First line\n |\n |Third line\n",
-    "@!\nсообщение\n..текст\n |Привет # данные  \nобработчик !\n вход < сообщение\n результат > ответ\n",
+    "@!\n//palette\n red >> color\nitems&[positions[next position]] !\n < &owned value\n > reference&\n",
+    "@!\nmessage\n//text\n |First line\n |\n |Third line\n",
+    "@!\nсообщение\n//текст\n |Привет # данные  \nобработчик !\n вход < сообщение\n результат > ответ\n",
     "@!\r\nis ready\r\n# comment gap\r\n?\r\n do work !\r\n:\r\n # intentionally empty\r\n",
     "@!\ncondition\n?\n# parent comment before alternative\n:\n >\n",
     "unfinished[\n# Drafts retain lexical checks without full body parsing\n"

@@ -14,13 +14,14 @@ The specification additionally defines
 [declaration type expressions](spec/language/templates.md#tpl-15). Implementation and
 renewed conformance acceptance are pending [T221](TODO.md#t221) and
 [T226](TODO.md#t226).
-The newly specified [versioned project model](spec/project/packages.md),
-[slash/relative paths](spec/language/source-and-names.md#src-06), single-dot
-static names, scoped `.ini` aliases and
-[independent project commands](spec/implementation/project-tools.md) await the
-separate T231–T237/T224 alignment plan. The current executable workflows below
-belong to the recorded implementation edition; the new command names and
-spellings are target contracts, not claimed current support.
+The current source pipeline selects complete versions under `packages/` and
+`dependencies/`, uses canonical `/vendor/package/version/src-or-tests/module`
+identities and `//` Standard paths, and recognizes single-dot static names.
+[T231](DONE.md#t231) records scoped implementation acceptance. Relative-path
+normalization, scoped `.ini` aliases and the
+[independent project commands](spec/implementation/project-tools.md) retain
+their separate T232–T237/T224 implementation owners; their specification is not
+evidence of executable support.
 The later [CMake build contract](spec/implementation/application-builds.md),
 [named application inputs](spec/implementation/launch-and-embedding.md) and
 [no-main source inclusion](spec/implementation/c-library.md#embed-09) are also
@@ -41,9 +42,9 @@ commands, supported configurations and the limits of that evidence.
 proposals; [DONE.md](DONE.md) preserves completed tasks and their acceptance
 evidence. The [audit](docs/implementation/audit/README.md) describes the original implementation
 before its replacement and is historical evidence.
-`./ama --check ROOT .module` validates dependencies, syntax, types and typed plans without emitting or
-compiling C. `./ama --status ROOT .module` reports source activation without
-validating a project. `./ama --emit ROOT .module --out DIR --sdk /path/to/ama/src --compile`
+`./ama --check ROOT MODULE` validates dependencies, syntax, types and typed plans without emitting or
+compiling C. `./ama --status ROOT MODULE` reports source activation without
+validating a project. `./ama --emit ROOT MODULE --out DIR --sdk /path/to/ama/src --compile`
 produces a verified stackless executable at `DIR/program`. Entry calls, retained
 reads, assignments, branches, loops, suspension and continuation copying execute;
 typed list services and live traversal execute with checked origins and copied
@@ -100,8 +101,9 @@ C/assert tests. Check-only success does not validate handwritten C bodies.
 This outline describes the language; use the executable examples and task evidence
 for the currently verified implementation boundary. Files are modules. Their qualified
 paths determine type identity. A module file
-`shop/item` may have submodules in `shop/item+/`; the directory marker is omitted
-from logical paths such as `.shop.item.validate`. Names support Unicode.
+`packages/acme/shop/v1.0.0/src/item` may have submodules in its sibling
+`item+/` directory; the directory marker is omitted from the logical identity
+`/acme/shop/v1.0.0/src/item/validate`. Names support Unicode.
 
 Visible annotations delimit sections: `@=` declares shared immutable constants,
 `@<` parameters, `@>` results, and `@!` an Ama body. `@C` selects a native C body.
@@ -115,15 +117,15 @@ to the declared type. The following paths illustrate library types:
 ```text
 @!
 quantity
-..integer
+//integer
  |12
 item
-.shop.item
+/acme/shop/v1.0.0/src/item
 item_ref&
-.shop.item
+/acme/shop/v1.0.0/src/item
  &item
 items[]
-.shop.item
+/acme/shop/v1.0.0/src/item
 ```
 
 A suffix `&` marks reference storage; `[]` marks a list. Type lines contain only
@@ -174,8 +176,8 @@ then open `docs/technical/index.html`. See the
 ```sh
 make
 ./ama --help
-./ama --check path/to/project .main
-./ama --emit path/to/project .main --out generated --sdk "$PWD/src" --compile
+./ama --check examples/template-lists /test/fixture/v1.0.0/src/main --standard-root stdlib/modules
+./ama --emit examples/template-lists /test/fixture/v1.0.0/src/main --standard-root stdlib/modules --out generated --sdk "$PWD/src" --compile
 ./generated/program
 make test
 make test-clean
@@ -192,6 +194,6 @@ See the contributor guide for component and composition tests and the backlog fo
 implementation stages. Documentation-only changes require consistency checks;
 implementation claims require the corresponding executable acceptance evidence.
 
-Native interface authoring is available through `--native ROOT .module --out DIR
+Native interface authoring is available through `--native ROOT MODULE --out DIR
 --sdk /path/to/ama/src`; add `--create` to propose missing companions. See the
 [native scaffolding guide](docs/implementation/native-scaffolding.md).

@@ -1,0 +1,17 @@
+# Insert before the live boundary: visit only original entries and prepend their reverse.
+@<
+items[]
+.element
+@>
+result[]
+.element
+@!
+result[]
+ items[]
+result[item&]
+{
+ result[]
+  insert !
+   < |0
+   < item&
+}

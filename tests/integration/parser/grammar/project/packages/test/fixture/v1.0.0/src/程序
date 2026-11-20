@@ -1,0 +1,36 @@
+@=
+版本
+/test/fixture/v1.0.0/src/types/text
+ |@C # data   
+@<
+目标&
+/test/fixture/v1.0.0/src/shop/item
+@>
+结果[]
+/test/fixture/v1.0.0/src/shop/item
+@!
+items&[]
+/test/fixture/v1.0.0/src/shop/item
+ &owned
+copy
+/test/fixture/v1.0.0/src/shop/item
+ % original
+worker !
+ < |原文 # |@!   
+ <
+ >
+ > selected
+sensor
+ >> selected
+ready
+?
+ worker %
+  >
+:
+ %
+active
+{
+ ^
+}
+/test/fixture/v1.0.0/src/catalog
+ value >> selected

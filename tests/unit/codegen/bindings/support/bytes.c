@@ -3,7 +3,7 @@
  */
 /** Select explicit test-module hooks by complete logical identity; all other native fixture contracts keep their ordinary bodies. */
 static const char *byte_hook(const ScaffoldType *type, AbiOperation operation) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".bytes") != 0) { return NULL; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/bytes") != 0) { return NULL; }
     if (operation == ABI_DEFAULT) {
         return " { *destination=(AMA_NATIVE(State)){.address=destination}; return fputs(\"default\\n\",stdout)==EOF ? ama_status_make(AMA_IO_FAILURE,NULL,0) : ama_status_success(); }\n";
     }
@@ -22,7 +22,7 @@ static const char *byte_hook(const ScaffoldType *type, AbiOperation operation) {
 
 /** Print typed input and result bytes without C string decoding or terminator assumptions; failures return before the common successful completion. */
 static bool byte_entry(FILE *output, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".echo") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/echo") != 0) { return false; }
     int written = fputs(
         "if(parameters->AMA_INPUT(0)->payload->address!=parameters->AMA_INPUT(0)->payload || results->AMA_OUTPUT(0)->payload->address!=results->AMA_OUTPUT(0)->payload) { *status=ama_status_make(AMA_INVALID_STATE,NULL,0); return; }\n"
         "if(printf(\"input[%zu]:\",parameters->AMA_INPUT(0)->payload->byte_count)<0 ||\n"
@@ -37,16 +37,17 @@ static bool byte_entry(FILE *output, const ScaffoldType *type) {
 /** Own explicit bounded fixture representations and borrow static native emitters through compilation; sixty-four bytes is this fixture's capacity, not a language limit. */
 static void prepare_bytes(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     native_fixture("bytes", "@C\n");
-    file("generated/project/bytes.h", "struct AMA_NATIVE(State) { size_t number, calls; const void *address; size_t byte_count; unsigned char bytes[64]; };\n");
-    native_fixture("echo", "@<\ninput\n.bytes\n |fallback\n@>\noutput\n.bytes\n input\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/bytes.h", "struct AMA_NATIVE(State) { size_t number, calls; const void *address; size_t byte_count; unsigned char bytes[64]; };\n");
+    native_fixture("echo", "@<\ninput\n/test/fixture/v1.0.0/src/bytes\n |fallback\n@>\noutput\n/test/fixture/v1.0.0/src/bytes\n input\n@C\n");
     native_entry_override = byte_entry;
     native_hook_override = byte_hook;
 }
 
 /** Literal data includes repeated spaces, apparent syntax and UTF-8; a second ordinary input exposes the inferred receiver's stored bytes. */
 static void it_preserves_literal_bytes_and_selects_one_constructor_with_lf_crlf_and_empty_payloads(void) {
-    static const char source[] = "@!\necho\n.echo\necho !\n < |  A # | \xD0\x9F\xD1\x80\xD0\xB8\xD0\xB2\xD0\xB5\xD1\x82  \n > result\necho !\n < result\n > result\necho !\n < |  A # | \xD0\x9F\xD1\x80\xD0\xB8\xD0\xB2\xD0\xB5\xD1\x82  \n > result\necho !\n < |\n > result\n";
+    static const char source[] = "@!\necho\n/test/fixture/v1.0.0/src/echo\necho !\n < |  A # | \xD0\x9F\xD1\x80\xD0\xB8\xD0\xB2\xD0\xB5\xD1\x82  \n > result\necho !\n < result\n > result\necho !\n < |  A # | \xD0\x9F\xD1\x80\xD0\xB8\xD0\xB2\xD0\xB5\xD1\x82  \n > result\necho !\n < |\n > result\n";
     static const char expected[] = "literal\ndefault\nliteral\n"
         "input[22]:  A # | \xD0\x9F\xD1\x80\xD0\xB8\xD0\xB2\xD0\xB5\xD1\x82  \noutput[22]:  A # | \xD0\x9F\xD1\x80\xD0\xB8\xD0\xB2\xD0\xB5\xD1\x82  \n"
         "input[22]:  A # | \xD0\x9F\xD1\x80\xD0\xB8\xD0\xB2\xD0\xB5\xD1\x82  \noutput[22]:  A # | \xD0\x9F\xD1\x80\xD0\xB8\xD0\xB2\xD0\xB5\xD1\x82  \n"
@@ -69,8 +70,8 @@ static void it_preserves_literal_bytes_and_selects_one_constructor_with_lf_crlf_
 /** A native literal capacity failure occurs before the body or refusal alternative; only completed construction effects remain. */
 static void it_keeps_literal_constructor_failure_before_body_entry_and_result_publication(void) {
     prepare_bytes();
-    execute_project("@!\necho\n.echo\nprobe\n.worker\necho !\n < |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n > result\n:\n probe !\n", "literal\ndefault\n", false);
-    expect_diagnostic("binding, type .bytes");
+    execute_project("@!\necho\n/test/fixture/v1.0.0/src/echo\nprobe\n/test/fixture/v1.0.0/src/worker\necho !\n < |xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n > result\n:\n probe !\n", "literal\ndefault\n", false);
+    expect_diagnostic("binding, type /test/fixture/v1.0.0/src/bytes");
     native_entry_override = NULL;
     native_hook_override = NULL;
 }

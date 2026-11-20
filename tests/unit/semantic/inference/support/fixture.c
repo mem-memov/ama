@@ -17,16 +17,16 @@ static void prepare_inference(void) {
                 ? "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] position\n" : "/* native metadata fixture */\n");
         }
     }
-    file("generated/program/worker", "@<\ninput\n.value\n@>\nresult\n.value\nreference&\n.value\nvalues[]\n.value\nreferences&[]\n.value\n@!\n");
-    file("generated/program/palette", "@=\ntone\n.value\n |1\ntones[]\n.value\n |1\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\nresult\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\nvalues[]\n/test/fixture/v1.0.0/src/value\nreferences&[]\n/test/fixture/v1.0.0/src/value\n@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/palette", "@=\ntone\n/test/fixture/v1.0.0/src/value\n |1\ntones[]\n/test/fixture/v1.0.0/src/value\n |1\n");
 }
 /** Parse complete roots, build explicit/native inventories and run inference once; retain failed owners for assertions. */
 static SemanticStatus infer_text(const char *text) {
-    file("generated/program/main", text);
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
     setup_semantic();
     ModuleRoot roots[] = {{"generated/program", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    ProjectStatus loaded = project_load(&project, roots, 2, ".main");
+    ProjectStatus loaded = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
     if (loaded != PROJECT_OK) { fprintf(stderr, "Inference load: %s\n%s", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
@@ -38,7 +38,7 @@ static SemanticStatus infer_text(const char *text) {
 /** Find a module field by exact immutable test spelling and assert that no substring/suffix lookup is used. */
 static SemanticSymbol *field(const char *name) {
     size_t length = strlen(name);
-    SemanticType *entry = semantic_find_type(&semantic,".main");
+    SemanticType *entry = semantic_find_type(&semantic,"/test/fixture/v1.0.0/src/main");
     if (!entry) { return NULL; }
     for (SemanticSymbol *symbol = entry->first; symbol != NULL; symbol = symbol->next) {
         if (symbol->name.end - symbol->name.start == length

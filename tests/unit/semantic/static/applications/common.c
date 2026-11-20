@@ -34,11 +34,11 @@ static inline const StaticSymbol *application_formal(const StaticModule *module,
 static void setup_applications(const char *caller, const char *target) {
     ModuleRoot roots[] = {{STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT},
         {TEST_STANDARD_ROOT, NULL, 0, MODULE_ROOT_STANDARD}};
-    setup_static_with_roots(caller ? caller : "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\nanchor&\n..integer\n",
-        target ? target : "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\n", roots, 2);
+    setup_static_with_roots(caller ? caller : "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\nanchor&\n//integer\n",
+        target ? target : "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\n", roots, 2);
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     caller_module = static_module_find(&inventory, project.entry);
-    target_module = static_module_find(&inventory, project_find(&project, ".other"));
+    target_module = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
     binding_plan_init(&binding_plan, sources.allocator);
     static_term_store_init(&terms, &inventory, sources.allocator);
     assert(static_term_environment(&terms, caller_module, NULL, &caller_environment));
@@ -50,7 +50,7 @@ static void setup_applications(const char *caller, const char *target) {
     if (target_module->definition->syntax.sections.kind != MODULE_STATIC) {
         assert(static_term_nominal(&terms, target_module, NULL, 0, (SourceSpan){0}, &target_constructor));
     }
-    const StaticModule *integer = static_module_find(&inventory, project_find(&project, "..integer"));
+    const StaticModule *integer = static_module_find(&inventory, project_find(&project, "//integer"));
     assert(integer != NULL && integer->parameter_count == 0);
     assert(static_term_nominal(&terms, integer, NULL, 0, (SourceSpan){0}, &integer_type));
     static_constraint_init(&solver, &terms, sources.allocator);

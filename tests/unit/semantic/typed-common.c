@@ -18,7 +18,7 @@ static void native_fixture(const char *name, const char *bindings) {
     char path[160];
     const char *suffixes[] = {"", ".h", ".c", ".abi"};
     for (size_t index = 0; index < 4; index++) {
-        int length = snprintf(path, sizeof(path), "generated/program/%s%s", name, suffixes[index]);
+        int length = snprintf(path, sizeof(path), "generated/program/packages/test/fixture/v1.0.0/src/%s%s", name, suffixes[index]);
         assert(length > 0 && (size_t)length < sizeof(path));
         file(path, index == 0 ? "@C\n" : index == 3 ? bindings : "/* authored native input */\n");
     }
@@ -29,12 +29,12 @@ static void native_fixture(const char *name, const char *bindings) {
  * distinguish nominal type and capability checks.
  */
 static void prepare_types(void) {
-    directory("generated/program");
+    fixture_package_prepare("generated/program", "fixture");
     const char *all = "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] position\n";
     native_fixture("value", all);
     native_fixture("other", all);
     native_fixture("resource", "+ initialize\n- destroy\n");
-    file("generated/program/worker", "@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\n");
 }
 
 /**
@@ -42,7 +42,7 @@ static void prepare_types(void) {
  * preceding stage succeeds.
  */
 static SemanticStatus resolve_text(const char *text) {
-    file("generated/program/main", text);
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
     setup_semantic();
     SemanticStatus status = load_semantic("generated/program");
     assert(module_count() != 0);

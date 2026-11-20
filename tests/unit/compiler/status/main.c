@@ -14,15 +14,15 @@
  * generated evidence.
  */
 static void it_reports_all_four_activation_states_without_loading_dependencies(void) {
-    directory("generated/project");
-    const char *texts[] = {"unfinished body\n", "@=\n", "@!\nfield\n.missing\n", "@C\n"};
+    fixture_package_prepare("generated/project", "fixture");
+    const char *texts[] = {"unfinished body\n", "@=\n", "@!\nfield\n/test/fixture/v1.0.0/src/missing\n", "@C\n"};
     for (size_t index = 0; index < 4; index++) {
-        file("generated/project/main", texts[index]);
+        file("generated/project/packages/test/fixture/v1.0.0/src/main", texts[index]);
         setup_frontend();
         ModuleInspection inspection;
         compiler_inspection_init(&inspection, sources.allocator);
         ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-        bool valid = compiler_inspect_module(&inspection, &root, 1, ".main");
+        bool valid = compiler_inspect_module(&inspection, &root, 1, "/test/fixture/v1.0.0/src/main");
         assert(valid && inspection.syntax.sections.kind == (ParsedModuleKind)index);
         compiler_inspection_destroy(&inspection);
         destroy_frontend();
@@ -34,13 +34,13 @@ static void it_reports_all_four_activation_states_without_loading_dependencies(v
  * setup and observations define this regression; assertion failure keeps its generated evidence.
  */
 static void it_releases_every_partial_inspection_allocation(void) {
-    directory("generated/project");
-    file("generated/project/main", "@!\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\n");
     setup_frontend();
     ModuleInspection inspection;
     compiler_inspection_init(&inspection, sources.allocator);
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-    bool valid = compiler_inspect_module(&inspection, &root, 1, ".main");
+    bool valid = compiler_inspect_module(&inspection, &root, 1, "/test/fixture/v1.0.0/src/main");
     assert(valid);
     size_t total = allocation_count;
     compiler_inspection_destroy(&inspection);
@@ -49,7 +49,7 @@ static void it_releases_every_partial_inspection_allocation(void) {
         setup_frontend();
         compiler_inspection_init(&inspection, sources.allocator);
         failure_at = failure;
-        valid = compiler_inspect_module(&inspection, &root, 1, ".main");
+        valid = compiler_inspect_module(&inspection, &root, 1, "/test/fixture/v1.0.0/src/main");
         assert(!valid && inspection.error.code == DIAGNOSTIC_OUT_OF_MEMORY);
         compiler_inspection_destroy(&inspection);
         destroy_frontend();

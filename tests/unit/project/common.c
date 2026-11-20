@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include "../source/common.c"
+#include "../fixtures/package.h"
 #include "project/dependencies/project.h"
 
 static Project project;
@@ -38,7 +39,7 @@ static void destroy_project(void) {
  * Create a test-owned fixture directory or accept its existing directory setup as specified by
  * the caller; other mkdir errors fail assertions.
  */
-static void directory(const char *path) {
+static inline void directory(const char *path) {
     int created = mkdir(path, 0700);
     assert(created == 0 || errno == EEXIST);
 }
@@ -47,7 +48,7 @@ static void directory(const char *path) {
  * Write exact supplied source text into a fixture path, checking full byte count and close
  * before loading it.
  */
-static void file(const char *path, const char *content) {
+static inline void file(const char *path, const char *content) {
     FILE *stream = fopen(path, "wb");
     assert(stream != NULL);
     size_t length = strlen(content);
@@ -57,11 +58,11 @@ static void file(const char *path, const char *content) {
 }
 
 /**
- * Load .main from exactly the supplied physical root through the production closure loader.
+ * Load the explicit versioned fixture main from exactly the supplied physical root through the production closure loader.
  */
 static inline ProjectStatus load_root(const char *root) {
     ModuleRoot input = {root, NULL, 0, MODULE_ROOT_PROJECT};
-    return project_load(&project, &input, 1, ".main");
+    return project_load(&project, &input, 1, "/test/fixture/v1.0.0/src/main");
 }
 
 /**

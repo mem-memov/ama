@@ -1,5 +1,5 @@
 # Expected application failure with one owned public text description.
 @>
 description
-..text
+//text
 @C

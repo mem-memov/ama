@@ -59,7 +59,7 @@ int main(void) {
         AmaContextReference root = {host.identity,result.root};
         AmaDebugInstance instance;
         require(ama_debug_instance(&session,root,&instance).code == AMA_OK);
-        require(strcmp(instance.type_name,".main") == 0 && instance.resume.valid);
+        require(strcmp(instance.type_name,"/test/fixture/v1.0.0/src/main") == 0 && instance.resume.valid);
         require(!instance.caller.attached && ama_handle_is_empty(instance.outgoing.local));
         require(instance.resume_location != NULL && instance.resume_location->operation == instance.resume.selector);
         fields = cursors = 0;

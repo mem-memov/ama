@@ -5,6 +5,7 @@
  * The enclosing leaf explicitly runs assertion cases and owns setup/teardown; shared fixtures retain no state across independent test executables.
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
+#include <stdio.h>
 #include "../../source/common.c"
 #include "parser/internal.h"
 
@@ -98,11 +99,45 @@ static void it_preserves_exact_unicode_and_nested_access_spans(void) {
     destroy_access();
 }
 
+/** Path recognition preserves bounded views and allocates nothing; raw syntax
+ * includes relative/alias roots without consulting a module or alias registry.
+ */
+static void it_recognizes_complete_path_spans_without_lookup_or_allocation(void) {
+    const char *valid[] = {"/acme/p/v1.2.3-speed/src/名 字", "//integer", "./module",
+        "../../module", "~containers/module", "~project", "/a/../b"};
+    const char *invalid[] = {".type", "..integer", "...type", "/", "///item", "./",
+        "/a//b", "/a/", "/a.b", "~", "~ name", "/a  b"};
+    for (size_t group = 0; group < 2; group++) {
+        const char *const *cases = group == 0 ? valid : invalid;
+        size_t count = group == 0 ? sizeof(valid) / sizeof(*valid) : sizeof(invalid) / sizeof(*invalid);
+        for (size_t index = 0; index < count; index++) {
+            setup_test();
+            char text[256];
+            int written = snprintf(text, sizeof(text), "!%s!", cases[index]);
+            assert(written > 0 && (size_t)written < sizeof(text));
+            const SourceText *source;
+            assert(source_manager_add(&sources, "path", (const unsigned char *)text,
+                (size_t)written, &source) == SOURCE_OK);
+            SourceSpan span = {source, 1, (size_t)written - 1};
+            size_t allocations = allocation_count;
+            assert(parser_path(span) == (group == 0));
+            assert(allocation_count == allocations);
+            span.end++;
+            assert(!parser_path(span));
+            span.start = span.end;
+            assert(!parser_path(span));
+            destroy_test();
+        }
+    }
+    assert(!parser_path((SourceSpan){0}));
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_recognizes_complete_path_spans_without_lookup_or_allocation();
     it_matches_the_access_grammar_for_all_short_suffix_strings();
     it_preserves_exact_unicode_and_nested_access_spans();
 }

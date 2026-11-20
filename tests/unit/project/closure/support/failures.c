@@ -3,14 +3,14 @@
  */
 /** Assemble a small closure crossing a folded header, traversal body, handler and native companion set. */
 static void prepare_expanded_failures(bool malformed) {
-    directory("generated/expanded failures");
-    file("generated/expanded failures/main", "@!\nroot !\n < .native.value\n child !\n  condition\n  {\n   items[item&]\n   {\n    field\n    .body\n   }\n  }\n:\n field\n .handler\n");
-    file("generated/expanded failures/native", "@C\n");
-    file("generated/expanded failures/native.c", "/* body */\n");
-    file("generated/expanded failures/native.h", "/* header */\n");
-    file("generated/expanded failures/native.abi", malformed ? "\xff" : "+ initialize\n- destroy\n");
-    file("generated/expanded failures/body", "@!\n");
-    file("generated/expanded failures/handler", "@!\n");
+    fixture_package_prepare("generated/expanded failures", "fixture");
+    file("generated/expanded failures/packages/test/fixture/v1.0.0/src/main", "@!\nroot !\n < /test/fixture/v1.0.0/src/native/value\n child !\n  condition\n  {\n   items[item&]\n   {\n    field\n    /test/fixture/v1.0.0/src/body\n   }\n  }\n:\n field\n /test/fixture/v1.0.0/src/handler\n");
+    file("generated/expanded failures/packages/test/fixture/v1.0.0/src/native", "@C\n");
+    file("generated/expanded failures/packages/test/fixture/v1.0.0/src/native.c", "/* body */\n");
+    file("generated/expanded failures/packages/test/fixture/v1.0.0/src/native.h", "/* header */\n");
+    file("generated/expanded failures/packages/test/fixture/v1.0.0/src/native.abi", malformed ? "\xff" : "+ initialize\n- destroy\n");
+    file("generated/expanded failures/packages/test/fixture/v1.0.0/src/body", "@!\n");
+    file("generated/expanded failures/packages/test/fixture/v1.0.0/src/handler", "@!\n");
 }
 /** Each successful/error prefix remains safely owned and every actual allocation failure reports OOM rather than partial closure success. */
 static void it_unwinds_every_expanded_discovery_and_native_error_allocation_failure(void) {

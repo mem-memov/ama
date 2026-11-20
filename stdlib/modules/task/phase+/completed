@@ -1,5 +1,5 @@
 # Construct the ordinary completed phase without entering or resuming a task. See stdlib/README.md.
 @>
 phase
-..task.phase
+//task/phase
 @C

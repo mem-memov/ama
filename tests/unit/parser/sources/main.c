@@ -8,9 +8,9 @@
 /** Existing and unknown names produce the same assignment node shape; indices and source modes remain explicit. */
 static void it_builds_uniform_assignments_without_classifying_first_use_receivers(void) {
     setup_tree();
-    ParseStatus status = parse_text("@!\nexisting target\n..value\n |0\n"
+    ParseStatus status = parse_text("@!\nexisting target\n//value\n |0\n"
         "existing target\n source value\nnew target\n source value\n"
-        "owned values[current position]\n .palette.default value\n"
+        "owned values[current position]\n /test/fixture/v1.0.0/src/palette/default value\n"
         "reference slots&[positions[next position]]\n source reference&\n");
     assert(status == PARSE_OK);
     const char *names[] = {"existing target", "new target", "owned values", "reference slots"};
@@ -35,7 +35,7 @@ static void it_builds_uniform_assignments_without_classifying_first_use_receiver
 static void it_preserves_indexed_qualified_reference_list_and_continuation_source_modes(void) {
     const char *forms[] = {"owned values[positions[next position]]", "reference slots&[current position]",
         "&owned values[current position]", "% owned value", "% source reference&", "values[]",
-        "references&[]", ".palette.default value", "..palette.default values[]", "&"};
+        "references&[]", "/test/fixture/v1.0.0/src/palette/default value", "//palette/default values[]", "&"};
     const AstSourceKind expected[] = {AST_VALUE_SOURCE,AST_VALUE_SOURCE,AST_ACQUIRE_SOURCE,
         AST_CONTINUATION_SOURCE,AST_CONTINUATION_SOURCE,AST_VALUE_SOURCE,AST_VALUE_SOURCE,
         AST_CONSTANT_SOURCE,AST_CONSTANT_SOURCE,AST_SELF_REFERENCE_SOURCE};
@@ -49,7 +49,7 @@ static void it_preserves_indexed_qualified_reference_list_and_continuation_sourc
         AstSource *source = module.body.first->as.assignment.source;
         assert(source->kind == expected[index] && layout_text_is(source->span, forms[index]));
         if (index == 8) {
-            assert(source->constant_list && layout_text_is(source->module_path, "..palette"));
+            assert(source->constant_list && layout_text_is(source->module_path, "//palette"));
             assert(layout_text_is(source->member, "default values"));
         }
         if (index == 9) { assert(source->access == NULL && source->module_path.source == NULL); }
@@ -60,7 +60,7 @@ static void it_preserves_indexed_qualified_reference_list_and_continuation_sourc
 /** A standalone ampersand is a source, never a receiver/target/index or continuation operand. */
 static void it_restricts_self_reference_to_source_positions_without_inventing_a_name(void) {
     setup_tree();
-    ParseStatus status = parse_text("@>\nresult&\n.main\n &\n@!\nworker !\n < |&\n < &\n");
+    ParseStatus status = parse_text("@>\nresult&\n/test/fixture/v1.0.0/src/main\n &\n@!\nworker !\n < |&\n < &\n");
     assert(status == PARSE_OK);
     assert(module.results.first->as.declaration.first->source->kind == AST_SELF_REFERENCE_SOURCE);
     assert(module.body.first->as.call.first->source->kind == AST_LITERAL_SOURCE);
@@ -90,7 +90,7 @@ static void it_rejects_literal_assignments_and_parent_comment_reopening_with_exa
     assert(status == PARSE_OK && module.body.first->kind == AST_ASSIGNMENT);
     destroy_tree();
     const char *invalid[] = {"@!\nreceiver\n# closed\n source value", "@!\nreceiver\n  # skipped depth\n source value",
-        "@!\nreceiver\n ..only module", "@!\nreceiver\n % values[]", "@!\nreceiver\n &values[]"};
+        "@!\nreceiver\n //only module", "@!\nreceiver\n % values[]", "@!\nreceiver\n &values[]"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         status = parse_text(invalid[index]);

@@ -5,16 +5,16 @@
 
 /** One origin instantiated twice must retain different concrete input/output Types. */
 static void it_preserves_distinct_captures_and_equal_key_reuse(void) {
-    setup("@!\nnumber\n..integer\nflag\n..text\nfirst\n.other\nsecond\n.other\nagain\n.other\nfirst !\n < number\nsecond !\n < flag\nagain !\n < number\n",
-        "@<\ninput\n...slot\n@>\noutput\n...slot\n@!\noutput\n input\n", true);
+    setup("@!\nnumber\n//integer\nflag\n//text\nfirst\n/test/fixture/v1.0.0/src/other\nsecond\n/test/fixture/v1.0.0/src/other\nagain\n/test/fixture/v1.0.0/src/other\nfirst !\n < number\nsecond !\n < flag\nagain !\n < number\n",
+        "@<\ninput\n.slot\n@>\noutput\n.slot\n@!\noutput\n input\n", true);
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
     SemanticType *main_type = semantics.first;
     while (main_type->module != project.entry) { main_type = main_type->next; }
     SemanticType *first = field(main_type, "first")->type;
     SemanticType *second = field(main_type, "second")->type;
     assert(first != second && first->module == second->module);
-    assert(!semantic_find_type(&semantics, ".other"));
-    assert(semantic_find_type(&semantics, ".main") == main_type);
+    assert(!semantic_find_type(&semantics, "/test/fixture/v1.0.0/src/other"));
+    assert(semantic_find_type(&semantics, "/test/fixture/v1.0.0/src/main") == main_type);
     assert(first == field(main_type, "again")->type);
     assert(field(first, "input")->type == field(main_type, "number")->type);
     assert(field(second, "output")->type == field(main_type, "flag")->type);
@@ -29,13 +29,13 @@ static void it_orders_full_keys_independently_of_call_evidence_order(void) {
     unsigned char *saved[2] = {NULL, NULL};
     size_t lengths[2] = {0, 0};
     for (size_t reverse = 0; reverse < 2; reverse++) {
-        setup(reverse ? "@!\nnumber\n..integer\ntext\n..text\nfirst\n.other\nsecond\n.other\nfirst !\n < text\nsecond !\n < number\n"
-            : "@!\nnumber\n..integer\ntext\n..text\nfirst\n.other\nsecond\n.other\nfirst !\n < number\nsecond !\n < text\n",
-            "@<\ninput\n...slot\n@!\n", true);
+        setup(reverse ? "@!\nnumber\n//integer\ntext\n//text\nfirst\n/test/fixture/v1.0.0/src/other\nsecond\n/test/fixture/v1.0.0/src/other\nfirst !\n < text\nsecond !\n < number\n"
+            : "@!\nnumber\n//integer\ntext\n//text\nfirst\n/test/fixture/v1.0.0/src/other\nsecond\n/test/fixture/v1.0.0/src/other\nfirst !\n < number\nsecond !\n < text\n",
+            "@<\ninput\n.slot\n@!\n", true);
         assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
         const IdentityName *previous = NULL;
         size_t count = 0;
-        const ProjectModule *other = project_find(&project, ".other");
+        const ProjectModule *other = project_find(&project, "/test/fixture/v1.0.0/src/other");
         for (const SemanticType *type = semantics.first; type; type = type->next) {
             if (type->module != other) { continue; }
             assert(count < 2);
@@ -66,8 +66,8 @@ static void it_orders_full_keys_independently_of_call_evidence_order(void) {
 
 /** Existing ordinary checkers consume concrete generic calls and inferred outputs. */
 static void it_resolves_concrete_generic_bodies_without_reclassifying_fields(void) {
-    setup("@!\nknown\n..integer\nworker\n.other\nworker !\n < known\n > fresh\n",
-        "@<\ninput\n...slot\n@>\noutput\n...slot\n@!\noutput\n input\n", true);
+    setup("@!\nknown\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n > fresh\n",
+        "@<\ninput\n.slot\n@>\noutput\n.slot\n@!\noutput\n input\n", true);
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
     assert(semantics.type_closure == &analysis.closure && semantic_native(&semantics) == SEMANTIC_OK);
     SemanticType *main_type = semantics.first;
@@ -84,7 +84,7 @@ static void it_resolves_concrete_generic_bodies_without_reclassifying_fields(voi
 
 /** Reference and empty-list cycles are finite graph edges, not recursive expansion. */
 static void it_links_nominal_cycles_before_ordinary_ownership_checks(void) {
-    setup("@!\nnext&\n.main\nchildren[]\n.main\n", "@!\n", true);
+    setup("@!\nnext&\n/test/fixture/v1.0.0/src/main\nchildren[]\n/test/fixture/v1.0.0/src/main\n", "@!\n", true);
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
     SemanticType *main_type = semantics.first;
     assert(main_type->module == project.entry && !main_type->next);
@@ -97,7 +97,7 @@ static void it_links_nominal_cycles_before_ordinary_ownership_checks(void) {
 
 /** Projection keeps defaults and foreach locals separate from persistent ordinals. */
 static void it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells(void) {
-    setup("@!\nseed\n..integer\n |7\ninferred\n seed\nitems[]\n..integer\nitems[item&]\n{\n copy&\n  item&\n}\n", "@!\n", true);
+    setup("@!\nseed\n//integer\n |7\ninferred\n seed\nitems[]\n//integer\nitems[item&]\n{\n copy&\n  item&\n}\n", "@!\n", true);
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
     SemanticType *main_type = semantics.first;
     while (main_type->module != project.entry) { main_type = main_type->next; }
@@ -118,11 +118,11 @@ static void it_preserves_defaults_inferred_receivers_and_scoped_foreach_cells(vo
 
 /** A static assembly selects a runtime Type without itself becoming runtime storage. */
 static void it_projects_selected_static_exports_without_producer_instances(void) {
-    setup("@!\nvalue\n.other\n ...selected\n", "@...\n...selected\n..integer\n", true);
+    setup("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .selected\n", "@...\n.selected\n//integer\n", true);
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
     SemanticType *main_type = semantics.first;
     while (main_type->module != project.entry) { main_type = main_type->next; }
-    assert(strcmp(field(main_type, "value")->type->module->source->logical_path, "..integer") == 0);
+    assert(strcmp(field(main_type, "value")->type->module->source->logical_path, "//integer") == 0);
     for (SemanticType *type = semantics.first; type; type = type->next) {
         assert(type->module->syntax.sections.kind != MODULE_STATIC);
     }
@@ -131,7 +131,7 @@ static void it_projects_selected_static_exports_without_producer_instances(void)
 
 /** Source interfaces retain independent ordinals and all written defaults. */
 static void it_preserves_all_section_roles_and_native_protocol_consumption(void) {
-    setup("@=\nconstant\n..integer\n |3\n@<\ninput\n..integer\n |4\n@>\noutput\n..integer\n |5\n@!\nstate\n..integer\n |6\n", "@!\n", true);
+    setup("@=\nconstant\n//integer\n |3\n@<\ninput\n//integer\n |4\n@>\noutput\n//integer\n |5\n@!\nstate\n//integer\n |6\n", "@!\n", true);
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
     SemanticType *main_type = semantics.first;
     while (main_type->module != project.entry) { main_type = main_type->next; }
@@ -155,12 +155,12 @@ static void it_preserves_all_section_roles_and_native_protocol_consumption(void)
 
 /** Real noncopyable native protocol affects owning lists but not borrowed edges. */
 static void it_composes_distinct_eager_and_clone_relations_on_projected_types(void) {
-    const char *programs[] = {"@!\nowned[]\n.other\n", "@!\nborrowed&\n.other\n"};
+    const char *programs[] = {"@!\nowned[]\n/test/fixture/v1.0.0/src/other\n", "@!\nborrowed&\n/test/fixture/v1.0.0/src/other\n"};
     for (size_t index = 0; index < 2; index++) {
-        directory(STATIC_SCOPE_ROOT_DIRECTORY);
-        file("generated/static scope/other.h", "/* Fixture opaque resource payload. */\n");
-        file("generated/static scope/other.c", "/* Fixture metadata checks execute no native body. */\n");
-        file("generated/static scope/other.abi", "+ initialize\n- destroy\n");
+        fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/other.h", "/* Fixture opaque resource payload. */\n");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/other.c", "/* Fixture metadata checks execute no native body. */\n");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/other.abi", "+ initialize\n- destroy\n");
         setup(programs[index], "@C\n", true);
         assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
         assert(semantic_native(&semantics) == SEMANTIC_OK);
@@ -178,14 +178,14 @@ static void it_composes_distinct_eager_and_clone_relations_on_projected_types(vo
 /** A supplied concrete argument cannot hide an unsupported generic default. */
 static void it_checks_substituted_defaults_even_when_call_inputs_are_supplied(void) {
     for (size_t resource = 0; resource < 2; resource++) {
-        directory(STATIC_SCOPE_ROOT_DIRECTORY);
-        file("generated/static scope/resource", "@C\n");
-        file("generated/static scope/resource.h", "/* Fixture native payload. */\n");
-        file("generated/static scope/resource.c", "/* Fixture checks parse protocol metadata only. */\n");
-        file("generated/static scope/resource.abi", "+ initialize\n- destroy\n= clone\n");
-        setup(resource ? "@!\nknown\n.resource\nworker\n.other\nworker !\n < known\n"
-            : "@!\nknown\n..integer\nworker\n.other\nworker !\n < known\n",
-            "@<\ninput\n...slot\n |0\n@!\n", true);
+        fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/resource", "@C\n");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/resource.h", "/* Fixture native payload. */\n");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/resource.c", "/* Fixture checks parse protocol metadata only. */\n");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/resource.abi", "+ initialize\n- destroy\n= clone\n");
+        setup(resource ? "@!\nknown\n/test/fixture/v1.0.0/src/resource\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n"
+            : "@!\nknown\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n",
+            "@<\ninput\n.slot\n |0\n@!\n", true);
         assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
         assert(semantic_native(&semantics) == SEMANTIC_OK);
         semantic_clone_capabilities(&semantics);
@@ -196,7 +196,7 @@ static void it_checks_substituted_defaults_even_when_call_inputs_are_supplied(vo
         assert(success == !resource);
         if (resource) {
             assert(semantics.status == SEMANTIC_INVALID && diagnostic_valid(&semantics.error));
-            assert(semantics.error.primary.span.source == project_find(&project, ".other")->source->text);
+            assert(semantics.error.primary.span.source == project_find(&project, "/test/fixture/v1.0.0/src/other")->source->text);
         }
         assert(!semantics.resolved);
         destroy();
@@ -205,7 +205,7 @@ static void it_checks_substituted_defaults_even_when_call_inputs_are_supplied(vo
 
 /** Definition-only closure does not allocate ordinary Types; unclosed input refuses. */
 static void it_requires_closed_inputs_without_inventing_default_instances(void) {
-    setup("@!\n", "@<\ninput\n...slot\n@!\n", false);
+    setup("@!\n", "@<\ninput\n.slot\n@!\n", false);
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
     assert(semantics.names_valid && !semantics.first);
     semantic_program_destroy(&semantics);
@@ -218,7 +218,7 @@ static void it_requires_closed_inputs_without_inventing_default_instances(void) 
 
 /** Reuse and foreign-project inputs refuse without publishing a second inventory. */
 static void it_refuses_reuse_and_foreign_project_provenance(void) {
-    setup("@!\nnext&\n.main\n", "@!\n", true);
+    setup("@!\nnext&\n/test/fixture/v1.0.0/src/main\n", "@!\n", true);
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_OK);
     SemanticType *original = semantics.first;
     assert(semantic_specialization_names(&semantics, &analysis.closure) == SEMANTIC_INVALID);
@@ -235,7 +235,7 @@ static void it_refuses_reuse_and_foreign_project_provenance(void) {
 static void it_unwinds_every_projection_allocation_refusal(void) {
     size_t total = 0;
     for (size_t cut = 0; cut <= total; cut++) {
-        setup("@!\nitems[]\n..integer\nitems[item&]\n{\n copied&\n  item&\n}\n", "@!\n", true);
+        setup("@!\nitems[]\n//integer\nitems[item&]\n{\n copied&\n  item&\n}\n", "@!\n", true);
         size_t before = allocation_count;
         if (cut) { failure_at = before + cut; }
         SemanticStatus status = semantic_specialization_names(&semantics, &analysis.closure);

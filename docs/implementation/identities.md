@@ -15,8 +15,10 @@ Encoding version 2, in order:
 5. Unsigned big-endian 64-bit member/discriminator count and the same encoding
    for each member/discriminator.
 
-The module is a valid absolute single/double-dot path with complete Unicode
-multiword components. Strip exactly its root marker before counting components;
+The module is a canonical absolute slash path: ordinary identities retain
+vendor/package/version/src-or-tests/module components; standard identities use
+`//` without a package wrapper. Components retain complete Unicode names, and
+dots inside a version remain inside that single component. Strip exactly its root marker before counting components;
 Standard never inserts an empty component. The fixed fields consume 26 bytes,
 and each module/member component adds eight length bytes and its original data. Member/discriminator strings are
 nonempty valid UTF-8, allowing later lowering to name internal positions explicitly
@@ -97,10 +99,12 @@ Only a newly published identity adds its persistent Name record.
 
 Frozen independent vectors now pass through public `identity_register`, then
 compare every encoded byte and the entire C prefix. They include project and
-standard roots for the same multiword Cyrillic components; their binary keys
-differ only at the root byte, while their full SHA prefixes remain distinct.
+standard roots with multiword Cyrillic module names. Ordinary vectors include
+the package/version/area components as well as their explicit root byte; standard
+vectors omit that wrapper. Every complete tuple byte and SHA prefix is checked
+against an independent counted-frame calculation.
 Both discovery orders reuse identical registry records. Other cases separate all
-seven categories, spaces from dot-separated components, case and NFC/NFD bytes.
+seven categories, spaces from slash-separated components, case and NFC/NFD bytes.
 Different member sequences can have identical `::` display text but must retain
 different binary keys and generated names. No display string controls equality.
 
@@ -114,10 +118,16 @@ shape before category indexing or Name publication. Existing forced collision
 cases continue comparing complete unequal keys instead of assuming SHA injectivity.
 
 Namespace/provider composition uses these same current vectors. The maintained
-integer ABI harness now checks the actual `..integer` namespace; the generated
+integer ABI harness now checks the actual `//integer` namespace; the generated
 fixed bridge is still T055. Maintained C companion references were updated through
 an exact mapping from each validated scaffold key to its current version-two
 name. No names were inferred from a basename, shortened digest or approximate C
 parser. Real generated compilation validates header/body/type agreement afterward.
 Public compiled-component transport and external symbol qualification remain
 the export roadmap; these are compiler-internal component-local identity names.
+
+
+T231's revised source identities and static descriptor vectors are recorded in
+[versioned-source.md](versioned-source.md). Version-two framing remains the same;
+its module-component input is now the exact canonical slash identity. The key
+codec neither splits version dots nor erases vendor, package, variant or area.

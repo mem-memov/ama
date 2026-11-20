@@ -1,25 +1,25 @@
-project/main:7:2: error[type-mismatch]: Static equality has different nominal origins or binding sets
+project/packages/test/fixture/v1.0.0/src/main:7:2: error[type-mismatch]: Static equality has different nominal origins or binding sets
     7 |  source
-    span: bytes [45, 51)
-project/元:1:1: note: left static definition
-    subject: .元
+    span: bytes [93, 99)
+project/packages/test/fixture/v1.0.0/src/元:1:1: note: left static definition
+    subject: /test/fixture/v1.0.0/src/元
     1 | @C
     span: bytes [0, 0)
-project/米:1:1: note: right static definition
-    subject: .米
+project/packages/test/fixture/v1.0.0/src/米:1:1: note: right static definition
+    subject: /test/fixture/v1.0.0/src/米
     1 | @C
     span: bytes [0, 0)
-project/main:3:1: note: earlier equality establishing this static value
-    3 | .元
-    span: bytes [10, 14)
-project/main:3:1: note: original static variable definition
-    subject: .main
-    3 | .元
-    span: bytes [10, 14)
-project/main:5:1: note: earlier equality establishing this static value
-    5 | .米
-    span: bytes [27, 31)
-project/main:5:1: note: original static variable definition
-    subject: .main
-    5 | .米
-    span: bytes [27, 31)
+project/packages/test/fixture/v1.0.0/src/main:3:1: note: earlier equality establishing this static value
+    3 | /test/fixture/v1.0.0/src/元
+    span: bytes [10, 38)
+project/packages/test/fixture/v1.0.0/src/main:3:1: note: original static variable definition
+    subject: /test/fixture/v1.0.0/src/main
+    3 | /test/fixture/v1.0.0/src/元
+    span: bytes [10, 38)
+project/packages/test/fixture/v1.0.0/src/main:5:1: note: earlier equality establishing this static value
+    5 | /test/fixture/v1.0.0/src/米
+    span: bytes [51, 79)
+project/packages/test/fixture/v1.0.0/src/main:5:1: note: original static variable definition
+    subject: /test/fixture/v1.0.0/src/main
+    5 | /test/fixture/v1.0.0/src/米
+    span: bytes [51, 79)

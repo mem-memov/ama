@@ -10,11 +10,11 @@
  * declarations; internal storage order cannot replace original formal identity.
  */
 static void it_keeps_interface_introduction_ordinals_in_captures_residuals_and_snapshots(void) {
-    setup_static("@<\nfirst\n...implicit first\nsecond\n...explicit second\nlast\n...implicit last\n"
-        "@>\nexported\n...implicit result\n@!\n", "@!\n");
+    setup_static("@<\nfirst\n.implicit first\nsecond\n.explicit second\nlast\n.implicit last\n"
+        "@>\nexported\n.implicit result\n@!\n", "@!\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *module = static_module_find(&inventory, project.entry);
-    const char *names[] = {"...implicit first", "...explicit second", "...implicit last", "...implicit result"};
+    const char *names[] = {".implicit first", ".explicit second", ".implicit last", ".implicit result"};
     const StaticSymbol *formals[4];
     for (size_t index = 0; index < 4; index++) {
         formals[index] = static_symbol_find(module, static_name_site(project.entry, names[index]));
@@ -31,7 +31,7 @@ static void it_keeps_interface_introduction_ordinals_in_captures_residuals_and_s
     StaticTermStore store;
     static_term_store_init(&store, &inventory, sources.allocator);
     const StaticTerm *plain, *constructor, *complete, *partial;
-    assert(static_term_nominal(&store, static_module_find(&inventory, project_find(&project, ".other")),
+    assert(static_term_nominal(&store, static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other")),
         NULL, 0, (SourceSpan){0}, &plain));
     assert(static_term_nominal(&store, module, NULL, 0, formals[0]->site, &constructor));
     const StaticTermResidual *residual = constructor->as.nominal.first_residual;

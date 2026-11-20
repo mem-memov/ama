@@ -5,8 +5,8 @@ static NativeScaffold scaffold;
 static char contract_directory[128];
 static size_t contract_generation;
 static const char *minimal_abi = "+ initialize\n- destroy\n";
-static const char *project_peer = ".магазин.товар данные";
-static const char *standard_peer = "..магазин.товар данные";
+static const char *project_peer = "/test/fixture/v1.0.0/src/магазин/товар данные";
+static const char *standard_peer = "//магазин/товар данные";
 static const char *original_body = "/* Authored companion: publication has no permission to replace it. */\n";
 /** Write explicit interface/header/body/ABI inputs; generated output remains separate from all authored paths. */
 static void contract_native(const char *path, const char *interface, const char *header) {

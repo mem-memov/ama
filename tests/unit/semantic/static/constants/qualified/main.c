@@ -15,8 +15,8 @@ static const AstSource *source_at(size_t ordinal) {
  * ordinary target; neither introduces a caller-to-namespace creation edge.
  */
 static void it_agrees_between_compact_and_explicit_fixed_namespace_reads(void) {
-    setup_constants("@!\nanchor&\n..integer\nx\n..integer\n .other.value\n.other\n value >> y\n",
-        "@=\nvalue\n..integer\n |1\n@!\n");
+    setup_constants("@!\nanchor&\n//integer\nx\n//integer\n /test/fixture/v1.0.0/src/other/value\n/test/fixture/v1.0.0/src/other\n value >> y\n",
+        "@=\nvalue\n//integer\n |1\n@!\n");
     const StaticResultContext *caller = publication_context(caller_environment);
     const StaticResultContext *actual = constant_fixed_target_context();
     const StaticConstantSource *source, *again;
@@ -43,9 +43,9 @@ static void it_checks_qualified_members_storage_and_open_namespaces(void) {
     const char *members[] = {"items[]", "items", "missing", "result"};
     for (size_t mode = 0; mode < 4; mode++) {
         char caller[256];
-        int length = snprintf(caller, sizeof(caller), "@!\nanchor&\n..integer\nx[]\n..integer\n .other.%s\n", members[mode]);
+        int length = snprintf(caller, sizeof(caller), "@!\nanchor&\n//integer\nx[]\n//integer\n /test/fixture/v1.0.0/src/other/%s\n", members[mode]);
         assert(length > 0 && (size_t)length < sizeof(caller));
-        setup_constants(caller, "@=\nitems[]\n..integer\n@>\nresult\n..integer\n@!\n");
+        setup_constants(caller, "@=\nitems[]\n//integer\n@>\nresult\n//integer\n@!\n");
         const StaticResultContext *context = publication_context(caller_environment), *actual = constant_fixed_target_context();
         const StaticConstantSource *source;
         const StaticConstantValue *value = NULL;
@@ -56,8 +56,8 @@ static void it_checks_qualified_members_storage_and_open_namespaces(void) {
         else { assert(value == NULL && constants.status == STATIC_CONSTANT_CONFLICT); }
         destroy_constants();
     }
-    setup_constants("@!\nanchor&\n..integer\nx\n..integer\n .other.value\n",
-        "@=\nvalue\n...slot\n@<\ninput\n...slot\n@!\n");
+    setup_constants("@!\nanchor&\n//integer\nx\n//integer\n /test/fixture/v1.0.0/src/other/value\n",
+        "@=\nvalue\n.slot\n@<\ninput\n.slot\n@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantSource *source;
     const StaticConstantValue *value = NULL;
@@ -72,7 +72,7 @@ static void it_checks_qualified_members_storage_and_open_namespaces(void) {
  */
 static void it_refuses_foreign_qualified_handles_scopes_and_count_wrap(void) {
     for (size_t mode = 0; mode < 8; mode++) {
-        setup_constants("@!\nanchor&\n..integer\nx\n..integer\n .other.value\n", "@=\nvalue\n..integer\n@!\n");
+        setup_constants("@!\nanchor&\n//integer\nx\n//integer\n /test/fixture/v1.0.0/src/other/value\n", "@=\nvalue\n//integer\n@!\n");
         const StaticResultContext *context = publication_context(caller_environment), *actual = constant_fixed_target_context();
         AstSource copied = *source_at(0);
         const StaticConstantSource *source = NULL;
@@ -99,8 +99,8 @@ static void it_refuses_foreign_qualified_handles_scopes_and_count_wrap(void) {
  * creation path between their keys or duplicate shared declaration identity.
  */
 static void it_reuses_one_fixed_namespace_from_distinct_template_specializations(void) {
-    setup_constants("@<\ninput\n...slot\n@!\nanchor&\n..integer\nx\n..integer\n .other.value\n.other\n value >> y\n",
-        "@=\nvalue\n..integer\n@!\n");
+    setup_constants("@<\ninput\n.slot\n@!\nanchor&\n//integer\nx\n//integer\n /test/fixture/v1.0.0/src/other/value\n/test/fixture/v1.0.0/src/other\n value >> y\n",
+        "@=\nvalue\n//integer\n@!\n");
     const StaticResultContext *actual = constant_fixed_target_context();
     const StaticConstantDeclaration *shared = NULL;
     const StaticTerm *keys[2];
@@ -128,12 +128,12 @@ static void it_reuses_one_fixed_namespace_from_distinct_template_specializations
 
 /** Root markers and the final member's complete name retain original spans. */
 static void it_preserves_standard_root_identity_and_original_member_spans(void) {
-    setup_constants("@!\nanchor&\n..integer\nx\n..integer\n ..integer.example member\n", "@!\n");
+    setup_constants("@!\nanchor&\n//integer\nx\n//integer\n //integer/example member\n", "@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantSource *source;
     assert(static_constant_source(&constants, context, source_at(0), &source));
     assert(source->namespace_type == integer_type);
-    assert(layout_text_is(source->occurrence->source->module_path, "..integer"));
+    assert(layout_text_is(source->occurrence->source->module_path, "//integer"));
     assert(layout_text_is(source->occurrence->source->member, "example member"));
     assert(source->occurrence->origin == integer_type->as.nominal.origin->definition && guards.edge_count == 0);
     destroy_constants();
@@ -146,7 +146,7 @@ static void it_unwinds_every_qualified_registration_and_selection_allocation_ref
     for (size_t phase = 0; phase < 2; phase++) {
         size_t total = 0;
         for (size_t cut = 0; cut <= total; cut++) {
-            setup_constants("@!\nanchor&\n..integer\nx\n..integer\n .other.value\n", "@=\nvalue\n..integer\n@!\n");
+            setup_constants("@!\nanchor&\n//integer\nx\n//integer\n /test/fixture/v1.0.0/src/other/value\n", "@=\nvalue\n//integer\n@!\n");
             const StaticResultContext *context = publication_context(caller_environment), *actual = constant_fixed_target_context();
             const StaticConstantSource *source = NULL;
             const StaticConstantValue *value = NULL;

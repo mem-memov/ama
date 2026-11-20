@@ -124,8 +124,12 @@ records foundation gates, task/step acceptance, migration and evidence duties;
   bare placeholders, aliases, exact inference and all required producer inputs.
   Reject residual/ambiguous final Types, unknown body placeholders, direct marker
   storage and native own parameters; preserve ordinary lifecycle and C transport.
-  Record scoped conformance evidence only after implementation/argument review,
-  then pass required consumers and documentation gates. T237 owns the complete
+  The all-positive canonical fence case in
+  `tests/unit/parser/composition/support/documented.c` currently reaches
+  templates.md fence 3 and rejects its inline constructor. Finish that actual
+  TPL-15 boundary and retain the current explicit example contexts; T221 owns
+  marker admission. Record scoped conformance evidence only after
+  implementation/argument review, then pass required consumers and documentation gates. T237 owns the complete
   matrix renewal once all newer contracts are implemented. The earlier
   accepted matrix remains historical evidence, not support for these new rules.
 
@@ -140,24 +144,11 @@ T221/T226 remain required; perform them after T231/T222/T232 establish the
 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 
-<a id="t231"></a>
-
-- [ ] **T231 — Implement versioned source identity and revised lexical forms.**
-  Status: next integration task after the T258 foundation commit. Implementation is
-  authorized by the user's 2026-11-20 continuation request; no spec edits.
-  Record: [versioned source implementation](docs/implementation/versioned-source.md).
-  Prerequisites: T230 and T258. Implement PKG-01/02 and SRC-01..05 plus TPL-01: slash
-  paths, version/variant components, single-dot static names and physical name+/
-  storage. Select complete package versions before indexing; remove superseded
-  dotted-root code/tests after tracing consumers. Keep parsing independent of
-  alias/name lookup. Accept granular recognition/registry tests and real parser,
-  native, static, constant and source-tool consumers; cover duplicate selection,
-  missing local holes, Unicode and malformed version/separator boundaries.
-
 <a id="t222"></a>
 
 - [ ] **T222 — Require a space after the reference-formation operator.**
-  Status: selected for this sprint by the user's 2026-11-20 request; transferred
+  Status: ready after T231; waiting for its explicit specification-amendment
+  authorization. Selected by the user's 2026-11-20 request; transferred
   from BACKLOG with its original ID. Prerequisite: T231. The intended spelling
   was recorded earlier on 2026-11-20; the required specification amendment
   still needs separate explicit authorization;

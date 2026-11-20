@@ -26,7 +26,7 @@ static void it_preserves_healthy_hosts_across_resume_rejection_and_explicit_life
         "assert(status.code==AMA_OK && host.disposed && !host.registry.initialized && host.active.world==NULL);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.status.code==AMA_INVALID_STATE);\n"
         "status=ama_project_dispose(&host); assert(status.code==AMA_OK); return 0; }\n";
-    execute_project("@!\nprobe\n.worker\nprobe !\n < |10\n%\nprobe !\n < |20\n", "10:1:0\n20:2:0\n10:3:0\n", true);
+    execute_project("@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |10\n%\nprobe !\n < |20\n", "10:1:0\n20:2:0\n10:3:0\n", true);
     host_launcher = NULL;
 }
 
@@ -42,7 +42,7 @@ static void it_keeps_admitted_execution_failure_terminal_and_never_resumes_it(vo
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.status.code==AMA_INVALID_STATE);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_ENTRY); assert(result.status.code==AMA_INVALID_STATE);\n"
         "AmaStatus status=ama_project_dispose(&host); assert(status.code==AMA_NATIVE_FAILURE); return 0; }\n";
-    execute_project("@!\nprobe\n.worker\nprobe !\n < |500\n%\nprobe !\n < |999\n", "native-entered\n", true);
+    execute_project("@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |500\n%\nprobe !\n < |999\n", "native-entered\n", true);
     expect_diagnostic("Body failed");
     host_launcher = NULL;
 }

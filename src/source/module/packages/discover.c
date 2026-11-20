@@ -42,7 +42,7 @@ ModuleStatus package_discover(PackageScan *scan) {
         return module_fail(scan->catalog, MODULE_OUT_OF_MEMORY, root);
     }
     struct stat metadata;
-    ModuleStatus status = module_probe(scan->catalog, root, storage, physical, &metadata);
+    ModuleStatus status = scan->reader->child(scan->reader->context, scan->catalog, root, storage, physical, &metadata);
     if (status == MODULE_MISSING) {
         scan->catalog->issue = (ModuleIssue){0};
         return MODULE_OK;
@@ -51,7 +51,7 @@ ModuleStatus package_discover(PackageScan *scan) {
         return status != MODULE_OK ? status
             : module_fail(scan->catalog, MODULE_UNSUPPORTED_PATH, physical);
     }
-    status = package_queue(scan, physical, relative, "", 0);
+    status = package_queue(scan, physical, relative, "", 0, &metadata);
     while (status == MODULE_OK && scan->pending != NULL) {
         PackageDirectory *directory = scan->pending;
         scan->pending = directory->next;
@@ -60,7 +60,7 @@ ModuleStatus package_discover(PackageScan *scan) {
         }
         const char **names;
         size_t count;
-        status = module_catalog_entries(scan->catalog, directory->physical, &names, &count);
+        status = scan->reader->entries(scan->reader->context, scan->catalog, directory->physical, &names, &count);
         for (size_t index = 0; status == MODULE_OK && index < count; index++) {
             status = package_visit(scan, directory, names[index]);
         }

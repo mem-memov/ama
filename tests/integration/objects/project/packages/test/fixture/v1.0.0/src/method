@@ -1,0 +1,11 @@
+# Entry captures the owned state once. Each resume performs one action then yields.
+@<
+state
+/test/fixture/v1.0.0/src/counter
+@!
+%
+state
+{
+ state !
+ %
+}

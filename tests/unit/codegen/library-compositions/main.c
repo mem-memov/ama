@@ -7,10 +7,10 @@
 static bool composition_entry(FILE *output, const ScaffoldType *type) {
     const char *path = type->plan->type->module->source->logical_path;
     const char *body = NULL;
-    if (strcmp(path, ".showtext") == 0) {
+    if (strcmp(path, "/test/fixture/v1.0.0/src/showtext") == 0) {
         body = "AmaByteView bytes;*status=ama_n_762bf961da08fb6cb5c3d7150457175890b330d62849df81b283e451413eef10_view(parameters->AMA_INPUT(0)->payload,&bytes);"
             "if(status->code!=AMA_OK)return;fputs(\"text=\",stdout);if(bytes.length!=0)fwrite(bytes.data,1,bytes.length,stdout);putchar('\\n');\n";
-    } else if (strcmp(path, ".verify") == 0) {
+    } else if (strcmp(path, "/test/fixture/v1.0.0/src/verify") == 0) {
         body = "int ordering=7;*status=ama_n_1ad46fade0175c4e31ef9315b33c02e79bb0f66fd54f938c04bd36d8838b2a42_compare(parameters->AMA_INPUT(0)->payload,parameters->AMA_INPUT(1)->payload,&ordering);"
             "if(status->code!=AMA_OK)return;puts(ordering==0?\"equal\":\"different\");\n";
     }
@@ -23,9 +23,10 @@ static bool composition_entry(FILE *output, const ScaffoldType *type) {
 /** Author only external observers; arithmetic/outcome/text implementations are real. */
 static void composition_standard(void) {
     directory("generated/project");
-    native_fixture("showtext", "@<\nmessage\n..text\n@C\n");
-    native_fixture("showindex", "@<\nvalue\n..std.index\n@C\n");
-    native_fixture("verify", "@<\nactual\n..integer\nexpected\n..integer\n@C\n");
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("showtext", "@<\nmessage\n//text\n@C\n");
+    native_fixture("showindex", "@<\nvalue\n//std/index\n@C\n");
+    native_fixture("verify", "@<\nactual\n//integer\nexpected\n//integer\n@C\n");
     native_entry_override = composition_entry;
 }
 
@@ -33,7 +34,7 @@ static void composition_standard(void) {
 static void it_returns_owned_overflow_failures_and_clears_them_on_later_success(void) {
     composition_standard();
     char source[4096];
-    int length = snprintf(source, sizeof(source), "@!\nmaximum\n..std.index\n |%zu\nnext\n..std.index.next\nshow\n.showtext\nshow index\n.showindex\nprobe\n.worker\n"
+    int length = snprintf(source, sizeof(source), "@!\nmaximum\n//std/index\n |%zu\nnext\n//std/index/next\nshow\n/test/fixture/v1.0.0/src/showtext\nshow index\n/test/fixture/v1.0.0/src/showindex\nprobe\n/test/fixture/v1.0.0/src/worker\n"
         "next !\n < maximum\n > result\n > failure\n:\n probe !\n  < |999\nfailure\n?\n failure\n  description >> description\n show !\n  < description\ncopy\n failure\n"
         "next !\n < |0\n > result\n > failure\nfailure\n:\n show index !\n  < result\n failure\n  description >> description\n show !\n  < description\ncopy\n?\n copy\n  description >> description\n show !\n  < description\n", SIZE_MAX);
     assert(length > 0 && (size_t)length < sizeof(source));
@@ -43,7 +44,7 @@ static void it_returns_owned_overflow_failures_and_clears_them_on_later_success(
 /** Signed canonical operations preserve values beyond every C signed range. */
 static void it_executes_unbounded_integer_arithmetic_and_normal_false_predicates(void) {
     composition_standard();
-    execute_project("@!\nleft\n..integer\n |999999999999999999999999999999999999999\nright\n..integer\n |1\nexpected\n..integer\n |1000000000000000000000000000000000000000\nadd\n..integer.add\nnext\n..integer.next\nbefore\n..integer.before\nverify\n.verify\nprobe\n.worker\n"
+    execute_project("@!\nleft\n//integer\n |999999999999999999999999999999999999999\nright\n//integer\n |1\nexpected\n//integer\n |1000000000000000000000000000000000000000\nadd\n//integer/add\nnext\n//integer/next\nbefore\n//integer/before\nverify\n/test/fixture/v1.0.0/src/verify\nprobe\n/test/fixture/v1.0.0/src/worker\n"
         "add !\n < left\n < right\n > sum\nverify !\n < sum\n < expected\nnext !\n < left\n > successor\nverify !\n < successor\n < expected\nbefore !\n < expected\n < sum\n > condition\ncondition\n:\n probe !\n  < |1\n",
         "equal\nequal\n1:1:0\n", true);
 }
@@ -53,8 +54,8 @@ static void it_executes_unbounded_integer_arithmetic_and_normal_false_predicates
  */
 static void it_copies_and_mutates_owned_text_lists_without_changing_shared_constants(void) {
     composition_standard();
-    file("generated/project/palette", "@=\nwords[]\n..text\n |alpha\n |beta\n");
-    execute_project("@!\nshow\n.showtext\n.palette\n words[] >> words[]\n.palette\n words[] >> copy[]\nwords[item&]\n{\n value\n  % item&\n show !\n  < value\n}\nwords[]\n clear !\n append !\ncopy[item&]\n{\n value\n  % item&\n show !\n  < value\n}\n.palette\n words[] >> words[]\nwords[item&]\n{\n value\n  % item&\n show !\n  < value\n}\n",
+    file("generated/project/packages/test/fixture/v1.0.0/src/palette", "@=\nwords[]\n//text\n |alpha\n |beta\n");
+    execute_project("@!\nshow\n/test/fixture/v1.0.0/src/showtext\n/test/fixture/v1.0.0/src/palette\n words[] >> words[]\n/test/fixture/v1.0.0/src/palette\n words[] >> copy[]\nwords[item&]\n{\n value\n  % item&\n show !\n  < value\n}\nwords[]\n clear !\n append !\ncopy[item&]\n{\n value\n  % item&\n show !\n  < value\n}\n/test/fixture/v1.0.0/src/palette\n words[] >> words[]\nwords[item&]\n{\n value\n  % item&\n show !\n  < value\n}\n",
         "text=alpha\ntext=beta\ntext=alpha\ntext=beta\ntext=alpha\ntext=beta\n", true);
 }
 
@@ -64,7 +65,7 @@ static void it_copies_and_mutates_owned_text_lists_without_changing_shared_const
 static void it_preserves_old_outcomes_after_refusal_and_keeps_addition_overflow_as_data(void) {
     composition_standard();
     char source[4096];
-    int length = snprintf(source, sizeof(source), "@!\nmaximum\n..std.index\n |%zu\nadd\n..std.index.add\nmissing&\n..std.index.add\nshow\n.showtext\nshow index\n.showindex\n"
+    int length = snprintf(source, sizeof(source), "@!\nmaximum\n//std/index\n |%zu\nadd\n//std/index/add\nmissing&\n//std/index/add\nshow\n/test/fixture/v1.0.0/src/showtext\nshow index\n/test/fixture/v1.0.0/src/showindex\n"
         "add !\n right < |1\n left < maximum\n result > result\n failure > outcome\noutcome\n?\n outcome\n  description >> message\n show !\n  < message\n"
         "missing& !\n > result\n > outcome\n:\n outcome\n  description >> message\n show !\n  < message\nadd !\n < |2\n < |3\n > result\n > outcome\noutcome\n:\n show index !\n  < result\n",
         SIZE_MAX);
@@ -97,7 +98,7 @@ static void it_isolates_list_constants_and_native_backing_between_generated_cont
         "require(ama_project_dispose(&first).code==AMA_OK);"
         "result=ama_project_execute(&second,AMA_ACCESS_RESUME);require(result.outcome==AMA_HOST_COMPLETED);"
         "require(ama_project_dispose(&second).code==AMA_OK);return 0;}\n";
-    execute_project("@=\nwords[]\n..text\n |alpha\n |beta\n@!\nshow\n.showtext\nvalues[]\n words[]\n%\nvalues[item&]\n{\n value\n  % item&\n show !\n  < value\n}\n",
+    execute_project("@=\nwords[]\n//text\n |alpha\n |beta\n@!\nshow\n/test/fixture/v1.0.0/src/showtext\nvalues[]\n words[]\n%\nvalues[item&]\n{\n value\n  % item&\n show !\n  < value\n}\n",
         "text=alpha\ntext=beta\n", true);
     host_launcher = NULL;
 }
@@ -113,7 +114,7 @@ static void it_cleans_the_initialized_constant_list_prefix_before_root_publicati
         "static inline void constant_text_release(void *pointer) { puts(\"constant-prefix-released\"); free(pointer); }\n"
         "#define AMA_TEXT_ALLOCATE(size) constant_text_allocate(size)\n#define AMA_TEXT_RELEASE(pointer) constant_text_release(pointer)\n");
     forced_header = "generated/constant-allocation.h";
-    execute_project("@=\nwords[]\n..text\n |alpha\n |beta\n@!\nprobe\n.worker\nprobe !\n < |999\n",
+    execute_project("@=\nwords[]\n//text\n |alpha\n |beta\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |999\n",
         "constant-prepare-failed\nconstant-prefix-released\n", false);
     expect_diagnostic("Ama runtime failure: 2");
     forced_header = NULL;
@@ -124,9 +125,9 @@ static void it_cleans_the_initialized_constant_list_prefix_before_root_publicati
  */
 static void it_clones_nested_owned_lists_inside_list_valued_constants(void) {
     composition_standard();
-    file("generated/project/bundle", "@>\nentries[]\n..text\n |alpha\n |beta\n@!\n");
-    file("generated/project/nested", "@=\nseed\n.bundle\nbundles[]\n.bundle\n seed\n seed\n");
-    execute_project("@!\nshow\n.showtext\n.nested\n bundles[] >> copies[]\ncopies[bundle&]\n{\n bundle&\n  entries[] >> words[]\n words[word&]\n {\n  value\n   % word&\n  show !\n   < value\n }\n}\n",
+    file("generated/project/packages/test/fixture/v1.0.0/src/bundle", "@>\nentries[]\n//text\n |alpha\n |beta\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/nested", "@=\nseed\n/test/fixture/v1.0.0/src/bundle\nbundles[]\n/test/fixture/v1.0.0/src/bundle\n seed\n seed\n");
+    execute_project("@!\nshow\n/test/fixture/v1.0.0/src/showtext\n/test/fixture/v1.0.0/src/nested\n bundles[] >> copies[]\ncopies[bundle&]\n{\n bundle&\n  entries[] >> words[]\n words[word&]\n {\n  value\n   % word&\n  show !\n   < value\n }\n}\n",
         "text=alpha\ntext=beta\ntext=alpha\ntext=beta\n", true);
 }
 

@@ -1,17 +1,17 @@
 # The task only publishes phases; its caller performs explicit tail requeue after each step.
 @<
 owner&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 @>
 phase
-..task.phase
+//task/phase
 @!
 trace
-.trace
+/test/fixture/v1.0.0/src/trace
 ready phase
-..task.phase.ready
+//task/phase/ready
 completed phase
-..task.phase.completed
+//task/phase/completed
 owner&
  id >> id
  queued >> queued

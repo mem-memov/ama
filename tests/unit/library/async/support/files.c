@@ -16,10 +16,10 @@ static void install_project(void) {
     const char *names[] = {"main", "invalid", "submit", "submit.h", "submit.c", "submit.abi"};
     for (size_t index = 0; index < sizeof(names) / sizeof(*names); index++) {
         char input[256], output[256], bytes[32768];
-        int length = snprintf(input, sizeof(input), TEST_ASYNC_HOST "/project/%s", names[index]);
+        int length = snprintf(input, sizeof(input), TEST_ASYNC_HOST "/project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(input));
         input_text(input, bytes);
-        length = snprintf(output, sizeof(output), "generated/project/%s", names[index]);
+        length = snprintf(output, sizeof(output), "generated/project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(output));
         file(output, bytes);
     }

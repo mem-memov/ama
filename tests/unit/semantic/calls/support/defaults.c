@@ -4,8 +4,8 @@
 /** Placeholders retain defaults/skips without source or receiver allocation and keep independent input/output positions. */
 static void it_preserves_independent_positions_defaults_skips_and_literal_bytes(void) {
     prepare_types();
-    file("generated/program/worker", "@<\nfirst\n.value\n |1\nsecond\n.resource\n@>\nresult\n.value\n |2\nresource\n.resource\n@!\n");
-    SemanticStatus status = resolve_text("@!\nworker\n.worker\nreceived\n.value\nworker !\n < |bytes # data  \n <\n > received\n >\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\nfirst\n/test/fixture/v1.0.0/src/value\n |1\nsecond\n/test/fixture/v1.0.0/src/resource\n@>\nresult\n/test/fixture/v1.0.0/src/value\n |2\nresource\n/test/fixture/v1.0.0/src/resource\n@!\n");
+    SemanticStatus status = resolve_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\nreceived\n/test/fixture/v1.0.0/src/value\nworker !\n < |bytes # data  \n <\n > received\n >\n");
     assert(status == SEMANTIC_OK);
     SemanticStatement *call = semantic_entry()->last_statement;
     SemanticBinding *input = call->bindings;
@@ -20,17 +20,17 @@ static void it_preserves_independent_positions_defaults_skips_and_literal_bytes(
     assert(output->next->position == 1 && output->next->transfer == TRANSFER_DEFAULT);
     assert(output->next->source == NULL && output->next->receiver == NULL && output->next->next == NULL);
     destroy_semantic();
-    expect_resolved("@!\nworker\n.worker\nworker !\nworker %\n >\n >\n", true);
+    expect_resolved("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\nworker %\n >\n >\n", true);
 }
 /** Same-spelled caller values and interface labels retain independent owners and exact text-order bindings. */
 static void it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner(void) {
     prepare_types();
-    file("generated/program/worker", "@<\ninput\n.value\nother\n.value\n@>\noutput\n.value\nsecond result\n.value\n@!\n");
-    SemanticStatus status = resolve_text("@!\ninput\n.value\noutput\n.value\nworker\n.worker\nworker !\n other < input\n input < output\n output > input\n output > output\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\nother\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\nsecond result\n/test/fixture/v1.0.0/src/value\n@!\n");
+    SemanticStatus status = resolve_text("@!\ninput\n/test/fixture/v1.0.0/src/value\noutput\n/test/fixture/v1.0.0/src/value\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n other < input\n input < output\n output > input\n output > output\n");
     /* Repeating a callee label is forbidden even when caller receivers differ. */
     assert(status == SEMANTIC_INVALID);
     destroy_semantic();
-    status = resolve_text("@!\ninput\n.value\noutput\n.value\nworker\n.worker\nworker !\n other < input\n input < output\n output > input\n second result > input\n");
+    status = resolve_text("@!\ninput\n/test/fixture/v1.0.0/src/value\noutput\n/test/fixture/v1.0.0/src/value\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n other < input\n input < output\n output > input\n second result > input\n");
     assert(status == SEMANTIC_OK);
     SemanticStatement *call = semantic_entry()->last_statement;
     assert(call->bindings->position == 1 && call->bindings->next->position == 0);

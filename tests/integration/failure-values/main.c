@@ -24,7 +24,7 @@ static int run_failure_program(void) {
  */
 static void it_executes_the_real_owned_failure_value_through_the_cli(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", ".main", "--standard-root", TEST_STANDARD_ROOT,
+    char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--standard-root", TEST_STANDARD_ROOT,
         "--out", "generated/output", "--sdk", TEST_SDK, "--compile", NULL};
     int result = run_compiler_arguments(arguments);
     char text[8192];

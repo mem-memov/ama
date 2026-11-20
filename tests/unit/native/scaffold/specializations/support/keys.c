@@ -13,7 +13,7 @@ static void it_preserves_full_owner_role_keys_and_concrete_native_namespace_iden
     for (size_t index = 0; index < 2; index++) {
         assert(semantic_type_key(&frontend.semantic, owners[index], &temporary, &keys[index]) == IDENTITY_OK);
         assert(keys[index].category == IDENTITY_TYPE && keys[index].member_count == 2);
-        assert(strcmp(keys[index].module_path, ".container") == 0 && strcmp(keys[index].members[0], "ama-static-key-v1") == 0);
+        assert(strcmp(keys[index].module_path, "/test/fixture/v1.0.0/src/container") == 0 && strcmp(keys[index].members[0], "ama-static-key-v1") == 0);
         views[index] = scaffold_identity(&scaffold, owners[index], IDENTITY_TYPE, "read", (SourceSpan){0});
         assert(views[index] && views[index] == scaffold_identity(&scaffold, owners[index], IDENTITY_TYPE, "read", (SourceSpan){0}));
         const IdentityName *write = scaffold_identity(&scaffold, owners[index], IDENTITY_TYPE, "write", (SourceSpan){0});
@@ -38,7 +38,7 @@ static void it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changin
     source_arena_init(&temporary, sources.allocator);
     SemanticType copied = *owners[0];
     for (size_t shape = 0; shape < 8; shape++) {
-        QualifiedIdentity output = {.category = IDENTITY_LABEL, .module_path = ".marker"};
+        QualifiedIdentity output = {.category = IDENTITY_LABEL, .module_path = "/test/fixture/v1.0.0/src/marker"};
         size_t before = allocation_count;
         IdentityStatus status;
         switch (shape) {
@@ -60,7 +60,7 @@ static void it_refuses_foreign_incomplete_and_aliased_owner_keys_without_changin
             default: status = semantic_type_key(&frontend.semantic, owners[0], &frontend.specializations.terms.arena, &output); break;
         }
         assert(status == IDENTITY_INVALID && allocation_count == before);
-        assert(output.category == IDENTITY_LABEL && strcmp(output.module_path, ".marker") == 0 && !output.members && !output.member_count);
+        assert(output.category == IDENTITY_LABEL && strcmp(output.module_path, "/test/fixture/v1.0.0/src/marker") == 0 && !output.members && !output.member_count);
     }
     source_arena_destroy(&temporary);
     destroy_owners();

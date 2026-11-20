@@ -1,0 +1,47 @@
+# Authenticate the visible live wait, both stamp snapshots and checked task liveness before delivery.
+@<
+record&
+/test/fixture/v1.0.0/src/jobs/record
+@>
+valid
+//std/condition
+@!
+same
+//task/generation/same
+record&
+ task& >> task&
+ enrolled >> enrolled
+ waiting >> waiting
+ epoch >> epoch
+ generation >> generation
+ wait epoch >> expected epoch
+ wait generation >> expected generation
+:
+ >
+enrolled
+:
+ >
+waiting
+:
+ >
+epoch
+:
+ >
+generation
+:
+ >
+task&
+ self& >> observed task&
+:
+ >
+same !
+ < epoch
+ < expected epoch
+ > equal
+equal
+:
+ >
+same !
+ < generation
+ < expected generation
+ > valid

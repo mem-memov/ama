@@ -1,23 +1,23 @@
 # Different host contexts receive different native port resources; no Ama storage crosses.
 @!
 role
-.role
+/test/fixture/v1.0.0/src/role
 role !
  > sending
 sender
-.sender
+/test/fixture/v1.0.0/src/sender
 receiver
-.receiver
+/test/fixture/v1.0.0/src/receiver
 encode
-.encode
+/test/fixture/v1.0.0/src/encode
 decode
-.decode
+/test/fixture/v1.0.0/src/decode
 inspect
-.inspect
+/test/fixture/v1.0.0/src/inspect
 check
-.check
+/test/fixture/v1.0.0/src/check
 check full
-.checkfull
+/test/fixture/v1.0.0/src/checkfull
 sending
 ?
  encode !

@@ -23,7 +23,8 @@ typedef enum {
 } IdentityCategory;
 
 /** Borrowed complete category/root-aware module/member identity and original declaration span.
- * Module spelling uses the exact single/double-dot complete-name path contract.
+ * Module spelling uses the exact ordinary/standard slash path contract, including
+ * vendor/package/version/src-or-tests components for ordinary identities.
  * Discriminator parts are nonempty UTF-8 strings; resolved compiler roles need
  * not themselves be source-language declarations. Registration copies all parts.
  * Component contract: [NAME-02](../../../spec/implementation/compiler.md#name-02). */

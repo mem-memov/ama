@@ -4,8 +4,8 @@
 /** Set up separate lexical result namespaces and native conversion contracts without invoking C. */
 static void prepare_control(void) {
     prepare_types();
-    file("generated/program/producer", "@<\ninput\n.value\n@>\nchild\n.worker\n@!\n");
-    file("generated/program/worker", "@>\ncondition\n.value\n@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/producer", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\nchild\n/test/fixture/v1.0.0/src/worker\n@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@>\ncondition\n/test/fixture/v1.0.0/src/value\n@!\n");
     directory("generated/standard");
     file("generated/standard/integer", "@C\n");
     file("generated/standard/integer.h", "/* authored native fixture */\n");
@@ -14,11 +14,11 @@ static void prepare_control(void) {
 }
 /** Load both exact root families and publish only a fully successful native/inference/resolution sequence. */
 static SemanticStatus resolve_control(const char *text) {
-    file("generated/program/main", text);
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
     setup_semantic();
     ModuleRoot roots[] = {{"generated/program", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    ProjectStatus loaded = project_load(&project, roots, 2, ".main");
+    ProjectStatus loaded = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
     if (loaded != PROJECT_OK) { fprintf(stderr, "Control fixture: %s\n%s\n", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
@@ -47,7 +47,7 @@ static SemanticStatement *control_statement(AstNodeKind kind, size_t occurrence)
 
 /** Require a structural control rejection before semantic initialization and release the failed closure owner. */
 static void expect_control_parse_error(const char *text) {
-    file("generated/program/main", text);
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
     setup_project();
     ProjectStatus loaded = load_root("generated/program");
     assert(loaded == PROJECT_SYNTAX_ERROR && !project.valid && diagnostic_valid(&project.error));

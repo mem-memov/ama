@@ -3,6 +3,7 @@
  */
 #include <sys/stat.h>
 #include "../../common.c"
+#include "../../../unit/fixtures/package.h"
 
 /** Fixture paths are finite authored test data; every formatting operation checks its complete result. */
 typedef struct {
@@ -32,20 +33,27 @@ static void bytes(const char *base, const char *name, const void *data, size_t l
 static Fixture fixture(const char *base) {
     Fixture value = {.base=base};
     assert(mkdir(base,0700) == 0);
-    const char *folders[] = {"root","root/old","importers","recovery"};
+    const char *folders[] = {"root", "importers", "recovery"};
     for (size_t index = 0; index < sizeof(folders)/sizeof(*folders); index++) {
         char directory[1024]; path(directory,sizeof(directory),base,folders[index]); assert(mkdir(directory,0700) == 0);
     }
-    const char *files[] = {"root/main","root/old/a","root/old/draft","root/old/helper.c","root/settings.library","importers/unreachable"};
+    char package_root[1024];
+    path(package_root, sizeof(package_root), base, "root");
+    fixture_package_prepare(package_root, "fixture");
+    path(package_root, sizeof(package_root), base, "importers");
+    fixture_package_prepare(package_root, "imports");
+    path(package_root, sizeof(package_root), base, "root/packages/test/fixture/v1.0.0/src/old");
+    assert(mkdir(package_root, 0700) == 0);
+    const char *files[] = {"root/packages/test/fixture/v1.0.0/src/main","root/packages/test/fixture/v1.0.0/src/old/a","root/packages/test/fixture/v1.0.0/src/old/draft","root/packages/test/fixture/v1.0.0/src/old/helper.c","root/packages/test/fixture/v1.0.0/src/settings.library","importers/packages/test/imports/v1.0.0/src/unreachable"};
     for (size_t index = 0; index < sizeof(files)/sizeof(*files); index++) { copy(base,files[index]); }
     const unsigned char opaque[] = {0,255,13,10,0,7};
-    bytes(base,"root/old/asset.bin",opaque,sizeof(opaque));
-    bytes(base,"root/cache.bin","outside generated cache",23);
-    bytes(base,"root/old/build.bin","inside generated cache",22);
-    path(value.root,sizeof(value.root),base,"root"); path(value.source,sizeof(value.source),base,"root/old");
-    path(value.destination,sizeof(value.destination),base,"root/new"); path(value.imports,sizeof(value.imports),base,"importers");
-    path(value.recovery,sizeof(value.recovery),base,"recovery"); path(value.configuration,sizeof(value.configuration),base,"root/settings.library");
-    path(value.outside,sizeof(value.outside),base,"root/cache.bin"); path(value.inside,sizeof(value.inside),base,"root/old/build.bin");
+    bytes(base,"root/packages/test/fixture/v1.0.0/src/old/asset.bin",opaque,sizeof(opaque));
+    bytes(base,"root/packages/test/fixture/v1.0.0/src/cache.bin","outside generated cache",23);
+    bytes(base,"root/packages/test/fixture/v1.0.0/src/old/build.bin","inside generated cache",22);
+    path(value.root,sizeof(value.root),base,"root"); path(value.source,sizeof(value.source),base,"root/packages/test/fixture/v1.0.0/src/old");
+    path(value.destination,sizeof(value.destination),base,"root/packages/test/fixture/v1.0.0/src/new"); path(value.imports,sizeof(value.imports),base,"importers");
+    path(value.recovery,sizeof(value.recovery),base,"recovery"); path(value.configuration,sizeof(value.configuration),base,"root/packages/test/fixture/v1.0.0/src/settings.library");
+    path(value.outside,sizeof(value.outside),base,"root/packages/test/fixture/v1.0.0/src/cache.bin"); path(value.inside,sizeof(value.inside),base,"root/packages/test/fixture/v1.0.0/src/old/build.bin");
     return value;
 }
 /** Standard JSON decoding independently checks result semantics and exact whole-project bytes. */
@@ -62,7 +70,7 @@ static void verify(const char *mode, const char *base) {
 static void it_accepts_complete_preview_apply_and_repeated_recovery_processes(void) {
     Fixture value = fixture("generated/проект переноса");
     char *arguments[] = {AMA_EXECUTABLE,"--relocate-preview",value.root,value.source,"--destination",value.destination,
-        "--root",value.imports,"--entry",".old.a","--configuration",value.configuration,
+        "--root",value.imports,"--entry","/test/fixture/v1.0.0/src/old/a","--configuration",value.configuration,
         "--invalidate",value.outside,"--invalidate",value.inside,NULL,NULL,NULL};
     setup_test(); assert(run_compiler_arguments(arguments) == EXIT_SUCCESS); verify("preview",value.base); destroy_test();
     arguments[1] = "--relocate-apply"; arguments[16] = "--recovery"; arguments[17] = value.recovery;
@@ -75,17 +83,20 @@ static void it_accepts_complete_preview_apply_and_repeated_recovery_processes(vo
     for (unsigned repeat = 0; repeat < 2; repeat++) {
         setup_test(); assert(run_compiler_arguments(recover) == EXIT_SUCCESS); verify("recover",value.base); destroy_test();
     }
-    char *check[] = {AMA_EXECUTABLE,"--check",value.root,".main","--root",value.imports,NULL};
+    char *check[] = {AMA_EXECUTABLE,"--check",value.root,"/test/fixture/v1.0.0/src/main","--root",value.imports,NULL};
     setup_test(); assert(run_compiler_arguments(check) == EXIT_SUCCESS);
-    char message[1024]; read_stream(output,message,sizeof(message)); assert(strcmp(message,"checked .main\n") == 0); destroy_test();
+    char message[1024]; read_stream(output,message,sizeof(message)); assert(strcmp(message,"checked /test/fixture/v1.0.0/src/main\n") == 0); destroy_test();
 }
 /** Newly covered files join original analysis; an initial conflict rejects even when the final identities would be distinct. */
 static void it_refuses_initial_collisions_in_an_explicit_new_destination_root(void) {
     Fixture value = fixture("generated/initial-collision");
     char target[1024], old[1024], destination[1024]; path(target,sizeof(target),value.base,"target");
-    path(old,sizeof(old),value.base,"target/old"); path(destination,sizeof(destination),value.base,"target/new");
-    assert(mkdir(target,0700) == 0 && mkdir(old,0700) == 0);
-    bytes(value.base,"target/old/a","@!\n",3);
+    assert(mkdir(target,0700) == 0);
+    fixture_package_prepare(target, "fixture");
+    path(old,sizeof(old),value.base,"target/packages/test/fixture/v1.0.0/src/old");
+    path(destination,sizeof(destination),value.base,"target/packages/test/fixture/v1.0.0/src/new");
+    assert(mkdir(old,0700) == 0);
+    bytes(value.base,"target/packages/test/fixture/v1.0.0/src/old/a","@!\n",3);
     char *arguments[] = {AMA_EXECUTABLE,"--relocate-preview",value.root,value.source,"--destination",destination,
         "--destination-root",target,NULL};
     setup_test(); assert(run_compiler_arguments(arguments) != EXIT_SUCCESS); verify("collision",value.base); destroy_test();

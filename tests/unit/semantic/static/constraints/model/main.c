@@ -45,8 +45,8 @@ static void it_matches_all_finite_three_edge_models_in_every_equation_order(void
                 bool conflict = connected[3][4], closed = true;
                 for (size_t index = 0; index < 3; index++) { closed = closed && (connected[index][3] || connected[index][4]); }
                 for (size_t order = 0; order < 6; order++) {
-                    setup_constraints("@<\nfirst\n...a\nsecond\n...b\nthird\n...c\n@!\n");
-                    const StaticTerm *terms[] = {left_variable, right_variable, constraint_symbol("...c"), plain_type, NULL};
+                    setup_constraints("@<\nfirst\n.a\nsecond\n.b\nthird\n.c\n@!\n");
+                    const StaticTerm *terms[] = {left_variable, right_variable, constraint_symbol(".c"), plain_type, NULL};
                     StaticTermCapture captures[3] = {{0}};
                     const StaticSymbol *formal = constraint_module->first;
                     for (size_t index = 0; index < 3; index++, formal = formal->next) {

@@ -1,0 +1,11 @@
+# Alternate two independent copies of one paused simulation.
+@!
+simulation
+/test/fixture/v1.0.0/src/simulation
+simulation !
+copy
+ % simulation
+simulation %
+copy %
+simulation %
+copy %

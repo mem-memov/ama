@@ -17,7 +17,7 @@ static const StaticTerm *box(const StaticTerm *child, unsigned mask) {
 }
 
 /** Source variables and a concrete ordinary anchor have independently accepted metadata. */
-static void setup(void) { setup_constraints("@<\nfirst\n...a\nsecond\n...b\nthird\n...c\n@!\n"); }
+static void setup(void) { setup_constraints("@<\nfirst\n.a\nsecond\n.b\nthird\n.c\n@!\n"); }
 
 /** False means equality is not currently established: future independent facts
  * may make it true. A query never equates unknowns or closes their requirements.
@@ -52,7 +52,7 @@ static void it_matches_all_three_variable_partitions_and_tagged_nominal_family_p
     const unsigned classes[5][3] = {{0,1,2},{0,0,2},{0,1,0},{0,1,1},{0,0,0}};
     for (size_t partition = 0; partition < 5; partition++) {
         setup();
-        const StaticTerm *variables[] = {left_variable, right_variable, constraint_symbol("...c")};
+        const StaticTerm *variables[] = {left_variable, right_variable, constraint_symbol(".c")};
         const StaticTerm *terms[16] = {variables[0], variables[1], variables[2], plain_type};
         unsigned tags[16] = {0,0,0,1}, slots[16] = {0,1,2,0};
         for (size_t index = 0; index < 3; index++) {

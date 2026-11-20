@@ -1,0 +1,19 @@
+# Yield before each step; continuation copies retain an independent list and boundary.
+@!
+items[]
+//text
+ |first
+ |second
+report
+/test/fixture/v1.0.0/src/report
+items[item&]
+{
+ %
+ value
+  % item&
+ report !
+  < value
+ items[]
+  remove !
+   < |0
+}

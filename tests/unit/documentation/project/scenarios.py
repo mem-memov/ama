@@ -260,19 +260,29 @@ def coverage_scenario():
     generated_example = generic_example.parent / 'generated/temporary'
     generated_example.parent.mkdir(parents=True)
     generated_example.write_text('@!\n')
+    package_metadata = root / 'examples/async/packages/test/fixture/v1.0.0/package.ini'
+    package_metadata.parent.mkdir(parents=True)
+    package_metadata.write_text('; Declared package metadata\n')
+    module_aliases = root / 'module.ini'
+    module_aliases.write_text('; Declared module configuration\n')
+    generated_configuration = generated_example.parent / 'temporary.ini'
+    generated_configuration.write_text('; Generated configuration is not maintained\n')
     def inventory_listing(command, cwd):
         require(command[0] == 'git' and cwd == root, 'unexpected inventory source')
-        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0component.exports\0examples/async/main\0examples/async/README.md\0examples/async-host/project/main\0examples/independent-family/algorithm\0examples/independent-family/generated/temporary\0'
+        return b'sample.h\0case.c\0tests/fixture/expected-error.txt\0stdlib/README.md\0component.exports\0examples/async/main\0examples/async/README.md\0examples/async-host/project/main\0examples/independent-family/algorithm\0examples/independent-family/generated/temporary\0examples/async/packages/test/fixture/v1.0.0/package.ini\0module.ini\0examples/independent-family/generated/temporary.ini\0'
     try:
         (home / 'debt.json').write_text('{}')
         subprocess.check_output = inventory_listing
         maintained = original_inventory(root)
         require({'tests/fixture/expected-error.txt', 'stdlib/README.md', 'component.exports',
                  'examples/async/main', 'examples/async-host/project/main',
-                 'examples/independent-family/algorithm'} <= maintained,
+                 'examples/independent-family/algorithm',
+                 'examples/async/packages/test/fixture/v1.0.0/package.ini', 'module.ini'} <= maintained,
                 'closed non-C inputs vanished with historical debt')
         require('examples/independent-family/generated/temporary' not in maintained,
                 'generated example became a maintained input')
+        require('examples/independent-family/generated/temporary.ini' not in maintained,
+                'generated configuration became a maintained input')
         require('examples/async/README.md' not in maintained, 'example prose became executable inventory')
     finally:
         subprocess.check_output = original_listing

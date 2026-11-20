@@ -13,14 +13,14 @@
  * generated evidence.
  */
 static void it_refreshes_owned_outputs_and_preserves_handwritten_companions(void) {
-    file("generated/project/main.c", "/* handwritten, deliberately retained */\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main.c", "/* handwritten, deliberately retained */\n");
     begin_scaffold();
     bool built = build_scaffold(false);
     assert(built);
     bool published = native_scaffold_publish(&scaffold);
     assert(published);
     const SourceText *text = NULL;
-    SourceStatus loaded = source_manager_load(&sources, "generated/project/main.c", &text);
+    SourceStatus loaded = source_manager_load(&sources, "generated/project/packages/test/fixture/v1.0.0/src/main.c", &text);
     assert(loaded == SOURCE_OK);
     assert(source_length(text) == strlen("/* handwritten, deliberately retained */\n"));
     end_scaffold();
@@ -106,7 +106,7 @@ static void it_rejects_a_retained_lock_without_guessing_its_age(void) {
 static void it_refuses_to_refresh_a_different_entry_into_the_same_scope(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-    bool checked = compiler_frontend_check(&frontend, &root, 1, ".value");
+    bool checked = compiler_frontend_check(&frontend, &root, 1, "/test/fixture/v1.0.0/src/value");
     assert(checked);
     native_scaffold_init(&scaffold, &frontend, sources.allocator);
     bool built = build_scaffold(false);
@@ -144,7 +144,7 @@ static void it_never_claims_an_unknown_existing_file_as_generated(void) {
 static void it_rejects_symlinks_and_malformed_manifests_even_with_overwrite(void) {
     int removed = unlink("generated/native/ama-native-types.h");
     assert(removed == 0);
-    int linked = symlink("../project/main.c", "generated/native/ama-native-types.h");
+    int linked = symlink("../project/packages/test/fixture/v1.0.0/src/main.c", "generated/native/ama-native-types.h");
     assert(linked == 0);
     begin_scaffold();
     bool built = build_scaffold(true);

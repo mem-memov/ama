@@ -26,7 +26,7 @@ static const ModuleExplanation explanations[] = {
     {DIAGNOSTIC_IO_FAILURE, "Source input could not be read", "A filesystem operation failed",
         NULL, "Check the input path, accessibility and filesystem state"},
     {DIAGNOSTIC_INVALID_PATH, "Invalid module path", "The path does not satisfy the source-path contract",
-        "a single-dot Project or double-dot Standard path with complete Unicode names", NULL},
+        "a canonical /vendor/package/version/src-or-tests/module or //standard/module path", NULL},
     {DIAGNOSTIC_UNSUPPORTED_PATH, "Unsupported filesystem path",
         "The path cannot be used with exact, regular-file source lookup", NULL,
         "Use exact UTF-8 entry spelling and regular files/directories without symlinks"},

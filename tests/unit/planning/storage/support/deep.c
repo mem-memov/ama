@@ -9,8 +9,8 @@ static void it_bounds_deep_chain_and_traversal_storage_by_lexical_sites(void) {
     assert(text != NULL);
     for (size_t shape = 0; shape < 2; shape++) {
         prepare_types();
-        if (shape == 0) { file("generated/program/node", "@>\nnext&\n.node\n@!\n"); }
-        int written = snprintf(text, capacity, "%s", shape == 0 ? "@!\nroot\n.node\nroot !\n" : "@!\nitems[]\n.value\n");
+        if (shape == 0) { file("generated/program/packages/test/fixture/v1.0.0/src/node", "@>\nnext&\n/test/fixture/v1.0.0/src/node\n@!\n"); }
+        int written = snprintf(text, capacity, "%s", shape == 0 ? "@!\nroot\n/test/fixture/v1.0.0/src/node\nroot !\n" : "@!\nitems[]\n/test/fixture/v1.0.0/src/value\n");
         assert(written > 0);
         size_t used = (size_t)written;
         for (size_t level = 0; level < depth; level++) {
@@ -54,11 +54,11 @@ static void it_keeps_intrinsic_results_in_caller_frames_without_method_instances
     file("generated/standard/integer.h", "#error Storage must not compile native companions\n");
     file("generated/standard/integer.c", "#error Storage must not execute native companions\n");
     file("generated/standard/integer.abi", "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
-    file("generated/program/main", "@!\nitems[]\n.value\nitems[]\n append !\n  > created&\n  element& !\n length !\n  > size\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nitems[]\n append !\n  > created&\n  element& !\n length !\n  > size\n");
     setup_project();
     ModuleRoot roots[] = {{"generated/program", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    ProjectStatus loaded = project_load(&project, roots, 2, ".main");
+    ProjectStatus loaded = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
     SemanticStatus status = semantic_fixture_check(&semantic);

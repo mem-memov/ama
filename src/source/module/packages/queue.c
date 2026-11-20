@@ -13,8 +13,8 @@
  * device/inode uniqueness invariant across all configured ordinary roots.
  */
 ModuleStatus package_queue(PackageScan *scan, const char *physical,
-    const char *relative, const char *logical, size_t depth) {
-    ModuleStatus status = module_remember_directory(scan->catalog, physical);
+    const char *relative, const char *logical, size_t depth, const struct stat *metadata) {
+    ModuleStatus status = module_remember_directory_metadata(scan->catalog, physical, metadata);
     if (status != MODULE_OK) {
         return status;
     }

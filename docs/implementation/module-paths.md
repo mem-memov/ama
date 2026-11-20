@@ -1,168 +1,112 @@
 # Module source catalog
 
-Boundary: `src/source/module/catalog.h`, with `scan/`, `resolve/`, exact-entry
-probing and immutable sources. Implements SRC-01/02/03/05. This is source discovery
-and lookup, not dependency closure, draft parsing or type resolution.
+The boundary is [catalog.h](../../src/source/module/catalog.h), with package
+selection, module scanning, exact-entry probing and immutable source ownership.
+It implements canonical source identity under
+[SRC-01..05](../../spec/language/source-and-names.md#src-01) and whole-version
+selection under [PKG-01/02](../../spec/project/packages.md#pkg-01). Dependency
+closure, parsed activation, type resolution and configuration interpretation
+remain separate operations. [T231's integration record](versioned-source.md)
+identifies tested handoffs and unfinished acceptance; specification approval is
+not implementation evidence.
 
-A build takes a finite ordered list of explicitly tagged roots with exact
-root-relative output exclusions. `MODULE_ROOT_PROJECT` is the ordinary project/
-import family selected by `.`; `MODULE_ROOT_STANDARD` is selected by `..`.
-Zero/unknown kind is invalid. The root's physical name does not determine its
-kind and is absent from the logical component sequence. Sources are regular
-extensionless files whose complete names satisfy the pinned multiword Unicode
-predicate. Directories are complete-name groups or `name+` submodule containers. Other well-formed UTF-8 entry names are not source
-candidates; in particular `.git`, extensions, C/header/ABI companions are not
-modules. Invalid UTF-8 filenames are unsupported paths. Exact excluded files or
-subtrees are skipped before candidate recognition. No legal identifier such as
-`build` or `generated` is automatically reserved. Future driver configuration
-must supply its actual output exclusions.
+## Roots, versions and module areas
 
-A structural directory requires an exact regular sibling file without its final
-ASCII plus. Strip only that plus in logical identity. The parent file's text does
-not decide the child's identity and is not implicitly imported or executed.
-Native companions append `.c`, `.h`, `.abi` to the physical filename. Catalog
-construction loads module sources without selecting those companions. After
-required parsing establishes `@C`, `module_catalog_load_native` probes that
-catalog-owned record's companions. Present companions must be supported regular
-files; ABI bytes receive strict UTF-8 validation. Complete companion views publish
-atomically and repeated successful requests reuse them without allocation. Missing
-companions remain null for explicit authoring; strict native checks enforce them
-later. Ordinary/unused modules and drafts do not acquire stale native inputs.
-See the [closure contract](project-dependencies.md#native-activation-and-invalidation).
+A build borrows a finite list of explicitly tagged roots and exact root-relative
+physical exclusions. `MODULE_ROOT_PROJECT` identifies a project root containing
+optional `packages/` and `dependencies/` trees. `MODULE_ROOT_STANDARD` identifies
+a standard-library module tree directly. The caller supplies the kind; the
+root's physical basename never determines it.
 
-The POSIX implementation checks each configured-root prefix and candidate through
-exact directory-entry spelling, rejects symlinks, and retains physical source paths.
-The catalog checks `(device, inode)` for source and directory aliases, including
-repeated roots and directory cycles/bind aliases, without claiming inode numbers
-are portable logical identities. Conflicting complete logical identities are rejected across roots of the same
-kind. Equal component sequences in different kinds are distinct. A physical
-module exposed under both kinds still fails the device/inode alias check. Lookup is enabled only after the entire build succeeds; no root can
-win by search order. Different case/canonical Unicode spellings remain distinct
-when the filesystem can represent them. Native encoding here is POSIX UTF-8;
-other platform adapters are not certified. Inputs must remain stable through catalog construction and explicit companion selection.
+The selector completes every local-package pass before considering dependencies.
+Its key is the full vendor/package/version identity, including any variant.
+A local copy wins for that complete version; an ignored external copy supplies
+no modules, metadata or fallback files. Two copies at the same priority fail.
+Different versions remain distinct. Selection neither parses configurations nor
+chooses a highest version. Version fields are canonical decimal strings without
+host-integer conversion or a numeric width cap.
 
-Traversal uses an explicit FIFO, not recursive C calls. Each directory enumerates
-then sorts names by bytewise strcmp, eliminating readdir order dependence.
-Induction over processed directories shows each queued entry has the accumulated
-logical prefix and exact physical path. Ancestor inode repetition fails before
-queuing, so finite acyclic input terminates. Checking all existing source records
-before insertion establishes both unique logical identity and source-inode
-injectivity. Failed builds retain owned issue paths, related paths and any invalid
-source/offset until destruction, but expose no usable partial catalog.
+Only the selected ordinary version's required `src/` and `tests/` areas are
+indexed. Its `package.ini` must be a regular file; both areas must be directories.
+Their logical prefixes retain vendor, package, version and area, for example
+`/acme/shop/v2.4.14/src/item`. Configuration contents and source path
+normalization are separate consumers. Standard modules use identities such as
+`//integer`, without an ordinary package wrapper.
 
-The arena owns strings, entries and work records; the source manager owns immutable
-text. Destroying both also cleans every partial build. No allocation is needed to
-store a failure code. Allocation/size refusal maps to MODULE_OUT_OF_MEMORY;
-I/O, missing, ambiguous, orphan, alias and unsupported-path causes remain distinct.
-The first observed error under configured root order and sorted FIFO traversal is
-reported. Error selection does not imply accepting ambiguity in another order.
+Within an area, complete-name directories group modules. A `name+` directory
+requires an exact regular sibling module named `name`; only the structural plus
+is omitted from logical identity. Parent source bytes do not determine a child's
+identity, and discovery does not import or execute the parent. For example,
+`src/item+/validate` maps to the selected version's `/src/item/validate` suffix.
+Physical source, companion and diagnostic paths retain the plus.
 
-For e entries, d directories, m sources and b loaded source/ABI bytes, enumeration
-sorting costs O(sum e_dir log e_dir). Exact POSIX probes additionally scan parent
-entries, up to O(sum e_dir squared), and uniqueness checks cost O(m squared + d
-squared). Copied paths and enumeration records use their total byte size; source
-storage is O(b). This deliberately exact initial catalog has no heuristic fallback
-or hidden recursive depth limit; faster indexes can preserve these same laws.
+Regular extensionless files with valid complete names are candidates. Companion
+extensions, hidden names and other noncandidate entries do not become modules;
+malformed UTF-8 names are rejected. Exclusions select exact physical subtrees,
+never textual prefixes: `output` does not exclude `output next`. They do not
+change a version choice or permit an external copy to fill a local hole. There
+are no guessed output names or reserved ordinary identifiers such as `build`.
 
-Evidence: `make -C tests/unit/source/module` passed C11/pedantic/Werror. It composes
-real filesystem discovery, UTF-8, nested Chinese `name+/` paths, C/header/ABI
-companions, parent drafts and explicit output exclusions. Negative cases cover
-both root orders for duplicate names, hardlinks, repeated directory roots,
-symlinks, missing anchors and exact malformed source/ABI offsets. Every allocation
-in a successful composed catalog build is separately failed and all ownership is
-released. Case and normalization-distinct physical files retain distinct lookups.
+## Views, ownership and failure
 
+`module_path_valid` validates complete canonical absolute endpoints through the
+bounded path component. It does not expand aliases or normalize relative forms.
+Raw source spelling is recognized separately; see
+[lexical tokens](lexical-tokens.md). Lookup compares the entire canonical name,
+without a shorter-prefix search or a standard/project fallback.
 
-T145 documents each catalog scan/resolution/source-publication phase and internal
-view lifetime. T016 completes the catalog’s root-kind/multiword path contract;
-T017 supplies its generated-identity encoding; T022 supplies exact tokens; T023 connects declaration/type paths and T024 completes access sources.
-Native companion
-lookup and invalid UTF-8 diagnostics retain their original loaded bytes even on
-failure, until catalog destruction.
+Physical discovery verifies exact root components and entry spellings, rejects
+symlinks, and registers source/directory device-inode identities. Duplicate
+selected logical names and physical aliases fail before catalog publication.
+Equal basenames in different namespaces remain distinct. POSIX inode values are
+observations for alias checking, not portable logical identities. Source storage
+must remain stable during a build; this is not an atomic filesystem snapshot.
 
-## T016: absolute roots and complete names
+The same package-selection driver also accepts an explicit synchronous reader
+for a projected relocation view. The reader provides root metadata, exact child
+metadata and complete sorted entries. It borrows its context through selection;
+returned names and failures must outlive their consumer. The physical and
+projected readers share selection and checked directory-identity insertion,
+preventing different precedence or alias algorithms. The relocation preview
+retains its projected catalog independently until destruction.
 
-`module_path_valid` accepts exactly `.` or `..` followed by nonempty complete-name
-components separated by dots. It uses `unicode_name` on every already-delimited
-component. Root-only paths, a third leading dot, empty components, plus markers,
-slashes and edge/repeated/separator spaces fail. It neither trims input nor turns
-`..` into a filesystem parent. A valid lookup is exact string equality of this
-complete spelling; `.item`, `.item state` and `..item state` may coexist and no
-shorter prefix is searched when the complete path is absent.
+The catalog arena owns paths, selections, entries and pending work; its source
+manager owns immutable bytes. Root descriptors are borrowed only during build.
+Every failed prefix remains destructible, and retained error paths outlive the
+caller strings that initiated the build. Lookup is enabled only after complete
+success. A failure code needs no additional allocation. Missing, unsupported,
+ambiguous, orphan, alias, I/O and allocation failures remain distinguishable.
 
-Scanning begins with an empty logical prefix for Project or one dot for Standard.
-Each validated component appends dot plus its original bytes, producing exactly
-the required root marker. Ordinary namespace directories keep every component.
-A plus directory removes exactly its last structural plus after validating the
-remaining complete name and verifying its exact regular sibling. This does not
-make the parent an imported module, inherited state or executable default object.
-The physical source, companions and diagnostics retain every directory's plus.
+Native companions append `.c`, `.h` and `.abi` to the physical module path.
+Discovery does not select them. After required parsing establishes `@C`, native
+selection validates present companions and publishes a complete immutable view.
+Repeated successful selection reuses that view without allocation. Missing
+companions remain available to explicit authoring; strict native admission checks
+required capabilities later. Drafts, ordinary modules and unused sources do not
+acquire stale native inputs. See the [closure contract](project-dependencies.md#native-activation-and-invalidation).
 
-For example, when `generated/库 2` is configured Standard, a module
-`generated/库 2/item state` is `..item state`: the root directory's name is not a
-logical component and need not itself be a legal language name. Under an ordinary
-root, `商店 工具/商品 状态+/读取 数据+/详情 项目` is
-`.商店 工具.商品 状态.读取 数据.详情 项目`, with the required sibling module files at
-each plus boundary. The same tree under a Standard root keeps `..` instead.
+## Correctness and checks
 
-Root inventories are borrowed only for build; published records and discovered
-paths belong to catalog owners. Source/native-companion byte lifetime and failure
-publication rules are unchanged. A NULL nonempty inventory and an unknown kind
-fail explicitly, rather than guessing Project. Existing CLI source/`--root`
-entries are explicitly tagged Project/import; `--standard-root` selects the
-standard family through [driver options](driver-options.md).
-[Declaration AST spans](declaration-parsing.md), [access sources](source-parsing.md)
-and [generated root identities](identities.md) have independent consumer tests.
-Passing catalog cases alone does not establish their full codegen behavior.
+Finite FIFO work replaces recursive traversal. Each queued namespace retains its
+exact physical, relative and logical prefixes. Version boundaries stop namespace
+traversal; selected source areas then append slash-separated complete names.
+Directory identity is registered before enqueueing, so aliases cannot create a
+revisit cycle. Full source-name and inode checks preserve injectivity before
+publication. Two complete priority passes establish precedence independently of
+root order; sorted entry lists eliminate filesystem enumeration order as a choice.
 
-The mapping is injective after checks: root marker determines kind; each dot
-separates a component because dots are not XID name characters; each complete
-component preserves its original bytes including single internal spaces. Equal
-complete identities are rejected before source publication. Equal physical inode
-identity under different logical spellings is also rejected, so no root order can
-silently select a conflicting source. Missing lookup searches no other root family.
-Physical discovery still uses sorted FIFO traversal and exact entry probes; no
-runtime name heuristic or recursive filesystem walk is added.
+The [versioned-source record](versioned-source.md) states the selection complexity
+and its independent finite grammar/model checks. Module enumeration costs
+O(sum e_dir log e_dir) for sorting, plus exact parent-entry probing and linear
+registry comparisons; worst-case uniqueness work is quadratic in registered
+source/directory counts. Owned path and source storage is proportional to retained
+bytes. No guessed depth limit or heuristic repair is used.
 
-The new source/module cases check both root orders for equal names in distinct
-families, coexistence with shorter names, missing cross-family results, invalid
-path spellings and unknown root tags. They compose nested Chinese multiword
-plus paths, draft anchors and C/header/ABI companions in each family. Same-family
-standard duplicates and cross-family hardlinks retain both conflicting physical
-paths. Missing multiword anchors report their exact required filename. Every
-allocation in a successful extended Standard catalog is separately failed;
-lookup stays disabled and teardown releases all partial owners. Existing source,
-parser, project, compiler and driver fixtures now initialize their root kind
-explicitly; they preserve their previously tested ordinary-root domain.
-
-T016 acceptance passes the full strict `-DNDEBUG -Werror` test tree, focused
-catalog/options ASan/UBSan leaves (leak detection disabled), complete coverage
-of 769 maintained inputs and all Markdown links. Warning-free Doxygen checks
-597 maintained files, 2449 interfaces and all 288 canonical/page destinations;
-two complete generations produce byte-identical output.
-
-## T018 deterministic inventory and owned outputs
-
-The inventory walks sorted original directory-entry bytes with a FIFO directory
-queue and prepends completed sources. Consequently equal trees created in opposite
-orders yield the same source sequence for the same root configuration. This
-order does not select a conflicting source: duplicate logical names and physical
-aliases still fail before successful catalog publication. Root order may change
-inventory order or which conflict is reported first, while successful exact
-lookups and closure discovery retain their meaning.
-
-Exclusions match an explicit root-relative physical path exactly or through the
-next slash. Thus excluding `output` excludes `output/nested`, while retaining
-`output next` and `other/output`. The check precedes metadata/source inspection;
-generated bytes inside an owned output subtree cannot become Ama modules or
-trigger irrelevant UTF-8 errors. No conventional name is silently excluded.
-Drivers supply their owned output paths; their complete configuration is T068.
-
-[Inventory scenarios](../../tests/unit/source/module/support/enumeration.c) create
-the same finite tree in opposite file orders and compare every published name.
-They place malformed bytes in excluded outputs and verify adjacent legal names,
-unrelated nested directories and unchanged lookup outputs on absence. Run
-`make -C tests/unit/source/module`. Existing alias/duplicate cases and every
-catalog allocation failure remain part of the same leaf. These checks compose
-with the [T018 full-identity registry](project-dependencies.md), rather than adding
-a second activation scanner.
+Named acceptance commands are `make -C tests/unit/source/path`,
+`make -C tests/unit/source/module/packages`, and
+`make -C tests/unit/source/module`, followed by the real project, identity,
+native and relocation consumers recorded for T231. They cover Unicode/plus
+storage, required selected inputs, exclusions, both priority/root orders,
+physical aliases, reader callback failures and measured allocation/I/O refusal.
+Their exact run configurations and limits belong to the task record; a catalog
+pass alone does not establish complete language or code-generation conformance.

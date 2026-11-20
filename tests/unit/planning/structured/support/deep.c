@@ -9,8 +9,8 @@ static void it_lowers_deep_operation_paths_and_traversal_scopes_without_recursiv
     assert(text != NULL);
     for (size_t shape = 0; shape < 2; shape++) {
         prepare_structured_types();
-        file("generated/program/node", "@>\nnext&\n.node\n@!\n%\n");
-        int written = snprintf(text, capacity, "%s", shape == 0 ? "@!\nroot\n.node\nroot !\n" : "@!\nitems[]\n.value\n");
+        file("generated/program/packages/test/fixture/v1.0.0/src/node", "@>\nnext&\n/test/fixture/v1.0.0/src/node\n@!\n%\n");
+        int written = snprintf(text, capacity, "%s", shape == 0 ? "@!\nroot\n/test/fixture/v1.0.0/src/node\nroot !\n" : "@!\nitems[]\n/test/fixture/v1.0.0/src/value\n");
         assert(written > 0);
         size_t used = (size_t)written;
         for (size_t level = 0; level < depth; level++) {

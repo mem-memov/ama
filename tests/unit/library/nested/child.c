@@ -4,9 +4,9 @@
 /** The explicit child constants/defaults initialize before a factory returns, without running bodies. */
 static void build_child(LibraryBuild *build, NativeScaffold *assembly) {
     nested_model(build,"nested.child","child/project",
-        "schema | text | text | ..text\nschema | condition | condition | ..std.condition\n"
-        "export | run | .main | entry,resume,read\ninput | run | request | text\n"
-        "output | run | response | text\noutput | run | previous | condition\nexport | broken | .broken | entry\n"
+        "schema | text | text | //text\nschema | condition | condition | //std/condition\n"
+        "export | run | /test/fixture/v1.0.0/src/main | entry,resume,read\ninput | run | request | text\n"
+        "output | run | response | text\noutput | run | previous | condition\nexport | broken | /test/fixture/v1.0.0/src/broken | entry\n"
 #ifdef TEST_SANITIZERS
         "c-flag | -fsanitize=address,undefined\nc-flag | -fno-omit-frame-pointer\nlink-flag | -fsanitize=address,undefined\n"
 #endif
@@ -15,7 +15,7 @@ static void build_child(LibraryBuild *build, NativeScaffold *assembly) {
     native_scaffold_init(assembly,&build->frontend,sources.allocator);
     bool built=project_codegen_build(assembly,(ScaffoldOptions){.directory="generated/child-output",.sdk=TEST_SDK});
     if(!built) { fprintf(stderr,"%s\n",assembly->error.message); } assert(built);
-    const ScaffoldType *broken=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,".broken")); assert(broken!=NULL);
+    const ScaffoldType *broken=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,"/test/fixture/v1.0.0/src/broken")); assert(broken!=NULL);
     authoring_aliases(broken,"AMA_BROKEN","generated/child-output/broken-api.h");
     bool published=native_scaffold_publish(assembly); assert(published);
     nested_header(build,"generated/child-output/public.h");

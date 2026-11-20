@@ -1,0 +1,7 @@
+# Capture only native rights while the checked operation reference is borrowed.
+@<
+operation&
+//task/operation
+immediate
+//std/condition
+@C

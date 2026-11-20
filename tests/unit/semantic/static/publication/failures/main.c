@@ -12,12 +12,12 @@ static void it_unwinds_every_producer_closure_and_alias_publication_allocation_r
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
             if (mode == 3) {
-                setup_publications("@...\n.other\n ...selected > ...out\n",
-                    "@...\n...selected\n..integer\n.main\n ...out > ...unselected\n");
+                setup_publications("@...\n/test/fixture/v1.0.0/src/other\n .selected > .out\n",
+                    "@...\n.selected\n//integer\n/test/fixture/v1.0.0/src/main\n .out > .unselected\n");
             } else {
                 setup_publications(mode == 1 ?
-                    "@...\n...expected\n..integer\n.other\n ...out > ...expected\n" :
-                    "@...\n.other\n ...slot < ..integer\n ...out > ...alias\n", result_target_source);
+                    "@...\n.expected\n//integer\n/test/fixture/v1.0.0/src/other\n .out > .expected\n" :
+                    "@...\n/test/fixture/v1.0.0/src/other\n .slot < //integer\n .out > .alias\n", result_target_source);
             }
             const StaticResultContext *context = publication_context(caller_environment);
             const StaticPublication *publication = NULL;
@@ -38,7 +38,7 @@ static void it_unwinds_every_producer_closure_and_alias_publication_allocation_r
  */
 static void it_refuses_invalid_handles_counter_wrap_and_preserves_first_failures(void) {
     for (size_t mode = 0; mode < 4; mode++) {
-        setup_publications("@...\n.other\n ...slot < ..integer\n ...out > ...alias\n", result_target_source);
+        setup_publications("@...\n/test/fixture/v1.0.0/src/other\n .slot < //integer\n .out > .alias\n", result_target_source);
         const StaticResultContext *context = publication_context(caller_environment);
         StaticResultContext copied = *context;
         const StaticPublication *publication = NULL;
@@ -63,7 +63,7 @@ static void it_rechecks_equations_before_reusing_a_prior_publication(void) {
     const StaticTermEnvironment *environment = result_applied_environment();
     const StaticResultContext *context = publication_context(environment);
     const StaticResultDefinition *definition;
-    assert(static_result_definition(&results, environment, result_named(caller_module, "...first"), &definition));
+    assert(static_result_definition(&results, environment, result_named(caller_module, ".first"), &definition));
     const StaticPublication *publication;
     assert(static_publication_resolve(&publications, context, definition->source->expression, &publication));
     assert(publication->value == integer_type);

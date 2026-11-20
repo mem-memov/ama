@@ -29,11 +29,11 @@ static StaticResultUse *prepared_pair(const char *name) {
 
 /** Nested named operands retain their caller scope and prepare only one level. */
 static void it_preserves_named_nested_operands_without_evaluation(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/family", "@<\nvalue\n...slot\n@!\n");
-    setup_guards("@...\n...built\n.family\n ...slot < .family\n  ...slot < ..integer\n.other\n ...out > ...alias\n", result_target_source);
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/family", "@<\nvalue\n.slot\n@!\n");
+    setup_guards("@...\n.built\n/test/fixture/v1.0.0/src/family\n .slot < /test/fixture/v1.0.0/src/family\n  .slot < //integer\n/test/fixture/v1.0.0/src/other\n .out > .alias\n", result_target_source);
     initialize_results();
-    StaticResultUse *use = prepared_pair("...built");
+    StaticResultUse *use = prepared_pair(".built");
     assert(static_result_prepare(&results, use));
     const StaticTermApplication *prepared = use->prepared;
     assert(prepared && prepared->input_count == 1 && prepared->first == prepared->last);
@@ -72,11 +72,11 @@ static void it_prepares_named_producers_and_rejects_copied_work_handles(void) {
 static void it_unwinds_every_shallow_operand_preparation_allocation_refusal(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        directory(STATIC_SCOPE_ROOT_DIRECTORY);
-        file("generated/static scope/family", "@<\nvalue\n...slot\n@!\n");
-        setup_guards("@...\n...built\n.family\n ...slot < ..integer\n.other\n ...out > ...alias\n", result_target_source);
+        fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/family", "@<\nvalue\n.slot\n@!\n");
+        setup_guards("@...\n.built\n/test/fixture/v1.0.0/src/family\n .slot < //integer\n/test/fixture/v1.0.0/src/other\n .out > .alias\n", result_target_source);
         initialize_results();
-        StaticResultUse *use = prepared_pair("...built");
+        StaticResultUse *use = prepared_pair(".built");
         size_t before = allocation_count;
         if (failure) { failure_at = before + failure; }
         bool success = static_result_prepare(&results, use);
@@ -89,11 +89,11 @@ static void it_unwinds_every_shallow_operand_preparation_allocation_refusal(void
 
 /** Origin evidence can arrive after shallow preparation without guessing a constructor. */
 static void it_refines_actual_origins_without_repeating_unchanged_source_work(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/family", "@<\nvalue\n...slot\n@!\n");
-    setup_guards("@...\n...built\n...family\n ...slot < ..integer\n...anchor\n.family\n.other\n ...out > ...alias\n", result_target_source);
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/family", "@<\nvalue\n.slot\n@!\n");
+    setup_guards("@...\n.built\n.family\n .slot < //integer\n.anchor\n/test/fixture/v1.0.0/src/family\n/test/fixture/v1.0.0/src/other\n .out > .alias\n", result_target_source);
     initialize_results();
-    StaticResultUse *use = prepared_pair("...built");
+    StaticResultUse *use = prepared_pair(".built");
     StaticApplicationOutcome outcome;
     assert(static_result_apply(&results, use, &outcome));
     assert(outcome == STATIC_APPLY_PENDING && use->application->pending_origin && use->producer == NULL);
@@ -101,7 +101,7 @@ static void it_refines_actual_origins_without_repeating_unchanged_source_work(vo
     size_t records = applications.count;
     assert(static_result_apply(&results, use, &outcome));
     assert(use->application == pending && applications.count == records && guards.path_count == 1);
-    const StaticModule *family = static_module_find(&inventory, project_find(&project, ".family"));
+    const StaticModule *family = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/family"));
     const StaticTerm *constructor;
     assert(static_term_nominal(&terms, family, NULL, 0, (SourceSpan){0}, &constructor));
     assert(static_constraint_equate(&solver, use->source->head, constructor, use->source->expression->span));

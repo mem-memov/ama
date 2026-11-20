@@ -24,11 +24,11 @@ make -C tests/integration/objects
 
 | File | Responsibility |
 |---|---|
-| [constants](project/constants) | Construct an immutable native seed before executable instances. |
-| [main](project/main) | Own a seed and two independent constructed objects. |
-| [factory](project/factory) | Own its seed copy and return two independently configured methods. |
-| [method](project/method) | Capture an owned counter once, then perform one increment per resume. |
-| [counter](project/counter), [State](project/counter.h), [implementation](project/counter.c), [ABI](project/counter.abi) | Own, clone, execute and destroy a 64-bit counter with its private resource. |
+| [constants](project/packages/test/fixture/v1.0.0/src/constants) | Construct an immutable native seed before executable instances. |
+| [main](project/packages/test/fixture/v1.0.0/src/main) | Own a seed and two independent constructed objects. |
+| [factory](project/packages/test/fixture/v1.0.0/src/factory) | Own its seed copy and return two independently configured methods. |
+| [method](project/packages/test/fixture/v1.0.0/src/method) | Capture an owned counter once, then perform one increment per resume. |
+| [counter](project/packages/test/fixture/v1.0.0/src/counter), [State](project/packages/test/fixture/v1.0.0/src/counter.h), [implementation](project/packages/test/fixture/v1.0.0/src/counter.c), [ABI](project/packages/test/fixture/v1.0.0/src/counter.abi) | Own, clone, execute and destroy a 64-bit counter with its private resource. |
 
 The constructor installs each method's state using an ordinary owned parameter
 copy. The first method statement yields before performing an action. The
@@ -89,7 +89,7 @@ runs. Both constructed resources still clean up in reverse field order.
 Its native literal constructor fails before allocating, with no body execution,
 default fallback or destructor for an uninitialized payload.
 
-[traversal](project/traversal) executes each owned counter through its local
+[traversal](project/packages/test/fixture/v1.0.0/src/traversal) executes each owned counter through its local
 foreach reference. The exact trace demonstrates that iteration uses the original
 resource-owning element and that teardown destroys both element and shared seed.
 

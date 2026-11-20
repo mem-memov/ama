@@ -1,16 +1,16 @@
 # Ordered streams enqueue immediately after each accepted observed completion.
 @<
 queue&
-.kind.queue
+/test/fixture/v1.0.0/src/kind/queue
 registry&
-.kind.registry
+/test/fixture/v1.0.0/src/kind/registry
 packet
-..task.packet
+//task/packet
 @!
 observe
-.kind.observe
+/test/fixture/v1.0.0/src/kind/observe
 enqueue
-.kind.enqueue
+/test/fixture/v1.0.0/src/kind/enqueue
 observe !
  < registry&
  < packet

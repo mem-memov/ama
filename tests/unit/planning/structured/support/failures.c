@@ -1,7 +1,7 @@
 /** @file
  * @brief Reject damaged lexical/chain identities and release every partial structured-lowering allocation.
  */
-static const char structured_all[] = "@!\nitems[]\n.value\nproducer\n.producer\nsource\n.value\n"
+static const char structured_all[] = "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nproducer\n/test/fixture/v1.0.0/src/producer\nsource\n/test/fixture/v1.0.0/src/value\n"
     "producer\n left !\n  > first\n  next& %\n   > second\n  :\n   %\n"
     "items[item&]\n{\n items[]\n  length !\n   > count\n source\n :\n  ^\n %\n}\n"
     "items[]\n length !\n  value\n  {\n  }\n";

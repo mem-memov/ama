@@ -1,33 +1,33 @@
 # A receiver awaits data without holding the executor; close/abort remains ordinary result data.
 @<
 receiver&
-.receiver
+/test/fixture/v1.0.0/src/receiver
 source&
-..task.events
+//task/events
 @>
 phase
-..task.phase
+//task/phase
 waiting
-..task.flag
+//task/flag
 token
-..task.token
+//task/token
 failure
-..failure
+//failure
 @!
 operation
-..task.operation
+//task/operation
 await
-.awaitreceiver
+/test/fixture/v1.0.0/src/awaitreceiver
 detach
-..task.operation.detach
+//task/operation/detach
 awaiting
-..task.phase.awaiting
+//task/phase/awaiting
 completed
-..task.phase.completed
+//task/phase/completed
 decode
-.decode
+/test/fixture/v1.0.0/src/decode
 inspect
-.inspect
+/test/fixture/v1.0.0/src/inspect
 receiver& !
  > wire
  > failure

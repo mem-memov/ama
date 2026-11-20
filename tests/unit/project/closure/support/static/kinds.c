@@ -6,10 +6,10 @@
  * legality to later semantic consumers so this test observes only source roles.
  */
 static void prepare_kind_case(const char *use, const char *target) {
-    directory("generated/static kinds");
-    file("generated/static kinds/main", use);
-    file("generated/static kinds/target", target);
-    file("generated/static kinds/value", "@!\n");
+    fixture_package_prepare("generated/static kinds", "fixture");
+    file("generated/static kinds/packages/test/fixture/v1.0.0/src/main", use);
+    file("generated/static kinds/packages/test/fixture/v1.0.0/src/target", target);
+    file("generated/static kinds/packages/test/fixture/v1.0.0/src/value", "@!\n");
 }
 
 /** Every syntactic role is independent of target loading order. A graph is
@@ -18,16 +18,16 @@ static void prepare_kind_case(const char *use, const char *target) {
  */
 static void it_checks_every_static_path_role_against_each_complete_source_kind(void) {
     const char *uses[] = {
-        "@...\n...named\n.target\n",
-        "@...\n.target\n ...export > ...received\n",
-        "@!\nvalue\n.target\n ...export\n",
-        "@!\n.target\n item >> value\n",
-        "@!\nvalue\n.target\n",
-        "@!\nvalue\n.value\nvalue\n .target.item\n",
-        "@...\n...named\n.value\n ...input < .target\n",
-        "@!\n.target\n ...export\n item >> value\n"
+        "@...\n.named\n/test/fixture/v1.0.0/src/target\n",
+        "@...\n/test/fixture/v1.0.0/src/target\n .export > .received\n",
+        "@!\nvalue\n/test/fixture/v1.0.0/src/target\n .export\n",
+        "@!\n/test/fixture/v1.0.0/src/target\n item >> value\n",
+        "@!\nvalue\n/test/fixture/v1.0.0/src/target\n",
+        "@!\nvalue\n/test/fixture/v1.0.0/src/value\nvalue\n /test/fixture/v1.0.0/src/target/item\n",
+        "@...\n.named\n/test/fixture/v1.0.0/src/value\n .input < /test/fixture/v1.0.0/src/target\n",
+        "@!\n/test/fixture/v1.0.0/src/target\n .export\n item >> value\n"
     };
-    const char *targets[] = {"@!\n", "@C\n", "@=\nitem\n.value\n |0\n", "@...\n...export\n.value\n"};
+    const char *targets[] = {"@!\n", "@C\n", "@=\nitem\n/test/fixture/v1.0.0/src/value\n |0\n", "@...\n.export\n/test/fixture/v1.0.0/src/value\n"};
     for (size_t use = 0; use < sizeof(uses) / sizeof(*uses); use++) {
         for (size_t kind = 0; kind < sizeof(targets) / sizeof(*targets); kind++) {
             prepare_kind_case(uses[use], targets[kind]);
@@ -43,11 +43,11 @@ static void it_checks_every_static_path_role_against_each_complete_source_kind(v
             if (!accepted) {
                 assert(diagnostic_valid(&project.error));
                 assert(project.error.code == DIAGNOSTIC_TYPE_MISMATCH);
-                assert(layout_text_is(project.error.primary.span, ".target"));
+                assert(layout_text_is(project.error.primary.span, "/test/fixture/v1.0.0/src/target"));
                 assert(project.error.primary.span.source == project.entry->source->text);
                 assert(project.error.related_count == 1);
-                assert(strcmp(project.error.related[0].name, ".main") == 0);
-                assert(project_find(&project, ".target") == NULL);
+                assert(strcmp(project.error.related[0].name, "/test/fixture/v1.0.0/src/main") == 0);
+                assert(project_find(&project, "/test/fixture/v1.0.0/src/target") == NULL);
             }
             destroy_project();
         }
@@ -59,17 +59,17 @@ static void it_checks_every_static_path_role_against_each_complete_source_kind(v
  */
 static void it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure(void) {
     const char *uses[] = {
-        "@...\n.target\n ...export > ...received\n",
-        "@...\n...named\n.target\n"
+        "@...\n/test/fixture/v1.0.0/src/target\n .export > .received\n",
+        "@...\n.named\n/test/fixture/v1.0.0/src/target\n"
     };
     for (size_t scenario = 0; scenario < 2; scenario++) {
-        prepare_kind_case(uses[scenario], "@...\n.main\n ...received > ...export\n");
+        prepare_kind_case(uses[scenario], "@...\n/test/fixture/v1.0.0/src/main\n .received > .export\n");
         setup_project();
         ProjectStatus expected = scenario == 0 ? PROJECT_OK : PROJECT_INVALID_KIND;
         assert(load_root("generated/static kinds") == expected);
         size_t total = allocation_count;
         if (scenario == 0) {
-            const ProjectModule *target = project_find(&project, ".target");
+            const ProjectModule *target = project_find(&project, "/test/fixture/v1.0.0/src/target");
             assert(target->first->target == project.entry);
             assert(project.entry->first->role == PROJECT_STATIC_PRODUCER);
         }
@@ -88,17 +88,17 @@ static void it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_fa
  * late checking preserves the complete first-requester chain at its own site.
  */
 static void it_retains_occurrence_roles_and_nested_requester_locations(void) {
-    prepare_kind_case("@!\nvalue\n.middle\n ...alias\n", "@...\n...export\n.value\n");
-    file("generated/static kinds/middle", "@...\n.target\n ...export > ...alias\n...bad\n.target\n");
+    prepare_kind_case("@!\nvalue\n/test/fixture/v1.0.0/src/middle\n .alias\n", "@...\n.export\n/test/fixture/v1.0.0/src/value\n");
+    file("generated/static kinds/packages/test/fixture/v1.0.0/src/middle", "@...\n/test/fixture/v1.0.0/src/target\n .export > .alias\n.bad\n/test/fixture/v1.0.0/src/target\n");
     setup_project();
     assert(load_root("generated/static kinds") == PROJECT_INVALID_KIND);
     const SourceSpan site = project.error.primary.span;
-    assert(layout_text_is(site, ".target"));
+    assert(layout_text_is(site, "/test/fixture/v1.0.0/src/target"));
     assert(project.error.related_count == 2);
-    assert(strcmp(project.error.related[0].name, ".middle") == 0);
-    assert(strcmp(project.error.related[1].name, ".main") == 0);
+    assert(strcmp(project.error.related[0].name, "/test/fixture/v1.0.0/src/middle") == 0);
+    assert(strcmp(project.error.related[1].name, "/test/fixture/v1.0.0/src/main") == 0);
     assert(project.error.related[0].location.span.start == site.start);
-    assert(layout_text_is(project.error.related[1].location.span, ".middle"));
+    assert(layout_text_is(project.error.related[1].location.span, "/test/fixture/v1.0.0/src/middle"));
     const ProjectModule *middle = project.entry->first->target;
     assert(middle->first->target == middle->last->target);
     assert(middle->first->role == PROJECT_STATIC_PRODUCER);

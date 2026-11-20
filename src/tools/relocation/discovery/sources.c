@@ -38,7 +38,7 @@ static RelocationModule *append_module(RelocationPreview *preview, const SourceT
 /** The catalog enumerates all roots, not an entry-point dependency closure. Component contract: [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01), [SYN-04](../../../../spec/language/source-and-names.md#syn-04). */
 bool relocation_original_modules(RelocationPreview *preview) {
     ModuleStatus status = module_catalog_build(&preview->catalog,preview->before_roots,preview->before_root_count);
-    if (!relocation_catalog_failure(preview,status)) { return false; }
+    if (!relocation_catalog_failure(preview,&preview->catalog,status)) { return false; }
     for (const ModuleSource *source = preview->catalog.first; source != NULL; source = source->next) {
         if (append_module(preview,source->text,source->logical_path,source->device,source->inode) == NULL) { return false; }
     }

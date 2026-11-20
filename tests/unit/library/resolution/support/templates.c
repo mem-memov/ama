@@ -4,19 +4,19 @@
 /** A discovered closed worker does not turn its open source definition or its
  * compile-time producer into an ordinary concrete export selector. */
 static void it_rejects_open_static_and_synthetic_template_export_roots(void) {
-    directory("generated/project");
-    file("generated/project/generic", "@<\ninput\n...element\n@>\noutput\n...element\n input\n@!\noutput\n input\n");
-    file("generated/project/assembly", "@...\n...texts\n.generic\n ...element < ..text\n");
-    file("generated/project/facade", "@!\nworker\n.assembly\n ...texts\n");
-    file("generated/project/missingclosure", "@!\nworker\n.unavailable\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/generic", "@<\ninput\n.element\n@>\noutput\n.element\n input\n@!\noutput\n input\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/assembly", "@...\n.texts\n/test/fixture/v1.0.0/src/generic\n .element < //text\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/facade", "@!\nworker\n/test/fixture/v1.0.0/src/assembly\n .texts\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/missingclosure", "@!\nworker\n/test/fixture/v1.0.0/src/unavailable\n");
     const char *invalid[]={
-        "export | facade | .facade | entry\nexport | open | .generic | entry\n",
-        "export | run | .assembly | entry\n",
-        "export | facade | .facade | entry\nexport | static | .assembly | read\n",
-        "export | run | .assembly...texts | entry\n",
-        "export | run | .generic(..text) | entry\n",
-        "export | run | .facade | entry\nstatic-input | run | element | ..text\n",
-        "export | run | .missingclosure | entry\n"
+        "export | facade | /test/fixture/v1.0.0/src/facade | entry\nexport | open | /test/fixture/v1.0.0/src/generic | entry\n",
+        "export | run | /test/fixture/v1.0.0/src/assembly | entry\n",
+        "export | facade | /test/fixture/v1.0.0/src/facade | entry\nexport | static | /test/fixture/v1.0.0/src/assembly | read\n",
+        "export | run | /test/fixture/v1.0.0/src/assembly...texts | entry\n",
+        "export | run | /test/fixture/v1.0.0/src/generic(..text) | entry\n",
+        "export | run | /test/fixture/v1.0.0/src/facade | entry\nstatic-input | run | element | //text\n",
+        "export | run | /test/fixture/v1.0.0/src/missingclosure | entry\n"
     };
     for (size_t index=0;index<sizeof(invalid)/sizeof(*invalid);index++) {
         setup_test(); LibraryBuild build;

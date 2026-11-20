@@ -1,0 +1,5 @@
+# Bind only the left Type; the returned Template keeps its own right formal.
+@...
+.family
+/test/fixture/v1.0.0/src/paired-reverse
+ .left < //integer

@@ -23,18 +23,18 @@ static inline void initialize_results(void) {
 /** Two named producer statements share one receiver; the first defines it.
  * A separate ordinary constructor supplies actual Template metadata.
  */
-static const char *result_caller_source = "@...\n...first\n...type\n...partial\n...family\n"
-    ".other\n ...out > ...alias\n.other\n ...out > ...alias\n...same\n...alias\n...anchor\n..integer\n...constructor anchor\n.family\n";
-static const char *result_target_source = "@...\n...out\n...slot\n";
+static const char *result_caller_source = "@...\n.first\n.type\n.partial\n.family\n"
+    "/test/fixture/v1.0.0/src/other\n .out > .alias\n/test/fixture/v1.0.0/src/other\n .out > .alias\n.same\n.alias\n.anchor\n//integer\n.constructor anchor\n/test/fixture/v1.0.0/src/family\n";
+static const char *result_target_source = "@...\n.out\n.slot\n";
 /** An ordinary constructor is a Template value; a static producer is not. */
 static const StaticTerm *result_family_constructor;
 
 /** The guard fixture already proves no runtime setup occurs for these source records. */
 static inline void setup_results(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/family", "@<\nvalue\n...slot\n@!\n");
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/family", "@<\nvalue\n.slot\n@!\n");
     setup_guards(result_caller_source, result_target_source);
-    const StaticModule *family = static_module_find(&inventory, project_find(&project, ".family"));
+    const StaticModule *family = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/family"));
     assert(family && static_term_nominal(&terms, family, NULL, 0, (SourceSpan){0}, &result_family_constructor));
     size_t before = allocation_count;
     initialize_results();

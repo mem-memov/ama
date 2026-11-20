@@ -30,10 +30,10 @@ static void it_highlights_drafts_with_production_multiword_literal_and_comment_b
     assert(analyze(&analysis) && analysis.state == EDITOR_DRAFT && !analysis.indexed);
     comments = names = literals = visits = 0;
     Diagnostic diagnostic = {0};
-    assert(editor_highlights(&analysis, ".main", highlight, NULL, &diagnostic));
+    assert(editor_highlights(&analysis, "/test/fixture/v1.0.0/src/main", highlight, NULL, &diagnostic));
     assert(comments == 2 && names == 1 && literals == 1 && visits == 4);
     size_t count = 0;
-    assert(editor_highlights(&analysis, ".main", stop, &count, NULL) && count == 1);
+    assert(editor_highlights(&analysis, "/test/fixture/v1.0.0/src/main", stop, &count, NULL) && count == 1);
     assert(point(analysis.selected->text,"multi word") == 0);
     destroy_editor();
 }
@@ -46,10 +46,10 @@ static void it_keeps_invalid_code_distinct_from_checked_semantic_metadata(void) 
         assert(analyze(&analysis) && analysis.state == EDITOR_INVALID && !analysis.indexed);
         assert(diagnostic_valid(&analysis.diagnostic));
         EditorDefinition output = {.type=(const SemanticType *)&analysis};
-        assert(!editor_definition(&analysis, ".main",0,&output) && output.type == (const SemanticType *)&analysis);
+        assert(!editor_definition(&analysis, "/test/fixture/v1.0.0/src/main",0,&output) && output.type == (const SemanticType *)&analysis);
         visits = comments = names = literals = 0;
         Diagnostic error = {0};
-        bool lexical = editor_highlights(&analysis, ".main",highlight,NULL,&error);
+        bool lexical = editor_highlights(&analysis, "/test/fixture/v1.0.0/src/main",highlight,NULL,&error);
         assert(lexical == (index == 0));
         if (!lexical) { assert(diagnostic_valid(&error)); }
         destroy_editor();

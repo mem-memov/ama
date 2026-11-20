@@ -1,8 +1,8 @@
 # The public method handles an empty owner and repeated retirement without leaking one-cell capacity.
 operation
-..task.operation
+//task/operation
 detach
-..task.operation.detach
+//task/operation/detach
 detach !
  < &operation
  > retired

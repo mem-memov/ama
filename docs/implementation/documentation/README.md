@@ -37,7 +37,7 @@ Documentation checks establish documented and tested file coverage;
 [language conformance](../conformance/README.md) is a separate evidence gate.
 
 The registry partitions the VCS's tracked and unignored maintained inputs. It
-covers C, headers, include fragments, Python/shell, Make inputs, native ABI, `.exports` library-build configurations and
+covers C, headers, include fragments, Python/shell, Make inputs, native ABI, `.exports` library-build configurations, `.ini` package/module configuration and
 project fixtures, plus the original audit's interface/expectation inputs. Build,
 `generated/` and Python cache trees are excluded. Deleted, new or changed debt
 entries require explicit review; the checker never blesses files automatically.

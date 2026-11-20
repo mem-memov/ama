@@ -7,14 +7,15 @@
 #include <unistd.h>
 #include "../common.c"
 /** Explicit models exercise every public wire profile and both full/read-only exports. */
-static const char records[] = "schema | text | text | ..text\nschema | number | integer | ..integer\n"
-    "schema | enabled | condition | ..std.condition\nschema | failure | failure | ..failure\nschema | texts | list | text\n"
-    "export | run | .main | entry,resume,read\ninput | run | message text | text\noutput | run | failure | failure\nexport | observer | .other | read\n";
+static const char records[] = "schema | text | text | //text\nschema | number | integer | //integer\n"
+    "schema | enabled | condition | //std/condition\nschema | failure | failure | //failure\nschema | texts | list | text\n"
+    "export | run | /test/fixture/v1.0.0/src/main | entry,resume,read\ninput | run | message text | text\noutput | run | failure | failure\nexport | observer | /test/fixture/v1.0.0/src/other | read\n";
 /** Create source fixtures without generating or inspecting any private native header. */
 static void prepare_project(void) {
     directory("generated/project");
-    file("generated/project/main", "@<\nmessage text\n..text\n@>\nfailure\n..failure\n@!\n");
-    file("generated/project/other", "@!\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@<\nmessage text\n//text\n@>\nfailure\n//failure\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/other", "@!\n");
 }
 /** Build an explicitly named component with the same Ama module identities as its peer. */
 static void component(LibraryBuild *build, const char *name) {

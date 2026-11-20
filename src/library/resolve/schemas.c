@@ -14,7 +14,7 @@ static bool native_contract(const SemanticType *type, bool literal) {
 }
 /** Require the selected fixed profile's nominal identity and complete native capability contract. Component contract: [EMBED-04](../../../spec/implementation/c-library.md#embed-04). */
 static bool scalar_schema(LibraryBuild *build, LibrarySchema *schema, const SemanticProgram *program) {
-    static const char *const paths[] = {"..integer", "..text", "..std.condition", "..failure"};
+    static const char *const paths[] = {"//integer", "//text", "//std/condition", "//failure"};
     if (strcmp(schema->argument, paths[schema->kind]) != 0) {
         return library_fail(build, schema->site, "The builtin transport profile requires its exact standard module identity");
     }
@@ -28,7 +28,7 @@ static bool scalar_schema(LibraryBuild *build, LibrarySchema *schema, const Sema
             || description->reference || description->list
             || description->name.end - description->name.start != sizeof("description") - 1
             || memcmp(source_bytes(description->name.source) + description->name.start, "description", sizeof("description") - 1) != 0
-            || strcmp(description->type->module->source->logical_path, "..text") != 0
+            || strcmp(description->type->module->source->logical_path, "//text") != 0
             || !native_contract(description->type, true)) {
             return library_fail(build, schema->site, "The failure transport requires one owned text description result");
         }

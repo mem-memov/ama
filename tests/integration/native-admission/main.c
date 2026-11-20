@@ -3,6 +3,7 @@
  */
 #include <sys/stat.h>
 #include "../common.c"
+#include "../../unit/fixtures/package.h"
 
 /** Copy maintained source bytes into test-owned scratch before any authoring
  * command; failed publication must never mutate maintained fixture files.
@@ -10,12 +11,13 @@
 static void prepare_project(void) {
     int result = mkdir("generated/project", 0700);
     assert(result == 0);
+    fixture_package_prepare("generated/project", "fixture");
     const char *names[] = {"bad", "main", "plain"};
     for (size_t index = 0; index < sizeof(names) / sizeof(*names); index++) {
         char source[128], destination[128];
-        int length = snprintf(source, sizeof(source), "project/%s", names[index]);
+        int length = snprintf(source, sizeof(source), "project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(source));
-        length = snprintf(destination, sizeof(destination), "generated/project/%s", names[index]);
+        length = snprintf(destination, sizeof(destination), "generated/project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(destination));
         FILE *input = fopen(source, "rb"), *copy = fopen(destination, "wb");
         assert(input != NULL && copy != NULL);
@@ -36,7 +38,7 @@ static void native_error(void) {
     read_stream(errors, text, sizeof(text));
     assert(strstr(text, "A native @C module cannot declare own static parameters") != NULL);
     assert(strstr(text, "own static parameter introduction") != NULL);
-    assert(strstr(text, "...type") != NULL && strstr(text, "@C") != NULL);
+    assert(strstr(text, ".type") != NULL && strstr(text, "@C") != NULL);
     read_stream(output, text, sizeof(text));
     assert(text[0] == 0);
 }
@@ -45,8 +47,8 @@ static void native_error(void) {
  * absent, including ordinary companions beside the copied source.
  */
 static void no_native_outputs(void) {
-    const char *paths[] = {"generated/native output", "generated/project/bad.h",
-        "generated/project/bad.c", "generated/project/bad.abi"};
+    const char *paths[] = {"generated/native output", "generated/project/packages/test/fixture/v1.0.0/src/bad.h",
+        "generated/project/packages/test/fixture/v1.0.0/src/bad.c", "generated/project/packages/test/fixture/v1.0.0/src/bad.abi"};
     for (size_t index = 0; index < sizeof(paths) / sizeof(*paths); index++) {
         struct stat metadata;
         assert(stat(paths[index], &metadata) == -1 && errno == ENOENT);
@@ -58,7 +60,7 @@ static void no_native_outputs(void) {
  */
 static void it_rejects_native_templates_in_check_mode_even_with_concrete_uses(void) {
     prepare_project();
-    const char *entries[] = {".bad", ".main"};
+    const char *entries[] = {"/test/fixture/v1.0.0/src/bad", "/test/fixture/v1.0.0/src/main"};
     for (size_t index = 0; index < 2; index++) {
         setup_test();
         char *arguments[] = {AMA_EXECUTABLE, "--check", "generated/project", (char *)entries[index], NULL};
@@ -75,7 +77,7 @@ static void it_rejects_native_templates_in_check_mode_even_with_concrete_uses(vo
 static void it_refuses_native_authoring_before_creating_companions_or_headers(void) {
     for (size_t overwrite = 0; overwrite < 2; overwrite++) {
         setup_test();
-        char *arguments[] = {AMA_EXECUTABLE, "--native", "generated/project", ".bad", "--out", "generated/native output",
+        char *arguments[] = {AMA_EXECUTABLE, "--native", "generated/project", "/test/fixture/v1.0.0/src/bad", "--out", "generated/native output",
             "--sdk", TEST_SDK, "--create", "--protocols", "=", overwrite != 0 ? "--overwrite" : NULL, NULL};
         assert(run_compiler_arguments(arguments) == EXIT_FAILURE);
         native_error();

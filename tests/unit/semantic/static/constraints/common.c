@@ -28,14 +28,14 @@ static inline const StaticTerm *constraint_symbol(const char *name) {
 
 /** Prepare source identities and terms before testing the independent solver. */
 static void setup_constraints_with_sources(const char *text, const char *other) {
-    setup_static(text != NULL ? text : "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\n", other);
+    setup_static(text != NULL ? text : "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\n", other);
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     constraint_module = static_module_find(&inventory, project.entry);
     static_term_store_init(&term_store, &inventory, sources.allocator);
     assert(static_term_environment(&term_store, constraint_module, NULL, &constraint_environment));
-    left_variable = constraint_symbol("...a");
-    right_variable = constraint_symbol("...b");
-    assert(static_term_nominal(&term_store, static_module_find(&inventory, project_find(&project, ".other")),
+    left_variable = constraint_symbol(".a");
+    right_variable = constraint_symbol(".b");
+    assert(static_term_nominal(&term_store, static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other")),
         NULL, 0, (SourceSpan){0}, &plain_type));
     size_t before = allocation_count;
     static_constraint_init(&solver, &term_store, sources.allocator);
@@ -48,11 +48,11 @@ static void setup_constraints(const char *text) {
 }
 
 /** Free graph values have no preselected category or closed source signature. */
-#define CONSTRAINT_METADATA_SOURCE "@...\n...first\n...a\n...second\n...b\n...third\n...family\n...fourth\n...known\n"
+#define CONSTRAINT_METADATA_SOURCE "@...\n.first\n.a\n.second\n.b\n.third\n.family\n.fourth\n.known\n"
 
 /** Prepare a real one-slot ordinary constructor as independent metadata evidence. */
 static inline void setup_metadata_constraints(void) {
-    setup_constraints_with_sources(CONSTRAINT_METADATA_SOURCE, "@<\nargument\n...slot\n@!\n");
+    setup_constraints_with_sources(CONSTRAINT_METADATA_SOURCE, "@<\nargument\n.slot\n@!\n");
 }
 
 /** Borrow only the actual signature, deliberately not equating its nominal
@@ -62,7 +62,7 @@ static inline const StaticSignature *constraint_actual_signature(void) {
     assert(plain_type->category == STATIC_CATEGORY_TEMPLATE && plain_type->signature != NULL);
     const StaticSignature *signature = plain_type->signature;
     assert(signature->count == 1 && signature->first->category == STATIC_CATEGORY_TYPE);
-    assert(signature->first->signature == NULL && layout_text_is(signature->first->name, "...slot"));
+    assert(signature->first->signature == NULL && layout_text_is(signature->first->name, ".slot"));
     assert(signature->first->name.source != left_variable->site.source);
     return signature;
 }

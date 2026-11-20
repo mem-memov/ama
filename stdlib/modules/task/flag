@@ -1,5 +1,5 @@
 # Update or read an explicitly owned scheduler membership flag. See stdlib/README.md.
 @<
 next
-..std.condition
+//std/condition
 @C

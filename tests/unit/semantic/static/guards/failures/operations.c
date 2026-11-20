@@ -6,9 +6,9 @@
 #include "../common.c"
 
 /** Named graph inputs remain symbolic until independently anchored. */
-static const char *caller_source = "@...\n...a\n...b\n...b\n..integer\n"
-    "...t value\n...t\n...u value\n...u\n.other\n ...t < ...t\n ...u < ...u\n ...out > ...child\n...text\n..text\n";
-static const char *target_source = "@...\n...out\n...t\n...u value\n...u\n...anchor\n..integer\n";
+static const char *caller_source = "@...\n.a\n.b\n.b\n//integer\n"
+    ".t value\n.t\n.u value\n.u\n/test/fixture/v1.0.0/src/other\n .t < .t\n .u < .u\n .out > .child\n.text\n//text\n";
+static const char *target_source = "@...\n.out\n.t\n.u value\n.u\n.anchor\n//integer\n";
 
 /** One operation is swept; its complete prepared inputs precede injection. */
 typedef struct {
@@ -85,7 +85,7 @@ static GuardOperation prepare(size_t mode) {
         }
     }
     if (mode == 6) {
-        assert(static_definition_enter(&guards, NULL, operation.root, named("...a"),
+        assert(static_definition_enter(&guards, NULL, operation.root, named(".a"),
             (SourceSpan){0}, &operation.definition));
     }
     return operation;
@@ -106,8 +106,8 @@ static bool execute(size_t mode, GuardOperation operation) {
             operation.inputs, 2, &path, &creation);
     } else if (mode == 4) { success = static_guard_refresh(&guards, &closure); }
     else {
-        const StaticSymbol *target = named(mode == 6 ? "...b" : "...a");
-        SourceSpan site = named("...a")->declaration->as.static_result.expression->span;
+        const StaticSymbol *target = named(mode == 6 ? ".b" : ".a");
+        SourceSpan site = named(".a")->declaration->as.static_result.expression->span;
         success = static_definition_enter(&guards, operation.definition, operation.root, target, site, &definition);
     }
     if (!success) {

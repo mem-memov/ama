@@ -5,7 +5,7 @@
 /** Read one exact bounded maintained source; the caller owns its complete bytes. */
 static void example_source(const char *name,char *bytes,size_t capacity) {
     char input[1024];
-    int n=snprintf(input,sizeof(input),"%s/%s",TEST_EXAMPLE,name); assert(n>0 && (size_t)n<sizeof(input));
+    int n=snprintf(input,sizeof(input),"%s/packages/test/fixture/v1.0.0/src/%s",TEST_EXAMPLE,name); assert(n>0 && (size_t)n<sizeof(input));
     FILE *source=fopen(input,"rb"); assert(source != NULL && capacity>1);
     size_t count=fread(bytes,1,capacity-1,source); assert(count<capacity-1 && !ferror(source));
     assert(fclose(source)==0); bytes[count]=0;
@@ -14,14 +14,14 @@ static void example_source(const char *name,char *bytes,size_t capacity) {
 static void example_file(const char *name) {
     char output[256],bytes[8192];
     example_source(name,bytes,sizeof(bytes));
-    int n=snprintf(output,sizeof(output),"generated/project/%s",name); assert(n>0 && (size_t)n<sizeof(output));
+    int n=snprintf(output,sizeof(output),"generated/project/packages/test/fixture/v1.0.0/src/%s",name); assert(n>0 && (size_t)n<sizeof(output));
     file(output,bytes);
 }
 /** Observe actual Standard integer index conversion and owned UTF-8 text; no payload layout assumption. */
 static bool observe_algorithm_value(FILE *output,const ScaffoldType *type) {
     const char *path=type->plan->type->module->source->logical_path;
-    bool integer=strcmp(path,".showinteger")==0;
-    if (!integer && strcmp(path,".showtext")!=0) { return false; }
+    bool integer=strcmp(path,"/test/fixture/v1.0.0/src/showinteger")==0;
+    if (!integer && strcmp(path,"/test/fixture/v1.0.0/src/showtext")!=0) { return false; }
     const SemanticSymbol *input=semantic_interface_position(type->plan->type,SYMBOL_PARAMETER,0);
     assert(input != NULL);
     const ScaffoldType *provider=native_scaffold_type(&assembly,input->type); assert(provider != NULL);
@@ -38,9 +38,10 @@ static bool observe_algorithm_value(FILE *output,const ScaffoldType *type) {
 /** Install only named example files and two external observers; algorithm bodies remain maintained Ama. */
 static void algorithm_fixture(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     const char *names[]={"reverse-owned","reverse-references","mirror","drain-reverse","paired-reverse","integer-family","complete","assembly"};
     for(size_t i=0;i<sizeof(names)/sizeof(*names);i++) { example_file(names[i]); }
-    native_fixture("showinteger","@<\ninput\n..integer\n@C\n");
-    native_fixture("showtext","@<\ninput\n..text\n@C\n");
+    native_fixture("showinteger","@<\ninput\n//integer\n@C\n");
+    native_fixture("showtext","@<\ninput\n//text\n@C\n");
     native_entry_override=observe_algorithm_value;
 }

@@ -7,7 +7,7 @@
  * producer leaks them into lowering; no runtime node or allocation is created.
  */
 static void it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary(void) {
-    const char *texts[] = {"@...\n...result\n.other\n", "@...\n.other\n ...result > ...alias\n"};
+    const char *texts[] = {"@...\n.result\n/test/fixture/v1.0.0/src/other\n", "@...\n/test/fixture/v1.0.0/src/other\n .result > .alias\n"};
     const AstNodeKind kinds[] = {AST_STATIC_RESULT, AST_STATIC_PROJECTION};
     for (size_t index = 0; index < 2; index++) {
         setup_test();

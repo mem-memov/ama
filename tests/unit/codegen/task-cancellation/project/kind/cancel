@@ -1,18 +1,18 @@
 # Record a cooperative request and make an awaiting task runnable through its actual typed queue.
 @<
 queue&
-.kind.queue
+/test/fixture/v1.0.0/src/kind/queue
 record&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 @>
 accepted
-..std.condition
+//std/condition
 @!
 true
-..std.condition
+//std/condition
  |1
 enqueue
-.kind.enqueue
+/test/fixture/v1.0.0/src/kind/enqueue
 record&
  enrolled >> enrolled
  started >> started

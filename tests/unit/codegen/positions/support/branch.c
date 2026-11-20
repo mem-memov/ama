@@ -5,7 +5,7 @@
  * updating it through its declared returned reference performs an ordinary call.
  */
 static bool flag_entry(FILE *output, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".flag") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/flag") != 0) { return false; }
     int written = fputs("state->number=parameters->AMA_INPUT(0)->payload->number;\n", output);
     assert(written != EOF);
     return true;
@@ -16,10 +16,11 @@ static bool flag_entry(FILE *output, const ScaffoldType *type) {
  */
 static void it_resumes_the_saved_branch_statement_after_external_condition_change(void) {
     directory("generated/project");
-    native_fixture("flag", "@<\ninput\n.value\n@C\n");
-    file("generated/project/task", "@>\ncontrol&\n.flag\n@!\nflag\n.flag\nprobe\n.worker\nflag !\n < |1\ncontrol&\n &flag\n"
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("flag", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@>\ncontrol&\n/test/fixture/v1.0.0/src/flag\n@!\nflag\n/test/fixture/v1.0.0/src/flag\nprobe\n/test/fixture/v1.0.0/src/worker\nflag !\n < |1\ncontrol&\n &flag\n"
         "flag\n?\n probe !\n  < |1\n %\n probe !\n  < |2\n:\n probe !\n  < |999\nprobe !\n < |3\n");
     native_entry_override = flag_entry;
-    execute_project("@!\ntask\n.task\ntask !\n > control&\ncontrol& !\n < |0\ntask %\n", "1:1:0\n2:2:0\n3:3:0\n", true);
+    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\ntask !\n > control&\ncontrol& !\n < |0\ntask %\n", "1:1:0\n2:2:0\n3:3:0\n", true);
     native_entry_override = NULL;
 }

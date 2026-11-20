@@ -16,16 +16,10 @@ bool relocation_queue(RelocationWalk *walk, const char *path, const char *relati
         return relocation_fail(preview,probe == PATH_UNSUPPORTED ? RELOCATION_UNSUPPORTED_PATH
             : probe == PATH_IO_ERROR ? RELOCATION_IO_ERROR : RELOCATION_INVALID_PATH,path,NULL);
     }
-    for (const RelocationDirectoryIdentity *other = *walk->identities; other != NULL; other = other->next) {
-        if (other->device == metadata.st_dev && other->inode == metadata.st_ino) {
-            return relocation_fail(preview,RELOCATION_ALIAS,path,other->path);
-        }
-    }
-    RelocationDirectoryIdentity *identity = source_arena_allocate(&preview->arena,sizeof(*identity));
+    ModuleStatus status = module_remember_directory_metadata(&preview->after_catalog, path, &metadata);
+    if (!relocation_catalog_failure(preview, &preview->after_catalog, status)) { return false; }
     RelocationDirectory *directory = source_arena_allocate(&preview->arena,sizeof(*directory));
-    if (identity == NULL || directory == NULL) { return relocation_fail(preview,RELOCATION_OUT_OF_MEMORY,path,NULL); }
-    *identity = (RelocationDirectoryIdentity){*walk->identities,path,metadata.st_dev,metadata.st_ino};
-    *walk->identities = identity;
+    if (directory == NULL) { return relocation_fail(preview,RELOCATION_OUT_OF_MEMORY,path,NULL); }
     *directory = (RelocationDirectory){NULL,path,relative,logical};
     if (walk->last == NULL) { walk->pending = directory; }
     else { walk->last->next = directory; }
@@ -34,9 +28,10 @@ bool relocation_queue(RelocationWalk *walk, const char *path, const char *relati
 }
 
 /** The FIFO closes each finite directory exactly once; views read only original storage. Component contract: [SRC-02](../../../../spec/language/source-and-names.md#src-02), [ARCH-05](../../../../spec/implementation/compiler.md#arch-05). */
-bool relocation_walk_root(RelocationPreview *preview, const ModuleRoot *root, RelocationDirectoryIdentity **identities) {
-    RelocationWalk walk = {.preview=preview,.root=root,.identities=identities};
-    if (!relocation_queue(&walk,root->path,"",root->kind == MODULE_ROOT_STANDARD ? "." : "")) { return false; }
+bool relocation_walk_region(RelocationPreview *preview, const ModuleRoot *root,
+    const char *path, const char *relative, const char *logical) {
+    RelocationWalk walk = {.preview=preview,.root=root};
+    if (!relocation_queue(&walk,path,relative,logical)) { return false; }
     while (walk.pending != NULL) {
         RelocationDirectory *directory = walk.pending;
         walk.pending = directory->next;
@@ -49,4 +44,15 @@ bool relocation_walk_root(RelocationPreview *preview, const ModuleRoot *root, Re
         }
     }
     return true;
+}
+
+/** Standard roots have no package storage layer. Ordinary sources enter only
+ * selected areas under [PKG-02](../../../../spec/project/packages.md#pkg-02);
+ * [SRC-01](../../../../spec/language/source-and-names.md#src-01) keeps // distinct.
+ */
+bool relocation_walk_root(RelocationPreview *preview, const ModuleRoot *root) {
+    if (root->kind != MODULE_ROOT_STANDARD) {
+        return relocation_fail(preview, RELOCATION_INVALID_PATH, root->path, NULL);
+    }
+    return relocation_walk_region(preview, root, root->path, "", "/");
 }

@@ -1,59 +1,59 @@
 # One round bounds queue decisions and native imports, with a persistent two-domain round-robin cursor.
 @<
 red registry&
-.red.registry
+/test/fixture/v1.0.0/src/red/registry
 blue registry&
-.blue.registry
+/test/fixture/v1.0.0/src/blue/registry
 red queue&
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 blue queue&
-.blue.queue
+/test/fixture/v1.0.0/src/blue/queue
 source&
-.source
+/test/fixture/v1.0.0/src/source
 task budget
-..integer
+//integer
  |2
 import budget
-..integer
+//integer
  |2
 @>
 ready
-..task.flag
+//task/flag
 waiting
-..task.flag
+//task/flag
 quiescent
-..task.flag
+//task/flag
 steps
-..integer
+//integer
 imports
-..integer
+//integer
 decisions
-..integer
+//integer
 @!
 check budget
-..task.budget.check
+//task/budget/check
 require
-..task.require
+//task/require
 before
-..integer.before
+//integer/before
 next
-..integer.next
+//integer/next
 red dispatch
-.red.dispatch
+/test/fixture/v1.0.0/src/red/dispatch
 blue dispatch
-.blue.dispatch
+/test/fixture/v1.0.0/src/blue/dispatch
 red import
-.red.import
+/test/fixture/v1.0.0/src/red/import
 blue import
-.blue.import
+/test/fixture/v1.0.0/src/blue/import
 red audit
-.red.audit
+/test/fixture/v1.0.0/src/red/audit
 blue audit
-.blue.audit
+/test/fixture/v1.0.0/src/blue/audit
 next blue
-..task.flag
+//task/flag
 zero
-..integer
+//integer
  |0
 check budget !
  < task budget

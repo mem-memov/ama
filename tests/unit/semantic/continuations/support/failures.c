@@ -5,8 +5,8 @@
 static void it_unwinds_every_positive_reference_origin_allocation(void) {
     prepare_types();
     const char *texts[] = {
-        "@!\nfirst\n.value\nsecond\n.value\nalias&\n &first\ncopy&\n alias&\nsecond\n % copy&\n",
-        "@!\nfirst\n.value\nalias&\n &first\ncopy&\n alias&\nfirst\n % copy&\n"
+        "@!\nfirst\n/test/fixture/v1.0.0/src/value\nsecond\n/test/fixture/v1.0.0/src/value\nalias&\n &first\ncopy&\n alias&\nsecond\n % copy&\n",
+        "@!\nfirst\n/test/fixture/v1.0.0/src/value\nalias&\n &first\ncopy&\n alias&\nfirst\n % copy&\n"
     };
     for (size_t shape = 0; shape < 2; shape++) {
         SemanticStatus status = resolve_text(texts[shape]);
@@ -14,7 +14,7 @@ static void it_unwinds_every_positive_reference_origin_allocation(void) {
         size_t count = allocation_count;
         destroy_semantic();
         for (size_t failure = 1; failure <= count; failure++) {
-            file("generated/program/main", texts[shape]);
+            file("generated/program/packages/test/fixture/v1.0.0/src/main", texts[shape]);
             setup_semantic();
             status = load_semantic("generated/program");
             assert(status == SEMANTIC_OK);

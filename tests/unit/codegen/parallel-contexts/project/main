@@ -1,15 +1,15 @@
 # Separate contexts own separate shared integer values and native event services.
 @=
 shared
-..integer
+//integer
  |23
 @!
 service
-..task.events
+//task/events
 service !
  < |1
 bridge
-.bridge
+/test/fixture/v1.0.0/src/bridge
 bridge !
  < &service
 %
@@ -22,11 +22,11 @@ packet
   data >> data
   code >> code
  received
- .received
+ /test/fixture/v1.0.0/src/received
  received !
   < data
   < code
 :
  missing
- .missing
+ /test/fixture/v1.0.0/src/missing
  missing !

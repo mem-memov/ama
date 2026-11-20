@@ -4,8 +4,8 @@
 /** Copy syntax selects saved-position behavior explicitly, without introducing a continuation storage type. */
 static void it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct(void) {
     prepare_types();
-    SemanticStatus status = resolve_text("@!\nsource\n.value\n |% reference& # data  \nreference&\n.value\n &source\nordinary\n.value\n source\n"
-        "continued\n.value\n % reference&\nelements[]\n.value\n % source\n"
+    SemanticStatus status = resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/value\n |% reference& # data  \nreference&\n/test/fixture/v1.0.0/src/value\n &source\nordinary\n/test/fixture/v1.0.0/src/value\n source\n"
+        "continued\n/test/fixture/v1.0.0/src/value\n % reference&\nelements[]\n/test/fixture/v1.0.0/src/value\n % source\n"
         "ordinary\n source\nreference&\n &source\ncontinued\n % source\n%");
     assert(status == SEMANTIC_OK);
     assert(semantic_entry()->first->initializers->source->kind == AST_LITERAL_SOURCE);
@@ -40,14 +40,14 @@ static void it_accepts_owned_scalar_continuation_sources_from_owned_and_referenc
     for (size_t source = 0; source < 2; source++) {
         for (size_t destination = 0; destination < 4; destination++) {
             char text[512];
-            int length = snprintf(text, sizeof(text), "@!\nsource%s\n.value\ndestination%s\n.value\n"
+            int length = snprintf(text, sizeof(text), "@!\nsource%s\n/test/fixture/v1.0.0/src/value\ndestination%s\n/test/fixture/v1.0.0/src/value\n"
                 "destination%s\n %% source%s\n", forms[source], forms[destination], forms[destination], forms[source]);
             assert(length > 0 && (size_t)length < sizeof(text));
             expect_resolved(text, destination == 0);
         }
     }
-    file("generated/program/worker", "@<\ninput\n.value\n@>\noutput\n.value\n@!\n");
-    SemanticStatus status = resolve_text("@!\nsource\n.value\nreference&\n.value\n &source\nworker\n.worker\n"
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\n");
+    SemanticStatus status = resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\n &source\nworker\n/test/fixture/v1.0.0/src/worker\n"
         "worker !\n < % reference&\n > received\nworker %\n > resumed\nworker\n >> retained\n");
     assert(status == SEMANTIC_OK);
     SemanticStatement *entry = NULL;
@@ -58,7 +58,7 @@ static void it_accepts_owned_scalar_continuation_sources_from_owned_and_referenc
     assert(entry->bindings->source->reference && entry->bindings->next->transfer == TRANSFER_CLONE);
     assert(semantic_entry()->last_statement->bindings->transfer == TRANSFER_CLONE);
     destroy_semantic();
-    expect_resolved("@!\nvalue\n.resource\nvalue\n % value\n", false);
+    expect_resolved("@!\nvalue\n/test/fixture/v1.0.0/src/resource\nvalue\n % value\n", false);
 }
 /** Structural mode restrictions fail before execution, including empty resume inputs, whole-list copies, self source and immutable namespaces. */
 static void it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms(void) {
@@ -66,18 +66,18 @@ static void it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms
     const char *invalid[] = {
         "worker %\n <\n", "worker %\n < value\n", "worker %\n >> value\n",
         "value\n % values[]\n", "value\n % references&[]\n", "value\n % &\n",
-        "value\n % &value\n", "value\n % |literal\n", "value\n % .worker.constant\n",
+        "value\n % &value\n", "value\n % |literal\n", "value\n % /test/fixture/v1.0.0/src/worker/constant\n",
         "value\n %value\n", "value\n % value\n:\n >\n"
     };
     for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
         char text[512];
-        int length = snprintf(text, sizeof(text), "@!\nworker\n.worker\nvalue\n.value\nvalues[]\n.value\nreferences&[]\n.value\n%s", invalid[index]);
+        int length = snprintf(text, sizeof(text), "@!\nworker\n/test/fixture/v1.0.0/src/worker\nvalue\n/test/fixture/v1.0.0/src/value\nvalues[]\n/test/fixture/v1.0.0/src/value\nreferences&[]\n/test/fixture/v1.0.0/src/value\n%s", invalid[index]);
         assert(length > 0 && (size_t)length < sizeof(text));
-        file("generated/program/main", text);
+        file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
         setup_project();
         ProjectStatus loaded = load_root("generated/program");
         assert(loaded == PROJECT_SYNTAX_ERROR && !project.valid && diagnostic_valid(&project.error));
         destroy_project();
     }
-    expect_resolved("@=\nconstant\n.value\n@!\nvalue\n.value\nvalue\n % constant\n", false);
+    expect_resolved("@=\nconstant\n/test/fixture/v1.0.0/src/value\n@!\nvalue\n/test/fixture/v1.0.0/src/value\nvalue\n % constant\n", false);
 }

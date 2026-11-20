@@ -1,9 +1,9 @@
 # Declare the bounded standard index and its typed shared zero/one constants. See stdlib/README.md.
 @=
 zero
-..std.index
+//std/index
  |0
 one
-..std.index
+//std/index
  |1
 @C

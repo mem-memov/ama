@@ -74,13 +74,13 @@ static const StaticTerm *group_value(const StaticTermEnvironment *environment, c
  * although whole-producer validation has a permitted A -> B -> A cycle.
  */
 static void it_closes_same_key_validation_cycles_without_inventing_value_definition_cycles(void) {
-    const StaticResultContext *root = setup_group("@...\n.other\n ...selected > ...out\n",
-        "@...\n...selected\n..integer\n.main\n ...out > ...unselected\n");
+    const StaticResultContext *root = setup_group("@...\n/test/fixture/v1.0.0/src/other\n .selected > .out\n",
+        "@...\n.selected\n//integer\n/test/fixture/v1.0.0/src/main\n .out > .unselected\n");
     settle_group();
-    assert(results.graph_count == 2 && group_value(caller_environment, "...out") == integer_type);
+    assert(results.graph_count == 2 && group_value(caller_environment, ".out") == integer_type);
     const StaticResultGraph *other = results.first_graph->next;
     assert(other && other->context->creation->owner->environment->definition == target_module);
-    assert(group_value(other->context->creation->owner->environment, "...unselected") == integer_type);
+    assert(group_value(other->context->creation->owner->environment, ".unselected") == integer_type);
     assert(root->registry_use->candidate->local_complete && other->context->registry_use->candidate->local_complete);
     assert(guards.status == STATIC_GUARD_OK && guards.repeated_definition_ancestor == NULL);
     StaticRegistryCheckState checks;
@@ -93,14 +93,14 @@ static void it_closes_same_key_validation_cycles_without_inventing_value_definit
  * ordinary structural equations without an artificial value-definition cycle.
  */
 static void it_solves_anchored_receiver_equations_across_all_required_graphs(void) {
-    (void)setup_group("@...\n...known\n..integer\n.other\n ...out > ...known\n",
-        "@...\n...out\n...type\n");
+    (void)setup_group("@...\n.known\n//integer\n/test/fixture/v1.0.0/src/other\n .out > .known\n",
+        "@...\n.out\n.type\n");
     settle_group();
     assert(results.graph_count == 2 && guards.definition_edge_count == 0);
     const StaticResultGraph *other = results.first_graph->next;
     assert(other->context->registry_use->candidate && other->local_complete);
-    assert(group_value(caller_environment, "...known") == integer_type);
-    assert(group_value(other->context->creation->owner->environment, "...out") == integer_type);
+    assert(group_value(caller_environment, ".known") == integer_type);
+    assert(group_value(other->context->creation->owner->environment, ".out") == integer_type);
     assert(caller_module->parameter_count == 0);
     destroy_results();
 }
@@ -109,8 +109,8 @@ static void it_solves_anchored_receiver_equations_across_all_required_graphs(voi
  * Pending is retained without picking a type or manufacturing another scope.
  */
 static void it_leaves_unanchored_inputs_pending_without_fabricated_defaults_or_progress(void) {
-    (void)setup_group("@...\n.other\n ...out > ...fresh\n...anchor\n..integer\n",
-        "@...\n...out\n...type\n");
+    (void)setup_group("@...\n/test/fixture/v1.0.0/src/other\n .out > .fresh\n.anchor\n//integer\n",
+        "@...\n.out\n.type\n");
     for (;;) {
         GroupEvidence before = evidence();
         bool complete;
@@ -130,11 +130,11 @@ static void it_leaves_unanchored_inputs_pending_without_fabricated_defaults_or_p
  * definition. Its real local cycle is discovered when that graph is drained.
  */
 static void it_rejects_an_unselected_definition_cycle_even_after_a_selected_value_is_known(void) {
-    const StaticResultContext *root = setup_group("@...\n.other\n ...good > ...received\n",
-        "@...\n...good\n..integer\n...bad a\n...bad b\n...bad b\n...bad a\n");
+    const StaticResultContext *root = setup_group("@...\n/test/fixture/v1.0.0/src/other\n .good > .received\n",
+        "@...\n.good\n//integer\n.bad a\n.bad b\n.bad b\n.bad a\n");
     StaticResultOutcome outcome;
     assert(static_result_graph_pass(&results, results.first_graph, &outcome));
-    assert(group_value(root->creation->owner->environment, "...received") == integer_type);
+    assert(group_value(root->creation->owner->environment, ".received") == integer_type);
     StaticResultGraph *other = results.first_graph->next;
     assert(other && !static_result_graph_pass(&results, other, &outcome));
     assert(results.status == STATIC_RESULT_CONFLICT && guards.repeated_definition_ancestor);

@@ -7,11 +7,11 @@
 /** Ordinary Type formals are introduced by runtime pairs, including a result;
  * named static outputs belong only to the separate graph fixture.
  */
-static const char *interface_source = "@=\nshared\n.other\n@<\nfirst&\n...explicit type\n"
-    "second[]\n...implicit input\nfactory\n...factory\n@>\nruntime\n...explicit type\n"
-    "introduced\n...implicit result\n@!\n";
-static const char *graph_source = "@...\n...static one\n...implicit result\n"
-    "...static two\n...explicit type\n";
+static const char *interface_source = "@=\nshared\n/test/fixture/v1.0.0/src/other\n@<\nfirst&\n.explicit type\n"
+    "second[]\n.implicit input\nfactory\n.factory\n@>\nruntime\n.explicit type\n"
+    "introduced\n.implicit result\n@!\n";
+static const char *graph_source = "@...\n.static one\n.implicit result\n"
+    ".static two\n.explicit type\n";
 
 /** Exact fixture lookup after static acceptance, never a foreign-signature search. */
 static const StaticSymbol *symbol(const StaticModule *module, const char *text) {

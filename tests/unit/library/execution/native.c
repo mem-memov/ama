@@ -3,18 +3,18 @@
  */
 /** Define a native root whose body state and native resource survive repeated entry resets. */
 static void counter_sources(void) {
-    file("generated/project/counter","@<\nmessage\n..text\n |factory\n@>\nflag\n..std.condition\n@C\n");
-    file("generated/project/counter.abi","+ initialize\n- destroy\n");
-    file("generated/project/counter.h",
+    file("generated/project/packages/test/fixture/v1.0.0/src/counter","@<\nmessage\n//text\n |factory\n@>\nflag\n//std/condition\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/counter.abi","+ initialize\n- destroy\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/counter.h",
         "/** Test-only root owns a native resource and remembers its final address. */\n"
         "struct AMA_NATIVE(State) { void *resource; const void *address; size_t calls; bool fail_destroy; };\n");
-    file("generated/project/counter.c","/* Fixture body is completed after checked nominal C names exist. */\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/counter.c","/* Fixture body is completed after checked nominal C names exist. */\n");
 }
 /** Emit one native entry using the generated exact parameter/result views and standard text API. */
 static void counter_body(NativeScaffold *assembly) {
-    const SemanticType *semantic=semantic_find_type(&assembly->frontend->semantic,".counter");
+    const SemanticType *semantic=semantic_find_type(&assembly->frontend->semantic,"/test/fixture/v1.0.0/src/counter");
     const ScaffoldType *type=native_scaffold_type(assembly,semantic);
-    const ScaffoldType *text=native_scaffold_type(assembly,semantic_find_type(&assembly->frontend->semantic,"..text"));
+    const ScaffoldType *text=native_scaffold_type(assembly,semantic_find_type(&assembly->frontend->semantic,"//text"));
     assert(type!=NULL && text!=NULL);
     FILE *output=fopen(type->body_path,"wb"); assert(output!=NULL);
     int written=fprintf(output,

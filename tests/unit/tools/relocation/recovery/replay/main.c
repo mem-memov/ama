@@ -2,6 +2,7 @@
  * @brief Recover saved publication boundaries and preserve modified/conflicting state across independent attempts.
  */
 #include "../published/common.c"
+#include "../../../../fixtures/package.h"
 #include "tools/relocation/recovery/internal.h"
 
 /** Check both outcomes and a second recovery after legitimate later user edits. */
@@ -15,13 +16,13 @@ static void it_recovers_each_decision_without_rewriting_again(void) {
         if (!result) { fprintf(stderr,"Recovery failed: %s\n",recovery.transaction.error.message); }
         assert(result && recovery.ready && recovery.finished && recovery.rolled_back == !committed);
         assert(recovery.transaction.committed == (committed != 0));
-        importer(committed ? "@!\nvalue\n.new.a\n" : "@!\nvalue\n.old.a\n");
+        importer(committed ? "@!\nvalue\n/test/fixture/v1.0.0/src/new/a\n" : "@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n");
         struct stat metadata;
-        assert(lstat(path(committed ? "project/old" : "project/new"),&metadata) != 0 && errno == ENOENT);
-        assert(lstat(path(committed ? "project/new/a" : "project/old/a"),&metadata) == 0);
+        assert(lstat(path(committed ? "project/packages/test/fixture/v1.0.0/src/old" : "project/packages/test/fixture/v1.0.0/src/new"),&metadata) != 0 && errno == ENOENT);
+        assert(lstat(path(committed ? "project/packages/test/fixture/v1.0.0/src/new/a" : "project/packages/test/fixture/v1.0.0/src/old/a"),&metadata) == 0);
         relocation_recovery_destroy(&recovery);
-        file(committed ? "project/new/a" : "project/old/a","later user bytes\n");
-        file("imports/unused","later importer bytes\n");
+        file(committed ? "project/packages/test/fixture/v1.0.0/src/new/a" : "project/packages/test/fixture/v1.0.0/src/old/a","later user bytes\n");
+        file("imports/packages/test/imports/v1.0.0/src/unused","later importer bytes\n");
         relocation_recovery_init(&recovery,sources.allocator);
         assert(relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=journal}));
         assert(recovery.finished && recovery.rolled_back == !committed);
@@ -34,7 +35,7 @@ static void it_recovers_each_decision_without_rewriting_again(void) {
 static void it_retains_modified_published_bytes_until_explicit_repair(void) {
     prepare("changed-replay");
     const char *journal = interrupt_publication(false);
-    file("project/new/a","user modification\n");
+    file("project/packages/test/fixture/v1.0.0/src/new/a","user modification\n");
     RelocationRecovery recovery;
     relocation_recovery_init(&recovery,sources.allocator);
     assert(!relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=journal}));
@@ -42,10 +43,10 @@ static void it_retains_modified_published_bytes_until_explicit_repair(void) {
     const RelocationTransactionAction *source = recovery.transaction.first;
     struct stat metadata;
     assert(lstat(source->slot->backup,&metadata) == 0 && S_ISDIR(metadata.st_mode));
-    assert(lstat(path("project/new/a"),&metadata) == 0);
-    importer("@!\nvalue\n.new.a\n");
+    assert(lstat(path("project/packages/test/fixture/v1.0.0/src/new/a"),&metadata) == 0);
+    importer("@!\nvalue\n/test/fixture/v1.0.0/src/new/a\n");
     relocation_recovery_destroy(&recovery);
-    file("project/new/a","@!\n");
+    file("project/packages/test/fixture/v1.0.0/src/new/a","@!\n");
     relocation_recovery_init(&recovery,sources.allocator);
     assert(relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=journal}));
     assert(recovery.rolled_back);
@@ -56,13 +57,13 @@ static void it_retains_modified_published_bytes_until_explicit_repair(void) {
 static void it_refuses_unrecorded_tree_children_before_any_inverse(void) {
     prepare("extra-entry-replay");
     const char *journal = interrupt_publication(false);
-    file("project/new/extra","user data\n");
+    file("project/packages/test/fixture/v1.0.0/src/new/extra","user data\n");
     RelocationRecovery recovery;
     relocation_recovery_init(&recovery,sources.allocator);
     assert(!relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=journal}));
     assert(recovery.transaction.status == RELOCATION_CHANGED_INPUT);
-    importer("@!\nvalue\n.new.a\n");
-    assert(unlink(path("project/new/extra")) == 0);
+    importer("@!\nvalue\n/test/fixture/v1.0.0/src/new/a\n");
+    assert(unlink(path("project/packages/test/fixture/v1.0.0/src/new/extra")) == 0);
     relocation_recovery_destroy(&recovery);
     relocation_recovery_init(&recovery,sources.allocator);
     assert(relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=journal}));
@@ -73,8 +74,8 @@ static void it_refuses_unrecorded_tree_children_before_any_inverse(void) {
 static void it_preserves_later_public_edits_during_committed_cleanup(void) {
     prepare("committed-edits-replay");
     const char *journal = interrupt_publication(true);
-    file("project/new/a","after commit\n");
-    file("imports/unused","after commit importer\n");
+    file("project/packages/test/fixture/v1.0.0/src/new/a","after commit\n");
+    file("imports/packages/test/imports/v1.0.0/src/unused","after commit importer\n");
     RelocationRecovery recovery;
     relocation_recovery_init(&recovery,sources.allocator);
     assert(relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=journal}));
@@ -154,22 +155,31 @@ static void it_retains_nonempty_unacknowledged_preparation_reservations(void) {
 }
 /** Real different devices exercise independent saved-source and prepared-destination ownership through complete recovery. */
 static void it_recovers_cross_filesystem_assets_settings_and_invalidations(void) {
-    for (unsigned committed = 0; committed < 2; committed++) {
-        prepare(committed ? "cross-commit" : "cross-rollback");
+    const char *cases[] = {"cross-package-rollback", "cross-package-commit",
+        "cross-standard-rollback", "cross-standard-commit"};
+    for (unsigned variant = 0; variant < 4; variant++) {
+        unsigned committed = variant % 2;
+        bool standard = variant >= 2;
+        prepare(cases[variant]);
         char temporary[] = "/tmp/ama-relocation-recovery-XXXXXX";
         assert(mkdtemp(temporary) != NULL);
-        ModuleRoot destination_root = {.path=temporary,.kind=MODULE_ROOT_PROJECT};
-        move_request.destination = source_arena_join(&fixture_paths,temporary,"/","new");
+        ModuleRoot destination_root = {.path=temporary,
+            .kind=standard ? MODULE_ROOT_STANDARD : MODULE_ROOT_PROJECT};
+        if (!standard) { fixture_package_prepare(temporary, "destination"); }
+        move_request.destination = source_arena_join(&fixture_paths,temporary,
+            standard ? "/" : "/packages/test/destination/v1.0.0/src/", "new");
         move_request.destination_root = &destination_root;
         const unsigned char opaque[] = {0,255,13,10,0,7};
-        bytes("project/old/asset.bin",opaque,sizeof(opaque));
-        file("project/old/draft","unfinished draft\n");
-        file("project/old/generated.bin","old generated data");
-        assert(symlink("cycle.link",path("project/old/cycle.link")) == 0);
+        bytes("project/packages/test/fixture/v1.0.0/src/old/asset.bin",opaque,sizeof(opaque));
+        file("project/packages/test/fixture/v1.0.0/src/old/draft","unfinished draft\n");
+        file("project/packages/test/fixture/v1.0.0/src/old/generated.bin","old generated data");
+        assert(symlink("cycle.link",path("project/packages/test/fixture/v1.0.0/src/old/cycle.link")) == 0);
         folder("artifacts");
         file("artifacts/cache.bin","outside cache");
-        const char *old_configuration = "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | .old.a | entry\n";
-        const char *new_configuration = "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | .new.a | entry\n";
+        const char *old_configuration = "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | /test/fixture/v1.0.0/src/old/a | entry\n";
+        const char *new_configuration = standard
+            ? "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | //new/a | entry\n"
+            : "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | /test/destination/v1.0.0/src/new/a | entry\n";
         file("settings.library",old_configuration);
         relocation_staging_destroy(&staging);
         relocation_references_destroy(&references);
@@ -178,9 +188,9 @@ static void it_recovers_cross_filesystem_assets_settings_and_invalidations(void)
         relocation_references_init(&references,sources.allocator);
         assert(relocation_references_build(&references,&preview));
         relocation_staging_init(&staging,sources.allocator);
-        const char *outputs[] = {path("artifacts/cache.bin"),path("project/old/generated.bin")};
+        const char *outputs[] = {path("artifacts/cache.bin"),path("project/packages/test/fixture/v1.0.0/src/old/generated.bin")};
         const char *configurations[] = {path("settings.library")};
-        assert(relocation_staging_build(&staging,&(RelocationStagingRequest){.references=&references,.entry=".old.a",
+        assert(relocation_staging_build(&staging,&(RelocationStagingRequest){.references=&references,.entry="/test/fixture/v1.0.0/src/old/a",
             .generated_outputs=outputs,.generated_output_count=2,.library_configurations=configurations,.library_configuration_count=1}));
         struct stat source, destination;
         assert(lstat(preview.source,&source) == 0 && lstat(temporary,&destination) == 0 && source.st_dev != destination.st_dev);
@@ -190,7 +200,7 @@ static void it_recovers_cross_filesystem_assets_settings_and_invalidations(void)
         bool result = relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=journal});
         if (!result) { fprintf(stderr,"Cross-filesystem recovery failed: %s\n",recovery.transaction.error.message); }
         assert(result && recovery.finished && recovery.rolled_back == !committed);
-        assert(strcmp(recovery.transaction.report.entry,".new.a") == 0);
+        assert(strcmp(recovery.transaction.report.entry, standard ? "//new/a" : "/test/destination/v1.0.0/src/new/a") == 0);
         const char *base = committed ? preview.destination : preview.source;
         const char *asset = source_arena_join(&fixture_paths,base,"/","asset.bin");
         const char *link = source_arena_join(&fixture_paths,base,"/","cycle.link");
@@ -210,7 +220,7 @@ static void it_recovers_cross_filesystem_assets_settings_and_invalidations(void)
         } else {
             assert(access(generated,F_OK) == 0 && access(path("artifacts/cache.bin"),F_OK) == 0);
         }
-        assert(rmdir(temporary) == 0);
+        assert(relocation_transaction_remove(&recovery.transaction,temporary));
         relocation_recovery_destroy(&recovery);
         relocation_recovery_init(&recovery,sources.allocator);
         assert(relocation_recovery_run(&recovery,&(RelocationRecoveryRequest){.journal=journal}));

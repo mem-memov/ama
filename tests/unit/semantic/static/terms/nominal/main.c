@@ -8,11 +8,11 @@
  * partial constructors bind their residuals locally rather than inventing holes.
  */
 static void it_canonicalizes_original_maps_and_preserves_symbolic_captures(void) {
-    setup_static("@<\nfirst argument\n...first\nsecond argument\n...second\n@!\n", "@!\n");
+    setup_static("@<\nfirst argument\n.first\nsecond argument\n.second\n@!\n", "@!\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *origin = static_module_find(&inventory, project.entry);
-    const StaticModule *plain = static_module_find(&inventory, project_find(&project, ".other"));
-    assert(origin->first->name.start == static_name_site(project.entry, "...first").start);
+    const StaticModule *plain = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
+    assert(origin->first->name.start == static_name_site(project.entry, ".first").start);
     StaticTermStore store;
     static_term_store_init(&store, &inventory, sources.allocator);
     const StaticTerm *base, *partial, *complete, *same, *symbol, *symbolic;
@@ -60,10 +60,10 @@ static void it_retains_prior_values_on_every_nominal_allocation_refusal(void) {
     for (size_t fixed = 0; fixed <= 1; fixed++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_static("@<\nfirst argument\n...first\nsecond argument\n...second\n@!\n", "@!\n");
+            setup_static("@<\nfirst argument\n.first\nsecond argument\n.second\n@!\n", "@!\n");
             assert(static_inventory_collect(&inventory) == STATIC_OK);
             const StaticModule *origin = static_module_find(&inventory, project.entry);
-            const StaticModule *plain = static_module_find(&inventory, project_find(&project, ".other"));
+            const StaticModule *plain = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
             StaticTermStore store;
             static_term_store_init(&store, &inventory, sources.allocator);
             const StaticTerm *base, *output;

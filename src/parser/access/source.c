@@ -32,7 +32,9 @@ bool parser_source(Parser *parser, const LayoutLine *line, SourceSpan text,
         source->kind = AST_LITERAL_SOURCE;
         source->payload = line->payload;
         source->span.end = line->physical.end;
-    } else if (text.start < text.end && source_bytes(text.source)[text.start] == '.') {
+    } else if (text.start < text.end && (source_bytes(text.source)[text.start] == '/'
+        || source_bytes(text.source)[text.start] == '~'
+        || source_bytes(text.source)[text.start] == '.')) {
         if (!parser_constant_source(parser, text, source)) {
             return false;
         }

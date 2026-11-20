@@ -67,8 +67,8 @@ static void equate_forwarded_input(StaticResultUse *use) {
  * real equations close both keys the exact-key graph may close without guessing.
  */
 static void it_suspends_unknown_repeated_producers_before_scope_creation_then_closes_equal_keys(void) {
-    setup_producer_requests("@...\n...out\n...type\n.other\n ...type < ...type\n ...out > ...other out\n...anchor\n..integer\n",
-        "@...\n...out\n...type\n.main\n ...type < ...type\n ...out > ...main out\n");
+    setup_producer_requests("@...\n.out\n.type\n/test/fixture/v1.0.0/src/other\n .type < .type\n .out > .other out\n.anchor\n//integer\n",
+        "@...\n.out\n.type\n/test/fixture/v1.0.0/src/main\n .type < .type\n .out > .main out\n");
     const StaticResultContext *root = entry_root(caller_environment);
     StaticResultUse *first, *back;
     assert(static_result_use(&results, root, entry_statement(caller_module), NULL, &first));
@@ -97,8 +97,8 @@ static void it_suspends_unknown_repeated_producers_before_scope_creation_then_cl
  * environment is interned, even though the immediate parent has another origin.
  */
 static void it_refuses_a_different_repeated_key_before_publishing_a_scope(void) {
-    setup_producer_requests("@...\n...out\n...type\n.other\n ...type < ...type\n ...out > ...other out\n...anchor\n..integer\n",
-        "@...\n...out\n...type\n.main\n ...type < ..text\n ...out > ...main out\n");
+    setup_producer_requests("@...\n.out\n.type\n/test/fixture/v1.0.0/src/other\n .type < .type\n .out > .other out\n.anchor\n//integer\n",
+        "@...\n.out\n.type\n/test/fixture/v1.0.0/src/main\n .type < //text\n .out > .main out\n");
     StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
     const StaticTermEnvironment *environment;
     assert(static_term_producer_environment(&terms, caller_module, &input, 1, &environment));

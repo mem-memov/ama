@@ -11,6 +11,7 @@
 
 /** Run complete typed, negative, dependency and cleanup scenarios explicitly. */
 void run(void) {
+    it_anchors_component_helpers_to_the_least_canonical_export();
     it_rejects_open_static_and_synthetic_template_export_roots();
     it_rejects_rebinding_a_completed_library_model();
     it_requires_native_profile_capabilities_and_failure_shape();

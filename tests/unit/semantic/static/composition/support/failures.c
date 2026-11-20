@@ -6,8 +6,8 @@
  * each static allocation and preserving source ownership and first diagnostics.
  */
 static void it_unwinds_every_whole_static_collection_allocation_failure(void) {
-    const char *source = "@<\nfirst\n...first\nsecond\n...second\n"
-        "@>\nresult\n...first\n@!\nstate\n...second\n.other\n zero >> value\n";
+    const char *source = "@<\nfirst\n.first\nsecond\n.second\n"
+        "@>\nresult\n.first\n@!\nstate\n.second\n/test/fixture/v1.0.0/src/other\n zero >> value\n";
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
         setup_static(source, STATIC_SCOPE_SOURCE_TEXT);

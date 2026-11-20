@@ -4,13 +4,13 @@
 /** Resolve one complete nested-construction or actual-value cycle fixture before graph allocation injection. */
 static SemanticStatus resolve_constant_failure_shape(bool cyclic) {
     prepare_types();
-    file("generated/program/worker", "@!\nvalue\n.value\n .palette.value\n");
-    file("generated/program/palette", cyclic
-        ? "@=\nvalue\n.value\n .main.first\n"
-        : "@=\nvalue\n.value\n |4\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\nvalue\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/palette/value\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/palette", cyclic
+        ? "@=\nvalue\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/main/first\n"
+        : "@=\nvalue\n/test/fixture/v1.0.0/src/value\n |4\n");
     return resolve_text(cyclic
-        ? "@=\nfirst\n.value\n .palette.value\n@!\n"
-        : "@=\nfirst\n.worker\nsecond\n.worker\n first\n@!\n");
+        ? "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/palette/value\n@!\n"
+        : "@=\nfirst\n/test/fixture/v1.0.0/src/worker\nsecond\n/test/fixture/v1.0.0/src/worker\n first\n@!\n");
 }
 /** Fail each graph/work-list/notes/plan allocation after successful source/native/typed resolution; partial owners never become valid. */
 static void it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation(void) {
@@ -41,16 +41,16 @@ static void it_unwinds_every_nested_shared_graph_cycle_and_plan_allocation(void)
 /** Qualification cannot bypass local initialization order, expose instance fields or reinterpret shared storage flags. */
 static void it_rejects_invalid_constant_members_forms_and_forward_reads(void) {
     prepare_types();
-    file("generated/program/worker", "@=\nshared\n.value\n |1\nitems[]\n.value\n |2\n@>\nresult\n.value\n@!\nstate\n.value\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nshared\n/test/fixture/v1.0.0/src/value\n |1\nitems[]\n/test/fixture/v1.0.0/src/value\n |2\n@>\nresult\n/test/fixture/v1.0.0/src/value\n@!\nstate\n/test/fixture/v1.0.0/src/value\n");
     const char *invalid[] = {
-        "@=\nfirst\n.value\n .main.later\nlater\n.value\n |2\n@!\n",
-        "@=\nfirst\n.value\n later\nlater\n.value\n |2\n@!\n",
-        "@=\nfirst\n.value\n .worker.result\n@!\n",
-        "@=\nfirst\n.value\n .worker.state\n@!\n",
-        "@=\nfirst\n.value\n .worker.absent\n@!\n",
-        "@=\nfirst\n.value\n .worker.items\n@!\n",
-        "@=\nfirst\n.value\n .worker.shared[]\n@!\n",
-        "@=\nfirst\n.value\n &second\n@!\nsecond\n.value\n"
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/main/later\nlater\n/test/fixture/v1.0.0/src/value\n |2\n@!\n",
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n later\nlater\n/test/fixture/v1.0.0/src/value\n |2\n@!\n",
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/result\n@!\n",
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/state\n@!\n",
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/absent\n@!\n",
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/items\n@!\n",
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/shared[]\n@!\n",
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n &second\n@!\nsecond\n/test/fixture/v1.0.0/src/value\n"
     };
     for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) { expect_resolved(invalid[index], false); }
 }

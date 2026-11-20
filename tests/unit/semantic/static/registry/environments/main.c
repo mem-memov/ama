@@ -15,11 +15,11 @@ typedef struct {
 
 /** Register actual source identities before the owner key is known. */
 static EnvironmentFixture setup_environment(void) {
-    setup_registry("@...\n...forward\n...type\n.other\n ...out > ...alias\n...anchor\n..integer\n",
-        "@...\n...out\n...item\n");
+    setup_registry("@...\n.forward\n.type\n/test/fixture/v1.0.0/src/other\n .out > .alias\n.anchor\n//integer\n",
+        "@...\n.out\n.item\n");
     EnvironmentFixture fixture = {0};
-    fixture.alias = static_symbol_find(caller_module, static_name_site(project.entry, "...alias"));
-    const StaticSymbol *forward = static_symbol_find(caller_module, static_name_site(project.entry, "...forward"));
+    fixture.alias = static_symbol_find(caller_module, static_name_site(project.entry, ".alias"));
+    const StaticSymbol *forward = static_symbol_find(caller_module, static_name_site(project.entry, ".forward"));
     fixture.pair = forward->declaration->as.static_result.expression;
     for (const StaticOccurrence *site = caller_module->first_occurrence; site; site = site->next) {
         if (site->receiver == NULL && site->statement->kind == AST_STATIC_PROJECTION &&
@@ -71,7 +71,7 @@ static void it_canonicalizes_all_existing_and_late_variables_only_after_owner_ke
         assert(static_constraint_value(&solver, canonical[index], &value, &outcome));
         assert(outcome == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
     }
-    const StaticSymbol *forward = static_symbol_find(caller_module, static_name_site(project.entry, "...forward"));
+    const StaticSymbol *forward = static_symbol_find(caller_module, static_name_site(project.entry, ".forward"));
     const StaticTerm *late, *late_canonical;
     assert(static_term_symbol(&terms, caller_environment, forward, &late));
     assert(static_registry_scope_environment(&registry, fixture.use, &state));

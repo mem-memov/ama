@@ -15,10 +15,10 @@ static void profile_native(const char *name, const char *interface, const char *
 static void it_requires_native_profile_capabilities_and_failure_shape(void) {
     prepare_project();
     directory("generated/standard");
-    file("generated/project/empty", "@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/empty", "@!\n");
     const char *failure_interfaces[] = {
-        "@>\ndescription\n..text\n@C\n", "@>\nreason\n..text\n@C\n",
-        "@>\ndescription&\n..text\n@C\n", "@>\ndescription[]\n..text\n@C\n"
+        "@>\ndescription\n//text\n@C\n", "@>\nreason\n//text\n@C\n",
+        "@>\ndescription&\n//text\n@C\n", "@>\ndescription[]\n//text\n@C\n"
     };
     for (size_t shape = 0; shape < 8; shape++) {
         profile_native("text", shape == 6 ? "@!\n" : "@C\n", shape == 0
@@ -28,7 +28,7 @@ static void it_requires_native_profile_capabilities_and_failure_shape(void) {
         profile_native("failure", failure_interfaces[shape >= 2 && shape <= 4 ? shape - 1 : 0], shape == 5
             ? "+ initialize\n- destroy\n= clone\n" : "+ initialize\n- destroy\n= clone\n? condition\n");
         setup_test();
-        const SourceText *source = configuration("schema | outcome | failure | ..failure\nexport | empty | .empty | entry\n");
+        const SourceText *source = configuration("schema | outcome | failure | //failure\nexport | empty | /test/fixture/v1.0.0/src/empty | entry\n");
         LibraryBuild build;
         library_build_init(&build, sources.allocator);
         bool parsed = library_configuration_parse(&build, source);

@@ -41,7 +41,7 @@ interfaces use named Type/Template bindings instead of runtime positions.
 
 Graph names, qualified constant member names and caller variable occurrences
 belong to their own source namespaces. Module paths resolve actual dependencies;
-atomic three-dot names do not search the filesystem. No path-only lookup repairs
+atomic single-dot names do not search the filesystem. No path-only lookup repairs
 a missing concrete capture or an absent source namespace proof.
 
 ## Verification

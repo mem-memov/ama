@@ -1,0 +1,10 @@
+# Return the current instance without creating another owned instance.
+@>
+self&
+/test/fixture/v1.0.0/src/self
+ &
+@!
+report
+/test/fixture/v1.0.0/src/report
+report !
+ < |self entry

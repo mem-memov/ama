@@ -15,15 +15,15 @@ static bool begin(const char *text, size_t indentation, LexCursor *cursor) {
 
 /** Every valid join retains complete names and longest punctuation across physical ending variants. */
 static void it_preserves_complete_names_compound_tokens_and_all_line_ending_forms(void) {
-    const char *texts[] = {"..商店 工具.商品 状态", "目标&[] !", "targets&[positions[next position]]",
+    const char *texts[] = {"//商店 工具/商品 状态", "目标&[] !", "targets&[positions[next position]]",
         "input name& < &item state", "% target&", "word name   # arbitrary   comment"};
     const LexKind kinds[][8] = {
-        {LEX_STANDARD_ROOT,LEX_NAME,LEX_DOT,LEX_NAME}, {LEX_NAME,LEX_REFERENCE_LIST,LEX_EXECUTE},
+        {LEX_MODULE_PATH}, {LEX_NAME,LEX_REFERENCE_LIST,LEX_EXECUTE},
         {LEX_NAME,LEX_REFERENCE_INDEX,LEX_NAME,LEX_INDEX_OPEN,LEX_NAME,LEX_INDEX_CLOSE,LEX_INDEX_CLOSE},
         {LEX_NAME,LEX_REFERENCE,LEX_INPUT,LEX_REFERENCE,LEX_NAME},
         {LEX_CONTINUATION,LEX_NAME,LEX_REFERENCE}, {LEX_NAME}
     };
-    const size_t counts[] = {4,3,7,5,3,1};
+    const size_t counts[] = {1,3,7,5,3,1};
     const char *endings[] = {"", "\n", "\r\n"};
     for (size_t example = 0; example < 6; example++) {
         for (size_t ending = 0; ending < 3; ending++) {
@@ -41,7 +41,7 @@ static void it_preserves_complete_names_compound_tokens_and_all_line_ending_form
                 LexStatus status = lex_token_next(&cursor, &token);
                 assert(status == LEX_TOKEN && token.kind == kinds[example][index]);
                 assert(source_span_valid(token.text));
-                if (example == 0 && index == 1) { assert(layout_text_is(token.text, "商店 工具")); }
+                if (example == 0 && index == 0) { assert(layout_text_is(token.text, "//商店 工具/商品 状态")); }
                 if (example == 2 && index == 4) { assert(layout_text_is(token.text, "next position")); }
             }
             LexStatus status = lex_token_next(&cursor, &token);
@@ -190,14 +190,14 @@ static void it_shares_bounded_maximal_name_scanning_with_parser_consumers(void) 
  * and raw entry literals; malformed joins must fail rather than split names.
  */
 static void it_uses_hyphen_words_in_paths_accesses_and_literal_labels(void) {
-    const char *valid[] = {"..shop-tools.item-2", "result-name&[position-2]",
+    const char *valid[] = {"//shop-tools/item-2", "result-name&[position-2]",
         "name-2 part_3 !"};
     const LexKind kinds[][4] = {
-        {LEX_STANDARD_ROOT, LEX_NAME, LEX_DOT, LEX_NAME},
+        {LEX_MODULE_PATH},
         {LEX_NAME, LEX_REFERENCE_INDEX, LEX_NAME, LEX_INDEX_CLOSE},
         {LEX_NAME, LEX_EXECUTE}
     };
-    const size_t counts[] = {4, 4, 2};
+    const size_t counts[] = {1, 4, 2};
     for (size_t index = 0; index < 3; index++) {
         setup_test();
         LexCursor cursor;
@@ -206,8 +206,8 @@ static void it_uses_hyphen_words_in_paths_accesses_and_literal_labels(void) {
         for (size_t position = 0; position < counts[index]; position++) {
             assert(lex_token_next(&cursor, &token) == LEX_TOKEN);
             assert(token.kind == kinds[index][position]);
-            if (index == 0 && position == 1) {
-                assert(layout_text_is(token.text, "shop-tools"));
+            if (index == 0 && position == 0) {
+                assert(layout_text_is(token.text, "//shop-tools/item-2"));
             }
             if (index == 2 && position == 0) {
                 assert(layout_text_is(token.text, "name-2 part_3"));
@@ -239,17 +239,17 @@ static void it_uses_hyphen_words_in_paths_accesses_and_literal_labels(void) {
     }
 }
 
-/** Three dots adjoin complete static names; no positional prefix or padded join is accepted.
+/** One dot adjoins complete static names; no positional prefix or padded join is accepted.
  */
 static void it_distinguishes_static_prefixes_from_module_roots_and_binding_separators(void) {
-    const char *valid[] = {"...key-type.part < ..integer", "...input < ...value",
-        "...output > ...received-type"};
+    const char *valid[] = {".key-type.part < //integer", ".input < .value",
+        ".output > .received-type"};
     const LexKind kinds[][7] = {
-        {LEX_STATIC_PREFIX, LEX_NAME, LEX_DOT, LEX_NAME, LEX_INPUT, LEX_STANDARD_ROOT, LEX_NAME},
-        {LEX_STATIC_PREFIX, LEX_NAME, LEX_INPUT, LEX_STATIC_PREFIX, LEX_NAME},
-        {LEX_STATIC_PREFIX, LEX_NAME, LEX_OUTPUT, LEX_STATIC_PREFIX, LEX_NAME}
+        {LEX_DOT, LEX_NAME, LEX_DOT, LEX_NAME, LEX_INPUT, LEX_MODULE_PATH},
+        {LEX_DOT, LEX_NAME, LEX_INPUT, LEX_DOT, LEX_NAME},
+        {LEX_DOT, LEX_NAME, LEX_OUTPUT, LEX_DOT, LEX_NAME}
     };
-    const size_t checked[] = {7, 5, 5};
+    const size_t checked[] = {6, 5, 5};
     for (size_t index = 0; index < 3; index++) {
         setup_test();
         LexCursor cursor;
@@ -276,8 +276,46 @@ static void it_distinguishes_static_prefixes_from_module_roots_and_binding_separ
     }
 }
 
+/** Paths remain single operands even with version dots, multiword names and
+ * compact constant-list suffixes; static names never become filesystem paths.
+ */
+static void it_scans_path_operands_and_rejects_invalid_component_joins(void) {
+    const char *paths[] = {"/acme/pkg/v2.4.14-speed/src/item", "//item name/member",
+        "./item", "../../item", "~containers/item name", "~local"};
+    for (size_t index = 0; index < sizeof(paths) / sizeof(*paths); index++) {
+        setup_test();
+        LexCursor cursor;
+        assert(begin(paths[index], 0, &cursor));
+        LexToken token;
+        assert(lex_token_next(&cursor, &token) == LEX_TOKEN);
+        assert(token.kind == LEX_MODULE_PATH && layout_text_is(token.text, paths[index]));
+        assert(lex_token_next(&cursor, &token) == LEX_END);
+        destroy_layout();
+    }
+    setup_test();
+    LexCursor cursor;
+    assert(begin("//table/items[]", 0, &cursor));
+    LexToken token;
+    assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_MODULE_PATH);
+    assert(lex_token_next(&cursor, &token) == LEX_TOKEN && token.kind == LEX_LIST);
+    assert(lex_token_next(&cursor, &token) == LEX_END);
+    destroy_layout();
+    const char *invalid[] = {"/", "//", "///item", "//item/", "//item//next",
+        "./", "../", "~", "~ item", "/a/v01.2.3/src/item", "/a/v1.2.3.4/src/item",
+        "//item.child", "//item []", "name//item", ".type/field", ".type..field"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
+        setup_test();
+        assert(begin(invalid[index], 0, &cursor));
+        LexStatus status;
+        do { status = lex_token_next(&cursor, &token); } while (status == LEX_TOKEN);
+        assert(status == LEX_INVALID && diagnostic_valid(&cursor.error));
+        destroy_layout();
+    }
+}
+
 /** Run every exact-layout/token boundary scenario explicitly. */
 void run(void) {
+    it_scans_path_operands_and_rejects_invalid_component_joins();
     it_distinguishes_static_prefixes_from_module_roots_and_binding_separators();
     it_uses_hyphen_words_in_paths_accesses_and_literal_labels();
     it_preserves_complete_names_compound_tokens_and_all_line_ending_forms();

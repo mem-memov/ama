@@ -1,8 +1,0 @@
-# Synchronously open and close a file; expected failures use an owned result.
-@<
-path
-..text
-@>
-failure
-..failure
-@C

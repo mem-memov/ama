@@ -5,12 +5,12 @@
 /** A receipt precedes its pair declaration. Another receiver defines an alias;
  * a later receipt into that alias must not replace its defining producer edge.
  */
-static const char *public_graph_source = "@...\n.other\n"
-    " ...out > ...declared\n ...second > ...alias\n"
-    "...forward\n...alias\n...declared\n...input\n"
-    ".other\n ...out > ...alias\n";
-static const char *public_graph_producer = "@...\n...out\n...producer input\n"
-    "...second\n...producer input\n";
+static const char *public_graph_source = "@...\n/test/fixture/v1.0.0/src/other\n"
+    " .out > .declared\n .second > .alias\n"
+    ".forward\n.alias\n.declared\n.input\n"
+    "/test/fixture/v1.0.0/src/other\n .out > .alias\n";
+static const char *public_graph_producer = "@...\n.out\n.producer input\n"
+    ".second\n.producer input\n";
 
 /** Public identity/order follows definitions, not allocation order, the first
  * equality receipt or metadata solving. The primitive pass creates no inputs.
@@ -50,7 +50,7 @@ static void it_exposes_every_public_alias_in_the_actual_source_interface(void) {
     const StaticModule *module = static_module_find(&inventory, project.entry);
     assert(module->parameter_count == 1 && module->result_count == 3);
     const StaticSymbol *input = static_symbol_at(module, STATIC_PARAMETER, 0);
-    assert(layout_text_is(input->name, "...input") && input->category == STATIC_CATEGORY_DEFERRED);
+    assert(layout_text_is(input->name, ".input") && input->category == STATIC_CATEGORY_DEFERRED);
     BindingPlan plan;
     binding_plan_init(&plan, sources.allocator);
     BindingInterface *view = NULL;
@@ -58,7 +58,7 @@ static void it_exposes_every_public_alias_in_the_actual_source_interface(void) {
     assert(view->sequences[BINDING_STATIC_OUTPUT].count == 3);
     assert(view->sequences[BINDING_STATIC_INPUT].count == 1);
     assert(view->sequences[BINDING_RUNTIME_INPUT].count == 0 && view->sequences[BINDING_RUNTIME_OUTPUT].count == 0);
-    const char *names[] = {"...alias", "...forward", "...declared"};
+    const char *names[] = {".alias", ".forward", ".declared"};
     const BindingSlot *slot = view->sequences[BINDING_STATIC_OUTPUT].first;
     for (size_t index = 0; index < 3; index++) {
         assert(slot != NULL && layout_text_is(slot->name.site, names[index]));
@@ -75,7 +75,7 @@ static void it_exposes_every_public_alias_in_the_actual_source_interface(void) {
  * external parameter. Type/value closure is deliberately not claimed here.
  */
 static void it_binds_forward_alias_uses_without_creating_external_inputs(void) {
-    setup_static("@...\n...forward\n...alias\n.other\n ...out > ...alias\n", public_graph_producer);
+    setup_static("@...\n.forward\n.alias\n/test/fixture/v1.0.0/src/other\n .out > .alias\n", public_graph_producer);
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticModule *module = static_module_find(&inventory, project.entry);
     assert(module->parameter_count == 0 && module->result_count == 2);

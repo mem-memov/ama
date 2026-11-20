@@ -1,34 +1,34 @@
 # Enrollment owns its task; queue membership is declared state, not a native handle table.
 @<
 identifier
-..std.index
+//std/index
 operation
-..task.token
+//task/token
 @>
 self&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
  &
 task&
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 id
-..std.index
+//std/index
 epoch
-..task.generation
+//task/generation
 enrolled
-..task.flag
+//task/flag
 ready
-..task.flag
+//task/flag
 queued
-..task.flag
+//task/flag
 started
-..task.flag
+//task/flag
 token
-..task.token
+//task/token
 @!
 run sequence
-..task.sequence
+//task/sequence
 owned task
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 id
  identifier
 run sequence !

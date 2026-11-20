@@ -1,10 +1,10 @@
 # A native parent owning a compiled Ama child
 
 The maintained example in
-[adapter.c](../../tests/unit/library/nested/project/adapter.c) implements
+[adapter.c](../../tests/unit/library/nested/project/packages/test/fixture/v1.0.0/src/adapter.c) implements
 [EMBED-07](../../spec/implementation/c-library.md#embed-07) using the ordinary
 native lifecycle and the checked C-library boundary. Its companion
-[adapter.h](../../tests/unit/library/nested/project/adapter.h) contains one
+[adapter.h](../../tests/unit/library/nested/project/packages/test/fixture/v1.0.0/src/adapter.h) contains one
 pointer to an exclusively owned foreign resource. It contains no checked Ama
 reference, parent field address, borrowed input or borrowed result.
 
@@ -36,7 +36,7 @@ even when returning a technical status; the adapter checks the consumed control
 and releases the returned diagnostic in that case too. Cleanup failure does not
 replace an earlier construction/execution failure.
 
-The [native ABI](../../tests/unit/library/nested/project/adapter.abi) deliberately
+The [native ABI](../../tests/unit/library/nested/project/packages/test/fixture/v1.0.0/src/adapter.abi) deliberately
 declares only `+` and `-`. It has no `=`. Both ordinary copying and `%` copying
 are therefore rejected before C compilation. Copying an opaque C pointer or a
 context control does not create another resource owner or an independent clone.

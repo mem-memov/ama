@@ -1,0 +1,9 @@
+# @file
+# @brief Supply a concrete ordinary argument without legalizing the native definition's own Type formal.
+@!
+known
+/test/fixture/v1.0.0/src/plain
+instance
+/test/fixture/v1.0.0/src/bad
+instance !
+ < &known

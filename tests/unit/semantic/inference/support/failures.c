@@ -5,12 +5,12 @@
 /** Current source/Type preparation, not obsolete event replay, owns inferred-field allocation. */
 static void it_unwinds_every_inference_allocation_failure(void) {
     prepare_inference();
-    const char *text = "@!\nworker\n.worker\nitems[]\n.value\nworker !\n > first\ncopy\n first\nitems[item&]\n{\n escaped&\n  item&\n}\nitems[]\n append !\n  > appended&\n length !\n  > length\n";
-    file("generated/program/main",text);
+    const char *text = "@!\nworker\n/test/fixture/v1.0.0/src/worker\nitems[]\n/test/fixture/v1.0.0/src/value\nworker !\n > first\ncopy\n first\nitems[item&]\n{\n escaped&\n  item&\n}\nitems[]\n append !\n  > appended&\n length !\n  > length\n";
+    file("generated/program/packages/test/fixture/v1.0.0/src/main",text);
     setup_semantic();
     ModuleRoot roots[] = {{"generated/program",NULL,0,MODULE_ROOT_PROJECT},
         {"generated/standard",NULL,0,MODULE_ROOT_STANDARD}};
-    assert(project_load(&project,roots,2,".main") == PROJECT_OK);
+    assert(project_load(&project,roots,2,"/test/fixture/v1.0.0/src/main") == PROJECT_OK);
     semantic_program_init(&semantic,&project,sources.allocator);
     size_t before = allocation_count;
     assert(semantic_fixture_names(&semantic) == SEMANTIC_OK);
@@ -21,7 +21,7 @@ static void it_unwinds_every_inference_allocation_failure(void) {
     destroy_semantic();
     for (size_t failure = 1; failure <= total; failure++) {
         setup_semantic();
-        assert(project_load(&project,roots,2,".main") == PROJECT_OK);
+        assert(project_load(&project,roots,2,"/test/fixture/v1.0.0/src/main") == PROJECT_OK);
         semantic_program_init(&semantic,&project,sources.allocator);
         failure_at = allocation_count+failure;
         SemanticStatus status = semantic_fixture_names(&semantic);

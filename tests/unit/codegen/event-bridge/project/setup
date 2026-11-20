@@ -1,19 +1,19 @@
 # Prepare native identity, then let the task publish its visible registration before arm.
 @!
 record
-.record
+/test/fixture/v1.0.0/src/record
 wait
-.registration
+/test/fixture/v1.0.0/src/registration
 service
-..task.events
+//task/events
 import
-.import
+/test/fixture/v1.0.0/src/import
 validate
-.validate
+/test/fixture/v1.0.0/src/validate
 probe
-.worker
+/test/fixture/v1.0.0/src/worker
 ready&[]
-.task
+/test/fixture/v1.0.0/src/task
 record !
 record
  epoch !

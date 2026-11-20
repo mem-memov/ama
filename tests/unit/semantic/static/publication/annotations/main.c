@@ -6,7 +6,7 @@
 
 /** A generic ordinary path needs per-field Type holes, never a residual value. */
 static void setup_annotations(void) {
-    setup_publications("@!\nfield\n.other\nanchor&\n..integer\n", "@<\nvalue\n...slot\n@!\n");
+    setup_publications("@!\nfield\n/test/fixture/v1.0.0/src/other\nanchor&\n//integer\n", "@<\nvalue\n.slot\n@!\n");
 }
 
 /** Bind one original annotation without registering any actual incoming scope. */
@@ -57,7 +57,7 @@ static void it_infers_field_annotation_arguments_without_creating_or_validating_
  * creating actual contexts; even a known Type is not an actual-use certificate.
  */
 static void it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance(void) {
-    setup_publications("@<\nargument\n...type\n@!\nfield\n...type\nanchor&\n..integer\n", "@!\n");
+    setup_publications("@<\nargument\n.type\n@!\nfield\n.type\nanchor&\n//integer\n", "@!\n");
     StaticTermCapture capture = {.formal = application_formal(caller_module, 0), .value = integer_type};
     const StaticTerm *owner;
     const StaticTermEnvironment *environment;
@@ -91,7 +91,7 @@ static void it_substitutes_nominal_annotation_scopes_without_inventing_validatio
  * fabricate the using ordinary module's root or provide a runtime instance.
  */
 static void it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context(void) {
-    setup_publications("@!\nfield\n.other\n ...out\n", "@...\n...out\n..integer\n");
+    setup_publications("@!\nfield\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n//integer\n");
     StaticOrdinaryType *type = annotation();
     bool changed;
     bool success = static_ordinary_equations(&publications, type, &changed);
@@ -122,7 +122,7 @@ static void it_resolves_independent_exports_without_manufacturing_an_ordinary_ca
  */
 static void it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference(void) {
     for (size_t different = 0; different < 2; different++) {
-        setup_publications("@<\nargument\n...slot\n@!\nnext&\n.main\nanchor&\n..integer\ntext anchor&\n..text\n", "@!\n");
+        setup_publications("@<\nargument\n.slot\n@!\nnext&\n/test/fixture/v1.0.0/src/main\nanchor&\n//integer\ntext anchor&\n//text\n", "@!\n");
         StaticOrdinaryType *metadata;
         bool success = static_ordinary_source(&publications, caller_environment, result_field("next"), &metadata);
         assert(success);
@@ -147,11 +147,11 @@ static void it_preserves_pending_and_unequal_ancestry_after_source_only_annotati
         assert(guards.path_count == 1 && results.context_count == 1);
         const StaticTerm *argument = integer_type;
         if (different) {
-            const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+            const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
             success = static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &argument);
             assert(success);
         }
-        success = static_constraint_equate(&solver, application_symbol("...slot"), argument, metadata->expression->span);
+        success = static_constraint_equate(&solver, application_symbol(".slot"), argument, metadata->expression->span);
         assert(success);
         const StaticTerm *value = NULL;
         success = static_ordinary_resolve(&publications, use, &value);
@@ -167,7 +167,7 @@ static void it_preserves_pending_and_unequal_ancestry_after_source_only_annotati
 
 /** A known annotation consumer is not an input anchor for its static supplier. */
 static void it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence(void) {
-    setup_publications("@!\nfield\n.other\n ...out\n", "@...\n...out\n...slot\n...anchor\n..integer\n");
+    setup_publications("@!\nfield\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n.slot\n.anchor\n//integer\n");
     StaticOrdinaryType *type = annotation();
     bool success = static_constraint_equate(&solver, type->value, integer_type, type->expression->span);
     assert(success);
@@ -212,7 +212,7 @@ static void it_unwinds_every_source_annotation_and_equation_allocation_refusal(v
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
             if (phase == 2) {
-                setup_publications("@!\nfield\n.other\n ...out\n", "@...\n...out\n..integer\n");
+                setup_publications("@!\nfield\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n//integer\n");
             } else { setup_annotations(); }
             StaticOrdinaryType *type = phase ? annotation() : NULL;
             bool changed = true;

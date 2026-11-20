@@ -1,11 +1,11 @@
 # Remove a queued operation and reuse capacity without accepting its old callback token.
 @!
 source
-..task.events
+//task/events
 operations[]
-..task.operation
+//task/operation
 require
-..task.require
+//task/require
 source !
  < |1
 operations[]

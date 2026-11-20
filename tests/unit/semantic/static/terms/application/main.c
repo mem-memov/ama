@@ -10,10 +10,10 @@
  */
 static void it_preserves_named_slots_and_distinct_use_provenance(void) {
     for (size_t known = 0; known < 2; known++) {
-        setup_requests("...request result\n...expected\n ...a < ...type\n ...b < ...type\n");
+        setup_requests(".request result\n.expected\n .a < .type\n .b < .type\n");
         const StaticModule *caller = binding_module(project.entry);
-        const StaticOccurrence *head = request_head("...expected");
-        assert(static_name_site(project.entry, "...expected").source == head->site.source);
+        const StaticOccurrence *head = request_head(".expected");
+        assert(static_name_site(project.entry, ".expected").source == head->site.source);
         BindingInterface *view = known ? request_interface() : NULL;
         BindingApplication *request;
         assert(binding_normalize_static(&binding_plan, view, head->expression, &request));
@@ -22,7 +22,7 @@ static void it_preserves_named_slots_and_distinct_use_provenance(void) {
         const StaticTermEnvironment *environment;
         const StaticTerm *value, *constructor;
         assert(static_term_environment(&store, caller, NULL, &environment));
-        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, "...type")), &value));
+        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, ".type")), &value));
         assert(static_term_symbol(&store, environment, head->symbol, &constructor));
         StaticTermOperand operands[] = {{.request = request->first, .value = value},
             {.request = request->first->next, .value = value}};
@@ -33,7 +33,7 @@ static void it_preserves_named_slots_and_distinct_use_provenance(void) {
         assert(first->input_count == 2 && first->first->value == value && first->last->value == value);
         assert(first->last->request->named && request->output_count == 0);
         if (known) {
-            assert(first->first->request->slot->static_symbol == binding_module(project_find(&project, ".other"))->first);
+            assert(first->first->request->slot->static_symbol == binding_module(project_find(&project, "/test/fixture/v1.0.0/src/other"))->first);
         } else { assert(first->first->request->slot == NULL && request->pending); }
         const StaticTermApplication *sentinel = first;
         assert(!static_term_application(&store, &binding_plan, request, environment, constructor, NULL, 0, &sentinel));
@@ -50,10 +50,10 @@ static void it_preserves_named_slots_and_distinct_use_provenance(void) {
 static void it_unwinds_every_application_record_allocation_refusal(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_requests("...request result\n...expected\n ...a < ...type\n ...b < ...type\n");
+        setup_requests(".request result\n.expected\n .a < .type\n .b < .type\n");
         const StaticModule *caller = binding_module(project.entry);
-        const StaticOccurrence *head = request_head("...expected");
-        assert(static_name_site(project.entry, "...expected").source == head->site.source);
+        const StaticOccurrence *head = request_head(".expected");
+        assert(static_name_site(project.entry, ".expected").source == head->site.source);
         BindingApplication *request;
         assert(binding_normalize_static(&binding_plan, NULL, head->expression, &request));
         StaticTermStore store;
@@ -61,7 +61,7 @@ static void it_unwinds_every_application_record_allocation_refusal(void) {
         const StaticTermEnvironment *environment;
         const StaticTerm *value, *constructor;
         assert(static_term_environment(&store, caller, NULL, &environment));
-        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, "...type")), &value));
+        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, ".type")), &value));
         assert(static_term_symbol(&store, environment, head->symbol, &constructor));
         StaticTermOperand operands[] = {{.request = request->first, .value = value},
             {.request = request->first->next, .value = value}};
@@ -88,9 +88,9 @@ static void it_unwinds_every_application_record_allocation_refusal(void) {
  */
 static void it_preserves_reordered_operands_and_refuses_foreign_or_saturated_uses(void) {
     for (size_t invalid = 0; invalid < 3; invalid++) {
-        setup_requests("...request result\n...expected\n ...a < ...type\n ...b < ...other type\n");
+        setup_requests(".request result\n.expected\n .a < .type\n .b < .other type\n");
         const StaticModule *caller = binding_module(project.entry);
-        const StaticOccurrence *head = request_head("...expected");
+        const StaticOccurrence *head = request_head(".expected");
         BindingApplication *request;
         assert(binding_normalize_static(&binding_plan, request_interface(), head->expression, &request));
         StaticTermStore store;
@@ -98,11 +98,11 @@ static void it_preserves_reordered_operands_and_refuses_foreign_or_saturated_use
         const StaticTermEnvironment *environment, *foreign;
         const StaticTerm *value, *second_value, *constructor;
         assert(static_term_environment(&store, caller, NULL, &environment));
-        assert(static_term_environment(&store, binding_module(project_find(&project, ".other")), NULL, &foreign));
-        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, "...type")), &value));
+        assert(static_term_environment(&store, binding_module(project_find(&project, "/test/fixture/v1.0.0/src/other")), NULL, &foreign));
+        assert(static_term_symbol(&store, environment, static_symbol_find(caller, static_name_site(project.entry, ".type")), &value));
         assert(static_term_symbol(&store, environment, head->symbol, &constructor));
         assert(static_term_symbol(&store, environment, static_symbol_find(caller,
-            static_name_site(project.entry, "...other type")), &second_value));
+            static_name_site(project.entry, ".other type")), &second_value));
         StaticTermOperand operands[] = {{.request = request->first->next, .value = second_value},
             {.request = request->first, .value = value}};
         const StaticTermApplication *application;

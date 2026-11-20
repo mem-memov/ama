@@ -1,48 +1,48 @@
 # One cooperative task: pending native capacity is not permission to run its send body.
 @<
 sender&
-.sender
+/test/fixture/v1.0.0/src/sender
 source&
-..task.events
+//task/events
 @>
 phase
-..task.phase
+//task/phase
 waiting
-..task.flag
+//task/flag
 cancel requested
-..task.flag
+//task/flag
 token
-..task.token
+//task/token
 outcome
-..task.outcome
+//task/outcome
 failure
-..failure
+//failure
 @!
 encode
-.encode
+/test/fixture/v1.0.0/src/encode
 check
-.check
+/test/fixture/v1.0.0/src/check
 check full
-.checkfull
+/test/fixture/v1.0.0/src/checkfull
 operation
-..task.operation
+//task/operation
 await
-.awaitsender
+/test/fixture/v1.0.0/src/awaitsender
 detach
-..task.operation.detach
+//task/operation/detach
 cancel
-.cancelwait
+/test/fixture/v1.0.0/src/cancelwait
 awaiting
-..task.phase.awaiting
+//task/phase/awaiting
 completed
-..task.phase.completed
+//task/phase/completed
 true
-..std.condition
+//std/condition
  |1
 false
-..std.condition
+//std/condition
 no failure
-..failure
+//failure
 encode !
  < |1
  < |Hello, Ама

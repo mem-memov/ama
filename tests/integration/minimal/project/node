@@ -1,5 +1,0 @@
-# Ordinary calls retain this owned counter's native resource and call count.
-@!
-counter
-.counter
-counter !

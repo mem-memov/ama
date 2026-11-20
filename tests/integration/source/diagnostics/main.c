@@ -6,6 +6,7 @@
  * @see [Fixture and coverage contract](../../../../docs/implementation/library-tests-and-build.md)
  */
 #include "../common.c"
+#include "../../../unit/fixtures/package.h"
 #include "support/mappings.c"
 
 /**
@@ -19,7 +20,7 @@ static void it_composes_source_lookup_identity_spans_and_human_diagnostics(void)
     ModuleStatus discovered = module_catalog_build(&catalog, &root, 1);
     assert(discovered == MODULE_OK);
     const ModuleSource *module;
-    discovered = module_catalog_find(&catalog, ".商店.商品", &module);
+    discovered = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/商店/商品", &module);
     assert(discovered == MODULE_OK);
     QualifiedIdentity identity = {IDENTITY_TYPE, module->logical_path, NULL, 0,
         {module->text, 0, 2}};
@@ -39,7 +40,11 @@ static void it_composes_source_lookup_identity_spans_and_human_diagnostics(void)
  */
 static void it_reports_real_source_ambiguity_with_both_physical_paths(void) {
     setup_test();
-    ModuleRoot roots[] = {{"project/商店", NULL, 0, MODULE_ROOT_PROJECT}, {"project/other", NULL, 0, MODULE_ROOT_PROJECT}};
+    int created = mkdir("generated/duplicate", 0700);
+    assert(created == 0);
+    fixture_package_prepare("generated/duplicate", "fixture");
+    ModuleRoot roots[] = {{"project", NULL, 0, MODULE_ROOT_PROJECT},
+        {"generated/duplicate", NULL, 0, MODULE_ROOT_PROJECT}};
     ModuleStatus discovered = module_catalog_build(&catalog, roots, 2);
     assert(discovered == MODULE_AMBIGUOUS);
     Diagnostic diagnostic;
@@ -59,7 +64,8 @@ static void it_renders_an_actual_invalid_utf8_input_without_losing_its_bytes(voi
     setup_test();
     int created = mkdir("generated/bad", 0700);
     assert(created == 0 || errno == EEXIST);
-    FILE *input = fopen("generated/bad/坏", "wb");
+    fixture_package_prepare("generated/bad", "fixture");
+    FILE *input = fopen("generated/bad/packages/test/fixture/v1.0.0/src/坏", "wb");
     assert(input != NULL);
     const unsigned char bytes[] = {'@', '!', '\n', 0xff};
     size_t written = fwrite(bytes, 1, sizeof(bytes), input);

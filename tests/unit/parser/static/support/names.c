@@ -5,9 +5,9 @@
  * source storage/allocations are unchanged by recognition.
  */
 static void it_recognizes_atomic_static_names_without_module_lookup(void) {
-    const char *valid[] = {"...type", "...key type.element-2", "...ключ-2.值", "..._item-_value"};
-    const char *invalid[] = {"...", "....type", "..type", ".type", "... type",
-        "...type.", "...type..part", "...type .part", "...type. part", "...type--part"};
+    const char *valid[] = {".type", ".key type.element-2", ".ключ-2.值", "._item-_value"};
+    const char *invalid[] = {".", "...type", "..type", "/type", ". type",
+        ".type.", ".type..part", ".type .part", ".type. part", ".type--part", ".type/part"};
     for (size_t group = 0; group < 2; group++) {
         const char *const *names = group == 0 ? valid : invalid;
         size_t count = group == 0 ? sizeof(valid) / sizeof(*valid) : sizeof(invalid) / sizeof(*invalid);
@@ -26,6 +26,6 @@ static void it_recognizes_atomic_static_names_without_module_lookup(void) {
         }
     }
     setup_tree();
-    assert(parse_text("@!\nvalue\n.module\n") == PARSE_OK);
+    assert(parse_text("@!\nvalue\n/test/fixture/v1.0.0/src/module\n") == PARSE_OK);
     destroy_tree();
 }

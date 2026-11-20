@@ -1,4 +1,4 @@
-project/broken:3:2: error[syntax]: Literal data requires a declaration initializer or an entry input
+project/packages/test/fixture/v1.0.0/src/broken:3:2: error[syntax]: Literal data requires a declaration initializer or an entry input
     3 |  |12
     span: bytes [10, 13)
     expected: a named value/reference, qualified constant, or explicit copy source

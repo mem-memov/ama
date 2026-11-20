@@ -17,23 +17,23 @@ To compile and run one example manually:
 
 ```sh
 cd tests/integration/examples
-../../../ama --emit project .simulations --standard-root ../../../stdlib/modules --out generated/manual --sdk ../../../src --compile
+../../../ama --emit project /test/fixture/v1.0.0/src/simulations --standard-root ../../../stdlib/modules --out generated/manual --sdk ../../../src --compile
 generated/manual/program
 ```
 
-Replace `.simulations` with `.traversal`, `'.self example'`, `.files`, `.empty`,
-`'.empty path'` or `'.ordinary copy'`. Quote logical names containing spaces.
-The standard root is explicit: `..text` and `..failure` refer to standard-library
-identities, while `.simulation` belongs to this example project. Outputs go under
+Replace `/test/fixture/v1.0.0/src/simulations` with `/test/fixture/v1.0.0/src/traversal`, `'/test/fixture/v1.0.0/src/self example'`, `/test/fixture/v1.0.0/src/files`, `/test/fixture/v1.0.0/src/empty`,
+`'/test/fixture/v1.0.0/src/empty path'` or `'/test/fixture/v1.0.0/src/ordinary copy'`. Quote logical names containing spaces.
+The standard root is explicit: `//text` and `//failure` refer to standard-library
+identities, while `/test/fixture/v1.0.0/src/simulation` belongs to this example project. Outputs go under
 `generated/`; the successful automated test cleans them. Handwritten native
 companions stay under `project/` and are never overwritten.
 
 ## Persistent state and constructor-owned methods
 
 Read the constructor example guide in `tests/integration/objects/README.md`,
-then its [main module](../../tests/integration/objects/project/main),
-[constructor](../../tests/integration/objects/project/factory) and
-[method](../../tests/integration/objects/project/method). A method captures its
+then its [main module](../../tests/integration/objects/project/packages/test/fixture/v1.0.0/src/main),
+[constructor](../../tests/integration/objects/project/packages/test/fixture/v1.0.0/src/factory) and
+[method](../../tests/integration/objects/project/packages/test/fixture/v1.0.0/src/method). A method captures its
 own seed copy and yields before each update. Its permanent state survives resume;
 the two methods and two constructed objects evolve independently. The exact
 [trace](../../tests/integration/objects/expected.txt) includes resource destruction,
@@ -44,7 +44,7 @@ have different, explicit effects on control state.
 
 ## Returning the original instance
 
-The [self module](../../tests/integration/examples/project/self) initializes its
+The [self module](../../tests/integration/examples/project/packages/test/fixture/v1.0.0/src/self) initializes its
 reference result with standalone `&`. Its [caller](<../../tests/integration/examples/project/self example>)
 executes the module, receives that reference, and executes through it. The trace
 contains `description=self entry` twice. There is one owned instance; transferring
@@ -54,7 +54,7 @@ the first acquisition ends, so the example does not attempt busy reentry.
 
 ## A live, changing list
 
-[Traversal](../../tests/integration/examples/project/traversal) starts with
+[Traversal](../../tests/integration/examples/project/packages/test/fixture/v1.0.0/src/traversal) starts with
 `first, second`. On the first iteration it appends `appended`, then removes the
 current first element. Each iteration copies the selected text through `% item&`
 into an owned value for the output module. It prints `first`, `second`, `appended`,
@@ -69,8 +69,8 @@ The selected reference must not be used after deleting its occurrence.
 
 ## Independent simulations from one saved position
 
-[Simulation](../../tests/integration/examples/project/simulation) yields before
-each selected list element is reported and removed from its owned list. Its [driver](../../tests/integration/examples/project/simulations)
+[Simulation](../../tests/integration/examples/project/packages/test/fixture/v1.0.0/src/simulation) yields before
+each selected list element is reported and removed from its owned list. Its [driver](../../tests/integration/examples/project/packages/test/fixture/v1.0.0/src/simulations)
 starts one simulation, copies it with `% simulation`, then resumes both twice.
 The exact output is `first, first, second, second`, each prefixed `description=`.
 The copy owns its own list and saved traversal binding; it does not alias the
@@ -84,13 +84,13 @@ completes at entry without yielding or executing the loop body.
 
 ## A file operation with an owned failure result
 
-[Files](../../tests/integration/examples/project/files) calls the synchronous
-[open probe](../../tests/integration/examples/project/open). The example's native
+[Files](../../tests/integration/examples/project/packages/test/fixture/v1.0.0/src/files) calls the synchronous
+[open probe](../../tests/integration/examples/project/packages/test/fixture/v1.0.0/src/open). The example's native
 implementation attempts `fopen` and closes a successful stream before returning;
 it does not read the file or retain a descriptor. This is an example module,
 not a claim that a full standard file library has been implemented.
 
-The missing path returns a true `..failure` with `Cannot open file`. A positive
+The missing path returns a true `//failure` with `Cannot open file`. A positive
 `?` handles it, and two `>>` reads return the same description without executing
 or clearing the failure. A later successful call on an existing maintained file
 returns false/empty, so the negative branch prints `opened`. There is no separate

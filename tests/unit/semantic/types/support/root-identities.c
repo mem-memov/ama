@@ -19,14 +19,14 @@ static void it_keeps_root_kind_identity_in_the_complete_transfer_matrix(void) {
         for (size_t source = 0; source < 4; source++) {
             char text[512];
             int length = snprintf(text, sizeof(text),
-                "@!\nsource%s\n.value\ndestination%s\n..value\ndestination%s\n source%s\n",
+                "@!\nsource%s\n/test/fixture/v1.0.0/src/value\ndestination%s\n//value\ndestination%s\n source%s\n",
                 forms[source], forms[destination], forms[destination], forms[source]);
             assert(length > 0 && (size_t)length < sizeof(text));
-            file("generated/program/main", text);
+            file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
             setup_semantic();
             ModuleRoot roots[] = {{"generated/program", NULL, 0, MODULE_ROOT_PROJECT},
                 {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-            ProjectStatus loaded = project_load(&project, roots, 2, ".main");
+            ProjectStatus loaded = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
             assert(loaded == PROJECT_OK);
             semantic_program_init(&semantic, &project, sources.allocator);
             SemanticStatus status = semantic_fixture_names(&semantic);
@@ -36,11 +36,11 @@ static void it_keeps_root_kind_identity_in_the_complete_transfer_matrix(void) {
             destroy_semantic();
         }
     }
-    file("generated/program/main", "@!\nreference&\n..main\n &\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", "@!\nreference&\n//main\n &\n");
     setup_semantic();
     ModuleRoot roots[] = {{"generated/program", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    ProjectStatus loaded = project_load(&project, roots, 2, ".main");
+    ProjectStatus loaded = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
     SemanticStatus status = semantic_fixture_names(&semantic);

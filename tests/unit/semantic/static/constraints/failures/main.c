@@ -39,7 +39,7 @@ static void it_unwinds_every_solve_metadata_value_and_finalization_allocation_re
             else { setup_constraints(NULL); }
             const StaticTerm *value = left_variable;
             const StaticSignature *known = NULL;
-            if (kind == 2) { value = constraint_symbol("...family"); known = constraint_actual_signature(); }
+            if (kind == 2) { value = constraint_symbol(".family"); known = constraint_actual_signature(); }
             else {
                 value = symbolic_value();
                 if (kind == 6) {

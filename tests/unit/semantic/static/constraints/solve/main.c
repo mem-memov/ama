@@ -71,9 +71,9 @@ static void it_rejects_distinct_origins_and_conflicting_repeated_bindings(void) 
         assert(solver.error.primary.span.source == right_variable->site.source);
         assert(solver.error.primary.span.start == right_variable->site.start);
         assert(solver.error.related_count == 2);
-        assert(strcmp(solver.error.related[0].name, ".other") == 0);
-        assert(strcmp(solver.error.related[1].name, ".main") == 0);
-        assert(solver.error.related[0].location.span.source == project_find(&project, ".other")->source->text);
+        assert(strcmp(solver.error.related[0].name, "/test/fixture/v1.0.0/src/other") == 0);
+        assert(strcmp(solver.error.related[1].name, "/test/fixture/v1.0.0/src/main") == 0);
+        assert(solver.error.related[0].location.span.source == project_find(&project, "/test/fixture/v1.0.0/src/other")->source->text);
         assert(solver.error.related[1].location.span.source == project.entry->source->text);
         assert(solver.error.related[0].location.span.start == 0 && solver.error.related[1].location.span.start == 0);
         destroy_constraints();
@@ -103,7 +103,7 @@ static void it_rejects_direct_and_indirect_infinite_substitution_terms(void) {
 static void it_keeps_type_and_template_restrictions_through_a_deferred_alias(void) {
     setup_metadata_constraints();
     assert(left_variable->category == STATIC_CATEGORY_DEFERRED);
-    const StaticTerm *family = constraint_symbol("...family");
+    const StaticTerm *family = constraint_symbol(".family");
     assert(static_constraint_describe(&solver, right_variable, STATIC_CATEGORY_TYPE, NULL, right_variable->site));
     assert(static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE, constraint_actual_signature(), family->site));
     assert(static_constraint_equate(&solver, left_variable, right_variable, right_variable->site));
@@ -119,8 +119,8 @@ static void it_keeps_type_and_template_restrictions_through_a_deferred_alias(voi
  * identity must not unfold its field definitions or mistake it for x = F(x).
  */
 static void it_keeps_nominal_reference_cycles_outside_substitution_occurs_checking(void) {
-    setup_constraints_with_sources(NULL, "@!\nlink&\n.other\n");
-    const ProjectModule *other = project_find(&project, ".other");
+    setup_constraints_with_sources(NULL, "@!\nlink&\n/test/fixture/v1.0.0/src/other\n");
+    const ProjectModule *other = project_find(&project, "/test/fixture/v1.0.0/src/other");
     assert(other->syntax.body.first != NULL);
     assert(static_constraint_equate(&solver, left_variable, plain_type, left_variable->site));
     assert(static_constraint_require(&solver, left_variable, left_variable->site));

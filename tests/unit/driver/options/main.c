@@ -83,7 +83,7 @@ static void it_recognizes_only_exact_applicable_options(void) {
 /** Repeats preserve current append/last-value/idempotent behavior and borrowed bytes. */
 static void it_preserves_repeated_values_flags_and_shared_root_exclusions(void) {
     setup_test();
-    char *arguments[] = {"ama", "--emit", "first", ".main", "--root", "second", "--root", "second",
+    char *arguments[] = {"ama", "--emit", "first", "/test/fixture/v1.0.0/src/main", "--root", "second", "--root", "second",
         "--exclude", "build", "--exclude", "build", "--out", "old", "--out", "new", "--sdk", "sdk",
         "--cc", "first-cc", "--cc", "last-cc", "--c-flag", "-O1", "--c-flag", "-O2",
         "--compile", "--compile", "--overwrite", "--overwrite"};
@@ -114,7 +114,7 @@ static void it_selects_standard_root_authority_only_by_an_explicit_option(void) 
     setup_test();
     DriverOptions options;
     driver_options_init(&options, sources.allocator);
-    char *arguments[] = {"ama", "--check", "project", ".main", "--standard-root", "library",
+    char *arguments[] = {"ama", "--check", "project", "/test/fixture/v1.0.0/src/main", "--standard-root", "library",
         "--root", "imports", "--exclude", "generated"};
     bool valid = driver_options_parse(&options, 10, arguments);
     assert(valid && options.valid && options.root_count == 3);
@@ -127,7 +127,7 @@ static void it_selects_standard_root_authority_only_by_an_explicit_option(void) 
         const DriverOption *option = driver_option_recognize(request, "--standard-root");
         assert(option != NULL && option->takes_value && option->kind == DRIVER_OPTION_STANDARD_ROOT);
     }
-    char *missing[] = {"ama", "--check", "project", ".main", "--standard-root"};
+    char *missing[] = {"ama", "--check", "project", "/test/fixture/v1.0.0/src/main", "--standard-root"};
     invalid_arguments(5, missing, "Command option needs a value");
 }
 
@@ -139,23 +139,23 @@ static void it_rejects_invalid_missing_and_wrong_request_options(void) {
     invalid_arguments(3, short_arguments, operands);
     char *path[] = {"ama", "--check", "root", "main"};
     invalid_arguments(4, path, operands);
-    char *missing[] = {"ama", "--check", "root", ".main", "--root"};
+    char *missing[] = {"ama", "--check", "root", "/test/fixture/v1.0.0/src/main", "--root"};
     invalid_arguments(5, missing, "Command option needs a value");
-    char *unknown[] = {"ama", "--check", "root", ".main", "--unknown"};
+    char *unknown[] = {"ama", "--check", "root", "/test/fixture/v1.0.0/src/main", "--unknown"};
     invalid_arguments(5, unknown, "Command option needs a value");
-    char *inapplicable[] = {"ama", "--check", "root", ".main", "--out", "output"};
+    char *inapplicable[] = {"ama", "--check", "root", "/test/fixture/v1.0.0/src/main", "--out", "output"};
     invalid_arguments(6, inapplicable, "Unknown command option");
-    char *emit[] = {"ama", "--emit", "root", ".main", "--out", "output"};
+    char *emit[] = {"ama", "--emit", "root", "/test/fixture/v1.0.0/src/main", "--out", "output"};
     invalid_arguments(6, emit, "Project emission needs --out and --sdk");
-    char *native[] = {"ama", "--native", "root", ".main", "--out", "output", "--sdk", "sdk", "--overwrite"};
+    char *native[] = {"ama", "--native", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk", "--overwrite"};
     invalid_arguments(9, native, "Native generation needs --out/--sdk; --overwrite/--protocols require --create");
-    char *protocols[] = {"ama", "--native", "root", ".main", "--out", "output", "--sdk", "sdk", "--protocols", "?"};
+    char *protocols[] = {"ama", "--native", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk", "--protocols", "?"};
     invalid_arguments(10, protocols, "Native generation needs --out/--sdk; --overwrite/--protocols require --create");
 }
 
 /** Validate native relations/defaults without invoking a source loader/toolchain. */
 static void it_assembles_native_creation_and_check_defaults(void) {
-    char *arguments[] = {"ama", "--native", "root", ".main", "--out", "output", "--sdk", "sdk",
+    char *arguments[] = {"ama", "--native", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk",
         "--protocols", "?=[]", "--create", "--overwrite"};
     setup_test();
     DriverOptions options;
@@ -164,7 +164,7 @@ static void it_assembles_native_creation_and_check_defaults(void) {
     assert(valid && options.create && options.overwrite && !options.compile);
     assert(options.protocols == arguments[9] && strcmp(options.compiler, "gcc") == 0);
     driver_options_destroy(&options);
-    char *check[] = {"ama", "--check", "root", ".main"};
+    char *check[] = {"ama", "--check", "root", "/test/fixture/v1.0.0/src/main"};
     driver_options_init(&options, sources.allocator);
     valid = driver_options_parse(&options, 4, check);
     assert(valid && options.root_count == 1 && options.output == NULL);
@@ -175,7 +175,7 @@ static void it_assembles_native_creation_and_check_defaults(void) {
 
 /** Enumerate every allocation failure and prove partial arrays are reclaimed. */
 static void it_cleans_every_partial_allocation_and_rejects_unrepresentable_storage(void) {
-    char *arguments[] = {"ama", "--check", "root", ".main"};
+    char *arguments[] = {"ama", "--check", "root", "/test/fixture/v1.0.0/src/main"};
     size_t requests = 0;
     for (size_t failure = 0; failure <= requests; failure++) {
         setup_test();
@@ -205,13 +205,13 @@ static void it_cleans_every_partial_allocation_and_rejects_unrepresentable_stora
 
 /** Source selectors use exact logical names and canonical original byte offsets, with no duplicate precedence rule. */
 static void it_validates_source_tool_selectors_and_required_rename_operands(void) {
-    char *valid[] = {"ama","--editor","project",".main","--module",".worker","--offset","0"};
+    char *valid[] = {"ama","--editor","project","/test/fixture/v1.0.0/src/main","--module","/test/fixture/v1.0.0/src/worker","--offset","0"};
     setup_test();
     DriverOptions options;
     driver_options_init(&options,sources.allocator);
     assert(driver_options_parse(&options,8,valid));
     assert(options.request == DRIVER_REQUEST_EDITOR && options.has_offset && options.offset == 0);
-    assert(strcmp(options.query_module,".worker") == 0 && options.root_count == 1 && !options.compile);
+    assert(strcmp(options.query_module,"/test/fixture/v1.0.0/src/worker") == 0 && options.root_count == 1 && !options.compile);
     driver_options_destroy(&options);
     destroy_test();
     const char *bad_offsets[] = {"", "00", "+1", "-1", "1 ", "184467440737095516160"};
@@ -219,14 +219,14 @@ static void it_validates_source_tool_selectors_and_required_rename_operands(void
         valid[7] = (char *)bad_offsets[index];
         invalid_arguments(8,valid,"Expected one canonical nonnegative --offset in the supported byte range");
     }
-    char *duplicate[] = {"ama","--editor","project",".main","--offset","0","--offset","1"};
+    char *duplicate[] = {"ama","--editor","project","/test/fixture/v1.0.0/src/main","--offset","0","--offset","1"};
     invalid_arguments(8,duplicate,"Expected one canonical nonnegative --offset in the supported byte range");
-    char *rename[] = {"ama","--rename-plan","project",".main","--offset","3","--name","new name"};
+    char *rename[] = {"ama","--rename-plan","project","/test/fixture/v1.0.0/src/main","--offset","3","--name","new name"};
     setup_test();
     driver_options_init(&options,sources.allocator);
     assert(driver_options_parse(&options,8,rename));
     assert(options.request == DRIVER_REQUEST_RENAME_PLAN && options.offset == 3);
-    assert(strcmp(options.query_module,".main") == 0 && strcmp(options.rename_name,"new name") == 0);
+    assert(strcmp(options.query_module,"/test/fixture/v1.0.0/src/main") == 0 && strcmp(options.rename_name,"new name") == 0);
     driver_options_destroy(&options);
     destroy_test();
     invalid_arguments(4,rename,"Rename planning requires --offset and --name");
@@ -238,14 +238,14 @@ static void it_validates_relocation_authority_and_standalone_recovery(void) {
     DriverOptions options;
     driver_options_init(&options,sources.allocator);
     char *arguments[] = {"ama","--relocate-preview","project","old directory","--destination","new directory",
-        "--destination-standard-root","library","--entry",".old.main","--configuration","component.library",
+        "--destination-standard-root","library","--entry","/test/fixture/v1.0.0/src/old/main","--configuration","component.library",
         "--invalidate","out","--exclude","ignored","--root","importers"};
     assert(driver_options_parse(&options,18,arguments));
     assert(options.valid && options.request == DRIVER_REQUEST_RELOCATE_PREVIEW);
     assert(strcmp(options.relocation_source,"old directory") == 0 && strcmp(options.destination,"new directory") == 0);
     assert(options.root_count == 2 && options.destination_root.kind == MODULE_ROOT_STANDARD);
     assert(options.destination_root.excluded_count == 1 && strcmp(options.destination_root.excluded[0],"ignored") == 0);
-    assert(options.configuration_count == 1 && options.invalidation_count == 1 && strcmp(options.entry,".old.main") == 0);
+    assert(options.configuration_count == 1 && options.invalidation_count == 1 && strcmp(options.entry,"/test/fixture/v1.0.0/src/old/main") == 0);
     driver_options_destroy(&options);
     destroy_test();
     invalid_arguments(4,arguments,"Relocation requires --destination; apply additionally requires --recovery");

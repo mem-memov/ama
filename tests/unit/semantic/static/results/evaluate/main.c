@@ -33,11 +33,11 @@ static const StaticTerm *defined_value(const StaticTermEnvironment *environment,
  * producer map. Checked metadata does not complete ordinary body admission.
  */
 static void it_evaluates_concrete_pairs_and_caches_by_complete_producer_owner_keys(void) {
-    setup_values("@...\n...out\n..integer\n", "@...\n...out\n..integer\n");
+    setup_values("@...\n.out\n//integer\n", "@...\n.out\n//integer\n");
     const StaticResultContext *context = value_context(caller_environment);
     StaticResultOutcome outcome;
-    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, "...out"), &outcome));
-    assert(outcome == STATIC_RESULT_READY && defined_value(caller_environment, "...out") == integer_type);
+    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, ".out"), &outcome));
+    assert(outcome == STATIC_RESULT_READY && defined_value(caller_environment, ".out") == integer_type);
     assert(context->creation->owner->value == NULL && results.cache_count == 1);
     assert(results.first_cache->owner == context->registry_use->candidate->key);
     assert(results.first_cache->value == integer_type && results.first_graph->context == context);
@@ -49,10 +49,10 @@ static void it_evaluates_concrete_pairs_and_caches_by_complete_producer_owner_ke
  * input. The receipt does not redefine that pair or add a definition edge.
  */
 static void it_infers_omitted_inputs_from_existing_receiver_definitions_without_false_data_cycles(void) {
-    setup_values("@...\n...known\n..integer\n.other\n ...out > ...known\n", "@...\n...out\n...type\n");
+    setup_values("@...\n.known\n//integer\n/test/fixture/v1.0.0/src/other\n .out > .known\n", "@...\n.out\n.type\n");
     const StaticResultContext *context = value_context(caller_environment);
     StaticResultOutcome outcome;
-    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, "...known"), &outcome));
+    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, ".known"), &outcome));
     assert(outcome == STATIC_RESULT_READY);
     assert(static_result_evaluate(&results, context, result_projection(0), &outcome));
     StaticResultUse *use;
@@ -63,12 +63,12 @@ static void it_infers_omitted_inputs_from_existing_receiver_definitions_without_
     /* The receiver binds the public result first; its defining forwarding
      * equation is checked independently rather than guessed from that receipt. */
     assert(static_result_evaluate_definition(&results, use->producer,
-        result_named(target_module, "...out"), &outcome));
+        result_named(target_module, ".out"), &outcome));
     assert(static_constraint_value(&solver, use->producer_request->inputs[0].value, &input, &closed));
     assert(closed == STATIC_CONSTRAINT_COMPLETE && input == integer_type);
     assert(static_result_evaluate(&results, context, result_projection(0), &outcome));
     assert(outcome == STATIC_RESULT_READY && use->closed);
-    assert(defined_value(caller_environment, "...known") == integer_type);
+    assert(defined_value(caller_environment, ".known") == integer_type);
     assert(guards.definition_edge_count == 0 && caller_module->parameter_count == 0);
     destroy_results();
 }
@@ -77,11 +77,11 @@ static void it_infers_omitted_inputs_from_existing_receiver_definitions_without_
  * is a true value-definition cycle and must fail before unbounded evaluation.
  */
 static void it_rejects_real_selected_alias_cycles_even_when_creation_keys_are_equal(void) {
-    setup_values("@...\n.other\n ...out > ...alias\n...anchor\n..integer\n",
-        "@...\n.main\n ...alias > ...out\n");
+    setup_values("@...\n/test/fixture/v1.0.0/src/other\n .out > .alias\n.anchor\n//integer\n",
+        "@...\n/test/fixture/v1.0.0/src/main\n .alias > .out\n");
     const StaticResultContext *context = value_context(caller_environment);
     StaticResultOutcome outcome = STATIC_RESULT_PENDING;
-    assert(!static_result_evaluate_definition(&results, context, result_named(caller_module, "...alias"), &outcome));
+    assert(!static_result_evaluate_definition(&results, context, result_named(caller_module, ".alias"), &outcome));
     assert(outcome == STATIC_RESULT_PENDING && results.status == STATIC_RESULT_CONFLICT);
     assert(guards.status == STATIC_GUARD_CONFLICT && guards.repeated_definition_ancestor);
     assert(guards.creation_witness == NULL && results.error.message == guards.error.message);
@@ -97,10 +97,10 @@ static void it_forwards_supplied_type_and_template_metadata_without_rebinding_th
     const StaticTermEnvironment *environment = result_applied_environment();
     const StaticResultContext *context = value_context(environment);
     StaticResultOutcome outcome;
-    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, "...first"), &outcome));
-    assert(outcome == STATIC_RESULT_READY && defined_value(environment, "...first") == integer_type);
-    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, "...partial"), &outcome));
-    assert(outcome == STATIC_RESULT_READY && defined_value(environment, "...partial") == result_family_constructor);
+    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, ".first"), &outcome));
+    assert(outcome == STATIC_RESULT_READY && defined_value(environment, ".first") == integer_type);
+    assert(static_result_evaluate_definition(&results, context, result_named(caller_module, ".partial"), &outcome));
+    assert(outcome == STATIC_RESULT_READY && defined_value(environment, ".partial") == result_family_constructor);
     assert(result_family_constructor->category == STATIC_CATEGORY_TEMPLATE);
     assert(result_family_constructor->as.nominal.residual_count == 1);
     assert(caller_module->parameter_count == 2);
@@ -112,9 +112,9 @@ static void it_forwards_supplied_type_and_template_metadata_without_rebinding_th
  * not search for a foreign context or invent a definition-read edge.
  */
 static void it_forwards_derived_argument_metadata_without_reading_a_foreign_definition(void) {
-    setup_values("@...\n...provided\n..integer\n", "@...\n...out\n...type\n");
+    setup_values("@...\n.provided\n//integer\n", "@...\n.out\n.type\n");
     const StaticTerm *provided;
-    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...provided"), &provided));
+    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, ".provided"), &provided));
     assert(provided->as.variable.role == STATIC_VARIABLE_DERIVED);
     /* This exact fact agrees with the supplying pair's ordinary integer Type;
      * it is argument evidence, not evaluation of that pair inside the callee. */
@@ -124,8 +124,8 @@ static void it_forwards_derived_argument_metadata_without_reading_a_foreign_defi
     assert(static_term_producer_environment(&terms, target_module, &input, 1, &environment));
     const StaticResultContext *context = value_context(environment);
     StaticResultOutcome outcome;
-    assert(static_result_evaluate_definition(&results, context, result_named(target_module, "...out"), &outcome));
-    assert(outcome == STATIC_RESULT_READY && defined_value(environment, "...out") == integer_type);
+    assert(static_result_evaluate_definition(&results, context, result_named(target_module, ".out"), &outcome));
+    assert(outcome == STATIC_RESULT_READY && defined_value(environment, ".out") == integer_type);
     assert(guards.definition_edge_count == 0 && results.context_count == 1);
     destroy_results();
 }

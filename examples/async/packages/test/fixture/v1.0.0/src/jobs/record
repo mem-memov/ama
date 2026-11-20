@@ -1,0 +1,66 @@
+# Own each run, its native wait and cancellation mailbox through explicit typed fields.
+@<
+hub&
+//task/events
+@>
+self&
+/test/fixture/v1.0.0/src/jobs/record
+ &
+task&
+/test/fixture/v1.0.0/src/jobs/task
+epoch
+//task/generation
+generation
+//task/generation
+wait epoch
+//task/generation
+wait generation
+//task/generation
+enrolled
+//task/flag
+ready
+//task/flag
+queued
+//task/flag
+started
+//task/flag
+waiting
+//task/flag
+cancel requested
+//task/flag
+delivered
+//task/flag
+mailbox&
+/test/fixture/v1.0.0/src/mailbox
+source&
+//task/events
+@!
+authority
+//task/enrollment
+run sequence
+//task/sequence
+wait sequence
+//task/sequence
+owned task
+/test/fixture/v1.0.0/src/jobs/task
+owned mailbox
+/test/fixture/v1.0.0/src/mailbox
+run sequence !
+ > epoch
+wait sequence !
+ > generation
+wait epoch
+ epoch
+wait generation
+ generation
+enrolled !
+ < |1
+ready !
+ < |1
+task&
+ &owned task
+source&
+ hub&
+owned mailbox !
+mailbox&
+ &owned mailbox

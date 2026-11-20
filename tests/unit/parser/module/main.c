@@ -49,7 +49,7 @@ static void it_accepts_empty_constants_and_both_implementation_kinds(void) {
 
 /** The longest static annotation activates an exclusive graph interval, including empty EOF layout. */
 static void it_activates_exclusive_static_graph_sections_without_runtime_intervals(void) {
-    const char *sources[] = {"@...", "# graph\n@...    # exact marker\n", "@...\n...value\n..integer\n"};
+    const char *sources[] = {"@...", "# graph\n@...    # exact marker\n", "@...\n.value\n//integer\n"};
     for (size_t index = 0; index < sizeof(sources) / sizeof(*sources); index++) {
         setup_test();
         LayoutStatus read = read_layout(sources[index]);
@@ -84,7 +84,7 @@ static void it_rejects_every_mixed_or_repeated_static_annotation(void) {
             destroy_layout();
         }
     }
-    const char *drafts[] = {"# @...\n", " |@...\n", "@<\nvalue\n...type\n"};
+    const char *drafts[] = {"# @...\n", " |@...\n", "@<\nvalue\n.type\n"};
     for (size_t index = 0; index < sizeof(drafts) / sizeof(*drafts); index++) {
         setup_test();
         LayoutStatus read = read_layout(drafts[index]);

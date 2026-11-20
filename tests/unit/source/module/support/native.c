@@ -3,11 +3,11 @@
  */
 /** Prepare exact optional companion paths without requiring module-body parsing in the source layer. */
 static void prepare_native_publication(void) {
-    directory("generated/native publication");
-    file("generated/native publication/item", "@C\n");
-    file("generated/native publication/item.c", "/* native body */\n");
-    file("generated/native publication/item.h", "/* native header */\n");
-    file("generated/native publication/item.abi", "+ initialize\n- destroy\n");
+    prepare_package("generated/native publication");
+    file("generated/native publication/packages/test/fixture/v1.0.0/src/item", "@C\n");
+    file("generated/native publication/packages/test/fixture/v1.0.0/src/item.c", "/* native body */\n");
+    file("generated/native publication/packages/test/fixture/v1.0.0/src/item.h", "/* native header */\n");
+    file("generated/native publication/packages/test/fixture/v1.0.0/src/item.abi", "+ initialize\n- destroy\n");
 }
 /** Companions publish atomically only on explicit request; successful requests reuse identical catalog-owned views without allocation. */
 static void it_publishes_native_companions_once_after_explicit_selection(void) {
@@ -19,7 +19,7 @@ static void it_publishes_native_companions_once_after_explicit_selection(void) {
     status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_OK);
     const ModuleSource *source = NULL;
-    status = module_catalog_find(&catalog, ".item", &source);
+    status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/item", &source);
     assert(status == MODULE_OK && !source->native_loaded && source->native_c == NULL && source->native_abi == NULL);
     ModuleSource foreign = {0};
     status = module_catalog_load_native(&catalog, &foreign);
@@ -43,7 +43,7 @@ static void it_unwinds_every_native_companion_allocation_without_partial_publica
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_OK);
     const ModuleSource *source = NULL;
-    status = module_catalog_find(&catalog, ".item", &source);
+    status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/item", &source);
     assert(status == MODULE_OK);
     size_t begin = allocation_count;
     status = module_catalog_load_native(&catalog, source);
@@ -54,7 +54,7 @@ static void it_unwinds_every_native_companion_allocation_without_partial_publica
         setup_catalog();
         status = module_catalog_build(&catalog, &root, 1);
         assert(status == MODULE_OK);
-        status = module_catalog_find(&catalog, ".item", &source);
+        status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/item", &source);
         assert(status == MODULE_OK);
         failure_at = allocation_count + failure;
         status = module_catalog_load_native(&catalog, source);

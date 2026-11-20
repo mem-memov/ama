@@ -43,10 +43,10 @@ static bool publish(void *context, const EditorRenameFile *files) {
 }
 /** Multi-file validation and one atomic callback change only the selected callee field's declaration/references. */
 static void it_publishes_all_versioned_documents_together_and_preserves_rejected_transactions(void) {
-    project_fixture("@!\nworker\n.worker\nargument\n.cell\nworker !\n argument < argument\n");
-    file("generated/project/external","@!\nworker\n.worker\nargument\n.cell\nworker !\n argument < argument\n");
+    project_fixture("@!\nworker\n/test/fixture/v1.0.0/src/worker\nargument\n/test/fixture/v1.0.0/src/cell\nworker !\n argument < argument\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/external","@!\nworker\n/test/fixture/v1.0.0/src/worker\nargument\n/test/fixture/v1.0.0/src/cell\nworker !\n argument < argument\n");
     setup_rename();
-    assert(prepare(".worker","argument","new argument"));
+    assert(prepare("/test/fixture/v1.0.0/src/worker","argument","new argument"));
     Documents store = documents();
     store.reject = true;
     assert(!editor_rename_publish(&rename_plan,publish,&store) && store.calls == 1);
@@ -59,24 +59,24 @@ static void it_publishes_all_versioned_documents_together_and_preserves_rejected
     }
     assert(!editor_rename_publish(&rename_plan,publish,&store) && store.calls == 3);
     assert(rename_plan.diagnostic.code == DIAGNOSTIC_IO_FAILURE);
-    assert(changed_file(".external") != NULL && text_is(rename_plan.target.definition,"argument"));
+    assert(changed_file("/test/fixture/v1.0.0/src/external") != NULL && text_is(rename_plan.target.definition,"argument"));
     store = (Documents){0};
     destroy_rename();
 }
 /** Prior validation is not a lease: publication must recheck versions and must never call the writer after a changed input. */
 static void it_revalidates_immediately_before_publication_and_never_calls_a_writer_on_failure(void) {
-    project_fixture("@!\nvalue\n.cell\n");
+    project_fixture("@!\nvalue\n/test/fixture/v1.0.0/src/cell\n");
     setup_rename();
-    assert(prepare(".main","value","renamed") && validate());
+    assert(prepare("/test/fixture/v1.0.0/src/main","value","renamed") && validate());
     Documents store = documents();
-    file("generated/project/main","@!\nchanged\n.cell\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main","@!\nchanged\n/test/fixture/v1.0.0/src/cell\n");
     assert(!editor_rename_publish(&rename_plan,publish,&store) && store.calls == 0);
     assert(rename_plan.diagnostic.code == DIAGNOSTIC_CHANGED_INPUT && !rename_plan.validated);
     store = (Documents){0};
     destroy_rename();
-    project_fixture("@!\nvalue\n.cell\n");
+    project_fixture("@!\nvalue\n/test/fixture/v1.0.0/src/cell\n");
     setup_rename();
-    assert(prepare(".main","value","renamed"));
+    assert(prepare("/test/fixture/v1.0.0/src/main","value","renamed"));
     store = documents();
     failure_at = allocation_count+1;
     assert(!editor_rename_publish(&rename_plan,publish,&store) && store.calls == 0);
@@ -88,9 +88,9 @@ static void it_revalidates_immediately_before_publication_and_never_calls_a_writ
 }
 /** A same-name request changes no source and therefore publishes no document transaction. */
 static void it_skips_document_publication_for_same_name_requests(void) {
-    project_fixture("@!\nvalue\n.cell\n");
+    project_fixture("@!\nvalue\n/test/fixture/v1.0.0/src/cell\n");
     setup_rename();
-    assert(prepare(".main","value","value"));
+    assert(prepare("/test/fixture/v1.0.0/src/main","value","value"));
     Documents store = documents();
     assert(editor_rename_publish(&rename_plan,publish,&store) && store.calls == 0);
     assert(point(analysis.selected->text,"value") != 0);
@@ -99,9 +99,9 @@ static void it_skips_document_publication_for_same_name_requests(void) {
 }
 /** Every allocation in full workspace preparation, name/file construction and candidate identity validation is an explicit failure point. */
 static void it_unwinds_every_workspace_plan_and_candidate_allocation_prefix(void) {
-    project_fixture("@!\nvalue\n.cell\ncopy\n value\n");
+    project_fixture("@!\nvalue\n/test/fixture/v1.0.0/src/cell\ncopy\n value\n");
     setup_rename();
-    assert(prepare(".main","value","renamed value") && validate());
+    assert(prepare("/test/fixture/v1.0.0/src/main","value","renamed value") && validate());
     size_t total = allocation_count;
     destroy_rename();
     for (size_t failure = 1; failure <= total; failure++) {
@@ -109,10 +109,10 @@ static void it_unwinds_every_workspace_plan_and_candidate_allocation_prefix(void
         editor_rename_init(&rename_plan,sources.allocator);
         failure_at = failure;
         ModuleRoot root = {"generated/project",NULL,0,MODULE_ROOT_PROJECT};
-        bool valid = editor_workspace_build(&analysis,&root,1,".main");
+        bool valid = editor_workspace_build(&analysis,&root,1,"/test/fixture/v1.0.0/src/main");
         Diagnostic *diagnostic = &analysis.diagnostic;
         if (valid) {
-            valid = prepare(".main","value","renamed value");
+            valid = prepare("/test/fixture/v1.0.0/src/main","value","renamed value");
             diagnostic = &rename_plan.diagnostic;
             if (valid) { valid = editor_rename_validate(&rename_plan); }
         }
@@ -148,11 +148,11 @@ static void copy_native_text(void) {
 }
 /** Even a harmless native comment edit changes a captured dependency and prevents publication of a stale plan. */
 static void it_rejects_changed_native_companion_inputs_before_source_publication(void) {
-    project_fixture("@!\nvalue\n.cell\nmessage\n..text\n |text\n");
+    project_fixture("@!\nvalue\n/test/fixture/v1.0.0/src/cell\nmessage\n//text\n |text\n");
     copy_native_text();
     ModuleRoot roots[] = {{"generated/project",NULL,0,MODULE_ROOT_PROJECT},{"generated/standard",NULL,0,MODULE_ROOT_STANDARD}};
     setup_rename_roots(roots,2);
-    assert(prepare(".main","value","renamed") && validate());
+    assert(prepare("/test/fixture/v1.0.0/src/main","value","renamed") && validate());
     FILE *output = fopen("generated/standard/text.c","ab");
     assert(output != NULL);
     int written = fputs("\n/* Changed native dependency. */\n",output);

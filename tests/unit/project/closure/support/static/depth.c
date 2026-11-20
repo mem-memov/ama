@@ -6,10 +6,10 @@
  * definition; fixture depth bounds test size rather than imposing a language cap.
  */
 static void it_loads_deep_static_applications_with_one_definition_and_distinct_requests(void) {
-    directory("generated/static depth");
-    file("generated/static depth/node", "@<\nvalue\n...element\n@!\n");
+    fixture_package_prepare("generated/static depth", "fixture");
+    file("generated/static depth/packages/test/fixture/v1.0.0/src/node", "@<\nvalue\n.element\n@!\n");
     size_t depth = 768;
-    const char *head = "@...\n...value\n.node\n", *binding = "...element < .node\n";
+    const char *head = "@...\n.value\n/test/fixture/v1.0.0/src/node\n", *binding = ".element < /test/fixture/v1.0.0/src/node\n";
     size_t size = strlen(head) + depth * strlen(binding) + depth * (depth + 1) / 2 + 1;
     char *text = malloc(size);
     assert(text != NULL);
@@ -21,15 +21,15 @@ static void it_loads_deep_static_applications_with_one_definition_and_distinct_r
     }
     assert(used + 1 == size);
     text[used] = 0;
-    file("generated/static depth/main", text);
+    file("generated/static depth/packages/test/fixture/v1.0.0/src/main", text);
     setup_project();
     assert(load_root("generated/static depth") == PROJECT_OK && module_count() == 2);
-    const ProjectModule *node = project_find(&project, ".node");
+    const ProjectModule *node = project_find(&project, "/test/fixture/v1.0.0/src/node");
     const ProjectDependency *edge = project.entry->first;
     size_t previous = 0;
     for (size_t index = 0; index <= depth; index++) {
         assert(edge != NULL && edge->target == node && !edge->implicit);
-        assert(layout_text_is(edge->requirement, ".node") && edge->requirement.start > previous);
+        assert(layout_text_is(edge->requirement, "/test/fixture/v1.0.0/src/node") && edge->requirement.start > previous);
         previous = edge->requirement.start;
         edge = edge->next;
     }

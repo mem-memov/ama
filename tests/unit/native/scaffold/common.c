@@ -22,12 +22,13 @@ static const char *contract = "+ initialize\n- destroy\n| literal\n= clone\n? co
  */
 static inline void prepare_native(void) {
     directory("generated/project");
-    file("generated/project/main", "@<\n输入\n.value\nlink&\n.node\nitems[]\n.value\nlinks&[]\n.node\n@>\n输出\n.value\n@C\n");
-    file("generated/project/value", "@C\n");
-    file("generated/project/value.h", "#ifndef VALUE_TEST_H\n#define VALUE_TEST_H\nstruct AMA_NATIVE(State) { size_t number; };\n#endif\n");
-    file("generated/project/value.c", "#include <stddef.h>\n_Static_assert(sizeof(size_t) > 0, \"Size type\");\n");
-    file("generated/project/value.abi", contract);
-    file("generated/project/node", "@!\nnext&\n.node\nvalue\n.value\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@<\n输入\n/test/fixture/v1.0.0/src/value\nlink&\n/test/fixture/v1.0.0/src/node\nitems[]\n/test/fixture/v1.0.0/src/value\nlinks&[]\n/test/fixture/v1.0.0/src/node\n@>\n输出\n/test/fixture/v1.0.0/src/value\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value", "@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.h", "#ifndef VALUE_TEST_H\n#define VALUE_TEST_H\nstruct AMA_NATIVE(State) { size_t number; };\n#endif\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.c", "#include <stddef.h>\n_Static_assert(sizeof(size_t) > 0, \"Size type\");\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.abi", contract);
+    file("generated/project/packages/test/fixture/v1.0.0/src/node", "@!\nnext&\n/test/fixture/v1.0.0/src/node\nvalue\n/test/fixture/v1.0.0/src/value\n");
 }
 
 /**
@@ -37,7 +38,7 @@ static inline void prepare_native(void) {
 static void begin_scaffold(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-    bool valid = compiler_frontend_authoring(&frontend, &root, 1, ".main", contract);
+    bool valid = compiler_frontend_authoring(&frontend, &root, 1, "/test/fixture/v1.0.0/src/main", contract);
     assert(valid && frontend.authoring);
     native_scaffold_init(&scaffold, &frontend, sources.allocator);
 }

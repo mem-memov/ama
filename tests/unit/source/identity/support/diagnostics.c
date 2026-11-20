@@ -15,8 +15,8 @@ static void it_composes_a_real_unequal_key_collision_into_both_original_declarat
     IdentityRegistry registry;
     identity_registry_init(&registry, sources.allocator);
     QualifiedIdentity keys[] = {
-        {IDENTITY_TYPE, ".товар данные", NULL, 0, {text, 0, 5}},
-        {IDENTITY_TYPE, "..товар данные", NULL, 0, {text, 6, 12}}
+        {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/товар данные", NULL, 0, {text, 0, 5}},
+        {IDENTITY_TYPE, "//товар данные", NULL, 0, {text, 6, 12}}
     };
     IdentityEncoding encodings[2];
     for (size_t index = 0; index < 2; index++) {
@@ -39,8 +39,8 @@ static void it_composes_a_real_unequal_key_collision_into_both_original_declarat
     assert(adapted);
     assert(allocation_count == allocations && diagnostic_valid(&diagnostic));
     assert(diagnostic.code == DIAGNOSTIC_IDENTITY_COLLISION);
-    assert(strcmp(diagnostic.subject, "..товар данные") == 0);
-    assert(strcmp(note.name, ".товар данные") == 0);
+    assert(strcmp(diagnostic.subject, "//товар данные") == 0);
+    assert(strcmp(note.name, "/test/fixture/v1.0.0/src/товар данные") == 0);
     assert(diagnostic.primary.span.source == text && diagnostic.primary.span.start == 6);
     assert(note.location.span.source == text && note.location.span.start == 0);
     assert(diagnostic.cause != NULL && diagnostic.related_count == 1);

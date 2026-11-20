@@ -1,21 +1,21 @@
 # Feed actual retained native completions into one typed queue before its first dispatch round.
 @!
 service
-..task.events
+//task/events
 registry
-.red.registry
+/test/fixture/v1.0.0/src/red/registry
 queue
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 enqueue
-.red.enqueue
+/test/fixture/v1.0.0/src/red/enqueue
 import
-.red.import
+/test/fixture/v1.0.0/src/red/import
 observe
-.red.observe
+/test/fixture/v1.0.0/src/red/observe
 dispatch
-.red.dispatch
+/test/fixture/v1.0.0/src/red/dispatch
 trace
-.trace
+/test/fixture/v1.0.0/src/trace
 service !
  < |3
 service

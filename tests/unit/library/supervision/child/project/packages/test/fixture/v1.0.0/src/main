@@ -1,0 +1,41 @@
+@=
+greeting
+//text
+ |child factory
+@<
+request
+//text
+ greeting
+@>
+response
+//text
+previous
+//std/condition
+@!
+probe
+/test/fixture/v1.0.0/src/probe
+worker
+/test/fixture/v1.0.0/src/worker
+forward
+/test/fixture/v1.0.0/src/assembly
+ .texts
+forward !
+ < request
+ > request
+probe !
+worker !
+ request < request
+ response > response
+ previous > previous
+%
+probe !
+worker !
+ request < request
+ response > response
+ previous > previous
+%
+probe !
+worker !
+ request < request
+ response > response
+ previous > previous

@@ -9,7 +9,7 @@
  * preflight. Optional cleanup markers expose the unmodified source payload.
  */
 static const char *observe_snapshot_worker(const ScaffoldType *type, AbiOperation operation) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".worker") != 0) { return NULL; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/worker") != 0) { return NULL; }
     if (operation == ABI_CLONE) {
         return " { assert(source->address==source); if(fputs(\"cloneworker\\n\",stdout)==EOF) return ama_status_make(AMA_IO_FAILURE,NULL,0); *destination=*source; destination->address=destination; return ama_status_success(); }\n";
     }
@@ -29,8 +29,9 @@ static const char *observe_snapshot_clone(const ScaffoldType *type, AbiOperation
  */
 static void prepare_availability_snapshot(void) {
     directory("generated/project");
-    file("generated/project/helper", "@<\nsource&\n.wrapper\n@!\ncopy\n.wrapper\ncopy\n % source&\n");
-    file("generated/project/task", "@<\nexecutor&\n.helper\nowner&\n.wrapper\n@!\nprobe\n.worker\nprobe !\n < |1\n%\nexecutor& !\n < owner&\n");
-    file("generated/project/wrapper", "@<\nexecutor&\n.helper\n@>\nchild&\n.task\n@!\nbody\n.task\nchild&\n &body\nbody !\n < executor&\n < &\n%\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/helper", "@<\nsource&\n/test/fixture/v1.0.0/src/wrapper\n@!\ncopy\n/test/fixture/v1.0.0/src/wrapper\ncopy\n % source&\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@<\nexecutor&\n/test/fixture/v1.0.0/src/helper\nowner&\n/test/fixture/v1.0.0/src/wrapper\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |1\n%\nexecutor& !\n < owner&\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/wrapper", "@<\nexecutor&\n/test/fixture/v1.0.0/src/helper\n@>\nchild&\n/test/fixture/v1.0.0/src/task\n@!\nbody\n/test/fixture/v1.0.0/src/task\nchild&\n &body\nbody !\n < executor&\n < &\n%\n");
 }
 #endif

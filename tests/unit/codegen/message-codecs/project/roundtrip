@@ -1,13 +1,13 @@
 # Replacing the envelope before inspection must not invalidate decoded values.
 @!
 encode
-.encode
+/test/fixture/v1.0.0/src/encode
 decode
-.decode
+/test/fixture/v1.0.0/src/decode
 inspect
-.inspect
+/test/fixture/v1.0.0/src/inspect
 empty wire
-..bytes
+//bytes
 encode !
  < |1
  < |Hello, Ама

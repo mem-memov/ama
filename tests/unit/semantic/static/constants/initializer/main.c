@@ -17,12 +17,12 @@ static const StaticConstantInitializer *initializer(const StaticResultContext *c
  * have no Type and leave an otherwise unknown declared parameter unresolved.
  */
 static void it_infers_from_local_and_qualified_constants_but_never_literal_bytes(void) {
-    const char *sources[] = {"known", ".other.value", "|123"};
+    const char *sources[] = {"known", "/test/fixture/v1.0.0/src/other/value", "|123"};
     for (size_t mode = 0; mode < 3; mode++) {
         char caller[512];
-        int size = snprintf(caller, sizeof(caller), "@=\nknown\n..integer\n |1\ninferred\n...slot\n %s\n@<\ninput\n...slot\n@!\nanchor&\n..integer\n", sources[mode]);
+        int size = snprintf(caller, sizeof(caller), "@=\nknown\n//integer\n |1\ninferred\n.slot\n %s\n@<\ninput\n.slot\n@!\nanchor&\n//integer\n", sources[mode]);
         assert(size > 0 && (size_t)size < sizeof(caller));
-        setup_constants(caller, "@=\nvalue\n..integer\n |2\n@!\n");
+        setup_constants(caller, "@=\nvalue\n//integer\n |2\n@!\n");
         const StaticResultContext *context = publication_context(caller_environment), *actual = constant_fixed_target_context();
         const StaticConstantInitializer *item = initializer(context, "inferred"), *again;
         assert(static_constant_initializer(&constants, item->declaration, item->syntax, &again) && again == item);
@@ -44,11 +44,11 @@ static void it_infers_from_local_and_qualified_constants_but_never_literal_bytes
  * infer an ordinary Type parameter and list element without inline constructors.
  */
 static void it_infers_nested_exported_list_element_types_from_own_constant_sources(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/inner", "@<\nvalue\n...item\n@!\n");
-    file("generated/static scope/assembly", "@...\n...out\n.other\n ...slot < .inner\n  ...item < ..integer\n");
-    setup_constants("@=\nknown[]\n.assembly\n ...out\ninferred[]\n...slot\n known[]\n"
-        "@<\ninput\n...slot\n@!\nanchor&\n..integer\n", "@<\nvalue\n...slot\n@!\n");
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/inner", "@<\nvalue\n.item\n@!\n");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/assembly", "@...\n.out\n/test/fixture/v1.0.0/src/other\n .slot < /test/fixture/v1.0.0/src/inner\n  .item < //integer\n");
+    setup_constants("@=\nknown[]\n/test/fixture/v1.0.0/src/assembly\n .out\ninferred[]\n.slot\n known[]\n"
+        "@<\ninput\n.slot\n@!\nanchor&\n//integer\n", "@<\nvalue\n.slot\n@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantInitializer *item = initializer(context, "inferred");
     StaticResultOutcome outcome;
@@ -64,7 +64,7 @@ static void it_infers_nested_exported_list_element_types_from_own_constant_sourc
     success = static_constraint_value(&solver, formal, &value, &closed);
     assert(success && closed == STATIC_CONSTRAINT_COMPLETE && value->as.nominal.origin == target_module);
     const StaticTerm *inner = value->as.nominal.first_capture->value;
-    assert(inner->as.nominal.origin->definition == project_find(&project, ".inner"));
+    assert(inner->as.nominal.origin->definition == project_find(&project, "/test/fixture/v1.0.0/src/inner"));
     assert(inner->as.nominal.first_capture->value == integer_type);
     assert(constants.initializer_count == 1 && constants.declaration_count == 2);
     destroy_constants();
@@ -78,9 +78,9 @@ static void it_refuses_initializer_driven_completion_of_a_selected_static_suppli
     for (size_t kind = 0; kind < 2; kind++) {
         char caller[512];
         int length = snprintf(caller, sizeof(caller),
-            "@=\nknown\n..integer\nbad\n.other\n ...out\n %s\n@!\n", sources[kind]);
+            "@=\nknown\n//integer\nbad\n/test/fixture/v1.0.0/src/other\n .out\n %s\n@!\n", sources[kind]);
         assert(length > 0 && (size_t)length < sizeof(caller));
-        setup_constants(caller, "@...\n...out\n...slot\n...anchor\n..integer\n");
+        setup_constants(caller, "@...\n.out\n.slot\n.anchor\n//integer\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticConstantInitializer *item = initializer(context, "bad");
         StaticResultOutcome outcome = STATIC_RESULT_READY;
@@ -98,7 +98,7 @@ static void it_rejects_runtime_and_mutable_shared_initializer_sources(void) {
     const char *sources[] = {"runtime", "&known", "% known", "&"};
     for (size_t mode = 0; mode < 4; mode++) {
         char caller[512];
-        int size = snprintf(caller, sizeof(caller), "@=\nknown\n..integer\n |1\nbad\n..integer\n %s\n@<\nruntime\n..integer\n@!\n", sources[mode]);
+        int size = snprintf(caller, sizeof(caller), "@=\nknown\n//integer\n |1\nbad\n//integer\n %s\n@<\nruntime\n//integer\n@!\n", sources[mode]);
         assert(size > 0 && (size_t)size < sizeof(caller));
         setup_constants(caller, "@!\n");
         const StaticResultContext *context = publication_context(caller_environment);
@@ -117,7 +117,7 @@ static void it_rejects_runtime_and_mutable_shared_initializer_sources(void) {
  */
 static void it_checks_initializer_identity_counter_bounds_and_type_conflicts(void) {
     for (size_t mode = 0; mode < 7; mode++) {
-        setup_constants("@=\nknown\n.other\nbad\n..integer\n known\n@!\n", "@!\n");
+        setup_constants("@=\nknown\n/test/fixture/v1.0.0/src/other\nbad\n//integer\n known\n@!\n", "@!\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const AstNode *node = constant_named(caller_module, "bad");
         const StaticConstantDeclaration *declaration;
@@ -145,15 +145,15 @@ static void it_checks_initializer_identity_counter_bounds_and_type_conflicts(voi
  * resolution is independently refused; no value constructor or body executes.
  */
 static void it_unwinds_every_initializer_registration_and_resolution_allocation_refusal(void) {
-    const char *sources[] = {"known", ".other.value", "|1"};
+    const char *sources[] = {"known", "/test/fixture/v1.0.0/src/other/value", "|1"};
     for (size_t mode = 0; mode < 3; mode++) {
         for (size_t phase = 0; phase < 2; phase++) {
             size_t total = 0;
             for (size_t cut = 0; cut <= total; cut++) {
                 char caller[512];
-                int size = snprintf(caller, sizeof(caller), "@=\nknown\n..integer\nbad\n...slot\n %s\n@<\ninput\n...slot\n@!\nanchor&\n..integer\n", sources[mode]);
+                int size = snprintf(caller, sizeof(caller), "@=\nknown\n//integer\nbad\n.slot\n %s\n@<\ninput\n.slot\n@!\nanchor&\n//integer\n", sources[mode]);
                 assert(size > 0 && (size_t)size < sizeof(caller));
-                setup_constants(caller, "@=\nvalue\n..integer\n@!\n");
+                setup_constants(caller, "@=\nvalue\n//integer\n@!\n");
                 const StaticResultContext *context = publication_context(caller_environment), *actual = constant_fixed_target_context();
                 const AstNode *node = constant_named(caller_module, "bad");
                 const StaticConstantDeclaration *declaration;

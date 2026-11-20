@@ -4,16 +4,16 @@
 /** Declared failure owns its description in Ama storage; the payload owns only foreign controls. */
 static void build_supervision_parent(LibraryBuild *build,NativeScaffold *assembly) {
     nested_model(build,"supervision.parent","project",
-        "schema | text | text | ..text\nschema | condition | condition | ..std.condition\nschema | failure | failure | ..failure\n"
-        "export | run | .main | entry,resume,read\ninput | run | message | text\ninput | run | reset | condition\ninput | run | propagate | condition\n"
+        "schema | text | text | //text\nschema | condition | condition | //std/condition\nschema | failure | failure | //failure\n"
+        "export | run | /test/fixture/v1.0.0/src/main | entry,resume,read\ninput | run | message | text\ninput | run | reset | condition\ninput | run | propagate | condition\n"
         "output | run | response | text\noutput | run | previous | condition\noutput | run | waiting | condition\noutput | run | failure | failure\n"
         "link-file | generated/child-output/library.a\nlink-file | generated/probe.o\n");
     directory("generated/parent-output"); native_scaffold_init(assembly,&build->frontend,sources.allocator);
     bool built=project_codegen_build(assembly,(ScaffoldOptions){.directory="generated/parent-output",.sdk=TEST_SDK});
     if(!built) { fprintf(stderr,"%s\n",assembly->error.message); } assert(built);
-    const ScaffoldType *adapter=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,".adapter"));
-    const ScaffoldType *text=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,"..text"));
-    const ScaffoldType *failure=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,"..failure"));
+    const ScaffoldType *adapter=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,"/test/fixture/v1.0.0/src/adapter"));
+    const ScaffoldType *text=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,"//text"));
+    const ScaffoldType *failure=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,"//failure"));
     assert(adapter!=NULL && text!=NULL && failure!=NULL);
     authoring_aliases(adapter,"AMA_EMBED","generated/adapter-api.h");
     FILE *aliases=fopen("generated/adapter-api.h","ab"); assert(aliases!=NULL);

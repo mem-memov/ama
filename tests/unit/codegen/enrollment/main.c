@@ -22,11 +22,12 @@ static void source_fixture(const char *name, char source[16384]) {
 /** Install the same actual typed ownership graph for every independently compiled scenario. */
 static void enrollment_fixture(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     const char *names[] = {"record", "task", "registration", "validate"};
     for (size_t index = 0; index < sizeof(names) / sizeof(*names); index++) {
         char source[16384], destination[256];
         source_fixture(names[index], source);
-        int length = snprintf(destination, sizeof(destination), "generated/project/%s", names[index]);
+        int length = snprintf(destination, sizeof(destination), "generated/project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(destination));
         file(destination, source);
     }
@@ -70,7 +71,7 @@ static void it_reports_generation_exhaustion_before_further_task_execution(void)
 
 /** Deliberately malformed native condition data exercises the flag's publication guard. */
 static bool invalid_condition(FILE *output, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".invalid") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/invalid") != 0) { return false; }
     int written = fputs("results->AMA_OUTPUT(0)->payload->value=2;\n", output);
     assert(written != EOF);
     return true;
@@ -79,9 +80,10 @@ static bool invalid_condition(FILE *output, const ScaffoldType *type) {
 /** A native producer cannot silently turn an out-of-range condition into scheduler membership. */
 static void it_rejects_malformed_native_flag_inputs(void) {
     directory("generated/project");
-    native_fixture("invalid", "@>\nresult\n..std.condition\n@C\n");
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("invalid", "@>\nresult\n//std/condition\n@C\n");
     native_entry_override = invalid_condition;
-    execute_project("@!\nflag\n..task.flag\nproducer\n.invalid\nflag !\n < |1\n"
+    execute_project("@!\nflag\n//task/flag\nproducer\n/test/fixture/v1.0.0/src/invalid\nflag !\n < |1\n"
         "producer !\n > malformed\nflag !\n < malformed\n", "", false);
     expect_diagnostic("Invalid task flag");
     native_entry_override = NULL;

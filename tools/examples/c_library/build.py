@@ -72,19 +72,19 @@ class Build:
     def libraries(self):
         """Build the child first, then a parent whose only foreign graph access is C transport."""
         child_root = self.sources / "child/project"
-        worker = self.author(child_root, ".worker", "sdk-worker")
-        probe = self.author(child_root, ".probe", "sdk-probe")
-        parent = self.author(self.sources / "project", ".adapter", "sdk-adapter")
-        model.authoring(worker[".worker"], "AMA_WORKER", self.aliases / "worker-api.h",
-                        [("AMA_WORKER_TEXT", worker["..text"])])
-        model.authoring(probe[".probe"], "AMA_PROBE", self.aliases / "probe-api.h")
-        model.authoring(parent[".adapter"], "AMA_EMBED", self.aliases / "adapter-api.h",
-                        [("AMA_EMBED_TEXT", parent["..text"]), ("AMA_EMBED_FAILURE", parent["..failure"])])
+        worker = self.author(child_root, "/test/fixture/v1.0.0/src/worker", "sdk-worker")
+        probe = self.author(child_root, "/test/fixture/v1.0.0/src/probe", "sdk-probe")
+        parent = self.author(self.sources / "project", "/test/fixture/v1.0.0/src/adapter", "sdk-adapter")
+        model.authoring(worker["/test/fixture/v1.0.0/src/worker"], "AMA_WORKER", self.aliases / "worker-api.h",
+                        [("AMA_WORKER_TEXT", worker["//text"])])
+        model.authoring(probe["/test/fixture/v1.0.0/src/probe"], "AMA_PROBE", self.aliases / "probe-api.h")
+        model.authoring(parent["/test/fixture/v1.0.0/src/adapter"], "AMA_EMBED", self.aliases / "adapter-api.h",
+                        [("AMA_EMBED_TEXT", parent["//text"]), ("AMA_EMBED_FAILURE", parent["//failure"])])
         probe_object = self.output / "probe.o"
         self.run([self.cc, *self.flags(), "-fPIC", "-c", self.sources / "probe.c", "-o", probe_object])
         child = self.component("child", child_root, [
-            "schema | text | text | ..text", "schema | condition | condition | ..std.condition",
-            "export | run | .main | entry,resume,read", "input | run | request | text",
+            "schema | text | text | //text", "schema | condition | condition | //std/condition",
+            "export | run | /test/fixture/v1.0.0/src/main | entry,resume,read", "input | run | request | text",
             "output | run | response | text", "output | run | previous | condition",
             f"link-file | {probe_object}", f"dependency-file | {self.aliases / 'worker-api.h'}",
             f"dependency-file | {self.aliases / 'probe-api.h'}", f"dependency-file | {self.sources / 'probe.h'}"])
@@ -95,8 +95,8 @@ class Build:
         with (self.aliases / "adapter-api.h").open("a", encoding="utf-8") as stream:
             stream.write('#include "child-api.h"\n')
         parent_document = self.component("parent", self.sources / "project", [
-            "schema | text | text | ..text", "schema | condition | condition | ..std.condition",
-            "schema | failure | failure | ..failure", "export | run | .main | entry,resume,read",
+            "schema | text | text | //text", "schema | condition | condition | //std/condition",
+            "schema | failure | failure | //failure", "export | run | /test/fixture/v1.0.0/src/main | entry,resume,read",
             "input | run | message | text", "input | run | reset | condition", "input | run | propagate | condition",
             "output | run | response | text", "output | run | previous | condition",
             "output | run | waiting | condition", "output | run | failure | failure",

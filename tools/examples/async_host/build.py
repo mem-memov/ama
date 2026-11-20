@@ -55,10 +55,10 @@ class Build:
         """Publish through the product CLI, with the backend declared as an exact native dependency."""
         records = ["ama-library | 1", "component | example.asynchronous.host", "abi | ama-c-1",
                    "target | x86_64-linux-gnu", "calling-convention | c",
-                   "schema | text | text | ..text", "schema | flag | condition | ..std.condition",
-                   "export | run | .main | entry,resume", "input | run | immediate | flag",
+                   "schema | text | text | //text", "schema | flag | condition | //std/condition",
+                   "export | run | /test/fixture/v1.0.0/src/main | entry,resume", "input | run | immediate | flag",
                    "input | run | cancel requested | flag", "output | run | message | text",
-                   "export | invalid | .invalid | entry", f"c-flag | -I{self.sources / 'backend'}",
+                   "export | invalid | /test/fixture/v1.0.0/src/invalid | entry", f"c-flag | -I{self.sources / 'backend'}",
                    "c-flag | -DNDEBUG", f"link-file | {self.generated / 'backend.so'}"]
         if self.sanitize:
             records.extend(["c-flag | -fsanitize=address,undefined", "c-flag | -fno-omit-frame-pointer",

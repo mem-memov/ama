@@ -5,7 +5,7 @@
  * the yielded root. Reporting observes the count without running its continuation.
  */
 static const char *report_worker_cleanup(const ScaffoldType *type, AbiOperation operation) {
-    if (operation != ABI_DESTROY || strcmp(type->plan->type->module->source->logical_path, ".worker") != 0) { return NULL; }
+    if (operation != ABI_DESTROY || strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/worker") != 0) { return NULL; }
     return " { assert(state->address==state); return printf(\"dropworker=%zu\\n\",state->calls)<0 ? ama_status_make(AMA_IO_FAILURE,NULL,0) : ama_status_success(); }\n";
 }
 
@@ -14,7 +14,7 @@ static const char *report_worker_cleanup(const ScaffoldType *type, AbiOperation 
  */
 static void it_rejects_unhandled_standard_root_yield_after_nonexecuting_cleanup(void) {
     native_hook_override = report_worker_cleanup;
-    execute_project("@!\nprobe\n.worker\nprobe !\n < |10\n%\nprobe !\n < |999\n", "10:1:0\ndropworker=1\n", false);
+    execute_project("@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |10\n%\nprobe !\n < |999\n", "10:1:0\ndropworker=1\n", false);
     expect_diagnostic("Unhandled root yield");
     native_hook_override = NULL;
 }

@@ -1,8 +1,8 @@
 # Stop delivery without releasing callback rights held by a running native provider.
 @<
 operation&
-..task.operation
+//task/operation
 @>
 retired
-..std.condition
+//std/condition
 @C

@@ -1,21 +1,21 @@
 # External operation references survive task copies, but one native completion still has one consumer.
 @!
 hub
-..task.events
+//task/events
 external operation
-..task.operation
+//task/operation
 fresh operation
-..task.operation
+//task/operation
 port
-.port
+/test/fixture/v1.0.0/src/port
 source task
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 copy
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 same
-..task.token.same
+//task/token/same
 require
-..task.require
+//task/require
 hub !
  < |1
 external operation !

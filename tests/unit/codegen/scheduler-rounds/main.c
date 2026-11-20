@@ -25,7 +25,7 @@ static void fixture(const char *path, char source[32768]) {
 /** Reuse the tested queue operations, overriding only the explicitly selected wait/record components. */
 static void install_domain(const char *domain, const char *task) {
     char directory_path[256];
-    int length = snprintf(directory_path, sizeof(directory_path), "generated/project/%s", domain);
+    int length = snprintf(directory_path, sizeof(directory_path), "generated/project/packages/test/fixture/v1.0.0/src/%s", domain);
     assert(length > 0 && (size_t)length < sizeof(directory_path));
     directory(directory_path);
     for (size_t index = 0; index < sizeof(modules) / sizeof(*modules); index++) {
@@ -49,6 +49,7 @@ static void install_domain(const char *domain, const char *task) {
 /** Install the authored native provider and data mailbox interfaces without interpreting generated artifacts. */
 static void install_project(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     install_domain("red", "loop-task");
     install_domain("blue", "wait-task");
     const char *names[] = {"source", "source.h", "source.c", "source.abi", "later", "later.h", "later.c", "later.abi", "round", "mailbox"};
@@ -57,18 +58,18 @@ static void install_project(void) {
         int length = snprintf(input, sizeof(input), "project/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(input));
         fixture(input, source);
-        length = snprintf(destination, sizeof(destination), "generated/project/%s", names[index]);
+        length = snprintf(destination, sizeof(destination), "generated/project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(destination));
         file(destination, source);
     }
-    native_fixture("trace", "@<\nid\n..std.index\nqueued\n..task.flag\n@C\n");
-    native_fixture("summary", "@<\nsteps\n..integer\nimports\n..integer\ndecisions\n..integer\nready\n..task.flag\nwaiting\n..task.flag\nquiescent\n..task.flag\n@C\n");
+    native_fixture("trace", "@<\nid\n//std/index\nqueued\n//task/flag\n@C\n");
+    native_fixture("summary", "@<\nsteps\n//integer\nimports\n//integer\ndecisions\n//integer\nready\n//task/flag\nwaiting\n//task/flag\nquiescent\n//task/flag\n@C\n");
 }
 /** Replace generated test stubs with the actual maintained provider bodies before compilation. */
 static void authored_bodies(NativeScaffold *scaffold) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         const char *path = type->plan->type->module->source->logical_path;
-        const char *name = strcmp(path, ".source") == 0 ? "source" : strcmp(path, ".later") == 0 ? "later" : NULL;
+        const char *name = strcmp(path, "/test/fixture/v1.0.0/src/source") == 0 ? "source" : strcmp(path, "/test/fixture/v1.0.0/src/later") == 0 ? "later" : NULL;
         if (name == NULL) { continue; }
         FILE *output = fopen(type->body_path, "wb");
         assert(output != NULL);
@@ -80,7 +81,7 @@ static void authored_bodies(NativeScaffold *scaffold) {
 /** Observe the actual published bounded metrics; task trace independently enforces cleared membership. */
 static bool observations(FILE *output, const ScaffoldType *type) {
     if (typed_schema_trace(output, type)) { return true; }
-    if (strcmp(type->plan->type->module->source->logical_path, ".summary") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/summary") != 0) { return false; }
     int written = fputs("size_t steps,imports,decisions;\n"
         "*status=ama_n_1ad46fade0175c4e31ef9315b33c02e79bb0f66fd54f938c04bd36d8838b2a42_to_index(parameters->AMA_INPUT(0)->payload,&steps); if(status->code!=AMA_OK) { return; }\n"
         "*status=ama_n_1ad46fade0175c4e31ef9315b33c02e79bb0f66fd54f938c04bd36d8838b2a42_to_index(parameters->AMA_INPUT(1)->payload,&imports); if(status->code!=AMA_OK) { return; }\n"
@@ -132,6 +133,7 @@ static void it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum
     const char *invalid[] = {"0", "-1", overflow};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
         for (unsigned field = 0; field < 2; field++) {
+            fprintf(stderr, "scheduler budget refusal: field=%u value=%s\n", field, invalid[index]);
             install_project();
             native_entry_override = observations;
             native_fixture_completion = authored_bodies;
@@ -146,6 +148,7 @@ static void it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum
             native_fixture_completion = NULL;
         }
     }
+    fprintf(stderr, "scheduler budget: accept empty maximum quotas\n");
     install_project();
     native_entry_override = observations;
     native_fixture_completion = authored_bodies;

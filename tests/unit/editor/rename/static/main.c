@@ -5,19 +5,19 @@
 #include "../common.c"
 /** Two concrete owners share original field/formal definitions, with independent substitutions. */
 static void fixture(void) {
-    project_fixture("@!\nfirst\n.factory\n ...left\nsecond\n.factory\n ...right\n");
-    file("generated/project/left","@!\n");
-    file("generated/project/right","@!\n");
-    file("generated/project/box","@<\nvalue\n...slot\n@>\nresult\n...slot\n value\n@!\nresult\n value\n");
-    file("generated/project/factory","@...\n...left\n.box\n ...slot < .left\n...right\n.box\n ...slot < .right\n");
+    project_fixture("@!\nfirst\n/test/fixture/v1.0.0/src/factory\n .left\nsecond\n/test/fixture/v1.0.0/src/factory\n .right\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/left","@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/right","@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/box","@<\nvalue\n.slot\n@>\nresult\n.slot\n value\n@!\nresult\n value\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory","@...\n.left\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/left\n.right\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/right\n");
 }
 /** One field edit covers both runtime owners, while preserving both distinct full Type keys. */
 static void it_renames_one_original_field_across_distinct_specializations(void) {
     fixture();
     setup_rename();
-    assert(prepare(".box","value","new value"));
+    assert(prepare("/test/fixture/v1.0.0/src/box","value","new value"));
     assert(text_is(rename_plan.target.definition,"value"));
-    assert(changed_file(".box") && !changed_file(".factory"));
+    assert(changed_file("/test/fixture/v1.0.0/src/box") && !changed_file("/test/fixture/v1.0.0/src/factory"));
     assert(validate());
     destroy_rename();
 }
@@ -25,8 +25,8 @@ static void it_renames_one_original_field_across_distinct_specializations(void) 
 static void it_renames_static_formals_and_their_actual_constructor_labels(void) {
     fixture();
     setup_rename();
-    assert(prepare(".box","...slot","...тип.элемента-данных"));
-    assert(changed_file(".box") && changed_file(".factory"));
+    assert(prepare("/test/fixture/v1.0.0/src/box",".slot",".тип.элемента-данных"));
+    assert(changed_file("/test/fixture/v1.0.0/src/box") && changed_file("/test/fixture/v1.0.0/src/factory"));
     assert(validate());
     destroy_rename();
 }
@@ -34,8 +34,8 @@ static void it_renames_static_formals_and_their_actual_constructor_labels(void) 
 static void it_renames_named_graph_outputs_and_ordinary_selection_sites(void) {
     fixture();
     setup_rename();
-    assert(prepare(".factory","...left","...selected result"));
-    assert(changed_file(".factory") && changed_file(".main"));
+    assert(prepare("/test/fixture/v1.0.0/src/factory",".left",".selected result"));
+    assert(changed_file("/test/fixture/v1.0.0/src/factory") && changed_file("/test/fixture/v1.0.0/src/main"));
     assert(validate());
     destroy_rename();
 }
@@ -43,9 +43,9 @@ static void it_renames_named_graph_outputs_and_ordinary_selection_sites(void) {
 static void it_refuses_incomplete_or_malformed_static_replacement_names(void) {
     fixture();
     setup_rename();
-    const char *invalid[] = {"slot","...","....slot"," ...slot","...slot ","...two  words","...a..b","...bad--name"};
+    const char *invalid[] = {"slot",".","..slot"," .slot",".slot ",".two  words",".a..b",".bad--name",".a/b"};
     for (size_t index = 0; index < sizeof(invalid)/sizeof(*invalid); index++) {
-        assert(!prepare(".box","...slot",invalid[index]));
+        assert(!prepare("/test/fixture/v1.0.0/src/box",".slot",invalid[index]));
         assert(!rename_plan.prepared && !rename_plan.first && diagnostic_valid(&rename_plan.diagnostic));
         editor_rename_destroy(&rename_plan);
         editor_rename_init(&rename_plan,sources.allocator);
@@ -55,9 +55,9 @@ static void it_refuses_incomplete_or_malformed_static_replacement_names(void) {
 /** An open template remains a source declaration even without any concrete runtime owner. */
 static void it_renames_uninstantiated_template_fields_without_fabricating_runtime_types(void) {
     fixture();
-    file("generated/project/main","@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main","@!\n");
     setup_rename();
-    assert(prepare(".box","value","uninstantiated value"));
+    assert(prepare("/test/fixture/v1.0.0/src/box","value","uninstantiated value"));
     assert(!rename_plan.target.symbol && rename_plan.target.original);
     assert(validate());
     destroy_rename();
@@ -65,15 +65,15 @@ static void it_renames_uninstantiated_template_fields_without_fabricating_runtim
 /** A shared higher-order label cannot be edited for only one of its actual constructor origins. */
 static void it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them(void) {
     fixture();
-    const char *box = "@<\nvalue\n...slot\n@>\nresult\n...slot\n value\n@!\nresult\n value\n";
-    file("generated/project/other box",box);
-    file("generated/project/apply","@...\n...out\n...family\n ...slot < ...type\n");
-    file("generated/project/factory","@...\n.apply\n ...family < .box\n ...type < .left\n ...out > ...left\n.apply\n ...family < .other box\n ...type < .right\n ...out > ...right\n");
+    const char *box = "@<\nvalue\n.slot\n@>\nresult\n.slot\n value\n@!\nresult\n value\n";
+    file("generated/project/packages/test/fixture/v1.0.0/src/other box",box);
+    file("generated/project/packages/test/fixture/v1.0.0/src/apply","@...\n.out\n.family\n .slot < .type\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory","@...\n/test/fixture/v1.0.0/src/apply\n .family < /test/fixture/v1.0.0/src/box\n .type < /test/fixture/v1.0.0/src/left\n .out > .left\n/test/fixture/v1.0.0/src/apply\n .family < /test/fixture/v1.0.0/src/other box\n .type < /test/fixture/v1.0.0/src/right\n .out > .right\n");
     setup_rename();
-    assert(!prepare(".apply","...slot <","...new slot") && !rename_plan.prepared);
+    assert(!prepare("/test/fixture/v1.0.0/src/apply",".slot <",".new slot") && !rename_plan.prepared);
     editor_rename_destroy(&rename_plan);
     editor_rename_init(&rename_plan,sources.allocator);
-    assert(!prepare(".box","...slot","...new slot") && !rename_plan.prepared);
+    assert(!prepare("/test/fixture/v1.0.0/src/box",".slot",".new slot") && !rename_plan.prepared);
     assert(rename_plan.diagnostic.code == DIAGNOSTIC_RENAME_CONFLICT);
     destroy_rename();
 }
@@ -81,22 +81,22 @@ static void it_refuses_multi_origin_labels_and_single_origin_edits_that_would_ch
 /** Forward graph uses and repeated receipts retain one original alias declaration after renaming. */
 static void it_renames_forward_graph_bindings_and_defining_and_equality_receipts(void) {
     fixture();
-    file("generated/project/main","@!\ndata\n.factory\n ...received\n");
-    file("generated/project/producer","@...\n...out\n.box\n ...slot < .left\n");
-    file("generated/project/factory","@...\n...forward\n...later\n...later\n.box\n ...slot < .left\n.producer\n ...out > ...received\n.producer\n ...out > ...received\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main","@!\ndata\n/test/fixture/v1.0.0/src/factory\n .received\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/producer","@...\n.out\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/left\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory","@...\n.forward\n.later\n.later\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/left\n/test/fixture/v1.0.0/src/producer\n .out > .received\n/test/fixture/v1.0.0/src/producer\n .out > .received\n");
     setup_rename();
-    assert(prepare(".factory","...later","...new later") && validate());
-    const EditorRenameFile *changed = changed_file(".factory");
+    assert(prepare("/test/fixture/v1.0.0/src/factory",".later",".new later") && validate());
+    const EditorRenameFile *changed = changed_file("/test/fixture/v1.0.0/src/factory");
     assert(changed && changed->edit_count == 2);
     editor_rename_destroy(&rename_plan);
     editor_rename_init(&rename_plan,sources.allocator);
     const ModuleSource *source = NULL;
-    assert(module_catalog_find(&analysis.frontend.project.catalog,".factory",&source) == MODULE_OK);
-    size_t offset = point(source->text,"> ...received")+2;
-    assert(editor_rename_prepare(&rename_plan,&analysis,".factory",offset,
-        (const unsigned char *)"...new received",strlen("...new received")));
+    assert(module_catalog_find(&analysis.frontend.project.catalog,"/test/fixture/v1.0.0/src/factory",&source) == MODULE_OK);
+    size_t offset = point(source->text,"> .received")+2;
+    assert(editor_rename_prepare(&rename_plan,&analysis,"/test/fixture/v1.0.0/src/factory",offset,
+        (const unsigned char *)".new received",strlen(".new received")));
     assert(validate());
-    assert(changed_file(".factory")->edit_count == 2 && changed_file(".main")->edit_count == 1);
+    assert(changed_file("/test/fixture/v1.0.0/src/factory")->edit_count == 2 && changed_file("/test/fixture/v1.0.0/src/main")->edit_count == 1);
     destroy_rename();
 }
 

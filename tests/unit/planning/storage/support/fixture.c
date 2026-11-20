@@ -2,15 +2,15 @@
  * @brief Build complete semantic projects while exercising storage independently of later execution lowering.
  */
 static const char storage_main[] =
-    "@=\nshared\n.value\n |1\n@!\nitems[]\n.value\n |2\nsource\n.value\nproducer\n.producer\nsaved&\n.value\nself&\n.main\n &\n"
+    "@=\nshared\n/test/fixture/v1.0.0/src/value\n |1\n@!\nitems[]\n/test/fixture/v1.0.0/src/value\n |2\nsource\n/test/fixture/v1.0.0/src/value\nproducer\n/test/fixture/v1.0.0/src/producer\nsaved&\n/test/fixture/v1.0.0/src/value\nself&\n/test/fixture/v1.0.0/src/main\n &\n"
     "items[item&]\n{\n source\n {\n  producer !\n   child !\n    > source\n }\n items[item&]\n {\n  %\n }\n}\n"
     "items[item&]\n{\n}\nitems[saved&]\n{\n}\n";
 /** Load exact self/call/traversal identities; storage planning never opens/compiles native C bodies. */
 static void prepare_storage(const char *text) {
     prepare_types();
-    file("generated/program/producer", "@>\nchild\n.worker\n@!\n");
-    file("generated/program/worker", "@>\ncondition\n.value\n@!\n");
-    file("generated/program/value.h", "#error Storage planning must not compile native headers\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/producer", "@>\nchild\n/test/fixture/v1.0.0/src/worker\n@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@>\ncondition\n/test/fixture/v1.0.0/src/value\n@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/value.h", "#error Storage planning must not compile native headers\n");
     SemanticStatus status = resolve_text(text);
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);

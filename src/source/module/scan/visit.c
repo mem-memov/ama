@@ -13,7 +13,7 @@
 
 /** Match only a configured physical relative path or its slash-delimited descendants; no module-name heuristics.
  * Component contract: [SRC-05](../../../../spec/language/source-and-names.md#src-05), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
-static bool excluded(const ModuleRoot *root, const char *relative) {
+bool module_path_excluded(const ModuleRoot *root, const char *relative) {
     for (size_t index = 0; index < root->excluded_count; index++) {
         size_t length = strlen(root->excluded[index]);
         if (strncmp(relative, root->excluded[index], length) == 0
@@ -50,7 +50,7 @@ static ModuleStatus visit_candidate(ModuleWalk *walk, const ModuleDirectory *dir
     if (status != MODULE_OK) {
         return status;
     }
-    const char *logical = source_arena_join(&walk->catalog->arena, directory->logical, ".", base);
+    const char *logical = source_arena_join(&walk->catalog->arena, directory->logical, "/", base);
     if (logical == NULL) {
         return module_fail(walk->catalog, MODULE_OUT_OF_MEMORY, physical);
     }
@@ -73,7 +73,7 @@ ModuleStatus module_visit_entry(ModuleWalk *walk, const ModuleDirectory *directo
     if (relative == NULL || physical == NULL) {
         return module_fail(walk->catalog, MODULE_OUT_OF_MEMORY, directory->physical);
     }
-    if (excluded(walk->root, relative)) {
+    if (module_path_excluded(walk->root, relative)) {
         return MODULE_OK;
     }
     size_t length = strlen(name);

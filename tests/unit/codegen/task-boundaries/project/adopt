@@ -1,21 +1,21 @@
 # Copying a saved position alone does not put either copy into a FIFO.
 @!
 port
-.port
+/test/fixture/v1.0.0/src/port
 source
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 copy
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 record
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 queue
-.kind.queue
+/test/fixture/v1.0.0/src/kind/queue
 enqueue
-.kind.enqueue
+/test/fixture/v1.0.0/src/kind/enqueue
 dispatch
-.kind.dispatch
+/test/fixture/v1.0.0/src/kind/dispatch
 require
-..task.require
+//task/require
 source !
  < &port
 copy
@@ -27,7 +27,7 @@ executed
 ?
  require !
 link&
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
  &copy
 record !
  < % link&

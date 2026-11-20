@@ -6,7 +6,7 @@
 /** These fixture payloads accept one decimal digit; assertions observe actual
  * compiled C alignment, never a layout guessed by the Ama compiler. */
 static const char *aligned_resource_hook(const ScaffoldType *type, AbiOperation operation) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".resource") != 0) { return NULL; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/resource") != 0) { return NULL; }
     switch (operation) {
     case ABI_DEFAULT:
         return " { assert((uintptr_t)destination%_Alignof(AMA_NATIVE(State))==0); *destination=(AMA_NATIVE(State)){.address=destination}; return ama_status_success(); }\n";
@@ -28,7 +28,7 @@ static const char *aligned_resource_hook(const ScaffoldType *type, AbiOperation 
  * retained results, list elements, clone destinations and native typed views. */
 static void it_preserves_actual_overaligned_native_layout_after_substitution(void) {
     prepare_capability_sources();
-    file("generated/project/resource.h", "struct AMA_NATIVE(State) { _Alignas(64) unsigned char padding[65]; size_t number; size_t calls; const void *address; };\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/resource.h", "struct AMA_NATIVE(State) { _Alignas(64) unsigned char padding[65]; size_t number; size_t calls; const void *address; };\n");
     native_hook_override = aligned_resource_hook;
     execute_project(capability_program, "9:1:0\n", true);
     native_hook_override = NULL;

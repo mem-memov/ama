@@ -17,7 +17,7 @@ bool static_expression_head(Parser *, SourceSpan, AstTypeExpression **);
 
 /** Recognize a static binding's leading marker class without consuming a line.
  * Component contract: [TPL-12](../../../spec/language/static-results.md#tpl-12)
- * reserves three-dot labels for static inputs/outputs, apart from runtime reads.
+ * reserves single-dot labels for static inputs/outputs, apart from runtime reads.
  */
 bool static_binding_line(const LayoutLine *);
 

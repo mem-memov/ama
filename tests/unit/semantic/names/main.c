@@ -12,16 +12,16 @@
  * setup and observations define this regression; assertion failure keeps its generated evidence.
  */
 static void it_rejects_all_pairs_of_duplicate_storage_forms(void) {
-    directory("generated/names");
-    file("generated/names/value", "@C\n");
+    fixture_package_prepare("generated/names", "fixture");
+    file("generated/names/packages/test/fixture/v1.0.0/src/value", "@C\n");
     const char *suffixes[] = {"", "&", "[]", "&[]"};
     for (size_t first = 0; first < 4; first++) {
         for (size_t second = 0; second < 4; second++) {
             char content[256];
             int length = snprintf(content, sizeof(content),
-                "@<\nitem%s\n.value\n@!\nflag\n?\n item%s\n .value\n", suffixes[first], suffixes[second]);
+                "@<\nitem%s\n/test/fixture/v1.0.0/src/value\n@!\nflag\n?\n item%s\n /test/fixture/v1.0.0/src/value\n", suffixes[first], suffixes[second]);
             assert(length > 0 && (size_t)length < sizeof(content));
-            file("generated/names/main", content);
+            file("generated/names/packages/test/fixture/v1.0.0/src/main", content);
             setup_semantic();
             SemanticStatus status = load_semantic("generated/names");
             assert(status == SEMANTIC_INVALID && !semantic.names_valid);
@@ -37,10 +37,10 @@ static void it_rejects_all_pairs_of_duplicate_storage_forms(void) {
  * semantic-name cases.
  */
 static void prepare_names(void) {
-    directory("generated/valid");
-    file("generated/valid/main", "@=\nconstant\n.value\n@<\nparameter\n.value\n@>\nresult\n.value\n"
-        "@!\nparameter\n?\n nested\n .value\n:\n other\n .value\nparameter !\n:\n fallback\n .value\n");
-    file("generated/valid/value", "@!\nconstant&\n.value\n");
+    fixture_package_prepare("generated/valid", "fixture");
+    file("generated/valid/packages/test/fixture/v1.0.0/src/main", "@=\nconstant\n/test/fixture/v1.0.0/src/value\n@<\nparameter\n/test/fixture/v1.0.0/src/value\n@>\nresult\n/test/fixture/v1.0.0/src/value\n"
+        "@!\nparameter\n?\n nested\n /test/fixture/v1.0.0/src/value\n:\n other\n /test/fixture/v1.0.0/src/value\nparameter !\n:\n fallback\n /test/fixture/v1.0.0/src/value\n");
+    file("generated/valid/packages/test/fixture/v1.0.0/src/value", "@!\nconstant&\n/test/fixture/v1.0.0/src/value\n");
 }
 
 /**

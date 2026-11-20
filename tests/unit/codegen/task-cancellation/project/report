@@ -1,14 +1,14 @@
 # Assert no terminal delivery/membership rights remain, then expose the ordinary one-hot outcome.
 @<
 record&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 queue&
-.kind.queue
+/test/fixture/v1.0.0/src/kind/queue
 @!
 require
-..task.require
+//task/require
 summary
-.summary
+/test/fixture/v1.0.0/src/summary
 record&
  waiting >> waiting
  queued >> queued

@@ -21,8 +21,8 @@ static void child_authoring(NativeScaffold *assembly,const char *module,const ch
 static void build_supervision_child(LibraryBuild *build,NativeScaffold *assembly) {
     build_probe();
     nested_model(build,"supervision.child","child/project",
-        "schema | text | text | ..text\nschema | condition | condition | ..std.condition\n"
-        "export | run | .main | entry,resume,read\ninput | run | request | text\n"
+        "schema | text | text | //text\nschema | condition | condition | //std/condition\n"
+        "export | run | /test/fixture/v1.0.0/src/main | entry,resume,read\ninput | run | request | text\n"
         "output | run | response | text\noutput | run | previous | condition\n"
         "link-file | generated/probe.o\ndependency-file | probe.h\n"
 #ifdef TEST_SANITIZERS
@@ -32,9 +32,9 @@ static void build_supervision_child(LibraryBuild *build,NativeScaffold *assembly
     directory("generated/child-output"); native_scaffold_init(assembly,&build->frontend,sources.allocator);
     bool built=project_codegen_build(assembly,(ScaffoldOptions){.directory="generated/child-output",.sdk=TEST_SDK});
     if(!built) { fprintf(stderr,"%s\n",assembly->error.message); } assert(built);
-    child_authoring(assembly,".probe","AMA_PROBE","generated/child-output/probe-api.h");
-    child_authoring(assembly,".worker","AMA_WORKER","generated/child-output/worker-api.h");
-    const ScaffoldType *text=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,"..text")); assert(text!=NULL);
+    child_authoring(assembly,"/test/fixture/v1.0.0/src/probe","AMA_PROBE","generated/child-output/probe-api.h");
+    child_authoring(assembly,"/test/fixture/v1.0.0/src/worker","AMA_WORKER","generated/child-output/worker-api.h");
+    const ScaffoldType *text=native_scaffold_type(assembly,semantic_find_type(&build->frontend.semantic,"//text")); assert(text!=NULL);
     FILE *aliases=fopen("generated/child-output/worker-api.h","ab"); assert(aliases!=NULL);
     int written=fprintf(aliases,"#define AMA_WORKER_TEXT(n) %s_ ## n\n",text->native_prefix->internal_name);
     int closed=fclose(aliases); assert(written>0 && closed==0);

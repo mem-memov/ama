@@ -9,8 +9,8 @@
 /** Rejected domains change no public receiver or borrowed term-store state. */
 static void it_refuses_open_foreign_and_malformed_owner_keys_without_publication(void) {
     for (size_t partition = 0; partition < 8; partition++) {
-        setup_guards("@<\nvalue\n...type\n@!\nanchor&\n..integer\n",
-            "@<\nvalue\n...other\n@!\n");
+        setup_guards("@<\nvalue\n.type\n@!\nanchor&\n//integer\n",
+            "@<\nvalue\n.other\n@!\n");
         StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
         const StaticTermEnvironment *environment = key_ordinary(caller_module, &input, 1);
         StaticTermEnvironment copied = *environment;
@@ -40,7 +40,7 @@ static void it_refuses_open_foreign_and_malformed_owner_keys_without_publication
         source_arena_destroy(&destination);
         destroy_guards();
     }
-    setup_guards("@...\n...anchor\n..integer\n", "@!\n");
+    setup_guards("@...\n.anchor\n//integer\n", "@!\n");
     SourceArena destination;
     source_arena_init(&destination, sources.allocator);
     StaticKeyEncoding output = {.descriptor = "unchanged", .length = 42};
@@ -60,10 +60,10 @@ static void it_unwinds_every_key_encoding_allocation_and_preserves_safe_retry(vo
         for (size_t failure = 0; failure <= total; failure++) {
             bool producer = kind % 2 != 0;
             bool empty = kind >= 2;
-            const char *caller = producer ? (empty ? "@...\n...anchor\n..integer\n" :
-                "@...\n...echo\n...argument\n...anchor\n..integer\n") :
-                (empty ? "@!\nanchor&\n..integer\n" : "@<\nvalue\n...type\n@!\nanchor&\n..integer\n");
-            setup_guards(caller, "@<\nfirst\n...a\nsecond\n...b\n@!\n");
+            const char *caller = producer ? (empty ? "@...\n.anchor\n//integer\n" :
+                "@...\n.echo\n.argument\n.anchor\n//integer\n") :
+                (empty ? "@!\nanchor&\n//integer\n" : "@<\nvalue\n.type\n@!\nanchor&\n//integer\n");
+            setup_guards(caller, "@<\nfirst\n.a\nsecond\n.b\n@!\n");
             const StaticTermEnvironment *environment = caller_environment;
             if (!empty) {
                 const StaticTerm *value = producer ? target_constructor : integer_type;
@@ -134,7 +134,7 @@ static void it_checks_counted_writer_arithmetic_and_exact_field_boundaries(void)
 
 /** The discovery counter refuses wrap before assigning a node ordinal. */
 static void it_refuses_postorder_counter_overflow_with_owned_partial_scratch(void) {
-    setup_guards("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_guards("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
     StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
     StaticKeyPlan plan = {.terms = &terms, .environment = key_ordinary(caller_module, &input, 1), .count = SIZE_MAX};
     source_arena_init(&plan.scratch, sources.allocator);
@@ -149,7 +149,7 @@ static void it_refuses_postorder_counter_overflow_with_owned_partial_scratch(voi
  * a distinct full source identity. The actual static name must be refused.
  */
 static void it_rejects_injected_digest_collisions_without_merging_static_identities(void) {
-    setup_guards("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_guards("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
     StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
     SourceArena destination;
     source_arena_init(&destination, sources.allocator);
@@ -160,7 +160,7 @@ static void it_rejects_injected_digest_collisions_without_merging_static_identit
     assert(identity_encode(&names.arena, key.qualified, &actual) == IDENTITY_OK);
     unsigned char digest[32];
     identity_sha256(actual.bytes, actual.length, digest);
-    QualifiedIdentity fake = {.category = IDENTITY_TYPE, .module_path = ".other"};
+    QualifiedIdentity fake = {.category = IDENTITY_TYPE, .module_path = "/test/fixture/v1.0.0/src/other"};
     assert(identity_encode(&names.arena, fake, &other) == IDENTITY_OK);
     const IdentityName *existing, *output = NULL;
     assert(identity_insert(&names, other, digest, &existing) == IDENTITY_OK);
@@ -181,8 +181,8 @@ static void it_unwinds_full_name_registration_and_retains_only_owned_name_data(v
     for (size_t producer = 0; producer < 2; producer++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_guards(producer ? "@...\n...anchor\n..integer\n" :
-                "@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+            setup_guards(producer ? "@...\n.anchor\n//integer\n" :
+                "@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
             const StaticTermEnvironment *environment = caller_environment;
             if (!producer) {
                 StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
@@ -214,7 +214,7 @@ static void it_unwinds_full_name_registration_and_retains_only_owned_name_data(v
  * attempt clears only the prior collision witness while preserving records.
  */
 static void it_refuses_invalid_naming_arguments_without_partial_names(void) {
-    setup_guards("@!\nanchor&\n..integer\n", "@!\n");
+    setup_guards("@!\nanchor&\n//integer\n", "@!\n");
     const StaticTermEnvironment *environment = key_environment(caller_environment);
     IdentityRegistry names;
     identity_registry_init(&names, sources.allocator);

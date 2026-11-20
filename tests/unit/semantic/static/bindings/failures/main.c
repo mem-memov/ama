@@ -8,15 +8,15 @@
 /** Both independent request kinds have two inputs/outputs and immutable source
  * owners, enabling exactly the same failure partitions without evaluating them.
  */
-static const char *failure_body = ".other\n ...a < ...type\n ...b < ...type\n"
-    " ...x > ...received\n ...y > ...ignored\n";
+static const char *failure_body = "/test/fixture/v1.0.0/src/other\n .a < .type\n .b < .type\n"
+    " .x > .received\n .y > .ignored\n";
 
 /** Source kinds remain separate even when testing the same resource partition. */
 static void setup_failure(bool runtime) {
     if (runtime) {
-        setup_runtime_requests("worker\n.other\nworker !\n <\n <\n >\n > received list[]\n");
+        setup_runtime_requests("worker\n/test/fixture/v1.0.0/src/other\nworker !\n <\n <\n >\n > received list[]\n");
     } else {
-        setup_request_definitions(failure_body, "@...\n...x\n...a\n...y\n...b\n");
+        setup_request_definitions(failure_body, "@...\n.x\n.a\n.y\n.b\n");
     }
 }
 
@@ -26,14 +26,14 @@ static void setup_failure(bool runtime) {
 static BindingInterface *failure_interface(bool runtime) {
     if (!runtime) {
         BindingInterface *view = NULL;
-        assert(binding_source_interface(&binding_plan, binding_module(project_find(&project, ".other")),
+        assert(binding_source_interface(&binding_plan, binding_module(project_find(&project, "/test/fixture/v1.0.0/src/other")),
             BINDING_MODULE_SURFACE, NULL, 0, &view));
         return view;
     }
-    const StaticModule *module = binding_module(project_find(&project, ".other"));
+    const StaticModule *module = binding_module(project_find(&project, "/test/fixture/v1.0.0/src/other"));
     const StaticSymbol *captures[] = {
-        static_symbol_find(module, static_name_site(module->definition, "...a")),
-        static_symbol_find(module, static_name_site(module->definition, "...b"))};
+        static_symbol_find(module, static_name_site(module->definition, ".a")),
+        static_symbol_find(module, static_name_site(module->definition, ".b"))};
     BindingInterface *view = NULL;
     assert(binding_source_interface(&binding_plan, module, BINDING_MODULE_SURFACE, captures, 2, &view));
     return view;
@@ -51,7 +51,7 @@ static const AstNode *failure_call(void) {
 /** Exercise each public normalizer with the same independently prepared facts. */
 static bool normalize(bool runtime, const BindingInterface *view, BindingApplication **output) {
     return runtime ? binding_normalize_runtime(&binding_plan, view, failure_call(), output)
-        : binding_normalize_static(&binding_plan, view, request_head(".other")->expression, output);
+        : binding_normalize_static(&binding_plan, view, request_head("/test/fixture/v1.0.0/src/other")->expression, output);
 }
 
 /** Every observed allocation is refused once for each kind and known/pending
@@ -106,7 +106,7 @@ static void it_checks_every_direction_counter_limit_without_publishing_or_alloca
             request.omitted = raw->omitted;
             request.syntax.runtime_binding = raw;
         } else {
-            const AstStaticBinding *raw = request_head(".other")->expression->first;
+            const AstStaticBinding *raw = request_head("/test/fixture/v1.0.0/src/other")->expression->first;
             if (output) { raw = raw->next->next; }
             request.span = raw->span;
             request.marker = raw->marker;
@@ -131,7 +131,7 @@ static void it_checks_every_direction_counter_limit_without_publishing_or_alloca
 static void it_refuses_unnamed_or_omitted_static_requests_before_mutation(void) {
     for (size_t omitted = 0; omitted < 2; omitted++) {
         setup_failure(false);
-        const AstStaticBinding *raw = request_head(".other")->expression->first;
+        const AstStaticBinding *raw = request_head("/test/fixture/v1.0.0/src/other")->expression->first;
         BindingApplication application = {.kind = BINDING_STATIC_APPLICATION, .pending = true};
         BindingRequest request = {.direction = BINDING_STATIC_INPUT, .span = raw->span,
             .marker = raw->marker, .label = raw->label, .named = omitted != 0,

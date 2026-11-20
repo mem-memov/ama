@@ -5,7 +5,7 @@
 /** Validate cyclic executable edges through inventories without executing or allocating. */
 static void it_validates_cyclic_ir_without_allocation_or_changing_published_identity(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\nother&\n.main\nother& !\n");
+    PlanStatus status = plan_text("@!\nother&\n/test/fixture/v1.0.0/src/main\nother& !\n");
     assert(status == PLAN_OK);
     size_t before = allocation_count;
     bool valid = program_plan_validate(&plan);
@@ -17,8 +17,8 @@ static void it_validates_cyclic_ir_without_allocation_or_changing_published_iden
 static void it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication(void) {
     for (size_t shape = 0; shape < 26; shape++) {
         prepare_types();
-        file("generated/program/worker", "@<\nparameter\n.value\n@>\nresult\n.value\n@!\n");
-        PlanStatus status = plan_text("@!\nworker\n.worker\nvalue\n.value\nworker !\n < value\n > value\n:\n%\n");
+        file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\nparameter\n/test/fixture/v1.0.0/src/value\n@>\nresult\n/test/fixture/v1.0.0/src/value\n@!\n");
+        PlanStatus status = plan_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\nvalue\n/test/fixture/v1.0.0/src/value\nworker !\n < value\n > value\n:\n%\n");
         assert(status == PLAN_OK);
         PlannedType foreign_type = {0};
         ControlNode foreign_control = {0};
@@ -45,7 +45,7 @@ static void it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication
             case 16: plan.entry->create.first->type = &foreign_type; break;
             case 17: plan.entry->create.first->operation = (LifeOperation)999; break;
             case 18: find_control(plan.entry, CONTROL_INSTALL_PARAMETER)->field = NULL; break;
-            case 19: find_control(plan.entry, CONTROL_INSTALL_PARAMETER)->value_type = semantic_find_type(&semantic, ".main"); break;
+            case 19: find_control(plan.entry, CONTROL_INSTALL_PARAMETER)->value_type = semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/main"); break;
             case 20: find_control(plan.entry, CONTROL_INITIALIZE_RESULT)->position++; break;
             case 21: find_control(plan.entry, CONTROL_INITIALIZE_RESULT)->value_form = STORAGE_REFERENCE; break;
             case 22: find_control(plan.entry, CONTROL_ENTER_INSTANCE)->callee = plan.entry->first->next->type; break;
@@ -64,9 +64,9 @@ static void it_rejects_unresolved_or_foreign_ir_operands_and_revokes_publication
 static void it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints(void) {
     for (size_t shape = 0; shape < 2; shape++) {
         prepare_types();
-        PlanStatus status = plan_text("@!\nvalue\n.value\n");
+        PlanStatus status = plan_text("@!\nvalue\n/test/fixture/v1.0.0/src/value\n");
         assert(status == PLAN_OK);
-        PlannedType *value = program_plan_type(&plan, semantic_find_type(&semantic, ".value"));
+        PlannedType *value = program_plan_type(&plan, semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/value"));
         AbiBinding invented = value->type->abi.bindings[ABI_DEFAULT];
         LifeNode foreign = {0};
         if (shape == 0) { value->create.first->binding = &invented; }
@@ -80,7 +80,7 @@ static void it_rejects_unregistered_native_hooks_and_foreign_lifecycle_endpoints
 static void it_rejects_incomplete_shared_and_required_procedure_inventories(void) {
     for (size_t shape = 0; shape < 7; shape++) {
         prepare_types();
-        PlanStatus status = plan_text("@=\nshared\n.value\n |1\n@!\nvalue\n.value\n");
+        PlanStatus status = plan_text("@=\nshared\n/test/fixture/v1.0.0/src/value\n |1\n@!\nvalue\n/test/fixture/v1.0.0/src/value\n");
         assert(status == PLAN_OK);
         switch (shape) {
             case 0: plan.shared_first->immutable = false; break;

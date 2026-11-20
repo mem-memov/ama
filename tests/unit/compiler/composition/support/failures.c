@@ -4,21 +4,21 @@
 /** Active drafts, malformed sources/contracts, type/scope errors and constant cycles stop before publishing a plan; inactive drafts stay outside the closure. */
 static void it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership(void) {
     const char *invalid[] = {
-        "@>\nunfinished\n.value\n",
-        "@!\n\tvalue\n.value\n",
-        "@!\nvalue\n.value\n",
-        "@!\nvalue\n.value\nalias&\n.value\nvalue\n alias&\n",
-        "@!\nitems[]\n.value\nitem&\n.other\nitems[item&]\n{\n}\n",
-        "@=\nfirst\n.value\n .palette.seed\n@!\n",
-        "@!\nvalue\n.value\n",
-        "@=\nvalue\n.value\n |1\n"
+        "@>\nunfinished\n/test/fixture/v1.0.0/src/value\n",
+        "@!\n\tvalue\n/test/fixture/v1.0.0/src/value\n",
+        "@!\nvalue\n/test/fixture/v1.0.0/src/value\n",
+        "@!\nvalue\n/test/fixture/v1.0.0/src/value\nalias&\n/test/fixture/v1.0.0/src/value\nvalue\n alias&\n",
+        "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nitem&\n/test/fixture/v1.0.0/src/other\nitems[item&]\n{\n}\n",
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/palette/seed\n@!\n",
+        "@!\nvalue\n/test/fixture/v1.0.0/src/value\n",
+        "@=\nvalue\n/test/fixture/v1.0.0/src/value\n |1\n"
     };
     for (size_t shape = 0; shape < sizeof(invalid) / sizeof(*invalid); shape++) {
         prepare_composed_files(invalid[shape]);
-        file("generated/project/other", "@!\n");
-        if (shape == 2) { file("generated/project/value.abi", "+ initialize\n+ repeated\n- destroy\n"); }
-        if (shape == 5) { file("generated/project/palette", "@=\nseed\n.value\n .main.first\n"); }
-        if (shape == 6) { int removed = unlink("generated/project/value.abi"); assert(removed == 0); }
+        file("generated/project/packages/test/fixture/v1.0.0/src/other", "@!\n");
+        if (shape == 2) { file("generated/project/packages/test/fixture/v1.0.0/src/value.abi", "+ initialize\n+ repeated\n- destroy\n"); }
+        if (shape == 5) { file("generated/project/packages/test/fixture/v1.0.0/src/palette", "@=\nseed\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/main/first\n"); }
+        if (shape == 6) { int removed = unlink("generated/project/packages/test/fixture/v1.0.0/src/value.abi"); assert(removed == 0); }
         setup_frontend();
         bool checked = check_composed();
         assert(!checked && !frontend.valid && !frontend.plan_initialized && diagnostic_valid(&frontend.error));

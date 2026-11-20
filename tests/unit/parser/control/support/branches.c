@@ -29,7 +29,7 @@ static void it_distinguishes_written_positive_negative_and_omitted_bodies(void) 
 /** Empty handlers warn at their own markers in physical order; declarations prevent warnings. */
 static void it_counts_declarations_as_statements_and_keeps_warning_marker_order(void) {
     setup_tree();
-    AstNode *node = parsed("@!\nready\n?\n local\n .value\n:\n # empty\nroot !\n child !\n :\n:\n");
+    AstNode *node = parsed("@!\nready\n?\n local\n /test/fixture/v1.0.0/src/value\n:\n # empty\nroot !\n child !\n :\n:\n");
     assert(node->as.control.body.first->kind == AST_DECLARATION);
     size_t previous = 0, count = 0;
     for (AstWarning *warning = module.warnings; warning != NULL; warning = warning->next) {

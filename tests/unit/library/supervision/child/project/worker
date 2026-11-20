@@ -1,9 +1,0 @@
-@<
-request
-..text
-@>
-response
-..text
-previous
-..std.condition
-@C

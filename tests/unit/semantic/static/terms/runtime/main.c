@@ -14,7 +14,7 @@ static const AstNode *assignment, *call, *traversal, *indexed;
 
 /** Parser-valid runtime operands need no guessed runtime binding or concrete Type. */
 static void setup(void) {
-    setup_static("@<\ninput\n...type\n@!\nfirst\n earlier\nworker !\n > left\n > right\n"
+    setup_static("@<\ninput\n.type\n@!\nfirst\n earlier\nworker !\n > left\n > right\n"
         "values[item&]\n{\n}\nvalues[position]\n earlier\n", "@!\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     module = static_module_find(&inventory, project.entry);
@@ -51,7 +51,7 @@ static void it_interns_distinct_runtime_receiver_and_foreach_type_holes_per_envi
     assert(static_term_runtime_type(&store, environment, assignment, assignment->as.assignment.receiver, &again));
     assert(again == first && allocation_count == before);
     failure_at = 0;
-    const StaticModule *other = static_module_find(&inventory, project_find(&project, ".other"));
+    const StaticModule *other = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
     const StaticTerm *other_type, *owner;
     const StaticTermEnvironment *applied;
     assert(static_term_nominal(&store, other, NULL, 0, (SourceSpan){0}, &other_type));

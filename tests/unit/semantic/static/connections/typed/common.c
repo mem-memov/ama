@@ -7,12 +7,12 @@
 #include "semantic/static/constraints/internal.h"
 
 /** A source-generic owner has explicit, inferred and foreach-local Type terms. */
-static const char *typed_source = "@<\ninput\n...slot\n@!\nknown\n..integer\ntext anchor&\n..text\n"
-    "worker\n.other\nworker !\n > fresh\nvalues[]\n...slot\nvalues[item&]\n{\n borrowed&\n  item&\n}\n";
+static const char *typed_source = "@<\ninput\n.slot\n@!\nknown\n//integer\ntext anchor&\n//text\n"
+    "worker\n/test/fixture/v1.0.0/src/other\nworker !\n > fresh\nvalues[]\n.slot\nvalues[item&]\n{\n borrowed&\n  item&\n}\n";
 
 /** Unknown result Type belongs to the worker template, not a guessed native Type. */
 static void setup_typed(void) {
-    setup_connections(typed_source, "@>\nvalue\n...result\n@!\n");
+    setup_connections(typed_source, "@>\nvalue\n.result\n@!\n");
 }
 
 /** Only an explicitly selected root supplies a generic actual-context provenance. */

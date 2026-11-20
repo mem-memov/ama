@@ -8,7 +8,7 @@
 
 /** All fields use ordinary concrete Type lines; self-reference adds no eager ownership cycle. */
 static const char *operand_caller_source =
-    "@!\nanchor&\n..integer\nnext&\n.main\nvalue&\n..integer\n";
+    "@!\nanchor&\n//integer\nnext&\n/test/fixture/v1.0.0/src/main\nvalue&\n//integer\n";
 
 /** Own real source/term/guard dependencies before a fresh result plan. */
 static void setup_operand_sources(void) {

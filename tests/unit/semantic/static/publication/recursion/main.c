@@ -9,8 +9,8 @@
 static void it_preserves_unknown_ancestor_obligations_in_cold_and_warm_orders(void) {
     for (size_t warm = 0; warm < 2; warm++) {
         for (size_t known = 0; known < 2; known++) {
-            setup_publications("@...\n...out\n...slot\n.other\n ...out > ...received\n",
-                "@...\n...out\n..integer\n.main\n ...slot < ..integer\n ...out > ...back\n");
+            setup_publications("@...\n.out\n.slot\n/test/fixture/v1.0.0/src/other\n .out > .received\n",
+                "@...\n.out\n//integer\n/test/fixture/v1.0.0/src/main\n .slot < //integer\n .out > .back\n");
             if (warm) {
                 const StaticTermEnvironment *environment;
                 assert(static_term_producer_environment(&terms, target_module, NULL, 0, &environment));
@@ -21,8 +21,8 @@ static void it_preserves_unknown_ancestor_obligations_in_cold_and_warm_orders(vo
             }
             const StaticResultContext *context = publication_context(caller_environment);
             if (known) {
-                assert(static_constraint_equate(&solver, application_symbol("...slot"), integer_type,
-                    result_named(caller_module, "...slot")->site));
+                assert(static_constraint_equate(&solver, application_symbol(".slot"), integer_type,
+                    result_named(caller_module, ".slot")->site));
             }
             const StaticPublication *publication = NULL;
             bool success = static_publication_resolve(&publications, context, result_projection(0), &publication);
@@ -39,8 +39,8 @@ static void it_preserves_unknown_ancestor_obligations_in_cold_and_warm_orders(vo
  * original path once A's independent input evidence becomes available.
  */
 static void it_replays_independent_roots_after_a_first_path_with_unknown_ancestry(void) {
-    setup_publications("@...\n...out\n...slot\n.other\n ...out > ...received\n",
-        "@...\n...out\n..integer\n.main\n ...slot < ..integer\n ...out > ...back\n");
+    setup_publications("@...\n.out\n.slot\n/test/fixture/v1.0.0/src/other\n .out > .received\n",
+        "@...\n.out\n//integer\n/test/fixture/v1.0.0/src/main\n .slot < //integer\n .out > .back\n");
     const StaticResultContext *context = publication_context(caller_environment);
     StaticResultOutcome outcome;
     assert(static_result_evaluate(&results, context, result_projection(0), &outcome));
@@ -55,8 +55,8 @@ static void it_replays_independent_roots_after_a_first_path_with_unknown_ancestr
     assert(static_publication_scope(&publications, independent, &publication));
     assert(publication->context == independent && publication->first_output->value == integer_type);
     assert(context->registry_use->key_state == STATIC_REGISTRY_KEY_PENDING);
-    assert(static_constraint_equate(&solver, application_symbol("...slot"), integer_type,
-        result_named(caller_module, "...slot")->site));
+    assert(static_constraint_equate(&solver, application_symbol(".slot"), integer_type,
+        result_named(caller_module, ".slot")->site));
     assert(static_publication_scope(&publications, context, &publication));
     assert(publication->first_output->value == integer_type);
     destroy_publications();
@@ -64,12 +64,12 @@ static void it_replays_independent_roots_after_a_first_path_with_unknown_ancestr
 
 /** Static input maps are specialization identities even for equal selected values. */
 static void it_refuses_changed_keys_on_a_repeated_original_producer(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/other type", "@!\n");
-    setup_publications("@...\n...out\n...slot\n.main\n ...slot < .other type\n ...out > ...received\n...anchor\n..integer\n", "@...\n");
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/other type", "@!\n");
+    setup_publications("@...\n.out\n.slot\n/test/fixture/v1.0.0/src/main\n .slot < /test/fixture/v1.0.0/src/other type\n .out > .received\n.anchor\n//integer\n", "@...\n");
     const StaticResultContext *context = publication_context(caller_environment);
-    assert(static_constraint_equate(&solver, application_symbol("...slot"), integer_type,
-        result_named(caller_module, "...slot")->site));
+    assert(static_constraint_equate(&solver, application_symbol(".slot"), integer_type,
+        result_named(caller_module, ".slot")->site));
     const StaticPublication *publication = NULL;
     assert(!static_publication_scope(&publications, context, &publication));
     assert(publication == NULL && publications.status == STATIC_PUBLICATION_CONFLICT);
@@ -82,9 +82,9 @@ static void it_refuses_changed_keys_on_a_repeated_original_producer(void) {
 /** No source-value anchor exists in a direct or mutually recursive selected definition. */
 static void it_rejects_direct_and_mutual_selected_definition_cycles(void) {
     for (size_t mutual = 0; mutual < 2; mutual++) {
-        setup_publications(mutual ? "@...\n.other\n ...out > ...out\n...anchor\n..integer\n" :
-            "@...\n.main\n ...out > ...out\n...anchor\n..integer\n",
-            "@...\n.main\n ...out > ...out\n");
+        setup_publications(mutual ? "@...\n/test/fixture/v1.0.0/src/other\n .out > .out\n.anchor\n//integer\n" :
+            "@...\n/test/fixture/v1.0.0/src/main\n .out > .out\n.anchor\n//integer\n",
+            "@...\n/test/fixture/v1.0.0/src/main\n .out > .out\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticPublication *publication = NULL;
         assert(!static_publication_scope(&publications, context, &publication));

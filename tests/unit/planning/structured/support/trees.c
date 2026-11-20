@@ -4,7 +4,7 @@
 /** No selected name creates an intermediate variable; caller input/output operands and returned reference targets retain their exact environments. */
 static void it_keeps_selected_targets_and_caller_operands_through_depth_first_actions(void) {
     prepare_structured_types();
-    PlanStatus status = plan_text("@!\nproducer\n.producer\nsource\n.value\nsink\n.value\nproducer !\n < source\n left !\n  < source\n  > sink\n  next& %\n   > sink\n  :\n   %\n right& !\n  > sink\nproducer !\n");
+    PlanStatus status = plan_text("@!\nproducer\n/test/fixture/v1.0.0/src/producer\nsource\n/test/fixture/v1.0.0/src/value\nsink\n/test/fixture/v1.0.0/src/value\nproducer !\n < source\n left !\n  < source\n  > sink\n  next& %\n   > sink\n  :\n   %\n right& !\n  > sink\nproducer !\n");
     assert(status == PLAN_OK);
     assert(main_field("left") == NULL && main_field("next") == NULL && main_field("right") == NULL);
     PlannedChain *chain = NULL;
@@ -46,7 +46,7 @@ static void it_keeps_selected_targets_and_caller_operands_through_depth_first_ac
 }
 /** Intrinsic methods remain caller frames with typed preflight/prepare/commit and can immediately execute their real returned element. */
 static void it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies(void) {
-    prepare_structured("@!\nitems[]\n.value\nsource\n.value\nitems[]\n append !\n  < &source\n  > result&\n  element& !\n length !\n  > count\n");
+    prepare_structured("@!\nitems[]\n/test/fixture/v1.0.0/src/value\nsource\n/test/fixture/v1.0.0/src/value\nitems[]\n append !\n  < &source\n  > result&\n  element& !\n length !\n  > count\n");
     assert(plan.entry->frame_count == 4 && plan.context_storage.pools == 3);
     ControlNode *service = find_control(plan.entry, CONTROL_ACQUIRE_LIST);
     assert(service != NULL && service->chain->root_frame == service->frame);
@@ -67,7 +67,7 @@ static void it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_modul
     const ControlNode *element = output->replacement->last->next;
     assert(element->operation == CONTROL_ACTION_NEXT && element->next->operation == CONTROL_SELECT_RESULT);
     assert(element->statement->intrinsic_target && element->statement->target_reference);
-    assert(element->statement->namespace_type == semantic_find_type(&semantic, ".value"));
+    assert(element->statement->namespace_type == semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/value"));
     assert(structured_operation(CONTROL_LIST_METHOD_COMMIT, 0)->statement->operation_kind == SEMANTIC_LIST_METHOD_OPERATION);
     destroy_plan();
 }

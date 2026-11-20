@@ -9,6 +9,18 @@
  */
 #include "../internal.h"
 
+/** Classify a type-leading lexical family before validating its complete head.
+ * [COMP-01](../../../spec/implementation/compiler.md#comp-01) excludes lookup;
+ * [TPL-01](../../../spec/language/templates.md#tpl-01) gives /, ~ and . disjoint
+ * type-leading roles. Malformed type tails therefore keep a type diagnostic
+ * instead of being reinterpreted as ordinary value statements.
+ */
+static bool type_start(SourceSpan text) {
+    if (text.start == text.end) { return false; }
+    unsigned char first = source_bytes(text.source)[text.start];
+    return first == '/' || first == '~' || first == '.';
+}
+
 /** Attach a parsed nonliteral source to a structural receiver and advance exactly past that source line; no first-use declaration inference occurs here.
  * Component contract: [COMP-01](../../../spec/implementation/compiler.md#comp-01), [FLOW-01](../../../spec/language/control-flow.md#flow-01). */
 static bool assignment(Parser *parser, AstNode *node, AstAccess *receiver) {
@@ -77,7 +89,7 @@ static bool bare_target(Parser *parser, ParseFrame **frame, AstNode *node) {
         return parser_control(parser, frame, node, access, marker);
     }
     if (present && next->indentation == line->indentation
-        && next->code.start < next->code.end && source_bytes(next->code.source)[next->code.start] == '.') {
+        && type_start(next->code)) {
         return parser_declaration(parser, line->indentation, node);
     }
     if (present && next->indentation == line->indentation + 1) {
@@ -116,7 +128,7 @@ bool parser_statement(Parser *parser, ParseFrame **frame) {
         return parser_call_mode(parser, text, &target, &mode)
             && parser_start_call(parser, frame, node, target, mode);
     }
-    if (text.end > text.start && bytes[text.start] == '.') {
+    if (type_start(text)) {
         return parser_namespace_statement(parser, frame, node);
     }
     return bare_target(parser, frame, node);

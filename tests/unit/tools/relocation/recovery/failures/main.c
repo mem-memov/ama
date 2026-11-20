@@ -34,7 +34,7 @@ static void retry(const char *journal, bool committed) {
     if (!result) { fprintf(stderr,"Retry failed: %s\n",recovery.transaction.error.message); }
     assert(result && recovery.finished && recovery.transaction.committed == committed);
     assert(recovery.rolled_back == !committed);
-    importer(committed ? "@!\nvalue\n.new.a\n" : "@!\nvalue\n.old.a\n");
+    importer(committed ? "@!\nvalue\n/test/fixture/v1.0.0/src/new/a\n" : "@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n");
     relocation_recovery_destroy(&recovery);
     if (committed) { complete_fixture(); } else { done(); }
 }

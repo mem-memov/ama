@@ -3,15 +3,15 @@
  */
 /** One attempt's deterministic I/O refusal authority; unrelated operations use the actual filesystem. */
 typedef struct { size_t count; size_t failure; bool inverse_failure; } ApplicationFailure;
-static const char old_configuration[] = "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | .old.a | entry\n";
-static const char new_configuration[] = "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | .new.a | entry\n";
+static const char old_configuration[] = "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | /test/fixture/v1.0.0/src/old/a | entry\n";
+static const char new_configuration[] = "ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | /test/fixture/v1.0.0/src/new/a | entry\n";
 
 /** Single-ordinal failures test complete prefixes; inverse_failure refuses importer publication and every inverse rename. */
 static bool application_permit(void *context, RelocationIOOperation operation, const char *physical) {
     ApplicationFailure *failure = context;
     failure->count++;
     if (failure->inverse_failure && (operation == RELOCATION_IO_RESTORE
-        || (operation == RELOCATION_IO_PUBLISH && strstr(physical,"/imports/unused") != NULL))) { return false; }
+        || (operation == RELOCATION_IO_PUBLISH && strstr(physical,"/imports/packages/test/imports/v1.0.0/src/unused") != NULL))) { return false; }
     return failure->failure == 0 || failure->failure != failure->count;
 }
 /** Complete source, external configuration and outside file/directory output effects belong to the same plan. */
@@ -23,18 +23,18 @@ static void failure_project(const char *name) {
     assert(symlink("cycle.link",path("artifacts/cache/cycle.link")) == 0);
     file("artifacts/cache.bin","file cache");
     file("settings.library",old_configuration);
-    file("project/old/generated.bin","inside cache");
-    const char *outputs[] = {path("artifacts/cache"),path("artifacts/cache.bin"),path("project/old/generated.bin")};
+    file("project/packages/test/fixture/v1.0.0/src/old/generated.bin","inside cache");
+    const char *outputs[] = {path("artifacts/cache"),path("artifacts/cache.bin"),path("project/packages/test/fixture/v1.0.0/src/old/generated.bin")};
     const char *configurations[] = {path("settings.library")};
     refresh(outputs,3,configurations,1);
 }
 /** Source paths, file identities and bytes are exactly restored; read-induced/change timestamps are not treated as file contents. */
 static void restored(void) {
     untouched(&move_request);
-    file_bytes(path("project/old/a"),(const unsigned char *)"@!\n",3);
-    file_bytes(path("imports/unused"),(const unsigned char *)"@!\nvalue\n.old.a\n",16);
+    file_bytes(path("project/packages/test/fixture/v1.0.0/src/old/a"),(const unsigned char *)"@!\n",3);
+    file_bytes(path("imports/packages/test/imports/v1.0.0/src/unused"),(const unsigned char *)"@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n",sizeof("@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n")-1);
     file_bytes(path("settings.library"),(const unsigned char *)old_configuration,sizeof(old_configuration)-1);
-    file_bytes(path("project/old/generated.bin"),(const unsigned char *)"inside cache",12);
+    file_bytes(path("project/packages/test/fixture/v1.0.0/src/old/generated.bin"),(const unsigned char *)"inside cache",12);
     file_bytes(path("artifacts/cache.bin"),(const unsigned char *)"file cache",10);
     file_bytes(path("artifacts/cache/nested/value.bin"),(const unsigned char *)"directory cache",15);
     for (const RelocationStagedFile *file = staging.files; file != NULL; file = file->next) {
@@ -53,7 +53,7 @@ static void committed(void) {
     struct stat metadata;
     assert(lstat(preview.source,&metadata) != 0 && errno == ENOENT);
     assert(lstat(preview.destination,&metadata) == 0);
-    file_bytes(path("imports/unused"),(const unsigned char *)"@!\nvalue\n.new.a\n",16);
+    file_bytes(path("imports/packages/test/imports/v1.0.0/src/unused"),(const unsigned char *)"@!\nvalue\n/test/fixture/v1.0.0/src/new/a\n",sizeof("@!\nvalue\n/test/fixture/v1.0.0/src/new/a\n")-1);
     file_bytes(path("settings.library"),(const unsigned char *)new_configuration,sizeof(new_configuration)-1);
     assert(lstat(path("artifacts/cache"),&metadata) != 0 && errno == ENOENT);
     assert(lstat(path("artifacts/cache.bin"),&metadata) != 0 && errno == ENOENT);

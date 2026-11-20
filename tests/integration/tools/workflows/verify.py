@@ -33,7 +33,7 @@ elif mode == "editor":
     value = decode()
     assert value["schema"] == "ama.editor.v1" and value["state"] == "complete"
     symbol = value["point"]["definition"]["symbol"]
-    assert symbol["owner"] == ".palette" and symbol["name"]["utf8"] == "шаг"
+    assert symbol["owner"] == '/test/fixture/v1.0.0/src/palette' and symbol["name"]["utf8"] == "шаг"
     assert inventory(base) == json.loads(original_file.read_text())
 elif mode == "rename":
     value = decode()
@@ -43,7 +43,7 @@ elif mode == "rename":
     # dependencies, and admits no observer or writer until this callback returns.
     # This is a test document publisher, not a production filesystem-edit service.
     assert inventory(base) == before
-    changed = {"app/palette", "app/old/sequence", "importers/unused"}
+    changed = {'app/packages/test/fixture/v1.0.0/src/palette', 'app/packages/test/fixture/v1.0.0/src/old/sequence', 'importers/packages/test/imports/v1.0.0/src/unused'}
     prepared = []
     observed = set()
     try:
@@ -57,8 +57,8 @@ elif mode == "rename":
             original = bytes.fromhex(record["original"]["hex"])
             replacement = bytes.fromhex(record["replacement"]["hex"])
             assert original == bytes.fromhex(before[relative]) == path.read_bytes()
-            expected = original.replace("\nшаг\n".encode(), "\nразмер шага\n".encode()) if relative == "app/palette" else b"".join(
-                " .palette.размер шага\n".encode() if line == " .palette.шаг\n".encode() else line
+            expected = original.replace("\nшаг\n".encode(), "\nразмер шага\n".encode()) if relative == 'app/packages/test/fixture/v1.0.0/src/palette' else b"".join(
+                ' /test/fixture/v1.0.0/src/palette/размер шага\n'.encode() if line == ' /test/fixture/v1.0.0/src/palette/шаг\n'.encode() else line
                 for line in original.splitlines(keepends=True))
             assert replacement == expected and replacement != original, relative
             staged = path.with_name(".client-stage-" + str(index))
@@ -82,24 +82,24 @@ elif mode in ("preview", "logical", "container"):
     value = decode()
     assert value["schema"] == "ama.relocation.v1" and value["success"] and value["outcome_known"]
     report = value["report"]
-    assert report["entry"] == ".new.sequence" and report["rebuild_required"]
+    assert report["entry"] == '/test/fixture/v1.0.0/src/new/sequence' and report["rebuild_required"]
     assert {row["kind"] for row in report["after_roots"]} == {"project", "standard"}
     if mode != "container":
         before = json.loads(renamed_file.read_text())
         mapping = {row["before_identity"]: row["after_identity"] for row in report["modules"]}
-        assert mapping[".old.sequence"] == ".new.sequence" and mapping["..integer"] == "..integer"
+        assert mapping['/test/fixture/v1.0.0/src/old/sequence'] == '/test/fixture/v1.0.0/src/new/sequence' and mapping['//integer'] == '//integer'
         if mode == "preview":
             assert value["command"] == "preview" and value["committed"] is False and value["journal"] is None
             assert inventory(base) == before and Path("generated/before/program").exists()
             sys.exit(0)
         expected = {}
         for name, content in before.items():
-            final_name = "app/new/" + name[len("app/old/"):] if name.startswith("app/old/") else name
+            final_name = 'app/packages/test/fixture/v1.0.0/src/new/' + name[len('app/packages/test/fixture/v1.0.0/src/old/'):] if name.startswith('app/packages/test/fixture/v1.0.0/src/old/') else name
             data = bytes.fromhex(content)
-            if name in {"app/main", "importers/unused"}:
-                data = data.replace(b"\n.old.sequence\n", b"\n.new.sequence\n")
-            if name == "app/settings.library":
-                data = data.replace(b" | .old.sequence | ", b" | .new.sequence | ")
+            if name in {'app/packages/test/fixture/v1.0.0/src/main', 'importers/packages/test/imports/v1.0.0/src/unused'}:
+                data = data.replace(b'\n/test/fixture/v1.0.0/src/old/sequence\n', b'\n/test/fixture/v1.0.0/src/new/sequence\n')
+            if name == 'app/packages/test/fixture/v1.0.0/src/settings.library':
+                data = data.replace(b' | /test/fixture/v1.0.0/src/old/sequence | ', b' | /test/fixture/v1.0.0/src/new/sequence | ')
             expected[final_name] = data.hex()
         assert inventory(base) == expected
         assert not Path("generated/before/program").exists()
@@ -119,16 +119,16 @@ elif mode == "debug":
     assert [rows[index]["data"]["outcome"] for index in (0, 3, 5)] == ["yielded", "yielded", "completed"]
     assert rows[1]["data"] == rows[2]["data"]
     for index, boundary in ((1, "1"), (4, "2")):
-        root = next(item for item in rows[index]["data"]["instances"] if item["type_name"] in {".old.sequence", ".new.sequence"})
+        root = next(item for item in rows[index]["data"]["instances"] if item["type_name"] in {'/test/fixture/v1.0.0/src/old/sequence', '/test/fixture/v1.0.0/src/new/sequence'})
         field, = root["fields"]
         cursor, = root["cursors"]
         assert field["name"] == "числа" and field["count"] == "2" and len(field["elements"]) == 2
         assert cursor["binding_name"] == "элемент" and cursor["boundary"] == boundary
         assert root["resume_selector"] == cursor["repeat"] and not root["caller"]["attached"]
-        expected_source = base / "app" / ("old" if root["type_name"] == ".old.sequence" else "new") / "sequence"
+        expected_source = base / 'app/packages/test/fixture/v1.0.0/src' / ("old" if root["type_name"] == '/test/fixture/v1.0.0/src/old/sequence' else "new") / "sequence"
         assert Path(root["resume_location"]["path"]["utf8"]).resolve() == expected_source
-        assert any(item["type_name"] == "..integer" and item["native_opaque"] for item in rows[index]["data"]["instances"])
-        assert any(item["type_name"] == "..integer" and item["recorded_operation"] != "0"
+        assert any(item["type_name"] == '//integer' and item["native_opaque"] for item in rows[index]["data"]["instances"])
+        assert any(item["type_name"] == '//integer' and item["recorded_operation"] != "0"
                    and item["recorded_location"] is not None
                    and Path(item["recorded_location"]["path"]["utf8"]).resolve() == base / "library/integer"
                    for item in rows[index]["data"]["instances"])

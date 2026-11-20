@@ -6,7 +6,7 @@
  */
 static void it_does_not_offer_a_descendant_refusal_to_ancestor_handlers(void) {
     prepare_handler_tree();
-    execute_project("@!\nobject\n.box\nprobe\n.worker\nobject\n middle\n  branch\n   missing& !\n"
+    execute_project("@!\nobject\n/test/fixture/v1.0.0/src/box\nprobe\n/test/fixture/v1.0.0/src/worker\nobject\n middle\n  branch\n   missing& !\n"
         "  :\n   probe !\n    < |111\n :\n  probe !\n   < |222\n:\n probe !\n  < |333\n"
         "probe !\n < |444\n", "", false);
     expect_diagnostic("Ama runtime failure: 7");
@@ -17,10 +17,10 @@ static void it_does_not_offer_a_descendant_refusal_to_ancestor_handlers(void) {
  */
 static void it_keeps_unrelated_outer_callers_when_a_method_handles_its_own_refusal(void) {
     prepare_handler_tree();
-    file("generated/project/method", "@>\noutput\n.value\n |7\n@!\ninner\n.box\nprobe\n.worker\n"
+    file("generated/project/packages/test/fixture/v1.0.0/src/method", "@>\noutput\n/test/fixture/v1.0.0/src/value\n |7\n@!\ninner\n/test/fixture/v1.0.0/src/box\nprobe\n/test/fixture/v1.0.0/src/worker\n"
         "inner\n middle\n  branch\n   missing& !\n   :\n    probe !\n     < |11\n");
-    file("generated/project/holder", "@>\nmethod\n.method\nsibling\n.worker\n@!\n");
-    execute_project("@!\nobject\n.holder\nprobe\n.worker\nobject\n method !\n  > result\n"
+    file("generated/project/packages/test/fixture/v1.0.0/src/holder", "@>\nmethod\n/test/fixture/v1.0.0/src/method\nsibling\n/test/fixture/v1.0.0/src/worker\n@!\n");
+    execute_project("@!\nobject\n/test/fixture/v1.0.0/src/holder\nprobe\n/test/fixture/v1.0.0/src/worker\nobject\n method !\n  > result\n"
         " sibling !\n  < result\nprobe !\n < result\n", "11:1:7\n7:1:0\n7:1:0\n", true);
 }
 
@@ -29,7 +29,7 @@ static void it_keeps_unrelated_outer_callers_when_a_method_handles_its_own_refus
  */
 static void it_keeps_selected_body_failures_technical_at_every_handler_level(void) {
     prepare_handler_tree();
-    execute_project("@!\nobject\n.box\nprobe\n.worker\nobject\n middle\n  branch\n   live !\n    < |500\n"
+    execute_project("@!\nobject\n/test/fixture/v1.0.0/src/box\nprobe\n/test/fixture/v1.0.0/src/worker\nobject\n middle\n  branch\n   live !\n    < |500\n"
         "   :\n    probe !\n     < |111\n  :\n   probe !\n    < |222\n :\n  probe !\n   < |333\n"
         ":\n probe !\n  < |444\n", "native-entered\n", false);
     expect_diagnostic("Body failed");

@@ -34,6 +34,25 @@ static void bytes(const char *relative, const void *data, size_t length) {
 }
 /** Ordinary textual fixtures retain exact supplied whitespace and line endings. */
 static void file(const char *relative, const char *text) { bytes(relative,text,strlen(text)); }
+/** Prepare one explicitly named local version with required source/test areas.
+ * Both arguments are fixture-relative paths/names chosen by the case; no file
+ * content or basename decides a package identity.
+ */
+static void package(const char *root, const char *name) {
+    folder(root);
+    const char *storage = source_arena_join(&fixture_paths, root, "/", "packages");
+    const char *vendor = source_arena_join(&fixture_paths, storage, "/", "test");
+    const char *group = source_arena_join(&fixture_paths, vendor, "/", name);
+    const char *version = source_arena_join(&fixture_paths, group, "/", "v1.0.0");
+    assert(storage && vendor && group && version);
+    folder(storage); folder(vendor); folder(group); folder(version);
+    const char *source = source_arena_join(&fixture_paths, version, "/", "src");
+    const char *tests = source_arena_join(&fixture_paths, version, "/", "tests");
+    const char *config = source_arena_join(&fixture_paths, version, "/", "package.ini");
+    assert(source && tests && config);
+    folder(source); folder(tests); file(config, "");
+}
+
 /** Begin independent filesystem and counted-owner fixtures; no previous case is reused as an oracle. */
 static void setup(const char *name) {
     setup_test();

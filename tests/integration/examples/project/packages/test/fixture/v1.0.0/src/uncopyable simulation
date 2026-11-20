@@ -1,0 +1,4 @@
+# This intentionally noncopyable wrapper owns a native module without =.
+@!
+probe
+/test/fixture/v1.0.0/src/open

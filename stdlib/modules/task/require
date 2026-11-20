@@ -1,5 +1,5 @@
 # Reject an invalid scheduler protocol state instead of guessing or spinning.
 @<
 valid
-..std.condition
+//std/condition
 @C

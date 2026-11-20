@@ -12,7 +12,7 @@ static size_t delivery_c_length;
 /** A private concrete counter demonstrates instance state without constraining
  * the ordinary template's input/output parameter to that counter's Type. */
 static bool delivery_entry(FILE *body, const ScaffoldType *type) {
-    if (type->plan->type->module != project_find(&frontend.project, ".lib.counter")) { return false; }
+    if (type->plan->type->module != project_find(&frontend.project, "/test/library/v1.0.0/src/lib/counter")) { return false; }
     assert(fputs("state->calls++; printf(\"calls=%zu\\n\",state->calls);\n", body) != EOF);
     return true;
 }
@@ -30,7 +30,7 @@ static void compare_delivery_bytes(unsigned char **saved, size_t *size, const un
 /** Only explicit fixture-owned imported native definitions are completed. Their
  * generated contexts remain the same concrete protocol used by project natives. */
 static void complete_delivery_natives(NativeScaffold *model) {
-    const char *natives[] = {".lib.value", ".lib.counter", ".lib.sink"};
+    const char *natives[] = {"/test/library/v1.0.0/src/lib/value", "/test/library/v1.0.0/src/lib/counter", "/test/library/v1.0.0/src/lib/sink"};
     for (size_t index = 0; index < sizeof(natives) / sizeof(natives[0]); index++) {
         const ProjectModule *definition = project_find(&frontend.project, natives[index]);
         assert(definition);
@@ -49,7 +49,7 @@ static void complete_delivery_natives(NativeScaffold *model) {
  * native fixture bodies have been completed. */
 static void complete_delivery_model(NativeScaffold *model) {
     complete_delivery_natives(model);
-    const ProjectModule *origin = project_find(&frontend.project, ".lib.forward");
+    const ProjectModule *origin = project_find(&frontend.project, "/test/library/v1.0.0/src/lib/forward");
     size_t owners = 0;
     for (const ScaffoldType *type = model->types; type; type = type->next) {
         if (type->plan->type->module != origin) { continue; }
@@ -58,7 +58,7 @@ static void complete_delivery_model(NativeScaffold *model) {
         assert(owner->as.nominal.origin->definition == origin && owner->as.nominal.capture_count == 1);
         const StaticTermCapture *capture = owner->as.nominal.first_capture;
         assert(capture->formal->owner->definition == origin);
-        assert(capture->value->as.nominal.origin->definition == project_find(&frontend.project, ".lib.value"));
+        assert(capture->value->as.nominal.origin->definition == project_find(&frontend.project, "/test/library/v1.0.0/src/lib/value"));
         compare_delivery_bytes(&delivery_encoding, &delivery_encoding_length,
             type->native_prefix->encoding, type->native_prefix->encoding_length);
     }
@@ -113,7 +113,7 @@ static void it_reports_imported_native_literal_failure_before_entering_the_libra
     project_roots_override_count = 3;
     native_entry_override = delivery_entry;
     native_fixture_completion = complete_delivery_natives;
-    execute_project("@!\nmethod\n.lib.assembly\n ...result\nsink\n.lib.sink\nmethod !\n < |invalid\n", "", false);
+    execute_project("@!\nmethod\n/test/library/v1.0.0/src/lib/assembly\n .result\nsink\n/test/library/v1.0.0/src/lib/sink\nmethod !\n < |invalid\n", "", false);
     expect_diagnostic("Not a decimal value");
     project_roots_override = NULL;
     project_roots_override_count = 0;

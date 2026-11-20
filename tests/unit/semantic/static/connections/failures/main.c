@@ -4,8 +4,8 @@
 #include "../common.c"
 
 /** Full lexical composition includes every owned binding class and reuse path. */
-static const char *source_text = "@<\ninput\n..integer\n@>\noutput&\n..integer\n@!\nvalues[]\n..integer\n"
-    "worker\n.other\nworker !\n < input\n > received\nvalues[item&]\n{\n copied&\n  item&\n}\nreceived\n input\n";
+static const char *source_text = "@<\ninput\n//integer\n@>\noutput&\n//integer\n@!\nvalues[]\n//integer\n"
+    "worker\n/test/fixture/v1.0.0/src/other\nworker !\n < input\n > received\nvalues[item&]\n{\n copied&\n  item&\n}\nreceived\n input\n";
 
 /** Refuse every actual allocation through syntax events, hoisted fields, names,
  * uses, receivers and foreach roles. No partial runtime module is published.
@@ -82,10 +82,10 @@ static void it_refuses_each_lexical_binding_counter_overflow_before_its_chain_pu
  */
 static void it_refuses_shared_runtime_sources_and_known_access_storage_mismatches(void) {
     const char *sources[] = {
-        "@=\nshared\n..integer\n input\n@<\ninput\n..integer\n@!\n",
-        "@=\nshared&\n..integer\n@!\nanchor&\n..integer\n",
-        "@!\nvalue\n..integer\nvalue& !\n",
-        "@!\nvalue\n..integer\ncopy\n value[]\n"
+        "@=\nshared\n//integer\n input\n@<\ninput\n//integer\n@!\n",
+        "@=\nshared&\n//integer\n@!\nanchor&\n//integer\n",
+        "@!\nvalue\n//integer\nvalue& !\n",
+        "@!\nvalue\n//integer\ncopy\n value[]\n"
     };
     for (size_t index = 0; index < sizeof(sources) / sizeof(*sources); index++) {
         setup_connections(sources[index], "@!\n");

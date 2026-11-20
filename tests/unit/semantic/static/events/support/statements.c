@@ -41,7 +41,7 @@ static void it_catalogs_original_statement_owners_without_control_alias_duplicat
  * role even before any field Type or static formal becomes concrete.
  */
 static void it_preserves_written_section_roles_in_the_original_statement_catalog(void) {
-    setup_static("@=\nshared\n.other\n@<\ninput\n.other\n@>\nresult\n.other\n@!\nstate\n.other\n", "@!\n");
+    setup_static("@=\nshared\n/test/fixture/v1.0.0/src/other\n@<\ninput\n/test/fixture/v1.0.0/src/other\n@>\nresult\n/test/fixture/v1.0.0/src/other\n@!\nstate\n/test/fixture/v1.0.0/src/other\n", "@!\n");
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module && static_collect_occurrences(&inventory, module));
     const AstNode *expected[] = {project.entry->syntax.constants.first, project.entry->syntax.parameters.first,

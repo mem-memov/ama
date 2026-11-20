@@ -4,8 +4,8 @@
 #include "../common.c"
 
 /** Parser/project-valid calls retain lexical operands even before interface checking. */
-static const char *event_source = "@=\nshared\n.other\n |0\n@<\ninput\n...type\n shared\n"
-    "@>\noutput\n.other\n shared\n@!\nanchor&\n..integer\nworker\n.other\nworker !\n < input\n"
+static const char *event_source = "@=\nshared\n/test/fixture/v1.0.0/src/other\n |0\n@<\ninput\n.type\n shared\n"
+    "@>\noutput\n/test/fixture/v1.0.0/src/other\n shared\n@!\nanchor&\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < input\n"
     " child !\n  < shared\n > fresh\n:\n fresh\n  shared\nflags[item&]\n{\n fresh\n  shared\n}\n";
 
 /** Original written call operands are interleaved despite separate AST lists;
@@ -45,7 +45,7 @@ static void it_orders_original_runtime_operands_across_interfaces_selected_calls
  * and all merge-width boundaries through 33 events; sorting allocates nothing.
  */
 static void it_preserves_runtime_event_identity_and_stable_equal_sites_at_merge_boundaries(void) {
-    setup_connections("@!\nanchor&\n..integer\n", "@!\n");
+    setup_connections("@!\nanchor&\n//integer\n", "@!\n");
     for (size_t count = 0; count <= 33; count++) {
         for (size_t ties = 0; ties < 2; ties++) {
             StaticRuntimeEvent events[33] = {0};
@@ -109,7 +109,7 @@ static void it_preserves_borrowed_dependency_error_status_and_source_provenance(
     const StaticConnectionStatus expected[] = {STATIC_CONNECTION_INVALID, STATIC_CONNECTION_CONFLICT,
         STATIC_CONNECTION_UNRESOLVED, STATIC_CONNECTION_OUT_OF_MEMORY};
     for (size_t index = 0; index < 4; index++) {
-        setup_connections("@<\ninput\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+        setup_connections("@<\ninput\n.type\n@!\nanchor&\n//integer\n", "@!\n");
         assert(static_connection_dependencies(&connections) && connections.status == STATIC_CONNECTION_OK);
         assert(!static_constant_fail(&constants, statuses[index], caller_module->first->site, "original constant failure"));
         assert(!static_connection_dependencies(&connections));

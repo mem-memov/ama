@@ -6,8 +6,8 @@
 #include "bridge.c"
 /** Every selected mode is explicit, including a read-only alias that cannot use another export's control. */
 static const char exports[]=
-    "export | counter | .counter | entry,resume,read\ninput | counter | message | text\noutput | counter | flag | enabled\n"
-    "export | observer | .main | read\n"
+    "export | counter | /test/fixture/v1.0.0/src/counter | entry,resume,read\ninput | counter | message | text\noutput | counter | flag | enabled\n"
+    "export | observer | /test/fixture/v1.0.0/src/main | read\n"
     "output | observer | message result | text\noutput | observer | number result | number\n"
     "output | observer | enabled result | enabled\noutput | observer | problem result | failure\n"
     "output | observer | messages result | texts\noutput | observer | message copy | text\n";
@@ -17,7 +17,7 @@ static void it_executes_exported_entries_resumes_and_isolated_native_roots(void)
     LibraryBuild foreign; component(&foreign,"foreign.component"); library_build_destroy(&foreign);
     LibraryBuild build;
     transport_model_body(&build,
-        "off\n..std.condition\n |0\nmessages result[]\n messages[]\n%\nenabled result\n off\n",exports);
+        "off\n//std/condition\n |0\nmessages result[]\n messages[]\n%\nenabled result\n off\n",exports);
     NativeScaffold assembly; native_scaffold_init(&assembly,&build.frontend,sources.allocator);
     bool built=project_codegen_build(&assembly,(ScaffoldOptions){.directory="generated/output",.sdk=TEST_SDK});
     if (!built) { fprintf(stderr,"%s\n",assembly.error.message); } assert(built);
@@ -36,8 +36,8 @@ static void it_executes_exported_entries_resumes_and_isolated_native_roots(void)
 }
 /** Empty interfaces exercise every selected mode without typed argument/output arrays. */
 static void it_generates_entry_resume_and_read_for_a_zero_schema_interface(void) {
-    setup_test(); prepare_project(); file("generated/project/main","@!\n%\n");
-    const SourceText *source=configuration("export | run | .main | entry,resume,read\n");
+    setup_test(); prepare_project(); file("generated/project/packages/test/fixture/v1.0.0/src/main","@!\n%\n");
+    const SourceText *source=configuration("export | run | /test/fixture/v1.0.0/src/main | entry,resume,read\n");
     LibraryBuild build; library_build_init(&build,sources.allocator);
     bool valid=library_configuration_parse(&build,source); assert(valid);
     ModuleRoot root={.path="generated/project",.kind=MODULE_ROOT_PROJECT};

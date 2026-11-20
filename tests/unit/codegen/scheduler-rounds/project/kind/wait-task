@@ -1,24 +1,24 @@
 # Native callbacks only queue data; this task resumes only through its caller and declared mailbox.
 @<
 owner&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 @>
 self&
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
  &
 phase
-..task.phase
+//task/phase
 @!
 trace
-.trace
+/test/fixture/v1.0.0/src/trace
 ready phase
-..task.phase.ready
+//task/phase/ready
 awaiting phase
-..task.phase.awaiting
+//task/phase/awaiting
 completed phase
-..task.phase.completed
+//task/phase/completed
 keep waiting
-..std.condition
+//std/condition
  |1
 owner&
  id >> id

@@ -14,7 +14,7 @@
 static void it_renders_the_complete_unicode_dependency_chain(void) {
     setup_test();
     ModuleRoot root = {"project", NULL, 0, MODULE_ROOT_PROJECT};
-    ProjectStatus status = project_load(&project, &root, 1, ".main");
+    ProjectStatus status = project_load(&project, &root, 1, "/test/fixture/v1.0.0/src/main");
     assert(status == PROJECT_MISSING && !project.valid);
     expect_diagnostic("expected-error.txt");
     destroy_test();

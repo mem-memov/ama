@@ -35,3 +35,21 @@ bool unicode_name(const unsigned char *bytes, size_t length, size_t *error_offse
         offset = end + 1;
     }
 }
+
+/** Consume maximal single-space-joined words without lookup or normalization.
+ * Each accepted word consumes a positive byte count; a separator is included
+ * only together with its following word. Thus a failed join leaves trailing
+ * punctuation/space outside the returned view under
+ * [SRC-03](../../../spec/language/source-and-names.md#src-03).
+ */
+size_t unicode_name_prefix(const unsigned char *bytes, size_t length) {
+    size_t stop = unicode_word_prefix(bytes, length);
+    if (stop == 0) { return 0; }
+    while (stop < length && bytes[stop] == ' ') {
+        size_t next = stop + 1;
+        size_t width = unicode_word_prefix(bytes + next, length - next);
+        if (width == 0) { break; }
+        stop = next + width;
+    }
+    return stop;
+}

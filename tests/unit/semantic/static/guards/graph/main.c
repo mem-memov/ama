@@ -70,7 +70,7 @@ static void witness(void) {
  * Scope storage outlives each guard-only allocation baseline.
  */
 static void exercise(const StaticTermEnvironment **environments) {
-    StaticCreationPath trace = {.site = static_name_site(project.entry, "...a")};
+    StaticCreationPath trace = {.site = static_name_site(project.entry, ".a")};
     size_t baseline = live_allocations;
     for (unsigned graph = 0; graph < 65536; graph++) {
         bool expected = forbidden(graph);
@@ -130,9 +130,9 @@ static void it_matches_all_four_vertex_graphs_and_insertion_orders(void) {
  * value represents either graph origin. One input changes to a distinct Type.
  */
 static void it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders(void) {
-    const char *source = "@...\n...first\n...a\n...second\n...b\n...integer\n..integer\n...text\n..text\n";
+    const char *source = "@...\n.first\n.a\n.second\n.b\n.integer\n//integer\n.text\n//text\n";
     setup_guards(source, source);
-    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
     const StaticTerm *text_type;
     assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &text_type));
     const StaticTermEnvironment *environments[4];

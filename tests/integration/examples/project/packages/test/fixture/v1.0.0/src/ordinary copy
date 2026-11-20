@@ -1,0 +1,8 @@
+# Ordinary copying clears saved control positions and cannot be resumed.
+@!
+simulation
+/test/fixture/v1.0.0/src/simulation
+simulation !
+copy
+ simulation
+copy %

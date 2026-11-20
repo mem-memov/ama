@@ -27,13 +27,14 @@ static void it_interleaves_independent_generated_contexts_with_private_constants
         "require(ama_project_dispose(&first).code==AMA_OK && !first.registry.initialized);\n"
         "result=ama_project_execute(&second,AMA_ACCESS_RESUME); require(result.outcome==AMA_HOST_COMPLETED);\n"
         "require(ama_project_dispose(&second).code==AMA_OK && !second.registry.initialized); return 0; }\n";
-    execute_project("@=\nshared\n.value\n |23\n@!\nprobe\n.worker\nprobe !\n%\nprobe !\n", "7:1:0\n7:1:0\n7:2:0\n7:2:0\n", true);
+    execute_project("@=\nshared\n/test/fixture/v1.0.0/src/value\n |23\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n%\nprobe !\n", "7:1:0\n7:1:0\n7:2:0\n7:2:0\n", true);
     host_launcher = NULL;
 }
 
 /** A host barrier proves two actual execution intervals overlap; same-host reentry is refused while independent contexts complete on separate C threads. */
 static void it_executes_two_generated_contexts_in_parallel_and_refuses_same_host_reentry(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     native_fixture("gate", "@C\n");
     file("generated/context-gate.h", "static void test_execution_gate(void);\n");
     forced_header = "generated/context-gate.h";
@@ -55,7 +56,7 @@ static void it_executes_two_generated_contexts_in_parallel_and_refuses_same_host
         "for(size_t index=0;index<2;index++) { int result=-1; require(thrd_join(threads[index],&result)==thrd_success && result==0); }\n"
         "require(atomic_load(&arrivals)==2 && hosts[0].identity!=hosts[1].identity);\n"
         "require(!hosts[0].registry.initialized && !hosts[1].registry.initialized); return 0; }\n";
-    execute_project("@=\nshared\n.value\n |23\n@!\ngate\n.gate\ngate !\n", "", true);
+    execute_project("@=\nshared\n/test/fixture/v1.0.0/src/value\n |23\n@!\ngate\n/test/fixture/v1.0.0/src/gate\ngate !\n", "", true);
     host_launcher = NULL;
     native_execution_gate = false;
     forced_header = NULL;
@@ -75,7 +76,7 @@ static void it_distinguishes_busy_native_destruction_from_refused_host_disposal(
         "require(repeated.code==status.code && repeated.message==status.message);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_ENTRY); require(result.status.code==AMA_INVALID_STATE);\n"
         "return EXIT_FAILURE; }\n";
-    execute_project("@!\nprobe\n.worker\nprobe !\n", "7:1:0\n", false);
+    execute_project("@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n", "7:1:0\n", false);
     expect_diagnostic("cleanup");
     host_launcher = NULL;
     fail_native_destroy = false;

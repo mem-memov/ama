@@ -6,20 +6,20 @@
  * later semantic stages and does not decide which written paths are required.
  */
 static void prepare_static_closure(void) {
-    directory("generated/static project");
+    fixture_package_prepare("generated/static project", "fixture");
     directory("generated/static standard");
-    directory("generated/static project/shelf+");
-    file("generated/static project/main", "@...\n...input\n...family\n"
-        " ...element < .outer\n  ...element < ..item-state\n"
-        "...prepared\n.producer\n ...element < .item-state\n"
-        ".factory\n ...family > ...alias\n...selected\n...alias\n"
-        " ...element < .shelf.child\n");
-    file("generated/static project/outer", "@<\nvalue\n...element\n@!\nback&\n.outer\n");
-    file("generated/static project/item-state", "@!\n");
-    file("generated/static project/producer", "@<\nvalue\n...element\n@!\n");
-    file("generated/static project/factory", "@...\n...family\n.producer\n");
-    file("generated/static project/shelf", "unfinished [\n");
-    file("generated/static project/shelf+/child", "@!\n");
+    directory("generated/static project/packages/test/fixture/v1.0.0/src/shelf+");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/main", "@...\n.input\n.family\n"
+        " .element < /test/fixture/v1.0.0/src/outer\n  .element < //item-state\n"
+        ".prepared\n/test/fixture/v1.0.0/src/producer\n .element < /test/fixture/v1.0.0/src/item-state\n"
+        "/test/fixture/v1.0.0/src/factory\n .family > .alias\n.selected\n.alias\n"
+        " .element < /test/fixture/v1.0.0/src/shelf/child\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/outer", "@<\nvalue\n.element\n@!\nback&\n/test/fixture/v1.0.0/src/outer\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/item-state", "@!\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/producer", "@<\nvalue\n.element\n@!\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/factory", "@...\n.family\n/test/fixture/v1.0.0/src/producer\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/shelf", "unfinished [\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/shelf+/child", "@!\n");
     file("generated/static standard/item-state", "@C\n");
     file("generated/static standard/item-state.h", "/* native header */\n");
     file("generated/static standard/item-state.c", "/* native body */\n");
@@ -31,7 +31,7 @@ static ProjectStatus load_static_closure(bool reverse) {
     ModuleRoot roots[] = {{"generated/static project", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/static standard", NULL, 0, MODULE_ROOT_STANDARD}};
     if (reverse) { ModuleRoot temporary = roots[0]; roots[0] = roots[1]; roots[1] = temporary; }
-    return project_load(&project, roots, 2, ".main");
+    return project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
 }
 
 /** Every expression-owning AST position contributes exact source requests;
@@ -44,7 +44,7 @@ static void it_loads_all_static_expression_positions_without_importing_placehold
         ProjectStatus status = load_static_closure(order != 0);
         if (status != PROJECT_OK) { fprintf(stderr, "Static closure: %s\n", project.error.message); }
         assert(status == PROJECT_OK && project.valid && module_count() == 7);
-        const char *expected[] = {".outer", "..item-state", ".producer", ".item-state", ".factory", ".shelf.child"};
+        const char *expected[] = {"/test/fixture/v1.0.0/src/outer", "//item-state", "/test/fixture/v1.0.0/src/producer", "/test/fixture/v1.0.0/src/item-state", "/test/fixture/v1.0.0/src/factory", "/test/fixture/v1.0.0/src/shelf/child"};
         const ProjectDependency *edge = project.entry->first;
         size_t previous = 0;
         for (size_t index = 0; index < 6; index++) {
@@ -56,13 +56,13 @@ static void it_loads_all_static_expression_positions_without_importing_placehold
             previous = edge->requirement.start;
             edge = edge->next;
         }
-        assert(edge == NULL && project_find(&project, ".shelf") == NULL);
-        const ProjectModule *native = project_find(&project, "..item-state");
-        assert(native != project_find(&project, ".item-state") && native->source->native_loaded);
+        assert(edge == NULL && project_find(&project, "/test/fixture/v1.0.0/src/shelf") == NULL);
+        const ProjectModule *native = project_find(&project, "//item-state");
+        assert(native != project_find(&project, "/test/fixture/v1.0.0/src/item-state") && native->source->native_loaded);
         assert(native->source->native_header != NULL && native->source->native_c != NULL
             && native->source->native_abi != NULL);
-        assert(project_find(&project, ".outer")->first->target == project_find(&project, ".outer"));
-        assert(project_find(&project, ".factory")->first->target == project_find(&project, ".producer"));
+        assert(project_find(&project, "/test/fixture/v1.0.0/src/outer")->first->target == project_find(&project, "/test/fixture/v1.0.0/src/outer"));
+        assert(project_find(&project, "/test/fixture/v1.0.0/src/factory")->first->target == project_find(&project, "/test/fixture/v1.0.0/src/producer"));
         for (const ProjectModule *module = project.first; module != NULL; module = module->next) {
             assert(module->state == PROJECT_MODULE_READY && module->syntax.valid);
         }

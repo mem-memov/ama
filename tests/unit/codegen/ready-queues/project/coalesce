@@ -1,17 +1,17 @@
 # Duplicate readiness is coalesced, and each Ready yield is appended behind existing work.
 @!
 registry
-.red.registry
+/test/fixture/v1.0.0/src/red/registry
 queue
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 invalid queue&
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 enqueue
-.red.enqueue
+/test/fixture/v1.0.0/src/red/enqueue
 dispatch
-.red.dispatch
+/test/fixture/v1.0.0/src/red/dispatch
 trace
-.trace
+/test/fixture/v1.0.0/src/trace
 registry
  records[]
   append !

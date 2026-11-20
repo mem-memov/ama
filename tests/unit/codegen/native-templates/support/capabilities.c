@@ -6,15 +6,16 @@
 /** The output starts as a copied input, then a native condition chooses an
  * indexed list element. Each operation has observable concrete value semantics. */
 static const char *const capability_program =
-    "@!\nmethod\n.factory\n ...algorithm\nmethod !\n < |4\n > result\nprobe\n.consumer\nprobe !\n < result\n";
+    "@!\nmethod\n/test/fixture/v1.0.0/src/factory\n .algorithm\nmethod !\n < |4\n > result\nprobe\n/test/fixture/v1.0.0/src/consumer\nprobe !\n < result\n";
 
 /** Install only concrete native companions; the Ama algorithm alone has a formal. */
 static void prepare_capability_sources(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     native_fixture("resource", "@C\n");
-    native_fixture("consumer", "@<\ninput\n.resource\n@>\noutput\n.resource\n@C\n");
-    file("generated/project/factory", "@...\n...algorithm\n.algorithm\n ...slot < .resource\n");
-    file("generated/project/algorithm", "@<\ninput\n...slot\n@>\noutput\n...slot\n input\n@!\nvalues[]\n...slot\n |3\n |9\nindex\n...slot\n |1\noutput\n?\n output\n  values[index]\n");
+    native_fixture("consumer", "@<\ninput\n/test/fixture/v1.0.0/src/resource\n@>\noutput\n/test/fixture/v1.0.0/src/resource\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.algorithm\n/test/fixture/v1.0.0/src/algorithm\n .slot < /test/fixture/v1.0.0/src/resource\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/algorithm", "@<\ninput\n.slot\n@>\noutput\n.slot\n input\n@!\nvalues[]\n.slot\n |3\n |9\nindex\n.slot\n |1\noutput\n?\n output\n  values[index]\n");
 }
 
 /** Actual generated execution must use the selected native protocol, including
@@ -32,8 +33,8 @@ static void it_refuses_missing_native_capabilities_without_generating_specialize
     for (size_t absent = 0; absent < ABI_BINDING_COUNT; absent++) {
         if (absent == ABI_DESTROY) { continue; }
         prepare_capability_sources();
-        file("generated/project/main", capability_program);
-        FILE *abi = fopen("generated/project/resource.abi", "wb");
+        file("generated/project/packages/test/fixture/v1.0.0/src/main", capability_program);
+        FILE *abi = fopen("generated/project/packages/test/fixture/v1.0.0/src/resource.abi", "wb");
         assert(abi);
         for (size_t index = 0; index < ABI_BINDING_COUNT; index++) {
             if (index != absent) { assert(fputs(bindings[index], abi) != EOF); }
@@ -42,7 +43,7 @@ static void it_refuses_missing_native_capabilities_without_generating_specialize
         setup_frontend();
         ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
             {TEST_STDLIB, NULL, 0, TEST_STDLIB_KIND}};
-        bool checked = compiler_frontend_check(&frontend, roots, 2, ".main");
+        bool checked = compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main");
         if (checked) { fprintf(stderr, "Accepted absent native capability %zu\n", absent); }
         assert(!checked && !frontend.valid && !frontend.plan_initialized);
         assert(diagnostic_valid(&frontend.error));
@@ -55,6 +56,6 @@ static void it_refuses_missing_native_capabilities_without_generating_specialize
  * executing, and is reported through the ordinary source call boundary. */
 static void it_reports_native_literal_failure_before_entering_a_specialized_body(void) {
     prepare_capability_sources();
-    execute_project("@!\nmethod\n.factory\n ...algorithm\nmethod !\n < |invalid\n", "", false);
+    execute_project("@!\nmethod\n/test/fixture/v1.0.0/src/factory\n .algorithm\nmethod !\n < |invalid\n", "", false);
     expect_diagnostic("Not a decimal value");
 }

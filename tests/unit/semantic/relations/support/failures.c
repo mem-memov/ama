@@ -12,7 +12,7 @@ static size_t check_graph_shape(size_t count, bool cyclic, size_t failure) {
     dependency_graph_init(&graph, sources.allocator);
     bool built = true;
     for (size_t index = 0; index < count && built; index++) {
-        vertices[index] = dependency_vertex(&graph, &identities[index], ".vertex", index, (SourceSpan){0});
+        vertices[index] = dependency_vertex(&graph, &identities[index], "/test/fixture/v1.0.0/src/vertex", index, (SourceSpan){0});
         built = vertices[index] != NULL;
     }
     for (size_t index = 0; index < count && built; index++) {

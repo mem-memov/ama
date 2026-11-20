@@ -1,9 +1,9 @@
 # The supported LP64 profile reaches its final epoch before restart attempts another task step.
 @!
 record
-.record
+/test/fixture/v1.0.0/src/record
 registration
-.registration
+/test/fixture/v1.0.0/src/registration
 record !
  < |18446744073709551615
  < |1

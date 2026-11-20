@@ -34,7 +34,7 @@ static void creation_graph(bool cyclic, StaticCreationPath *trace) {
     StaticCreationVertex *source, *target;
     assert(static_guard_vertex(&guards, environment, &source));
     if (cyclic) {
-        const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+        const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
         const StaticTerm *argument;
         assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &argument));
         captures[0].value = argument;
@@ -60,18 +60,18 @@ static void it_unwinds_every_successful_and_rejected_graph_search_allocation_ref
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
             setup_guards(caller_source, target_source);
-            StaticCreationPath trace = {.site = named("...a")->site};
+            StaticCreationPath trace = {.site = named(".a")->site};
             bool cyclic = mode % 2 != 0;
             if (mode < 2) { creation_graph(cyclic, &trace); }
             else {
                 const StaticCreationPath *root;
                 StaticDefinitionNode *a, *b;
                 assert(static_creation_root(&guards, caller_environment, &root));
-                assert(static_guard_definition(&guards, root, named("...a"), &a));
-                assert(static_guard_definition(&guards, root, named("...b"), &b));
+                assert(static_guard_definition(&guards, root, named(".a"), &a));
+                assert(static_guard_definition(&guards, root, named(".b"), &b));
                 StaticDefinitionEdge *edge = static_guard_allocate(&guards, sizeof(*edge));
                 assert(edge);
-                *edge = (StaticDefinitionEdge){.target = cyclic ? a : b, .site = named("...a")->site};
+                *edge = (StaticDefinitionEdge){.target = cyclic ? a : b, .site = named(".a")->site};
                 a->first = a->last = edge;
                 guards.definition_edge_count = 1;
             }
@@ -121,17 +121,17 @@ static void it_guards_path_vertex_definition_and_search_counter_limits(void) {
             if (mode == 2) {
                 guards.definition_count = SIZE_MAX;
                 const StaticDefinitionPath *output = NULL;
-                assert(!static_definition_enter(&guards, NULL, root, named("...a"), (SourceSpan){0}, &output));
+                assert(!static_definition_enter(&guards, NULL, root, named(".a"), (SourceSpan){0}, &output));
                 assert(output == NULL);
             } else if (mode == 3) {
-                StaticCreationPath trace = {.site = named("...a")->site};
+                StaticCreationPath trace = {.site = named(".a")->site};
                 creation_graph(false, &trace);
                 guards.vertex_count = SIZE_MAX;
                 size_t before = allocation_count;
                 assert(!static_guard_creation_graph(&guards) && allocation_count == before);
             } else if (mode == 4) {
                 StaticDefinitionNode *node;
-                assert(static_guard_definition(&guards, root, named("...a"), &node));
+                assert(static_guard_definition(&guards, root, named(".a"), &node));
                 guards.definition_count = SIZE_MAX;
                 guards.definition_edge_count = 1;
                 size_t before = allocation_count;
@@ -151,11 +151,11 @@ static void it_guards_path_vertex_definition_and_search_counter_limits(void) {
                 assert(closure == STATIC_GUARD_PENDING && child->edge == NULL);
             } else {
                 const StaticDefinitionPath *first, *output = NULL;
-                assert(static_definition_enter(&guards, NULL, root, named("...a"), (SourceSpan){0}, &first));
+                assert(static_definition_enter(&guards, NULL, root, named(".a"), (SourceSpan){0}, &first));
                 if (mode == 6) { guards.definition_edge_count = SIZE_MAX; }
                 else { guards.definition_path_count = SIZE_MAX; }
-                SourceSpan site = named("...a")->declaration->as.static_result.expression->span;
-                assert(!static_definition_enter(&guards, mode == 6 ? first : NULL, root, named("...b"), site, &output));
+                SourceSpan site = named(".a")->declaration->as.static_result.expression->span;
+                assert(!static_definition_enter(&guards, mode == 6 ? first : NULL, root, named(".b"), site, &output));
                 assert(output == NULL);
             }
         }

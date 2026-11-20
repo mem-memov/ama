@@ -19,7 +19,7 @@ static void fixture(const char *name, char source[16384]) {
 }
 /** Observe owned imported values through generated typed native borrows, never runtime adapter casts. */
 static bool inspect_payload(FILE *output, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".inspect") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/inspect") != 0) { return false; }
     int written = fputs("AmaByteView bytes; *status=ama_n_98bd03817466d12d563a6e9709025da3fa29b415e0e82ad0e6fa0e11f2e7414b_view(parameters->AMA_INPUT(0)->payload,&bytes);\n"
         "if(status->code!=AMA_OK) { return; } size_t code;\n"
         "*status=ama_n_1ad46fade0175c4e31ef9315b33c02e79bb0f66fd54f938c04bd36d8838b2a42_to_index(parameters->AMA_INPUT(1)->payload,&code);\n"
@@ -31,9 +31,10 @@ static bool inspect_payload(FILE *output, const ScaffoldType *type) {
 /** Actual methods share resource lifetime while all token/result values remain ordinary declared Ama data. */
 static void it_imports_retained_completions_and_rejects_duplicate_and_reused_tokens(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     char source[16384];
     fixture("service", source);
-    native_fixture("inspect", "@<\ndata\n..bytes\ncode\n..integer\n@C\n");
+    native_fixture("inspect", "@<\ndata\n//bytes\ncode\n//integer\n@C\n");
     native_entry_override = inspect_payload;
     execute_project(source, "1:1:0\n2:2:0\n3:3:0\n4:4:0\n5:5:0\n6:6:0\n7:7:0\n8:8:0\npayload=7:6:binary\n", true);
     native_entry_override = NULL;
@@ -44,7 +45,7 @@ static void install_protocol(void) {
     for (size_t index = 0; index < sizeof(names) / sizeof(*names); index++) {
         char source[16384], path[256];
         fixture(names[index], source);
-        int length = snprintf(path, sizeof(path), "generated/project/%s", names[index]);
+        int length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(path));
         file(path, source);
     }
@@ -53,6 +54,7 @@ static void install_protocol(void) {
 static void it_reconciles_completion_before_and_after_the_awaiting_recheck(void) {
     for (unsigned timing = 0; timing < 6; timing++) {
         directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
         install_protocol();
         char setup[16384], reconcile[16384], source[32768];
         fixture("setup", setup);
@@ -75,6 +77,7 @@ static void it_rejects_revoked_waits_and_mismatched_import_identities(void) {
         "service\n prepare !\n  > different\nwait !\n < task&\n < epoch\n < generation\n < different\n < mailbox&\n"};
     for (size_t index = 0; index < sizeof(changes) / sizeof(*changes); index++) {
         directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
         install_protocol();
         char setup[16384], source[32768];
         fixture("setup", setup);
@@ -93,16 +96,17 @@ static void it_rejects_revoked_waits_and_mismatched_import_identities(void) {
 /** Invalid lifecycle calls terminate technically and still retire already prepared native resources. */
 static void it_rejects_invalid_service_lifecycle_operations_without_leaking_owners(void) {
     const char *cases[] = {
-        "@!\nservice\n..task.events\nservice !\n < |0\n",
-        "@!\nmethod\n..task.events.prepare\nmethod !\n",
-        "@!\nservice\n..task.events\nservice !\n < |1\nservice\n prepare !\n  > token\n"
+        "@!\nservice\n//task/events\nservice !\n < |0\n",
+        "@!\nmethod\n//task/events/prepare\nmethod !\n",
+        "@!\nservice\n//task/events\nservice !\n < |1\nservice\n prepare !\n  > token\n"
             "service\n post !\n  < token\n  < |1\n  < |unarmed\n",
-        "@!\nservice\n..task.events\nservice !\n < |1\nservice\n prepare !\n  > token\n"
+        "@!\nservice\n//task/events\nservice !\n < |1\nservice\n prepare !\n  > token\n"
             "service\n arm !\n  < token\nservice\n arm !\n  < token\n",
-        "@!\nservice\n..task.events\nservice !\n < |1\nservice\n prepare !\n  > token\n"
+        "@!\nservice\n//task/events\nservice !\n < |1\nservice\n prepare !\n  > token\n"
             "service\n prepare !\n  > extra\n"};
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
         directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
         execute_project(cases[index], "", false);
         if (index == 0) { expect_diagnostic("Invalid native event service creation"); }
     }

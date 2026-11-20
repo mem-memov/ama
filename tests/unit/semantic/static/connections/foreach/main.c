@@ -6,8 +6,8 @@
 /** New and reused references receive the declared element Type even in empty bodies. */
 static void it_links_owned_and_reference_list_elements_without_executing_bodies(void) {
     for (size_t references = 0; references < 2; references++) {
-        setup_connections(references ? "@!\nvalues&[]\n..integer\nitem&\n..integer\nvalues&[item&]\n{\n}\n" :
-            "@!\nvalues[]\n..integer\nvalues[item&]\n{\n}\n", "@!\n");
+        setup_connections(references ? "@!\nvalues&[]\n//integer\nitem&\n//integer\nvalues&[item&]\n{\n}\n" :
+            "@!\nvalues[]\n//integer\nvalues[item&]\n{\n}\n", "@!\n");
         const StaticResultContext *actual = publication_context(caller_environment);
         const StaticTypedScope *scope;
         assert(static_connection_context(&connections, actual, &scope));
@@ -56,7 +56,7 @@ static void it_refines_original_local_cells_without_rebinding_or_guessing(void) 
 
 /** Existing scalar references must agree with collection Types; empty bodies are checked. */
 static void it_rejects_conflicting_reused_reference_types(void) {
-    setup_connections("@!\nvalues[]\n..integer\nitem&\n..text\nvalues[item&]\n{\n}\n", "@!\n");
+    setup_connections("@!\nvalues[]\n//integer\nitem&\n//text\nvalues[item&]\n{\n}\n", "@!\n");
     const StaticResultContext *actual = publication_context(caller_environment);
     const StaticTypedScope *scope;
     assert(static_connection_context(&connections, actual, &scope));
@@ -86,7 +86,7 @@ static void it_refuses_foreign_contexts_and_missing_progress_receivers(void) {
  * distinct Types; assignments inside each body consume the retained local use.
  */
 static void it_preserves_sibling_local_types_when_composed_with_assignments(void) {
-    setup_connections("@!\nintegers[]\n..integer\ntexts[]\n..text\nintegers[item&]\n{\n first&\n  item&\n}\ntexts[item&]\n{\n second&\n  item&\n}\n", "@!\n");
+    setup_connections("@!\nintegers[]\n//integer\ntexts[]\n//text\nintegers[item&]\n{\n first&\n  item&\n}\ntexts[item&]\n{\n second&\n  item&\n}\n", "@!\n");
     const StaticResultContext *actual = publication_context(caller_environment);
     const StaticTypedScope *scope;
     assert(static_connection_context(&connections, actual, &scope));

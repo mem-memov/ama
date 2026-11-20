@@ -3,8 +3,8 @@
  */
 /** This complete example combines sections, raw literal bytes, references, selected modes, loops and handlers. */
 static const char *const composed_program =
-    "@=\nцвет\n..палитра\n |красный # raw  \n"
-    "@<\nвход\n.тип\n@>\nself&\n.main\n &\n@!\n"
+    "@=\nцвет\n//палитра\n |красный # raw  \n"
+    "@<\nвход\n/test/fixture/v1.0.0/src/тип\n@>\nself&\n/test/fixture/v1.0.0/src/main\n &\n@!\n"
     "новая переменная\n вход\n"
     "root !\n < |raw # @!  \n method& %\n  condition[index]\n  {\n"
     "   items[item&]\n   {\n    %\n    ^\n   }\n"

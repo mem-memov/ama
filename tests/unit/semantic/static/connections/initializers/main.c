@@ -15,7 +15,7 @@ static const StaticTypedScope *prepare_initializers(const StaticResultContext **
 
 /** A concrete source constrains input, output and permanent-field placeholder Types. */
 static void it_infers_default_result_and_list_element_types_from_declared_sources(void) {
-    setup_connections("@=\nanchor\n..integer\n |1\n@<\nargument\n...slot\n anchor\n@>\nresult\n...slot\n argument\n@!\nvalues[]\n...slot\n anchor\n argument\n", "@!\n");
+    setup_connections("@=\nanchor\n//integer\n |1\n@<\nargument\n.slot\n anchor\n@>\nresult\n.slot\n argument\n@!\nvalues[]\n.slot\n anchor\n argument\n", "@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_initializers(&actual);
     bool changed;
@@ -35,7 +35,7 @@ static void it_infers_default_result_and_list_element_types_from_declared_source
 
 /** One owned/ref list initializer receives exactly one scalar of matching ownership. */
 static void it_accepts_owned_and_reference_element_sources_without_splicing_lists(void) {
-    setup_connections("@!\nanchor\n..integer\nvalues[]\n..integer\n anchor\nrefs&[]\n..integer\n &anchor\n", "@!\n");
+    setup_connections("@!\nanchor\n//integer\nvalues[]\n//integer\n anchor\nrefs&[]\n//integer\n &anchor\n", "@!\n");
     const StaticResultContext *actual;
     (void)prepare_initializers(&actual);
     bool changed;
@@ -48,9 +48,9 @@ static void it_accepts_owned_and_reference_element_sources_without_splicing_list
 /** A whole list cannot become one element and a reference cannot become owned. */
 static void it_rejects_list_splicing_implicit_dereference_and_reference_literals(void) {
     const char *sources[] = {
-        "@!\nsource[]\n..integer\ntarget[]\n..integer\n source[]\n",
-        "@!\nsource&\n..integer\ntarget\n..integer\n source&\n",
-        "@!\ntarget&\n..integer\n |1\n"
+        "@!\nsource[]\n//integer\ntarget[]\n//integer\n source[]\n",
+        "@!\nsource&\n//integer\ntarget\n//integer\n source&\n",
+        "@!\ntarget&\n//integer\n |1\n"
     };
     for (size_t kind = 0; kind < sizeof(sources) / sizeof(*sources); kind++) {
         setup_connections(sources[kind], "@!\n");
@@ -67,7 +67,7 @@ static void it_rejects_list_splicing_implicit_dereference_and_reference_literals
 /** Foreign context pointers and absent result receivers preserve caller outputs. */
 static void it_refuses_foreign_contexts_and_missing_initializer_outputs(void) {
     for (size_t kind = 0; kind < 3; kind++) {
-        setup_connections("@!\nanchor\n..integer\n", "@!\n");
+        setup_connections("@!\nanchor\n//integer\n", "@!\n");
         const StaticResultContext *actual = publication_context(caller_environment);
         StaticResultContext copied = *actual;
         bool changed = true;
@@ -83,7 +83,7 @@ static void it_refuses_foreign_contexts_and_missing_initializer_outputs(void) {
 static void it_unwinds_every_initializer_equation_allocation_refusal(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_connections("@!\nanchor\n..integer\ncopy\n..integer\n anchor\n", "@!\n");
+        setup_connections("@!\nanchor\n//integer\ncopy\n//integer\n anchor\n", "@!\n");
         const StaticResultContext *actual = publication_context(caller_environment);
         size_t before = allocation_count;
         if (failure) { failure_at = before + failure; }

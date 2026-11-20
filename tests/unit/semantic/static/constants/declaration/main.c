@@ -15,7 +15,7 @@ static void it_binds_symbolic_shared_types_without_using_literals_as_type_anchor
     assert(!scalar->list && list->list && scalar->type != list->type && caller_module->parameter_count == 2);
     assert(scalar->source->source->prepared == NULL && scalar->source->source->application == NULL && results.context_count == 1);
     const StaticTerm *formal;
-    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, "...type"), &formal));
+    assert(static_term_symbol(&terms, caller_environment, result_named(caller_module, ".type"), &formal));
     assert(scalar->source->source->source->head == formal && list->source->source->source->head == formal);
     const StaticTerm *value = NULL;
     StaticConstraintOutcome outcome;
@@ -48,13 +48,13 @@ static void it_resolves_shared_types_in_their_actual_applied_owner_environment(v
  * earlier shared section. Empty lists introduce no placeholder or element value.
  */
 static void it_binds_result_introduced_parameters_in_earlier_empty_shared_lists(void) {
-    setup_constants("@=\nempty[]\n...element\n@>\nreturned&\n...element\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_constants("@=\nempty[]\n.element\n@>\nreturned&\n.element\n@!\nanchor&\n//integer\n", "@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantDeclaration *generic, *applied;
     const AstNode *syntax = constant_named(caller_module, "empty");
     assert(static_constant_declaration(&constants, context, syntax, &generic));
     assert(generic->list && syntax->as.declaration.first == NULL && caller_module->parameter_count == 1);
-    const StaticSymbol *symbol = result_named(caller_module, "...element");
+    const StaticSymbol *symbol = result_named(caller_module, ".element");
     assert(symbol->role == STATIC_PARAMETER && generic->source->source->source->head->as.variable.symbol == symbol);
     StaticTermCapture capture = {.formal = symbol, .value = integer_type};
     const StaticTerm *owner;
@@ -71,8 +71,8 @@ static void it_binds_result_introduced_parameters_in_earlier_empty_shared_lists(
  * placeholders, implicit instances or inference from literal bytes.
  */
 static void it_binds_independently_exported_shared_scalar_and_empty_list_types(void) {
-    setup_constants("@=\nscalar\n.other\n ...out\n |7\nempty[]\n.other\n ...out\n@!\n",
-        "@...\n...out\n..integer\n");
+    setup_constants("@=\nscalar\n/test/fixture/v1.0.0/src/other\n .out\n |7\nempty[]\n/test/fixture/v1.0.0/src/other\n .out\n@!\n",
+        "@...\n.out\n//integer\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantDeclaration *scalar, *list;
     bool success = static_constant_declaration(&constants, context, constant_named(caller_module, "scalar"), &scalar);
@@ -92,8 +92,8 @@ static void it_binds_independently_exported_shared_scalar_and_empty_list_types(v
 
 /** Mutable-object references cannot become shared scalar or list storage. */
 static void it_rejects_shared_reference_and_reference_list_storage_before_type_work(void) {
-    const char *callers[] = {"@=\nforbidden&\n..integer\n@!\nanchor&\n..integer\n",
-        "@=\nforbidden&[]\n..integer\n@!\nanchor&\n..integer\n"};
+    const char *callers[] = {"@=\nforbidden&\n//integer\n@!\nanchor&\n//integer\n",
+        "@=\nforbidden&[]\n//integer\n@!\nanchor&\n//integer\n"};
     for (size_t mode = 0; mode < 2; mode++) {
         setup_constants(callers[mode], "@!\n");
         const StaticResultContext *context = publication_context(caller_environment);
@@ -130,7 +130,7 @@ static void it_refuses_foreign_shared_identities_and_declaration_counter_wrap(vo
     static_constant_init(&constants, &publications, sources.allocator);
     const StaticResultContext *context = publication_context(result_applied_environment());
     const StaticConstantDeclaration *record = NULL;
-    assert(!static_publication_resolve(&publications, context, result_pair("...first"), NULL));
+    assert(!static_publication_resolve(&publications, context, result_pair(".first"), NULL));
     assert(!static_constant_declaration(&constants, context, NULL, &record));
     assert(record == NULL && constants.status == STATIC_CONSTANT_INVALID && constants.error.message == publications.error.message);
     destroy_constants();

@@ -6,7 +6,7 @@
  */
 static void it_unwinds_deep_handlers_in_caller_scope_and_preserves_prior_progress(void) {
     prepare_handler_tree();
-    execute_project("@!\nobject\n.box\nresult\n.value\n |41\nprobe\n.worker\n"
+    execute_project("@!\nobject\n/test/fixture/v1.0.0/src/box\nresult\n/test/fixture/v1.0.0/src/value\n |41\nprobe\n/test/fixture/v1.0.0/src/worker\n"
         "object\n middle\n  branch\n   live !\n    < |10\n    > result\n"
         "   missing& !\n   :\n    probe !\n     < result\n"
         "    object\n     middle\n      branch\n       live !\n        < |20\n"
@@ -21,6 +21,6 @@ static void it_unwinds_deep_handlers_in_caller_scope_and_preserves_prior_progres
  */
 static void it_accepts_empty_handlers_after_releasing_the_complete_tree(void) {
     prepare_handler_tree();
-    execute_project("@!\nobject\n.box\nobject\n middle\n  branch\n   missing& !\n   :\n"
+    execute_project("@!\nobject\n/test/fixture/v1.0.0/src/box\nobject\n middle\n  branch\n   missing& !\n   :\n"
         "   live !\n    < |999\nobject\n middle\n  branch\n   live !\n    < |10\n", "10:1:7\n", true);
 }

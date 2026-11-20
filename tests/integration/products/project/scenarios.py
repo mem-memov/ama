@@ -48,7 +48,7 @@ def changes(repository):
         product.execute(expected)
         assert product.inputs() == inputs
     product.write(product.native, product.native.read_text().replace('AMA_NATIVE(initialize)', 'AMA_NATIVE(initialize_second)'))
-    abi = product.source / 'show.abi'
+    abi = product.code / 'show.abi'
     product.write(abi, abi.read_text().replace('+ initialize', '+ initialize_second'))
     inputs = product.inputs()
     product.emit(flags)
@@ -63,7 +63,11 @@ def boundaries(repository):
     first = product.products()
     duplicate = product.home / 'другой корень'
     duplicate.mkdir()
-    product.write(duplicate / 'show', '@!\n')
+    version = duplicate / 'packages/test/fixture/v1.0.0'
+    (version / 'src').mkdir(parents=True)
+    (version / 'tests').mkdir()
+    product.write(version / 'package.ini', '')
+    product.write(version / 'src/show', '@!\n')
     refused = product.emit(extra=('--root', str(duplicate)), accepted=False)
     assert refused.stderr
     assert product.products() == first

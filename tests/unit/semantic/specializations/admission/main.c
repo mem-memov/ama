@@ -14,10 +14,10 @@ static void checked(void) {
 
 /** Real generic calls share checked metadata while keeping the source-bound result field. */
 static void it_admits_fully_checked_generic_calls_and_finite_nominal_groups(void) {
-    const char *mains[] = {"@!\nknown\n..integer\nworker\n.other\nworker !\n < known\n > fresh\n",
-        "@!\nnext&\n.main\nchildren[]\n.main\n"};
+    const char *mains[] = {"@!\nknown\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n > fresh\n",
+        "@!\nnext&\n/test/fixture/v1.0.0/src/main\nchildren[]\n/test/fixture/v1.0.0/src/main\n"};
     for (size_t index = 0; index < 2; index++) {
-        setup(mains[index], index ? "@!\n" : "@<\ninput\n...slot\n@>\noutput\n...slot\n@!\noutput\n input\n", true);
+        setup(mains[index], index ? "@!\n" : "@<\ninput\n.slot\n@>\noutput\n.slot\n@!\noutput\n input\n", true);
         assert(semantic_specializations_check(&semantics, &analysis.closure, NULL) == SEMANTIC_OK);
         checked();
         if (!index) {
@@ -32,20 +32,20 @@ static void it_admits_fully_checked_generic_calls_and_finite_nominal_groups(void
 /** Unsupported literal/condition/index/copy operations all fail before local completion. */
 static void it_rejects_unsupported_substituted_operations_before_admission(void) {
     const char *bodies[] = {
-        "@<\ninput\n...slot\n |0\n@!\n",
-        "@<\ninput\n...slot\n@!\ninput\n?\n",
-        "@<\ninput\n...slot\n@!\nitems[]\n..integer\nitems[input] !\n",
-        "@<\ninput\n...slot\n@!\n",
-        "@<\ninput\n...slot\n@!\nguard\n..integer\n |0\nguard\n?\n input\n ?\n"};
+        "@<\ninput\n.slot\n |0\n@!\n",
+        "@<\ninput\n.slot\n@!\ninput\n?\n",
+        "@<\ninput\n.slot\n@!\nitems[]\n//integer\nitems[input] !\n",
+        "@<\ninput\n.slot\n@!\n",
+        "@<\ninput\n.slot\n@!\nguard\n//integer\n |0\nguard\n?\n input\n ?\n"};
     for (size_t resource = 0; resource < 2; resource++) {
         for (size_t index = 0; index < 5; index++) {
-            directory(STATIC_SCOPE_ROOT_DIRECTORY);
-            file("generated/static scope/resource", "@C\n");
-            file("generated/static scope/resource.h", "/* Fixture native payload. */\n");
-            file("generated/static scope/resource.c", "/* Metadata-only native fixture. */\n");
-            file("generated/static scope/resource.abi", index == 3 ? "+ initialize\n- destroy\n" : "+ initialize\n- destroy\n= clone\n");
-            setup(resource ? "@!\nknown\n.resource\nworker\n.other\nworker !\n < known\n"
-                : "@!\nknown\n..integer\nworker\n.other\nworker !\n < known\n", bodies[index], true);
+            fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+            file("generated/static scope/packages/test/fixture/v1.0.0/src/resource", "@C\n");
+            file("generated/static scope/packages/test/fixture/v1.0.0/src/resource.h", "/* Fixture native payload. */\n");
+            file("generated/static scope/packages/test/fixture/v1.0.0/src/resource.c", "/* Metadata-only native fixture. */\n");
+            file("generated/static scope/packages/test/fixture/v1.0.0/src/resource.abi", index == 3 ? "+ initialize\n- destroy\n" : "+ initialize\n- destroy\n= clone\n");
+            setup(resource ? "@!\nknown\n/test/fixture/v1.0.0/src/resource\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n"
+                : "@!\nknown\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n", bodies[index], true);
             SemanticStatus status = semantic_specializations_check(&semantics, &analysis.closure, NULL);
             assert(status == (resource ? SEMANTIC_INVALID : SEMANTIC_OK));
             if (!resource) { checked(); }
@@ -62,10 +62,10 @@ static void it_rejects_unsupported_substituted_operations_before_admission(void)
 
 /** All ordinary and static-producer dependencies close after explicit named namespace export selection. */
 static void it_admits_named_static_exports_and_all_candidate_dependencies(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/container", "@=\nempty[]\n...slot\n@<\ninput\n...slot\n@!\n");
-    setup("@!\n.other\n ...numbers\n empty[] >> xs[]\n.other\n ...texts\n empty[] >> ys[]\n",
-        "@...\n...numbers\n.container\n ...slot < ..integer\n...texts\n.container\n ...slot < ..text\n", true);
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/container", "@=\nempty[]\n.slot\n@<\ninput\n.slot\n@!\n");
+    setup("@!\n/test/fixture/v1.0.0/src/other\n .numbers\n empty[] >> xs[]\n/test/fixture/v1.0.0/src/other\n .texts\n empty[] >> ys[]\n",
+        "@...\n.numbers\n/test/fixture/v1.0.0/src/container\n .slot < //integer\n.texts\n/test/fixture/v1.0.0/src/container\n .slot < //text\n", true);
     assert(semantic_specializations_check(&semantics, &analysis.closure, NULL) == SEMANTIC_OK);
     assert(analysis.registry.dependency_count > 0);
     checked();
@@ -74,7 +74,7 @@ static void it_admits_named_static_exports_and_all_candidate_dependencies(void) 
 
 /** Unused open definitions need no runtime instance or invented concrete Type. */
 static void it_checks_definition_only_closure_without_runtime_types(void) {
-    setup("@!\n", "@<\ninput\n...slot\n@!\n", false);
+    setup("@!\n", "@<\ninput\n.slot\n@!\n", false);
     assert(semantic_specializations_check(&semantics, &analysis.closure, NULL) == SEMANTIC_OK);
     assert(!semantics.first && !analysis.registry.candidate_count);
     checked();
@@ -83,12 +83,12 @@ static void it_checks_definition_only_closure_without_runtime_types(void) {
 
 /** Missing clone capability blocks copies, while empty owned lists and handles may still exist. */
 static void it_admits_noncopyable_storage_without_inventing_copy_operations(void) {
-    const char *mains[] = {"@!\nowned[]\n.other\n", "@!\nborrowed&\n.other\n"};
+    const char *mains[] = {"@!\nowned[]\n/test/fixture/v1.0.0/src/other\n", "@!\nborrowed&\n/test/fixture/v1.0.0/src/other\n"};
     for (size_t index = 0; index < 2; index++) {
-        directory(STATIC_SCOPE_ROOT_DIRECTORY);
-        file("generated/static scope/other.h", "/* Fixture native payload. */\n");
-        file("generated/static scope/other.c", "/* Metadata-only native fixture. */\n");
-        file("generated/static scope/other.abi", "+ initialize\n- destroy\n");
+        fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/other.h", "/* Fixture native payload. */\n");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/other.c", "/* Metadata-only native fixture. */\n");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/other.abi", "+ initialize\n- destroy\n");
         setup(mains[index], "@C\n", true);
         assert(semantic_specializations_check(&semantics, &analysis.closure, NULL) == SEMANTIC_OK);
         checked();
@@ -101,7 +101,7 @@ static void it_admits_noncopyable_storage_without_inventing_copy_operations(void
 
 /** A constants-only namespace is metadata, never the instance Type of a runtime field. */
 static void it_refuses_constant_namespaces_as_runtime_field_types(void) {
-    setup("@!\ninvalid\n.other\n", "@=\nvalue\n..integer\n |0\n", true);
+    setup("@!\ninvalid\n/test/fixture/v1.0.0/src/other\n", "@=\nvalue\n//integer\n |0\n", true);
     assert(analysis.closure.closed);
     assert(semantic_specializations_check(&semantics, &analysis.closure, NULL) == SEMANTIC_INVALID);
     assert(diagnostic_valid(&semantics.error));
@@ -112,7 +112,7 @@ static void it_refuses_constant_namespaces_as_runtime_field_types(void) {
 
 /** A finite nominal identity can still require infinite eager runtime construction. */
 static void it_refuses_eager_cycles_without_rejecting_type_identity_closure(void) {
-    setup("@!\nchild\n.main\n", "@!\n", true);
+    setup("@!\nchild\n/test/fixture/v1.0.0/src/main\n", "@!\n", true);
     assert(analysis.closure.closed);
     assert(semantic_specializations_check(&semantics, &analysis.closure, NULL) == SEMANTIC_INVALID);
     assert(semantics.eager.status == GRAPH_CYCLE && !semantics.relations_valid);
@@ -124,8 +124,8 @@ static void it_refuses_eager_cycles_without_rejecting_type_identity_closure(void
 static void it_unwinds_every_ordinary_admission_allocation_refusal(void) {
     size_t total = 0;
     for (size_t cut = 0; cut <= total; cut++) {
-        setup("@!\nknown\n..integer\nworker\n.other\nworker !\n < known\n > fresh\n",
-            "@<\ninput\n...slot\n@>\noutput\n...slot\n@!\noutput\n input\n", true);
+        setup("@!\nknown\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < known\n > fresh\n",
+            "@<\ninput\n.slot\n@>\noutput\n.slot\n@!\noutput\n input\n", true);
         size_t before = allocation_count;
         if (cut) { failure_at = before + cut; }
         SemanticStatus status = semantic_specializations_check(&semantics, &analysis.closure, NULL);

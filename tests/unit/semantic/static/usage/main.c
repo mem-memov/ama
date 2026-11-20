@@ -7,14 +7,14 @@
 #include "semantic/static/applications/plan.h"
 
 /** Every actual formal is introduced by an ordinary runtime name/type pair. */
-#define USAGE_CONSTRUCTOR "@<\na\n...key\nb\n...value\nc\n...extra\n@!\n"
+#define USAGE_CONSTRUCTOR "@<\na\n.key\nb\n.value\nc\n.extra\n@!\n"
 
 /** The independent concrete source gives arguments Type evidence without
  * accidentally making the constructor's own path a scalar argument.
  */
 static void prepare_usage(const char *graph, const char *constructor) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/scalar", "@!\n");
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/scalar", "@!\n");
     ModuleRoot root = {STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT};
     setup_static_with_roots(graph, constructor, &root, 1);
     assert(static_inventory_collect(&inventory) == STATIC_OK);
@@ -25,17 +25,17 @@ static void prepare_usage(const char *graph, const char *constructor) {
  */
 static void it_preserves_additional_residuals_captures_and_actual_admission_order(void) {
     const char *graphs[] = {
-        "@...\n...one\n...family\n ...key < .scalar\n...two\n...family\n ...value < .scalar\n",
-        "@...\n...two\n...family\n ...value < .scalar\n...one\n...family\n ...key < .scalar\n"
+        "@...\n.one\n.family\n .key < /test/fixture/v1.0.0/src/scalar\n.two\n.family\n .value < /test/fixture/v1.0.0/src/scalar\n",
+        "@...\n.two\n.family\n .value < /test/fixture/v1.0.0/src/scalar\n.one\n.family\n .key < /test/fixture/v1.0.0/src/scalar\n"
     };
     for (size_t order = 0; order < 2; order++) {
         prepare_usage(graphs[order], USAGE_CONSTRUCTOR);
         const StaticModule *owner = static_module_find(&inventory, project.entry);
-        const StaticSymbol *family = static_symbol_find(owner, static_name_site(project.entry, "...family"));
+        const StaticSymbol *family = static_symbol_find(owner, static_name_site(project.entry, ".family"));
         assert(family->category == STATIC_CATEGORY_DEFERRED && family->signature == NULL);
         assert(owner->constructor_signature == NULL);
-        const StaticModule *origin = static_module_find(&inventory, project_find(&project, ".other"));
-        const StaticModule *scalar = static_module_find(&inventory, project_find(&project, ".scalar"));
+        const StaticModule *origin = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
+        const StaticModule *scalar = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/scalar"));
         StaticTermStore terms;
         static_term_store_init(&terms, &inventory, sources.allocator);
         const StaticTerm *plain, *whole, *partial, *missing, *complete;
@@ -96,20 +96,20 @@ static void it_preserves_additional_residuals_captures_and_actual_admission_orde
  */
 static void it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflicts(void) {
     const char *graphs[] = {
-        "@...\n...out\n...family\n ...key < ...argument\n",
-        "@...\n...out\n...family\n ...key < ...argument\n...bad\n...family\n ...value < .other\n",
-        "@...\n...out\n...family\n"
+        "@...\n.out\n.family\n .key < .argument\n",
+        "@...\n.out\n.family\n .key < .argument\n.bad\n.family\n .value < /test/fixture/v1.0.0/src/other\n",
+        "@...\n.out\n.family\n"
     };
     for (size_t partition = 0; partition < 3; partition++) {
         prepare_usage(graphs[partition], USAGE_CONSTRUCTOR);
         const StaticModule *owner = static_module_find(&inventory, project.entry);
-        const StaticSymbol *family = static_symbol_find(owner, static_name_site(project.entry, "...family"));
-        const StaticModule *origin = static_module_find(&inventory, project_find(&project, ".other"));
+        const StaticSymbol *family = static_symbol_find(owner, static_name_site(project.entry, ".family"));
+        const StaticModule *origin = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
         StaticUsageResult result = static_usage_check(&inventory, family,
             STATIC_CATEGORY_TEMPLATE, origin->constructor_signature);
         StaticUsageStatus expected[] = {STATIC_USAGE_PENDING, STATIC_USAGE_CONFLICT, STATIC_USAGE_SATISFIED};
         assert(result.status == expected[partition]);
-        if (partition == 1) { assert(layout_text_is(result.site, ".other")); }
+        if (partition == 1) { assert(layout_text_is(result.site, "/test/fixture/v1.0.0/src/other")); }
         if (partition == 2) {
             assert(static_usage_check(&inventory, family, STATIC_CATEGORY_TYPE, NULL).status == STATIC_USAGE_SATISFIED);
             assert(static_usage_check(&inventory, family, STATIC_CATEGORY_DEFERRED, NULL).status == STATIC_USAGE_SATISFIED);
@@ -123,16 +123,16 @@ static void it_keeps_pending_and_forwarded_metadata_without_hiding_known_conflic
  * graph producers with named outputs retain no ordinary constructor identity.
  */
 static void it_checks_known_source_applications_and_separates_static_producers(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/scalar", "@!\n");
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/scalar", "@!\n");
     ModuleRoot root = {STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT};
-    setup_static_with_roots("@...\n...out\n.other\n ...missing < .scalar\n", USAGE_CONSTRUCTOR, &root, 1);
+    setup_static_with_roots("@...\n.out\n/test/fixture/v1.0.0/src/other\n .missing < /test/fixture/v1.0.0/src/scalar\n", USAGE_CONSTRUCTOR, &root, 1);
     assert(static_inventory_collect(&inventory) == STATIC_INVALID);
-    assert(layout_text_is(inventory.error.primary.span, "...missing"));
+    assert(layout_text_is(inventory.error.primary.span, ".missing"));
     destroy_static();
-    setup_static("@...\n.other\n ...out > ...alias\n", "@...\n...out\n...free\n");
+    setup_static("@...\n/test/fixture/v1.0.0/src/other\n .out > .alias\n", "@...\n.out\n.free\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
-    const StaticModule *producer = static_module_find(&inventory, project_find(&project, ".other"));
+    const StaticModule *producer = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
     assert(producer->parameter_count == 1 && producer->constructor_signature == NULL);
     const StaticModule *owner = static_module_find(&inventory, project.entry);
     assert(owner->first->category == STATIC_CATEGORY_DEFERRED);
@@ -150,17 +150,17 @@ static void it_checks_known_source_applications_and_separates_static_producers(v
  */
 static void it_propagates_requirements_through_aliases_cycles_and_self_operands(void) {
     const char *graphs[] = {
-        "@...\n...alias\n...family\n...out\n...alias\n ...key < .scalar\n",
-        "@...\n...out\n...alias\n ...key < .scalar\n...alias\n...family\n",
-        "@...\n...family\n...alias\n...alias\n...family\n...out\n...alias\n ...key < .scalar\n",
-        "@...\n...alias\n...family\n...out\n...family\n ...key < ...alias\n"
+        "@...\n.alias\n.family\n.out\n.alias\n .key < /test/fixture/v1.0.0/src/scalar\n",
+        "@...\n.out\n.alias\n .key < /test/fixture/v1.0.0/src/scalar\n.alias\n.family\n",
+        "@...\n.family\n.alias\n.alias\n.family\n.out\n.alias\n .key < /test/fixture/v1.0.0/src/scalar\n",
+        "@...\n.alias\n.family\n.out\n.family\n .key < .alias\n"
     };
     for (size_t partition = 0; partition < 4; partition++) {
         prepare_usage(graphs[partition], USAGE_CONSTRUCTOR);
         const StaticModule *owner = static_module_find(&inventory, project.entry);
-        const StaticSymbol *family = static_symbol_find(owner, static_name_site(project.entry, "...family"));
-        const StaticSymbol *alias = static_symbol_find(owner, static_name_site(project.entry, "...alias"));
-        const StaticModule *origin = static_module_find(&inventory, project_find(&project, ".other"));
+        const StaticSymbol *family = static_symbol_find(owner, static_name_site(project.entry, ".family"));
+        const StaticSymbol *alias = static_symbol_find(owner, static_name_site(project.entry, ".alias"));
+        const StaticModule *origin = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
         assert(family->usage_group == alias->usage_group);
         StaticUsageResult applied = static_usage_check(&inventory, family,
             STATIC_CATEGORY_TEMPLATE, origin->constructor_signature);

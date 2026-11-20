@@ -7,7 +7,7 @@
 /** This boundary needs only a named zero-input producer, not unrelated
  * ordinary-constructor or omitted-input fixture definitions.
  */
-static const char *graph_target = "@...\n...out\n..integer\n";
+static const char *graph_target = "@...\n.out\n//integer\n";
 
 /** Initialize actual source and registry owners without preparing graph work. */
 static void setup_graphs(const char *caller, const char *target) {
@@ -27,8 +27,8 @@ static const StaticResultContext *graph_context(const StaticTermEnvironment *env
 /** A later statement receiving into a pair-declared name remains a separate
  * validation root even though it declares no new public symbol.
  */
-static const char *graph_caller = "@...\n...known\n..integer\n.other\n ...out > ...received\n"
-    ".other\n ...out > ...known\n";
+static const char *graph_caller = "@...\n.known\n//integer\n/test/fixture/v1.0.0/src/other\n .out > .received\n"
+    "/test/fixture/v1.0.0/src/other\n .out > .known\n";
 
 /** Public definitions and equality-only statements are all queued independently;
  * graph preparation neither follows their RHS nor invents edges between them.
@@ -82,7 +82,7 @@ static void it_retains_distinct_actual_root_witnesses_even_when_the_closed_key_i
  * retained independently rather than fabricated as a graph or default instance.
  */
 static void it_keeps_ordinary_contexts_outside_static_graph_validation(void) {
-    setup_graphs("@!\nanchor&\n..integer\n", "@!\n");
+    setup_graphs("@!\nanchor&\n//integer\n", "@!\n");
     const StaticResultContext *context = graph_context(caller_environment);
     StaticResultGraph *output = NULL;
     size_t before = allocation_count;

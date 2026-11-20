@@ -7,9 +7,9 @@
 #include "internal.h"
 SemanticType *semantic_list_integer(SemanticProgram *program, SourceSpan site) {
     if (program->list_integer != NULL) { return program->list_integer; }
-    SemanticType *type = semantic_find_type(program, "..integer");
+    SemanticType *type = semantic_find_type(program, "//integer");
     if (type == NULL || !type->executable || type->module->syntax.sections.kind != MODULE_NATIVE) {
-        semantic_fail(program, site, "List interfaces require the exact native standard module ..integer", NULL);
+        semantic_fail(program, site, "List interfaces require the exact native standard module //integer", NULL);
         return NULL;
     }
     const AbiOperation required[] = {ABI_CLONE, ABI_LITERAL, ABI_INDEX};

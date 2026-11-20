@@ -30,7 +30,7 @@ static void it_applies_original_annotation_facts_without_creating_an_ordinary_co
  * and capability checks unadmitted in the canonical registry.
  */
 static void it_validates_known_fields_only_under_their_actual_incoming_context(void) {
-    setup_connections("@<\nargument\n..integer\n@>\nresult\n..text\n@!\nfield\n..integer\n", "@!\n");
+    setup_connections("@<\nargument\n//integer\n@>\nresult\n//text\n@!\nfield\n//integer\n", "@!\n");
     const StaticResultContext *actual = publication_context(caller_environment);
     StaticResultOutcome outcome;
     bool success = static_connection_validate_fields(&connections, actual, &outcome);
@@ -64,7 +64,7 @@ static void it_retains_inferred_and_generic_field_requirements_without_inventing
  * scope; a later actual caller must retain its own supplier validation edge.
  */
 static void it_retains_real_export_validation_dependencies_after_metadata_type_resolution(void) {
-    setup_connections("@!\nexported\n.other\n ...out\n", "@...\n...out\n..integer\n");
+    setup_connections("@!\nexported\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n//integer\n");
     const StaticTermEnvironment *environment;
     bool success = static_term_environment(&terms, caller_module, caller_constructor, &environment);
     assert(success);

@@ -6,8 +6,8 @@
 /** Named and positional shared reads infer scalar/list receivers from own declarations. */
 static void it_connects_named_and_positional_shared_results_after_namespace_validation(void) {
     for (size_t named = 0; named < 2; named++) {
-        setup_connections(named ? "@!\n.other\n value >> scalar\n items[] >> values[]\n" :
-            "@!\n.other\n >> scalar\n >> values[]\n", "@=\nvalue\n..integer\nitems[]\n..integer\n@!\n");
+        setup_connections(named ? "@!\n/test/fixture/v1.0.0/src/other\n value >> scalar\n items[] >> values[]\n" :
+            "@!\n/test/fixture/v1.0.0/src/other\n >> scalar\n >> values[]\n", "@=\nvalue\n//integer\nitems[]\n//integer\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         const AstNode *node = operation_at(scope, 0);
@@ -32,8 +32,8 @@ static void it_connects_named_and_positional_shared_results_after_namespace_vali
 
 /** A namespace parameter cannot be supplied by its saved receiver's Type. */
 static void it_keeps_open_read_namespaces_independent_of_concrete_receivers(void) {
-    setup_connections("@!\nanchor\n..integer\n.other\n value >> anchor\n",
-        "@=\nvalue\n...slot\n@<\nargument\n...slot\n@!\n");
+    setup_connections("@!\nanchor\n//integer\n/test/fixture/v1.0.0/src/other\n value >> anchor\n",
+        "@=\nvalue\n.slot\n@<\nargument\n.slot\n@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_operations(&actual);
     bool changed;
@@ -46,7 +46,7 @@ static void it_keeps_open_read_namespaces_independent_of_concrete_receivers(void
 
 /** Scalar/list/reference receiver forms must match the independently selected constant. */
 static void it_rejects_incompatible_saved_constant_receiver_storage(void) {
-    setup_connections("@!\n.other\n value >> receiver&\n", "@=\nvalue\n..integer\n@!\n");
+    setup_connections("@!\n/test/fixture/v1.0.0/src/other\n value >> receiver&\n", "@=\nvalue\n//integer\n@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_operations(&actual);
     const StaticResultContext *supplier = constant_fixed_target_context();
@@ -60,7 +60,7 @@ static void it_rejects_incompatible_saved_constant_receiver_storage(void) {
 /** Copied syntax, wrong namespace contexts and missing outputs cannot certify reads. */
 static void it_refuses_foreign_read_syntax_and_invalid_output_or_namespace_handles(void) {
     for (size_t kind = 0; kind < 4; kind++) {
-        setup_connections("@!\n.other\n value >> receiver\n", "@=\nvalue\n..integer\n@!\n");
+        setup_connections("@!\n/test/fixture/v1.0.0/src/other\n value >> receiver\n", "@=\nvalue\n//integer\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         const AstNode *node = operation_at(scope, 0);
@@ -80,7 +80,7 @@ static void it_unwinds_every_explicit_read_equation_allocation_refusal(void) {
     for (size_t phase = 0; phase < 2; phase++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_connections("@!\n.other\n value >> receiver\n", "@=\nvalue\n..integer\n@!\n");
+            setup_connections("@!\n/test/fixture/v1.0.0/src/other\n value >> receiver\n", "@=\nvalue\n//integer\n@!\n");
             const StaticResultContext *actual;
             const StaticTypedScope *scope = prepare_operations(&actual);
             const AstNode *node = operation_at(scope, 0);

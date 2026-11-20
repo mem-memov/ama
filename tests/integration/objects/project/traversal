@@ -1,9 +1,0 @@
-# Live traversal executes actual owning entries without a native index protocol.
-@!
-items[]
-.counter
- .constants.seed
-items[item&]
-{
- item& !
-}

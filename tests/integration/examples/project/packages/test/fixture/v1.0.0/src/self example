@@ -1,0 +1,7 @@
+# Both calls execute the same instance through its returned reference.
+@!
+node
+/test/fixture/v1.0.0/src/self
+node !
+ > reference&
+reference& !

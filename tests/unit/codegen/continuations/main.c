@@ -14,8 +14,9 @@
  */
 static void it_resumes_repeated_yields_and_restarts_at_entry(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nprobe\n.worker\nprobe !\n < |10\n%\nprobe !\n < |20\n%\nprobe !\n < |30\n");
-    execute_project("@!\ntask\n.task\ntask !\ntask %\ntask %\ntask %\n:\n task !\ntask !\n", "10:1:0\n20:2:0\n30:3:0\n10:4:0\n10:5:0\n", true);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |10\n%\nprobe !\n < |20\n%\nprobe !\n < |30\n");
+    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\ntask !\ntask %\ntask %\ntask %\n:\n task !\ntask !\n", "10:1:0\n20:2:0\n30:3:0\n10:4:0\n10:5:0\n", true);
 }
 
 /**
@@ -25,9 +26,10 @@ static void it_resumes_repeated_yields_and_restarts_at_entry(void) {
  */
 static void it_resumes_inside_a_loop_without_preserving_c_activations(void) {
     directory("generated/project");
-    native_fixture("decrement", "@<\ninput\n.value\n@>\noutput\n.value\n@C\n");
-    file("generated/project/task", "@!\ncount\n.value\n |3\nstep\n.decrement\ncount\n{\n step !\n  < count\n  > count\n %\n}\n");
-    execute_project("@!\ntask\n.task\ntask !\ntask %\ntask %\ntask %\n", "count=3\ncount=2\ncount=1\n", true);
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("decrement", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@!\ncount\n/test/fixture/v1.0.0/src/value\n |3\nstep\n/test/fixture/v1.0.0/src/decrement\ncount\n{\n step !\n  < count\n  > count\n %\n}\n");
+    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\ntask !\ntask %\ntask %\ntask %\n", "count=3\ncount=2\ncount=1\n", true);
 }
 
 /**
@@ -62,7 +64,7 @@ static void it_exposes_explicit_host_resume_restart_disposal_and_terminal_failur
         "result=ama_project_execute(&other,AMA_ACCESS_ENTRY); assert(result.outcome==AMA_HOST_YIELDED);\n"
         "AmaStatus status=ama_project_dispose(&other); assert(status.code==AMA_OK);\n"
         "status=ama_project_dispose(&other); assert(status.code==AMA_OK); return 0; }\n";
-    execute_project("@<\ninput\n.value\n |7\n@>\nresult\n.value\n input\n@!\nworker\n.worker\nworker !\n < result\n > result\n%\nworker !\n < result\n > result\n%\n", "7:1:0\n8:2:0\n7:3:0\n10:4:0\n7:1:0\n", true);
+    execute_project("@<\ninput\n/test/fixture/v1.0.0/src/value\n |7\n@>\nresult\n/test/fixture/v1.0.0/src/value\n input\n@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < result\n > result\n%\nworker !\n < result\n > result\n%\n", "7:1:0\n8:2:0\n7:3:0\n10:4:0\n7:1:0\n", true);
     host_launcher = NULL;
 }
 
@@ -73,8 +75,9 @@ static void it_exposes_explicit_host_resume_restart_disposal_and_terminal_failur
  */
 static void it_executes_independent_continuation_copies_and_clears_ordinary_positions(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nprobe\n.worker\nprobe !\n < |10\n%\nprobe !\n < |20\n%\nprobe !\n < |30\n");
-    execute_project("@!\noriginal\n.task\ncopy\n.task\nplain\n.task\nprobe\n.worker\noriginal !\ncopy\n % original\nplain\n original\ncopy %\noriginal %\ncopy %\nplain %\n:\n probe !\n  < |90\n", "10:1:0\n20:2:0\n20:2:0\n30:3:0\n90:1:10\n", true);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |10\n%\nprobe !\n < |20\n%\nprobe !\n < |30\n");
+    execute_project("@!\noriginal\n/test/fixture/v1.0.0/src/task\ncopy\n/test/fixture/v1.0.0/src/task\nplain\n/test/fixture/v1.0.0/src/task\nprobe\n/test/fixture/v1.0.0/src/worker\noriginal !\ncopy\n % original\nplain\n original\ncopy %\noriginal %\ncopy %\nplain %\n:\n probe !\n  < |90\n", "10:1:0\n20:2:0\n20:2:0\n30:3:0\n90:1:10\n", true);
 }
 
 /**
@@ -84,8 +87,9 @@ static void it_executes_independent_continuation_copies_and_clears_ordinary_posi
  */
 static void it_resumes_both_branch_successors_and_transfers_retained_outputs(void) {
     directory("generated/project");
-    file("generated/project/task", "@<\ncondition\n.value\n@>\nresult\n.value\n |9\n@!\nprobe\n.worker\ncondition\n?\n %\n:\n %\nprobe !\n < result\n > result\n%\n");
-    execute_project("@!\ntask\n.task\nresult\n.value\nprobe\n.worker\ntask !\n < |1\n > result\ntask %\n > result\nprobe !\n < result\ntask %\ntask !\n < |0\ntask %\n > result\nprobe !\n < result\n", "9:1:0\n10:1:0\n9:2:0\n11:2:0\n", true);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@<\ncondition\n/test/fixture/v1.0.0/src/value\n@>\nresult\n/test/fixture/v1.0.0/src/value\n |9\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\ncondition\n?\n %\n:\n %\nprobe !\n < result\n > result\n%\n");
+    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\nresult\n/test/fixture/v1.0.0/src/value\nprobe\n/test/fixture/v1.0.0/src/worker\ntask !\n < |1\n > result\ntask %\n > result\nprobe !\n < result\ntask %\ntask !\n < |0\ntask %\n > result\nprobe !\n < result\n", "9:1:0\n10:1:0\n9:2:0\n11:2:0\n", true);
 }
 
 /**
@@ -95,7 +99,8 @@ static void it_resumes_both_branch_successors_and_transfers_retained_outputs(voi
  */
 static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_execution(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nprobe\n.worker\nprobe !\n < |1\n%\nprobe !\n < |2\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |1\n%\nprobe !\n < |2\n");
     host_launcher = "#include \"project.h\"\n#include \"project.c\"\n#include <assert.h>\n"
         "int main(void) { AmaProjectHost host={0};\n"
         "AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
@@ -103,7 +108,7 @@ static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_executio
         "AmaStatus status=ama_project_dispose(&host); assert(status.code==AMA_OK);\n"
         "assert(host.active.world==NULL && !host.registry.initialized);\n"
         "return 0; }\n";
-    execute_project("@!\ntask\n.task\ntask !\n%\ntask %\n", "1:1:0\n", true);
+    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\ntask !\n%\ntask %\n", "1:1:0\n", true);
     host_launcher = "#include \"project.h\"\n#include \"project.c\"\n#include <assert.h>\n"
         "int main(void) { AmaProjectHost host={0};\n"
         "AmaHostResult result=ama_project_execute(&host,AMA_ACCESS_ENTRY);\n"
@@ -111,7 +116,7 @@ static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_executio
         "assert(host.active.world==NULL && !host.registry.initialized);\n"
         "result=ama_project_execute(&host,AMA_ACCESS_RESUME); assert(result.outcome==AMA_HOST_FAILED);\n"
         "return 0; }\n";
-    execute_project("@!\nworker\n.worker\nworker !\n < |500\n%\n", "native-entered\n", true);
+    execute_project("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < |500\n%\n", "native-entered\n", true);
     host_launcher = NULL;
 }
 
@@ -122,19 +127,20 @@ static void it_disposes_yielded_owned_states_and_never_resumes_a_failed_executio
  */
 static void it_reports_the_new_caller_after_a_yield_releases_the_original_link(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nworker\n.worker\n%\nworker !\n < |500\n");
-    file("generated/project/original", "@<\ntarget&\n.task\n@!\ntarget& !\n");
-    file("generated/project/resumer", "@<\ntarget&\n.task\n@!\ntarget& %\n");
-    execute_project("@!\ntask\n.task\noriginal\n.original\nresumer\n.resumer\noriginal !\n < &task\nresumer !\n < &task\n", "native-entered\n", false);
-    expect_diagnostic("generated/project/task:5:1");
-    expect_diagnostic("generated/project/resumer:5:1");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@!\nworker\n/test/fixture/v1.0.0/src/worker\n%\nworker !\n < |500\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/original", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\n@!\ntarget& !\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/resumer", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\n@!\ntarget& %\n");
+    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\noriginal\n/test/fixture/v1.0.0/src/original\nresumer\n/test/fixture/v1.0.0/src/resumer\noriginal !\n < &task\nresumer !\n < &task\n", "native-entered\n", false);
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/task:5:1");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/resumer:5:1");
     FILE *errors = fopen("generated/errors.txt", "rb");
     assert(errors != NULL);
     char bytes[4096] = {0};
     size_t count = fread(bytes, 1, sizeof(bytes) - 1, errors);
     int closed = fclose(errors);
     assert(count != 0 && closed == 0);
-    assert(strstr(bytes, "generated/project/original:") == NULL);
+    assert(strstr(bytes, "generated/project/packages/test/fixture/v1.0.0/src/original:") == NULL);
 }
 
 /**

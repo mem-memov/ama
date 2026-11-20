@@ -24,8 +24,9 @@ struct ModuleDirectoryIdentity {
 ModuleStatus module_remember_directory(ModuleCatalog *catalog, const char *path);
 
 /** Queued immutable physical/relative paths and logical prefix views owned by the arena.
- * Initial prefixes are empty for project/import or one dot for standard roots;
- * appending dot plus a component produces the exact single/double-dot source path.
+ * A standard area's prefix is one slash; a selected ordinary area includes its
+ * complete vendor/package/version/src-or-tests prefix. Appending slash plus a
+ * component produces the exact ordinary/standard module identity.
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 typedef struct ModuleDirectory {
     struct ModuleDirectory *next;
@@ -52,9 +53,17 @@ ModuleStatus module_probe(ModuleCatalog *catalog, const char *parent,
 /** Validate UTF-8 then verify every physical prefix as an exact nonsymlink directory. Catalog arena owns temporary paths even on failure.
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 ModuleStatus module_verify_root(ModuleCatalog *catalog, const char *path);
-/** Borrow one stable root/exclusion set for an iterative sorted scan. Every queued physical identity is unique; no recursive C directory walk is used.
+/** Borrow one standard root/exclusion set for an iterative sorted scan. Ordinary
+ * roots instead use selected package areas. Every queued physical identity is unique.
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 ModuleStatus module_walk_root(ModuleCatalog *catalog, const ModuleRoot *root);
+/** Index one already selected physical area with exact logical/relative prefixes.
+ * Prefixes remain arena-owned; root/exclusion descriptors are build-borrowed.
+ * [PKG-02](../../../spec/project/packages.md#pkg-02) requires ordinary callers
+ * to choose the whole version before reaching this module traversal.
+ */
+ModuleStatus module_walk_region(ModuleCatalog *, const ModuleRoot *,
+    const char *physical, const char *relative, const char *logical);
 /** Apply exact explicit exclusions, validate candidate spelling and queue a directory or load a regular source. Invalid noncandidate names are ignored under the explicit discovery contract.
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 ModuleStatus module_visit_entry(ModuleWalk *walk, const ModuleDirectory *directory,

@@ -25,7 +25,7 @@ static void it_prepares_complete_named_maps_with_stable_occurrence_local_holes(v
     assert(prepared->requests->input_count == 1 && prepared->requests->output_count == 1);
     assert(prepared->requests->interface->sequences[BINDING_STATIC_OUTPUT].count == 2);
     const StaticSymbol *left = application_formal(target_module, 0), *right = application_formal(target_module, 1);
-    assert(layout_text_is(left->name, "...left") && layout_text_is(right->name, "...right"));
+    assert(layout_text_is(left->name, ".left") && layout_text_is(right->name, ".right"));
     assert(prepared->inputs[0].formal == left && prepared->inputs[1].formal == right);
     const BindingRequest *input = prepared->requests->first;
     assert(input->direction == BINDING_STATIC_INPUT && input->slot->static_symbol == left);
@@ -52,8 +52,8 @@ static void it_prepares_complete_named_maps_with_stable_occurrence_local_holes(v
  * ordinary metadata value; its complete input array is genuinely empty.
  */
 static void it_prepares_zero_input_producers_without_an_implicit_type_or_instance(void) {
-    setup_producer_requests("@...\n.other\n ...out > ...received\n...anchor\n..integer\n",
-        "@...\n...out\n..integer\n");
+    setup_producer_requests("@...\n/test/fixture/v1.0.0/src/other\n .out > .received\n.anchor\n//integer\n",
+        "@...\n.out\n//integer\n");
     const StaticResultSource *source = producer_source(0);
     const StaticResultProducer *prepared;
     assert(static_result_prepare_producer(&results, source, &prepared));
@@ -69,7 +69,7 @@ static void it_refuses_foreign_nonproducer_sources_missing_receivers_and_counter
     for (unsigned partition = 0; partition < 4; partition++) {
         setup_producer_requests(request_caller, request_target);
         const StaticResultSource *source = producer_source(0), *ordinary;
-        assert(static_result_source(&results, caller_environment, result_pair("...anchor"), &ordinary));
+        assert(static_result_source(&results, caller_environment, result_pair(".anchor"), &ordinary));
         StaticResultSource copied = *source;
         if (partition == 3) { results.producer_request_count = SIZE_MAX; }
         const StaticResultProducer *output = NULL;
@@ -110,10 +110,10 @@ static void it_releases_every_partial_producer_preparation_after_allocation_refu
  */
 static void it_rejects_unknown_and_repeated_named_inputs_and_outputs(void) {
     const char *sources[] = {
-        "@...\n.other\n ...missing < ..integer\n ...out > ...received\n...anchor\n..integer\n",
-        "@...\n.other\n ...left < ..integer\n ...left < ..integer\n ...out > ...received\n...anchor\n..integer\n",
-        "@...\n.other\n ...missing > ...received\n...anchor\n..integer\n",
-        "@...\n.other\n ...out > ...received\n ...out > ...other receipt\n...anchor\n..integer\n"
+        "@...\n/test/fixture/v1.0.0/src/other\n .missing < //integer\n .out > .received\n.anchor\n//integer\n",
+        "@...\n/test/fixture/v1.0.0/src/other\n .left < //integer\n .left < //integer\n .out > .received\n.anchor\n//integer\n",
+        "@...\n/test/fixture/v1.0.0/src/other\n .missing > .received\n.anchor\n//integer\n",
+        "@...\n/test/fixture/v1.0.0/src/other\n .out > .received\n .out > .other receipt\n.anchor\n//integer\n"
     };
     for (size_t index = 0; index < sizeof(sources) / sizeof(*sources); index++) {
         setup_producer_requests(sources[index], request_target);

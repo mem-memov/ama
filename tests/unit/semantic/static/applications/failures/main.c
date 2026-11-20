@@ -7,11 +7,11 @@
 /** Source-backed graph maps and ordinary input/body fields exercise different
  * allocation paths without mixing static and runtime module sections.
  */
-static const char *caller_source = "@...\n...result\n...family\n ...b < ...element\n"
-    "...integer type\n..integer\n";
-static const char *field_source = "@<\nfamily value\n...family\nelement value\n...element\n"
-    "input&\n.other\n@!\nanchor&\n..integer\nfield&\n.other\n";
-static const char *target_source = "@<\nfirst argument\n...a\nsecond argument\n...b\n@!\n";
+static const char *caller_source = "@...\n.result\n.family\n .b < .element\n"
+    ".integer type\n//integer\n";
+static const char *field_source = "@<\nfamily value\n.family\nelement value\n.element\n"
+    "input&\n/test/fixture/v1.0.0/src/other\n@!\nanchor&\n//integer\nfield&\n/test/fixture/v1.0.0/src/other\n";
+static const char *target_source = "@<\nfirst argument\n.a\nsecond argument\n.b\n@!\n";
 
 /** Find an exact original declaration or static result, with no foreign name lookup. */
 static const AstTypeExpression *expression(const char *name) {
@@ -32,10 +32,10 @@ static void it_unwinds_every_source_recovery_and_generated_input_allocation_refu
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
             const char *graph = partition == 5
-                ? "@...\n...result\n...family\n ...b < ...element\n...bad\n...family\n ...missing < ..integer\n"
+                ? "@...\n.result\n.family\n .b < .element\n.bad\n.family\n .missing < //integer\n"
                 : caller_source;
             setup_applications(partition < 2 || partition >= 4 ? graph : field_source, target_source);
-            const StaticTerm *head = application_symbol("...family");
+            const StaticTerm *head = application_symbol(".family");
             StaticTermCapture captures[] = {{.formal = application_formal(target_module, 0), .value = integer_type},
                 {.formal = application_formal(target_module, 1), .value = integer_type}};
             const StaticTerm *actual;
@@ -45,7 +45,7 @@ static void it_unwinds_every_source_recovery_and_generated_input_allocation_refu
             if (partition < 2 || partition >= 4) {
                 BindingApplication *requests;
                 assert(binding_normalize_static(&binding_plan, NULL, expression(NULL), &requests));
-                StaticTermOperand input = {.request = requests->first, .value = application_symbol("...element")};
+                StaticTermOperand input = {.request = requests->first, .value = application_symbol(".element")};
                 if (partition == 1) {
                     const StaticTerm *partial;
                     assert(static_term_nominal(&terms, target_module, captures, 1, (SourceSpan){0}, &partial));

@@ -1,5 +1,5 @@
 # This scheduler-owned FIFO owns entries; entries retain checked references, not tasks.
 @>
 entries[]
-.kind.entry
+/test/fixture/v1.0.0/src/kind/entry
 @!

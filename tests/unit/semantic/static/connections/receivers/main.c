@@ -7,8 +7,8 @@
  * labels/static names never consume the receiver's first module occurrence.
  */
 static void it_binds_result_and_assignment_receivers_before_any_type_is_concrete(void) {
-    setup_connections("@>\nreturned\n...type\n@!\nworker\n.other\nworker !\n received > received\n"
-        "known\n..integer\n |7\nreceived\n known\n", "@>\nreceived\n..integer\n@!\n");
+    setup_connections("@>\nreturned\n.type\n@!\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n received > received\n"
+        "known\n//integer\n |7\nreceived\n known\n", "@>\nreceived\n//integer\n@!\n");
     const StaticRuntimeModule *module, *again;
     assert(static_connection_runtime(&connections, caller_module, &module));
     assert(module->field_count == 4 && module->receiver_count == 2);
@@ -29,7 +29,7 @@ static void it_binds_result_and_assignment_receivers_before_any_type_is_concrete
  * later transfer equations without manufacturing a concrete nominal Type.
  */
 static void it_retains_simple_assignment_reference_list_and_continuation_receiver_forms(void) {
-    setup_connections("@!\nknown value\n..integer\nknown values[]\n..integer\nknown refs&[]\n..integer\n"
+    setup_connections("@!\nknown value\n//integer\nknown values[]\n//integer\nknown refs&[]\n//integer\n"
         "new value\n known value\nnew ref&\n &known value\nnew values[]\n known values[]\nnew refs&[]\n known refs&[]\n"
         "continued\n % known value\n", "@!\n");
     const StaticRuntimeModule *module;
@@ -52,11 +52,11 @@ static void it_retains_simple_assignment_reference_list_and_continuation_receive
  */
 static void it_rejects_future_explicit_duplicates_self_sources_and_unresolved_prior_uses(void) {
     const char *sources[] = {
-        "@!\nknown\n..integer\nfresh\n known\nfresh\n..integer\n",
-        "@!\nanchor&\n..integer\nfresh\n fresh\n",
-        "@!\nknown\n..integer\nfresh !\nfresh\n known\n",
-        "@!\nknown\n..integer\nvalues[]\n..integer\nknown[]\n values[]\n",
-        "@=\nfixed\n..integer\n@!\nanchor&\n..integer\nfixed\n anchor&\n"
+        "@!\nknown\n//integer\nfresh\n known\nfresh\n//integer\n",
+        "@!\nanchor&\n//integer\nfresh\n fresh\n",
+        "@!\nknown\n//integer\nfresh !\nfresh\n known\n",
+        "@!\nknown\n//integer\nvalues[]\n//integer\nknown[]\n values[]\n",
+        "@=\nfixed\n//integer\n@!\nanchor&\n//integer\nfixed\n anchor&\n"
     };
     for (size_t index = 0; index < sizeof(sources) / sizeof(*sources); index++) {
         setup_connections(sources[index], "@!\n");
@@ -78,7 +78,7 @@ static void it_rejects_future_explicit_duplicates_self_sources_and_unresolved_pr
  * separate and their multiword components are never individual declarations.
  */
 static void it_rejects_duplicate_runtime_roles_without_reclassifying_static_names(void) {
-    setup_connections("@=\nsame\n..integer\n@<\nsame&\n...some type\n@!\n", "@!\n");
+    setup_connections("@=\nsame\n//integer\n@<\nsame&\n.some type\n@!\n", "@!\n");
     const StaticRuntimeModule *module = NULL;
     assert(!static_connection_runtime(&connections, caller_module, &module));
     assert(module == NULL && connections.status == STATIC_CONNECTION_CONFLICT && connections.error.related_count == 1);

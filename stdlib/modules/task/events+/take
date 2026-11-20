@@ -1,5 +1,5 @@
 # Selected operation on the owning native event service.
 @>
 packet
-..task.packet
+//task/packet
 @C

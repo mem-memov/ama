@@ -17,7 +17,7 @@ static const DiagnosticRelated *binding_note(const char *role) {
 /** Existing declarations, all storage suffixes, role visibility, placeholder arity and static copy capability are checked before execution. */
 static void it_rejects_binding_role_suffix_arity_and_copy_capability_errors(void) {
     prepare_types();
-    file("generated/program/worker", "@=\nconstant\n.value\n@<\ninput&\n.value\nitems[]\n.value\n@>\noutput\n.value\n@!\nprivate\n.value\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nconstant\n/test/fixture/v1.0.0/src/value\n@<\ninput&\n/test/fixture/v1.0.0/src/value\nitems[]\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\nprivate\n/test/fixture/v1.0.0/src/value\n");
     const char *tails[] = {
         "worker !\n input < &value\n",
         "worker !\n items < values[]\n",
@@ -32,19 +32,19 @@ static void it_rejects_binding_role_suffix_arity_and_copy_capability_errors(void
     };
     for (size_t index = 0; index < sizeof(tails) / sizeof(*tails); index++) {
         char text[512];
-        int length = snprintf(text, sizeof(text), "@!\nworker\n.worker\nvalue\n.value\nvalues[]\n.value\n%s", tails[index]);
+        int length = snprintf(text, sizeof(text), "@!\nworker\n/test/fixture/v1.0.0/src/worker\nvalue\n/test/fixture/v1.0.0/src/value\nvalues[]\n/test/fixture/v1.0.0/src/value\n%s", tails[index]);
         assert(length > 0 && (size_t)length < sizeof(text));
         expect_resolved(text, false);
     }
-    file("generated/program/worker", "@<\ninput\n.resource\n@>\noutput\n.resource\n@!\n");
-    expect_resolved("@!\nworker\n.worker\nresource\n.resource\nworker !\n < resource\n", false);
-    expect_resolved("@!\nworker\n.worker\nresource\n.resource\nworker !\n > resource\n", false);
-    expect_resolved("@!\nworker\n.worker\nworker !\n <\n >\n", true);
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/resource\n@>\noutput\n/test/fixture/v1.0.0/src/resource\n@!\n");
+    expect_resolved("@!\nworker\n/test/fixture/v1.0.0/src/worker\nresource\n/test/fixture/v1.0.0/src/resource\nworker !\n < resource\n", false);
+    expect_resolved("@!\nworker\n/test/fixture/v1.0.0/src/worker\nresource\n/test/fixture/v1.0.0/src/resource\nworker !\n > resource\n", false);
+    expect_resolved("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n <\n >\n", true);
 }
 /** The later duplicate, the interface declaration and the first binding all retain their distinct original source locations. */
 static void it_retains_the_declaration_and_both_binding_sites_for_duplicate_labels(void) {
     prepare_types();
-    file("generated/program/worker", "@<\ninput\n.value\n@>\noutput\n.value\n@!\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\n");
     const char *tails[] = {
         "worker !\n input < value\n input < value\n",
         "worker !\n output > value\n output > other\n",
@@ -53,7 +53,7 @@ static void it_retains_the_declaration_and_both_binding_sites_for_duplicate_labe
     };
     for (size_t index = 0; index < sizeof(tails) / sizeof(*tails); index++) {
         char text[512];
-        int length = snprintf(text, sizeof(text), "@!\nworker\n.worker\nvalue\n.value\nother\n.value\n%s", tails[index]);
+        int length = snprintf(text, sizeof(text), "@!\nworker\n/test/fixture/v1.0.0/src/worker\nvalue\n/test/fixture/v1.0.0/src/value\nother\n/test/fixture/v1.0.0/src/value\n%s", tails[index]);
         assert(length > 0 && (size_t)length < sizeof(text));
         SemanticStatus status = resolve_text(text);
         assert(status == SEMANTIC_INVALID && semantic.error.related_count == 2);
@@ -67,8 +67,8 @@ static void it_retains_the_declaration_and_both_binding_sites_for_duplicate_labe
         assert(layout_text_is(declaration->location.span, index == 0 ? "input" : "output"));
         destroy_semantic();
     }
-    file("generated/program/worker", "@=\noutput\n.value\n");
-    SemanticStatus status = resolve_text("@!\nvalue\n.value\n.worker\n output >> value\n output >> value\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\noutput\n/test/fixture/v1.0.0/src/value\n");
+    SemanticStatus status = resolve_text("@!\nvalue\n/test/fixture/v1.0.0/src/value\n/test/fixture/v1.0.0/src/worker\n output >> value\n output >> value\n");
     /* Raw constant-read normalization rejects duplicate labels before solving
      * the namespace origin. It can name both bindings, not an invented formal. */
     assert(status == SEMANTIC_INVALID && semantic.error.related_count == 1);
@@ -82,15 +82,15 @@ static void it_rejects_invalid_modes_and_mixed_styles_before_semantic_analysis(v
     prepare_types();
     const char *tails[] = {
         "worker %\n <\n", "worker %\n < value\n", "worker !\n >> value\n",
-        "worker\n > value\n", "worker\n >>\n", ".worker !\n", ".worker %\n",
+        "worker\n > value\n", "worker\n >>\n", "/test/fixture/v1.0.0/src/worker !\n", "/test/fixture/v1.0.0/src/worker %\n",
         "worker !\n input < value\n > value\n", "worker !\n <\n output > value\n",
         "worker !\n input <\n", "worker !\n > value\n < value\n"
     };
     for (size_t index = 0; index < sizeof(tails) / sizeof(*tails); index++) {
         char text[512];
-        int length = snprintf(text, sizeof(text), "@!\nworker\n.worker\nvalue\n.value\n%s", tails[index]);
+        int length = snprintf(text, sizeof(text), "@!\nworker\n/test/fixture/v1.0.0/src/worker\nvalue\n/test/fixture/v1.0.0/src/value\n%s", tails[index]);
         assert(length > 0 && (size_t)length < sizeof(text));
-        file("generated/program/main", text);
+        file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
         setup_project();
         ProjectStatus status = load_root("generated/program");
         assert(status == PROJECT_SYNTAX_ERROR && !project.valid && diagnostic_valid(&project.error));

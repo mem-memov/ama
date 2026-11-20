@@ -1,13 +1,13 @@
 # Actual selected methods retain one native service; completion import produces owned declared data.
 @!
 inspect
-.inspect
+/test/fixture/v1.0.0/src/inspect
 service
-..task.events
+//task/events
 probe
-.worker
+/test/fixture/v1.0.0/src/worker
 same
-..task.token.same
+//task/token/same
 service !
  < |1
 service

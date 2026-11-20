@@ -11,7 +11,7 @@ static void run_constructor_project(bool sanitized) {
     read_stream(expectation, expected, sizeof(expected));
     int closed = fclose(expectation);
     assert(closed == 0);
-    compile_and_run_object(".main", expected, NULL, sanitized);
+    compile_and_run_object("/test/fixture/v1.0.0/src/main", expected, NULL, sanitized);
 }
 
 /** Verified native execution must preserve two independent objects and their methods. */

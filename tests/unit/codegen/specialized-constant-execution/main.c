@@ -7,8 +7,9 @@
 /** Real native literal and copy construction must produce independent values without entering namespace bodies. */
 static void it_constructs_specialized_constants_once_per_context_without_executing_namespace_bodies(void) {
     directory("generated/project");
-    file("generated/project/factory", "@...\n...numbers\n.container\n ...slot < .value\n");
-    file("generated/project/container", "@=\nfirst\n...slot\n |17\nsecond\n...slot\n first\nempty[]\n...slot\ndefault\n...slot\n@<\ninput\n...slot\n@!\nprobe\n.worker\nprobe !\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.numbers\n/test/fixture/v1.0.0/src/container\n .slot < /test/fixture/v1.0.0/src/value\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/container", "@=\nfirst\n.slot\n |17\nsecond\n.slot\n first\nempty[]\n.slot\ndefault\n.slot\n@<\ninput\n.slot\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n");
     host_launcher =
         "#include <assert.h>\n#include <string.h>\n#include \"project.h\"\n#include \"project.c\"\n"
         "int main(void) { AmaProjectHost hosts[2]={0}; AmaContextLease leases[2]={0}; AmaContextView views[2]={0};\n"
@@ -25,16 +26,17 @@ static void it_constructs_specialized_constants_once_per_context_without_executi
         "if(j!=2) assert(views[0].program->constants[j].storage->items[0].payload!=views[1].program->constants[j].storage->items[0].payload); }\n"
         "for(size_t i=0;i<2;i++) { assert(ama_context_leave(&leases[i]).code==AMA_OK); assert(ama_project_dispose(&hosts[i]).code==AMA_OK); }\n"
         "puts(\"independent specialization constants\"); return EXIT_SUCCESS; }\n";
-    execute_project("@!\nreplacement\n.value\n |99\n.factory\n ...numbers\n first >> first\n second >> second\n.factory\n ...numbers\n second >> again\nfirst\n replacement\nprobe\n.worker\nprobe !\n < first\nprobe !\n < second\n", "99:1:0\n17:2:0\n99:1:0\n17:2:0\nindependent specialization constants\n", true);
+    execute_project("@!\nreplacement\n/test/fixture/v1.0.0/src/value\n |99\n/test/fixture/v1.0.0/src/factory\n .numbers\n first >> first\n second >> second\n/test/fixture/v1.0.0/src/factory\n .numbers\n second >> again\nfirst\n replacement\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < first\nprobe !\n < second\n", "99:1:0\n17:2:0\n99:1:0\n17:2:0\nindependent specialization constants\n", true);
     host_launcher = NULL;
 }
 
 /** A failed concrete shared literal prevents both ordinary root execution and namespace-body execution. */
 static void it_reports_specialized_constant_construction_failure_before_root_execution(void) {
     directory("generated/project");
-    file("generated/project/factory", "@...\n...numbers\n.container\n ...slot < .value\n");
-    file("generated/project/container", "@=\nfirst\n...slot\n |invalid\n@<\ninput\n...slot\n@!\nprobe\n.worker\nprobe !\n");
-    execute_project("@!\n.factory\n ...numbers\n first >> first\nprobe\n.worker\nprobe !\n", "", false);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.numbers\n/test/fixture/v1.0.0/src/container\n .slot < /test/fixture/v1.0.0/src/value\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/container", "@=\nfirst\n.slot\n |invalid\n@<\ninput\n.slot\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n");
+    execute_project("@!\n/test/fixture/v1.0.0/src/factory\n .numbers\n first >> first\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n", "", false);
     expect_diagnostic("shared construction");
 }
 

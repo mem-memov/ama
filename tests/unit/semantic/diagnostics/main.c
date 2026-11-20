@@ -33,10 +33,10 @@ static bool equation_note(SourceSpan expected) {
  */
 static void it_reports_both_nominal_types_and_original_declarations(void) {
     prepare_types();
-    SemanticStatus status = resolve_text("@!\nsource\n.value\ndestination\n.other\ndestination\n source\n");
+    SemanticStatus status = resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/value\ndestination\n/test/fixture/v1.0.0/src/other\ndestination\n source\n");
     assert(status == SEMANTIC_INVALID && diagnostic_valid(&semantic.error));
     assert(layout_text_is(semantic.error.primary.span,"source"));
-    assert(semantic_nominal_note(&semantic.error,".value") && semantic_nominal_note(&semantic.error,".other"));
+    assert(semantic_nominal_note(&semantic.error,"/test/fixture/v1.0.0/src/value") && semantic_nominal_note(&semantic.error,"/test/fixture/v1.0.0/src/other"));
     const AstNode *source = project.entry->syntax.body.first;
     const AstNode *destination = source->next;
     assert(equation_note(source->as.declaration.type->head));
@@ -51,12 +51,12 @@ static void it_reports_both_nominal_types_and_original_declarations(void) {
  */
 static void it_preserves_callee_parameter_context_for_literal_capability_errors(void) {
     prepare_types();
-    file("generated/program/worker", "@<\ninput\n.resource\n@!\n");
-    SemanticStatus status = resolve_text("@!\nworker\n.worker\nworker !\n input < |payload\n");
-    assert(status == SEMANTIC_INVALID && strcmp(semantic.error.subject, ".resource") == 0);
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/resource\n@!\n");
+    SemanticStatus status = resolve_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n input < |payload\n");
+    assert(status == SEMANTIC_INVALID && strcmp(semantic.error.subject, "/test/fixture/v1.0.0/src/resource") == 0);
     assert(semantic.error.related_count == 2);
-    assert(layout_text_is(semantic.error.related[0].location.span, "input\n.resource"));
-    assert(strcmp(semantic.error.related[1].name, ".resource") == 0);
+    assert(layout_text_is(semantic.error.related[0].location.span, "input\n/test/fixture/v1.0.0/src/resource"));
+    assert(strcmp(semantic.error.related[1].name, "/test/fixture/v1.0.0/src/resource") == 0);
     assert(diagnostic_valid(&semantic.error));
     destroy_semantic();
 }
@@ -68,15 +68,15 @@ static void it_preserves_callee_parameter_context_for_literal_capability_errors(
  */
 static void it_identifies_a_noncopyable_native_seed_inside_a_composed_type(void) {
     prepare_types();
-    file("generated/program/worker", "@!\nchildren[]\n.worker\nresource\n.resource\n");
-    SemanticStatus status = resolve_text("@!\nsource\n.worker\ndestination\n.worker\ndestination\n source\n");
-    assert(status == SEMANTIC_INVALID && strcmp(semantic.error.subject, ".worker") == 0);
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\nchildren[]\n/test/fixture/v1.0.0/src/worker\nresource\n/test/fixture/v1.0.0/src/resource\n");
+    SemanticStatus status = resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/worker\ndestination\n/test/fixture/v1.0.0/src/worker\ndestination\n source\n");
+    assert(status == SEMANTIC_INVALID && strcmp(semantic.error.subject, "/test/fixture/v1.0.0/src/worker") == 0);
     assert(semantic.error.related_count == 3);
-    assert(layout_text_is(semantic.error.related[1].location.span, "resource\n.resource"));
+    assert(layout_text_is(semantic.error.related[1].location.span, "resource\n/test/fixture/v1.0.0/src/resource"));
     assert(strcmp(semantic.error.related[1].role, "owned field requiring independent copying") == 0);
-    assert(strcmp(semantic.error.related[2].name, ".resource") == 0);
-    SemanticType *type = semantic_find_type(&semantic, ".worker");
-    assert(type->clone_seed == semantic_find_type(&semantic, ".resource"));
+    assert(strcmp(semantic.error.related[2].name, "/test/fixture/v1.0.0/src/resource") == 0);
+    SemanticType *type = semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/worker");
+    assert(type->clone_seed == semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/resource"));
     assert(type->clone_cause != NULL);
     destroy_semantic();
 }
@@ -85,8 +85,8 @@ static void it_identifies_a_noncopyable_native_seed_inside_a_composed_type(void)
 static void it_preserves_first_semantic_failure_across_outer_refusal_reporting(void) {
     for (size_t memory_first = 0; memory_first < 2; memory_first++) {
         prepare_types();
-        assert(resolve_text("@!\nsource\n.value\n") == SEMANTIC_OK);
-        SemanticSymbol *symbol = semantic_find_type(&semantic, ".main")->first;
+        assert(resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/value\n") == SEMANTIC_OK);
+        SemanticSymbol *symbol = semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/main")->first;
         size_t before = allocation_count;
         if (memory_first) { assert(!semantic_memory_failure(&semantic)); }
         else { assert(!semantic_fail(&semantic, symbol->site, "First original failure", symbol)); }

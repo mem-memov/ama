@@ -3,6 +3,7 @@
  * @brief Verify driver commands, exact option rejection and output failures.
  */
 #include "../common.c"
+#include "../../fixtures/package.h"
 #include <sys/stat.h>
 #include <errno.h>
 #include <stdint.h>
@@ -24,6 +25,9 @@ static void it_documents_verified_project_compilation(void) {
     read_stream(output, message, capacity);
     assert(result == EXIT_SUCCESS);
     assert(strstr(message, "--compile") != NULL);
+    assert(strstr(message, "--check ROOT MODULE") != NULL);
+    assert(strstr(message, "// standard-library paths") != NULL);
+    assert(strstr(message, "double-dot") == NULL && strstr(message, "ROOT /test/fixture/v1.0.0/src/module") == NULL);
     assert(strstr(message, "--standard-root DIR") != NULL);
     assert(strstr(message, "--relocate-recover JOURNAL") != NULL);
     read_stream(errors, message, capacity);
@@ -70,7 +74,7 @@ static void it_rejects_every_retired_list_configuration_option(void) {
     const char *retired[] = {"--list-action", "--list-index", "--list-condition", "--list-outcome"};
     for (size_t index = 0; index < sizeof(retired) / sizeof(*retired); index++) {
         setup_test();
-        char *arguments[] = {"ama", "--check", "unopened-root", ".main", (char *)retired[index], ".value"};
+        char *arguments[] = {"ama", "--check", "unopened-root", "/test/fixture/v1.0.0/src/main", (char *)retired[index], "/test/fixture/v1.0.0/src/value"};
         int result = driver_run(6, arguments, output, errors);
         char message[1024];
         read_stream(errors, message, sizeof(message));
@@ -86,25 +90,26 @@ static void it_rejects_every_retired_list_configuration_option(void) {
 static void it_publishes_empty_handler_warnings_and_propagates_warning_output_failures(void) {
     int made = mkdir("generated/project", 0700);
     assert(made == 0 || errno == EEXIST);
-    FILE *main_source = fopen("generated/project/main", "wb");
+    fixture_package_prepare("generated/project", "fixture");
+    FILE *main_source = fopen("generated/project/packages/test/fixture/v1.0.0/src/main", "wb");
     assert(main_source != NULL);
-    int written = fputs("@!\nprobe\n.worker\nprobe !\n:\n", main_source);
+    int written = fputs("@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n:\n", main_source);
     int closed = fclose(main_source);
     assert(written != EOF && closed == 0);
-    FILE *worker_source = fopen("generated/project/worker", "wb");
+    FILE *worker_source = fopen("generated/project/packages/test/fixture/v1.0.0/src/worker", "wb");
     assert(worker_source != NULL);
     written = fputs("@!\n", worker_source);
     closed = fclose(worker_source);
     assert(written != EOF && closed == 0);
     setup_test();
-    char *arguments[] = {"ama", "--check", "generated/project", ".main"};
+    char *arguments[] = {"ama", "--check", "generated/project", "/test/fixture/v1.0.0/src/main"};
     int result = driver_run(4, arguments, output, errors);
     char message[1024];
     read_stream(errors, message, sizeof(message));
     assert(result == EXIT_SUCCESS && strstr(message, ":5:1: warning[empty-body]") != NULL);
     assert(strstr(message, "error[") == NULL);
     read_stream(output, message, sizeof(message));
-    assert(strstr(message, "checked .main") != NULL);
+    assert(strstr(message, "checked /test/fixture/v1.0.0/src/main") != NULL);
     destroy_test();
     setup_test();
     FILE *full = fopen("/dev/full", "w");

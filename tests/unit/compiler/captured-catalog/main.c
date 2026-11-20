@@ -20,25 +20,25 @@ static void it_checks_closed_static_exports_and_captured_native_future_paths_wit
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend,sources.allocator);
     ModuleSnapshotEntry entries[] = {
-        {".value",text("generated/not-created/value","@C\n"),1,1},
-        {".box",text("generated/not-created/box","@<\nvalue\n...slot\n@!\n"),1,2},
-        {".factory",text("generated/not-created/factory","@...\n...out\n.box\n ...slot < .value\n"),1,3},
-        {".main",text("generated/not-created/main","@!\nvalue\n.factory\n ...out\n"),1,4}
+        {"/test/fixture/v1.0.0/src/value",text("generated/not-created/value","@C\n"),1,1},
+        {"/test/fixture/v1.0.0/src/box",text("generated/not-created/box","@<\nvalue\n.slot\n@!\n"),1,2},
+        {"/test/fixture/v1.0.0/src/factory",text("generated/not-created/factory","@...\n.out\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/value\n"),1,3},
+        {"/test/fixture/v1.0.0/src/main",text("generated/not-created/main","@!\nvalue\n/test/fixture/v1.0.0/src/factory\n .out\n"),1,4}
     };
     assert(module_catalog_snapshot(&frontend.project.catalog,entries,4) == MODULE_OK);
     const ModuleSource *native = NULL;
-    assert(module_catalog_find(&frontend.project.catalog,".value",&native) == MODULE_OK);
+    assert(module_catalog_find(&frontend.project.catalog,"/test/fixture/v1.0.0/src/value",&native) == MODULE_OK);
     const SourceText *abi = text("generated/not-created/value.abi","+ initialize\n- destroy\n= clone\n");
     assert(module_catalog_snapshot_native(&frontend.project.catalog,native,
         "generated/not-created/value.c","generated/not-created/value.h",abi) == MODULE_OK);
-    const char *required[] = {".value",".box",".factory",".main"};
+    const char *required[] = {"/test/fixture/v1.0.0/src/value","/test/fixture/v1.0.0/src/box","/test/fixture/v1.0.0/src/factory","/test/fixture/v1.0.0/src/main"};
     bool valid = compiler_frontend_check_snapshot(&frontend,required,4);
     if (!valid) { fprintf(stderr,"Captured compiler: %s\n",frontend.error.message); }
     assert(valid && !frontend.valid && frontend.project.entry == NULL);
     /* Composite readiness is reserved for executable planning; source metadata
      * has its own completed phase certificates. */
     assert(frontend.specializations.valid && frontend.semantic.relations_valid && frontend.semantic.constants_valid);
-    assert(semantic_find_type(&frontend.semantic,".box") && !semantic_find_type(&frontend.semantic,".factory"));
+    assert(semantic_find_type(&frontend.semantic,"/test/fixture/v1.0.0/src/box") && !semantic_find_type(&frontend.semantic,"/test/fixture/v1.0.0/src/factory"));
     assert(!frontend.inputs.attempted && !frontend.inputs.sealed && !frontend.inputs.compared && !frontend.inputs.first);
     assert(!frontend.plan_initialized);
     struct stat metadata;
@@ -52,9 +52,9 @@ static void it_checks_empty_and_open_definition_only_catalogs_without_default_in
         setup_test();
         CompilerFrontend frontend;
         compiler_frontend_init(&frontend,sources.allocator);
-        ModuleSnapshotEntry entry = {".open",text("generated/not-created/open","@<\nvalue\n...slot\n@!\n"),1,1};
+        ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/open",text("generated/not-created/open","@<\nvalue\n.slot\n@!\n"),1,1};
         assert(module_catalog_snapshot(&frontend.project.catalog,open ? &entry : NULL,open) == MODULE_OK);
-        const char *required[] = {".open"};
+        const char *required[] = {"/test/fixture/v1.0.0/src/open"};
         assert(compiler_frontend_check_snapshot(&frontend,open ? required : NULL,open));
         assert(!frontend.valid && frontend.project.entry == NULL && frontend.semantic.first == NULL);
         assert(!frontend.plan_initialized && !frontend.inputs.sealed);

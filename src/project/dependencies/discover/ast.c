@@ -58,7 +58,7 @@ static bool node_dependencies(Project *project, DependencyPaths *paths, const As
     } else if (node->kind == AST_CALL) {
         if (node->as.call.mode == AST_RETAINED_READ && node->as.call.target->whole_list
             && node->as.call.has_selected && !project_collect_path(project, paths,
-                node->as.call.target->span, "..integer", PROJECT_ORDINARY_PATH)) { return false; }
+                node->as.call.target->span, "//integer", PROJECT_ORDINARY_PATH)) { return false; }
         if (node->as.call.mode == AST_CONSTANT_READ
             && !project_collect_expression(project, paths, node->as.call.namespace_expression, PROJECT_ORDINARY_PATH)) {
             return false;

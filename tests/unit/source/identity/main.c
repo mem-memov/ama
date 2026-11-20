@@ -61,12 +61,12 @@ static void it_preserves_unicode_names_and_matches_a_stable_full_identity_vector
     IdentityRegistry registry;
     identity_registry_init(&registry, sources.allocator);
     const char *members[] = {"价格"};
-    QualifiedIdentity identity = {IDENTITY_STATE_MEMBER, ".商店.商品", members, 1, {0}};
+    QualifiedIdentity identity = {IDENTITY_STATE_MEMBER, "/test/fixture/v1.0.0/src/商店/商品", members, 1, {0}};
     const IdentityName *name = NULL;
     IdentityStatus status = identity_register(&registry, identity, &name);
     assert(status == IDENTITY_OK);
-    assert(strcmp(name->source_name, ".商店.商品::价格") == 0);
-    assert(strcmp(name->internal_name, "ama_s_a56eb903510b813e736a527a0a51192611a9a1e8adbd577c4e58dc31ddead8a3") == 0);
+    assert(strcmp(name->source_name, "/test/fixture/v1.0.0/src/商店/商品::价格") == 0);
+    assert(strcmp(name->internal_name, "ama_s_da13462057ad3d2068e7f1cad824d674016d5ed4d7ad51ecde9bf1f0a1d799eb") == 0);
     const IdentityName *again = NULL;
     status = identity_register(&registry, identity, &again);
     assert(status == IDENTITY_OK && again == name);
@@ -85,12 +85,12 @@ static void it_separates_categories_components_case_and_unicode_spelling(void) {
     identity_registry_init(&registry, sources.allocator);
     const char *members[] = {"c"};
     QualifiedIdentity identities[] = {
-        {IDENTITY_TYPE, ".ab.c", NULL, 0, {0}},
-        {IDENTITY_TYPE, ".a.bc", NULL, 0, {0}},
-        {IDENTITY_TYPE, ".ab", members, 1, {0}},
-        {IDENTITY_TYPE, ".Ab.c", NULL, 0, {0}},
-        {IDENTITY_TYPE, ".é", NULL, 0, {0}},
-        {IDENTITY_TYPE, ".e\xcc\x81", NULL, 0, {0}}
+        {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/ab/c", NULL, 0, {0}},
+        {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/a/bc", NULL, 0, {0}},
+        {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/ab", members, 1, {0}},
+        {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/Ab/c", NULL, 0, {0}},
+        {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/é", NULL, 0, {0}},
+        {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/e\xcc\x81", NULL, 0, {0}}
     };
     const IdentityName *names[6];
     for (size_t index = 0; index < 6; index++) {
@@ -120,8 +120,8 @@ static void it_refuses_a_forced_digest_collision_without_merging_full_keys(void)
     setup_test();
     IdentityRegistry registry;
     identity_registry_init(&registry, sources.allocator);
-    QualifiedIdentity first = {IDENTITY_TYPE, ".one", NULL, 0, {0}};
-    QualifiedIdentity second = {IDENTITY_TYPE, ".two", NULL, 0, {0}};
+    QualifiedIdentity first = {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/one", NULL, 0, {0}};
+    QualifiedIdentity second = {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/two", NULL, 0, {0}};
     IdentityEncoding encoded_first;
     IdentityEncoding encoded_second;
     IdentityStatus status = identity_encode(&registry.arena, first, &encoded_first);
@@ -151,7 +151,7 @@ static void it_releases_every_failed_registration_and_rejects_invalid_identities
     identity_registry_init(&measured, sources.allocator);
     const char *parts[] = {"price"};
     const IdentityName *complete = NULL;
-    assert(identity_register(&measured, (QualifiedIdentity){IDENTITY_STATE_MEMBER, ".shop.item", parts, 1, {0}}, &complete) == IDENTITY_OK);
+    assert(identity_register(&measured, (QualifiedIdentity){IDENTITY_STATE_MEMBER, "/test/fixture/v1.0.0/src/shop/item", parts, 1, {0}}, &complete) == IDENTITY_OK);
     size_t count = allocation_count;
     identity_registry_destroy(&measured);
     destroy_test();
@@ -162,11 +162,11 @@ static void it_releases_every_failed_registration_and_rejects_invalid_identities
         failure_at = failure;
         const IdentityName *name = NULL;
         const char *members[] = {"price"};
-        QualifiedIdentity identity = {IDENTITY_STATE_MEMBER, ".shop.item", members, 1, {0}};
+        QualifiedIdentity identity = {IDENTITY_STATE_MEMBER, "/test/fixture/v1.0.0/src/shop/item", members, 1, {0}};
         IdentityStatus status = identity_register(&registry, identity, &name);
         assert(status == IDENTITY_OUT_OF_MEMORY && name == NULL && registry.first == NULL);
         failure_at = 0;
-        identity.module_path = ".bad..path";
+        identity.module_path = "/test/fixture/v1.0.0/src/bad//path";
         status = identity_register(&registry, identity, &name);
         assert(status == IDENTITY_INVALID);
         identity_registry_destroy(&registry);

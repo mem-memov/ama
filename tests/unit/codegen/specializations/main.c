@@ -21,9 +21,10 @@ static void it_executes_distinct_captured_constants_and_concrete_module_calls(vo
 /** Native startup failure must retain the original diagnostic and prevent entering the root body. */
 static void it_reports_concrete_shared_initialization_failure_without_entering_the_root(void) {
     directory("generated/project");
-    file("generated/project/factory", "@...\n...numbers\n.container\n ...slot < .value\n");
-    file("generated/project/container", "@=\nfirst\n...slot\n |invalid\n@<\ninput\n...slot\n@!\n");
-    execute_project("@!\n.factory\n ...numbers\n first >> value\nprobe\n.worker\nprobe !\n", "", false);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.numbers\n/test/fixture/v1.0.0/src/container\n .slot < /test/fixture/v1.0.0/src/value\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/container", "@=\nfirst\n.slot\n |invalid\n@<\ninput\n.slot\n@!\n");
+    execute_project("@!\n/test/fixture/v1.0.0/src/factory\n .numbers\n first >> value\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n", "", false);
     expect_diagnostic("shared construction");
 }
 

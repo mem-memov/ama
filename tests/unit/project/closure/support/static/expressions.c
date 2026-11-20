@@ -18,19 +18,19 @@ static SourceSpan static_path(const SourceText *source, size_t start, const char
  */
 static void it_extracts_only_concrete_static_heads_and_preserves_occurrence_sites(void) {
     setup_project();
-    const char *text = ".outer\n..inner\n...family\n.outer\n...alias\n";
+    const char *text = "/test/fixture/v1.0.0/src/outer\n//inner\n.family\n/test/fixture/v1.0.0/src/outer\n.alias\n";
     const SourceText *source;
     assert(source_manager_add(&sources, "static-dependencies", (const unsigned char *)text,
         strlen(text), &source) == SOURCE_OK);
-    AstTypeExpression inner = {.head = static_path(source, 7, "..inner"), .kind = AST_TYPE_MODULE_PATH};
+    AstTypeExpression inner = {.head = static_path(source, strlen("/test/fixture/v1.0.0/src/outer\n"), "//inner"), .kind = AST_TYPE_MODULE_PATH};
     AstStaticBinding inner_binding = {.kind = AST_STATIC_INPUT, .input = &inner};
-    AstTypeExpression outer = {.head = static_path(source, 0, ".outer"),
+    AstTypeExpression outer = {.head = static_path(source, 0, "/test/fixture/v1.0.0/src/outer"),
         .kind = AST_TYPE_MODULE_PATH, .first = &inner_binding, .last = &inner_binding};
-    AstTypeExpression repeated = {.head = static_path(source, 25, ".outer"), .kind = AST_TYPE_MODULE_PATH};
-    AstStaticBinding output = {.kind = AST_STATIC_OUTPUT, .receiver = static_path(source, 32, "...alias")};
+    AstTypeExpression repeated = {.head = static_path(source, strlen("/test/fixture/v1.0.0/src/outer\n//inner\n.family\n"), "/test/fixture/v1.0.0/src/outer"), .kind = AST_TYPE_MODULE_PATH};
+    AstStaticBinding output = {.kind = AST_STATIC_OUTPUT, .receiver = static_path(source, strlen("/test/fixture/v1.0.0/src/outer\n//inner\n.family\n/test/fixture/v1.0.0/src/outer\n"), ".alias")};
     AstStaticBinding second = {.kind = AST_STATIC_INPUT, .input = &repeated, .next = &output};
     AstStaticBinding first = {.kind = AST_STATIC_INPUT, .input = &outer, .next = &second};
-    AstTypeExpression root = {.head = static_path(source, 15, "...family"),
+    AstTypeExpression root = {.head = static_path(source, strlen("/test/fixture/v1.0.0/src/outer\n//inner\n"), ".family"),
         .kind = AST_TYPE_PLACEHOLDER, .first = &first, .last = &output};
     DependencyPaths paths = {0};
     size_t allocations = allocation_count;

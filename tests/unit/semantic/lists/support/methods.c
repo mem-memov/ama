@@ -4,14 +4,14 @@
 /** Method names/positions are fixed metadata and never synthetic module fields or action-dispatch parameters. */
 static void it_specializes_all_six_method_interfaces_without_fabricated_declarations(void) {
     prepare_lists();
-    SemanticStatus status = resolve_list("@!\nitems[]\n.value\nsample\n.value\n"
+    SemanticStatus status = resolve_list("@!\nitems[]\n/test/fixture/v1.0.0/src/value\nsample\n/test/fixture/v1.0.0/src/value\n"
         "items[]\n append !\n  source& < &sample\n  element& > added&\n"
         " insert !\n  source& < &sample\n  position < |0\n  element& > inserted&\n"
         " remove !\n  <\n clear !\n swap !\n  <\n  < |0\n length !\n  > count\nappend\n sample\nclear\n sample\n");
     if (status != SEMANTIC_OK) { fprintf(stderr, "List interfaces: %s\n", semantic.error.message); }
     assert(status == SEMANTIC_OK && semantic.resolved);
-    SemanticType *element = semantic_find_type(&semantic, ".value");
-    SemanticType *integer = semantic_find_type(&semantic, "..integer");
+    SemanticType *element = semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/value");
+    SemanticType *integer = semantic_find_type(&semantic, "//integer");
     assert(integer != NULL && integer == semantic.list_integer && integer->requires_size_bridge);
     const size_t inputs[] = {1, 2, 1, 0, 2, 0};
     const size_t outputs[] = {1, 1, 0, 0, 0, 1};
@@ -39,8 +39,8 @@ static void it_specializes_all_six_method_interfaces_without_fabricated_declarat
 /** Append's handle and length's owned integer are ordinary selectable values with explicit ephemeral result ordinals. */
 static void it_types_ephemeral_results_and_services_selected_from_module_results(void) {
     prepare_lists();
-    file("generated/program/producer", "@>\nitems&[]\n.resource\n@!\n");
-    SemanticStatus status = resolve_list("@!\nproducer\n.producer\nproducer\n items&[]\n  append !\n   element& !\n  length !\n   value !\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/producer", "@>\nitems&[]\n/test/fixture/v1.0.0/src/resource\n@!\n");
+    SemanticStatus status = resolve_list("@!\nproducer\n/test/fixture/v1.0.0/src/producer\nproducer\n items&[]\n  append !\n   element& !\n  length !\n   value !\n");
     assert(status == SEMANTIC_OK);
     SemanticStatement *append = list_method(SEMANTIC_LIST_APPEND);
     SemanticStatement *length = list_method(SEMANTIC_LIST_LENGTH);
@@ -48,7 +48,7 @@ static void it_types_ephemeral_results_and_services_selected_from_module_results
     SemanticStatement *element = append->actions->operation;
     SemanticStatement *value = length->actions->operation;
     assert(element->intrinsic_target && element->intrinsic_result == 0 && element->target_reference);
-    assert(element->access == NULL && element->namespace_type == semantic_find_type(&semantic, ".resource"));
+    assert(element->access == NULL && element->namespace_type == semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/resource"));
     assert(value->intrinsic_target && value->intrinsic_result == 0 && !value->target_reference);
     assert(value->access == NULL && value->namespace_type == semantic.list_integer);
     assert(element->enclosing_operation == append && value->enclosing_operation == length);
@@ -72,12 +72,12 @@ static void it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_int
     };
     for (size_t index = 0; index < sizeof(tails) / sizeof(*tails); index++) {
         char text[512];
-        int length = snprintf(text, sizeof(text), "@!\nitems[]\n.value\nreference&\n.value\nresult\n.value\n%s", tails[index]);
+        int length = snprintf(text, sizeof(text), "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\nresult\n/test/fixture/v1.0.0/src/value\n%s", tails[index]);
         assert(length > 0 && (size_t)length < sizeof(text));
         expect_list(text, false);
     }
     /* Whole-list resume is already a structural syntax failure, before semantic profiles exist. */
-    file("generated/program/main", "@!\nitems[]\n.value\nitems[] %\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nitems[] %\n");
     setup_project();
     ProjectStatus loaded = load_root("generated/program");
     assert(loaded == PROJECT_SYNTAX_ERROR && !project.valid && diagnostic_valid(&project.error));

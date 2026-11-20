@@ -4,8 +4,8 @@
  * permits posting native records only; [ASYNC-07](../../../../../spec/language/async-and-parallelism.md#async-07)
  * lets the executor wait and later import them. This standalone fixture joins all workers.
  */
-#include "ama_n_abc375d0b88e7042aa7ea80d4c0fbd4b3e7458ec160eff18287406a7c03d19ed.interface.h"
-#include "ama_n_abc375d0b88e7042aa7ea80d4c0fbd4b3e7458ec160eff18287406a7c03d19ed.begin.h"
+#include "ama_n_13346783d2b190ac1c94c7a18c6c95742fdd6ad92bf222403787e6f418671f8c.interface.h"
+#include "ama_n_13346783d2b190ac1c94c7a18c6c95742fdd6ad92bf222403787e6f418671f8c.begin.h"
 #include <pthread.h>
 #include <stdatomic.h>
 #include <stdlib.h>
@@ -43,8 +43,8 @@ AmaStatus AMA_NATIVE(destroy)(AMA_NATIVE(State) *state) {
     return status;
 }
 /** Capture only an owning native endpoint before pthread creation; every failure unwinds its candidate. */
-AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const ama_t_9db694e143579f845c79928561c197b4e40844c0c01cb856ebdf38f589594114 *parameters,
-    ama_t_69ea84d2b63265c0d2d29bc6a36eb8d9f696e1210aee0bb6ceebbfc19415ced5 *results, const AmaNativeServices *services, AmaStatus *status) {
+AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const ama_t_2d04f34e6c8d3782843541680a70129f80a8ad3c1fce39e7ba4555edfc2fffe2 *parameters,
+    ama_t_c40d6ced05c81dbd2a88fddfd90631706070183c0360ca865e42b5e4d35062a6 *results, const AmaNativeServices *services, AmaStatus *status) {
     (void)results; (void)services;
     *status = AMA_NATIVE(retire)(state);
     if (status->code != AMA_OK) { return; }
@@ -65,4 +65,4 @@ AMA_NATIVE_ENTRY void AMA_NATIVE(entry)(AMA_NATIVE(State) *state, const ama_t_9d
     state->job = job;
     *status = ama_status_success();
 }
-#include "ama_n_abc375d0b88e7042aa7ea80d4c0fbd4b3e7458ec160eff18287406a7c03d19ed.end.h"
+#include "ama_n_13346783d2b190ac1c94c7a18c6c95742fdd6ad92bf222403787e6f418671f8c.end.h"

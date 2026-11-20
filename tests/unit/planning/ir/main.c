@@ -7,7 +7,7 @@
 /** Self-looking copies retain all selection/check/prepare/commit edges; runtime decides identity. */
 static void it_keeps_runtime_replacement_checks_for_identically_spelled_assignments(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\nvalue\n.value\nitems[]\n.value\n |3\nindex\n.value\n |0\n"
+    PlanStatus status = plan_text("@!\nvalue\n/test/fixture/v1.0.0/src/value\nitems[]\n/test/fixture/v1.0.0/src/value\n |3\nindex\n/test/fixture/v1.0.0/src/value\n |0\n"
         "value\n value\nitems[index]\n items[index]\n");
     assert(status == PLAN_OK);
     const ControlOperation expected[] = {CONTROL_SELECT_RECEIVER, CONTROL_SELECT_SOURCE,
@@ -27,8 +27,8 @@ static void it_keeps_runtime_replacement_checks_for_identically_spelled_assignme
 /** Keep immutable constants outside instance slots/service masks while parameter/result/state roles remain explicit. */
 static void it_separates_shared_interface_persistent_and_service_storage(void) {
     prepare_types();
-    PlanStatus status = plan_text("@=\nconstant\n.value\n |shared\n@<\nparameter\n.value\n"
-        "@>\nresult\n.value\n@!\npersistent\n.value\nreferences&[]\n.value\n");
+    PlanStatus status = plan_text("@=\nconstant\n/test/fixture/v1.0.0/src/value\n |shared\n@<\nparameter\n/test/fixture/v1.0.0/src/value\n"
+        "@>\nresult\n/test/fixture/v1.0.0/src/value\n@!\npersistent\n/test/fixture/v1.0.0/src/value\nreferences&[]\n/test/fixture/v1.0.0/src/value\n");
     assert(status == PLAN_OK && plan.valid && plan.entry->field_count == 4);
     StorageField *field = plan.entry->first;
     assert(field->symbol->role == SYMBOL_PARAMETER && field->slot == 0);
@@ -52,10 +52,10 @@ static void it_separates_shared_interface_persistent_and_service_storage(void) {
 static void it_constructs_fields_before_payload_and_destroys_payload_before_reverse_fields(void) {
     prepare_types();
     native_fixture("worker", "+ initialize\n- destroy\n| literal\n= clone\n");
-    file("generated/program/worker", "@<\nfirst\n.value\nsecond&\n.resource\n@C\n");
-    PlanStatus status = plan_text("@!\nworker\n.worker\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\nfirst\n/test/fixture/v1.0.0/src/value\nsecond&\n/test/fixture/v1.0.0/src/resource\n@C\n");
+    PlanStatus status = plan_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\n");
     assert(status == PLAN_OK);
-    PlannedType *worker = program_plan_type(&plan, semantic_find_type(&semantic, ".worker"));
+    PlannedType *worker = program_plan_type(&plan, semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/worker"));
     LifeNode *node = worker->create.first;
     assert(node->operation == LIFE_CONSTRUCT_FIELD && node->field == worker->first);
     assert(node->next->operation == LIFE_CONSTRUCT_FIELD && node->next->field == worker->last);
@@ -86,8 +86,8 @@ static void it_constructs_fields_before_payload_and_destroys_payload_before_reve
 /** Verify resolved text-order input selection precedes exact callee declaration-order installation and return linking. */
 static void it_installs_inputs_in_declaration_order_after_source_order_evaluation(void) {
     prepare_types();
-    file("generated/program/worker", "@<\nfirst\n.value\nsecond\n.value\n@>\nresult\n.value\n@!\n");
-    PlanStatus status = plan_text("@!\nworker\n.worker\nvalue\n.value\nworker !\n"
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\nfirst\n/test/fixture/v1.0.0/src/value\nsecond\n/test/fixture/v1.0.0/src/value\n@>\nresult\n/test/fixture/v1.0.0/src/value\n@!\n");
+    PlanStatus status = plan_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\nvalue\n/test/fixture/v1.0.0/src/value\nworker !\n"
         " second < value\n first < |literal\n result > value\n");
     assert(status == PLAN_OK);
     ControlNode *node = plan.entry->entry;
@@ -117,8 +117,8 @@ static void it_installs_inputs_in_declaration_order_after_source_order_evaluatio
 /** Retained reads omit execution/reset and resumes omit input construction while retaining explicit output continuation. */
 static void it_reads_without_reset_and_resumes_without_input_installation(void) {
     prepare_types();
-    file("generated/program/worker", "@>\nresult\n.value\n@!\n");
-    PlanStatus status = plan_text("@!\nworker\n.worker\nvalue\n.value\nworker\n >> value\nworker %\n > value\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@>\nresult\n/test/fixture/v1.0.0/src/value\n@!\n");
+    PlanStatus status = plan_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\nvalue\n/test/fixture/v1.0.0/src/value\nworker\n >> value\nworker %\n > value\n");
     assert(status == PLAN_OK);
     ControlNode *read = plan.entry->entry;
     assert(read->operation == CONTROL_ACQUIRE_INSTANCE);
@@ -136,7 +136,7 @@ static void it_reads_without_reset_and_resumes_without_input_installation(void) 
 /** Check refusal snapshot/handler edges separately from capture-before-cleanup fatal paths, including empty alternatives. */
 static void it_keeps_refusal_alternatives_distinct_from_technical_failure_even_when_empty(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\nworker\n.worker\nworker !\n:\n");
+    PlanStatus status = plan_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n:\n");
     assert(status == PLAN_OK);
     ControlNode *acquire = plan.entry->entry;
     assert(acquire->alternative->operation == CONTROL_REFUSAL_SNAPSHOT);
@@ -145,7 +145,7 @@ static void it_keeps_refusal_alternatives_distinct_from_technical_failure_even_w
     assert(plan.entry->failure->operation == CONTROL_CAPTURE_ERROR);
     assert(plan.entry->failure->next->operation == CONTROL_CLEANUP_FAILURE);
     destroy_plan();
-    status = plan_text("@!\nworker\n.worker\nworker !\n");
+    status = plan_text("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n");
     assert(status == PLAN_OK && plan.entry->entry->alternative == plan.entry->failure);
     destroy_plan();
 }
@@ -153,7 +153,7 @@ static void it_keeps_refusal_alternatives_distinct_from_technical_failure_even_w
 /** Verify retained control successors, loop exits and saved resume labels without recursive C control frames. */
 static void it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\ncondition\n.value\ncondition\n{\n condition\n ?\n  %\n :\n  ^\n}\n>\n");
+    PlanStatus status = plan_text("@!\ncondition\n/test/fixture/v1.0.0/src/value\ncondition\n{\n condition\n ?\n  %\n :\n  ^\n}\n>\n");
     assert(status == PLAN_OK);
     ControlNode *loop = plan.entry->entry;
     ControlNode *branch = loop->next;
@@ -167,7 +167,7 @@ static void it_lowers_loop_break_branch_yield_and_early_return_to_explicit_edges
 /** Check every assignment phase in order and preserve source spans/type metadata for emission. */
 static void it_retains_receiver_source_preflight_prepare_commit_order_for_assignment(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\nfirst\n.value\nsecond\n.value\nfirst\n second\n");
+    PlanStatus status = plan_text("@!\nfirst\n/test/fixture/v1.0.0/src/value\nsecond\n/test/fixture/v1.0.0/src/value\nfirst\n second\n");
     assert(status == PLAN_OK);
     const ControlOperation expected[] = {CONTROL_SELECT_RECEIVER, CONTROL_SELECT_SOURCE,
         CONTROL_PREFLIGHT_REPLACEMENT, CONTROL_PREPARE_REPLACEMENT,
@@ -184,7 +184,7 @@ static void it_retains_receiver_source_preflight_prepare_commit_order_for_assign
 /** Enumerate each measured plan allocation failure and require safely destructible partial storage/lifecycle/control records. */
 static void it_cleans_partial_lifecycle_storage_and_control_plans_on_every_allocation_failure(void) {
     prepare_types();
-    const char *text = "@!\nworker\n.worker\nvalue\n.value\nworker !\n:\n value\n  value\n%\n";
+    const char *text = "@!\nworker\n/test/fixture/v1.0.0/src/worker\nvalue\n/test/fixture/v1.0.0/src/value\nworker !\n:\n value\n  value\n%\n";
     PlanStatus status = plan_text(text);
     assert(status == PLAN_OK);
     size_t baseline = allocation_count;
@@ -218,7 +218,7 @@ static void it_lowers_deep_branch_nesting_without_recursive_c_activations(void) 
     size_t capacity = depth * depth * 2 + depth * 20 + 128;
     char *text = malloc(capacity);
     assert(text != NULL);
-    int written = snprintf(text, capacity, "@!\ncondition\n.value\n");
+    int written = snprintf(text, capacity, "@!\ncondition\n/test/fixture/v1.0.0/src/value\n");
     assert(written > 0);
     size_t used = (size_t)written;
     for (size_t level = 0; level < depth; level++) {
@@ -244,7 +244,7 @@ static void it_lowers_deep_branch_nesting_without_recursive_c_activations(void) 
 /** Patch cyclic type-level calls only after entries exist, retaining instance selection and explicit return sites. */
 static void it_links_same_type_reentry_through_instance_selection_and_return_metadata(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\nother&\n.main\nother& !\n");
+    PlanStatus status = plan_text("@!\nother&\n/test/fixture/v1.0.0/src/main\nother& !\n");
     assert(status == PLAN_OK);
     ControlNode *acquire = plan.entry->entry;
     assert(acquire->operation == CONTROL_ACQUIRE_INSTANCE);
@@ -262,7 +262,7 @@ static void it_links_same_type_reentry_through_instance_selection_and_return_met
 /** Reject selector exhaustion without wrap and preserve zero as an absent position. */
 static void it_reserves_zero_for_absent_control_and_source_positions(void) {
     prepare_types();
-    PlanStatus status = plan_text("@!\nvalue\n.value\n");
+    PlanStatus status = plan_text("@!\nvalue\n/test/fixture/v1.0.0/src/value\n");
     assert(status == PLAN_OK);
     for (PlannedType *type = plan.first; type != NULL; type = type->next) {
         for (ControlNode *node = type->controls; node != NULL; node = node->allocated_next) { assert(node->selector != 0); }

@@ -9,9 +9,9 @@
 /** Graph pairs are public binders; nested labels belong to the callee interface.
  * Free-input classification remains separate from the public-binder pass.
  */
-static const char *explicit_source = "@...\n...first type\n...type\n"
-    "...second family\n...factory\n ...foreign key < ...type\n"
-    " ...nested family < ...other factory\n  ...foreign element < ...type\n";
+static const char *explicit_source = "@...\n.first type\n.type\n"
+    ".second family\n.factory\n .foreign key < .type\n"
+    " .nested family < .other factory\n  .foreign element < .type\n";
 
 /** Named pair collection has no runtime fields, explicit formals or signatures. */
 static void it_collects_graph_pairs_without_importing_free_inputs_or_foreign_labels(void) {
@@ -19,7 +19,7 @@ static void it_collects_graph_pairs_without_importing_free_inputs_or_foreign_lab
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && static_collect_explicit(&inventory, module));
     assert(module->parameter_count == 0 && module->result_count == 2);
-    const char *names[] = {"...first type", "...second family"};
+    const char *names[] = {".first type", ".second family"};
     StaticSymbol *symbol = module->first;
     const AstNode *node = project.entry->syntax.graph.first;
     for (size_t index = 0; index < 2; index++) {
@@ -32,9 +32,9 @@ static void it_collects_graph_pairs_without_importing_free_inputs_or_foreign_lab
         node = node->next;
     }
     assert(symbol == NULL && !inventory.valid);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...foreign key")) == NULL);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...foreign element")) == NULL);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...type")) == NULL);
+    assert(static_symbol_find(module, static_name_site(project.entry, ".foreign key")) == NULL);
+    assert(static_symbol_find(module, static_name_site(project.entry, ".foreign element")) == NULL);
+    assert(static_symbol_find(module, static_name_site(project.entry, ".type")) == NULL);
     destroy_static();
 }
 
@@ -42,13 +42,13 @@ static void it_collects_graph_pairs_without_importing_free_inputs_or_foreign_lab
  * header retained, independently of either RHS's spelling or category.
  */
 static void it_rejects_duplicate_public_pairs_with_original_headers(void) {
-    setup_static("@...\n...same\n...value\n...same\n...other\n", STATIC_SCOPE_SOURCE_TEXT);
+    setup_static("@...\n.same\n.value\n.same\n.other\n", STATIC_SCOPE_SOURCE_TEXT);
     StaticModule *module = static_module_add(&inventory, project.entry);
     assert(module != NULL && !static_collect_explicit(&inventory, module));
     assert(inventory.status == STATIC_INVALID && diagnostic_valid(&inventory.error));
     assert(inventory.error.related_count == 1 && module->first == module->last);
-    assert(layout_text_is(inventory.error.primary.span, "...same"));
-    assert(layout_text_is(inventory.error.related[0].location.span, "...same"));
+    assert(layout_text_is(inventory.error.primary.span, ".same"));
+    assert(layout_text_is(inventory.error.related[0].location.span, ".same"));
     assert(inventory.error.primary.span.start > inventory.error.related[0].location.span.start);
     destroy_static();
 }
@@ -57,7 +57,7 @@ static void it_rejects_duplicate_public_pairs_with_original_headers(void) {
  * their actual free Type parameters are classified by the interface phase.
  */
 static void it_excludes_ordinary_and_native_type_lines_from_public_graph_collection(void) {
-    const char *cases[] = {"@<\nvalue\n...type\n@!\n", "@<\nvalue\n...type\n@C\n"};
+    const char *cases[] = {"@<\nvalue\n.type\n@!\n", "@<\nvalue\n.type\n@C\n"};
     for (size_t index = 0; index < 2; index++) {
         setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         StaticModule *module = static_module_add(&inventory, project.entry);

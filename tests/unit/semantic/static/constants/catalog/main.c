@@ -7,12 +7,12 @@
 #include <stdint.h>
 
 /** Real parser/project shapes include every source-owning node and nested block. */
-static const char *source_text = "@=\nshared\n.other\n .other.value\n"
-    "@<\nplaceholder\n...other.value\ninput\n.other\n .other.value\n"
-    "@>\noutput\n.other\n .other.items[]\n@!\nlocal\n.other\n .other.value\n"
-    "local\n .other.value\nworker !\n < .other.value\n:\n handler\n .other\n  .other.value\n"
-    "flag\n?\n positive\n .other\n  .other.value\n:\n negative\n .other\n  .other.value\n"
-    "items[item&]\n{\n entry\n .other\n  .other.value\n}\n";
+static const char *source_text = "@=\nshared\n/test/fixture/v1.0.0/src/other\n /test/fixture/v1.0.0/src/other/value\n"
+    "@<\nplaceholder\n.other.value\ninput\n/test/fixture/v1.0.0/src/other\n /test/fixture/v1.0.0/src/other/value\n"
+    "@>\noutput\n/test/fixture/v1.0.0/src/other\n /test/fixture/v1.0.0/src/other/items[]\n@!\nlocal\n/test/fixture/v1.0.0/src/other\n /test/fixture/v1.0.0/src/other/value\n"
+    "local\n /test/fixture/v1.0.0/src/other/value\nworker !\n < /test/fixture/v1.0.0/src/other/value\n:\n handler\n /test/fixture/v1.0.0/src/other\n  /test/fixture/v1.0.0/src/other/value\n"
+    "flag\n?\n positive\n /test/fixture/v1.0.0/src/other\n  /test/fixture/v1.0.0/src/other/value\n:\n negative\n /test/fixture/v1.0.0/src/other\n  /test/fixture/v1.0.0/src/other/value\n"
+    "items[item&]\n{\n entry\n /test/fixture/v1.0.0/src/other\n  /test/fixture/v1.0.0/src/other/value\n}\n";
 
 /** Each source is cataloged once without synthetic type heads. Original spans
  * select exact nonimplicit dependency requests; same text at another site fails.
@@ -22,22 +22,22 @@ static void it_collects_all_original_sources_and_exact_loaded_dependency_occurre
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *module = static_module_find(&inventory, project.entry);
     assert(module->constant_source_count == 10 && module->parameter_count == 1);
-    assert(layout_text_is(module->first->name, "...other.value"));
+    assert(layout_text_is(module->first->name, ".other.value"));
     size_t count = 0, lists = 0;
     for (const StaticConstantOccurrence *site = module->first_constant_source; site; site = site->next) {
         assert(site->source->kind == AST_CONSTANT_SOURCE && site->statement != NULL);
-        assert(site->origin == project_find(&project, ".other"));
+        assert(site->origin == project_find(&project, "/test/fixture/v1.0.0/src/other"));
         assert(static_loaded_origin(module, site->source->module_path) == site->origin);
         SourceSpan wrong = site->source->module_path;
         wrong.end--;
         assert(static_loaded_origin(module, wrong) == NULL);
-        assert(layout_text_is(site->source->module_path, ".other"));
+        assert(layout_text_is(site->source->module_path, "/test/fixture/v1.0.0/src/other"));
         lists += site->source->constant_list;
         count++;
         if (site->next == NULL) { assert(site == module->last_constant_source); }
     }
     assert(count == 10 && lists == 1);
-    assert(static_symbol_find(module, static_name_site(project.entry, "...other.value"))->role == STATIC_PARAMETER);
+    assert(static_symbol_find(module, static_name_site(project.entry, ".other.value"))->role == STATIC_PARAMETER);
     destroy_static();
 }
 

@@ -25,7 +25,7 @@ bool editor_rename_name(EditorRename *plan, const unsigned char *bytes, size_t l
     size_t cursor = 0;
     if (plan->target.static_symbol) {
         if (!parser_static_name(full)) {
-            return editor_rename_fail(plan,DIAGNOSTIC_SYNTAX,"Replacement must be one complete three-dot static name",full);
+            return editor_rename_fail(plan,DIAGNOSTIC_SYNTAX,"Replacement must be one complete single-dot static name",full);
         }
         name = full;
     } else if (!lex_name(full,&cursor,&name) || cursor != length || name.start != 0 || name.end != length) {

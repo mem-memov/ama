@@ -7,8 +7,8 @@
 #include "semantic/static/bindings/normalize.h"
 
 /** Ordinary formals are Type slots introduced through runtime declarations. */
-static const char *request_producer = "@<\nfirst&\n...a\nsecond[]\n...b\n"
-    "@>\nx&\n...a\ny[]\n...b\n@!\n";
+static const char *request_producer = "@<\nfirst&\n.a\nsecond[]\n.b\n"
+    "@>\nx&\n.a\ny[]\n.b\n@!\n";
 
 /** Add only the exclusive graph marker; callers supply complete graph statements. */
 static char *request_text(const char *body) {
@@ -47,7 +47,7 @@ static inline const StaticOccurrence *request_head(const char *text) {
 /** Snapshot the explicitly supplied actual ordinary constructor's full residuals. */
 static inline BindingInterface *request_interface(void) {
     BindingInterface *view = NULL;
-    assert(binding_source_interface(&binding_plan, binding_module(project_find(&project, ".other")),
+    assert(binding_source_interface(&binding_plan, binding_module(project_find(&project, "/test/fixture/v1.0.0/src/other")),
         BINDING_MODULE_SURFACE, NULL, 0, &view));
     return view;
 }

@@ -29,7 +29,7 @@ static void it_generates_complete_cycle_safe_headers_and_standalone_native_scaff
         int compiled = compile_file("generated/probe.c");
         assert(compiled == 0);
     }
-    int compiled = compile_file("generated/project/main.c");
+    int compiled = compile_file("generated/project/packages/test/fixture/v1.0.0/src/main.c");
     assert(compiled == 0);
     end_scaffold();
 }
@@ -60,7 +60,7 @@ static void it_exports_native_authoring_names_and_complete_role_keys(void) {
             "import json,subprocess,sys\n"
             "model=json.load(open('generated/native/native-model.json',encoding='utf-8'))\n"
             "assert model['format']=='ama-native-model-1'\n"
-            "assert {r['module'] for r in model['modules']}=={'.main','.value'}\n"
+            "assert {r['module'] for r in model['modules']}=={'/test/fixture/v1.0.0/src/main','/test/fixture/v1.0.0/src/value'}\n"
             "for row in model['modules']:\n"
             " keys=[row[r]['key_hex'] for r in ('namespace','parameters','results')]\n"
             " assert len(set(keys))==3 and all(bytes.fromhex(k) for k in keys)\n"
@@ -98,7 +98,7 @@ static void it_unwinds_each_scaffold_model_allocation_failure(void) {
  */
 static const ScaffoldType *value_type(void) {
     for (const ScaffoldType *type = scaffold.types; type != NULL; type = type->next) {
-        if (strcmp(type->plan->type->module->source->logical_path, ".value") == 0) {
+        if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/value") == 0) {
             return type;
         }
     }
@@ -184,7 +184,7 @@ static void it_composes_typed_views_and_identically_named_native_helpers_in_one_
 static void it_uses_the_same_strict_frontend_for_checking_and_generation(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-    bool checked = compiler_frontend_check(&frontend, &root, 1, ".main");
+    bool checked = compiler_frontend_check(&frontend, &root, 1, "/test/fixture/v1.0.0/src/main");
     assert(checked && !frontend.authoring && frontend.plan.valid);
     native_scaffold_init(&scaffold, &frontend, sources.allocator);
     bool built = build_scaffold(false);
@@ -256,7 +256,7 @@ static void it_retains_both_lifecycle_records_for_a_shared_compatible_c_helper(v
 static void it_unwinds_every_proposed_frontend_allocation_failure(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-    bool checked = compiler_frontend_authoring(&frontend, &root, 1, ".main", contract);
+    bool checked = compiler_frontend_authoring(&frontend, &root, 1, "/test/fixture/v1.0.0/src/main", contract);
     assert(checked);
     assert(frontend.inputs.sealed && frontend.inputs.compared);
     assert(project_inputs_find(&frontend.inputs, PROJECT_INPUT_CONFIGURATION, "native authoring ABI") != NULL);
@@ -265,7 +265,7 @@ static void it_unwinds_every_proposed_frontend_allocation_failure(void) {
     for (size_t failure = 1; failure <= count; failure++) {
         setup_frontend();
         failure_at = failure;
-        checked = compiler_frontend_authoring(&frontend, &root, 1, ".main", contract);
+        checked = compiler_frontend_authoring(&frontend, &root, 1, "/test/fixture/v1.0.0/src/main", contract);
         assert(!checked && frontend.error.code == DIAGNOSTIC_OUT_OF_MEMORY);
         destroy_frontend();
     }

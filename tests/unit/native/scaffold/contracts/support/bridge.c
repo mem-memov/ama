@@ -4,10 +4,11 @@
 /** Write ordinary and standard same-basename modules; only the requested entry participates in each checked closure. */
 static void prepare_bridge(const char *standard_header) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     directory("generated/standard");
     directory("generated/standard/nested");
     const char *unrelated = "struct AMA_NATIVE(State) { size_t value; };\nvoid AMA_NATIVE(from_size)(void);\n";
-    contract_native("generated/project/integer", "@C\n", unrelated);
+    contract_native("generated/project/packages/test/fixture/v1.0.0/src/integer", "@C\n", unrelated);
     contract_native("generated/standard/integer", "@C\n", standard_header);
     contract_native("generated/standard/nested/integer", "@C\n", unrelated);
     contract_native("generated/standard/Integer", "@C\n", unrelated);
@@ -26,7 +27,7 @@ static void bridge_header_source(void) {
 static void it_binds_only_the_exact_standard_integer_header_bridge_and_keeps_six_abi_records(void) {
     assert(ABI_BINDING_COUNT == 6);
     const char *header = "struct AMA_NATIVE(State) { size_t value; };\nAmaStatus AMA_NATIVE(from_size)(AMA_NATIVE(State) *destination,size_t value);\n";
-    const char *entries[] = {".integer", "..integer", "..nested.integer", "..Integer"};
+    const char *entries[] = {"/test/fixture/v1.0.0/src/integer", "//integer", "//nested/integer", "//Integer"};
     for (size_t index = 0; index < 4; index++) {
         prepare_bridge(header);
         begin_contract(entries[index], false);
@@ -76,7 +77,7 @@ static void it_rejects_missing_or_incompatible_standard_integer_bridge_declarati
     };
     for (size_t index = 0; index < 3; index++) {
         prepare_bridge(headers[index]);
-        begin_contract("..integer", false);
+        begin_contract("//integer", false);
         bool built = build_contract(false, false);
         assert(built);
         bool published = native_scaffold_publish(&scaffold);
@@ -94,7 +95,7 @@ static void it_rejects_missing_or_incompatible_standard_integer_bridge_declarati
     }
     prepare_bridge(headers[0]);
     file("generated/standard/integer.abi", "+ from_size\n- destroy\n");
-    begin_contract("..integer", false);
+    begin_contract("//integer", false);
     bool built = build_contract(false, false);
     assert(!built && scaffold.error.code == DIAGNOSTIC_TYPE_MISMATCH);
     assert(strstr(scaffold.error.message, "from_size") != NULL);
@@ -104,7 +105,7 @@ static void it_rejects_missing_or_incompatible_standard_integer_bridge_declarati
 static void it_generates_an_explicit_unwritten_standard_bridge_without_overwriting_existing_files(void) {
     const char *existing_header = "struct AMA_NATIVE(State) { size_t value; };\nAmaStatus AMA_NATIVE(from_size)(AMA_NATIVE(State) *destination,size_t value);\n";
     prepare_bridge(existing_header);
-    begin_contract("..integer", false);
+    begin_contract("//integer", false);
     bool built = build_contract(true, false);
     assert(built);
     bool published = native_scaffold_publish(&scaffold);
@@ -119,7 +120,7 @@ static void it_generates_an_explicit_unwritten_standard_bridge_without_overwriti
     assert(removed == 0);
     removed = unlink("generated/standard/integer.abi");
     assert(removed == 0);
-    begin_contract("..integer", true);
+    begin_contract("//integer", true);
     built = build_contract(true, false);
     assert(built);
     published = native_scaffold_publish(&scaffold);

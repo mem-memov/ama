@@ -20,7 +20,7 @@ typedef struct SavedFile {
 /** Build a simple native interface at an explicit fresh/refresh destination. */
 static void prepare_publication(const char *destination, bool changed) {
     prepare_native();
-    file("generated/project/main", changed ? "@<\nchanged\n.value\n@C\n" : "@<\noriginal\n.value\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", changed ? "@<\nchanged\n/test/fixture/v1.0.0/src/value\n@C\n" : "@<\noriginal\n/test/fixture/v1.0.0/src/value\n@C\n");
     begin_scaffold();
     bool built = native_scaffold_build(&scaffold, (ScaffoldOptions){
         .directory = destination, .sdk = TEST_SDK, .compiler = "gcc"});

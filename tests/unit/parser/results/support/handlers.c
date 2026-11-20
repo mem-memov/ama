@@ -34,7 +34,7 @@ static void it_attaches_refusal_markers_to_their_exact_operations_and_resets_han
 /** Selection closes inputs even with zero ordinary outputs; handlers align with operations rather than bindings. */
 static void it_rejects_input_after_selection_and_misindented_or_ineligible_handlers(void) {
     const char *invalid[] = {"@!\nroot !\n child !\n < source", "@!\nroot !\n child !\n  > receiver\n  :\n   >",
-        "@!\n..palette\n method !", "@!\n..palette\n value >> receiver\n:\n >",
+        "@!\n//palette\n method !", "@!\n//palette\n value >> receiver\n:\n >",
         "@!\nroot !\n methods&[] %", "@!\nroot !\n child\n", "@!\nroot !\n child !\n # child arguments closed\n  > receiver",
         "@!\nroot !\n child %\n  < source"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {

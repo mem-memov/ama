@@ -3,7 +3,7 @@
  */
 /** Emit readable test-local aliases from exact registered identities, without duplicating the generator's naming algorithm. */
 static void probe_aliases(FILE *output) {
-    const char *logical[] = {".main", ".plain", ".twin", ".worker", ".palette"};
+    const char *logical[] = {"/test/fixture/v1.0.0/src/main", "/test/fixture/v1.0.0/src/plain", "/test/fixture/v1.0.0/src/twin", "/test/fixture/v1.0.0/src/worker", "/test/fixture/v1.0.0/src/palette"};
     const char *aliases[] = {"ROOT", "PLAIN", "TWIN", "WORKER", "NAMESPACE"};
     for (size_t index = 0; index < 5; index++) {
         const ScaffoldType *type = layout_type(logical[index]);
@@ -26,7 +26,7 @@ static void probe_aliases(FILE *output) {
         }
     }
     const char *fields[] = {"first", "second", "other", "items", "reference", "references", "worker"};
-    const ScaffoldType *root = layout_type(".main");
+    const ScaffoldType *root = layout_type("/test/fixture/v1.0.0/src/main");
     assert(root->plan->field_count == 7);
     for (size_t index = 0; index < 7; index++) {
         const ScaffoldMember *member = layout_member(root, fields[index]);
@@ -34,7 +34,7 @@ static void probe_aliases(FILE *output) {
         int written = fprintf(output, "#define FIELD_%s %s\n", fields[index], member->identity->internal_name);
         assert(written > 0);
     }
-    int written = fprintf(output, "#define FIELD_input %s\n", layout_member(layout_type(".worker"), "input")->identity->internal_name);
+    int written = fprintf(output, "#define FIELD_input %s\n", layout_member(layout_type("/test/fixture/v1.0.0/src/worker"), "input")->identity->internal_name);
     assert(written > 0);
 }
 /** Assert descriptors against the C compiler's real layout, independently of emitted descriptor initializer text. */

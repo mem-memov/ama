@@ -7,10 +7,10 @@
  */
 static void it_rejects_duplicate_and_unknown_named_graph_requests(void) {
     const char *cases[] = {
-        "@...\n.other\n ...a < ...value\n ...a < ...value\n ...out > ...one\n",
-        "@...\n.other\n ...out > ...one\n ...out > ...two\n",
-        "@...\n.other\n ...unknown < ...value\n ...out > ...one\n",
-        "@...\n.other\n ...unknown > ...one\n"
+        "@...\n/test/fixture/v1.0.0/src/other\n .a < .value\n .a < .value\n .out > .one\n",
+        "@...\n/test/fixture/v1.0.0/src/other\n .out > .one\n .out > .two\n",
+        "@...\n/test/fixture/v1.0.0/src/other\n .unknown < .value\n .out > .one\n",
+        "@...\n/test/fixture/v1.0.0/src/other\n .unknown > .one\n"
     };
     for (size_t index = 0; index < 4; index++) {
         for (size_t known = 0; known < 2; known++) {
@@ -36,7 +36,7 @@ static void it_rejects_duplicate_and_unknown_named_graph_requests(void) {
 static void it_unwinds_every_named_graph_request_allocation_failure(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_named_requests("@...\n.other\n ...a < ...value\n ...out > ...one\n");
+        setup_named_requests("@...\n/test/fixture/v1.0.0/src/other\n .a < .value\n .out > .one\n");
         BindingInterface *view = named_interface(NULL, 0);
         BindingApplication *application = NULL;
         size_t before = allocation_count;

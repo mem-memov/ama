@@ -1,26 +1,26 @@
 # Own the task in persistent local storage; public state changes use selected children.
 @<
 first epoch
-..task.generation
+//task/generation
 first generation
-..task.generation
+//task/generation
 @>
 self&
-.record
+/test/fixture/v1.0.0/src/record
  &
 task&
-.task
+/test/fixture/v1.0.0/src/task
 epoch
-..task.generation
+//task/generation
 generation
-..task.generation
+//task/generation
 enrolled
-..task.flag
+//task/flag
 waiting
-..task.flag
+//task/flag
 @!
 owned task
-.task
+/test/fixture/v1.0.0/src/task
 epoch
  first epoch
 generation

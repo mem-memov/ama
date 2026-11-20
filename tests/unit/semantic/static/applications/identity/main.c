@@ -9,8 +9,8 @@
 /** Ordinary field expressions supply two distinct lexical sites and one
  * independently parameterized containing owner.
  */
-static const char *caller_source = "@<\nowner\n...owner type\n@!\nfirst\n.other\nsecond\n.other\n";
-static const char *producer_source = "@<\nargument\n...slot\n@!\n";
+static const char *caller_source = "@<\nowner\n.owner type\n@!\nfirst\n/test/fixture/v1.0.0/src/other\nsecond\n/test/fixture/v1.0.0/src/other\n";
+static const char *producer_source = "@<\nargument\n.slot\n@!\n";
 
 /** Resolve real parsed field expression identities in source order. */
 static const AstTypeExpression *field_expression(const StaticModule *module, size_t index) {
@@ -32,8 +32,8 @@ static void it_separates_result_owner_and_occurrence_keys(void) {
     setup_static(caller_source, producer_source);
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *caller = static_module_find(&inventory, project.entry);
-    const StaticModule *producer = static_module_find(&inventory, project_find(&project, ".other"));
-    assert(caller->first->site.start == static_name_site(project.entry, "...owner type").start);
+    const StaticModule *producer = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
+    assert(caller->first->site.start == static_name_site(project.entry, ".owner type").start);
     StaticTermStore store;
     static_term_store_init(&store, &inventory, sources.allocator);
     const StaticTermEnvironment *environment, *applied;
@@ -61,7 +61,7 @@ static void it_separates_result_owner_and_occurrence_keys(void) {
     assert(diagnostic_valid(&solver.error) && solver.error.related_count == 2);
     assert(solver.error.related[0].location.span.source == first_site->span.source);
     assert(solver.error.related[0].location.span.start == first_site->span.start);
-    assert(strcmp(solver.error.related[0].name, ".main") == 0);
+    assert(strcmp(solver.error.related[0].name, "/test/fixture/v1.0.0/src/main") == 0);
     static_constraint_destroy(&solver);
     static_term_store_destroy(&store);
     destroy_static();
@@ -71,10 +71,10 @@ static void it_separates_result_owner_and_occurrence_keys(void) {
  * separate keys; repeating the same source use preserves each exact identity.
  */
 static void it_keeps_graph_input_result_and_public_alias_keys_distinct(void) {
-    setup_static("@...\n.other\n ...out > ...alias\n", "@...\n...out\n...slot\n");
+    setup_static("@...\n/test/fixture/v1.0.0/src/other\n .out > .alias\n", "@...\n.out\n.slot\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *caller = static_module_find(&inventory, project.entry);
-    const StaticModule *producer = static_module_find(&inventory, project_find(&project, ".other"));
+    const StaticModule *producer = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
     const StaticSymbol *formal = static_symbol_at(producer, STATIC_PARAMETER, 0);
     const StaticSymbol *alias = static_symbol_at(caller, STATIC_RESULT, 0);
     const AstTypeExpression *site = caller->first_occurrence->expression;

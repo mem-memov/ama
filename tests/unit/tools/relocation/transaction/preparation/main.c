@@ -28,7 +28,7 @@ static void it_prepares_exact_bytes_attributes_and_literal_links(void) {
     RelocationTransactionSlot *slot = relocation_transaction_slot(&transaction,preview.destination);
     assert(slot != NULL && slot->created);
     struct stat expected;
-    assert(lstat(path("project/old/a"),&expected) == 0);
+    assert(lstat(path("project/packages/test/fixture/v1.0.0/src/old/a"),&expected) == 0);
     expected.st_mode = (expected.st_mode&~07777)|0640;
     struct stat copied;
     assert(relocation_transaction_file(&transaction,slot->prepared,text,&expected,&copied));
@@ -67,7 +67,7 @@ static void it_never_overwrites_an_unexpected_rename_target(void) {
     RelocationTransactionSlot *slot = relocation_transaction_slot(&transaction,preview.destination);
     assert(slot != NULL);
     struct stat expected, copied;
-    assert(lstat(path("project/old/a"),&expected) == 0);
+    assert(lstat(path("project/packages/test/fixture/v1.0.0/src/old/a"),&expected) == 0);
     const SourceText *first = NULL, *second = NULL;
     assert(source_manager_add(&sources,"first",(const unsigned char *)"first",5,&first) == SOURCE_OK);
     assert(source_manager_add(&sources,"second",(const unsigned char *)"second",6,&second) == SOURCE_OK);
@@ -103,7 +103,7 @@ static void it_refuses_unavailable_prepared_ownership_before_publication(void) {
     const SourceText *text = NULL;
     assert(source_manager_add(&sources,"ownership",(const unsigned char *)"bytes",5,&text) == SOURCE_OK);
     struct stat expected, actual;
-    assert(lstat(path("project/old/a"),&expected) == 0);
+    assert(lstat(path("project/packages/test/fixture/v1.0.0/src/old/a"),&expected) == 0);
     expected.st_uid ^= 1;
     transaction.io = (RelocationIO){NULL,deny_owner};
     assert(!relocation_transaction_file(&transaction,slot->prepared,text,&expected,&actual));

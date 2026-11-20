@@ -1,5 +1,5 @@
 # Capture one immutable native token before starting a native-only worker.
 @<
 token
-..task.token
+//task/token
 @C

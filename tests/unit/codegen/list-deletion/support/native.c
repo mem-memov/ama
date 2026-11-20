@@ -6,7 +6,7 @@ static bool trace_resource_destruction;
 /** A technical Busy from destruction must not become the method's admission handler. */
 static const char *deletion_native_hook(const ScaffoldType *type, AbiOperation operation) {
     if (trace_resource_destruction && operation == ABI_DESTROY
-        && strcmp(type->plan->type->module->source->logical_path, ".resource") == 0) {
+        && strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/resource") == 0) {
         return " { assert(state->address==state); printf(\"drop=%zu\\n\",state->number);"
             "return state->number==2 ? ama_status_make(AMA_BUSY,NULL,0) : ama_status_success(); }\n";
     }
@@ -15,7 +15,7 @@ static const char *deletion_native_hook(const ScaffoldType *type, AbiOperation o
 
 /** Read the declared native input representation through its actual typed view. */
 static bool deletion_native_entry(FILE *output, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".inspect") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/inspect") != 0) { return false; }
     int written = fputs("printf(\"value=%zu\\n\",parameters->AMA_INPUT(0)->payload->number);\n", output);
     assert(written != EOF);
     return true;
@@ -25,8 +25,9 @@ static bool deletion_native_entry(FILE *output, const ScaffoldType *type) {
 static void deletion_standard(void) {
     insertion_standard();
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     native_fixture("resource", "@C\n");
-    native_fixture("inspect", "@<\ninput\n.resource\n@C\n");
+    native_fixture("inspect", "@<\ninput\n/test/fixture/v1.0.0/src/resource\n@C\n");
     trace_resource_destruction = false;
     native_hook_override = deletion_native_hook;
     native_entry_override = deletion_native_entry;

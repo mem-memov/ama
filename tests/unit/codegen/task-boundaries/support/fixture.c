@@ -15,7 +15,8 @@ static void boundary_source(const char *path, char source[32768]) {
 /** Compose unchanged queue mechanics with the copy-specific task, owning record and explicit resume step. */
 static void boundary_project(void) {
     directory("generated/project");
-    directory("generated/project/kind");
+    fixture_package_prepare("generated/project", "fixture");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/kind");
     const char *shared[] = {"queue", "entry", "enqueue", "pop", "dispatch"};
     const char *local[] = {"record", "task", "step"};
     char source[32768], input[256], output[256];
@@ -23,7 +24,7 @@ static void boundary_project(void) {
         int length = snprintf(input, sizeof(input), "../ready-queues/project/kind/%s", shared[index]);
         assert(length > 0 && (size_t)length < sizeof(input));
         boundary_source(input, source);
-        length = snprintf(output, sizeof(output), "generated/project/kind/%s", shared[index]);
+        length = snprintf(output, sizeof(output), "generated/project/packages/test/fixture/v1.0.0/src/kind/%s", shared[index]);
         assert(length > 0 && (size_t)length < sizeof(output));
         file(output, source);
     }
@@ -31,16 +32,16 @@ static void boundary_project(void) {
         int length = snprintf(input, sizeof(input), "project/kind/%s", local[index]);
         assert(length > 0 && (size_t)length < sizeof(input));
         boundary_source(input, source);
-        length = snprintf(output, sizeof(output), "generated/project/kind/%s", local[index]);
+        length = snprintf(output, sizeof(output), "generated/project/packages/test/fixture/v1.0.0/src/kind/%s", local[index]);
         assert(length > 0 && (size_t)length < sizeof(output));
         file(output, source);
     }
     native_fixture("value", "@C\n");
-    native_fixture("worker", "@<\ninput\n.value\n |7\n@>\noutput\n.value\n input\nother\n.value\n |99\n@C\n");
+    native_fixture("worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n |7\n@>\noutput\n/test/fixture/v1.0.0/src/value\n input\nother\n/test/fixture/v1.0.0/src/value\n |99\n@C\n");
     boundary_source("project/scheduler", source);
-    file("generated/project/scheduler", source);
+    file("generated/project/packages/test/fixture/v1.0.0/src/scheduler", source);
     boundary_source("project/port", source);
-    file("generated/project/port", source);
+    file("generated/project/packages/test/fixture/v1.0.0/src/port", source);
 }
 
 /** Execute an explicitly maintained copy or consumption schedule through real generated C. */

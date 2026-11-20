@@ -1,13 +1,13 @@
 # A deliberate protocol violation proves the native trace checks queued state even under NDEBUG.
 @!
 registry
-.red.registry
+/test/fixture/v1.0.0/src/red/registry
 queue
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 enqueue
-.red.enqueue
+/test/fixture/v1.0.0/src/red/enqueue
 step
-.red.step
+/test/fixture/v1.0.0/src/red/step
 registry
  records[]
   append !

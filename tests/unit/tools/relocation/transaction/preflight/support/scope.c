@@ -6,9 +6,9 @@ static void it_revalidates_complete_scope_and_original_bytes(void) {
     const char *names[] = {"added-source","changed-importer","removed-source"};
     for (size_t partition = 0; partition < 3; partition++) {
         prepare(names[partition]);
-        if (partition == 0) { file("imports/extra","@!\n"); }
-        else if (partition == 1) { file("imports/unused","@!\nvalue\n.old.a\n# changed\n"); }
-        else { assert(unlink(path("project/old/a")) == 0); }
+        if (partition == 0) { file("imports/packages/test/imports/v1.0.0/src/extra","@!\n"); }
+        else if (partition == 1) { file("imports/packages/test/imports/v1.0.0/src/unused","@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n# changed\n"); }
+        else { assert(unlink(path("project/packages/test/fixture/v1.0.0/src/old/a")) == 0); }
         RelocationTransaction transaction;
         application(&transaction);
         assert(relocation_transaction_lease(&transaction,path("recovery1")));

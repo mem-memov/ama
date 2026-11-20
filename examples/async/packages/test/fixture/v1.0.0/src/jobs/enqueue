@@ -1,0 +1,59 @@
+# Coalesce readiness across queues before appending one current enrollment at the tail.
+@<
+queue&
+/test/fixture/v1.0.0/src/jobs/queue
+record&
+/test/fixture/v1.0.0/src/jobs/record
+@>
+accepted
+//std/condition
+@!
+true
+//std/condition
+ |1
+record&
+ epoch >> epoch
+ enrolled >> enrolled
+ ready >> ready
+ queued >> queued
+ task& >> task&
+ started >> started
+:
+ >
+enrolled
+:
+ >
+epoch
+:
+ >
+ready
+:
+ >
+queued
+?
+ >
+started
+?
+ task&
+  phase >> phase
+ :
+  >
+ phase
+  completed >> completed
+ completed
+ ?
+  >
+queue&
+ entries[]
+  append !
+   > entry&
+:
+ >
+entry& !
+ < record&
+ < epoch
+record&
+ queued !
+  < |1
+accepted
+ true

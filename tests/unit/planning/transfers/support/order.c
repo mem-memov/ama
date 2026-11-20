@@ -60,13 +60,13 @@ static void it_lowers_source_protection_and_individual_commits_in_the_three_requ
 }
 /** Invocation modes exclude reset/body work exactly where the specification requires; constant reads also exclude access grants. */
 static void it_omits_entry_preparation_for_resume_retained_and_constant_reads(void) {
-    const char *operations[] = {"worker !\n > sink\n", "worker %\n > sink\n", "worker\n >> sink\n", ".palette\n >> sink\n"};
+    const char *operations[] = {"worker !\n > sink\n", "worker %\n > sink\n", "worker\n >> sink\n", "/test/fixture/v1.0.0/src/palette\n >> sink\n"};
     for (size_t mode = 0; mode < 4; mode++) {
         prepare_types();
-        file("generated/program/worker", "@<\ninput\n.value\n@>\noutput\n.value\n@!\n");
-        file("generated/program/palette", "@=\nvalue\n.value\n |1\n");
+        file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\n");
+        file("generated/program/packages/test/fixture/v1.0.0/src/palette", "@=\nvalue\n/test/fixture/v1.0.0/src/value\n |1\n");
         char text[256];
-        int length = snprintf(text, sizeof(text), "@!\nworker\n.worker\nsink\n.value\n%s", operations[mode]);
+        int length = snprintf(text, sizeof(text), "@!\nworker\n/test/fixture/v1.0.0/src/worker\nsink\n/test/fixture/v1.0.0/src/value\n%s", operations[mode]);
         assert(length > 0 && (size_t)length < sizeof(text));
         PlanStatus status = transfer_plan_text(text);
         assert(status == PLAN_OK);
@@ -84,8 +84,8 @@ static void it_omits_entry_preparation_for_resume_retained_and_constant_reads(vo
 /** Transfer modes retain receiver storage form and original source identity; reference outputs copy handles into declared reference cells. */
 static void it_preserves_assignment_and_reference_output_modes_without_snapshot_sources(void) {
     prepare_types();
-    file("generated/program/worker", "@>\noutput&\n.value\n@!\n");
-    PlanStatus status = transfer_plan_text("@!\nsource\n.value\ntarget\n.value\nreference&\n.value\nworker\n.worker\n"
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@>\noutput&\n/test/fixture/v1.0.0/src/value\n@!\n");
+    PlanStatus status = transfer_plan_text("@!\nsource\n/test/fixture/v1.0.0/src/value\ntarget\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\nworker\n/test/fixture/v1.0.0/src/worker\n"
         "reference&\n &source\ntarget\n source\ntarget\n % source\nworker\n output& >> reference&\n");
     assert(status == PLAN_OK);
     const SemanticTransfer expected[] = {TRANSFER_HANDLE, TRANSFER_CLONE, TRANSFER_CONTINUATION};

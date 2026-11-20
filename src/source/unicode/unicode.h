@@ -68,4 +68,13 @@ bool unicode_identifier(const unsigned char *bytes, size_t length, size_t *error
  * Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03). */
 bool unicode_name(const unsigned char *bytes, size_t length, size_t *error_offset);
 
+/** Return the maximal complete multiword-name prefix in a bounded byte view.
+ * NULL or an invalid starting word yields zero. No trailing separator is
+ * consumed, and no allocation or mutation occurs. Complete-span consumers must
+ * reject any remaining suffix rather than retry shorter names.
+ * [SRC-03](../../../spec/language/source-and-names.md#src-03) gives the shared
+ * single-space word joins to both paths and token names. O(length) time/O(1) space.
+ */
+size_t unicode_name_prefix(const unsigned char *bytes, size_t length);
+
 #endif

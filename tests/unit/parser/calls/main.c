@@ -146,7 +146,7 @@ static void it_matches_the_call_mode_language_for_every_short_binding_sequence(v
         {" < |# data \n", 0, false, false}, {" input < |\n", 0, true, false}
     };
     const size_t token_count = sizeof(tokens) / sizeof(tokens[0]);
-    const char *targets[] = {"worker !\n", "worker %\n", "worker\n", ".catalog\n"};
+    const char *targets[] = {"worker !\n", "worker %\n", "worker\n", "/test/fixture/v1.0.0/src/catalog\n"};
     for (size_t mode = 0; mode < 4; mode++) {
         size_t combinations = 1;
         for (size_t count = 0; count <= 3; count++, combinations *= token_count) {

@@ -10,14 +10,14 @@ static void it_unwinds_every_owner_key_allocation_without_publishing_partial_key
     for (size_t cut = 0; cut <= total; cut++) {
         SourceArena temporary;
         source_arena_init(&temporary, sources.allocator);
-        QualifiedIdentity output = {.category = IDENTITY_LABEL, .module_path = ".marker"};
+        QualifiedIdentity output = {.category = IDENTITY_LABEL, .module_path = "/test/fixture/v1.0.0/src/marker"};
         size_t before = allocation_count;
         if (cut) { failure_at = before + cut; }
         IdentityStatus status = semantic_type_key(&frontend.semantic, owners[0], &temporary, &output);
         if (!cut) { assert(status == IDENTITY_OK); total = allocation_count - before; assert(total); }
         else {
             assert(status == IDENTITY_OUT_OF_MEMORY);
-            assert(output.category == IDENTITY_LABEL && strcmp(output.module_path, ".marker") == 0 && !output.members && !output.member_count);
+            assert(output.category == IDENTITY_LABEL && strcmp(output.module_path, "/test/fixture/v1.0.0/src/marker") == 0 && !output.members && !output.member_count);
         }
         failure_at = 0;
         source_arena_destroy(&temporary);

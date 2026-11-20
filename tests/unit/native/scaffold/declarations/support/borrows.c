@@ -16,9 +16,9 @@ static const ScaffoldType *borrow_fixture_type(const char *path) {
 
 /** Emit a typed positive client and four intentionally forbidden expressions behind exact case selectors. */
 static void write_native_borrow_probe(void) {
-    const ScaffoldType *value = borrow_fixture_type(".value");
-    const ScaffoldType *twin = borrow_fixture_type(".twin");
-    const ScaffoldType *node = borrow_fixture_type(".node");
+    const ScaffoldType *value = borrow_fixture_type("/test/fixture/v1.0.0/src/value");
+    const ScaffoldType *twin = borrow_fixture_type("/test/fixture/v1.0.0/src/twin");
+    const ScaffoldType *node = borrow_fixture_type("/test/fixture/v1.0.0/src/node");
     FILE *output = fopen("generated/borrow.c", "wb");
     assert(output != NULL);
     assert(fprintf(output,
@@ -72,11 +72,11 @@ static void compile_native_borrow_probe(unsigned selected, const char *diagnosti
 /** Native authors can write bound outputs but cannot cast nominally equal layouts or access private graph storage. */
 static void it_enforces_native_view_constness_nominal_types_and_opaque_graph_storage(void) {
     prepare_native();
-    file("generated/project/twin", "@C\n");
-    file("generated/project/twin.h", "#ifndef TWIN_VIEW_TEST_H\n#define TWIN_VIEW_TEST_H\nstruct AMA_NATIVE(State) { size_t number; };\n#endif\n");
-    file("generated/project/twin.c", "/* Syntax-only view client requires no twin body. */\n");
-    file("generated/project/twin.abi", contract);
-    file("generated/project/main", "@<\ninput\n.value\nother\n.twin\nlink&\n.node\nitems[]\n.value\n@>\noutput\n.value\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/twin", "@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/twin.h", "#ifndef TWIN_VIEW_TEST_H\n#define TWIN_VIEW_TEST_H\nstruct AMA_NATIVE(State) { size_t number; };\n#endif\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/twin.c", "/* Syntax-only view client requires no twin body. */\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/twin.abi", contract);
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@<\ninput\n/test/fixture/v1.0.0/src/value\nother\n/test/fixture/v1.0.0/src/twin\nlink&\n/test/fixture/v1.0.0/src/node\nitems[]\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@C\n");
     begin_scaffold();
     assert(build_scaffold(false) && native_scaffold_publish(&scaffold));
     write_native_borrow_probe();

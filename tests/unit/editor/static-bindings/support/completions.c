@@ -21,12 +21,12 @@ static void it_enumerates_source_interfaces_without_selecting_the_first_capture(
     setup_editor();
     assert(analyze(&analysis) && analysis.indexed);
     StaticViews inputs = {0}, outputs = {0}, visible = {0};
-    assert(editor_signature(&analysis,".box",SYMBOL_PARAMETER,collect_static_view,&inputs));
+    assert(editor_signature(&analysis,"/test/fixture/v1.0.0/src/box",SYMBOL_PARAMETER,collect_static_view,&inputs));
     assert(inputs.count == 1 && inputs.items[0].original && !inputs.items[0].symbol && !inputs.items[0].type);
     assert(text_is(inputs.items[0].definition,"value"));
-    assert(editor_signature(&analysis,".box",SYMBOL_RESULT,collect_static_view,&outputs));
+    assert(editor_signature(&analysis,"/test/fixture/v1.0.0/src/box",SYMBOL_RESULT,collect_static_view,&outputs));
     assert(outputs.count == 1 && text_is(outputs.items[0].definition,"result"));
-    assert(editor_completions(&analysis,".box",0,collect_static_view,&visible));
+    assert(editor_completions(&analysis,"/test/fixture/v1.0.0/src/box",0,collect_static_view,&visible));
     assert(visible.count == 3);
     size_t runtime = 0, parameters = 0;
     for (size_t index = 0; index < visible.count; index++) {
@@ -44,9 +44,9 @@ static void it_enumerates_whole_graph_static_results_without_runtime_slots(void)
     setup_editor();
     assert(analyze(&analysis) && analysis.indexed);
     StaticViews visible = {0}, inputs = {0}, results = {0};
-    assert(editor_completions(&analysis,".factory",0,collect_static_view,&visible));
-    assert(editor_signature(&analysis,".factory",SYMBOL_PARAMETER,collect_static_view,&inputs));
-    assert(editor_signature(&analysis,".factory",SYMBOL_RESULT,collect_static_view,&results));
+    assert(editor_completions(&analysis,"/test/fixture/v1.0.0/src/factory",0,collect_static_view,&visible));
+    assert(editor_signature(&analysis,"/test/fixture/v1.0.0/src/factory",SYMBOL_PARAMETER,collect_static_view,&inputs));
+    assert(editor_signature(&analysis,"/test/fixture/v1.0.0/src/factory",SYMBOL_RESULT,collect_static_view,&results));
     assert(visible.count == 2 && inputs.count == 0 && results.count == 2);
     for (size_t index = 0; index < results.count; index++) {
         assert(results.items[index].static_symbol && !results.items[index].original);

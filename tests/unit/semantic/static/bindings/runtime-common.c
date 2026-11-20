@@ -7,10 +7,10 @@
 #include "semantic/static/bindings/normalize.h"
 
 /** Runtime values keep their own names/storage forms and ordinary Type pairs. */
-static const char *runtime_request_prefix = "@<\ninput&\n...type\nsource[]\n...type\n"
-    "@>\nreturned\n...type\n@!\n";
-static const char *runtime_request_producer = "@<\nfirst&\n...a\nsecond[]\n...b\n"
-    "@>\nx&\n...a\ny[]\n...b\n@!\n";
+static const char *runtime_request_prefix = "@<\ninput&\n.type\nsource[]\n.type\n"
+    "@>\nreturned\n.type\n@!\n";
+static const char *runtime_request_producer = "@<\nfirst&\n.a\nsecond[]\n.b\n"
+    "@>\nx&\n.a\ny[]\n.b\n@!\n";
 
 /** Build one ordinary body without inserting any static interface definitions. */
 static char *runtime_request_text(const char *body) {

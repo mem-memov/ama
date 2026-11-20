@@ -18,8 +18,8 @@ static bool capture_walk(SemanticProgram *program, SemanticType *type,
 }
 /** Header handlers keep incoming loop depth while loop and traversal bodies add their own scopes. */
 static void it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth(void) {
-    directory("generated/walk scopes");
-    file("generated/walk scopes/main", "@!\nouter\n{\n root !\n  child !\n   condition\n   {\n    items[item&]\n    {\n     ^\n    }\n   }\n  :\n   ^\n :\n  ^\n}\n");
+    fixture_package_prepare("generated/walk scopes", "fixture");
+    file("generated/walk scopes/packages/test/fixture/v1.0.0/src/main", "@!\nouter\n{\n root !\n  child !\n   condition\n   {\n    items[item&]\n    {\n     ^\n    }\n   }\n  :\n   ^\n :\n  ^\n}\n");
     setup_semantic();
     assert(load_root("generated/walk scopes") == PROJECT_OK);
     semantic_program_init(&semantic,&project,sources.allocator);

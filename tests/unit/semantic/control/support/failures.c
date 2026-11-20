@@ -4,18 +4,18 @@
 /** Complete typed control metadata is published only after all measured construction and deferred-resolution allocations succeed. */
 static void it_unwinds_every_allocation_in_complete_control_contexts(void) {
     prepare_control();
-    const char *text = "@!\nouter\n.value\nroot\n.producer\nitems[]\n.value\nouter\n{\n root !\n  < |bytes\n"
+    const char *text = "@!\nouter\n/test/fixture/v1.0.0/src/value\nroot\n/test/fixture/v1.0.0/src/producer\nitems[]\n/test/fixture/v1.0.0/src/value\nouter\n{\n root !\n  < |bytes\n"
         "  child !\n   condition\n   {\n    items[item&]\n    {\n     saved&\n      item&\n     ^\n    }\n   }\n :\n  ^\n}\n";
     SemanticStatus status = resolve_control(text);
     assert(status == SEMANTIC_OK);
     size_t count = allocation_count;
     destroy_semantic();
     for (size_t failure = 1; failure <= count; failure++) {
-        file("generated/program/main", text);
+        file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
         setup_semantic();
         ModuleRoot roots[] = {{"generated/program", NULL, 0, MODULE_ROOT_PROJECT},
             {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-        ProjectStatus loaded = project_load(&project, roots, 2, ".main");
+        ProjectStatus loaded = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
         assert(loaded == PROJECT_OK);
         semantic_program_init(&semantic, &project, sources.allocator);
         status = semantic_fixture_names(&semantic);

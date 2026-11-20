@@ -20,11 +20,13 @@ static void it_matches_frozen_root_aware_vectors_through_the_current_identity_pr
             assert(register_namespace_vector(&registry, index) == names[index]);
             assert(names[index]->encoding[7] == 2 && names[index]->encoding[8] == IDENTITY_NATIVE_NAMESPACE);
         }
-        assert(names[0]->encoding_length == names[2]->encoding_length);
-        for (size_t index = 0; index < names[0]->encoding_length; index++) {
-            assert(index == 9 ? names[0]->encoding[index] != names[2]->encoding[index]
-                : names[0]->encoding[index] == names[2]->encoding[index]);
-        }
+        assert(names[0]->encoding[9] == MODULE_ROOT_PROJECT);
+        assert(names[2]->encoding[9] == MODULE_ROOT_STANDARD);
+        /* Ordinary identities now also require their complete package prefix;
+         * standard identities have no vendor/version wrapper. Frozen vectors
+         * above independently verify every count/byte in both complete keys. */
+        assert(names[0]->encoding_length > names[2]->encoding_length);
+        assert(strcmp(names[0]->internal_name, names[2]->internal_name) != 0);
         identity_registry_destroy(&registry);
         destroy_test();
     }
@@ -35,8 +37,8 @@ static void it_separates_all_categories_roots_and_complete_component_boundaries(
     setup_test();
     IdentityRegistry registry;
     identity_registry_init(&registry, sources.allocator);
-    const char *paths[] = {".item state", "..item state", ".item.state", ".Item state", ".é value", ".e\xcc\x81 value",
-        ".a-b", ".a_b", ".a b", ".ab"};
+    const char *paths[] = {"/test/fixture/v1.0.0/src/item state", "//item state", "/test/fixture/v1.0.0/src/item/state", "/test/fixture/v1.0.0/src/Item state", "/test/fixture/v1.0.0/src/é value", "/test/fixture/v1.0.0/src/e\xcc\x81 value",
+        "/test/fixture/v1.0.0/src/a-b", "/test/fixture/v1.0.0/src/a_b", "/test/fixture/v1.0.0/src/a b", "/test/fixture/v1.0.0/src/ab"};
     const IdentityName *names[sizeof(paths) / sizeof(*paths)][7];
     for (size_t path = 0; path < sizeof(paths) / sizeof(*paths); path++) {
         for (int category = IDENTITY_TYPE; category <= IDENTITY_NATIVE_NAMESPACE; category++) {
@@ -52,7 +54,7 @@ static void it_separates_all_categories_roots_and_complete_component_boundaries(
         }
     }
     const char *one[] = {"a::b"}, *two[] = {"a","b"};
-    QualifiedIdentity identity = {IDENTITY_STATE_MEMBER, ".item state", one, 1, {0}};
+    QualifiedIdentity identity = {IDENTITY_STATE_MEMBER, "/test/fixture/v1.0.0/src/item state", one, 1, {0}};
     const IdentityName *first = NULL, *second = NULL;
     assert(identity_register(&registry, identity, &first) == IDENTITY_OK);
     identity.members = two;
@@ -67,11 +69,11 @@ static void it_separates_all_categories_roots_and_complete_component_boundaries(
 /** Full source shape includes a root tag, not a spurious empty Standard component; numeric limits publish no partial size. */
 static void it_measures_exact_root_shape_and_bounds_every_length_prefix_before_allocation(void) {
     IdentityEncodingShape shape = {0};
-    QualifiedIdentity identity = {IDENTITY_NATIVE_NAMESPACE, "..магазин.товар данные", NULL, 0, {0}};
+    QualifiedIdentity identity = {IDENTITY_NATIVE_NAMESPACE, "//магазин/товар данные", NULL, 0, {0}};
     assert(identity_encoding_measure(identity, &shape) == IDENTITY_OK);
     assert(shape.length == sizeof(namespace_key_2) && shape.module_count == 2 && shape.root_width == 2 && shape.root_kind == MODULE_ROOT_STANDARD);
     IdentityEncodingShape unchanged = shape;
-    identity.module_path = "...bad";
+    identity.module_path = "///bad";
     assert(identity_encoding_measure(identity, &shape) == IDENTITY_INVALID);
     assert(shape.length == unchanged.length && shape.module_count == unchanged.module_count);
     assert(shape.display_length == unchanged.display_length);

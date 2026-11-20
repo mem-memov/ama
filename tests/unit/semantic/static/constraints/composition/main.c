@@ -13,13 +13,13 @@
 static void it_composes_actual_binding_slots_scoped_terms_and_typed_equalities(void) {
     ModuleRoot roots[] = {{STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT},
         {"../../../../../../stdlib/modules", NULL, 0, MODULE_ROOT_STANDARD}};
-    setup_request_roots("...request result\n...expected\n ...a < ...type\n ...b < ...type\n...anchor\n..integer\n", roots, 2);
+    setup_request_roots(".request result\n.expected\n .a < .type\n .b < .type\n.anchor\n//integer\n", roots, 2);
     const StaticModule *caller = binding_module(project.entry);
-    const StaticModule *producer = binding_module(project_find(&project, ".other"));
-    const StaticModule *integer = binding_module(project_find(&project, "..integer"));
-    const StaticOccurrence *site = request_head("...expected");
+    const StaticModule *producer = binding_module(project_find(&project, "/test/fixture/v1.0.0/src/other"));
+    const StaticModule *integer = binding_module(project_find(&project, "//integer"));
+    const StaticOccurrence *site = request_head(".expected");
     const StaticSymbol *caller_symbol = static_symbol_find(caller,
-        static_name_site(project.entry, "...type"));
+        static_name_site(project.entry, ".type"));
     BindingApplication *request;
     assert(binding_normalize_static(&binding_plan, request_interface(), site->expression, &request));
     StaticTermStore terms;
@@ -47,7 +47,7 @@ static void it_composes_actual_binding_slots_scoped_terms_and_typed_equalities(v
         assert(static_term_symbol(&terms, producer_environment, formal, &parameter));
         assert(static_constraint_equate(&solver, parameter, actual->value, actual->request->span));
         assert(static_constraint_require(&solver, parameter, actual->request->span));
-        if (first_actual == NULL) { first_actual = parameter; assert(layout_text_is(formal->name, "...a")); }
+        if (first_actual == NULL) { first_actual = parameter; assert(layout_text_is(formal->name, ".a")); }
     }
     assert(static_constraint_equate(&solver, first_actual, concrete, site->site));
     assert(static_constraint_require(&solver, head, site->site));

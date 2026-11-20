@@ -1,15 +1,15 @@
 # An obsolete epoch at the head must not clear current membership or execute its task.
 @!
 registry
-.red.registry
+/test/fixture/v1.0.0/src/red/registry
 queue
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 enqueue
-.red.enqueue
+/test/fixture/v1.0.0/src/red/enqueue
 dispatch
-.red.dispatch
+/test/fixture/v1.0.0/src/red/dispatch
 trace
-.trace
+/test/fixture/v1.0.0/src/trace
 registry
  records[]
   append !

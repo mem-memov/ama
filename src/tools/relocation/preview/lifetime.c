@@ -9,11 +9,13 @@ void relocation_preview_init(RelocationPreview *preview, SourceAllocator allocat
     *preview = (RelocationPreview){0};
     source_arena_init(&preview->arena,allocator);
     module_catalog_init(&preview->catalog,allocator);
+    module_catalog_init(&preview->after_catalog,allocator);
     source_manager_init(&preview->additional_sources,allocator);
 }
 /** Retire source views before their containing records; cleanup runs no native or Ama code. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_preview_destroy(RelocationPreview *preview) {
     source_manager_destroy(&preview->additional_sources);
+    module_catalog_destroy(&preview->after_catalog);
     module_catalog_destroy(&preview->catalog);
     source_arena_destroy(&preview->arena);
     *preview = (RelocationPreview){0};

@@ -10,13 +10,13 @@ static bool fail_selected_integer;
 static bool ordering_native_entry(FILE *output, const ScaffoldType *type) {
     const char *logical = type->plan->type->module->source->logical_path;
     int written;
-    if (strcmp(logical, "..integer") == 0) {
+    if (strcmp(logical, "//integer") == 0) {
         written = fputs(fail_selected_integer
             ? "puts(\"selected-failed\"); *status=ama_status_make(AMA_NATIVE_FAILURE,NULL,0); return;\n"
             : "printf(\"length=%zu\\n\",state->number);\n", output);
-    } else if (strcmp(logical, ".inspect") == 0 || strcmp(logical, ".read") == 0) {
+    } else if (strcmp(logical, "/test/fixture/v1.0.0/src/inspect") == 0 || strcmp(logical, "/test/fixture/v1.0.0/src/read") == 0) {
         written = fprintf(output, "printf(\"%s=%%zu\\n\",parameters->AMA_INPUT(0)->payload->number);\n",
-            strcmp(logical, ".read") == 0 ? "item" : "length");
+            strcmp(logical, "/test/fixture/v1.0.0/src/read") == 0 ? "item" : "length");
     } else { return false; }
     assert(written != EOF);
     return true;
@@ -27,8 +27,9 @@ static bool ordering_native_entry(FILE *output, const ScaffoldType *type) {
 static void ordering_standard(void) {
     insertion_standard();
     directory("generated/project");
-    native_fixture("inspect", "@<\ninput\n..integer\n@C\n");
-    native_fixture("read", "@<\ninput\n.value\n@C\n");
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("inspect", "@<\ninput\n//integer\n@C\n");
+    native_fixture("read", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@C\n");
     file("generated/standard/integer.h", fail_size_bridge
         ? "struct AMA_NATIVE(State) { size_t number; size_t calls; const void *address; bool negative; };\n"
           "static inline AmaStatus AMA_NATIVE(from_size)(AMA_NATIVE(State) *destination,size_t number) {"
@@ -43,7 +44,7 @@ static void ordering_standard(void) {
  */
 static void it_executes_swap_and_length_siblings_with_owned_result_cleanup(void) {
     ordering_standard();
-    execute_project("@!\nzero\n..integer\n |0\none\n..integer\n |1\nitems[]\n.value\n |10\n |20\ninspect\n.inspect\nread\n.read\nprobe\n.worker\n"
+    execute_project("@!\nzero\n//integer\n |0\none\n//integer\n |1\nitems[]\n/test/fixture/v1.0.0/src/value\n |10\n |20\ninspect\n/test/fixture/v1.0.0/src/inspect\nread\n/test/fixture/v1.0.0/src/read\nprobe\n/test/fixture/v1.0.0/src/worker\n"
         "items[]\n swap !\n  <\n  < one\n length !\n  > result\nread !\n < items[zero]\nread !\n < items[one]\n"
         "items[]\n length !\n  value !\n clear !\n length !\n  value !\ninspect !\n < result\n",
         "size=2\nitem=20\nitem=10\nsize=2\nlength=2\nsize=0\nlength=0\nlength=2\n", true);
@@ -53,7 +54,7 @@ static void it_executes_swap_and_length_siblings_with_owned_result_cleanup(void)
  */
 static void it_rejects_both_swap_positions_without_changing_length(void) {
     ordering_standard();
-    execute_project("@!\nitems[]\n.value\n |10\ninspect\n.inspect\nprobe\n.worker\n"
+    execute_project("@!\nitems[]\n/test/fixture/v1.0.0/src/value\n |10\ninspect\n/test/fixture/v1.0.0/src/inspect\nprobe\n/test/fixture/v1.0.0/src/worker\n"
         "items[]\n swap !\n  < |1\n :\n  probe !\n   < |12\nitems[]\n swap !\n  <\n  < |-1\n :\n  probe !\n   < |1\nitems[]\n length !\n  value !\n",
         "12:1:12\n1:2:1\nsize=1\nlength=1\n", true);
 }
@@ -63,7 +64,7 @@ static void it_rejects_both_swap_positions_without_changing_length(void) {
 static void it_keeps_length_bridge_failure_technical(void) {
     fail_size_bridge = true;
     ordering_standard();
-    execute_project("@!\nitems[]\n.value\ninspect\n.inspect\nprobe\n.worker\nitems[]\n length !\n  value !\n :\n  probe !\n   < |999\n",
+    execute_project("@!\nitems[]\n/test/fixture/v1.0.0/src/value\ninspect\n/test/fixture/v1.0.0/src/inspect\nprobe\n/test/fixture/v1.0.0/src/worker\nitems[]\n length !\n  value !\n :\n  probe !\n   < |999\n",
         "size-failed\n", false);
     expect_diagnostic("Ama runtime failure: 9");
     fail_size_bridge = false;
@@ -72,7 +73,7 @@ static void it_keeps_length_bridge_failure_technical(void) {
 static void it_cleans_length_result_after_selected_body_failure(void) {
     fail_selected_integer = true;
     ordering_standard();
-    execute_project("@!\nitems[]\n.value\nprobe\n.worker\nitems[]\n length !\n  value !\n  :\n   probe !\n    < |999\n clear !\n",
+    execute_project("@!\nitems[]\n/test/fixture/v1.0.0/src/value\nprobe\n/test/fixture/v1.0.0/src/worker\nitems[]\n length !\n  value !\n  :\n   probe !\n    < |999\n clear !\n",
         "size=0\nselected-failed\n", false);
     expect_diagnostic("Ama runtime failure: 4");
     fail_selected_integer = false;

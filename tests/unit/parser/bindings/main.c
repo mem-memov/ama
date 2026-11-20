@@ -84,7 +84,7 @@ static void it_keeps_binding_comments_in_the_exact_call_region(void) {
     assert(module.body.first->as.call.input_count == 1 && module.body.first->as.call.output_count == 1);
     destroy_tree();
     const char *invalid[] = {"@!\nworker !\n# closed bindings\n < value", "@!\nworker !\n  # skipped level\n < value",
-        "@!\nworker %\n <", "@!\nworker\n >", "@!\n..palette\n >>", "@!\nworker !\n > value\n < source"};
+        "@!\nworker %\n <", "@!\nworker\n >", "@!\n//palette\n >>", "@!\nworker !\n > value\n < source"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         status = parse_text(invalid[index]);
@@ -97,7 +97,7 @@ static void it_keeps_binding_comments_in_the_exact_call_region(void) {
 static void it_preserves_resume_retained_and_standard_constant_read_modes(void) {
     const char *texts[] = {"@!\nworker& %\n >\n > new result\n",
         "@!\nreferences&[current position]\n result name >> new value\n",
-        "@!\n..цветовая палитра\n first value >> new value\n second values[] >> new values[]\n"};
+        "@!\n//цветовая палитра\n first value >> new value\n second values[] >> new values[]\n"};
     const AstCallMode modes[] = {AST_RESUME_CALL,AST_RETAINED_READ,AST_CONSTANT_READ};
     const size_t counts[] = {2,1,2};
     for (size_t index = 0; index < 3; index++) {
@@ -110,7 +110,7 @@ static void it_preserves_resume_retained_and_standard_constant_read_modes(void) 
         if (index == 0) { assert(call->as.call.target->reference && call->as.call.first->omitted); }
         if (index == 1) { assert(call->as.call.target->reference && call->as.call.target->index != NULL); }
         if (index == 2) {
-            assert(call->as.call.target == NULL && layout_text_is(call->as.call.namespace_expression->head, "..цветовая палитра"));
+            assert(call->as.call.target == NULL && layout_text_is(call->as.call.namespace_expression->head, "//цветовая палитра"));
             assert(call->as.call.first->next->label->whole_list);
         }
         destroy_tree();

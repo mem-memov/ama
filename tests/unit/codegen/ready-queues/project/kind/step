@@ -1,7 +1,7 @@
 # Explicit first entry binds the owner once; subsequent Ready steps resume the actual task.
 @<
 record&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 @!
 record&
  task& >> task&

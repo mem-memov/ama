@@ -8,8 +8,8 @@
  * fixtures. No source declaration of an expected constructor signature exists.
  */
 static const char *signature_source =
-    "@<\nleft\n...left\nright\n...right\nkey\n...key\nfamily\n...family\n"
-    "value\n...value\nother\n...other\n@!\n";
+    "@<\nleft\n.left\nright\n.right\nkey\n.key\nfamily\n.family\n"
+    "value\n.value\nother\n.other\n@!\n";
 
 /** Construct independent finite name sets in opposite sibling orders. These
  * literal metadata fixtures exercise comparison, not a removed AST builder.
@@ -18,8 +18,8 @@ static void signatures(StaticSignature **left, StaticSignature **right) {
     StaticSignature *roots = static_allocate(&inventory, 4 * sizeof(*roots));
     StaticSignatureEntry *slots = static_allocate(&inventory, 8 * sizeof(*slots));
     assert(roots != NULL && slots != NULL);
-    const char *names[] = {"...key", "...family", "...value", "...other",
-        "...family", "...key", "...other", "...value"};
+    const char *names[] = {".key", ".family", ".value", ".other",
+        ".family", ".key", ".other", ".value"};
     for (size_t index = 0; index < 8; index++) {
         slots[index].name = static_name_site(project.entry, names[index]);
         slots[index].category = STATIC_CATEGORY_TYPE;
@@ -41,7 +41,7 @@ static void it_matches_reordered_finite_actual_signature_name_sets(void) {
     StaticSignature *left = NULL, *right = NULL;
     signatures(&left, &right);
     assert(left != right && left->count == 2 && right->count == 2);
-    assert(layout_text_is(left->first->name, "...key"));
+    assert(layout_text_is(left->first->name, ".key"));
     assert(left->first->category == STATIC_CATEGORY_TYPE && left->first->signature == NULL);
     assert(left->last->category == STATIC_CATEGORY_TEMPLATE && left->last->signature->count == 2);
     assert(inventory.first == NULL);
@@ -63,14 +63,14 @@ static void it_distinguishes_missing_renamed_nested_category_and_pending_slots(v
         signatures(&left, &right);
         switch (partition) {
             case 0: right->count--; right->first = right->last; break;
-            case 1: right->last->name = static_name_site(project.entry, "...left"); break;
-            case 2: right->first->signature->last->name = static_name_site(project.entry, "...left"); break;
+            case 1: right->last->name = static_name_site(project.entry, ".left"); break;
+            case 2: right->first->signature->last->name = static_name_site(project.entry, ".left"); break;
             case 3: right->first->category = STATIC_CATEGORY_TYPE; break;
             case 4: right->last->category = STATIC_CATEGORY_DEFERRED; break;
             case 5: left->first->category = STATIC_CATEGORY_DEFERRED; break;
             case 6:
                 left->first->category = STATIC_CATEGORY_DEFERRED;
-                right->first->signature->last->name = static_name_site(project.entry, "...left");
+                right->first->signature->last->name = static_name_site(project.entry, ".left");
                 break;
         }
         StaticSignatureComparison result = STATIC_SIGNATURE_EQUAL;
@@ -116,7 +116,7 @@ static void it_compares_deep_signatures_without_recursive_c_activation(void) {
     StaticSignatureEntry slots[DEPTH][2];
     memset(roots, 0, sizeof(roots));
     memset(slots, 0, sizeof(slots));
-    SourceSpan name = static_name_site(project.entry, "...key");
+    SourceSpan name = static_name_site(project.entry, ".key");
     for (size_t index = 0; index < DEPTH; index++) {
         for (size_t side = 0; side < 2; side++) {
             roots[index][side] = (StaticSignature){&slots[index][side], &slots[index][side], 1};
@@ -143,7 +143,7 @@ static void it_memoizes_shared_signature_pairs_without_skipping_pending_metadata
     memset(right, 0, sizeof(right));
     memset(left_slots, 0, sizeof(left_slots));
     memset(right_slots, 0, sizeof(right_slots));
-    SourceSpan names[] = {static_name_site(project.entry, "...key"), static_name_site(project.entry, "...family")};
+    SourceSpan names[] = {static_name_site(project.entry, ".key"), static_name_site(project.entry, ".family")};
     for (size_t level = 0; level < LEVELS; level++) {
         left[level] = (StaticSignature){left_slots[level], &left_slots[level][1], 2};
         right[level] = (StaticSignature){right_slots[level], &right_slots[level][1], 2};
@@ -181,12 +181,12 @@ static void it_checks_actual_signature_cycles_sharing_and_every_traversal_refusa
             assert(module != NULL);
             StaticSignature roots[3] = {{0}};
             StaticSignatureEntry slots[4] = {{0}};
-            SourceSpan name = static_name_site(project.entry, "...key");
+            SourceSpan name = static_name_site(project.entry, ".key");
             for (size_t index = 0; index < 4; index++) {
                 slots[index].name = name;
                 slots[index].category = STATIC_CATEGORY_TEMPLATE;
             }
-            slots[1].name = static_name_site(project.entry, "...family");
+            slots[1].name = static_name_site(project.entry, ".family");
             roots[0] = (StaticSignature){&slots[0], &slots[1], 2};
             roots[1] = (StaticSignature){&slots[2], &slots[2], 1};
             roots[2] = (StaticSignature){&slots[3], &slots[3], 1};

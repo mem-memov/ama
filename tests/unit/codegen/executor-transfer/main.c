@@ -25,17 +25,17 @@ static void append_fixture(const char *path, char *buffer, size_t capacity, bool
 static bool transfer_entry(FILE *output, const ScaffoldType *type) {
     const char *path = type->plan->type->module->source->logical_path;
     int written;
-    if (strcmp(path, ".capture") == 0) {
+    if (strcmp(path, "/test/fixture/v1.0.0/src/capture") == 0) {
         written = fputs("AmaStatus test_transfer_service(const ama_t_0a13545c236dc688542e3824b23bf3848f38fdb81d6b4c289732f8a82eaa888f *,void *);\n"
             "*status=parameters->AMA_INPUT(0)->with_read(parameters->AMA_INPUT(0)->storage,test_transfer_service,NULL);\n"
             "if(status->code!=AMA_OK) return;\n", output);
-    } else if (strcmp(path, ".visit") == 0 || strcmp(path, ".affine") == 0) {
-        if (strcmp(path, ".affine") == 0) {
+    } else if (strcmp(path, "/test/fixture/v1.0.0/src/visit") == 0 || strcmp(path, "/test/fixture/v1.0.0/src/affine") == 0) {
+        if (strcmp(path, "/test/fixture/v1.0.0/src/affine") == 0) {
             written = fputs("if(!pthread_equal(state->owner,pthread_self())) { *status=ama_status_make(AMA_INVALID_STATE,NULL,0); return; }\n", output);
             assert(written != EOF);
         }
         written = fputs("void test_transfer_visit(size_t); state->calls++; test_transfer_visit(state->calls);\n", output);
-    } else if (strcmp(path, ".missing") == 0) {
+    } else if (strcmp(path, "/test/fixture/v1.0.0/src/missing") == 0) {
         written = fputs("*status=ama_status_make(AMA_NATIVE_FAILURE,\"Missing transferred event\",25); return;\n", output);
     } else { return false; }
     assert(written != EOF);
@@ -44,7 +44,7 @@ static bool transfer_entry(FILE *output, const ScaffoldType *type) {
 
 /** Model a native provider whose entry/destruction must use the constructing OS thread. */
 static const char *affine_hook(const ScaffoldType *type, AbiOperation operation) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".affine") != 0) { return NULL; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/affine") != 0) { return NULL; }
     if (operation == ABI_DEFAULT) {
         return " { *destination=(AMA_NATIVE(State)){.address=destination,.owner=pthread_self()}; return ama_status_success(); }\n";
     }
@@ -61,11 +61,12 @@ static const char *affine_hook(const ScaffoldType *type, AbiOperation operation)
 /** Compose the same explicit host controller with a movable or pinned resource contract. */
 static void execute_transfer(bool affine) {
     directory("generated/project");
-    native_fixture("capture", "@<\nsource&\n..task.events\n@C\n");
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("capture", "@<\nsource&\n//task/events\n@C\n");
     native_fixture("visit", "@C\n");
     native_fixture("missing", "@C\n");
     native_fixture("affine", "@C\n");
-    file("generated/project/affine.h", "#include <pthread.h>\nstruct AMA_NATIVE(State) { size_t number,calls; const void *address; pthread_t owner; };\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/affine.h", "#include <pthread.h>\nstruct AMA_NATIVE(State) { size_t number,calls; const void *address; pthread_t owner; };\n");
     char source[4096] = {0}, consumer[32768] = {0};
     if (affine) { strcpy(consumer, "#define TEST_AFFINE\n"); }
     append_fixture(affine ? "project/affine" : "project/main", source, sizeof(source), false);

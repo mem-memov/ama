@@ -1,15 +1,15 @@
 /** @file
  * @brief Supply ordered call interfaces and inspect replacement groups without running native code.
  */
-static const char transfer_main[] = "@!\nsource\n.value\nsink\n.value\nworker\n.worker\nworker !\n second < source\n first < |literal % ref& # bytes  \n second result > sink\n first result > sink\n:\n";
+static const char transfer_main[] = "@!\nsource\n/test/fixture/v1.0.0/src/value\nsink\n/test/fixture/v1.0.0/src/value\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n second < source\n first < |literal % ref& # bytes  \n second result > sink\n first result > sink\n:\n";
 /** Defaults deliberately read an earlier parameter; a noncopyable omitted reference proves no accidental source-copy path is inserted. */
 static void prepare_transfers(void) {
     prepare_types();
-    file("generated/program/worker", "@<\nfirst\n.value\nsecond\n.value\ndefaulted\n.value\n first\nexternal&\n.resource\n@>\nfirst result\n.value\n first\nsecond result\n.value\n second\n@!\nkept\n.value\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\nfirst\n/test/fixture/v1.0.0/src/value\nsecond\n/test/fixture/v1.0.0/src/value\ndefaulted\n/test/fixture/v1.0.0/src/value\n first\nexternal&\n/test/fixture/v1.0.0/src/resource\n@>\nfirst result\n/test/fixture/v1.0.0/src/value\n first\nsecond result\n/test/fixture/v1.0.0/src/value\n second\n@!\nkept\n/test/fixture/v1.0.0/src/value\n");
 }
 /** Compose the actual semantic API and plan boundary, retaining readable diagnostics for a failed authored fixture. */
 static PlanStatus transfer_plan_text(const char *text) {
-    file("generated/program/main", text);
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
     setup_project();
     ProjectStatus loaded = load_root("generated/program");
     if (loaded != PROJECT_OK) { fprintf(stderr, "Transfer source: %s\n%s\n", project.error.message, text); }

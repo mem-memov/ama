@@ -32,12 +32,12 @@ IdentityStatus identity_encoding_measure(QualifiedIdentity identity, IdentityEnc
         || !module_path_valid(identity.module_path)
         || (identity.member_count != 0 && identity.members == NULL)) { return IDENTITY_INVALID; }
     IdentityEncodingShape shape = {.length = IDENTITY_ENCODING_FIXED_BYTES,
-        .root_width = identity.module_path[1] == '.' ? 2 : 1};
+        .root_width = identity.module_path[1] == '/' ? 2 : 1};
     shape.root_kind = shape.root_width == 2 ? MODULE_ROOT_STANDARD : MODULE_ROOT_PROJECT;
     size_t start = shape.root_width;
     for (;;) {
         size_t end = start;
-        while (identity.module_path[end] != 0 && identity.module_path[end] != '.') { end++; }
+        while (identity.module_path[end] != 0 && identity.module_path[end] != '/') { end++; }
         if (!identity_encoding_part_size(&shape.length, end - start)) { return IDENTITY_LIMIT; }
         /* Every successful part reserves at least eight bytes, bounding count
          * below SIZE_MAX/8 before its increment. */

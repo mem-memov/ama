@@ -16,7 +16,7 @@ static void cancellation_source(const char *path, char source[32768]) {
 
 /** Observe ordinary result predicates after Ama-side assertions exclude residual waits, membership and mailbox bytes. */
 static bool cancellation_summary(FILE *body, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".summary") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/summary") != 0) { return false; }
     int written = fputs("printf(\"outcome=%zu%zu%zu\\n\",parameters->AMA_INPUT(0)->payload->value,"
         "parameters->AMA_INPUT(1)->payload->value,parameters->AMA_INPUT(2)->payload->value);\n", body);
     assert(written != EOF);
@@ -26,7 +26,8 @@ static bool cancellation_summary(FILE *body, const ScaffoldType *type) {
 /** Compose the previously tested queue with explicitly replaced record/task/cancellation operations. */
 static void cancellation_project(void) {
     directory("generated/project");
-    directory("generated/project/kind");
+    fixture_package_prepare("generated/project", "fixture");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/kind");
     const char *shared[] = {"queue", "entry", "enqueue", "pop", "step", "dispatch"};
     const char *local[] = {"record", "task", "cancel", "deliver"};
     char source[32768], input[256], output[256];
@@ -34,7 +35,7 @@ static void cancellation_project(void) {
         int length = snprintf(input, sizeof(input), "../ready-queues/project/kind/%s", shared[index]);
         assert(length > 0 && (size_t)length < sizeof(input));
         cancellation_source(input, source);
-        length = snprintf(output, sizeof(output), "generated/project/kind/%s", shared[index]);
+        length = snprintf(output, sizeof(output), "generated/project/packages/test/fixture/v1.0.0/src/kind/%s", shared[index]);
         assert(length > 0 && (size_t)length < sizeof(output));
         file(output, source);
     }
@@ -42,17 +43,17 @@ static void cancellation_project(void) {
         int length = snprintf(input, sizeof(input), "project/kind/%s", local[index]);
         assert(length > 0 && (size_t)length < sizeof(input));
         cancellation_source(input, source);
-        length = snprintf(output, sizeof(output), "generated/project/kind/%s", local[index]);
+        length = snprintf(output, sizeof(output), "generated/project/packages/test/fixture/v1.0.0/src/kind/%s", local[index]);
         assert(length > 0 && (size_t)length < sizeof(output));
         file(output, source);
     }
     cancellation_source("../scheduler-rounds/project/kind/validate", source);
-    file("generated/project/kind/validate", source);
+    file("generated/project/packages/test/fixture/v1.0.0/src/kind/validate", source);
     cancellation_source("project/mailbox", source);
-    file("generated/project/mailbox", source);
+    file("generated/project/packages/test/fixture/v1.0.0/src/mailbox", source);
     cancellation_source("project/report", source);
-    file("generated/project/report", source);
-    native_fixture("summary", "@<\npending\n..std.condition\ncancelled\n..std.condition\ncompleted\n..std.condition\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/report", source);
+    native_fixture("summary", "@<\npending\n//std/condition\ncancelled\n//std/condition\ncompleted\n//std/condition\n@C\n");
     native_entry_override = cancellation_summary;
 }
 

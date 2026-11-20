@@ -4,14 +4,14 @@
 /** Proposed ABI bytes have a separate source owner/input key and exactly match explicitly staged semantic/IR results. */
 static void it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition(void) {
     const char *proposal = "+ construct\n- finish\n";
-    prepare_composed_files("@<\nvalue\n.value\n@C\n");
-    file("generated/project/main.h", "#error Authoring must not compile native C\n");
-    file("generated/project/main.c", "#error Authoring must not execute native C\n");
-    file("generated/project/main.abi", "+ initialize\n+ duplicate\n- destroy\n");
+    prepare_composed_files("@<\nvalue\n/test/fixture/v1.0.0/src/value\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main.h", "#error Authoring must not compile native C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main.c", "#error Authoring must not execute native C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main.abi", "+ initialize\n+ duplicate\n- destroy\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    bool checked = compiler_frontend_authoring(&frontend, roots, 2, ".main", proposal);
+    bool checked = compiler_frontend_authoring(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main", proposal);
     assert(checked && frontend.valid && frontend.authoring && frontend.plan.valid);
     const SourceText *proposed = frontend.plan.entry->type->abi.bindings[ABI_DEFAULT].function.source;
     assert(proposed != frontend.project.entry->source->native_abi);
@@ -34,7 +34,7 @@ static void it_keeps_native_authoring_contracts_separate_from_strict_frontend_co
     semantic_program_destroy(&staged);
     CompilerFrontend strict;
     compiler_frontend_init(&strict, sources.allocator);
-    checked = compiler_frontend_check(&strict, roots, 2, ".main");
+    checked = compiler_frontend_check(&strict, roots, 2, "/test/fixture/v1.0.0/src/main");
     assert(!checked && !strict.valid && strict.semantic_initialized && !strict.plan_initialized);
     assert(diagnostic_valid(&strict.error) && strstr(source_path(strict.error.primary.span.source), "main.abi") != NULL);
     compiler_frontend_destroy(&strict);

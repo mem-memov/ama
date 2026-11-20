@@ -3,7 +3,7 @@
  */
 /** Live-boundary repetition uses distinct entry/next/leave labels; scope exits do not restore or destroy reused reference targets. */
 static void it_lowers_foreach_scopes_and_resume_validation_with_fixed_cursor_labels(void) {
-    prepare_structured("@!\nitems[]\n.value\nsaved&\n.value\nsource\n.value\nitems[item&]\n{\n items[item&]\n {\n  source\n  :\n   ^\n }\n %\n >\n}\nitems[saved&]\n{\n}\n");
+    prepare_structured("@!\nitems[]\n/test/fixture/v1.0.0/src/value\nsaved&\n/test/fixture/v1.0.0/src/value\nsource\n/test/fixture/v1.0.0/src/value\nitems[item&]\n{\n items[item&]\n {\n  source\n  :\n   ^\n }\n %\n >\n}\nitems[saved&]\n{\n}\n");
     PlannedLoop *outer = plan.entry->loops;
     PlannedLoop *inner = outer->next;
     PlannedLoop *empty = inner->next;

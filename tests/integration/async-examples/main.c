@@ -5,7 +5,7 @@
 
 /** Explicit queue membership, completion delivery and cancellation produce two coherent ordinary results. */
 static void it_runs_the_published_typed_queue_completion_and_cancellation_example(void) {
-    char *build[] = {AMA_EXECUTABLE, "--emit", TEST_REPOSITORY_ROOT "/examples/async", ".main", "--out", "generated/ama",
+    char *build[] = {AMA_EXECUTABLE, "--emit", TEST_REPOSITORY_ROOT "/examples/async", "/test/fixture/v1.0.0/src/main", "--out", "generated/ama",
         "--sdk", TEST_SDK, "--standard-root", TEST_STANDARD_ROOT, "--compile", NULL};
     command(build, true, NULL);
     char *run[] = {"generated/ama/program", NULL};

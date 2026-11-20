@@ -18,15 +18,21 @@ Names are maximal sequences of pinned XID words with exactly one internal ASCII
 space. Punctuation terminates that sequence; a space before punctuation remains
 a code separator rather than part of the name. At punctuation positions, an
 explicit longest-first fixed inventory recognizes `&[]` before `&[`/`&`, `>>`
-before `>`, `..` before `.`, and the fixed section annotations. Unknown characters
+before `>`, and the fixed section annotations. Module operands are recognized
+as one `LEX_MODULE_PATH` token through the bounded shared path scanner: `/`,
+`//`, `./`, `../` and `~` select disjoint source forms before lookup. Dots inside
+version components remain within that operand. A single adjoining dot introduces
+an atomic static name; further compact dots join its descriptive components.
+`@...` remains its separate annotation. The scanner recognizes raw syntax;
+normalization, alias scope and canonical package shape are later checks. Unknown characters
 fail without transliteration or guessed repair.
 
 A finite boundary relation distinguishes compact joins from required single
 spaces. Paths, reference prefixes/suffixes and index/list storage joins adjoin
 their operands; binding and execution/copy markers use one separator. Ampersand
 role is determined by the existing token context, without binding a name. Its
-standalone form remains available for a self-reference source. A double-dot root
-cannot become an internal component separator. Repeated code separators reject.
+standalone form remains available for a self-reference source. Slash components
+never become static-name components. Repeated code separators reject.
 Literal tokens expose the exact marker and raw payload spans independently.
 
 Each successful token consumes at least one original code byte, so scanning a
@@ -37,7 +43,11 @@ The boundary relation checks only the immediately preceding token and explicit
 reference-prefix state. Output is published only after recognition and joining
 checks succeed; an error records an original byte site and leaves the caller's
 token unchanged. Work is linear in code bytes up to pinned XID interval searches;
-auxiliary storage is constant, excluding borrowed source/layout owners.
+auxiliary storage is constant, excluding borrowed source/layout owners. Shared
+maximal name and version prefixes give parser/source-path consumers the same
+word boundaries. Whole-span callers reject unconsumed suffixes rather than
+retrying shorter spellings. Empty/trailing slash components cannot publish a
+complete path token. See [T231's bounded models and consumer runs](versioned-source.md).
 
 `make -C tests/unit/lexer/tokens` exercises Unicode multiword names, nested index
 accesses, compound tokens, compact references/lists, execution/copy/binding spaces,

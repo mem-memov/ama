@@ -29,7 +29,7 @@ static void it_normalizes_resume_and_retained_reads_without_input_positions(void
  * a module's ordinary result surface cannot silently stand in for it.
  */
 static void it_uses_the_shared_constant_surface_for_constant_reads(void) {
-    setup_binding("@=\nshared&\n.other\n@!\n.main\n >> received&\n", STATIC_SCOPE_SOURCE_TEXT);
+    setup_binding("@=\nshared&\n/test/fixture/v1.0.0/src/other\n@!\n/test/fixture/v1.0.0/src/main\n >> received&\n", STATIC_SCOPE_SOURCE_TEXT);
     const StaticModule *module = binding_module(project.entry);
     BindingInterface *view = NULL;
     assert(binding_source_interface(&binding_plan, module, BINDING_CONSTANT_SURFACE, NULL, 0, &view));
@@ -53,8 +53,8 @@ static void it_uses_the_shared_constant_surface_for_constant_reads(void) {
 static void it_normalizes_selected_intrinsic_methods_without_parent_argument_positions(void) {
     ModuleRoot roots[] = {{STATIC_SCOPE_ROOT_DIRECTORY, NULL, 0, MODULE_ROOT_PROJECT},
         {"../../../../../../stdlib/modules", NULL, 0, MODULE_ROOT_STANDARD}};
-    setup_runtime_roots("items[]\n...type\nitems[]\n append !\n  source& < input&\n  element& > appended&\n", roots, 2);
-    assert(project_find(&project, "..integer") != NULL);
+    setup_runtime_roots("items[]\n.type\nitems[]\n append !\n  source& < input&\n  element& > appended&\n", roots, 2);
+    assert(project_find(&project, "//integer") != NULL);
     const AstNode *parent = operation("items");
     assert(parent->as.call.first == NULL && parent->as.call.input_count == 0 && parent->as.call.output_count == 0);
     const AstOutputAction *action = parent->as.call.first_output;

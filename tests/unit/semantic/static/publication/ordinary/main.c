@@ -15,8 +15,8 @@ static StaticOrdinaryType *ordinary(const char *name) {
 
 /** A selector names a foreign export without introducing any caller placeholder. */
 static void it_resolves_named_exports_as_concrete_types_without_producer_instances(void) {
-    setup_publications("@!\nfirst\n.other\n ...out\nsecond\n.other\n ...out\n",
-        "@...\n...out\n..integer\n");
+    setup_publications("@!\nfirst\n/test/fixture/v1.0.0/src/other\n .out\nsecond\n/test/fixture/v1.0.0/src/other\n .out\n",
+        "@...\n.out\n//integer\n");
     StaticOrdinaryType *first = ordinary("first"), *second = ordinary("second");
     assert(first != second && first->value != second->value && first->source == NULL);
     assert(caller_module->parameter_count == 0 && caller_module->first == NULL);
@@ -35,8 +35,8 @@ static void it_resolves_named_exports_as_concrete_types_without_producer_instanc
 
 /** A desired consumer Type is not evidence about a factory's unknown parameter. */
 static void it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known(void) {
-    setup_publications("@!\nvalue\n.other\n ...out\n",
-        "@...\n...out\n...slot\n...anchor\n..integer\n");
+    setup_publications("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .out\n",
+        "@...\n.out\n.slot\n.anchor\n//integer\n");
     StaticOrdinaryType *type = ordinary("value");
     bool success = static_constraint_equate(&solver, type->value, integer_type, type->expression->span);
     assert(success);
@@ -53,10 +53,10 @@ static void it_refuses_open_suppliers_even_when_the_consumer_type_is_already_kno
  */
 static void it_distinguishes_selected_type_outputs_from_other_template_outputs(void) {
     for (size_t select_family = 0; select_family < 2; select_family++) {
-        directory(STATIC_SCOPE_ROOT_DIRECTORY);
-        file("generated/static scope/family", "@<\nvalue\n...slot\n@!\n");
-        setup_publications(select_family ? "@!\nvalue\n.other\n ...family\n" : "@!\nvalue\n.other\n ...out\n",
-            "@...\n...out\n..integer\n...family\n.family\n");
+        fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+        file("generated/static scope/packages/test/fixture/v1.0.0/src/family", "@<\nvalue\n.slot\n@!\n");
+        setup_publications(select_family ? "@!\nvalue\n/test/fixture/v1.0.0/src/other\n .family\n" : "@!\nvalue\n/test/fixture/v1.0.0/src/other\n .out\n",
+            "@...\n.out\n//integer\n.family\n/test/fixture/v1.0.0/src/family\n");
         StaticOrdinaryType *type = ordinary("value");
         const StaticTerm *resolved = NULL;
         bool success = static_ordinary_resolve(&publications, type, &resolved);
@@ -69,9 +69,9 @@ static void it_distinguishes_selected_type_outputs_from_other_template_outputs(v
 
 /** Foreign parameter names are not public exports, even when their spelling exists. */
 static void it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols(void) {
-    const char *callers[] = {"@!\nvalue\n.other\n ...missing\n", "@!\nvalue\n.other\n ...slot\n"};
+    const char *callers[] = {"@!\nvalue\n/test/fixture/v1.0.0/src/other\n .missing\n", "@!\nvalue\n/test/fixture/v1.0.0/src/other\n .slot\n"};
     for (size_t kind = 0; kind < 2; kind++) {
-        setup_publications(callers[kind], "@...\n...out\n...slot\n...anchor\n..integer\n");
+        setup_publications(callers[kind], "@...\n.out\n.slot\n.anchor\n//integer\n");
         const StaticResultContext *context = publication_context(caller_environment);
         StaticOrdinaryType *type = NULL;
         bool success = static_ordinary_type(&publications, context, result_field("value"), &type);
@@ -83,7 +83,7 @@ static void it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_
 
 /** Normal fields keep contextual parameter inference without becoming static exports. */
 static void it_keeps_normal_ordinary_type_inference_and_actual_source_provenance(void) {
-    setup_publications("@<\nargument\n...type\n@!\nanchor&\n..integer\nvalue\n...type\n", "@!\n");
+    setup_publications("@<\nargument\n.type\n@!\nanchor&\n//integer\nvalue\n.type\n", "@!\n");
     StaticOrdinaryType *type = ordinary("value");
     StaticResultOutcome outcome;
     bool success = static_ordinary_evaluate(&publications, type, &outcome);
@@ -92,7 +92,7 @@ static void it_keeps_normal_ordinary_type_inference_and_actual_source_provenance
     StaticConstraintOutcome unknown_state;
     success = static_constraint_value(&solver, type->value, &unknown, &unknown_state);
     assert(success && unknown_state == STATIC_CONSTRAINT_PENDING);
-    success = static_constraint_equate(&solver, application_symbol("...type"), integer_type, type->expression->span);
+    success = static_constraint_equate(&solver, application_symbol(".type"), integer_type, type->expression->span);
     assert(success);
     const StaticTerm *resolved;
     success = static_ordinary_resolve(&publications, type, &resolved);
@@ -103,7 +103,7 @@ static void it_keeps_normal_ordinary_type_inference_and_actual_source_provenance
 
 /** Selecting a concrete value cannot hide a failing unselected definition. */
 static void it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer(void) {
-    setup_publications("@!\nvalue\n.other\n ...good\n", "@...\n...good\n..integer\n...bad\n...bad\n");
+    setup_publications("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .good\n", "@...\n.good\n//integer\n.bad\n.bad\n");
     StaticOrdinaryType *type = ordinary("value");
     const StaticTerm *value = NULL;
     bool success = static_ordinary_resolve(&publications, type, &value);
@@ -117,10 +117,10 @@ static void it_rejects_an_unselected_definition_cycle_before_connecting_the_cons
  * different complete keys from later independent Type evidence.
  */
 static void it_instantiates_generic_field_parameters_independently_before_later_anchors(void) {
-    setup_publications("@!\nfirst\n.other\nsecond\n.other\nanchor&\n..integer\ntext anchor&\n..text\n",
-        "@<\nvalue\n...slot\n@!\n");
+    setup_publications("@!\nfirst\n/test/fixture/v1.0.0/src/other\nsecond\n/test/fixture/v1.0.0/src/other\nanchor&\n//integer\ntext anchor&\n//text\n",
+        "@<\nvalue\n.slot\n@!\n");
     StaticOrdinaryType *fields[] = {ordinary("first"), ordinary("second")};
-    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
     const StaticTerm *text_type;
     bool success = static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &text_type);
     assert(success);
@@ -162,7 +162,7 @@ static void it_unwinds_every_ordinary_export_preparation_and_resolution_allocati
     for (size_t resolve = 0; resolve < 2; resolve++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_publications("@!\nvalue\n.other\n ...out\n", "@...\n...out\n..integer\n");
+            setup_publications("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n//integer\n");
             const StaticResultContext *context = publication_context(caller_environment);
             StaticOrdinaryType *type = resolve ? ordinary("value") : NULL;
             const StaticTerm *value = NULL;
@@ -184,7 +184,7 @@ static void it_unwinds_every_ordinary_export_preparation_and_resolution_allocati
 /** Exact registered handles, receivers and representable counters are enforced. */
 static void it_refuses_copied_handles_missing_receivers_and_counter_overflow(void) {
     for (size_t kind = 0; kind < 8; kind++) {
-        setup_publications("@!\nvalue\n.other\n ...out\nother value\n.other\n ...out\n", "@...\n...out\n..integer\n");
+        setup_publications("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .out\nother value\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n//integer\n");
         const StaticResultContext *context = publication_context(caller_environment);
         StaticOrdinaryType *type = ordinary("value");
         StaticOrdinaryType copied = *type;

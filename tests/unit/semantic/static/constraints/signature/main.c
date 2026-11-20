@@ -9,13 +9,13 @@
  * explicit foreign-signature declaration or test-only source conversion exists.
  */
 static void setup_signature_sources(const StaticSignature **left, const StaticSignature **right) {
-    setup_static("@<\nkey\n...key\nvalue\n...value\n@!\n",
-        "@<\nvalue\n...value\nkey\n...key\n@!\n");
+    setup_static("@<\nkey\n.key\nvalue\n.value\n@!\n",
+        "@<\nvalue\n.value\nkey\n.key\n@!\n");
     assert(static_inventory_collect(&inventory) == STATIC_OK);
     const StaticModule *module = static_module_find(&inventory, project.entry);
-    assert(module->first->site.start == static_name_site(project.entry, "...key").start);
+    assert(module->first->site.start == static_name_site(project.entry, ".key").start);
     *left = module->constructor_signature;
-    *right = static_module_find(&inventory, project_find(&project, ".other"))->constructor_signature;
+    *right = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"))->constructor_signature;
     assert(*left != NULL && *right != NULL && (*left)->count == 2 && (*right)->count == 2);
 }
 

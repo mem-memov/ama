@@ -1,0 +1,15 @@
+# Invalid empty path is an expected application failure rather than native failure.
+@!
+open
+/test/fixture/v1.0.0/src/open
+report
+/test/fixture/v1.0.0/src/report
+open !
+ < |
+ > failure
+failure
+?
+ failure
+  description >> message
+ report !
+  < message

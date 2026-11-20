@@ -18,19 +18,24 @@ class Product:
         self.output = self.home / 'выходные файлы'
         self.source.mkdir()
         self.standard.mkdir()
-        (self.source / 'ветка+').mkdir()
-        self.leaf = self.source / 'ветка+/лист'
-        self.write(self.source / 'старт', '@!\nworker\n.ветка\nworker !\n')
-        self.write(self.source / 'ветка', '@!\nworker\n.ветка.лист\nworker !\n')
-        self.body = '@!\nvalue\n..integer\n |7\nshow\n.show\nshow !\n < value\n'
+        version = self.source / 'packages/test/fixture/v1.0.0'
+        self.code = version / 'src'
+        self.code.mkdir(parents=True)
+        (version / 'tests').mkdir()
+        self.write(version / 'package.ini', '')
+        (self.code / 'ветка+').mkdir()
+        self.leaf = self.code / 'ветка+/лист'
+        self.write(self.code / 'старт', '@!\nworker\n/test/fixture/v1.0.0/src/ветка\nworker !\n')
+        self.write(self.code / 'ветка', '@!\nworker\n/test/fixture/v1.0.0/src/ветка/лист\nworker !\n')
+        self.body = '@!\nvalue\n//integer\n |7\nshow\n/test/fixture/v1.0.0/src/show\nshow !\n < value\n'
         self.write(self.leaf, self.body)
-        observer = repository / 'tests/integration/standard-integer/project'
+        observer = repository / 'tests/integration/standard-integer/project/packages/test/fixture/v1.0.0/src'
         for suffix in ('', '.h', '.c', '.abi'):
-            shutil.copyfile(observer / ('show' + suffix), self.source / ('show' + suffix))
-        self.header = self.source / 'detail/value.h'
+            shutil.copyfile(observer / ('show' + suffix), self.code / ('show' + suffix))
+        self.header = self.code / 'detail/value.h'
         self.header.parent.mkdir()
         self.write(self.header, '#define PRODUCT_BASE 0\n#ifndef PRODUCT_OFFSET\n#define PRODUCT_OFFSET 0\n#endif\n#define PRODUCT_FAIL 0\n')
-        self.native = self.source / 'show.c'
+        self.native = self.code / 'show.c'
         text = self.native.read_text()
         text = '#include "detail/value.h"\n' + text
         text = text.replace('size_t number = 0;', 'if (PRODUCT_FAIL) { *status=ama_status_make(AMA_NATIVE_FAILURE,NULL,0); return; }\n    size_t number = 0;')
@@ -58,7 +63,7 @@ class Product:
 
     def emit(self, flags=(), extra=(), accepted=True):
         """Invoke the actual compiler with exact argv and require the expected publication outcome."""
-        arguments = [str(self.repository / 'ama'), '--emit', str(self.source), '.старт',
+        arguments = [str(self.repository / 'ama'), '--emit', str(self.source), '/test/fixture/v1.0.0/src/старт',
                      '--standard-root', str(self.standard), '--out', str(self.output),
                      '--sdk', str(self.repository / 'src'), '--compile']
         for flag in flags:

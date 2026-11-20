@@ -1,15 +1,15 @@
 # Ordinary calls do not enroll a task or update its scheduler's declared counters.
 @!
 record
-.record
+/test/fixture/v1.0.0/src/record
 registration
-.registration
+/test/fixture/v1.0.0/src/registration
 validate
-.validate
+/test/fixture/v1.0.0/src/validate
 same
-..task.generation.same
+//task/generation/same
 probe
-.worker
+/test/fixture/v1.0.0/src/worker
 record !
 record
  task& >> task&

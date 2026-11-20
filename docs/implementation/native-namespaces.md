@@ -64,7 +64,7 @@ Both terminate subject to the output stream's I/O behavior.
   output failure on the supported Linux target.
 - `tests/unit/native/abi/hooks/`: the resource companion uses qualified types,
   hooks and inline entry in one C translation unit. Its fixed test context is
-  the category-7 identity `.fixtures.buffer`; it does not claim an Ama backend.
+  the category-7 identity `/test/fixture/v1.0.0/src/fixtures/buffer`; it does not claim an Ama backend.
 - `tests/integration/parser/grammar/`: real catalog and ABI records feed two
   companions with identical local names/types into one C translation unit. All
   six typed hook uses compile and run; Unicode, UCN and dollar spellings survive,

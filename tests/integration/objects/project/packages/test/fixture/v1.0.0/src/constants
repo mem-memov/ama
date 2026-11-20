@@ -1,0 +1,5 @@
+# Shared values initialize before executable instances; they never execute a body.
+@=
+seed
+/test/fixture/v1.0.0/src/counter
+ |0

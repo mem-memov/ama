@@ -1,0 +1,8 @@
+# An empty traversal completes without yielding or creating its local binding.
+@!
+items[]
+//text
+items[item&]
+{
+ %
+}

@@ -1,0 +1,16 @@
+# Snapshot enrollment identity so an obsolete physical entry cannot step a new run.
+@<
+target&
+/test/fixture/v1.0.0/src/jobs/record
+run epoch
+//task/generation
+@>
+record&
+/test/fixture/v1.0.0/src/jobs/record
+epoch
+//task/generation
+@!
+record&
+ target&
+epoch
+ run epoch

@@ -20,13 +20,13 @@
  * are observable.
  */
 static void prepare_diamond(void) {
-    directory("generated/diamond");
-    file("generated/diamond/main", "@<\nleft\n.left\n@>\nright\n.right\n@!\nagain\n.left\n");
-    file("generated/diamond/left", "@!\nvalue\n.shared\n");
-    file("generated/diamond/right", "@!\nvalue\n.shared\n");
-    file("generated/diamond/shared", "@C\n");
-    file("generated/diamond/draft", "not active, and not parsed");
-    file("generated/diamond/unused", "@!\n syntactically invalid\n");
+    fixture_package_prepare("generated/diamond", "fixture");
+    file("generated/diamond/packages/test/fixture/v1.0.0/src/main", "@<\nleft\n/test/fixture/v1.0.0/src/left\n@>\nright\n/test/fixture/v1.0.0/src/right\n@!\nagain\n/test/fixture/v1.0.0/src/left\n");
+    file("generated/diamond/packages/test/fixture/v1.0.0/src/left", "@!\nvalue\n/test/fixture/v1.0.0/src/shared\n");
+    file("generated/diamond/packages/test/fixture/v1.0.0/src/right", "@!\nvalue\n/test/fixture/v1.0.0/src/shared\n");
+    file("generated/diamond/packages/test/fixture/v1.0.0/src/shared", "@C\n");
+    file("generated/diamond/packages/test/fixture/v1.0.0/src/draft", "not active, and not parsed");
+    file("generated/diamond/packages/test/fixture/v1.0.0/src/unused", "@!\n syntactically invalid\n");
 }
 
 /**
@@ -39,14 +39,14 @@ static void it_shares_diamond_dependencies_and_ignores_unused_syntax(void) {
     setup_project();
     ProjectStatus status = load_root("generated/diamond");
     assert(status == PROJECT_OK && project.valid && module_count() == 4);
-    const ProjectModule *left = project_find(&project, ".left");
-    const ProjectModule *right = project_find(&project, ".right");
-    const ProjectModule *shared = project_find(&project, ".shared");
+    const ProjectModule *left = project_find(&project, "/test/fixture/v1.0.0/src/left");
+    const ProjectModule *right = project_find(&project, "/test/fixture/v1.0.0/src/right");
+    const ProjectModule *shared = project_find(&project, "/test/fixture/v1.0.0/src/shared");
     assert(left->first->target == shared && right->first->target == shared);
     assert(project.entry->first->target == project.entry->last->target);
     assert(shared->state == PROJECT_MODULE_READY);
-    assert(project_find(&project, ".unused") == NULL);
-    assert(project_find(&project, ".draft") == NULL);
+    assert(project_find(&project, "/test/fixture/v1.0.0/src/unused") == NULL);
+    assert(project_find(&project, "/test/fixture/v1.0.0/src/draft") == NULL);
     destroy_project();
 }
 
@@ -55,9 +55,9 @@ static void it_shares_diamond_dependencies_and_ignores_unused_syntax(void) {
  * and observations define this regression; assertion failure keeps its generated evidence.
  */
 static void it_finishes_self_and_mutual_loading_cycles(void) {
-    directory("generated/cycle");
-    file("generated/cycle/main", "@!\nself&\n.main\nother&[]\n.other\n");
-    file("generated/cycle/other", "@!\nback&\n.main\n");
+    fixture_package_prepare("generated/cycle", "fixture");
+    file("generated/cycle/packages/test/fixture/v1.0.0/src/main", "@!\nself&\n/test/fixture/v1.0.0/src/main\nother&[]\n/test/fixture/v1.0.0/src/other\n");
+    file("generated/cycle/packages/test/fixture/v1.0.0/src/other", "@!\nback&\n/test/fixture/v1.0.0/src/main\n");
     setup_project();
     ProjectStatus status = load_root("generated/cycle");
     assert(status == PROJECT_OK && module_count() == 2);
@@ -72,17 +72,17 @@ static void it_finishes_self_and_mutual_loading_cycles(void) {
  * generated evidence.
  */
 static void it_discovers_all_source_forms_and_nested_blocks_in_lexical_order(void) {
-    directory("generated/forms");
-    file("generated/forms/main", "@=\nconstant\n.kind\n .constants.value\n"
-        "@<\nparameter\n.kind\n@>\nresult\n.kind\n@!\n"
-        "copy\n .assignment.value\nworker !\n < .argument.value\n:\n"
-        " fallback\n .fallback\nready\n?\n flag\n {\n  child\n  .nested\n }\n:\n"
-        " alternative\n .alternative\n.namespace\n value >> answer\n");
+    fixture_package_prepare("generated/forms", "fixture");
+    file("generated/forms/packages/test/fixture/v1.0.0/src/main", "@=\nconstant\n/test/fixture/v1.0.0/src/kind\n /test/fixture/v1.0.0/src/constants/value\n"
+        "@<\nparameter\n/test/fixture/v1.0.0/src/kind\n@>\nresult\n/test/fixture/v1.0.0/src/kind\n@!\n"
+        "copy\n /test/fixture/v1.0.0/src/assignment/value\nworker !\n < /test/fixture/v1.0.0/src/argument/value\n:\n"
+        " fallback\n /test/fixture/v1.0.0/src/fallback\nready\n?\n flag\n {\n  child\n  /test/fixture/v1.0.0/src/nested\n }\n:\n"
+        " alternative\n /test/fixture/v1.0.0/src/alternative\n/test/fixture/v1.0.0/src/namespace\n value >> answer\n");
     const char *names[] = {"kind", "constants", "assignment", "argument", "fallback",
         "nested", "alternative", "namespace"};
     for (size_t index = 0; index < sizeof(names) / sizeof(names[0]); index++) {
-        char path[128];
-        int length = snprintf(path, sizeof(path), "generated/forms/%s", names[index]);
+        char path[256];
+        int length = snprintf(path, sizeof(path), "generated/forms/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0 && (size_t)length < sizeof(path));
         file(path, "@C\n");
     }
@@ -92,8 +92,8 @@ static void it_discovers_all_source_forms_and_nested_blocks_in_lexical_order(voi
         fprintf(stderr, "Forms failed: %s\n", project.error.message);
     }
     assert(status == PROJECT_OK && module_count() == 9);
-    const char *edges[] = {".kind", ".constants", ".kind", ".kind", ".assignment",
-        ".argument", ".fallback", ".nested", ".alternative", ".namespace"};
+    const char *edges[] = {"/test/fixture/v1.0.0/src/kind", "/test/fixture/v1.0.0/src/constants", "/test/fixture/v1.0.0/src/kind", "/test/fixture/v1.0.0/src/kind", "/test/fixture/v1.0.0/src/assignment",
+        "/test/fixture/v1.0.0/src/argument", "/test/fixture/v1.0.0/src/fallback", "/test/fixture/v1.0.0/src/nested", "/test/fixture/v1.0.0/src/alternative", "/test/fixture/v1.0.0/src/namespace"};
     ProjectDependency *edge = project.entry->first;
     for (size_t index = 0; index < sizeof(edges) / sizeof(edges[0]); index++) {
         assert(edge != NULL && strcmp(edge->logical_path, edges[index]) == 0);
@@ -109,11 +109,11 @@ static void it_discovers_all_source_forms_and_nested_blocks_in_lexical_order(voi
  * tests.
  */
 static void prepare_chain(const char *last) {
-    directory("generated/chain");
-    file("generated/chain/main", "@!\nchild\n.middle\n");
-    file("generated/chain/middle", "@!\nchild\n.last\n");
+    fixture_package_prepare("generated/chain", "fixture");
+    file("generated/chain/packages/test/fixture/v1.0.0/src/main", "@!\nchild\n/test/fixture/v1.0.0/src/middle\n");
+    file("generated/chain/packages/test/fixture/v1.0.0/src/middle", "@!\nchild\n/test/fixture/v1.0.0/src/last\n");
     if (last != NULL) {
-        file("generated/chain/last", last);
+        file("generated/chain/packages/test/fixture/v1.0.0/src/last", last);
     }
 }
 
@@ -125,12 +125,12 @@ static void expect_chain(ProjectStatus expected) {
     setup_project();
     ProjectStatus status = load_root("generated/chain");
     assert(status == expected && !project.valid);
-    assert(project_find(&project, ".main") == NULL);
+    assert(project_find(&project, "/test/fixture/v1.0.0/src/main") == NULL);
     assert(diagnostic_valid(&project.error));
-    assert(strcmp(project.error.subject, ".last") == 0);
+    assert(strcmp(project.error.subject, "/test/fixture/v1.0.0/src/last") == 0);
     assert(project.error.related_count == 2);
-    assert(strcmp(project.error.related[0].name, ".middle") == 0);
-    assert(strcmp(project.error.related[1].name, ".main") == 0);
+    assert(strcmp(project.error.related[0].name, "/test/fixture/v1.0.0/src/middle") == 0);
+    assert(strcmp(project.error.related[1].name, "/test/fixture/v1.0.0/src/main") == 0);
     assert(project.error.related[0].location.span.start == 9);
     destroy_project();
 }
@@ -154,17 +154,17 @@ static void it_reports_request_chains_for_missing_draft_and_invalid_modules(void
  * setup and observations define this regression; assertion failure keeps its generated evidence.
  */
 static void it_owns_entry_errors_and_locates_a_draft_entry(void) {
-    directory("generated/entry");
+    fixture_package_prepare("generated/entry", "fixture");
     setup_project();
     ModuleRoot root = {"generated/entry", NULL, 0, MODULE_ROOT_PROJECT};
-    char entry[] = ".main";
+    char entry[] = "/test/fixture/v1.0.0/src/main";
     ProjectStatus status = project_load(&project, &root, 1, entry);
     entry[1] = 'X';
     assert(status == PROJECT_MISSING && diagnostic_valid(&project.error));
-    assert(strcmp(project.error.subject, ".main") == 0);
+    assert(strcmp(project.error.subject, "/test/fixture/v1.0.0/src/main") == 0);
     assert(project.error.related_count == 0);
     destroy_project();
-    file("generated/entry/main", "unfinished");
+    file("generated/entry/packages/test/fixture/v1.0.0/src/main", "unfinished");
     setup_project();
     status = load_root("generated/entry");
     assert(status == PROJECT_DRAFT && diagnostic_valid(&project.error));
@@ -178,14 +178,14 @@ static void it_owns_entry_errors_and_locates_a_draft_entry(void) {
  * generated evidence.
  */
 static void it_rejects_constants_only_entries_but_accepts_them_as_dependencies(void) {
-    directory("generated/constants");
-    file("generated/constants/main", "@=\n");
+    fixture_package_prepare("generated/constants", "fixture");
+    file("generated/constants/packages/test/fixture/v1.0.0/src/main", "@=\n");
     setup_project();
     ProjectStatus status = load_root("generated/constants");
     assert(status == PROJECT_INVALID_ENTRY && diagnostic_valid(&project.error));
     destroy_project();
-    file("generated/constants/main", "@!\n.library\n value >> result\n");
-    file("generated/constants/library", "@=\n");
+    file("generated/constants/packages/test/fixture/v1.0.0/src/main", "@!\n/test/fixture/v1.0.0/src/library\n value >> result\n");
+    file("generated/constants/packages/test/fixture/v1.0.0/src/library", "@=\n");
     setup_project();
     status = load_root("generated/constants");
     assert(status == PROJECT_OK && module_count() == 2);
@@ -198,28 +198,28 @@ static void it_rejects_constants_only_entries_but_accepts_them_as_dependencies(v
  * its generated evidence.
  */
 static void it_resolves_multiple_roots_and_submodules_without_loading_the_parent(void) {
-    directory("generated/application");
-    directory("generated/library");
-    directory("generated/library/商店");
-    file("generated/application/main", "@!\n商品\n.商店.商品.详情\n");
-    file("generated/library/商店/商品", "unfinished parent");
-    directory("generated/library/商店/商品+");
-    file("generated/library/商店/商品+/详情", "@C\n");
+    fixture_package_prepare("generated/application", "fixture");
+    fixture_package_prepare("generated/library", "library");
+    directory("generated/library/packages/test/library/v1.0.0/src/商店");
+    file("generated/application/packages/test/fixture/v1.0.0/src/main", "@!\n商品\n/test/library/v1.0.0/src/商店/商品/详情\n");
+    file("generated/library/packages/test/library/v1.0.0/src/商店/商品", "unfinished parent");
+    directory("generated/library/packages/test/library/v1.0.0/src/商店/商品+");
+    file("generated/library/packages/test/library/v1.0.0/src/商店/商品+/详情", "@C\n");
     ModuleRoot roots[] = {{"generated/application", NULL, 0, MODULE_ROOT_PROJECT}, {"generated/library", NULL, 0, MODULE_ROOT_PROJECT}};
     for (size_t order = 0; order < 2; order++) {
         setup_project();
-        ProjectStatus status = project_load(&project, roots, 2, ".main");
+        ProjectStatus status = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
         assert(status == PROJECT_OK && module_count() == 2);
-        assert(project_find(&project, ".商店.商品") == NULL);
-        assert(project_find(&project, ".商店.商品.详情") != NULL);
+        assert(project_find(&project, "/test/library/v1.0.0/src/商店/商品") == NULL);
+        assert(project_find(&project, "/test/library/v1.0.0/src/商店/商品/详情") != NULL);
         destroy_project();
         ModuleRoot temporary = roots[0];
         roots[0] = roots[1];
         roots[1] = temporary;
     }
-    file("generated/library/main", "@!\n");
+    fixture_package_prepare("generated/library", "fixture");
     setup_project();
-    ProjectStatus status = project_load(&project, roots, 2, ".main");
+    ProjectStatus status = project_load(&project, roots, 2, "/test/fixture/v1.0.0/src/main");
     assert(status == PROJECT_CATALOG_ERROR && project.error.code == DIAGNOSTIC_AMBIGUOUS_MODULE);
     assert(project.first == NULL && project.error.related_count == 1);
     assert(diagnostic_valid(&project.error));
@@ -258,12 +258,12 @@ static void it_cleans_every_allocation_failure_in_success_and_error_paths(void) 
  * generated evidence.
  */
 static void it_matches_reachability_for_every_directed_graph_on_three_modules(void) {
-    directory("generated/graphs");
+    fixture_package_prepare("generated/graphs", "fixture");
     const char *names[] = {"main", "left", "right"};
     for (unsigned graph = 0; graph < 512; graph++) {
         for (size_t vertex = 0; vertex < 3; vertex++) {
-            char path[64];
-            int length = snprintf(path, sizeof(path), "generated/graphs/%s", names[vertex]);
+            char path[256];
+            int length = snprintf(path, sizeof(path), "generated/graphs/packages/test/fixture/v1.0.0/src/%s", names[vertex]);
             assert(length > 0 && (size_t)length < sizeof(path));
             FILE *stream = fopen(path, "wb");
             assert(stream != NULL);
@@ -271,7 +271,7 @@ static void it_matches_reachability_for_every_directed_graph_on_three_modules(vo
             assert(written > 0);
             for (size_t target = 0; target < 3; target++) {
                 if ((graph & (1u << (vertex * 3 + target))) != 0) {
-                    written = fprintf(stream, "field%zu&\n.%s\n", target, names[target]);
+                    written = fprintf(stream, "field%zu&\n/test/fixture/v1.0.0/src/%s\n", target, names[target]);
                     assert(written > 0);
                 }
             }
@@ -293,8 +293,8 @@ static void it_matches_reachability_for_every_directed_graph_on_three_modules(vo
         assert(status == PROJECT_OK);
         size_t count = 0;
         for (size_t vertex = 0; vertex < 3; vertex++) {
-            char logical[32];
-            int length = snprintf(logical, sizeof(logical), ".%s", names[vertex]);
+            char logical[256];
+            int length = snprintf(logical, sizeof(logical), "/test/fixture/v1.0.0/src/%s", names[vertex]);
             assert(length > 0 && (size_t)length < sizeof(logical));
             const ProjectModule *module = project_find(&project, logical);
             assert((module != NULL) == reachable[vertex]);
@@ -316,9 +316,9 @@ static void it_matches_reachability_for_every_directed_graph_on_three_modules(vo
  * generated evidence.
  */
 static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void) {
-    directory("generated/deep");
+    fixture_package_prepare("generated/deep", "fixture");
     const size_t depth = 128;
-    FILE *stream = fopen("generated/deep/main", "wb");
+    FILE *stream = fopen("generated/deep/packages/test/fixture/v1.0.0/src/main", "wb");
     assert(stream != NULL);
     int written = fprintf(stream, "@!\n");
     assert(written > 0);
@@ -326,7 +326,7 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
         written = fprintf(stream, "%*sflag\n%*s{\n", (int)level, "", (int)level, "");
         assert(written > 0);
     }
-    written = fprintf(stream, "%*sitem\n%*s.n0\n", (int)depth, "", (int)depth, "");
+    written = fprintf(stream, "%*sitem\n%*s/test/fixture/v1.0.0/src/n0\n", (int)depth, "", (int)depth, "");
     assert(written > 0);
     for (size_t level = depth; level > 0; level--) {
         written = fprintf(stream, "%*s}\n", (int)(level - 1), "");
@@ -335,14 +335,14 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
     int closed = fclose(stream);
     assert(closed == 0);
     for (size_t index = 0; index < depth; index++) {
-        char path[64];
-        char content[64];
-        int length = snprintf(path, sizeof(path), "generated/deep/n%zu", index);
+        char path[256];
+        char content[256];
+        int length = snprintf(path, sizeof(path), "generated/deep/packages/test/fixture/v1.0.0/src/n%zu", index);
         assert(length > 0 && (size_t)length < sizeof(path));
         if (index + 1 == depth) {
             file(path, "@C\n");
         } else {
-            length = snprintf(content, sizeof(content), "@!\nnext&\n.n%zu\n", index + 1);
+            length = snprintf(content, sizeof(content), "@!\nnext&\n/test/fixture/v1.0.0/src/n%zu\n", index + 1);
             assert(length > 0 && (size_t)length < sizeof(content));
             file(path, content);
         }

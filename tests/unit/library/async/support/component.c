@@ -5,9 +5,9 @@
 static void build_component(LibraryBuild *build, const char *backend, const char *include) {
     char records[8192];
     int length = snprintf(records, sizeof(records),
-        "schema | text | text | ..text\nschema | flag | condition | ..std.condition\n"
-        "export | run | .main | entry,resume\ninput | run | immediate | flag\ninput | run | cancel requested | flag\noutput | run | message | text\n"
-        "export | invalid | .invalid | entry\n"
+        "schema | text | text | //text\nschema | flag | condition | //std/condition\n"
+        "export | run | /test/fixture/v1.0.0/src/main | entry,resume\ninput | run | immediate | flag\ninput | run | cancel requested | flag\noutput | run | message | text\n"
+        "export | invalid | /test/fixture/v1.0.0/src/invalid | entry\n"
         "c-flag | -I%s\nc-flag | -DNDEBUG\nlink-file | %s\n"
 #ifdef TEST_THREAD_SANITIZER
         "c-flag | -fsanitize=thread\nc-flag | -fno-omit-frame-pointer\nlink-flag | -fsanitize=thread\n"

@@ -1,36 +1,36 @@
 # Publish the complete visible wait before arming and recheck before Awaiting.
 @<
 record&
-.record
+/test/fixture/v1.0.0/src/record
 wait&
-.registration
+/test/fixture/v1.0.0/src/registration
 service&
-..task.events
+//task/events
 operation
-..task.token
+//task/token
 before check
-..std.condition
+//std/condition
 before commit
-..std.condition
+//std/condition
 after check
-..std.condition
+//std/condition
 @>
 self&
-.task
+/test/fixture/v1.0.0/src/task
  &
 owner record&
-.record
+/test/fixture/v1.0.0/src/record
 phase
-..task.phase
+//task/phase
 @!
 ready phase
-..task.phase.ready
+//task/phase/ready
 awaiting phase
-..task.phase.awaiting
+//task/phase/awaiting
 completed phase
-..task.phase.completed
+//task/phase/completed
 keep waiting
-..std.condition
+//std/condition
  |1
 owner record&
  record&

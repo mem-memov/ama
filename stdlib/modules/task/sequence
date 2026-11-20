@@ -1,10 +1,10 @@
 # Publish snapshots of a private nonwrapping counter that persists across entry calls.
 @>
 value
-..task.generation
+//task/generation
 @!
 retained
-..task.generation
+//task/generation
 retained !
 value
  retained

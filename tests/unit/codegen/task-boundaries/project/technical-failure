@@ -1,17 +1,17 @@
 # Both waits must detach before failed reaches the host, without running either suspended body.
 @!
 source
-..task.events
+//task/events
 first
-.waiting task
+/test/fixture/v1.0.0/src/waiting task
 second
-.waiting task
+/test/fixture/v1.0.0/src/waiting task
 retainer
-.retainer
+/test/fixture/v1.0.0/src/retainer
 crash
-.crash
+/test/fixture/v1.0.0/src/crash
 probe
-.worker
+/test/fixture/v1.0.0/src/worker
 source !
  < |2
 first !

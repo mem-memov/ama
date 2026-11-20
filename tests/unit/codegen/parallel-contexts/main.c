@@ -20,11 +20,11 @@ static void append_fixture(const char *path, char *buffer, size_t capacity) {
 static bool parallel_native_entry(FILE *output, const ScaffoldType *type) {
     const char *path = type->plan->type->module->source->logical_path;
     int written;
-    if (strcmp(path, ".bridge") == 0) {
+    if (strcmp(path, "/test/fixture/v1.0.0/src/bridge") == 0) {
         written = fputs("AmaStatus test_parallel_service(const ama_t_0a13545c236dc688542e3824b23bf3848f38fdb81d6b4c289732f8a82eaa888f *,void *);\n"
             "*status=parameters->AMA_INPUT(0)->with_read(parameters->AMA_INPUT(0)->storage,test_parallel_service,NULL);\n"
             "if(status->code!=AMA_OK) return;\n", output);
-    } else if (strcmp(path, ".received") == 0) {
+    } else if (strcmp(path, "/test/fixture/v1.0.0/src/received") == 0) {
         written = fputs("void test_parallel_received(void); AmaByteView bytes; size_t code=0;\n"
             "*status=ama_n_98bd03817466d12d563a6e9709025da3fa29b415e0e82ad0e6fa0e11f2e7414b_view(parameters->AMA_INPUT(0)->payload,&bytes);\n"
             "if(status->code!=AMA_OK) return;\n"
@@ -33,7 +33,7 @@ static bool parallel_native_entry(FILE *output, const ScaffoldType *type) {
             "if(code!=7 || bytes.length!=3 || bytes.data[0]!=0 || bytes.data[1]!=255 || bytes.data[2]!=66) {\n"
             "*status=ama_status_make(AMA_NATIVE_FAILURE,\"Wrong parallel packet\",21); return; }\n"
             "test_parallel_received();\n", output);
-    } else if (strcmp(path, ".missing") == 0) {
+    } else if (strcmp(path, "/test/fixture/v1.0.0/src/missing") == 0) {
         written = fputs("*status=ama_status_make(AMA_NATIVE_FAILURE,\"Missing parallel completion\",27); return;\n", output);
     } else { return false; }
     assert(written != EOF);
@@ -43,8 +43,9 @@ static bool parallel_native_entry(FILE *output, const ScaffoldType *type) {
 /** Independent dispatchers overlap, import a native event, and isolate a peer's accepted failure. */
 static void it_runs_parallel_contexts_with_private_startup_reuse_events_and_failure(void) {
     directory("generated/project");
-    native_fixture("bridge", "@<\nsource&\n..task.events\n@C\n");
-    native_fixture("received", "@<\ndata\n..bytes\ncode\n..integer\n@C\n");
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("bridge", "@<\nsource&\n//task/events\n@C\n");
+    native_fixture("received", "@<\ndata\n//bytes\ncode\n//integer\n@C\n");
     native_fixture("missing", "@C\n");
     char source[4096] = {0}, consumer[32768] = {0};
     append_fixture("project/main", source, sizeof(source));

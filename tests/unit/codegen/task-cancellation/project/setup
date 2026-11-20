@@ -1,23 +1,23 @@
 # Explicit owner, queue and service shared by each independently compiled cancellation schedule.
 @!
 source
-..task.events
+//task/events
 record
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 queue
-.kind.queue
+/test/fixture/v1.0.0/src/kind/queue
 enqueue
-.kind.enqueue
+/test/fixture/v1.0.0/src/kind/enqueue
 dispatch
-.kind.dispatch
+/test/fixture/v1.0.0/src/kind/dispatch
 cancel
-.kind.cancel
+/test/fixture/v1.0.0/src/kind/cancel
 deliver
-.kind.deliver
+/test/fixture/v1.0.0/src/kind/deliver
 report
-.report
+/test/fixture/v1.0.0/src/report
 require
-..task.require
+//task/require
 source !
  < |1
 record !

@@ -8,7 +8,8 @@
  */
 static void it_runs_same_type_nested_copies_under_an_explicit_resuming_host(void) {
     directory("generated/project");
-    file("generated/project/node", "@<\nnext&\n.node\n@!\nprobe\n.worker\n"
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/node", "@<\nnext&\n/test/fixture/v1.0.0/src/node\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\n"
         "next& !\n:\nprobe !\n < |1\n%\nprobe !\n < |2\n");
     host_launcher = "#include \"project.h\"\n#include \"project.c\"\n#include <assert.h>\n"
         "int main(void) { AmaProjectHost host={0};\n"
@@ -20,8 +21,8 @@ static void it_runs_same_type_nested_copies_under_an_explicit_resuming_host(void
         "assert(ama_handle_equal(root,host.root) && !host.disposed);\n"
         "AmaStatus status=ama_project_dispose(&host); assert(status.code==AMA_OK);\n"
         "return 0; }\n";
-    execute_project("@!\nfirst\n.node\nsecond\n.node\ncopy\n.node\nplain\n.node\n"
-        "probe\n.worker\nfirst !\n < &second\ncopy\n % first\nplain\n first\n%\n"
+    execute_project("@!\nfirst\n/test/fixture/v1.0.0/src/node\nsecond\n/test/fixture/v1.0.0/src/node\ncopy\n/test/fixture/v1.0.0/src/node\nplain\n/test/fixture/v1.0.0/src/node\n"
+        "probe\n/test/fixture/v1.0.0/src/worker\nfirst !\n < &second\ncopy\n % first\nplain\n first\n%\n"
         "copy %\nfirst %\nsecond %\nplain %\n:\n probe !\n  < |99\n",
         "1:1:7\n1:1:0\n2:2:0\n2:2:0\n2:2:7\n99:1:10\n", true);
     host_launcher = NULL;
@@ -32,18 +33,19 @@ static void it_runs_same_type_nested_copies_under_an_explicit_resuming_host(void
  */
 static void it_reports_only_the_current_caller_after_copying_a_continuation(void) {
     directory("generated/project");
-    file("generated/project/task", "@!\nworker\n.worker\n%\nworker !\n < |500\n");
-    file("generated/project/original", "@<\ntarget&\n.task\n@!\ntarget& !\n");
-    file("generated/project/resumer", "@<\ntarget&\n.task\n@!\ntarget& %\n");
-    execute_project("@!\ntask\n.task\ncopy\n.task\noriginal\n.original\nresumer\n.resumer\n"
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@!\nworker\n/test/fixture/v1.0.0/src/worker\n%\nworker !\n < |500\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/original", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\n@!\ntarget& !\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/resumer", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\n@!\ntarget& %\n");
+    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\ncopy\n/test/fixture/v1.0.0/src/task\noriginal\n/test/fixture/v1.0.0/src/original\nresumer\n/test/fixture/v1.0.0/src/resumer\n"
         "original !\n < &task\ncopy\n % task\nresumer !\n < &copy\n", "native-entered\n", false);
-    expect_diagnostic("generated/project/task:5:1");
-    expect_diagnostic("generated/project/resumer:5:1");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/task:5:1");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/resumer:5:1");
     FILE *errors = fopen("generated/errors.txt", "rb");
     assert(errors != NULL);
     char bytes[4096] = {0};
     size_t count = fread(bytes, 1, sizeof(bytes) - 1, errors);
     int closed = fclose(errors);
     assert(count != 0 && closed == 0);
-    assert(strstr(bytes, "generated/project/original:") == NULL);
+    assert(strstr(bytes, "generated/project/packages/test/fixture/v1.0.0/src/original:") == NULL);
 }

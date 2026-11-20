@@ -17,9 +17,9 @@ static void it_closes_native_borrows_before_normal_or_failed_host_return(void) {
         "assert(host.active.world==NULL && host.disposed);\n"
         "assert(!host.registry.initialized);\n"
         "return status.code==AMA_OK ? EXIT_SUCCESS : EXIT_FAILURE; }\n";
-    execute_project("@!\nworker\n.worker\nworker !\n", "7:1:0\n", true);
+    execute_project("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n", "7:1:0\n", true);
     malformed_native_entry = true;
-    execute_project("@!\nworker\n.worker\nworker !\n", "7:1:0\n", false);
+    execute_project("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n", "7:1:0\n", false);
     malformed_native_entry = false;
     host_launcher = NULL;
     expect_diagnostic("Malformed native status");

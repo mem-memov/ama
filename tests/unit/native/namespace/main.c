@@ -18,12 +18,12 @@ static void it_qualifies_local_names_with_stable_module_specific_prefixes(void) 
     setup_test();
     IdentityRegistry registry;
     identity_registry_init(&registry, sources.allocator);
-    QualifiedIdentity identity = {IDENTITY_NATIVE_NAMESPACE, ".商店.商品", NULL, 0, {0}};
+    QualifiedIdentity identity = {IDENTITY_NATIVE_NAMESPACE, "/test/fixture/v1.0.0/src/商店/商品", NULL, 0, {0}};
     const IdentityName *first;
     const IdentityName *second;
     IdentityStatus status = identity_register(&registry, identity, &first);
     assert(status == IDENTITY_OK && first->category == IDENTITY_NATIVE_NAMESPACE);
-    identity.module_path = ".warehouse.商品";
+    identity.module_path = "/test/fixture/v1.0.0/src/warehouse/商品";
     status = identity_register(&registry, identity, &second);
     assert(status == IDENTITY_OK && strcmp(first->internal_name, second->internal_name) != 0);
     const SourceText *source;
@@ -63,7 +63,7 @@ static void it_rejects_non_namespace_identities_and_reports_output_failure(void)
     setup_test();
     IdentityRegistry registry;
     identity_registry_init(&registry, sources.allocator);
-    QualifiedIdentity identity = {IDENTITY_TYPE, ".type", NULL, 0, {0}};
+    QualifiedIdentity identity = {IDENTITY_TYPE, "/test/fixture/v1.0.0/src/type", NULL, 0, {0}};
     const IdentityName *name;
     IdentityStatus status = identity_register(&registry, identity, &name);
     assert(status == IDENTITY_OK);

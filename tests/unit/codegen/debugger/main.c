@@ -13,7 +13,7 @@ static void it_inspects_yielded_traversals_with_original_names(void) {
     assert(fclose(input) == 0);
     consumer[length] = 0;
     host_launcher = consumer;
-    execute_project("@!\nсписок[]\n.value\n |4\n |5\nсписок[элемент&]\n{\n %\n}\n",
+    execute_project("@!\nсписок[]\n/test/fixture/v1.0.0/src/value\n |4\n |5\nсписок[элемент&]\n{\n %\n}\n",
         "debugger accepted\n", true);
     host_launcher = NULL;
 }
@@ -24,7 +24,7 @@ static void it_rejects_inspection_after_generated_host_failure_cleanup(void) {
         "if(result.outcome!=AMA_HOST_FAILED || !host.disposed) abort();\n"
         "AmaDebugSession session={0}; if(ama_debug_begin(&host.registry,host.identity,&ama_project_debug_catalog,NULL,0,&session).code==AMA_OK) abort();\n"
         "if(ama_project_dispose(&host).code!=result.status.code) abort(); return 0; }\n";
-    execute_project("@!\nworker\n.worker\nworker !\n < |500\n", "native-entered\n", true);
+    execute_project("@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < |500\n", "native-entered\n", true);
     host_launcher = NULL;
     expect_diagnostic("Body failed");
 }

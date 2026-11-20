@@ -9,7 +9,7 @@
 #ifndef AMA_SOURCE_MODULE_PACKAGES_INTERNAL_H
 #define AMA_SOURCE_MODULE_PACKAGES_INTERNAL_H
 
-#include "packages.h"
+#include "reader.h"
 #include "../internal.h"
 
 /** Arena-owned unversioned namespace directory awaiting one finite scan.
@@ -31,6 +31,7 @@ typedef struct PackageDirectory {
  */
 typedef struct {
     ModuleCatalog *catalog;
+    const ModulePackageReader *reader;
     const ModuleRoot *root;
     ModulePackage **selected;
     PackageDirectory *pending;
@@ -43,7 +44,7 @@ typedef struct {
  * context. [SRC-02](../../../../spec/language/source-and-names.md#src-02)
  * rejects aliases rather than revisiting a physical directory under another name.
  */
-ModuleStatus package_queue(PackageScan *, const char *, const char *, const char *, size_t);
+ModuleStatus package_queue(PackageScan *, const char *, const char *, const char *, size_t, const struct stat *);
 
 /** Read one optional storage tree iteratively, stopping at every version boundary.
  * [PKG-01](../../../../spec/project/packages.md#pkg-01) permits absent storage;

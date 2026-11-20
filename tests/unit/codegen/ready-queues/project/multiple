@@ -1,23 +1,23 @@
 # One record cannot enter two queues; two distinct nominal task domains stay explicit.
 @!
 red registry
-.red.registry
+/test/fixture/v1.0.0/src/red/registry
 blue registry
-.blue.registry
+/test/fixture/v1.0.0/src/blue/registry
 red queue
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 other red queue
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 blue queue
-.blue.queue
+/test/fixture/v1.0.0/src/blue/queue
 red enqueue
-.red.enqueue
+/test/fixture/v1.0.0/src/red/enqueue
 blue enqueue
-.blue.enqueue
+/test/fixture/v1.0.0/src/blue/enqueue
 red dispatch
-.red.dispatch
+/test/fixture/v1.0.0/src/red/dispatch
 blue dispatch
-.blue.dispatch
+/test/fixture/v1.0.0/src/blue/dispatch
 red registry
  records[]
   append !

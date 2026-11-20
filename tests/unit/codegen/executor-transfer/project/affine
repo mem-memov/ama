@@ -1,7 +1,7 @@
 # The native resource declares thread affinity for its entire live lifetime.
 @!
 visit
-.affine
+/test/fixture/v1.0.0/src/affine
 visit !
 %
 visit !

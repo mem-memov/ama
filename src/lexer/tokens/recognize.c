@@ -6,6 +6,7 @@
  */
 #include <string.h>
 #include "internal.h"
+#include "source/path/syntax.h"
 /** Immutable spelling/category pair ordered longest first; equal-length alternatives have disjoint spellings. Component contract: [SRC-03](../../../spec/language/source-and-names.md#src-03), [SYN-06](../../../spec/language/source-and-names.md#syn-06). */
 typedef struct { const char *text; LexKind kind; } FixedToken;
 
@@ -18,11 +19,17 @@ bool lex_recognize(LexCursor *cursor, size_t offset, LexToken *token) {
         *token = (LexToken){.kind = LEX_NAME, .text = name};
         return true;
     }
+    size_t path = module_path_prefix(bytes + offset, end - offset);
+    if (path != 0) {
+        *token = (LexToken){.kind = LEX_MODULE_PATH,
+            .text = {cursor->line->code.source, offset, offset + path}};
+        return true;
+    }
     static const FixedToken fixed[] = {
         {"@...",LEX_STATIC_MODULE},
-        {"...",LEX_STATIC_PREFIX}, {"&[]",LEX_REFERENCE_LIST}, {"@=",LEX_CONSTANTS}, {"@<",LEX_PARAMETERS},
+        {"&[]",LEX_REFERENCE_LIST}, {"@=",LEX_CONSTANTS}, {"@<",LEX_PARAMETERS},
         {"@>",LEX_RESULTS}, {"@!",LEX_AMA}, {"@C",LEX_NATIVE}, {">>",LEX_READ},
-        {"[]",LEX_LIST}, {"&[",LEX_REFERENCE_INDEX}, {"..",LEX_STANDARD_ROOT},
+        {"[]",LEX_LIST}, {"&[",LEX_REFERENCE_INDEX},
         {".",LEX_DOT}, {"&",LEX_REFERENCE}, {"[",LEX_INDEX_OPEN}, {"]",LEX_INDEX_CLOSE},
         {"!",LEX_EXECUTE}, {"%",LEX_CONTINUATION}, {"<",LEX_INPUT}, {">",LEX_OUTPUT},
         {"?",LEX_QUESTION}, {":",LEX_COLON}, {"{",LEX_LOOP_OPEN}, {"}",LEX_LOOP_CLOSE}, {"^",LEX_BREAK}

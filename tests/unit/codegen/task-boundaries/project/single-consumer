@@ -1,13 +1,13 @@
 # Copying a token does not duplicate the retained completion or reserve another native operation.
 @!
 source
-..task.events
+//task/events
 operation
-..task.operation
+//task/operation
 require
-..task.require
+//task/require
 same
-..task.token.same
+//task/token/same
 source !
  < |1
 operation !

@@ -12,7 +12,7 @@ static const size_t orders[][3] = {{0,1,2},{0,2,1},{1,0,2},{1,2,0},{2,0,1},{2,1,
  * constructed original capture map, not with another application path alone.
  */
 static void it_matches_all_three_slot_maps_permutations_and_staged_partitions(void) {
-    setup_applications(NULL, "@<\nfirst\n...a\nsecond\n...b\nthird\n...c\n@!\n");
+    setup_applications(NULL, "@<\nfirst\n.a\nsecond\n.b\nthird\n.c\n@!\n");
     StaticTermCapture caller_fixed[] = {{.formal = application_formal(caller_module, 0), .value = integer_type},
         {.formal = application_formal(caller_module, 1), .value = integer_type}};
     const StaticTerm *other_type;
@@ -58,26 +58,26 @@ static void it_matches_all_three_slot_maps_permutations_and_staged_partitions(vo
  * independently built B and B-minus-P maps, including empty P and partial R.
  */
 static void it_recovers_all_named_partial_maps_and_permutations_without_signature_declarations(void) {
-    const char *names[] = {"...a", "...b", "...c"};
+    const char *names[] = {".a", ".b", ".c"};
     for (size_t model = 0; model < 27; model++) {
         size_t states[3], digits = model;
         for (size_t slot = 0; slot < 3; slot++, digits /= 3) { states[slot] = digits % 3; }
         for (size_t permutation = 0; permutation < 6; permutation++) {
             char caller[384];
-            int used = snprintf(caller, sizeof(caller), "@...\n...result\n...family\n");
+            int used = snprintf(caller, sizeof(caller), "@...\n.result\n.family\n");
             assert(used > 0 && (size_t)used < sizeof(caller));
             for (size_t index = 0; index < 3; index++) {
                 size_t slot = orders[permutation][index];
                 if (states[slot] != 1) { continue; }
                 int added = snprintf(caller + used, sizeof(caller) - (size_t)used,
-                    " %s < ..integer\n", names[slot]);
+                    " %s < //integer\n", names[slot]);
                 assert(added > 0 && (size_t)added < sizeof(caller) - (size_t)used);
                 used += added;
             }
             int added = snprintf(caller + used, sizeof(caller) - (size_t)used,
-                "...integer type\n..integer\n");
+                ".integer type\n//integer\n");
             assert(added > 0 && (size_t)added < sizeof(caller) - (size_t)used);
-            setup_applications(caller, "@<\nfirst\n...a\nsecond\n...b\nthird\n...c\nfourth\n...d\n@!\n");
+            setup_applications(caller, "@<\nfirst\n.a\nsecond\n.b\nthird\n.c\nfourth\n.d\n@!\n");
             StaticTermCapture full[4];
             for (size_t slot = 0; slot < 4; slot++) {
                 full[slot] = (StaticTermCapture){.formal = application_formal(target_module, slot), .value = integer_type};
@@ -97,7 +97,7 @@ static void it_recovers_all_named_partial_maps_and_permutations_without_signatur
             assert(static_term_nominal(&terms, target_module, actual_map, actual_count, (SourceSpan){0}, &actual));
             assert(static_term_nominal(&terms, target_module, preceding_map, preceding_count, (SourceSpan){0}, &expected));
             const AstTypeExpression *expression = caller_module->first_occurrence->expression;
-            assert(layout_text_is(expression->head, "...family"));
+            assert(layout_text_is(expression->head, ".family"));
             BindingApplication *requests;
             assert(binding_normalize_static(&binding_plan, NULL, expression, &requests));
             StaticTermOperand operands[3] = {{0}};
@@ -108,7 +108,7 @@ static void it_recovers_all_named_partial_maps_and_permutations_without_signatur
             }
             const StaticTermApplication *source;
             assert(static_term_application(&terms, &binding_plan, requests, caller_environment,
-                application_symbol("...family"), operands, count, &source));
+                application_symbol(".family"), operands, count, &source));
             const StaticApplicationRecord *record;
             assert(static_application_recover(&applications, source, actual, &record));
             assert(record->constructor == expected && record->value == actual);

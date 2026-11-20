@@ -27,7 +27,7 @@ static void it_names_complete_abi_contracts_and_rejects_identity_collisions(void
     library_build_init(&collision, sources.allocator);
     IdentityEncoding encoding;
     IdentityStatus status = identity_encode(&collision.identities.arena,
-        (QualifiedIdentity){IDENTITY_RUNTIME, ".unrelated", NULL, 0, {0}}, &encoding);
+        (QualifiedIdentity){IDENTITY_RUNTIME, "/test/fixture/v1.0.0/src/unrelated", NULL, 0, {0}}, &encoding);
     assert(status == IDENTITY_OK);
     const IdentityName *injected = NULL;
     status = identity_insert(&collision.identities, encoding, digest, &injected);
@@ -40,15 +40,39 @@ static void it_names_complete_abi_contracts_and_rejects_identity_collisions(void
     assert(!valid && !collision.valid && collision.error.code == DIAGNOSTIC_IDENTITY_COLLISION);
     assert(collision.identities.conflicting == injected);
     library_build_destroy(&collision);
-    file("generated/project/main", "@<\nmessage text\n..text\nextra\n..text\n@>\nfailure\n..failure\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@<\nmessage text\n//text\nextra\n//text\n@>\nfailure\n//failure\n@!\n");
     length = snprintf(text, sizeof(text), "%sinput | run | extra | message\n", records);
     assert(length > 0 && (size_t)length < sizeof(text));
     valid = resolve(&first, text);
     assert(valid);
-    file("generated/project/main", "@<\nextra\n..text\nmessage text\n..text\n@>\nfailure\n..failure\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@<\nextra\n//text\nmessage text\n//text\n@>\nfailure\n//failure\n@!\n");
     valid = resolve(&comments, text);
     assert(valid && strcmp(first.identity->internal_name, comments.identity->internal_name) != 0);
     library_build_destroy(&comments);
     library_build_destroy(&first);
     destroy_test();
+}
+
+/** Helper identities anchor to an actual canonical export, taking the bytewise
+ * minimum independently of explicit export order. Full ABI keys still retain
+ * all declarations; this does not assert that changed configurations are equal.
+ */
+static void it_anchors_component_helpers_to_the_least_canonical_export(void) {
+    prepare_project();
+    const char *tail = "schema | message | text | //text\n"
+        "schema | outcome | failure | //failure\nschema | messages | list | message\n"
+        "export | other | /test/fixture/v1.0.0/src/other | read\n"
+        "export | run | /test/fixture/v1.0.0/src/main | entry,resume,read\n"
+        "input | run | message text | message\noutput | run | failure | outcome\n"
+        "output | other | messages | messages\n";
+    const char *orders[] = {records, tail};
+    const char expected[] = "/test/fixture/v1.0.0/src/main::";
+    for (size_t index = 0; index < 2; index++) {
+        setup_test();
+        LibraryBuild build;
+        assert(resolve(&build, orders[index]));
+        assert(strncmp(build.identity->source_name, expected, sizeof(expected) - 1) == 0);
+        library_build_destroy(&build);
+        destroy_test();
+    }
 }

@@ -1,6 +1,6 @@
 # Check-only project frontend
 
-`ama --check ROOT .module` uses [CompilerFrontend](../../src/compiler/frontend.h),
+`ama --check ROOT MODULE` uses [CompilerFrontend](../../src/compiler/frontend.h),
 the same loaded/semantic/planned project API consumed by native authoring and the
 project emitter. It performs no C emission, toolchain invocation, native
 execution or filesystem writes. Handwritten C bodies/signatures are checked by
@@ -10,7 +10,7 @@ Additional `--root DIR` values supply explicit library roots. `--exclude PATH`
 applies an exact root-relative exclusion to every configured root; there are no
 guessed generated-directory exclusions or configurable list role mappings.
 Dependencies follow the declared source closure; repeated module identities share
-one project record. Output is `checked .module` only
+one project record. Output is `checked MODULE` only
 after all source, semantic, relation, shared-storage and control-plan stages pass.
 
 Initialize the frontend owner, check once, inspect success or its borrowed error,
@@ -40,7 +40,7 @@ executes the supported subset.
 
 ## Inspecting activation without project validation
 
-`ama --status ROOT .module` indexes the same exact roots, then parses only the
+`ama --status ROOT MODULE` indexes the same exact roots, then parses only the
 selected source and prints `draft`, `constants`, `ama` or `native`, followed by
 its full logical identity. It does not resolve declarations/dependencies or
 certify an executable module. In particular a draft succeeds as an inspection

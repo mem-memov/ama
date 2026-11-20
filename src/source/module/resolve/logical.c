@@ -1,27 +1,21 @@
 /**
  * @file
- * @brief Validate absolute project/standard module paths with exact multiword Unicode components.
+ * @brief Adapt retained C-string lookup keys to the shared canonical identity predicate.
  *
  * [SRC-01](../../../../spec/language/source-and-names.md#src-01) distinguishes
- * single/double-dot namespace selectors; [SRC-03](../../../../spec/language/source-and-names.md#src-03)
- * applies complete-name rules to each dot-delimited component without trimming.
+ * ordinary/standard slash namespace selectors;
+ * [PKG-01](../../../../spec/project/packages.md#pkg-01) supplies the ordinary
+ * package-version shape. Share bounded recognition with parser/source consumers.
  */
 #include "../catalog.h"
-#include "source/unicode/unicode.h"
+#include "source/path/logical.h"
+#include <string.h>
 
-/** Consume exactly one root marker, then every nonempty complete component.
- * Every accepted separator advances a byte index; malformed or empty components
- * fail before another iteration. Physical filesystem traversal is never involved.
- * Component contract: [SRC-01](../../../../spec/language/source-and-names.md#src-01), [SRC-03](../../../../spec/language/source-and-names.md#src-03). */
+/** Validate an existing terminated lookup key without copying or normalizing it.
+ * The C-string boundary differs from bounded source spans; both share the same
+ * canonical kernel under [SRC-01](../../../../spec/language/source-and-names.md#src-01)
+ * and [PKG-01](../../../../spec/project/packages.md#pkg-01).
+ */
 bool module_path_valid(const char *path) {
-    if (path == NULL || path[0] != '.') { return false; }
-    size_t start = path[1] == '.' ? 2 : 1;
-    for (;;) {
-        size_t end = start;
-        while (path[end] != 0 && path[end] != '.') { end++; }
-        size_t error;
-        if (!unicode_name((const unsigned char *)path + start, end - start, &error)) { return false; }
-        if (path[end] == 0) { return true; }
-        start = end + 1;
-    }
+    return path != NULL && module_path_canonical((const unsigned char *)path, strlen(path));
 }

@@ -1,5 +1,5 @@
 # Validate a fixed positive host-sized scheduling budget before doing work.
 @<
 value
-..integer
+//integer
 @C

@@ -115,7 +115,7 @@ static void it_normalizes_partial_results_and_retains_local_residuals(void) {
 static void it_refuses_invalid_metadata_and_value_query_contracts(void) {
     for (size_t partition = 0; partition < 9; partition++) {
         setup_metadata_constraints();
-        const StaticTerm *family = constraint_symbol("...family");
+        const StaticTerm *family = constraint_symbol(".family");
         const StaticSignature *known = constraint_actual_signature();
         StaticSignatureEntry unresolved = {.name = known->first->name, .category = STATIC_CATEGORY_DEFERRED};
         StaticSignature pending = {.first = &unresolved, .last = &unresolved, .count = 1};

@@ -7,10 +7,10 @@
  * Type-value closure belongs to typed consumers, not request normalization.
  */
 static BindingInterface *runtime_interface(void) {
-    const StaticModule *module = binding_module(project_find(&project, ".other"));
+    const StaticModule *module = binding_module(project_find(&project, "/test/fixture/v1.0.0/src/other"));
     const StaticSymbol *captures[] = {
-        static_symbol_find(module, static_name_site(module->definition, "...a")),
-        static_symbol_find(module, static_name_site(module->definition, "...b"))};
+        static_symbol_find(module, static_name_site(module->definition, ".a")),
+        static_symbol_find(module, static_name_site(module->definition, ".b"))};
     BindingInterface *view = NULL;
     assert(binding_source_interface(&binding_plan, module, BINDING_MODULE_SURFACE, captures, 2, &view));
     assert(view->sequences[BINDING_STATIC_INPUT].count == 0);
@@ -31,7 +31,7 @@ static const AstNode *operation(const char *name) {
 /** Explicit static field bindings determine worker's nominal producer without
  * becoming ordinary call positions or executing any input initialization.
  */
-static const char *worker_declaration = "worker\n.other\n";
+static const char *worker_declaration = "worker\n/test/fixture/v1.0.0/src/other\n";
 
 /** Concatenate a maintained declaration and operation body for real parsing. */
 static void setup_worker(const char *body) {

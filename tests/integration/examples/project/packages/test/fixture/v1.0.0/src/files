@@ -1,0 +1,26 @@
+# Inspect a real open failure, read its retained message twice, then succeed.
+@!
+open
+/test/fixture/v1.0.0/src/open
+report
+/test/fixture/v1.0.0/src/report
+open !
+ < |project/absent/file
+ > failure
+failure
+?
+ failure
+  description >> message
+ report !
+  < message
+ failure
+  description >> message
+ report !
+  < message
+open !
+ < |project/packages/test/fixture/v1.0.0/src/files
+ > failure
+failure
+:
+ report !
+  < |opened

@@ -8,17 +8,17 @@
  */
 #include "internal.h"
 
-/** A static binding begins with three dots and contains a single direction
+/** A static binding begins with one dot and contains a single direction
  * marker; full label/operand validation remains with the construction operation.
  * Component contract: [TPL-12](../../../spec/language/static-results.md#tpl-12)
  * distinguishes these lines from ordinary initializers and saved reads.
  */
 bool static_binding_line(const LayoutLine *line) {
-    if (line->kind != LINE_CODE || line->code.end - line->code.start < 3) { return false; }
+    if (line->kind != LINE_CODE || line->code.end - line->code.start < 2) { return false; }
     const unsigned char *bytes = source_bytes(line->code.source);
     size_t start = line->code.start;
-    if (bytes[start] != '.' || bytes[start + 1] != '.' || bytes[start + 2] != '.') { return false; }
-    for (size_t offset = start + 3; offset < line->code.end; offset++) {
+    if (bytes[start] != '.') { return false; }
+    for (size_t offset = start + 1; offset < line->code.end; offset++) {
         if (bytes[offset] == '<' || bytes[offset] == '>') { return true; }
     }
     return false;

@@ -58,7 +58,7 @@ static void it_joins_corresponding_symbolic_fields_without_closing_unknown_owner
     const StaticResultContext *actual = typed_actual();
     const StaticTypedScope *root, *metadata;
     assert(static_connection_context(&connections, actual, &root));
-    const StaticTerm *slot = application_symbol("...slot");
+    const StaticTerm *slot = application_symbol(".slot");
     assert(static_connection_scope(&connections, typed_environment(slot), &metadata));
     assert(root != metadata && root->owner == metadata->owner && root->runtime == metadata->runtime);
     const StaticTypedField *left = typed_field(root, "fresh"), *right = typed_field(metadata, "fresh");
@@ -87,14 +87,14 @@ static void it_defers_unproved_owner_equality_and_rejects_later_same_owner_field
     assert(static_connection_context(&connections, typed_actual(), &root));
     assert(static_connection_scope(&connections, typed_environment(integer_type), &metadata));
     const StaticTypedField *left = typed_field(root, "fresh"), *right = typed_field(metadata, "fresh");
-    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
     const StaticTerm *text_type;
     assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &text_type));
     assert(static_constraint_equate(&solver, left->type, integer_type, left->definition->site));
     assert(static_constraint_equate(&solver, right->type, text_type, right->definition->site));
     bool changed = true;
     assert(static_connection_merge_fields(&connections, &changed) && !changed);
-    const StaticTerm *slot = application_symbol("...slot");
+    const StaticTerm *slot = application_symbol(".slot");
     assert(static_constraint_equate(&solver, slot, integer_type, slot->site));
     assert(static_connection_merge_fields(&connections, &changed) && changed);
     StaticConstraintOutcome outcome;

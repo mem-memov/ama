@@ -5,7 +5,7 @@
 
 /** Observe callback admission separately from the value read; failed access must never enter user code. */
 static bool reference_entry(FILE *body, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".reader") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/reader") != 0) { return false; }
     int written = fputs("size_t value=0; AmaStatus observed=parameters->AMA_INPUT(0)->with_read("
         "parameters->AMA_INPUT(0)->storage,AMA_NATIVE(inspect),&value);"
         "printf(\"visit=%u:%zu\\n\",(unsigned)(observed.code==AMA_OK),value);\n", body);
@@ -16,7 +16,7 @@ static bool reference_entry(FILE *body, const ScaffoldType *type) {
 /** Author a nominal callback from the checked scaffold model, then include the ordinary typed test implementation. */
 static void reference_callback(NativeScaffold *scaffold) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
-        if (strcmp(type->plan->type->module->source->logical_path, ".reader") != 0) { continue; }
+        if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/reader") != 0) { continue; }
         const ScaffoldType *target = native_scaffold_type(scaffold, type->members->field->symbol->type);
         char saved[512];
         int length = snprintf(saved, sizeof(saved), "%s.saved", type->body_path);
@@ -44,18 +44,19 @@ static void reference_callback(NativeScaffold *scaffold) {
 /** A checked reference permits a synchronous read and rejects an empty target without invoking its visitor. */
 static void it_visits_live_references_and_refuses_empty_ones(void) {
     directory("generated/project");
-    native_fixture("reader", "@<\ntarget&\n.value\n@C\n");
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("reader", "@<\ntarget&\n/test/fixture/v1.0.0/src/value\n@C\n");
     native_entry_override = reference_entry;
     native_fixture_completion = reference_callback;
     fprintf(stderr, "visitor scenario: %s\n", __func__);
-    execute_project("@!\nvalue\n.value\n |7\nreader\n.reader\nreader !\n < &value\nreader !\n", "visit=1:7\nvisit=0:0\n", true);
+    execute_project("@!\nvalue\n/test/fixture/v1.0.0/src/value\n |7\nreader\n/test/fixture/v1.0.0/src/reader\nreader !\n < &value\nreader !\n", "visit=1:7\nvisit=0:0\n", true);
 }
 
 /** Parent replacement retires its owned child; the old checked reference must not resolve to replacement storage. */
 static void it_refuses_retired_children_and_visits_the_fresh_child(void) {
-    file("generated/project/box", "@>\nvalue&\n.value\n@!\nchild\n.value\n |99\nvalue&\n &child\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/box", "@>\nvalue&\n/test/fixture/v1.0.0/src/value\n@!\nchild\n/test/fixture/v1.0.0/src/value\n |99\nvalue&\n &child\n");
     fprintf(stderr, "visitor scenario: %s\n", __func__);
-    execute_project("@!\nbox\n.box\nreplacement\n.box\nreader\n.reader\nbox !\n > old&\nbox\n replacement\nreader !\n < old&\nbox !\n > fresh&\nreader !\n < fresh&\n", "visit=0:0\nvisit=1:99\n", true);
+    execute_project("@!\nbox\n/test/fixture/v1.0.0/src/box\nreplacement\n/test/fixture/v1.0.0/src/box\nreader\n/test/fixture/v1.0.0/src/reader\nbox !\n > old&\nbox\n replacement\nreader !\n < old&\nbox !\n > fresh&\nreader !\n < fresh&\n", "visit=0:0\nvisit=1:99\n", true);
 }
 
 /** Exercise both admission and invalidation through compiled generated C, with no generated text as an oracle. */

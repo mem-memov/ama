@@ -10,9 +10,9 @@
 /** Explicit facade bindings exercise repeated text outputs, arbitrary precision and owning lists. */
 static const char transport_records[] =
     "schema | texts | list | text\nschema | numbers | list | number\nschema | conditions | list | enabled\nschema | failures | list | failure\n"
-    "schema | text | text | ..text\nschema | number | integer | ..integer\n"
-    "schema | enabled | condition | ..std.condition\nschema | failure | failure | ..failure\n"
-    "export | run | .main | entry,resume,read\n"
+    "schema | text | text | //text\nschema | number | integer | //integer\n"
+    "schema | enabled | condition | //std/condition\nschema | failure | failure | //failure\n"
+    "export | run | /test/fixture/v1.0.0/src/main | entry,resume,read\n"
     "input | run | message | text\ninput | run | number | number\ninput | run | enabled | enabled\n"
     "input | run | problem | failure\ninput | run | messages | texts\n"
     "output | run | message result | text\noutput | run | number result | number\n"
@@ -20,11 +20,11 @@ static const char transport_records[] =
     "output | run | messages result | texts\noutput | run | message copy | text\n";
 /** Resolve declaration defaults that copy every supplied parameter without executing the body. */
 static void transport_model_body(LibraryBuild *build, const char *body, const char *extra_records) {
-    file("generated/project/main",
-        "@<\nmessage\n..text\nnumber\n..integer\nenabled\n..std.condition\nproblem\n..failure\nmessages[]\n..text\n"
-        "@>\nmessage result\n..text\n message\nnumber result\n..integer\n number\nenabled result\n..std.condition\n enabled\n"
-        "problem result\n..failure\n problem\nmessages result[]\n..text\nmessage copy\n..text\n message\n@!\nnumbers[]\n..integer\nconditions[]\n..std.condition\nfailures[]\n..failure\n");
-    FILE *module=fopen("generated/project/main","ab"); assert(module!=NULL);
+    file("generated/project/packages/test/fixture/v1.0.0/src/main",
+        "@<\nmessage\n//text\nnumber\n//integer\nenabled\n//std/condition\nproblem\n//failure\nmessages[]\n//text\n"
+        "@>\nmessage result\n//text\n message\nnumber result\n//integer\n number\nenabled result\n//std/condition\n enabled\n"
+        "problem result\n//failure\n problem\nmessages result[]\n//text\nmessage copy\n//text\n message\n@!\nnumbers[]\n//integer\nconditions[]\n//std/condition\nfailures[]\n//failure\n");
+    FILE *module=fopen("generated/project/packages/test/fixture/v1.0.0/src/main","ab"); assert(module!=NULL);
     int appended=fputs(body,module); int closed=fclose(module); assert(appended!=EOF && closed==0);
     char records[16384]; int length=snprintf(records,sizeof(records),"%s%s",transport_records,extra_records);
     assert(length>0 && (size_t)length<sizeof(records));

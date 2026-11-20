@@ -13,11 +13,11 @@
  * scenario.
  */
 static void prepare_native(unsigned mask) {
-    directory("generated/native");
-    file("generated/native/main", "@!\nchild\n.value\n");
-    file("generated/native/value", "@C\n");
-    const char *paths[] = {"generated/native/value.h", "generated/native/value.c",
-        "generated/native/value.abi"};
+    fixture_package_prepare("generated/native", "fixture");
+    file("generated/native/packages/test/fixture/v1.0.0/src/main", "@!\nchild\n/test/fixture/v1.0.0/src/value\n");
+    file("generated/native/packages/test/fixture/v1.0.0/src/value", "@C\n");
+    const char *paths[] = {"generated/native/packages/test/fixture/v1.0.0/src/value.h", "generated/native/packages/test/fixture/v1.0.0/src/value.c",
+        "generated/native/packages/test/fixture/v1.0.0/src/value.abi"};
     for (size_t index = 0; index < 3; index++) {
         int removed = unlink(paths[index]);
         assert(removed == 0 || errno == ENOENT);
@@ -44,7 +44,7 @@ static void it_checks_every_combination_of_missing_required_companions(void) {
         if (mask != 7) {
             assert(diagnostic_valid(&semantic.error));
             assert(layout_text_is(semantic.error.primary.span, "@C"));
-            assert(strcmp(semantic.error.subject, ".value") == 0);
+            assert(strcmp(semantic.error.subject, "/test/fixture/v1.0.0/src/value") == 0);
         }
         destroy_semantic();
     }
@@ -57,12 +57,12 @@ static void it_checks_every_combination_of_missing_required_companions(void) {
  */
 static void it_parses_required_abi_and_keeps_helper_names_module_local(void) {
     prepare_native(7);
-    file("generated/native/main", "@<\nchild\n.value\n@C\n");
-    file("generated/native/main.h", "/* header */\n");
-    file("generated/native/main.c", "/* body */\n");
-    file("generated/native/main.abi", "+ initialize\n- destroy\n");
-    file("generated/native/draft", "unfinished");
-    file("generated/native/draft.abi", "invalid but unused ABI grammar\n");
+    file("generated/native/packages/test/fixture/v1.0.0/src/main", "@<\nchild\n/test/fixture/v1.0.0/src/value\n@C\n");
+    file("generated/native/packages/test/fixture/v1.0.0/src/main.h", "/* header */\n");
+    file("generated/native/packages/test/fixture/v1.0.0/src/main.c", "/* body */\n");
+    file("generated/native/packages/test/fixture/v1.0.0/src/main.abi", "+ initialize\n- destroy\n");
+    file("generated/native/packages/test/fixture/v1.0.0/src/draft", "unfinished");
+    file("generated/native/packages/test/fixture/v1.0.0/src/draft.abi", "invalid but unused ABI grammar\n");
     setup_semantic();
     SemanticStatus status = load_semantic("generated/native");
     assert(status == SEMANTIC_OK && module_count() == 2);
@@ -73,8 +73,8 @@ static void it_parses_required_abi_and_keeps_helper_names_module_local(void) {
     assert(semantic_entry()->abi.bindings[ABI_DEFAULT].function.source
         != semantic.last->abi.bindings[ABI_DEFAULT].function.source);
     destroy_semantic();
-    file("generated/native/main", "@!\nchild\n.value\n");
-    file("generated/native/value.abi", "+ initialize\n- destroy\n= copy\n= other\n");
+    file("generated/native/packages/test/fixture/v1.0.0/src/main", "@!\nchild\n/test/fixture/v1.0.0/src/value\n");
+    file("generated/native/packages/test/fixture/v1.0.0/src/value.abi", "+ initialize\n- destroy\n= copy\n= other\n");
     setup_semantic();
     status = load_semantic("generated/native");
     assert(status == SEMANTIC_OK);

@@ -5,27 +5,28 @@
  * the static assembly adds no public/runtime field or instance. */
 static void prepare_static_facades(void) {
     directory("generated/project");
-    file("generated/project/forward", "@<\ninput\n...element\n@>\noutput\n...element\n input\n@!\noutput\n input\n");
-    file("generated/project/assembly", "@...\n...texts\n.forward\n ...element < ..text\n...integers\n.forward\n ...element < ..integer\n");
-    file("generated/project/textfacade", "@>\nvalue\n..text\n |hello\n@!\nworker\n.assembly\n ...texts\nworker !\n < value\n > value\n%\n");
-    file("generated/project/integerfacade", "@>\nvalue\n..text\n |hello\n@!\nworker\n.assembly\n ...integers\nnumber\n..integer\n |123456789012345678901234567890\nwrong\n..text\n |wrong\nworker !\n < number\n > retained\nbefore\n..integer.before\nbefore !\n < retained\n < number\n > different\ndifferent\n?\n value\n  wrong\nbefore !\n < number\n < retained\n > different\ndifferent\n?\n value\n  wrong\n%\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/forward", "@<\ninput\n.element\n@>\noutput\n.element\n input\n@!\noutput\n input\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/assembly", "@...\n.texts\n/test/fixture/v1.0.0/src/forward\n .element < //text\n.integers\n/test/fixture/v1.0.0/src/forward\n .element < //integer\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/textfacade", "@>\nvalue\n//text\n |hello\n@!\nworker\n/test/fixture/v1.0.0/src/assembly\n .texts\nworker !\n < value\n > value\n%\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/integerfacade", "@>\nvalue\n//text\n |hello\n@!\nworker\n/test/fixture/v1.0.0/src/assembly\n .integers\nnumber\n//integer\n |123456789012345678901234567890\nwrong\n//text\n |wrong\nworker !\n < number\n > retained\nbefore\n//integer/before\nbefore !\n < retained\n < number\n > different\ndifferent\n?\n value\n  wrong\nbefore !\n < number\n < retained\n > different\ndifferent\n?\n value\n  wrong\n%\n");
 }
 /** Inspect the actually packaged model, not a reconstructed mock export list. */
 static void facade_package_contract(const LibraryBuild *build, const LibraryPackageOptions *options) {
     assert(build->valid && options->assembly->frontend == &build->frontend);
     assert(build->export_count == 1 && build->exports->type->counts[SYMBOL_RESULT] == 1);
     assert(build->bindings != NULL && build->bindings->next == NULL);
-    assert(semantic_find_type(&build->frontend.semantic,".assembly") == NULL);
+    assert(semantic_find_type(&build->frontend.semantic,"/test/fixture/v1.0.0/src/assembly") == NULL);
     size_t workers=0;
     const ScaffoldType *text_worker=NULL,*integer_worker=NULL;
     for (const SemanticType *type=build->frontend.semantic.first;type;type=type->next) {
-        if (strcmp(type->module->source->logical_path,".forward") == 0) {
+        if (strcmp(type->module->source->logical_path,"/test/fixture/v1.0.0/src/forward") == 0) {
             assert(type->specialization != NULL);
             const SemanticSymbol *input=type->first;
             assert(input != NULL && input->role == SYMBOL_PARAMETER && input->type != NULL);
             const ScaffoldType *worker=native_scaffold_type(options->assembly,type); assert(worker != NULL);
-            if (strcmp(input->type->module->source->logical_path,"..text")==0) { assert(text_worker==NULL); text_worker=worker; }
-            else { assert(strcmp(input->type->module->source->logical_path,"..integer")==0 && integer_worker==NULL); integer_worker=worker; }
+            if (strcmp(input->type->module->source->logical_path,"//text")==0) { assert(text_worker==NULL); text_worker=worker; }
+            else { assert(strcmp(input->type->module->source->logical_path,"//integer")==0 && integer_worker==NULL); integer_worker=worker; }
             workers++;
         }
     }

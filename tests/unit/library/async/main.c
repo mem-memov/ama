@@ -17,6 +17,7 @@ static void it_accepts_native_completions_cancellation_restart_and_unload_barrie
     setup_test();
     directory("generated");
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     directory("generated/component");
     char backend[4096], include[4096];
     build_backend(backend, include);

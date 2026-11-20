@@ -1,5 +1,5 @@
 # Append order is the stable registration order for one typed scheduler domain.
 @>
 records[]
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 @!

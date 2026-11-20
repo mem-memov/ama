@@ -1,6 +1,0 @@
-# Failed literal construction must not fall back to a default or enter the body.
-@!
-invalid
-.counter
- |bad
-invalid !

@@ -1,0 +1,11 @@
+# .old.sequence and .palette.шаг are comment text, not rename occurrences.
+@!
+числа[]
+//integer
+ /test/fixture/v1.0.0/src/palette/шаг
+ /test/fixture/v1.0.0/src/palette/шаг
+числа[элемент&]
+{
+ элемент& !
+ %
+}

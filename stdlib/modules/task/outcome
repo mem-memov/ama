@@ -1,15 +1,15 @@
 # Commit at the task's explicit step boundary; terminal outcomes remain unchanged on later calls.
 @<
 cancel requested
-..std.condition
+//std/condition
 completion available
-..std.condition
+//std/condition
 @>
 pending
-..std.condition
+//std/condition
  |1
 cancelled
-..std.condition
+//std/condition
 completed
-..std.condition
+//std/condition
 @C

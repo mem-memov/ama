@@ -1,0 +1,87 @@
+# Two independent tasks share one event source and one typed ready queue.
+@!
+source
+//task/events
+first
+/test/fixture/v1.0.0/src/jobs/record
+second
+/test/fixture/v1.0.0/src/jobs/record
+queue
+/test/fixture/v1.0.0/src/jobs/queue
+enqueue
+/test/fixture/v1.0.0/src/jobs/enqueue
+dispatch
+/test/fixture/v1.0.0/src/jobs/dispatch
+deliver
+/test/fixture/v1.0.0/src/jobs/deliver
+cancel
+/test/fixture/v1.0.0/src/jobs/cancel
+report
+/test/fixture/v1.0.0/src/report
+require
+//task/require
+source !
+ < |2
+first !
+ < &source
+second !
+ < &source
+enqueue !
+ < &queue
+ < &first
+enqueue !
+ < &queue
+ < &second
+# Each dispatch performs one task step; both tasks publish their native wait and yield.
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+first
+ task& >> first task&
+first task&
+ token >> first token
+second
+ task& >> second task&
+second task&
+ token >> second token
+# A real native provider can post the same endpoint records. This example selects explicit manual notification.
+source
+ post !
+  < first token
+  < |0
+  < |owned result bytes
+ take !
+  > packet
+deliver !
+ < &queue
+ < &first
+ < packet
+ > accepted
+require !
+ < accepted
+cancel !
+ < &queue
+ < &second
+ > accepted
+require !
+ < accepted
+dispatch !
+ < &queue
+dispatch !
+ < &queue
+report !
+ < &first
+report !
+ < &second
+# The obsolete completion cannot revive the cancelled enrollment.
+source
+ post !
+  < second token
+  < |0
+  < |late result
+ take !
+  > absent
+absent
+?
+ require !

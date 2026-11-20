@@ -1,8 +1,8 @@
 # Construct one expected-failure value from a description, without a separate flag.
 @<
 message
-..text
+//text
 @>
 failure
-..failure
+//failure
 @C

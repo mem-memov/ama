@@ -1,9 +1,9 @@
 # Selected operation on the owning native event service.
 @<
 token
-..task.token
+//task/token
 code
-..std.index
+//std/index
 data
-..bytes
+//bytes
 @C

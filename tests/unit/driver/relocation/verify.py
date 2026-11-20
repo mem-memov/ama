@@ -9,7 +9,7 @@ assert value["schema"] == "ama.relocation.v1"
 if sys.argv[1] == "preview":
     assert value["command"] == "preview" and value["success"] and value["committed"] is False
     assert value["outcome_known"] and value["journal"] is None and value["edits"]
-    assert any(m["before_identity"] == ".old.a" and m["after_identity"] == ".new.a" for m in value["report"]["modules"])
+    assert any(m["before_identity"] == "/test/fixture/v1.0.0/src/old/a" and m["after_identity"] == "/test/fixture/v1.0.0/src/new/a" for m in value["report"]["modules"])
     assert value["report"]["rebuild_required"]
 elif sys.argv[1] == "recover":
     assert value["command"] == "recover" and value["success"] and value["outcome_known"]

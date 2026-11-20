@@ -5,14 +5,14 @@
 
 /** A concrete consumer and a distinct known specialization share source origin. */
 static void setup_requirements(const StaticCreationPath **consumer, const StaticTerm **other) {
-    setup_connections("@<\nvalue\n...slot\n@!\nanchor&\n..integer\ntext anchor&\n..text\nrecursive&\n.main\n", "@!\n");
+    setup_connections("@<\nvalue\n.slot\n@!\nanchor&\n//integer\ntext anchor&\n//text\nrecursive&\n/test/fixture/v1.0.0/src/main\n", "@!\n");
     StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
     const StaticTerm *owner;
     const StaticTermEnvironment *environment;
     assert(static_term_nominal(&terms, caller_module, &input, 1, (SourceSpan){0}, &owner));
     assert(static_term_environment(&terms, caller_module, owner, &environment));
     assert(static_creation_root(&guards, environment, consumer));
-    const StaticModule *text = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticModule *text = static_module_find(&inventory, project_find(&project, "//text"));
     const StaticTerm *text_type;
     assert(text && static_term_nominal(&terms, text, NULL, 0, (SourceSpan){0}, &text_type));
     input.value = text_type;
@@ -83,7 +83,7 @@ static void it_suspends_unknown_requirements_without_preparing_a_scope(void) {
     const StaticTerm *other;
     setup_requirements(&consumer, &other);
     (void)other;
-    const StaticTerm *unknown = application_symbol("...slot");
+    const StaticTerm *unknown = application_symbol(".slot");
     size_t paths = guards.path_count, environments = terms.environment_count;
     const StaticCreationPath *output = NULL;
     StaticConstraintOutcome outcome;

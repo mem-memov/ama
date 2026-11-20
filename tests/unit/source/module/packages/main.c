@@ -307,8 +307,12 @@ static void it_checks_descriptor_preconditions_and_empty_root_sets(void) {
     destroy_catalog();
 }
 
+#include "support/reader.c"
+
 /** Register component scenarios explicitly, with setup dependencies visible in their fixtures. */
 void run(void) {
+    it_requires_a_complete_reader_before_selecting_any_versions();
+    it_selects_virtual_versions_and_unwinds_every_reader_callback_failure();
     it_selects_optional_storage_and_exact_sorted_version_prefixes();
     it_selects_local_versions_before_external_roots_in_any_order();
     it_refuses_competing_versions_without_publishing_partial_selection();

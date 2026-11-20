@@ -1,0 +1,5 @@
+# Empty sources perform no loop body and do not publish a suspended continuation.
+@!
+simulation
+/test/fixture/v1.0.0/src/empty simulation
+simulation !

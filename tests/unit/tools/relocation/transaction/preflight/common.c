@@ -27,18 +27,18 @@ static size_t descriptors(void) {
 /** Build a real original/final source graph before any lease exists; the outside importer is deliberately unused. */
 static void prepare(const char *name) {
     setup(name);
-    folder("project"); folder("project/old"); folder("imports"); folder("recovery1"); folder("recovery2");
-    file("project/old/a","@!\n");
-    file("imports/unused","@!\nvalue\n.old.a\n");
+    package("project", "fixture"); folder("project/packages/test/fixture/v1.0.0/src/old"); package("imports", "imports"); folder("recovery1"); folder("recovery2");
+    file("project/packages/test/fixture/v1.0.0/src/old/a","@!\n");
+    file("imports/packages/test/imports/v1.0.0/src/unused","@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n");
     roots[0] = (ModuleRoot){.path=path("project"),.kind=MODULE_ROOT_PROJECT};
     roots[1] = (ModuleRoot){.path=path("imports"),.kind=MODULE_ROOT_PROJECT};
-    move_request = (RelocationRequest){roots,2,path("project/old"),path("project/new"),NULL};
+    move_request = (RelocationRequest){roots,2,path("project/packages/test/fixture/v1.0.0/src/old"),path("project/packages/test/fixture/v1.0.0/src/new"),NULL};
     assert(relocation_preview_build(&preview,&move_request));
     relocation_references_init(&references,sources.allocator);
     assert(relocation_references_build(&references,&preview));
     relocation_staging_init(&staging,sources.allocator);
     assert(relocation_staging_build(&staging,&(RelocationStagingRequest){.references=&references}));
-    assert(module(".old.a") != NULL);
+    assert(module("/test/fixture/v1.0.0/src/old/a") != NULL);
 }
 /** Retained application preflight can never authorize a source move merely by being destroyed. */
 static void done(void) {

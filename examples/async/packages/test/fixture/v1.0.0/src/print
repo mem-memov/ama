@@ -1,0 +1,5 @@
+# A synchronous native extension reads owned text and returns before Ama continues.
+@<
+message
+//text
+@C

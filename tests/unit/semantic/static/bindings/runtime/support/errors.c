@@ -54,7 +54,7 @@ static void it_rejects_runtime_duplicate_storage_arity_and_cloned_mode_order_err
                 if (partition == 2) {
                     assert(binding_plan.error.related_count == (known != 0 ? 2 : 1));
                     if (known != 0) {
-                        assert(binding_plan.related[1].location.span.source == project_find(&project, ".other")->source->text);
+                        assert(binding_plan.related[1].location.span.source == project_find(&project, "/test/fixture/v1.0.0/src/other")->source->text);
                     }
                 }
             }

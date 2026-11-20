@@ -5,7 +5,7 @@
 #include "semantic/static/bindings/normalize.h"
 
 /** Ordinary constructor formals are introduced through runtime name/type pairs. */
-static const char *target_source = "@<\nfirst\n...a\nsecond\n...b\nthird\n...c\n@!\n";
+static const char *target_source = "@<\nfirst\n.a\nsecond\n.b\nthird\n.c\n@!\n";
 
 /** Locate an original result expression by its public owner, not foreign labels. */
 static const AstTypeExpression *expression(const char *result) {
@@ -29,7 +29,7 @@ static const StaticTermApplication *prepare(const char *result) {
     }
     const StaticTermApplication *source;
     assert(static_term_application(&terms, &binding_plan, requests, caller_environment,
-        application_symbol("...family"), operands, count, &source));
+        application_symbol(".family"), operands, count, &source));
     return source;
 }
 
@@ -37,9 +37,9 @@ static const StaticTermApplication *prepare(const char *result) {
  * source order remains independent of the original a,b,c declaration order.
  */
 static void it_renormalizes_named_requests_against_later_actual_residual_metadata(void) {
-    setup_applications("@...\n...result\n...family\n ...c < ..integer\n ...b < ..integer\n"
-        "...integer type\n..integer\n", target_source);
-    const StaticTermApplication *source = prepare("...result");
+    setup_applications("@...\n.result\n.family\n .c < //integer\n .b < //integer\n"
+        ".integer type\n//integer\n", target_source);
+    const StaticTermApplication *source = prepare(".result");
     const StaticApplicationRecord *pending, *record;
     assert(static_application_source(&applications, source, &pending));
     assert(pending->pending_origin && pending->value == NULL && pending->context.result != NULL);
@@ -70,8 +70,8 @@ static void it_renormalizes_named_requests_against_later_actual_residual_metadat
 static void it_checks_all_minimum_uses_after_recovery_without_closing_the_signature(void) {
     for (size_t absent = 0; absent < 2; absent++) {
         const char *graph = absent
-            ? "@...\n...first\n...family\n ...b < ..integer\n...second\n...family\n ...missing < ..integer\n"
-            : "@...\n...first\n...family\n ...b < ..integer\n...second\n...family\n ...c < ..integer\n";
+            ? "@...\n.first\n.family\n .b < //integer\n.second\n.family\n .missing < //integer\n"
+            : "@...\n.first\n.family\n .b < //integer\n.second\n.family\n .c < //integer\n";
         setup_applications(graph, target_source);
         StaticTermCapture captures[] = {
             {.formal = application_formal(target_module, 0), .value = integer_type},
@@ -79,13 +79,13 @@ static void it_checks_all_minimum_uses_after_recovery_without_closing_the_signat
         };
         const StaticTerm *actual;
         assert(static_term_nominal(&terms, target_module, captures, 2, (SourceSpan){0}, &actual));
-        const StaticTermApplication *source = prepare("...first");
+        const StaticTermApplication *source = prepare(".first");
         const StaticApplicationRecord *record = NULL;
         bool success = static_application_recover(&applications, source, actual, &record);
         assert(success == !absent);
         if (absent) {
             assert(record == NULL && applications.status == STATIC_APPLY_CONFLICT);
-            assert(layout_text_is(applications.error.primary.span, "...missing"));
+            assert(layout_text_is(applications.error.primary.span, ".missing"));
         } else {
             assert(record->value == actual && record->value->category == STATIC_CATEGORY_TEMPLATE);
             const StaticTerm *head = static_constraint_root(&solver, source->head);
@@ -100,12 +100,12 @@ static void it_checks_all_minimum_uses_after_recovery_without_closing_the_signat
  * cannot establish a constructor origin or determine an omitted producer input.
  */
 static void it_refuses_noninjective_producer_recovery_before_inventing_type_equations(void) {
-    setup_applications("@...\n.other\n ...out > ...alias\n...integer type\n..integer\n",
-        "@...\n...out\n..integer\n...unused\n...free\n");
+    setup_applications("@...\n/test/fixture/v1.0.0/src/other\n .out > .alias\n.integer type\n//integer\n",
+        "@...\n.out\n//integer\n.unused\n.free\n");
     const AstTypeExpression *syntax = caller_module->first_occurrence->expression;
     BindingApplication *requests;
     assert(binding_normalize_static(&binding_plan, NULL, syntax, &requests));
-    const StaticTerm *head = application_symbol("...alias");
+    const StaticTerm *head = application_symbol(".alias");
     const StaticTermApplication *source;
     assert(static_term_application(&terms, &binding_plan, requests, caller_environment, head, NULL, 0, &source));
     const StaticApplicationRecord *output = NULL;

@@ -7,10 +7,10 @@
 
 /** Verify all four storage forms and complete names through each real physical ending convention. */
 static void it_builds_all_storage_forms_with_multiword_names_and_standard_root_types(void) {
-    const char *text = "@=\ndefault value\n..integer\n |1\n@<\ninput value\n..integer\n default value\n"
-        "@>\nresult value&\n..integer\n &input value\n@!\nowned value\n..integer\n |2\n"
-        "reference value&\n..integer\n &owned value\nowned values[]\n..integer\n |3\n |4\n"
-        "references&[]\n..integer\n &owned value\n";
+    const char *text = "@=\ndefault value\n//integer\n |1\n@<\ninput value\n//integer\n default value\n"
+        "@>\nresult value&\n//integer\n &input value\n@!\nowned value\n//integer\n |2\n"
+        "reference value&\n//integer\n &owned value\nowned values[]\n//integer\n |3\n |4\n"
+        "references&[]\n//integer\n &owned value\n";
     const char *names[] = {"owned value", "reference value", "owned values", "references"};
     const bool references[] = {false,true,false,true};
     const bool lists[] = {false,false,true,true};
@@ -33,7 +33,7 @@ static void it_builds_all_storage_forms_with_multiword_names_and_standard_root_t
         for (size_t index = 0; index < 4; index++) {
             assert(node != NULL && node->kind == AST_DECLARATION);
             assert(layout_text_is(node->as.declaration.name->name, names[index]));
-            assert(layout_text_is(node->as.declaration.type->head, "..integer"));
+            assert(layout_text_is(node->as.declaration.type->head, "//integer"));
             assert(node->as.declaration.name->reference == references[index]);
             assert(node->as.declaration.name->whole_list == lists[index]);
             assert(node->as.declaration.initializer_count == (index == 2 ? 2 : 1));
@@ -47,8 +47,8 @@ static void it_builds_all_storage_forms_with_multiword_names_and_standard_root_t
 /** Layout at the declaration and initializer depth is distinct; a parent comment closes the initializer region. */
 static void it_keeps_declaration_and_initializer_comments_in_their_exact_regions(void) {
     setup_tree();
-    ParseStatus status = parse_text("@!\nname value\n# before type\n..integer\n # before initializer\n |0\n"
-        "# initializer region is closed\nother name\n..integer\n");
+    ParseStatus status = parse_text("@!\nname value\n# before type\n//integer\n # before initializer\n |0\n"
+        "# initializer region is closed\nother name\n//integer\n");
     assert(status == PARSE_OK);
     AstNode *first = module.body.first;
     assert(first != NULL && first->as.declaration.initializer_count == 1);
@@ -57,9 +57,9 @@ static void it_keeps_declaration_and_initializer_comments_in_their_exact_regions
     destroy_tree();
     const char *invalid[] = {
         "@=\n # comment cannot invent declarations\n",
-        "@!\nname\n # wrong depth before type\n..integer\n",
-        "@!\nname\n..integer\n# initializer closed\n |0\n",
-        "@!\nname\n..integer\n  # skipped initializer depth\n |0\n",
+        "@!\nname\n # wrong depth before type\n//integer\n",
+        "@!\nname\n//integer\n# initializer closed\n |0\n",
+        "@!\nname\n//integer\n  # skipped initializer depth\n |0\n",
         "@C\n # native layout is at zero\n",
         " # no root body\n@!\n",
         "@!\n # no child body\n"
@@ -96,7 +96,7 @@ static void it_shares_draft_activation_and_lexical_validation_without_parsing_un
 
 /** Fail every allocation of a composed complete-name declaration parse and release all partial owners. */
 static void it_cleans_each_allocation_failure_in_complete_name_declaration_construction(void) {
-    const char *text = "@=\nconstant value\n..integer\n |1\n@!\nvalues[]\n..integer\n constant value\n |2\n";
+    const char *text = "@=\nconstant value\n//integer\n |1\n@!\nvalues[]\n//integer\n constant value\n |2\n";
     setup_tree();
     ParseStatus status = parse_text(text);
     assert(status == PARSE_OK);

@@ -10,7 +10,7 @@ static EditorAnalysis analysis;
 /** Analyze one fresh explicit project while retaining all earlier immutable snapshots independently. */
 static inline bool analyze(EditorAnalysis *owner) {
     ModuleRoot root = {"generated/project",NULL,0,MODULE_ROOT_PROJECT};
-    bool valid = editor_analysis_build(owner, &root, 1, ".main");
+    bool valid = editor_analysis_build(owner, &root, 1, "/test/fixture/v1.0.0/src/main");
     if ((owner->state == EDITOR_INVALID || !valid) && owner->diagnostic.code != DIAGNOSTIC_OUT_OF_MEMORY) {
         fprintf(stderr, "Editor analysis: %s\n", owner->diagnostic.message == NULL ? "unavailable" : owner->diagnostic.message);
     }
@@ -29,10 +29,11 @@ static void destroy_editor(void) {
 /** Install nominal scalar/worker/shared contracts used by actual source binding checks. */
 static void project_fixture(const char *main) {
     directory("generated/project");
-    file("generated/project/cell", "@!\n");
-    file("generated/project/worker", "@<\nargument\n.cell\n@>\nresult&\n.cell\nitems[]\n.cell\n@!\nprivate\n.cell\n");
-    file("generated/project/palette", "@=\nshared\n.cell\n");
-    file("generated/project/main", main);
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/cell", "@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/worker", "@<\nargument\n/test/fixture/v1.0.0/src/cell\n@>\nresult&\n/test/fixture/v1.0.0/src/cell\nitems[]\n/test/fixture/v1.0.0/src/cell\n@!\nprivate\n/test/fixture/v1.0.0/src/cell\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/palette", "@=\nshared\n/test/fixture/v1.0.0/src/cell\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", main);
 }
 /** Find one exact occurrence in retained original bytes; fixtures deliberately choose unambiguous needles. */
 static size_t point(const SourceText *source, const char *needle) {

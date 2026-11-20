@@ -7,9 +7,9 @@
  */
 static void prepare_missing_static_dependency(void) {
     prepare_static_closure();
-    file("generated/static project/main", "@...\n...value\n.outer\n ...element < .middle\n");
-    file("generated/static project/middle", "@...\n...value\n...family\n ...element < ..absent\n");
-    file("generated/static project/absent", "@!\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/main", "@...\n.value\n/test/fixture/v1.0.0/src/outer\n .element < /test/fixture/v1.0.0/src/middle\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/middle", "@...\n.value\n.family\n .element < //absent\n");
+    file("generated/static project/packages/test/fixture/v1.0.0/src/absent", "@!\n");
     int removed = remove("generated/static standard/absent");
     assert(removed == 0 || errno == ENOENT);
 }
@@ -30,13 +30,13 @@ static void it_reports_exact_nested_static_requester_chains_and_root_failures(vo
                 index, status, project.error.message);
         }
         assert(status == expected[index] && !project.valid);
-        assert(diagnostic_valid(&project.error) && strcmp(project.error.subject, "..absent") == 0);
+        assert(diagnostic_valid(&project.error) && strcmp(project.error.subject, "//absent") == 0);
         assert(project.error.related_count == 2);
-        assert(strcmp(project.error.related[0].name, ".middle") == 0);
-        assert(layout_text_is(project.error.related[0].location.span, "..absent"));
-        assert(strcmp(project.error.related[1].name, ".main") == 0);
-        assert(layout_text_is(project.error.related[1].location.span, ".middle"));
-        assert(project_find(&project, ".main") == NULL);
+        assert(strcmp(project.error.related[0].name, "/test/fixture/v1.0.0/src/middle") == 0);
+        assert(layout_text_is(project.error.related[0].location.span, "//absent"));
+        assert(strcmp(project.error.related[1].name, "/test/fixture/v1.0.0/src/main") == 0);
+        assert(layout_text_is(project.error.related[1].location.span, "/test/fixture/v1.0.0/src/middle"));
+        assert(project_find(&project, "/test/fixture/v1.0.0/src/main") == NULL);
         destroy_project();
     }
 }

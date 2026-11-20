@@ -19,7 +19,7 @@ static void it_preserves_scope_use_and_definition_ancestry_with_idempotent_reque
     assert(static_result_use(&results, context, result_projection(0), NULL, &again));
     assert(first == again && allocation_count == before && first->application == NULL && first->outcome == STATIC_RESULT_PENDING);
     StaticResultDefinitionUse *definition, *again_definition;
-    const StaticSymbol *symbol = result_named(caller_module, "...first");
+    const StaticSymbol *symbol = result_named(caller_module, ".first");
     assert(static_result_definition_use(&results, context, symbol, NULL, (SourceSpan){0}, &definition));
     assert(static_result_definition_use(&results, context, symbol, NULL, (SourceSpan){0}, &again_definition));
     assert(definition == again_definition && definition->context == context && definition->path->creation == root);
@@ -42,13 +42,13 @@ static void it_preserves_scope_use_and_definition_ancestry_with_idempotent_reque
  * the original source definition requests itself through its RHS.
  */
 static void it_checks_definition_ancestry_before_returning_existing_work_records(void) {
-    setup_guards("@...\n...a\n...a\n...anchor\n..integer\n", "@!\n");
+    setup_guards("@...\n.a\n.a\n.anchor\n//integer\n", "@!\n");
     initialize_results();
     const StaticCreationPath *root;
     const StaticResultContext *context;
     assert(static_creation_root(&guards, caller_environment, &root));
     assert(static_result_context(&results, root, &context));
-    const StaticSymbol *symbol = result_named(caller_module, "...a");
+    const StaticSymbol *symbol = result_named(caller_module, ".a");
     StaticResultDefinitionUse *first, *output = NULL;
     assert(static_result_definition_use(&results, context, symbol, NULL, (SourceSpan){0}, &first));
     assert(!static_result_definition_use(&results, context, symbol, first->path,
@@ -90,11 +90,11 @@ static void it_refuses_foreign_contexts_definition_paths_receivers_and_counter_w
             success = static_result_context(&results, other, &context_output);
         } else if (mode == 4) { success = static_result_use(&results, context, result_projection(0), NULL, &use); }
         else if (mode == 5) {
-            success = static_result_definition_use(&results, context, result_named(caller_module, "...first"), NULL,
+            success = static_result_definition_use(&results, context, result_named(caller_module, ".first"), NULL,
                 (SourceSpan){0}, &definition);
         } else {
             StaticResultDefinitionUse *known;
-            assert(static_result_definition_use(&results, context, result_named(caller_module, "...first"), NULL, (SourceSpan){0}, &known));
+            assert(static_result_definition_use(&results, context, result_named(caller_module, ".first"), NULL, (SourceSpan){0}, &known));
             StaticDefinitionPath copied_path = *known->path;
             success = static_result_use(&results, context, known->definition->source->expression, &copied_path, &use);
         }
@@ -122,7 +122,7 @@ static void it_unwinds_every_context_and_persistent_use_allocation_refusal(void)
             if (failure) { failure_at = before + failure; }
             bool success = mode == 0 ? static_result_context(&results, root, &context_output) :
                 mode == 1 ? static_result_use(&results, context, result_projection(0), NULL, &use) :
-                static_result_definition_use(&results, context, result_named(caller_module, "...first"), NULL, (SourceSpan){0}, &definition);
+                static_result_definition_use(&results, context, result_named(caller_module, ".first"), NULL, (SourceSpan){0}, &definition);
             if (!failure) { assert(success); total = allocation_count - before; assert(total > 0); }
             else {
                 assert(!success && context_output == NULL && use == NULL && definition == NULL);
@@ -149,7 +149,7 @@ static void it_retains_exact_required_dependencies_and_refuses_foreign_edges_or_
         StaticResultDefinitionUse *definition;
         assert(static_result_use(&results, context, result_projection(0), NULL, &parent));
         assert(static_result_use(&results, context, result_projection(1), NULL, &child));
-        assert(static_result_definition_use(&results, context, result_named(caller_module, "...first"),
+        assert(static_result_definition_use(&results, context, result_named(caller_module, ".first"),
             NULL, (SourceSpan){0}, &definition));
         StaticResultUse copied_parent = *parent, copied_child = *child;
         StaticResultDefinitionUse copied_definition = *definition;

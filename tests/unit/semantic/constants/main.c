@@ -15,9 +15,9 @@
  */
 static SemanticStatus prepare_constant_plan(void) {
     prepare_types();
-    file("generated/program/worker", "@=\nfirst\n.value\n |+\nsecond\n.value\n |-\n");
-    SemanticStatus status = resolve_text("@=\nfirst\n.value\n .worker.second\nsecond\n.value\n first\n"
-        "@!\nreceiver\n.value\n.worker\n first >> receiver\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nfirst\n/test/fixture/v1.0.0/src/value\n |+\nsecond\n/test/fixture/v1.0.0/src/value\n |-\n");
+    SemanticStatus status = resolve_text("@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/second\nsecond\n/test/fixture/v1.0.0/src/value\n first\n"
+        "@!\nreceiver\n/test/fixture/v1.0.0/src/value\n/test/fixture/v1.0.0/src/worker\n first >> receiver\n");
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
@@ -37,7 +37,7 @@ static void it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_ord
         assert(entry != NULL && entry->ordinal == ordinal && entry->symbol->shared == entry);
         assert(entry->symbol->role == SYMBOL_CONSTANT);
         if (ordinal < 2) {
-            assert(strcmp(entry->symbol->owner->module->source->logical_path, ".worker") == 0);
+            assert(strcmp(entry->symbol->owner->module->source->logical_path, "/test/fixture/v1.0.0/src/worker") == 0);
         } else {
             assert(entry->symbol->owner == semantic_entry());
         }
@@ -68,16 +68,16 @@ static void it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_ord
  */
 static void it_uses_path_order_for_ready_constants_and_excludes_unused_namespaces(void) {
     prepare_types();
-    file("generated/program/worker", "@=\nfirst\n.value\n |worker\n");
-    file("generated/program/unused", "@=\nvalue\n.value\n |unused\n");
-    SemanticStatus status = resolve_text("@=\nfirst\n.value\n |main\n@!\nreceiver\n.value\n.worker\n >> receiver\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nfirst\n/test/fixture/v1.0.0/src/value\n |worker\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/unused", "@=\nvalue\n/test/fixture/v1.0.0/src/value\n |unused\n");
+    SemanticStatus status = resolve_text("@=\nfirst\n/test/fixture/v1.0.0/src/value\n |main\n@!\nreceiver\n/test/fixture/v1.0.0/src/value\n/test/fixture/v1.0.0/src/worker\n >> receiver\n");
     assert(status == SEMANTIC_OK);
     status = semantic_relations(&semantic);
     assert(status == SEMANTIC_OK);
     status = semantic_constants(&semantic);
     assert(status == SEMANTIC_OK && semantic.constant_count == 2);
     assert(semantic.constant_first->symbol->owner == semantic_entry());
-    assert(semantic_find_type(&semantic, ".unused") == NULL);
+    assert(semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/unused") == NULL);
     destroy_semantic();
 }
 
@@ -92,8 +92,8 @@ static void it_releases_a_partially_built_shared_storage_plan(void) {
     destroy_semantic();
     for (size_t failure = 1; failure <= count; failure++) {
         prepare_types();
-        file("generated/program/worker", "@=\nfirst\n.value\n |+\nsecond\n.value\n |-\n");
-        status = resolve_text("@=\nfirst\n.value\n .worker.second\nsecond\n.value\n first\n@!\n");
+        file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nfirst\n/test/fixture/v1.0.0/src/value\n |+\nsecond\n/test/fixture/v1.0.0/src/value\n |-\n");
+        status = resolve_text("@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/second\nsecond\n/test/fixture/v1.0.0/src/value\n first\n@!\n");
         assert(status == SEMANTIC_OK);
         status = semantic_relations(&semantic);
         assert(status == SEMANTIC_OK);

@@ -19,7 +19,7 @@ static void it_unwinds_static_expression_closures_and_request_failures_at_every_
         if (scenario == 2) {
             assert(project.error.code == DIAGNOSTIC_INVALID_UTF8);
             assert(project.error.related_count == 1);
-            assert(layout_text_is(project.error.related[0].location.span, "..item-state"));
+            assert(layout_text_is(project.error.related[0].location.span, "//item-state"));
         }
         size_t total = allocation_count;
         destroy_project();

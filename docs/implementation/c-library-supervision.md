@@ -14,12 +14,12 @@ make -C tests/unit/library/supervision
 
 ## Yield ends a call; it does not retain the C stack
 
-The [child body](../../tests/unit/library/supervision/child/project/main) performs
+The [child body](../../tests/unit/library/supervision/child/project/packages/test/fixture/v1.0.0/src/main) performs
 three explicit worker steps separated by two `%` statements. Its native worker
 owns an address-sensitive resource and a counter, so recreation, shallow
 copying or relocation would change observable behavior or fail its address checks.
 
-The [outer body](../../tests/unit/library/supervision/project/main) makes its first
+The [outer body](../../tests/unit/library/supervision/project/packages/test/fixture/v1.0.0/src/main) makes its first
 adapter call, examines the declared `waiting` condition, and explicitly yields
 inside a loop while another child step is needed. A resumed outer body calls
 the adapter again. The adapter separately selects child resume from its stored
@@ -72,7 +72,7 @@ is likewise a new parent technical failure; it cannot manufacture application
 success or be caught as a child failure. Every measured parent allocation point
 in input preparation, report copying and output snapshot creation is exercised.
 
-The [worker fixture](../../tests/unit/library/supervision/child/project/worker.c)
+The [worker fixture](../../tests/unit/library/supervision/child/project/packages/test/fixture/v1.0.0/src/worker.c)
 deliberately fails for the requests `fault` and `fault-cleanup`; the latter also
 reports a secondary destructor failure after releasing its resource. The parent
 copies the primary execution report before child cleanup. It never selects a

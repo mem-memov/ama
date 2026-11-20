@@ -1,30 +1,30 @@
 # Adopt an explicit continuation snapshot into a freshly owned scheduling record.
 @<
 seed
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 @>
 self&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
  &
 task&
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 epoch
-..task.generation
+//task/generation
 enrolled
-..task.flag
+//task/flag
 ready
-..task.flag
+//task/flag
 queued
-..task.flag
+//task/flag
 started
-..task.flag
+//task/flag
 @!
 authority
-..task.enrollment
+//task/enrollment
 run sequence
-..task.sequence
+//task/sequence
 owned task
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 owned task
  % seed
 run sequence !

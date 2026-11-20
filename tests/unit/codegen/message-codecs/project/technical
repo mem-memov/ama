@@ -1,9 +1,9 @@
 # Force an accepted technical failure after a text result child has acquired storage.
 @!
 encode
-.encode
+/test/fixture/v1.0.0/src/encode
 decode
-.decode
+/test/fixture/v1.0.0/src/decode
 encode !
  < |1
  < |Hello, Ама

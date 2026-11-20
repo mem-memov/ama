@@ -9,7 +9,7 @@ static EditorRename rename_plan;
 /** Construct the complete checked source domain before preparing any edit. */
 static void setup_rename_roots(const ModuleRoot *roots, size_t count) {
     setup_editor();
-    bool valid = editor_workspace_build(&analysis,roots,count,".main");
+    bool valid = editor_workspace_build(&analysis,roots,count,"/test/fixture/v1.0.0/src/main");
     if (!valid) { fprintf(stderr,"Rename workspace: %s\n",analysis.diagnostic.message); }
     assert(valid && analysis.workspace);
     editor_rename_init(&rename_plan,sources.allocator);

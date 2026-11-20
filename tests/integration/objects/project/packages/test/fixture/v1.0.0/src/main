@@ -1,0 +1,22 @@
+# Two objects and their methods preserve independent captured copies of the seed.
+@!
+seed
+/test/fixture/v1.0.0/src/counter
+ /test/fixture/v1.0.0/src/constants/seed
+first object
+/test/fixture/v1.0.0/src/factory
+second object
+/test/fixture/v1.0.0/src/factory
+seed !
+seed !
+first object !
+ < seed
+ first %
+ second %
+ first %
+seed !
+second object !
+ < seed
+ first %
+first object
+ second %

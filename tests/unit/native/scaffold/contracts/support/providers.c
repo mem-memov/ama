@@ -4,15 +4,16 @@
 /** Same local declarations deliberately appear in root-distinct Unicode/multiword modules and a legal reference cycle. */
 static void prepare_providers(void) {
     directory("generated/project");
-    directory("generated/project/магазин");
+    fixture_package_prepare("generated/project", "fixture");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/магазин");
     directory("generated/standard");
     directory("generated/standard/магазин");
     const char *header = "struct AMA_NATIVE(State) { size_t number; };\n"
         "enum { AMA_NATIVE(reason) = 1 };\n"
         "static inline AmaStatus AMA_NATIVE(header_error)(void) { return AMA_NATIVE_ERROR(AMA_NATIVE(reason),\"header\",6); }\n";
-    contract_native("generated/project/main", "@<\nproject&\n.магазин.товар данные\nstandard&\n..магазин.товар данные\n@C\n", header);
-    contract_native("generated/project/магазин/товар данные", "@<\npeer&\n..магазин.товар данные\n@C\n", header);
-    contract_native("generated/standard/магазин/товар данные", "@<\npeer&\n.магазин.товар данные\n@C\n", header);
+    contract_native("generated/project/packages/test/fixture/v1.0.0/src/main", "@<\nproject&\n/test/fixture/v1.0.0/src/магазин/товар данные\nstandard&\n//магазин/товар данные\n@C\n", header);
+    contract_native("generated/project/packages/test/fixture/v1.0.0/src/магазин/товар данные", "@<\npeer&\n//магазин/товар данные\n@C\n", header);
+    contract_native("generated/standard/магазин/товар данные", "@<\npeer&\n/test/fixture/v1.0.0/src/магазин/товар данные\n@C\n", header);
 }
 /** The test writes native implementation code explicitly; scaffold publication has already been checked to preserve its original authored body. */
 static void write_provider_body(const ScaffoldType *type) {
@@ -29,10 +30,10 @@ static void write_provider_body(const ScaffoldType *type) {
 /** Current checked source keys, not the old vector harness, determine three noncolliding component namespaces in matching headers and bodies. */
 static void it_emits_matching_current_source_error_providers_for_root_distinct_reference_cycles(void) {
     prepare_providers();
-    begin_contract(".main", false);
+    begin_contract("/test/fixture/v1.0.0/src/main", false);
     bool built = build_contract(false, false);
     assert(built && scaffold.providers.ready && scaffold.providers.count == 3);
-    const ScaffoldType *main = contract_type(".main"), *project = contract_type(project_peer), *standard = contract_type(standard_peer);
+    const ScaffoldType *main = contract_type("/test/fixture/v1.0.0/src/main"), *project = contract_type(project_peer), *standard = contract_type(standard_peer);
     assert(main->error_provider == 1 && project->error_provider == 2 && standard->error_provider == 3);
     assert(project->native_prefix != standard->native_prefix && strcmp(project->native_prefix->internal_name, standard->native_prefix->internal_name) != 0);
     bool published = native_scaffold_publish(&scaffold);

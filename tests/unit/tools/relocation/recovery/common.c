@@ -7,7 +7,7 @@
 /** Check exact imported module bytes through an independent ordinary source owner. */
 static void importer(const char *value) {
     const SourceText *actual;
-    assert(source_manager_load(&sources,path("imports/unused"),&actual) == SOURCE_OK);
+    assert(source_manager_load(&sources,path("imports/packages/test/imports/v1.0.0/src/unused"),&actual) == SOURCE_OK);
     assert(source_length(actual) == strlen(value) && memcmp(source_bytes(actual),value,strlen(value)) == 0);
 }
 /** Recovery may complete a committed move, so teardown cannot demand the original source location. */

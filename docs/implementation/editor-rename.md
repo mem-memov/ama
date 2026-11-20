@@ -158,7 +158,7 @@ standalone headers are recorded in [ready.json](documentation/ready.json).
 
 T192 replaces the single concrete-symbol target with an original source definition
 view. Ordinary replacement names remain complete base names; static replacement
-names must include exactly their three-dot prefix and pass the shared production
+names must include exactly their single-dot prefix and pass the shared production
 static-name recognizer. No implicit prefix is inserted. Graph declarations,
 first/equality receipts, free formals and foreign actual labels retain their own
 source namespaces. Open ordinary templates can be renamed without fabricating an

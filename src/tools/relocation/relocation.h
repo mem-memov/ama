@@ -55,6 +55,7 @@ typedef struct {
 typedef struct {
     SourceArena arena;
     ModuleCatalog catalog;
+    ModuleCatalog after_catalog;
     SourceManager additional_sources;
     const char *source;
     const char *destination;

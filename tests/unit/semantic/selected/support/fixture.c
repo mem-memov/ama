@@ -4,8 +4,8 @@
 /** A method's owned native resource forbids copying but must not forbid executing the selected result in place. */
 static void prepare_selection(void) {
     prepare_types();
-    file("generated/program/worker", "@<\ninput\n.value\n@>\noutput\n.value\n@!\nresource\n.resource\n");
-    file("generated/program/producer", "@=\nconstant\n.value\n@<\nparameter\n.value\n@>\nmethod\n.worker\nalias&\n.worker\nmethods[]\n.worker\nreferences&[]\n.worker\nmarker\n.value\n@!\nprivate\n.worker\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\nresource\n/test/fixture/v1.0.0/src/resource\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/producer", "@=\nconstant\n/test/fixture/v1.0.0/src/value\n@<\nparameter\n/test/fixture/v1.0.0/src/value\n@>\nmethod\n/test/fixture/v1.0.0/src/worker\nalias&\n/test/fixture/v1.0.0/src/worker\nmethods[]\n/test/fixture/v1.0.0/src/worker\nreferences&[]\n/test/fixture/v1.0.0/src/worker\nmarker\n/test/fixture/v1.0.0/src/value\n@!\nprivate\n/test/fixture/v1.0.0/src/worker\n");
 }
 /** Find an existing typed operation by its exact source target spelling and occurrence, never by dynamic target/body lookup. */
 static SemanticStatement *selected_call(const char *name, size_t occurrence) {
@@ -20,7 +20,7 @@ static SemanticStatement *selected_call(const char *name, size_t occurrence) {
 
 /** Load one exact selected-tree fixture with a diagnostic before a fixture setup assertion; no production failure is treated as success. */
 static SemanticStatus resolve_selected(const char *text) {
-    file("generated/program/main", text);
+    file("generated/program/packages/test/fixture/v1.0.0/src/main", text);
     setup_semantic();
     ProjectStatus loaded = load_root("generated/program");
     if (loaded != PROJECT_OK) { fprintf(stderr, "Selection fixture: %s\n%s\n", project.error.message, text); }

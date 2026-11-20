@@ -24,7 +24,7 @@ static bool order_precedes(const size_t left[3], const size_t right[3], const ch
 /** Every insertion order yields the least valid complete permutation or an actual closed source-mapped cycle. */
 static void it_orders_graphs_independently_of_vertex_and_edge_admission_order(void) {
     const size_t permutations[6][3] = {{0,1,2}, {0,2,1}, {1,0,2}, {1,2,0}, {2,0,1}, {2,1,0}};
-    const char *keys[2][3] = {{".z", ".a", "..a"}, {".a", ".a", "..a"}};
+    const char *keys[2][3] = {{"/test/fixture/v1.0.0/src/z", "/test/fixture/v1.0.0/src/a", "//a"}, {"/test/fixture/v1.0.0/src/a", "/test/fixture/v1.0.0/src/a", "//a"}};
     const size_t ordinals[2][3] = {{0, 0, 0}, {0, 1, 0}};
     int identities[3] = {0};
     for (size_t keyset = 0; keyset < 2; keyset++) {

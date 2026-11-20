@@ -19,7 +19,7 @@ are unavailable on this command. Its source roots and exclusions have the same
 explicit authority as ordinary checking. No implicit standard root is installed.
 
 The [maintained configuration](../../tests/integration/library-exports/component.exports)
-and [interface](../../tests/integration/library-exports/project/main) are runnable
+and [interface](../../tests/integration/library-exports/project/packages/test/fixture/v1.0.0/src/main) are runnable
 examples. This is an implementation-defined build-input format under
 [EMBED-01](../../spec/implementation/c-library.md#embed-01), separate from Ama
 source and from a native module's `.abi` protocol table. `spec/` remains the

@@ -23,7 +23,7 @@ static void it_serializes_independent_leases_and_releases_descriptors(void) {
     relocation_transaction_destroy(&second);
     assert(descriptors() == baseline);
     application(&first);
-    assert(!relocation_transaction_lease(&first,path("project/old")));
+    assert(!relocation_transaction_lease(&first,path("project/packages/test/fixture/v1.0.0/src/old")));
     assert(first.status == RELOCATION_INVALID_PATH);
     relocation_transaction_destroy(&first);
     assert(descriptors() == baseline);

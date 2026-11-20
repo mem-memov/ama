@@ -50,8 +50,8 @@ From the repository root:
 
 ```sh
 make
-./ama --check examples/template-lists .main --standard-root stdlib/modules
-./ama --emit examples/template-lists .main --standard-root stdlib/modules --out /tmp/ama-template-lists --sdk src --compile
+./ama --check examples/template-lists /test/fixture/v1.0.0/src/main --standard-root stdlib/modules
+./ama --emit examples/template-lists /test/fixture/v1.0.0/src/main --standard-root stdlib/modules --out /tmp/ama-template-lists --sdk src --compile
 /tmp/ama-template-lists/program
 ```
 

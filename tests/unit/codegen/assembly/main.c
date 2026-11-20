@@ -20,25 +20,26 @@ static NativeScaffold assembly;
  */
 static void prepare_assembly(void) {
     directory("generated/project");
-    file("generated/project/main", "@=\n常量\n.value\n |native bytes\n@!\nfirst\n.value\nsecond\n.other\nreference&\n.node\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@=\n常量\n/test/fixture/v1.0.0/src/value\n |native bytes\n@!\nfirst\n/test/fixture/v1.0.0/src/value\nsecond\n/test/fixture/v1.0.0/src/other\nreference&\n/test/fixture/v1.0.0/src/node\n");
     const char *names[] = {"value", "other"};
     for (size_t index = 0; index < 2; index++) {
         char path[128];
-        int length = snprintf(path, sizeof(path), "generated/project/%s", names[index]);
+        int length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s", names[index]);
         assert(length > 0);
         file(path, "@C\n");
-        length = snprintf(path, sizeof(path), "generated/project/%s.h", names[index]);
+        length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s.h", names[index]);
         assert(length > 0);
         file(path, index == 0 ? "#ifndef VALUE_H\n#define VALUE_H\nstruct AMA_NATIVE(State) { size_t number; };\n#endif\n"
             : "#ifndef OTHER_H\n#define OTHER_H\nstruct AMA_NATIVE(State) { size_t number; };\n#endif\n");
-        length = snprintf(path, sizeof(path), "generated/project/%s.c", names[index]);
+        length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s.c", names[index]);
         assert(length > 0);
         file(path, "/* Replaced by the test's handwritten native definition. */\n");
-        length = snprintf(path, sizeof(path), "generated/project/%s.abi", names[index]);
+        length = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s.abi", names[index]);
         assert(length > 0);
         file(path, "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
     }
-    file("generated/project/node", "@!\nnext&\n.node\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/node", "@!\nnext&\n/test/fixture/v1.0.0/src/node\n");
 }
 
 /**
@@ -48,7 +49,7 @@ static void prepare_assembly(void) {
 static void begin_assembly(void) {
     setup_frontend();
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-    bool checked = compiler_frontend_check(&frontend, &root, 1, ".main");
+    bool checked = compiler_frontend_check(&frontend, &root, 1, "/test/fixture/v1.0.0/src/main");
     assert(checked);
     native_scaffold_init(&assembly, &frontend, sources.allocator);
 }
@@ -221,8 +222,8 @@ static void it_refuses_source_map_identity_exhaustion_without_wrapping_to_zero(v
 static void it_rejects_missing_or_duplicate_required_control_sites_before_publication(void) {
     for (size_t mode = 0; mode < 3; mode++) {
         prepare_assembly();
-        file("generated/project/callee", "@<\ninput\n.value\n@>\noutput\n.value\n@!\n");
-        file("generated/project/main", "@!\nvalue\n.value\nworker\n.callee\nworker !\n < value\n > value\n");
+        file("generated/project/packages/test/fixture/v1.0.0/src/callee", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\n");
+        file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\nvalue\n/test/fixture/v1.0.0/src/value\nworker\n/test/fixture/v1.0.0/src/callee\nworker !\n < value\n > value\n");
         begin_assembly();
         PlannedType *owner = frontend.plan.entry;
         ControlNode *selected = NULL;

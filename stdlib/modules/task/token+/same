@@ -1,10 +1,10 @@
 # Compare two ordinary nominal token values. See stdlib/README.md.
 @<
 left
-..task.token
+//task/token
 right
-..task.token
+//task/token
 @>
 result
-..std.condition
+//std/condition
 @C

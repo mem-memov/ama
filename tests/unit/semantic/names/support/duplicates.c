@@ -3,8 +3,8 @@
  */
 /** Each role/storage pairing shares one base namespace, independent of interfaces or body nesting. */
 static void it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site(void) {
-    directory("generated/all duplicates");
-    file("generated/all duplicates/value", "@!\n");
+    fixture_package_prepare("generated/all duplicates", "fixture");
+    file("generated/all duplicates/packages/test/fixture/v1.0.0/src/value", "@!\n");
     const char *suffixes[] = {"", "&", "[]", "&[]"};
     const char *sections[] = {"@=\n", "@<\n", "@>\n", "@!\n"};
     for (size_t first_role = 0; first_role < 4; first_role++) {
@@ -24,13 +24,13 @@ static void it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_l
                         const size_t roles[] = {first_role, second_role}, forms[] = {first_form, second_form};
                         for (size_t field = 0; field < 2; field++) {
                             if (roles[field] == role) {
-                                length = snprintf(text + used, sizeof(text) - used, "same name%s\n.value\n", suffixes[forms[field]]);
+                                length = snprintf(text + used, sizeof(text) - used, "same name%s\n/test/fixture/v1.0.0/src/value\n", suffixes[forms[field]]);
                                 assert(length > 0 && (size_t)length < sizeof(text) - used);
                                 used += (size_t)length;
                             }
                         }
                     }
-                    file("generated/all duplicates/main", text);
+                    file("generated/all duplicates/packages/test/fixture/v1.0.0/src/main", text);
                     setup_semantic();
                     SemanticStatus status = load_semantic("generated/all duplicates");
                     assert(status == SEMANTIC_INVALID && !semantic.names_valid && semantic.error.related_count == 1);
@@ -44,9 +44,9 @@ static void it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_l
 }
 /** A loop-body declaration precedes its header handler physically, even though command/header links are traversed first structurally. */
 static void it_reports_header_handler_duplicates_against_the_earlier_body_declaration(void) {
-    directory("generated/header duplicate");
-    file("generated/header duplicate/value", "@!\n");
-    file("generated/header duplicate/main", "@!\nroot !\n condition\n {\n  same\n  .value\n }\n:\n same&\n .value\n");
+    fixture_package_prepare("generated/header duplicate", "fixture");
+    file("generated/header duplicate/packages/test/fixture/v1.0.0/src/value", "@!\n");
+    file("generated/header duplicate/packages/test/fixture/v1.0.0/src/main", "@!\nroot !\n condition\n {\n  same\n  /test/fixture/v1.0.0/src/value\n }\n:\n same&\n /test/fixture/v1.0.0/src/value\n");
     setup_semantic();
     SemanticStatus status = load_semantic("generated/header duplicate");
     assert(status == SEMANTIC_INVALID && semantic.error.related_count == 1);
@@ -56,9 +56,9 @@ static void it_reports_header_handler_duplicates_against_the_earlier_body_declar
 }
 /** Original Unicode/case distinctions remain separate; exact borrowed spelling finds each declaration. */
 static void it_preserves_case_and_unicode_byte_distinctions_without_normalization(void) {
-    directory("generated/byte names");
-    file("generated/byte names/value", "@!\n");
-    file("generated/byte names/main", "@!\né\n.value\né\n.value\nÉ\n.value\nfield\n.value\nField\n.value\n");
+    fixture_package_prepare("generated/byte names", "fixture");
+    file("generated/byte names/packages/test/fixture/v1.0.0/src/value", "@!\n");
+    file("generated/byte names/packages/test/fixture/v1.0.0/src/main", "@!\né\n/test/fixture/v1.0.0/src/value\né\n/test/fixture/v1.0.0/src/value\nÉ\n/test/fixture/v1.0.0/src/value\nfield\n/test/fixture/v1.0.0/src/value\nField\n/test/fixture/v1.0.0/src/value\n");
     setup_semantic();
     SemanticStatus status = load_semantic("generated/byte names");
     assert(status == SEMANTIC_OK && semantic_entry()->symbol_count == 5);

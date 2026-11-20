@@ -1,7 +1,0 @@
-# Both calls execute the same instance through its returned reference.
-@!
-node
-.self
-node !
- > reference&
-reference& !

@@ -1,13 +1,13 @@
 # Authenticate the visible live wait, both stamp snapshots and checked task liveness before delivery.
 @<
 record&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 @>
 valid
-..std.condition
+//std/condition
 @!
 same
-..task.generation.same
+//task/generation/same
 record&
  task& >> task&
  enrolled >> enrolled

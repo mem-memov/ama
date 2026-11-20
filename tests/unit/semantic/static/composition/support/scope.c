@@ -6,17 +6,17 @@
  * from runtime field records; repeated names resolve to the one formal.
  */
 static void it_binds_ordinary_input_and_result_type_lines_without_static_runtime_fields(void) {
-    const char *cases[] = {"@<\ninput&\n...type\n@!\nstate\n...type\n",
-        "@>\noutput\n...type\n@!\nstate\n...type\n"};
+    const char *cases[] = {"@<\ninput&\n.type\n@!\nstate\n.type\n",
+        "@>\noutput\n.type\n@!\nstate\n.type\n"};
     for (size_t index = 0; index < 2; index++) {
         setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid && inventory.attempted);
         const StaticModule *module = static_module_find(&inventory, project.entry);
         assert(module->parameter_count == 1 && module->result_count == 0);
-        assert(named("...type")->ordinal == 0 && named("...type")->category == STATIC_CATEGORY_TYPE);
+        assert(named(".type")->ordinal == 0 && named(".type")->category == STATIC_CATEGORY_TYPE);
         assert(module->constructor_signature->count == 1);
         for (const StaticOccurrence *site = module->first_occurrence; site != NULL; site = site->next) {
-            assert(site->symbol == named("...type") && site->origin == NULL);
+            assert(site->symbol == named(".type") && site->origin == NULL);
         }
         destroy_static();
     }
@@ -26,13 +26,13 @@ static void it_binds_ordinary_input_and_result_type_lines_without_static_runtime
  * while their public order follows headers and never creates runtime fields.
  */
 static void it_binds_closed_graph_pairs_in_public_order_without_runtime_storage(void) {
-    setup_static("@...\n...forwarded\n...known\n...known\n.other\n", STATIC_SCOPE_SOURCE_TEXT);
+    setup_static("@...\n.forwarded\n.known\n.known\n/test/fixture/v1.0.0/src/other\n", STATIC_SCOPE_SOURCE_TEXT);
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticModule *module = static_module_find(&inventory, project.entry);
     assert(module->parameter_count == 0 && module->result_count == 2);
-    assert(named("...forwarded")->role == STATIC_RESULT && named("...forwarded")->ordinal == 0);
-    assert(named("...known")->ordinal == 1 && named("...known")->category == STATIC_CATEGORY_TYPE);
-    assert(named("...forwarded")->category == STATIC_CATEGORY_TYPE);
+    assert(named(".forwarded")->role == STATIC_RESULT && named(".forwarded")->ordinal == 0);
+    assert(named(".known")->ordinal == 1 && named(".known")->category == STATIC_CATEGORY_TYPE);
+    assert(named(".forwarded")->category == STATIC_CATEGORY_TYPE);
     assert(project.entry->syntax.body.first == NULL && project.entry->syntax.results.first == NULL);
     destroy_static();
 }
@@ -42,17 +42,17 @@ static void it_binds_closed_graph_pairs_in_public_order_without_runtime_storage(
  */
 static void it_rejects_new_parameters_outside_ordinary_interfaces(void) {
     const char *cases[] = {
-        "@!\nvalue\n...unknown\n",
-        "@=\nvalue\n...unknown\n@!\n",
-        "@!\n...unknown\n zero >> value\n",
-        "@!\nworker\n.other\nworker !\n:\n value\n ...unknown\n",
-        "@!\ncondition\n.other\ncondition\n{\n}\nvalue\n...unknown\n"
+        "@!\nvalue\n.unknown\n",
+        "@=\nvalue\n.unknown\n@!\n",
+        "@!\n.unknown\n zero >> value\n",
+        "@!\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n:\n value\n .unknown\n",
+        "@!\ncondition\n/test/fixture/v1.0.0/src/other\ncondition\n{\n}\nvalue\n.unknown\n"
     };
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
         setup_static(cases[index], STATIC_SCOPE_SOURCE_TEXT);
         assert(static_inventory_collect(&inventory) == STATIC_INVALID && !inventory.valid && inventory.attempted);
         assert(diagnostic_valid(&inventory.error));
-        assert(layout_text_is(inventory.error.primary.span, "...unknown"));
+        assert(layout_text_is(inventory.error.primary.span, ".unknown"));
         destroy_static();
     }
 }
@@ -61,11 +61,11 @@ static void it_rejects_new_parameters_outside_ordinary_interfaces(void) {
  * later body/constant namespaces without creating static public graph outputs.
  */
 static void it_binds_result_introduced_types_through_shared_body_and_namespace_uses(void) {
-    setup_static("@=\nshared\n...result type\n@>\nresult\n...result type\n"
-        "@!\nstate\n...result type\n...result type\n zero >> value\n", STATIC_SCOPE_SOURCE_TEXT);
+    setup_static("@=\nshared\n.result type\n@>\nresult\n.result type\n"
+        "@!\nstate\n.result type\n.result type\n zero >> value\n", STATIC_SCOPE_SOURCE_TEXT);
     assert(static_inventory_collect(&inventory) == STATIC_OK && inventory.valid);
     const StaticModule *module = static_module_find(&inventory, project.entry);
-    const StaticSymbol *formal = named("...result type");
+    const StaticSymbol *formal = named(".result type");
     assert(module->parameter_count == 1 && module->result_count == 0);
     assert(formal->role == STATIC_PARAMETER && formal->category == STATIC_CATEGORY_TYPE && formal->ordinal == 0);
     assert(formal->declaration == project.entry->syntax.results.first);
@@ -84,7 +84,7 @@ static void it_binds_result_introduced_types_through_shared_body_and_namespace_u
  * input marker rather than inventing a missing formal or changing the AST.
  */
 static void it_rejects_static_application_of_a_known_concrete_type(void) {
-    setup_static("@...\n...result\n.other\n ...slot < .other\n", STATIC_SCOPE_SOURCE_TEXT);
+    setup_static("@...\n.result\n/test/fixture/v1.0.0/src/other\n .slot < /test/fixture/v1.0.0/src/other\n", STATIC_SCOPE_SOURCE_TEXT);
     assert(static_inventory_collect(&inventory) == STATIC_INVALID && !inventory.valid);
     assert(diagnostic_valid(&inventory.error));
     assert(layout_text_is(inventory.error.primary.span, "<"));

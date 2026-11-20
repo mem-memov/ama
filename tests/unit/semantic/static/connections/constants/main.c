@@ -5,7 +5,7 @@
 
 /** Independently checked namespaces refine inferred receivers without value execution. */
 static void it_resolves_qualified_assignment_types_only_after_explicit_namespace_validation(void) {
-    setup_connections("@!\nreceived\n .other.value\n", "@=\nvalue\n..integer\n |1\n@!\n");
+    setup_connections("@!\nreceived\n /test/fixture/v1.0.0/src/other/value\n", "@=\nvalue\n//integer\n |1\n@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_operations(&actual);
     bool changed;
@@ -30,9 +30,9 @@ static void it_resolves_qualified_assignment_types_only_after_explicit_namespace
 /** Initializer and ordinary input consumers retain the same independent namespace boundary. */
 static void it_connects_qualified_list_element_initializers_and_call_inputs(void) {
     for (size_t call = 0; call < 2; call++) {
-        setup_connections(call ? "@!\nworker\n.other\nworker !\n < .other.value\n" :
-            "@!\nvalues[]\n..integer\n .other.value\n",
-            "@=\nvalue\n..integer\n@<\nargument\n..integer\n@!\n");
+        setup_connections(call ? "@!\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < /test/fixture/v1.0.0/src/other/value\n" :
+            "@!\nvalues[]\n//integer\n /test/fixture/v1.0.0/src/other/value\n",
+            "@=\nvalue\n//integer\n@<\nargument\n//integer\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         bool changed;
@@ -52,8 +52,8 @@ static void it_connects_qualified_list_element_initializers_and_call_inputs(void
 /** Owned constant values cannot implicitly form references or splice whole lists. */
 static void it_rejects_reference_and_scalar_list_storage_mismatches(void) {
     for (size_t list = 0; list < 2; list++) {
-        setup_connections(list ? "@!\nreceived\n .other.items[]\n" : "@!\nreceived&\n .other.value\n",
-            "@=\nvalue\n..integer\nitems[]\n..integer\n@!\n");
+        setup_connections(list ? "@!\nreceived\n /test/fixture/v1.0.0/src/other/items[]\n" : "@!\nreceived&\n /test/fixture/v1.0.0/src/other/value\n",
+            "@=\nvalue\n//integer\nitems[]\n//integer\n@!\n");
         const StaticResultContext *actual;
         (void)prepare_operations(&actual);
         bool changed;
@@ -69,8 +69,8 @@ static void it_rejects_reference_and_scalar_list_storage_mismatches(void) {
 
 /** A known receiver does not fill the written namespace's missing template parameters. */
 static void it_rejects_open_qualified_namespaces_even_with_concrete_destination_evidence(void) {
-    setup_connections("@!\nanchor\n..integer\nanchor\n .other.value\n",
-        "@=\nvalue\n...slot\n@<\nargument\n...slot\n@!\n");
+    setup_connections("@!\nanchor\n//integer\nanchor\n /test/fixture/v1.0.0/src/other/value\n",
+        "@=\nvalue\n.slot\n@<\nargument\n.slot\n@!\n");
     const StaticResultContext *actual;
     (void)prepare_operations(&actual);
     bool changed;
@@ -85,7 +85,7 @@ static void it_rejects_open_qualified_namespaces_even_with_concrete_destination_
 /** Copied transfer identities, missing outputs and wrong namespace contexts fail exactly. */
 static void it_refuses_foreign_constant_transfers_and_invalid_namespace_receivers(void) {
     for (size_t kind = 0; kind < 3; kind++) {
-        setup_connections("@!\nreceived\n .other.value\n", "@=\nvalue\n..integer\n@!\n");
+        setup_connections("@!\nreceived\n /test/fixture/v1.0.0/src/other/value\n", "@=\nvalue\n//integer\n@!\n");
         const StaticResultContext *actual;
         (void)prepare_operations(&actual);
         bool changed;
@@ -105,7 +105,7 @@ static void it_refuses_foreign_constant_transfers_and_invalid_namespace_receiver
  * validating its retained transfer still supplies one new finite proof fact.
  */
 static void it_reports_new_transfer_proof_even_when_another_consumer_supplied_all_equations(void) {
-    setup_connections("@=\nlocal\n..integer\n .other.value\n@!\n", "@=\nvalue\n..integer\n@!\n");
+    setup_connections("@=\nlocal\n//integer\n /test/fixture/v1.0.0/src/other/value\n@!\n", "@=\nvalue\n//integer\n@!\n");
     const StaticResultContext *actual;
     (void)prepare_operations(&actual);
     bool changed;
@@ -134,7 +134,7 @@ static void it_unwinds_every_qualified_transfer_allocation_refusal(void) {
     for (size_t phase = 0; phase < 2; phase++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_connections("@!\nreceived\n .other.value\n", "@=\nvalue\n..integer\n@!\n");
+            setup_connections("@!\nreceived\n /test/fixture/v1.0.0/src/other/value\n", "@=\nvalue\n//integer\n@!\n");
             const StaticResultContext *actual;
             (void)prepare_operations(&actual);
             bool changed;

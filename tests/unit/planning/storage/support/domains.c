@@ -39,12 +39,12 @@ static void it_separates_context_permanent_interface_and_fixed_lexical_storage(v
 /** Physical state is not elided merely because a body is empty or has no textual yield. */
 static void it_retains_the_general_fallback_and_keeps_shared_namespaces_out_of_pools(void) {
     prepare_types();
-    file("generated/program/palette", "@=\nseed\n.value\n |1\n");
-    PlanStatus status = plan_text("@=\nshared\n.value\n .palette.seed\n@!\nvalue\n.value\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/palette", "@=\nseed\n/test/fixture/v1.0.0/src/value\n |1\n");
+    PlanStatus status = plan_text("@=\nshared\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/palette/seed\n@!\nvalue\n/test/fixture/v1.0.0/src/value\n");
     assert(status == PLAN_OK && plan.valid);
     assert(find_control(plan.entry, CONTROL_COMPLETE) != NULL);
-    PlannedType *palette = program_plan_type(&plan, semantic_find_type(&semantic, ".palette"));
-    PlannedType *value = program_plan_type(&plan, semantic_find_type(&semantic, ".value"));
+    PlannedType *palette = program_plan_type(&plan, semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/palette"));
+    PlannedType *value = program_plan_type(&plan, semantic_find_type(&semantic, "/test/fixture/v1.0.0/src/value"));
     assert(!palette->requires_pool && !palette->stable_slots && palette->service_storage == 0);
     assert(value->stable_slots && (value->service_storage & STORAGE_POSITION) != 0);
     assert(plan.context_storage.pools == 2 && plan.context_storage.constants == 2);

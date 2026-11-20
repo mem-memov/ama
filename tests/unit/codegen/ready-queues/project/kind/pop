@@ -1,23 +1,23 @@
 # Remove the head first, authenticate its enrollment, then clear membership before execution.
 @<
 queue&
-.kind.queue
+/test/fixture/v1.0.0/src/kind/queue
 @>
 record&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
 task&
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 available
-..std.condition
+//std/condition
 @!
 zero
-..integer
+//integer
  |0
 true
-..std.condition
+//std/condition
  |1
 same
-..task.generation.same
+//task/generation/same
 queue&
  entries[]
   length !

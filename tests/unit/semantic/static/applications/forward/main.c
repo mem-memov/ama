@@ -66,7 +66,7 @@ static void it_rejects_rebinding_duplicates_foreign_formals_and_wrong_categories
  */
 static void it_rechecks_inherited_captures_after_a_symbolic_identity_gets_an_origin(void) {
     setup_applications(NULL, NULL);
-    const StaticTerm *type = application_symbol("...a");
+    const StaticTerm *type = application_symbol(".a");
     const StaticApplicationRecord *identity;
     assert(static_application_forward(&applications, type, NULL, 0,
         (StaticApplicationContext){.policy = STATIC_OMIT_PARTIAL}, &identity));

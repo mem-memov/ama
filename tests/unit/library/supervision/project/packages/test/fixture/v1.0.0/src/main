@@ -1,0 +1,45 @@
+@=
+off
+//std/condition
+ |0
+@<
+message
+//text
+reset
+//std/condition
+ |0
+propagate
+//std/condition
+ |1
+@>
+response
+//text
+previous
+//std/condition
+waiting
+//std/condition
+failure
+//failure
+@!
+bridge
+/test/fixture/v1.0.0/src/adapter
+bridge !
+ message < message
+ reset < reset
+ propagate < propagate
+ response > response
+ previous > previous
+ waiting > waiting
+ failure > failure
+waiting
+{
+ %
+ bridge !
+  message < message
+  reset < off
+  propagate < propagate
+  response > response
+  previous > previous
+  waiting > waiting
+  failure > failure
+}

@@ -5,8 +5,8 @@
 #include "semantic/static/bindings/normalize.h"
 
 /** No capability search can select a constructor for the unknown application. */
-static const char *caller_source = "@...\n...partial\n...family\n...concrete partial\n.other\n"
-    "...unknown\n...family\n ...x < ..integer\n...reuse\n...type\n...anchor\n..integer\n";
+static const char *caller_source = "@...\n.partial\n.family\n.concrete partial\n/test/fixture/v1.0.0/src/other\n"
+    ".unknown\n.family\n .x < //integer\n.reuse\n.type\n.anchor\n//integer\n";
 
 /** Select original declaration/result syntax rather than foreign signature entries. */
 static const AstTypeExpression *expression(const StaticModule *module, const char *name) {
@@ -40,15 +40,15 @@ static const StaticApplicationRecord *prepare(const StaticTermEnvironment *envir
  * and plain supplied Types add no edge even when their nominal origin is unknown.
  */
 static void it_distinguishes_partial_forwarding_unknown_application_and_plain_type_reuse(void) {
-    setup_guards(caller_source, "@<\nargument\n...x\n@!\n");
-    const StaticTerm *family = application_symbol("...family"), *type = application_symbol("...type");
+    setup_guards(caller_source, "@<\nargument\n.x\n@!\n");
+    const StaticTerm *family = application_symbol(".family"), *type = application_symbol(".type");
     assert(static_constraint_describe(&solver, family, STATIC_CATEGORY_TEMPLATE,
-        target_constructor->signature, expression(caller_module, "...partial")->span));
+        target_constructor->signature, expression(caller_module, ".partial")->span));
     assert(static_constraint_describe(&solver, type, STATIC_CATEGORY_TYPE, NULL,
-        expression(caller_module, "...reuse")->span));
+        expression(caller_module, ".reuse")->span));
     const StaticCreationPath *root;
     assert(static_creation_root(&guards, caller_environment, &root));
-    const char *names[] = {"...partial", "...concrete partial", "...unknown", "...reuse"};
+    const char *names[] = {".partial", ".concrete partial", ".unknown", ".reuse"};
     StaticCreationOutcome expected[] = {STATIC_CREATION_METADATA, STATIC_CREATION_METADATA,
         STATIC_CREATION_PENDING, STATIC_CREATION_REUSE};
     for (size_t partition = 0; partition < 4; partition++) {
@@ -68,8 +68,8 @@ static void it_distinguishes_partial_forwarding_unknown_application_and_plain_ty
  * An ordinary Type application adapter cannot route or fabricate their origin.
  */
 static void it_requires_static_producer_path_and_refuses_nominal_application_routing(void) {
-    setup_guards("@...\n.other\n ...out > ...received\n...anchor\n..integer\n",
-        "@...\n...out\n..integer\n");
+    setup_guards("@...\n/test/fixture/v1.0.0/src/other\n .out > .received\n.anchor\n//integer\n",
+        "@...\n.out\n//integer\n");
     const StaticCreationPath *root, *producer;
     assert(static_creation_root(&guards, caller_environment, &root));
     const AstTypeExpression *site = NULL;
@@ -94,8 +94,8 @@ static void it_requires_static_producer_path_and_refuses_nominal_application_rou
  * ordinary instance fields still retain their actual nominal creation use.
  */
 static void it_reuses_fixed_ordinary_namespaces_without_creation_edges(void) {
-    setup_guards("@!\nanchor&\n..integer\n.other\n value >> copied\n.other\n value >> copied again\nfield&\n.other\n",
-        "@=\nvalue\n..integer\n |0\n");
+    setup_guards("@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n value >> copied\n/test/fixture/v1.0.0/src/other\n value >> copied again\nfield&\n/test/fixture/v1.0.0/src/other\n",
+        "@=\nvalue\n//integer\n |0\n");
     const StaticCreationPath *root;
     assert(static_creation_root(&guards, caller_environment, &root));
     const AstTypeExpression *namespaces[2] = {0}, *field = NULL;

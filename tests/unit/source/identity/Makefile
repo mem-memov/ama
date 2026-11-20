@@ -7,5 +7,6 @@ SOURCES := source/memory/arena.c source/text/manager.c source/text/lines.c sourc
     source/identity/hash/sha256.c source/identity/encoding/encode.c \
     source/identity/encoding/measure.c source/identity/encoding/parts.c source/identity/encoding/display.c \
     source/identity/registry/insert.c source/identity/registry/register.c \
-    diagnostics/record/validate.c diagnostics/adapters/identity.c
+    diagnostics/record/validate.c diagnostics/adapters/identity.c \
+    source/path/logical.c source/path/version.c
 include ../../../leaf.mk

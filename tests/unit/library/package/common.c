@@ -30,7 +30,7 @@ static void package_component(const char *name, const char *directory_name, cons
     int size=snprintf(directory_path,sizeof(directory_path),"generated/%s",directory_name); assert(size>0 && (size_t)size<sizeof(directory_path));
     directory(directory_path);
     char exports[1024];
-    size=snprintf(exports,sizeof(exports),"schema | text | text | ..text\nexport | run | %s | entry,resume,read\noutput | run | value | text\n"
+    size=snprintf(exports,sizeof(exports),"schema | text | text | //text\nexport | run | %s | entry,resume,read\noutput | run | value | text\n"
         ,root); assert(size>0 && (size_t)size<sizeof(exports));
     char settings[2048];
     size=snprintf(settings,sizeof(settings),"%s%s",exports,

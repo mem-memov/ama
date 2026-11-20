@@ -4,12 +4,15 @@
 #include "../common.c"
 #include "tools/relocation/internal.h"
 #include "support/scope.c"
+#include "support/packages.c"
 #include "support/paths.c"
 #include "support/roots.c"
 #include "support/failures.c"
 
 /** Keep every required preflight scenario explicit in the independently runnable leaf. */
 void run(void) {
+    it_preserves_whole_local_version_selection_in_the_projected_view();
+    it_refuses_a_missing_projected_local_area_without_external_fallback();
     it_discovers_all_sources_and_preserves_opaque_accompanying_bytes();
     it_uses_exact_destination_and_rejects_unsafe_endpoints();
     it_resolves_long_working_directories_and_checks_required_parent_permissions();

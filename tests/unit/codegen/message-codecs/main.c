@@ -20,7 +20,7 @@ static void read_fixture(const char *path, char *buffer, size_t capacity) {
 static void complete_message_native(NativeScaffold *scaffold) {
     for (const ScaffoldType *type = scaffold->types; type != NULL; type = type->next) {
         const char *path = type->plan->type->module->source->logical_path;
-        if (strcmp(path, ".encode") != 0 && strcmp(path, ".decode") != 0) { continue; }
+        if (strcmp(path, "/test/fixture/v1.0.0/src/encode") != 0 && strcmp(path, "/test/fixture/v1.0.0/src/decode") != 0) { continue; }
         FILE *output = fopen(type->body_path, "ab");
         assert(output != NULL);
         int written = fputs("\n#include \"native/messages/assembly.h\"\n", output);
@@ -39,19 +39,20 @@ static void complete_message_native(NativeScaffold *scaffold) {
 /** Bind a fixed application schema through ordinary owned Ama fields and native ABI contracts. */
 static void execute_message(const char *scenario, const char *expected, bool technical) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     char bytes[16384];
     read_fixture("project/message", bytes, sizeof(bytes));
-    file("generated/project/message", bytes);
+    file("generated/project/packages/test/fixture/v1.0.0/src/message", bytes);
     read_fixture("project/schema.h", bytes, sizeof(bytes));
-    file("generated/project/schema.h", bytes);
-    native_fixture("encode", "@<\nflag\n..std.condition\ntext\n..text\nnumber\n..integer\n@>\nwire\n..bytes\n@C\n");
-    native_fixture("decode", "@<\nwire\n..bytes\ntechnical failure\n..std.condition\n@>\nvalue\n.message\nfailure\n..failure\n@C\n");
-    native_fixture("inspect", "@<\nvalue\n.message\n@C\n");
-    native_fixture("inspectfailure", "@<\nfailure\n..failure\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/schema.h", bytes);
+    native_fixture("encode", "@<\nflag\n//std/condition\ntext\n//text\nnumber\n//integer\n@>\nwire\n//bytes\n@C\n");
+    native_fixture("decode", "@<\nwire\n//bytes\ntechnical failure\n//std/condition\n@>\nvalue\n/test/fixture/v1.0.0/src/message\nfailure\n//failure\n@C\n");
+    native_fixture("inspect", "@<\nvalue\n/test/fixture/v1.0.0/src/message\n@C\n");
+    native_fixture("inspectfailure", "@<\nfailure\n//failure\n@C\n");
     const char *names[] = {"encode", "decode"};
     for (size_t index = 0; index < sizeof(names) / sizeof(*names); index++) {
         char path[128];
-        int written = snprintf(path, sizeof(path), "generated/project/%s.h", names[index]);
+        int written = snprintf(path, sizeof(path), "generated/project/packages/test/fixture/v1.0.0/src/%s.h", names[index]);
         assert(written > 0 && (size_t)written < sizeof(path));
         file(path, "#include \"schema.h\"\nstruct AMA_NATIVE(State) { size_t number,calls; const void *address; };\n");
     }

@@ -31,9 +31,9 @@ still exits successfully when this and every other assertion holds.
 
 Read these parts in order:
 
-1. [The Ama root](project/main) submits through `..task.operation`, then yields.
+1. [The Ama root](project/packages/test/fixture/v1.0.0/src/main) submits through `//task/operation`, then yields.
    Its next explicit resume commits a completed or cancelled ordinary outcome.
-2. [The native submit adapter](project/submit.c) borrows the declared operation
+2. [The native submit adapter](project/packages/test/fixture/v1.0.0/src/submit.c) borrows the declared operation
    reference only while obtaining independent native endpoint rights.
 3. [The backend](backend/backend.c) either completes before submission returns or
    parks a real native worker. It owns no Ama view, reference or payload address.
@@ -44,7 +44,7 @@ Read these parts in order:
    repeated `dlclose`/`dlopen`. Old native image-domain data never becomes a new
    valid token domain.
 
-`..task.events` acquires one native code credit for its creator component. That
+`//task/events` acquires one native code credit for its creator component. That
 credit follows the service through its method leases, callback endpoints and
 owned buffers. Closing a context detaches its waits but does not consume a
 callback's independent credit. Consequently `code_can_unload` stays Busy until

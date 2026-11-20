@@ -7,7 +7,7 @@
  * validation dependencies do not manufacture constructor-creation edges.
  */
 static void check_paths(const StaticCreationPath **paths) {
-    const StaticModule *text_module = static_module_find(&inventory, project_find(&project, "..text"));
+    const StaticModule *text_module = static_module_find(&inventory, project_find(&project, "//text"));
     const StaticTerm *text;
     assert(static_term_nominal(&terms, text_module, NULL, 0, (SourceSpan){0}, &text));
     for (size_t index = 0; index < 3; index++) {
@@ -30,7 +30,7 @@ static void reset_registry(void) {
  * whether any reachable vertex lacks a local certificate: 8192 compositions.
  */
 static void it_closes_exactly_all_locally_complete_reachable_groups(void) {
-    setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..text\nnumber&\n..integer\n", "@<\nvalue\n...type\n@!\n");
+    setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//text\nnumber&\n//integer\n", "@<\nvalue\n.type\n@!\n");
     const StaticCreationPath *paths[3];
     check_paths(paths);
     for (unsigned graph = 0; graph < 512; graph++) {
@@ -87,7 +87,7 @@ static void it_closes_exactly_all_locally_complete_reachable_groups(void) {
  * equations close the key, but its local checks are still required separately.
  */
 static void it_reopens_warm_checks_until_late_target_keys_and_local_checks_close(void) {
-    setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
     const StaticCreationPath *closed, *pending;
     assert(static_creation_root(&guards, key_ordinary(target_module, NULL, 0), &closed));
     StaticRegistryUse *owner, *target;
@@ -120,7 +120,7 @@ static void it_reopens_warm_checks_until_late_target_keys_and_local_checks_close
  */
 static void it_keeps_failed_checks_sticky_and_releases_partial_dependencies(void) {
     for (unsigned partition = 0; partition < 9; partition++) {
-        setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+        setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
         const StaticCreationPath *closed, *pending;
         assert(static_creation_root(&guards, key_ordinary(target_module, NULL, 0), &closed));
         assert(static_creation_root(&guards, caller_environment, &pending));
@@ -161,7 +161,7 @@ static void it_keeps_failed_checks_sticky_and_releases_partial_dependencies(void
  * refresh already marked it Pending. Active reuse is never completion evidence.
  */
 static void it_claims_local_expansion_once_without_accepting_an_active_candidate(void) {
-    setup_registry("@<\nvalue\n...type\n@!\nanchor&\n..integer\n", "@!\n");
+    setup_registry("@<\nvalue\n.type\n@!\nanchor&\n//integer\n", "@!\n");
     const StaticCreationPath *path;
     assert(static_creation_root(&guards, caller_environment, &path));
     StaticRegistryUse *use;

@@ -6,9 +6,9 @@
 /** Independent ordinary connections may determine a generic callee from either direction. */
 static void it_infers_generic_callee_types_from_inputs_and_existing_output_anchors(void) {
     for (size_t direction = 0; direction < 2; direction++) {
-        setup_connections(direction ? "@!\nanchor\n..integer\nworker\n.other\nworker !\n > anchor\n" :
-            "@!\nanchor\n..integer\nworker\n.other\nworker !\n < anchor\n > fresh\n",
-            "@<\nargument\n...slot\n@>\nreturned\n...slot\n@!\n");
+        setup_connections(direction ? "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n > anchor\n" :
+            "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < anchor\n > fresh\n",
+            "@<\nargument\n.slot\n@>\nreturned\n.slot\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         const AstNode *node = operation_at(scope, 0);
@@ -33,9 +33,9 @@ static void it_infers_generic_callee_types_from_inputs_and_existing_output_ancho
 /** Named requests and positional skips resolve the same original declaration identities. */
 static void it_preserves_named_fields_and_independent_positional_skip_order(void) {
     for (size_t named = 0; named < 2; named++) {
-        setup_connections(named ? "@!\nanchor\n..integer\nworker\n.other\nworker !\n second < anchor\n returned > fresh\n" :
-            "@!\nanchor\n..integer\nworker\n.other\nworker !\n <\n < anchor\n > fresh\n",
-            "@<\nfirst\n..text\nsecond\n...slot\n@>\nreturned\n...slot\n@!\n");
+        setup_connections(named ? "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n second < anchor\n returned > fresh\n" :
+            "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n <\n < anchor\n > fresh\n",
+            "@<\nfirst\n//text\nsecond\n.slot\n@>\nreturned\n.slot\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         bool changed;
@@ -55,8 +55,8 @@ static void it_preserves_named_fields_and_independent_positional_skip_order(void
 
 /** A literal contributes capability work but no inferred native Type. */
 static void it_preserves_literal_input_requirements_without_inventing_an_anchor(void) {
-    setup_connections("@!\nanchor\n..integer\nworker\n.other\nworker !\n < |123\n > fresh\n",
-        "@<\nargument\n...slot\n@>\nreturned\n...slot\n@!\n");
+    setup_connections("@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < |123\n > fresh\n",
+        "@<\nargument\n.slot\n@>\nreturned\n.slot\n@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_operations(&actual);
     bool changed;
@@ -76,9 +76,9 @@ static void it_preserves_literal_input_requirements_without_inventing_an_anchor(
 /** Input and output storage mismatches cannot be repaired by Type unification. */
 static void it_rejects_implicit_reference_conversion_in_both_binding_directions(void) {
     for (size_t output = 0; output < 2; output++) {
-        setup_connections(output ? "@!\nanchor\n..integer\nworker\n.other\nworker !\n > fresh&\n" :
-            "@!\nanchor\n..integer\nworker\n.other\nworker !\n < &anchor\n",
-            "@<\nargument\n..integer\n@>\nreturned\n..integer\n@!\n");
+        setup_connections(output ? "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n > fresh&\n" :
+            "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < &anchor\n",
+            "@<\nargument\n//integer\n@>\nreturned\n//integer\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         bool changed = true;
@@ -94,11 +94,11 @@ static void it_rejects_implicit_reference_conversion_in_both_binding_directions(
  */
 static void it_composes_two_and_three_nested_owner_interfaces_without_body_expansion(void) {
     const char *sources[] = {
-        "@!\nleaf\n..integer\ninner\n.other\ninner !\n < leaf\nouter\n.other\nouter !\n < inner\n > carried\ncarried !\n > final\n",
-        "@!\nleaf\n..integer\ninner\n.other\ninner !\n < leaf\nouter\n.other\nouter !\n < inner\ntop\n.other\ntop !\n < outer\n > carried\ncarried !\n > middle\nmiddle !\n > final\n"
+        "@!\nleaf\n//integer\ninner\n/test/fixture/v1.0.0/src/other\ninner !\n < leaf\nouter\n/test/fixture/v1.0.0/src/other\nouter !\n < inner\n > carried\ncarried !\n > final\n",
+        "@!\nleaf\n//integer\ninner\n/test/fixture/v1.0.0/src/other\ninner !\n < leaf\nouter\n/test/fixture/v1.0.0/src/other\nouter !\n < inner\ntop\n/test/fixture/v1.0.0/src/other\ntop !\n < outer\n > carried\ncarried !\n > middle\nmiddle !\n > final\n"
     };
     for (size_t depth = 0; depth < 2; depth++) {
-        setup_connections(sources[depth], "@<\nargument\n...slot\n@>\nreturned\n...slot\n@!\n");
+        setup_connections(sources[depth], "@<\nargument\n.slot\n@>\nreturned\n.slot\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         size_t contexts = results.context_count;
@@ -126,9 +126,9 @@ static void it_composes_two_and_three_nested_owner_interfaces_without_body_expan
  */
 static void it_separates_independent_field_applications_and_joins_only_proven_equal_owners(void) {
     for (size_t same = 0; same < 2; same++) {
-        setup_connections(same ? "@!\nnumber\n..integer\ntext\n..text\nfirst\n.other\nsecond\n.other\nfirst !\n < number\nsecond !\n < number\n" :
-            "@!\nnumber\n..integer\ntext\n..text\nfirst\n.other\nsecond\n.other\nfirst !\n < number\nsecond !\n < text\n",
-            "@<\nargument\n...slot\n@>\nreturned\n...slot\n@!\nlocal\n argument\n");
+        setup_connections(same ? "@!\nnumber\n//integer\ntext\n//text\nfirst\n/test/fixture/v1.0.0/src/other\nsecond\n/test/fixture/v1.0.0/src/other\nfirst !\n < number\nsecond !\n < number\n" :
+            "@!\nnumber\n//integer\ntext\n//text\nfirst\n/test/fixture/v1.0.0/src/other\nsecond\n/test/fixture/v1.0.0/src/other\nfirst !\n < number\nsecond !\n < text\n",
+            "@<\nargument\n.slot\n@>\nreturned\n.slot\n@!\nlocal\n argument\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         bool changed;
@@ -157,7 +157,7 @@ static void it_separates_independent_field_applications_and_joins_only_proven_eq
 /** Missing progress/outcome receivers leave caller-visible values untouched. */
 static void it_refuses_missing_binding_outputs_before_submitting_equations(void) {
     for (size_t kind = 0; kind < 2; kind++) {
-        setup_connections("@!\nanchor\n..integer\nworker\n.other\nworker !\n", "@!\n");
+        setup_connections("@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n", "@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         bool changed = true;
@@ -172,8 +172,8 @@ static void it_refuses_missing_binding_outputs_before_submitting_equations(void)
 static void it_unwinds_every_binding_equation_allocation_refusal(void) {
     size_t total = 0;
     for (size_t failure = 0; failure <= total; failure++) {
-        setup_connections("@!\nanchor\n..integer\nworker\n.other\nworker !\n < anchor\n > fresh\n",
-            "@<\nargument\n...slot\n@>\nreturned\n...slot\n@!\n");
+        setup_connections("@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < anchor\n > fresh\n",
+            "@<\nargument\n.slot\n@>\nreturned\n.slot\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         const AstNode *node = operation_at(scope, 0);

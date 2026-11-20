@@ -10,7 +10,7 @@ static void it_resolves_explicit_exports_and_complete_owned_schemas(void) {
     if (!valid) { fprintf(stderr, "%s\n", build.error.message); }
     assert(valid && build.valid && build.frontend.valid && build.frontend.inputs.sealed);
     assert(build.export_count == 2 && build.exports->next != NULL);
-    assert(project_find(&build.frontend.project, ".unselected") == NULL);
+    assert(project_find(&build.frontend.project, "/test/fixture/v1.0.0/src/unselected") == NULL);
     assert(build.bindings->field->role_ordinal == 0 && build.bindings->schema->kind == LIBRARY_TEXT);
     assert(build.bindings->next->schema->kind == LIBRARY_FAILURE);
     assert(build.schemas->next->next->element == build.schemas);
@@ -40,18 +40,18 @@ static void it_resolves_explicit_exports_and_complete_owned_schemas(void) {
 /** Diagnose missing exports, unsupported transports, wrong forms and incomplete/duplicate bindings. */
 static void it_rejects_missing_and_incompatible_explicit_contracts(void) {
     const char *invalid[] = {
-        "export | run | .missing | entry\n",
-        "export | run | .constants | read\n",
-        "export | run | .main | entry\n",
-        "schema | text | text | ..integer\nexport | run | .main | entry\n",
-        "schema | text | text | ..text\nexport | run | .main | read\ninput | run | message text | text\n",
-        "schema | text | text | ..text\nexport | run | .main | entry\ninput | run | unknown | text\n",
-        "schema | text | text | ..text\nexport | run | .main | entry\ninput | run | message text | text\ninput | run | message text | text\n",
-        "schema | text | text | ..text\nschema | list | list | missing\nexport | run | .main | read\n",
-        "schema | list | list | list\nexport | run | .main | read\n"
+        "export | run | /test/fixture/v1.0.0/src/missing | entry\n",
+        "export | run | /test/fixture/v1.0.0/src/constants | read\n",
+        "export | run | /test/fixture/v1.0.0/src/main | entry\n",
+        "schema | text | text | //integer\nexport | run | /test/fixture/v1.0.0/src/main | entry\n",
+        "schema | text | text | //text\nexport | run | /test/fixture/v1.0.0/src/main | read\ninput | run | message text | text\n",
+        "schema | text | text | //text\nexport | run | /test/fixture/v1.0.0/src/main | entry\ninput | run | unknown | text\n",
+        "schema | text | text | //text\nexport | run | /test/fixture/v1.0.0/src/main | entry\ninput | run | message text | text\ninput | run | message text | text\n",
+        "schema | text | text | //text\nschema | list | list | missing\nexport | run | /test/fixture/v1.0.0/src/main | read\n",
+        "schema | list | list | list\nexport | run | /test/fixture/v1.0.0/src/main | read\n"
     };
     prepare_project();
-    file("generated/project/constants", "@=\ntruth\n..std.condition\n |1\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/constants", "@=\ntruth\n//std/condition\n |1\n");
     for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
         setup_test();
         LibraryBuild build;
@@ -60,10 +60,10 @@ static void it_rejects_missing_and_incompatible_explicit_contracts(void) {
         library_build_destroy(&build);
         destroy_test();
     }
-    file("generated/project/reference", "@>\ntext&\n..text\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/reference", "@>\ntext&\n//text\n@!\n");
     setup_test();
     LibraryBuild build;
-    bool valid = resolve(&build, "schema | text | text | ..text\nexport | run | .reference | read\noutput | run | text | text\n");
+    bool valid = resolve(&build, "schema | text | text | //text\nexport | run | /test/fixture/v1.0.0/src/reference | read\noutput | run | text | text\n");
     assert(!valid && strstr(build.error.message, "owned transport") != NULL);
     library_build_destroy(&build);
     destroy_test();

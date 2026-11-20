@@ -13,14 +13,14 @@ static void it_tracks_dependency_changes_and_preserves_handwritten_inputs(void) 
     bool dirty = true;
     bool found = project_inputs_changed(&same.frontend.inputs, PROJECT_INPUT_GENERATED, "Ama C library component", &dirty);
     assert(found && !dirty);
-    file("generated/project/other", "# changed result initializer\n@>\nmessages[]\n..text\n |new\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/other", "# changed result initializer\n@>\nmessages[]\n//text\n |new\n@!\n");
     valid = resolve(&changed, records);
     assert(valid);
     compared = project_inputs_compare(&changed.frontend.inputs, &first.frontend.inputs);
     assert(compared == SOURCE_OK);
     found = project_inputs_changed(&changed.frontend.inputs, PROJECT_INPUT_GENERATED, "Ama C library component", &dirty);
     assert(found && dirty);
-    assert(strcmp(first.exports->next->type->module->source->logical_path, ".other") == 0);
+    assert(strcmp(first.exports->next->type->module->source->logical_path, "/test/fixture/v1.0.0/src/other") == 0);
     const unsigned char *old = source_bytes(first.exports->next->type->module->source->text);
     assert(memcmp(old, "@>", 2) == 0);
     library_build_destroy(&changed);
@@ -32,12 +32,12 @@ static void it_tracks_dependency_changes_and_preserves_handwritten_inputs(void) 
 static void it_tracks_link_inputs_and_preserves_native_companions(void) {
     prepare_project();
     const char *body = "#error Library checking must never compile or rewrite native input\n";
-    file("generated/project/probe", "@C\n");
-    file("generated/project/probe.h", body);
-    file("generated/project/probe.c", body);
-    file("generated/project/probe.abi", "+ initialize\n- destroy\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/probe", "@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/probe.h", body);
+    file("generated/project/packages/test/fixture/v1.0.0/src/probe.c", body);
+    file("generated/project/packages/test/fixture/v1.0.0/src/probe.abi", "+ initialize\n- destroy\n");
     file("generated/link.input", "original foreign dependency\n");
-    const char *tail = "export | probe | .probe | entry,read\nlink-file | generated/link.input\ndependency-file | generated/project/probe.c\n";
+    const char *tail = "export | probe | /test/fixture/v1.0.0/src/probe | entry,read\nlink-file | generated/link.input\ndependency-file | generated/project/packages/test/fixture/v1.0.0/src/probe.c\n";
     setup_test();
     LibraryBuild before, after;
     bool valid = resolve(&before, tail);
@@ -50,7 +50,7 @@ static void it_tracks_link_inputs_and_preserves_native_companions(void) {
     bool dirty = false;
     bool found = project_inputs_changed(&after.frontend.inputs, PROJECT_INPUT_GENERATED, "Ama C library component", &dirty);
     assert(found && dirty);
-    FILE *stream = fopen("generated/project/probe.c", "rb");
+    FILE *stream = fopen("generated/project/packages/test/fixture/v1.0.0/src/probe.c", "rb");
     assert(stream != NULL);
     char actual[256];
     size_t length = fread(actual, 1, sizeof(actual) - 1, stream);
@@ -60,7 +60,7 @@ static void it_tracks_link_inputs_and_preserves_native_companions(void) {
     library_build_destroy(&before);
     destroy_test();
     setup_test();
-    valid = resolve(&after, "export | probe | .probe | entry\nlink-file | generated/absent-input\n");
+    valid = resolve(&after, "export | probe | /test/fixture/v1.0.0/src/probe | entry\nlink-file | generated/absent-input\n");
     assert(!valid && after.error.code == DIAGNOSTIC_IO_FAILURE && !after.valid);
     library_build_destroy(&after);
     destroy_test();

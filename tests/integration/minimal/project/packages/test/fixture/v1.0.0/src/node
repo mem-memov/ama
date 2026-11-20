@@ -1,0 +1,5 @@
+# Ordinary calls retain this owned counter's native resource and call count.
+@!
+counter
+/test/fixture/v1.0.0/src/counter
+counter !

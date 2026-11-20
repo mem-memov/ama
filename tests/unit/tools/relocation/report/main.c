@@ -16,8 +16,8 @@ static const RelocationReportedFile *reported(const RelocationReport *report, co
 /** Prepared source/configuration roles are copied before the compiler-side plan is destroyed. */
 static void it_owns_complete_report_scope_after_the_plan_expires(void) {
     prepare("owned-report");
-    file("project/old/draft","unfinished\n.old.a\n");
-    file("project/old/helper.c","/* Opaque .old.a text */\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/draft","unfinished\n.old.a\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/helper.c","/* Opaque .old.a text */\n");
     folder("artifacts");
     relocation_staging_destroy(&staging);
     relocation_references_destroy(&references);
@@ -30,13 +30,13 @@ static void it_owns_complete_report_scope_after_the_plan_expires(void) {
     assert(relocation_references_build(&references,&preview));
     relocation_staging_init(&staging,sources.allocator);
     const char *outputs[] = {path("artifacts/missing.bin")};
-    assert(relocation_staging_build(&staging,&(RelocationStagingRequest){.references=&references,.entry=".old.a",
+    assert(relocation_staging_build(&staging,&(RelocationStagingRequest){.references=&references,.entry="/test/fixture/v1.0.0/src/old/a",
         .generated_outputs=outputs,.generated_output_count=1}));
     RelocationReport report;
     relocation_report_init(&report,sources.allocator);
     assert(relocation_report_build(&report,&staging));
     retire_plan();
-    assert(report.ready && report.rebuild_required && strcmp(report.entry,".new.a") == 0);
+    assert(report.ready && report.rebuild_required && strcmp(report.entry,"/test/fixture/v1.0.0/src/new/a") == 0);
     assert(report.before_root_count == 2 && report.after_root_count == 2);
     assert(report.before_roots[0].kind == MODULE_ROOT_PROJECT);
     assert(report.before_roots[0].excluded_count == 1 && strcmp(report.before_roots[0].excluded[0],"out") == 0);
@@ -48,7 +48,7 @@ static void it_owns_complete_report_scope_after_the_plan_expires(void) {
     assert(output != NULL && output->invalidated && !output->existed);
     size_t count = 0;
     for (const RelocationReportedModule *row = report.modules; row != NULL; row = row->next) {
-        if (strcmp(row->before_identity,".old.draft") == 0) { assert(!row->active && strcmp(row->after_identity,".new.draft") == 0); }
+        if (strcmp(row->before_identity,"/test/fixture/v1.0.0/src/old/draft") == 0) { assert(!row->active && strcmp(row->after_identity,"/test/fixture/v1.0.0/src/new/draft") == 0); }
         count++;
     }
     assert(count == 3);

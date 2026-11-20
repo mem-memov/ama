@@ -1,9 +1,9 @@
 # Replacing an exhausted wait generation cannot detach the prior wait or step the task.
 @!
 record
-.record
+/test/fixture/v1.0.0/src/record
 registration
-.registration
+/test/fixture/v1.0.0/src/registration
 record !
  < |1
  < |18446744073709551615

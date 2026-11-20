@@ -16,7 +16,7 @@ assert all(row["schema"] == "ama.debugger.v1" for row in rows)
 
 def root(row):
     """Select the actual nominal root, independently of enumeration order or slot identities."""
-    return next(value for value in row["data"]["instances"] if value["type_name"] == ".main")
+    return next(value for value in row["data"]["instances"] if value["type_name"] == '/test/fixture/v1.0.0/src/main')
 
 if mode == "accepted":
     assert [row["command"] for row in rows] == ["run", "inspect", "inspect", "resume", "inspect", "resume", "inspect", "quit"]
@@ -27,7 +27,7 @@ if mode == "accepted":
         value = root(rows[index])
         assert value["resume_valid"] and not value["caller"]["attached"]
         assert value["resume_location"]["operation"] == value["resume_selector"]
-        assert value["resume_location"]["path"]["utf8"].endswith("project/main")
+        assert value["resume_location"]["path"]["utf8"].endswith('project/packages/test/fixture/v1.0.0/src/main')
         # The saved successor after the final yield is the next foreach check,
         # whose source is the collection header, rather than the yield itself.
         assert value["resume_location"]["line"] == "10"

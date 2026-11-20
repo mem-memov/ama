@@ -4,13 +4,13 @@
 /** Valid final syntax and types alone cannot authorize redirecting an original edge to a different module. */
 static void it_rejects_redirected_final_bindings_and_changed_original_bytes(void) {
     setup("staged-refusals");
-    folder("project"); folder("project/old"); folder("imports");
-    file("project/old/a","@!\n");
-    file("project/old/b","@!\n");
-    file("imports/unused","@!\nvalue\n.old.a\n");
+    package("project", "fixture"); folder("project/packages/test/fixture/v1.0.0/src/old"); package("imports", "imports");
+    file("project/packages/test/fixture/v1.0.0/src/old/a","@!\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/b","@!\n");
+    file("imports/packages/test/imports/v1.0.0/src/unused","@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n");
     ModuleRoot roots[] = {{.path=path("project"),.kind=MODULE_ROOT_PROJECT},
         {.path=path("imports"),.kind=MODULE_ROOT_PROJECT}};
-    RelocationRequest request = {roots,2,path("project/old"),path("project/new"),NULL};
+    RelocationRequest request = {roots,2,path("project/packages/test/fixture/v1.0.0/src/old"),path("project/packages/test/fixture/v1.0.0/src/new"),NULL};
     assert(relocation_preview_build(&preview,&request));
     RelocationReferences references;
     relocation_references_init(&references,sources.allocator);
@@ -19,34 +19,34 @@ static void it_rejects_redirected_final_bindings_and_changed_original_bytes(void
     RelocationStaging staging;
     const char *replacement = references.edits->replacement;
     /* Deliberately corrupt an otherwise complete plan to test independent validation. */
-    references.edits->replacement = ".new.b";
+    references.edits->replacement = "/test/fixture/v1.0.0/src/new/b";
     relocation_staging_init(&staging,sources.allocator);
     assert(!relocation_staging_build(&staging,&settings));
     assert(!staging.ready && staging.status == RELOCATION_INVALID_REFERENCE);
     assert(staging.frontend.semantic.constants_valid);
     relocation_staging_destroy(&staging);
-    references.edits->replacement = ".new.missing";
+    references.edits->replacement = "/test/fixture/v1.0.0/src/new/missing";
     relocation_staging_init(&staging,sources.allocator);
     assert(!relocation_staging_build(&staging,&settings));
     assert(!staging.ready && staging.status == RELOCATION_INVALID_SOURCE);
     assert(staging.error.code == DIAGNOSTIC_MISSING_MODULE);
     relocation_staging_destroy(&staging);
     references.edits->replacement = replacement;
-    file("imports/unused","@!\nvalue\n.old.b\n");
+    file("imports/packages/test/imports/v1.0.0/src/unused","@!\nvalue\n/test/fixture/v1.0.0/src/old/b\n");
     relocation_staging_init(&staging,sources.allocator);
     assert(!relocation_staging_build(&staging,&settings));
     assert(staging.status == RELOCATION_CHANGED_INPUT && !staging.ready);
     relocation_staging_destroy(&staging);
-    file("imports/unused","@!\nvalue\n.old.a\n");
-    assert(chmod(path("imports"),0555) == 0);
-    if (access(path("imports"),W_OK|X_OK) != 0) {
+    file("imports/packages/test/imports/v1.0.0/src/unused","@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n");
+    assert(chmod(path("imports/packages/test/imports/v1.0.0/src"),0555) == 0);
+    if (access(path("imports/packages/test/imports/v1.0.0/src"),W_OK|X_OK) != 0) {
         relocation_staging_init(&staging,sources.allocator);
         assert(!relocation_staging_build(&staging,&settings));
         assert(staging.status == RELOCATION_READ_ONLY && !staging.ready);
         relocation_staging_destroy(&staging);
     }
-    assert(chmod(path("imports"),0700) == 0);
-    file("project/old/a","@!\n# Changed after analysis\n");
+    assert(chmod(path("imports/packages/test/imports/v1.0.0/src"),0700) == 0);
+    file("project/packages/test/fixture/v1.0.0/src/old/a","@!\n# Changed after analysis\n");
     relocation_staging_init(&staging,sources.allocator);
     assert(!relocation_staging_build(&staging,&settings));
     assert(staging.status == RELOCATION_CHANGED_INPUT && !staging.ready);
@@ -59,18 +59,18 @@ static void it_rejects_redirected_final_bindings_and_changed_original_bytes(void
 /** Fail every successful allocation ordinal through bytes, files, native snapshots, graph, settings and invalidation owners. */
 static void it_releases_every_failed_staging_prefix_and_preserves_originals(void) {
     setup("staged-allocation-failures");
-    folder("project"); folder("project/old"); folder("artifacts");
-    file("project/old/number","@C\n");
-    file("project/old/number.c","/* Opaque C input, not executed. */\n");
-    file("project/old/number.h","/* Opaque header input. */\n");
-    file("project/old/number.abi","+ initialize\n- destroy\n| literal\n= clone\n");
-    file("project/old/a","@!\nvalue\n.old.number\npeer&\n.old.b\n");
-    file("project/old/b","@!\npeer&\n.old.a\n");
+    package("project", "fixture"); folder("project/packages/test/fixture/v1.0.0/src/old"); folder("artifacts");
+    file("project/packages/test/fixture/v1.0.0/src/old/number","@C\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/number.c","/* Opaque C input, not executed. */\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/number.h","/* Opaque header input. */\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/number.abi","+ initialize\n- destroy\n| literal\n= clone\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/a","@!\nvalue\n/test/fixture/v1.0.0/src/old/number\npeer&\n/test/fixture/v1.0.0/src/old/b\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/b","@!\npeer&\n/test/fixture/v1.0.0/src/old/a\n");
     file("artifacts/cache.bin","old generated bytes");
-    assert(symlink("a",path("project/old/alias.link")) == 0);
-    file("settings.library","ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | .old.a | entry\n");
+    assert(symlink("a",path("project/packages/test/fixture/v1.0.0/src/old/alias.link")) == 0);
+    file("settings.library","ama-library | 1\ncomponent | example.component\nabi | ama-c-1\ntarget | test\ncalling-convention | c\nexport | run | /test/fixture/v1.0.0/src/old/a | entry\n");
     ModuleRoot root = {.path=path("project"),.kind=MODULE_ROOT_PROJECT};
-    RelocationRequest request = {&root,1,path("project/old"),path("project/new"),NULL};
+    RelocationRequest request = {&root,1,path("project/packages/test/fixture/v1.0.0/src/old"),path("project/packages/test/fixture/v1.0.0/src/new"),NULL};
     assert(relocation_preview_build(&preview,&request));
     RelocationReferences references;
     relocation_references_init(&references,sources.allocator);
@@ -78,7 +78,7 @@ static void it_releases_every_failed_staging_prefix_and_preserves_originals(void
     size_t baseline = live_allocations;
     const char *configurations[] = {path("settings.library")};
     const char *outputs[] = {path("artifacts/cache.bin")};
-    RelocationStagingRequest settings = {.references=&references,.entry=".old.a",
+    RelocationStagingRequest settings = {.references=&references,.entry="/test/fixture/v1.0.0/src/old/a",
         .library_configurations=configurations,.library_configuration_count=1,
         .generated_outputs=outputs,.generated_output_count=1};
     RelocationStaging staging;
@@ -109,12 +109,12 @@ static void it_releases_every_failed_staging_prefix_and_preserves_originals(void
 /** Opaque hard-link aliases are diagnosed with both paths before any tree replacement can split their identity. */
 static void it_rejects_opaque_physical_aliases_with_retained_locations(void) {
     setup("staged-opaque-alias");
-    folder("project"); folder("project/old");
-    file("project/old/a","@!\n");
-    file("project/old/first.bin","opaque bytes");
-    assert(link(path("project/old/first.bin"),path("project/old/second.bin")) == 0);
+    package("project", "fixture"); folder("project/packages/test/fixture/v1.0.0/src/old");
+    file("project/packages/test/fixture/v1.0.0/src/old/a","@!\n");
+    file("project/packages/test/fixture/v1.0.0/src/old/first.bin","opaque bytes");
+    assert(link(path("project/packages/test/fixture/v1.0.0/src/old/first.bin"),path("project/packages/test/fixture/v1.0.0/src/old/second.bin")) == 0);
     ModuleRoot root = {.path=path("project"),.kind=MODULE_ROOT_PROJECT};
-    RelocationRequest request = {&root,1,path("project/old"),path("project/new"),NULL};
+    RelocationRequest request = {&root,1,path("project/packages/test/fixture/v1.0.0/src/old"),path("project/packages/test/fixture/v1.0.0/src/new"),NULL};
     assert(relocation_preview_build(&preview,&request));
     RelocationReferences references;
     relocation_references_init(&references,sources.allocator);

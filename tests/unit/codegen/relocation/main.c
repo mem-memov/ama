@@ -7,19 +7,19 @@
 #include "native/namespace/namespace.h"
 
 static const char before_source[] =
-    "@!\nvalue\n.value\n |7\nnumber\n..integer\n |23\n"
-    "first\n.old.factory\n ...old.value\nsecond\n.old.factory\n ...old.integer\n"
+    "@!\nvalue\n/test/fixture/v1.0.0/src/value\n |7\nnumber\n//integer\n |23\n"
+    "first\n/test/fixture/v1.0.0/src/old/factory\n .old.value\nsecond\n/test/fixture/v1.0.0/src/old/factory\n .old.integer\n"
     "first !\n < value\n > copy\nsecond !\n < number\n > integer copy\n"
-    "worker\n.worker\nworker !\n < copy\nshow\n.showindex\nshow !\n < integer copy\n";
+    "worker\n/test/fixture/v1.0.0/src/worker\nworker !\n < copy\nshow\n/test/fixture/v1.0.0/src/showindex\nshow !\n < integer copy\n";
 static const char after_source[] =
-    "@!\nvalue\n.value\n |7\nnumber\n..integer\n |23\n"
-    "first\n.renamed.factory\n ...old.value\nsecond\n.renamed.factory\n ...old.integer\n"
+    "@!\nvalue\n/test/fixture/v1.0.0/src/value\n |7\nnumber\n//integer\n |23\n"
+    "first\n/test/fixture/v1.0.0/src/renamed/factory\n .old.value\nsecond\n/test/fixture/v1.0.0/src/renamed/factory\n .old.integer\n"
     "first !\n < value\n > copy\nsecond !\n < number\n > integer copy\n"
-    "worker\n.worker\nworker !\n < copy\nshow\n.showindex\nshow !\n < integer copy\n";
+    "worker\n/test/fixture/v1.0.0/src/worker\nworker !\n < copy\nshow\n/test/fixture/v1.0.0/src/showindex\nshow !\n < integer copy\n";
 
 /** Read the actual arbitrary-precision Standard integer through its declared index protocol, without assuming payload layout. */
 static bool observe_integer(FILE *body, const ScaffoldType *type) {
-    if (type->plan->type->module != project_find(&frontend.project,".showindex")) { return false; }
+    if (type->plan->type->module != project_find(&frontend.project,"/test/fixture/v1.0.0/src/showindex")) { return false; }
     const SemanticSymbol *input = semantic_interface_position(type->plan->type,SYMBOL_PARAMETER,0);
     assert(input);
     const ScaffoldType *provider = assembly.types;
@@ -34,11 +34,12 @@ static bool observe_integer(FILE *body, const ScaffoldType *type) {
 /** Both source specializations copy actual values; concrete native consumers independently observe their results. */
 static void fixture(void) {
     directory("generated/project");
-    directory("generated/project/old");
-    file("generated/project/old/box","@<\ninput\n...old.slot\n@>\noutput\n...old.slot\n input\n@!\noutput\n input\n");
-    file("generated/project/old/factory","@...\n...old.value\n.old.box\n ...old.slot < .value\n...old.integer\n.old.box\n ...old.slot < ..integer\n");
+    fixture_package_prepare("generated/project", "fixture");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/old");
+    file("generated/project/packages/test/fixture/v1.0.0/src/old/box","@<\ninput\n.old.slot\n@>\noutput\n.old.slot\n input\n@!\noutput\n input\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/old/factory","@...\n.old.value\n/test/fixture/v1.0.0/src/old/box\n .old.slot < /test/fixture/v1.0.0/src/value\n.old.integer\n/test/fixture/v1.0.0/src/old/box\n .old.slot < //integer\n");
     native_entry_override = observe_integer;
-    native_fixture("showindex","@<\ninput\n..integer\n@C\n");
+    native_fixture("showindex","@<\ninput\n//integer\n@C\n");
 }
 
 /** Complete relocation owns independent checked snapshots and retires them after actual publication. */
@@ -56,7 +57,7 @@ static void move(const char *source, const char *destination, const char *recove
     RelocationStaging staging;
     relocation_staging_init(&staging,sources.allocator);
     const char *outputs[] = {"generated/output"};
-    assert(relocation_staging_build(&staging,&(RelocationStagingRequest){.references=&references,.entry=".main",
+    assert(relocation_staging_build(&staging,&(RelocationStagingRequest){.references=&references,.entry="/test/fixture/v1.0.0/src/main",
         .generated_outputs=outputs,.generated_output_count=1}));
     directory(recovery);
     RelocationTransaction transaction;
@@ -80,14 +81,14 @@ static void it_compiles_and_executes_both_closed_exports_after_logical_template_
     fixture();
     fprintf(stderr,"T193 execution: original template project\n");
     execute_project(before_source,"7:1:0\nvalue=23\n",true);
-    move("generated/project/old","generated/project/renamed","generated/recovery-logical");
+    move("generated/project/packages/test/fixture/v1.0.0/src/old","generated/project/packages/test/fixture/v1.0.0/src/renamed","generated/recovery-logical");
     fprintf(stderr,"T193 execution: logically moved templates\n");
     execute_project(after_source,"7:1:0\nvalue=23\n",true);
-    file("generated/project/renamed/box","@<\ninput\n...old.slot\n |bad\n@>\noutput\n...old.slot\n input\n@!\noutput\n input\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/renamed/box","@<\ninput\n.old.slot\n |bad\n@>\noutput\n.old.slot\n input\n@!\noutput\n input\n");
     fprintf(stderr,"T193 execution: relocated construction failure\n");
     execute_project(after_source,"",false);
     expect_diagnostic("Not a decimal value");
-    expect_diagnostic("generated/project/renamed/box:");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/renamed/box:");
     assert(rename("generated/project","generated/logical-finished") == 0);
 }
 
@@ -102,7 +103,7 @@ static void it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_by
     const SourceText *bodies[3];
     for (size_t index = 0; index < 3; index++) {
         char path[128];
-        int count = snprintf(path,sizeof(path),"generated/project/%s",names[index]);
+        int count = snprintf(path,sizeof(path),"generated/project/packages/test/fixture/v1.0.0/src/%s",names[index]);
         assert(count > 0 && (size_t)count < sizeof(path));
         assert(source_manager_load(&original,path,&bodies[index]) == SOURCE_OK);
     }
@@ -117,7 +118,7 @@ static void it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_by
     project_roots_override_count = 0;
     for (size_t index = 0; index < 3; index++) {
         char path[128];
-        int count = snprintf(path,sizeof(path),"generated/moved-project/%s",names[index]);
+        int count = snprintf(path,sizeof(path),"generated/moved-project/packages/test/fixture/v1.0.0/src/%s",names[index]);
         assert(count > 0 && (size_t)count < sizeof(path));
         const SourceText *after = NULL;
         assert(source_manager_load(&original,path,&after) == SOURCE_OK);

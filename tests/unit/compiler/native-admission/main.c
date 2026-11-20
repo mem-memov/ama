@@ -9,11 +9,11 @@
  * refusal must not invoke native compilation or reach ABI contract checking.
  */
 static void prepare_native(const char *source) {
-    directory("generated/project");
-    file("generated/project/main", source);
-    file("generated/project/main.h", "#error Admission checking must not compile native C\n");
-    file("generated/project/main.c", "#error Admission checking must not compile native C\n");
-    file("generated/project/main.abi", "not an ABI contract\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", source);
+    file("generated/project/packages/test/fixture/v1.0.0/src/main.h", "#error Admission checking must not compile native C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main.c", "#error Admission checking must not compile native C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main.abi", "not an ABI contract\n");
 }
 
 /** Original source marker and parameter context must outlive all inner helper

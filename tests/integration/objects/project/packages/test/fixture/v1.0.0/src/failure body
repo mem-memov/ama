@@ -1,0 +1,10 @@
+# A body error after acquisition must bypass the attached refusal alternative.
+@!
+exhausted
+/test/fixture/v1.0.0/src/counter
+ |18446744073709551615
+fallback
+/test/fixture/v1.0.0/src/counter
+exhausted !
+:
+ fallback !

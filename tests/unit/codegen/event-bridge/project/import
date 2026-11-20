@@ -1,20 +1,20 @@
 # Validate task liveness, enrollment stamps, and the complete native token before publishing data.
 @<
 stamp&
-.registration
+/test/fixture/v1.0.0/src/registration
 packet
-..task.packet
+//task/packet
 @>
 accepted
-..std.condition
+//std/condition
 @!
 true
-..std.condition
+//std/condition
  |1
 validate
-.validate
+/test/fixture/v1.0.0/src/validate
 same
-..task.token.same
+//task/token/same
 packet
 :
  >

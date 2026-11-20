@@ -16,12 +16,12 @@ static void typed_schema_render(FILE *output, const char *domain, const char *so
         const char *replacement = NULL;
         for (size_t module = 0; module < module_count; module++) {
             char original[128];
-            int length = snprintf(original, sizeof(original), ".kind.%s", module_names[module]);
+            int length = snprintf(original, sizeof(original), "/test/fixture/v1.0.0/src/kind/%s", module_names[module]);
             assert(length > 0 && (size_t)length < sizeof(original));
             if (count == (size_t)length && memcmp(cursor, original, count) == 0) { replacement = module_names[module]; break; }
         }
         if (replacement != NULL) {
-            int written = fprintf(output, ".%s.%s\n", domain, replacement);
+            int written = fprintf(output, "/test/fixture/v1.0.0/src/%s/%s\n", domain, replacement);
             assert(written > 0);
         } else {
             size_t written = fwrite(cursor, 1, count + 1, output);

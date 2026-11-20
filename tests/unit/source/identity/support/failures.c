@@ -39,7 +39,7 @@ static void it_preserves_existing_names_through_every_root_aware_registration_al
         identity_registry_init(&registry, sources.allocator);
         const IdentityName *prior = register_namespace_vector(&registry, 0);
         const char *members[] = {"field name","0","read"};
-        QualifiedIdentity identity = {IDENTITY_RUNTIME, "..магазин.товар данные", members, 3, {0}};
+        QualifiedIdentity identity = {IDENTITY_RUNTIME, "//магазин/товар данные", members, 3, {0}};
         size_t before = allocation_count;
         const IdentityName *output = prior;
         failure_at = selected == 0 ? 0 : before + selected;
@@ -48,7 +48,7 @@ static void it_preserves_existing_names_through_every_root_aware_registration_al
         if (selected == 0) {
             count = allocation_count - before;
             assert(status == IDENTITY_OK && output != prior);
-            assert(strcmp(output->source_name, "..магазин.товар данные::field name::0::read") == 0);
+            assert(strcmp(output->source_name, "//магазин/товар данные::field name::0::read") == 0);
         } else { assert(status == IDENTITY_OUT_OF_MEMORY && output == prior && registry.first == prior); }
         assert(register_namespace_vector(&registry, 0) == prior);
         identity_registry_destroy(&registry);
@@ -57,7 +57,7 @@ static void it_preserves_existing_names_through_every_root_aware_registration_al
     setup_test();
     IdentityRegistry registry;
     identity_registry_init(&registry, sources.allocator);
-    char path[] = "..item state";
+    char path[] = "//item state";
     char member[] = "field name";
     const char *members[] = {member};
     QualifiedIdentity identity = {IDENTITY_STATE_MEMBER, path, members, 1, {0}};
@@ -65,9 +65,9 @@ static void it_preserves_existing_names_through_every_root_aware_registration_al
     assert(identity_register(&registry, identity, &name) == IDENTITY_OK);
     memset(path, 'x', sizeof(path) - 1);
     memset(member, 'x', sizeof(member) - 1);
-    assert(strcmp(name->source_name, "..item state::field name") == 0);
+    assert(strcmp(name->source_name, "//item state::field name") == 0);
     const char *original_members[] = {"field name"};
-    identity.module_path = "..item state";
+    identity.module_path = "//item state";
     identity.members = original_members;
     const IdentityName *again = NULL;
     assert(identity_register(&registry, identity, &again) == IDENTITY_OK && again == name);
@@ -83,13 +83,13 @@ static void it_builds_many_member_displays_with_constant_allocation_count(void) 
         SourceArena arena;
         source_arena_init(&arena, sources.allocator);
         const char *members[32];
-        char expected[sizeof("..module name") + 32 * (sizeof("::entry name") - 1)];
-        strcpy(expected, "..module name");
+        char expected[sizeof("//module name") + 32 * (sizeof("::entry name") - 1)];
+        strcpy(expected, "//module name");
         for (size_t index = 0; index < counts[selected]; index++) {
             members[index] = "entry name";
             strcat(expected, "::entry name");
         }
-        QualifiedIdentity identity = {IDENTITY_RUNTIME, "..module name", members, counts[selected], {0}};
+        QualifiedIdentity identity = {IDENTITY_RUNTIME, "//module name", members, counts[selected], {0}};
         IdentityEncoding encoding;
         assert(identity_encode(&arena, identity, &encoding) == IDENTITY_OK);
         assert(strcmp(encoding.source_name, expected) == 0 && allocation_count <= 2);

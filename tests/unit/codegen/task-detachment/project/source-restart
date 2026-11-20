@@ -1,11 +1,11 @@
 # Reconstruct the native source before retiring its former operation endpoint.
 @!
 source
-..task.events
+//task/events
 operation
-..task.operation
+//task/operation
 require
-..task.require
+//task/require
 source !
  < |1
 operation !

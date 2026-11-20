@@ -13,7 +13,7 @@
  */
 static const StaticModule *integer_module(const StaticInventory *inventory) {
     for (const StaticModule *module = inventory->first; module; module = module->next) {
-        if (strcmp(module->definition->source->logical_path, "..integer") == 0) { return module; }
+        if (strcmp(module->definition->source->logical_path, "//integer") == 0) { return module; }
     }
     return NULL;
 }

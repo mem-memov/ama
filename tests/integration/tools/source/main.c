@@ -19,7 +19,7 @@ static void verify(const char *mode) {
 /** Static observations use the actual launcher, explicit entry and selected source rather than a standalone alternate parser. */
 static void it_queries_a_real_project_through_exact_command_arguments(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE,"--editor","project",".main","--module",".palette","--offset","3",NULL};
+    char *arguments[] = {AMA_EXECUTABLE,"--editor","project","/test/fixture/v1.0.0/src/main","--module","/test/fixture/v1.0.0/src/palette","--offset","3",NULL};
     assert(run_compiler_arguments(arguments) == EXIT_SUCCESS);
     verify("editor");
     char message[1024];
@@ -31,7 +31,7 @@ static void it_queries_a_real_project_through_exact_command_arguments(void) {
 static void it_prepares_complete_workspace_changes_without_applying_them(void) {
     for (unsigned noop = 0; noop < 2; noop++) {
         setup_test();
-        char *arguments[] = {AMA_EXECUTABLE,"--rename-plan","project",".main","--module",".palette","--offset","3",
+        char *arguments[] = {AMA_EXECUTABLE,"--rename-plan","project","/test/fixture/v1.0.0/src/main","--module","/test/fixture/v1.0.0/src/palette","--offset","3",
             "--name",noop ? "общее имя" : "новое общее имя",NULL};
         assert(run_compiler_arguments(arguments) == EXIT_SUCCESS);
         verify(noop ? "noop" : "rename");
@@ -41,7 +41,7 @@ static void it_prepares_complete_workspace_changes_without_applying_them(void) {
 /** Invalid names cannot produce an apparently usable replacement set or mutate the original workspace. */
 static void it_reports_refused_process_requests_without_partial_plans(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE,"--rename-plan","project",".main","--module",".palette","--offset","3","--name","bad  name",NULL};
+    char *arguments[] = {AMA_EXECUTABLE,"--rename-plan","project","/test/fixture/v1.0.0/src/main","--module","/test/fixture/v1.0.0/src/palette","--offset","3","--name","bad  name",NULL};
     assert(run_compiler_arguments(arguments) != EXIT_SUCCESS && ftell(output) == 0);
     char message[2048];
     read_stream(errors,message,sizeof(message));

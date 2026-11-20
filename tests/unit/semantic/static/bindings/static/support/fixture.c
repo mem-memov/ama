@@ -14,10 +14,10 @@ static const AstTypeExpression *expression;
  * No source rewriting, legacy declaration or implicit default Type is used.
  */
 static void setup_named_requests(const char *text) {
-    setup_static(text, "@...\n...out\n...a\n...second\n...b\n");
-    producer = static_module_add(&inventory, project_find(&project, ".other"));
+    setup_static(text, "@...\n.out\n.a\n.second\n.b\n");
+    producer = static_module_add(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/other"));
     assert(producer != NULL && static_collect_explicit(&inventory, producer));
-    const char *names[] = {"...a", "...b"};
+    const char *names[] = {".a", ".b"};
     for (size_t index = 0; index < 2; index++) {
         SourceSpan name = static_name_site(producer->definition, names[index]);
         StaticSymbol *symbol = static_symbol_add(&inventory, producer, name, name,

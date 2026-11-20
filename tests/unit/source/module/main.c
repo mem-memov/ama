@@ -34,6 +34,36 @@ static void file(const char *path, const char *content) {
     assert(written == length && closed == 0);
 }
 
+/** Create one complete local test package before catalog discovery; roots remain
+ * explicit project roots rather than silently treating an arbitrary directory
+ * as a source area. Both required areas exist even when one has no modules.
+ */
+static void prepare_version(const char *root, const char *storage, const char *version) {
+    directory(root);
+    char path[1024];
+    const char *suffixes[] = {"", "/test", "/test/fixture"};
+    for (size_t index = 0; index < 3; index++) {
+        int written = snprintf(path, sizeof(path), "%s/%s%s", root, storage, suffixes[index]);
+        assert(written > 0 && (size_t)written < sizeof(path));
+        directory(path);
+    }
+    const char *areas[] = {"", "/src", "/tests"};
+    for (size_t index = 0; index < 3; index++) {
+        int written = snprintf(path, sizeof(path), "%s/%s/test/fixture/%s%s",
+            root, storage, version, areas[index]);
+        assert(written > 0 && (size_t)written < sizeof(path));
+        directory(path);
+    }
+    int written = snprintf(path, sizeof(path), "%s/%s/test/fixture/%s/package.ini", root, storage, version);
+    assert(written > 0 && (size_t)written < sizeof(path));
+    file(path, "");
+}
+
+/** Prepare the same explicit local version used by ordinary catalog fixture keys. */
+static void prepare_package(const char *root) {
+    prepare_version(root, "packages", "v1.0.0");
+}
+
 static ModuleCatalog catalog;
 
 /**
@@ -55,25 +85,26 @@ static void destroy_catalog(void) {
 #include "support/roots.c"
 #include "support/storage.c"
 #include "support/enumeration.c"
+#include "support/packages.c"
 
 /**
  * Write this scenario's explicit source/native fixtures in test-owned storage before loading or
  * compiling them; the caller controls their lifetime and expected result.
  */
 static void prepare_project(void) {
-    directory("generated/project");
-    directory("generated/project/shop");
-    file("generated/project/shop/item", "unfinished parent is allowed here");
-    directory("generated/project/shop/item+");
-    file("generated/project/shop/item+/验证", "@C\r\n");
-    file("generated/project/shop/item+/验证.c", "/* C */");
-    file("generated/project/shop/item+/验证.h", "/* header */");
-    file("generated/project/shop/item+/验证.abi", "+ construct\n- destroy\n");
-    directory("generated/project/shop/item+/验证+");
-    file("generated/project/shop/item+/验证+/details", "@!\n");
-    directory("generated/project/generated");
-    file("generated/project/generated/not_a_source", "\xff");
-    file("generated/project/README.md", "not a source");
+    prepare_package("generated/project");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/shop");
+    file("generated/project/packages/test/fixture/v1.0.0/src/shop/item", "unfinished parent is allowed here");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/shop/item+");
+    file("generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证", "@C\r\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证.c", "/* C */");
+    file("generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证.h", "/* header */");
+    file("generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证.abi", "+ construct\n- destroy\n");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证+");
+    file("generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证+/details", "@!\n");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/generated");
+    file("generated/project/packages/test/fixture/v1.0.0/src/generated/not_a_source", "\xff");
+    file("generated/project/packages/test/fixture/v1.0.0/src/README.md", "not a source");
 }
 
 /**
@@ -81,7 +112,7 @@ static void prepare_project(void) {
  * filesystem search policy.
  */
 static ModuleRoot project_root(void) {
-    static const char *const exclusions[] = {"generated"};
+    static const char *const exclusions[] = {"packages/test/fixture/v1.0.0/src/generated"};
     return (ModuleRoot){"generated/project", exclusions, 1, MODULE_ROOT_PROJECT};
 }
 
@@ -97,21 +128,21 @@ static void it_resolves_nested_submodules_and_physical_native_companions(void) {
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_OK);
     const ModuleSource *source = NULL;
-    status = module_catalog_find(&catalog, ".shop.item.验证", &source);
+    status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/shop/item/验证", &source);
     assert(status == MODULE_OK);
-    assert(strcmp(source_path(source->text), "generated/project/shop/item+/验证") == 0);
+    assert(strcmp(source_path(source->text), "generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证") == 0);
     status = module_catalog_load_native(&catalog, source);
     assert(status == MODULE_OK);
-    assert(strcmp(source->native_c, "generated/project/shop/item+/验证.c") == 0);
-    assert(strcmp(source->native_header, "generated/project/shop/item+/验证.h") == 0);
-    assert(strcmp(source_path(source->native_abi), "generated/project/shop/item+/验证.abi") == 0);
-    status = module_catalog_find(&catalog, ".shop.item.验证.details", &source);
+    assert(strcmp(source->native_c, "generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证.c") == 0);
+    assert(strcmp(source->native_header, "generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证.h") == 0);
+    assert(strcmp(source_path(source->native_abi), "generated/project/packages/test/fixture/v1.0.0/src/shop/item+/验证.abi") == 0);
+    status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/shop/item/验证/details", &source);
     assert(status == MODULE_OK);
-    status = module_catalog_find(&catalog, ".generated.not_a_source", &source);
+    status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/generated/not_a_source", &source);
     assert(status == MODULE_MISSING);
-    status = module_catalog_find(&catalog, ".shop.item.验证.c", &source);
+    status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/shop/item/验证/c", &source);
     assert(status == MODULE_MISSING);
-    status = module_catalog_find(&catalog, ".shop..item", &source);
+    status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/shop//item", &source);
     assert(status == MODULE_INVALID_PATH);
     destroy_catalog();
 }
@@ -122,10 +153,10 @@ static void it_resolves_nested_submodules_and_physical_native_companions(void) {
  * generated evidence.
  */
 static void it_rejects_duplicates_across_roots_instead_of_preferring_one(void) {
-    directory("generated/first");
-    directory("generated/second");
-    file("generated/first/item", "@!\n");
-    file("generated/second/item", "@!\n");
+    prepare_package("generated/first");
+    prepare_package("generated/second");
+    file("generated/first/packages/test/fixture/v1.0.0/src/item", "@!\n");
+    file("generated/second/packages/test/fixture/v1.0.0/src/item", "@!\n");
     ModuleRoot roots[] = {{"generated/first", NULL, 0, MODULE_ROOT_PROJECT}, {"generated/second", NULL, 0, MODULE_ROOT_PROJECT}};
     for (size_t order = 0; order < 2; order++) {
         setup_catalog();
@@ -133,7 +164,7 @@ static void it_rejects_duplicates_across_roots_instead_of_preferring_one(void) {
         assert(status == MODULE_AMBIGUOUS);
         assert(catalog.issue.path != NULL && catalog.issue.related_path != NULL);
         const ModuleSource *source = NULL;
-        status = module_catalog_find(&catalog, ".item", &source);
+        status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/item", &source);
         assert(status == MODULE_INVALID_PATH && source == NULL);
         destroy_catalog();
         ModuleRoot temporary = roots[0];
@@ -148,18 +179,18 @@ static void it_rejects_duplicates_across_roots_instead_of_preferring_one(void) {
  * evidence.
  */
 static void it_rejects_orphans_hardlink_aliases_and_symlink_roots(void) {
-    directory("generated/orphan");
-    directory("generated/orphan/item+");
+    prepare_package("generated/orphan");
+    directory("generated/orphan/packages/test/fixture/v1.0.0/src/item+");
     setup_catalog();
     ModuleRoot root = {"generated/orphan", NULL, 0, MODULE_ROOT_PROJECT};
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_ORPHAN_DIRECTORY);
     destroy_catalog();
-    directory("generated/aliases");
-    file("generated/aliases/item", "@!\n");
-    int removed = unlink("generated/aliases/other");
+    prepare_package("generated/aliases");
+    file("generated/aliases/packages/test/fixture/v1.0.0/src/item", "@!\n");
+    int removed = unlink("generated/aliases/packages/test/fixture/v1.0.0/src/other");
     assert(removed == 0 || errno == ENOENT);
-    int linked = link("generated/aliases/item", "generated/aliases/other");
+    int linked = link("generated/aliases/packages/test/fixture/v1.0.0/src/item", "generated/aliases/packages/test/fixture/v1.0.0/src/other");
     assert(linked == 0);
     setup_catalog();
     root.path = "generated/aliases";
@@ -183,9 +214,9 @@ static void it_rejects_orphans_hardlink_aliases_and_symlink_roots(void) {
  * generated evidence.
  */
 static void it_distinguishes_case_and_canonically_equivalent_source_spellings(void) {
-    directory("generated/spelling");
-    const char *names[] = {"generated/spelling/Item", "generated/spelling/item",
-        "generated/spelling/é", "generated/spelling/e\xcc\x81"};
+    prepare_package("generated/spelling");
+    const char *names[] = {"generated/spelling/packages/test/fixture/v1.0.0/src/Item", "generated/spelling/packages/test/fixture/v1.0.0/src/item",
+        "generated/spelling/packages/test/fixture/v1.0.0/src/é", "generated/spelling/packages/test/fixture/v1.0.0/src/e\xcc\x81"};
     for (size_t index = 0; index < 4; index++) {
         file(names[index], "@!\n");
     }
@@ -193,7 +224,7 @@ static void it_distinguishes_case_and_canonically_equivalent_source_spellings(vo
     ModuleRoot root = {"generated/spelling", NULL, 0, MODULE_ROOT_PROJECT};
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_OK);
-    const char *logical[] = {".Item", ".item", ".é", ".e\xcc\x81"};
+    const char *logical[] = {"/test/fixture/v1.0.0/src/Item", "/test/fixture/v1.0.0/src/item", "/test/fixture/v1.0.0/src/é", "/test/fixture/v1.0.0/src/e\xcc\x81"};
     for (size_t index = 0; index < 4; index++) {
         const ModuleSource *source = NULL;
         status = module_catalog_find(&catalog, logical[index], &source);
@@ -208,25 +239,25 @@ static void it_distinguishes_case_and_canonically_equivalent_source_spellings(vo
  * evidence.
  */
 static void it_reports_the_exact_invalid_utf8_span_in_sources_and_abi(void) {
-    directory("generated/invalid");
-    file("generated/invalid/item", "@!\n\xff");
+    prepare_package("generated/invalid");
+    file("generated/invalid/packages/test/fixture/v1.0.0/src/item", "@!\n\xff");
     ModuleRoot root = {"generated/invalid", NULL, 0, MODULE_ROOT_PROJECT};
     setup_catalog();
     ModuleStatus status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_INVALID_UTF8 && catalog.issue.offset == 3);
     assert(catalog.issue.source != NULL);
     destroy_catalog();
-    file("generated/invalid/item", "@C\n");
-    file("generated/invalid/item.abi", "+ good\n\xed\xa0\x80");
+    file("generated/invalid/packages/test/fixture/v1.0.0/src/item", "@C\n");
+    file("generated/invalid/packages/test/fixture/v1.0.0/src/item.abi", "+ good\n\xed\xa0\x80");
     setup_catalog();
     status = module_catalog_build(&catalog, &root, 1);
     assert(status == MODULE_OK);
     const ModuleSource *source = NULL;
-    status = module_catalog_find(&catalog, ".item", &source);
+    status = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/item", &source);
     assert(status == MODULE_OK);
     status = module_catalog_load_native(&catalog, source);
     assert(status == MODULE_INVALID_UTF8 && catalog.issue.offset == 7);
-    assert(strcmp(catalog.issue.path, "generated/invalid/item.abi") == 0);
+    assert(strcmp(catalog.issue.path, "generated/invalid/packages/test/fixture/v1.0.0/src/item.abi") == 0);
     destroy_catalog();
 }
 
@@ -274,6 +305,10 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_indexes_only_selected_versions_and_never_fills_local_module_holes();
+    it_reports_missing_selected_package_inputs_without_external_fallback();
+    it_does_not_turn_local_exclusions_into_external_or_standard_fallback();
+    it_indexes_dependency_only_projects_and_keeps_versions_distinct();
     it_retains_invalid_native_snapshot_diagnostics_and_empty_presence();
     it_owns_native_snapshot_companions_and_unwinds_each_failed_copy();
     it_owns_captured_source_snapshots_without_rereading_files();

@@ -8,11 +8,11 @@
  */
 static void it_selects_named_and_positional_own_constants_before_completing_member_types(void) {
     const char *callers[] = {
-        "@!\nanchor&\n..integer\n.other\n scalar >> x\n list[] >> xs[]\n",
-        "@!\nanchor&\n..integer\n.other\n >> x\n >> xs[]\n"
+        "@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n scalar >> x\n list[] >> xs[]\n",
+        "@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n >> x\n >> xs[]\n"
     };
     for (size_t mode = 0; mode < 2; mode++) {
-        setup_constants(callers[mode], "@=\nscalar\n..integer\nlist[]\n..integer\n@!\n");
+        setup_constants(callers[mode], "@=\nscalar\n//integer\nlist[]\n//integer\n@!\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticResultContext *actual = constant_fixed_target_context();
         const StaticConstantRead *read;
@@ -38,10 +38,10 @@ static void it_selects_named_and_positional_own_constants_before_completing_memb
  * member selection. Its producer is separate from the ordinary required scope.
  */
 static void it_selects_a_concrete_export_before_namespace_member_selection(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/container", "@=\nempty[]\n...slot\n@<\ninput\n...slot\n@!\n");
-    setup_constants("@!\n.other\n ...container type\n empty[] >> xs[]\n",
-        "@...\n...container type\n.container\n ...slot < ..integer\n");
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/container", "@=\nempty[]\n.slot\n@<\ninput\n.slot\n@!\n");
+    setup_constants("@!\n/test/fixture/v1.0.0/src/other\n .container type\n empty[] >> xs[]\n",
+        "@...\n.container type\n/test/fixture/v1.0.0/src/container\n .slot < //integer\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantRead *read;
     const StaticConstantSelection *selection;
@@ -68,9 +68,9 @@ static void it_selects_a_concrete_export_before_namespace_member_selection(void)
  * Refusal must not pass a nonexistent producer Type to the constraint solver.
  */
 static void it_refuses_a_static_producer_scope_as_an_ordinary_namespace_scope(void) {
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/container", "@=\nvalue\n..integer\n@!\n");
-    setup_constants("@!\n.other\n ...out\n value >> x\n", "@...\n...out\n.container\n");
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/container", "@=\nvalue\n//integer\n@!\n");
+    setup_constants("@!\n/test/fixture/v1.0.0/src/other\n .out\n value >> x\n", "@...\n.out\n/test/fixture/v1.0.0/src/container\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticConstantRead *read;
     bool success = static_constant_read(&constants, context, constant_namespace_read(0), &read);
@@ -90,12 +90,12 @@ static void it_refuses_a_static_producer_scope_as_an_ordinary_namespace_scope(vo
  */
 static void it_excludes_instance_fields_and_argument_type_constants_from_the_actual_surface(void) {
     const char *callers[] = {
-        "@!\nanchor&\n..integer\n.other\n result >> x\n",
-        "@!\nanchor&\n..integer\n.other\n hidden >> x\n",
-        "@!\nanchor&\n..integer\n.other\n >> x\n >> y\n"
+        "@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n result >> x\n",
+        "@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n hidden >> x\n",
+        "@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n >> x\n >> y\n"
     };
     for (size_t mode = 0; mode < 3; mode++) {
-        setup_constants(callers[mode], "@=\nshared\n..integer\n@>\nresult\n..integer\n@!\nhidden\n..integer\n");
+        setup_constants(callers[mode], "@=\nshared\n//integer\n@>\nresult\n//integer\n@!\nhidden\n//integer\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticResultContext *actual = target_module->parameter_count == 0 ? constant_fixed_target_context() : NULL;
         const StaticConstantRead *read;
@@ -105,11 +105,11 @@ static void it_excludes_instance_fields_and_argument_type_constants_from_the_act
         assert(selection == NULL && constants.status == STATIC_CONSTANT_CONFLICT && constants.declaration_count == 0);
         destroy_constants();
     }
-    directory(STATIC_SCOPE_ROOT_DIRECTORY);
-    file("generated/static scope/argument", "@=\nfrom argument\n..integer\n@!\n");
-    setup_constants("@<\nnamespace\n...namespace\n@!\nanchor&\n..integer\nargument&\n.argument\n...namespace\n from argument >> x\n",
-        "@=\nonly own\n..integer\n@<\ninput\n...slot\n@!\n");
-    const StaticModule *argument = static_module_find(&inventory, project_find(&project, ".argument"));
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    file("generated/static scope/packages/test/fixture/v1.0.0/src/argument", "@=\nfrom argument\n//integer\n@!\n");
+    setup_constants("@<\nnamespace\n.namespace\n@!\nanchor&\n//integer\nargument&\n/test/fixture/v1.0.0/src/argument\n.namespace\n from argument >> x\n",
+        "@=\nonly own\n//integer\n@<\ninput\n.slot\n@!\n");
+    const StaticModule *argument = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/argument"));
     const StaticTerm *argument_type, *namespace_type, *owner;
     bool success = static_term_nominal(&terms, argument, NULL, 0, (SourceSpan){0}, &argument_type);
     assert(success);
@@ -140,11 +140,11 @@ static void it_excludes_instance_fields_and_argument_type_constants_from_the_act
  */
 static void it_refuses_member_or_receiver_driven_namespace_completion(void) {
     const char *callers[] = {
-        "@!\nanchor&\n..integer\nxs[]\n..integer\n.other\n empty[] >> xs[]\n",
-        "@<\nnamespace\n...type\n@!\nanchor&\n..integer\nxs[]\n..integer\n...type\n empty[] >> xs[]\n"
+        "@!\nanchor&\n//integer\nxs[]\n//integer\n/test/fixture/v1.0.0/src/other\n empty[] >> xs[]\n",
+        "@<\nnamespace\n.type\n@!\nanchor&\n//integer\nxs[]\n//integer\n.type\n empty[] >> xs[]\n"
     };
     for (size_t mode = 0; mode < 2; mode++) {
-        setup_constants(callers[mode], "@=\nempty[]\n...slot\n@<\ninput\n...slot\n@!\n");
+        setup_constants(callers[mode], "@=\nempty[]\n.slot\n@<\ninput\n.slot\n@!\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticConstantRead *read;
         const StaticConstantSelection *selection = NULL;
@@ -161,11 +161,11 @@ static void it_refuses_member_or_receiver_driven_namespace_completion(void) {
  */
 static void it_rejects_duplicate_constant_names_and_unselected_reference_storage(void) {
     const char *targets[] = {
-        "@=\nvalue\n..integer\nvalue[]\n..integer\n@!\n",
-        "@=\nvalue\n..integer\nforbidden&\n..integer\n@!\n"
+        "@=\nvalue\n//integer\nvalue[]\n//integer\n@!\n",
+        "@=\nvalue\n//integer\nforbidden&\n//integer\n@!\n"
     };
     for (size_t mode = 0; mode < 2; mode++) {
-        setup_constants("@!\nanchor&\n..integer\n.other\n value >> x\n", targets[mode]);
+        setup_constants("@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n value >> x\n", targets[mode]);
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticResultContext *actual = constant_fixed_target_context();
         const StaticConstantRead *read;
@@ -183,7 +183,7 @@ static void it_rejects_duplicate_constant_names_and_unselected_reference_storage
  */
 static void it_requires_an_explicit_checked_registry_scope_for_plain_type_reuse(void) {
     for (size_t supplied = 0; supplied < 2; supplied++) {
-        setup_constants("@<\nnamespace\n...type\n@!\nanchor&\n..integer\n...type\n value >> x\n", "@=\nvalue\n..integer\n@!\n");
+        setup_constants("@<\nnamespace\n.type\n@!\nanchor&\n//integer\n.type\n value >> x\n", "@=\nvalue\n//integer\n@!\n");
         StaticTermCapture capture = {.formal = application_formal(caller_module, 0), .value = target_constructor};
         const StaticTerm *owner;
         const StaticTermEnvironment *environment, *target_environment;
@@ -212,7 +212,7 @@ static void it_refuses_invalid_selection_handles_and_preserves_shared_type_scope
     const StaticConstantDeclaration *record;
     assert(static_constant_declaration(&constants, context, constant_named(caller_module, "scalar"), &record));
     assert(record->source->source->source->head == integer_type);
-    assert(record->source->source->source->occurrence->symbol == result_named(caller_module, "...type"));
+    assert(record->source->source->source->occurrence->symbol == result_named(caller_module, ".type"));
     const StaticConstantSelection *selection = NULL;
     assert(!static_constant_select(&constants, NULL, context, &selection));
     assert(selection == NULL && constants.status == STATIC_CONSTANT_INVALID);
@@ -221,7 +221,7 @@ static void it_refuses_invalid_selection_handles_and_preserves_shared_type_scope
     static_publication_init(&publications, &results, sources.allocator);
     static_constant_init(&constants, &publications, sources.allocator);
     context = publication_context(caller_environment);
-    assert(!static_publication_resolve(&publications, context, result_pair("...first"), NULL));
+    assert(!static_publication_resolve(&publications, context, result_pair(".first"), NULL));
     assert(!static_constant_select(&constants, NULL, NULL, &selection));
     assert(constants.error.message == publications.error.message && selection == NULL);
     destroy_constants();

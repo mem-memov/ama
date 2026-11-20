@@ -5,7 +5,7 @@
 static void it_classifies_every_eager_field_role_form_and_initializer_state(void) {
     for (unsigned bits = 0; bits < 128; bits++) {
         setup_test();
-        ModuleSource module_source = {.logical_path = ".main"};
+        ModuleSource module_source = {.logical_path = "/test/fixture/v1.0.0/src/main"};
         ProjectModule module = {.source = &module_source};
         SemanticInitializer initial = {0};
         SemanticType type = {.module = &module, .executable = true};
@@ -36,10 +36,10 @@ static void it_classifies_every_eager_field_role_form_and_initializer_state(void
 static void it_keeps_inferred_default_storage_in_the_correct_relations(void) {
     prepare_types();
     const char *valid[] = {
-        "@!\nsource[]\n.main\ncopy[]\n source[]\n",
-        "@!\nsource&\n.main\ncopy&\n source&\n",
-        "@!\nsource&[]\n.resource\ncopy&[]\n source&[]\n",
-        "@!\nsource\n.value\ncopy\n source\n"
+        "@!\nsource[]\n/test/fixture/v1.0.0/src/main\ncopy[]\n source[]\n",
+        "@!\nsource&\n/test/fixture/v1.0.0/src/main\ncopy&\n source&\n",
+        "@!\nsource&[]\n/test/fixture/v1.0.0/src/resource\ncopy&[]\n source&[]\n",
+        "@!\nsource\n/test/fixture/v1.0.0/src/value\ncopy\n source\n"
     };
     for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) {
         SemanticStatus status = resolve_text(valid[index]);
@@ -51,7 +51,7 @@ static void it_keeps_inferred_default_storage_in_the_correct_relations(void) {
         destroy_semantic();
     }
     /* The empty list has no eager edge, but still prevents owned cloning of its element type. */
-    SemanticStatus status = resolve_text("@!\nsource[]\n.resource\ncopy[]\n source[]\n");
+    SemanticStatus status = resolve_text("@!\nsource[]\n/test/fixture/v1.0.0/src/resource\ncopy[]\n source[]\n");
     assert(status == SEMANTIC_INVALID && strstr(semantic.error.message, "independent copying") != NULL);
     destroy_semantic();
 }

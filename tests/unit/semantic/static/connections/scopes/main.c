@@ -7,7 +7,7 @@
  * Local occurrences do not prevent a later fresh module field with the same name.
  */
 static void it_fixes_nested_disjoint_and_reused_foreach_bindings_without_shadowing(void) {
-    setup_connections("@!\nknown\n..integer\nvalues[]\n..integer\nreused&\n..integer\nvalues[reused&]\n{\n}\n"
+    setup_connections("@!\nknown\n//integer\nvalues[]\n//integer\nreused&\n//integer\nvalues[reused&]\n{\n}\n"
         "values[item&]\n{\n values[item&]\n {\n  copied&\n   item&\n }\n}\nvalues[item&]\n{\n}\nitem&\n &known\nvalues[item&]\n{\n}\n", "@!\n");
     const StaticRuntimeModule *module;
     assert(static_connection_runtime(&connections, caller_module, &module));
@@ -32,11 +32,11 @@ static void it_fixes_nested_disjoint_and_reused_foreach_bindings_without_shadowi
  */
 static void it_rejects_local_escape_construction_reads_and_incompatible_foreach_shadowing(void) {
     const char *sources[] = {
-        "@!\nvalues[]\n..integer\nvalues[item&]\n{\n}\ncopied&\n item&\n",
-        "@!\nvalues[]\n..integer\nvalues[item&]\n{\n captured&\n ..integer\n  item&\n}\n",
-        "@!\nvalues[]\n..integer\nitem\n..integer\nvalues[item&]\n{\n}\n",
-        "@=\nvalues[]\n..integer\n@!\nvalues[item&]\n{\n}\n",
-        "@!\nvalues&[]\n..integer\nvalues[item&]\n{\n}\n"
+        "@!\nvalues[]\n//integer\nvalues[item&]\n{\n}\ncopied&\n item&\n",
+        "@!\nvalues[]\n//integer\nvalues[item&]\n{\n captured&\n //integer\n  item&\n}\n",
+        "@!\nvalues[]\n//integer\nitem\n//integer\nvalues[item&]\n{\n}\n",
+        "@=\nvalues[]\n//integer\n@!\nvalues[item&]\n{\n}\n",
+        "@!\nvalues&[]\n//integer\nvalues[item&]\n{\n}\n"
     };
     for (size_t index = 0; index < sizeof(sources) / sizeof(*sources); index++) {
         setup_connections(sources[index], "@!\n");
@@ -51,7 +51,7 @@ static void it_rejects_local_escape_construction_reads_and_incompatible_foreach_
  * initiating caller and cannot silently become new inferred module variables.
  */
 static void it_binds_caller_indices_and_excludes_selected_result_base_names(void) {
-    setup_connections("@!\nindex\n..integer\nworker\n.other\nworker !\n selected[index] !\n  label > label\n"
+    setup_connections("@!\nindex\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n selected[index] !\n  label > label\n"
         "label\n index\n", "@!\n");
     const StaticRuntimeModule *module;
     assert(static_connection_runtime(&connections, caller_module, &module));

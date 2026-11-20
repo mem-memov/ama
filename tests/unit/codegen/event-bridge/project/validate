@@ -1,13 +1,13 @@
 # Import requires a live task reference, active enrollment, live wait and both exact stamps.
 @<
 stamp&
-.registration
+/test/fixture/v1.0.0/src/registration
 @>
 valid
-..std.condition
+//std/condition
 @!
 same
-..task.generation.same
+//task/generation/same
 stamp&
  task& >> task&
  epoch >> stamp epoch

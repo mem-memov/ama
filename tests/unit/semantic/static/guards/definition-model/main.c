@@ -45,9 +45,9 @@ static void edges(unsigned graph, StaticDefinitionNode **nodes, SourceSpan site,
  * definition identities; the third node is an actual original receiver alias.
  */
 static void it_matches_every_three_definition_relation_and_discovery_order(void) {
-    setup_guards("@...\n...a\n..integer\n...b\n..integer\n"
-        ".other\n ...out > ...alias\n", "@...\n...out\n..integer\n");
-    const char *names[] = {"...a", "...b", "...alias"};
+    setup_guards("@...\n.a\n//integer\n.b\n//integer\n"
+        "/test/fixture/v1.0.0/src/other\n .out > .alias\n", "@...\n.out\n//integer\n");
+    const char *names[] = {".a", ".b", ".alias"};
     const StaticSymbol *symbols[3];
     for (size_t index = 0; index < 3; index++) {
         symbols[index] = static_symbol_find(caller_module, static_name_site(project.entry, names[index]));

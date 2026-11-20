@@ -29,7 +29,7 @@ static const char *const modules[] = {
 /** Instantiate two distinct nominal domains by exact declared path substitution, never a type cast. */
 static void install_domain(const char *domain) {
     char directory_path[256];
-    int length = snprintf(directory_path, sizeof(directory_path), "generated/project/%s", domain);
+    int length = snprintf(directory_path, sizeof(directory_path), "generated/project/packages/test/fixture/v1.0.0/src/%s", domain);
     assert(length > 0 && (size_t)length < sizeof(directory_path));
     directory(directory_path);
     for (size_t index = 0; index < sizeof(modules) / sizeof(*modules); index++) {
@@ -50,9 +50,10 @@ static void install_domain(const char *domain) {
 /** Compile the actual task graph and compare every dispatched identity and per-task step count. */
 static void scenario(const char *name, const char *expected, bool success) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     install_domain("red");
     install_domain("blue");
-    native_fixture("trace", "@<\nid\n..std.index\nqueued\n..task.flag\n@C\n");
+    native_fixture("trace", "@<\nid\n//std/index\nqueued\n//task/flag\n@C\n");
     native_entry_override = typed_schema_trace;
     char source[16384];
     fixture(name, source);
@@ -85,8 +86,38 @@ static void it_detects_a_step_attempt_before_membership_has_been_cleared(void) {
     scenario("guard", "", false);
     expect_diagnostic("Task still queued");
 }
+/** Exact declared path equality prevents namespace rendering from touching data,
+ * comments, Standard paths or longer names. Empty source remains empty.
+ */
+static void it_instantiates_only_declared_whole_module_path_lines(void) {
+    const char *modules[] = {"record", "task"};
+    const char *source = "/test/fixture/v1.0.0/src/kind/record\n"
+        "/test/fixture/v1.0.0/src/kind/task\n"
+        "/test/fixture/v1.0.0/src/kind/record_extra\n"
+        " |/test/fixture/v1.0.0/src/kind/record\n"
+        "# /test/fixture/v1.0.0/src/kind/task\n//task/generation\n";
+    const char *expected = "/test/fixture/v1.0.0/src/red/record\n"
+        "/test/fixture/v1.0.0/src/red/task\n"
+        "/test/fixture/v1.0.0/src/kind/record_extra\n"
+        " |/test/fixture/v1.0.0/src/kind/record\n"
+        "# /test/fixture/v1.0.0/src/kind/task\n//task/generation\n";
+    FILE *output = tmpfile();
+    assert(output != NULL);
+    typed_schema_render(output, "red", "", modules, 2);
+    assert(ftell(output) == 0);
+    typed_schema_render(output, "red", source, modules, 2);
+    assert(fflush(output) == 0 && fseek(output, 0, SEEK_SET) == 0);
+    char actual[1024] = {0};
+    size_t count = fread(actual, 1, sizeof(actual) - 1, output);
+    assert(!ferror(output) && count == strlen(expected));
+    assert(memcmp(actual, expected, count) == 0);
+    int closed = fclose(output);
+    assert(closed == 0);
+}
+
 /** Select one named group for diagnosis; the normal suite executes all queue contracts. */
 void run(void) {
+    it_instantiates_only_declared_whole_module_path_lines();
     const char *selected = getenv("AMA_READY_QUEUE_CASE");
     if (selected == NULL || strcmp(selected, "coalesce") == 0) { it_coalesces_readiness_and_requeues_ready_yields_at_the_tail(); }
     if (selected == NULL || strcmp(selected, "ordered") == 0) { it_preserves_the_observed_native_completion_stream_order(); }

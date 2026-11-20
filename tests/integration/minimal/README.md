@@ -1,7 +1,7 @@
 # Minimal runnable Ama project
 
 This is the maintained T062 acceptance project. Its complete Ama/native source
-is under [project/](project/main); it needs the compiler SDK and the verified GCC
+is under [project/](project/packages/test/fixture/v1.0.0/src/main); it needs the compiler SDK and the verified GCC
 toolchain, without a standard-library installation.
 
 From the repository root:
@@ -23,10 +23,10 @@ make -C tests/integration/minimal
 
 | File | Responsibility |
 |---|---|
-| [main](project/main) | Own one runner and invoke it twice. |
-| [runner](project/runner) | Construct nine independent nodes; call the first, second, then first again. |
-| [node](project/node) | Own and execute one retained native counter. |
-| [counter](project/counter), [State](project/counter.h), [implementation](project/counter.c), [ABI](project/counter.abi) | Construct/clone independent native resources, increment retained values and destroy resources once. |
+| [main](project/packages/test/fixture/v1.0.0/src/main) | Own one runner and invoke it twice. |
+| [runner](project/packages/test/fixture/v1.0.0/src/runner) | Construct nine independent nodes; call the first, second, then first again. |
+| [node](project/packages/test/fixture/v1.0.0/src/node) | Own and execute one retained native counter. |
+| [counter](project/packages/test/fixture/v1.0.0/src/counter), [State](project/packages/test/fixture/v1.0.0/src/counter.h), [implementation](project/packages/test/fixture/v1.0.0/src/counter.c), [ABI](project/packages/test/fixture/v1.0.0/src/counter.abi) | Construct/clone independent native resources, increment retained values and destroy resources once. |
 
 The first node uses ordinary default construction. The next eight nodes copy
 that earlier node during construction, including independent native allocations.

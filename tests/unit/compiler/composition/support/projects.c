@@ -67,7 +67,7 @@ static void assert_current_features(void) {
 }
 /** Current constructs, empty bodies, reference cycles and immutable namespaces all preserve exact source metadata through the composite API. */
 static void it_matches_complete_frontend_outputs_to_independent_explicit_stages(void) {
-    const char *cases[] = {composed_source, "@!\n", "@!\nother&\n.main\nother& !\n", "@=\nvalue\n.value\n .palette.seed\n@!\n"};
+    const char *cases[] = {composed_source, "@!\n", "@!\nother&\n/test/fixture/v1.0.0/src/main\nother& !\n", "@=\nvalue\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/palette/seed\n@!\n"};
     for (size_t shape = 0; shape < sizeof(cases) / sizeof(*cases); shape++) {
         prepare_composed_files(cases[shape]);
         setup_frontend();
@@ -87,7 +87,7 @@ static void it_matches_complete_frontend_outputs_to_independent_explicit_stages(
         PlanStatus result = program_plan_build(&planned);
         assert(result == PLAN_OK);
         compare_plans(&frontend.plan, &planned);
-        assert(project_find(&frontend.project, ".unused draft") == NULL);
+        assert(project_find(&frontend.project, "/test/fixture/v1.0.0/src/unused draft") == NULL);
         program_plan_destroy(&planned);
         semantic_program_destroy(&staged);
         bool valid = program_plan_validate(&frontend.plan);

@@ -1,0 +1,24 @@
+# Standalone silent example; declared outputs retain the algorithm results.
+@>
+numbers[]
+//integer
+words[]
+//text
+@!
+input numbers[]
+//integer
+ |1
+ |2
+ |3
+input words[]
+//text
+ |alpha
+ |beta
+algorithm
+/test/fixture/v1.0.0/src/assembly
+ .paired
+algorithm !
+ < input numbers[]
+ < input words[]
+ > numbers[]
+ > words[]

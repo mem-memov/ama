@@ -3,7 +3,7 @@
  * @brief Own one exact physical-source catalog and its diagnostic lifetimes.
  *
  * [SRC-02](../../../spec/language/source-and-names.md#src-02)
- * Select project/import or standard roots explicitly; complete multiword components
+ * Select versioned project or standard roots explicitly; complete multiword components
  * preserve original bytes and never shadow an earlier physical source.
  * [SRC-01](../../../spec/language/source-and-names.md#src-01) makes the declared
  * root kind authoritative instead of inferring it from a physical directory name.
@@ -12,6 +12,7 @@
 #define AMA_SOURCE_MODULE_CATALOG_H
 
 #include <sys/types.h>
+#include <sys/stat.h>
 #include "source/memory/arena.h"
 #include "source/text/source.h"
 
@@ -57,7 +58,8 @@ typedef enum {
 } ModuleRootKind;
 
 /** Borrowed physical root plus exact relative exclusions and required namespace family.
- * Project/import roots share the single-dot family; standard roots use double dot.
+ * Project roots contain optional packages/dependencies storage and use ordinary
+ * slash identities; standard roots directly contain double-slash module trees.
  * Physical directory names do not determine or override the declared kind.
  * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 typedef struct {
@@ -147,9 +149,24 @@ ModuleStatus module_catalog_override(ModuleCatalog *, const ModuleSource *, cons
  * unchanged, count may describe a copied prefix; all scratch survives until destroy.
  * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 ModuleStatus module_catalog_entries(ModuleCatalog *, const char *physical, const char ***names, size_t *count);
-/** Validate an absolute single/double-dot selector and nonempty complete-name components.
- * @return Exact spelling membership with no edge/separator spaces, filesystem parent traversal or normalization.
+/** Validate one complete canonical ordinary/standard identity with version/name shape.
+ * @return Exact spelling membership; normalization of aliases/relative paths is
+ * a separate caller operation. [PKG-01](../../../spec/project/packages.md#pkg-01)
+ * supplies the ordinary vendor/package/version/area prefix.
  * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 bool module_path_valid(const char *path);
+
+/** Register checked directory metadata from an explicit filesystem view.
+ * Path storage must outlive this catalog; no lookup or mutation is performed.
+ * [SRC-02](../../../spec/language/source-and-names.md#src-02) requires the same
+ * exact alias relation for observed and projected device/inode identities.
+ */
+ModuleStatus module_remember_directory_metadata(ModuleCatalog *, const char *, const struct stat *);
+
+/** Test exact physical subtree exclusions only after package-version selection.
+ * [PKG-02](../../../spec/project/packages.md#pkg-02) forbids using an excluded
+ * or missing local module as a reason to choose an external version copy.
+ */
+bool module_path_excluded(const ModuleRoot *, const char *relative);
 
 #endif

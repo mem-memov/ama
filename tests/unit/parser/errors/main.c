@@ -18,7 +18,7 @@ static void it_reports_specific_expected_constructs_at_exact_source_offsets(void
         ParserExpectation expected;
         size_t offset;
     } cases[] = {
-        {"@!\nx\n.type&", EXPECT_TYPE_LINE, 5},
+        {"@!\nx\n/test/fixture/v1.0.0/src/type&", EXPECT_TYPE_LINE, 5},
         {"@!\nx\n |12", EXPECT_COPY_SOURCE, 6},
         {"@!\nx\n items[position", EXPECT_RIGHT_BRACKET, 20},
         {"@!\nworker", EXPECT_STATEMENT_TAIL, 3},
@@ -41,7 +41,7 @@ static void it_reports_specific_expected_constructs_at_exact_source_offsets(void
  * generated evidence.
  */
 static void it_provides_exact_help_and_never_uses_names_to_reclassify_syntax(void) {
-    const char *programs[] = {"@!\nknown\n.type\ndestination\n known", "@!\nother\n.type\ndestination\n known"};
+    const char *programs[] = {"@!\nknown\n/test/fixture/v1.0.0/src/type\ndestination\n known", "@!\nother\n/test/fixture/v1.0.0/src/type\ndestination\n known"};
     for (size_t index = 0; index < 2; index++) {
         setup_tree();
         ParseStatus parsed = parse_text(programs[index]);
@@ -79,7 +79,7 @@ static void it_keeps_layout_and_utf8_failures_in_the_same_structured_error_contr
  * generated evidence.
  */
 static void it_produces_valid_diagnostics_for_every_truncated_byte_prefix(void) {
-    const char *program = "@=\n常量\n.type\n |@! # data\n@!\nready\n{\n worker !\n  <\n  > answer\n %\n}\n";
+    const char *program = "@=\n常量\n/test/fixture/v1.0.0/src/type\n |@! # data\n@!\nready\n{\n worker !\n  <\n  > answer\n %\n}\n";
     size_t length = strlen(program);
     char *prefix = malloc(length + 1);
     assert(prefix != NULL);

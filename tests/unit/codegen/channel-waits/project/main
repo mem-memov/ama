@@ -1,36 +1,36 @@
 # The owning scheduler imports native readiness before promoting a suspended task.
 @!
 role
-.role
+/test/fixture/v1.0.0/src/role
 role !
  > sending
 sender
-.sender
+/test/fixture/v1.0.0/src/sender
 receiver
-.receiver
+/test/fixture/v1.0.0/src/receiver
 source
-..task.events
+//task/events
 sender task
-.producer
+/test/fixture/v1.0.0/src/producer
 receiver task
-.consumer
+/test/fixture/v1.0.0/src/consumer
 ready work
-.ready
+/test/fixture/v1.0.0/src/ready
 maybe fail
-.maybefail
+/test/fixture/v1.0.0/src/maybefail
 request cancel
-.requestcancel
+/test/fixture/v1.0.0/src/requestcancel
 report
-.report
+/test/fixture/v1.0.0/src/report
 check
-.check
+/test/fixture/v1.0.0/src/check
 true
-..std.condition
+//std/condition
  |1
 false
-..std.condition
+//std/condition
 pending
-..std.condition
+//std/condition
 pending
  true
 source !

@@ -51,10 +51,10 @@ static void it_rejects_equal_native_layouts_as_substitutes_for_nominal_module_id
     for (size_t index = 0; index < 4; index++) {
         prepare_layout();
         char source[512];
-        int length = snprintf(source, sizeof(source), "@!\nfirst%s\n.plain\nother%s\n.twin\nfirst%s\n other%s\n",
+        int length = snprintf(source, sizeof(source), "@!\nfirst%s\n/test/fixture/v1.0.0/src/plain\nother%s\n/test/fixture/v1.0.0/src/twin\nfirst%s\n other%s\n",
             forms[index], forms[index], forms[index], forms[index]);
         assert(length > 0 && (size_t)length < sizeof(source));
-        file("generated/project/main", source);
+        file("generated/project/packages/test/fixture/v1.0.0/src/main", source);
         begin_layout(false);
         assert(frontend.specialization_initialized && !frontend.specializations.valid && !frontend.semantic_initialized);
         assert(frontend.specializations.constraints.status == STATIC_CONSTRAINT_CONFLICT);

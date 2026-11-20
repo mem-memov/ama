@@ -29,7 +29,7 @@ bool relocation_inventory(RelocationPreview *);
 /** Read sorted physical entry names through the ordinary catalog's retained directory reader. Component contract: [TOOL-02](../../../spec/implementation/tools-and-conformance.md#tool-02). */
 bool relocation_entries(RelocationPreview *, const char *, const char ***, size_t *);
 /** Translate catalog failures without losing original source/physical diagnostic locations. Component contract: [TOOL-02](../../../spec/implementation/tools-and-conformance.md#tool-02). */
-bool relocation_catalog_failure(RelocationPreview *, ModuleStatus);
+bool relocation_catalog_failure(RelocationPreview *, const ModuleCatalog *, ModuleStatus);
 /** Classify original and projected source candidates and validate exact registry/topology preflight. Component contract: [TOOL-02](../../../spec/implementation/tools-and-conformance.md#tool-02). */
 bool relocation_discover(RelocationPreview *);
 #endif

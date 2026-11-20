@@ -4,6 +4,6 @@ component | example.component
 abi | ama-c-1
 target | x86_64-linux-gnu
 calling-convention | c
-schema | text | text | ..text
-export | run | .main | entry
+schema | text | text | //text
+export | run | /test/fixture/v1.0.0/src/main | entry
 input | run | missing field | text

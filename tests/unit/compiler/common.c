@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include "../source/common.c"
+#include "../fixtures/package.h"
 #include "compiler/frontend.h"
 
 static CompilerFrontend frontend;
@@ -37,7 +38,7 @@ static void destroy_frontend(void) {
  * Create a test-owned fixture directory or accept its existing directory setup as specified by
  * the caller; other mkdir errors fail assertions.
  */
-static void directory(const char *path) {
+static inline void directory(const char *path) {
     int result = mkdir(path, 0700);
     assert(result == 0 || errno == EEXIST);
 }
@@ -46,7 +47,7 @@ static void directory(const char *path) {
  * Write exact supplied source text into a fixture path, checking full byte count and close
  * before loading it.
  */
-static void file(const char *path, const char *content) {
+static inline void file(const char *path, const char *content) {
     FILE *output = fopen(path, "wb");
     assert(output != NULL);
     size_t count = strlen(content);
@@ -61,7 +62,7 @@ static void file(const char *path, const char *content) {
  */
 static inline bool check_project(void) {
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-    return compiler_frontend_check(&frontend, &root, 1, ".main");
+    return compiler_frontend_check(&frontend, &root, 1, "/test/fixture/v1.0.0/src/main");
 }
 
 #endif

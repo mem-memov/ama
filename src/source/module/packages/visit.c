@@ -40,7 +40,7 @@ ModuleStatus package_visit(PackageScan *scan, const PackageDirectory *directory,
         return MODULE_OK;
     }
     struct stat metadata;
-    ModuleStatus status = module_probe(scan->catalog, directory->physical, name, physical, &metadata);
+    ModuleStatus status = scan->reader->child(scan->reader->context, scan->catalog, directory->physical, name, physical, &metadata);
     if (status != MODULE_OK || !S_ISDIR(metadata.st_mode)) {
         return status;
     }
@@ -52,5 +52,5 @@ ModuleStatus package_visit(PackageScan *scan, const PackageDirectory *directory,
     if (directory->depth == SIZE_MAX) {
         return module_fail(scan->catalog, MODULE_OUT_OF_MEMORY, physical);
     }
-    return package_queue(scan, physical, relative, logical, directory->depth + 1);
+    return package_queue(scan, physical, relative, logical, directory->depth + 1, &metadata);
 }

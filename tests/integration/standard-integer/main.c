@@ -22,27 +22,27 @@ static int run_integer_program(void) {
 /** Library authority is explicit: project roots never supply double-dot modules. */
 static void it_requires_an_explicit_standard_root_to_resolve_integer(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE, "--check", "project", ".main", NULL};
+    char *arguments[] = {AMA_EXECUTABLE, "--check", "project", "/test/fixture/v1.0.0/src/main", NULL};
     int result = run_compiler_arguments(arguments);
     char text[4096];
     read_stream(errors, text, sizeof(text));
     assert(result != EXIT_SUCCESS && strstr(text, "missing-module") != NULL);
     destroy_test();
     setup_test();
-    char *configured[] = {AMA_EXECUTABLE, "--check", "project", ".main",
+    char *configured[] = {AMA_EXECUTABLE, "--check", "project", "/test/fixture/v1.0.0/src/main",
         "--standard-root", TEST_STANDARD_ROOT, NULL};
     result = run_compiler_arguments(configured);
     read_stream(errors, text, sizeof(text));
     assert(result == EXIT_SUCCESS && text[0] == '\0');
     read_stream(output, text, sizeof(text));
-    assert(strcmp(text, "checked .main\n") == 0);
+    assert(strcmp(text, "checked /test/fixture/v1.0.0/src/main\n") == 0);
     destroy_test();
 }
 
 /** Verified CLI compilation binds the real size bridge and cleans native limbs. */
 static void it_compiles_and_executes_real_integer_list_results(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", ".main", "--standard-root", TEST_STANDARD_ROOT,
+    char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--standard-root", TEST_STANDARD_ROOT,
         "--out", "generated/output", "--sdk", TEST_SDK, "--compile", NULL};
     int result = run_compiler_arguments(arguments);
     char text[8192];

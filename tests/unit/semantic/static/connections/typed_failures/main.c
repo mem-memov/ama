@@ -92,7 +92,7 @@ static void it_unwinds_every_corresponding_field_congruence_join_allocation_refu
         const StaticTypedScope *root, *metadata;
         assert(static_connection_context(&connections, typed_actual(), &root));
         assert(static_connection_scope(&connections, typed_environment(integer_type), &metadata));
-        const StaticTerm *slot = application_symbol("...slot");
+        const StaticTerm *slot = application_symbol(".slot");
         assert(static_constraint_equate(&solver, slot, integer_type, slot->site));
         StaticConstraintOutcome outcome;
         assert(static_constraint_solve(&solver, &outcome));
@@ -112,7 +112,7 @@ static void it_unwinds_every_corresponding_field_congruence_join_allocation_refu
  */
 static void it_refuses_static_modules_as_runtime_or_typed_instance_scopes(void) {
     for (size_t operation = 0; operation < 3; operation++) {
-        setup_connections("@!\nanchor&\n..integer\n", "@...\n...out\n..integer\n");
+        setup_connections("@!\nanchor&\n//integer\n", "@...\n.out\n//integer\n");
         const StaticTermEnvironment *environment;
         bool success = static_term_environment(&terms, target_module, NULL, &environment);
         assert(success);

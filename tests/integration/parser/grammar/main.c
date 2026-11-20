@@ -26,7 +26,7 @@ static size_t node_count(AstBlock block) {
  */
 static void it_preserves_source_ranges_through_real_file_discovery_and_ast_construction(void) {
     setup_test();
-    const ModuleSource *source = find_fixture(".程序");
+    const ModuleSource *source = find_fixture("/test/fixture/v1.0.0/src/程序");
     ParseStatus parsed = parser_module_parse(&module, source->text);
     assert(parsed == PARSE_OK);
     FILE *output = fopen("generated/summary.txt", "wb");
@@ -58,7 +58,7 @@ static void it_preserves_source_ranges_through_real_file_discovery_and_ast_const
  */
 static void it_reports_a_real_parser_error_with_original_source_and_actionable_help(void) {
     setup_test();
-    const ModuleSource *source = find_fixture(".broken");
+    const ModuleSource *source = find_fixture("/test/fixture/v1.0.0/src/broken");
     ParseStatus parsed = parser_module_parse(&module, source->text);
     assert(parsed == PARSE_INVALID && module.error.expected == EXPECT_COPY_SOURCE);
     expect_error(&module.error, "expected-error.txt");
@@ -72,7 +72,7 @@ static void it_reports_a_real_parser_error_with_original_source_and_actionable_h
  */
 static void it_keeps_a_native_companion_from_activating_an_unfinished_draft(void) {
     setup_test();
-    const ModuleSource *source = find_fixture(".draft");
+    const ModuleSource *source = find_fixture("/test/fixture/v1.0.0/src/draft");
     assert(!source->native_loaded && source->native_c == NULL && source->native_abi == NULL);
     ParseStatus parsed = parser_module_parse(&module, source->text);
     assert(parsed == PARSE_OK && module.sections.kind == MODULE_DRAFT && module.body.first == NULL);
@@ -87,7 +87,7 @@ static void it_keeps_a_native_companion_from_activating_an_unfinished_draft(void
 static void it_renders_duplicate_abi_bindings_with_both_source_locations(void) {
     setup_test();
     const SourceText *source;
-    SourceStatus loaded = source_manager_load(&catalog.sources, "project/bad.abi", &source);
+    SourceStatus loaded = source_manager_load(&catalog.sources, "project/packages/test/fixture/v1.0.0/src/bad.abi", &source);
     assert(loaded == SOURCE_OK);
     ParseStatus parsed = parser_abi_parse(&table, source);
     assert(parsed == PARSE_INVALID && table.error.expected == EXPECT_ABI_NEW_SYMBOL);
@@ -163,11 +163,11 @@ static void write_module_probe(FILE *output, const ModuleSource *source, const I
  */
 static void it_isolates_identical_native_names_and_compiles_typed_abi_uses(void) {
     setup_test();
-    const ModuleSource *source = find_fixture(".native");
+    const ModuleSource *source = find_fixture("/test/fixture/v1.0.0/src/native");
     ParseStatus parsed = parser_module_parse(&module, source->text);
     assert(parsed == PARSE_OK && module.sections.kind == MODULE_NATIVE);
     const ModuleSource *other;
-    ModuleStatus found = module_catalog_find(&catalog, ".other", &other);
+    ModuleStatus found = module_catalog_find(&catalog, "/test/fixture/v1.0.0/src/other", &other);
     assert(found == MODULE_OK);
     const ModuleSource *modules[] = {source, other};
     const IdentityName *names[2];

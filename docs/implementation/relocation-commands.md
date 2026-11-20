@@ -34,7 +34,7 @@ Both planning commands accept:
 | Option | Meaning |
 |---|---|
 | `--root DIR` | Another ordinary source/import root, preserving argument order. |
-| `--standard-root DIR` | An explicitly selected standard-library root for double-dot paths. |
+| `--standard-root DIR` | An explicitly selected standard-library root for // standard paths. |
 | `--exclude PATH` | The driver's shared explicit root-relative exclusion; no output folder is inferred. |
 | `--destination-root DIR` | A final ordinary root covering a destination outside existing/carried roots. |
 | `--destination-standard-root DIR` | The corresponding final standard-library root. |

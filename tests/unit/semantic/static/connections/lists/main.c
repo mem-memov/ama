@@ -16,7 +16,7 @@ static void collect_list_calls(const StaticTypedScope *scope, const StaticResult
 
 /** Six canonical methods preserve element-reference ports and exact integer ports. */
 static void it_connects_all_six_methods_without_creating_method_storage(void) {
-    setup_connections("@!\nanchor\n..integer\nposition\n..integer\nvalues[]\n..integer\nvalues[]\n append !\n  < &anchor\n  > fresh&\n"
+    setup_connections("@!\nanchor\n//integer\nposition\n//integer\nvalues[]\n//integer\nvalues[]\n append !\n  < &anchor\n  > fresh&\n"
         " insert !\n  < position\n  < &anchor\n  > inserted&\n remove !\n  < position\n clear !\n swap !\n  < position\n  < position\n length !\n  > count\n", "@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_operations(&actual);
@@ -44,8 +44,8 @@ static void it_connects_all_six_methods_without_creating_method_storage(void) {
 /** Supplied element references can refine symbolic list Types for both ownership forms. */
 static void it_infers_owned_and_reference_list_element_types_from_method_sources(void) {
     for (size_t references = 0; references < 2; references++) {
-        setup_connections(references ? "@<\nseed\n...slot\n@!\nanchor\n..integer\nvalues&[]\n...slot\nvalues&[]\n append !\n  source& < &anchor\n  element& > fresh&\n" :
-            "@<\nseed\n...slot\n@!\nanchor\n..integer\nvalues[]\n...slot\nvalues[]\n append !\n  source& < &anchor\n  element& > fresh&\n", "@!\n");
+        setup_connections(references ? "@<\nseed\n.slot\n@!\nanchor\n//integer\nvalues&[]\n.slot\nvalues&[]\n append !\n  source& < &anchor\n  element& > fresh&\n" :
+            "@<\nseed\n.slot\n@!\nanchor\n//integer\nvalues[]\n.slot\nvalues[]\n append !\n  source& < &anchor\n  element& > fresh&\n", "@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);
         collect_list_calls(scope, actual);
@@ -61,7 +61,7 @@ static void it_infers_owned_and_reference_list_element_types_from_method_sources
 
 /** Intrinsic scalar outputs support immediate ordinary invocation through public names. */
 static void it_resolves_direct_element_and_length_result_operations(void) {
-    setup_connections("@!\nanchor\n..integer\nvalues[]\n..integer\nvalues[]\n append !\n  < &anchor\n  element& !\n length !\n  value !\n", "@!\n");
+    setup_connections("@!\nanchor\n//integer\nvalues[]\n//integer\nvalues[]\n append !\n  < &anchor\n  element& !\n length !\n  value !\n", "@!\n");
     const StaticResultContext *actual;
     const StaticTypedScope *scope = prepare_operations(&actual);
     collect_list_calls(scope, actual);
@@ -76,12 +76,12 @@ static void it_resolves_direct_element_and_length_result_operations(void) {
 /** Method names/forms and source/result ownership never infer alternative operations. */
 static void it_rejects_unknown_methods_modes_ports_and_intrinsic_result_suffixes(void) {
     const char *sources[] = {
-        "@!\nvalues[]\n..integer\nvalues[]\n unknown !\n",
-        "@!\nvalues[]\n..integer\nvalues[]\n append& !\n",
-        "@!\nvalues[]\n..integer\nvalues[]\n append %\n",
-        "@!\nanchor\n..integer\nvalues[]\n..integer\nvalues[]\n append !\n  < anchor\n",
-        "@!\nvalues[]\n..integer\nvalues[]\n append !\n  element !\n",
-        "@!\nvalues[]\n..integer\nvalues[]\n length !\n  > result&\n"
+        "@!\nvalues[]\n//integer\nvalues[]\n unknown !\n",
+        "@!\nvalues[]\n//integer\nvalues[]\n append& !\n",
+        "@!\nvalues[]\n//integer\nvalues[]\n append %\n",
+        "@!\nanchor\n//integer\nvalues[]\n//integer\nvalues[]\n append !\n  < anchor\n",
+        "@!\nvalues[]\n//integer\nvalues[]\n append !\n  element !\n",
+        "@!\nvalues[]\n//integer\nvalues[]\n length !\n  > result&\n"
     };
     for (size_t kind = 0; kind < sizeof(sources) / sizeof(*sources); kind++) {
         setup_connections(sources[kind], "@!\n");
@@ -104,7 +104,7 @@ static void it_unwinds_every_list_service_and_method_allocation_refusal(void) {
     for (size_t phase = 0; phase < 2; phase++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_connections("@!\nanchor\n..integer\nvalues[]\n..integer\nvalues[]\n append !\n  < &anchor\n  > fresh&\n", "@!\n");
+            setup_connections("@!\nanchor\n//integer\nvalues[]\n//integer\nvalues[]\n append !\n  < &anchor\n  > fresh&\n", "@!\n");
             const StaticResultContext *actual;
             const StaticTypedScope *scope = prepare_operations(&actual);
             bool changed;

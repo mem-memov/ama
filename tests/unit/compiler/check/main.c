@@ -12,12 +12,12 @@
  * compiling them; the caller controls their lifetime and expected result.
  */
 static void prepare_project(void) {
-    directory("generated/project");
-    file("generated/project/main", "@!\nvalue\n.value\n |literal\n");
-    file("generated/project/value", "@C\n");
-    file("generated/project/value.h", "#error Checking must not invoke the C compiler\n");
-    file("generated/project/value.c", "#error Checking must not invoke the C compiler\n");
-    file("generated/project/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\nvalue\n/test/fixture/v1.0.0/src/value\n |literal\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value", "@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.h", "#error Checking must not invoke the C compiler\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.c", "#error Checking must not invoke the C compiler\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n");
 }
 
 /**
@@ -41,10 +41,10 @@ static void it_returns_the_same_typed_graph_that_compilation_will_consume_withou
  * evidence.
  */
 static void it_preserves_source_semantic_and_relation_diagnostics(void) {
-    const char *cases[] = {"@!\n invalid\n", "@!\nmissing\n.missing\n", "@!\n^\n", "@!\nself\n.main\n"};
+    const char *cases[] = {"@!\n invalid\n", "@!\nmissing\n/test/fixture/v1.0.0/src/missing\n", "@!\n^\n", "@!\nself\n/test/fixture/v1.0.0/src/main\n"};
     for (size_t index = 0; index < sizeof(cases) / sizeof(cases[0]); index++) {
         prepare_project();
-        file("generated/project/main", cases[index]);
+        file("generated/project/packages/test/fixture/v1.0.0/src/main", cases[index]);
         setup_frontend();
         bool valid = check_project();
         assert(!valid && !frontend.valid && diagnostic_valid(&frontend.error));
@@ -78,19 +78,19 @@ static void it_composes_owned_frontend_input_snapshots_without_executing_native_
     setup_frontend();
     bool valid = check_project();
     assert(valid && frontend.inputs.sealed && frontend.inputs.compared);
-    assert(project_inputs_find(&frontend.inputs, PROJECT_INPUT_FILE, "generated/project/value.c") != NULL);
-    file("generated/project/value.c", "#error Changed native input still must not execute\n");
+    assert(project_inputs_find(&frontend.inputs, PROJECT_INPUT_FILE, "generated/project/packages/test/fixture/v1.0.0/src/value.c") != NULL);
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.c", "#error Changed native input still must not execute\n");
     CompilerFrontend after;
     compiler_frontend_init(&after, sources.allocator);
     ModuleRoot root = {"generated/project", NULL, 0, MODULE_ROOT_PROJECT};
-    valid = compiler_frontend_check(&after, &root, 1, ".main");
+    valid = compiler_frontend_check(&after, &root, 1, "/test/fixture/v1.0.0/src/main");
     assert(valid);
     SourceStatus status = project_inputs_compare(&after.inputs, &frontend.inputs);
     assert(status == SOURCE_OK);
     bool dirty = false;
-    bool found = project_inputs_changed(&after.inputs, PROJECT_INPUT_MODULE, ".main", &dirty);
+    bool found = project_inputs_changed(&after.inputs, PROJECT_INPUT_MODULE, "/test/fixture/v1.0.0/src/main", &dirty);
     assert(found && dirty);
-    found = project_inputs_changed(&after.inputs, PROJECT_INPUT_MODULE, ".value", &dirty);
+    found = project_inputs_changed(&after.inputs, PROJECT_INPUT_MODULE, "/test/fixture/v1.0.0/src/value", &dirty);
     assert(found && dirty);
     found = project_inputs_changed(&after.inputs, PROJECT_INPUT_CONFIGURATION, "root inventory", &dirty);
     assert(found && !dirty);
@@ -106,32 +106,32 @@ static void it_resolves_multiword_declarations_through_both_root_families(void) 
     file("generated/standard/value.h", "#error Checking must not invoke C\n");
     file("generated/standard/value.c", "#error Checking must not invoke C\n");
     file("generated/standard/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n");
-    file("generated/project/main", "@!\nordinary state\n.value\n |a\nstandard state\n..value\n |b\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\nordinary state\n/test/fixture/v1.0.0/src/value\n |a\nstandard state\n//value\n |b\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project",NULL,0,MODULE_ROOT_PROJECT},
         {"generated/standard",NULL,0,MODULE_ROOT_STANDARD}};
-    bool valid = compiler_frontend_check(&frontend, roots, 2, ".main");
+    bool valid = compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main");
     assert(valid && frontend.valid);
-    const ProjectModule *ordinary = project_find(&frontend.project, ".value");
-    const ProjectModule *standard = project_find(&frontend.project, "..value");
+    const ProjectModule *ordinary = project_find(&frontend.project, "/test/fixture/v1.0.0/src/value");
+    const ProjectModule *standard = project_find(&frontend.project, "//value");
     assert(ordinary != NULL && standard != NULL && ordinary != standard);
     assert(frontend.plan.entry->first->symbol->type != frontend.plan.entry->first->next->symbol->type);
     assert(layout_text_is(frontend.project.entry->syntax.body.first->as.declaration.name->name, "ordinary state"));
-    assert(layout_text_is(frontend.project.entry->syntax.body.last->as.declaration.type->head, "..value"));
+    assert(layout_text_is(frontend.project.entry->syntax.body.last->as.declaration.type->head, "//value"));
     destroy_frontend();
 }
 
 /** Self-reference has complete typed IR even while final executable identity support remains a separate backend capability. */
 static void it_preserves_self_reference_sources_in_complete_ir_without_executing_them(void) {
     const char *programs[] = {
-        "@>\nresult&\n.main\n &\n@!\n",
+        "@>\nresult&\n/test/fixture/v1.0.0/src/main\n &\n@!\n",
         "@!\nfresh&\n &\n",
-        "@!\nworker\n.worker\nworker !\n < &\n"
+        "@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < &\n"
     };
     for (size_t index = 0; index < sizeof(programs) / sizeof(*programs); index++) {
         prepare_project();
-        file("generated/project/main", programs[index]);
-        file("generated/project/worker", "@<\ncaller&\n.main\n@!\n");
+        file("generated/project/packages/test/fixture/v1.0.0/src/main", programs[index]);
+        file("generated/project/packages/test/fixture/v1.0.0/src/worker", "@<\ncaller&\n/test/fixture/v1.0.0/src/main\n@!\n");
         setup_frontend();
         bool valid = check_project();
         assert(valid && frontend.valid && frontend.plan.valid && frontend.plan.storage_ready);
@@ -144,9 +144,9 @@ static void it_preserves_self_reference_sources_in_complete_ir_without_executing
 /** Selected operations retain complete frame and continuation identities through the full frontend. */
 static void it_preserves_selected_result_actions_in_complete_ir(void) {
     prepare_project();
-    file("generated/project/main", "@!\nconstructor\n.constructor\nconstructor\n method !\n");
-    file("generated/project/constructor", "@>\nmethod\n.method\n@!\n");
-    file("generated/project/method", "@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\nconstructor\n/test/fixture/v1.0.0/src/constructor\nconstructor\n method !\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/constructor", "@>\nmethod\n/test/fixture/v1.0.0/src/method\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/method", "@!\n");
     setup_frontend();
     bool valid = check_project();
     assert(valid && frontend.valid && frontend.plan_initialized && frontend.plan.valid);
@@ -163,11 +163,11 @@ static void it_types_list_interfaces_and_complete_service_ir_without_inspecting_
     file("generated/standard/integer.h", "#error Semantic checking must not inspect the from_size declaration\n");
     file("generated/standard/integer.c", "#error Semantic checking must not invoke the C compiler\n");
     file("generated/standard/integer.abi", "+ initialize\n- destroy\n= clone\n| literal\n[] index\n");
-    file("generated/project/main", "@!\nitems[]\n.value\nitems[]\n length !\n  > count\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nitems[]\n length !\n  > count\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    bool valid = compiler_frontend_check(&frontend, roots, 2, ".main");
+    bool valid = compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main");
     assert(valid && frontend.valid && frontend.semantic.resolved && frontend.semantic.constants_valid);
     assert(frontend.semantic.list_integer != NULL && frontend.semantic.list_integer->requires_size_bridge);
     assert(frontend.plan_initialized && frontend.plan.valid && frontend.plan.first != NULL);
@@ -178,14 +178,14 @@ static void it_types_list_interfaces_and_complete_service_ir_without_inspecting_
 /** Typed control trees have complete loop labels independently of later execution adapters. */
 static void it_builds_complete_control_ir_for_traversal_and_header_trees(void) {
     const char *cases[] = {
-        "@!\nitems[]\n.value\nitems[item&]\n{\n}\n",
-        "@!\nroot\n.producer\nroot !\n condition\n {\n }\n"
+        "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nitems[item&]\n{\n}\n",
+        "@!\nroot\n/test/fixture/v1.0.0/src/producer\nroot !\n condition\n {\n }\n"
     };
     for (size_t index = 0; index < sizeof(cases) / sizeof(cases[0]); index++) {
         prepare_project();
-        file("generated/project/producer", "@>\ncondition\n.value\n@!\n");
-        file("generated/project/main", cases[index]);
-        file("generated/project/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
+        file("generated/project/packages/test/fixture/v1.0.0/src/producer", "@>\ncondition\n/test/fixture/v1.0.0/src/value\n@!\n");
+        file("generated/project/packages/test/fixture/v1.0.0/src/main", cases[index]);
+        file("generated/project/packages/test/fixture/v1.0.0/src/value.abi", "+ initialize\n- destroy\n| literal\n= clone\n? condition\n[] index\n");
         setup_frontend();
         bool valid = check_project();
         assert(valid && frontend.valid && frontend.plan_initialized);
@@ -202,23 +202,25 @@ static void it_retains_hyphenated_names_and_exact_type_identities_in_both_roots(
     const char *roots[] = {"generated/hyphen project", "generated/hyphen standard"};
     const char *names[] = {"a-b", "a_b", "a b", "ab"};
     for (size_t root = 0; root < 2; root++) {
-        directory(roots[root]);
+        if (root == 0) { fixture_package_prepare(roots[root], "fixture"); }
+        else { directory(roots[root]); }
         for (size_t index = 0; index < 4; index++) {
             char path[128];
-            int written = snprintf(path, sizeof(path), "%s/%s", roots[root], names[index]);
+            int written = snprintf(path, sizeof(path), "%s%s/%s", roots[root],
+                root == 0 ? "/packages/test/fixture/v1.0.0/src" : "", names[index]);
             assert(written > 0 && (size_t)written < sizeof(path));
             file(path, "@!\n");
         }
     }
-    directory("generated/hyphen project/a-b+");
-    file("generated/hyphen project/a-b+/item-2", "@!\n");
-    file("generated/hyphen project/main", "@!\nx-name\n.a-b\nx_name\n.a_b\n"
-        "x name\n.a b\nxname\n.ab\nstd-value\n..a-b\nchild-value\n.a-b.item-2\n");
+    directory("generated/hyphen project/packages/test/fixture/v1.0.0/src/a-b+");
+    file("generated/hyphen project/packages/test/fixture/v1.0.0/src/a-b+/item-2", "@!\n");
+    file("generated/hyphen project/packages/test/fixture/v1.0.0/src/main", "@!\nx-name\n/test/fixture/v1.0.0/src/a-b\nx_name\n/test/fixture/v1.0.0/src/a_b\n"
+        "x name\n/test/fixture/v1.0.0/src/a b\nxname\n/test/fixture/v1.0.0/src/ab\nstd-value\n//a-b\nchild-value\n/test/fixture/v1.0.0/src/a-b/item-2\n");
     ModuleRoot configured[] = {{roots[0], NULL, 0, MODULE_ROOT_PROJECT},
         {roots[1], NULL, 0, MODULE_ROOT_STANDARD}};
     setup_frontend();
-    assert(compiler_frontend_check(&frontend, configured, 2, ".main"));
-    const char *paths[] = {".a-b", ".a_b", ".a b", ".ab", "..a-b", ".a-b.item-2"};
+    assert(compiler_frontend_check(&frontend, configured, 2, "/test/fixture/v1.0.0/src/main"));
+    const char *paths[] = {"/test/fixture/v1.0.0/src/a-b", "/test/fixture/v1.0.0/src/a_b", "/test/fixture/v1.0.0/src/a b", "/test/fixture/v1.0.0/src/ab", "//a-b", "/test/fixture/v1.0.0/src/a-b/item-2"};
     const char *fields[] = {"x-name", "x_name", "x name", "xname", "std-value", "child-value"};
     SemanticType *types[6];
     SemanticSymbol *field = frontend.plan.entry->type->first;
@@ -249,14 +251,14 @@ static void it_refuses_incomplete_or_invalid_static_work_at_its_actual_stage(voi
         bool types_closed;
         bool semantic_attempted;
     } cases[] = {
-        {"@<\nargument\n...type\n@!\n", "@!\n", "not uniquely determined", true, true, false, false},
-        {"@...\n...result\n.value\n", "@!\n", "Selected root must be an original ordinary module", true, true, false, false},
-        {"@...\n...result\n.value\n ...slot < .value\n", "@!\n", "A Type is not an applied constructor", false, false, false, false}
+        {"@<\nargument\n.type\n@!\n", "@!\n", "not uniquely determined", true, true, false, false},
+        {"@...\n.result\n/test/fixture/v1.0.0/src/value\n", "@!\n", "Selected root must be an original ordinary module", true, true, false, false},
+        {"@...\n.result\n/test/fixture/v1.0.0/src/value\n .slot < /test/fixture/v1.0.0/src/value\n", "@!\n", "A Type is not an applied constructor", false, false, false, false}
     };
     for (size_t index = 0; index < sizeof(cases) / sizeof(*cases); index++) {
         prepare_project();
-        file("generated/project/main", cases[index].source);
-        file("generated/project/factory", cases[index].factory);
+        file("generated/project/packages/test/fixture/v1.0.0/src/main", cases[index].source);
+        file("generated/project/packages/test/fixture/v1.0.0/src/factory", cases[index].factory);
         setup_frontend();
         assert(!check_project() && !frontend.valid);
         assert(diagnostic_valid(&frontend.error));

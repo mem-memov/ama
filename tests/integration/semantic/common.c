@@ -26,7 +26,7 @@ static void setup_test(void) {
     SourceAllocator allocator = source_system_allocator();
     compiler_frontend_init(&frontend,allocator);
     ModuleRoot root = {"project", NULL, 0, MODULE_ROOT_PROJECT};
-    checked = compiler_frontend_check(&frontend,&root,1,".main");
+    checked = compiler_frontend_check(&frontend,&root,1,"/test/fixture/v1.0.0/src/main");
 }
 
 /**

@@ -1,15 +1,15 @@
 # The event endpoint remains native-owned while the yielded executor moves.
 @!
 service
-..task.events
+//task/events
 service !
  < |1
 capture
-.capture
+/test/fixture/v1.0.0/src/capture
 capture !
  < &service
 visit
-.visit
+/test/fixture/v1.0.0/src/visit
 visit !
 %
 service
@@ -20,7 +20,7 @@ packet
  visit !
 :
  missing
- .missing
+ /test/fixture/v1.0.0/src/missing
  missing !
 %
 visit !

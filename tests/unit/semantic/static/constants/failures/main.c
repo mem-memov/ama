@@ -11,19 +11,19 @@ static void it_unwinds_every_direct_and_exported_namespace_selection_allocation_
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
             if (mode) {
-                directory(STATIC_SCOPE_ROOT_DIRECTORY);
-                file("generated/static scope/container", "@=\nvalue\n...slot\n@<\ninput\n...slot\n@!\n");
+                fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+                file("generated/static scope/packages/test/fixture/v1.0.0/src/container", "@=\nvalue\n.slot\n@<\ninput\n.slot\n@!\n");
             }
-            setup_constants(mode ? "@!\n.other\n ...out\n value >> x\n" :
-                "@!\nanchor&\n..integer\n.other\n value >> x\n", mode ?
-                "@...\n...out\n.container\n ...slot < ..integer\n" : "@=\nvalue\n..integer\n@!\n");
+            setup_constants(mode ? "@!\n/test/fixture/v1.0.0/src/other\n .out\n value >> x\n" :
+                "@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n value >> x\n", mode ?
+                "@...\n.out\n/test/fixture/v1.0.0/src/container\n .slot < //integer\n" : "@=\nvalue\n//integer\n@!\n");
             const StaticResultContext *context = publication_context(caller_environment);
             const StaticConstantRead *read;
             const StaticConstantSelection *selection = NULL;
             assert(static_constant_read(&constants, context, constant_namespace_read(0), &read));
             const StaticResultContext *actual;
             if (mode) {
-                const StaticModule *container = static_module_find(&inventory, project_find(&project, ".container"));
+                const StaticModule *container = static_module_find(&inventory, project_find(&project, "/test/fixture/v1.0.0/src/container"));
                 StaticTermCapture slot = {.formal = application_formal(container, 0), .value = integer_type};
                 const StaticTerm *namespace_type;
                 const StaticTermEnvironment *environment;
@@ -49,7 +49,7 @@ static void it_unwinds_every_direct_and_exported_namespace_selection_allocation_
  */
 static void it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter_wrap(void) {
     for (size_t mode = 0; mode < 5; mode++) {
-        setup_constants("@!\nanchor&\n..integer\n.other\n value >> x\n", "@=\nvalue\n..integer\n@!\n");
+        setup_constants("@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n value >> x\n", "@=\nvalue\n//integer\n@!\n");
         const StaticResultContext *context = publication_context(caller_environment);
         const StaticResultContext *actual = constant_fixed_target_context();
         StaticResultContext copied_context = *context;
@@ -71,7 +71,7 @@ static void it_refuses_copied_reads_wrong_namespace_scopes_and_selection_counter
  * though it were still consistent; old immutable metadata remains unchanged.
  */
 static void it_rechecks_namespace_equations_before_reusing_existing_selections(void) {
-    setup_constants("@!\nanchor&\n..integer\n.other\n value >> x\n", "@=\nvalue\n..integer\n@!\n");
+    setup_constants("@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n value >> x\n", "@=\nvalue\n//integer\n@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticResultContext *actual = constant_fixed_target_context();
     const StaticConstantRead *read;
@@ -89,7 +89,7 @@ static void it_rechecks_namespace_equations_before_reusing_existing_selections(v
  * metadata and already failed borrowed owners remain separate source identities.
  */
 static void it_checks_member_storage_labels_and_preserves_borrowed_original_errors(void) {
-    setup_constants("@!\nanchor&\n..integer\n.other\n value >> x\n", "@=\nvalue[]\n..integer\n@!\n");
+    setup_constants("@!\nanchor&\n//integer\n/test/fixture/v1.0.0/src/other\n value >> x\n", "@=\nvalue[]\n//integer\n@!\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticResultContext *actual = constant_fixed_target_context();
     const StaticConstantRead *read;
@@ -102,7 +102,7 @@ static void it_checks_member_storage_labels_and_preserves_borrowed_original_erro
     context = publication_context(constant_applied_environment());
     const StaticConstantDeclaration *declaration;
     assert(static_constant_declaration(&constants, context, constant_named(caller_module, "scalar"), &declaration));
-    assert(declaration->source->source->source->occurrence->symbol == result_named(caller_module, "...type"));
+    assert(declaration->source->source->source->occurrence->symbol == result_named(caller_module, ".type"));
     assert(!static_constant_select(&constants, NULL, NULL, &selection));
     assert(constants.status == STATIC_CONSTANT_INVALID);
     destroy_constants();
@@ -110,7 +110,7 @@ static void it_checks_member_storage_labels_and_preserves_borrowed_original_erro
     static_publication_init(&publications, &results, sources.allocator);
     static_constant_init(&constants, &publications, sources.allocator);
     context = publication_context(caller_environment);
-    assert(!static_publication_resolve(&publications, context, result_pair("...first"), NULL));
+    assert(!static_publication_resolve(&publications, context, result_pair(".first"), NULL));
     assert(!static_constant_select(&constants, NULL, NULL, &selection));
     assert(constants.error.message == publications.error.message && selection == NULL);
     destroy_constants();

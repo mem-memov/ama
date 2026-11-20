@@ -1,11 +1,11 @@
 # Restart an operation while a previous callback token remains usable as a stale value.
 @!
 source
-..task.events
+//task/events
 operation
-..task.operation
+//task/operation
 require
-..task.require
+//task/require
 source !
  < |1
 operation !

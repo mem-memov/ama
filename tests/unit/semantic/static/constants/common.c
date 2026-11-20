@@ -31,8 +31,8 @@ static inline const StaticResultContext *constant_fixed_target_context(void) {
  * their later Type and Template parameters without adding implicit formals.
  */
 static inline void setup_constant_fixture(void) {
-    setup_constants("@=\nscalar\n...type\n |ignored literal bytes\nempty[]\n...type\n"
-        "@<\ninput\n...type\n@>\noutput\n...result type\n@!\nanchor&\n..integer\ntarget&\n.other\n", "@!\n");
+    setup_constants("@=\nscalar\n.type\n |ignored literal bytes\nempty[]\n.type\n"
+        "@<\ninput\n.type\n@>\noutput\n.result type\n@!\nanchor&\n//integer\ntarget&\n/test/fixture/v1.0.0/src/other\n", "@!\n");
 }
 
 /** Concrete ordinary owner inputs remain Type metadata, never Template arguments. */

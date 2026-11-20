@@ -9,7 +9,7 @@ static size_t native_header_probes;
 /** The adapter has four runtime inputs and one output, irrespective of the
  * static export spelling. Checked reference access lasts only for this entry. */
 static bool exported_entry(FILE *body, const ScaffoldType *type) {
-    if (strcmp(type->plan->type->module->source->logical_path, ".adapter") != 0) { return false; }
+    if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/adapter") != 0) { return false; }
     const SemanticType *child = type->members->field->symbol->type;
     const ScaffoldType *resource = native_scaffold_type(&assembly, child);
     assert(resource);
@@ -29,7 +29,7 @@ static bool exported_entry(FILE *body, const ScaffoldType *type) {
  * and the concrete checked-reader callback after the fixture-owned entry. */
 static void inspect_exported_native_model(NativeScaffold *model) {
     const StaticModule *definition = static_module_find(&frontend.static_inventory,
-        project_find(&frontend.project, ".adapter"));
+        project_find(&frontend.project, "/test/fixture/v1.0.0/src/adapter"));
     assert(definition && definition->parameter_count == 0);
     bool adapter = false;
     for (const ScaffoldType *type = model->types; type; type = type->next) {
@@ -59,7 +59,7 @@ static void inspect_exported_native_model(NativeScaffold *model) {
             assert(symbol->type == resource);
             count++;
         }
-        assert(count == 5 && resource->module == project_find(&frontend.project, ".resource"));
+        assert(count == 5 && resource->module == project_find(&frontend.project, "/test/fixture/v1.0.0/src/resource"));
         const ScaffoldType *child = native_scaffold_type(model, resource);
         FILE *body = fopen(type->body_path, "ab");
         assert(body && scaffold_include(body, type->begin_name));
@@ -94,19 +94,20 @@ static void check_exported_headers(void) {
  * native references remain declared checked cells rather than opaque state. */
 static void it_executes_native_owned_reference_and_list_fields_from_closed_static_exports(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     native_fixture("resource", "@C\n");
-    native_fixture("adapter", "@<\nowned\n.factory\n ...value\nreference&\n.factory\n ...value\nitems[]\n.factory\n ...value\nreferences&[]\n.factory\n ...value\n@>\nresult\n.factory\n ...value\n@C\n");
-    native_fixture("consumer", "@<\ninput\n.resource\n@>\noutput\n.resource\n@C\n");
-    file("generated/project/source", "@...\n...out\n.resource\n");
-    file("generated/project/factory", "@...\n.source\n ...out > ...value\n...unused\n.resource\n");
+    native_fixture("adapter", "@<\nowned\n/test/fixture/v1.0.0/src/factory\n .value\nreference&\n/test/fixture/v1.0.0/src/factory\n .value\nitems[]\n/test/fixture/v1.0.0/src/factory\n .value\nreferences&[]\n/test/fixture/v1.0.0/src/factory\n .value\n@>\nresult\n/test/fixture/v1.0.0/src/factory\n .value\n@C\n");
+    native_fixture("consumer", "@<\ninput\n/test/fixture/v1.0.0/src/resource\n@>\noutput\n/test/fixture/v1.0.0/src/resource\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/source", "@...\n.out\n/test/fixture/v1.0.0/src/resource\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n/test/fixture/v1.0.0/src/source\n .out > .value\n.unused\n/test/fixture/v1.0.0/src/resource\n");
     native_entry_override = exported_entry;
     native_fixture_completion = inspect_exported_native_model;
-    execute_project("@!\nvalue\n.resource\n |7\nitems[]\n.resource\n |3\nreferences&[]\n.resource\n &value\nmethod\n.adapter\nmethod !\n owned < |7\n reference& < &value\n items[] < items[]\n references&[] < references&[]\n result > result\nprobe\n.consumer\nprobe !\n < result\n", "selected-native\n7:1:0\n", true);
+    execute_project("@!\nvalue\n/test/fixture/v1.0.0/src/resource\n |7\nitems[]\n/test/fixture/v1.0.0/src/resource\n |3\nreferences&[]\n/test/fixture/v1.0.0/src/resource\n &value\nmethod\n/test/fixture/v1.0.0/src/adapter\nmethod !\n owned < |7\n reference& < &value\n items[] < items[]\n references&[] < references&[]\n result > result\nprobe\n/test/fixture/v1.0.0/src/consumer\nprobe !\n < result\n", "selected-native\n7:1:0\n", true);
     native_entry_override = NULL;
     native_fixture_completion = NULL;
     check_exported_headers();
-    const char *companions[] = {"generated/project/adapter", "generated/project/adapter.h",
-        "generated/project/adapter.c", "generated/project/adapter.abi"};
+    const char *companions[] = {"generated/project/packages/test/fixture/v1.0.0/src/adapter", "generated/project/packages/test/fixture/v1.0.0/src/adapter.h",
+        "generated/project/packages/test/fixture/v1.0.0/src/adapter.c", "generated/project/packages/test/fixture/v1.0.0/src/adapter.abi"};
     for (size_t index = 0; index < sizeof(companions) / sizeof(companions[0]); index++) {
         assert(unlink(companions[index]) == 0);
     }

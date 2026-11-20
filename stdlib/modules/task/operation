@@ -1,8 +1,8 @@
 # Own one native registration so task cleanup can retire it without a continuation step.
 @<
 source&
-..task.events
+//task/events
 @>
 token
-..task.token
+//task/token
 @C

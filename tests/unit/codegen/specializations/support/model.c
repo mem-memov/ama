@@ -5,7 +5,7 @@
 
 /** Two captured owners have disjoint C view/member identities; equal-key fields share only their code/type descriptor, not instance slots. */
 static void inspect_captured_model(NativeScaffold *model) {
-    const ProjectModule *definition = project_find(&frontend.project, ".container");
+    const ProjectModule *definition = project_find(&frontend.project, "/test/fixture/v1.0.0/src/container");
     const ScaffoldType *previous = NULL;
     size_t count = 0;
     for (const ScaffoldType *type = model->types; type; type = type->next) {

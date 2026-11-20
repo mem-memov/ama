@@ -10,8 +10,8 @@
 static void it_packages_two_components_with_overlapping_module_names(void) {
     setup_test(); prepare_static_facades();
     PackageNames first,second;
-    package_component("first.component","first",".textfacade",&first,false,facade_package_rejections);
-    package_component("second.component","second",".integerfacade",&second,true,facade_package_contract);
+    package_component("first.component","first","/test/fixture/v1.0.0/src/textfacade",&first,false,facade_package_rejections);
+    package_component("second.component","second","/test/fixture/v1.0.0/src/integerfacade",&second,true,facade_package_contract);
     assert(strcmp(first.component,second.component)!=0);
     host_part("generated/first.c","first",&first,"first",false);
     host_part("generated/second.c","second",&second,"second",false);

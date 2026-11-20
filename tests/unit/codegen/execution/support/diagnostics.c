@@ -4,8 +4,9 @@
 /** Cleanup may fail both after an active native call and while unwinding root construction; the original status must remain authoritative. */
 static void it_preserves_primary_failure_when_native_cleanup_also_fails(void) {
     directory("generated/project");
-    file("generated/project/outer", "@!\nchild\n.inner\nchild !\n");
-    file("generated/project/inner", "@!\nworker\n.worker\nworker !\n < |500\n");
+    fixture_package_prepare("generated/project", "fixture");
+    file("generated/project/packages/test/fixture/v1.0.0/src/outer", "@!\nchild\n/test/fixture/v1.0.0/src/inner\nchild !\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/inner", "@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < |500\n");
     fail_native_destroy = true;
     host_launcher = "#include <assert.h>\n#include <string.h>\n#include \"project.c\"\n"
         "int main(void) { AmaProjectHost host={0};\n"
@@ -17,16 +18,16 @@ static void it_preserves_primary_failure_when_native_cleanup_also_fails(void) {
         "assert(host.disposed && host.active.world==NULL);\n"
         "assert(!host.registry.initialized);\n"
         "return EXIT_FAILURE; }\n";
-    execute_project("@!\nouter\n.outer\nouter !\n", "native-entered\n", false);
+    execute_project("@!\nouter\n/test/fixture/v1.0.0/src/outer\nouter !\n", "native-entered\n", false);
     expect_diagnostic("Ama runtime failure: 4: Body failed");
     expect_diagnostic("Secondary Ama runtime failure: 4: cleanup");
-    expect_diagnostic("generated/project/inner:4:1");
-    expect_diagnostic("generated/project/outer:4:1");
-    expect_diagnostic("generated/project/main:4:1");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/inner:4:1");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/outer:4:1");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/main:4:1");
     host_launcher = NULL;
-    execute_project("@!\nworker\n.worker\nbad\n.value\n |bad\nworker !\n", "", false);
+    execute_project("@!\nworker\n/test/fixture/v1.0.0/src/worker\nbad\n/test/fixture/v1.0.0/src/value\n |bad\nworker !\n", "", false);
     expect_diagnostic("Not a decimal value");
     expect_diagnostic("Secondary Ama runtime failure: 4: cleanup");
-    expect_diagnostic("type .value");
+    expect_diagnostic("type /test/fixture/v1.0.0/src/value");
     fail_native_destroy = false;
 }

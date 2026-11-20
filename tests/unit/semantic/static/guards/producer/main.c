@@ -7,7 +7,7 @@
  * original input reads. Equal source-order permutations share a compiler scope.
  */
 static void it_preserves_producer_maps_without_manufacturing_nominal_types(void) {
-    setup_guards("@...\n...copy\n...input\n...anchor\n..integer\n", "@!\n");
+    setup_guards("@...\n.copy\n.input\n.anchor\n//integer\n", "@!\n");
     assert(caller_constructor == NULL && caller_module->parameter_count == 1);
     const StaticCreationPath *root;
     assert(static_creation_root(&guards, caller_environment, &root));
@@ -39,14 +39,14 @@ static void it_preserves_producer_maps_without_manufacturing_nominal_types(void)
  * otherwise finite complete producer key.
  */
 static void it_rejects_definition_recursion_in_a_closed_static_producer(void) {
-    setup_guards("@...\n...copy\n...copy\n...anchor\n..integer\n", "@!\n");
+    setup_guards("@...\n.copy\n.copy\n.anchor\n//integer\n", "@!\n");
     assert(caller_module->parameter_count == 0);
     const StaticTermEnvironment *applied;
     assert(static_term_producer_environment(&terms, caller_module, NULL, 0, &applied));
     assert(applied != caller_environment && applied->producer_applied);
     const StaticCreationPath *root;
     assert(static_creation_root(&guards, applied, &root) && root->vertex != NULL);
-    const StaticSymbol *copy = static_symbol_find(caller_module, static_name_site(project.entry, "...copy"));
+    const StaticSymbol *copy = static_symbol_find(caller_module, static_name_site(project.entry, ".copy"));
     assert(copy && copy->role == STATIC_RESULT);
     const StaticDefinitionPath *first, *output = NULL;
     assert(static_definition_enter(&guards, NULL, root, copy, (SourceSpan){0}, &first));
@@ -63,7 +63,7 @@ static void it_unwinds_every_producer_map_and_root_preparation_refusal(void) {
     for (size_t phase = 0; phase < 2; phase++) {
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
-            setup_guards("@...\n...copy\n...input\n...anchor\n..integer\n", "@!\n");
+            setup_guards("@...\n.copy\n.input\n.anchor\n//integer\n", "@!\n");
             StaticTermCapture input = {.formal = application_formal(caller_module, 0), .value = integer_type};
             const StaticTermEnvironment *environment = NULL;
             const StaticCreationPath *root = NULL;
@@ -89,7 +89,7 @@ static void it_unwinds_every_producer_map_and_root_preparation_refusal(void) {
  */
 static void it_suspends_unknown_producer_recursion_and_checks_closed_keys(void) {
     for (size_t different = 0; different < 2; different++) {
-        setup_guards("@...\n.main\n ...input < ...input\n ...copy > ...copy\n...anchor\n..integer\n", "@!\n");
+        setup_guards("@...\n/test/fixture/v1.0.0/src/main\n .input < .input\n .copy > .copy\n.anchor\n//integer\n", "@!\n");
         const StaticSymbol *formal = application_formal(caller_module, 0);
         const StaticTerm *variable;
         assert(static_term_symbol(&terms, caller_environment, formal, &variable));
@@ -125,7 +125,7 @@ static void it_suspends_unknown_producer_recursion_and_checks_closed_keys(void) 
  * orders. Every input affects identity even if a consumer never reads it.
  */
 static void it_interns_all_input_permutations_and_preserves_unused_values(void) {
-    setup_guards("@...\n...first\n...a\n...second\n...b\n...anchor\n..integer\n", "@<\nvalue\n...x\n@!\n");
+    setup_guards("@...\n.first\n.a\n.second\n.b\n.anchor\n//integer\n", "@<\nvalue\n.x\n@!\n");
     const StaticTerm *symbol;
     assert(static_term_symbol(&terms, caller_environment, application_formal(caller_module, 0), &symbol));
     const StaticTerm *values[] = {integer_type, target_constructor, symbol};
@@ -161,7 +161,7 @@ static void it_interns_all_input_permutations_and_preserves_unused_values(void) 
  */
 static void it_refuses_invalid_producer_maps_before_publication(void) {
     for (size_t partition = 0; partition < 9; partition++) {
-        setup_guards("@...\n...first\n...a\n...second\n...b\n...anchor\n..integer\n", "@!\n");
+        setup_guards("@...\n.first\n.a\n.second\n.b\n.anchor\n//integer\n", "@!\n");
         StaticSymbol copied = *application_formal(caller_module, 0);
         StaticTerm copied_value = *integer_type;
         StaticTermCapture map[] = {
@@ -190,9 +190,9 @@ static void it_unwinds_every_source_backed_producer_entry_allocation_refusal(voi
         size_t total = 0;
         for (size_t failure = 0; failure <= total; failure++) {
             setup_guards(rejected ?
-                "@...\n.main\n ...input < ...input\n ...copy > ...copy\n...anchor\n..integer\n" :
-                "@...\n.other\n ...input < ...local\n ...copy > ...received\n...anchor\n..integer\n",
-                rejected ? "@!\n" : "@...\n...copy\n...input\n");
+                "@...\n/test/fixture/v1.0.0/src/main\n .input < .input\n .copy > .copy\n.anchor\n//integer\n" :
+                "@...\n/test/fixture/v1.0.0/src/other\n .input < .local\n .copy > .received\n.anchor\n//integer\n",
+                rejected ? "@!\n" : "@...\n.copy\n.input\n");
             const StaticModule *definition = rejected ? caller_module : target_module;
             const StaticTermEnvironment *environment = caller_environment;
             if (rejected) {
@@ -230,8 +230,8 @@ static void it_unwinds_every_source_backed_producer_entry_allocation_refusal(voi
  */
 static void it_refuses_foreign_producer_sites_and_receivers_without_allocation(void) {
     for (size_t partition = 0; partition < 4; partition++) {
-        setup_guards("@...\n.other\n ...input < ...local\n ...copy > ...received\n...anchor\n..integer\n",
-            "@...\n...copy\n...input\n");
+        setup_guards("@...\n/test/fixture/v1.0.0/src/other\n .input < .local\n .copy > .received\n.anchor\n//integer\n",
+            "@...\n.copy\n.input\n");
         const StaticCreationPath *root, *output = NULL;
         assert(static_creation_root(&guards, caller_environment, &root));
         const AstTypeExpression *expression = caller_module->first_occurrence->expression;

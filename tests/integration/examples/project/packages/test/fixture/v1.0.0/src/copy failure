@@ -1,0 +1,6 @@
+# Checking must explain the transitive native copy-capability failure.
+@!
+source
+/test/fixture/v1.0.0/src/uncopyable simulation
+copy
+ % source

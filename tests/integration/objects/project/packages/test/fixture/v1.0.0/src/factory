@@ -1,0 +1,14 @@
+# The constructor owns its seed and two independently captured method states.
+@<
+seed
+/test/fixture/v1.0.0/src/counter
+@>
+first
+/test/fixture/v1.0.0/src/method
+second
+/test/fixture/v1.0.0/src/method
+@!
+first !
+ < seed
+second !
+ < seed

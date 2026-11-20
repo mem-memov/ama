@@ -6,18 +6,18 @@
 /** Keep external helper definitions inside the concrete native namespace. The
  * actual preprocessor, not an Ama include parser, loads this authored header. */
 static void prepare_delivery_external_header(size_t offset) {
-    directory("generated/library/lib/value+");
+    directory("generated/library/packages/test/library/v1.0.0/src/lib/value+");
     char text[192];
     int length = snprintf(text, sizeof(text), "static inline size_t AMA_NATIVE(offset)(size_t value) { return value+%zu; }\n", offset);
     assert(length > 0 && (size_t)length < sizeof(text));
-    file("generated/library/lib/value+/offset.h", text);
-    file("generated/library/lib/value.h", "struct AMA_NATIVE(State) { size_t number; size_t calls; const void *address; };\n#include \"value+/offset.h\"\n");
+    file("generated/library/packages/test/library/v1.0.0/src/lib/value+/offset.h", text);
+    file("generated/library/packages/test/library/v1.0.0/src/lib/value.h", "struct AMA_NATIVE(State) { size_t number; size_t calls; const void *address; };\n#include \"value+/offset.h\"\n");
 }
 
 /** A changed external helper has an actual observable compiled effect on the
  * native literal protocol, without changing any ordinary template source. */
 static const char *delivery_shifted_literal(const ScaffoldType *type, AbiOperation operation) {
-    if (operation != ABI_LITERAL || type->plan->type->module != project_find(&frontend.project, ".lib.value")) { return NULL; }
+    if (operation != ABI_LITERAL || type->plan->type->module != project_find(&frontend.project, "/test/library/v1.0.0/src/lib/value")) { return NULL; }
     return " { *destination=(AMA_NATIVE(State)){.address=destination}; for(size_t index=0;index<literal.length;index++) { if(literal.data[index]<'0'||literal.data[index]>'9') return ama_status_make(AMA_INVALID_LITERAL,\"Not a decimal value\",19); destination->number=destination->number*10+literal.data[index]-'0'; } destination->number=AMA_NATIVE(offset)(destination->number); return ama_status_success(); }\n";
 }
 
@@ -49,7 +49,7 @@ static void it_rebuilds_changed_external_native_headers_in_actual_consumers(void
 /** Missing files remain missing: compilation refuses at its actual C boundary,
  * emits the responsible path and preserves the previous usable source bytes. */
 static void it_refuses_missing_imported_native_and_external_c_inputs_without_publication(void) {
-    const char *missing[] = {"generated/library/lib/value.c", "generated/library/lib/value+/offset.h"};
+    const char *missing[] = {"generated/library/packages/test/library/v1.0.0/src/lib/value.c", "generated/library/packages/test/library/v1.0.0/src/lib/value+/offset.h"};
     const char *names[] = {"value.c", "offset.h"};
     for (size_t index = 0; index < sizeof(missing) / sizeof(missing[0]); index++) {
         prepare_delivery_sources();

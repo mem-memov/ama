@@ -11,7 +11,7 @@
  * Error deliberately writes true first: failed protocol outputs must be ignored.
  */
 static const char *observe_condition(const ScaffoldType *type, AbiOperation operation) {
-    if (operation != ABI_CONDITION || strcmp(type->plan->type->module->source->logical_path, ".value") != 0) { return NULL; }
+    if (operation != ABI_CONDITION || strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/value") != 0) { return NULL; }
     return " { static size_t checks; checks++; printf(\"truth=%zu\\n\",state->number); "
         "if(checks>6 || state->number==500) { *result=true; return ama_status_make(AMA_NATIVE_FAILURE,"
         "\"Condition conversion failed\",sizeof(\"Condition conversion failed\")-1); } "
@@ -23,7 +23,8 @@ static const char *observe_condition(const ScaffoldType *type, AbiOperation oper
  */
 static void prepare_loop_header(void) {
     directory("generated/project");
-    native_fixture("decrement", "@<\ninput\n.value\n@>\noutput\n.value\n@C\n");
-    file("generated/project/container", "@>\nchild\n.decrement\n@!\ntrace\n.worker\ntrace !\n < |100\n");
+    fixture_package_prepare("generated/project", "fixture");
+    native_fixture("decrement", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/container", "@>\nchild\n/test/fixture/v1.0.0/src/decrement\n@!\ntrace\n/test/fixture/v1.0.0/src/worker\ntrace !\n < |100\n");
 }
 #endif

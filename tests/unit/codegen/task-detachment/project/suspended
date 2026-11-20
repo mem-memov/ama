@@ -1,11 +1,11 @@
 # Destroy a suspended task without executing its continuation or reviving a stale reference.
 @!
 tasks[]
-.task
+/test/fixture/v1.0.0/src/task
 source
-..task.events
+//task/events
 require
-..task.require
+//task/require
 source !
  < |1
 tasks[]

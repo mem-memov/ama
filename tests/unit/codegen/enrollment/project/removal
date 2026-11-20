@@ -1,17 +1,17 @@
 # Reenrollment changes the run; deleting the owner invalidates the checked task reference itself.
 @!
 records[]
-.record
+/test/fixture/v1.0.0/src/record
 first
-.registration
+/test/fixture/v1.0.0/src/registration
 second
-.registration
+/test/fixture/v1.0.0/src/registration
 third
-.registration
+/test/fixture/v1.0.0/src/registration
 validate
-.validate
+/test/fixture/v1.0.0/src/validate
 probe
-.worker
+/test/fixture/v1.0.0/src/worker
 records[]
  append !
   > record&

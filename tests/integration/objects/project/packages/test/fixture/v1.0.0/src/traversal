@@ -1,0 +1,9 @@
+# Live traversal executes actual owning entries without a native index protocol.
+@!
+items[]
+/test/fixture/v1.0.0/src/counter
+ /test/fixture/v1.0.0/src/constants/seed
+items[item&]
+{
+ item& !
+}

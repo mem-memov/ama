@@ -1,17 +1,17 @@
 # One queue decision executes at most one task step, then appends a Ready yield at the tail.
 @<
 queue&
-.kind.queue
+/test/fixture/v1.0.0/src/kind/queue
 @>
 executed
-..std.condition
+//std/condition
 @!
 pop
-.kind.pop
+/test/fixture/v1.0.0/src/kind/pop
 step
-.kind.step
+/test/fixture/v1.0.0/src/kind/step
 enqueue
-.kind.enqueue
+/test/fixture/v1.0.0/src/kind/enqueue
 pop !
  < queue&
  > record&

@@ -7,33 +7,35 @@
 /** Native failure in a captured caller must report its real source file and ordinary caller, without inventing a static producer frame. */
 static void it_preserves_unicode_multiword_hyphen_paths_through_captured_runtime_failure(void) {
     directory("generated/project");
-    directory("generated/project/данные");
-    file("generated/project/данные/метод-обработки данных", "@<\ninput\n...slot\n@!\nworker\n.worker\nworker !\n < |500\n");
-    file("generated/project/factory", "@...\n...result\n.данные.метод-обработки данных\n ...slot < .value\n");
-    execute_project("@!\ntarget\n.factory\n ...result\ntarget !\n", "native-entered\n", false);
+    fixture_package_prepare("generated/project", "fixture");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/данные");
+    file("generated/project/packages/test/fixture/v1.0.0/src/данные/метод-обработки данных", "@<\ninput\n.slot\n@!\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < |500\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.result\n/test/fixture/v1.0.0/src/данные/метод-обработки данных\n .slot < /test/fixture/v1.0.0/src/value\n");
+    execute_project("@!\ntarget\n/test/fixture/v1.0.0/src/factory\n .result\ntarget !\n", "native-entered\n", false);
     expect_diagnostic("Body failed");
-    expect_diagnostic("generated/project/данные/метод-обработки данных:7:1");
-    expect_diagnostic("generated/project/main:5:1");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/данные/метод-обработки данных:7:1");
+    expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/main:5:1");
     FILE *errors = fopen("generated/errors.txt", "rb");
     assert(errors);
     char text[8192] = {0};
     size_t length = fread(text, 1, sizeof(text) - 1, errors);
     assert(!ferror(errors) && length < sizeof(text) - 1 && fgetc(errors) == EOF);
     assert(fclose(errors) == 0);
-    assert(!strstr(text, "generated/project/factory:") && !strstr(text, "ama_t_"));
+    assert(!strstr(text, "generated/project/packages/test/fixture/v1.0.0/src/factory:") && !strstr(text, "ama_t_"));
 }
 
 /** Actual C preprocessing failure must retain the native Unicode filename and close publication without altering authored bytes or previous output. */
 static void it_maps_native_c_errors_to_original_unicode_companions_and_preserves_previous_output(void) {
     directory("generated/project");
-    directory("generated/project/данные");
-    native_fixture("данные/нативный-метод", "@<\ninput\n.value\n@>\noutput\n.value\n@C\n");
-    file("generated/project/task", "@<\ninput\n...slot\n@!\nleaf\n.данные.нативный-метод\nleaf !\n");
-    file("generated/project/factory", "@...\n...result\n.task\n ...slot < .value\n");
-    prepare_project("@!\ntarget\n.factory\n ...result\ntarget !\n");
+    fixture_package_prepare("generated/project", "fixture");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/данные");
+    native_fixture("данные/нативный-метод", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@C\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@<\ninput\n.slot\n@!\nleaf\n/test/fixture/v1.0.0/src/данные/нативный-метод\nleaf !\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.result\n/test/fixture/v1.0.0/src/task\n .slot < /test/fixture/v1.0.0/src/value\n");
+    prepare_project("@!\ntarget\n/test/fixture/v1.0.0/src/factory\n .result\ntarget !\n");
     const ScaffoldType *native = NULL;
     for (const ScaffoldType *type = assembly.types; type; type = type->next) {
-        if (strcmp(type->plan->type->module->source->logical_path, ".данные.нативный-метод") == 0) { native = type; }
+        if (strcmp(type->plan->type->module->source->logical_path, "/test/fixture/v1.0.0/src/данные/нативный-метод") == 0) { native = type; }
     }
     assert(native);
     FILE *body = fopen(native->body_path, "ab");

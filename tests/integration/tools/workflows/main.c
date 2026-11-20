@@ -53,7 +53,7 @@ static void fixture(const char *base) {
     path(destination, sizeof(destination), directory, "integer+"); tool_require(mkdir(destination, 0700) == 0);
     path(source, sizeof(source), TEST_STDLIB, "integer+/native");
     path(destination, sizeof(destination), directory, "integer+/native"); copy_tree(source, destination);
-    path(destination, sizeof(destination), base, "app/old/asset.bin");
+    path(destination, sizeof(destination), base, "app/packages/test/fixture/v1.0.0/src/old/asset.bin");
     FILE *output = fopen(destination, "wb"); tool_require(output != NULL);
     const unsigned char bytes[] = {0, 255, 13, 10, 7};
     tool_require(fwrite(bytes, 1, sizeof(bytes), output) == sizeof(bytes) && fclose(output) == 0);
@@ -106,32 +106,32 @@ static void it_composes_source_transactions_relocation_debugging_and_verified_re
     fixture(base); setup_test(); verify("snapshot", base, ""); destroy_test();
     char root[2048], imports[2048], library[2048], source[2048], destination[2048], configuration[2048];
     path(root, sizeof(root), base, "app"); path(imports, sizeof(imports), base, "importers");
-    path(library, sizeof(library), base, "library"); path(configuration, sizeof(configuration), base, "app/settings.library");
+    path(library, sizeof(library), base, "library"); path(configuration, sizeof(configuration), base, "app/packages/test/fixture/v1.0.0/src/settings.library");
     setup_test();
-    char *query[] = {AMA_EXECUTABLE, "--editor", root, ".old.sequence", "--module", ".palette", "--offset", "93",
+    char *query[] = {AMA_EXECUTABLE, "--editor", root, "/test/fixture/v1.0.0/src/old/sequence", "--module", "/test/fixture/v1.0.0/src/palette", "--offset", "93",
         "--root", imports, "--standard-root", library, NULL};
     command(query); verify("editor", base, ""); destroy_test();
     setup_test();
-    char *rename[] = {AMA_EXECUTABLE, "--rename-plan", root, ".old.sequence", "--module", ".palette", "--offset", "93",
+    char *rename[] = {AMA_EXECUTABLE, "--rename-plan", root, "/test/fixture/v1.0.0/src/old/sequence", "--module", "/test/fixture/v1.0.0/src/palette", "--offset", "93",
         "--name", "размер шага", "--root", imports, "--standard-root", library, NULL};
     command(rename); verify("rename", base, ""); destroy_test();
-    build_and_debug(base, ".old.sequence", "before");
-    path(source, sizeof(source), base, "app/old"); path(destination, sizeof(destination), base, "app/new");
+    build_and_debug(base, "/test/fixture/v1.0.0/src/old/sequence", "before");
+    path(source, sizeof(source), base, "app/packages/test/fixture/v1.0.0/src/old"); path(destination, sizeof(destination), base, "app/packages/test/fixture/v1.0.0/src/new");
     setup_test();
     char *move[] = {AMA_EXECUTABLE, "--relocate-preview", root, source, "--destination", destination,
-        "--root", imports, "--standard-root", library, "--entry", ".old.sequence", "--configuration", configuration,
+        "--root", imports, "--standard-root", library, "--entry", "/test/fixture/v1.0.0/src/old/sequence", "--configuration", configuration,
         "--invalidate", "generated/before/program", NULL, NULL, NULL};
     command(move); verify("preview", base, ""); destroy_test();
     move[1] = "--relocate-apply"; move[16] = "--recovery"; move[17] = "generated/recovery";
     setup_test(); command(move); verify("logical", base, "generated/logical-receipt"); destroy_test(); recover("generated/logical-receipt");
-    build_and_debug(base, ".new.sequence", "after-logical");
+    build_and_debug(base, "/test/fixture/v1.0.0/src/new/sequence", "after-logical");
     setup_test();
     char *carry[] = {AMA_EXECUTABLE, "--relocate-apply", root, (char *)base, "--destination", (char *)moved,
-        "--root", imports, "--standard-root", library, "--entry", ".new.sequence", "--configuration", configuration,
+        "--root", imports, "--standard-root", library, "--entry", "/test/fixture/v1.0.0/src/new/sequence", "--configuration", configuration,
         "--invalidate", "generated/after-logical/program", "--recovery", "generated/recovery", NULL};
     command(carry); verify("container", moved, "generated/container-receipt"); destroy_test(); recover("generated/container-receipt");
     recover("generated/logical-receipt");
-    build_and_debug(moved, ".new.sequence", "after-container");
+    build_and_debug(moved, "/test/fixture/v1.0.0/src/new/sequence", "after-container");
     setup_test(); verify("final", moved, ""); destroy_test();
 }
 /** Keep the complete cross-tool order visible in one explicitly named C/assert scenario. */

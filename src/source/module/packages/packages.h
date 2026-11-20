@@ -13,7 +13,8 @@
 
 /** Catalog-arena-owned selected version; root is borrowed only during build.
  * Other strings and links remain arena-owned until catalog destruction. This
- * preparation record is consumed before returning from module catalog build.
+ * preparation record is consumed before completing catalog or projected-preview
+ * discovery; neither operation retains the borrowed root beyond its build.
  * [PKG-01](../../../../spec/project/packages.md#pkg-01) supplies the exact logical
  * version prefix; [PKG-02](../../../../spec/project/packages.md#pkg-02) selects
  * one physical version, never individual files from several versions.
@@ -45,5 +46,15 @@ typedef struct ModulePackage {
  */
 ModuleStatus module_packages_select(ModuleCatalog *catalog, const ModuleRoot *roots,
     size_t count, ModulePackage **output);
+
+/** Index the required areas of one already selected version, preserving exclusions.
+ * @param[in,out] catalog Build owner of source bytes and complete/failed scratch.
+ * @param[in] package Arena-owned selection with a root descriptor borrowed through build.
+ * @return Missing/shape/alias/I/O/allocation or source outcome. A missing local
+ * input never triggers another copy's lookup. [PKG-01](../../../../spec/project/packages.md#pkg-01)
+ * requires package.ini/src/tests; [PKG-02](../../../../spec/project/packages.md#pkg-02)
+ * makes this selected package the sole authority for both source and test modules.
+ */
+ModuleStatus module_package_index(ModuleCatalog *catalog, const ModulePackage *package);
 
 #endif

@@ -6,8 +6,8 @@
  * and output labels retain original identity without any positional mode.
  */
 static void it_maps_named_graph_requests_to_independent_actual_slots(void) {
-    setup_named_requests("@...\n.other\n ...b < ...value\n ...a < ...value\n"
-        " ...second > ...two\n ...out > ...one\n");
+    setup_named_requests("@...\n/test/fixture/v1.0.0/src/other\n .b < .value\n .a < .value\n"
+        " .second > .two\n .out > .one\n");
     BindingInterface *view = named_interface(NULL, 0);
     BindingApplication *application = NULL;
     assert(binding_normalize_static(&binding_plan, view, expression, &application));
@@ -30,7 +30,7 @@ static void it_maps_named_graph_requests_to_independent_actual_slots(void) {
  * record retains its null slots and exact original syntax.
  */
 static void it_retains_pending_named_requests_when_resolving_an_independent_origin(void) {
-    setup_named_requests("@...\n.other\n ...a < ...value\n ...out > ...one\n");
+    setup_named_requests("@...\n/test/fixture/v1.0.0/src/other\n .a < .value\n .out > .one\n");
     BindingApplication *pending = NULL, *resolved = NULL;
     assert(binding_normalize_static(&binding_plan, NULL, expression, &pending));
     assert(pending->pending && pending->first->slot == NULL && pending->last->slot == NULL);
@@ -46,7 +46,7 @@ static void it_retains_pending_named_requests_when_resolving_an_independent_orig
  * outer request borrows the complete child rather than flattening its bindings.
  */
 static void it_normalizes_nested_named_values_without_flattening_owners(void) {
-    setup_named_requests("@...\n.other\n ...a < ...family\n  ...b < ...value\n ...out > ...one\n");
+    setup_named_requests("@...\n/test/fixture/v1.0.0/src/other\n .a < .family\n  .b < .value\n .out > .one\n");
     BindingInterface *view = named_interface(NULL, 0);
     BindingApplication *outer = NULL, *inner = NULL;
     const AstTypeExpression *child = expression->first->input;
@@ -64,8 +64,8 @@ static void it_normalizes_nested_named_values_without_flattening_owners(void) {
  * supplied name cannot reopen a captured slot, even with its old ordinal.
  */
 static void it_preserves_named_residuals_without_reopening_captured_inputs(void) {
-    const char *cases[] = {"@...\n...partial\n...family\n ...b < ...value\n",
-        "@...\n...partial\n...family\n ...a < ...value\n"};
+    const char *cases[] = {"@...\n.partial\n.family\n .b < .value\n",
+        "@...\n.partial\n.family\n .a < .value\n"};
     for (size_t index = 0; index < 2; index++) {
         setup_named_requests(cases[index]);
         const StaticSymbol *capture[] = {static_symbol_at(producer, STATIC_PARAMETER, 0)};

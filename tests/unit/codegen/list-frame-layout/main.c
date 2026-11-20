@@ -37,14 +37,15 @@ static void checked_process(pid_t process) {
  */
 static void it_compiles_typed_lexical_list_service_and_method_storage(void) {
     directory("generated/project");
+    fixture_package_prepare("generated/project", "fixture");
     directory("generated/standard");
-    native_layout("generated/project", "value");
+    native_layout("generated/project/packages/test/fixture/v1.0.0/src", "value");
     native_layout("generated/standard", "integer");
-    file("generated/project/main", "@!\nitems[]\n.value\nitems[]\n clear !\n clear !\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/main", "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nitems[]\n clear !\n clear !\n");
     setup_frontend();
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    bool checked = compiler_frontend_check(&frontend, roots, 2, ".main");
+    bool checked = compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main");
     assert(checked && frontend.plan.valid);
     NativeScaffold scaffold;
     native_scaffold_init(&scaffold, &frontend, sources.allocator);
@@ -58,8 +59,8 @@ static void it_compiles_typed_lexical_list_service_and_method_storage(void) {
     for (const ScaffoldType *type = scaffold.types; type != NULL; type = type->next) {
         if (type->plan->type->module->syntax.sections.kind != MODULE_NATIVE) { continue; }
         const char *logical = type->plan->type->module->source->logical_path;
-        assert(strcmp(logical, ".value") == 0 || strcmp(logical, "..integer") == 0);
-        const char *header = strcmp(logical, ".value") == 0 ? "project/value.h" : "standard/integer.h";
+        assert(strcmp(logical, "/test/fixture/v1.0.0/src/value") == 0 || strcmp(logical, "//integer") == 0);
+        const char *header = strcmp(logical, "/test/fixture/v1.0.0/src/value") == 0 ? "project/packages/test/fixture/v1.0.0/src/value.h" : "standard/integer.h";
         written = fprintf(output, "#define AMA_NATIVE(name) %s_##name\n#include \"%s\"\n"
             "typedef struct %s_State %s_State;\n#undef AMA_NATIVE\n", type->native_prefix->internal_name,
             header, type->native_prefix->internal_name, type->native_prefix->internal_name);

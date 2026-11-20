@@ -1,48 +1,48 @@
 # Own each run, its native wait and cancellation mailbox through explicit typed fields.
 @<
 hub&
-..task.events
+//task/events
 @>
 self&
-.kind.record
+/test/fixture/v1.0.0/src/kind/record
  &
 task&
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 epoch
-..task.generation
+//task/generation
 generation
-..task.generation
+//task/generation
 wait epoch
-..task.generation
+//task/generation
 wait generation
-..task.generation
+//task/generation
 enrolled
-..task.flag
+//task/flag
 ready
-..task.flag
+//task/flag
 queued
-..task.flag
+//task/flag
 started
-..task.flag
+//task/flag
 waiting
-..task.flag
+//task/flag
 cancel requested
-..task.flag
+//task/flag
 delivered
-..task.flag
+//task/flag
 mailbox&
-.mailbox
+/test/fixture/v1.0.0/src/mailbox
 source&
-..task.events
+//task/events
 @!
 run sequence
-..task.sequence
+//task/sequence
 wait sequence
-..task.sequence
+//task/sequence
 owned task
-.kind.task
+/test/fixture/v1.0.0/src/kind/task
 owned mailbox
-.mailbox
+/test/fixture/v1.0.0/src/mailbox
 run sequence !
  > epoch
 wait sequence !

@@ -1,25 +1,25 @@
 # Construct explicit typed domains around one native hub; no implicit task registration occurs.
 @!
 source
-.source
+/test/fixture/v1.0.0/src/source
 red registry
-.red.registry
+/test/fixture/v1.0.0/src/red/registry
 blue registry
-.blue.registry
+/test/fixture/v1.0.0/src/blue/registry
 red queue
-.red.queue
+/test/fixture/v1.0.0/src/red/queue
 blue queue
-.blue.queue
+/test/fixture/v1.0.0/src/blue/queue
 red enqueue
-.red.enqueue
+/test/fixture/v1.0.0/src/red/enqueue
 blue enqueue
-.blue.enqueue
+/test/fixture/v1.0.0/src/blue/enqueue
 round
-.round
+/test/fixture/v1.0.0/src/round
 summary
-.summary
+/test/fixture/v1.0.0/src/summary
 require
-..task.require
+//task/require
 source !
 round !
  < &red registry

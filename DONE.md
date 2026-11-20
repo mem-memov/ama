@@ -7346,3 +7346,50 @@ T201. Specification bytes have not changed.
   T231 is unfinished and must next connect catalog, lexer/parser, identities,
   dependencies and source tools, migrate retained fixtures and remove superseded
   dotted-root routes before claiming the new language/project behavior.
+
+<a id="t231"></a>
+
+- [x] **T231 — Implement versioned source identity and revised lexical forms.**
+  Status: complete; scoped implementation and acceptance passed. Canonical
+  versioned identities, whole-version selection, single-dot static names and
+  physical/projected source consumers are implemented. Relative/alias
+  normalization and newer marker/constructor contracts retain T232/T221/T226;
+  T237 owns renewed whole-specification acceptance.
+  Implementation is
+  authorized by the user's 2026-11-20 continuation request; no spec edits.
+  Record: [versioned source implementation](docs/implementation/versioned-source.md).
+  Prerequisites: T230 and T258. Implement PKG-01/02 and SRC-01..05 plus TPL-01: slash
+  paths, version/variant components, single-dot static names and physical name+/
+  storage. Select complete package versions before indexing; remove superseded
+  dotted-root code/tests after tracing consumers. Keep parsing independent of
+  alias/name lookup. Accept granular recognition/registry tests and real parser,
+  native, static, constant and source-tool consumers; cover duplicate selection,
+  missing local holes, Unicode and malformed version/separator boundaries.
+
+  Results: compilation selects complete local/external versions before loading
+  modules, preserves `name+/` storage and source spans, and uses one reader
+  contract for physical and projected selection. Lexer/parser, structural identity
+  framing, canonical library paths, dependencies, native namespaces, editor and
+  relocation consumers share the current source forms; old dotted-root routes
+  are removed. Maintained projects/examples and companions move together into
+  explicit versioned areas; exact CRLF/comment/literal data and authored native
+  behavior are preserved. Independent identity tuples update frozen native keys.
+  Acceptance: source/path finite-model checks, measured allocation/I/O failures,
+  source/project/semantic/planning/compiler/native/editor/driver consumers,
+  actual generated execution for every codegen family, CLI source/authoring/
+  debugger/relocation/recovery, published examples, static/shared/nested C
+  libraries, reproducibility/input-change controls, and build harnesses pass in
+  the documented scopes. Transaction application covers 2420 allocation and
+  1066 I/O refusals; ordinary/Standard cross-device commit/rollback are checked.
+  Strict ASan/UBSan source/module checks pass with unavailable LeakSanitizer
+  explicitly disabled; no LSan or new TSan acceptance is claimed.
+  The canonical all-positive fence test reaches the still-unimplemented TPL-15
+  constructor at templates.md fence 3, owned by T226; static markers remain T221.
+  No complete make-test or renewed conformance pass is claimed. Specification
+  files and old reviewed conformance fingerprints remain unchanged.
+  Documentation preclosure acceptance: 3112 ready inputs, zero debt, 2324 file
+  pages, 9048 documented interfaces, all 487 canonical/page destinations resolved;
+  Doxygen 1.11.0, Python 3.14.4, markdown-it-py 3.0.0, GCC 15.2.0. Per-file cases,
+  exact commands, failures/corrections and general invariants are in the record.
+  Final delivery after archival requires make docs and source/staged manifest
+  agreement before this task's commit; generated references stay unversioned.

@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include "../../source/common.c"
+#include "../../fixtures/package.h"
 #include "driver/driver.h"
 #include "driver/commands/relocation/relocation.h"
 
@@ -29,17 +30,19 @@ static void fixture(const char *name) {
     source_arena_init(&paths,source_system_allocator());
     base = source_arena_join(&paths,"generated","/",name);
     assert(base != NULL && mkdir(base,0700) == 0);
-    assert(mkdir(path("project"),0700) == 0 && mkdir(path("project/old"),0700) == 0 && mkdir(path("recovery"),0700) == 0);
-    file("project/old/a","@!\n");
-    file("project/main","@!\nvalue\n.old.a\n");
+    assert(mkdir(path("project"),0700) == 0);
+    fixture_package_prepare(path("project"), "fixture");
+    assert(mkdir(path("project/packages/test/fixture/v1.0.0/src/old"),0700) == 0 && mkdir(path("recovery"),0700) == 0);
+    file("project/packages/test/fixture/v1.0.0/src/old/a","@!\n");
+    file("project/packages/test/fixture/v1.0.0/src/main","@!\nvalue\n/test/fixture/v1.0.0/src/old/a\n");
 }
 /** Release test path authority only after every command owner has expired. */
 static void finish(void) { source_arena_destroy(&paths); destroy_test(); }
 /** No unacknowledged read-only command may move a source directory. */
 static void original(void) {
     struct stat metadata;
-    assert(lstat(path("project/old/a"),&metadata) == 0);
-    assert(lstat(path("project/new"),&metadata) != 0 && errno == ENOENT);
+    assert(lstat(path("project/packages/test/fixture/v1.0.0/src/old/a"),&metadata) == 0);
+    assert(lstat(path("project/packages/test/fixture/v1.0.0/src/new"),&metadata) != 0 && errno == ENOENT);
 }
 /** The C harness controls execution; standard JSON decoding is an independent transport oracle. */
 static void verify(const char *mode, const char *output) {
@@ -51,7 +54,7 @@ static void verify(const char *mode, const char *output) {
 /** A validated plan lists exact source edits but never creates a recovery journal or destination. */
 static void it_exposes_a_complete_read_only_relocation_plan(void) {
     fixture("preview");
-    char *arguments[] = {"ama","--relocate-preview",(char *)path("project"),(char *)path("project/old"),"--destination",(char *)path("project/new")};
+    char *arguments[] = {"ama","--relocate-preview",(char *)path("project"),(char *)path("project/packages/test/fixture/v1.0.0/src/old"),"--destination",(char *)path("project/packages/test/fixture/v1.0.0/src/new")};
     const char *json = path("preview.json");
     FILE *output = fopen(json,"wb"), *errors = tmpfile();
     assert(output != NULL && errors != NULL && driver_run(6,arguments,output,errors) == EXIT_SUCCESS);
@@ -74,7 +77,7 @@ static const char *receipt(void) {
 /** A failed result write cannot undo or mislabel an already committed source move; its terminal receipt remains recoverable. */
 static void it_preserves_committed_outcome_when_result_output_is_refused(void) {
     fixture("committed-output");
-    char *arguments[] = {"ama","--relocate-apply",(char *)path("project"),(char *)path("project/old"),"--destination",(char *)path("project/new"),
+    char *arguments[] = {"ama","--relocate-apply",(char *)path("project"),(char *)path("project/packages/test/fixture/v1.0.0/src/old"),"--destination",(char *)path("project/packages/test/fixture/v1.0.0/src/new"),
         "--recovery",(char *)path("recovery")};
     FILE *output = fopen("main.c","rb"), *errors = tmpfile();
     assert(output != NULL && errors != NULL && driver_run(8,arguments,output,errors) == EXIT_FAILURE);
@@ -82,7 +85,7 @@ static void it_preserves_committed_outcome_when_result_output_is_refused(void) {
     char message[4096]; size_t length = fread(message,1,sizeof(message)-1,errors); message[length] = 0;
     assert(strstr(message,"committed") != NULL && strstr(message,"receipt") != NULL && fclose(errors) == 0);
     struct stat metadata;
-    assert(lstat(path("project/old"),&metadata) != 0 && errno == ENOENT && lstat(path("project/new/a"),&metadata) == 0);
+    assert(lstat(path("project/packages/test/fixture/v1.0.0/src/old"),&metadata) != 0 && errno == ENOENT && lstat(path("project/packages/test/fixture/v1.0.0/src/new/a"),&metadata) == 0);
     const char *journal = receipt();
     char *recover[] = {"ama","--relocate-recover",(char *)journal};
     const char *json = path("recovery.json");
@@ -108,7 +111,7 @@ static void it_releases_every_failed_command_preparation_prefix(void) {
     ModuleRoot root = {.path=path("project"),.kind=MODULE_ROOT_PROJECT};
     options.request = DRIVER_REQUEST_RELOCATE_PREVIEW; options.valid = true;
     options.roots = &root; options.root_count = 1;
-    options.relocation_source = path("project/old"); options.destination = path("project/new");
+    options.relocation_source = path("project/packages/test/fixture/v1.0.0/src/old"); options.destination = path("project/packages/test/fixture/v1.0.0/src/new");
     FILE *output = tmpfile(), *errors = tmpfile(); assert(output != NULL && errors != NULL);
     allocation_count = 0;
     assert(driver_relocation(&options,output,errors) == EXIT_SUCCESS);

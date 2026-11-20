@@ -53,7 +53,7 @@ static void require_process(char *const arguments[]) {
 static void it_publishes_predicates_through_the_actual_native_write_view(void) {
     int created = mkdir("generated/project", 0700);
     assert(created == 0);
-    char *author[] = {TEST_ROOT "/ama", "--native", "generated/project", "..task.phase",
+    char *author[] = {TEST_ROOT "/ama", "--native", "generated/project", "//task/phase",
         "--out", "generated/native", "--sdk", TEST_ROOT "/src", "--standard-root",
         TEST_ROOT "/stdlib/modules", NULL};
     require_process(author);

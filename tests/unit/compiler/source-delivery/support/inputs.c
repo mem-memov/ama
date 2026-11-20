@@ -5,8 +5,8 @@
 
 /** Original module consumers are source units, not separately cached specialized
  * machine code; a dirty entry rebuilds its one complete project assembly. */
-static const char *const delivery_modules[] = {".main", ".independent", ".lib.assembly",
-    ".lib.forward", ".lib.value", ".lib.counter", ".lib.sink"};
+static const char *const delivery_modules[] = {"/test/fixture/v1.0.0/src/main", "/test/fixture/v1.0.0/src/independent", "/test/library/v1.0.0/src/lib/assembly",
+    "/test/library/v1.0.0/src/lib/forward", "/test/library/v1.0.0/src/lib/value", "/test/library/v1.0.0/src/lib/counter", "/test/library/v1.0.0/src/lib/sink"};
 
 /** Append fixture bytes without copying or interpreting a source definition. */
 static void append_delivery_bytes(const char *path, const char *text) {
@@ -19,26 +19,26 @@ static void append_delivery_bytes(const char *path, const char *text) {
 static void change_delivery_input(size_t mutation) {
     switch (mutation) {
     case 0: break;
-    case 1: append_delivery_bytes("generated/library/lib/forward", "# changed template definition\n"); break;
+    case 1: append_delivery_bytes("generated/library/packages/test/library/v1.0.0/src/lib/forward", "# changed template definition\n"); break;
     case 2:
-        file("generated/library/lib/assembly", "@...\n...result\n.lib.forward\n ...slot < .lib.value\n...unused\n.lib.value\n");
+        file("generated/library/packages/test/library/v1.0.0/src/lib/assembly", "@...\n.result\n/test/library/v1.0.0/src/lib/forward\n .slot < /test/library/v1.0.0/src/lib/value\n.unused\n/test/library/v1.0.0/src/lib/value\n");
         break;
-    case 3: append_delivery_bytes("generated/library/lib/value.h", "/* changed native layout source */\n"); break;
-    case 4: file("generated/library/lib/value.c", "#error Frontend snapshots must not execute the C compiler\n"); break;
-    case 5: file("generated/library/lib/value.abi", "+ initialize\n- destroy\n| literal\n= duplicate\n? condition\n[] index\n"); break;
+    case 3: append_delivery_bytes("generated/library/packages/test/library/v1.0.0/src/lib/value.h", "/* changed native layout source */\n"); break;
+    case 4: file("generated/library/packages/test/library/v1.0.0/src/lib/value.c", "#error Frontend snapshots must not execute the C compiler\n"); break;
+    case 5: file("generated/library/packages/test/library/v1.0.0/src/lib/value.abi", "+ initialize\n- destroy\n| literal\n= duplicate\n? condition\n[] index\n"); break;
     case 6: {
-        file("generated/library/lib/alternate", delivery_assembly_source);
-        const char *selected = strstr(delivery_program, ".lib.assembly");
+        file("generated/library/packages/test/library/v1.0.0/src/lib/alternate", delivery_assembly_source);
+        const char *selected = strstr(delivery_program, "/test/library/v1.0.0/src/lib/assembly");
         assert(selected);
-        FILE *output = fopen("generated/project/main", "wb");
+        FILE *output = fopen("generated/project/packages/test/fixture/v1.0.0/src/main", "wb");
         assert(output && fwrite(delivery_program, 1, (size_t)(selected - delivery_program), output) == (size_t)(selected - delivery_program));
-        assert(fputs(".lib.alternate", output) != EOF);
-        assert(fputs(selected + strlen(".lib.assembly"), output) != EOF && fclose(output) == 0);
+        assert(fputs("/test/library/v1.0.0/src/lib/alternate", output) != EOF);
+        assert(fputs(selected + strlen("/test/library/v1.0.0/src/lib/assembly"), output) != EOF && fclose(output) == 0);
         break;
     }
-    case 7: file("generated/library/lib/unrelated", "@!\n# unused source change\n"); break;
-    case 8: append_delivery_bytes("generated/library/lib/counter.h", "/* changed private native dependency */\n"); break;
-    case 9: file("generated/project/independent", "@!\n# changed independent branch\n"); break;
+    case 7: file("generated/library/packages/test/library/v1.0.0/src/lib/unrelated", "@!\n# unused source change\n"); break;
+    case 8: append_delivery_bytes("generated/library/packages/test/library/v1.0.0/src/lib/counter.h", "/* changed private native dependency */\n"); break;
+    case 9: file("generated/project/packages/test/fixture/v1.0.0/src/independent", "@!\n# changed independent branch\n"); break;
     default: assert(false);
     }
 }
@@ -64,14 +64,14 @@ static void it_invalidates_exact_source_library_consumers_and_preserves_noop_sna
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/library", NULL, 0, MODULE_ROOT_PROJECT},
         {TEST_STANDARD_ROOT, NULL, 0, MODULE_ROOT_STANDARD}};
-    assert(compiler_frontend_check(&frontend, roots, 3, ".main"));
+    assert(compiler_frontend_check(&frontend, roots, 3, "/test/fixture/v1.0.0/src/main"));
     size_t live = live_allocations;
     for (size_t mutation = 0; mutation < sizeof(expected) / sizeof(expected[0]); mutation++) {
         prepare_delivery_sources();
         change_delivery_input(mutation);
         CompilerFrontend after;
         compiler_frontend_init(&after, sources.allocator);
-        bool checked = compiler_frontend_check(&after, roots, 3, ".main");
+        bool checked = compiler_frontend_check(&after, roots, 3, "/test/fixture/v1.0.0/src/main");
         if (!checked) { assert(diagnostic_render(stderr, &after.error) == DIAGNOSTIC_RENDER_OK); }
         assert(checked && after.inputs.sealed);
         assert(project_inputs_compare(&after.inputs, &frontend.inputs) == SOURCE_OK);
@@ -83,11 +83,11 @@ static void it_invalidates_exact_source_library_consumers_and_preserves_noop_sna
             }
             assert(changed == expected[mutation][index]);
         }
-        assert(project_inputs_find(&after.inputs, PROJECT_INPUT_MODULE, ".lib.unrelated") == NULL);
+        assert(project_inputs_find(&after.inputs, PROJECT_INPUT_MODULE, "/test/library/v1.0.0/src/lib/unrelated") == NULL);
         bool changed = false;
         if (mutation == 6) {
-            assert(project_inputs_changed(&after.inputs, PROJECT_INPUT_MODULE, ".lib.alternate", &changed) && changed);
-        } else { assert(project_inputs_find(&after.inputs, PROJECT_INPUT_MODULE, ".lib.alternate") == NULL); }
+            assert(project_inputs_changed(&after.inputs, PROJECT_INPUT_MODULE, "/test/library/v1.0.0/src/lib/alternate", &changed) && changed);
+        } else { assert(project_inputs_find(&after.inputs, PROJECT_INPUT_MODULE, "/test/library/v1.0.0/src/lib/alternate") == NULL); }
         compiler_frontend_destroy(&after);
         assert(live_allocations == live);
     }

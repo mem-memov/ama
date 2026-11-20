@@ -5,14 +5,14 @@
 
 /** A root publishes both pair-defined and forwarded public names in source order. */
 static void it_publishes_all_public_names_and_reuses_the_actual_root(void) {
-    setup_publications("@...\n...own\n..integer\n.other\n ...out > ...forwarded\n", "@...\n...out\n..integer\n");
+    setup_publications("@...\n.own\n//integer\n/test/fixture/v1.0.0/src/other\n .out > .forwarded\n", "@...\n.out\n//integer\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticPublication *first, *again;
     assert(static_publication_scope(&publications, context, &first));
     assert(first->use == NULL && first->value == NULL && first->context == context);
     assert(first->output_count == 2 && first->first_output->value == integer_type);
-    assert(first->first_output->symbol == result_named(caller_module, "...own"));
-    assert(first->first_output->next->symbol == result_named(caller_module, "...forwarded"));
+    assert(first->first_output->symbol == result_named(caller_module, ".own"));
+    assert(first->first_output->next->symbol == result_named(caller_module, ".forwarded"));
     assert(first->first_output->next->value == integer_type);
     assert(static_publication_scope(&publications, context, &again) && again == first);
     assert(publications.count == 1);
@@ -21,7 +21,7 @@ static void it_publishes_all_public_names_and_reuses_the_actual_root(void) {
 
 /** The complete input key can be inferred from an existing receiver equation. */
 static void it_infers_omitted_inputs_and_publishes_a_valueless_producer_bundle(void) {
-    setup_publications("@...\n...known\n..integer\n.other\n ...out > ...known\n", "@...\n...out\n...type\n");
+    setup_publications("@...\n.known\n//integer\n/test/fixture/v1.0.0/src/other\n .out > .known\n", "@...\n.out\n.type\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticPublication *publication;
     assert(static_publication_resolve(&publications, context, result_projection(0), &publication));
@@ -33,8 +33,8 @@ static void it_infers_omitted_inputs_and_publishes_a_valueless_producer_bundle(v
 
 /** Validation cycles do not manufacture value-definition cycles. */
 static void it_closes_cyclic_validation_with_acyclic_export_definitions(void) {
-    setup_publications("@...\n.other\n ...selected > ...out\n",
-        "@...\n...selected\n..integer\n.main\n ...out > ...unselected\n");
+    setup_publications("@...\n/test/fixture/v1.0.0/src/other\n .selected > .out\n",
+        "@...\n.selected\n//integer\n/test/fixture/v1.0.0/src/main\n .out > .unselected\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticPublication *publication;
     assert(static_publication_scope(&publications, context, &publication));
@@ -45,8 +45,8 @@ static void it_closes_cyclic_validation_with_acyclic_export_definitions(void) {
 
 /** A selected known result cannot hide an unselected recursive value. */
 static void it_rejects_an_unselected_value_cycle_without_exposing_partial_outputs(void) {
-    setup_publications("@...\n.other\n ...good > ...selected\n",
-        "@...\n...good\n..integer\n...bad\n...bad\n");
+    setup_publications("@...\n/test/fixture/v1.0.0/src/other\n .good > .selected\n",
+        "@...\n.good\n//integer\n.bad\n.bad\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticPublication *publication = (const StaticPublication *)&publications;
     assert(!static_publication_resolve(&publications, context, result_projection(0), &publication));
@@ -57,7 +57,7 @@ static void it_rejects_an_unselected_value_cycle_without_exposing_partial_output
 
 /** An underdetermined key stays an error; available concrete types are not defaults. */
 static void it_refuses_unanchored_producers_at_a_stable_fixed_point(void) {
-    setup_publications("@...\n.other\n ...out > ...unknown\n", "@...\n...out\n...type\n...anchor\n..integer\n");
+    setup_publications("@...\n/test/fixture/v1.0.0/src/other\n .out > .unknown\n", "@...\n.out\n.type\n.anchor\n//integer\n");
     const StaticResultContext *context = publication_context(caller_environment);
     const StaticPublication *publication = NULL;
     assert(!static_publication_scope(&publications, context, &publication));
@@ -71,8 +71,8 @@ static void it_refuses_unanchored_producers_at_a_stable_fixed_point(void) {
  */
 static void it_refuses_invalid_root_handles_ordinary_roots_and_count_overflow(void) {
     for (size_t kind = 0; kind < 4; kind++) {
-        setup_publications(kind == 2 ? "@!\nanchor&\n..integer\n" :
-            "@...\n...out\n..integer\n", "@...\n");
+        setup_publications(kind == 2 ? "@!\nanchor&\n//integer\n" :
+            "@...\n.out\n//integer\n", "@...\n");
         const StaticResultContext *context = publication_context(caller_environment);
         StaticResultContext copied = *context;
         const StaticPublication *publication = NULL;
