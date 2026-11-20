@@ -7056,3 +7056,38 @@ T201. Specification bytes have not changed.
   Require successful completion, then verify every manifest input against source
   and reviewed staged bytes before the task commit. Generated pages remain
   unversioned. No other task is completed by this specification change.
+
+<a id="t228"></a>
+
+- [x] **T228 — Record the native-library dependency design question.**
+  Status: completed documentation-only task; authorized by the user's 2026-11-20
+  request to add native C dependency declaration/discovery to the backlog.
+  Prerequisites: none. Deliverable: pending T229 records system and installed
+  native library dependencies, explicit declarations versus tool-assisted
+  discovery, transitive/build/runtime requirements and reproducibility questions.
+  Project/package folder names remain a discussion proposal, including projects
+  composed entirely from external packages; no specification change is authorized.
+  Steps: record the question and its current native boundary; validate task IDs,
+  links and unchanged specification/code; build documentation, archive this record,
+  regenerate from final inputs and check source/staged fingerprints before commit.
+  Accept: one pending future task with explicit decisions/acceptance scope, no
+  assumed discovery algorithm, valid navigation and successful documentation gates.
+  Results: [T229](BACKLOG.md#t229) remains an unchecked future design task.
+  It separates explicit requirements from discovery and selection, identifies
+  native headers/link/runtime/transitive/target inputs, and requires reproducible
+  provenance and precise conflict/refusal behavior before implementation. Current
+  native source contracts are linked without defining a new manifest or resolver.
+  The directory proposal is discussed with the user only; own packages and
+  external packages can each be absent, including external-only compositions.
+  No project layout rule, specification, compiler, library, test, tool or accepted
+  conformance evidence changed.
+  Acceptance: python3 /tmp/ama-t228-doc-check.py passes for 229 unique IDs across
+  TODO/BACKLOG/DONE, 24 unchanged specification chapters, 217 requirements,
+  113 aligned/fully referenced EBNF definitions and valid local/canonical links.
+  git diff --check passes. make docs exits 0 (/tmp/ama-t228-docs-initial.log):
+  3028 ready inputs, zero debts, Doxygen 1.11.0, Python 3.14.4, markdown-it-py 3.0.0;
+  2297 maintained file pages, 8908 interfaces and 457/457 canonical destinations.
+  All 2538 input fingerprints match the reviewed source edition.
+  Final delivery: after this archival update, rerun document checks and make docs
+  (/tmp/ama-t228-docs-final.log); require successful completion and source/staged
+  fingerprint agreement before commit. Generated technical pages remain unversioned.

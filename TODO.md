@@ -73,9 +73,10 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T228**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T230**.
 T221/T226 implementation has not been requested.
-[T222](BACKLOG.md#t222), [T223](BACKLOG.md#t223), and [T224](BACKLOG.md#t224)
+[T222](BACKLOG.md#t222), [T223](BACKLOG.md#t223), [T224](BACKLOG.md#t224),
+and [T229](BACKLOG.md#t229)
 are backlog items awaiting future design or implementation authorization.
 
 <a id="t221"></a>
