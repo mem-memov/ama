@@ -16,6 +16,12 @@ probe
 .probe
 worker
 .worker
+forward
+.assembly
+ ...texts
+forward !
+ < request
+ > request
 probe !
 worker !
  request < request

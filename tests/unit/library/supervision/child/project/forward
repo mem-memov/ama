@@ -1,0 +1,10 @@
+@<
+input
+...element
+@>
+output
+...element
+ input
+@!
+output
+ input

@@ -24,17 +24,22 @@ static void execute(const char *path) {
     bool executed=library_package_process(arguments,stderr); assert(executed);
 }
 /** Build a native-text component, keeping all staging paths separate. */
-static void package_component(const char *name, const char *directory_name, PackageNames *names,
+static void package_component(const char *name, const char *directory_name, const char *root, PackageNames *names,
     bool release, PackageProbe probe) {
     char directory_path[256];
     int size=snprintf(directory_path,sizeof(directory_path),"generated/%s",directory_name); assert(size>0 && (size_t)size<sizeof(directory_path));
     directory(directory_path);
-    const SourceText *original=configuration("schema | text | text | ..text\nexport | run | .main | entry,resume,read\noutput | run | value | text\n"
+    char exports[1024];
+    size=snprintf(exports,sizeof(exports),"schema | text | text | ..text\nexport | run | %s | entry,resume,read\noutput | run | value | text\n"
+        ,root); assert(size>0 && (size_t)size<sizeof(exports));
+    char settings[2048];
+    size=snprintf(settings,sizeof(settings),"%s%s",exports,
         "c-flag | -fvisibility=hidden\nc-flag | -DAMA_COMPONENT_MARKER=7\n"
 #ifdef TEST_SANITIZERS
         "c-flag | -fsanitize=address,undefined\nc-flag | -fno-omit-frame-pointer\nlink-flag | -fsanitize=address,undefined\n"
 #endif
-        );
+        ); assert(size>0 && (size_t)size<sizeof(settings));
+    const SourceText *original=configuration(settings);
     const char *bytes=(const char *)source_bytes(original), *old=strstr(bytes,"example.component"); assert(old!=NULL);
     char records_buffer[4096];
     size=snprintf(records_buffer,sizeof(records_buffer),"%.*s%s%s%s",(int)(old-bytes),bytes,name,
@@ -45,7 +50,9 @@ static void package_component(const char *name, const char *directory_name, Pack
     bool valid=library_configuration_parse(&build,source); assert(valid);
     ModuleRoot roots[]={{.path="generated/project",.kind=MODULE_ROOT_PROJECT},
         {.path=TEST_STANDARD_ROOT,.kind=MODULE_ROOT_STANDARD}};
-    valid=library_build_resolve(&build,roots,2); assert(valid);
+    valid=library_build_resolve(&build,roots,2);
+    if (!valid) { fprintf(stderr,"%s\n",build.error.message); }
+    assert(valid);
     strcpy(names->component,build.identity->internal_name); strcpy(names->exported,build.exports->identity->internal_name);
     strcpy(names->text,build.schemas->identity->internal_name);
     NativeScaffold assembly; native_scaffold_init(&assembly,&build.frontend,sources.allocator);

@@ -3,6 +3,7 @@
  */
 #include "common.c"
 #include "support/contracts.c"
+#include "support/templates.c"
 #include "support/inputs.c"
 #include "support/failures.c"
 #include "support/identities.c"
@@ -10,6 +11,7 @@
 
 /** Run complete typed, negative, dependency and cleanup scenarios explicitly. */
 void run(void) {
+    it_rejects_open_static_and_synthetic_template_export_roots();
     it_rejects_rebinding_a_completed_library_model();
     it_requires_native_profile_capabilities_and_failure_shape();
     it_names_complete_abi_contracts_and_rejects_identity_collisions();

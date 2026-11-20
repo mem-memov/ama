@@ -5,12 +5,13 @@
 #include "host.c"
 #include "failures.c"
 #include "combined.c"
+#include "templates.c"
 /** Static and shared linking both keep overlapping runtime/native identities isolated. */
 static void it_packages_two_components_with_overlapping_module_names(void) {
-    setup_test(); directory("generated/project"); file("generated/project/main","@>\nvalue\n..text\n |hello\n@!\n%\n");
+    setup_test(); prepare_static_facades();
     PackageNames first,second;
-    package_component("first.component","first",&first,false,package_rejections);
-    package_component("second.component","second",&second,true,NULL);
+    package_component("first.component","first",".textfacade",&first,false,facade_package_rejections);
+    package_component("second.component","second",".integerfacade",&second,true,facade_package_contract);
     assert(strcmp(first.component,second.component)!=0);
     host_part("generated/first.c","first",&first,"first",false);
     host_part("generated/second.c","second",&second,"second",false);

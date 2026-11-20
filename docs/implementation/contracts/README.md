@@ -311,3 +311,6 @@ active original-source navigation and checked-rename integration.
 The [static relocation contract](../static-relocation.md) records T193
 source-path classification, complete specialization mapping and actual relocation
 transaction/recovery acceptance.
+
+T194: [concrete template facades at the C boundary](../static-library-facades.md)
+composes named static exports with actual package and isolated-child consumers.

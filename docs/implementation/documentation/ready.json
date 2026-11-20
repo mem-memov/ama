@@ -38946,7 +38946,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/程序": {
+  "tests/integration/parser/grammar/project/\u7a0b\u5e8f": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -39032,7 +39032,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/中间": {
+  "tests/integration/project/closure/project/\u4e2d\u95f4": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40331,7 +40331,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元": {
+  "tests/integration/semantic/types/project/\u5143": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40342,7 +40342,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.abi": {
+  "tests/integration/semantic/types/project/\u5143.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40353,7 +40353,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.c": {
+  "tests/integration/semantic/types/project/\u5143.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -40364,7 +40364,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/元.h": {
+  "tests/integration/semantic/types/project/\u5143.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -40390,7 +40390,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米": {
+  "tests/integration/semantic/types/project/\u7c73": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40401,7 +40401,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.abi": {
+  "tests/integration/semantic/types/project/\u7c73.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40412,7 +40412,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.c": {
+  "tests/integration/semantic/types/project/\u7c73.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -40423,7 +40423,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/米.h": {
+  "tests/integration/semantic/types/project/\u7c73.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -40636,7 +40636,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/other/商品": {
+  "tests/integration/source/diagnostics/project/other/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -40662,7 +40662,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/商店/商品": {
+  "tests/integration/source/diagnostics/project/\u5546\u5e97/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -86797,6 +86797,11 @@
         "case": "it_rejects_rebinding_a_completed_library_model",
         "command": "make -C tests/unit/library/resolution",
         "source": "tests/unit/library/resolution/main.c"
+      },
+      {
+        "case": "it_rejects_open_static_and_synthetic_template_export_roots",
+        "source": "tests/unit/library/resolution/main.c",
+        "command": "make -C tests/unit/library/resolution"
       }
     ]
   },
@@ -169542,6 +169547,61 @@
         "source": "tests/unit/semantic/lists/main.c",
         "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
         "command": "make -C tests/unit/semantic/lists"
+      }
+    ]
+  },
+  "tests/unit/library/package/templates.c": {
+    "contract": "docs/implementation/static-library-facades.md",
+    "purpose": "Package concrete static-selected template facades with distinct full-capture identities and no runtime static slots.",
+    "tests": [
+      {
+        "case": "it_packages_two_components_with_overlapping_module_names",
+        "source": "tests/unit/library/package/main.c",
+        "command": "make -C tests/unit/library/package"
+      }
+    ]
+  },
+  "tests/unit/library/resolution/support/templates.c": {
+    "contract": "docs/implementation/static-library-facades.md",
+    "purpose": "Reject open and compile-time roots and unsupported selector/static-map syntax at the checked C boundary.",
+    "tests": [
+      {
+        "case": "it_rejects_open_static_and_synthetic_template_export_roots",
+        "source": "tests/unit/library/resolution/main.c",
+        "command": "make -C tests/unit/library/resolution"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/consumer/peers.c": {
+    "contract": "docs/implementation/static-library-facades.md",
+    "purpose": "Execute concrete generic child workers through an isolated native wrapper and preserve independent peers during owned-child cleanup.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "source": "tests/unit/library/supervision/main.c",
+        "command": "make -C tests/unit/library/supervision"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/forward": {
+    "contract": "docs/implementation/static-library-facades.md",
+    "purpose": "Execute concrete generic child workers through an isolated native wrapper and preserve independent peers during owned-child cleanup.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "source": "tests/unit/library/supervision/main.c",
+        "command": "make -C tests/unit/library/supervision"
+      }
+    ]
+  },
+  "tests/unit/library/supervision/child/project/assembly": {
+    "contract": "docs/implementation/static-library-facades.md",
+    "purpose": "Execute concrete generic child workers through an isolated native wrapper and preserve independent peers during owned-child cleanup.",
+    "tests": [
+      {
+        "case": "it_supervises_nested_suspension_without_retaining_c_activations",
+        "source": "tests/unit/library/supervision/main.c",
+        "command": "make -C tests/unit/library/supervision"
       }
     ]
   }

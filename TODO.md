@@ -200,8 +200,10 @@ exact invalidation. [T192](DONE.md#t192) supplies original static editor binding
 full captured-owner rename proofs and checked source transactions.
 [T193](DONE.md#t193) supplies shared guarded
 original/final source checking, structural static binding preservation, actual
-relocated execution and concrete-only pipeline retirement. T194 is next: compiled
-concrete facades.
+relocated execution and concrete-only pipeline retirement.
+[T194](DONE.md#t194) now supplies static/shared concrete
+facade consumers, exact export refusals and template-backed child/peer lifecycle
+checks. T195 is next: useful generic list algorithms.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -229,32 +231,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 6. Lower and execute concrete programs
 
 ### Phase 7. Connect product consumers and algorithm examples
-
-<a id="t194"></a>
-
-- [ ] **T194 — Export concrete template facades through the checked C boundary.**
-  Prerequisites: T188, T190, T191, T205.
-  Rules: [TPL-13](spec/language/templates.md#tpl-13),
-  [EMBED-01](spec/implementation/c-library.md#embed-01),
-  [EMBED-04](spec/implementation/c-library.md#embed-04),
-  [EMBED-08](spec/implementation/c-library.md#embed-08).
-  Boundary: existing export configuration, library closure/header/transport,
-  artifacts and independent C-host/native-wrapper consumers.
-  Steps: (1) export an ordinary concrete Ama facade with closed internal template
-  workers and retain already concrete native roots; (2) build static and
-  target-supported shared artifacts with their manifests, compile the public
-  header first in two independent C units and run a larger C host;
-  (3) compose a concrete native wrapper with nested child completion/yield.
-  Accept: full specialization/native closure, supported typed transport,
-  independent contexts/host objects, ownership and cleanup all hold. Include
-  two concrete facades with different substitutions and inspect their ABI identities.
-  Reject open export roots, static-module export roots including closed graphs,
-  virtual specialization selectors/static argument maps, missing closure and
-  unsupported transport. Static results add no runtime C slots; no shared
-  mutable Ama refs or yield across an unfinished native call.
-  Exercise T205's `A -> owned W -> child B` with independent peer C: normal and
-  outer-failure cleanup dispose yielded/failed B exactly once, preserve C and
-  respect detached native activity/code lifetimes without Ama execution/reentry.
 
 <a id="t195"></a>
 

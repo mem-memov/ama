@@ -207,3 +207,12 @@ make docs-reproducible
 - `tools/documentation/coverage.py` and its maintained scenario fixture now retain
   `.exports` build configurations in the input inventory, independently of old
   debt entries. The C/assert documentation leaf checks the real Python boundary.
+
+## Concrete template facades
+
+[T194's composition record](static-library-facades.md) verifies ordinary concrete
+facades whose internal workers come from named static exports. Export roots
+remain concrete source module paths; static modules, open definitions, generated
+specialization selectors and static argument-map configuration are refused. The
+record links actual static/shared C consumers and isolated native child cleanup
+evidence without introducing another library model.

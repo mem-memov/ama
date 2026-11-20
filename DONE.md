@@ -6550,3 +6550,50 @@ T201. Specification bytes have not changed.
   Linked evidence preserves corrected fixture/API/diagnostic probes and exact
   ownership/readiness limits. No spec or conformance fingerprint edits; T196 owns
   the existing independent conformance review failure. Next ready task: T194.
+
+<a id="t194"></a>
+
+- [x] **T194 — Export concrete template facades through the checked C boundary.**
+  Completed 2026-11-20: [contract, steps and evidence](docs/implementation/static-library-facades.md).
+  Prerequisites: T188, T190, T191, T205.
+  Rules: [TPL-13](spec/language/templates.md#tpl-13),
+  [EMBED-01](spec/implementation/c-library.md#embed-01),
+  [EMBED-04](spec/implementation/c-library.md#embed-04),
+  [EMBED-08](spec/implementation/c-library.md#embed-08).
+  Boundary: existing export configuration, library closure/header/transport,
+  artifacts and independent C-host/native-wrapper consumers.
+  Steps: (1) export an ordinary concrete Ama facade with closed internal template
+  workers and retain already concrete native roots; (2) build static and
+  target-supported shared artifacts with their manifests, compile the public
+  header first in two independent C units and run a larger C host;
+  (3) compose a concrete native wrapper with nested child completion/yield.
+  Accept: full specialization/native closure, supported typed transport,
+  independent contexts/host objects, ownership and cleanup all hold. Include
+  two concrete facades with different substitutions and inspect their ABI identities.
+  Reject open export roots, static-module export roots including closed graphs,
+  virtual specialization selectors/static argument maps, missing closure and
+  unsupported transport. Static results add no runtime C slots; no shared
+  mutable Ama refs or yield across an unfinished native call.
+  Exercise T205's `A -> owned W -> child B` with independent peer C: normal and
+  outer-failure cleanup dispose yielded/failed B exactly once, preserve C and
+  respect detached native activity/code lifetimes without Ama execution/reentry.
+
+  Acceptance: the complete strict library parent passes, with the final
+  observed-result package separately rerun after strengthening. Static/shared
+  and unload/reload hosts compile independent public-header-first C translation
+  units and run concrete text/integer template facades. Both full capture keys
+  retain distinct generated namespaces; public manifests retain checked export
+  identity and static outputs add no runtime result slots. Open/static/synthetic
+  export selectors, unsupported static maps and missing closure are refused.
+  Existing native roots, typed transport and foreign-owner checks remain covered.
+  A separately packaged generic child executes through the native adapter;
+  normal/yielded/failed cleanup disposes owned children exactly once without
+  another body step, preserves independent peers and respects code/snapshot pins.
+  Final package and supervision compositions pass ASan/UBSan. Counted teardown
+  is separate from unavailable LSan. Per-file validation checks 3012 inputs with
+  zero debt. Actual Doxygen passes with 2291 file pages, 8895
+  interfaces and 448/448 canonical destinations. The linked record retains
+  all commands/logs, corrected fixture refusals and invariants. Regenerate for
+  archived inputs and compare staged/rendered hashes before the task commit.
+  No production/spec/fingerprint change was needed; T196 retains the independent
+  conformance review gate. Next ready task: T195.

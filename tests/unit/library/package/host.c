@@ -68,12 +68,14 @@ static void host_calls(FILE *output) {
 static void host_part(const char *path, const char *directory_name, const PackageNames *names,
     const char *name, bool dynamic) {
     FILE *output=fopen(path,"wb"); assert(output!=NULL);
-    int written=fputs("#undef NDEBUG\n#include <assert.h>\n#include <string.h>\n#include <stddef.h>\n",output); assert(written!=EOF);
+    int written;
+    if (!dynamic) { written=fprintf(output,"#include \"%s/public.h\"\n",directory_name); assert(written>0); }
+    written=fputs("#undef NDEBUG\n#include <assert.h>\n#include <string.h>\n#include <stddef.h>\n",output); assert(written!=EOF);
     if (dynamic) {
         written=fputs("#include <dlfcn.h>\n",output); assert(written!=EOF);
         loader_symbols(output,directory_name,0);
     }
-    written=fprintf(output,"#include \"%s/public.h\"\n",directory_name); assert(written>0);
+    if (dynamic) { written=fprintf(output,"#include \"%s/public.h\"\n",directory_name); assert(written>0); }
     host_aliases(output,names);
     written=fprintf(output,
         "static size_t completions; static void native_completion(void) { completions++; }\n"
