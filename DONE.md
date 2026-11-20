@@ -7247,3 +7247,54 @@ T201. Specification bytes have not changed.
   make docs (/tmp/ama-t229-docs-final.log), require exit 0 and matching final
   source/staged manifest fingerprints before commit. Generated pages remain
   unversioned; no compiler or CMake integration support is claimed.
+
+<a id="t243"></a>
+
+- [x] **T243 — Plan the CMake, launcher and source-inclusion implementation.**
+  Status: completed planning-only task, authorized by the user's 2026-11-20
+  request for a detailed foundation-to-acceptance plan. Prerequisites: T229 and
+  T230's specification/queued alignment. The request does not authorize feature
+  implementation or specification amendments. No new language rule is defined.
+  Deliverable: [implementation plan](docs/implementation/cmake-launcher-plan.md)
+  and ordered TODO tasks with stable identities, contracts, per-file evidence,
+  real consumers, failure partitions and one commit per accepted task.
+  Steps: read project/development/contributor instructions and the current queue;
+  inspect the approved contracts and a bounded actual-owner inventory; split
+  independently acceptable responsibilities while preserving T239..242 IDs;
+  independently audit dependencies and rule/acceptance coverage; validate and
+  generate documentation; archive with a final delivery provenance check.
+  Results: 18 implementation tasks plus T237's whole-sprint release gate. New
+  T244..257 extract typed metadata, scaffolding, scoped CMake, initial input
+  construction, text/files/binary, exact names, one-shot execution, profiles,
+  process stages, verification/publication and command composition. T239 remains
+  native closure, T240 argv admission, T241 delivery and T242 final integration.
+  Existing source/configuration/template/project and delivery prerequisites stay
+  visible; T222's separate specification-authorization gate is preserved.
+  Bounded owner review found main(void), first-root creation without supplied
+  recipes, hash-sized public-name storage and fixed direct-GCC/main verifier
+  assumptions. The plan assigns migration/removal owners while retaining useful
+  stateful host/ABI/runtime consumers; no code or tests were removed in planning.
+  Independent dependency/acceptance reviews found no blocker. Follow-up wording
+  makes decoder execution occur during declaration-order input construction,
+  prevents later reads after an earlier constructor failure, avoids suggesting
+  CLI input aliases, and distinguishes scoped evidence from T237's full matrix.
+  T233's test-orchestration boundary cannot depend on the final T242 runner.
+  Acceptance: python3 /tmp/ama-t243-plan-check.py passes for 257 unique task IDs,
+  19 ordered implementation/release rows, all immediate edges and an acyclic
+  transitive prerequisite graph; 30 unfinished records before archival, 29 after.
+  It also checks local links/task anchors, Markdown transform line preservation,
+  28 unchanged canonical chapters/241 rule definitions and 145 aligned reachable
+  grammar rules. The initial link check caught a premature DONE#t243 reference;
+  it pointed to active TODO until archival, then to this completed record.
+  git diff --check passes. No spec/code/build-tool/per-file-registry/conformance
+  matrix inputs changed; future feature/compiler/CMake tests were not run or
+  represented as passing. Next unused task ID: T258.
+  Initial make docs exits 0 (/tmp/ama-t243-docs-initial.log), with 3028 ready
+  inputs, zero debts, 2297 maintained file pages, 8908 interfaces and 486/486
+  canonical destinations. Doxygen 1.11.0, Python 3.14.4 and markdown-it-py 3.0.0;
+  python3 /tmp/ama-t243-provenance.py --worktree-only confirms all 2543 generated
+  input fingerprints before archival. Final delivery after archival: rerun the
+  plan/link/whitespace checks and make docs (/tmp/ama-t243-docs-final.log); require
+  exit 0 and python3 /tmp/ama-t243-provenance.py source/staged agreement before
+  commit. Generated references remain unversioned. Implementation stays planned;
+  this acceptance establishes a coherent roadmap, not feature support.

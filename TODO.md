@@ -73,12 +73,15 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T243**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T258**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
-T221/T226 and T231–T237/T224/T222/T239–T242 implementation has not been requested.
+Implementation of the planned tasks below has not been requested.
 [T229](DONE.md#t229) specifies the CMake/launcher/source-inclusion contracts;
-T239–T242 are their pending implementation owners.
+T239–T242 and T244–T257 are their pending implementation owners. The
+[detailed implementation plan](docs/implementation/cmake-launcher-plan.md)
+records foundation gates, task/step acceptance, migration and evidence duties;
+[T243](DONE.md#t243) records its completed planning acceptance.
 
 <a id="t221"></a>
 
@@ -94,8 +97,10 @@ T239–T242 are their pending implementation owners.
   forwarding, all four runtime storage forms and entry/native/C export refusals,
   including substituted/selected marker Types; retain ordinary producer behavior.
   Accept: component/composition/failure tests and actual consumers pass; review
-  changed requirement/acceptance arguments and fingerprints with real evidence,
-  then pass current conformance and documentation gates. The T196/T197 matrix
+  changed requirement/acceptance arguments with real scoped evidence and pass
+  documentation gates. T237 owns the whole-sprint conformance renewal; record
+  the expected stale refusal before then rather than refreshing hashes to pass.
+  The T196/T197 matrix
   remains an earlier accepted baseline until this alignment; do not refresh
   fingerprints merely to make its newer-specification refusal disappear.
 
@@ -117,8 +122,9 @@ T239–T242 are their pending implementation owners.
   bare placeholders, aliases, exact inference and all required producer inputs.
   Reject residual/ambiguous final Types, unknown body placeholders, direct marker
   storage and native own parameters; preserve ordinary lifecycle and C transport.
-  Renew conformance evidence only after implementation/argument review, then
-  pass the required consumer, conformance and documentation gates. The earlier
+  Record scoped conformance evidence only after implementation/argument review,
+  then pass required consumers and documentation gates. T237 owns the complete
+  matrix renewal once all newer contracts are implemented. The earlier
   accepted matrix remains historical evidence, not support for these new rules.
 
 ## Planned alignment: projects, paths and project tools
@@ -167,8 +173,9 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   Accept: test one-space formation with simple, multiword and indexed operands;
   reject joined operands, repeated spaces, TAB and a line break in place of the
   separator. Preserve suffix/self-reference parsing and all reference behavior.
-  Complete component/composition, source-tool and conformance/documentation
-  checks before marking this language change implemented.
+  Complete component/composition, source-tool, scoped conformance evidence and
+  documentation checks before marking this language change implemented. T237
+  owns the later complete conformance matrix/gate.
 
 <a id="t232"></a>
 
@@ -259,63 +266,224 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 
 ## Planned alignment: CMake applications and source inclusion
 
-T229 specifies these contracts; implementation remains a separate request.
-Complete T233's independent tool boundary before integrating build orchestration.
-Keep each task's granular components, real consumers and documentation together.
+T229 specifies these contracts; T243 supplies the
+[detailed task/step plan](docs/implementation/cmake-launcher-plan.md).
+Implementation remains a separate request. Execute in the order below after
+each row's actual prerequisites; IDs are stable, not a numeric ordering rule.
+T231/T222/T232/T221/T226/T233 remain foundation gates. T222 still requires its
+separate specification authorization. T233's independent test orchestration does
+not depend on the final CMake runner; T242 composes them after both exist.
+
+All tasks include contracts, exact invariants, Doxygen rule links, per-file
+component/composition evidence, resource/failure checks and a separate commit.
+The linked plan expands their step order and acceptance partitions. Earlier
+complete-conformance fingerprints remain historical until T237's final review;
+focused accepted evidence and documentation are required at every task.
+
+<a id="t244"></a>
+
+- [ ] **T244 — Establish build and launcher component contracts.**
+  Status: planned. Prerequisites: T243, T229 and T230. Reconcile the bounded
+  current-owner inventory with real consumers; assign retain/adapt/remove owners
+  and establish typed request, closure, binding, binary-schema, profile, artifact
+  and stage-result handoffs. Link BUILD/CLI/EMBED/CABI/RT contracts, invariants,
+  resource bounds, termination arguments and independent test partitions.
+  Accept: every boundary has an owner, explicit lifetime/failure effects and a
+  migration/test witness; no dormant implementation or competing specification.
+
+<a id="t245"></a>
+
+- [ ] **T245 — Implement explicit delivery requests and emission metadata.**
+  Status: planned. Prerequisites: T244 and T233. Carry concrete entry, component
+  identity, output mode and checked transport schema through driver/export/IR
+  consumers under EMBED-01/04/09 and CLI-01. Document backend metadata validation
+  and ownership; separate runtime input values from compilation configuration.
+  Accept concrete/native roots, unsupported root/schema refusals, real emission,
+  ownership/allocation boundaries and generation without CMake/network/source
+  mutation. Use the shared current resolver instead of adding a parallel one.
 
 <a id="t239"></a>
 
-- [ ] **T239 — Implement native CMake companions and instructional scaffolds.**
-  Status: planned. Prerequisites: T229, T233. Implement BUILD-01/02/05 and PKG-07
-  metadata delivery: resolve optional module.cmake from the selected package,
-  emit its exact closure membership, retain optional version README guidance,
-  create comments-only scaffolds without overwriting authored files, and expose
-  scoped CMake target integration without executing scripts during generation.
-  Accept absent/empty/changed companions, whole-version precedence, Unicode and
-  spaced paths, repeated scaffolding, failure cleanup and once-per-component
-  application through real CMake. Verify exact diagnostic ownership/README
-  absence, separate tests, resource delivery and the unchanged single-unit rule.
+- [ ] **T239 — Capture native companions and build-closure provenance.**
+  Status: planned. Prerequisite: T245. Preserve this task's original native
+  metadata ownership; T246/T247 extract scaffolding/target integration.
+  Implement BUILD-01/05 and PKG-07 selected module.cmake/resource/optional README
+  capture, exact concrete closure membership and deterministic emitted records.
+  Accept absent/empty/changed companions, selected-version holes, Unicode/spaces,
+  specialized native dependencies, unused-module exclusion and distinct component
+  records. Record exact absence/content invalidation and snapshot lifetime;
+  generation must not execute CMake or recover ignored dependency files.
+
+<a id="t246"></a>
+
+- [ ] **T246 — Generate preserving native CMake scaffolds.**
+  Status: planned. Prerequisite: T239. Implement BUILD-02 with the existing
+  CABI-06 author-file publication boundary: comments-only template, complete
+  instructions/example/canonical link and current native/editor build guidance.
+  Accept repeated requests, empty/nonempty existing files, collisions, controlled
+  concurrency and injected prepare/publish/cleanup failures. Verify bytes are
+  preserved, no active commands are generated and scaffolding runs no CMake.
+
+<a id="t247"></a>
+
+- [ ] **T247 — Implement scoped CMake component-target integration.**
+  Status: planned. Prerequisite: T239. Implement BUILD-01's exact once-per-component
+  includes, fresh function scope, supplied target, resource base and compatible
+  imported-target contract. Support executable and supplied host-target consumers.
+  Accept real CMake with a controlled local dependency, two components sharing a
+  module, temporary-variable isolation, declared conflict refusal and meaningful
+  include/link ordering. Never add native or included generated .c a second time;
+  generation remains nonexecuting and required Ama settings remain enforced.
+
+<a id="t248"></a>
+
+- [ ] **T248 — Supply fresh root inputs during first construction.**
+  Status: planned. Prerequisite: T245. Implement RT-11/CLI-02's initial supplied
+  recipes in both context/program construction consumers before any argv startup
+  uses them. Select default or supplied once, preserving declaration order,
+  constants/results/lifecycle and the stateful host API's separate behavior.
+  Accept constructor/resource traces, later defaults reading earlier supplied
+  inputs, partial acquisition failures and ordered cleanup. Prove no default
+  overwrite, second initial reset or body execution after preparation failure.
 
 <a id="t240"></a>
 
-- [ ] **T240 — Implement exact launcher inputs and one-shot startup.**
-  Status: planned. Prerequisites: T239, T226. Implement CLI-01..04 through narrow
-  argv recognition, binding admission, text/file acquisition, checked binary
-  transport, fresh-input construction and cleanup/outcome components. Preserve
-  ordinary defaults and constructor order, opaque identity and explicit schemas;
-  never use input text to infer specializations. Accept exact multiword/Unicode
-  names, first-equals/empty/default distinctions, duplicate/unsupported inputs,
-  BOM/TAB/newline/NUL data, malformed UTF-8, stdin ownership, resource failures,
-  decoder failure, no double construction, ordinary failure results and yield.
-  Run generated programs and counter-based lifecycle/borrow tests, not only
-  parser or emitted-text checks; document each source/file and actual boundary.
+- [ ] **T240 — Recognize argv and admit exact input bindings.**
+  Status: planned. Prerequisite: T245. Preserve original launcher input ownership;
+  T248/T249/T257/T256/T250 extract construction, acquisition and execution.
+  Implement CLI-01 recognition, vector shape, first-equals splitting, exact
+  names/transports and complete duplicate/unsupported/stdin admission before I/O.
+  Accept zero/null and conventional argv0/sentinel, Unicode/multiword names,
+  explicit empty, reordered tokens and all malformed/duplicate/unknown forms.
+  Verify original tokens survive, no body/stream effect precedes admission and
+  runtime values never infer Type specializations. Test valid readable shapes;
+  fabricated dangling C pointers are not recoverable-input test fixtures.
+
+<a id="t249"></a>
+
+- [ ] **T249 — Construct text inputs through exact native capabilities.**
+  Status: planned. Prerequisites: T240 and T248. Implement CLI-02 UTF-8 validation,
+  exact byte/length literal construction and supplied/default integration.
+  Accept explicit empty versus omission, literal/comment symbols as host data,
+  malformed encoding and constructor/resource failure. Reject unsupported
+  reference/list/compound text bindings, preserve defaulted complex fields and
+  prove token ordering cannot change declaration-order construction.
+
+<a id="t257"></a>
+
+- [ ] **T257 — Acquire byte-exact files and borrowed standard input.**
+  Status: planned. Prerequisites: T240 and T249. Implement CLI-03 stream/path
+  selection, bounded owned views and cleanup independently of decoding.
+  Accept empty/oversized data, CR/LF/TAB/BOM/NUL text, repeated ordinary-file
+  reads, caller working directory, stdin versus ./- and declaration-order reads.
+  Inject open/read/allocation/size and applicable close/mode-restoration failures;
+  borrowed stdin stays open, host modes are restored and an earlier failure
+  prevents later reads. Multiple stdin bindings fail before consuming bytes.
+
+<a id="t256"></a>
+
+- [ ] **T256 — Connect explicit checked binary input decoders.**
+  Status: planned. Prerequisites: T245, T248 and T257. Implement CLI-03 through
+  EMBED-04's exact nominal Type/schema/declaration admission and bounded borrowed
+  decoder view. Invoke decoding at that input's initial construction in declaration
+  order; publish only independently owned state, without eager pre-decoding.
+  Accept embedded zeros, size/range/schema/decoder/partial-resource failures,
+  same-layout wrong-Type refusal and borrow-expiration checks. No payload casts,
+  persisted input addresses, helper-name discovery or new native ABI protocol.
+
+<a id="t251"></a>
+
+- [ ] **T251 — Encode exact component-qualified public entry names.**
+  Status: planned. Prerequisite: T245. Implement EMBED-09/NAME-01's public
+  exception with checked-length UTF-8 hex ownership separate from internal hashes.
+  Accept independent ASCII/Unicode vectors, root/version/src/tests distinctions,
+  aliases of one canonical path and different component identities. Prove
+  injectivity and check target identifier/arithmetic/resource limits without
+  truncation. Preserve private identity/collision and native namespace guarantees.
+
+<a id="t250"></a>
+
+- [ ] **T250 — Implement the shared fresh one-shot execution boundary.**
+  Status: planned. Prerequisites: T249, T256 and T251. Compose admitted bindings,
+  acquisition, first construction, execution and cleanup under CLI-04/EMBED-09.
+  After complete admission, acquire/decode/construct each input in declaration
+  order; a constructor failure must prevent later stream reads as well.
+  Accept actual generated entry consumers for completion, fresh repeated runs,
+  ordinary failure results, technical/preparation/cleanup failure and root yield.
+  Verify no process exit, hidden instance, retained borrow, automatic resume or
+  second reset; host execution continues after failure. Preserve explicit stateful
+  entry/resume and use only conforming native fixtures for parallel context tests.
 
 <a id="t241"></a>
 
-- [ ] **T241 — Implement source inclusion and exact public entry identities.**
-  Status: planned. Prerequisites: T240, T239. Implement EMBED-09 and NAME-01's
-  public exception: complete no-main implementation/header/manifest, injective
-  component/path byte encoding, supported identifier checks and matching main
-  forwarding. Preserve stateful exports and private namespace ownership.
-  Accept own-main C inclusion, multiple header consumers, differently qualified
-  components in separate host units, repeated fresh calls, no process exit,
-  byte/lifetime/cleanup failures, unsupported symbol limits and CMake host-target
-  adaptation. Compile/link/run actual hosts and verify native inlining/ABI.
+- [ ] **T241 — Deliver source inclusion and the matching executable wrapper.**
+  Status: planned. Prerequisites: T250 and T247. Preserve this task's delivery
+  ownership; T251 extracts the public-name codec. Implement EMBED-09 complete
+  implementation/header/manifest, no-main mode and forwarding main(argc, argv).
+  Accept header-first compilation, own-main host, header-only second TU, two
+  qualified components in separate TUs, coexisting public headers and native
+  basename overlap. Compare actual executable/inclusion behavior and fresh state;
+  adapt host targets without duplicate .c inputs. Remove superseded fixed launcher
+  code/tests while retaining stateful C API and mandatory ABI/inlining checks.
+
+<a id="t252"></a>
+
+- [ ] **T252 — Plan explicit targets and complete declared build identities.**
+  Status: planned. Prerequisites: T245, T239 and T247. Implement BUILD-04 profile,
+  target/toolchain/configuration, declared resource/provider identity and exact
+  dependency-tracking reuse decisions. Preserve meaningful link order/repetitions.
+  Accept presence/content/alias/selected-copy/profile/dependency invalidation,
+  native-default recording, host/cross distinction and explicit execution mapping.
+  Runtime values and guidance-only README changes do not alter compilation;
+  timestamps, target names or unrecordable effects cannot justify artifact reuse.
+
+<a id="t253"></a>
+
+- [ ] **T253 — Configure and build selected targets through CMake.**
+  Status: planned. Prerequisites: T252 and T241. Implement BUILD-03's out-of-source
+  project and exact configure/build subprocess adapters with stage/tool/command
+  outcomes. Use argument vectors, not shell interpolation; select actual target
+  and multi-configuration settings. Accept real local dependency include/link,
+  spaced/Unicode paths and missing-tool/configure/compile/link failures. Preserve
+  raw diagnostics and prove generation-only runs no CMake/C compiler operation.
+
+<a id="t254"></a>
+
+- [ ] **T254 — Verify and publish coherent owned build artifacts.**
+  Status: planned. Prerequisite: T253. Implement BUILD-03/04 actual artifact and
+  configuration checks, selected entry rather than unconditional main discovery,
+  staged publication and cleanup. Accept real positive/negative native inlining
+  and ABI controls, each meaningful failure transition and deterministic parallel
+  output ownership. Published bytes and metadata must match; a previous good
+  binary cannot become the new result after failure. Preserve primary diagnostics
+  and retained recovery paths without promising arbitrary CMake-effect rollback.
+
+<a id="t255"></a>
+
+- [ ] **T255 — Compose build/run commands and precise diagnostics.**
+  Status: planned. Prerequisites: T254 and T250. Implement BUILD-03/05 command
+  orchestration through validate/emit/configure/build/verify/publish/run in order.
+  Build does not execute; run forwards only application tokens and reports the
+  actual child start/exit/signal with selected working directory. Accept options,
+  defaulted input runs and every stage failure with no subsequent execution or
+  stale artifact fallback. Report exact known module/span, raw tool diagnostics
+  and effective README/directory; ambiguous ownership reports component context,
+  never a guessed culprit, OS package or install command. No hidden acquisition.
 
 <a id="t242"></a>
 
-- [ ] **T242 — Implement and accept one-command CMake build and run.**
-  Status: planned. Prerequisites: T239..241, T236. Implement BUILD-03/04 through
-  explicit planning, compiler emission, CMake configure/build adapters, actual
-  artifact verification, coherent publication and child execution/reporting.
-  Accept executable/generation/source-inclusion modes, native/selected cross
-  profiles, unchanged-input reuse, companion presence and external-input
-  invalidation, independent parallel outputs and refusal to run stale artifacts.
-  Inject configure/compile/link/verification/publication/startup/cleanup failures;
-  preserve raw diagnostics and actual exit/signal outcomes without guessed OS
-  installation. Run source-and-test delivery, promotion and inclusion consumers,
-  complete declared current-rule evidence and documentation, and leave T237's
-  whole-sprint acceptance as the final release owner. Commit this task separately.
+- [ ] **T242 — Accept complete CMake application and source-inclusion workflows.**
+  Status: planned. Prerequisites: T246, T255, T241 and T236. Preserve this task's
+  final functional integration ownership; T252..255 extract build stages.
+  Accept real build/run/generation/inclusion for packages-only, dependencies-only,
+  local whole-version precedence, native and concrete generic/static consumers.
+  Connect delivered/promoted/relocated source/test snapshots and T233's isolated
+  test orchestration to the accepted backend. Compose CLI transport/lifecycle,
+  cache invalidation, stage/resource failures, controlled concurrency and actual
+  ABI/inlining/header/host checks. Reconcile every file/consumer, remove obsolete
+  alternatives and publish runnable examples plus actual supported versions.
+  Complete scoped evidence/documentation; T237 owns whole-sprint conformance,
+  clean release and final generated-reference delivery.
 
 ## Next sprint discussion
 
