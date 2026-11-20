@@ -6,8 +6,12 @@ references identify instances without owning them. Domain capabilities belong in
 libraries rather than an expanding collection of language primitives.
 
 [The product specification](spec/README.md) is the source of truth.
-The current implementation is mapped to **214 requirements** and **150 acceptance
-rows** in the [reviewed conformance evidence](docs/implementation/conformance/README.md).
+The last accepted implementation baseline maps **214 requirements** and
+**150 acceptance rows** in the
+[reviewed conformance evidence](docs/implementation/conformance/README.md).
+The specification additionally defines
+[static type markers](spec/language/static-results.md#tpl-14); implementation and
+renewed conformance acceptance are pending [T221](TODO.md#t221).
 [Ordinary templates](spec/language/templates.md) and separate
 [static modules](spec/language/static-results.md) provide compile-time inference,
 partial composition and concrete specializations. Native definitions remain

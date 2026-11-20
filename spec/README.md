@@ -21,7 +21,10 @@ introduced through ordinary input/output variable types, inference from typed
 connections, specialization identity and finite composition. The
 [static-module chapter](language/static-results.md) explains the separate `@...`
 graph form: named Type/Template bindings, partial composition, public results,
-and the selection of a concrete named export as an ordinary field type. Complex
+and the selection of a concrete named export as an ordinary field type.
+A file containing only `@...` and valid layout declares a nominal
+[static type marker](language/static-results.md#tpl-14), which can be passed
+through static Type connections and has no runtime instances. Complex
 static expressions stay in static modules; ordinary declarations retain the
 readable name/type pair. The examples explain both the model and its limits.
 The [finite-composition rule](language/templates.md#tpl-11) permits explicitly

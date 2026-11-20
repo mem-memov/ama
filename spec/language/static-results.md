@@ -7,6 +7,7 @@ In this chapter:
 
 - [Explanation: assembling types before execution](#explanation-assembling-types-before-execution)
 - [The static module](#the-static-module)
+- [Static type markers](#static-type-markers)
 - [Defining and forwarding a result](#defining-and-forwarding-a-result)
 - [Calling a static producer](#calling-a-static-producer)
 - [Inputs, public names and scope](#inputs-public-names-and-scope)
@@ -50,13 +51,17 @@ constructors exist. Their names are not additional standard-library facilities.
 result definitions and named uses of other static modules. It has no `@=`, `@<`,
 `@>`, `@!` or `@C` section. Blank lines and comments follow the ordinary
 source-layout rules. An empty graph has no inputs or exports.
+It declares a static type marker under [TPL-14](#tpl-14). A nonempty graph is
+a static producer; it has named outputs and no ordinary application Type of
+its own. Classify these cases from the complete valid source, before inspecting
+uses. Invalid graph statements do not make a file an empty marker.
 
 Its values are Type and Template metadata under
 [TPL-01/TPL-07/TPL-08](templates.md#tpl-01). A Type denotes one ordinary module
-type. A Template retains an actual original constructor, its fixed captures and
-its still-unfilled named formals. A static module's own specialization records
-its inputs and outputs for compilation; it does not provide an additional
-ordinary application Type or an executable instance.
+type or a static type marker. A Template retains an actual original constructor,
+its fixed captures and its still-unfilled named formals. A static producer's
+own specialization records its inputs and outputs for compilation; it does not
+provide an additional ordinary application Type or an executable instance.
 
 The graph has no ordinary variables, mutable result cells, references, lists of
 runtime values, defaults, literals, ordinary initializers, acquisition, reset,
@@ -73,6 +78,102 @@ path retains the field inference allowed by [TPL-04](templates.md#tpl-04);
 that compiler inference introduces no static binding block. Ordinary modules
 do not contain a static graph or become static producers when a Type placeholder
 appears in an ordinary input or output.
+
+## Static type markers
+
+**Explanation.** Some type arguments describe a purpose rather than stored data:
+node versus edge identifiers, a coordinate system, or a stage of processing.
+Such a name needs an exact identity but no instance. A marker file supplies that
+identity without an artificial variable, empty reference or executable body.
+Using the existing static annotation keeps its compile-time role visible.
+
+<a id="tpl-14"></a>
+
+**TPL-14.** A complete source file whose only non-layout construct is the single
+zero-indent `@...` annotation declares one closed nominal **static type marker**.
+Leading/trailing blank lines, valid zero-indent comment lines and a valid
+trailing comment on the annotation follow
+[SYN-02/SYN-06](source-and-names.md#syn-02) and do not change this
+classification. A zero-byte file or a file containing only comments is a draft
+under SYN-04, not a marker. Every source line must still satisfy the ordinary
+UTF-8, spacing, indentation and annotation rules.
+
+The marker's identity is its original full logical module identity, including
+root kind and every path component, under SRC-01/SRC-02/SRC-05. Two marker files
+with different logical identities denote different Types even when their bytes
+are identical. Physical `name+/` storage, aliases and named exports do not add
+another identity. Loading the same marker through several uses preserves one
+identity; source conflicts follow the normal module-resolution rules.
+
+A marker belongs to **Type** under TPL-07. It has no free inputs, residual
+formals or named exports. Its concrete module path is a static value-expression
+head, and may occur as a named static input's right-hand expression. A visible
+alias can forward it in the same positions. Static results and Type-valued
+static inputs may carry markers; compare their exact identities in equations
+and preserve them in complete specialization keys under TPL-05. Marker spelling
+does not infer a category, select an implementation or match another marker.
+
+A marker is not Template and cannot be applied with input bindings. It is not
+a multioutput producer: selecting a named output from it fails, and a marker
+path alone is not a producer-use statement. A nonempty static producer remains
+subject to TPL-12 and cannot be used as its own Type. Adding a graph statement
+to a marker file changes this classification; its uses must then satisfy the
+producer rules. No implicit own-Type export or conversion preserves the old
+marker meaning.
+
+A marker has no runtime instances, fields, methods, constants, native payload,
+busy/continuation state, lifecycle execution or runtime ABI. It requires no
+runtime slot or value transfer. Reject it as the module Type of any ordinary
+variable, reference target, owning-list element, reference-list target or shared
+constant, even when the reference/list is empty or the declaration is never
+executed. Apply this check after placeholder substitution and named static
+export selection as well as for a direct marker path. A marker cannot be an
+executable entry, native definition or compiled-library export root.
+
+This rule introduces marker identities, not a new declaration of phantom
+formals in ordinary templates. Their formals still arise through runtime
+interface fields under TPL-02; substituting a marker into such a field fails
+the runtime-Type check. No runtime sample marker, implicit instance, numeric
+static argument, static type-case dispatch or recursion exception is introduced.
+The existing definition, substitution and creation checks remain required.
+
+**Example: two complete marker files.** File `.marks.node` contains:
+
+```text
+@...
+```
+
+File `.marks.edge` contains the same source. Their full paths distinguish them.
+Neither file defines a named result or creates an object.
+
+**Example: complete `.forward kind`.**
+
+```text
+@...
+...forwarded
+...kind
+```
+
+This producer forwards its supplied Type or Template. A complete `.kinds`
+assembly can pass a marker and expose several aliases:
+
+```text
+@...
+.forward kind
+ ...kind < .marks.node
+ ...forwarded > ...node kind
+
+...same node kind
+.marks.node
+
+...edge kind
+.marks.edge
+```
+
+`...node kind` and `...same node kind` denote the same marker Type;
+`...edge kind` denotes a different one. The aliases do not acquire `.kinds` as
+a new nominal origin. This example uses only compile-time metadata; attempting
+to declare an ordinary field with any of these marker Types is invalid.
 
 ## Defining and forwarding a result
 
@@ -105,8 +206,9 @@ its key fixed to text and its value formal still open. `...integer type` is the
 supplied integer Type. None of these definitions creates a dictionary or integer
 instance.
 
-A result expression may be an ordinary constructor path, a supplied Type or a
-supplied Template. A concrete Type cannot be applied again as a constructor.
+A result expression may be an ordinary constructor path, a marker path, a
+supplied Type or a supplied Template. A concrete Type cannot be applied again
+as a constructor.
 Applying named inputs to a Template uses its actual residual formals under
 TPL-08. Any omitted residual formals remain open: the expression returns a
 Template until all its formals are filled. Supplying a partial Template is not
@@ -181,7 +283,9 @@ argument. Select its result into a name, then use that name as the value of
 another expression. A producer use without an output selection is not a graph
 statement. This introduces no output-free or effectful compile-time call.
 
-The actual producer is determined by its explicit path. A supplied Template
+The actual nonempty producer is determined by its explicit path. A marker path
+denotes its Type in a value expression instead of supplying named outputs.
+A supplied Template
 input denotes an ordinary constructor under TPL-07, not an arbitrary function
 that executes a static module or produces a bundle of named results. Passing
 such static functions as values would require a separate language facility.
@@ -380,7 +484,7 @@ the ordinary declaration and its call/input/result constraints. This reference
 cannot fill omitted factory inputs or use the ordinary expected Type to infer
 them. Use a closed static assembly that explicitly supplies the parameterized
 factory's inputs. The selected export must be a complete ordinary Type, not a
-Template or the static producer itself. A closed producer may export other
+marker, Template or the static producer itself. A closed producer may export other
 Template-valued results; they do not invalidate this Type-valued selection.
 
 An independently known complete nominal identity can be referenced while the

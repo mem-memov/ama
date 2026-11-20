@@ -5,6 +5,13 @@ Read [the specification](../../../spec/README.md) for semantics,
 and [the evidence matrix](README.md) for requirement coverage. This guide records
 current accepted workflows; it does not define another language contract.
 
+The T197 results below precede the T220
+[static-marker rule](../../../spec/language/static-results.md#tpl-14).
+Marker implementation and current-specification conformance remain
+[T221](../../../TODO.md#t221); the complete gate refuses the earlier matrix
+against the newer target until that work is accepted. These recorded release
+results do not establish marker support.
+
 ## Clean template sprint acceptance
 
 [T197's execution record](template-release.md) verifies the current implementation
@@ -14,7 +21,7 @@ run took 3014.517 seconds and preserved all 3054 captured source/specification/
 registry/matrix inputs. Assertions remain enabled by the test leaf's `-UNDEBUG`.
 No partial successful branch substitutes for that complete parent exit.
 
-The current matrix connects **214 requirements**, **150 acceptance rows** and
+The accepted T196 matrix connects **214 requirements**, **150 acceptance rows** and
 **56 evidence groups**. The complete per-file registry contains **3028** inputs,
 **1860** distinct registered C cases across **336** case-source files, and
 **359** command strings. The full run executes 336 outer C test commands.

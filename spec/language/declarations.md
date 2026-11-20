@@ -36,8 +36,11 @@ defines what transfers between these storage forms do.
 
 <a id="type-01"></a>
 
-**TYPE-01.** Every variable has a type defined by a module. An explicit declaration
-answers three questions in order: what is the name and storage form, which module
+**TYPE-01.** Every variable has an ordinary module Type capable of runtime
+storage. A static marker under [TPL-14](static-results.md#tpl-14) cannot be its
+Type, reference target or list element/target, including after substitution or
+static export selection. An explicit declaration answers three questions in
+order: what is the name and storage form, which module
 defines its type, and what are its initial contents?
 
 Write the name and type on separate lines at the same indentation. A type line
@@ -63,10 +66,10 @@ items
 ```
 
 The selector is not a binding, new parameter or runtime initializer. The selected
-export must be a concrete Type from a fully determined static producer,
+export must be a concrete ordinary Type from a fully determined static producer,
 independently of this ordinary declaration's contextual constraints. A residual
-Template cannot type runtime storage. The static module itself has no instance
-and cannot serve as the field's runtime type without selecting an export. No
+Template or marker cannot type runtime storage. The static producer itself has
+no instance and cannot serve as the field's runtime type without selecting an export. No
 static `<`/`>` bindings, nested applications, or static output aliases may appear
 in ordinary declarations, constant reads or executable statements. The ordinary
 inference rules of [TPL-03/TPL-04](templates.md#tpl-03) still determine omitted

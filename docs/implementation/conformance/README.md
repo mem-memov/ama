@@ -1,11 +1,18 @@
-# Current requirement and acceptance evidence
+# Implementation evidence and specification alignment
 
 The language is defined by [the specification](../../../spec/README.md). The
 T196 review connects **214 requirements**, **150 acceptance rows** and **56
-evidence groups** to current maintained implementation, component arguments and
-named tests. Counts come from the actual canonical index/tables, not the old
-pre-template baseline. [The review](template-review.md) records the changed
+evidence groups** to the implementation, component arguments and named tests
+accepted before the marker specification change. These counts describe that
+reviewed edition. [The review](template-review.md) records the changed
 obligations, delivered task evidence, exact algorithms and acceptance commands.
+
+T220 adds [TPL-14](../../../spec/language/static-results.md#tpl-14) and its marker
+acceptance scenario. [T221](../../../TODO.md#t221) owns implementation and renewed
+evidence review. The existing matrix does not claim marker support and retains
+its accepted fingerprints. Until alignment passes, `make conformance-check`
+refuses this newer specification; updating hashes alone cannot establish support.
+The earlier release results remain evidence for their recorded input revision.
 
 Open executable templates and static modules are compilation inputs. Concrete
 ordinary runtime Types pass guarded closure and ordinary admission before layout.
@@ -18,7 +25,8 @@ documentation gates owned by T197/T198. Its checker compiles case interfaces;
 actual behavior follows from the recorded executed component/composition runs.
 
 [The machine-readable matrix](matrix.json) contains an individual explanation
-for every obligation. Each explanation names evidence groups. A group names its
+for every obligation of that accepted edition. Each explanation names evidence
+groups. A group names its
 actual source boundary, local contract documents, independently runnable C cases
 and distinct composition cases with their exact commands. Follow those links to
 understand why a rule is implemented and what its tests observe. Shared evidence
@@ -36,8 +44,9 @@ make conformance-check
 make -C tests/unit/conformance
 ```
 
-The first command validates the current matrix and compiles every selected named
-C test interface using that leaf's real Make configuration. It does **not** run
+After the pending alignment, the first command validates the current matrix
+and compiles every selected named C test interface using that leaf's real Make
+configuration. It does **not** run
 all referenced tests or certify arbitrary C implementations by reading names.
 Run their recorded commands to exercise their behavior. The second command runs
 independent positive/negative fixtures and then checks this repository with the

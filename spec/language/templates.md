@@ -29,12 +29,14 @@ are supplied by its users. For example, a forwarding module copies a value
 without choosing in advance whether it is an integer, text or a user-defined
 record. Its interface still reads as pairs: a variable name, then its type.
 
-A **static module**, marked `@...`, does a different job: it describes equations
+A **static producer**, marked `@...` with a nonempty graph, describes equations
 between types and partially filled constructors. It has no runtime instance.
 It can receive a constructor, fix some of its arguments, combine it with other
 constructors and expose several named results. The compiler solves this finite
 structural description; it does not run arbitrary Ama or C code to discover a
 new type. [TPL-12](static-results.md#tpl-12) defines that separate source form.
+A file with only `@...` and layout instead declares a nominal static type
+marker under [TPL-14](static-results.md#tpl-14).
 
 **Design rationale.** This division keeps code that manipulates values easy to
 read. A standalone `...name` is not hidden among runtime input declarations;
@@ -123,11 +125,12 @@ formal order is first introduction in `@<`, then first introduction in `@>`, in
 each section's textual declaration order. This order supports deterministic
 metadata; it introduces no positional static source interface.
 
-A parameter's Type is separate from the variable's storage form. The same Type
+A parameter's ordinary Type is separate from the variable's storage form. The same Type
 can describe an owned value, a reference target, an owning list's element or a
 reference list's target. Substitution never adds/removes `&`, `[]` or `&[]`.
-An open constructor is not a valid runtime field type. Static-module free inputs,
-public definitions and scopes follow TPL-12 instead of these interface rules.
+An open constructor or static marker is not a valid runtime field type.
+Static-module free inputs, public definitions and scopes follow TPL-12 instead
+of these interface rules.
 
 **Example: ordinary interface fragment.**
 
@@ -455,9 +458,11 @@ applies again; there is no implicit inheritance down the ownership tree.
 logical module identity and its complete normalized static input bindings.
 Preserve root kind, original parameter identities, categories and every binding,
 including bindings unused by the body. A Type binding uses its full nominal
-identity. A Template binding retains its original constructor, fixed captures
-and full residual signature, not merely its arity or the minimum requirements
-of its current user. Derived outputs and local aliases are not extra inputs.
+identity, including a marker's original identity under
+[TPL-14](static-results.md#tpl-14). A Template binding retains its original
+constructor, fixed captures and full residual signature, not merely its arity
+or the minimum requirements of its current user. Derived outputs and local
+aliases are not extra inputs.
 
 Normalize bindings by the original formal identities in their canonical order.
 Named argument order, staging of partial application, aliases, equal layouts and
@@ -487,7 +492,9 @@ list element compatibility compare the whole specialization identity.
 fully concrete and pass ordinary Ama checks before code generation or runtime
 construction. An open definition or partial constructor is compiler metadata,
 not an executable value or an incompletely initialized runtime instance. Every
-runtime field, reference target and list element has one concrete nominal Type.
+runtime field, reference target and list element has one concrete ordinary
+nominal Type. A closed static marker remains compile-time metadata under
+[TPL-14](static-results.md#tpl-14); being Type does not make it instantiable.
 
 Check source syntax, lexical scope and resolvable names at definition time.
 After substitution, check every required operation, storage form, input/result
@@ -577,14 +584,17 @@ configuration syntax is outside the current sprint.
 
 | Category | Meaning |
 |---|---|
-| Type | One ordinary module Type, possibly symbolic before its enclosing inputs close |
+| Type | One ordinary module Type or closed static marker under [TPL-14](static-results.md#tpl-14), possibly symbolic before its enclosing inputs close |
 | Template | An ordinary type constructor with at least one residual named formal and any prior fixed captures |
 
 An unapplied nongeneric ordinary module denotes Type. An executable template's
 path denotes Template until its residual formals are bound; complete application
-produces Type. A static module is a producer of named static values under
-TPL-12, not an ordinary Type, Template, runtime value or third first-class static
-function category. Its named outputs may themselves be Types or Templates.
+produces Type. A marker path denotes its closed Type and accepts no bindings.
+A nonempty static module is a producer of named static values under TPL-12,
+not an ordinary Type, Template, runtime value or third first-class static
+function category. Its named outputs may themselves be ordinary Types, markers
+or Templates. Both kinds of Type use exact nominal equality; ordinary runtime
+storage separately requires an ordinary Type under TYPE-01/TPL-14.
 
 A constructor's actual signature is its complete set of residual original formal
 names with their categories and applicable nested requirements. Its fixed map
@@ -651,15 +661,17 @@ mandatory under the existing list contract.
 <a id="tpl-08"></a>
 
 **TPL-08.** Static substitution acts on resolved structure and scoped formal
-identities, never source text. Resolve a concrete path to its exact original
-ordinary module definition or a static name to its supplying static environment.
+identities, never source text. Resolve a concrete value-expression path to its
+exact original ordinary module definition or static marker, or a static name
+to its supplying static environment. A nonempty static producer path is used
+only through named output selection under TPL-12.
 Capture neither unrelated names in another module nor a foreign binding label.
 TPL-12 defines the separate graph syntax and visibility rules.
 
-A static value expression has an ordinary path or visible Type/Template name as
-head. A named input is `...formal < expression`, indented one level below that
-head, with one separator on each side of `<`. Its complete left name belongs
-to the selected constructor. Its right side belongs to the supplying module and
+A static value expression has an ordinary path, marker path or visible
+Type/Template name as head. A named input is `...formal < expression`, indented
+one level below that head, with one separator on each side of `<`. Its complete
+left name belongs to the selected constructor. Its right side belongs to the supplying module and
 may have its own deeper named input block. Deeper bindings apply only to their
 immediate expression. At one level all inputs use the same supplying scope;
 a foreign label does not define a source for another binding.
@@ -854,6 +866,8 @@ specialization. The symbols below are explanatory metanotation, not new syntax.
 1. Normalize applications whose origins are known under TPL-08. Compare nominal
    origins exactly. Equal origins decompose into corresponding complete original
    binding equations; unequal origins conflict regardless of layout/capabilities.
+   A marker is a closed Type leaf with no bindings under TPL-14; compare its
+   original identity without inventing constructor formals or runtime structure.
 2. Merge unknowns or equate them with structural static expressions. Preserve
    all earlier equations and inferred category/usage obligations. Reject wrong
    categories, inconsistent bindings and infinite substitution terms with an

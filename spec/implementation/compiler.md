@@ -438,6 +438,18 @@ collect all local result binders before identifying free inputs. Their named
 connections have no positional sequence or runtime frame. Preserve atomic names,
 lexical identities and the distinction between producer labels and local names.
 
+Classify a valid `@...` file with no graph statements as a nominal marker under
+[TPL-14](../language/static-results.md#tpl-14), after ordinary lexical/layout
+validation. Its module identity supplies a closed Type leaf, not a zero-output
+producer instance or an ordinary zero-field runtime Type. Nonempty graphs keep
+their producer role. Preserve marker identity through aliases, equalities,
+captures, diagnostics and source tools; reject applying it or requesting named
+outputs. Ordinary storage admission must reject marker Types reached directly,
+through substitution or through an exported alias, before planning runtime
+slots, native layouts or C transport. Marker metadata creates no runtime pool,
+field, lifecycle action or dispatch label. Do not erase a marker from the key
+of a producer or constructor that captures it.
+
 Ordinary typed connections refine their scoped Type terms; static graphs solve
 their own finite structural equations. The ordinary named-export bridge does not
 transfer consuming-context constraints into a static producer. Follow

@@ -10,6 +10,10 @@ An instance is one object of that type. Two variables can own two instances of
 the same module: the code is shared, but their data and saved positions are
 independent.
 
+An empty static `@...` file instead names a compile-time marker under
+[TPL-14](static-results.md#tpl-14). A marker has no instance; the storage and
+execution examples in this chapter concern ordinary module Types.
+
 A path such as `.examples.job` names the module. It does not select an object to
 execute. A declaration creates owned storage or a reference; a call selects
 that declared storage. This distinction prevents a name from silently referring

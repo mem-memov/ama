@@ -6841,3 +6841,72 @@ T201. Specification bytes have not changed.
   and verify its TODO/DONE fingerprints before commit. Documentation-only
   acceptance makes no new compiler execution claim; existing T197 release
   evidence retains its recorded boundary.
+
+<a id="t220"></a>
+
+- [x] **T220 — Specify nominal static markers using an empty `@...` file.**
+  Completed 2026-11-20. Prerequisites: T219.
+  Authorization: after discussing a file containing only `@...` as a nominal
+  compile-time marker without runtime instances, the user explicitly requested:
+  "Внеси такую нотацию в спецификацию."
+  Boundary: canonical semantics, EBNF, motivation/examples, acceptance scenarios
+  and accurate implementation-status documentation. No compiler, library, test,
+  evidence-registry or machine-readable conformance-matrix changes are included.
+
+  Steps: distinguish empty markers from nonempty producers; specify identity,
+  static Type use and the absence of runtime instances; reconcile dependent
+  chapters/grammar/examples and check consistency, navigation and generated
+  documentation. Accept: only valid `@...` plus layout declares a marker,
+  preserving exact nominal identity and explicit static/runtime boundaries.
+
+  Findings and result: [TPL-14](spec/language/static-results.md#tpl-14) defines
+  a closed Type leaf identified by the original full logical module path/root
+  kind. Valid comments/blank lines do not change classification; a file without
+  the annotation remains a draft, and invalid statements/annotations do not
+  become a marker. Nonempty static graphs remain producers with named outputs.
+  Marker paths and aliases can be forwarded through named static Type inputs
+  and results, preserving equality and full specialization captures. Markers
+  have no constructor inputs, named outputs, runtime instances or ABI. Ordinary
+  storage requires an ordinary Type in all four forms, including references,
+  empty lists and placeholder/export-selected Types. Marker introduction does
+  not add phantom-formal declarations, type-case dispatch or recursion changes.
+
+  The grammar separates static-marker-file from static-producer-file and makes
+  the latter's body nonempty; name resolution does not select syntax. Existing
+  category, declaration, source, compiler, glossary and navigation summaries
+  point to the canonical rule. Examples show distinct marker files, direct
+  aliases and forwarding through a named producer. A new acceptance scenario
+  and four reconciled existing rows cover classification, identity, composition
+  and refusal boundaries. Independent specification review found those older
+  rows still excluded markers or admitted arbitrary Type storage; correcting
+  them left no blocker in the agreed scope.
+
+  Verification in /home/u/repos/ama: python3 /tmp/ama-t220-documents.py passes
+  for the canonical index/tables, all affected Markdown links, newline-preserving
+  documentation transforms and 110 unique EBNF productions with resolved
+  references and aligned definition operators. Before archival it checks 28
+  documents, 215 requirements and 151 acceptance rows. An initial one-off
+  assertion incorrectly expected dictionary records from canonical.requirements;
+  its actual canonical path strings are now checked exactly. No semantic rule
+  or expected product behavior was weakened to correct that check.
+
+  make docs-complete exits 0, checking 3028 ready inputs with zero debt.
+  make docs exits 0 with Doxygen 1.11.0, Python 3.14.4 and markdown-it-py 3.0.0:
+  2297 maintained file pages, 8908 interfaces and 454/454 canonical destinations.
+  Logs: /tmp/ama-t220-docs-complete.log and /tmp/ama-t220-docs-initial.log.
+  git diff --check passes. No new compiler-execution acceptance is claimed.
+
+  make conformance-check exits 2 with "specification changed; conformance review
+  is required" (/tmp/ama-t220-conformance.log). This is the expected refusal of
+  the earlier accepted matrix against a changed target. Preserve its reviewed
+  fingerprints; README and conformance/release guides identify the baseline
+  boundary. Planned [T221](TODO.md#t221) owns marker implementation, its actual
+  component/composition/failure tests and renewed current-specification evidence
+  review, subject to a separate implementation request. Phantom-formal design
+  remains a candidate; the next unused ID is T222.
+
+  Final delivery: after archiving, rerun the document check and make docs from
+  final maintained inputs (/tmp/ama-t220-docs-final.log), require success and
+  verify every generated-input fingerprint against source/staged bytes before
+  the task commit. Generated technical pages remain unversioned. Specification
+  acceptance does not establish implementation support.

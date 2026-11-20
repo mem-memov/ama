@@ -76,6 +76,7 @@ you need the model, examples, or reasons behind a rule.
 | [TPL-11](language/templates.md#tpl-11) | Finite composition and specialization creation |
 | [TPL-12](language/static-results.md#tpl-12) | Static module graphs, named bindings, public exports and ordinary type selection |
 | [TPL-13](language/templates.md#tpl-13) | Concrete native modules and template source distribution |
+| [TPL-14](language/static-results.md#tpl-14) | Nominal static markers declared by an empty `@...` file |
 
 ## Literal data
 

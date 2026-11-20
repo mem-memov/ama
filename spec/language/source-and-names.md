@@ -118,8 +118,10 @@ without changing existing top-level companion names.
 <a id="src-04"></a>
 
 **SRC-04.** A module path identifies a source definition, not a callable object.
-An ordinary definition provides a type; a static definition provides a graph
-producer whose named Type export may be selected under
+An ordinary definition provides a runtime type; an empty static definition
+provides a nominal marker under [TPL-14](static-results.md#tpl-14). A nonempty
+static definition provides a graph producer whose named ordinary Type export
+may be selected under
 [TPL-12](static-results.md#tpl-12). A static producer itself cannot own runtime
 storage or be invoked/resumed. Executable module types
 have no implicit/default live instances. A module's `@=` section is shared
@@ -477,7 +479,9 @@ A static module instead consists of optional leading layout, the single marker
 `@...`, and its graph under [TPL-12](static-results.md#tpl-12). It cannot combine
 `@...` with `@=`, `@<`, `@>`, `@!` or `@C`. Its graph contains compile-time
 Type/Template expressions, not runtime declarations, initializers or executable
-statements. It has no instance pool and cannot be an executable entry.
+statements. An empty graph declares a static marker under
+[TPL-14](static-results.md#tpl-14); a nonempty graph is a producer. Neither has
+an instance pool or can be an executable entry.
 
 ### Drafts and activation
 

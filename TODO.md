@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 214 current requirements;
+[requirement index](spec/requirements.md) locates all 215 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 active engineering work for those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -72,15 +72,35 @@ belong to each affected task's acceptance, not a compatibility layer.
 
 ## Current tasks
 
-No implementation task is active. [T219](DONE.md#t219) records the next-sprint
-scope decision and initial design assessment. The next unused task ID is
-**T220**; add newly authorized implementation work before starting it.
+[T220](DONE.md#t220) specifies the marker notation. The next unused task ID is
+**T222**. T221 is planned below; implementation has not been requested.
+
+<a id="t221"></a>
+
+- [ ] **T221 — Implement and accept the specified static type markers.**
+  Status: planned; awaits a separate implementation request, outside T220's
+  specification-only authorization. Prerequisites: T220.
+  Rule: [TPL-14](spec/language/static-results.md#tpl-14) and its
+  [acceptance scenario](spec/implementation/tools-and-conformance.md#static-module-templates).
+  Steps: classify empty static files, preserve nominal marker Type metadata
+  through graph equations/aliases and source tools, and reject runtime storage
+  and producer/constructor misuse at their actual admission boundaries.
+  Test direct/aliased equality, distinct identities, layout boundaries, graph
+  forwarding, all four runtime storage forms and entry/native/C export refusals,
+  including substituted/selected marker Types; retain ordinary producer behavior.
+  Accept: component/composition/failure tests and actual consumers pass; review
+  changed requirement/acceptance arguments and fingerprints with real evidence,
+  then pass current conformance and documentation gates. The T196/T197 matrix
+  remains an earlier accepted baseline until this alignment; do not refresh
+  fingerprints merely to make its newer-specification refusal disappear.
 
 ## Next sprint discussion
 
-Phantom Type parameters are a [design candidate](DONE.md#t219), not an accepted
-implementation task. Assess nominal domain/unit tags using existing specialization keys,
-then decide whether a dedicated parameter without a runtime field is needed.
+Static marker notation is specified by [TPL-14](spec/language/static-results.md#tpl-14);
+its implementation is T221. Phantom Type parameters without runtime fields
+remain a [design candidate](DONE.md#t219). Assess nominal domain/unit tags using
+existing specialization keys, then decide whether a dedicated parameter without
+a runtime field is needed.
 A producer input absent from an exported Type's key does not tag that Type.
 Syntax, storage guarantees and the implementation plan require a design decision;
 this candidate grants no authorization to change `spec/`.

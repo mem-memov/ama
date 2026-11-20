@@ -296,7 +296,9 @@ are defined in [Declarations and scope](language/declarations.md).
                                  [ <results-section> ]
                                  <implementation-section>
 <constants-only-file>        ::= <layout(0)> <constants-section>
-<static-module-file>         ::= <layout(0)> "@..." <line-end> <static-body(0)>
+<static-module-file>         ::= <static-marker-file> | <static-producer-file>
+<static-marker-file>         ::= <layout(0)> "@..." <line-end> <layout(0)>
+<static-producer-file>       ::= <layout(0)> "@..." <line-end> <static-body(0)>
 <constants-section>          ::= "@=" <line-end> <declarations(0)>
 <parameters-section>         ::= "@<" <line-end> <declarations(0)>
 <results-section>            ::= "@>" <line-end> <declarations(0)>
@@ -322,15 +324,18 @@ are defined in [Declarations and scope](language/declarations.md).
 | `@>` | Ordinary result variable declarations |
 | `@!` | Ama implementation |
 | `@C` | Companion C implementation |
-| `@...` | Entire static module, with no other annotation sections |
+| `@...` | Entire static marker or producer, with no other annotation sections |
 
 Ordinary annotations occupy zero-indent lines in the displayed order, at most
 once each. Only layout follows `@C`; native code lives in companion files.
 `@!` may be empty. A constants-only file may contain an empty `@=` section.
 Parameter/result sections require an implementation. A static file has only its
 `@...` marker and static graph; it has no `@=`, `@<`, `@>`, `@!`, or `@C` section.
-Its graph may be empty. Unknown, repeated, combined-kind, or out-of-order
-annotations fail in active files.
+An empty graph is the `<static-marker-file>` form under
+[TPL-14](language/static-results.md#tpl-14); a `<static-producer-file>` has at
+least one graph statement. This distinction depends on the whole valid source,
+not on how another module uses its path. Unknown, repeated, combined-kind, or
+out-of-order annotations fail in active files.
 
 The native boundary follows [TPL-13](language/templates.md#tpl-13): an `@C`
 definition may have no free template parameters. A selected closed static export
@@ -357,12 +362,14 @@ rather than acquiring a static argument list in ordinary code. An ordinary
 runtime input path must already denote a complete Type; use a bare Type
 placeholder to accept a generic complete input Type.
 
-A path selecting an `@...` module must instead have exactly one indented
+A path selecting a nonempty `@...` producer must instead have exactly one indented
 `<export-selector>` line. It names that producer's public output; it is not an
 ordinary source, a new free parameter, or a static application. The selected
 value must be a concrete ordinary Type, and the producer must be independently
 determined without using the consuming runtime declaration as an inference
-source. A residual Template is not a variable type. See
+source. A residual Template or static marker is not a variable type, including
+when obtained through a placeholder or named export. A direct marker path does
+not become a runtime type by omitting the selector. See
 [TPL-12](language/static-results.md#tpl-12) for producer determination, dependency
 checking and export publication. A selector cannot follow a Type placeholder
 or an ordinary module path, and it cannot contain `<`, `>`, or constructor
@@ -404,7 +411,7 @@ lines[]
 ## Static template syntax and design boundaries
 
 ```ebnf
-<static-body(n)>             ::= <layout(n)>
+<static-body(n)>             ::= <layout(n)> <static-statement(n)> <layout(n)>
                                  { <static-statement(n)> <layout(n)> }
 <static-statement(n)>        ::= <static-definition(n)> | <static-producer-use(n)>
 <static-definition(n)>       ::= <indent(n)> <placeholder-type> <line-end>
@@ -421,7 +428,9 @@ lines[]
                                  <placeholder-type> <line-end>
 ```
 
-An `@...` module consists of static equations. It has no ordinary variables,
+An `@...` file with no graph statements denotes a static marker under
+[TPL-14](language/static-results.md#tpl-14). A nonempty one consists of static
+equations. Both forms have no ordinary variables,
 runtime values, mutable state, initializers, calls, conditions, loops, native
 bodies, or runtime instances. Every static input and output binding is named:
 its label and operand are complete placeholder/type expressions as shown above.
@@ -430,9 +439,9 @@ bindings, skips, or a trailing capture of the expression's own Type. Ordinary
 runtime positional arguments and results are unaffected.
 
 A `<static-definition>` is a pair: a public receiver name followed by a
-same-level value expression. Its RHS denotes an ordinary Type or a partial
-ordinary constructor (Template), never an `@...` module itself. Named inputs
-may apply the constructor, and their right-hand expressions may nest further
+same-level value expression. Its RHS denotes an ordinary Type, a static marker
+or a partial ordinary constructor (Template), never a nonempty static producer
+itself. Named inputs may apply the constructor, and their right-hand expressions may nest further
 ordinary constructor applications. Its head can also be a supplied Type or
 Template name. Without inputs, a supplied name forwards its value unchanged.
 The expression's caller writes the leading indentation or operand separator;
@@ -467,7 +476,10 @@ all output bindings at that level. The statement is a set of result equations,
 not an effectful call and not an ordinary constructor's own-Type capture.
 Its producer's kind and output labels are checked after resolution. A static
 producer cannot be used as a value-expression head; obtain its named outputs
-and then use those aliases as values.
+and then use those aliases as values. A marker path is a value-expression head,
+has no outputs and accepts no input bindings. Its path shares `<module-path>`
+syntax; marker versus producer versus ordinary constructor is resolved after
+parsing, without alternate tokenization.
 
 ```text
 @...
