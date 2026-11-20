@@ -48,6 +48,12 @@ arbitrary Ama or native code to discover types.
 
 The examples below use descriptive module names and assume the stated ordinary
 constructors exist. Their names are not additional standard-library facilities.
+Full ordinary paths use the illustrative package `/example/demo/v1.0.0/src`.
+Static names start with one dot under [TPL-01](templates.md#tpl-01); slash-based
+paths, including relative paths and aliases, follow
+[SRC-01](source-and-names.md#src-01) and
+[projects and packages](../project/packages.md). Changing the spelling of a reference does not
+change a constructor's nominal identity or its static scope.
 
 ## The static module
 
@@ -73,7 +79,7 @@ The graph has no ordinary variables, mutable result cells, references, lists of
 runtime values, defaults, literals, ordinary initializers, acquisition, reset,
 copy or continuation state. There is no runtime control flow, module execution,
 native hook or refusal handler in this graph. Static names use the complete
-`...name` spelling under TPL-01; names and substitutions are not source-text
+`.name` spelling under TPL-01; names and substitutions are not source-text
 replacement.
 
 Only static modules contain standalone static result pairs, producer-use graph
@@ -144,43 +150,47 @@ is required. No runtime sample marker, implicit instance, numeric static
 argument, static type-case dispatch or recursion exception is introduced. The
 existing definition, substitution and creation checks remain required.
 
-**Example: two complete marker files.** File `.marks.node` contains:
+**Example: two complete marker files.** File
+`/example/demo/v1.0.0/src/marks/node` contains:
 
 ```text
 @...
 ```
 
-File `.marks.edge` contains the same source. Their full paths distinguish them.
-Neither file defines a named result or creates an object.
+File `/example/demo/v1.0.0/src/marks/edge` contains the same source. Their full
+paths distinguish them. Neither file defines a named result or creates an
+object.
 
-**Example: complete `.forward kind`.**
-
-```text
-@...
-...forwarded
-...kind
-```
-
-This producer forwards its supplied Type or Template. A complete `.kinds`
-assembly can pass a marker and expose several aliases:
+**Example: complete `/example/demo/v1.0.0/src/forward kind`.**
 
 ```text
 @...
-.forward kind
- ...kind < .marks.node
- ...forwarded > ...node kind
-
-...same node kind
-.marks.node
-
-...edge kind
-.marks.edge
+.forwarded
+.kind
 ```
 
-`...node kind` and `...same node kind` denote the same marker Type;
-`...edge kind` denotes a different one. The aliases do not acquire `.kinds` as
-a new nominal origin. This example uses only compile-time metadata; attempting
-to declare an ordinary field with any of these marker Types is invalid.
+This producer forwards its supplied Type or Template. A complete
+`/example/demo/v1.0.0/src/kinds` assembly can pass a marker and expose several
+aliases:
+
+```text
+@...
+/example/demo/v1.0.0/src/forward kind
+ .kind < /example/demo/v1.0.0/src/marks/node
+ .forwarded > .node kind
+
+.same node kind
+/example/demo/v1.0.0/src/marks/node
+
+.edge kind
+/example/demo/v1.0.0/src/marks/edge
+```
+
+`.node kind` and `.same node kind` denote the same marker Type; `.edge kind`
+denotes a different one. The aliases do not acquire
+`/example/demo/v1.0.0/src/kinds` as a new nominal origin. This example uses only
+compile-time metadata; attempting to declare an ordinary field with any of these
+marker Types is invalid.
 
 ## Defining and forwarding a result
 
@@ -189,27 +199,28 @@ then a static value expression. Named inputs of that expression are indented
 one level deeper. This pair names the value of the expression itself; it does
 not select a result member of the expression's head.
 
-**Example: complete `.prepare types`.** Assume `.dictionary` is an ordinary
-constructor with the two Type formals `...key type` and `...value type`:
+**Example: complete `/example/demo/v1.0.0/src/prepare types`.** Assume
+`/example/demo/v1.0.0/src/dictionary` is an ordinary constructor with the two
+Type formals `.key type` and `.value type`:
 
 ```text
 @...
-...dictionary type
-.dictionary
- ...key type < ..text
- ...value type < ..integer
+.dictionary type
+/example/demo/v1.0.0/src/dictionary
+ .key type < //text
+ .value type < //integer
 
-...dictionaries for text
-.dictionary
- ...key type < ..text
+.dictionaries for text
+/example/demo/v1.0.0/src/dictionary
+ .key type < //text
 
-...integer type
-..integer
+.integer type
+//integer
 ```
 
-There are three public results. `...dictionary type` is the concrete
-`Dictionary(Text, Integer)` Type. `...dictionaries for text` is a Template with
-its key fixed to text and its value formal still open. `...integer type` is the
+There are three public results. `.dictionary type` is the concrete
+`Dictionary(Text, Integer)` Type. `.dictionaries for text` is a Template with
+its key fixed to text and its value formal still open. `.integer type` is the
 supplied integer Type. None of these definitions creates a dictionary or integer
 instance.
 
@@ -225,11 +236,11 @@ the same operation as leaving the identity of a producer input unknown.
 
 ```text
 @...
-...forwarded
-...source
+.forwarded
+.source
 ```
 
-Here `...source` is an external static input. The output preserves that supplied
+Here `.source` is an external static input. The output preserves that supplied
 Type or Template, including a Template's original constructor and captures. The
 two names do not create two nominal types. Their categories and actual metadata
 are checked at specialization; descriptive words in their names do not determine
@@ -238,15 +249,15 @@ the category.
 Constructor expressions can nest as input values. Each binding's children are
 indented one further level; the outer pair still names the outer expression.
 
-**Example: a finite nested expression.** Assume `.box` has the Type formal
-`...element type`:
+**Example: a finite nested expression.** Assume `/example/demo/v1.0.0/src/box`
+has the Type formal `.element type`:
 
 ```text
 @...
-...twice boxed
-.box
- ...element type < .box
-  ...element type < ..integer
+.twice boxed
+/example/demo/v1.0.0/src/box
+ .element type < /example/demo/v1.0.0/src/box
+  .element type < //integer
 ```
 
 This is the finite expression `Box(Box(Integer))`. Merely writing nested
@@ -258,27 +269,29 @@ its own definition; creation provenance follows
 
 A static producer use names a concrete path to a static module, followed by
 zero or more named inputs and one or more named output selections. An input is
-`...formal < expression`. An output is `...result > ...receiver`. The left name
+`.formal < expression`. An output is `.result > .receiver`. The left name
 belongs to the selected producer; source expressions and receiver names belong
 to the supplying module.
 
-**Example: complete `.selected types`, using `.prepare types` above.**
+**Example: complete `/example/demo/v1.0.0/src/selected types`, using
+`/example/demo/v1.0.0/src/prepare types` above.**
 
 ```text
 @...
-.prepare types
- ...dictionary type > ...dictionary
- ...dictionaries for text > ...family
- ...integer type > ...integer
+/example/demo/v1.0.0/src/prepare types
+ .dictionary type > .dictionary
+ .dictionaries for text > .family
+ .integer type > .integer
 ```
 
-The three receivers are public outputs of `.selected types`. Selecting one
-producer result does not discard the other required definitions or change the
-producer's identity. A call can select only the outputs it needs, but every
-declared output of its required producer must still pass checking.
+The three receivers are public outputs of `/example/demo/v1.0.0/src/selected
+types`. Selecting one producer result does not discard the other required
+definitions or change the producer's identity. A call can select only the
+outputs it needs, but every declared output of its required producer must still
+pass checking.
 
 All static application bindings are named. Positional inputs, positional output
-selection, skips, bare `<`, bare `>` and a bare `...` binding marker are not
+selection, skips, bare `<`, bare `>` and a bare `.` binding marker are not
 source forms. Unknown or repeated foreign labels are errors, including equal
 repeated bindings. A binding must contain its source or receiver. Named inputs
 precede named outputs at each application level. Source nesting follows SYN-06;
@@ -304,7 +317,7 @@ named output receiver in the entire static module. This includes occurrences
 appearing after a use. Every collected name is public; using an output later as
 an intermediate does not make it private or remove it from the interface.
 
-After excluding these output names, every free local `...name` used as a source
+After excluding these output names, every free local `.name` used as a source
 or value-expression head is an external static input. Foreign input/output
 labels, concrete path components and formals belonging to an actual constructor
 are not local input introductions. Equal spellings in different modules do not
@@ -325,15 +338,15 @@ input.
 
 ```text
 @...
-...boxed integer
-.box
- ...element type < ...integer type
+.boxed integer
+/example/demo/v1.0.0/src/box
+ .element type < .integer type
 
-...integer type
-..integer
+.integer type
+//integer
 ```
 
-The graph has two outputs and no external input. The output `...integer type`
+The graph has two outputs and no external input. The output `.integer type`
 is known from its definition even though that pair appears later in source.
 
 Result pairs declare their names exactly once. A repeated pair declaration is
@@ -364,28 +377,28 @@ provided by its caller. Infer requirements from all uses, including uses after
 partial application, rather than from the first textual use or first concrete
 constructor supplied during compilation.
 
-**Example: complete `.prepare dictionaries`.**
+**Example: complete `/example/demo/v1.0.0/src/prepare dictionaries`.**
 
 ```text
 @...
-...dictionaries for key
-...dictionary family
- ...key type < ...key type
+.dictionaries for key
+.dictionary family
+ .key type < .key type
 
-...integer dictionary
-...dictionary family
- ...key type < ...key type
- ...value type < ..integer
+.integer dictionary
+.dictionary family
+ .key type < .key type
+ .value type < //integer
 ```
 
-Its external inputs are `...dictionary family` and `...key type`. Both output
+Its external inputs are `.dictionary family` and `.key type`. Both output
 pairs are public. The named applications require suitable residual formals
-`...key type` and `...value type` on the supplied family. They do not state that
+`.key type` and `.value type` on the supplied family. They do not state that
 these are its only formals.
 
 If the supplied family has exactly those two Type formals, the first output
 retains the value formal and the second is concrete Type. If it also has an
-unfilled `...allocator type`, the first output retains value and allocator, and
+unfilled `.allocator type`, the first output retains value and allocator, and
 the second still retains allocator. The compiler must not silently remove that
 extra formal or choose a default. A caller can supply a family whose allocator
 was already fixed, or a later static expression can fill it.
@@ -413,27 +426,27 @@ in the selected outputs. A Template-valued input is determined when its actual
 origin, fixed captures and complete residual metadata are known; its own
 residual parameters need not have been filled.
 
-**Example: complete `.type identity`.**
+**Example: complete `/example/demo/v1.0.0/src/type identity`.**
 
 ```text
 @...
-...same type
-...type
+.same type
+.type
 ```
 
 An explicitly defined receiver can constrain the omitted producer input:
 
 ```text
 @...
-...known type
-..integer
+.known type
+//integer
 
-.type identity
- ...same type > ...known type
+/example/demo/v1.0.0/src/type identity
+ .same type > .known type
 ```
 
-The identity producer's `...type` is integer. By contrast, selecting that result
-only into a fresh `...unknown type` supplies no anchor: the input and result
+The identity producer's `.type` is integer. By contrast, selecting that result
+only into a fresh `.unknown type` supplies no anchor: the input and result
 remain undetermined. Repeating the fresh alias supplies no additional evidence.
 
 **Explanation: information can be lost.** In mathematical notation, let
@@ -458,25 +471,26 @@ indentation. A closed assembly retains the shortest form:
 
 ```text
 first
-.prepare types
- ...dictionary type
+/example/demo/v1.0.0/src/prepare types
+ .dictionary type
 
 second
-.prepare types
- ...dictionary type
+/example/demo/v1.0.0/src/prepare types
+ .dictionary type
 ```
 
 Both fields have the same dictionary Type and independent runtime storage. The
 static module is not instantiated as an ordinary parameter or field. A producer
-with open inputs can receive them explicitly. For example, assume `.assemble`
-has inputs `...key` and `...value` and exports `...dictionary type`:
+with open inputs can receive them explicitly. For example, assume
+`/example/demo/v1.0.0/src/assemble` has inputs `.key` and `.value` and exports
+`.dictionary type`:
 
 ```text
 items
-.assemble
- ...key < ..text
- ...value < ..integer
- ...dictionary type
+/example/demo/v1.0.0/src/assemble
+ .key < //text
+ .value < //integer
+ .dictionary type
 ```
 
 The selector is mandatory even when the producer exports only one name. It has
@@ -487,8 +501,8 @@ follow the completed type expression at their usual depth:
 
 ```text
 number
-.prepare types
- ...integer type
+/example/demo/v1.0.0/src/prepare types
+ .integer type
  |0
 ```
 
@@ -530,21 +544,21 @@ named input. The Type/Template distinction applies at each use. A static
 producer with multiple outputs never implicitly supplies its first output as
 an argument value.
 
-**Example: complete `.composed types`.** Supply `.prepare dictionaries` with
-the two-formal dictionary constructor used above, then finish its returned
-family in a new pair:
+**Example: complete `/example/demo/v1.0.0/src/composed types`.** Supply
+`/example/demo/v1.0.0/src/prepare dictionaries` with the two-formal dictionary
+constructor used above, then finish its returned family in a new pair:
 
 ```text
 @...
-.prepare dictionaries
- ...dictionary family < .dictionary
- ...key type < ..text
- ...dictionaries for key > ...text dictionaries
- ...integer dictionary > ...text integer dictionary
+/example/demo/v1.0.0/src/prepare dictionaries
+ .dictionary family < /example/demo/v1.0.0/src/dictionary
+ .key type < //text
+ .dictionaries for key > .text dictionaries
+ .integer dictionary > .text integer dictionary
 
-...text text dictionary
-...text dictionaries
- ...value type < ..text
+.text text dictionary
+.text dictionaries
+ .value type < //text
 ```
 
 The two receivers and the final pair are all exports. The incoming family and
@@ -592,11 +606,11 @@ Static equations and ordinary recursive structures use different graphs.
 
 ```text
 @...
-...a
-...b
+.a
+.b
 
-...b
-...a
+.b
+.a
 ```
 
 Both names are collected outputs, so neither becomes an external input. Their

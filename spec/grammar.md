@@ -14,6 +14,7 @@ In this chapter:
 - [Executable statements and structural recognition](#executable-statements-and-structural-recognition)
 - [Invocation, retained reads, and result selection](#invocation-retained-reads-and-result-selection)
 - [Branches, loops, completion, and suspension](#branches-loops-completion-and-suspension)
+- [Project configuration and dependency selectors](#project-configuration-and-dependency-selectors)
 - [Native protocol companion syntax](#native-protocol-companion-syntax)
 
 <!-- /chapter-contents -->
@@ -102,8 +103,9 @@ constraints also apply to every production below:
   comment suffix. A comment-only line instead requires exactly its containing
   region's indentation; it cannot invent a deeper region.
 - Recognize the longest fixed compound token: `@...`, `@=`, `@<`, `@>`, `@!`,
-  `@C`, `>>`, `[]`, `&[]`, `&[`, `...`, and `..`. Their characters cannot be
-  separated by spaces. At a type start recognize `...` before `..` and `.`.
+  `@C`, `>>`, `[]`, `&[]`, `&[`, `//`, `./` and `../`. Their characters cannot
+  be separated by spaces. At a type start, classify absolute, relative, alias
+  and single-dot static forms before reading their components.
 
 `<comment-gap(n)>` permits comments at the condition/marker indentation but no
 blank lines. `<layout(n)>` permits both blank lines and comments at that level.
@@ -117,11 +119,11 @@ Neither a blank line nor a comment delimits a section.
 | `items[]`, `targets&[]` | `% target&` |
 | `items[current position]` | `input& < &item` |
 | `targets&[positions[next position]]` | `output > receiving value` |
-| `.shop tools.item state`, `..integer` | `< ..palette.red` |
+| `/acme/shop tools/v2.4.14/src/item state`, `//integer` | `< //palette/red` |
 
-Structural indentation and an operand separator before a leading `.` or `&`
-remain outside that path/access. Storage suffixes, prefix `&`, path dots, and
-bracket joins do not admit optional whitespace. Standalone markers have no
+Structural indentation and an operand separator before a path, static name or `&`
+remain outside that path/access. Storage suffixes, prefix `&`, path slashes,
+static-name dots and bracket joins do not admit optional whitespace. Standalone markers have no
 trailing separator. `|` immediately precedes its raw payload: a space after it
 is data.
 
@@ -135,9 +137,21 @@ is data.
 <name-word>                  ::= <identifier-start>
                                  { <identifier-continue> | "-" <identifier-continue> }
 <identifier>                 ::= <name-word> { <space> <name-word> }
-<module-root>                ::= "." | ".."
-<module-path>                ::= <module-root> <identifier> { "." <identifier> }
-<placeholder-type>           ::= "..." <identifier> { "." <identifier> }
+<decimal-digit>              ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<nonzero-digit>              ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<version-number>             ::= "0" | <nonzero-digit> { <decimal-digit> }
+<version-component>          ::= "v" <version-number> "." <version-number> "."
+                                 <version-number> [ "-" <name-word> ]
+<path-component>             ::= <identifier> | <version-component> | "." | ".."
+<path-components>            ::= <path-component> { "/" <path-component> }
+<ordinary-absolute-path>     ::= "/" <path-components>
+<standard-absolute-path>     ::= "//" <path-components>
+<relative-path>              ::= ( "./" | "../" ) <path-components>
+<direct-path>                ::= <ordinary-absolute-path> | <standard-absolute-path>
+                                 | <relative-path>
+<alias-path>                 ::= "~" <identifier> [ "/" <path-components> ]
+<module-path>                ::= <direct-path> | <alias-path>
+<placeholder-type>           ::= "." <identifier> { "." <identifier> }
 <type-name>                  ::= <module-path> | <placeholder-type>
 ```
 
@@ -162,20 +176,39 @@ or the code-part boundary; a valid internal hyphen is part of that name.
 cannot be repaired by splitting it into operands. A space alone cannot separate
 two operands. Never consult declarations to split a name or repair its spelling.
 
-Each path component is one complete name. The leading `.` selects project/import
-roots, while `..` selects the standard-library root. These are absolute logical
-root markers, not filesystem traversal. Internal separators are single adjoining
-dots: `.shop tools.item state` contains two components. Empty components, bare
-roots, trailing dots, internal doubled dots, and three leading dots are invalid
-in a concrete module path. A `<placeholder-type>` instead starts with exactly
-three dots and uses the same component spelling. Its whole name denotes one
-scoped static parameter, result or alias under
-[TPL-01/TPL-02](language/templates.md#tpl-01) and
-[TPL-12](language/static-results.md#tpl-12), not a third filesystem root. It has
-no trailing dot and does not select a member. Bare `...` is neither a name nor a
-binding marker; static bindings always use complete named labels and operands.
-Physical `name+/` submodule directories add no source syntax; their exact mapping
-is defined by SRC-05 in [Source files and paths](language/source-and-names.md).
+The absolute prefixes `/` and `//` select the ordinary and standard logical
+namespaces respectively. Neither addresses the host filesystem root. Path
+separators are adjoining single slashes. A whole component is one complete
+name, a version spelling, or the structural `.` or `..`. The latter are
+normalized with the exact stack algorithm in
+[SRC-06](language/source-and-names.md#src-06), before module lookup. A relative
+path starts with `./` or `../` and uses the defining source's containing logical
+directory and namespace. Empty components, trailing slashes, three leading
+slashes and a normalized endpoint above the namespace root are invalid. The
+normalized ordinary module identity must have vendor, one or more package
+components, version, `src` or `tests`, and one or more module components under
+[SRC-01](language/source-and-names.md#src-01); standard modules need no package
+wrapper. The version production's numeric fields have no leading zero except
+`0`; its optional variant is one nonempty name word with no spaces, dots or
+slashes. Version components are permitted only at that package-version
+position in a canonical ordinary identity. They are not ordinary dotted names.
+
+An `<alias-path>` looks up exactly the complete name after `~` and before its
+first slash, expands it under the [package alias rules](project/packages.md#pkg-04),
+then normalizes the supplied suffix. No alternate lookup or partial-name match
+is permitted. Source module paths contain no dependency wildcard `*`.
+
+A `<placeholder-type>` starts with exactly one dot and has no slashes. Its
+whole descriptive name denotes one scoped static parameter, result or alias
+under [TPL-01/TPL-02](language/templates.md#tpl-01) and
+[TPL-12](language/static-results.md#tpl-12), with no filesystem lookup or member
+selection. `.data.element type` is one name, not a path. Bare `.`, `..name`,
+`...name`, empty components and a trailing dot are invalid static names.
+The slash in `./module` and second dot in `../module` distinguish them from a
+static name before lookup. `@...` remains an independent module annotation.
+Static bindings always use complete named labels and operands. Physical
+`name+/` submodule directories add no source syntax; their exact mapping follows
+[SRC-05](language/source-and-names.md#src-05).
 
 ### Declaration names
 
@@ -210,8 +243,7 @@ visibility, receiver inference, and the non-shadowing rule for foreach locals.
                                  | <identifier> "&[" <index> "]"
 <reference-acquisition>      ::= "&" <owned-access>
 <self-reference>             ::= "&"
-<constant-access>            ::= <module-path> "."
-                                 ( <owned-name> | <owned-list-name> )
+<constant-access>            ::= <module-path> [ "[]" ]
 <whole-list-access>          ::= <owned-list-name> | <reference-list-name>
 <continuation-copy>          ::= "%" <space> ( <owned-access> | <reference-access> )
 <value-source>               ::= <owned-access> | <reference-access>
@@ -237,14 +269,18 @@ type supplies native `[]`. It is not a literal or arithmetic expression.
 `items[position]` selects an owned element; `targets&[position]` selects a
 reference slot. Indexing does not itself execute the selected target.
 
-In a qualified constant source, the final path component is the constant name;
-the preceding components name its module. At least one module component and one
-constant-name component must follow the root marker. `.catalog.item states[]`
-is a constant list source. No longest-prefix lookup or alternate path split is
-permitted. A path in a type line names a type instead. This direct source form
+In a qualified constant source, expand any alias and normalize the entire path
+first. Exactly its final component is the constant name, and all preceding
+components must form the module's complete identity. The final name must obey
+the ordinary constant-name rule; optional `[]` selects the owning-list form.
+For example, `/example/demo/v1.0.0/src/catalog/item states[]` is a constant list
+source. A whole alias may supply all components, including the final constant;
+there need not be a slash written after the alias. No longest-prefix lookup or
+alternate path split is permitted. A path in a type line names a type instead.
+This direct source form
 does not accept a placeholder, a static application or an export selector; use
 the explicit constant-read namespace form below to select a prepared type.
-In particular, `...type.member` remains one complete placeholder, not qualified
+In particular, `.type.member` remains one complete placeholder, not qualified
 constant access.
 Constants cannot be receivers, mutable-reference sources, execution targets, or
 continuation-copy operands. See [Constants](language/declarations.md).
@@ -272,7 +308,7 @@ TAB remains globally invalid.
 
 ```text
 message
-..text
+//text
  |He said: "Hello!" # this is data
 ```
 
@@ -386,19 +422,19 @@ references/lists/constants also require ordinary runtime-capable Types.
 
 ```text
 handler
-.application types
- ...handler type
+/example/demo/v1.0.0/src/application types
+ .handler type
 ```
 
-This declaration names the static output `...handler type` from
-`.application types`. It creates an ordinary `handler` instance of that returned
-Type, not an instance of the static module. The selector is one level below the
+This declaration names the static output `.handler type` from
+`/example/demo/v1.0.0/src/application types`. It creates an ordinary `handler`
+instance of that returned Type, not an instance of the static module. The selector is one level below the
 type path. Any ordinary initializer follows at that same depth:
 
 ```text
 number
-.application types
- ...integer type
+/example/demo/v1.0.0/src/application types
+ .integer type
  |3
 ```
 
@@ -411,7 +447,7 @@ defined in [Declarations and scope](language/declarations.md).
 
 ```text
 lines[]
-..text
+//text
  |First line
  |
  |Third line
@@ -443,7 +479,7 @@ equations. Both forms have no ordinary variables,
 runtime values, mutable state, initializers, calls, conditions, loops, native
 bodies, or runtime instances. Every static input and output binding is named:
 its label and operand are complete placeholder/type expressions as shown above.
-There are no positional static bindings, bare `...` markers, operandless
+There are no positional static bindings, bare `.` markers, operandless
 bindings, skips, or a trailing capture of the expression's own Type. Ordinary
 runtime positional arguments and results enumerate their respective interface
 declarations.
@@ -459,23 +495,23 @@ The expression's caller writes the leading indentation or operand separator;
 
 ```text
 @...
-...dictionary type
-.dictionary
- ...key type < ...key
- ...value type < ...value
+.dictionary type
+/example/demo/v1.0.0/src/dictionary
+ .key type < .key
+ .value type < .value
 
-...forwarded family
-...received family
+.forwarded family
+.received family
 
-...nested type
-.outer
- ...element < .inner
-  ...value < ...value
+.nested type
+/example/demo/v1.0.0/src/outer
+ .element < /example/demo/v1.0.0/src/inner
+  .value < .value
 ```
 
 Assume the displayed ordinary constructors have the named parameters used in
 these fragments. The definition pairs expose their resulting Types or
-Templates under `...dictionary type`, `...forwarded family`, and `...nested type`.
+Templates under `.dictionary type`, `.forwarded family`, and `.nested type`.
 The indented names on the left of `<` belong to the selected constructor;
 right-hand names use the supplying static module's scope. A name containing dots
 still denotes one complete scoped name, not selection through another name.
@@ -493,14 +529,14 @@ parsing, without alternate tokenization.
 
 ```text
 @...
-.prepare types
- ...source type < ...source
- ...prepared family > ...family
- ...prepared value > ...value
+/example/demo/v1.0.0/src/prepare types
+ .source type < .source
+ .prepared family > .family
+ .prepared value > .value
 
-...container type
-...family
- ...element < ...value
+.container type
+.family
+ .element < .value
 ```
 
 This graph obtains two named outputs and uses them in an ordinary constructor
@@ -535,11 +571,11 @@ relaxes initialization, ownership or storage-form rules.
 ```text
 @<
 source&
-...data.element type
+.data.element type
 
 @>
 result&
-...data.element type
+.data.element type
 
 @!
 result&
@@ -553,7 +589,7 @@ parameter may instead first appear as an ordinary result type:
 ```text
 @>
 result
-...result type
+.result type
 
 @!
 ```
@@ -615,15 +651,15 @@ selection of TPL-15; these contribute declaration type constraints, not graph
 statements or runtime operations.
 
 **Example: later static evidence, with ordinary execution order.** Assume
-`.forward` is the template defined in [TPL-04](language/templates.md#tpl-04):
+`/example/demo/v1.0.0/src/forward` is the template defined in [TPL-04](language/templates.md#tpl-04):
 
 ```text
 @!
 known
-..integer
+//integer
 
 worker
-.forward
+/example/demo/v1.0.0/src/forward
 
 worker !
  < |0
@@ -635,7 +671,7 @@ inferred
 
 The output receiver first introduces `inferred` under TYPE-06, initially with
 the result's symbolic type. The later assignment from `known` constrains that
-same field to `..integer`, which also fixes the worker's input/result type.
+same field to `//integer`, which also fixes the worker's input/result type.
 The literal is then checked against that determined type; its bytes did not
 select a type. At runtime the call still precedes the assignment, and the fields
 are constructed under the ordinary declaration-order rules.
@@ -646,7 +682,7 @@ Recognize the shape before name/type lookup:
   declaration; nested named inputs and an optional single export selector
   precede its ordinary initializers.
 - `@<` and `@>` contain runtime name/type declarations. A leading
-  `...name` receiver and same-level value expression form a static definition
+  `.name` receiver and same-level value expression form a static definition
   only inside an `@...` module. Static binding lines have named `<` or `>`;
   runtime arguments remain inside their ordinary operation's argument block.
 - A receiver followed by an indented copy source is an assignment.
@@ -732,7 +768,7 @@ input consumes its newline directly, so `#` in payload cannot become a comment.
 | `worker` | None | At least one `>>` binding or selected operation |
 | `items[]` / `targets&[]` | None | At least one selected list method `!` |
 | Selected list method `!` | Its declared `<` bindings | Its declared results |
-| `.namespace` / `...type` constant read | None | At least one `>>` binding |
+| `/example/demo/v1.0.0/src/namespace` / `.type` constant read | None | At least one `>>` binding |
 
 Execution modes cannot combine at one operation level. Module paths cannot be
 entry/resume targets. A constant-read namespace likewise cannot acquire `!`, `%`,
@@ -772,20 +808,21 @@ binding, no selected operations, and no refusal handler. Named and positional
 constant requests retain CONST-03's ordinary saved-read rules.
 
 **Examples: specification fragments, not implementation claims.** Assume the
-enclosing interface declares Type parameter `...element type`, its substitution
+enclosing interface declares Type parameter `.element type`, its substitution
 is already concrete, and that selected Type declares constant `zero`:
 
 ```text
-...element type
+.element type
  zero >> initial value
 ```
 
-Assume `.application types` is a closed static producer exporting a concrete
-Type as `...container type`, and that Type declares constant `empty list[]`:
+Assume `/example/demo/v1.0.0/src/application types` is a closed static producer
+exporting a concrete Type as `.container type`, and that Type declares constant
+`empty list[]`:
 
 ```text
-.application types
- ...container type
+/example/demo/v1.0.0/src/application types
+ .container type
  empty list[] >> values[]
 ```
 
@@ -793,10 +830,10 @@ All type construction occurs in the static module. Replacing its selector by a
 named static input/output binding, adding a second selector, or placing the
 selector after `>>` is invalid ordinary syntax.
 
-The direct copy-source spelling `.palette.red` retains its separate production.
+The direct copy-source spelling `/example/demo/v1.0.0/src/palette/red` retains its separate production.
 There is no inline static application or export selection inside such a source,
-and `...element type.zero` does not mean the `zero` constant of
-`...element type`. A bare static module path is not an ordinary constant namespace.
+and `.element type.zero` does not mean the `zero` constant of
+`.element type`. A bare static module path is not an ordinary constant namespace.
 
 ### Binding form and order
 
@@ -973,6 +1010,82 @@ in [Traversing a changing list](language/lists.md#traversing-a-changing-list).
 
 These forms add no automatic scheduling or parallel execution. Their state and
 lifetime rules are specified in [Continuations](language/continuations.md).
+
+## Project configuration and dependency selectors
+
+These productions describe configuration inputs, not Ama source sections.
+Their semantics are defined once in
+[Projects, packages, and repeatable module delivery](project/packages.md).
+The line rules of [PKG-03](project/packages.md#pkg-03) deliberately define a
+small Ama INI profile; implementations must not inherit a generic parser's
+quoting, interpolation, duplicate-key or whitespace behavior.
+
+```ebnf
+<ini-comment-line>           ::= ";" { ? Unicode scalar except TAB, CR or LF ? } <newline>
+<ini-layout>                 ::= { <blank-line> | <ini-comment-line> }
+<ini-value>                  ::= ? nonempty UTF-8 line value without TAB, CR, LF,
+                                   leading whitespace or trailing whitespace ?
+<alias-key>                  ::= "~" <identifier>
+<package-ini>                ::= <ini-layout> { <package-ini-section> <ini-layout> }
+<package-ini-section>        ::= <dependency-section> | <package-alias-section>
+                                 | <repository-section>
+<dependency-section>         ::= "[dependencies]" <newline> <ini-layout>
+                                 { <dependency-selector> <newline> <ini-layout> }
+<package-alias-section>      ::= "[aliases]" <newline> <ini-layout>
+                                 { <package-alias-record> <ini-layout> }
+<package-alias-record>       ::= <alias-key> " = " <direct-path> <newline>
+<module-ini>                 ::= <ini-layout> { <module-alias-record> <ini-layout> }
+<module-alias-record>        ::= <alias-key> " = " <module-path> <newline>
+<repository-prefix>          ::= "/" <identifier> { "/" <identifier> }
+<repository-section>         ::= "[repository " <repository-prefix> "]" <newline>
+                                 <ini-layout> { <repository-record> <ini-layout> }
+<repository-record>          ::= ( "url" | "directory" | "revision" ) " = "
+                                 <ini-value> <newline>
+<mask-character>             ::= <identifier-continue> | "-" | "." | <space>
+<selector-component>         ::= ( <mask-character> | "*" )
+                                 { <mask-character> | "*" }
+<selector-components>        ::= <selector-component> { "/" <selector-component> }
+<dependency-selector>        ::= "/" <selector-components>
+                                 | <alias-key> [ "/" <selector-components> ]
+```
+
+The UTF-8, TAB and physical LF/CRLF rules apply; configuration has no byte-order
+mark. As for source, a nonempty unterminated final line has one virtual LF for
+recognition. Every nonblank line starts in column zero and has no trailing
+whitespace. A comment occupies its whole line and starts with `;`; `#` does not
+introduce an INI comment, and `;` inside a value remains data. Assignment joins
+are exactly the written `" = "`. Alias names and path components retain their
+exact single internal spaces. Values have no quoting or escape processing,
+interpolation or environment expansion; a later `=` belongs to the value.
+
+Only the displayed sections and repository keys exist. Each section, alias key
+and fixed repository key may occur once in its scope. Duplicate/unknown records
+are errors, and the mandatory `url` and `directory` fields are checked under
+[PKG-06](project/packages.md#pkg-06). Its prefix ends before the version and
+matches whole vendor/package components. The directory field is a relative
+physical directory within the Git checkout, not an Ama source path. Empty
+configurations and empty optional sections are permitted.
+
+Package aliases have direct path targets. Module aliases may additionally refer
+to package aliases, but never to a module alias; shared/local collisions are
+errors under [PKG-04](project/packages.md#pkg-04). A module INI file has no section
+headers. Package and module aliases have different relative bases under that
+rule; both use [SRC-06](language/source-and-names.md#src-06) normalization.
+
+Dependency selectors are absolute ordinary patterns or package-alias patterns,
+not standard paths, static names or local module aliases. An alias can supply a
+complete version/module selector without a written suffix. First normalize an
+alias's real path base; append its pattern suffix afterwards. Selector
+components have no leading/trailing whitespace and must not be exactly `.` or
+`..`. Do not normalize pattern traversal by cancelling a wildcard component.
+A standalone `*` matches a nonempty chain
+of path components, whereas an embedded `*` matches zero or more scalars within
+one component. Exact literal portions and the set of eligible complete
+package/module identities determine all matches under
+[PKG-05](project/packages.md#pkg-05). A selector may end at a complete version or
+at a complete `src`/`tests` module; the storage names and missing `src`/`tests`
+are never inferred. Multiple matching decompositions do not duplicate an
+identity. Masks are forbidden in source `<module-path>` operands.
 
 ## Native protocol companion syntax
 

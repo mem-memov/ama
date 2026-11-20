@@ -6,6 +6,7 @@
 In this chapter:
 
 - [Files and module paths](#files-and-module-paths)
+- [Relative paths and local abbreviations](#relative-paths-and-local-abbreviations)
 - [Complete names, including names with spaces](#complete-names-including-names-with-spaces)
 - [Indentation and block boundaries](#indentation-and-block-boundaries)
 - [Comments and blank lines](#comments-and-blank-lines)
@@ -28,37 +29,52 @@ productions are in the [grammar](../grammar.md).
 <a id="src-01"></a>
 
 **SRC-01.** One extensionless source file defines one module. Its logical path
-comprises a root kind and an ordered sequence of complete name components.
-The prefix `.` selects the configured project and imported-library roots;
-the prefix `..` selects only the configured standard-library root. Both prefixes
-are absolute logical namespace selectors, independent of the referring module's
-location. `..` does not traverse a filesystem parent directory. The selected
-root's physical directory name is not a required source-language component.
-Within that root, apply the physical mapping in SRC-05.
-For example, `shop/item` is named `.shop.item`. A companion C implementation is
-`shop/item.c`. An active `@C` module requires companions `shop/item.h` for its
-native declarations/layout, `shop/item.c` for implementation, and `shop/item.abi`
-for protocol bindings. The optional capabilities are optional records, not
-permission to omit mandatory lifecycle metadata. Ama implementations, static
-modules and constants-only namespaces do not require native companions. `.abi` files are
-compiler inputs describing native contracts, not executable Ama modules.
+comprises a namespace kind and an ordered sequence of components separated by
+adjoining ASCII slashes `/`. A single leading `/` selects the ordinary package
+namespace. Two leading slashes `//` select the standard-library namespace.
+These are logical addresses; their leading slash does not select the operating
+system's filesystem root. The storage directories `packages/`, `dependencies/`
+and the configured standard-library root do not occur in logical names.
+
+An ordinary full module name has the structure
+`/vendor/package/.../vMajor.Minor.Patch[-variant]/src/module/...` or the same
+structure with `tests` in place of `src`. There is at least one package
+component and at least one module component. Vendor, package and module
+components use SRC-03 complete names. The version is one component under
+[PKG-01](../project/packages.md#pkg-01): for example, `v2.4.14` or
+`v2.4.14-speed`. Its dots are internal to that component and do not delimit
+module names. Package discovery and version placement follow that canonical
+package layout; a source path is not a dependency
+wildcard selector and never contains `*`.
+
+For example,
+`packages/acme/shop/v2.4.14/src/item` has the full logical name
+`/acme/shop/v2.4.14/src/item`. A companion C implementation is the sibling
+`item.c`. An active `@C` module requires sibling `.h`, `.c` and `.abi` files for
+native declarations/layout, implementation and protocol bindings respectively.
+Optional capabilities are optional records, not permission to omit mandatory
+lifecycle metadata. Ama implementations, static modules and constants-only
+namespaces do not require native companions. `.abi` files are compiler inputs
+describing native contracts, not executable Ama modules. A module's optional
+`.ini` companion declares local path aliases under the
+[package alias contract](../project/packages.md#pkg-04).
 
 For a standard-library root at `stdlib/modules`, the source
-`stdlib/modules/integer` is named `..integer`; its native companions, when
-required, are `stdlib/modules/integer.h`, `stdlib/modules/integer.c`, and
-`stdlib/modules/integer.abi`. The prefix does not reserve English words or translate names. Most library
-module names may use any accepted spelling, including multiword Unicode names.
-Specific interfaces may fix a public nominal identity: LIST-04 requires the
-standard-library type `..integer` for list positions and lengths. That required
-identity is an explicit library contract, not a general rule for path spelling.
+`stdlib/modules/integer` is named `//integer`; the standard namespace needs no
+vendor, package, version, `src` or `tests` wrapper. Required native companions
+remain `integer.h`, `integer.c` and `integer.abi` beside that source. The prefix
+does not reserve English words or translate names. Most library module names
+may use any accepted spelling, including multiword Unicode names. Specific
+interfaces may fix a public nominal identity: LIST-04 requires `//integer`
+for list positions and lengths. That identity is an explicit library contract,
+not a general rule for path spelling.
 
-The full logical identity is `(root kind, component sequence)`. `.item` and
-`..item` are distinct identities even when their component bytes coincide.
-Resolve a path only within its selected root family, with no fallback between
-project/import and standard-library roots and no search-order shadowing.
-For a template this identifies the source definition. A concrete specialization
-additionally includes its static bindings under
-[TPL-05](templates.md#tpl-05); no extra physical source file is required.
+The full logical identity is `(namespace kind, component sequence)`. Resolve
+only within the selected namespace, with no ordinary/standard fallback. A
+template path identifies its source definition. A concrete specialization also
+includes its static bindings under [TPL-05](templates.md#tpl-05); no extra
+physical source file is required. Relative and alias spellings normalize to
+this same identity under SRC-06 and do not introduce another type or instance.
 
 ### Keeping a module and its submodules together
 
@@ -69,7 +85,7 @@ source file with the ASCII suffix `+`. The marker belongs to filesystem layout,
 not to a logical identifier. For example:
 
 ```text
-shop/
+packages/acme/shop/v2.4.14/src/
     item
     item.c
     item.h
@@ -84,14 +100,14 @@ shop/
 
 | Physical module source | Logical module path |
 |---|---|
-| `shop/item` | `.shop.item` |
-| `shop/item+/validate` | `.shop.item.validate` |
-| `shop/item+/calculate` | `.shop.item.calculate` |
-| `shop/item+/names` | `.shop.item.names` |
-| `shop/item+/validate+/details` | `.shop.item.validate.details` |
+| `packages/acme/shop/v2.4.14/src/item` | `/acme/shop/v2.4.14/src/item` |
+| `packages/acme/shop/v2.4.14/src/item+/validate` | `/acme/shop/v2.4.14/src/item/validate` |
+| `packages/acme/shop/v2.4.14/src/item+/calculate` | `/acme/shop/v2.4.14/src/item/calculate` |
+| `packages/acme/shop/v2.4.14/src/item+/names` | `/acme/shop/v2.4.14/src/item/names` |
+| `packages/acme/shop/v2.4.14/src/item+/validate+/details` | `/acme/shop/v2.4.14/src/item/validate/details` |
 
 The same physical mapping applies within the standard-library root, preserving
-its prefix: `stdlib/modules/item+/validate` maps to `..item.validate` when
+its prefix: `stdlib/modules/item+/validate` maps to `//item/validate` when
 `stdlib/modules` is that root and its sibling `item` source exists.
 
 Ordinary directories such as `shop/` group namespace components. A `name+/`
@@ -109,7 +125,8 @@ preferring a search path. `+` is not added to module-path grammar. Source maps,
 `#line`, includes and filesystem diagnostics retain actual physical paths.
 
 Derive native companions from the physical source filename, so the implementation
-for `.shop.item.validate` is `shop/item+/validate.c`, with `.h` and `.abi` beside it.
+for `/acme/shop/v2.4.14/src/item/validate` is
+`packages/acme/shop/v2.4.14/src/item+/validate.c`, with `.h` and `.abi` beside it.
 The convention lets an extensionless parent file and its child directory coexist
 without changing existing top-level companion names.
 
@@ -137,16 +154,86 @@ it does not create a default instance or expose private fields.
 
 <a id="src-02"></a>
 
-**SRC-02.** Duplicate complete module identities across configured roots of the
-same root kind MUST be rejected; in particular, project and imported libraries
-share the ordinary `.` namespace and cannot shadow each other. Identical
-component sequences in the `.` and `..` namespaces do not by themselves collide.
+**SRC-02.** Select the complete package version from `packages/` or
+`dependencies/` under the [package precedence rule](../project/packages.md#pkg-02)
+before searching its modules. Do not merge their file trees or use an ignored
+external copy to fill a missing local module. Duplicate complete module
+identities within the selected source set MUST be rejected. The ordinary `/`
+and standard `//` namespaces do not collide merely because some component
+bytes coincide.
 Filesystem aliases must not create conflicting identities, and the same physical
 module must not be exposed under different logical identities, including through
 roots of different kinds.
 Module lookup must diagnose missing modules and executable references to drafts.
 The compiler must define which directory entries are source candidates and must
-not treat generated outputs or companion `.c`, `.h`, or `.abi` files as Ama modules.
+not treat generated outputs or companion `.c`, `.h`, `.abi` or `.ini` files as
+Ama modules. Dependency staging in `download/` is not a module source root.
+
+## Relative paths and local abbreviations
+
+<a id="src-06"></a>
+
+**SRC-06.** A relative module path starts with `./` or `../`. Resolve it against
+the logical directory containing the source module that writes the reference,
+not against that module's own name, the compiler's working directory, a caller,
+or a specialization's consumer. Its namespace kind is the defining source's
+namespace kind and cannot change during normalization. Thus a relative standard
+path remains within `//`; a relative ordinary path remains within `/`.
+
+Split a path into components before looking up any files. Process components
+left to right with a stack: `.` leaves the stack unchanged; `..` removes its
+last component; any other component is appended. Attempting to remove a
+component from an empty stack is an error. Do not load, require or execute an
+intermediate component that a later `..` removes. Absolute paths admit the same
+whole-component `.` and `..` normalization after their namespace prefix.
+In a module-reference context the normalized endpoint must be a complete
+module identity satisfying SRC-01; qualified constant sources instead split
+the final component under SRC-03 and CONST-05.
+Empty components, repeated slashes except the initial `//`, and a trailing
+slash are invalid. A third leading slash is invalid.
+
+Module references may instead start with `~` followed immediately by one
+complete alias name, optionally followed by `/` and a component sequence.
+The alias name ends at the first slash. Resolve aliases by their exact scoped
+name under the [package alias contract](../project/packages.md#pkg-04), then normalize
+the expanded path and suffix using the same stack algorithm. Normalization
+must not cause a second alias lookup. The alias target determines the
+namespace kind. A suffix may contain whole `.` or `..` components, but cannot
+cross that namespace's root. An alias never changes canonical module identity.
+
+Relative paths can cross module, `src`/`tests`, version, package and vendor
+boundaries when the normalized target is valid. The direction restrictions for
+dependencies from `src` to `tests` are checked against that final identity under
+the [package test-isolation contract](../project/packages.md#pkg-09), including
+references written through aliases or static expressions. Passing a test type
+through an ordinary template parameter does not manufacture a source-written
+dependency in the template's definition.
+
+**Example: the containing directory is the base.** Suppose these sources exist
+inside one package version:
+
+```text
+src/
+    tree
+    compare
+    tree+/
+        traverse
+        check
+tests/
+    verify tree
+```
+
+In `src/tree+/traverse`, `./check` denotes its sibling `check`, `../compare`
+denotes `src/compare`, and `../tree` denotes `src/tree`. In `src/tree`, its child
+is `./tree/traverse`. In `tests/verify tree`, `../src/tree` selects the tested
+module. In `src/tree`, `../tests/verify tree` normalizes successfully but is a
+forbidden source-to-test dependency. No reference spells the physical `+`.
+
+**Why this rule exists.** Relative addresses shorten paths while retaining one
+meaning after loading, independent of process state. Stack normalization
+terminates after one step per supplied component and has one endpoint. A
+module's aliases are configuration for that same address calculation, not
+alternate modules or declaration-dependent guesses.
 
 ## Complete names, including names with spaces
 
@@ -171,7 +258,7 @@ These rules support international alphabets, including Chinese, without requirin
 C-compatible names.
 
 The same profile applies to variable and constant names, runtime interface/member
-names, every module-path component and the descriptive components of static
+names, ordinary module-path components and the descriptive components of static
 names under [TPL-01](templates.md#tpl-01). Only U+002D is added as a hyphen;
 similar-looking punctuation is not substituted for it. All other scalars retain
 their existing Unicode identifier-property requirements. Underscores remain
@@ -201,26 +288,36 @@ updated system Unicode library. Generating/vendoring those tables is an
 implementation task; changing the accepted property edition is a reviewed source
 contract change, not an implicit library upgrade.
 
-Each component of a module path uses the same complete-name rule. Source notation
-places dots directly against their adjacent components: `.shop tools.item state`
-identifies the physical source `shop tools/item state` in the ordinary namespace.
-The root marker `.` or `..` directly precedes the first component; exactly one
-dot separates each subsequent pair of components. The two dots in `..` form
-one root marker, never an empty component. No spaces may split the marker or
-separate it from the first component. No space is allowed after a dot or before
-an internal dot. Empty components, internal doubled dots, three or more leading
-dots, a bare root marker, and a trailing dot are invalid in concrete module paths.
-Exactly three leading dots instead introduce a placeholder spelling in a permitted
-static position under [TPL-01](templates.md#tpl-01), including type expressions,
-static graph input/result names, aliases, and named static
-binding labels under [TPL-12](static-results.md#tpl-12), never a filesystem root.
-Its complete descriptive name needs no corresponding file or directory. Four leading dots
-remain invalid. The dots are structural separators, not name bytes; each
-component's internal spaces are identity.
-Indentation or an operand separator before the root marker is outside the path,
-as in `< ..palette.red`, and retains its ordinary grammar rule.
-The final component of a qualified constant source is still exactly its constant
-name under CONST-05. Physical names beginning/ending with a space or containing
+Each ordinary component of a module path uses the same complete-name rule;
+the structurally identified version component has the separate SRC-01 spelling.
+Source notation places `/` directly against its adjacent components:
+`/acme/shop tools/v2.4.14/src/item state` contains the complete names `shop tools`
+and `item state`. No space may split a namespace prefix, adjoin a slash, or
+pad a component. Relative whole components `.` and `..` have only the SRC-06
+normalization meaning. Dots elsewhere in concrete paths occur only in the
+version component; they are not module or constant-member separators.
+
+Exactly one leading `.` followed immediately by a valid identifier start
+introduces a static name in a permitted position under
+[TPL-01](templates.md#tpl-01). Its complete descriptive spelling is a nonempty
+sequence of SRC-03 identifiers separated by adjoining single dots, for example
+`.data.element type`. The entire sequence denotes one scoped name: there is no
+filesystem lookup, member selection or automatic relationship to `.element type`.
+Slashes, empty components, a trailing dot and two or more leading dots are
+invalid in static names. The slash in `./module` and the second dot and slash
+in `../module` distinguish those relative paths lexically from `.module`.
+This static spelling also covers graph input/result names, static aliases and
+named binding labels under [TPL-12](static-results.md#tpl-12). It needs no
+corresponding file or directory. The independent annotation `@...` remains the
+static-module marker.
+
+Indentation or an operand separator before a path or static prefix is outside
+that name, as in `< //palette/red`, and retains its ordinary grammar rule.
+In a qualified constant source, expand aliases and normalize the path first,
+then take exactly the final component as its constant name under CONST-05; the
+preceding identity must denote its module. Type-line paths instead denote
+their complete module. This source-context split does not try alternate module
+prefixes. Physical names beginning/ending with a space or containing
 repeated internal spaces or invalid hyphen placement are not valid Ama components;
 diagnose rather than trim, collapse, replace spaces/hyphens with underscores,
 or guess another path. `item-name`, `item_name` and `item name` are distinct
@@ -242,16 +339,18 @@ These are spelling examples, not complete programs.
 |---|---|
 | `total price` | One name containing two words |
 | `total price&` | The reference form of the complete name `total price` |
-| `.shop tools.item state` | A path with components `shop tools` and `item state` |
+| `/acme/shop tools/v2.4.14/src/item state` | A module path containing the complete names `shop tools` and `item state` |
 | `items[current position]` | List `items`, indexed by the complete name `current position` |
 | `item-2 next_step` | One complete name; the digit continues the first word |
 | `red-blue-green` | One word with two separated internal hyphens |
 | `_item-_value`, `item_-value` | Valid combinations of ordinary underscores and isolated hyphens |
-| `.shop-tools.item-state` | A path to physical `shop-tools/item-state` with exact spelling |
-| `...данные.тип-ключа` | One static name; no corresponding file is required |
+| `/acme/shop-tools/v2.4.14/src/item-state` | A path preserving internal hyphens exactly |
+| `.данные.тип-ключа` | One static name; no corresponding file is required |
 | `item-name`, `item_name`, `item name` | Three distinct complete names |
 | `total  price` | Invalid: two spaces inside a name |
-| `.shop .item` | Invalid: a space next to a path separator |
+| `/acme/shop tools/v2.4.14/src/ item` | Invalid: a space next to a path separator |
+| `.data/type` | Invalid: a slash inside a static name |
+| `..data`, `...data`, `.data.` | Invalid static spellings |
 | `-item`, `item-`, `item--name` | Invalid: leading, trailing or adjacent hyphens |
 | `item- name`, `item -name`, `item - name` | Invalid: a hyphen cannot adjoin a word-separating space |
 | `item−2`, `item–2` | Invalid: U+2212 minus and U+2013 en dash are not ASCII hyphens or identifier characters |
@@ -366,7 +465,7 @@ ready
 structural indentation, accepted literal payloads, comment text, and trailing
 comment prefixes, required code separators are exactly one U+0020. Standalone
 comment indentation must satisfy SYN-02. Module paths and
-qualified constant sources use adjoining dots under SRC-03. Placeholder names
+qualified constant sources use adjoining slashes under SRC-03. Static names
 use adjoining dots under [TPL-01](templates.md#tpl-01). Storage suffixes
 `&`, `[]`, and `&[]` directly follow the complete name. A reference-forming prefix
 `&` directly precedes its owned access. Index delimiters `[`/`&[` directly follow
@@ -378,19 +477,22 @@ All other grammatical separators remain exactly one U+0020, including those
 before execution suffixes `!`/`%`, after a continuation-copy prefix `%`, and
 around binding markers. Thus `target& !`, `% target&`, and `input& < &item` have
 required spaces outside the compact access. Indentation and an operand separator
-before a leading path dot or reference prefix are also outside the access.
+before a path, static name or reference prefix are also outside the access.
 There is no optional whitespace, repeated separator, trailing code space, TAB,
 or alternative Unicode spacing character. Repeated spaces are permitted only in
 the three excluded regions, never within a name or between code tokens.
 
 In Ama, the fixed compound tokens are `@...`, `@=`, `@<`, `@>`, `@!`, `@C`,
-`>>`, `[]`, `&[]`, `&[`, the placeholder prefix `...`, and the leading module-root marker `..`.
+`>>`, `[]`, `&[]`, `&[`, the standard namespace prefix `//`, and the relative
+path prefixes `./` and `../`.
 They contain no internal whitespace.
 Recognize the longest fixed token at a punctuation position; `&[]` is one token,
-not `&[` followed by `]`. At a type start, recognize `...` before `..` and then
-the single-dot root marker. The `..` token is invalid elsewhere in a path under
-SRC-03.
-The remaining source punctuation tokens are `.`, `&`, `[`, `]`, `!`, `%`, `<`,
+not `&[` followed by `]`. At a type start, distinguish `//`, `/`, `../`, `./`,
+`~` and a single-dot static name before consuming components. Once a path has
+started, recognize whole `.` and `..` components under SRC-06; do not interpret
+them as static names. A bare `.` is not a static name, and a bare namespace
+prefix is not a module path.
+The remaining source punctuation tokens are `.`, `/`, `~`, `&`, `[`, `]`, `!`, `%`, `<`,
 `>`, `|`, `?`, `:`, `{`, `}`, and `^`; `#` begins the comment region.
 Outside name words, code punctuation must be one of these tokens; `_` remains
 allowed by the name-word rule. The `.abi` token inventory and flat comment-line
@@ -405,8 +507,10 @@ lines, and the TAB ban are shared.
 | `&` as a value source | Reference to the current instance of the containing module |
 | `items[]` / `targets&[]` | Owning-list / reference-list name |
 | `items[current position]` / `targets&[current position]` | Owned / reference element selection |
-| `.shop tools.item state` | Module path with two multiword components |
-| `...data.element type` | One descriptive type-placeholder name, without filesystem lookup |
+| `/acme/shop tools/v2.4.14/src/item state` | Module path with multiword components |
+| `.data.element type` | One descriptive static name, without filesystem lookup |
+| `./check`, `../compare` | Relative module paths |
+| `~containers/dictionary` | Exact scoped path alias followed by a suffix |
 | `input name < source name` / `output name > receiver name` | Named bindings with complete multiword names |
 
 Literal `|` is followed immediately by its raw payload, not an implicit separator;
@@ -414,7 +518,7 @@ any space after it is data. In `< |payload`, the single space between `<` and `|
 is syntax. A standalone marker ends the code part without a trailing space.
 Annotation tokens occupy their own zero-indent lines. Required spaces around
 separate operation/binding markers are grammar separators, never leading/trailing
-spaces in names. Path dots and storage/access punctuation adjoin their operands
+spaces in names. Path slashes, static-name dots and storage/access punctuation adjoin their operands
 without spaces.
 
 ### Recognition order
@@ -447,7 +551,8 @@ This also applies recursively to indices: `items[positions[current row]]` has
 one unique delimiter structure, and `&item states[current position]` forms a
 reference to the selected owned element. Compact punctuation never splits or
 normalizes the single spaces inside either multiword name. A qualified constant
-list source likewise retains its compact suffix, as in `.catalog.item states[]`.
+list source likewise retains its compact suffix, as in
+`/example/demo/v1.0.0/src/catalog/item states[]`.
 
 ## Module sections and unfinished files
 
@@ -516,7 +621,7 @@ executable call; construction initializes `count` to zero.
 ```text
 @!
 count
-..integer
+//integer
  |0
 ```
 

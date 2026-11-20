@@ -14,7 +14,7 @@ An empty static `@...` file instead names a compile-time marker under
 [TPL-14](static-results.md#tpl-14). A marker has no instance; the storage and
 execution examples in this chapter concern ordinary module Types.
 
-A path such as `.examples.job` names the module. It does not select an object to
+A path such as `/example/demo/v1.0.0/src/examples/job` names the module. It does not select an object to
 execute. A declaration creates owned storage or a reference; a call selects
 that declared storage. This distinction prevents a name from silently referring
 to one global default object.
@@ -36,10 +36,10 @@ The type follows on the next line. Storage markers belong to the variable name:
 
 ```text
 job
-.examples.job
+/example/demo/v1.0.0/src/examples/job
 
 another job
-.examples.job
+/example/demo/v1.0.0/src/examples/job
 ```
 
 These are two instances, not two names for the same object. A reference to `job`
@@ -84,16 +84,21 @@ See [initialization and scope](declarations.md) for the exact ordering, and
 
 ## Example: a complete program that pauses one job
 
-The following two extensionless files form a complete Ama project. Use their
-parent directory as the project root and `.examples.main` as the entry module.
-No hypothetical arithmetic or I/O module is needed for this example.
+The following two extensionless files form the complete executable source of
+this example. Assume a project scaffold under PKG-01 with an empty
+`packages/example/demo/v1.0.0/package.ini` and its `src/` and `tests/`
+directories. The filenames below are relative to that version's `src/`.
+Use `/example/demo/v1.0.0/src/examples/main` as the entry module.
+No hypothetical arithmetic or I/O module is needed. A delivered package also
+retains the tests required by PKG-08; those test microprograms are not part of
+this two-module execution example.
 
 File `examples/job`:
 
 ```text
 @>
 self&
-.examples.job
+/example/demo/v1.0.0/src/examples/job
  &
 
 @!
@@ -106,7 +111,7 @@ File `examples/main`:
 ```text
 @!
 job
-.examples.job
+/example/demo/v1.0.0/src/examples/job
 
 job !
  > yielded job&

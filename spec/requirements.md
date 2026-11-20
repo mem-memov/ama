@@ -28,6 +28,25 @@ you need the model, examples, or reasons behind a rule.
 | [SRC-03](language/source-and-names.md#src-03) | Complete names, including names with spaces |
 | [SRC-04](language/source-and-names.md#src-04) | A type path does not create an instance |
 | [SRC-05](language/source-and-names.md#src-05) | Keeping a module and its submodules together |
+| [SRC-06](language/source-and-names.md#src-06) | Relative paths, aliases and exact normalization |
+
+## Projects, packages and project tools
+
+| Requirement | Chapter section |
+|---|---|
+| [PKG-01](project/packages.md#pkg-01) | Project storage and complete module names |
+| [PKG-02](project/packages.md#pkg-02) | Choosing one copy of a package version |
+| [PKG-03](project/packages.md#pkg-03) | Small configuration files |
+| [PKG-04](project/packages.md#pkg-04) | Package and module path aliases |
+| [PKG-05](project/packages.md#pkg-05) | Dependency selectors and version variants |
+| [PKG-06](project/packages.md#pkg-06) | Connecting a logical prefix to a repository |
+| [PKG-07](project/packages.md#pkg-07) | Delivering a module with its companions |
+| [PKG-08](project/packages.md#pkg-08) | Keeping the experiments with the code |
+| [PKG-09](project/packages.md#pkg-09) | Source dependencies and test substitutions |
+| [PKG-10](project/packages.md#pkg-10) | Publishing downloads and taking ownership |
+| [PROJECT-01](implementation/project-tools.md#project-01) | Why project operations have their own boundary |
+| [PROJECT-02](implementation/project-tools.md#project-02) | A small command for starting a project |
+| [PROJECT-03](implementation/project-tools.md#project-03) | Preparing and repeating an experiment |
 
 ## Source layout and syntax
 

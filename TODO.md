@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 217 current requirements;
+[requirement index](spec/requirements.md) locates all 231 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 active engineering work for those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -73,17 +73,15 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T230**.
-T221/T226 implementation has not been requested.
-[T222](BACKLOG.md#t222), [T223](BACKLOG.md#t223), [T224](BACKLOG.md#t224),
-and [T229](BACKLOG.md#t229)
-are backlog items awaiting future design or implementation authorization.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T238**.
+[T230](DONE.md#t230) specifies versioned projects, revised paths and independent
+project tools. T221/T226 and T231–T237/T224 implementation has not been requested.
 
 <a id="t221"></a>
 
 - [ ] **T221 — Implement and accept the specified static type markers.**
   Status: planned; awaits a separate implementation request, outside T220's
-  specification-only authorization. Prerequisites: T220.
+  specification-only authorization. Prerequisites: T220, T231 and T232.
   Rule: [TPL-14](spec/language/static-results.md#tpl-14) and its
   [acceptance scenario](spec/implementation/tools-and-conformance.md#static-module-templates).
   Steps: classify empty static files, preserve nominal marker Type metadata
@@ -120,6 +118,111 @@ are backlog items awaiting future design or implementation authorization.
   pass the required consumer, conformance and documentation gates. The earlier
   accepted matrix remains historical evidence, not support for these new rules.
 
+## Planned alignment: projects, paths and project tools
+
+The user authorized T230 specification work, not implementation of this queue.
+All tasks below remain planned until an implementation request. Execute in the
+listed prerequisite order, with granular component/composition tests, documented
+invariants and a commit for every accepted task. T221/T226 remain required;
+perform them after T231/T232 establish the new source/configuration foundations.
+The earlier conformance matrix must not be refreshed to disguise missing support.
+
+<a id="t231"></a>
+
+- [ ] **T231 — Implement versioned source identity and revised lexical forms.**
+  Prerequisite: T230. Implement PKG-01/02 and SRC-01..05 plus TPL-01: slash
+  paths, version/variant components, single-dot static names and physical name+/
+  storage. Select complete package versions before indexing; remove superseded
+  dotted-root code/tests after tracing consumers. Keep parsing independent of
+  alias/name lookup. Accept granular recognition/registry tests and real parser,
+  native, static, constant and source-tool consumers; cover duplicate selection,
+  missing local holes, Unicode and malformed version/separator boundaries.
+
+<a id="t232"></a>
+
+- [ ] **T232 — Implement shared configuration, scoped aliases and normalization.**
+  Prerequisite: T231. Implement PKG-03/04 and SRC-06 through narrow UTF-8/INI,
+  table/scope, parsed-path and normalization components shared by compiler/tools.
+  Enforce package/local alias boundaries and explicit src-to-tests dependencies
+  under PKG-09 while preserving caller-supplied test types. Track effective
+  config/companion presence in caches. Accept positive, malformed, duplicate,
+  scope/base/root-underflow, alias/static distinction and reordered-input cases;
+  compose real ordinary/static/constant/native readers and dependency loading.
+  T221/T226 consume these forms before the later end-to-end tool tasks.
+
+<a id="t233"></a>
+
+- [ ] **T233 — Separate project commands and create guided empty projects.**
+  Prerequisites: T232, T221 and T226. Implement PROJECT-01/02 and the independent
+  test-orchestration part of PROJECT-03. Separate command/process ownership from
+  the compiler pipeline; expose narrow read-only sharing. Implement the exact
+  ama-project init scaffold, destination preflight, staging/publication and
+  Markdown hints; preserve an explicit entry selection. Run test microprograms
+  with isolated outputs. Accept real command tests of new/empty/conflicting and
+  concurrent destinations, failure cleanup, guidance links, no hidden network or
+  compiler mutations, and independently compiled tests with recorded outcomes.
+
+<a id="t224"></a>
+
+- [ ] **T224 — Add relative module paths and support them in directory relocation.**
+  Status: agreed target, transferred from BACKLOG by T230; implementation awaits
+  a separate request. Prerequisites: T232, T233. Rules: SRC-06, PKG-04/09,
+  PROJECT-01 and TOOL-01..04. Use the shared parsed configuration/path resolver;
+  recompute references when importer, target or both move, including external
+  importers, aliases and selector sets. Preserve whole-version selection,
+  static-name identity, member selection, drafts and all unrelated bytes.
+  Accept preview/preflight/apply and recoverable failure tests for namespace
+  switches, nested name+/, multiword/Unicode names, shared aliases, config bases,
+  source/test boundaries and exact graph/set preservation. No guessed mask or
+  textual-prefix rewrite is allowed; unprovable plans fail before mutation.
+
+<a id="t234"></a>
+
+- [ ] **T234 — Implement exact dependency masks and repository routing.**
+  Prerequisites: T232 and T233. Implement PKG-05/06 as independent finite-set
+  matcher, requester-scoped source router and snapshot/source-contract planners.
+  Preserve multi-depth whole-component stars, component-local embedded stars,
+  version validity and all matches; route by longest full-component prefix with
+  explicit conflicts and no failure fallback. Accept exhaustive bounded models,
+  overlapping/reordered mappings, empty masks, skipped absent members and actual
+  config consumers; one source contract must govern each acquired version.
+
+<a id="t235"></a>
+
+- [ ] **T235 — Compute minimal structural source-and-test delivery closure.**
+  Prerequisites: T234, T221 and T226. Implement PKG-07..09 through source-unit,
+  companion, topology-context, test-association and dependency-expansion children.
+  Retain complete selected subtrees; distinguish topology-only parents from
+  active units. Build the least finite closure of needed source/test/support
+  inputs without tests-of-tests or guessed assets. Accept isolated and composite
+  checks for child-only selection, parent promotion, shared/cyclic dependencies,
+  mirrored tests, template/static/native inputs, missing tests and injected test
+  types. Every emitted membership must have a recorded reason and snapshot.
+
+<a id="t236"></a>
+
+- [ ] **T236 — Acquire and publish coherent module-and-test snapshots.**
+  Prerequisites: T235 and T224. Implement Git/process transport adapters,
+  operation-owned partial/full download staging, input hashes, existing-version
+  checks, publication/recovery and complete promotion under PKG-06/10 and
+  PROJECT-03. Keep network effects outside compilation and never execute fetched
+  code during discovery. Accept controlled local-remote integration with mutable
+  branches/versions, overlapping requests, source conflicts, interrupted/failed
+  publication, cleanup, concurrent jobs and byte-accurate provenance. Verify a
+  dependencies-only project and a promoted packages version with their tests.
+
+<a id="t237"></a>
+
+- [ ] **T237 — Accept the complete project/path/tooling implementation.**
+  Prerequisites: T224, T233..236, T221 and T226. Audit every retained current-rule
+  component and per-file test/documentation owner; remove obsolete alternatives
+  and tests that only preserve them. Exercise the canonical project/path matrix
+  through real preparation, compile/run, native/static/C-library, isolated tests,
+  promotion and relocation consumers. Review correctness arguments and evidence
+  before renewing conformance fingerprints. Pass required focused/composite/full
+  checks, failure/sanitizer gates and final Doxygen/source-link/provenance checks;
+  publish precise supported boundaries and archive each task in its own commit.
+
 ## Next sprint discussion
 
 Static marker notation is specified by [TPL-14](spec/language/static-results.md#tpl-14);
@@ -129,7 +232,8 @@ Type; T226 owns implementation. [T227](DONE.md#t227) retains that rule while
 removing the phantom feature and stating [CORE-06](spec/introduction.md#core-06):
 static modules generate concrete module combinations; module contracts and tests
 establish behavioral evidence. Existing compiler safety checks remain mandatory.
-Localization and relative paths remain separate backlog questions. These
+Localization remains a separate backlog question; versioned paths and project
+tools are specified by T230 and planned below. These
 specification changes do not authorize compiler implementation.
 
 ## Sprint: static module templates
@@ -148,7 +252,7 @@ concrete native and C-library consumers, checked source/editor/relocation tools,
 and [generic algorithms over intrinsic lists](examples/template-lists/README.md).
 No runtime Template objects or runtime Type generation are introduced.
 
-[Relative paths and relocation support](BACKLOG.md#t224), the
+[The later project/path alignment](#t224), the
 [AMB-006](AMBIGUITIES.md#amb-006) foundational list rewrite,
 new raw-storage APIs, generic native ABI, binary-only open-template distribution,
 and static natural-number parameters remain outside this completed sprint.

@@ -21,14 +21,14 @@ same state without taking ownership.
 
 ## A first reading example
 
-**Example.** Assume project module `.counter` is callable and its first result is
-an owned `value` of type `..integer`. This caller fragment owns one counter,
+**Example.** Assume project module `/example/demo/v1.0.0/src/counter` is callable and its first result is
+an owned `value` of type `//integer`. This caller fragment owns one counter,
 executes it, and then reads its retained result:
 
 ```text
 @!
 counter
-.counter
+/example/demo/v1.0.0/src/counter
 
 counter !
  > value
@@ -39,7 +39,7 @@ counter
 
 Read the program from top to bottom:
 
-1. `counter` followed by `.counter` declares an owned field and its type. Its
+1. `counter` followed by `/example/demo/v1.0.0/src/counter` declares an owned field and its type. Its
    storage is created with the enclosing instance. This declaration does not
    execute the counter.
 2. `counter !` starts that particular counter at entry. The indented `> value`
@@ -76,8 +76,8 @@ of state and explicit resource lifetimes.
 | `worker` with indented `>>` | Copy retained results without executing the target |
 | `worker` with indented `method !` | Call a named returned module in its existing storage |
 | `items[item&]` followed by `{` | Visit list entries by reference using a live boundary |
-| `.module` with indented `>>` | Copy shared constants from that namespace |
-| `.module` / `..module` | Project/import module / standard-library module |
+| `/example/demo/v1.0.0/src/module` with indented `>>` | Copy shared constants from that namespace |
+| `/example/demo/v1.0.0/src/module` / `//module` | Project/import module / standard-library module |
 | Standalone `%` / prefix `% source` | Yield to the immediate caller / copy a continuation |
 | Condition followed by `?`, `:`, or `{` | Positive branch, negative branch, or condition-controlled loop |
 | `:` / `^` / standalone `>` | Negative branch or refusal alternative / exit the enclosing loop / finish this invocation |
@@ -155,7 +155,7 @@ language, or execution selected by searching for a conveniently named C function
 The list interface is one fixed core contract: its six members are `append`,
 `insert`, `remove`, `clear`, `swap`, and `length`. These are intrinsic interface
 names, not source-language keywords or library-defined parsing rules. Most paths
-in examples are illustrative. `..integer` is a required nominal standard-library
+in examples are illustrative. `//integer` is a required nominal standard-library
 identity with the exact capabilities specified for indices and list results;
 it is not an interchangeable example type.
 

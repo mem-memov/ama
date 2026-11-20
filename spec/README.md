@@ -11,6 +11,14 @@ implementation checklist as the complete contract.
 
 ## Find your starting point
 
+For a project on disk, start with [projects and packages](project/packages.md).
+It explains versioned vendor trees, the optional packages/dependencies storage,
+whole-version local precedence, package.ini and module.ini aliases, dependency
+masks, repository bindings and the source-plus-test delivery boundary. Continue
+with [project tools](implementation/project-tools.md) for explicit preparation,
+repeatable experiments and `ama-project init DESTINATION` with Markdown guidance.
+These are target contracts and require separate implementation acceptance.
+
 If you are learning the language, read [the introduction](introduction.md), then
 [modules and state](language/modules-and-state.md). Continue with declarations,
 values, and calls before exploring continuations or changing a list during a
@@ -66,6 +74,7 @@ program is well typed and what happens when it executes.
 
 | Topic | What you will learn |
 |---|---|
+| [Projects, packages and delivery](project/packages.md) | Vendor/package/version identities, configurations, path aliases, repository mappings and selective delivery with repeatable tests |
 | [Introduction](introduction.md) | The purpose of Ama, its small core, and how to read an operation |
 | [Modules and state](language/modules-and-state.md) | Types versus instances, ownership, interface state, and a complete example |
 | [Source files, names, and layout](language/source-and-names.md) | Module paths, international names, exact spaces, comments, and sections |
@@ -86,6 +95,7 @@ program is well typed and what happens when it executes.
 
 | Topic | What it specifies |
 |---|---|
+| [Independent project tools](implementation/project-tools.md) | Separate preparation commands, empty-project scaffolding, isolated test execution and provenance |
 | [Runtime](implementation/runtime.md) | Stable pools, availability, control transfers, host outcomes, and execution contexts |
 | [Native interface](implementation/native-interface.md) | C interfaces, the six native protocols, state boundaries, and lifecycle |
 | [Compiled Ama libraries in C](implementation/c-library.md) | Exported C interfaces, static/shared packaging, checked host objects, and use inside another Ama native module |
@@ -120,7 +130,7 @@ are informative. Detailed rules govern if a summary omits a case.
 Examples state whether they are complete module files or fragments with assumed
 declarations. A hypothetical library path illustrates an interface unless the
 rules explicitly fix that identity. In particular, the list interface does fix
-`..integer` as its position/length type; that is a real library requirement.
+`//integer` as its position/length type; that is a real library requirement.
 An example is not evidence that the corresponding feature is implemented.
 
 ## Execution scope

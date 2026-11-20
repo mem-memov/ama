@@ -14,6 +14,11 @@ The [generation/testing policy](../../../spec/introduction.md#core-06) states
 the target design boundary without certifying new implementation behavior.
 The complete gate refuses the earlier matrix against the newer target until the required alignment is accepted. These
 recorded release results do not establish support for the new contracts.
+The later [project/package contracts](../../../spec/project/packages.md) and
+[independent project tools](../../../spec/implementation/project-tools.md) also
+require the separately planned T231–T237/T224 implementation. Their slash paths,
+single-dot static names and ama-project commands are not asserted to work in
+the historical command examples below.
 
 ## Clean template sprint acceptance
 

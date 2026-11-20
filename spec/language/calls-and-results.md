@@ -55,7 +55,7 @@ execution. Each operation validates and protects its target before using it.
 **CALL-01.** All entry-start invocations require the suffix `!`, including
 zero-argument invocations. Targets must select declared instance or collection
 storage, whether explicitly declared or inferred under TYPE-06. Direct module-path
-targets such as `.shop.item !`, `.shop.item %` are invalid; lookup must not create or
+targets such as `/example/demo/v1.0.0/src/shop/item !`, `/example/demo/v1.0.0/src/shop/item %` are invalid; lookup must not create or
 select a default instance.
 A path followed by `>>` is a separate constant read under CONST-03, not an
 invocation or retained-instance read. Parameters and requested results appear on separate
@@ -153,7 +153,7 @@ A dependency is declared once with a local name and then invoked by that name:
 ```text
 @!
 item
-.shop.item
+/example/demo/v1.0.0/src/shop/item
 
 item !
 ```
@@ -641,16 +641,16 @@ introduced. For example:
 ```text
 @!
 target&
-.shop.item
+/example/demo/v1.0.0/src/shop/item
 
 failure
-.sys.error.status
+/example/demo/v1.0.0/src/sys/error/status
 
 read_failure
-.sys.error
+/example/demo/v1.0.0/src/sys/error
 
 report_failure
-.sys.diagnostic
+/example/demo/v1.0.0/src/sys/diagnostic
 
 target& !
 :
@@ -662,7 +662,7 @@ target& !
 ```
 
 The example deliberately leaves `target&` empty, so acquisition fails before
-execution. `.sys.error`, `.sys.error.status` and `.sys.diagnostic` are illustrative
+execution. `/example/demo/v1.0.0/src/sys/error`, `/example/demo/v1.0.0/src/sys/error/status` and `/example/demo/v1.0.0/src/sys/diagnostic` are illustrative
 library paths, not reserved words or claims of existing implementation. The reader
 uses the context of its immediate calling Ama instance, not its own previous
 failure slot. `failure` receives a value snapshot that later operations cannot

@@ -14,7 +14,7 @@ the target behavior at every stage.
 Use the agreed in-place pools, native-state boundary, lifecycle protocol, shared
 constants, status representation and host outcomes as fixed inputs. Select the
 supported toolchain and write checked C prototypes/adapters for the six bindings
-and PROTO-03's fixed `..integer` host-size constructor. Verify native-entry
+and PROTO-03's fixed `//integer` host-size constructor. Verify native-entry
 inlining while allowing internal C helper/library calls.
 Specify metadata for ownership, generations, current operation, return links and
 per-instance acquisition-refusal snapshots. Separate this logical state from
@@ -256,6 +256,35 @@ and evidence preserving LIST-03 through LIST-13.
 Deliverable: documented and tested specialization with separate static graphs,
 explicit supported boundaries and a current acceptance matrix. Specification
 approval alone does not complete any compiler implementation task.
+
+### Stage 12: Versioned projects and repeatable acquisition
+
+Implement the new source identity and single-dot static spelling foundations
+before their consumers. Build the versioned local registry and whole-version
+selection, then a shared strict INI reader, scoped aliases and exact normalization
+under [PKG-01 through PKG-04](../project/packages.md) and
+[SRC-06](../language/source-and-names.md#src-06). Integrate all declaration,
+static-graph, constant, native and source-tool consumers with the same resolver.
+Preserve the test-caller origin of supplied Type arguments while checking every
+definition's explicit source/test dependencies under PKG-09.
+
+Keep project commands separate under
+[PROJECT-01 through PROJECT-03](project-tools.md). Deliver the empty-project
+command and its Markdown guidance, then update the directory mover for relative
+and aliased references/configurations. Define and test the selector matcher and
+repository router before transport. Build exact source/test closure and
+topology-only context handling before implementing partial acquisition,
+operation snapshots, staged publication, cleanup and reproducibility reports.
+The runner executes each test as an independently compiled microprogram; the
+fetcher never executes downloaded code.
+
+End-to-end acceptance must prepare, compile and test a dependency-only project,
+promote a selected version into packages, relocate a source/alias user and
+repeat an experiment from its recorded inputs. Cover offline compilation,
+cross-version conflicts, src-to-tests refusals, injected test types, selector
+depth/variant boundaries, changed remote snapshots and publication failures.
+Implementation and conformance evidence for earlier stages remain historical
+until these revised target contracts pass the current acceptance matrix.
 
 ## Keep engineering choices separate from language changes
 

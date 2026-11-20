@@ -28,7 +28,10 @@ T181's constant metadata are accepted in DONE. T202 resolves
 [AMB-013](#amb-013) by separating static modules from ordinary interfaces and
 [AMB-014](#amb-014) by the explicitly approved result pair. Implementation must
 first align the earlier components with this source model under T203; T182
-remains unfinished. Relative module paths are explicitly deferred.
+remains unfinished in that stage's record. Relative module paths were deferred
+there; the later T230 specification now defines them together with versioned
+packages, single-dot static names, scoped path aliases and independent project
+tools. Their implementation is separately planned in TODO.
 
 The whole-specification review T204 found [AMB-015](#amb-015), an unqualified
 other-context cleanup prohibition conflicting with explicit owned-child disposal.

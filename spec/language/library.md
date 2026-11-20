@@ -18,7 +18,7 @@ tests under [CORE-06](../introduction.md#core-06).
 
 The intrinsic list interface is an explicit exception to ordinary module-valued
 methods: its six entries are part of the collection contract. Their English
-interface names are not additional grammar keywords. `..integer` is the fixed
+interface names are not additional grammar keywords. `//integer` is the fixed
 position/length type for that interface. Its native contract defines its binary
 representation; generated list code uses the declared protocols and
 [PROTO-03's typed host-size bridge](../implementation/native-interface.md#proto-03)
@@ -55,7 +55,7 @@ Missing capabilities are implementation gaps, not alternative language rules:
 signatures and identities, not hard-coded assumptions about a numeric payload.
 Native condition/index mappings use the explicit symbolic `.abi` bindings in
 PROTO-01 through PROTO-10, with `=` declaring native copy capability. Public module paths must be documented and tested.
-The fixed `..integer` host-size constructor in PROTO-03 is an additional typed
+The fixed `//integer` host-size constructor in PROTO-03 is an additional typed
 library helper used for LIST-04 length results, not a seventh symbolic binding
 or an implicit numeric conversion for other module types.
 Moving integers into the library must not hide an equivalent privileged integer

@@ -100,7 +100,7 @@ additional required symbols. In particular:
 | `AMA_NATIVE(local_name)` | Required module-qualification facility under NAME-05 |
 | `AmaStatus` and its `code`, `message`, `message_length` fields | Required shared status declaration under ERROR-03; the physical layout follows the selected target C ABI |
 | The six `.abi` symbols | Fixed binding syntax under PROTO-01/PROTO-11; authored hook names are selected by their records |
-| `from_size` for the exact module `..integer` | Fixed qualified helper name and typed bridge under PROTO-03 |
+| `from_size` for the exact module `//integer` | Fixed qualified helper name and typed bridge under PROTO-03 |
 | `State`, `initialize`, `to_condition`, `to_index`, and C parameter names in examples | Illustrative local names unless the particular rule explicitly fixes one; actual hooks come from `.abi` and actual payload types from the native representation |
 | Private generated structs, field offsets, selectors, and helper names | No public spelling/layout guarantee unless explicitly exposed by the supported native contract |
 
@@ -506,7 +506,7 @@ output. On failure the output is not consumed.
 
 #### Construct an integer from a host size without decimal text
 
-The fixed standard-library `..integer` module additionally supplies this typed
+The fixed standard-library `//integer` module additionally supplies this typed
 native bridge in its representation header and companion implementation:
 
 ```c
@@ -517,7 +517,7 @@ The name `from_size` is fixed for this bridge, qualified by that module's
 NAME-05 prefix; `State` here illustrates its authored payload type as above.
 Generated declarations bind the actual payload type explicitly. Generated list
 code invokes this helper only for the exact standard-library identity
-`..integer` when constructing LIST-04's `length` result. Missing or incompatible
+`//integer` when constructing LIST-04's `length` result. Missing or incompatible
 bridge declarations are native-interface build errors. A project module with a
 similar name does not acquire this contract.
 
@@ -553,7 +553,7 @@ base `B >= 2`, repeatedly emit `value % B` and replace `value` by `value / B`,
 with a single zero limb for input zero. All division is unsigned and bounded by
 the original `size_t`; no decimal bytes, signed narrowing, or out-of-range shift
 is required. Other integer representations may use an equivalent exact
-algorithm. Representation choice belongs to `..integer`, rather than generated
+algorithm. Representation choice belongs to `//integer`, rather than generated
 list code. Tests must cover zero, one, limb boundaries, `SIZE_MAX`, round-trips,
 and injected preparation failure with no live partial payload. LIST-04 selects
 this bridge as its single native payload constructor under LIFE-02, never
@@ -716,7 +716,7 @@ Ama object is expressed through reference storage instead.
 **PROTO-08.** `+` initializes fresh native storage without executing the module
 body. `|` constructs a value from immutable UTF-8 bytes and an explicit length;
 it is required only when literal initialization is used. Default construction,
-literal construction, cloning, and PROTO-03's fixed `..integer` size bridge are
+literal construction, cloning, and PROTO-03's fixed `//integer` size bridge are
 distinct construction paths over fresh native storage, as specified in LIFE-01
 through LIFE-05; a value is not initialized
 twice. Construction failures release partial resources and leave no
@@ -737,7 +737,7 @@ LIFE-01 through LIFE-05.
 
 **PROTO-09.** All native operations use one explicit technical-status/error
 contract: default initialization, literal decoding, cloning, the fixed
-`..integer` size bridge, condition/index conversion, destruction, and native
+`//integer` size bridge, condition/index conversion, destruction, and native
 module execution. The contract distinguishes
 success from failure and carries a reason code plus optional diagnostic context.
 The runtime supplies Ama source location and execution-path context. The status
@@ -851,7 +851,7 @@ mapping instead of reevaluating self-reference defaults.
 <a id="life-02"></a>
 
 **LIFE-02.** Select exactly one payload constructor: `+` for a default, `|` for a
-literal, `=` for a clone, or PROTO-03's fixed `..integer` size bridge when
+literal, `=` for a clone, or PROTO-03's fixed `//integer` size bridge when
 LIST-04 requests it. Do not invoke `+` and then overwrite its resources
 with another constructor. Constructors receive fresh destination payload storage.
 A successful constructor makes it live; a failed constructor must release every
@@ -959,7 +959,7 @@ state.
 Generated C parameter names, private type aliases, and helper decomposition are
 implementation work wherever no rule fixes them. This freedom does not rename
 `AmaStatus`, change its required declaration, replace NAME-05's naming facility,
-or alter the fixed `..integer` `from_size` bridge. Concrete declarations must
+or alter the fixed `//integer` `from_size` bridge. Concrete declarations must
 follow CABI-06 and preserve the required types, preconditions, order, lifetime,
 and status guarantees; their engineering spelling is not an unresolved language
 semantic and cannot weaken the native boundary.

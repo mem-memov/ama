@@ -115,6 +115,12 @@
   or checked Ama references between contexts.
 - `name+/` is physical submodule storage, not part of the logical identity.
   Document implementation support only when backed by acceptance evidence.
+- Follow the versioned project and path contracts in `spec/project/packages.md`
+  and SRC-06. Keep acquisition, relocation, scaffolding and test orchestration
+  outside the compiler pipeline under PROJECT-01; compilation reads prepared
+  local inputs and must not perform hidden network or source mutations.
+  The new ama-project commands and revised syntax need their own acceptance;
+  specification approval is not evidence of implementation support.
 
 ## Workflow
 

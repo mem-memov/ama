@@ -17,6 +17,11 @@ capabilities and retains
 its accepted fingerprints. Until alignment passes, `make conformance-check`
 refuses this newer specification; updating hashes alone cannot establish support.
 The earlier release results remain evidence for their recorded input revision.
+T230 additionally specifies versioned packages, slash/relative paths, single-dot
+static names, scoped path aliases and independent project tools. The
+[project alignment queue](../../../TODO.md#planned-alignment-projects-paths-and-project-tools)
+owns their future implementation. Neither the historical matrix nor its hashes
+are updated by this specification task.
 
 Open executable templates and static modules are compilation inputs. Concrete
 ordinary runtime Types pass guarded closure and ordinary admission before layout.

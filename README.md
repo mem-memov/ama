@@ -14,6 +14,13 @@ The specification additionally defines
 [declaration type expressions](spec/language/templates.md#tpl-15). Implementation and
 renewed conformance acceptance are pending [T221](TODO.md#t221) and
 [T226](TODO.md#t226).
+The newly specified [versioned project model](spec/project/packages.md),
+[slash/relative paths](spec/language/source-and-names.md#src-06), single-dot
+static names, scoped `.ini` aliases and
+[independent project commands](spec/implementation/project-tools.md) await the
+separate T231–T237/T224 alignment plan. The current executable workflows below
+belong to the recorded implementation edition; the new command names and
+spellings are target contracts, not claimed current support.
 [Ordinary templates](spec/language/templates.md) and separate
 [static modules](spec/language/static-results.md) provide compile-time inference,
 partial composition and concrete specializations. Complete type constructors

@@ -119,59 +119,59 @@ call must have no Ama lifecycle effects.
 
 ### Example: export a concrete facade over an Ama template
 
-**Example: complete `.forward`.** Assume the supplied Type supports ordinary
+**Example: complete `/example/demo/v1.0.0/src/forward`.** Assume the supplied Type supports ordinary
 default construction and owned copying:
 
 ```text
 @<
 value
-...inner.value type
+.inner.value type
 
 @>
 result
-...inner.value type
+.inner.value type
 
 @!
 result
  value
 ```
 
-**Example: complete `.integer worker`.** A separate static module fixes the
+**Example: complete `/example/demo/v1.0.0/src/integer worker`.** A separate static module fixes the
 worker Type before the ordinary facade uses it:
 
 ```text
 @...
-...worker type
-.forward
- ...inner.value type < ..integer
+.worker type
+/example/demo/v1.0.0/src/forward
+ .inner.value type < //integer
 ```
 
-**Example: complete `.integer facade`.** The fixed library type `..integer`
+**Example: complete `/example/demo/v1.0.0/src/integer facade`.** The fixed library type `//integer`
 provides the construction and copy operations used here:
 
 ```text
 @<
 value
-..integer
+//integer
 
 @>
 result
-..integer
+//integer
 
 @!
 worker
-.integer worker
- ...worker type
+/example/demo/v1.0.0/src/integer worker
+ .worker type
 
 worker !
  value < value
  result > result
 ```
 
-Select `.integer facade` and its supported entry/read operations in the explicit
+Select `/example/demo/v1.0.0/src/integer facade` and its supported entry/read operations in the explicit
 library-build configuration, with a supported integer transport schema under
 EMBED-04. The facade has no free static parameters; its worker is the checked
-integer specialization of `.forward`. A second source facade with concrete
+integer specialization of `/example/demo/v1.0.0/src/forward`. A second source facade with concrete
 text inputs/results can independently use the text specialization. The C
 consumer uses the generated declarations for each selected facade and supplies
 values in its declared transport representation. No runtime type selection,

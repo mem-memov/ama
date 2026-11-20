@@ -7091,3 +7091,74 @@ T201. Specification bytes have not changed.
   Final delivery: after this archival update, rerun document checks and make docs
   (/tmp/ama-t228-docs-final.log); require successful completion and source/staged
   fingerprint agreement before commit. Generated technical pages remain unversioned.
+
+<a id="t230"></a>
+
+- [x] **T230 — Specify projects, package delivery, slash paths and scoped aliases.**
+  Status: completed specification-only task, explicitly authorized by the user's
+  2026-11-20 approval of the complete design and request to begin specification.
+  Prerequisites: T227/T228 and the decisions in the current conversation.
+  Deliverable: one canonical project/package model, matching language chapters
+  and EBNF, exact source/test separation and repeatable selective delivery,
+  independent project tools and an empty-project command with Markdown guidance.
+  Compiler, library, fixture and tool implementation changes are not authorized.
+  Decisions: optional packages/dependencies roots; vendor/package/version identity
+  including src/tests; whole-version packages precedence; v2.4.14 and named
+  variants; slash absolute/standard/relative paths; single-dot static names;
+  module.ini and package.ini aliases; explicit repository-prefix mappings;
+  selective module/companion/submodule delivery with mirrored tests and their
+  dependencies. Preserve compiler safety and allow test-type injection while
+  forbidding explicit src-to-tests source dependencies.
+  Steps and acceptance:
+  1. Inventory affected canonical contracts and record a bounded migration plan.
+     Repository initially clean; AGENTS, development standard, contributor rules,
+     current queue and completed prerequisites read. Complete.
+  2. Define project/configuration/delivery and tooling contracts; reconcile path,
+     static-name, constant, source-management and compiler boundaries. Complete.
+  3. Align all canonical examples, EBNF, requirement/navigation indexes and
+     future implementation work without claiming compiler support. Complete.
+  4. Independent semantic/grammar review, structural/link/ID/EBNF checks,
+     expected stale-conformance refusal, Doxygen generation and final
+     source/staged provenance; archive and commit the completed task. Complete.
+  Acceptance: requirements are consistent and singly defined, grammar references
+  resolve, examples use the new spellings, read-only compilation never performs
+  network/package/source mutations, init does not overwrite user work, and all
+  required document gates pass. Detailed code execution acceptance belongs to
+  separately authorized implementation tasks, not this specification commit.
+  Review results: independent source/grammar, template and project/tool passes
+  reconciled static spelling, constant final-component interpretation, scoped
+  repository routing and version-wide coherent snapshots. Topology-only parent
+  records do not spuriously select siblings or parent tests. Explicit src/test
+  direction remains separate from caller-supplied template arguments.
+  python3 /tmp/ama-t230-spec-check.py passes: 26 chapters, 231 singly defined
+  requirements, 141 aligned/reachable EBNF rules and 237 unique task IDs; links
+  and source transforms valid; implementation and evidence registries untouched.
+  make conformance-check exits 2 with the expected stale-specification refusal
+  (/tmp/ama-t230-conformance.log); fingerprints are not refreshed.
+  Documentation: initial make docs exits 2 after its coverage gate passed
+  (3028 ready inputs, zero debts). Doxygen could not render the TPL-12 anchor
+  because multiline link labels emitted an interrupted reference; the rendered
+  destination gate correctly refused it. Reflowing the three link labels onto
+  single physical lines preserved their text and all language semantics.
+  python3 tools/documentation/build.py --doxygen doxygen then exits 0
+  (/tmp/ama-t230-docs-retry.log): Doxygen 1.11.0, Python 3.14.4,
+  markdown-it-py 3.0.0, 2297 maintained file pages, 8908 interfaces and 473/473
+  canonical destinations. No generator validation or conformance gate is weakened.
+
+  Results: new canonical project and independent-tool chapters define ten PKG
+  and three PROJECT requirements; SRC-06 defines exact path normalization.
+  All other affected chapters/examples and the 141-production grammar follow
+  the same slash/static/configuration model. Init creates only guided empty
+  scaffolding; the compiler performs no implicit acquisition or source mutations.
+  T224 moved from backlog into the planned implementation queue with its ID;
+  T231 through T237 order new foundations before consumers and final acceptance.
+  T221/T226 remain separate pending implementation owners. Native dependency
+  discovery and localization remain outside this scope. Implementation sources,
+  tests, per-file evidence and reviewed conformance fingerprints are unchanged.
+
+  Final delivery: after this archive and queue update, run the structural/link
+  check and make docs from the final maintained inputs
+  (/tmp/ama-t230-docs-final.log). Require success and source/staged manifest
+  fingerprint equality before the task commit. Generated pages remain
+  unversioned. This specification task does not implement the newly named
+  commands or revised source syntax.

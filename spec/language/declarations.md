@@ -61,13 +61,13 @@ static output alias or positional static binding in an ordinary declaration.
 Initializers follow the completed type expression; they remain ordinary
 runtime initialization under TYPE-02 rather than static equations.
 
-**Example: selecting a ready Type.** Assume `.integer dictionary` is a static
-module exporting a concrete ordinary Type named `...dictionary type`:
+**Example: selecting a ready Type.** Assume `/example/demo/v1.0.0/src/integer dictionary` is a static
+module exporting a concrete ordinary Type named `.dictionary type`:
 
 ```text
 items
-.integer dictionary
- ...dictionary type
+/example/demo/v1.0.0/src/integer dictionary
+ .dictionary type
 ```
 
 The selector belongs to the producer, not the using module's local parameter
@@ -91,17 +91,17 @@ to the loop body (FLOW-05). These are distinct declaration rules.
 
 ```text
 item
-.shop.item
+/example/demo/v1.0.0/src/shop/item
 
 target&
-.shop.item
+/example/demo/v1.0.0/src/shop/item
  &item
 
 items[]
-.shop.item
+/example/demo/v1.0.0/src/shop/item
 
 targets&[]
-.shop.item
+/example/demo/v1.0.0/src/shop/item
  &item
 ```
 
@@ -269,7 +269,7 @@ so repeated local names cannot collide in generated storage or diagnostics.
 Different modules may reuse base names.
 Multiword names are indivisible namespace entries; their individual words do not
 reserve names. Internal spaces are preserved in identity and generated-name hash
-inputs, while dot delimiters and adjoining storage/access markers are excluded
+inputs, while path/static-name delimiters and adjoining storage/access markers are excluded
 from component/base-name identity. The root kind remains a separate part of
 every qualified module identity under SRC-01 and NAME-01.
 
@@ -360,22 +360,22 @@ their declaring instance's context under CALL-08. The standalone self-reference
 
 #### Example: a declaration inside a branch remains a field
 
-**Example.** Assume `..bit` maps literal `0` to a false condition and `..integer`
+**Example.** Assume `//bit` maps literal `0` to a false condition and `//integer`
 supports the shown construction and copying:
 
 ```text
 @!
 ready
-..bit
+//bit
  |0
 fallback
-..integer
+//integer
  |2
 
 ready
 ?
  cached
- ..integer
+ //integer
   |7
 
 cached
@@ -590,14 +590,14 @@ An assignment may likewise introduce `new_var` by copying an existing value:
 
 ```text
 is_ok
-..bit
+//bit
  |0
 
 new_var
  is_ok
 ```
 
-If `new_var` has no earlier local occurrence, it declares an owned `..bit` field.
+If `new_var` has no earlier local occurrence, it declares an owned `//bit` field.
 The assignment copies the current value of `is_ok` each time execution reaches
 it. The same rule permits `new_ref&` from `&is_ok`, a reference-list field from a
 whole reference list, or an owned field from `% source`; their explicit suffixes
@@ -605,7 +605,7 @@ and ordinary transfer checks must match. A later assignment to `new_var` reuses
 that field. `new_var` followed by an unindented `is_ok` is not an assignment.
 
 **Example: a later typed connection resolves an earlier field's type.** Assume
-the hypothetical `.producer` has one owned result whose Type parameter is
+the hypothetical `/example/demo/v1.0.0/src/producer` has one owned result whose Type parameter is
 introduced in `@>`, no typed inputs and no other determining constraint. Assume
 ordinary integer default construction and copying are available. This is a
 complete caller module:
@@ -613,13 +613,13 @@ complete caller module:
 ```text
 @!
 producer
-.producer
+/example/demo/v1.0.0/src/producer
 
 producer !
  > received
 
 known
-..integer
+//integer
  |7
 
 received
@@ -628,7 +628,7 @@ received
 
 The first output binding introduces `received` and equates its type term to the
 producer's result term; neither term is concrete yet. The later assignment uses
-that existing field. Its source's declared `..integer` type supplies the concrete
+that existing field. Its source's declared `//integer` type supplies the concrete
 anchor, so both terms resolve to integer before any instance is constructed.
 The literal bytes `7` do not choose that type, and the assignment still executes
 after the call. This does not permit a source name to refer forward to a later
@@ -650,11 +650,11 @@ even in payload under SYN-01. Do not insert, remove, or collapse a payload space
 
 ```text
 count
-..integer
+//integer
  |255
 
 lines[]
-..text
+//text
  |First line
  |
  |Quotes "and" # characters remain data
@@ -763,7 +763,7 @@ construction cycles are checked independently under TYPE-04.
 ordinary saved-read bindings:
 
 ```text
-..palette
+//palette
  red >> selected color
 ```
 
@@ -772,13 +772,13 @@ placeholder. A static-module path requires the exact named-export selector of
 TYPE-01 before the ordinary read bindings:
 
 ```text
-.integer container
- ...container type
+/example/demo/v1.0.0/src/integer container
+ .container type
  empty list[] >> working values[]
 ```
 
-Here `.integer container` is an independently fully determined static module
-whose `...container type` export denotes an ordinary concrete module Type. The
+Here `/example/demo/v1.0.0/src/integer container` is an independently fully determined static module
+whose `.container type` export denotes an ordinary concrete module Type. The
 read selects that Type's own constant. Static applications and projections
 belong inside the static module and cannot precede or follow this read inline.
 
@@ -812,50 +812,50 @@ execute a body, acquire an instance, evaluate a getter or create a mutable alias
 An instance target with `>>` continues to expose only its retained `@>` results,
 not constants. Local constants remain available directly by their declared names.
 
-**Example: a static assembly selecting a specialization.** Assume `.container`
-is the ordinary template defined in CONST-06. File `.integer container`:
+**Example: a static assembly selecting a specialization.** Assume `/example/demo/v1.0.0/src/container`
+is the ordinary template defined in CONST-06. File `/example/demo/v1.0.0/src/integer container`:
 
 ```text
 @...
-...container type
-.container
- ...element type < ..integer
+.container type
+/example/demo/v1.0.0/src/container
+ .element type < //integer
 ```
 
 The earlier read fragment obtains an independent copy of the exported Type's
 empty list constant. Appending to `working values[]` cannot mutate the shared
 constant. Its receiver does not help choose the assembly's substitutions.
 
-**Example: complete `.initial value`.** Assume, for this example only,
-`..integer` declares a constant named `zero` of its own type. This is a library
+**Example: complete `/example/demo/v1.0.0/src/initial value`.** Assume, for this example only,
+`//integer` declares a constant named `zero` of its own type. This is a library
 assumption, not a required spelling or an added integer capability:
 
 ```text
 @<
 sample&
-...value type
+.value type
 
 @>
 result
-...value type
+.value type
 
 @!
-...value type
+.value type
  zero >> result
 ```
 
-An ordinary call supplying an integer reference determines `...value type` as
-`..integer`; the body reads that concrete type's `zero` constant. No live target
+An ordinary call supplying an integer reference determines `.value type` as
+`//integer`; the body reads that concrete type's `zero` constant. No live target
 is needed to determine the reference's declared module type. Passing a type with
 no `zero` declaration is a compile-time error. A constant named `zero` whose
-declared type differs from `...value type` also fails the result transfer check.
+declared type differs from `.value type` also fails the result transfer check.
 
-**Example: range bounds, body fragment.** Assume `...value type` is an already
+**Example: range bounds, body fragment.** Assume `.value type` is an already
 determined local Type parameter whose actual type declares compatible constants
 named `minimum` and `maximum`:
 
 ```text
-...value type
+.value type
  minimum >> lower bound
  maximum >> upper bound
 ```
@@ -891,11 +891,11 @@ For example, a library palette may expose color values as follows:
 ```text
 @=
 red
-..color
+//color
  |red
 
 blue
-..color
+//color
  |blue
 
 ```
@@ -905,9 +905,9 @@ A caller declares compatible storage and obtains one value:
 ```text
 @!
 selected color
-..color
+//color
 
-..palette
+//palette
  red >> selected color
 ```
 
@@ -923,20 +923,23 @@ constants do not choose list actions.
 **CONST-05.** A qualified constant of a concrete nongeneric namespace may be used
 directly wherever a copy source is accepted: a declaration initializer, an
 assignment source, or an entry-call input.
-Its spelling is the full logical module path followed by `.` and the constant's
-declaration name without surrounding dot spaces, for example `..palette.red`.
+Its spelling is a module path followed by `/` and the constant's declaration
+name without spaces beside that separator, for example `//palette/red`.
+Absolute, relative and aliased forms follow SRC-06 and PKG-04. Expand aliases
+and normalize the path before splitting its final component from the module
+prefix; this interpretation belongs to a value-source position.
 The final component is always
 the constant name; all preceding components form the exact module path. For a
 constant collection the member's existing `[]` storage suffix is retained, with
 ordinary collection compatibility/cardinality rules. No longest-prefix lookup,
 implicit import, wildcard search, or fallback to an executable module is allowed.
-Preserve the root kind when splitting the path: `..palette.red` names constant
-`red` in standard-library module `..palette`. The root marker is not a component;
+Preserve the root kind when splitting the path: `//palette/red` names constant
+`red` in standard-library module `//palette`. The root marker is not a component;
 a qualified constant source needs at least one module component and one member
-component, and cannot use bare `.` or `..` as its namespace.
-This compact dotted form carries no static binding block and cannot identify a
+component, and cannot use a bare namespace root as its namespace.
+This compact path form carries no static binding block and cannot identify a
 specialization of a generic module. It does not accept a placeholder namespace:
-`...type.member` remains one atomic placeholder name under TPL-01, not member
+`.type.member` remains one atomic placeholder name under TPL-01, not member
 selection. To copy a constant from a specialization or a substituted type, use
 CONST-03's explicit namespace read into local storage, then use that local value
 where an ordinary copy source is needed. Do not add an inline binding syntax or
@@ -972,16 +975,16 @@ Examples using illustrative library identities:
 ```text
 # Supply a constant without declaring a local alias.
 paint !
- < ..palette.red
+ < //palette/red
 
 # Initialize a declared value from a qualified constant.
 selected color
-..color
- ..palette.red
+//color
+ //palette/red
 
 # Assign a different named value later.
 selected color
- ..palette.blue
+ //palette/blue
 ```
 
 A qualified source in `@=` adds an explicit initialization dependency. It never
@@ -1030,17 +1033,17 @@ their constant values happen to compare equal. Runtime instances keep independen
 owned state. Constant construction and disposal remain context lifecycle
 operations under CONST-02, not compile-time evaluation or per-instance work.
 
-**Example: complete `.container`.** Assume the selected element type supports
+**Example: complete `/example/demo/v1.0.0/src/container`.** Assume the selected element type supports
 independent value copying and otherwise satisfies CONST-01:
 
 ```text
 @=
 empty list[]
-...element type
+.element type
 
 @<
 element&
-...element type
+.element type
 
 @!
 ```
@@ -1048,23 +1051,23 @@ element&
 The declaration owns an empty list whose element type is the interface's Type
 parameter. No element value is required to construct it, but the selected
 constant type must still satisfy the constant capability rules. Specializing
-with `..integer` and `..text` yields separate typed empty lists. Two ordinary
+with `//integer` and `//text` yields separate typed empty lists. Two ordinary
 instances of the integer specialization share its one constant, while keeping
 their input references and other instance state separate. CONST-03 shows how
 to obtain an independent working copy without first creating either instance.
 
-**Example: dependent literal, declaration fragment.** Assume `...value type`
+**Example: dependent literal, declaration fragment.** Assume `.value type`
 is introduced in this module's interface:
 
 ```text
 @=
 initial value
-...value type
+.value type
  |0
 ```
 
 `|0` is interpreted by the selected type's literal contract. It does not imply
-`..integer`, an additive identity, a minimum value, or any other algebraic
+`//integer`, an additive identity, a minimum value, or any other algebraic
 property. Literal construction follows LIT-04: native rejection during shared
 initialization is a technical failure that prevents root startup; an equivalent
 documented validation mechanism may diagnose it earlier. Use explicit named

@@ -12,20 +12,20 @@ yielded. The three uses of `%` answer different questions:
 | `task %` | Resume that same instance at its saved position |
 | `% task` as a value source | Make an independent owned copy that also preserves saved positions |
 
-**Example.** The following complete module body, stored as `.two steps`, yields
-one value and then completes with another. It assumes the standard `..integer`
+**Example.** The following complete module body, stored as `/example/demo/v1.0.0/src/two steps`, yields
+one value and then completes with another. It assumes the standard `//integer`
 literal and copy contracts:
 
 ```text
 @>
 value
-..integer
+//integer
 @!
 first
-..integer
+//integer
  |1
 second
-..integer
+//integer
  |2
 
 value
@@ -40,7 +40,7 @@ A caller can consume those two stages:
 ```text
 @!
 sequence
-.two steps
+/example/demo/v1.0.0/src/two steps
 
 sequence !
  > first value
@@ -127,13 +127,13 @@ exclusive to nonexecuting retained-result reads.
 **CONT-04.** Prefix `%` on a copy source explicitly clones data and its saved
 position into a distinct owned instance of the same type:
 
-**Example.** Assume `original` is a `.jobs.task` instance that has already
+**Example.** Assume `original` is a `/example/demo/v1.0.0/src/jobs/task` instance that has already
 yielded when the assignment below executes. Its declared result `output` is
 compatible with `destination`:
 
 ```text
 continuation
-.jobs.task
+/example/demo/v1.0.0/src/jobs/task
 
 continuation
  % original

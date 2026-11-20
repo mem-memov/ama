@@ -17,7 +17,7 @@ checked identity through which another operation can try to reach that storage.
 Copying an owned value produces independent owned state. Copying a reference
 preserves the identity of its target.
 
-**Example.** Assume `original` is an owned `.shop.item` and `alias&` has the same
+**Example.** Assume `original` is an owned `/example/demo/v1.0.0/src/shop/item` and `alias&` has the same
 module type as a reference. These two assignments have different effects:
 
 ```text
@@ -69,12 +69,12 @@ a receiver, call/resume target, index, condition, or operand of continuation-cop
 Ordinary nominal compatibility still applies; `&` cannot acquire the destination's
 type by inference or denote a field merely because it initializes that field.
 
-For example, `.counter` may expose its own identity as an ordinary result:
+For example, `/example/demo/v1.0.0/src/counter` may expose its own identity as an ordinary result:
 
 ```text
 @>
 self&
-.counter
+/example/demo/v1.0.0/src/counter
  &
 @!
 ```
@@ -180,13 +180,13 @@ report unsupported copying.
 
 #### Explanation: independent text values can share immutable bytes
 
-**Example.** Assume the library's `..text` type owns an immutable UTF-8 byte
+**Example.** Assume the library's `//text` type owns an immutable UTF-8 byte
 buffer through a native payload, supports `=`, and has no other owned data that
 needs copying:
 
 ```text
 first
-..text
+//text
  |A long immutable text
 
 second
@@ -345,13 +345,13 @@ copying and require no additional syntax or selectable copy modes.
 
 #### Example: a no-op does not bypass the type contract
 
-**Example.** Assume `.resource` can be constructed but does not support owned
+**Example.** Assume `/example/demo/v1.0.0/src/resource` can be constructed but does not support owned
 copying. This module is rejected at compile time:
 
 ```text
 @!
 resource
-.resource
+/example/demo/v1.0.0/src/resource
 
 resource
  resource

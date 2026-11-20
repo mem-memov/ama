@@ -56,33 +56,40 @@ invariants belong to module contracts and their tests under
 that inspects runtime data or proves those laws.
 
 **Design status.** This chapter defines target behavior, not an implementation
-claim. The [decision registry](../../AMBIGUITIES.md#open-template-design-questions)
-records decisions and the implementation queue records remaining work. The list
-foundation remains intrinsic under TPL-09; static natural numbers, value-indexed
-lengths and provably decreasing type recursion remain deferred. Relative module
-paths are outside this change: existing absolute logical roots remain governed
-by [SRC-01](source-and-names.md#src-01).
+claim. The [decision registry](../../AMBIGUITIES.md#open-template-design-questions) records decisions
+and the implementation queue records remaining work. The list foundation remains
+intrinsic under TPL-09; static natural numbers, value-indexed lengths and
+provably decreasing type recursion remain deferred. Full and relative module
+paths follow [SRC-01](source-and-names.md#src-01); versioned package delivery
+and path aliases follow [projects and packages](../project/packages.md). The
+examples use the illustrative package `/example/demo/v1.0.0/src`; these paths
+describe ordinary modules, while dot-prefixed names describe static identities.
 
 ## Placeholder spelling
 
 <a id="tpl-01"></a>
 
-**TPL-01.** A static name starts with exactly three adjoining ASCII dots followed
+**TPL-01.** A static name starts with exactly one adjoining ASCII dot followed
 by one or more complete name components separated by single adjoining dots.
 Each component obeys [SRC-03](source-and-names.md#src-03), including Unicode,
 underscores, isolated internal ASCII hyphens and single internal spaces. There
-is no terminating dot.
+is no terminating dot and no slash anywhere in the name. The annotation `@...`
+continues to identify a static module; it is not a static name.
 
-The complete spelling is one name. In `...data.element type`, `data` is not a
+The complete spelling is one name. In `.data.element type`, `data` is not a
 namespace object and `element type` is not a selected member. The components
 explain the name's purpose; they do not locate files or inherit parameters from
 another module. Identical spelling in different definitions does not bind them.
 
-Recognize `...` before `..` and `.` at a type start. The prefix adjoins the first
-component and every internal dot adjoins both components. Bare `...`, empty
-components, four leading dots, doubled internal dots, a terminating dot and
-spaces adjoining dots are invalid. There is no positional static marker.
-Structural indentation and operand separators remain outside the name.
+Distinguish names from module paths from their source characters before any
+file lookup: `./` and `../` begin relative module paths under SRC-01, whereas a
+single dot adjoining a valid first name component begins a static name. Full
+ordinary paths begin `/`, standard-library paths begin `//`, and configured
+aliases begin `~`. The prefix adjoins the first component and every internal
+dot adjoins both components. Bare `.`, two or more leading dots in a static
+name, empty components, doubled internal dots, a terminating dot and spaces
+adjoining dots are invalid. There is no positional static marker. Structural
+indentation and operand separators remain outside the name.
 
 Static names occur only in the roles defined by TPL-02, TPL-08, TPL-12 and TPL-15, and
 as an already scoped Type namespace under [CONST-03](declarations.md#const-03).
@@ -95,13 +102,16 @@ declared field an ordinary first-class static value.
 
 | Spelling | Meaning |
 |---|---|
-| `...data.element type` | One descriptive static name |
-| `...data.key type` | A different complete name |
-| `...имя типа.назначение` | The same rules with international words |
-| `...data.key-2 type` | Valid isolated internal hyphen |
-| `...data.key--type` | Invalid adjacent hyphens |
-| `...data .element` | Invalid space beside a separator |
-| `...data.element.` | Invalid terminating dot |
+| `.data.element type` | One descriptive static name |
+| `.data.key type` | A different complete name |
+| `.имя типа.назначение` | The same rules with international words |
+| `.data.key-2 type` | Valid isolated internal hyphen |
+| `.data.key--type` | Invalid adjacent hyphens |
+| `.data .element` | Invalid space beside a separator |
+| `.data.element.` | Invalid terminating dot |
+| `.data/element` | Invalid slash inside a static name |
+| `..data` | Invalid repeated leading dot |
+| `./data` | A relative module path, not a static name |
 
 ## Parameters and their scope
 
@@ -109,7 +119,7 @@ declared field an ordinary first-class static value.
 
 **TPL-02.** In an ordinary executable module, each declaration in `@<` and `@>`
 is a name/type pair under [TYPE-01](declarations.md#type-01). An eligible local
-`...name` in such a declaration's type expression introduces one Type parameter
+`.name` in such a declaration's type expression introduces one Type parameter
 of that module. Eligible occurrences are the entire bare
 type expression and the local source operands of its structural bindings under
 TPL-15. A foreign input label, a selected export label and a module-path
@@ -158,38 +168,39 @@ of these interface rules.
 ```text
 @<
 key
-...data.key type
+.data.key type
 
 value
-...data.value type
+.data.value type
 
 other value
-...data.value type
+.data.value type
 
 @>
 result
-...data.result type
+.data.result type
 ```
 
 `value` and `other value` have the same Type. The key and result Types may differ.
 Every declaration remains a name/type pair; no declaration supplies a separate
 compile-time object as a runtime input.
 
-**Example: complete `.default result`.** Assume the selected result Type supports
-ordinary default construction:
+**Example: complete `/example/demo/v1.0.0/src/default result`.** Assume the
+selected result Type supports ordinary default construction:
 
 ```text
 @>
 result
-...result type
+.result type
 
 @!
 ```
 
 An explicitly typed receiver or another permitted typed connection can determine
-this result-only parameter. A static assembly can also apply `.default result`
-by its named Type formal. Every invocation of one declared concrete producer
-still has the same fixed result Type.
+this result-only parameter. A static assembly can also apply
+`/example/demo/v1.0.0/src/default result` by its named Type formal. Every
+invocation of one declared concrete producer still has the same fixed result
+Type.
 
 ## Type expressions in ordinary declarations
 
@@ -206,7 +217,7 @@ shared section may use a structural type expression. A native module remains
 concrete under TPL-13; this rule does not add an Ama body to `@C`. Its head is a
 concrete module path or an
 already scoped static Type name. Explicit constructor inputs use the named
-`...formal < expression` form of TPL-08, one level below their expression head.
+`.formal < expression` form of TPL-08, one level below their expression head.
 Their right-hand expressions may nest further applications. All labels are
 resolved in the actual callee; local operands use the enclosing ordinary
 module's static scope under TPL-02. There are no positional static bindings,
@@ -221,7 +232,7 @@ storage suffix. It is mandatory even for a single-output producer. Ordinary
 initializers follow the completed type expression at their usual depth. Source
 structure distinguishes named input bindings, the bare export selector and
 ordinary initializer lines before module lookup; an unknown or inappropriate
-callee cannot change that parse. No static `...output > ...receiver` alias or
+callee cannot change that parse. No static `.output > .receiver` alias or
 result-pair definition occurs in an ordinary type expression.
 
 The expression must yield exactly one fully determined Type for each required
@@ -265,51 +276,54 @@ execute no body, initializer, native hook or arbitrary type-level program.
 They provide structural assembly at a declaration site, not another module
 kind or a runtime means of passing constructors.
 
-**Example: concrete construction in an ordinary body.** Assume `.dictionary`
-introduces `...key type` and `...value type` in its ordinary interface:
+**Example: concrete construction in an ordinary body.** Assume
+`/example/demo/v1.0.0/src/dictionary` introduces `.key type` and `.value type`
+in its ordinary interface:
 
 ```text
 @!
 items
-.dictionary
- ...key type < ..text
- ...value type < ..integer
+/example/demo/v1.0.0/src/dictionary
+ .key type < //text
+ .value type < //integer
 ```
 
 The owned `items` field has `Dictionary(Text, Integer)` Type. Its Type is
 assembled during compilation; normal owned construction happens separately.
 
-**Example: finite nested construction.** Assume `.box` has the ordinary Type
-formal `...element type`. A complete ordinary module can contain:
+**Example: finite nested construction.** Assume `/example/demo/v1.0.0/src/box`
+has the ordinary Type formal `.element type`. A complete ordinary module can
+contain:
 
 ```text
 @!
 boxed items
-.box
- ...element type < .dictionary
-  ...key type < ..text
-  ...value type < ..integer
+/example/demo/v1.0.0/src/box
+ .element type < /example/demo/v1.0.0/src/dictionary
+  .key type < //text
+  .value type < //integer
 ```
 
-The inner bindings belong to `.dictionary`; the outer binding belongs to `.box`.
-The result is one concrete `Box(Dictionary(Text, Integer))` Type. Indentation
-expresses structural arguments, not runtime execution or an ownership edge by
-itself; the resulting definitions still determine construction under TYPE-04.
+The inner bindings belong to `/example/demo/v1.0.0/src/dictionary`; the outer
+binding belongs to `/example/demo/v1.0.0/src/box`. The result is one concrete
+`Box(Dictionary(Text, Integer))` Type. Indentation expresses structural
+arguments, not runtime execution or an ownership edge by itself; the resulting
+definitions still determine construction under TYPE-04.
 
 **Example: a generic interface expression.** With the same dictionary:
 
 ```text
 @<
 items
-.dictionary
- ...key type < ...key
- ...value type < ...value
+/example/demo/v1.0.0/src/dictionary
+ .key type < .key
+ .value type < .value
 
 @!
 ```
 
-The local parameters are `...key` and `...value`, in that order. The callee
-labels `...key type` and `...value type` are not parameters of this module.
+The local parameters are `.key` and `.value`, in that order. The callee
+labels `.key type` and `.value type` are not parameters of this module.
 An actual dictionary's full nominal specialization metadata can determine the
 two inputs by TPL-10's exact decomposition. A type with a different original
 constructor cannot match by layout or supported operations.
@@ -367,7 +381,7 @@ All declared typed defaults constrain their fields even when a call supplies an
 argument. A supplied input still suppresses the default's runtime construction
 under CALL-08. Static checking does not execute a default or a module body.
 
-**Example: a typed default.** If an input typed by `...value type` has a default
+**Example: a typed default.** If an input typed by `.value type` has a default
 copied from an existing text constant, that source constrains the parameter to
 text. Supplying an integer at a call conflicts with that constraint even though
 the default would not execute there. A literal default `|0` alone does not impose
@@ -405,20 +419,21 @@ it; report underdetermination if no such evidence exists.
 
 ### Examples: expected result types and later information
 
-**Example: caller fragment using `.default result` above.**
+**Example: caller fragment using `/example/demo/v1.0.0/src/default result`
+above.**
 
 ```text
 integer result
-..integer
+//integer
 
 text result
-..text
+//text
 
 integer producer
-.default result
+/example/demo/v1.0.0/src/default result
 
 text producer
-.default result
+/example/demo/v1.0.0/src/default result
 
 integer producer !
  > integer result
@@ -428,19 +443,20 @@ text producer !
 ```
 
 The predeclared receiving types determine two owner specializations: one with
-`...result type` equal to integer and one equal to text. Sending both outputs of
+`.result type` equal to integer and one equal to text. Sending both outputs of
 the same producer declaration to those incompatible receivers is a type error,
 including when its calls appear in mutually exclusive branches.
 
-**Example: a caller fragment using TPL-04's `.forward`.**
+**Example: a caller fragment using TPL-04's
+`/example/demo/v1.0.0/src/forward`.**
 
 ```text
 known
-..integer
+//integer
  |7
 
 worker
-.forward
+/example/demo/v1.0.0/src/forward
 
 worker !
  < |0
@@ -451,11 +467,12 @@ inferred
 ```
 
 The first `> inferred` introduces a persistent field whose type is initially
-equated to `.forward`'s result parameter. The later assignment equates it to the
-known integer type. That fixes the worker specialization and permits checking
-the literal `|0` against the integer constructor. It does not execute the later
-assignment early. The worker and inferred field have their final concrete types
-and ordinary default construction before the body executes.
+equated to `/example/demo/v1.0.0/src/forward`'s result parameter. The later
+assignment equates it to the known integer type. That fixes the worker
+specialization and permits checking the literal `|0` against the integer
+constructor. It does not execute the later assignment early. The worker and
+inferred field have their final concrete types and ordinary default construction
+before the body executes.
 
 With the later assignment removed and no other type evidence, this example is
 underdetermined: `|0` and the new receiver do not choose a type. An explicitly
@@ -488,37 +505,38 @@ still construct persistent fields at owner creation, including fields written
 inside branches and loops. The first runtime call does not allocate a hidden
 specialization or change the type of existing state.
 
-**Example: complete module `.forward`.** Assume each chosen type supports the
-ordinary default construction and owned copying used here.
+**Example: complete module `/example/demo/v1.0.0/src/forward`.** Assume each
+chosen type supports the ordinary default construction and owned copying used
+here.
 
 ```text
 @<
 value
-...inner.value type
+.inner.value type
 
 @>
 result
-...inner.value type
+.inner.value type
 
 @!
 result
  value
 ```
 
-**Example: complete module `.processor`.**
+**Example: complete module `/example/demo/v1.0.0/src/processor`.**
 
 ```text
 @<
 input
-...outer.data type
+.outer.data type
 
 @>
 output
-...outer.data type
+.outer.data type
 
 @!
 step
-.forward
+/example/demo/v1.0.0/src/forward
 
 step !
  < input
@@ -526,28 +544,30 @@ step !
 ```
 
 The `< input` connection requires the inner value type to equal the outer data
-type. An integer specialization of `.processor` contains an integer
-specialization of `.forward`; a text specialization contains a text one.
-The original placeholder names remain local and do not have to match.
+type. An integer specialization of `/example/demo/v1.0.0/src/processor` contains
+an integer specialization of `/example/demo/v1.0.0/src/forward`; a text
+specialization contains a text one. The original placeholder names remain local
+and do not have to match.
 
 **Example: complete caller module.** The standard types are assumed to support
-the literals and copying shown; `.processor` is the preceding definition.
+the literals and copying shown; `/example/demo/v1.0.0/src/processor` is the
+preceding definition.
 
 ```text
 @!
 number
-..integer
+//integer
  |42
 
 text
-..text
+//text
  |Ama
 
 number processor
-.processor
+/example/demo/v1.0.0/src/processor
 
 text processor
-.processor
+/example/demo/v1.0.0/src/processor
 
 number processor !
  < number
@@ -568,17 +588,17 @@ this caller and no type arguments are written at either call.
 ```text
 @<
 first
-...data.first type
+.data.first type
 
 second
-...data.second type
+.data.second type
 
 @!
 first step
-.forward
+/example/demo/v1.0.0/src/forward
 
 second step
-.forward
+/example/demo/v1.0.0/src/forward
 
 first step !
  < first
@@ -700,9 +720,10 @@ partial constructors and static outputs add no C ABI arguments or runtime slots.
 
 An ordinary native module remains a valid concrete Type argument. Its nominal
 identity, representation, capabilities and lifecycle follow its original native
-contract. Applying an Ama template does not add operations to that module.
-For example, TPL-04's `.forward` can specialize to `..integer`; changing its own
-`@!` to `@C` remains invalid because `.forward` itself introduces a Type formal.
+contract. Applying an Ama template does not add operations to that module. For
+example, TPL-04's `/example/demo/v1.0.0/src/forward` can specialize to
+`//integer`; changing its own `@!` to `@C` remains invalid because that source
+definition itself introduces a Type formal.
 
 ### Source delivery and the concrete C boundary
 
@@ -713,10 +734,22 @@ serialized open-template ABI, binary-only constructor format or runtime type
 generation. Required concrete native modules keep their normal interfaces,
 companions and external C dependencies.
 
-The exact root and source conflict rules in SRC-01/SRC-02 and DEP-01 through
-DEP-03 still apply. Packaging adds no implicit imports, alternate namespace or
-version-based identity. Equal original definitions and complete bindings retain
-one identity under TPL-05; missing/conflicting sources remain errors.
+The exact identities and source-selection rules in SRC-01/SRC-02 and
+[projects and packages](../project/packages.md) still apply. The full ordinary
+module identity contains its vendor, package hierarchy, version and `src` or
+`tests` component. Storage in `packages/` or `dependencies/`, relative spelling
+and path aliases do not add another identity. Equal original definitions and
+complete bindings retain one identity under TPL-05; the package source rules
+determine which version-wide copy supplies those definitions. Missing or
+otherwise conflicting sources remain errors.
+
+The package delivery unit includes the selected Ama source, its companions and
+physical submodule storage, together with the required module tests and their
+dependency closure under the package chapter. A static definition is not exempt
+from those distribution and reproducibility obligations merely because it has
+no runtime instance. Resolving module sources and delivering their tests are
+auxiliary project operations; they do not execute static graphs inside a
+package downloader or move ordinary compiler checking into that downloader.
 
 A C application exports a concrete ordinary root under
 [EMBED-01](../implementation/c-library.md#embed-01). An ordinary facade may select
@@ -777,20 +810,20 @@ cannot establish a closed contract that excludes a later valid constructor.
 No name-based capture, formal renaming, structural layout match or filesystem
 search supplies a missing constructor origin.
 
-**Example: complete static module `.bind key`.**
+**Example: complete static module `/example/demo/v1.0.0/src/bind key`.**
 
 ```text
 @...
-...with key
-...family
- ...key type < ...key
+.with key
+.family
+ .key type < .key
 ```
 
-The free inputs are `...family` and `...key`. The first must be a constructor
-whose residual formals include `...key type`, accepting the supplied key value.
+The free inputs are `.family` and `.key`. The first must be a constructor
+whose residual formals include `.key type`, accepting the supplied key value.
 It may also have value, comparator or allocator formals. The result preserves
 all such residuals and the original captures. This example does not promise any
-runtime dictionary method merely because a formal is called `...key type`.
+runtime dictionary method merely because a formal is called `.key type`.
 
 Each application is independent. Binding a key in one result and a value in
 another does not mutate the incoming family or combine those two partial maps.
@@ -798,7 +831,7 @@ To complete one partial result, explicitly apply that result under TPL-08.
 
 ### Type arguments are not numeric values
 
-A number held in `..integer`, including a list position or length, is an ordinary
+A number held in `//integer`, including a list position or length, is an ordinary
 value, not a third static argument category. Distinct numeric contents do not
 produce different nominal Types. Reading a constant's contents does not turn
 them into a type expression. Static natural numbers, value-indexed vectors,
@@ -819,7 +852,7 @@ Capture neither unrelated names in another module nor a foreign binding label.
 TPL-12 defines the separate graph syntax and visibility rules.
 
 A static value expression has an ordinary path, marker path or visible
-Type/Template name as head. A named input is `...formal < expression`, indented
+Type/Template name as head. A named input is `.formal < expression`, indented
 one level below that head, with one separator on each side of `<`. Its complete
 left name belongs to the selected constructor. Its right side belongs to the
 supplying module and may have its own deeper named input block. Deeper bindings
@@ -847,61 +880,63 @@ default, literal constructor, copy or native hook.
 A static pair names the expression's own value:
 
 ```text
-...text dictionaries
-.dictionary
- ...key type < ..text
+.text dictionaries
+/example/demo/v1.0.0/src/dictionary
+ .key type < //text
 ```
 
-Assume `.dictionary` has Type formals `...key type` and `...value type`. This
-pair defines a Template with key fixed to text and value still residual. It
-does not select an output named by the dictionary, instantiate dictionary
-storage or implicitly receive output position one.
+Assume `/example/demo/v1.0.0/src/dictionary` has Type formals `.key type` and
+`.value type`. This pair defines a Template with key fixed to text and value
+still residual. It does not select an output named by the dictionary,
+instantiate dictionary storage or implicitly receive output position one.
 
 A later pair in the same static module can complete it:
 
 ```text
-...integer dictionary
-...text dictionaries
- ...value type < ..integer
+.integer dictionary
+.text dictionaries
+ .value type < //integer
 ```
 
-The final Type equals direct application of both named arguments to `.dictionary`.
-A second pair can forward the partial family unchanged:
+The final Type equals direct application of both named arguments to
+`/example/demo/v1.0.0/src/dictionary`. A second pair can forward the partial
+family unchanged:
 
 ```text
-...forwarded family
-...text dictionaries
+.forwarded family
+.text dictionaries
 ```
 
 A static producer with several outputs is not a value-expression head. Select
 its actual named outputs in a graph statement under TPL-12; those receiver
-aliases can then be expression heads. Neither `... >`, bare `>` nor a reserved
-`...result` keyword captures an expression's own value. Static interfaces have
+aliases can then be expression heads. Neither `. >`, bare `>` nor a reserved
+`.result` keyword captures an expression's own value. Static interfaces have
 no positional bindings, skips or implicit first-output fallback.
 
 ### Nested structural composition
 
-**Example: complete static assembly `.nested types`.** Assume `.box` is the
-one-Type executable template defined in TPL-11:
+**Example: complete static assembly `/example/demo/v1.0.0/src/nested types`.**
+Assume `/example/demo/v1.0.0/src/box` is the one-Type executable template
+defined in TPL-11:
 
 ```text
 @...
-...inner box
-.box
- ...element type < ..integer
+.inner box
+/example/demo/v1.0.0/src/box
+ .element type < //integer
 
-...nested box
-.box
- ...element type < ...inner box
+.nested box
+/example/demo/v1.0.0/src/box
+ .element type < .inner box
 ```
 
 The same nested Type can be written with finite inline arguments:
 
 ```text
-...same nested box
-.box
- ...element type < .box
-  ...element type < ..integer
+.same nested box
+/example/demo/v1.0.0/src/box
+ .element type < /example/demo/v1.0.0/src/box
+  .element type < //integer
 ```
 
 Both uses retain the original Box identity and bindings. A nested expression can
@@ -919,8 +954,8 @@ keeps the concise ready-Type form:
 
 ```text
 nested
-.nested types
- ...nested box
+/example/demo/v1.0.0/src/nested types
+ .nested box
 ```
 
 At an ordinary field whose known type origin names an open executable template,
@@ -1118,47 +1153,48 @@ particular model of the algorithm-development polygon. Changing-key recursive
 generation, even some finite permutations, stays outside the accepted class.
 Provably decreasing recursion is deferred with dependent types.
 
-**Example: complete ordinary `.box`.** Assume each supplied Type supports ordinary
-default construction:
+**Example: complete ordinary `/example/demo/v1.0.0/src/box`.** Assume each
+supplied Type supports ordinary default construction:
 
 ```text
 @<
 value
-...element type
+.element type
 
 @!
 ```
 
-**Example: complete static `.nest types`.**
+**Example: complete static `/example/demo/v1.0.0/src/nest types`.**
 
 ```text
 @...
-...nested type
-.box
- ...element type < .box
-  ...element type < ...element
+.nested type
+/example/demo/v1.0.0/src/box
+ .element type < /example/demo/v1.0.0/src/box
+  .element type < .element
 ```
 
-Both Box applications are written in `.nest types`. When its input is integer,
-its concrete owner has two outgoing creation edges, one to each Box Type. The
-outer Box's mere use of its supplied element Type adds no outer-to-inner edge.
+Both Box applications are written in `/example/demo/v1.0.0/src/nest types`. When
+its input is integer, its concrete owner has two outgoing creation edges, one to
+each Box Type. The outer Box's mere use of its supplied element Type adds no
+outer-to-inner edge.
 
-**Example: invalid complete ordinary `.grow`.**
+**Example: invalid complete ordinary `/example/demo/v1.0.0/src/grow`.**
 
 ```text
 @<
 value
-...element type
+.element type
 
 @!
 wrapped
-.box
+/example/demo/v1.0.0/src/box
 
 wrapped !
  < value
 
 next&
-.grow
+/example/demo/v1.0.0/src/grow
 
 next& !
  < wrapped
@@ -1309,16 +1345,16 @@ from an independent concrete anchor without becoming a definition cycle.
 | A captured constructor is never applied | No application edge for the capture; validate its finite metadata |
 | A returned constructor is subsequently applied | Use its actual original identity and captures, not its alias |
 
-**Example: complete recursive ordinary `.node`.**
+**Example: complete recursive ordinary `/example/demo/v1.0.0/src/node`.**
 
 ```text
 @<
 value
-...element type
+.element type
 
 @!
 next&
-.node
+/example/demo/v1.0.0/src/node
 
 next& !
  < value
@@ -1331,47 +1367,49 @@ be supplied through ordinary operations. There is no hidden instance or skipped
 static call check. Replacing `next&` with an owned scalar `next` would fail
 TYPE-04: construction would immediately require another node forever.
 
-**Example: fixed namespace reuse, with `.a` and `.b` as separate files.**
+**Example: fixed namespace reuse, with `/example/demo/v1.0.0/src/a` and
+`/example/demo/v1.0.0/src/b` as separate files.**
 
-File `.a`:
+File `/example/demo/v1.0.0/src/a`:
 
 ```text
 @<
 unused
-...type
+.type
 
 @!
 copied
-..integer
- .b.constant
+//integer
+ /example/demo/v1.0.0/src/b/constant
 ```
 
-File `.b`:
+File `/example/demo/v1.0.0/src/b`:
 
 ```text
 @=
 constant
-..integer
+//integer
  |0
 
 @!
 number
-..integer
+//integer
  |0
 
 back&
-.a
+/example/demo/v1.0.0/src/a
 
 back& !
  < number
 ```
 
-A root may use A(Text). Reading `.b.constant` requires B's definition, but adds
-no A(Text)-to-B application edge merely for namespace reuse. Checking B requires
-A(Integer) for its reference field. Both A keys are permitted because neither
-is reachable from the other in the creation graph. The unused parameter still
-distinguishes their identities. B's own definition and constant dependencies
-must pass; no implicit instance of B is created by the read.
+A root may use A(Text). Reading `/example/demo/v1.0.0/src/b/constant` requires
+B's definition, but adds no A(Text)-to-B application edge merely for namespace
+reuse. Checking B requires A(Integer) for its reference field. Both A keys are
+permitted because neither is reachable from the other in the creation graph. The
+unused parameter still distinguishes their identities. B's own definition and
+constant dependencies must pass; no implicit instance of B is created by the
+read.
 
 **Why checking terminates.** Source definitions and roots are finite and each
 instantiated definition has finitely many application occurrences. A simple

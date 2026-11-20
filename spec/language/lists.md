@@ -86,14 +86,14 @@ and receiver-inferred declarations apply separately to each method.
 | Method | Inputs, in declaration order | Results, in declaration order |
 |---|---|---|
 | `append` | `source&`: element reference, default empty | `element&`: reference to the appended target |
-| `insert` | `position`: `..integer`, default zero; `source&`: element reference, default empty | `element&`: reference to the inserted target |
-| `remove` | `position`: `..integer`, default zero | None |
+| `insert` | `position`: `//integer`, default zero; `source&`: element reference, default empty | `element&`: reference to the inserted target |
+| `remove` | `position`: `//integer`, default zero | None |
 | `clear` | None | None |
-| `swap` | `first_position`: `..integer`, default zero; `second_position`: `..integer`, default zero | None |
-| `length` | None | `value`: owned `..integer` containing current length |
+| `swap` | `first_position`: `//integer`, default zero; `second_position`: `//integer`, default zero | None |
+| `length` | None | `value`: owned `//integer` containing current length |
 
 The reference type is specialized to the list's exact element module identity,
-including root kind. The standard-library module `..integer` must provide
+including root kind. The standard-library module `//integer` must provide
 ordinary copying, a literal initializer for every nonnegative position/length
 representable by the implementation, a read-only `[]` conversion covering
 that full supported range, and the exact typed native `from_size` constructor
@@ -123,7 +123,7 @@ output-action subtree, then finalize them exactly once before the next sibling
 or failure cleanup. Ordinary copies into caller fields survive this cleanup;
 escaped non-owning references to an ephemeral owned result become stale.
 `length` constructs `value` exactly once from the stored `size_t` length through
-`..integer`'s explicit typed native `from_size` constructor. Initialize its
+`//integer`'s explicit typed native `from_size` constructor. Initialize its
 declared Ama fields normally, then select that constructor for its fresh native
 payload under [LIFE-02](../implementation/native-interface.md#life-02); do not
 first construct a payload with `+` or `|` and then overwrite it. The bridge
@@ -134,7 +134,7 @@ range refusal. Result protection and destruction remain unchanged.
 **Why use a typed bridge.** List length is already structural machine metadata.
 Formatting it into decimal bytes and reparsing those bytes would add work to
 every `length !` without changing the resulting integer. The generated code
-instead includes the fixed `..integer` native header in its qualified context
+instead includes the fixed `//integer` native header in its qualified context
 and calls the declared constructor with the current length. This neither
 assumes the integer payload layout nor introduces a numeric source literal,
 untyped machine-value source, or seventh `.abi` protocol. Source literals still
@@ -239,7 +239,7 @@ body does not use the removed iterator handle afterward.
 
 ```text
 zero
-..integer
+//integer
  |0
 
 items[item&]
@@ -844,12 +844,12 @@ payloads is not a way to provide that foundation.
 
 ### An empty list still has an element type
 
-**Example.** This declaration fragment assumes that `.shop.item` is a concrete
+**Example.** This declaration fragment assumes that `/example/demo/v1.0.0/src/shop/item` is a concrete
 module type:
 
 ```text
 items[]
-.shop.item
+/example/demo/v1.0.0/src/shop/item
 ```
 
 The compiler knows the exact element type from the declaration even when the

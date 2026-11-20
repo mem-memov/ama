@@ -59,6 +59,13 @@ The implementation MUST provide:
     rather than a claim based on examples alone. The constructor/signature source
     forms and SRC-03 naming profile are defined; implementation coverage requires
     acceptance evidence rather than the existence of those source forms.
+13. Versioned projects and selective source-and-test delivery under
+    [PKG-01 through PKG-10](../project/packages.md), with local/package aliases,
+    explicit repository mappings and coherent acquisition snapshots.
+14. Separately executable project tools and `ama-project init DESTINATION`,
+    including Markdown guidance, under
+    [PROJECT-01 through PROJECT-03](project-tools.md). Compilation reads prepared
+    inputs without implicitly downloading, moving or testing them.
 
 The compiler MAY reuse independently tested source-management, hashing, layout,
 and ownership components from the existing project. Reuse must not preserve
@@ -216,13 +223,14 @@ bytes to accommodate the documentation generator.
 
 <a id="tool-01"></a>
 
-**TOOL-01.** Provide a utility command for moving a directory of code to a new
+**TOOL-01.** Provide an explicit project-tool command for moving a directory of code to a new
 directory location and rewriting affected Ama module paths. It accepts the
 project's configured roots, an existing source directory `S`, and its exact
 final directory path `D`; `D` is the new location of `S` itself, not an implicit
 destination parent. Provide a read-only preview listing the final location,
 module-identity changes, source edits, and preflight failures, as well as an
-explicit apply operation. No source-language syntax is added.
+explicit apply operation, under [PROJECT-01](project-tools.md#project-01).
+No source-language syntax is added.
 
 Use the configured roots to identify source modules and their proposed final
 locations. A configured root at or below `S` moves with that physical tree;
@@ -235,11 +243,13 @@ be covered by a carried root or an explicitly supplied destination-root setting;
 do not guess a namespace from an arbitrary directory name.
 
 Return the updated root settings with the operation's result. Persist changes
-only through documented project-configuration fields; externally supplied root
-settings are returned to the invoking client. If a configuration file itself
-moves, resolve its relative root paths against the file's proposed containing
-directory. Include documented module-identity fields, such as an entry module,
-in TOOL-02's mapping; do not replace path-looking text in unknown formats.
+only through documented configuration fields; externally supplied root settings
+are returned to the invoking client. Package metadata derives vendor, package
+and version from placement under PKG-01; do not invent redundant identity/root
+or executable fields in package.ini. Recompute the bases of moved package.ini
+and module.ini aliases as well as source-relative paths. Explicit entry/export
+selections supplied to the operation are mapped and returned to the client;
+do not replace path-looking text in unknown formats.
 The selected physical tree moves with its relative file layout intact, including
 native companions and other accompanying files. Do not silently extend the move
 to sibling files outside `S`. A source directory named `name+` does not by itself
@@ -262,13 +272,20 @@ identity/file collisions, ambiguous filesystem aliases, orphan `name+/` storage,
 or an unavailable required write. Directory merging and search-order shadowing
 are not implicit ways to resolve conflicts.
 
+For ordinary sources, validate both placements against PKG-01 and apply PKG-02
+before constructing the respective registries. An ignored external version
+cannot fill a hole or introduce a duplicate selected module. Report excluded
+copies and reject a plan whose changed package selection prevents an injective
+reference-preserving mapping. The tool must not interpret an arbitrary destination
+directory as a new valid vendor/package/version layout.
+
 ### Compute the complete identity mapping
 
 <a id="tool-02"></a>
 
 **TOOL-02.** Derive rewrites from resolved module identities, never textual path
 prefix replacement or guessed filenames. Use the ordinary source classification,
-parser, registry, and SRC-01 through SRC-05 mapping. Let the planned physical map
+parser, registry, and SRC-01 through SRC-06 mapping. Let the planned physical map
 be `P(p) = D / relative(S, p)` for a path at or below `S`, and `P(p) = p` otherwise.
 Apply the same map to configured root locations to obtain the proposed root
 configuration, retaining each root's kind. An explicitly supplied destination-root
@@ -284,9 +301,9 @@ is no inferred earlier namespace. Add these records to the original analysis
 registry before resolving any references. Reject duplicate identities or physical
 aliases in that augmented registry rather than preferring either source.
 
-For example, when `.old.a` moves to `.new.a`, a newly covered helper referring
-to `.old.a` resolves to the original module and its reference becomes `.new.a`.
-If the added root also introduces a different source named `.old.a`, reject the
+For example, when `/example/demo/v1.0.0/src/old/a` moves to `/example/demo/v1.0.0/src/new/a`, a newly covered helper referring
+to `/example/demo/v1.0.0/src/old/a` resolves to the original module and its reference becomes `/example/demo/v1.0.0/src/new/a`.
+If the added root also introduces a different source named `/example/demo/v1.0.0/src/old/a`, reject the
 operation: the helper’s original binding would be ambiguous. Newly covered
 sources themselves map from their explicit analysis identity to that same final
 identity; references within them still follow the mappings of their targets.
@@ -294,23 +311,44 @@ identity; references within them still follow the mappings of their targets.
 Define the simultaneous identity map
 `F(I_before(p)) = I_after(P(p))`. Unmoved modules map to themselves. The complete
 final registry must be injective and free of conflicting physical aliases.
-Do not infer `F` by replacing a dotted prefix: `name+/` is physical storage,
-and a cross-root move can change `.` to `..` or the reverse. A move between
+Do not infer `F` by replacing a textual prefix: `name+/` is physical storage,
+and a cross-root move can change `/` to `//` or the reverse. A move between
 ordinary roots can leave a logical identity unchanged.
 
 Resolve every syntactic module reference before the move. A reference to module
-`m` must afterwards resolve to `F(m)`. Rewrite its parsed module-path span to
-the canonical spelling of `F(m)` if that spelling changes. This includes type
+`m` must afterwards resolve to `F(m)`. Recompute a relative spelling from the
+referring definition's final logical containing directory to `F(m)`, even when
+`F(m) = m`; moving only the importer can require an edit. When the final root
+kinds differ, use the exact rooted spelling. An unchanged importer and target
+retain their unchanged valid path bytes. This includes type
 paths, static graph module heads and argument expressions, explicit
 constant-read namespaces, and module prefixes of qualified
 constant sources, in both moved files and importers elsewhere in the scope.
 For a qualified constant, preserve the final member name and storage suffix;
 only its resolved module prefix is mapped. For example, if the module
-`.old tools.names` becomes `.archive.new tools.names`, the source
-`.old tools.names.default value` becomes `.archive.new tools.names.default value`.
+`/example/demo/v1.0.0/src/old tools/names` becomes `/example/demo/v1.0.0/src/archive/new tools/names`, the source
+`/example/demo/v1.0.0/src/old tools/names/default value` becomes `/example/demo/v1.0.0/src/archive/new tools/names/default value`.
 Local variable names, static placeholders/export selectors, binding labels,
 method selectors, and inferred receivers
 are not module paths and do not change.
+
+Include parsed package.ini dependency selectors and package/module alias targets
+in the plan. Each alias use must retain the mapped referent after its binding's
+and source's final bases are applied. A shared binding can be rewritten once
+when that edit preserves every affected use; otherwise rewrite the affected
+source operands to exact rooted paths while retaining the binding for its other
+uses. This is an exact representation choice based on resolved targets, not
+a guessed shared textual prefix. Do not rename alias keys. Validate the final
+alias environments, selected dependency sets and PKG-09 source/test dependency
+directions as part of the staged reference graph.
+
+For selector masks, preserve their selected identity sets under the same mapping.
+Only an exact set-preserving symbolic rewrite or explicit finite selections with
+the same meaning are permitted. If the operation cannot establish the relevant
+selection domain and preservation without fetching or guessing, report the
+unresolved configuration boundary and refuse before mutation. Repository URLs,
+Git revisions and remote physical directories are not local module-path spans
+and are not rewritten as though remote repositories moved with the local tree.
 
 Construct all edits against original source spans, then apply each file's
 nonoverlapping replacements from the end toward the beginning, or through an
@@ -339,9 +377,10 @@ report. A successful report must distinguish this text from rewritten active
 Ama references; no heuristic search through drafts is permitted.
 
 Move native `.h`, `.c`, `.abi`, assets, and other accompanying files as opaque
-files with their contents unchanged, except for the documented project settings
-explicitly covered by TOOL-01. Apart from those settings, only Ama module-reference
-syntax is rewritten; physical paths embedded in handwritten C, literals, external
+files with their contents unchanged, except for parsed package.ini/module.ini
+path fields and documented project settings explicitly covered by TOOL-01/02.
+Apart from those fields, only Ama module-reference syntax is rewritten; physical
+paths embedded in handwritten C, literals, external
 build configuration, or unrelated files are outside this rewrite contract. Report
 that boundary without claiming those paths were updated. Generated outputs are
 not editable source references: invalidate affected build artifacts, source maps,
@@ -382,6 +421,24 @@ identity map, rewritten files, preserved drafts, and rebuild requirements.
 A feature is complete only when its success behavior, refusal/error behavior,
 ownership effects, and source diagnostics are covered. At minimum:
 
+### Versioned projects and independent project tools
+
+These scenarios apply [PKG-01 through PKG-10](../project/packages.md),
+[SRC-06](../language/source-and-names.md#src-06) and
+[PROJECT-01 through PROJECT-03](project-tools.md). Earlier dotted-path compiler
+evidence is historical; these target rules require new implementation evidence.
+
+| Area | Required acceptance evidence |
+|---|---|
+| Package layout and selection | Local-only, dependency-only and mixed projects; empty scaffold; hierarchical package paths; versions and variants distinct; src/tests retained in full identity; whole-version local precedence including missing local modules/config/companions; conflicts within selected copies rejected; ignored copies never fill holes |
+| Relative normalization | Containing logical directory as base in ordinary/static/native interfaces; . and .. in interior components; nonexistent cancelled intermediate components; alias then normalization; root-underflow rejection; no current-working-directory dependence; src-to-tests restriction checked on resolved targets; parent file and name+/ child/sibling cases; definition base preserved through template specialization |
+| Configuration and aliases | Exact UTF-8/line/INI profile; dependency selector lines, repository keys and sectionless module aliases; empty valid files and optional module companions; malformed/duplicate/unknown entries fail; package scope and no local shadowing; mandatory ~ prefix and whole multiword key; bounded acyclic root/local expansion; unused aliases create no imports; cache invalidation after configuration change/presence change |
+| Masks and repository routing | Whole-component * across package depths, embedded * within components, complete valid version filtering and all matches; no implicit latest selection; missing wildcard members skipped; longest whole-prefix mapping independent of order; equal-prefix conflicts; one revision snapshot for code/config/tests; unavailable selected source never falls back; mapping to repository root/subdirectory |
+| Selective delivery and tests | Main plus every companion and full name+/ subtree; topology-only ancestors retained without unrelated siblings; promotion to an active unit on a real dependency; mirrored tests and their helpers/data/dependencies; finite least-closure identity deduplication; required tests cannot silently disappear; no execution while fetching; direct and aliased src-to-tests imports refused while test-defined Type arguments remain usable |
+| Publication and provenance | Partial transfer where supported, operation-owned full-download fallback otherwise; overlapping selections deduplicated; staged complete publication; collisions, changed inputs, interruption and cleanup failures; content membership/commit/hash report matches the copied edition; promotion into packages preserves complete selected evidence and precedence |
+| Empty-project command | Separate ama-project init; exact Markdown scaffold; valid guidance and local links; new/existing-empty/nonempty destinations; unsupported aliases and concurrent claims; no overwrite, network, executable choice, compiler/test execution or Git initialization; preparation/publication/cleanup failure behavior |
+| Tool/compiler separation | Offline prepared compilation has no package/source mutation effects; missing local inputs report preparation need; independent command dispatch and narrow shared resolver contracts; tests run as independent microprograms with isolated outputs; relocator shares parsed path/config semantics; explicit output destinations and reproducible experiment provenance |
+
 ### Compiler structure and tooling
 
 | Area | Required acceptance evidence |
@@ -390,7 +447,7 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Optimization equivalence | General and optimized plans agree on values, effects, identity/refusal/control transitions and source diagnostics; mandatory static checks still reject invalid eliminated code; internal allocation attempts may differ under GEN-03; remaining failure transitions retain cleanup guarantees |
 | Translation pipeline | Source/AST/resolved IR/storage plans remain distinct; one assembled project C translation unit; labels/explicit return links for Ama, verified inline native entries, original source maps |
 | Ama dependencies | Transitive type/constant/native closure loaded once per logical identity; shared code/constants but separate owned instances; missing/draft/duplicate dependencies diagnosed with requesting paths; no textual Ama includes or function linking |
-| Directory relocation | Physical subtree and native companions moved; all active Ama references updated, including external/unreachable importers and qualified constants with member preserved; exact mapping across `.`, `..`, ordinary roots and nested `name+/`; whole-root/container moves update root locations and supported relative configuration against its final base; unchanged identities require no path edit; multiword/Unicode names and shared textual prefixes; reference-graph invariant and cycles; comments/literals/formatting/native bytes preserved; drafts listed unchanged; source/destination topology, aliases, collisions and read-only required writes rejected before mutation |
+| Directory relocation | Physical subtree and companions moved; all active references updated including external/unreachable importers, qualified constants and configuration alias/selector fields; module path mapping, relative-base recomputation when importer/target/both move, / versus // and nested name+/ topology; selected-version precedence before and after; wildcard selection sets and src/tests direction preserved; original graph and contextual member selections retained; comments/literals/native bytes preserved; invalid/conflicting/unprovable plans rejected before mutation |
 | Relocation failure/recovery | Read-only preview and staged validation; changed input invalidates plan; no overwrite/merge; rollback includes external importer edits; cross-filesystem preparation; injected write/rename/remove failures and interruption at transaction boundaries recover without duplicate edits or lost originals; incomplete rollback retains recovery data and reports failure; affected generated outputs invalidated and rebuild required |
 | Compiler decomposition | Every major component has cohesive nested subcomponents, short single-operation functions, narrow declared interfaces and explicit allocation/dependency ownership |
 | Component/composite tests | Independently runnable C leaves cover meaningful parts and assembled parents; real cross-component handoffs and generated-C integration tested; dependency changes invalidate generated artifacts |
@@ -402,7 +459,7 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Area | Required acceptance evidence |
 |---|---|
 | Source identity | Same basenames in different paths or root kinds remain distinct; root kind participates in type identity, generated hashes and native prefixes; strict UTF-8 and pinned XID properties; no normalization/case folding; filesystem aliases/unrepresentable paths diagnosed, same physical source exposed under multiple root kinds rejected; hash collisions rejected |
-| Module root selectors | `.` selects project/import roots and `..` selects only standard-library root; selected physical root is absent from component identity; no relative parent traversal, cross-family fallback or search-order shadowing; duplicate ordinary identities rejected while `.item` and `..item` may coexist; bare roots, three leading dots used as a concrete module root, internal doubled dots and spaces inside/after the prefix rejected; Unicode/multiword standard-library components accepted; qualified constants preserve root kind and require module/member components |
+| Module root selectors | `/` selects ordinary versioned packages and `//` only the standard library; relative paths retain their defining root kind; packages/dependencies storage is excluded from identity; the whole selected local version overrides its external copy with no hole filling; missing or duplicate selected identities fail; no cross-family fallback; bare roots, empty components, triple leading slashes and separator-adjoining spaces rejected; qualified constants preserve root kind and final-member context |
 | Submodule directories | `name` and sibling `name+/` coexist; nested markers map to logical path components without `+`; missing parent/conflicting logical sources diagnosed; native companions use physical filename; debug paths retain `+`; no implicit inheritance/execution |
 | Variable namespace | Duplicate base names rejected across constants/parameters/results/persistent body fields and all four storage forms; foreach-local binding is the explicit scoped exception and reuses compatible visible variables without shadowing; disjoint bodies may reuse local base names; generated identities include lexical scope; diagnostics show both declarations |
 | Lexical scope and visibility | Explicit fields visible before/after their text and across nested/sibling bodies; inferred fields become available at their receiver without repairing earlier uses; TYPE-06 duplicate classification precedes ordinary lookup; ordinary nested blocks add no scope; foreach-local names stop at their body and remain unavailable to persistent initializers; compatible nested reuse has no shadowing/restoration, incompatible names fail; static scope in skipped/empty bodies; initialization and access rules remain separate; caller operands and callee interface labels resolve in their respective namespaces without dynamic caller lookup |
@@ -415,12 +472,12 @@ ownership effects, and source diagnostics are covered. At minimum:
 | Constant reads/enumerations | Explicit concrete-type namespace plus `>>` resolves `@=` members only; instance-plus-`>>` resolves `@>` only; named/positional ordering and receiver type checks; values copied without exposing shared storage; incompatible enum types rejected; unknown enum literal rejected; one-time reverse shared cleanup |
 | Shared constant section | `@=` precedes interface/implementation; coexists with `@!` or `@C`; constants-only and empty `@=` files complete without a pool; incomplete declarations or missing implementation after an interface rejected; constants excluded from instance copying/reset/busy state |
 | Layout | LF/CRLF and unterminated final line; virtual boundary never enters payload/spans; TAB rejected in code/indentation/literals/comments/drafts/ABI; lone CR and Unicode code-space substitutes rejected; exact indentation including bindings/results/chains and statements inside control bodies; empty and comment/blank-only control bodies accepted with one source-located warning per written marker, including unreachable bodies; declarations count as statements; omitted alternatives do not warn; same-level following statements remain outside empty bodies; skipped indentation levels and missing loop closers rejected; empty `@!` accepted; comment-only condition adjacency; empty/missing/repeated sections; drafts |
-| Strict spacing | Exactly one space at required operation/binding separators and within multiword names; path dots and reference/list/index punctuation directly adjoin their operands; all padded spellings of reference prefixes/storage suffixes/index brackets rejected; execution suffixes, continuation-copy prefix, and binding markers keep their required separators; indentation and operand separator before a root marker or reference prefix remain valid; maximal `&[]`/`&[` token recognition and leading `...` placeholder recognition before the `..` root; no trailing code spaces or space-only blank lines; arbitrary pre-`#` spaces only for trailing comments, standalone comments require their structural region's exact indentation; literal region recognized before comments, repeated/trailing payload spaces preserved |
+| Strict spacing | Exactly one space at required operation/binding separators and within multiword names; path slashes, static-name dots and reference/list/index punctuation adjoin their operands; padded reference prefixes/storage suffixes/index brackets rejected; execution suffixes, continuation-copy prefix and binding markers keep required separators; lexical distinction between .static, ./relative, ../parent, /ordinary, //standard and ~alias; no trailing code spaces or space-only blank lines; arbitrary pre-# spaces only for trailing comments; standalone comments follow exact structural indentation; literal data retains repeated/trailing payload spaces |
 | Comment indentation | Exact standalone-comment indentation in root/section bodies, initializers, assignments, argument/result blocks, selected operations, condition headers, branches, loops, and refusal handlers; comments cannot create skipped nesting levels or resume a child region after dedenting; parent comments before optional `:` accepted, comments before `}` remain inside its body; comment-only bodies remain empty and warn; trailing comment alignment and flat `.abi` comment prefixes remain permitted; inactive drafts retain their activation boundary |
 | Multiword names | Whole-name lookup independent of declarations, including coexisting short/long names; every word uses pinned XID start/continue rules with SRC-03's internal ASCII hyphen extension; exactly one internal U+0020; leading/trailing/doubled name spaces and digit-leading later words rejected; adjoining storage/access markers preserve complete names; nested compact indices and reference formation of indexed owned elements; full names used in inferred receivers, labels, selectors, indices, duplicate-base checks, and generated hash identities |
-| Multiword module components | Internal single spaces preserved in exact filesystem components and `name+/` storage under either root kind; compact dot delimiters excluded from component identity while root kind remains qualified identity; no space at component edges or within a dot boundary, no empty components/internal repeated dots/trailing dots; qualified constants split at the final component; no trimming/collapsing/underscore substitution or longest-prefix guesses; path aliases and unsupported components diagnosed |
+| Multiword module components | Internal single spaces preserved in exact filesystem components and name+/ storage; slash separators are excluded from component identity, while root kind, vendor/package/version and src/tests remain identity; no trimming, collapsing or shorter-name lookup; version dots belong only to the version component; qualified constants split after normalization at the final component; alias names match exactly and unsupported physical paths fail |
 | Internal hyphen words | [SRC-03](../language/source-and-names.md#src-03): accept U+002D only between ordinary identifier characters within each word, including `item-2`, `red-blue-green`, `_item-_value`, `ключ-2` and permitted Unicode combining continuations after a hyphen; retain the original per-word start rule and unchanged `_`/`XID_Continue` class; reject leading/trailing/consecutive hyphens and hyphen-adjacent spaces, including `-item`, `item-`, `item--name`, `item- name` and `item -name`; accept `item-2 next_3` but reject `item 2` |
-| Hyphenated name identity | [SRC-03](../language/source-and-names.md#src-03): apply one profile to variables in all storage/access forms, binding labels, selectors, indices, module components, qualified constants and complete static parameter/result/alias names; accept `.shop-tools.item-2` and `...тип-ключа.значение-2` with exact components and reject malformed components without filesystem or shorter-name guessing; preserve distinct identities for `a-b`, `a_b`, `a b` and `ab`, with existing generated-name collision checks and one-to-one filesystem mapping; reject dash/minus confusables such as U+2013/U+2212 rather than normalizing them to U+002D |
+| Hyphenated name identity | [SRC-03](../language/source-and-names.md#src-03): apply one profile to variables in all storage/access forms, binding labels, selectors, indices, module components, qualified constants and complete static parameter/result/alias names; accept `/example/demo/v1.0.0/src/shop-tools/item-2` and `.тип-ключа.значение-2` with exact components and reject malformed components without filesystem or shorter-name guessing; preserve distinct identities for `a-b`, `a_b`, `a b` and `ab`, with existing generated-name collision checks and one-to-one filesystem mapping; reject dash/minus confusables such as U+2013/U+2212 rather than normalizing them to U+002D |
 | Hyphen context boundaries | [SRC-03](../language/source-and-names.md#src-03): `a-b` is one complete name, never subtraction; spaced or malformed hyphens do not introduce an arithmetic/operator interpretation or repaired token split; literal/comment payloads retain hyphen text unchanged, including repeated hyphens; the native `.abi` record `- destroy` still selects destruction, and native hook names remain identifiers of the supported C toolchain rather than acquiring Ama's hyphen or multiword syntax |
 | Declarations | All four storage forms; scalar initializer cardinality; list entries; no marker on type line; ordering errors |
 | Literals | Empty payload; quotes, `#`, `|`, backslashes, repeated and trailing spaces preserved; initial space after `|` is data; TAB and invalid numeric expressions rejected |
@@ -445,7 +502,7 @@ passed; record actual evidence for the current target.
 | Static type markers | TPL-14: accept a file containing only one zero-indent `@...` and valid comments/blank lines, including trailing comments, CRLF and a virtual final newline. Distinguish drafts and nonempty static producers; malformed UTF-8/spacing/indentation, invalid statements and mixed/repeated annotations never become markers. Full logical path/root kind supplies nominal identity; repeated/aliased uses agree, distinct paths differ despite equal bytes, and physical `name+/` layout preserves identity. Forward markers through named static inputs/results and exact equality constraints without runtime storage; no marker formals, applications, named outputs or producer-use statements. Reject marker Types in all four runtime storage forms, constants, entry/native/C export roots, including after placeholder substitution or named-export selection and in unreachable declarations. No relaxed recursion is implied |
 | Complete declaration expressions | TPL-15: accept named constructor applications, nested Type/Template operands and single named producer selections in ordinary input/output/body/shared declaration types; retain one-space name/type alignment and binding indentation. Distinguish callee labels from outer operand names without lookup-driven parsing. Check closure per concrete owner specialization; infer only exact structural constraints and known nominal decompositions. Reject unresolved/ambiguous/conflicting final Types, residual final Templates, unknown names, category mismatches, static output aliases and invalid cycles. Preserve separate constant-read namespace rules and ordinary initialization after the completed expression |
 | Generation and behavioral contracts | [CORE-06](../introduction.md#core-06): static modules generate concrete ordinary specializations without runtime type inspection or test-driven choice of types. Retain compiler refusal of incompatible types, ownership/lifecycle violations and invalid specialization creation even when a test suite passes. Require contract tests to detect well-typed behavioral faults, such as dropping duplicate occurrences during sorting or an inconsistent variant tag and payload. Record tested examples, properties, boundaries, invalid inputs, operation sequences, real compositions and applicable independent reference results; scope exhaustive claims to the finite domain actually checked |
-| Placeholder spelling | TPL-01: exact leading `...` before `..`/`.`; Unicode/multiword/underscore components and SRC-03's internal ASCII hyphens; whole-name identity without filesystem lookup; reject bare/four-dot prefixes, trailing/internal repeated dots and spaces at joins, plus malformed component hyphens; concrete paths and constant sources retain their own grammar |
+| Placeholder spelling | TPL-01: single leading dot, complete descriptive components separated by adjoining dots, Unicode/multiword/internal-hyphen spelling; no filesystem lookup, slash, trailing dot, empty component, doubled initial dots or separator padding; @... annotation unchanged; ./ and ../ recognized as paths before name lookup; the entire .type.member is one scoped static name |
 | Placeholder scope | TPL-02/TPL-12/TPL-15: collect free Type operands throughout ordinary input/output declaration expressions, excluding foreign constructor labels and export selectors; body/shared uses reuse that interface and cannot introduce parameters. Whole-field bare placeholders remain runtime-Type constrained. Static graphs collect alias-pair and named-output binders before free inputs, including forward references. Preserve defining-versus-equality roles, full scoped names and independent module scope. Reject standalone static formals/result pairs/output aliases in ordinary code and unknown body/shared operands, including skipped branches |
 | Ordinary-argument inference | TPL-03: named/positional owned/reference/list inputs, already declared typed output receivers, typed defaults, declaration initializers, assignments and reference/alias connections contribute exact nominal type equations; empty typed lists/references retain static evidence; partially unknown generic destinations and new inferred receivers add equality without manufacturing an anchor; later concrete constraints refine previously introduced terms without retroactive name binding; equal constraints and anchored equality cycles accepted, conflicts/unanchored required types/infinite substitution terms rejected; typed defaults constrain even when unused while runtime construction still skips them; literal defaults add no spurious numeric type constraint; ordinary typed self-reference initializers match the complete containing specialization without a false substitution cycle; literal bytes, capabilities, first runtime call and two unknowns never choose a type; constant members contribute declared types only after independent concrete namespace resolution |
 | Nested field specialization | TPL-04: two- and three-level explicit calls propagate symbolic outer types; independent field declarations can differ; one field and all instances of one concrete owner type keep one specialization; ordinary owners gain no implicit parameters; persistent fields in branches are concrete before creation. Complete every input/body/shared/result declaration expression under TPL-15; explicit interface operands can introduce owner parameters, while omitted inner formals use exact field inference without silently adding owner parameters |
@@ -457,10 +514,10 @@ passed; record actual evidence for the current target.
 | Template parameter signatures | TPL-07: static graph usages impose minimum named Type/Template requirements; accept actual residual signatures with additional members and preserve every actual residual/capture. Named input labels alone do not declare a complete signature; establish actual origin without enumerating constructors. Cover compatible repeated requirements, nested Template arguments, category conflicts, missing names, attempts to bind fixed captures and exact full-name matching without basename lookup |
 | Partial composition | TPL-08/TPL-15: static alias pairs and nested argument expressions may forward residual constructors without runtime slots. Direct/staged/reordered bindings preserve all fixed captures. Final ordinary declarations must yield one closed admissible Type; intermediate Templates are accepted only by matching constructor contracts. Every selected static producer must determine all its inputs through explicit arguments or permitted equations before publication, including unused inputs. Runtime argument omission retains defaults |
 | Explicit static input categories | TPL-12: exclusive `@...` activation; whole-graph binder collection determines free external names and usages determine Type/Template category requirements. Accept compatible forward references, Unicode/multiword names and open named requirements; reject category conflicts, mixed section markers, runtime fields/literals/statements and obsolete static formal declarations in ordinary `@<` |
-| Defined static results | TPL-12: alias pair `...name` followed by an ordinary Type, marker or Template expression defines that expression itself; indented named inputs select constructor arguments. No invented own-result source label or special capture arrow. Every defined graph name is public, including nested/intermediate results; preserve nominal identity and allocate no runtime default/reset/copy/continuation storage |
+| Defined static results | TPL-12: alias pair `.name` followed by an ordinary Type, marker or Template expression defines that expression itself; indented named inputs select constructor arguments. No invented own-result source label or special capture arrow. Every defined graph name is public, including nested/intermediate results; preserve nominal identity and allocate no runtime default/reset/copy/continuation storage |
 | Static output composition | TPL-12: forward supplied Types/Templates; build nested constructor applications; return partial Templates with fixed captures; select multiple named outputs of known static producers and reuse results elsewhere in the graph. Each receiver denotes the selected output rather than a fresh nominal Type; an omitted receiver exports nothing implicitly |
 | Static output lookup | TPL-12: explicit named output reads select only public results of the independently known actual static producer. Ordinary constructor applications produce their own Type/Template through alias pairs, not a fictitious declared static output. Reject unknown origins, missing output names, runtime fields as static outputs, arbitrary first-output fallback and member searches |
-| Named-only static interfaces | TPL-12: static applications use named bindings only; reject positional `... <`, `... >`, ordinal output selectors and any inferred static ordinal interface. Ordinary runtime named/positional call and retained-read positions remain unchanged and contain only runtime declarations |
+| Named-only static interfaces | TPL-12: static applications use named bindings only; reject positional `. <`, `. >`, ordinal output selectors and inferred static ordinal interfaces. Ordinary runtime named/positional call and retained-read positions remain unchanged and contain only runtime declarations |
 | Static named arity and rejected skips | TPL-12: reject empty static skips and obsolete positional applications. Named binding lookup uses exact actual residual/input/output identities; reject missing or duplicate labels and rebinding of fixed arguments. Omitting constructor bindings may retain an intentional residual Template, while reading a static producer requires complete producer-input determination |
 | Static binding modes and order | TPL-12: named graph input bindings precede named producer-output reads at each application; nested applications have their own target identities. No mixed static modes or input after output. Ordinary runtime modes remain independent. Alias-pair targets are ordinary Type/constructor or marker expressions, while static multi-output producers require explicit named output selection |
 | Static result alias introduction | TPL-12: collect immutable public pair/receiver names throughout the graph. Each pair declares its name once and defines it regardless of textual position; absent a pair, the first lexical receiver supplies the definition. Other projections impose exact Type/Template equality including residual origin, signature and captures. Receivers introduce no free parameter or nominal identity. Reject duplicate pair declarations, contradictory projections and mutation |
@@ -532,7 +589,7 @@ passed; record actual evidence for the current target.
 | Compact list bookkeeping | Local order indices reconstruct exact live identities from owner/header/record data; saved cursor/origin identities retain generations and incarnation; reused record slots never revive a removed origin; cursor correction agrees with the full lexical scan for exact active/suspended registration, including copy/restart/replacement/cleanup |
 | List performance/lifetimes | Geometric growth and direct positional access; shifts move membership identifiers and update record positions, never instance payloads; borrowed buffer addresses obey invalidation rules; no separate node allocation per entry |
 | List method interface | Six typed intrinsic methods append/insert/remove/clear/swap/length selected directly, no action constants or dispatcher; method-specific named/positional arity, placeholders and inferred outputs; no first-class method values, root !/resume/retained method reads rejected; ..integer index/length identity and validated protocol/range; owning explicit source clone check only for insertion methods, omitted source default-creates, reference insertion copies handle |
-| Typed list length construction | Fixed qualified `..integer` native `from_size` bridge receives fresh payload storage and constructs length once without decimal formatting/literal parsing; zero, one, native representation boundaries and SIZE_MAX round-trip through index conversion; missing/wrong C signature and technical construction failure are diagnosed; six-symbol .abi grammar remains unchanged |
+| Typed list length construction | Fixed qualified `//integer` native `from_size` bridge receives fresh payload storage and constructs length once without decimal formatting/literal parsing; zero, one, native representation boundaries and SIZE_MAX round-trip through index conversion; missing/wrong C signature and technical construction failure are diagnosed; six-symbol .abi grammar remains unchanged |
 | List method refusal and busy state | List acquired before inputs and busy through selected method/result subtrees/siblings; exact parent-token delegation only; indexed absent targets refuse before input/body/output; method bounds/source/subtree preflight after input preparation refuses own method before mutation/results; staged cleanup and unchanged receivers, no outcome enums; fatal resource/conversion errors remain fatal; foreach releases list before body; disposal releases every grant |
 | Zero-based positions | First element at zero, last at `n - 1`; access/removal/replacement reject `n`; insertion at `n` appends; empty list permits insertion only at zero; no implicit offset |
 

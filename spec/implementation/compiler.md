@@ -429,7 +429,7 @@ The generated program's stackless constraints do not prohibit compiler call stac
 | Source manager | Paths, UTF-8 bytes, line tables, source lifetime | Stable source spans |
 | Layout/lexical reader | Indentation, comments, literal boundaries, annotations | Tokens or logical lines |
 | Parser | Syntax recognition independent of declared-name lookup | AST with spans |
-| Namespace resolver | Module loading, qualified identities, name binding and ordinary source-package closure under [TPL-13](../language/templates.md#tpl-13) | Resolved symbols |
+| Namespace resolver | Prepared local package selection, alias/relative-path normalization, module loading, qualified identities, name binding and ordinary source-package closure under [TPL-13](../language/templates.md#tpl-13) | Resolved symbols |
 | Static specializer | Ordinary interface Type parameters and separate named `@...` graphs under [TPL-12](../language/static-results.md#tpl-12); exact typed-connection constraints, usage requirements, nominal decomposition, captures and specialization-creation validation under [TPL-01 through TPL-11](../language/templates.md) | Closed specialized type/program structure before layout, validated static exports and concrete native boundary under [TPL-13](../language/templates.md#tpl-13) |
 | Type/lifecycle checker | Types, storage kinds, copy/default contracts | Validated typed nodes |
 | Control-flow lowering | Entry, calls, refusal branches, loops, yield positions | Typed control-flow IR |
@@ -615,9 +615,10 @@ resources on supported error paths.
 <a id="dep-01"></a>
 
 **DEP-01.** An Ama dependency is another module resolved through the configured
-roots selected by its explicit `.` or `..` prefix and the logical-path mapping
-in SRC-01 through SRC-05. `.` uses project/import roots; `..` uses only the
-standard-library root, regardless of which module contains the reference.
+ordinary `/` or standard-library `//` namespace and the logical-path mapping
+in SRC-01 through SRC-06. Normalize relative and aliased paths in their defining
+source/configuration environment before lookup. Select the package-version copy
+under [PKG-02](../project/packages.md#pkg-02) before indexing its modules.
 Dependencies arise from declared types in constants/interfaces/body state,
 qualified constant sources and explicit constant-read namespaces, plus their
 transitive type/native/initialization dependencies. Calling a variable resolves
@@ -625,20 +626,31 @@ through its declared type; it does not dynamically import a source file.
 There is no source-text `include`, hidden wildcard import, or implicit parent
 inheritance. A reusable Ama library supplies modules in the same source/interface
 format as project modules.
+Enforce [PKG-09](../project/packages.md#pkg-09) on explicit dependencies of source
+definitions, including static constructs. Preserve a test caller's ability to
+supply its own types to an ordinary source template. Test-specialization
+metadata is not an implicit source-level import in the template definition.
+Check explicit cross-package-version ordinary dependencies against the defining
+version's declared selector coverage under PKG-05, even when a matching source
+is already present locally. Same-version and configured standard-library paths
+follow their separate rules; caller-supplied types retain their caller origin.
+The compiler reads only prepared local inputs; acquisition and test execution
+belong to [PROJECT-01](project-tools.md#project-01).
 
 For example:
 
 ```text
-project/main                 -> .main
-    declares .shop.item      -> library/shop/item
-        declares ..index     -> standard-library/index
-        native companions    -> library/shop/item.h, item.c, item.abi
-
-project .main also uses a qualified constant from .shop.item;
-both references resolve to the same module record and shared constant table.
+packages/example/demo/v1.0.0/src/main
+    -> /example/demo/v1.0.0/src/main
+    declares /vendor/catalog/v2.0.0/src/item
+        -> dependencies/vendor/catalog/v2.0.0/src/item
+        declares //integer -> configured-standard-library/integer
+        native companions -> item.h, item.c, item.abi beside item
 ```
 
-Directories above are illustrative configured roots. `name+/` submodules use
+The entry may also read a constant from that same item namespace; both requests
+share its module record and constant table. Directory names and library interfaces
+above are illustrative. `name+/` submodules use
 the agreed physical mapping; importing a child does not implicitly import its
 parent declarations. Paths in code stay logical, and include/debug paths are
 physical. Neither filesystem proximity nor source loading instantiates a module.
@@ -648,9 +660,13 @@ physical. Neither filesystem proximity nor source loading instantiates a module.
 <a id="dep-02"></a>
 
 **DEP-02.** Build one project-level module registry keyed by full logical identity,
-including the root kind and exact component sequence. Index roots in their
-declared families, reject duplicate identities and ambiguous filesystem aliases
-under SRC-02/SRC-03, and never retry another family when a path is missing.
+including the root kind and exact component sequence. Apply PKG-02's complete
+version selection first; the ignored external copy contributes no records.
+Reject duplicate selected identities and ambiguous filesystem aliases under
+SRC-02/SRC-03, and never retry an ignored copy or another root family when a
+path is missing. Track the selected package.ini, used module.ini companions,
+their presence/absence and effective alias environment as dependency inputs;
+changing any of them invalidates affected cached resolution and derived output.
 Load and parse each required active module once; share its resolved
 symbols, AST and typed representation across users. Discover transitive dependencies
 until the required closure is complete. Unused drafts do not require full parsing;
