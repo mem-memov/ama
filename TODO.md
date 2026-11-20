@@ -73,10 +73,12 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T258**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T259**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
-Implementation of the planned tasks below has not been requested.
+The user's 2026-11-20 continuation request authorizes implementation of this
+queue in prerequisite order. Specification amendments still need their own
+explicit authorization; T222's notation amendment is not granted by that request.
 [T229](DONE.md#t229) specifies the CMake/launcher/source-inclusion contracts;
 T239–T242 and T244–T257 are their pending implementation owners. The
 [detailed implementation plan](docs/implementation/cmake-launcher-plan.md)
@@ -86,8 +88,8 @@ records foundation gates, task/step acceptance, migration and evidence duties;
 <a id="t221"></a>
 
 - [ ] **T221 — Implement and accept the specified static type markers.**
-  Status: planned; awaits a separate implementation request, outside T220's
-  specification-only authorization. Prerequisites: T220, T231 and T232.
+  Status: planned; implementation now authorized, awaiting prerequisites:
+  T220, T231 and T232.
   Rule: [TPL-14](spec/language/static-results.md#tpl-14) and its
   [acceptance scenario](spec/implementation/tools-and-conformance.md#static-module-templates).
   Steps: classify empty static files, preserve nominal marker Type metadata
@@ -107,7 +109,7 @@ records foundation gates, task/step acceptance, migration and evidence duties;
 <a id="t226"></a>
 
 - [ ] **T226 — Implement complete declaration type expressions.**
-  Status: planned; awaits a separate implementation request. Prerequisites:
+  Status: planned; implementation now authorized. Prerequisites:
   T221, T225 and T227. Contract: [TPL-15](spec/language/templates.md#tpl-15) and its
   [acceptance scenarios](spec/implementation/tools-and-conformance.md#static-module-templates).
   T227 withdraws the former phantom implementation scope; ordinary declaration
@@ -129,8 +131,7 @@ records foundation gates, task/step acceptance, migration and evidence duties;
 
 ## Planned alignment: projects, paths and project tools
 
-The user authorized T230 specification work, not implementation of this queue.
-All tasks below remain planned until an implementation request. Execute in
+The user now authorizes implementation following the completed T243 plan. Execute in
 prerequisite order across both alignment sections; listing order does not
 override a dependency edge. Use granular component/composition tests, documented
 invariants and a commit for every accepted task. T222 is selected for this sprint;
@@ -142,7 +143,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t231"></a>
 
 - [ ] **T231 — Implement versioned source identity and revised lexical forms.**
-  Prerequisite: T230. Implement PKG-01/02 and SRC-01..05 plus TPL-01: slash
+  Status: next integration task after the T258 foundation commit. Implementation is
+  authorized by the user's 2026-11-20 continuation request; no spec edits.
+  Record: [versioned source implementation](docs/implementation/versioned-source.md).
+  Prerequisites: T230 and T258. Implement PKG-01/02 and SRC-01..05 plus TPL-01: slash
   paths, version/variant components, single-dot static names and physical name+/
   storage. Select complete package versions before indexing; remove superseded
   dotted-root code/tests after tracing consumers. Keep parsing independent of
@@ -155,8 +159,9 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 - [ ] **T222 — Require a space after the reference-formation operator.**
   Status: selected for this sprint by the user's 2026-11-20 request; transferred
   from BACKLOG with its original ID. Prerequisite: T231. The intended spelling
-  was recorded earlier on 2026-11-20; implementation and the required
-  specification amendment still need separate explicit authorization.
+  was recorded earlier on 2026-11-20; the required specification amendment
+  still needs separate explicit authorization;
+  the user's continuation request now authorizes implementation after that gate.
   Desired spelling: exactly one ASCII space between prefix `&` and its owned
   operand: `& item`, `& items[position]`, and `input& < & item`.
   The reference suffix stays adjoining (`target&`); standalone self-reference
@@ -205,8 +210,8 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t224"></a>
 
 - [ ] **T224 — Add relative module paths and support them in directory relocation.**
-  Status: agreed target, transferred from BACKLOG by T230; implementation awaits
-  a separate request. Prerequisites: T232, T233. Rules: SRC-06, PKG-04/09,
+  Status: agreed target, transferred from BACKLOG by T230; implementation now
+  authorized, awaiting prerequisites T232, T233. Rules: SRC-06, PKG-04/09,
   PROJECT-01 and TOOL-01..04. Use the shared parsed configuration/path resolver;
   recompute references when importer, target or both move, including external
   importers, aliases and selector sets. Preserve whole-version selection,
@@ -268,7 +273,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 
 T229 specifies these contracts; T243 supplies the
 [detailed task/step plan](docs/implementation/cmake-launcher-plan.md).
-Implementation remains a separate request. Execute in the order below after
+The user's continuation request authorizes implementation. Execute in order after
 each row's actual prerequisites; IDs are stable, not a numeric ordering rule.
 T231/T222/T232/T221/T226/T233 remain foundation gates. T222 still requires its
 separate specification authorization. T233's independent test orchestration does

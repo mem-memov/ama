@@ -55886,7 +55886,7 @@
   },
   "tests/unit/source/Makefile": {
     "contract": "docs/implementation/source-storage.md",
-    "purpose": "Register independent source storage, arena, Unicode, catalog and identity suites.",
+    "purpose": "Register independent storage, Unicode, canonical path, catalog and identity assertion suites.",
     "tests": [
       {
         "case": "it_keeps_aligned_addresses_stable_and_releases_every_record",
@@ -55927,6 +55927,21 @@
         "case": "it_releases_every_failed_registration_and_rejects_invalid_identities",
         "command": "make -C tests/unit/source/identity",
         "source": "tests/unit/source/identity/main.c"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_matches_the_complete_bounded_grammar_language",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_checks_every_bounded_package_shape_partition",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source"
       }
     ]
   },
@@ -170029,6 +170044,798 @@
         "source": "tests/unit/codegen/template-algorithms/main.c",
         "command": "make -C tests/unit/codegen/template-algorithms"
       }
+    ]
+  },
+  "src/source/path/version.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "purpose": "Validate a complete version's decimal fields and optional Unicode variant.",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_exact_canonical_versions",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_rejects_noncanonical_or_incomplete_versions",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_reads_only_the_supplied_byte_view",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_decimal_fields_larger_than_host_integers",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_matches_the_complete_bounded_grammar_language",
+        "command": "make -C tests/unit/source/path"
+      }
+    ]
+  },
+  "src/source/path/version.h": {
+    "contract": "docs/implementation/versioned-source.md",
+    "purpose": "Recognize one exact bounded package-version component without integer conversion.",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_exact_canonical_versions",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_rejects_noncanonical_or_incomplete_versions",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_reads_only_the_supplied_byte_view",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_decimal_fields_larger_than_host_integers",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_matches_the_complete_bounded_grammar_language",
+        "command": "make -C tests/unit/source/path"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/path/logical.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "purpose": "Check canonical namespace and package structure with a bounded forward scan.",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_canonical_ordinary_and_standard_identities",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_rejects_incomplete_or_unnormalized_identities",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_bounds_canonical_identity_reads_and_preserves_input",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_checks_every_bounded_package_shape_partition",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_deep_finite_namespaces_without_a_semantic_depth_cap",
+        "command": "make -C tests/unit/source/path"
+      }
+    ]
+  },
+  "src/source/path/logical.h": {
+    "contract": "docs/implementation/versioned-source.md",
+    "purpose": "Validate canonical logical module identities from bounded source byte views.",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_canonical_ordinary_and_standard_identities",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_rejects_incomplete_or_unnormalized_identities",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_bounds_canonical_identity_reads_and_preserves_input",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_checks_every_bounded_package_shape_partition",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_deep_finite_namespaces_without_a_semantic_depth_cap",
+        "command": "make -C tests/unit/source/path"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/source/path/main.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "purpose": "Exercise independent version and path grammar partitions, finite models and bounded views.",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_exact_canonical_versions",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_rejects_noncanonical_or_incomplete_versions",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_reads_only_the_supplied_byte_view",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_decimal_fields_larger_than_host_integers",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_matches_the_complete_bounded_grammar_language",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_canonical_ordinary_and_standard_identities",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_rejects_incomplete_or_unnormalized_identities",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_bounds_canonical_identity_reads_and_preserves_input",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_checks_every_bounded_package_shape_partition",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_deep_finite_namespaces_without_a_semantic_depth_cap",
+        "command": "make -C tests/unit/source/path"
+      }
+    ]
+  },
+  "tests/unit/source/path/Makefile": {
+    "contract": "docs/implementation/versioned-source.md",
+    "purpose": "Compile and execute the independent version and canonical path assertion leaf.",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_exact_canonical_versions",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_rejects_noncanonical_or_incomplete_versions",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_reads_only_the_supplied_byte_view",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_decimal_fields_larger_than_host_integers",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_matches_the_complete_bounded_grammar_language",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_canonical_ordinary_and_standard_identities",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_rejects_incomplete_or_unnormalized_identities",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_bounds_canonical_identity_reads_and_preserves_input",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_checks_every_bounded_package_shape_partition",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_accepts_deep_finite_namespaces_without_a_semantic_depth_cap",
+        "command": "make -C tests/unit/source/path"
+      }
+    ]
+  },
+  "src/source/module/packages/discover.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Enumerate one optional storage namespace without entering any version contents."
+  },
+  "src/source/module/packages/internal.h": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Separate version discovery work queues, entry checks and selection publication.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/module/packages/packages.h": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Select coherent physical package-version copies before indexing their modules.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/module/packages/queue.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Queue unique physical namespace directories without recursive C traversal."
+  },
+  "src/source/module/packages/registry.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Publish one selected physical version per exact logical package identity."
+  },
+  "src/source/module/packages/select.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Compose exact project-root validation with local-first version selection."
+  },
+  "src/source/module/packages/visit.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Distinguish namespace grouping directories from complete package-version boundaries."
+  },
+  "tests/unit/source/module/packages/main.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Check coherent whole-version selection independently of module loading."
+  },
+  "tests/unit/source/module/packages/Makefile": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_optional_storage_and_exact_sorted_version_prefixes",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_selects_local_versions_before_external_roots_in_any_order",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_competing_versions_without_publishing_partial_selection",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_two_external_copies_of_the_same_version",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_retains_exact_filesystem_failure_context",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_refuses_misplaced_versions_storage_files_and_root_aliases",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_unwinds_every_version_selection_allocation_failure",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_checks_descriptor_preconditions_and_empty_root_sets",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Build and run exact package-selection and measured directory-I/O failure cases."
+  },
+  "tests/unit/source/module/packages/support/io.c": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Inject one exact directory-I/O failure while checking real stream ownership."
+  },
+  "tests/unit/source/module/packages/support/io.h": {
+    "contract": "docs/implementation/versioned-source.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/packages/main.c",
+        "case": "it_reports_every_measured_directory_io_failure_without_leaking",
+        "command": "make -C tests/unit/source/module/packages"
+      }
+    ],
+    "purpose": "Control deterministic directory-I/O failures in package-selection tests.",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   }
 }

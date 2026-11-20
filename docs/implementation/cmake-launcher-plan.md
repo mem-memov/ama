@@ -55,6 +55,10 @@ The first implementation prerequisites remain T231, T222 and T232 in that
 order. T244 can establish the new component contracts before them, using current
 sources and the approved target definitions. Do not bypass a missing prerequisite
 by maintaining another parser, a legacy path mode or a temporary launcher API.
+T231's initial implementation inventory subsequently extracted the independently
+accepted recognition/version-selection foundation as [T258](../../DONE.md#t258).
+It precedes T231 integration without changing the remaining prerequisite edges;
+see the [execution record](versioned-source.md) for actual status and evidence.
 Once a genuine ambiguity blocks a task, use [AMBIGUITIES.md](../../AMBIGUITIES.md)
 and stop that task as required by AGENTS; do not skip it by starting a later task.
 

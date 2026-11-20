@@ -7298,3 +7298,51 @@ T201. Specification bytes have not changed.
   exit 0 and python3 /tmp/ama-t243-provenance.py source/staged agreement before
   commit. Generated references remain unversioned. Implementation stays planned;
   this acceptance establishes a coherent roadmap, not feature support.
+
+<a id="t258"></a>
+
+- [x] **T258 — Implement exact version identity and whole-version selection components.**
+  Status: completed foundation extracted from the authorized T231 implementation
+  on 2026-11-20 after its bounded inventory exposed independent component/commit
+  boundaries. Prerequisite: T230. T231 remains the explicit pending integration
+  owner; this task does not claim slash-path compiler entry support.
+  Record: [versioned source contract/evidence](docs/implementation/versioned-source.md).
+  Deliverable: allocation-free exact version/canonical endpoint recognition and
+  read-only local-first whole-package selection under PKG-01/02 and SRC-01/02/03.
+  Steps: establish bounded grammar and identity shape; implement/test separate
+  predicates; decompose physical root/discovery/queue/registry responsibilities;
+  exercise exact output/lifetime/resource failures and real parent composition;
+  register every maintained file/header/case, document arguments, build compiler,
+  generate/check Doxygen, archive and commit before T231 consumer migration.
+  Results: eleven new production source/header files; seventeen total new
+  maintained inputs with per-file evidence; five standalone headers. Ten path
+  and nine package cases cover 97,656 exhaustive bounded version strings, 576
+  package shapes, Unicode/length/host-range/depth boundaries, optional storage,
+  local precedence across root orders, same-priority conflicts, malformed physical
+  inputs, measured allocation and every directory-I/O failure point. Versions are
+  lexical strings, never host integers; selected output changes only on success.
+  The directory-I/O fixture counts live real streams and reports one selected
+  EIO, explicitly closing the actual resource before simulated close failure.
+  Review corrected an allocation-error path that could retain a borrowed root
+  string; it now borrows the already catalog-owned verified spelling. Failure
+  tests check that diagnostic paths never retain the caller's root address.
+  Ordinary leaf commands, strict ASan/UBSan (LeakSanitizer disabled explicitly),
+  the source parent and actual compiler make all exit 0. Logs/flags and the
+  source/memory/selection correctness and complexity arguments are in the record.
+  The first documentation check exited 2 for omitted standalone-header commands;
+  after registering them it passed, then the complete initial make docs passed
+  with 3045 ready inputs, zero debts, 2312 maintained file pages, 8975 interfaces
+  and 487/487 canonical destinations (/tmp/ama-t258-docs-initial.log). Tool versions:
+  Doxygen 1.11.0, Python 3.14.4, markdown-it-py 3.0.0. Worktree provenance matches
+  all 2559 rendered inputs. Structural validation passes for 258 unique task IDs,
+  all unchanged canonical definitions/grammar, exact scope/mapping and an acyclic
+  prerequisite graph; its temporary parser was corrected for existing label forms.
+  make conformance-check exits 2 with the expected newer-specification refusal
+  (/tmp/ama-t258-conformance.log). Reviewed fingerprints/spec bytes stay unchanged.
+  Final delivery after archival: rerun structural/whitespace checks and make docs
+  (/tmp/ama-t258-docs-final.log), collect exit 0 and require final source/staged
+  manifest agreement before commit. Current-run metadata is recorded at
+  /tmp/ama-t258-active-job.json; generated references remain unversioned.
+  T231 is unfinished and must next connect catalog, lexer/parser, identities,
+  dependencies and source tools, migrate retained fixtures and remove superseded
+  dotted-root routes before claiming the new language/project behavior.
