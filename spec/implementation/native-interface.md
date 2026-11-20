@@ -327,9 +327,12 @@ copied payloads does not implement PROTO-06. This exception does not add a seven
 
 **CABI-06.** Provide an explicit native-scaffolding command that derives a native
 interface header and an optional companion `.c` skeleton from the validated Ama
-interface and native ABI contracts. The `.c` skeleton MUST directly include its
-generated interface header. That header MUST be self-contained: including it as
-the first project header in a C translation unit supplies all declarations and
+interface and native ABI contracts. The same request creates the optional
+authored `.cmake` companion as a comments-only instructional template under
+[BUILD-02](application-builds.md#build-02), preserving an existing companion.
+The `.c` skeleton MUST directly include its generated interface header. That
+header MUST be self-contained: including it as the first project header in a C
+translation unit supplies all declarations and
 definitions needed for the native entry signature and permitted typed access to
 parameters, results, state and ABI services. It explicitly includes required
 standard, native representation and generated dependency headers. Complete type
@@ -362,8 +365,15 @@ Generation MUST also provide machine-readable C-tooling configuration for the
 scaffold, including its working directory, include search paths, required defines
 and language/toolchain flags; a compilation database is an acceptable format.
 With those settings, a C language service can analyze the scaffold without the
-execution backend or a prebuilt final project assembly. No guarantee is made for
-editors without the relevant C-analysis support. Normal generation refreshes
+execution backend or a prebuilt final project assembly. The tooling configuration
+and eventual CMake component build use the same selected target, representation
+headers, required defines and ABI-affecting settings under
+[BUILD-04](application-builds.md#build-04). If external dependencies need CMake
+configuration before their concrete settings are available, report that explicit
+preparation need; generation must not execute the companion implicitly or invent
+editor settings that claim to represent a successful configured build. No
+guarantee is made for editors without the relevant C-analysis support. Normal
+generation refreshes
 owned headers/configuration; creating or replacing handwritten companions follows
 COMP-04's explicit-request and output-ownership rules.
 

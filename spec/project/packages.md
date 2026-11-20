@@ -446,7 +446,9 @@ external release-enforcement service is part of this contract.
 same-module companion files, and the entire sibling `name+/` tree recursively.
 Companions are files whose complete physical basename is the selected module's
 basename followed by `.` and a nonempty suffix. They include `.ini`, `.c`, `.h`
-and `.abi`, and are not limited to those known extensions. Selecting a parent
+and `.abi`, and are not limited to those known extensions. This includes the
+optional [CMake companion](../implementation/application-builds.md#build-01),
+which is delivered without executing it. Selecting a parent
 does not discard an unused child or companion because a current execution does
 not appear to need it. This is a structural source-delivery unit, not executable
 code elimination.
@@ -469,7 +471,16 @@ resolved graph edges and physical ancestry, not an estimate of likely use.
 
 Preserve relative physical names, file contents and package placement. Retain
 the original package-version `package.ini`; do not rewrite it into a guessed
-summary of the current use. Files outside the structural unit are included only
+summary of the current use. If the exact file `README.md` exists at that same
+version root, also retain it byte for byte with any selection from the version.
+This is optional package guidance, not an Ama source/configuration input or a
+condition for compilation. Absence is permitted, and tools must not invent an
+instruction file or search other versions or ancestor directories for one.
+Its presence/content is recorded as delivery/report metadata. Changing only
+README guidance does not change the program's build identity. A supplied
+non-file/unreadable entry at that exact guidance path is diagnosed as a delivery
+I/O/shape failure, rather than silently published as a valid document.
+Other files outside the structural unit are included only
 when explicitly required by a resolved source/test/native/configuration input.
 Do not guess resource ownership from nearby filenames or inspect arbitrary C
 expressions to predict undeclared runtime file access. A required asset must be

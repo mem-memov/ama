@@ -21,6 +21,11 @@ static names, scoped `.ini` aliases and
 separate T231–T237/T224 alignment plan. The current executable workflows below
 belong to the recorded implementation edition; the new command names and
 spellings are target contracts, not claimed current support.
+The later [CMake build contract](spec/implementation/application-builds.md),
+[named application inputs](spec/implementation/launch-and-embedding.md) and
+[no-main source inclusion](spec/implementation/c-library.md#embed-09) are also
+specification targets pending the T239–T242 implementation tasks. The command
+examples below do not claim those new workflows are already implemented.
 [Ordinary templates](spec/language/templates.md) and separate
 [static modules](spec/language/static-results.md) provide compile-time inference,
 partial composition and concrete specializations. Complete type constructors

@@ -16,6 +16,7 @@ In this chapter:
 - [Branches, loops, completion, and suspension](#branches-loops-completion-and-suspension)
 - [Project configuration and dependency selectors](#project-configuration-and-dependency-selectors)
 - [Native protocol companion syntax](#native-protocol-companion-syntax)
+- [Host application argument tokens](#host-application-argument-tokens)
 
 <!-- /chapter-contents -->
 
@@ -23,6 +24,8 @@ This reference defines the source forms and the contextual distinctions needed
 to parse them. The [language chapters](README.md) define what a valid program
 does. Parsing precedes name binding and type checking: a recognizable form can
 still fail because its operand has the wrong type, storage form, or capability.
+The last section separately defines host argument tokens for generated launchers.
+Those tokens are not Ama source files and do not inherit source layout rules.
 
 Ama composes module-defined operations without a general expression evaluator.
 Most operation names belong to module interfaces. The six built-in list methods
@@ -86,9 +89,10 @@ compatibility, and execution behavior remain defined in the language chapters.
 <comment-gap(n)>             ::= { <comment-line(n)> }
 ```
 
-The lexical rules are specified in
+The lexical rules for Ama source and protocol companions are specified in
 [Source files, names, and layout](language/source-and-names.md). The following
-constraints also apply to every production below:
+constraints apply to their source productions below; INI and host argument
+sections explicitly state their own input boundaries:
 
 - Decode strict UTF-8. Reject TAB everywhere, including drafts, literal payloads,
   comments, and `.abi` companions. LF and CRLF are line endings; a lone CR is invalid.
@@ -1130,3 +1134,40 @@ The [native-interface chapter](implementation/native-interface.md) defines
 signatures, status values, module-local symbol qualification, payload restrictions,
 and lifecycle obligations. These are semantic/ABI contracts; the grammar never
 infers them from function names.
+
+## Host application argument tokens
+
+The following EBNF describes the already separated argument-vector elements
+recognized under [CLI-01 through CLI-03](implementation/launch-and-embedding.md).
+Its start symbol is `<host-arguments>`, not `<module-file>`. Each
+`<host-input-token>` consumes exactly one complete host token after `argv[0]`;
+repetition advances through the vector, not through whitespace in a string.
+Shell quoting is processed by the caller, outside this grammar. An empty
+argument vector is valid and supplies no bindings.
+
+```ebnf
+<host-arguments>             ::= { <host-input-token> }
+<host-input-token>           ::= "--" <identifier> [ ":" <host-transport> ]
+                                 "=" <host-value>
+<host-transport>             ::= "text" | "binary"
+<host-value>                 ::= ? the remaining characters of this single host token,
+                                   possibly empty, excluding embedded NUL ?
+```
+
+Split the token at its first `=`. The exact optional colon suffix selects the
+file transport; `:` and `=` cannot belong to the declared input name. A later
+equals, whitespace, slash, `#`, quote or backslash remains payload. The
+`<identifier>` spelling is the exact declared base name; source storage suffixes
+are not part of it. There are no positional inputs, separate-value tokens or
+Boolean shorthand. Duplicate/unknown names, unsupported transports and an empty
+file path are semantic admission errors. The tool's `--` separator is removed
+before application invocation; it is not a host input token.
+
+The host adapter validates text encodings as specified in CLI-02/CLI-03. File
+contents are byte views outside this token grammar, not a second Ama parsing
+pass. An initial BOM, newline, TAB and NUL in valid UTF-8 file data remain data.
+Binary transport uses its explicitly declared checked decoder. Ama source
+comment, indentation and literal-line restrictions do not alter host data.
+Native `.cmake` companions use the CMake language under
+[BUILD-01](implementation/application-builds.md#build-01); this EBNF does not
+reinterpret CMake or C as Ama syntax.

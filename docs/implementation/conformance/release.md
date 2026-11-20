@@ -19,6 +19,9 @@ The later [project/package contracts](../../../spec/project/packages.md) and
 require the separately planned T231–T237/T224 implementation. Their slash paths,
 single-dot static names and ama-project commands are not asserted to work in
 the historical command examples below.
+The later [CMake/application-input contract](../../../spec/implementation/application-builds.md)
+and [source-inclusion mode](../../../spec/implementation/c-library.md#embed-09)
+likewise await T239–T242 implementation and new acceptance evidence.
 
 ## Clean template sprint acceptance
 

@@ -54,13 +54,18 @@ its own generated control flow and explicit context boundaries.
 
 <a id="name-01"></a>
 
-**NAME-01.** Compiler-owned generated C names MUST use deterministic hashes of
-complete qualified identities, with separate categories for types, shared constants,
-state members, interface members, labels, and runtime metadata. A basename alone is insufficient. Hash inputs
-must include the root kind, unambiguous component boundaries, and a versioned
+**NAME-01.** Except for the public path-encoded one-shot entry explicitly defined
+by [EMBED-09](c-library.md#embed-09), compiler-owned generated C names MUST use
+deterministic hashes of complete qualified identities, with separate categories
+for types, shared constants, state members, interface members, labels, and runtime
+metadata. A basename alone is insufficient. Hash inputs must include the root
+kind, unambiguous component boundaries, and a versioned
 encoding; removing punctuation from component names must not erase root identity.
 Handwritten native symbols use the module-prefix facility in NAME-05; they are
 not discovered or rewritten by hashing a C source file.
+The EMBED-09 exception changes only that public symbol's encoding; it does not
+relax complete component/root identity, toolchain identifier limits or the checked
+namespace requirements below. Private entities still use the hashed categories.
 
 For a specialized type, the qualified identity includes the normalized parameter
 bindings under [TPL-05](../language/templates.md#tpl-05). Distinct bindings must
@@ -110,8 +115,12 @@ Do not change module identity merely to make it a C identifier.
 
 **GEN-01.** Generate one C translation unit per independently compiled Ama
 component, using either a standalone `.c` or a coordinated `.h`/`.c` pair included
-by a launcher. A component is the complete resolved Ama dependency closure of
-one compilation, with its selected entry or explicit library exports. Do not
+by a launcher. In the source-inclusion mode of [EMBED-09](c-library.md#embed-09),
+the `.c` is a complete file-scope implementation included once in a host C
+translation unit; it is not also independently compiled. Its checked header is
+separate from private native-authoring declarations. A component is the complete
+resolved Ama dependency closure of one compilation, with its selected entry or
+explicit library exports. Do not
 create separate C functions for ordinary Ama modules or compile independent
 module C translation units whose boundaries defeat mandatory inlining.
 
@@ -126,23 +135,29 @@ The required logical order is external declarations and required forward types,
 native representation/generated type definitions, shared-constant
 declarations/storage, native inline bodies, pool/runtime declarations, and then
 the Ama control-flow/runtime body. A possible
-include-based organization is:
+include-based organization inside a generated complete implementation is:
 
 ```c
-/* Schematic embedding translation unit; exact ABI names are an engineering choice. */
-#include "project.h" /* Dependencies, types, native bodies, pool/runtime declarations. */
+/* project.c: complete implementation, included at file scope by the C host. */
+#include "project.h" /* Checked public declarations. */
+
+/* Private dependencies, generated types, native bodies and runtime declarations. */
 
 static AmaOutcome execute_context(AmaContext *context) {
-    #include "project.c" /* Generated statements and labels inside this body. */
+    /* Generated statements and labels. */
 }
 ```
 
-Here `project.c` is a generated include fragment, not another translation unit.
-`AmaContext` and `AmaOutcome` illustrate the context and host-outcome roles, not
-fixed public C names. A standalone `main` creates one context and calls its
-execution function; an explicit embedding host may create several isolated
-contexts. File names and launcher customization are engineering choices; the
-ordering and single translation-unit execution contract are requirements.
+`AmaContext`, `AmaOutcome` and `execute_context` illustrate private context,
+outcome and execution roles, not fixed public C names. The implementation also
+defines the selected public entry/host operations. A standalone `main` forwards
+to EMBED-09's one-shot entry under
+[CLI-04](launch-and-embedding.md#cli-04); a stateful embedding host may create
+several isolated contexts through EMBED-02. Delivery-specific file names follow
+EMBED-09; logical ordering and the single translation-unit execution contract
+apply to every delivery mode. External C systems may compile or include the
+generated assembly, but must retain the required ABI/inlining verification;
+delegating the build does not make an unchecked C compilation conforming.
 
 Generated native interface headers and authoring scaffolds under CABI-06 are
 additional declaration/authoring artifacts. Checking them independently does not
@@ -274,22 +289,24 @@ flowchart TD
     Bind --> Check[Check ownership, initialization dependencies and interfaces]
     Check --> IR[Lower to typed control-flow IR and storage plans]
     IR --> Emit[Emit one project C translation-unit assembly]
-    Emit --> Header[project.h: includes, types, constants, native bodies, runtime declarations]
-    Emit --> Body[project.c: startup, Ama labels, return dispatch and host exits]
-    Header --> Launcher[launcher.c includes project.h and project.c]
-    Body --> Launcher
-    Launcher --> CCompiler[Supported C compiler and linker]
+    Emit --> Header[program.h: checked public declarations]
+    Emit --> Body[program.c: private types, native bodies, runtime, labels and public entry]
+    Header --> Body
+    Body --> Delivery[Executable main or one host translation unit including implementation]
+    Delivery --> CMake[Explicit CMake build or equivalent recorded integration]
+    Requirements[Participating native module.cmake requirements] --> CMake
+    CMake --> CCompiler[Supported C compiler and linker]
     Libraries[Declared native libraries] --> CCompiler
     CCompiler --> Verify[Verify native-entry inlining and required control-flow boundaries]
     Verify --> Program[Executable or embedding host]
 ```
 
-`project.h`/`project.c` name the include-based organization in GEN-01. A standalone
-output `.c` may combine those roles. Extra handwritten/native source inputs are
+`program.h` and `program.c` illustrate GEN-01's checked public declarations and
+complete implementation. Extra handwritten/native source inputs are
 included into this generated assembly where required; they do not turn Ama
 modules into separately called C translation units. Dependency declarations must
 be available before their uses. The build invokes the C compiler for the launcher
-translation unit, not once for each Ama module or again for the project fragment.
+translation unit, not once for each Ama module or again for an included implementation.
 Declared external native libraries may be linked normally under the native C
 execution boundary. The Ama compiler parses `.abi` metadata and tracks companion
 files; it does not need a C parser for handwritten `.h`/`.c` contents. Their

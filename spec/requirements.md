@@ -48,6 +48,20 @@ you need the model, examples, or reasons behind a rule.
 | [PROJECT-02](implementation/project-tools.md#project-02) | A small command for starting a project |
 | [PROJECT-03](implementation/project-tools.md#project-03) | Preparing and repeating an experiment |
 
+## Native application builds and launchers
+
+| Requirement | Chapter section |
+|---|---|
+| [BUILD-01](implementation/application-builds.md#build-01) | Keep dependency instructions with their native module |
+| [BUILD-02](implementation/application-builds.md#build-02) | Generate an instructional native companion |
+| [BUILD-03](implementation/application-builds.md#build-03) | Build or run the selected module with one command |
+| [BUILD-04](implementation/application-builds.md#build-04) | Make the target and build inputs explicit |
+| [BUILD-05](implementation/application-builds.md#build-05) | Explain which stage failed and where to find help |
+| [CLI-01](implementation/launch-and-embedding.md#cli-01) | Choose an entry and recognize named inputs |
+| [CLI-02](implementation/launch-and-embedding.md#cli-02) | Construct text inputs and preserve defaults |
+| [CLI-03](implementation/launch-and-embedding.md#cli-03) | Read files and decode binary inputs explicitly |
+| [CLI-04](implementation/launch-and-embedding.md#cli-04) | Run once and return to the caller |
+
 ## Source layout and syntax
 
 | Requirement | Chapter section |
@@ -281,6 +295,7 @@ you need the model, examples, or reasons behind a rule.
 | [EMBED-06](implementation/c-library.md#embed-06) | Isolate names, ABI editions, allocators, and code lifetimes |
 | [EMBED-07](implementation/c-library.md#embed-07) | Own a foreign component as a native resource |
 | [EMBED-08](implementation/c-library.md#embed-08) | Complete nested C boundaries before yielding |
+| [EMBED-09](implementation/c-library.md#embed-09) | Include a generated program in a C translation unit |
 
 ## Native protocols
 

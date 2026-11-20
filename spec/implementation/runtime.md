@@ -60,8 +60,9 @@ construction or native lifecycle calls.
 
 **RT-11.** After that context's shared constants have initialized successfully,
 standalone context startup selects one executable entry module and creates one
-root instance of its type, initializes its owned state and interface defaults, and
-starts it at entry. This is a host startup rule, not permission to execute a type
+root instance of its type, initializes its owned state and prepares its interface
+from supplied inputs or ordinary defaults, and starts it at entry. This is a host
+startup rule, not permission to execute a type
 path in Ama source. Initialize owned children recursively without executing their
 bodies; lists without initializers are empty and references without initializers
 are empty handles. Initialization failure must clean up constructed resources
@@ -70,6 +71,11 @@ sentinel. Root completion, yield, and failure return control to the host under
 RT-14 through RT-16; startup does not introduce an implicit scheduler.
 The initial root entry uses the interface just constructed; it does not reset
 or construct that interface a second time before executing its first statement.
+For generated command launchers, [CLI-01 through CLI-04](launch-and-embedding.md)
+defines the explicit supplied-input adapter. It chooses supplied or default
+construction once per input during this initial preparation, rather than
+constructing defaults and then overwriting them. The no-main one-shot source
+entry uses the same combined startup under [EMBED-09](c-library.md#embed-09).
 
 An explicit library host can instead create an initialized context without
 selecting or executing a root, then create an instance of a declared export

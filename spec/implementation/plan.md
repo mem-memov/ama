@@ -110,6 +110,17 @@ Deliverable: documented library contracts and representative complete examples.
 
 ### Stage 7: Compiled Ama libraries and C consumers
 
+The later [CMake build contract](application-builds.md) and
+[named launcher inputs](launch-and-embedding.md) extend the integration boundary
+without replacing its stateful host operations. Implement BUILD-01/02 companion
+membership and authoring safeguards before build orchestration; implement
+CLI-01..04 parsing, checked transports and combined startup before EMBED-09
+source inclusion. Then integrate configure/build/verification/publication and
+actual run outcomes under BUILD-03..05. Keep generation-only mode independent
+of CMake execution and preserve all required native-entry/ABI checks.
+The [active queue](../../TODO.md) orders this work after source/package/tool
+foundations; the stage description alone does not authorize implementation.
+
 Implement [EMBED-01 through EMBED-08](c-library.md) using the existing typed
 project, single generated C assembly and checked context/host boundary. Resolve
 explicit exports and supported public value schemas before emitting a consumer

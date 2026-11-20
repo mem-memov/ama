@@ -45,11 +45,17 @@ unresolved identity and the explicit preparation operation needed; compilation
 does not silently repair its inputs through the network.
 
 Project operations include explicit initialization, dependency acquisition,
-source relocation and test execution. Their source boundaries separate command
-parsing, planning, read-only validation, transport/process adapters, publication
-and cleanup. A package operation MUST NOT become a collection of branches inside
-the compiler driver. The compiler's supported C-toolchain invocation remains
-part of explicit compilation and does not grant package-management effects.
+source relocation, explicit CMake-backed build/run and test execution. Their
+source boundaries separate command parsing, planning, read-only validation,
+transport/process adapters, publication and cleanup. A package operation MUST
+NOT become a collection of branches inside
+the compiler driver. The compiler's supported low-level C-toolchain invocation
+remains part of explicit compilation and does not grant package-management
+effects. High-level CMake orchestration belongs to `ama-project` under
+[BUILD-01 through BUILD-05](application-builds.md). Generation-only compilation
+does not execute authored build instructions. Native dependency discovery is
+delegated to explicitly invoked CMake and authored companions, rather than
+performed by the Ama compiler through C header or binary inspection.
 
 The directory mover is owned by the project-tool boundary and follows
 [TOOL-01 through TOOL-04](tools-and-conformance.md#directory-relocation-utility).
@@ -159,8 +165,11 @@ The presence of tests in an acquired unit does not authorize their execution.
 
 Each selected test is an ordinary independent microprogram with its own resolved
 source/native dependency closure. Use the compiler's normal checks and execution
-boundary. A test runner may orchestrate isolated invocations and aggregate their
-results, but must not invent a runtime test-registration ABI, combine persistent
+boundary and the explicit CMake build/verification stages under
+[BUILD-03](application-builds.md#build-03). A test's module parameters use the same
+[launch contract](launch-and-embedding.md) as another selected executable root.
+A test runner may orchestrate isolated invocations and aggregate their results,
+but must not invent a runtime test-registration ABI, combine persistent
 test states or give a test access to another execution context's mutable state.
 Parallel jobs own separate output/state paths; duplicate or conflicting jobs
 must not race on generated C or project inputs.
@@ -170,9 +179,12 @@ the exact selected logical identities, resolved repository commits and source
 content hashes, the copied module/companion/test membership, effective
 configuration and alias inputs, specification/compiler/tool editions, requested
 entry/test modules and command arguments, and observed outcomes. Native/toolchain
-inputs must be identified to the extent supported by their declared contracts;
-the separately deferred discovery of installed native libraries is not supplied
-by guessing from headers or binaries. Store reports/logs in explicit caller-owned
+inputs follow the build record in [BUILD-04](application-builds.md#build-04).
+Installed native libraries are located from authored CMake requirements in the
+selected target environment; their need, package names and installation commands
+are never guessed from headers or binaries. Preserve stage-specific failure
+context and optional README navigation under
+[BUILD-05](application-builds.md#build-05). Store reports/logs in explicit caller-owned
 output destinations, outside the source namespace. This chapter does not reserve
 an additional mandatory project artifact directory.
 

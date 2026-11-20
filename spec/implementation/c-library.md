@@ -14,6 +14,7 @@ In this chapter:
 - [Link, identify, and unload components safely](#link-identify-and-unload-components-safely)
 - [Own a foreign component inside a native module](#own-a-foreign-component-inside-a-native-module)
 - [Return from nested calls before yielding](#return-from-nested-calls-before-yielding)
+- [Include a generated component in a C translation unit](#include-a-generated-component-in-a-c-translation-unit)
 
 <!-- /chapter-contents -->
 
@@ -24,8 +25,19 @@ The application owns explicit library contexts and instances, supplies inputs,
 receives independently owned results, and decides what to do when execution
 finishes, yields, or fails. A library has no hidden process entry or scheduler.
 
-The same interface can be used by the C companion of an Ama native module.
-That companion acts as a C host for a **different execution context**. It does
+A second delivery mode supplies the complete generated C implementation for
+inclusion in a host's translation unit. Its named one-shot entry runs the chosen
+root in a fresh context and returns to the host. It requires no intermediate
+static or shared library. The same entry can be called by a generated `main`
+when building an executable. [EMBED-09](#embed-09) defines this source-inclusion
+mode; the launcher's argument and outcome contract is shared with
+[CLI-01 through CLI-04](launch-and-embedding.md#cli-01).
+
+The compiled-library public interface can be used by the C companion of an Ama
+native module. The child's implementation remains a separate translation unit
+or compiled library; do not include a second generated implementation inside
+the enclosing Ama assembly. That companion acts as a C host for a
+**different execution context**. It does
 not call back into the currently executing Ama dispatcher or turn an ordinary
 Ama module call into a C-stack activation. Inside each component, generated
 Ama control transfers continue to follow [STACK-01](compiler.md#stack-01).
@@ -46,9 +58,13 @@ their actual checked declarations and reproduce the required semantics.
 
 <a id="embed-01"></a>
 
-**EMBED-01.** Provide an explicit library-build configuration that selects the
-exported executable module types, their public entry/resume/read operations,
-and the input/result transport schema for each operation. Resolve the complete
+**EMBED-01.** Provide an explicit component-build configuration. For a library
+artifact, it selects the exported executable module types, their public
+entry/resume/read operations, and the input/result transport schema for each
+operation. For an executable or source-inclusion component, it explicitly selects
+one root module and the checked input surface under
+[CLI-01](launch-and-embedding.md#cli-01); the named one-shot entry follows
+[EMBED-09](#embed-09). Resolve the complete
 Ama dependency closure and required native/external C dependencies. Diagnose
 an unavailable operation, unresolved dependency, or unsupported transport at
 build time; do not infer an export from filenames, public-looking C symbols,
@@ -88,10 +104,13 @@ or expose private fields. An explicit facade may provide a narrower interface
 than the underlying module. A resume-only export cannot manufacture a saved
 position: runtime resume still requires one.
 
-For each supported target, the toolchain must support a static library artifact
-and, where the target/toolchain supports shared libraries, a shared artifact.
+For library-artifact delivery on each supported target, the toolchain must support
+a static library artifact and, where the target/toolchain supports shared
+libraries, a shared artifact.
 Produce a self-contained public C header and machine-readable build/ABI
-manifest alongside the library. The manifest records the component identity,
+manifest alongside the library. Source-inclusion delivery instead produces the
+checked header, implementation and manifest specified in EMBED-09, without
+requiring a static/shared artifact. The manifest records the component identity,
 export/schema identities, ABI edition, target, calling convention, required
 link inputs and ABI-affecting build settings. It is distinct from the generated
 native-authoring declarations under [CABI-06](native-interface.md#cabi-06).
@@ -106,7 +125,9 @@ internal `AmaStatus` declaration. If technical-status information is public,
 express it through the component's explicit public transport contract. Linking
 or loading a component must not execute Ama bodies, create
 implicit instances, initialize Ama constants, install a scheduler, or define
-`main`. Required C/platform runtime initialization is not Ama execution.
+`main`. Executable delivery adds the explicitly requested launcher under
+[CLI-04](launch-and-embedding.md#cli-04); library and source-inclusion delivery
+do not. Required C/platform runtime initialization is not Ama execution.
 
 **Explanation and implementation.** Generate the library and header from one
 validated export model rather than exporting arbitrary internal symbols and
@@ -714,3 +735,171 @@ entry, deliberate child failure under both documented supervisor policies, and
 conforming callback event delivery and rejected active-ancestor reentry. Confirm
 that child yield alone does not resume either component, enqueue hidden work,
 or mutate outer scheduler state.
+
+## Include a generated component in a C translation unit
+
+**Explanation.** A C application can use a small Ama program without creating a
+separately linked library. The host includes the generated implementation once
+and calls a named entry instead of giving the component its own `main`. This is
+a source-delivery choice for one complete component; ordinary Ama modules still
+execute through that component's labels and explicit context.
+
+The one-shot entry is useful when each request is an independent run. A host
+that needs retained results, persistent root state or explicit continuation
+resumption uses the stateful host operations of EMBED-02 through EMBED-04.
+
+<a id="embed-09"></a>
+
+**EMBED-09.** An explicitly selected source-inclusion mode produces a complete
+generated implementation and a self-contained checked C header, conventionally
+`program.c` and `program.h`, together with the component manifest. The names and
+destination are explicit generated-output settings. The implementation includes
+its own header and contains no `main`. It is included at file scope in exactly
+one host C translation unit, and is not also compiled as a separate object.
+That host translation unit contains exactly one generated component
+implementation. Other components can be included in different host translation
+units and linked into the same application; their public headers may coexist
+under EMBED-06. This source-packaging boundary limits neither calls nor explicit
+instances/contexts. Other host translation units include only its header. A
+second inclusion or independent compilation of the same implementation is not a
+supported way to create another instance; use explicit contexts or a separately
+identified component instead.
+
+The selected root and its input transports satisfy EMBED-01 and
+[CLI-01](launch-and-embedding.md#cli-01). In particular, this mode does not turn
+an open template, static module or unresolved runtime transport into a runnable
+C function. It exports a one-shot function with the checked declaration:
+
+```c
+int NAME(int argc, char **argv);
+```
+
+`NAME` is replaced by the exact public identifier defined below. Arguments have
+the conventional C `main` shape: when `argc` is positive, `argv[0]` is an
+invocation label, not an input binding, and later elements are the named input
+tokens. The generated executable `main` forwards its `argc` and `argv` unchanged.
+The complete vector/count, sentinel and borrowed-memory contract is defined by
+[CLI-01](launch-and-embedding.md#cli-01), including the zero-count/null-vector
+case. As with EMBED-03, the checked API does not make dangling pointers or
+fabricated readable-memory bounds safe. Parsing, file input, supported conversions and
+diagnostics follow [CLI-02](launch-and-embedding.md#cli-02) and
+[CLI-03](launch-and-embedding.md#cli-03); argument strings do not provide a raw
+memory image of an Ama instance.
+
+Each invocation creates a fresh isolated context, initializes that context's
+constants, explicitly creates the chosen root, prepares its inputs and starts
+it once. Apply [RT-11](runtime.md#rt-11)'s combined startup: the just-constructed
+interface is used directly rather than being constructed or reset a second
+time. Parsing and admission failures do not execute the root body; failed
+preparation releases every successfully acquired resource according to the
+applicable lifecycle contract. Shared generated code is reusable, but successive
+calls do not share mutable root state, pools, constant-lifecycle state or saved
+positions. Independent simultaneous calls obey PAR-02's native dependency
+requirements; source inclusion does not make a non-reentrant native library
+safe to execute concurrently.
+
+After root completion, root yield or technical failure, perform the supported
+cleanup before returning the result defined by
+[CLI-04](launch-and-embedding.md#cli-04). Report the primary failure and cleanup
+failures under EMBED-05 and LIFE-05. The generated entry does not call `exit`,
+terminate the host process, restart a failed context or hide a resume loop.
+A yielded one-shot root is disposed without executing its saved continuation;
+the result is unsuccessful under RT-16. No retained context, instance handle or
+borrowed result is published by this convenience entry. Stateful operation and
+resumption remain separate explicit host API capabilities.
+
+### Encode the root path in the public entry name
+
+The exact identifier is:
+
+```text
+ama_c<component-hex>_entry_p<path-hex>
+```
+
+`component-hex` encodes the complete explicitly selected component identity under
+EMBED-06. `path-hex` encodes the root's canonical full logical module path: the
+ordinary `/` or standard-library `//` prefix and every logical component,
+including any package version and `src`/`tests` component. Each string is encoded
+as UTF-8, then each byte becomes exactly two lowercase hexadecimal digits in
+byte order. The angle-bracket fields above are notation and do not appear in
+the identifier. Do not include a physical `packages/` or `dependencies/` prefix,
+physical `name+/` spelling, a relative path or an alias instead of its resolved
+logical path. Do not truncate or replace separators, spaces or non-ASCII text
+with a lossy spelling.
+
+This public one-shot identifier is the explicit exception to NAME-01's hashed
+generated-name rule. It is injective in the pair of component identity and root
+path: hexadecimal fields have fixed two-digit byte boundaries, and the literal
+`_entry_p` separates the two fields without belonging to either hexadecimal
+alphabet. The component qualifier permits two different builds of the same
+root to coexist when their explicit component identities differ. Reusing an
+identity for incompatible components remains forbidden under EMBED-06; a path
+alone is not an identity for an entire build configuration.
+
+The supported target C toolchain must preserve the full identifier as a distinct
+external name. Check its documented significant-identifier and resource limits;
+refuse an unsupported name with its original component identity and root path
+rather than silently shortening it or treating a truncated external symbol as
+equivalent. Private generated names remain collision-checked hashes under
+NAME-01/NAME-02. Component-qualified public declarations and private/native
+linkage follow EMBED-06 and NAME-05. This mode does not require arbitrary private
+native headers or support declarations of different components to coexist in
+one translation unit; include those implementations in separate host files.
+
+The public header and manifest record the original complete component identity,
+canonical root path and exact entry identifier. The manifest also identifies
+the selected delivery mode, target/ABI assumptions, input schemas and contributing
+native build requirements. C hosts call the declared symbol; they need not
+reconstruct it from filenames. Public types and any additional host operations
+retain EMBED-06's component qualification and checked ownership contracts.
+
+### Include and build the component
+
+**Example: host integration.** `generated_entry` below stands for the exact
+identifier published in `program.h`; it is not an additional fixed ABI symbol.
+The generated `program.c` includes that checked header itself:
+
+```c
+/* host.c: the implementation is included here and nowhere else. */
+#include "generated/program.c"
+
+int host_request(void)
+{
+    char label[] = "embedded request";
+    char parameter[] = "--par=text";
+    char *arguments[] = {label, parameter, NULL};
+    return generated_entry(2, arguments);
+}
+```
+
+The example assumes an input named `par` with supported text construction. The
+host's own `main`, event loop and other C translation units remain its concern.
+Including the implementation has no Ama lifecycle effect; those effects begin
+only when an explicit host operation or the one-shot entry is called. This
+contract is for C source inclusion; it does not automatically promise C++
+compilation of the generated implementation or its native companions.
+
+When building through the CMake integration, the host target receives every
+required participating module's companion settings under
+[BUILD-01](application-builds.md#build-01) and Ama toolchain/verification
+requirements under [BUILD-04](application-builds.md#build-04). The generated C
+implementation is already part of the host translation unit, so the integration
+must not add it a second time as a separately compiled source. The host's source
+organization does not waive GEN-01's single component assembly, mandatory native
+entry inlining, checked ABI or source-mapping requirements. Executable delivery
+generates a `main` that calls this same entry; it does not create a second input
+parser or a second startup contract.
+
+**Invariant and acceptance.** Compile the generated header as the first project
+include of a separate consumer; compile and run a host that includes the
+implementation and has its own `main`. Link two differently qualified
+components with matching module/native basenames from separate host translation
+units, include both public headers in one consumer, and exercise their
+independent state. Verify exact name vectors for ASCII, Unicode,
+root kinds, versions and aliases resolving to the same canonical path; reject
+toolchains that cannot preserve the required identifier. Compare executable and
+included-entry behavior for the same argument tokens. Test repeated/concurrent
+independent runs, empty argument lists, malformed inputs, partial construction
+failure, completion, yield disposal and cleanup failure. Verify no input-vector
+mutation, borrowed-state retention, implicit resume, duplicate initial reset or
+process exit, and retain the stateful API's separate entry/resume tests.

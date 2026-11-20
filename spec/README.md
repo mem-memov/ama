@@ -17,6 +17,12 @@ whole-version local precedence, package.ini and module.ini aliases, dependency
 masks, repository bindings and the source-plus-test delivery boundary. Continue
 with [project tools](implementation/project-tools.md) for explicit preparation,
 repeatable experiments and `ama-project init DESTINATION` with Markdown guidance.
+The [CMake build chapter](implementation/application-builds.md) explains native
+`module.cmake` companions, commented scaffolds and one-command build/run.
+The [launcher chapter](implementation/launch-and-embedding.md) defines exact
+named text/file/binary arguments and shared one-shot startup. A
+[source-inclusion mode](implementation/c-library.md#embed-09) emits a named C
+function instead of `main`, with an injective component/path-derived symbol.
 These are target contracts and require separate implementation acceptance.
 
 If you are learning the language, read [the introduction](introduction.md), then
@@ -96,9 +102,11 @@ program is well typed and what happens when it executes.
 | Topic | What it specifies |
 |---|---|
 | [Independent project tools](implementation/project-tools.md) | Separate preparation commands, empty-project scaffolding, isolated test execution and provenance |
+| [Applications built with CMake](implementation/application-builds.md) | Native dependency companions, instructional scaffolds, explicit target builds, verification and contextual diagnostics |
+| [Application arguments and launchers](implementation/launch-and-embedding.md) | Exact named text/file/binary inputs, defaults and fresh one-shot program startup |
 | [Runtime](implementation/runtime.md) | Stable pools, availability, control transfers, host outcomes, and execution contexts |
 | [Native interface](implementation/native-interface.md) | C interfaces, the six native protocols, state boundaries, and lifecycle |
-| [Compiled Ama libraries in C](implementation/c-library.md) | Exported C interfaces, static/shared packaging, checked host objects, and use inside another Ama native module |
+| [Ama components in C](implementation/c-library.md) | Exported C interfaces, static/shared packaging, source inclusion, checked host objects, and use inside another Ama native module |
 | [Compiler](implementation/compiler.md) | Resolution, typed IR, generated C, component boundaries, and exact algorithms |
 | [Diagnostics](implementation/diagnostics.md) | Expected refusals, fatal failures, status values, and execution traces |
 | [Tools and conformance](implementation/tools-and-conformance.md) | Deliverables, tests, relocation tooling, and acceptance scenarios |

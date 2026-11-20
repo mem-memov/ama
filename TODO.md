@@ -1,7 +1,7 @@
 # Ama implementation work queue
 
 The whole [spec/](spec/README.md) directory is authoritative. The
-[requirement index](spec/requirements.md) locates all 231 current requirements;
+[requirement index](spec/requirements.md) locates all 241 current requirements;
 [spec/grammar.md](spec/grammar.md) defines source forms. This file orders the
 active engineering work for those contracts. It neither changes the
 language nor grants permission to edit the specification.
@@ -73,10 +73,12 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T239**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T243**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
-T221/T226 and T231–T237/T224/T222 implementation has not been requested.
+T221/T226 and T231–T237/T224/T222/T239–T242 implementation has not been requested.
+[T229](DONE.md#t229) specifies the CMake/launcher/source-inclusion contracts;
+T239–T242 are their pending implementation owners.
 
 <a id="t221"></a>
 
@@ -122,8 +124,9 @@ T221/T226 and T231–T237/T224/T222 implementation has not been requested.
 ## Planned alignment: projects, paths and project tools
 
 The user authorized T230 specification work, not implementation of this queue.
-All tasks below remain planned until an implementation request. Execute in the
-listed prerequisite order, with granular component/composition tests, documented
+All tasks below remain planned until an implementation request. Execute in
+prerequisite order across both alignment sections; listing order does not
+override a dependency edge. Use granular component/composition tests, documented
 invariants and a commit for every accepted task. T222 is selected for this sprint;
 align its specification only after explicit authorization for that amendment.
 T221/T226 remain required; perform them after T231/T222/T232 establish the
@@ -220,7 +223,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t235"></a>
 
 - [ ] **T235 — Compute minimal structural source-and-test delivery closure.**
-  Prerequisites: T234, T221 and T226. Implement PKG-07..09 through source-unit,
+  Prerequisites: T234, T221, T226 and T239. Implement PKG-07..09 through source-unit,
   companion, topology-context, test-association and dependency-expansion children.
   Retain complete selected subtrees; distinguish topology-only parents from
   active units. Build the least finite closure of needed source/test/support
@@ -244,7 +247,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t237"></a>
 
 - [ ] **T237 — Accept the complete project/path/tooling implementation.**
-  Prerequisites: T224, T233..236, T221, T222 and T226. Audit every retained
+  Prerequisites: T224, T233..236, T221, T222, T226 and T242. Audit every retained
   current-rule component and per-file test/documentation owner; remove obsolete alternatives
   and tests that only preserve them. Exercise the canonical project/path matrix
   and reference-notation matrix through real preparation, compile/run,
@@ -253,6 +256,66 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   before renewing conformance fingerprints. Pass required focused/composite/full
   checks, failure/sanitizer gates and final Doxygen/source-link/provenance checks;
   publish precise supported boundaries and archive each task in its own commit.
+
+## Planned alignment: CMake applications and source inclusion
+
+T229 specifies these contracts; implementation remains a separate request.
+Complete T233's independent tool boundary before integrating build orchestration.
+Keep each task's granular components, real consumers and documentation together.
+
+<a id="t239"></a>
+
+- [ ] **T239 — Implement native CMake companions and instructional scaffolds.**
+  Status: planned. Prerequisites: T229, T233. Implement BUILD-01/02/05 and PKG-07
+  metadata delivery: resolve optional module.cmake from the selected package,
+  emit its exact closure membership, retain optional version README guidance,
+  create comments-only scaffolds without overwriting authored files, and expose
+  scoped CMake target integration without executing scripts during generation.
+  Accept absent/empty/changed companions, whole-version precedence, Unicode and
+  spaced paths, repeated scaffolding, failure cleanup and once-per-component
+  application through real CMake. Verify exact diagnostic ownership/README
+  absence, separate tests, resource delivery and the unchanged single-unit rule.
+
+<a id="t240"></a>
+
+- [ ] **T240 — Implement exact launcher inputs and one-shot startup.**
+  Status: planned. Prerequisites: T239, T226. Implement CLI-01..04 through narrow
+  argv recognition, binding admission, text/file acquisition, checked binary
+  transport, fresh-input construction and cleanup/outcome components. Preserve
+  ordinary defaults and constructor order, opaque identity and explicit schemas;
+  never use input text to infer specializations. Accept exact multiword/Unicode
+  names, first-equals/empty/default distinctions, duplicate/unsupported inputs,
+  BOM/TAB/newline/NUL data, malformed UTF-8, stdin ownership, resource failures,
+  decoder failure, no double construction, ordinary failure results and yield.
+  Run generated programs and counter-based lifecycle/borrow tests, not only
+  parser or emitted-text checks; document each source/file and actual boundary.
+
+<a id="t241"></a>
+
+- [ ] **T241 — Implement source inclusion and exact public entry identities.**
+  Status: planned. Prerequisites: T240, T239. Implement EMBED-09 and NAME-01's
+  public exception: complete no-main implementation/header/manifest, injective
+  component/path byte encoding, supported identifier checks and matching main
+  forwarding. Preserve stateful exports and private namespace ownership.
+  Accept own-main C inclusion, multiple header consumers, differently qualified
+  components in separate host units, repeated fresh calls, no process exit,
+  byte/lifetime/cleanup failures, unsupported symbol limits and CMake host-target
+  adaptation. Compile/link/run actual hosts and verify native inlining/ABI.
+
+<a id="t242"></a>
+
+- [ ] **T242 — Implement and accept one-command CMake build and run.**
+  Status: planned. Prerequisites: T239..241, T236. Implement BUILD-03/04 through
+  explicit planning, compiler emission, CMake configure/build adapters, actual
+  artifact verification, coherent publication and child execution/reporting.
+  Accept executable/generation/source-inclusion modes, native/selected cross
+  profiles, unchanged-input reuse, companion presence and external-input
+  invalidation, independent parallel outputs and refusal to run stale artifacts.
+  Inject configure/compile/link/verification/publication/startup/cleanup failures;
+  preserve raw diagnostics and actual exit/signal outcomes without guessed OS
+  installation. Run source-and-test delivery, promotion and inclusion consumers,
+  complete declared current-rule evidence and documentation, and leave T237's
+  whole-sprint acceptance as the final release owner. Commit this task separately.
 
 ## Next sprint discussion
 

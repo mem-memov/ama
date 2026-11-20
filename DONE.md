@@ -7072,7 +7072,7 @@ T201. Specification bytes have not changed.
   regenerate from final inputs and check source/staged fingerprints before commit.
   Accept: one pending future task with explicit decisions/acceptance scope, no
   assumed discovery algorithm, valid navigation and successful documentation gates.
-  Results: [T229](BACKLOG.md#t229) remains an unchecked future design task.
+  Results at that stage: [T229](#t229) remained an unchecked future design task.
   It separates explicit requirements from discovery and selection, identifies
   native headers/link/runtime/transitive/target inputs, and requires reproducible
   provenance and precise conflict/refusal behavior before implementation. Current
@@ -7195,3 +7195,55 @@ T201. Specification bytes have not changed.
   Final delivery gate after archival: rerun structural/link checks and make docs
   (/tmp/ama-t238-docs-final.log); require exit 0 and matching source/staged
   manifest fingerprints before commit. Generated documentation stays unversioned.
+
+<a id="t229"></a>
+
+- [x] **T229 — Specify native CMake companions, application builds and launchers.**
+  Status: completed specification-only task, explicitly authorized by the user's
+  2026-11-20 request to incorporate the discussed design with detailed rules.
+  Transferred from BACKLOG with its original ID. Prerequisites: T230 and T238;
+  relevant native/compiled-library/runtime contracts remain binding.
+  Deliverable: module.cmake authoring/scaffolding, external CMake build/run
+  orchestration, exact text/file/binary CLI transport and a no-main source
+  inclusion mode with a component-qualified path-encoded one-shot C entry.
+  Preserve explicit stateful embedding, single-unit Ama execution, checked ABI,
+  required native-entry inlining, whole-version selection and test isolation.
+  No compiler, library, fixture or build-tool implementation is authorized.
+  Steps: establish canonical chapter ownership and old-contract reconciliation;
+  define complete boundary contracts with motivation and examples; align grammar,
+  requirement/navigation indexes, README delivery and future implementation tasks;
+  independently audit consistency, check links/IDs/grammar and generate Doxygen;
+  archive and commit after final source/staged documentation provenance passes.
+  Acceptance: no implicit dependency installation or guessed foreign ABI; CLI
+  values do not become build configuration; binary decoding is explicitly
+  declared; inclusion creates no implicit persistent state or process exit;
+  obsolete backlog alternatives are removed without claiming implementation.
+  Results: two canonical chapters define BUILD-01..05 and CLI-01..04; EMBED-09
+  defines inclusion and injective public naming. Existing CABI/PROJECT/RT/GEN/NAME
+  rules and optional README delivery reconciled. Independent audit fixed argv
+  sentinel consistency, declaration-order file reads, borrowed stdin cleanup and
+  the one-implementation-per-host-unit boundary. Public names include root kind,
+  full version/src/tests path and component identity; unsupported target identifier
+  limits fail without truncation. T239..242 own future implementation; no current
+  support or refreshed conformance fingerprints are claimed.
+  python3 /tmp/ama-t229-spec-check.py passes: 28 chapters, 241 singly defined
+  indexed requirements, 145 aligned/reachable grammar rules and 242 unique IDs.
+  An early whitespace check found an extra final blank line after backlog removal;
+  corrected, and git diff --check passes. make conformance-check exits 2 with
+  the expected newer-specification refusal (/tmp/ama-t229-conformance.log);
+  reviewed fingerprints remain unchanged. Semantic review found no remaining
+  contradiction. Initial make docs exits 0 (/tmp/ama-t229-docs-initial.log):
+  3028 ready inputs, zero debts; Doxygen 1.11.0, Python 3.14.4 and
+  markdown-it-py 3.0.0; 2297 maintained file pages, 8908 interfaces and 485/485
+  canonical destinations. A final planning review clarified that dependency
+  edges across both TODO sections override listing order; the task graph is
+  acyclic and final acceptance follows T242. The original native-dependency
+  backlog questions are resolved through authored CMake requirements and
+  explicit target profiles; installation remains a separate requested operation.
+  The archival link check caught an older DONE reference to T229's removed
+  backlog anchor; it now points to this completed record and preserves its
+  historical wording. The structural/link check passes after that repair.
+  Final delivery after this archival update: rerun structural/link checks and
+  make docs (/tmp/ama-t229-docs-final.log), require exit 0 and matching final
+  source/staged manifest fingerprints before commit. Generated pages remain
+  unversioned; no compiler or CMake integration support is claimed.

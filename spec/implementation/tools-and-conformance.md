@@ -59,6 +59,10 @@ The implementation MUST provide:
     rather than a claim based on examples alone. The constructor/signature source
     forms and SRC-03 naming profile are defined; implementation coverage requires
     acceptance evidence rather than the existence of those source forms.
+13. Explicit CMake application build/run integration and commented native build
+    scaffolds under [BUILD-01 through BUILD-05](application-builds.md), checked
+    named host inputs under [CLI-01 through CLI-04](launch-and-embedding.md), and
+    complete no-main source inclusion under [EMBED-09](c-library.md#embed-09).
 13. Versioned projects and selective source-and-test delivery under
     [PKG-01 through PKG-10](../project/packages.md), with local/package aliases,
     explicit repository mappings and coherent acquisition snapshots.
@@ -438,6 +442,23 @@ evidence is historical; these target rules require new implementation evidence.
 | Publication and provenance | Partial transfer where supported, operation-owned full-download fallback otherwise; overlapping selections deduplicated; staged complete publication; collisions, changed inputs, interruption and cleanup failures; content membership/commit/hash report matches the copied edition; promotion into packages preserves complete selected evidence and precedence |
 | Empty-project command | Separate ama-project init; exact Markdown scaffold; valid guidance and local links; new/existing-empty/nonempty destinations; unsupported aliases and concurrent claims; no overwrite, network, executable choice, compiler/test execution or Git initialization; preparation/publication/cleanup failure behavior |
 | Tool/compiler separation | Offline prepared compilation has no package/source mutation effects; missing local inputs report preparation need; independent command dispatch and narrow shared resolver contracts; tests run as independent microprograms with isolated outputs; relocator shares parsed path/config semantics; explicit output destinations and reproducible experiment provenance |
+
+### CMake applications and one-shot source inclusion
+
+These scenarios apply [BUILD-01 through BUILD-05](application-builds.md),
+[CLI-01 through CLI-04](launch-and-embedding.md) and
+[EMBED-09](c-library.md#embed-09). They require real CMake and C consumers;
+the earlier backend evidence does not certify these newly specified modes.
+
+| Area | Required acceptance evidence |
+|---|---|
+| Native build companions | Optional missing/empty/comment-only files; exact selected-copy closure; once per component across shared native dependencies and independent tests; scoped temporary variables; compatible imported targets and explicit conflict diagnostics; no CMake execution during parsing/emission/acquisition/scaffolding; native .c included only in the common translation unit |
+| Instructional scaffolds | All BUILD-01 rules and a fully commented example; no active command; existing authored bytes retained; repeated request, collisions and publication failure; canonical documentation links independent of the generator developer's checkout |
+| Build/run and verification | Actual configured CMake target compiles/links; required ABI/native-entry verification precedes publication; build never executes; run forwards only child tokens and actual status/signal; missing tools/libraries, configuration, compile, link, verifier and stale-output failures cannot run an older artifact |
+| Runtime arguments | Exact names, Unicode, internal spaces, first equals, explicit empty versus omission, reordered tokens and declared defaults; unknown/duplicate/positional/separate-value/shorthand rejection; conventional argv0 and null/count boundaries; no shell reinterpretation or runtime specialization |
+| Input transports | Text constructor capability admission; UTF-8 failures; binary decoding only under checked schemas; NUL and exact byte lengths, BOM/TAB/newline preservation, empty/oversized data, file errors and one stdin consumer; borrowed stdin left open with host mode restored; file reads and constructors in declaration order; no default-then-overwrite or duplicate initial reset; allocation/decoder/cleanup failures preserve lifecycle obligations |
+| Included implementation | Own-main host includes implementation once at file scope; other host units include only the self-contained header; no generated main or duplicate source compilation; separately qualified components link from separate host units; complete path/component/Unicode encoding and unsupported identifier limits; fresh repeated calls, no exit or implicit resume; normal application failure values do not select status by name |
+| Build identity and diagnostics | Entry/closure/configuration/companion presence, native inputs, selected toolchain/profile and verification recorded; runtime values and README guidance do not trigger compilation identity changes; changed inputs invalidate correctly; concurrent outputs and interruption remain coherent; diagnostics identify only established module provenance and existing README paths |
 
 ### Compiler structure and tooling
 

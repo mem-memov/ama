@@ -22,6 +22,10 @@ static names, scoped path aliases and independent project tools. The
 [project alignment queue](../../../TODO.md#planned-alignment-projects-paths-and-project-tools)
 owns their future implementation. Neither the historical matrix nor its hashes
 are updated by this specification task.
+T229 adds CMake companions/build orchestration, exact launcher transports and
+source inclusion under BUILD-01..05, CLI-01..04 and EMBED-09. The planned
+T239–T242 tasks own their implementation and new consumer evidence; generation
+examples and the unchanged earlier fingerprints do not establish that support.
 
 Open executable templates and static modules are compilation inputs. Concrete
 ordinary runtime Types pass guarded closure and ordinary admission before layout.
