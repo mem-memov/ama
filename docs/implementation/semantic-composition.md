@@ -1,125 +1,72 @@
-# Complete semantic composition
+# Guarded source preparation and ordinary semantic composition
 
-T040 checks the direct concrete-source semantic composition under
+The production boundary implements
 [COMP-02](../../spec/implementation/compiler.md#comp-02),
-[COMP-04](../../spec/implementation/compiler.md#comp-04),
-[ARCH-05](../../spec/implementation/compiler.md#arch-05),
-[ARCH-06](../../spec/implementation/compiler.md#arch-06) and
-[TEST-07](../../spec/implementation/tools-and-conformance.md#test-07).
-It composes the individually verified T030–T039 components; it does not claim
-that later IR/runtime/emission work is complete.
+[TPL-06](../../spec/language/templates.md#tpl-06),
+[COMP-04](../../spec/implementation/compiler.md#comp-04) and
+[ARCH-03](../../spec/implementation/compiler.md#arch-03).
+[Specialized semantics](specialized-semantics.md) explains the closed owner graph;
+[static relocation](static-relocation.md) records its source-snapshot consumer.
 
-The [T185 specialized composition](specialized-semantics.md) feeds closed
-specialization descriptors into these ordinary checks, retaining full capture
-identity and actual incoming evidence. It separately certifies finite candidate
-groups before the frontend requests constant and resolved plans. The source-only
-six-stage sequence below remains the independent concrete component/relocation
-entry; it does not repeat inference for a projected closed inventory.
+## One source model
 
-## One explicit stage sequence
+A complete loaded Project supplies original AST/source identities. Static
+inventory and native-definition admission precede guarded compilation roots.
+Source lexical classification fixes ordinary declarations, inferred receivers,
+foreach cells and every source use before solving their Type equations. Type
+closure then supplies complete concrete owner keys and original source bindings.
+Open definitions remain source definitions until a concrete application requires
+them. Neither static producers nor unused open templates acquire runtime Types.
 
-[The analyzer](../../src/semantic/analyze.c) receives a fresh semantic owner
-borrowing a valid loaded project. It runs exactly this prerequisite sequence:
+[Common semantic composition](../../src/compiler/resolve.c) consumes this accepted
+closure and projects one ordinary Type per complete owner key. It runs native
+protocol checks, initializer/body/control/transfer checking, eager and clone
+relations, complete candidate certificates and shared constant startup/cleanup
+analysis. Only successful outputs may be consumed. A failure retains its original
+stage diagnostic and every borrowed source/equality/caller context until teardown.
+There is no independent one-Type-per-source-module analyzer.
 
-1. Complete explicit names and declaration roles.
-2. Real required native companions and six-slot ABI contracts, with an optional
-   explicitly supplied authoring proposal applied only to its exact module.
-3. Source-order receiver inference and lexical foreach-role classification.
-4. Complete transfers, ordinary/intrinsic calls, selected actions, control values
-   and positive copy-boundary proofs.
-5. Independent eager-ownership and actual constant-read/order relations.
-6. Deterministic shared startup and reverse cleanup plans.
+[Inference proof checking](../../src/semantic/inference/infer.c) requires the
+accepted closure rather than replaying source events. It publishes the ordinary
+checker prerequisite only after that proof exists. Actual source classification
+and refinable Type equations belong to the static connection pipeline.
 
-Inference is now an explicit composite step. `semantic_resolve` consumes that
-successful result without re-running classification. Component users can still
-call resolve after native checking: its existing prerequisite path runs inference
-when no attempt has occurred. A composite inference failure therefore leaves
-`resolve_attempted` false instead of pretending full resolution began.
+## Executable versus captured source consumers
 
-Each component publishes its own successful flag and retains its first original
-diagnostic on failure. The composite short-circuits at that failure; no later
-component consumes failed or partially initialized output. The complete success
-gate is `constants_valid`, after every preceding valid stage. The analyzer never
-writes output, runs a module body, executes native constructors or inspects C
-source for callable signatures.
+Normal frontend completion builds executable storage/control plans and seals its
+captured input graph. C signatures and native bodies are verified later through
+the real C toolchain; semantic checking does not execute or parse opaque C bodies.
 
-## What is resolved before lowering
+`compiler_frontend_check_snapshot` explicitly validates a caller-captured catalog
+without an entry, executable plan or physical input-cache graph. Its caller owns
+source/native versions. This permits future relocation paths without reading
+nonexistent companion files. It uses the same admission, guarded Type closure and
+ordinary semantic code as executable compilation. Source success is returned
+explicitly; the composite `frontend.valid` certificate stays false without an
+executable plan. Empty domains and open source
+modules require no fabricated entry or default instance.
 
-At successful completion, metadata records all language interpretation choices:
+Both modes retain initialization credits before fallible work. Project/source
+owners outlive inventory/closure, which outlive projected ordinary metadata and
+plans. Reverse teardown covers every partially initialized prefix. No failed
+mode publishes complete outputs or changes source documents.
 
-- names identify exact module/symbol identities, including root kind, or a fixed
-  intrinsic interface descriptor;
-- sources retain their explicit kind, exact type/reference/list form, original
-  span and selected transfer kind;
-- ordinary bindings retain interface roles/ordinals independently of caller text
-  order and explicit omission;
-- selected targets retain a parent field or intrinsic result ordinal, and every
-  output action links its already checked binding/suboperation;
-- predicates retain their own native conversion type, exact header restart root,
-  terminal owner and incoming lexical loop; foreach retains its collection/cell
-  role, with branch polarity and syntactic body emptiness explicit;
-- constants have actual construction dependencies, and startup/reverse plans
-  refer to individual declarations rather than merely dependent module types;
-- statically positive copy identity/ownership violations have been rejected.
+## Evidence and independent stage consumers
 
-A runtime handle's liveness, generation, availability, index result or saved
-position remains runtime state, not an unresolved interpretation. The same is
-true of native literal acceptance and native resource failures. Callable C
-signatures, target payload layout and the fixed integer size bridge remain typed
-native-build obligations rather than guessed source meaning.
+`tests/unit/compiler/composition` compares actual frontend outputs with explicit
+ordinary stages over accepted guarded closure, including native authoring,
+source/error attribution, resolved plans and exhaustive allocation refusals.
+Its comparator has its own maintained file rather than depending on a retired
+concrete-only test leaf. `tests/unit/compiler/captured-catalog` checks future
+native paths, closed exports and empty/open domains without cache authority.
 
-## Semantic validity and executable support
+Low-level semantic and planning fixtures use
+[current source preparation](../../tests/unit/semantic/preparation.c), then invoke
+the actual ordinary components they test. Valid source/storage/diagnostic cases
+remain useful across this migration; comparisons of the removed raw pipeline and
+its sole-purpose stage/allocation tests were deleted. The source-preparation
+failure sweep injects every measured allocation before the real preparation, so
+it cannot silently become vacuous when ordinary inference consumes a certificate.
 
-[Frontend completion](../../src/compiler/frontend.c) consumes complete semantic
-success before initializing the plan owner. T041–T044 now preserve current source
-forms through [complete structured IR](structured-lowering.md). The frontend
-publishes only a validated full plan. [C generation](../../src/codegen/project/generate.c) consumes this plan and emits
-complete adapters, including [live traversal](list-traversal-execution.md).
-Handwritten native bodies require the subsequent C compilation/verification;
-static semantic success alone does not validate native implementations.
-
-Failed semantic programs remain safely destructible, with valid source-backed
-diagnostics, until the caller destroys the semantic owner before its project.
-Partial graphs, proposals and proof records do not become alternative successful
-results. No heuristic repair or source/type fallback makes an invalid program pass.
-
-## Composition law and verification
-
-Treat each stage as a partial function whose domain requires all predecessor
-valid flags. Successful composition is their ordered function composition.
-Induction over the stage sequence establishes that each invoked consumer receives
-its documented complete input. If a stage fails, short-circuiting preserves that
-failure and prevents every later attempt. Initialization credits/arena ownership
-cover exactly the successfully allocated prefix, independently of the failed
-stage. The sum of the component termination/memory bounds therefore bounds the
-composite; composition adds a constant number of dispatches and no recursive
-source traversal or native work.
-
-Run `make -C tests/unit/semantic/composition`. The complete real project combines
-constants-only namespaces and qualified defaults, raw literal bytes, self results,
-reference inputs, inferred fields, selected entry/resume siblings, all list-service
-result forms, foreach locals/escapes/yield, a command-header loop, negative-only
-branch and continuation copy. Independent expected assertions count/control these
-features and verify actual constant order, exact literal bytes and integer bridge
-obligation. An empty executable project is also accepted without inventing fields
-or constants.
-
-Two independently allocated semantic owners over the same immutable loaded
-project are then analyzed through the composite API and the explicit stage APIs.
-The test compares exact semantic projections: type/clone causes, symbols and
-scopes, ABI spans, initializer kinds, every source/access, binding/action order,
-parent/loop/result identities, traversal roles, constant ordinals and reverse
-links. It compares shared original AST/source identities and complete byte ranges;
-semantic allocation addresses, struct padding and hash equality are never used
-as substitutes for result equality.
-
-Six invalid real projects fail in names, native ABI parsing, source inference,
-full transfer checking, eager graph ordering and positive alias checking. Both
-paths must retain exactly equal diagnostic categories, all optional prose fields,
-primary spans/paths and related spans/roles/names. Attempt flags must identify the
-same failed prefix. Each semantic allocation in the complete valid project is
-independently failed, including late constant-plan publication; every failure is
-explicit out-of-memory with safely owned partial output and zero leaked blocks.
-Authored C companions deliberately contain `#error` to make accidental native
-compilation observable. Full strict and sanitizer runs supplement the component
-and composition invariants.
+The linked T193 record retains actual commands, failed boundary probes and current
+acceptance status. Historical task counts are not a current whole-project result.

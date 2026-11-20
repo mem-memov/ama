@@ -254,6 +254,10 @@ static void execute_project(const char *main_source, const char *expected, bool 
     bool compiled = project_codegen_compile(&assembly, stderr);
     assert(compiled);
     bool published = native_scaffold_publish(&assembly);
+    if (!published) {
+        fprintf(stderr,"Project publication: %s (%s)\n",assembly.error.message ? assembly.error.message : "no diagnostic",
+            assembly.error.primary.path ? assembly.error.primary.path : "no path");
+    }
     assert(published);
     pid_t process;
     int status;

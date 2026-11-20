@@ -307,3 +307,7 @@ T191's accepted separate-root execution and exact invalidation checks.
 
 The [static editor binding contract](../static-editor-bindings.md) records T192's
 active original-source navigation and checked-rename integration.
+
+The [static relocation contract](../static-relocation.md) records T193
+source-path classification, complete specialization mapping and actual relocation
+transaction/recovery acceptance.

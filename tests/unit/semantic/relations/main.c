@@ -80,7 +80,7 @@ static void it_orders_constants_by_declarations_and_actual_value_reads(void) {
     const SemanticSymbol *constant = order->value;
     assert(strcmp(constant->owner->module->source->logical_path, ".worker") == 0);
     constant = order->order_next->value;
-    assert(constant->role_ordinal == 0 && constant->owner == semantic.first);
+    assert(constant->role_ordinal == 0 && constant->owner == semantic_entry());
     assert(order->order_next->order_next->order_next == NULL);
     destroy_semantic();
     file("generated/program/worker", "@=\nvalue\n.value\n .main.value\n");

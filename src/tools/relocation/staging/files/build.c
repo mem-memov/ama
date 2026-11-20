@@ -48,7 +48,7 @@ bool relocation_staging_files(RelocationStaging *staging) {
         if (relocation_staging_capture(staging,entry->before,entry->after,&entry->metadata) == NULL) { return false; }
     }
     if (!sources(staging)) { return false; }
-    for (const ProjectModule *module = staging->references->project.first; module != NULL; module = module->next) {
+    for (const ProjectModule *module = staging->references->frontend.project.first; module != NULL; module = module->next) {
         const ModuleSource *source = module->source;
         if (!source->native_loaded) { continue; }
         if (!companion(staging,source->native_c,NULL) || !companion(staging,source->native_header,NULL)

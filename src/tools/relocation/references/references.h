@@ -6,7 +6,7 @@
 #ifndef AMA_RELOCATION_REFERENCES_H
 #define AMA_RELOCATION_REFERENCES_H
 #include "../relocation.h"
-#include "semantic/semantic.h"
+#include "compiler/frontend.h"
 
 /** One actual resolved dependency; implicit sites locate requiring constructs, not written module paths. Component contract: [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02). */
 typedef struct RelocationReference {
@@ -30,8 +30,7 @@ typedef struct RelocationPathEdit {
 typedef struct {
     const RelocationPreview *preview;
     SourceArena arena;
-    Project project;
-    SemanticProgram semantic;
+    CompilerFrontend frontend;
     RelocationReference *first;
     RelocationReference *last;
     RelocationPathEdit *edits;
@@ -39,7 +38,6 @@ typedef struct {
     RelocationStatus status;
     Diagnostic error;
     DiagnosticRelated related;
-    bool semantic_initialized;
     bool attempted;
     bool ready;
 } RelocationReferences;

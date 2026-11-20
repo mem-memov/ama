@@ -17,7 +17,7 @@ static void it_retains_the_complete_restart_root_and_exact_handler_break_targets
     assert(inner->loop_root->enclosing_loop == outer && inner->condition_owner->enclosing_loop == outer);
     assert(inner->condition_owner->enclosing_operation == inner->loop_root);
     assert(layout_text_is(inner->condition.field->name, "condition"));
-    assert(inner->condition.field->owner != semantic.first && inner->condition.type == semantic_find_type(&semantic, ".value"));
+    assert(inner->condition.field->owner != semantic_entry() && inner->condition.type == semantic_find_type(&semantic, ".value"));
     SemanticStatement *targets[] = {traversal, inner, outer, outer};
     for (size_t index = 0; index < 4; index++) { assert(control_statement(AST_BREAK, index)->enclosing_loop == targets[index]); }
     assert(traversal->enclosing_loop == inner && traversal->traversal->binding->local);
@@ -39,7 +39,7 @@ static void it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_
             SemanticStatement *loop = control_statement(AST_LOOP, 0);
             assert(loop->loop_root->syntax->as.call.mode == (root == 0 ? AST_ENTRY_CALL : root == 1 ? AST_RESUME_CALL : AST_RETAINED_READ));
             assert(loop->condition_owner->syntax->as.call.mode == (child == 0 ? AST_ENTRY_CALL : child == 1 ? AST_RESUME_CALL : AST_RETAINED_READ));
-            assert(loop->condition.access->index->symbol->owner == semantic.first && !loop->condition.list && !loop->condition.reference);
+            assert(loop->condition.access->index->symbol->owner == semantic_entry() && !loop->condition.list && !loop->condition.reference);
             assert(loop->empty_body && loop->enclosing_loop == NULL);
             destroy_semantic();
         }

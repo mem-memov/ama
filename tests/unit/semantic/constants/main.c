@@ -39,7 +39,7 @@ static void it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_ord
         if (ordinal < 2) {
             assert(strcmp(entry->symbol->owner->module->source->logical_path, ".worker") == 0);
         } else {
-            assert(entry->symbol->owner == semantic.first);
+            assert(entry->symbol->owner == semantic_entry());
         }
         if (entry->next != NULL) {
             assert(entry->next->previous == entry);
@@ -53,7 +53,7 @@ static void it_plans_shared_initialization_once_and_cleanup_in_exact_reverse_ord
         entry = entry->previous;
     }
     assert(entry == NULL);
-    SemanticStatement *read = semantic.first->last_statement;
+    SemanticStatement *read = semantic_entry()->last_statement;
     assert(read->syntax->as.call.mode == AST_CONSTANT_READ && read->access == NULL);
     assert(read->bindings->field->shared == semantic.constant_first);
     assert(!read->namespace_type->executable);
@@ -76,7 +76,7 @@ static void it_uses_path_order_for_ready_constants_and_excludes_unused_namespace
     assert(status == SEMANTIC_OK);
     status = semantic_constants(&semantic);
     assert(status == SEMANTIC_OK && semantic.constant_count == 2);
-    assert(semantic.constant_first->symbol->owner == semantic.first);
+    assert(semantic.constant_first->symbol->owner == semantic_entry());
     assert(semantic_find_type(&semantic, ".unused") == NULL);
     destroy_semantic();
 }

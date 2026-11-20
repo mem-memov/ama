@@ -29,7 +29,7 @@ static SemanticStatus resolve_list(const char *text) {
     if (loaded != PROJECT_OK) { fprintf(stderr, "List fixture: %s\n%s\n", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
-    SemanticStatus status = semantic_names(&semantic);
+    SemanticStatus status = semantic_fixture_names(&semantic);
     if (status == SEMANTIC_OK) { status = semantic_native(&semantic); }
     if (status == SEMANTIC_OK) { status = semantic_resolve(&semantic); }
     return status;
@@ -44,7 +44,7 @@ static void expect_list(const char *text, bool expected) {
 }
 /** Find one exact intrinsic entry in the caller's typed inventory; no source name becomes a module instance. */
 static SemanticStatement *list_method(SemanticListMethod method) {
-    for (SemanticStatement *statement = semantic.first->statements; statement != NULL; statement = statement->next) {
+    for (SemanticStatement *statement = semantic_entry()->statements; statement != NULL; statement = statement->next) {
         if (statement->syntax->kind == AST_CALL && statement->operation_kind == SEMANTIC_LIST_METHOD_OPERATION
             && statement->list_method == method) { return statement; }
     }

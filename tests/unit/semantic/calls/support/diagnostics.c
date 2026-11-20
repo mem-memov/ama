@@ -1,6 +1,19 @@
 /** @file
  * @brief Verify exact binding rejection partitions and original declaration/earlier-binding diagnostics.
  */
+/** Require one exact machine-readable note role; ordering is not a declaration identity. */
+static const DiagnosticRelated *binding_note(const char *role) {
+    const DiagnosticRelated *found = NULL;
+    for (size_t index = 0; index < semantic.error.related_count; index++) {
+        if (strcmp(semantic.error.related[index].role,role) == 0) {
+            assert(!found);
+            found = &semantic.error.related[index];
+        }
+    }
+    assert(found);
+    return found;
+}
+
 /** Existing declarations, all storage suffixes, role visibility, placeholder arity and static copy capability are checked before execution. */
 static void it_rejects_binding_role_suffix_arity_and_copy_capability_errors(void) {
     prepare_types();
@@ -45,20 +58,23 @@ static void it_retains_the_declaration_and_both_binding_sites_for_duplicate_labe
         SemanticStatus status = resolve_text(text);
         assert(status == SEMANTIC_INVALID && semantic.error.related_count == 2);
         assert(strstr(semantic.error.message, "more than once") != NULL && diagnostic_valid(&semantic.error));
-        const DiagnosticRelated *declaration = &semantic.error.related[0];
-        const DiagnosticRelated *earlier = &semantic.error.related[1];
+        const DiagnosticRelated *declaration = binding_note("actual interface declaration");
+        const DiagnosticRelated *earlier = binding_note("earlier binding");
         assert(declaration->location.span.source != semantic.error.primary.span.source);
         assert(earlier->location.span.source == semantic.error.primary.span.source);
         assert(earlier->location.span.start < semantic.error.primary.span.start);
         assert(strcmp(earlier->role, "earlier binding") == 0);
-        assert(layout_text_is(declaration->location.span, index == 0 ? "input\n.value" : "output\n.value"));
+        assert(layout_text_is(declaration->location.span, index == 0 ? "input" : "output"));
         destroy_semantic();
     }
     file("generated/program/worker", "@=\noutput\n.value\n");
     SemanticStatus status = resolve_text("@!\nvalue\n.value\n.worker\n output >> value\n output >> value\n");
-    assert(status == SEMANTIC_INVALID && semantic.error.related_count == 2);
-    assert(layout_text_is(semantic.error.related[0].location.span, "output\n.value"));
-    assert(strcmp(semantic.error.related[1].role, "earlier binding") == 0);
+    /* Raw constant-read normalization rejects duplicate labels before solving
+     * the namespace origin. It can name both bindings, not an invented formal. */
+    assert(status == SEMANTIC_INVALID && semantic.error.related_count == 1);
+    assert(diagnostic_valid(&semantic.error) && layout_text_is(semantic.error.primary.span,"output"));
+    assert(binding_note("earlier binding")->location.span.source == semantic.error.primary.span.source);
+    assert(binding_note("earlier binding")->location.span.start < semantic.error.primary.span.start);
     destroy_semantic();
 }
 /** Mode/style syntax failures are rejected by the complete loader before namespace/type stages run. */

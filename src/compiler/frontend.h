@@ -66,6 +66,19 @@ bool compiler_frontend_check(CompilerFrontend *frontend, const ModuleRoot *roots
 bool compiler_frontend_check_catalog(CompilerFrontend *, const ModuleRoot *, size_t,
     const char *entry, const char *const *required, size_t required_count);
 
+/** Analyze this owner's explicit captured catalog without an executable entry or
+ * filesystem input capture. The caller owns source/native capture and version
+ * authority; projected future companion paths are not read. Includes admission,
+ * concrete-definition Type closure and ordinary checks; no executable storage plan
+ * is built. Inputs remain
+ * uncaptured/unsealed and cannot certify a build-cache or filesystem snapshot.
+ * Success returns true with semantic/closure certificates; the composite valid
+ * flag stays false because no executable plan exists.
+ * [TOOL-04](../../spec/implementation/tools-and-conformance.md#tool-04) requires
+ * validation of prepared bytes before directory publication.
+ */
+bool compiler_frontend_check_snapshot(CompilerFrontend *, const char *const *, size_t);
+
 /**
  * Load an active native root and own a proposed ABI source if supplied or required for initial
  * authoring. Keep that source alive through semantic/plan destruction; executable checking uses

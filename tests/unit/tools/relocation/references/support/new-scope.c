@@ -63,7 +63,7 @@ static void it_analyzes_newly_covered_selected_sources_and_empty_domains(void) {
         assert(edge->owner->before_identity == NULL && edge->target->before_identity == NULL);
         edges++;
     }
-    assert(edges == 2 && references.edits == NULL && references.project.entry == NULL);
+    assert(edges == 2 && references.edits == NULL && references.frontend.project.entry == NULL);
     untouched(&request);
     relocation_references_destroy(&references);
     finish();
@@ -76,7 +76,7 @@ static void it_analyzes_newly_covered_selected_sources_and_empty_domains(void) {
     assert(relocation_preview_build(&preview,&request));
     relocation_references_init(&references,sources.allocator);
     assert(relocation_references_build(&references,&preview));
-    assert(references.first == NULL && references.edits == NULL && references.project.entry == NULL);
+    assert(references.first == NULL && references.edits == NULL && references.frontend.project.entry == NULL);
     untouched(&request);
     relocation_references_destroy(&references);
     finish();

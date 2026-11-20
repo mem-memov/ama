@@ -8,3 +8,6 @@ SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/ide
 TEST_DEFINES += -DTEST_STANDARD_ROOT=\"$(ROOT)/stdlib/modules\"
 
 SOURCES += diagnostics/record/context.c
+
+# Guarded source preparation supplies ordinary checker fixture inventories.
+SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/compiler/specializations))

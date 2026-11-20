@@ -39,7 +39,7 @@ static void it_rejects_all_pairs_of_duplicate_storage_forms(void) {
 static void prepare_names(void) {
     directory("generated/valid");
     file("generated/valid/main", "@=\nconstant\n.value\n@<\nparameter\n.value\n@>\nresult\n.value\n"
-        "@!\nflag\n?\n nested\n .value\n:\n other\n .value\nworker !\n:\n fallback\n .value\n");
+        "@!\nparameter\n?\n nested\n .value\n:\n other\n .value\nparameter !\n:\n fallback\n .value\n");
     file("generated/valid/value", "@!\nconstant&\n.value\n");
 }
 
@@ -53,7 +53,7 @@ static void it_preserves_section_and_nested_declaration_order_without_cross_modu
     setup_semantic();
     SemanticStatus status = load_semantic("generated/valid");
     assert(status == SEMANTIC_OK && semantic.names_valid && module_count() == 2);
-    SemanticType *type = semantic.first;
+    SemanticType *type = semantic_entry();
     assert(type->symbol_count == 6 && type->counts[SYMBOL_STATE] == 3);
     const char *names[] = {"constant", "parameter", "result", "nested", "other", "fallback"};
     SemanticSymbol *symbol = type->first;
@@ -88,13 +88,12 @@ static void it_cleans_partial_namespace_storage_on_every_allocation_failure(void
         }
         semantic_program_init(&semantic, &project, sources.allocator);
         failure_at = failure;
-        status = semantic_names(&semantic);
+        status = semantic_fixture_names(&semantic);
         assert(status == SEMANTIC_OUT_OF_MEMORY && diagnostic_valid(&semantic.error));
         destroy_semantic();
     }
 }
 
-#include "support/inventory.c"
 #include "support/duplicates.c"
 #include "support/walk.c"
 
@@ -105,9 +104,6 @@ static void it_cleans_partial_namespace_storage_on_every_allocation_failure(void
 void run(void) {
     it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth();
     it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries();
-    it_unwinds_every_complete_inventory_allocation_failure();
-    it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types();
-    it_shares_exact_interface_metadata_between_named_and_positional_lookup();
     it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site();
     it_reports_header_handler_duplicates_against_the_earlier_body_declaration();
     it_preserves_case_and_unicode_byte_distinctions_without_normalization();

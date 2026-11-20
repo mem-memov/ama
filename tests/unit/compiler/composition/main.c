@@ -5,7 +5,7 @@
 #include "../common.c"
 #include "project/inputs/internal.h"
 #include "support/fixture.c"
-#include "../../semantic/composition/support/compare.c"
+#include "support/compare.c"
 #include "support/projection/storage.c"
 #include "support/projection/control.c"
 #include "support/types.c"

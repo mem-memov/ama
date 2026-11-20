@@ -9,13 +9,13 @@
 /** Entry selection preserves the exact executable type under F, including newly covered sources. Component contract: [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01). */
 static bool entry(RelocationStaging *staging, const char *name) {
     if (name == NULL) { return true; }
-    const SemanticType *original = semantic_find_type(&staging->references->semantic,name);
+    const SemanticType *original = semantic_find_type(&staging->references->frontend.semantic,name);
     if (original == NULL || !original->executable) {
         return relocation_staging_fail(staging,RELOCATION_INVALID_REFERENCE,"The explicit entry does not name an original executable type",(SourceSpan){0});
     }
     for (const RelocationModule *module = staging->references->preview->modules; module != NULL; module = module->next) {
         if (strcmp(module->before_path,source_path(original->module->source->text)) == 0) {
-            const SemanticType *final = semantic_find_type(&staging->semantic,module->after_identity);
+            const SemanticType *final = semantic_find_type(&staging->frontend.semantic,module->after_identity);
             if (final == NULL || !final->executable) { break; }
             staging->entry = module->after_identity;
             return true;

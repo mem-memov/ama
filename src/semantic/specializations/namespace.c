@@ -46,7 +46,10 @@ static bool caller(const SemanticType *type, const StaticResultContext *context)
 }
 
 SemanticType *semantic_read_namespace(SemanticProgram *program, const SemanticType *owner, const AstNode *syntax) {
-    if (!program->type_closure) { return semantic_type(program, syntax->as.call.namespace_expression->head); }
+    if (!program->type_closure) {
+        (void)semantic_fail(program,syntax->span,"No closed proof exists for this saved constant namespace",NULL);
+        return NULL;
+    }
     SemanticType *selected = NULL;
     const StaticConstantPlan *constants = program->type_closure->connections->constants;
     for (const StaticConstantSelection *item = constants->first_selection; item; item = item->next) {
@@ -58,7 +61,10 @@ SemanticType *semantic_read_namespace(SemanticProgram *program, const SemanticTy
 }
 
 SemanticType *semantic_qualified_namespace(SemanticProgram *program, const SemanticType *owner, const AstSource *syntax) {
-    if (!program->type_closure) { return semantic_type(program, syntax->module_path); }
+    if (!program->type_closure) {
+        (void)semantic_fail(program,syntax->span,"No closed proof exists for this qualified constant namespace",NULL);
+        return NULL;
+    }
     SemanticType *selected = NULL;
     const StaticConstantPlan *constants = program->type_closure->connections->constants;
     for (const StaticConstantSource *item = constants->first_source; item; item = item->next) {

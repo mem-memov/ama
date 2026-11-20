@@ -303,16 +303,6 @@ void semantic_program_init(SemanticProgram *program, const Project *project,
 /** Destroy every ABI/graph/arena allocation before its borrowed project disappears; all resolved views expire.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 void semantic_program_destroy(SemanticProgram *program);
-/** Run ordinary names/native/inference/resolve/relations/constants stages once, returning the first failed status.
- * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
-SemanticStatus semantic_analyze(SemanticProgram *program);
-/** Compose the same stages with an explicitly supplied native ABI authoring proposal, never guessed from missing files. Proposed ABI source storage outlives this semantic owner.
- * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
-SemanticStatus semantic_analyze_authoring(SemanticProgram *program,
-    const SemanticNativeAuthoring *authoring);
-/** Build the retained explicit module-wide name inventory once; on failure partial records remain owned and names_valid is false.
- * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
-SemanticStatus semantic_names(SemanticProgram *program);
 /** Check real native companions/protocol tables after names succeed; lexical binding is separate from typed C verification.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 SemanticStatus semantic_native(SemanticProgram *program);
@@ -331,9 +321,6 @@ SemanticStatus semantic_constants(SemanticProgram *program);
 /** Resolve a unique NUL-terminated source path; absent or capture-ambiguous paths return null.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 SemanticType *semantic_find_type(const SemanticProgram *program, const char *logical_path);
-/** Resolve unique original path-span bytes; absent or capture-ambiguous paths return null.
- * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
-SemanticType *semantic_type(const SemanticProgram *program, SourceSpan path);
 /** Resolve one exact declared base name in its explicit owner inventory; no spelling-based inference or storage-suffix overloading.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 SemanticSymbol *semantic_symbol(const SemanticType *type, SourceSpan name);
@@ -348,9 +335,10 @@ SemanticSymbol *semantic_interface_name(const SemanticType *, SymbolRole, Source
  * metadata carries its exact type/storage.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 SemanticSymbol *semantic_interface_position(const SemanticType *, SymbolRole, size_t);
-/** Classify source-ordered receivers and foreach bindings after explicit/native inventories.
- * Success publishes typed inferred fields and lexical binding metadata; full transfer,
- * capability and execution validation remains in the subsequent semantic stages.
+/** Require accepted guarded source/Type closure after native protocol validation.
+ * Original receiver/foreach identities and concrete field Types already exist;
+ * no source event replay or path-only Type projection occurs. Success certifies
+ * the ordinary checker prerequisite; operation/copy validation remains subsequent.
  * Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */
 SemanticStatus semantic_infer(SemanticProgram *);
 /** Exact pure constructor availability categories shared by diagnostics and editor consumers. Component contract: [FLOW-04](../../spec/language/control-flow.md#flow-04), [COMP-02](../../spec/implementation/compiler.md#comp-02), [LIST-04](../../spec/language/lists.md#list-04), [CALL-09](../../spec/language/calls-and-results.md#call-09), [NAME-04](../../spec/language/declarations.md#name-04), [CALL-08](../../spec/language/calls-and-results.md#call-08), [TYPE-06](../../spec/language/declarations.md#type-06), [NAME-06](../../spec/language/declarations.md#name-06). */

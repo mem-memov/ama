@@ -126,7 +126,7 @@ static void it_keeps_resolved_bindings_and_literal_bytes_in_source_order(void) {
     SemanticStatus status = resolve_text("@!\nworker\n.worker\nvalue\n.value\n"
         "worker !\n second < |last # data  \n first < value\n output > value\n");
     assert(status == SEMANTIC_OK);
-    SemanticStatement *call = semantic.first->last_statement;
+    SemanticStatement *call = semantic_entry()->last_statement;
     assert(call->bindings->position == 1 && call->bindings->next->position == 0);
     assert(call->bindings->transfer == TRANSFER_LITERAL);
     assert(layout_text_is(call->bindings->source->syntax->payload, "last # data  "));
@@ -144,7 +144,9 @@ static void it_rejects_whole_list_execution_and_retained_results(void) {
         assert(length > 0 && (size_t)length < sizeof(text));
         SemanticStatus status = resolve_text(text);
         assert(status == SEMANTIC_INVALID);
-        assert(strstr(semantic.error.message, "whole list") != NULL);
+        assert(diagnostic_valid(&semantic.error) && semantic.error.code == DIAGNOSTIC_TYPE_MISMATCH);
+        SourceSpan site = semantic.error.primary.span;
+        assert(site.end-site.start >= 7 && memcmp(source_bytes(site.source)+site.start,"items[]",7) == 0);
         destroy_semantic();
     }
 }

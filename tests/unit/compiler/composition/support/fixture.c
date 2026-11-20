@@ -1,6 +1,8 @@
 /** @file
  * @brief Supply complete current-language projects whose native C cannot be compiled or executed during analysis.
  */
+#include "semantic/specializations/inventory.h"
+
 static const char composed_source[] = "@=\nbase\n.value\n .palette.seed\n@<\nexternal&\n.value\n@>\nself&\n.main\n &\n@!\n"
     "producer\n.producer\nsource\n.value\n |literal % ref& # bytes  \nitems[]\n.value\n |1\n"
     "producer !\n < source\n method !\n  > received\n  next& %\n   > resumed\n  :\n   %\n"
@@ -43,8 +45,8 @@ static bool same_span(SourceSpan left, SourceSpan right) {
     return left.source == right.source && left.start == right.start && left.end == right.end;
 }
 /** Run the documented six stages explicitly, preserving the exact first failed prefix. */
-static SemanticStatus staged_semantics(SemanticProgram *program, const SemanticNativeAuthoring *authoring) {
-    SemanticStatus status = semantic_names(program);
+static SemanticStatus staged_semantics(SemanticProgram *program, StaticClosurePlan *closure, const SemanticNativeAuthoring *authoring) {
+    SemanticStatus status = semantic_specialization_names(program,closure);
     if (status == SEMANTIC_OK) { status = semantic_native_authoring(program, authoring); }
     if (status == SEMANTIC_OK) { status = semantic_infer(program); }
     if (status == SEMANTIC_OK) { status = semantic_resolve(program); }

@@ -19,7 +19,7 @@ static void it_validates_newly_covered_sources_and_empty_domains(void) {
     RelocationStagingRequest settings = {.references=&references,.entry="..new.a"};
     assert(relocation_staging_build(&staging,&settings));
     assert(strcmp(staging.entry,"..new.a") == 0);
-    assert(project_find(&staging.project,"..new.a") != NULL);
+    assert(project_find(&staging.frontend.project,"..new.a") != NULL);
     for (const RelocationStagedSource *source = staging.first; source != NULL; source = source->next) {
         assert(source->module->before_identity == NULL && source->edit_count == 0);
     }
@@ -38,7 +38,7 @@ static void it_validates_newly_covered_sources_and_empty_domains(void) {
     relocation_staging_init(&staging,sources.allocator);
     settings = (RelocationStagingRequest){.references=&references};
     assert(relocation_staging_build(&staging,&settings));
-    assert(staging.first == NULL && staging.project.first == NULL && staging.ready);
+    assert(staging.first == NULL && staging.frontend.project.first == NULL && staging.ready);
     untouched(&request);
     relocation_staging_destroy(&staging);
     relocation_references_destroy(&references);

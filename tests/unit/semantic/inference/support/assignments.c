@@ -27,7 +27,7 @@ static void it_derives_the_complete_assignment_source_storage_table_immediately(
     for (size_t index = 0; index < 9; index++) {
         SemanticSymbol *symbol = field(names[index]);
         assert(symbol != NULL && symbol->inferred && symbol->reference == references[index] && symbol->list == lists[index]);
-        assert(symbol->type == (index == 8 ? semantic.first : field("owned")->type));
+        assert(symbol->type == (index == 8 ? semantic_find_type(&semantic,".main") : field("owned")->type));
         assert(symbol->initializer_count == 0 && symbol->initializers == NULL);
     }
     destroy_semantic();

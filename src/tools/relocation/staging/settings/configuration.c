@@ -94,7 +94,7 @@ bool relocation_staging_configuration(RelocationStaging *staging, const char *in
     library_build_init(&configuration->before,staging->arena.allocator);
     library_build_init(&configuration->after,staging->arena.allocator);
     staging->configurations = configuration;
-    if (!checked(staging,&configuration->before,file->original,&staging->references->semantic)) { return false; }
+    if (!checked(staging,&configuration->before,file->original,&staging->references->frontend.semantic)) { return false; }
     RelocationPathEdit *edits = NULL;
     size_t count = 0;
     for (const LibraryExport *exported = configuration->before.exports; exported != NULL; exported = exported->next) {
@@ -114,5 +114,5 @@ bool relocation_staging_configuration(RelocationStaging *staging, const char *in
     size_t index = 0;
     for (RelocationPathEdit *item = edits; item != NULL; item = item->next) { ordered[index++] = item; }
     return relocation_staging_rewrite(staging,file->original,after,ordered,count,&file->replacement)
-        && checked(staging,&configuration->after,file->replacement,&staging->semantic);
+        && checked(staging,&configuration->after,file->replacement,&staging->frontend.semantic);
 }

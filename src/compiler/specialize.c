@@ -17,7 +17,7 @@ bool compiler_frontend_specialize(CompilerFrontend *frontend, const ProjectModul
     assert(frontend->static_initialized && frontend->static_inventory.valid && !frontend->specialization_initialized);
     compiler_specialization_init(&frontend->specializations, &frontend->static_inventory, frontend->allocator);
     frontend->specialization_initialized = true;
-    bool entry_selected = false;
+    bool entry_selected = frontend->project.entry == NULL;
     if (roots) {
         for (size_t index = 0; index < count; index++) { entry_selected |= roots[index] == frontend->project.entry; }
     }

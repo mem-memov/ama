@@ -48,7 +48,7 @@ static void it_preserves_exact_failed_stage_diagnostics_and_invalid_project_owne
             assert(frontend.semantic_initialized && !frontend.semantic.constants_valid);
             SemanticProgram staged;
             semantic_program_init(&staged, &frontend.project, sources.allocator);
-            SemanticStatus status = staged_semantics(&staged, NULL);
+            SemanticStatus status = staged_semantics(&staged, &types.closure, NULL);
             assert(status == frontend.semantic.status && status == SEMANTIC_INVALID);
             compare_diagnostics(&frontend.error, &staged.error);
             assert(frontend.semantic.names_attempted == staged.names_attempted);

@@ -7,7 +7,7 @@ static void it_preserves_independent_positions_defaults_skips_and_literal_bytes(
     file("generated/program/worker", "@<\nfirst\n.value\n |1\nsecond\n.resource\n@>\nresult\n.value\n |2\nresource\n.resource\n@!\n");
     SemanticStatus status = resolve_text("@!\nworker\n.worker\nreceived\n.value\nworker !\n < |bytes # data  \n <\n > received\n >\n");
     assert(status == SEMANTIC_OK);
-    SemanticStatement *call = semantic.first->last_statement;
+    SemanticStatement *call = semantic_entry()->last_statement;
     SemanticBinding *input = call->bindings;
     assert(input->position == 0 && input->transfer == TRANSFER_LITERAL);
     assert(layout_text_is(input->source->syntax->payload, "bytes # data  "));
@@ -32,12 +32,12 @@ static void it_resolves_sources_and_receivers_in_the_caller_not_the_field_owner(
     destroy_semantic();
     status = resolve_text("@!\ninput\n.value\noutput\n.value\nworker\n.worker\nworker !\n other < input\n input < output\n output > input\n second result > input\n");
     assert(status == SEMANTIC_OK);
-    SemanticStatement *call = semantic.first->last_statement;
+    SemanticStatement *call = semantic_entry()->last_statement;
     assert(call->bindings->position == 1 && call->bindings->next->position == 0);
     for (SemanticBinding *binding = call->bindings; binding != NULL; binding = binding->next) {
-        assert(binding->field->owner == call->namespace_type && binding->field->owner != semantic.first);
-        if (binding->receiver != NULL) { assert(binding->receiver->symbol->owner == semantic.first); }
-        else { assert(binding->source->access->symbol->owner == semantic.first); }
+        assert(binding->field->owner == call->namespace_type && binding->field->owner != semantic_entry());
+        if (binding->receiver != NULL) { assert(binding->receiver->symbol->owner == semantic_entry()); }
+        else { assert(binding->source->access->symbol->owner == semantic_entry()); }
     }
     destroy_semantic();
 }

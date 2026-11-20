@@ -10,7 +10,7 @@ static void it_retains_branch_polarity_and_syntactic_empty_body_warnings(void) {
     assert(!control_statement(AST_BRANCH, 0)->negative_branch && control_statement(AST_BRANCH, 1)->negative_branch);
     assert(control_statement(AST_LOOP, 0)->empty_body && !control_statement(AST_LOOP, 1)->empty_body);
     size_t warnings = 0;
-    for (const AstWarning *warning = semantic.first->module->syntax.warnings; warning != NULL; warning = warning->next) {
+    for (const AstWarning *warning = semantic_entry()->module->syntax.warnings; warning != NULL; warning = warning->next) {
         assert(warning->diagnostic.code == DIAGNOSTIC_EMPTY_BODY && diagnostic_valid(&warning->diagnostic));
         warnings++;
     }

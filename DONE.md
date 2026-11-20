@@ -6496,3 +6496,57 @@ T201. Specification bytes have not changed.
   lifetime/transaction limits are recorded in the linked contract. No spec or
   conformance fingerprint changes. T196 retains the independent pre-existing
   conformance review failure. Next ready task: T193 relocation.
+
+<a id="t193"></a>
+
+- [x] **T193 — Preserve template meaning during source directory relocation.**
+  Prerequisites: T213, T184, T189, T191, T192.
+  Status: accepted; [contract and step record](docs/implementation/static-relocation.md).
+  Rules: [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01),
+  [TOOL-03](spec/implementation/tools-and-conformance.md#tool-03),
+  [TOOL-04](spec/implementation/tools-and-conformance.md#tool-04),
+  [TPL-01](spec/language/templates.md#tpl-01).
+  Boundary: existing resolved-reference collection, relocation plans, publication
+  and recovery; no change to the directory-move product contract.
+  Steps: (1) classify concrete module-path spans inside static syntax separately
+  from atomic placeholder/formal/result/alias names; (2) extend checked identity
+  mapping/preflight; (3) relocate, rebuild/run and exercise refusal/recovery cases.
+  Accept: rewrite only real resolved paths, preserve other bytes and static
+  binding relationships, and recompute specialization origins from new sources.
+  Include moving only a static producer versus its returned constructor: the
+  producer identity changes while an unchanged returned ordinary Type preserves
+  its original identity. Never rewrite export selectors or descriptive static
+  names as paths. Include nested applications/namespaces, both root kinds,
+  hyphens/name+/, original-name conflicts/new-root files, interruption and
+  rollback/replay.
+  No text replacement or treating explanatory placeholder components as files.
+
+  Acceptance: original and future staged catalogs use common static/native
+  admission, exact required-Type closure and ordinary checking. Source-only
+  success creates no entry, runtime instance, executable plan, sealed input graph
+  or full executable frontend certificate. Snapshot/native/ordinary owners retire
+  through the shared partial-owner destructor. The replaced one-Type-per-module
+  analyzer and second event-replay implementation, raw path linking and their
+  sole-purpose composition/inventory tests were removed; useful ordinary and
+  walker cases now exercise actual guarded source preparation. Its current
+  source/refusal sweep covers 1954 allocation points rather than a vacuous replay.
+
+  Original/static producer moves preserve atomic names and unchanged returned
+  full keys; nested constructor/name+/ moves retain both inner/outer captures.
+  Real logical template and whole-root physical relocations compile and execute
+  independently, preserve native body bytes where logical identities stay fixed,
+  invalidate explicitly declared old outputs and attribute runtime constructor
+  failure to the moved template source. Exact original graph/edit invariants and
+  injective origin mapping remain authoritative; no textual/C-include heuristic.
+
+  Complete strict semantic, relocation/recovery and editor parents passed, along
+  with compiler/planning, captured-catalog, library rebinding and Unicode consumers.
+  Relocation application refuses all 1066 measured I/O ordinals. Relevant ordinary
+  semantic/projection, original/staged snapshots, captured certificate and actual
+  relocated executions passed ASan/UBSan. Counted teardown remains distinct from
+  unavailable LSan. Complete per-file/header coverage checks 3007 inputs with zero
+  debt; actual Doxygen checks 2288 file pages, 8890 interfaces and 447/447 canonical
+  destinations. Regenerate after archive and compare final staged/rendered hashes.
+  Linked evidence preserves corrected fixture/API/diagnostic probes and exact
+  ownership/readiness limits. No spec or conformance fingerprint edits; T196 owns
+  the existing independent conformance review failure. Next ready task: T194.

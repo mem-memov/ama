@@ -21,9 +21,10 @@ static void it_visits_every_owned_subtree_in_source_order_with_exact_header_hand
     directory("generated/walk scopes");
     file("generated/walk scopes/main", "@!\nouter\n{\n root !\n  child !\n   condition\n   {\n    items[item&]\n    {\n     ^\n    }\n   }\n  :\n   ^\n :\n  ^\n}\n");
     setup_semantic();
-    SemanticStatus status = load_semantic("generated/walk scopes");
-    assert(status == SEMANTIC_OK);
-    SemanticType *type = semantic.first;
+    assert(load_root("generated/walk scopes") == PROJECT_OK);
+    semantic_program_init(&semantic,&project,sources.allocator);
+    SemanticType syntax_owner = {.module=project.entry};
+    SemanticType *type = &syntax_owner;
     const AstNode *outer = type->module->syntax.body.first;
     const AstNode *inner = outer->as.control.body.first;
     const AstNode *root = inner->as.control.command;
@@ -83,26 +84,4 @@ static void it_preserves_visit_multisets_and_equal_site_order_across_sort_width_
         }
     }
     destroy_project();
-}
-/** Every allocation of the expanded inventory, including semantic walk storage, leaves one destructible owner on failure. */
-static void it_unwinds_every_complete_inventory_allocation_failure(void) {
-    prepare_complete_inventory();
-    setup_semantic();
-    load_complete_inventory();
-    size_t total = allocation_count;
-    destroy_semantic();
-    for (size_t failure = 1; failure <= total; failure++) {
-        setup_semantic();
-        ModuleRoot roots[] = {{"generated/inventory", NULL, 0, MODULE_ROOT_PROJECT},
-            {"generated/standard inventory", NULL, 0, MODULE_ROOT_STANDARD}};
-        ProjectStatus loaded = project_load(&project, roots, 2, ".main");
-        assert(loaded == PROJECT_OK);
-        if (failure <= allocation_count) { destroy_project(); continue; }
-        semantic_program_init(&semantic, &project, sources.allocator);
-        failure_at = failure;
-        SemanticStatus status = semantic_names(&semantic);
-        assert(status == SEMANTIC_OUT_OF_MEMORY && !semantic.names_valid);
-        assert(diagnostic_valid(&semantic.error));
-        destroy_semantic();
-    }
 }

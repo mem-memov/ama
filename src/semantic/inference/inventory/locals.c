@@ -4,7 +4,7 @@
  * [NAME-06](../../../../spec/language/declarations.md#name-06) excludes the
  * header, following code, sibling bodies and construction-time uses from new local scope.
  */
-#include "../internal.h"
+#include "semantic/internal.h"
 SemanticSymbol *semantic_local_at(const SemanticType *type, SourceSpan name, SourceSpan site) {
     SemanticSymbol *found = NULL;
     size_t nearest = 0;

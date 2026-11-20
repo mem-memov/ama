@@ -15,7 +15,7 @@ static PlanStatus transfer_plan_text(const char *text) {
     if (loaded != PROJECT_OK) { fprintf(stderr, "Transfer source: %s\n%s\n", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
-    SemanticStatus status = semantic_analyze(&semantic);
+    SemanticStatus status = semantic_fixture_check(&semantic);
     if (status != SEMANTIC_OK) { fprintf(stderr, "Transfer semantics: %s\n%s\n", semantic.error.message, text); }
     assert(status == SEMANTIC_OK);
     program_plan_init(&plan, &semantic, sources.allocator);

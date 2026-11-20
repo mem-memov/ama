@@ -22,7 +22,7 @@ static SemanticStatus resolve_control(const char *text) {
     if (loaded != PROJECT_OK) { fprintf(stderr, "Control fixture: %s\n%s\n", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
-    SemanticStatus status = semantic_names(&semantic);
+    SemanticStatus status = semantic_fixture_names(&semantic);
     if (status == SEMANTIC_OK) { status = semantic_native(&semantic); }
     if (status == SEMANTIC_OK) { status = semantic_resolve(&semantic); }
     return status;
@@ -37,7 +37,7 @@ static void expect_control(const char *text, bool expected) {
 }
 /** Locate one exact source-ordered statement kind for metadata assertions; no runtime target is selected. */
 static SemanticStatement *control_statement(AstNodeKind kind, size_t occurrence) {
-    for (SemanticStatement *statement = semantic.first->statements; statement != NULL; statement = statement->next) {
+    for (SemanticStatement *statement = semantic_entry()->statements; statement != NULL; statement = statement->next) {
         if (statement->syntax->kind != kind) { continue; }
         if (occurrence == 0) { return statement; }
         occurrence--;

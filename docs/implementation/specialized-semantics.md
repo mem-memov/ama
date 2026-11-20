@@ -101,10 +101,10 @@ count+1 entries; checked arithmetic and Project-arena ownership cover every fail
 preparation prefix. The existing explicit-root guard retains original provenance.
 
 The superseded compiler test row expecting valid static exports to fail is removed;
-positive generic and static-export frontend cases replace it. The direct concrete
-semantic inventory/inference service still has two real relocation consumers
-(reference-domain and staged-domain validation). T193 owns their static-aware
-migration. It is not deleted while those callers remain. Independent concrete
+positive generic and static-export frontend cases replace it. T193 migrates both
+relocation source domains to the shared guarded source model and retires the raw
+concrete inventory/event replay APIs. Current low-level fixtures prepare accepted
+source/Type closure before independent ordinary component checks. Independent concrete
 semantic/IR oracle assertions remain unchanged; source registration ordering
 preserves their detailed comparison rather than weakening it.
 

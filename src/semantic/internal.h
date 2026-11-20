@@ -38,9 +38,6 @@ void *semantic_allocate(SemanticProgram *program, size_t size);
 /** Reject positively proved continuation identity/ownership violations within lexical effect-free reference segments; all partial proof records remain arena-owned. Component contract: [COPY-06](../../spec/language/values-and-references.md#copy-06), [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool semantic_copy_boundaries(SemanticProgram *, SemanticType *);
 
-/** Bind every explicit field to an executable nominal value type; reject reference constants before value resolution.
- * Component contract: [COPY-06](../../spec/language/values-and-references.md#copy-06), [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
-bool semantic_link_types(SemanticProgram *program);
 /** Compute the greatest fixed point over all declared owned types, keeping a noncopyable native seed/cause for diagnostics.
  * Component contract: [COPY-06](../../spec/language/values-and-references.md#copy-06), [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 void semantic_clone_capabilities(SemanticProgram *program);

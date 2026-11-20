@@ -61,7 +61,7 @@ static void it_keeps_intrinsic_results_in_caller_frames_without_method_instances
     ProjectStatus loaded = project_load(&project, roots, 2, ".main");
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
-    SemanticStatus status = semantic_analyze(&semantic);
+    SemanticStatus status = semantic_fixture_check(&semantic);
     assert(status == SEMANTIC_OK);
     program_plan_init(&plan, &semantic, sources.allocator);
     bool built = plan_storage(&plan);

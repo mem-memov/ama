@@ -8,12 +8,11 @@
 void relocation_references_init(RelocationReferences *references, SourceAllocator allocator) {
     *references = (RelocationReferences){0};
     source_arena_init(&references->arena,allocator);
-    project_init(&references->project,allocator);
+    compiler_frontend_init(&references->frontend,allocator);
 }
 /** Semantic records borrow AST/source owners; every failed stage follows the same reverse order. Component contract: [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 void relocation_references_destroy(RelocationReferences *references) {
-    if (references->semantic_initialized) { semantic_program_destroy(&references->semantic); }
-    project_destroy(&references->project);
+    compiler_frontend_destroy(&references->frontend);
     source_arena_destroy(&references->arena);
     *references = (RelocationReferences){0};
 }

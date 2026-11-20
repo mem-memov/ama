@@ -55,6 +55,12 @@ typedef enum { COMPILER_ROOTS_EXPLICIT, COMPILER_ROOTS_CONCRETE_DEFINITIONS } Co
 bool compiler_frontend_select_roots(CompilerFrontend *, const char *const *, size_t, CompilerRootPolicy);
 /** Capture the successfully loaded immutable project and exact entry policy before semantic completion. Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_capture(CompilerFrontend *, const ModuleRoot *, size_t);
+/** Resolve admitted guarded roots, ordinary operations and constants without
+ * requiring an executable entry/storage plan. Caller selects explicit roots for
+ * an entry-free captured catalog. No input graph is captured or published.
+ * [COMP-02](../../spec/implementation/compiler.md#comp-02) keeps source and executable consumers on one semantic implementation.
+ */
+bool compiler_frontend_resolve(CompilerFrontend *, const SemanticNativeAuthoring *);
 /**
  * Analyze the loaded closure using an optional explicit authoring contract, then build resolved
  * plans. Record initialization before fallible work and retain the first stage diagnostic.

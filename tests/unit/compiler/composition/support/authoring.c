@@ -22,7 +22,7 @@ static void it_keeps_native_authoring_contracts_separate_from_strict_frontend_co
     SemanticProgram staged;
     semantic_program_init(&staged, &frontend.project, sources.allocator);
     SemanticNativeAuthoring authoring = {frontend.project.entry, proposed};
-    SemanticStatus status = staged_semantics(&staged, &authoring);
+    SemanticStatus status = staged_semantics(&staged, &frontend.specializations.closure, &authoring);
     assert(status == SEMANTIC_OK);
     compare_programs(&frontend.semantic, &staged);
     ProgramPlan planned;

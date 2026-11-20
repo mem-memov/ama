@@ -29,11 +29,9 @@ static void it_keeps_root_kind_identity_in_the_complete_transfer_matrix(void) {
             ProjectStatus loaded = project_load(&project, roots, 2, ".main");
             assert(loaded == PROJECT_OK);
             semantic_program_init(&semantic, &project, sources.allocator);
-            SemanticStatus status = semantic_names(&semantic);
-            assert(status == SEMANTIC_OK);
-            status = semantic_native(&semantic);
-            assert(status == SEMANTIC_OK);
-            status = semantic_resolve(&semantic);
+            SemanticStatus status = semantic_fixture_names(&semantic);
+            if (status == SEMANTIC_OK) { status = semantic_native(&semantic); }
+            if (status == SEMANTIC_OK) { status = semantic_resolve(&semantic); }
             assert(status == SEMANTIC_INVALID && diagnostic_valid(&semantic.error));
             destroy_semantic();
         }
@@ -45,11 +43,9 @@ static void it_keeps_root_kind_identity_in_the_complete_transfer_matrix(void) {
     ProjectStatus loaded = project_load(&project, roots, 2, ".main");
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
-    SemanticStatus status = semantic_names(&semantic);
-    assert(status == SEMANTIC_OK);
-    status = semantic_native(&semantic);
-    assert(status == SEMANTIC_OK);
-    status = semantic_resolve(&semantic);
+    SemanticStatus status = semantic_fixture_names(&semantic);
+    if (status == SEMANTIC_OK) { status = semantic_native(&semantic); }
+    if (status == SEMANTIC_OK) { status = semantic_resolve(&semantic); }
     assert(status == SEMANTIC_INVALID && diagnostic_valid(&semantic.error));
     destroy_semantic();
 }

@@ -31,15 +31,15 @@ static void it_retains_selected_field_identity_and_ordered_sibling_actions_witho
         assert(child->access->reference == (index == 1 || index == 3) && !child->access->list);
         if (index == 0) {
             first_method = child->access->symbol;
-            assert(child->bindings->source->access->symbol->owner == semantic.first);
+            assert(child->bindings->source->access->symbol->owner == semantic_entry());
             assert(layout_text_is(child->bindings->source->access->symbol->name, "method"));
         }
         if (index == 4) { assert(child->access->symbol == first_method); }
         if (index == 2 || index == 3) {
-            assert(child->access->index != NULL && child->access->index->symbol->owner == semantic.first);
+            assert(child->access->index != NULL && child->access->index->symbol->owner == semantic_entry());
             assert(layout_text_is(child->access->index->symbol->name, "index"));
         }
-        assert(child->actions != NULL && child->actions->binding->receiver->symbol->owner == semantic.first);
+        assert(child->actions != NULL && child->actions->binding->receiver->symbol->owner == semantic_entry());
         last = action;
         action = action->next;
     }
@@ -61,7 +61,7 @@ static void it_starts_handler_calls_in_the_caller_instead_of_the_selected_interf
         SemanticStatement *handler = selected_call("fallback", index);
         assert(handler != NULL && handler->enclosing_operation == NULL);
         assert(handler->syntax->as.call.enclosing_operation == NULL);
-        assert(handler->access->symbol->owner == semantic.first);
+        assert(handler->access->symbol->owner == semantic_entry());
     }
     destroy_semantic();
 }

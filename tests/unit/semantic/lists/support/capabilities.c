@@ -1,6 +1,8 @@
 /** @file
  * @brief Distinguish omitted and explicit owning sources and verify the exact standard integer capability profile.
  */
+#include "../../diagnostic-evidence.c"
+
 /** Runtime emptiness never excuses an explicit owning copy, while omissions and reference-list handle copies require none. */
 static void it_requires_element_copy_only_for_explicit_owning_append_insert_sources(void) {
     prepare_lists();
@@ -32,8 +34,8 @@ static void it_requires_the_exact_standard_native_integer_profile_and_bridge_obl
         expect_list("@!\nitems[]\n.value\nitems[]\n clear !\n", bits == 7);
     }
     SemanticStatus status = resolve_list("@!\nitems[]\n.value\nposition\n.integer\nitems[]\n insert !\n  < position\n");
-    assert(status == SEMANTIC_INVALID && strcmp(semantic.error.subject, ".integer") == 0);
-    assert(strcmp(semantic.error.expected, "..integer") == 0);
+    assert(status == SEMANTIC_INVALID && diagnostic_valid(&semantic.error));
+    assert(semantic_nominal_note(&semantic.error,".integer") && semantic_nominal_note(&semantic.error,"..integer"));
     destroy_semantic();
     integer_fixture("@!\n", "+ initialize\n- destroy\n");
     expect_list("@!\nitems[]\n.value\nitems[]\n clear !\n", false);

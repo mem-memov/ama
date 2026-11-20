@@ -79,7 +79,12 @@ copied failure diagnostics remain owned even after the input text owner expires.
 
 Construct the complete final registry from prepared texts and explicit final
 identities, including draft candidates. Activate exactly the original active set,
-without an invented executable entry, and run full ordinary semantic checks.
+without an invented executable entry, and run the common guarded source/ordinary
+semantic checks. The captured frontend borrows independently prepared native ABI
+and source records. It does not capture future C/header paths or set complete
+executable frontend readiness; no storage plan exists in this source-only mode.
+Its owner retains every partial static/Type/ordinary stage until reverse teardown.
+The relocation's own protected-file/version checks remain authoritative.
 For each original owner, compare every dependency in stable source-position order
 with its final dependency: translated span, implicit/explicit kind, target final
 identity and target physical path must match. Compare multiplicities, reject extra

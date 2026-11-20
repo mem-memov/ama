@@ -37,8 +37,8 @@ bool compiler_frontend_select_roots(CompilerFrontend *frontend, const char *cons
             .message = "Required Type roots could not allocate storage"};
         return false;
     }
-    size_t size = 1;
-    selected[0] = frontend->project.entry;
+    size_t size = 0;
+    if (frontend->project.entry) { selected[size++] = frontend->project.entry; }
     for (size_t index = 0; index < count; index++) {
         const ProjectModule *module = project_find(&frontend->project, names[index]);
         assert(module);

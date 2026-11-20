@@ -78,7 +78,7 @@ static void it_matches_complete_frontend_outputs_to_independent_explicit_stages(
         if (shape == 0) { assert_current_features(); }
         SemanticProgram staged;
         semantic_program_init(&staged, &frontend.project, sources.allocator);
-        SemanticStatus status = staged_semantics(&staged, NULL);
+        SemanticStatus status = staged_semantics(&staged, &frontend.specializations.closure, NULL);
         assert(status == SEMANTIC_OK);
         compare_required_types(&staged);
         compare_programs(&frontend.semantic, &staged);

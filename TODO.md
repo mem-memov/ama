@@ -197,8 +197,11 @@ execution. [T189](DONE.md#t189) supplies original-source diagnostics through
 static normalization and compiled execution. [T190](DONE.md#t190) validates concrete
 native/template compositions. [T191](DONE.md#t191) validates source delivery and
 exact invalidation. [T192](DONE.md#t192) supplies original static editor bindings,
-full captured-owner rename proofs and checked source transactions. T193 is next:
-source directory relocation.
+full captured-owner rename proofs and checked source transactions.
+[T193](DONE.md#t193) supplies shared guarded
+original/final source checking, structural static binding preservation, actual
+relocated execution and concrete-only pipeline retirement. T194 is next: compiled
+concrete facades.
 
 [T218](DONE.md#t218) removes redundant inherited identity-source dependencies
 from library/native/relocation test consumers used by these components.
@@ -226,29 +229,6 @@ reuse, removal and replacement below; they do not establish current-spec support
 ### Phase 6. Lower and execute concrete programs
 
 ### Phase 7. Connect product consumers and algorithm examples
-
-<a id="t193"></a>
-
-- [ ] **T193 — Preserve template meaning during source directory relocation.**
-  Prerequisites: T213, T184, T189, T191, T192.
-  Rules: [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01),
-  [TOOL-03](spec/implementation/tools-and-conformance.md#tool-03),
-  [TOOL-04](spec/implementation/tools-and-conformance.md#tool-04),
-  [TPL-01](spec/language/templates.md#tpl-01).
-  Boundary: existing resolved-reference collection, relocation plans, publication
-  and recovery; no change to the directory-move product contract.
-  Steps: (1) classify concrete module-path spans inside static syntax separately
-  from atomic placeholder/formal/result/alias names; (2) extend checked identity
-  mapping/preflight; (3) relocate, rebuild/run and exercise refusal/recovery cases.
-  Accept: rewrite only real resolved paths, preserve other bytes and static
-  binding relationships, and recompute specialization origins from new sources.
-  Include moving only a static producer versus its returned constructor: the
-  producer identity changes while an unchanged returned ordinary Type preserves
-  its original identity. Never rewrite export selectors or descriptive static
-  names as paths. Include nested applications/namespaces, both root kinds,
-  hyphens/name+/, original-name conflicts/new-root files, interruption and
-  rollback/replay.
-  No text replacement or treating explanatory placeholder components as files.
 
 <a id="t194"></a>
 

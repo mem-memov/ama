@@ -30,7 +30,7 @@ static SemanticStatus infer_text(const char *text) {
     if (loaded != PROJECT_OK) { fprintf(stderr, "Inference load: %s\n%s", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
-    SemanticStatus status = semantic_names(&semantic);
+    SemanticStatus status = semantic_fixture_names(&semantic);
     if (status == SEMANTIC_OK) { status = semantic_native(&semantic); }
     if (status == SEMANTIC_OK) { status = semantic_infer(&semantic); }
     return status;
@@ -38,7 +38,9 @@ static SemanticStatus infer_text(const char *text) {
 /** Find a module field by exact immutable test spelling and assert that no substring/suffix lookup is used. */
 static SemanticSymbol *field(const char *name) {
     size_t length = strlen(name);
-    for (SemanticSymbol *symbol = semantic.first->first; symbol != NULL; symbol = symbol->next) {
+    SemanticType *entry = semantic_find_type(&semantic,".main");
+    if (!entry) { return NULL; }
+    for (SemanticSymbol *symbol = entry->first; symbol != NULL; symbol = symbol->next) {
         if (symbol->name.end - symbol->name.start == length
             && memcmp(source_bytes(symbol->name.source) + symbol->name.start, name, length) == 0) { return symbol; }
     }

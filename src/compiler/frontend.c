@@ -10,7 +10,6 @@
  */
 #include <assert.h>
 #include "internal.h"
-#include "semantic/specializations/check.h"
 
 /**
  * Initialize source/project owners and empty semantic/plan credits with the supplied allocator;
@@ -55,20 +54,7 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_finish(CompilerFrontend *frontend,
     const SemanticNativeAuthoring *authoring) {
-    if (!frontend->specialization_initialized) {
-        const ProjectModule *roots[] = {frontend->project.entry};
-        if (!compiler_frontend_specialize(frontend, roots, 1)) { return false; }
-    } else if (!frontend->specializations.valid) {
-        frontend->error = frontend->specializations.error;
-        return false;
-    }
-    semantic_program_init(&frontend->semantic, &frontend->project, frontend->allocator);
-    frontend->semantic_initialized = true;
-    if (semantic_specializations_check(&frontend->semantic, &frontend->specializations.closure, authoring) != SEMANTIC_OK
-        || semantic_constants(&frontend->semantic) != SEMANTIC_OK) {
-        frontend->error = frontend->semantic.error;
-        return false;
-    }
+    if (!compiler_frontend_resolve(frontend,authoring)) { return false; }
     program_plan_init(&frontend->plan, &frontend->semantic, frontend->allocator);
     frontend->plan_initialized = true;
     if (program_plan_build(&frontend->plan) != PLAN_OK) {

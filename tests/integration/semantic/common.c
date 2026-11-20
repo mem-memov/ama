@@ -11,11 +11,11 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "semantic/semantic.h"
+#include "compiler/frontend.h"
 #include "diagnostics/render/render.h"
 
-static Project project;
-static SemanticProgram semantic;
+static CompilerFrontend frontend;
+static bool checked;
 
 /**
  * Initialize this leaf fixture before its assertions; the enclosing file contract identifies
@@ -24,11 +24,9 @@ static SemanticProgram semantic;
  */
 static void setup_test(void) {
     SourceAllocator allocator = source_system_allocator();
-    project_init(&project, allocator);
+    compiler_frontend_init(&frontend,allocator);
     ModuleRoot root = {"project", NULL, 0, MODULE_ROOT_PROJECT};
-    ProjectStatus loaded = project_load(&project, &root, 1, ".main");
-    assert(loaded == PROJECT_OK);
-    semantic_program_init(&semantic, &project, allocator);
+    checked = compiler_frontend_check(&frontend,&root,1,".main");
 }
 
 /**
@@ -36,8 +34,7 @@ static void setup_test(void) {
  * assert zero remaining live allocations; assertions remain enabled by the leaf harness.
  */
 static void destroy_test(void) {
-    semantic_program_destroy(&semantic);
-    project_destroy(&project);
+    compiler_frontend_destroy(&frontend);
 }
 
 /**
@@ -48,7 +45,7 @@ static void expect_diagnostic(void) {
     FILE *actual = tmpfile();
     FILE *expected = fopen("expected-error.txt", "rb");
     assert(actual != NULL && expected != NULL);
-    DiagnosticRenderStatus status = diagnostic_render(actual, &semantic.error);
+    DiagnosticRenderStatus status = diagnostic_render(actual, &frontend.error);
     assert(status == DIAGNOSTIC_RENDER_OK);
     rewind(actual);
     int left;
@@ -56,6 +53,11 @@ static void expect_diagnostic(void) {
     do {
         left = fgetc(actual);
         right = fgetc(expected);
+        if (left != right) {
+            rewind(actual);
+            int byte;
+            while ((byte = fgetc(actual)) != EOF) { assert(fputc(byte,stderr) != EOF); }
+        }
         assert(left == right);
     } while (left != EOF);
     assert(!ferror(actual) && !ferror(expected));

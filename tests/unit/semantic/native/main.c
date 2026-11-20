@@ -68,9 +68,9 @@ static void it_parses_required_abi_and_keeps_helper_names_module_local(void) {
     assert(status == SEMANTIC_OK && module_count() == 2);
     status = semantic_native(&semantic);
     assert(status == SEMANTIC_OK);
-    assert(layout_text_is(semantic.first->abi.bindings[ABI_DEFAULT].function, "initialize"));
+    assert(layout_text_is(semantic_entry()->abi.bindings[ABI_DEFAULT].function, "initialize"));
     assert(layout_text_is(semantic.last->abi.bindings[ABI_DEFAULT].function, "initialize"));
-    assert(semantic.first->abi.bindings[ABI_DEFAULT].function.source
+    assert(semantic_entry()->abi.bindings[ABI_DEFAULT].function.source
         != semantic.last->abi.bindings[ABI_DEFAULT].function.source);
     destroy_semantic();
     file("generated/native/main", "@!\nchild\n.value\n");

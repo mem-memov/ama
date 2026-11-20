@@ -34,7 +34,7 @@ static bool append(RelocationReferences *references, const RelocationModule *own
 
 /** All active modules are registered before parsing, so module cycles require no rewriting order. Component contract: [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02), [LIST-04](../../../../../spec/language/lists.md#list-04). */
 bool relocation_references_graph(RelocationReferences *references) {
-    for (const ProjectModule *module = references->project.first; module != NULL; module = module->next) {
+    for (const ProjectModule *module = references->frontend.project.first; module != NULL; module = module->next) {
         const RelocationModule *owner = relocation_reference_module(references,module);
         if (owner == NULL) {
             return relocation_references_fail(references,RELOCATION_INVALID_REFERENCE,"A module has no exact captured source mapping",(SourceSpan){0});

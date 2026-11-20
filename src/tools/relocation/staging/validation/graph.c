@@ -21,7 +21,7 @@ static bool same_edge(const RelocationStagedSource *source, const RelocationRefe
 }
 /** Stable source-position ordering preserves multiplicities, including duplicate paths and equal spans. Component contract: [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02), [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 static bool module_edges(RelocationStaging *staging, const RelocationStagedSource *source) {
-    const ProjectModule *module = project_find(&staging->project,source->module->after_identity);
+    const ProjectModule *module = project_find(&staging->frontend.project,source->module->after_identity);
     if (module == NULL || strcmp(source_path(module->source->text),source_path(source->text)) != 0) {
         return relocation_staging_fail(staging,RELOCATION_INVALID_REFERENCE,"A prepared module has no exact final owner",(SourceSpan){0});
     }
@@ -47,7 +47,7 @@ bool relocation_staging_graph(RelocationStaging *staging) {
             if (!module_edges(staging,source)) { return false; }
         }
     }
-    for (const ProjectModule *module = staging->project.first; module != NULL; module = module->next) { actual++; }
+    for (const ProjectModule *module = staging->frontend.project.first; module != NULL; module = module->next) { actual++; }
     return expected == actual || relocation_staging_fail(staging,RELOCATION_INVALID_REFERENCE,
         "The prepared project changes the active module domain",(SourceSpan){0});
 }

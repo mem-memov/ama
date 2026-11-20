@@ -66,8 +66,7 @@ typedef struct {
     const RelocationReferences *references;
     SourceArena arena;
     SourceManager sources;
-    Project project;
-    SemanticProgram semantic;
+    CompilerFrontend frontend;
     RelocationStagedSource *first;
     RelocationStagedSource *last;
     RelocationStagedFile *files;
@@ -78,7 +77,6 @@ typedef struct {
     RelocationStatus status;
     Diagnostic error;
     DiagnosticRelated related;
-    bool semantic_initialized;
     bool attempted;
     bool ready;
 } RelocationStaging;

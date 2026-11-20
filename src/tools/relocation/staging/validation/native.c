@@ -9,7 +9,7 @@
 /** The original project has already activated every required native module; no future path is probed. Component contract: [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04). */
 bool relocation_staging_native(RelocationStaging *staging, const RelocationStagedSource *source, const ModuleSource *final) {
     const ModuleSource *original = NULL;
-    for (const ProjectModule *module = staging->references->project.first; module != NULL; module = module->next) {
+    for (const ProjectModule *module = staging->references->frontend.project.first; module != NULL; module = module->next) {
         if (strcmp(source_path(module->source->text),source->module->before_path) == 0) {
             original = module->source;
             break;
@@ -32,7 +32,7 @@ bool relocation_staging_native(RelocationStaging *staging, const RelocationStage
             return relocation_staging_fail(staging,RELOCATION_OUT_OF_MEMORY,"Projected native ABI allocation failed",(SourceSpan){0});
         }
     }
-    ModuleStatus status = module_catalog_snapshot_native(&staging->project.catalog,final,body,header,abi);
+    ModuleStatus status = module_catalog_snapshot_native(&staging->frontend.project.catalog,final,body,header,abi);
     if (status != MODULE_OK) {
         return relocation_staging_fail(staging,status == MODULE_OUT_OF_MEMORY ? RELOCATION_OUT_OF_MEMORY
             : RELOCATION_INVALID_SOURCE,"Captured native companions could not be installed",(SourceSpan){0});

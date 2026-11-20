@@ -8,19 +8,19 @@ static void it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct(vo
         "continued\n.value\n % reference&\nelements[]\n.value\n % source\n"
         "ordinary\n source\nreference&\n &source\ncontinued\n % source\n%");
     assert(status == SEMANTIC_OK);
-    assert(semantic.first->first->initializers->source->kind == AST_LITERAL_SOURCE);
-    assert(layout_text_is(semantic.first->first->initializers->source->syntax->payload, "% reference& # data  "));
+    assert(semantic_entry()->first->initializers->source->kind == AST_LITERAL_SOURCE);
+    assert(layout_text_is(semantic_entry()->first->initializers->source->syntax->payload, "% reference& # data  "));
     size_t normal = 0;
     size_t handles = 0;
     size_t continuations = 0;
-    for (const SemanticSymbol *field = semantic.first->first; field != NULL; field = field->next) {
+    for (const SemanticSymbol *field = semantic_entry()->first; field != NULL; field = field->next) {
         for (const SemanticInitializer *value = field->initializers; value != NULL; value = value->next) {
             if (value->transfer == TRANSFER_CLONE) { normal++; }
             if (value->transfer == TRANSFER_HANDLE) { handles++; }
             if (value->transfer == TRANSFER_CONTINUATION) { continuations++; }
         }
     }
-    for (const SemanticStatement *statement = semantic.first->statements; statement != NULL; statement = statement->next) {
+    for (const SemanticStatement *statement = semantic_entry()->statements; statement != NULL; statement = statement->next) {
         if (statement->syntax->kind != AST_ASSIGNMENT) { continue; }
         if (statement->transfer == TRANSFER_CLONE) { normal++; }
         if (statement->transfer == TRANSFER_HANDLE) { handles++; }
@@ -30,7 +30,7 @@ static void it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct(vo
         }
     }
     assert(normal == 2 && handles == 2 && continuations == 3);
-    assert(semantic.first->last_statement->syntax->kind == AST_SUSPEND);
+    assert(semantic_entry()->last_statement->syntax->kind == AST_SUSPEND);
     destroy_semantic();
 }
 /** Scalar owned/reference sources produce owned continuation copies; reference/list destinations require other transfer forms. */
@@ -51,12 +51,12 @@ static void it_accepts_owned_scalar_continuation_sources_from_owned_and_referenc
         "worker !\n < % reference&\n > received\nworker %\n > resumed\nworker\n >> retained\n");
     assert(status == SEMANTIC_OK);
     SemanticStatement *entry = NULL;
-    for (SemanticStatement *statement = semantic.first->statements; statement != NULL; statement = statement->next) {
+    for (SemanticStatement *statement = semantic_entry()->statements; statement != NULL; statement = statement->next) {
         if (statement->syntax->kind == AST_CALL && statement->syntax->as.call.mode == AST_ENTRY_CALL) { entry = statement; break; }
     }
     assert(entry != NULL && entry->bindings->transfer == TRANSFER_CONTINUATION);
     assert(entry->bindings->source->reference && entry->bindings->next->transfer == TRANSFER_CLONE);
-    assert(semantic.first->last_statement->bindings->transfer == TRANSFER_CLONE);
+    assert(semantic_entry()->last_statement->bindings->transfer == TRANSFER_CLONE);
     destroy_semantic();
     expect_resolved("@!\nvalue\n.resource\nvalue\n % value\n", false);
 }

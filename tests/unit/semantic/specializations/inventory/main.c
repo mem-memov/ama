@@ -14,9 +14,7 @@ static void it_preserves_distinct_captures_and_equal_key_reuse(void) {
     SemanticType *second = field(main_type, "second")->type;
     assert(first != second && first->module == second->module);
     assert(!semantic_find_type(&semantics, ".other"));
-    assert(!semantic_type(&semantics, field(main_type, "first")->type_site));
     assert(semantic_find_type(&semantics, ".main") == main_type);
-    assert(semantic_type(&semantics, field(main_type, "number")->type_site) == field(main_type, "number")->type);
     assert(first == field(main_type, "again")->type);
     assert(field(first, "input")->type == field(main_type, "number")->type);
     assert(field(second, "output")->type == field(main_type, "flag")->type);

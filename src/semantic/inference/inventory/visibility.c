@@ -3,7 +3,7 @@
  * [NAME-06](../../../../spec/language/declarations.md#name-06) separates module-wide,
  * source-ordered inferred and body-scoped foreach names; constructor inputs use declaration order.
  */
-#include "../internal.h"
+#include "semantic/internal.h"
 /** Pure counterpart of constructor diagnostics; callers can inspect without mutating semantic state. Component contract: [NAME-06](../../../../spec/language/declarations.md#name-06). */
 SemanticVisibility semantic_initializer_visibility(const SemanticSymbol *symbol, const SemanticSymbol *initializing) {
     if (initializing == NULL) { return SEMANTIC_VISIBLE; }

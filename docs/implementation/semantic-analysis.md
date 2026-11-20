@@ -7,49 +7,46 @@ initializer, access, control and relation services described below. Its retained
 closure/source owners outlive all projected metadata. Closed fields and lexical
 cells are not inferred a second time.
 
-The direct concrete-source entry points below also remain in use by relocation
-reference/staging validation; [T193](../../TODO.md#t193) owns their static-aware
-migration. Their source-order fixture evidence is a bounded component contract,
-not a claim that a raw inventory accepts open/static source constructs. The
-public data boundary is [semantic.h](../../src/semantic/semantic.h). Successful
-Type closure alone does not certify ordinary operations or generated execution.
+Executable frontend and captured relocation catalogs use this same guarded
+source model. [T193](static-relocation.md) removes the separate concrete-source
+orchestration and migrates its useful tests. The public ordinary data boundary
+is [semantic.h](../../src/semantic/semantic.h). Type closure alone does not certify
+ordinary operations, executable storage plans or native C verification.
 
 [Exact transfers and lexical self](typed-transfers.md) records T032's storage
 matrix, constant/indexed source handling and staged executable boundary.
 
 ## Namespace construction
 
-`semantic_program_init` borrows a valid loaded project, which must outlive the
-semantic owner. Call `semantic_names` once, then inspect only successful namespace
-output. Destroying the semantic program releases its ABI tables and arena before
-the caller destroys the project. All declaration/use spans borrow that project.
-Allocation failure retains an allocation-free diagnostic and partial owned
-records solely for cleanup. No C text, native execution or filesystem writes occur.
+`semantic_program_init` borrows a valid loaded project and is followed by
+`semantic_specialization_names` over accepted required Type closure. Inventory
+and closure owners outlive this semantic owner; all original declaration/use spans
+borrow their Project. Reverse destruction releases ordinary ABI/arena records
+before the source/Type graph. Failed prefixes are retained only for diagnostics
+and safe teardown. No native execution or source rewriting occurs.
 
-The [complete declaration boundary](declaration-inventories.md) records T030's
-inventory, exact source ordering, shared interface lookup, proof and checks.
-[Collection](../../src/semantic/walk/collect.c) visits every owning structural
-subtree, including selected handlers, folded headers and traversal bodies.
-[Stable event sorting](../../src/semantic/walk/sort.c) establishes physical order
-before callbacks; no C recursion represents source nesting. Only loop/traversal
-bodies add a loop-depth scope, while header handlers retain incoming context.
+The [declaration boundary](declaration-inventories.md) describes original source
+fields and full-key concrete projection. Each required owner is registered before
+field linking; captures do not collapse to one source module. Complete base names,
+roles, storage forms, inferred introductions and local scopes retain original
+source identity. [Exact lookup](../../src/semantic/names/lookup.c) and
+[role-specific interface lookup](../../src/semantic/names/interface.c) consume
+these accepted records; they do not guess an unresolved path or capture.
 
-[Namespace construction](../../src/semantic/names/build.c) gives every explicit
-declaration one complete base-name symbol, module ordinal and role ordinal.
-Storage suffixes are attributes, and ordinary blocks do not shadow names.
-[Exact lookup](../../src/semantic/names/lookup.c) preserves original UTF-8 bytes;
-[interface lookup](../../src/semantic/names/interface.c) shares declared names,
-positions, types and storage flags with call checking. The [source-order pass](source-order-inference.md) adds receiver-inferred fields
-and classifies foreach-local bindings separately.
+[Source preparation](source-order-inference.md) fixes receiver/foreach bindings
+and attaches refinable Type terms. The ordinary checker consumes that proof
+without reclassifying source events. Its retained
+[AST collector](../../src/semantic/walk/collect.c) and
+[iterative sort](../../src/semantic/walk/sort.c) still visit every owning body,
+selected handler and folded header in physical order for typed statement/control
+checks. Only actual loop/traversal bodies add structural loop scope.
 
-The inventory invariant is the unique source-ordered declaration prefix. Exact
-comparison either diagnoses the later duplicate with its earlier declaration or
-preserves that invariant by insertion. For N nodes, D declarations and maximum
-name length L, construction costs O(N log N + D² L) time and O(N + D) storage.
-Tests cover all 256 section/storage pairs, expanded source/context ordering,
-exact root nominal identities, complete metadata and every allocation failure.
-Run `make -C tests/unit/semantic/names`; typed visibility/initializer checks run
-through `make -C tests/unit/semantic/types`.
+Source naming, current projection and ordinary component tests are distinct:
+`tests/unit/semantic/names`, `tests/unit/semantic/inference` and
+`tests/unit/semantic/specializations/inventory` cover their respective boundaries,
+including current preparation/projection allocation refusals. The
+[T193 record](static-relocation.md) explains retired sole-purpose tests and
+consumer migration; historical counts are not current acceptance evidence.
 
 ## Native contracts for the required closure
 
@@ -262,8 +259,9 @@ the monotone greatest-fixed-point elimination rather than guessing from names.
 Structured reports borrow stable owned declarations/ABI texts and use fixed note
 storage; reporting a type mismatch itself allocates nothing.
 
-`semantic_analyze` composes namespace, required native, value/interface, relation
-and shared-plan checks, stopping at the first failed stage. The iterative walker
+[Shared composition](../../src/compiler/resolve.c) consumes accepted guarded
+Types and composes required native, value/interface, relation and shared constant
+checks, stopping at the first failed stage. The iterative walker
 carries explicit structural loop depth; `^` outside a loop is rejected even in
 unreachable code, without source-offset guessing. The same frontend service can
 serve the later check-only CLI and project compiler. Its success does not claim

@@ -18,7 +18,7 @@ static void it_unwinds_every_allocation_in_complete_control_contexts(void) {
         ProjectStatus loaded = project_load(&project, roots, 2, ".main");
         assert(loaded == PROJECT_OK);
         semantic_program_init(&semantic, &project, sources.allocator);
-        status = semantic_names(&semantic);
+        status = semantic_fixture_names(&semantic);
         assert(status == SEMANTIC_OK);
         status = semantic_native(&semantic);
         assert(status == SEMANTIC_OK);

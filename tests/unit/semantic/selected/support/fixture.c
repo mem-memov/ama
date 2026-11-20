@@ -9,7 +9,7 @@ static void prepare_selection(void) {
 }
 /** Find an existing typed operation by its exact source target spelling and occurrence, never by dynamic target/body lookup. */
 static SemanticStatement *selected_call(const char *name, size_t occurrence) {
-    for (SemanticStatement *statement = semantic.first->statements; statement != NULL; statement = statement->next) {
+    for (SemanticStatement *statement = semantic_entry()->statements; statement != NULL; statement = statement->next) {
         if (statement->syntax->kind != AST_CALL || statement->syntax->as.call.target == NULL
             || !layout_text_is(statement->syntax->as.call.target->name, name)) { continue; }
         if (occurrence == 0) { return statement; }
@@ -26,7 +26,7 @@ static SemanticStatus resolve_selected(const char *text) {
     if (loaded != PROJECT_OK) { fprintf(stderr, "Selection fixture: %s\n%s\n", project.error.message, text); }
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
-    SemanticStatus status = semantic_names(&semantic);
+    SemanticStatus status = semantic_fixture_names(&semantic);
     if (status == SEMANTIC_OK) { status = semantic_native(&semantic); }
     if (status == SEMANTIC_OK) { status = semantic_resolve(&semantic); }
     return status;

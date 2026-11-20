@@ -64,7 +64,7 @@ static void it_preserves_each_indexed_shared_read_without_duplicate_root_edges(v
     size_t item_reads = 0;
     for (GraphEdge *edge = selected->first; edge != NULL; edge = edge->next) {
         SemanticSymbol *target = (SemanticSymbol *)edge->target->value;
-        assert(target->owner == semantic.first);
+        assert(target->owner == semantic_entry());
         if (target->role_ordinal == 0) { index_reads++; }
         if (target->role_ordinal == 1) { item_reads++; }
         edges++;

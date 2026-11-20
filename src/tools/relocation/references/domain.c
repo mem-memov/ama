@@ -39,10 +39,10 @@ static bool snapshot(RelocationReferences *references, const char *const **requi
         entries[index++] = (ModuleSnapshotEntry){name,module->text,module->device,module->inode};
         if (module->active) { active[activated++] = name; }
     }
-    ModuleStatus status = module_catalog_snapshot(&references->project.catalog,entries,count);
+    ModuleStatus status = module_catalog_snapshot(&references->frontend.project.catalog,entries,count);
     if (status != MODULE_OK) {
         references->status = status == MODULE_OUT_OF_MEMORY ? RELOCATION_OUT_OF_MEMORY : RELOCATION_INVALID_REFERENCE;
-        (void)diagnostic_from_module(&references->project.catalog.issue,&references->related,&references->error);
+        (void)diagnostic_from_module(&references->frontend.project.catalog.issue,&references->related,&references->error);
         return false;
     }
     qsort(active,activated,sizeof(*active),compare_names);
@@ -56,18 +56,10 @@ bool relocation_references_domain(RelocationReferences *references) {
     const char *const *required = NULL;
     size_t count = 0;
     if (!snapshot(references,&required,&count)) { return false; }
-    ProjectStatus loaded = project_load_catalog_set(&references->project,required,count);
-    if (loaded != PROJECT_OK) {
-        references->status = loaded == PROJECT_OUT_OF_MEMORY ? RELOCATION_OUT_OF_MEMORY : RELOCATION_INVALID_REFERENCE;
-        references->error = references->project.error;
-        return false;
-    }
-    semantic_program_init(&references->semantic,&references->project,references->arena.allocator);
-    references->semantic_initialized = true;
-    SemanticStatus status = semantic_analyze(&references->semantic);
-    if (status != SEMANTIC_OK) {
-        references->status = status == SEMANTIC_OUT_OF_MEMORY ? RELOCATION_OUT_OF_MEMORY : RELOCATION_INVALID_REFERENCE;
-        references->error = references->semantic.error;
+    if (!compiler_frontend_check_snapshot(&references->frontend,required,count)) {
+        references->status = references->frontend.error.code == DIAGNOSTIC_OUT_OF_MEMORY
+            ? RELOCATION_OUT_OF_MEMORY : RELOCATION_INVALID_REFERENCE;
+        references->error = references->frontend.error;
         return false;
     }
     return true;

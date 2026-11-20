@@ -31,7 +31,8 @@ commit; T169 is next. No compiler/test jobs remain active.
 1. [The frontend](../../../src/compiler/frontend.c) owns loaded sources before
    semantic state and plans, records initialization before fallible work and
    tears those owners down in reverse order. Preserve that lifetime contract.
-   [Semantic orchestration](../../../src/semantic/analyze.c) currently runs
+   The audited concrete orchestration (retired by T193; see the current
+   [shared source composition](../../../src/compiler/resolve.c)) ran
    names, native contracts, source-order inference, resolution, relations and
    constants. There is no intervening static specialization stage.
 2. [AST declarations](../../../src/ast/ast.h) carry one type SourceSpan;
@@ -54,9 +55,9 @@ commit; T169 is next. No compiler/test jobs remain active.
    representation of scoped static formals or multiple specializations.
    Preserve ordinary identity; add scoped terms and a separate specialization
    identity rather than forging ProjectModule files.
-5. [Receiver inference](../../../src/semantic/inference/resolve/receiver.c)
-   classifies fresh receivers and immediately assigns a source's concrete type.
-   [Its driver](../../../src/semantic/inference/infer.c) links explicit types
+5. The audited receiver/event implementation (retired by T193; current
+   [source classification](../../../src/semantic/static/connections/runtime/prepare.c))
+   classified receivers and immediately assigned concrete Types. Its old driver linked explicit types
    before one ordered event pass. T182 must separate lexical binding identity
    from globally refinable type terms. Keep existing foreach/source-order laws.
 6. [Dependency extraction](../../../src/project/dependencies/discover/ast.c)

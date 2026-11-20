@@ -11,6 +11,10 @@ static void it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_l
         for (size_t second_role = 0; second_role < 4; second_role++) {
             for (size_t first_form = 0; first_form < 4; first_form++) {
                 for (size_t second_form = 0; second_form < 4; second_form++) {
+                    /* Reference constants are independently invalid before duplicate checking;
+                     * this matrix isolates pairs of permitted declaration forms. */
+                    if ((first_role == 0 && (first_form == 1 || first_form == 3))
+                        || (second_role == 0 && (second_form == 1 || second_form == 3))) { continue; }
                     char text[512] = {0};
                     size_t used = 0;
                     for (size_t role = 0; role < 4; role++) {
@@ -57,10 +61,10 @@ static void it_preserves_case_and_unicode_byte_distinctions_without_normalizatio
     file("generated/byte names/main", "@!\né\n.value\né\n.value\nÉ\n.value\nfield\n.value\nField\n.value\n");
     setup_semantic();
     SemanticStatus status = load_semantic("generated/byte names");
-    assert(status == SEMANTIC_OK && semantic.first->symbol_count == 5);
+    assert(status == SEMANTIC_OK && semantic_entry()->symbol_count == 5);
     size_t count = 0;
-    for (SemanticSymbol *symbol = semantic.first->first; symbol != NULL; symbol = symbol->next) {
-        SemanticSymbol *found = semantic_symbol(semantic.first, symbol->declaration->as.declaration.name->name);
+    for (SemanticSymbol *symbol = semantic_entry()->first; symbol != NULL; symbol = symbol->next) {
+        SemanticSymbol *found = semantic_symbol(semantic_entry(), symbol->declaration->as.declaration.name->name);
         assert(found == symbol);
         count++;
     }

@@ -4373,6 +4373,36 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -4584,6 +4614,36 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -4937,6 +4997,26 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -29635,92 +29715,6 @@
       }
     ]
   },
-  "src/semantic/analyze.c": {
-    "contract": "docs/implementation/semantic-analysis.md",
-    "purpose": "Compose semantic stages in their explicit prerequisite order.",
-    "tests": [
-      {
-        "case": "it_requires_owned_copy_capability_even_for_statically_identical_storage",
-        "command": "make -C tests/unit/semantic/types",
-        "source": "tests/unit/semantic/types/main.c"
-      },
-      {
-        "case": "it_applies_the_complete_nominal_storage_matrix_without_conversions",
-        "command": "make -C tests/unit/semantic/types",
-        "source": "tests/unit/semantic/types/main.c"
-      },
-      {
-        "case": "it_checks_initialization_literals_reference_formation_and_continuation_copy",
-        "command": "make -C tests/unit/semantic/types",
-        "source": "tests/unit/semantic/types/main.c"
-      },
-      {
-        "case": "it_resolves_calls_bindings_defaults_and_saved_constant_reads",
-        "command": "make -C tests/unit/semantic/types",
-        "source": "tests/unit/semantic/types/main.c"
-      },
-      {
-        "case": "it_requires_native_condition_and_index_capabilities_without_inheritance",
-        "command": "make -C tests/unit/semantic/types",
-        "source": "tests/unit/semantic/types/main.c"
-      },
-      {
-        "case": "it_keeps_resolved_bindings_and_literal_bytes_in_source_order",
-        "command": "make -C tests/unit/semantic/types",
-        "source": "tests/unit/semantic/types/main.c"
-      },
-      {
-        "case": "it_rejects_whole_list_execution_and_retained_results",
-        "command": "make -C tests/unit/semantic/types",
-        "source": "tests/unit/semantic/types/main.c"
-      },
-      {
-        "case": "it_releases_every_partial_resolved_value_binding_and_access",
-        "command": "make -C tests/unit/semantic/types",
-        "source": "tests/unit/semantic/types/main.c"
-      },
-      {
-        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_composes_every_current_construct_with_exact_source_and_role_metadata",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_composite_and_explicit_stages_without_pointer_or_hash_identity_guesses",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
   "src/semantic/calls/fields.c": {
     "contract": "docs/implementation/semantic-analysis.md",
     "purpose": "Resolve named/positional interface fields and reject duplicate bindings.",
@@ -29787,21 +29781,6 @@
       },
       {
         "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       },
@@ -31033,42 +31012,16 @@
         "source": "tests/unit/semantic/diagnostics/main.c",
         "case": "it_preserves_first_semantic_failure_across_outer_refusal_reporting",
         "command": "make -C tests/unit/semantic/diagnostics"
-      }
-    ]
-  },
-  "src/semantic/names/build.c": {
-    "contract": "docs/implementation/static-source.md",
-    "purpose": "Build the retained explicit declaration inventory in deterministic source order.",
-    "tests": [
-      {
-        "case": "it_checks_native_admission_on_preloaded_catalog_and_explicit_required_paths",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
       },
       {
-        "case": "it_preserves_existing_concrete_native_check_and_authoring_paths",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
       },
       {
-        "case": "it_refuses_unresolved_static_nodes_at_the_executable_lowering_boundary",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_rejects_native_own_formals_before_check_capture_or_authoring_abi_proposals",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "case": "it_unwinds_every_new_frontend_static_admission_allocation_failure",
-        "command": "make -C tests/unit/compiler/native-admission",
-        "source": "tests/unit/compiler/native-admission/main.c"
-      },
-      {
-        "source": "tests/unit/compiler/check/main.c",
-        "case": "it_refuses_incomplete_or_invalid_static_work_at_its_actual_stage",
-        "command": "make -C tests/unit/compiler/check"
+        "source": "tests/unit/semantic/inference/main.c",
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference"
       }
     ]
   },
@@ -31098,21 +31051,6 @@
       },
       {
         "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       },
@@ -31200,6 +31138,11 @@
         "source": "tests/unit/semantic/specializations/inventory/main.c",
         "case": "it_preserves_distinct_captures_and_equal_key_reuse",
         "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
       }
     ]
   },
@@ -32578,21 +32521,6 @@
         "source": "tests/unit/semantic/names/main.c"
       },
       {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
         "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
@@ -32696,6 +32624,11 @@
         "source": "tests/unit/semantic/specializations/inventory/main.c",
         "case": "it_preserves_distinct_captures_and_equal_key_reuse",
         "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
       }
     ]
   },
@@ -32780,21 +32713,6 @@
       },
       {
         "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       },
@@ -32964,26 +32882,6 @@
         "source": "tests/unit/semantic/control/main.c"
       },
       {
-        "case": "it_composes_every_current_construct_with_exact_source_and_role_metadata",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_composite_and_explicit_stages_without_pointer_or_hash_identity_guesses",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
         "case": "it_retains_the_owned_copy_witness_and_native_seed",
         "command": "make -C tests/unit/semantic/types",
         "source": "tests/unit/semantic/types/main.c"
@@ -33022,6 +32920,11 @@
         "source": "tests/unit/semantic/specializations/inventory/main.c",
         "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
         "command": "make -C tests/unit/semantic/specializations/inventory"
+      },
+      {
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
       }
     ]
   },
@@ -33489,21 +33392,6 @@
       },
       {
         "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       },
@@ -42182,6 +42070,16 @@
         "source": "tests/unit/codegen/source-delivery/main.c",
         "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
         "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -43095,6 +42993,16 @@
         "source": "tests/unit/codegen/source-delivery/main.c",
         "case": "it_refuses_missing_imported_native_and_external_c_inputs_without_publication",
         "command": "make -C tests/unit/codegen/source-delivery"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -43581,6 +43489,26 @@
         "source": "tests/unit/compiler/source-delivery/main.c",
         "case": "it_refuses_unclosed_delivered_templates_at_the_ordinary_selection",
         "command": "make -C tests/unit/compiler/source-delivery"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -54635,26 +54563,6 @@
         "source": "tests/unit/semantic/continuations/main.c"
       },
       {
-        "case": "it_composes_every_current_construct_with_exact_source_and_role_metadata",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_composite_and_explicit_stages_without_pointer_or_hash_identity_guesses",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
         "case": "it_keeps_exact_module_scoped_static_identities_and_global_alias_lookup",
         "command": "make -C tests/unit/semantic/static/scope",
         "source": "tests/unit/semantic/static/scope/main.c"
@@ -55278,21 +55186,6 @@
       },
       {
         "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       },
@@ -64222,21 +64115,6 @@
         "source": "tests/unit/semantic/names/main.c"
       },
       {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
         "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
@@ -64284,21 +64162,6 @@
       },
       {
         "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       },
@@ -64385,21 +64248,6 @@
       },
       {
         "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
       },
@@ -64505,21 +64353,6 @@
         "source": "tests/unit/semantic/names/main.c"
       },
       {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
         "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
@@ -64571,82 +64404,6 @@
         "source": "tests/unit/semantic/names/main.c"
       },
       {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_reports_header_handler_duplicates_against_the_earlier_body_declaration",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_preserves_case_and_unicode_byte_distinctions_without_normalization",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/names/support/inventory.c": {
-    "contract": "docs/implementation/declaration-inventories.md",
-    "purpose": "Build complete exact explicit inventories and shared interface metadata.",
-    "tests": [
-      {
-        "case": "it_rejects_all_pairs_of_duplicate_storage_forms",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_preserves_section_and_nested_declaration_order_without_cross_module_conflicts",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_visits_every_owned_subtree_in_source_order_with_exact_header_handler_depth",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_preserves_visit_multisets_and_equal_site_order_across_sort_width_boundaries",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
         "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
@@ -64693,21 +64450,6 @@
         "source": "tests/unit/semantic/names/main.c"
       },
       {
-        "case": "it_unwinds_every_complete_inventory_allocation_failure",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_builds_complete_source_ordered_inventories_and_distinct_root_nominal_types",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
-        "case": "it_shares_exact_interface_metadata_between_named_and_positional_lookup",
-        "command": "make -C tests/unit/semantic/names",
-        "source": "tests/unit/semantic/names/main.c"
-      },
-      {
         "case": "it_rejects_every_cross_section_and_storage_duplicate_pair_with_the_later_primary_site",
         "command": "make -C tests/unit/semantic/names",
         "source": "tests/unit/semantic/names/main.c"
@@ -64756,173 +64498,6 @@
         "case": "it_unwinds_every_allocation_in_complete_control_contexts",
         "command": "make -C tests/unit/semantic/control",
         "source": "tests/unit/semantic/control/main.c"
-      }
-    ]
-  },
-  "src/semantic/inference/events/collect.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "case": "it_retains_the_complete_restart_root_and_exact_handler_break_targets",
-        "command": "make -C tests/unit/semantic/control",
-        "source": "tests/unit/semantic/control/main.c"
-      },
-      {
-        "case": "it_resolves_all_header_modes_and_indexed_terminal_results_in_caller_context",
-        "command": "make -C tests/unit/semantic/control",
-        "source": "tests/unit/semantic/control/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_terminal_conditions_without_fake_field_accesses",
-        "command": "make -C tests/unit/semantic/control",
-        "source": "tests/unit/semantic/control/main.c"
-      },
-      {
-        "case": "it_retains_branch_polarity_and_syntactic_empty_body_warnings",
-        "command": "make -C tests/unit/semantic/control",
-        "source": "tests/unit/semantic/control/main.c"
-      },
-      {
-        "case": "it_distinguishes_foreach_binding_from_indexed_truth_and_reuses_exact_lexical_cells",
-        "command": "make -C tests/unit/semantic/control",
-        "source": "tests/unit/semantic/control/main.c"
-      },
-      {
-        "case": "it_checks_skipped_paths_predicate_capabilities_and_header_handler_exits",
-        "command": "make -C tests/unit/semantic/control",
-        "source": "tests/unit/semantic/control/main.c"
-      },
-      {
-        "case": "it_unwinds_every_allocation_in_complete_control_contexts",
-        "command": "make -C tests/unit/semantic/control",
-        "source": "tests/unit/semantic/control/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/events/sort.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
       }
     ]
   },
@@ -64994,183 +64569,11 @@
         "source": "tests/unit/semantic/specializations/inventory/main.c",
         "case": "it_resolves_concrete_generic_bodies_without_reclassifying_fields",
         "command": "make -C tests/unit/semantic/specializations/inventory"
-      }
-    ]
-  },
-  "src/semantic/inference/internal.h": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
       },
       {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ],
-    "standalone_header_command": [
-      "cc",
-      "-std=c11",
-      "-D_POSIX_C_SOURCE=200809L",
-      "-Wall",
-      "-Wextra",
-      "-Werror",
-      "-pedantic",
-      "-I.",
-      "-Isrc",
-      "-x",
-      "c",
-      "-fsyntax-only",
-      "-"
-    ]
-  },
-  "src/semantic/inference/inventory/encounter.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
       }
     ]
   },
@@ -65237,756 +64640,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/inventory/order.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/access.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/assignment.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/binding.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/foreach.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/operation.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/receiver.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/result.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "case": "it_specializes_all_six_method_interfaces_without_fabricated_declarations",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_types_ephemeral_results_and_services_selected_from_module_results",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_rejects_irrelevant_arguments_invalid_method_modes_and_retired_interfaces",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_requires_element_copy_only_for_explicit_owning_append_insert_sources",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "case": "it_unwinds_every_list_interface_binding_and_result_allocation",
-        "command": "make -C tests/unit/semantic/lists",
-        "source": "tests/unit/semantic/lists/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/selection.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
-      },
-      {
-        "case": "it_retains_selected_field_identity_and_ordered_sibling_actions_without_cloning",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_starts_handler_calls_in_the_caller_instead_of_the_selected_interface",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_accepts_each_parent_child_mode_and_scalar_reference_indexed_form",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_rejects_selector_fallback_wrong_roles_forms_and_caller_index_capabilities",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_resolves_deep_reference_result_trees_iteratively",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "case": "it_unwinds_each_allocation_in_selected_operations_and_action_links",
-        "command": "make -C tests/unit/semantic/selected",
-        "source": "tests/unit/semantic/selected/main.c"
-      },
-      {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
-      }
-    ]
-  },
-  "src/semantic/inference/resolve/source.c": {
-    "contract": "docs/implementation/source-order-inference.md",
-    "purpose": "Classify source-ordered inferred fields and lexical foreach cells with exact typed metadata.",
-    "tests": [
-      {
-        "case": "it_scopes_disjoint_local_references_without_retroactive_module_binding",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_reuses_enclosing_or_later_explicit_references_without_shadowing",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_incompatible_bindings_and_construction_time_local_access",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_output_receivers_from_entry_resume_retained_and_constant_interfaces",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_orders_interleaved_selected_results_and_ordinary_bindings_by_written_position",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_intrinsic_list_results_without_action_constants_or_method_instances",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_unwinds_every_inference_allocation_failure",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_types_a_first_assignment_receiver_without_synthetic_declaration_or_initializer",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_derives_the_complete_assignment_source_storage_table_immediately",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_rejects_earlier_unresolved_uses_self_dependencies_and_later_explicit_collisions",
-        "command": "make -C tests/unit/semantic/inference",
-        "source": "tests/unit/semantic/inference/main.c"
-      },
-      {
-        "case": "it_executes_inferred_assignments_and_outputs_with_normal_persistent_field_lifetimes",
-        "command": "make -C tests/unit/codegen/execution",
-        "source": "tests/unit/codegen/execution/main.c"
       },
       {
-        "source": "tests/unit/documentation/main.c",
-        "case": "it_requires_rule_links_on_each_compiler_contract",
-        "command": "make -C tests/unit/documentation"
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
       }
     ]
   },
@@ -68806,157 +67464,6 @@
         "case": "it_unwinds_every_positive_reference_origin_allocation",
         "command": "make -C tests/unit/semantic/continuations",
         "source": "tests/unit/semantic/continuations/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/composition/Makefile": {
-    "contract": "docs/implementation/semantic-composition.md",
-    "purpose": "Compose real current-language projects through the complete semantic boundary and its exact staged equivalent.",
-    "tests": [
-      {
-        "case": "it_composes_every_current_construct_with_exact_source_and_role_metadata",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_composite_and_explicit_stages_without_pointer_or_hash_identity_guesses",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/composition/main.c": {
-    "contract": "docs/implementation/semantic-composition.md",
-    "purpose": "Verify complete semantic composition, exact source metadata, deterministic stage equivalence and failure ownership.",
-    "tests": [
-      {
-        "case": "it_composes_every_current_construct_with_exact_source_and_role_metadata",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_composite_and_explicit_stages_without_pointer_or_hash_identity_guesses",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/composition/support/fixture.c": {
-    "contract": "docs/implementation/semantic-composition.md",
-    "purpose": "Supply complete multi-module projects with current constructs and native bodies that semantic checking must not compile or execute.",
-    "tests": [
-      {
-        "case": "it_composes_every_current_construct_with_exact_source_and_role_metadata",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_composite_and_explicit_stages_without_pointer_or_hash_identity_guesses",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/composition/support/compare.c": {
-    "contract": "docs/implementation/semantic-composition.md",
-    "purpose": "Compare exact semantic projections across independent owners without bytewise struct comparisons, pointer hashes or reconstructed syntax.",
-    "tests": [
-      {
-        "case": "it_composes_every_current_construct_with_exact_source_and_role_metadata",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_composite_and_explicit_stages_without_pointer_or_hash_identity_guesses",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
-        "command": "make -C tests/unit/compiler/composition",
-        "source": "tests/unit/compiler/composition/main.c"
-      },
-      {
-        "case": "it_preserves_exact_failed_stage_diagnostics_and_invalid_project_ownership",
-        "command": "make -C tests/unit/compiler/composition",
-        "source": "tests/unit/compiler/composition/main.c"
-      },
-      {
-        "case": "it_keeps_native_authoring_contracts_separate_from_strict_frontend_composition",
-        "command": "make -C tests/unit/compiler/composition",
-        "source": "tests/unit/compiler/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_complete_frontend_source_semantic_and_plan_allocation",
-        "command": "make -C tests/unit/compiler/composition",
-        "source": "tests/unit/compiler/composition/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/composition/support/projects.c": {
-    "contract": "docs/implementation/semantic-composition.md",
-    "purpose": "Check independent expected facts of one complete modern project and exact staged/composite equivalence.",
-    "tests": [
-      {
-        "case": "it_composes_every_current_construct_with_exact_source_and_role_metadata",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_matches_composite_and_explicit_stages_without_pointer_or_hash_identity_guesses",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      }
-    ]
-  },
-  "tests/unit/semantic/composition/support/failures.c": {
-    "contract": "docs/implementation/semantic-composition.md",
-    "purpose": "Preserve exact first-failure stage prefixes and diagnostics, and fail every allocation of complete semantic analysis.",
-    "tests": [
-      {
-        "case": "it_preserves_the_first_failed_stage_and_original_diagnostic_context",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
-      },
-      {
-        "case": "it_unwinds_every_allocation_of_complete_semantic_composition",
-        "command": "make -C tests/unit/semantic/composition",
-        "source": "tests/unit/semantic/composition/main.c"
       }
     ]
   },
@@ -108409,6 +106916,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
+      },
+      {
+        "source": "tests/unit/semantic/inference/main.c",
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference"
       }
     ]
   },
@@ -114585,6 +113102,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ],
     "standalone_header_command": [
@@ -114641,6 +113178,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -114779,6 +113336,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -114861,6 +113438,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -114974,6 +113571,16 @@
         "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
         "command": "make -C tests/unit/tools/relocation/references",
         "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -115118,6 +113725,16 @@
         "case": "it_analyzes_newly_covered_selected_sources_and_empty_domains",
         "command": "make -C tests/unit/tools/relocation/references",
         "source": "tests/unit/tools/relocation/references/main.c"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -115364,6 +113981,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ],
     "standalone_header_command": [
@@ -115430,6 +114067,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -115685,6 +114342,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -115838,6 +114515,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -115889,6 +114586,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -115940,6 +114657,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -115991,6 +114728,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -116144,6 +114901,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -116241,6 +115018,16 @@
         "case": "it_matches_the_complete_two_span_text_model",
         "command": "make -C tests/unit/tools/relocation/staging",
         "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -116333,6 +115120,16 @@
         "case": "it_matches_the_complete_two_span_text_model",
         "command": "make -C tests/unit/tools/relocation/staging",
         "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -116379,6 +115176,16 @@
         "case": "it_matches_the_complete_two_span_text_model",
         "command": "make -C tests/unit/tools/relocation/staging",
         "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -116425,6 +115232,16 @@
         "case": "it_matches_the_complete_two_span_text_model",
         "command": "make -C tests/unit/tools/relocation/staging",
         "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -116471,6 +115288,16 @@
         "case": "it_matches_the_complete_two_span_text_model",
         "command": "make -C tests/unit/tools/relocation/staging",
         "source": "tests/unit/tools/relocation/staging/main.c"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -135569,6 +134396,26 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
       }
     ]
   },
@@ -167130,6 +165977,36 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_rejects_root_lists_that_omit_the_loaded_frontend_entry",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -167821,6 +166698,16 @@
         "source": "tests/unit/semantic/specializations/namespaces/main.c",
         "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
         "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
+      },
+      {
+        "source": "tests/unit/semantic/inference/main.c",
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference"
       }
     ]
   },
@@ -168270,6 +167157,36 @@
         "source": "tests/unit/library/resolution/main.c",
         "case": "it_unwinds_every_library_resolution_allocation",
         "command": "make -C tests/unit/library/resolution"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
       }
     ]
   },
@@ -170431,6 +169348,201 @@
       "c",
       "-fsyntax-only",
       "-"
+    ]
+  },
+  "src/compiler/resolve.c": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Validate captured static source and complete nominal bindings without inventing executable entry or physical future inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      }
+    ]
+  },
+  "src/compiler/snapshot.c": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Validate captured static source and complete nominal bindings without inventing executable entry or physical future inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      }
+    ]
+  },
+  "tests/unit/compiler/captured-catalog/main.c": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Validate captured static source and complete nominal bindings without inventing executable entry or physical future inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      }
+    ]
+  },
+  "tests/unit/compiler/captured-catalog/Makefile": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Validate captured static source and complete nominal bindings without inventing executable entry or physical future inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_empty_and_open_definition_only_catalogs_without_default_instances",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      }
+    ]
+  },
+  "tests/unit/tools/relocation/staging/support/static.c": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Validate captured static source and complete nominal bindings without inventing executable entry or physical future inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_static_producers_without_rewriting_atomic_names_or_returned_origins",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/tools/relocation/staging/main.c",
+        "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
+        "command": "make -C tests/unit/tools/relocation/staging"
+      }
+    ]
+  },
+  "tests/unit/semantic/preparation.c": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Exercise current guarded source preparation and ordinary checker composition after retiring the concrete-only pipeline.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/inference/main.c",
+        "case": "it_unwinds_every_inference_allocation_failure",
+        "command": "make -C tests/unit/semantic/inference"
+      },
+      {
+        "source": "tests/unit/semantic/names/main.c",
+        "case": "it_cleans_partial_namespace_storage_on_every_allocation_failure",
+        "command": "make -C tests/unit/semantic/names"
+      }
+    ]
+  },
+  "tests/unit/compiler/composition/support/compare.c": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Exercise current guarded source preparation and ordinary checker composition after retiring the concrete-only pipeline.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/composition/main.c",
+        "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
+        "command": "make -C tests/unit/compiler/composition"
+      }
+    ]
+  },
+  "tests/unit/codegen/relocation/main.c": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Compile and execute real template relocations, preserved native bodies, output invalidation and relocated failure locations.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
+      }
+    ]
+  },
+  "tests/unit/codegen/relocation/Makefile": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Compile and execute real template relocations, preserved native bodies, output invalidation and relocated failure locations.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_compiles_and_executes_both_closed_exports_after_logical_template_relocation",
+        "command": "make -C tests/unit/codegen/relocation"
+      },
+      {
+        "source": "tests/unit/codegen/relocation/main.c",
+        "case": "it_rebuilds_a_whole_moved_root_without_rewriting_native_companion_bytes",
+        "command": "make -C tests/unit/codegen/relocation"
+      }
+    ]
+  },
+  "tests/unit/semantic/diagnostic-evidence.c": {
+    "contract": "docs/implementation/static-relocation.md",
+    "purpose": "Require both actual nominal definition notes without a primary-subject or ordering assumption.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/diagnostics/main.c",
+        "case": "it_reports_both_nominal_types_and_original_declarations",
+        "command": "make -C tests/unit/semantic/diagnostics"
+      },
+      {
+        "source": "tests/unit/semantic/lists/main.c",
+        "case": "it_requires_the_exact_standard_native_integer_profile_and_bridge_obligation",
+        "command": "make -C tests/unit/semantic/lists"
+      }
     ]
   }
 }

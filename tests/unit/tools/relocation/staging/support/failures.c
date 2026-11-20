@@ -23,7 +23,7 @@ static void it_rejects_redirected_final_bindings_and_changed_original_bytes(void
     relocation_staging_init(&staging,sources.allocator);
     assert(!relocation_staging_build(&staging,&settings));
     assert(!staging.ready && staging.status == RELOCATION_INVALID_REFERENCE);
-    assert(staging.semantic.constants_valid);
+    assert(staging.frontend.semantic.constants_valid);
     relocation_staging_destroy(&staging);
     references.edits->replacement = ".new.missing";
     relocation_staging_init(&staging,sources.allocator);

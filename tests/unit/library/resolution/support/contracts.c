@@ -77,22 +77,18 @@ static void it_rejects_rebinding_a_completed_library_model(void) {
     assert(resolve(&build,records) && build.valid);
     const SemanticType *original_type = build.exports->type;
     const SemanticSymbol *original_field = build.bindings->field;
-    Project empty;
-    project_init(&empty,sources.allocator);
-    assert(module_catalog_snapshot(&empty.catalog,NULL,0) == MODULE_OK);
-    assert(project_load_catalog_set(&empty,NULL,0) == PROJECT_OK);
-    SemanticProgram program;
-    semantic_program_init(&program,&empty,sources.allocator);
-    assert(semantic_analyze(&program) == SEMANTIC_OK);
-    bool rebound = library_configuration_validate(&build,&program);
+    CompilerFrontend empty;
+    compiler_frontend_init(&empty,sources.allocator);
+    assert(module_catalog_snapshot(&empty.project.catalog,NULL,0) == MODULE_OK);
+    assert(compiler_frontend_check_snapshot(&empty,NULL,0));
+    bool rebound = library_configuration_validate(&build,&empty.semantic);
     assert(!rebound && build.valid && build.error.message == NULL);
     assert(build.exports->type == original_type && build.bindings->field == original_field);
     FILE *manifest = tmpfile();
     assert(manifest != NULL);
     assert(library_manifest_write(&build,manifest));
     assert(fclose(manifest) == 0);
-    semantic_program_destroy(&program);
-    project_destroy(&empty);
+    compiler_frontend_destroy(&empty);
     library_build_destroy(&build);
     destroy_test();
 }

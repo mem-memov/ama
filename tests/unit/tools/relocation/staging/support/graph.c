@@ -25,8 +25,8 @@ static void it_validates_final_cycles_and_preserves_all_nonpath_bytes(void) {
     exact(prepared(&staging,".old.b")->text,"@!\npeer&\n.longer name.a\n");
     exact(prepared(&staging,".old.draft")->text,"unfinished\n.old.a\n");
     exact(prepared(&staging,".unused")->text,"@!\nvalue\n.longer name.a\n");
-    assert(project_find(&staging.project,".longer name.a") != NULL);
-    assert(staging.project.entry == NULL);
+    assert(project_find(&staging.frontend.project,".longer name.a") != NULL);
+    assert(staging.frontend.project.entry == NULL);
     assert(!relocation_staging_build(&staging,&(RelocationStagingRequest){.references=&references}) && staging.ready);
     untouched(&request);
     relocation_staging_destroy(&staging);

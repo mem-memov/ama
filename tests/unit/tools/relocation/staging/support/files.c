@@ -47,7 +47,7 @@ static void it_captures_native_assets_links_and_validates_qualified_constants(vo
     exact(captured(&staging,"/long.link")->replacement,link_target);
     exact(captured(&staging,"/cycle.link")->replacement,"cycle.link");
     const ModuleSource *native = NULL;
-    assert(module_catalog_find(&staging.project.catalog,"..new.number",&native) == MODULE_OK);
+    assert(module_catalog_find(&staging.frontend.project.catalog,"..new.number",&native) == MODULE_OK);
     assert(native->native_loaded && strstr(native->native_c,"/standard/new/number.c") != NULL);
     assert(strstr(source_path(native->native_abi),"/standard/new/number.abi") != NULL);
     struct stat metadata;

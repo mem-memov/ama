@@ -36,8 +36,14 @@ final placement would remove it, following the decision recorded in
 The entry-free project loader seeds every active source, retaining drafts only
 for precise required-draft errors. Constants-only and empty domains need no
 invented runnable entry. Ordinary compilation continues to require its entry.
-Full semantic analysis checks original type, storage and qualified-member
-bindings; this phase performs no lowering or native execution.
+The captured-catalog frontend performs common static/native admission, guarded
+Type closure and ordinary semantic checks, including qualified-member bindings.
+Its entry-free source mode creates no executable plan or physical input-cache
+certificate. The relocation capture/version owners supply that authority; future
+staged companion paths are never probed as current files. Project, static/Type
+and ordinary metadata share the frontend's reverse teardown rather than a second
+concrete-only semantic analyzer. This phase performs no lowering or native
+execution. See [T193](static-relocation.md) for exact scope and acceptance.
 
 ## Mapping law and implementation
 

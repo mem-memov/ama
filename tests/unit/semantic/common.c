@@ -12,6 +12,7 @@
 #include "semantic/semantic.h"
 
 static SemanticProgram semantic;
+#include "preparation.c"
 
 /**
  * Initialize the counted project fixture on which this semantic owner will depend.
@@ -28,7 +29,7 @@ static SemanticStatus load_semantic(const char *path) {
     ProjectStatus loaded = load_root(path);
     assert(loaded == PROJECT_OK);
     semantic_program_init(&semantic, &project, sources.allocator);
-    return semantic_names(&semantic);
+    return semantic_fixture_names(&semantic);
 }
 
 /**
@@ -36,7 +37,7 @@ static SemanticStatus load_semantic(const char *path) {
  * destruction.
  */
 static void destroy_semantic(void) {
-    semantic_program_destroy(&semantic);
+    destroy_semantic_projection();
     destroy_project();
 }
 

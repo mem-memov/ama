@@ -14,8 +14,7 @@
  */
 static void it_renders_distinct_unicode_module_types_and_both_declarations(void) {
     setup_test();
-    SemanticStatus status = semantic_analyze(&semantic);
-    assert(status == SEMANTIC_INVALID && !semantic.resolved);
+    assert(!checked && !frontend.valid && diagnostic_valid(&frontend.error));
     expect_diagnostic();
     destroy_test();
 }

@@ -44,7 +44,7 @@ static void it_keeps_inferred_default_storage_in_the_correct_relations(void) {
     for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) {
         SemanticStatus status = resolve_text(valid[index]);
         assert(status == SEMANTIC_OK);
-        SemanticSymbol *copy = semantic.first->last;
+        SemanticSymbol *copy = semantic_entry()->last;
         assert(copy->inferred && copy->initializers == NULL);
         status = semantic_relations(&semantic);
         assert(status == SEMANTIC_OK && semantic.relations_valid);

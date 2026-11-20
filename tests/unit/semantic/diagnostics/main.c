@@ -7,6 +7,24 @@
  */
 #include "../typed-common.c"
 #include "semantic/internal.h"
+#include "../diagnostic-evidence.c"
+
+/** Match one explicit equation role and exact original source range. */
+static bool equation_site(const DiagnosticRelated *note, SourceSpan expected) {
+    SourceSpan actual = note->location.span;
+    return strcmp(note->role,"earlier equality establishing this static value") == 0
+        && actual.source == expected.source && actual.start == expected.start && actual.end == expected.end;
+}
+/** Retained causal notes may be flat or context-linked; both borrow the same original source owner. */
+static bool equation_note(SourceSpan expected) {
+    for (size_t index = 0; index < semantic.error.related_count; index++) {
+        if (equation_site(&semantic.error.related[index],expected)) { return true; }
+    }
+    for (const DiagnosticContext *context = semantic.error.contexts; context; context = context->next) {
+        if (equation_site(&context->related,expected)) { return true; }
+    }
+    return false;
+}
 
 /**
  * Assert that the component reports both nominal types and original declarations. The explicit
@@ -16,13 +34,13 @@
 static void it_reports_both_nominal_types_and_original_declarations(void) {
     prepare_types();
     SemanticStatus status = resolve_text("@!\nsource\n.value\ndestination\n.other\ndestination\n source\n");
-    assert(status == SEMANTIC_INVALID);
-    assert(strcmp(semantic.error.subject, ".value") == 0);
-    assert(strcmp(semantic.error.expected, ".other") == 0);
-    assert(semantic.error.related_count == 2 && diagnostic_valid(&semantic.error));
-    assert(semantic.error.related[0].location.span.start == 3);
-    assert(layout_text_is(semantic.error.related[0].location.span, "source\n.value"));
-    assert(layout_text_is(semantic.error.related[1].location.span, "destination\n.other"));
+    assert(status == SEMANTIC_INVALID && diagnostic_valid(&semantic.error));
+    assert(layout_text_is(semantic.error.primary.span,"source"));
+    assert(semantic_nominal_note(&semantic.error,".value") && semantic_nominal_note(&semantic.error,".other"));
+    const AstNode *source = project.entry->syntax.body.first;
+    const AstNode *destination = source->next;
+    assert(equation_note(source->as.declaration.type->head));
+    assert(equation_note(destination->as.declaration.type->head));
     destroy_semantic();
 }
 
