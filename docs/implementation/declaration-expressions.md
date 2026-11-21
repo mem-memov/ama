@@ -3,7 +3,7 @@
 ## Tasks and authority
 
 [T269](../../DONE.md#t269) owns the iterative syntax-tree foundation, preceding
-[T226](../../TODO.md#t226)'s actual Type inference, selected producer evaluation
+[T226](../../DONE.md#t226)'s actual Type inference, selected producer evaluation
 and runtime admission. Authority is
 [TPL-15](../../spec/language/templates.md#tpl-15),
 [TPL-02](../../spec/language/templates.md#tpl-02),
@@ -426,3 +426,266 @@ LF and every other byte. `/tmp/ama-t271-eof-proof.json` records both hashes;
 the accepted task-input snapshot is updated only for that proven whitespace
 change. No C token or directive changed. Final archival documentation is
 regenerated from those exact bytes before commit.
+
+## T226: lexical provenance before source-only producer evaluation
+
+T271 is committed as `5d9ba87`; its jobs are collected. T226 is active again.
+Source-only nominal equations create no actual using-module context. General
+producer operands must preserve that property while retaining their lexical
+owner's creation edge; creating an independent supplier root would erase paths
+such as A(T) -> Factory(T) -> A(Wrapper(T)). This is an implementation obligation
+under TPL-11, not an unresolved language choice or a specification amendment.
+
+The next step introduces a guard-only annotation frame identifying an original
+ordinary declaration and exact owner environment. It is explicitly not a selected
+compilation root or a registry/result context. A supplier application may retain
+this lexical graph predecessor, but registry ancestry must stop at the annotation
+frame instead of manufacturing an ordinary using-module instance or validation
+certificate. Actual uses later replay their own incoming paths and obligations.
+
+Complete keys still merge only under existing exact canonical normalization;
+unknown scopes keep exact owner identity. Before expanding a new application,
+check all registered graph predecessors of its lexical parent, not only that
+frame's physical parent chain. A repeated origin with an unknown comparison key
+must suspend before another environment/context is published. Complete unequal
+keys remain the existing graph guard's error, and complete equal keys may close
+a cycle. Independent branches must remain independent. Reverse reachability
+uses a finite explicit queue and exact view classes, with no depth/pass budget.
+No such path can be certified merely because its owner appears active.
+
+Acceptance for this step: original-syntax/environment membership, separate
+annotation/root identities, no ordinary registry context, retained supplier edge,
+known equal/unequal cached paths, unresolved cached recurrence and independent
+branches, warm incoming paths, and every measured allocation refusal. Then
+connect finite source-only operand equations and producer graph refinement to
+this provenance; retain T269's unsupported-input guard until its full replacement
+is tested. Per-file coverage and final task acceptance remain outstanding.
+
+### Guard implementation and first evidence
+
+Annotation frames now have an explicit source-only flag and exact original
+declaration/environment identity. Selected compilation roots have separate
+frames. Result and registry entry reject annotation frames, registry ancestor
+retention stops at them, and global registry check refresh skips them. The latter
+consumer was found by the first complete nested-declaration frontend run, which
+reported `Invalid specialization use path or receiver`; updating the registry
+scan preserves the same non-admission invariant as the direct entry APIs.
+
+The annotation leaf passes identity/warm reuse, invalid original-handle/root
+requests, real supplier edges without a manufactured ordinary context, and
+every measured preparation refusal (`/tmp/ama-t226-annotation-frames.log`).
+The cached-predecessor leaf constructs an actual unknown factory-to-ordinary
+path, then a separate annotation frame for that exact ordinary owner. It checks
+suspension before new scope publication, equal-key resumption, different-key
+rejection with a retained cached witness, independent unknown branches, and every
+measured reverse-search allocation refusal. Its initial fixture incorrectly
+expected structural Pending from a known nominal expression; READY with an open
+value/key is the existing contract. Separate assertions now check those states.
+The guard parent passed at `/tmp/ama-t226-guards-parent.log` before later consumer
+integration; the pending leaf has its own direct evidence.
+
+Reverse reachability uses existing exact validation classes, one queue entry per
+class, and original parent edges. It ignores supplied-Type attribution links.
+For V classes and P original paths, scratch is O(V) plus existing view storage;
+the direct queue/path implementation takes O(V*P) plus normalization/view costs.
+No new environment, context or edge is published by that query. Scratch is
+released on success and failure; sticky guard failure retains its normal owners.
+
+### Shared supplier facts and actual ordinary use
+
+Every ordinary form now retains its original result source, including selected
+producers. The finite input cache dispatches nominal operators to existing pure
+kernels and selections to a dedicated projection cache. Named producer request
+preparation is reused, not reimplemented. Its parent is the actual using context
+when present, or the original annotation frame for source-only facts. Guarded
+Pending retains the original request map and no new supplier context.
+
+Projection refinement advances required graph witnesses, reads the exact public
+definition, and reuses the result engine's complete-input/complete-value scalar
+equation. The shared equation takes explicit source, supplier context and checked
+definition, so metadata never fabricates a result use or ordinary caller context.
+Root selection additionally checks ordinary Type/marker storage restrictions;
+nested selections may be complete residual Templates. Source facts may remain
+open without failing. Strict resolution/publication separately requires all
+supplier definitions and dependencies to close. An expected consumer Type still
+cannot solve a missing supplier input through the selected output.
+
+The independent zero-argument export interpreter, its header entry and per-file
+record are removed. The T269 temporary unsupported-input refusal is replaced by
+the actual normalized input map. The former test now checks the real unknown
+formal error at its exact label span, rather than the removed unsupported-form
+message. Source-only pure-equation tests now distinguish healthy open facts from
+the later strict unresolved error. Actual selections publish scalar descriptors;
+their distinct incoming proofs may share one full supplier specialization key.
+
+The frontend accepts both finite written nested uses of the same factory and a
+higher-order composition: a zero-input supplier returns a residual ordinary
+constructor, a second supplier applies a concrete Type, and the ordinary field
+receives one complete Type. The new declaration cases have their own support
+granule. `/tmp/ama-t226-declaration-frontend.log` passes. Ordinary export and
+source annotation leaves pass at `/tmp/ama-t226-ordinary-integration.log` and
+`/tmp/ama-t226-annotation-integration.log`. Earlier failed runs identified the
+old whole-binding diagnostic span and the old fact-pass hard-error expectation;
+both expectations were aligned with the named binder and inference contracts.
+
+### Broad consumer run and cached-ancestry correction
+
+The first broad static run 42719 (`/tmp/ama-t226-static-parent.log`) found a real
+overconstraint: applying reverse unknown-ancestry checks to every actual incoming
+path prevented an independently grounded root from computing after another use
+with unknown ancestors. Actual uses must retain their own physical ancestry;
+unknown upstream callers do not become ancestors of an independent root.
+
+The reverse unknown check now applies only at a source-only frame whose own key
+is still open, where metadata would otherwise reset unresolved ancestry. A
+closed ordinary owner retains finite canonical scope identity: ordinary guard
+entry normalizes complete owner Types, so repeated source metadata uses the same
+owner/request keys. Closed unequal creation paths remain checked globally before
+scope expansion. Actual paths retain their existing direct ancestry checks.
+This preserves independent computation without speculative open-owner expansion.
+The pending leaf additionally checks a closed ordinary metadata owner reached
+from an unrelated still-open factory. The original pending factory remains open;
+the independently concrete supplier is admitted under its own lexical frame.
+Final direct evidence is `/tmp/ama-t226-cached-pending-final.log` (61996), with the
+original failing publication recursion leaf to be rerun before acceptance.
+
+The first compiler parent 80374 (`/tmp/ama-t226-compiler-parent.log`) found an
+obsolete marker test assumption: selected declarations no longer publish a full
+output bundle. Marker tests now query every relevant original public definition
+under its checked canonical supplier key, retaining identity/root-kind/no-layout
+assertions. The corrected complete marker leaf 44109 passes at
+`/tmp/ama-t226-markers-composition.log`; its counted frontend failure sweep remains
+part of that leaf. The broad compiler's other leaves completed without another
+reported failure. The broad static's other leaves completed without another
+reported failure; final statuses still need collection.
+
+Actual CLI emission, native verification, C compilation and execution also pass
+at `/tmp/ama-t226-generated-integer.log` (63318). The maintained integer/list
+fixture now obtains its element Type through two explicitly named nested
+applications of the same static supplier, while still checking marker metadata,
+aliases, constants, list operations and cleanup. Expected output remains exactly
+`length=7`, `length=3`, `length=0` on separate lines. This is actual runtime
+evidence, not inspection of generated C or a syntax-only claim.
+
+Current step: collect the finished jobs, verify the corrected pending/recursion
+leaves, add final composed boundary/failure coverage, review editor/relocation
+consumers, then pass sanitizers and complete documentation. T226 is unfinished;
+no acceptance or commit is claimed. Specification and conformance fingerprints
+remain unchanged.
+
+### Final composed boundary additions
+
+The broad run statuses are collected: static parent 42719 exited 2 solely at the
+independent-root recursion regression; compiler parent 80374 exited 2 solely at
+the obsolete bundle-count assertion. Corrected publication recursion 74949,
+marker leaf 44109, actual emitted integer/list execution 63318 and guard parent
+11977 all exited zero. The final pending leaf and recursive frontend cases also
+pass. Final documentation and sanitizer gates remain outstanding.
+
+The cached unknown check follows an open annotation boundary through its actual
+supplier descendants, not only an immediately marked parent. Otherwise a closed
+intermediate factory could delegate to a fresh open supplier after ancestry was
+reset at an ordinary field. Actual independent roots have no such boundary;
+closed metadata owners may still compute independently. Candidate-key
+normalization is delayed until all reachable repeated predecessors are closed,
+so even a concrete candidate facing an unknown earlier key returns Pending
+without interning its target environment. The direct leaf covers both concrete
+and unknown candidates, inherited boundaries, closed independent metadata and
+every measured search refusal.
+
+New frontend checks reject a known growing Factory(T) -> Node(T) ->
+Factory(Box(T)) creation path with the full cached witness; an open repeat has no
+new factory context under Node. A delegated case retains the open boundary
+through a closed factory before the next open producer, and confirms only the
+original main declaration has entered that producer. These tests use actual
+frontend state and exact origin/path assertions, not a heuristic iteration cap.
+`/tmp/ama-t226-declaration-recursion-frontend.log` and
+`/tmp/ama-t226-delegated-recursion-frontend.log` pass (75091 and 55636).
+
+The editor index already walks every original static occurrence, so nested
+selectors and inputs require no alternate resolver. New Unicode/dotted-name
+navigation checks reach the same original foreign symbols at both depths;
+checked multi-file renaming covers nested input and output labels. The complete
+editor parent 75924 passes at `/tmp/ama-t226-editor-parent.log`. Existing project
+dependency extraction traverses the same parsed input trees. T224 still owns
+the approved versioned copy/delete/move replacement; T226 makes no new command
+or relocation acceptance claim.
+
+### Diagnostic provenance and final matrix checkpoint
+
+The first complete documentation gate passed at
+`/tmp/ama-t226-documentation-accepted.log`: 3273 ready inputs, zero debts, 2468
+maintained file pages, 9511 documented interfaces and all 490 destinations.
+Before it, metadata checks correctly refused a missing standalone-header command
+and case references to included support files without their own leaf Makefiles.
+Added the required existing standalone probe command and registered real
+including `main.c` translation units; no validation rule was weakened.
+
+Final ASan/UBSan runs 63920/97834/86614/34244 and actual emitted execution 77000
+all exited zero. Logs are `/tmp/ama-t226-sanitized-final-{pending,annotation,facts,frontend}.log`
+and `/tmp/ama-t226-generated-accepted.log`. They use the previously recorded
+sanitizer flags and disabled LeakSanitizer; counted failure sweeps remain separate
+ownership evidence.
+
+The next complete static run 92073 exposed another obsolete bundle-sharing
+assertion in shared-constant declaration tests. Distinct selected scalar uses now
+retain distinct publication descriptors and share the actual canonical supplier
+key and ordinary Type; the updated declaration leaf 79649 passes at
+`/tmp/ama-t226-constant-declarations-final.log`.
+
+Compiler run 52047 found a real diagnostic regression: at final underdetermination
+the anonymous scalar receiver pointed only to its caller. Preserve the original
+selected producer definition through the variable's exact bound occurrence,
+without name/signature search or failure-time allocation. A selected ordinary
+Type requirement now retains its actual selector span. This restores producer
+and caller attribution across both declaration/root orders, without making the
+healthy fact pass fail prematurely. The unchanged diagnostic assertions and
+ASan/UBSan pass at `/tmp/ama-t226-diagnostics-accepted.log` (32043) and
+`/tmp/ama-t226-sanitized-diagnostics.log` (64185).
+
+Current active jobs: full static matrix 54371 at
+`/tmp/ama-t226-static-complete.log` and compiler matrix 20311 at
+`/tmp/ama-t226-compiler-complete.log`, both using keep-going recursive Make so a
+failure cannot leave later independent leaves untested. Documentation 93830 is
+at `/tmp/ama-t226-documentation-diagnostics-final.log`. Other behavior jobs are
+collected. Code is frozen during these checks. T226 is not archived or committed.
+
+### Collected final matrix and constant-consumer alignment
+
+Compiler matrix 20311 completed successfully, with all ten assertion harnesses
+and no warning. The keep-going static matrix completed all 97 harnesses. It
+reported two obsolete constant-consumer assertions: an exported namespace still
+expected no actual source use, and shared initialization still expected an
+immediate hard error rather than healthy Pending. The namespace now retains its
+real source; initialization may contribute a consumer Type but cannot complete
+the supplier input. The updated test checks the input remains open, then requires
+strict resolution to fail as unresolved. Both complete corrected leaves pass at
+`/tmp/ama-t226-constant-selection-final.log` (8186) and
+`/tmp/ama-t226-constant-initializer-final.log` (70791). Production logic is unchanged
+by those two test corrections. The complete constants parent runs separately at
+`/tmp/ama-t226-constants-accepted.log` to check their compositions together.
+
+The final full documentation gate 93830 passed after the diagnostic correction:
+3273 ready inputs, zero debts, 2468 maintained file pages, 9512 documented
+interfaces and all 490 referenced destinations, at
+`/tmp/ama-t226-documentation-diagnostics-final.log`. The later constant test
+expectation changes require the final metadata/interface/documentation pass;
+do not reuse that earlier source fingerprint as current acceptance. No
+specification or conformance fingerprint changed, and T226 remains unarchived.
+
+### T226 acceptance and continuation
+
+All active jobs are collected. The final constants parent (90245) and final
+`make docs` (65999) both exited zero. Their logs are
+`/tmp/ama-t226-constants-accepted.log` and
+`/tmp/ama-t226-documentation-release.log`. The documentation result is 3273 ready
+inputs, zero debts, 2468 maintained file pages, 9512 documented interfaces and
+490 checked destinations. The complete compiler and editor matrices, corrected
+static/constant matrix described above, counted OOM, sanitizers and generated-C
+execution satisfy this task's scoped acceptance. No LeakSanitizer or renewed
+whole-sprint conformance claim is made. T237 retains that matrix renewal.
+
+The zero-argument export implementation and its dedicated assumptions are removed.
+No specification changed. T226 is archived in DONE; the next ready task is T233.
+After this Markdown-only archival, regenerate Doxygen and verify that every
+accepted maintained non-Markdown input remains byte-identical before committing.

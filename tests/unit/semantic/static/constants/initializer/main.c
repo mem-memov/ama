@@ -85,8 +85,17 @@ static void it_refuses_initializer_driven_completion_of_a_selected_static_suppli
         const StaticConstantInitializer *item = initializer(context, "bad");
         StaticResultOutcome outcome = STATIC_RESULT_READY;
         bool success = static_constant_initializer_resolve(&constants, item, NULL, &outcome);
-        assert(!success && outcome == STATIC_RESULT_READY && constants.status == STATIC_CONSTANT_UNRESOLVED);
+        assert(success && outcome == STATIC_RESULT_PENDING && constants.status == STATIC_CONSTANT_OK);
         assert(item->declaration->source->publication == NULL && publications.count == 0);
+        const StaticResultUse *use = item->declaration->source->source;
+        const StaticTerm *input;
+        StaticConstraintOutcome known;
+        assert(use->producer_request && use->producer_request->input_count == 1);
+        assert(static_constraint_value(&solver, use->producer_request->inputs[0].value, &input, &known));
+        assert(known == STATIC_CONSTRAINT_PENDING);
+        input = NULL;
+        assert(!static_ordinary_resolve(&publications, item->declaration->source, &input));
+        assert(input == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
         destroy_constants();
     }
 }

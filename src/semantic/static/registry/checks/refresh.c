@@ -13,9 +13,11 @@ bool static_registry_refresh_checks(StaticRegistryPlan *plan, StaticRegistryChec
     if (!output) {
         return static_registry_fail(plan, STATIC_REGISTRY_INVALID, (SourceSpan){0}, "Missing specialization check-closure receiver");
     }
-    /* Every path already demanded from the guard belongs to this compilation.
-     * Retain it even if a caller previously queried only a cached descendant. */
+    /* Actual demanded paths retain all incoming validation uses. Annotation
+     * predecessors participate only in lexical creation reachability, never
+     * in ordinary admission or executable contexts (TPL-11). */
     for (const StaticCreationPath *path = plan->guards->first_path; path; path = path->next) {
+        if (path->source_only) { continue; }
         StaticRegistryUse *use;
         StaticRegistryKeyState state;
         if (!static_registry_use(plan, path, &use, &state)) { return false; }

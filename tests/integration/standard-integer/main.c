@@ -39,7 +39,9 @@ static void it_requires_an_explicit_standard_root_to_resolve_integer(void) {
     destroy_test();
 }
 
-/** Whole-alias constant lists copy real integer payloads through verified CLI execution. */
+/** Nested selected Type constructors supply actual list element storage;
+ * whole-alias constant lists retain integer payloads through verified execution.
+ */
 static void it_compiles_and_executes_real_integer_list_results(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--standard-root", TEST_STANDARD_ROOT,

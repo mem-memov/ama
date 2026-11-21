@@ -46,7 +46,7 @@ static void it_selects_a_concrete_export_before_namespace_member_selection(void)
     const StaticConstantRead *read;
     const StaticConstantSelection *selection;
     bool success = static_constant_read(&constants, context, constant_namespace_read(0), &read);
-    assert(success && read->source->source == NULL);
+    assert(success && read->source->source && read->source->annotation == read->source->source->source);
     const StaticTerm *namespace_type;
     success = static_ordinary_resolve(&publications, read->source, &namespace_type);
     assert(success && namespace_type->as.nominal.first_capture->value == integer_type);
@@ -77,9 +77,9 @@ static void it_refuses_a_static_producer_scope_as_an_ordinary_namespace_scope(vo
     assert(success);
     const StaticTerm *type;
     success = static_ordinary_resolve(&publications, read->source, &type);
-    assert(success && read->source->producer_context);
+    assert(success && read->source->source->producer);
     const StaticConstantSelection *selection = NULL;
-    success = static_constant_select(&constants, read, read->source->producer_context, &selection);
+    success = static_constant_select(&constants, read, read->source->source->producer, &selection);
     assert(!success && selection == NULL && constants.status == STATIC_CONSTANT_INVALID);
     assert(publications.status == STATIC_PUBLICATION_OK && solver.status == STATIC_CONSTRAINT_OK);
     destroy_constants();

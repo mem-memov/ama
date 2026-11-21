@@ -2,6 +2,9 @@
 @!
 items[]
 ./types
+ .type < ./types
+  .type < //integer
+  .integer
  .integer
 items[]
  ~initial[]

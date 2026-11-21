@@ -21,7 +21,7 @@ bool static_result_has_context(const StaticResultPlan *plan, const StaticResultC
  */
 bool static_result_context(StaticResultPlan *plan, const StaticCreationPath *creation, const StaticResultContext **output) {
     if (!static_result_dependencies(plan)) { return false; }
-    if (output == NULL || !static_guard_has_path(plan->guards, creation)) {
+    if (output == NULL || !static_guard_has_path(plan->guards, creation) || creation->source_only) {
         return static_result_fail(plan, STATIC_RESULT_INVALID, (SourceSpan){0}, "Invalid required static evaluation scope");
     }
     const StaticResultContext *existing = NULL;

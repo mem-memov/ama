@@ -5,9 +5,8 @@
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) separates actual contexts and source facts.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns partial obligations.
  * [TPL-15](../../../../../spec/language/templates.md#tpl-15) requires every
- * supplied producer argument to participate in resolution. The existing
- * zero-argument export consumer must refuse richer parsed forms until the
- * complete declaration-expression consumer replaces this domain boundary.
+ * supplied producer argument to participate in the shared checked source
+ * evaluation, including operands with their own selected results.
  */
 #include <stdint.h>
 #include "internal.h"
@@ -37,10 +36,6 @@ static bool selector(StaticPublicationPlan *plan, const StaticOccurrence *site, 
     if (!producer || !selected) {
         return static_publication_fail(plan, STATIC_PUBLICATION_CONFLICT, expression->span,
             "A static module requires one named export selector; ordinary Types cannot have one");
-    }
-    if (expression->first != NULL) {
-        return static_publication_fail(plan, STATIC_PUBLICATION_CONFLICT, expression->first->span,
-            "Static producer arguments in declaration types are not implemented");
     }
     record->producer = static_module_find(plan->results->guards->applications->terms->inventory, site->origin);
     record->selected = static_symbol_find(record->producer, expression->selected_export);
@@ -75,23 +70,18 @@ static bool prepare(StaticPublicationPlan *plan, const StaticResultContext *cont
     StaticOrdinaryType prepared = {.context = context, .environment = environment, .expression = expression};
     if (!selector(plan, site, &prepared)) { return false; }
     StaticConstraintSolver *solver = plan->results->guards->applications->solver;
-    if (prepared.producer) {
-        if (!static_term_expression_result(solver->terms, environment, expression, &prepared.value)) {
+    if (context) {
+        if (!static_result_use(plan->results, context, expression, NULL, &prepared.source)) {
             (void)static_publication_dependencies(plan); return false;
         }
-    } else {
-        if (context) {
-            if (!static_result_use(plan->results, context, expression, NULL, &prepared.source)) {
-                (void)static_publication_dependencies(plan); return false;
-            }
-            prepared.annotation = prepared.source->source;
-        } else if (!static_result_source(plan->results, environment, expression, &prepared.annotation)) {
-            (void)static_publication_dependencies(plan); return false;
-        }
-        prepared.value = prepared.annotation->value;
+        prepared.annotation = prepared.source->source;
+    } else if (!static_result_source(plan->results, environment, expression, &prepared.annotation)) {
+        (void)static_publication_dependencies(plan); return false;
     }
+    prepared.value = prepared.annotation->value;
+    SourceSpan requirement = prepared.producer ? expression->selected_export : expression->span;
     if (!static_constraint_describe(solver, prepared.value, STATIC_CATEGORY_TYPE, NULL, expression->span) ||
-        !static_constraint_require(solver, prepared.value, expression->span)) {
+        !static_constraint_require(solver, prepared.value, requirement)) {
         (void)static_publication_dependencies(plan); return false;
     }
     StaticOrdinaryType *record = static_publication_allocate(plan, sizeof(*record));

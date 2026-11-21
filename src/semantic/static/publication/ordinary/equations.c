@@ -9,12 +9,14 @@
  */
 #include "internal.h"
 #include "inputs/internal.h"
+#include "projections/internal.h"
 #include "../progress.h"
 
 /** Shared operand/application kernels retain the complete original annotation's
  * finite equations, including each nested input, without body evaluation.
- * An export instead closes its actual independent static root, never an ordinary
- * caller root. Such metadata work cannot certify an actual ordinary use.
+ * A selection advances its checked supplier under lexical provenance without
+ * requiring premature closure or inventing an ordinary caller root. Such
+ * metadata work cannot certify an actual ordinary use.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) leaves ancestry/body validation outstanding.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) forbids reverse supplier inference.
  */
@@ -25,14 +27,14 @@ bool static_ordinary_equations(StaticPublicationPlan *plan, StaticOrdinaryType *
     }
     StaticPublicationProgress before = static_publication_progress(plan);
     if (type->producer) {
-        if (!static_ordinary_export(plan, type)) { return false; }
+        if (!static_ordinary_projection_equations(plan, type, type->annotation, &type->projection)) { return false; }
     } else {
         if (!static_result_operands(plan->results, type->annotation, &type->prepared) ||
             !static_result_application(plan->results, type->annotation, type->prepared, &type->application)) {
             (void)static_publication_dependencies(plan); return false;
         }
-        if (!static_ordinary_input_equations(plan, type)) { return false; }
     }
+    if (!static_ordinary_input_equations(plan, type)) { return false; }
     *output = !static_publication_same_progress(before, static_publication_progress(plan));
     return true;
 }

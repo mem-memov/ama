@@ -96,7 +96,7 @@ bool static_creation_enter(StaticGuardPlan *plan, const StaticCreationPath *pare
         }
         const StaticGuardOwner *owner;
         if (!static_guard_owner(plan, environment, &owner) ||
-            !static_guard_path(plan, parent, owner, record, site, &path)) { return false; }
+            !static_guard_path(plan, parent, owner, record, site, false, &path)) { return false; }
     }
     StaticGuardClosure closure;
     if (!static_guard_refresh(plan, &closure)) { return false; }

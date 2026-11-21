@@ -1,8 +1,28 @@
 /** @file
  * @brief Retain original constraint/definition diagnostics without allocating on failure.
  * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves source evidence.
+ * [TPL-15](../../../../spec/language/templates.md#tpl-15) retains original
+ * supplier provenance for unresolved declaration selection variables.
  */
 #include "internal.h"
+
+/** An internal scalar receiver denotes a particular original foreign result.
+ * Its producer is already bound in the immutable occurrence inventory. Retain
+ * that actual definition instead of reporting only the caller's anonymous
+ * expression variable; neither names nor candidate signatures are searched.
+ * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) attributes
+ * unresolved selected Types to their responsible source producer.
+ */
+static const ProjectModule *selected_producer(const StaticTerm *term) {
+    const StaticVariableIdentity *identity = &term->as.variable;
+    if (identity->role != STATIC_VARIABLE_APPLICATION || !identity->producer ||
+        !identity->producer->selected_export.source) { return NULL; }
+    for (const StaticOccurrence *site = identity->environment->definition->first_occurrence; site; site = site->next) {
+        if (!site->receiver && site->expression == identity->producer && site->origin &&
+            site->origin->syntax.sections.kind == MODULE_STATIC) { return site->origin; }
+    }
+    return NULL;
+}
 
 /** Variable definitions use their original scoped formal/alias site. Nominal
  * definitions use the original module file start, never a first application
@@ -15,6 +35,11 @@ DiagnosticRelated static_constraint_definition(const StaticTerm *term, const cha
     if (term->kind == STATIC_TERM_VARIABLE) {
         const StaticSymbol *symbol = term->as.variable.symbol;
         if (symbol == NULL) {
+            const ProjectModule *producer = selected_producer(term);
+            if (producer) {
+                return (DiagnosticRelated){.location = {.span = {producer->source->text, 0, 0}},
+                    .role = role, .name = producer->source->logical_path};
+            }
             const StaticTermEnvironment *environment = term->as.variable.environment;
             return (DiagnosticRelated){.location = {.span = term->site}, .role = role,
                 .name = environment->definition->definition->source->logical_path};

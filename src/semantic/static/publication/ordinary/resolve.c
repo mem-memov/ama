@@ -6,9 +6,11 @@
  * origins even after placeholder substitution or export selection.
  */
 #include "internal.h"
+#include "projections/internal.h"
 
-/** Ordinary namespace resolution preserves source provenance; exports retain
- * their independent supplier root. Neither path selects a Type from member names.
+/** Ordinary namespace resolution preserves actual source provenance. Source-only
+ * selections close their attributed supplier without inventing an ordinary root.
+ * Neither path selects a Type from member names.
  * [CONST-03](../../../../../spec/language/declarations.md#const-03) forbids namespace guessing.
  */
 bool static_ordinary_resolve(StaticPublicationPlan *plan, StaticOrdinaryType *type,
@@ -17,11 +19,20 @@ bool static_ordinary_resolve(StaticPublicationPlan *plan, StaticOrdinaryType *ty
     if (!output || !static_ordinary_has(plan, type) || (!type->context && !type->producer)) {
         return static_publication_fail(plan, STATIC_PUBLICATION_INVALID, (SourceSpan){0}, "Invalid ordinary Type resolution handle or receiver");
     }
-    if (type->producer) {
-        if (!static_ordinary_export(plan, type)) { return false; }
-    } else {
+    bool changed;
+    if (!static_ordinary_equations(plan, type, &changed)) { return false; }
+    if (type->context) {
         const StaticPublication *publication;
         if (!static_publication_resolve(plan, type->context, type->expression, &publication)) { return false; }
+        type->publication = publication;
+    } else {
+        if (!type->projection || !type->projection->context) {
+            return static_publication_fail(plan, STATIC_PUBLICATION_UNRESOLVED, type->expression->span,
+                "The selected supplier remains unresolved under its lexical creation ancestry");
+        }
+        const StaticPublication *publication;
+        if (!static_publication_scope(plan, type->projection->context, &publication) ||
+            !static_ordinary_equations(plan, type, &changed)) { return false; }
         type->publication = publication;
     }
     const StaticTerm *value;

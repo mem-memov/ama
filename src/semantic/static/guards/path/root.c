@@ -19,7 +19,7 @@ bool static_creation_root(StaticGuardPlan *plan, const StaticTermEnvironment *en
     const ProjectModule *definition = environment->definition->definition;
     SourceSpan site = {definition->source->text, 0, 0};
     const StaticCreationPath *path;
-    if (!static_guard_path(plan, NULL, owner, NULL, site, &path)) { return false; }
+    if (!static_guard_path(plan, NULL, owner, NULL, site, false, &path)) { return false; }
     StaticGuardClosure closure;
     if (!static_guard_refresh(plan, &closure)) { return false; }
     *output = path;

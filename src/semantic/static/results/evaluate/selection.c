@@ -26,15 +26,15 @@ bool static_result_selection_read(StaticResultEvaluation *evaluation, StaticResu
  * [TPL-15](../../../../../spec/language/templates.md#tpl-15) forbids inverting
  * a producer, including one with an unused unresolved input.
  */
-bool static_result_selection_equation(StaticResultPlan *plan, StaticResultUse *use) {
-    if (!use->source->selection || !use->selection) { return true; }
+bool static_result_selection_equation(StaticResultPlan *plan, const StaticResultSource *source,
+    const StaticResultContext *producer, const StaticResultDefinitionUse *definition) {
+    if (!source->selection || !definition) { return true; }
     StaticRegistryUse *registered;
     StaticRegistryKeyState keys;
-    if (!static_registry_use(plan->registry, use->producer->creation, &registered, &keys)) {
+    if (!static_registry_use(plan->registry, producer->creation, &registered, &keys)) {
         (void)static_result_dependencies(plan); return false;
     }
     if (keys != STATIC_REGISTRY_KEY_CLOSED) { return true; }
-    const StaticResultDefinitionUse *definition = use->selection;
     const StaticResultUse *rhs = definition->cache_hit ? definition->checked_rhs : definition->rhs;
     if (definition->outcome != STATIC_RESULT_READY || !rhs || rhs->outcome != STATIC_RESULT_READY || !rhs->closed) {
         return true;
@@ -46,7 +46,7 @@ bool static_result_selection_equation(StaticResultPlan *plan, StaticResultUse *u
         (void)static_result_dependencies(plan); return false;
     }
     if (outcome != STATIC_CONSTRAINT_COMPLETE) { return true; }
-    if (!static_constraint_equate(solver, use->source->value, value, use->source->expression->selected_export)) {
+    if (!static_constraint_equate(solver, source->value, value, source->expression->selected_export)) {
         (void)static_result_dependencies(plan); return false;
     }
     return true;

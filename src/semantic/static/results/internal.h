@@ -5,11 +5,23 @@
  * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves original diagnostic storage.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) checks actual scope paths.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) scopes source/definition uses.
+ * [TPL-15](../../../../spec/language/templates.md#tpl-15) shares guarded scalar
+ * equations between annotation facts and actual declaration uses.
  */
 #ifndef AMA_STATIC_RESULT_INTERNAL_H
 #define AMA_STATIC_RESULT_INTERNAL_H
 #include "plan.h"
 #include "../guards/internal.h"
+
+/** Equate a declaration scalar only to a checked complete selection whose
+ * supplier input key is complete. Source and definition identities belong to
+ * the registered result owner; ordinary metadata callers need no fabricated
+ * using-module context. A null definition or nonselection contributes no fact.
+ * [TPL-15](../../../../spec/language/templates.md#tpl-15) forbids reverse
+ * inference through a producer while sharing this phase boundary with actual uses.
+ */
+bool static_result_selection_equation(StaticResultPlan *, const StaticResultSource *,
+    const StaticResultContext *, const StaticResultDefinitionUse *);
 
 /** Allocate zeroed result-plan records while healthy; failures allocate no report.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial construction.

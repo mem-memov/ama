@@ -32,6 +32,16 @@ bool static_guard_has_path(const StaticGuardPlan *, const StaticCreationPath *);
  */
 bool static_guard_owner_ancestry(StaticGuardPlan *, const StaticCreationPath *,
     const StaticGuardOwner *, SourceSpan, bool *);
+/** Suspend an unresolved source-only ancestor's repeated origin reachable through
+ * cached incoming edges, even when absent from its physical parent chain.
+ * Actual paths keep their own ancestry; closed metadata owners retain finite
+ * canonical scope identity and must not inherit unrelated pending callers.
+ * Pending publishes no new target environment or path. Complete unequal paths are
+ * still rejected by the ordinary entry/graph checks before scope expansion.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves cache ancestry.
+ */
+bool static_guard_cached_pending(StaticGuardPlan *, const StaticCreationPath *,
+    const StaticGuardOwner *, bool *);
 /** Compare repeated actual template origins by complete keys before expansion.
  * Pending keys suspend this request, without guessing equality or another scope.
  * Closed unequal keys retain both canonical identities and the original path.
@@ -42,7 +52,7 @@ bool static_guard_ancestry(StaticGuardPlan *, const StaticCreationPath *, const 
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) retains every creation edge.
  */
 bool static_guard_path(StaticGuardPlan *, const StaticCreationPath *, const StaticGuardOwner *,
-    const StaticApplicationRecord *, SourceSpan, const StaticCreationPath **);
+    const StaticApplicationRecord *, SourceSpan, bool, const StaticCreationPath **);
 /** Intern one already normalized complete owner environment as a graph key.
  * Caller proves normalization/closure through T176; this helper chooses no key.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves concrete identities.

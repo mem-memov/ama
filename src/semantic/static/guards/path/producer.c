@@ -66,7 +66,7 @@ bool static_creation_producer_enter(StaticGuardPlan *plan, const StaticCreationP
     const StaticGuardOwner *published;
     const StaticCreationPath *path;
     if (!static_guard_owner(plan, environment, &published) ||
-        !static_guard_path(plan, parent, published, NULL, expression->span, &path)) { return false; }
+        !static_guard_path(plan, parent, published, NULL, expression->span, false, &path)) { return false; }
     StaticGuardClosure closure;
     if (!static_guard_refresh(plan, &closure)) { return false; }
     *output = path;

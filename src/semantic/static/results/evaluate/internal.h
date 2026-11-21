@@ -76,11 +76,6 @@ bool static_result_producer_closed(StaticResultPlan *, StaticResultUse *, bool *
  * scalar separate from expected consumer facts until supplier input closure.
  */
 bool static_result_selection_read(StaticResultEvaluation *, StaticResultUse *);
-/** Publish only a checked complete selection from a fully determined supplier.
- * [TPL-15](../../../../../spec/language/templates.md#tpl-15) forbids inverse
- * producer inference through a declaration's scalar receiver.
- */
-bool static_result_selection_equation(StaticResultPlan *, StaticResultUse *);
 /** Drive an already initialized exact-root stack and always release its scratch
  * arena, including after push/step failure. Graph passes use their prepared root
  * handles rather than reconstructing a potentially different root occurrence.

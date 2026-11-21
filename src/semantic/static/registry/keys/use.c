@@ -35,7 +35,7 @@ bool static_registry_bind(StaticRegistryPlan *plan, StaticRegistryUse *use) {
 bool static_registry_use(StaticRegistryPlan *plan, const StaticCreationPath *path,
     StaticRegistryUse **output, StaticRegistryKeyState *state) {
     if (!static_registry_dependencies(plan)) { return false; }
-    if (output == NULL || state == NULL || !static_guard_has_path(plan->guards, path)) {
+    if (output == NULL || state == NULL || !static_guard_has_path(plan->guards, path) || path->source_only) {
         return static_registry_fail(plan, STATIC_REGISTRY_INVALID, (SourceSpan){0}, "Invalid specialization use path or receiver");
     }
     StaticGuardClosure closure;
@@ -49,6 +49,7 @@ bool static_registry_use(StaticRegistryPlan *plan, const StaticCreationPath *pat
     StaticRegistryUse *child = use;
     for (const StaticCreationPath *parent = path->parent ? path->parent : path->required_from;
         parent; parent = parent->parent ? parent->parent : parent->required_from) {
+        if (parent->source_only) { break; }
         StaticRegistryUse *owner;
         if (!static_registry_retain(plan, parent, &owner) || !static_registry_bind(plan, owner) ||
             !static_registry_depend(plan, owner, child, child->path->site)) { return false; }

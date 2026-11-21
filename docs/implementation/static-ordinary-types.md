@@ -61,9 +61,9 @@ Namespace lookup still cannot infer missing constructor arguments.
 
 The publication arena owns `StaticOrdinaryType` records. Keys include exact
 source environment, original root expression and optional actual context.
-Normal records retain an immutable annotation source; actual records additionally
-retain guarded result work. Export records retain the original producer/public
-symbol, its independent root and publication. A selector never introduces a
+All records retain an immutable annotation source; actual records additionally
+retain guarded result work. Selected operands retain original producer/public
+symbols, named requests and attributed graph/definition proofs. A selector never introduces a
 using-module placeholder, and free input parameters are not public exports.
 
 `static_ordinary_source` registers finite ordinary annotation metadata with a null
@@ -86,8 +86,9 @@ body/default/call nor reads a computed ordinary definition. Static graph modules
 are outside this API's source domain. No removed generic interface-preview
 operation or computed-interface exception is restored.
 
-Metadata normal work creates no actual context, root, ready result use or
-publication certificate. Its caller may query known Type facts for finite
+Pure nominal metadata operators create no actual context, root, ready result use
+or publication certificate. Selected operands may require real static supplier
+contexts, without creating an ordinary using-module context or body certificate. Its caller may query known Type facts for finite
 interface matching. `static_ordinary_evaluate` still requires an actual use;
 normal final resolution likewise requires its actual context and guarded source
 publication. A known metadata value does not satisfy those proof requirements.
@@ -105,19 +106,24 @@ their value output rather than initializing it; callers must initialize receiver
 
 Registration creates a consumer-local Type variable for a selected export, with
 no equation to the supplying output. Expected Types, literals, calls and desired
-members cannot fill supplier inputs. Source-only export equations may request
-only the actual independent static compilation root. They cannot manufacture
-the using ordinary module's root or an ordinary producer instance.
+members cannot fill supplier inputs by reversing a selected output. Source-only
+selections retain an original annotation predecessor in the lexical creation
+graph. This frame cannot become a registry/result context, and registry ancestry
+stops before promoting it into an ordinary use. Actual uses instead retain their
+real incoming parent. Neither path invents an ordinary producer instance.
 
-Close every supplier input, output and actual dependency before selecting the
-original public name. The selected value must be a complete ordinary Type;
-other outputs may be bound residual Templates. Only then add the consumer equality.
+Advance every required public definition and statement without prematurely
+requiring unknown inputs to close during a fact pass. Add the scalar equation
+only when every supplier input and the checked selected value are complete.
+Nested selections may be residual Templates; the final declaration requires one
+ordinary storable Type. Final publication separately closes all outputs and
+dependencies. Other outputs may remain complete residual Templates.
 Incompatible existing consumer evidence fails instead of rebinding either side.
-Repeated requests recheck equations and reuse original source/root publications.
+Repeated requests recheck equations and retain original source/definition proofs.
 
 Source-only exports can resolve independently because that proof is complete.
-When an actual ordinary use is registered, it must retain its own validation edge
-to the supplier even if metadata already knows the same value and root. That new
+When an actual ordinary use is registered, it must retain its own lexical creation
+and validation edges to the supplier even if metadata already knows the value. That new
 required edge is progress; duplicate edges or allocation snapshots are not. Normal
 actual uses still enter their real guarded source paths. No origin search, default
 instance, matching-signature guess or contextual factory completion is permitted.
@@ -168,9 +174,11 @@ receives the same simultaneous equations independently of that schedule.
 All cache/frame records remain publication-owned after refusal; their source
 and operator pointers borrow longer-lived existing owners.
 
-General static producer input/selected-value expressions retain T226 as their
-implementation owner. T269's explicit refusal prevents the older zero-argument
-ordinary-export path from discarding newly parsed inputs. The normal operand
-pass does not bypass that boundary or invent supplier inputs from an expected
-consumer Type. The [declaration-expression record](declaration-expressions.md)
+T226 integrates general named producer inputs and nested selected values through
+the shared result engine, replacing the zero-argument-only export operation and
+its temporary refusal. Source-only supplier entry retains lexical creation
+provenance. Cached reverse reachability suspends unresolved repeated origins
+before another scope expands; complete unequal paths still fail the existing
+creation graph check. The fact pass never inverts expected consumer Types into
+supplier inputs. T226 passed its scoped acceptance gates. The [declaration-expression record](declaration-expressions.md)
 contains the current task, proof, failure partitions and collected run evidence.

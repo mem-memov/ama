@@ -102,11 +102,28 @@ static void it_renames_forward_graph_bindings_and_defining_and_equality_receipts
 
 #include "support/refusals.c"
 
+/** Checked multi-file renaming follows every nested declaration selector/input
+ * rather than treating its indentation as a different scope or parameter.
+ */
+static void it_renames_nested_declaration_labels_and_selectors_with_checked_validation(void) {
+    for (size_t output = 0; output < 2; output++) {
+        project_fixture("@!\nvalue&\n./factory\n .input < ./factory\n  .input < ./cell\n  .out\n .out\n");
+        file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n.out\n.input\n");
+        setup_rename();
+        assert(prepare("/test/fixture/v1.0.0/src/factory", output ? ".out" : ".input",
+            output ? ".selected type" : ".input type"));
+        assert(changed_file("/test/fixture/v1.0.0/src/main") && changed_file("/test/fixture/v1.0.0/src/factory"));
+        assert(validate());
+        destroy_rename();
+    }
+}
+
 /** Run actual compiler/candidate graph validation rather than testing helper equality in isolation. */
 static void run(void) {
     it_renames_one_original_field_across_distinct_specializations();
     it_renames_static_formals_and_their_actual_constructor_labels();
     it_renames_named_graph_outputs_and_ordinary_selection_sites();
+    it_renames_nested_declaration_labels_and_selectors_with_checked_validation();
     it_refuses_incomplete_or_malformed_static_replacement_names();
     it_renames_uninstantiated_template_fields_without_fabricating_runtime_types();
     it_refuses_multi_origin_labels_and_single_origin_edits_that_would_change_them();

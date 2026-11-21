@@ -2,6 +2,31 @@
  * @brief Test marker identity and forwarding through the actual checked static graph.
  */
 #include "prepare.c"
+#include "semantic/static/constraints/solver.h"
+
+/** A selected declaration publishes a scalar rather than an enclosing bundle.
+ * Read other checked public definitions from their actual canonical supplier
+ * key, so this assertion does not depend on optional bundle descriptors.
+ */
+static const StaticTerm *marker_output(const char *path, const char *name) {
+    const ProjectModule *module = project_find(&frontend.project, path);
+    assert(module);
+    for (const StaticRegistryCandidate *candidate = frontend.specializations.registry.first_candidate;
+        candidate; candidate = candidate->next) {
+        if (candidate->key->definition->definition != module) { continue; }
+        assert(candidate->local_complete);
+        for (const StaticSymbol *symbol = candidate->key->definition->first; symbol; symbol = symbol->next) {
+            if (!layout_text_is(symbol->name, name)) { continue; }
+            const StaticTerm *term, *value;
+            StaticConstraintOutcome known;
+            assert(static_term_symbol(&frontend.specializations.terms, candidate->key, symbol, &term));
+            assert(static_constraint_value(&frontend.specializations.constraints, term, &value, &known));
+            assert(known == STATIC_CONSTRAINT_COMPLETE);
+            return value;
+        }
+    }
+    assert(false); return NULL;
+}
 
 /** All public graph outputs must close, including markers not selected for runtime storage. */
 static void it_forwards_distinct_marker_types_without_runtime_layout(void) {
@@ -22,19 +47,10 @@ static void it_forwards_distinct_marker_types_without_runtime_layout(void) {
     assert(static_term_nominal(terms, edge, NULL, 0, (SourceSpan){0}, &second));
     assert(static_term_nominal(terms, node, NULL, 0, (SourceSpan){0}, &same));
     assert(first == same && first != second && first->category == STATIC_CATEGORY_TYPE && first->ground);
-    size_t forwarded = 0;
-    for (const StaticPublication *publication = frontend.specializations.publications.first;
-        publication; publication = publication->next) {
-        for (const StaticPublishedOutput *output = publication->first_output; output; output = output->next) {
-            if (layout_text_is(output->symbol->name, ".node kind")
-                || layout_text_is(output->symbol->name, ".same node kind")
-                || layout_text_is(output->symbol->name, ".forwarded")) {
-                assert(output->value == first);
-                forwarded++;
-            }
-        }
+    const char *forwarded[] = {".node kind", ".same node kind", ".forwarded"};
+    for (size_t index = 0; index < sizeof(forwarded) / sizeof(*forwarded); index++) {
+        assert(marker_output("/test/fixture/v1.0.0/src/assembly", forwarded[index]) == first);
     }
-    assert(forwarded == 3);
     for (const StaticResultContext *context = frontend.specializations.results.first_context;
         context; context = context->next) {
         assert(context->creation->owner->environment->definition != node);
@@ -57,14 +73,8 @@ static void it_preserves_root_kind_in_marker_identity(void) {
     ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
         {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
     assert(compiler_frontend_check(&frontend, roots, 2, "/test/fixture/v1.0.0/src/main"));
-    const StaticTerm *ordinary = NULL, *standard = NULL;
-    for (const StaticPublication *publication = frontend.specializations.publications.first;
-        publication; publication = publication->next) {
-        for (const StaticPublishedOutput *output = publication->first_output; output; output = output->next) {
-            if (layout_text_is(output->symbol->name, ".ordinary")) { ordinary = output->value; }
-            if (layout_text_is(output->symbol->name, ".standard")) { standard = output->value; }
-        }
-    }
+    const StaticTerm *ordinary = marker_output("/test/fixture/v1.0.0/src/assembly", ".ordinary");
+    const StaticTerm *standard = marker_output("/test/fixture/v1.0.0/src/assembly", ".standard");
     assert(ordinary && standard && ordinary != standard);
     destroy_frontend();
 }

@@ -21,14 +21,15 @@
  * nested expressions in their original enclosing environment.
  */
 struct StaticOrdinaryOperand;
+struct StaticOrdinaryProjection;
 
 /** One original ordinary Type occurrence in an exact source environment, with
  * optional actual incoming provenance.
  * value is the consumer-local Type variable, not the supplying producer's output.
  * A null context denotes source-only metadata, never an invented actual root.
- * Normal forms retain an annotation source; actual uses additionally retain
- * guarded work. Export forms instead retain the exact
- * static module/public symbol and its independent root/publication proof.
+ * Every form retains an annotation source; actual uses additionally retain
+ * guarded work. Selected operands retain exact supplier requests and attributed
+ * graph/definition proofs. A source-only predecessor is not an ordinary context.
  * No equation connects an export to value before independent closure succeeds.
  * The publication arena owns records; all pointers borrow longer-lived metadata.
  * [TYPE-01](../../../../spec/language/declarations.md#type-01) forbids contextual factory inference.
@@ -50,9 +51,10 @@ typedef struct StaticOrdinaryType {
      */
     struct StaticOrdinaryOperand *inputs;
     bool inputs_collected;
+    struct StaticOrdinaryProjection *projection;
+    const StaticCreationPath *annotation_path;
     const StaticModule *producer;
     const StaticSymbol *selected;
-    const StaticResultContext *producer_context;
     const StaticPublication *publication;
     /** Error attribution is owned here and borrows this actual selector's source.
      * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves caller context without allocating on failure.
@@ -75,8 +77,8 @@ typedef struct StaticOrdinaryType {
  */
 bool static_ordinary_source(StaticPublicationPlan *, const StaticTermEnvironment *,
     const AstTypeExpression *, StaticOrdinaryType **);
-/** Generate finite ordinary annotation equations or resolve an independently
- * concrete named export. No ordinary root/body is created or validated; actual
+/** Generate finite ordinary annotation equations and advance attributed static
+ * supplier graphs without premature closure. No ordinary root/body is created or validated; actual
  * uses still require their registered context and guarded evaluation. Changed
  * means new structural facts or required validation proofs, never allocations.
  * Failed outcome stays unchanged and partial facts remain owned.

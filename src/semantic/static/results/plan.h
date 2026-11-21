@@ -4,6 +4,8 @@
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves exact source environments.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) validates required scope provenance.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns failed preparation.
+ * [TPL-15](../../../../spec/language/templates.md#tpl-15) retains independent
+ * scalar receivers for original declaration selections.
  */
 #ifndef AMA_STATIC_RESULT_PLAN_H
 #define AMA_STATIC_RESULT_PLAN_H
@@ -58,10 +60,12 @@ void static_result_init(StaticResultPlan *, StaticRegistryPlan *, SourceAllocato
  */
 void static_result_destroy(StaticResultPlan *);
 /** Bind an exact original expression to its scoped head and separate internal
- * result variable for ordinary metadata values. A named static producer instead
- * retains its module origin with null head/value; it has no own Type/Template.
+ * result variable for ordinary metadata values. A named graph producer retains
+ * its module origin with null head/value; it has no own Type/Template. A
+ * declaration selector instead retains the exact public symbol and a separate
+ * scalar receiver, disconnected from the supplier until its inputs close.
  * Preserve occurrence identity and reuse an existing key.
- * No application, output lookup, body expansion or receiver equation occurs.
+ * No application, definition read, body expansion or receiver equation occurs.
  * Output is untouched on refusal; partial allocations stay owned.
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) binds source structure.
  */

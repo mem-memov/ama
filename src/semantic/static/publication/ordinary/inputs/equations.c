@@ -8,6 +8,7 @@
  * paths, creation guards and executable validation with their current owners.
  */
 #include "internal.h"
+#include "../projections/internal.h"
 
 /** Preorder applies the same simultaneous structural equations as any other
  * schedule: input result variables already exist and later child equations
@@ -19,6 +20,10 @@
 bool static_ordinary_input_equations(StaticPublicationPlan *plan, StaticOrdinaryType *type) {
     if (!static_ordinary_collect_inputs(plan, type)) { return false; }
     for (StaticOrdinaryOperand *operand = type->inputs; operand; operand = operand->next) {
+        if (operand->source->producer) {
+            if (!static_ordinary_projection_equations(plan, type, operand->source, &operand->projection)) { return false; }
+            continue;
+        }
         if (!static_result_operands(plan->results, operand->source, &operand->prepared) ||
             !static_result_application(plan->results, operand->source, operand->prepared, &operand->application)) {
             (void)static_publication_dependencies(plan); return false;

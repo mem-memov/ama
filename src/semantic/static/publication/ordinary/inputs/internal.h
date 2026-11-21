@@ -14,20 +14,22 @@
  * result source and immutable operand map. Application snapshots may refresh
  * only when independent nominal evidence resolves their head under
  * [TPL-10](../../../../../../spec/language/templates.md#tpl-10).
- * No guard path, instance or body certificate is cached here under
- * [TPL-11](../../../../../../spec/language/templates.md#tpl-11).
+ * Selected operands additionally retain their attributed supplier proofs;
+ * neither form provides a using-module instance or ordinary body certificate
+ * under [TPL-11](../../../../../../spec/language/templates.md#tpl-11).
  */
 typedef struct StaticOrdinaryOperand {
     struct StaticOrdinaryOperand *next;
     const StaticResultSource *source;
     const StaticTermApplication *prepared;
     const StaticApplicationRecord *application;
+    struct StaticOrdinaryProjection *projection;
 } StaticOrdinaryOperand;
 
 /** Collect a validated ordinary input forest once in original preorder.
  * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) retains the
  * exact annotation environment and child ownership. The caller supplies a
- * registered normal annotation. Failure leaves partial arena-owned records
+ * registered ordinary annotation. Failure leaves partial arena-owned records
  * destructible and never publishes the collected flag.
  */
 bool static_ordinary_collect_inputs(StaticPublicationPlan *, StaticOrdinaryType *);

@@ -6973,7 +6973,7 @@ T201. Specification bytes have not changed.
   and reviewed conformance fingerprints remain untouched. README, backlog context
   and release/evidence guides now identify the expanded pending target without
   claiming implementation. [T221](DONE.md#t221) owns the marker foundation;
-  [T226](TODO.md#t226) originally owned expression/phantom implementation and
+  [T226](DONE.md#t226) originally owned expression/phantom implementation and
   renewed evidence under a separate request; T227 narrows it to TPL-15.
   Localization remains [T223](BACKLOG.md#t223).
 
@@ -8163,3 +8163,41 @@ T201. Specification bytes have not changed.
   renewal. No specification or accepted conformance fingerprint was changed.
   Narrative archival regeneration must preserve accepted maintained inputs and
   match the staged files before the independent task commit.
+
+<a id="t226"></a>
+
+- [x] **T226 — Implement complete declaration type expressions.**
+  Status: accepted; complete named supplier arguments, scoped projections and
+  actual declaration evaluation are integrated. Prerequisites:
+  T221, T225, T227, T269, T270 and T271. Contract: [TPL-15](spec/language/templates.md#tpl-15) and its
+  [acceptance scenarios](spec/implementation/tools-and-conformance.md#static-module-templates).
+  T227 withdraws the former phantom implementation scope; ordinary declaration
+  expressions remain required, as explicitly reaffirmed by the user on 2026-11-20.
+  Steps: inventory actual expression/interface consumers; implement structured
+  parsing, scoped introductions and exact normalized inference; require one
+  concrete ordinary runtime-capable Type per used concrete specialization;
+  preserve full specialization identity and ordinary storage/interface rules;
+  align source, editor and relocation tools with the same parsed structure.
+  Accept: meaningful granular/component/composition and failure tests cover
+  nested named applications, partial intermediate constructors, selected exports,
+  bare placeholders, aliases, exact inference and all required producer inputs.
+  Reject residual/ambiguous final Types, unknown body placeholders, direct marker
+  storage and native own parameters; preserve ordinary lifecycle and C transport.
+  T269 now passes the all-positive canonical fence case in
+  `tests/unit/parser/composition/support/documented.c`, including the former
+  templates.md fence 3 refusal. Retain those explicit syntax contexts while
+  accepting actual semantic/executable declaration expressions. Replace T269's
+  fail-closed zero-argument-export boundary with complete checked producer
+  arguments and selected results; never discard supplied bindings. T221 records
+  accepted marker admission. Record scoped conformance evidence only after
+  implementation/argument review, then pass required consumers and documentation gates. T237 owns the complete
+  matrix renewal once all newer contracts are implemented. The earlier
+  accepted matrix remains historical evidence, not support for these new rules.
+
+  Acceptance: all ten compiler harnesses and the complete editor parent passed;
+  the 97-leaf static run completed with two obsolete constant assertions, both
+  corrected and verified together by the complete seven-leaf constants parent.
+  Counted allocation refusal, recursion boundaries, ASan/UBSan and actual
+  generated-C execution passed. Final `make docs` passed: 3273 ready inputs,
+  zero debts, 2468 maintained file pages, 9512 interfaces and 490 destinations.
+  Full commands, corrections and limitations: [task record](docs/implementation/declaration-expressions.md).

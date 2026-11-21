@@ -93,6 +93,16 @@ bool static_guard_owner(StaticGuardPlan *, const StaticTermEnvironment *, const 
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) requires root provenance.
  */
 bool static_creation_root(StaticGuardPlan *, const StaticTermEnvironment *, const StaticCreationPath **);
+/** Retain an original ordinary annotation's lexical owner as a source-only
+ * creation-graph predecessor. This is neither a selected root nor authority
+ * for a registry/result context. Registered exact syntax/environment membership
+ * is required; output remains unchanged on refusal and partial records stay
+ * owned by the guard. Repeated queries reuse the same immutable frame.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) retains lexical
+ * application provenance without arbitrary inferred compilation roots.
+ */
+bool static_creation_annotation(StaticGuardPlan *, const StaticTermEnvironment *,
+    const AstTypeExpression *, const StaticCreationPath **);
 /** Require validation of an already known ordinary Type without creating a
  * constructor edge. The source span belongs to the original registered consumer.
  * Complete normalized Types publish an attributed path with required_from set

@@ -78,42 +78,12 @@ type expressions, retained by [T227](DONE.md#t227). The next unused task ID is *
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
 queue in prerequisite order. Specification amendments still need their own
-explicit authorization; T222's notation amendment is not granted by that request.
+explicit authorization; T222's separately authorized notation amendment is complete.
 [T229](DONE.md#t229) specifies the CMake/launcher/source-inclusion contracts;
 T239–T242 and T244–T257 are their pending implementation owners. The
 [detailed implementation plan](docs/implementation/cmake-launcher-plan.md)
 records foundation gates, task/step acceptance, migration and evidence duties;
 [T243](DONE.md#t243) records its completed planning acceptance.
-
-<a id="t226"></a>
-
-- [ ] **T226 — Implement complete declaration type expressions.**
-  Status: ready after accepted T271; subsequent source-only and runtime
-  integration remains authorized. Prerequisites:
-  T221, T225, T227, T269, T270 and T271. Contract: [TPL-15](spec/language/templates.md#tpl-15) and its
-  [acceptance scenarios](spec/implementation/tools-and-conformance.md#static-module-templates).
-  T227 withdraws the former phantom implementation scope; ordinary declaration
-  expressions remain required, as explicitly reaffirmed by the user on 2026-11-20.
-  Steps: inventory actual expression/interface consumers; implement structured
-  parsing, scoped introductions and exact normalized inference; require one
-  concrete ordinary runtime-capable Type per used concrete specialization;
-  preserve full specialization identity and ordinary storage/interface rules;
-  align source, editor and relocation tools with the same parsed structure.
-  Accept: meaningful granular/component/composition and failure tests cover
-  nested named applications, partial intermediate constructors, selected exports,
-  bare placeholders, aliases, exact inference and all required producer inputs.
-  Reject residual/ambiguous final Types, unknown body placeholders, direct marker
-  storage and native own parameters; preserve ordinary lifecycle and C transport.
-  T269 now passes the all-positive canonical fence case in
-  `tests/unit/parser/composition/support/documented.c`, including the former
-  templates.md fence 3 refusal. Retain those explicit syntax contexts while
-  accepting actual semantic/executable declaration expressions. Replace T269's
-  fail-closed zero-argument-export boundary with complete checked producer
-  arguments and selected results; never discard supplied bindings. T221 records
-  accepted marker admission. Record scoped conformance evidence only after
-  implementation/argument review, then pass required consumers and documentation gates. T237 owns the complete
-  matrix renewal once all newer contracts are implemented. The earlier
-  accepted matrix remains historical evidence, not support for these new rules.
 
 ## Planned alignment: projects, paths and project tools
 
@@ -122,7 +92,7 @@ prerequisite order across both alignment sections; listing order does not
 override a dependency edge. Use granular component/composition tests, documented
 invariants and a commit for every accepted task. T222 is complete with explicit specification authorization; see its scoped
 acceptance in DONE.
-T221 is accepted in DONE; T226 remains required after the accepted
+T221 and T226 are accepted in DONE, together with the
 T231/T222/T232 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 

@@ -44,6 +44,13 @@ typedef struct StaticCreationPath {
     const struct StaticCreationPath *required_from;
     const StaticGuardOwner *owner;
     const StaticApplicationRecord *application;
+    /** A source-only annotation predecessor records lexical creation edges,
+     * never a selected root or an executable/registry use. Registry ancestry
+     * stops here until an actual incoming path is checked independently.
+     * [TPL-11](../../../../spec/language/templates.md#tpl-11) forbids inventing
+     * roots while preserving applications originating in a lexical owner.
+     */
+    bool source_only;
     SourceSpan site;
     StaticCreationVertex *vertex;
     StaticCreationEdge *edge;

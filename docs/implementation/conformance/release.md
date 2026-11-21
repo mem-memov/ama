@@ -9,7 +9,7 @@ The T197 results below precede the T220
 [static-marker rule](../../../spec/language/static-results.md#tpl-14).
 Marker implementation is accepted in [T221](../../../DONE.md#t221); the later T225
 [declaration-expression](../../../spec/language/templates.md#tpl-15) contract,
-retained by [T227](../../../DONE.md#t227), awaits [T226](../../../TODO.md#t226).
+retained by [T227](../../../DONE.md#t227), awaits [T226](../../../DONE.md#t226).
 The [generation/testing policy](../../../spec/introduction.md#core-06) states
 the target design boundary without certifying new implementation behavior.
 The complete gate refuses the earlier matrix against the newer target until the required alignment is accepted. These

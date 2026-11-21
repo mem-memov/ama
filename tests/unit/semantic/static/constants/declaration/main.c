@@ -85,7 +85,10 @@ static void it_binds_independently_exported_shared_scalar_and_empty_list_types(v
     assert(success);
     success = static_ordinary_resolve(&publications, list->source, &element_type);
     assert(success && scalar_type == integer_type && element_type == scalar_type);
-    assert(scalar->source->publication == list->source->publication);
+    assert(scalar->source->publication != list->source->publication);
+    assert(scalar->source->publication->value == integer_type && list->source->publication->value == integer_type);
+    assert(scalar->source->source->producer->registry_use->candidate ==
+        list->source->source->producer->registry_use->candidate);
     assert(list->syntax->as.declaration.initializer_count == 0 && publications.alias_count == 0);
     destroy_constants();
 }

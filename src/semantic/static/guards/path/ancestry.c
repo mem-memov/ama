@@ -71,5 +71,5 @@ bool static_guard_owner_ancestry(StaticGuardPlan *plan, const StaticCreationPath
             return reject(plan, parent, ancestor, earlier->owner_type, target->owner_type, site);
         }
     }
-    return true;
+    return static_guard_cached_pending(plan, parent, owner, pending);
 }

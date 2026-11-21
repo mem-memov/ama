@@ -134253,6 +134253,11 @@
         "source": "tests/unit/compiler/specialization-diagnostics/main.c",
         "case": "it_reports_pair_definition_and_conflicting_equality_receipt_as_distinct_original_sites",
         "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -138839,6 +138844,11 @@
         "source": "tests/unit/semantic/static/closure/requirements/main.c",
         "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ],
     "standalone_header_command": [
@@ -139111,6 +139121,11 @@
         "source": "tests/unit/semantic/static/closure/requirements/main.c",
         "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ],
     "standalone_header_command": [
@@ -139388,6 +139403,11 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c",
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ],
     "standalone_header_command": [
@@ -140065,6 +140085,11 @@
         "source": "tests/unit/compiler/markers/main.c",
         "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
         "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -140136,6 +140161,11 @@
         "case": "it_refuses_missing_receivers_and_preserves_borrowed_first_errors",
         "command": "make -C tests/unit/semantic/static/guards/failures",
         "source": "tests/unit/semantic/static/guards/failures/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -140282,6 +140312,11 @@
         "source": "tests/unit/semantic/static/closure/requirements/main.c",
         "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -141261,6 +141296,11 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c",
         "case": "it_matches_all_four_vertex_static_producer_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -141959,6 +141999,11 @@
         "source": "tests/unit/semantic/static/results/graphs/main.c",
         "case": "it_refuses_foreign_contexts_missing_receivers_and_graph_or_work_counter_overflow",
         "command": "make -C tests/unit/semantic/static/results/graphs"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ],
     "standalone_header_command": [
@@ -142898,6 +142943,11 @@
         "source": "tests/unit/semantic/static/results/graphs/main.c",
         "case": "it_refuses_foreign_contexts_missing_receivers_and_graph_or_work_counter_overflow",
         "command": "make -C tests/unit/semantic/static/results/graphs"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ],
     "standalone_header_command": [
@@ -143275,6 +143325,11 @@
         "source": "tests/unit/semantic/static/results/entry/main.c",
         "case": "it_releases_every_partial_entry_and_registry_allocation_on_refusal",
         "command": "make -C tests/unit/semantic/static/results/entry"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -143351,6 +143406,11 @@
         "source": "tests/unit/semantic/static/results/selection/main.c",
         "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
         "command": "make -C tests/unit/semantic/static/results/selection"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -143498,6 +143558,11 @@
         "source": "tests/unit/semantic/static/results/selection/main.c",
         "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
         "command": "make -C tests/unit/semantic/static/results/selection"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ],
     "standalone_header_command": [
@@ -146529,6 +146594,11 @@
         "source": "tests/unit/semantic/static/publication/recursion/main.c",
         "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
         "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -151092,6 +151162,11 @@
         "source": "tests/unit/semantic/static/guards/graph/main.c",
         "case": "it_matches_all_four_vertex_graphs_and_insertion_orders",
         "command": "make -C tests/unit/semantic/static/guards/graph"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -152882,6 +152957,11 @@
         "source": "tests/unit/semantic/static/closure/requirements/main.c",
         "case": "it_unwinds_every_required_type_preparation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/closure/requirements"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -153204,6 +153284,11 @@
         "source": "tests/unit/semantic/static/registry/checks/main.c",
         "case": "it_claims_local_expansion_once_without_accepting_an_active_candidate",
         "command": "make -C tests/unit/semantic/static/registry/checks"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
       }
     ]
   },
@@ -155454,142 +155539,11 @@
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
         "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
-      }
-    ]
-  },
-  "src/semantic/static/publication/ordinary/export.c": {
-    "purpose": "Resolve a static export independently before admitting any consumer Type equality.",
-    "contract": "docs/implementation/static-ordinary-types.md",
-    "tests": [
-      {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_resolves_named_exports_as_concrete_types_without_producer_instances",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_distinguishes_selected_type_outputs_from_other_template_outputs",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_keeps_normal_ordinary_type_inference_and_actual_source_provenance",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_copied_handles_missing_receivers_and_counter_overflow",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
-        "command": "make -C tests/unit/semantic/static/publication/ordinary"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_infers_field_annotation_arguments_without_creating_or_validating_an_ordinary_body",
-        "command": "make -C tests/unit/semantic/static/publication/annotations"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance",
-        "command": "make -C tests/unit/semantic/static/publication/annotations"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context",
-        "command": "make -C tests/unit/semantic/static/publication/annotations"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference",
-        "command": "make -C tests/unit/semantic/static/publication/annotations"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
-        "command": "make -C tests/unit/semantic/static/publication/annotations"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts",
-        "command": "make -C tests/unit/semantic/static/publication/annotations"
-      },
-      {
-        "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
-        "command": "make -C tests/unit/semantic/static/publication/annotations"
-      },
-      {
-        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
-        "case": "it_links_incomplete_static_producer_definitions_to_their_original_required_selection",
-        "command": "make -C tests/unit/compiler/specialization-diagnostics"
-      },
-      {
-        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
-        "case": "it_preserves_renderable_producer_failures_under_every_frontend_allocation_refusal",
-        "command": "make -C tests/unit/compiler/specialization-diagnostics"
-      },
-      {
-        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
-        "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
-        "command": "make -C tests/unit/compiler/specialization-diagnostics"
-      },
-      {
-        "source": "tests/unit/compiler/markers/main.c",
-        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
-        "command": "make -C tests/unit/compiler/markers"
-      },
-      {
-        "source": "tests/unit/compiler/markers/main.c",
-        "case": "it_preserves_root_kind_in_marker_identity",
-        "command": "make -C tests/unit/compiler/markers"
-      },
-      {
-        "source": "tests/unit/compiler/markers/main.c",
-        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
-        "command": "make -C tests/unit/compiler/markers"
-      },
-      {
-        "source": "tests/unit/compiler/markers/main.c",
-        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
-        "command": "make -C tests/unit/compiler/markers"
-      },
-      {
-        "source": "tests/unit/compiler/markers/main.c",
-        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
-        "command": "make -C tests/unit/compiler/markers"
-      },
-      {
-        "source": "tests/unit/compiler/markers/main.c",
-        "case": "it_rejects_marker_executable_roots",
-        "command": "make -C tests/unit/compiler/markers"
-      },
-      {
-        "source": "tests/unit/compiler/markers/main.c",
-        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
-        "command": "make -C tests/unit/compiler/markers"
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -155651,6 +155605,11 @@
         "source": "tests/unit/compiler/specialization-diagnostics/main.c",
         "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
         "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ],
     "standalone_header_command": [
@@ -155801,8 +155760,18 @@
       },
       {
         "source": "tests/unit/compiler/specialization-composition/main.c",
-        "case": "it_refuses_unconsumed_declaration_producer_inputs_before_legacy_export_resolution",
+        "case": "it_rejects_unknown_named_declaration_producer_inputs",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ]
   },
@@ -155929,6 +155898,11 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_substituted_marker_namespaces_without_publishing_a_value",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -156045,6 +156019,11 @@
         "source": "tests/unit/semantic/static/publication/operands/main.c",
         "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
         "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ],
     "standalone_header_command": [
@@ -156162,6 +156141,11 @@
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_refuses_substituted_marker_namespaces_without_publishing_a_value",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -156273,6 +156257,11 @@
         "source": "tests/unit/semantic/static/publication/operands/main.c",
         "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
         "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -156712,6 +156701,11 @@
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
         "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -164592,12 +164586,17 @@
       },
       {
         "source": "tests/unit/compiler/specialization-composition/main.c",
-        "case": "it_refuses_unconsumed_declaration_producer_inputs_before_legacy_export_resolution",
+        "case": "it_rejects_unknown_named_declaration_producer_inputs",
         "command": "make -C tests/unit/compiler/specialization-composition"
       },
       {
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_infers_generic_interface_types_through_nested_declaration_inputs",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
         "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
@@ -167395,6 +167394,11 @@
         "source": "tests/unit/editor/static-bindings/main.c",
         "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
         "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_nested_declaration_inputs_and_selections_to_exact_foreign_symbols",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -167682,6 +167686,11 @@
         "source": "tests/unit/editor/static-bindings/main.c",
         "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
         "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/static-bindings/main.c",
+        "case": "it_navigates_nested_declaration_inputs_and_selections_to_exact_foreign_symbols",
+        "command": "make -C tests/unit/editor/static-bindings"
       }
     ]
   },
@@ -167862,6 +167871,11 @@
       {
         "source": "tests/unit/editor/rename/static/main.c",
         "case": "it_renames_forward_graph_bindings_and_defining_and_equality_receipts",
+        "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/static/main.c",
+        "case": "it_renames_nested_declaration_labels_and_selectors_with_checked_validation",
         "command": "make -C tests/unit/editor/rename/static"
       }
     ]
@@ -179944,6 +179958,11 @@
         "source": "tests/unit/compiler/markers/main.c",
         "case": "it_refuses_marker_runtime_binding_and_scope_handles",
         "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -180157,6 +180176,11 @@
         "source": "tests/unit/semantic/static/publication/operands/main.c",
         "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
         "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ],
     "standalone_header_command": [
@@ -180224,6 +180248,11 @@
         "source": "tests/unit/semantic/static/publication/operands/main.c",
         "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
         "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -180350,6 +180379,11 @@
         "source": "tests/unit/semantic/static/results/selection/main.c",
         "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
         "command": "make -C tests/unit/semantic/static/results/selection"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -180383,6 +180417,167 @@
         "source": "tests/unit/semantic/static/results/selection/main.c",
         "case": "it_publishes_selected_values_with_supplier_proofs_and_unwinds_all_refusals",
         "command": "make -C tests/unit/semantic/static/results/selection"
+      }
+    ]
+  },
+  "src/semantic/static/guards/cache/pending.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/pending/main.c",
+        "case": "it_suspends_cached_unknown_recurrence_before_publishing_another_scope",
+        "command": "make -C tests/unit/semantic/static/guards/pending"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/pending/main.c",
+        "case": "it_does_not_inherit_unrelated_pending_ancestry_into_closed_metadata_owners",
+        "command": "make -C tests/unit/semantic/static/guards/pending"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/pending/main.c",
+        "case": "it_retains_open_annotation_boundaries_through_actual_supplier_descendants",
+        "command": "make -C tests/unit/semantic/static/guards/pending"
+      }
+    ]
+  },
+  "src/semantic/static/guards/path/annotation.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
+      }
+    ]
+  },
+  "src/semantic/static/publication/ordinary/projections/equations.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      }
+    ]
+  },
+  "src/semantic/static/publication/ordinary/projections/internal.h": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/publication/ordinary/projections/prepare.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      }
+    ]
+  },
+  "tests/unit/compiler/specialization-composition/support/declarations.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_suspends_delegated_producers_below_open_ordinary_annotation_boundaries",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/annotation/Makefile": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/annotation/main.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/annotation/main.c",
+        "case": "it_checks_suppliers_without_promoting_annotation_frames_to_actual_contexts",
+        "command": "make -C tests/unit/semantic/static/guards/annotation"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/pending/Makefile": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/pending/main.c",
+        "case": "it_suspends_cached_unknown_recurrence_before_publishing_another_scope",
+        "command": "make -C tests/unit/semantic/static/guards/pending"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/pending/main.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/pending/main.c",
+        "case": "it_suspends_cached_unknown_recurrence_before_publishing_another_scope",
+        "command": "make -C tests/unit/semantic/static/guards/pending"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/pending/main.c",
+        "case": "it_does_not_inherit_unrelated_pending_ancestry_into_closed_metadata_owners",
+        "command": "make -C tests/unit/semantic/static/guards/pending"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/guards/pending/support/prepare.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain original declaration Type structure, lexical supplier provenance and checked scalar inference.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/guards/pending/main.c",
+        "case": "it_suspends_cached_unknown_recurrence_before_publishing_another_scope",
+        "command": "make -C tests/unit/semantic/static/guards/pending"
+      },
+      {
+        "source": "tests/unit/semantic/static/guards/pending/main.c",
+        "case": "it_does_not_inherit_unrelated_pending_ancestry_into_closed_metadata_owners",
+        "command": "make -C tests/unit/semantic/static/guards/pending"
       }
     ]
   }

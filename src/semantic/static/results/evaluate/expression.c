@@ -65,7 +65,8 @@ bool static_result_expression_step(StaticResultEvaluation *evaluation) {
         if (!static_result_selection_read(evaluation, use)) { return false; }
         return true;
     }
-    if (!static_result_receivers(plan, use) || !static_result_selection_equation(plan, use)) { return false; }
+    if (!static_result_receivers(plan, use) ||
+        !static_result_selection_equation(plan, use->source, use->producer, use->selection)) { return false; }
     bool closed;
     if (use->source->producer) {
         if (!static_result_producer_closed(plan, use, &closed)) { return false; }

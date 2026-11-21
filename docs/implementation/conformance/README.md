@@ -12,7 +12,7 @@ acceptance scenario. T225 adds [declaration expressions](../../../spec/language/
 retained by [T227](../../../DONE.md#t227), which also states the
 [generation/testing policy](../../../spec/introduction.md#core-06).
 [T221](../../../DONE.md#t221) records accepted marker implementation and scoped
-evidence. [T226](../../../TODO.md#t226) owns declaration-expression implementation,
+evidence. [T226](../../../DONE.md#t226) owns declaration-expression implementation,
 and T237 owns whole-sprint evidence renewal. The existing historical matrix
 retains its accepted fingerprints and does not acquire new claims from those
 separate task results. Until alignment passes, `make conformance-check`

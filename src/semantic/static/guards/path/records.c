@@ -21,9 +21,10 @@ bool static_guard_has_path(const StaticGuardPlan *plan, const StaticCreationPath
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) preserves provenance.
  */
 bool static_guard_path(StaticGuardPlan *plan, const StaticCreationPath *parent, const StaticGuardOwner *owner,
-    const StaticApplicationRecord *application, SourceSpan site, const StaticCreationPath **output) {
+    const StaticApplicationRecord *application, SourceSpan site, bool source_only, const StaticCreationPath **output) {
     for (const StaticCreationPath *path = plan->first_path; path; path = path->next) {
-        if (path->required_from == NULL && path->parent == parent && path->owner == owner && path->application == application &&
+        if (path->source_only == source_only && path->required_from == NULL &&
+            path->parent == parent && path->owner == owner && path->application == application &&
             (application != NULL || (path->site.source == site.source &&
             path->site.start == site.start && path->site.end == site.end))) {
             *output = path; return true;
@@ -36,7 +37,7 @@ bool static_guard_path(StaticGuardPlan *plan, const StaticCreationPath *parent, 
     StaticCreationPath *path = static_guard_allocate(plan, sizeof(*path));
     if (path == NULL) { return false; }
     *path = (StaticCreationPath){.parent = parent, .owner = owner, .application = application,
-        .site = site, .next = plan->first_path};
+        .site = site, .source_only = source_only, .next = plan->first_path};
     plan->first_path = path;
     plan->path_count++;
     *output = path;

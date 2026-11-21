@@ -18,15 +18,17 @@ static void it_resolves_named_exports_as_concrete_types_without_producer_instanc
     setup_publications("@!\nfirst\n/test/fixture/v1.0.0/src/other\n .out\nsecond\n/test/fixture/v1.0.0/src/other\n .out\n",
         "@...\n.out\n//integer\n");
     StaticOrdinaryType *first = ordinary("first"), *second = ordinary("second");
-    assert(first != second && first->value != second->value && first->source == NULL);
+    assert(first != second && first->value != second->value && first->source && second->source);
     assert(caller_module->parameter_count == 0 && caller_module->first == NULL);
     const StaticTerm *first_type, *second_type;
     bool success = static_ordinary_resolve(&publications, first, &first_type);
     assert(success);
     success = static_ordinary_resolve(&publications, second, &second_type);
     assert(success && first_type == integer_type && second_type == first_type);
-    assert(first->publication == second->publication && first->publication->value == NULL);
-    assert(first->producer_context->creation->owner->value == NULL);
+    assert(first->publication != second->publication && first->publication->value == integer_type);
+    assert(first->publication->context == NULL && second->publication->context == NULL);
+    assert(first->source->producer->creation->owner->value == NULL);
+    assert(first->source->producer->registry_use->candidate == second->source->producer->registry_use->candidate);
     assert(result_registry.dependency_count > 0);
     StaticOrdinaryType *again = ordinary("first");
     assert(again == first && publications.type_count == 2);
@@ -44,7 +46,7 @@ static void it_refuses_open_suppliers_even_when_the_consumer_type_is_already_kno
     success = static_ordinary_resolve(&publications, type, &resolved);
     assert(!success && resolved == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
     assert(type->publication == NULL && publications.count == 0);
-    assert(type->producer_context->registry_use->key_state == STATIC_REGISTRY_KEY_PENDING);
+    assert(type->source->producer->registry_use->key_state == STATIC_REGISTRY_KEY_PENDING);
     destroy_publications();
 }
 
@@ -61,7 +63,10 @@ static void it_distinguishes_selected_type_outputs_from_other_template_outputs(v
         const StaticTerm *resolved = NULL;
         bool success = static_ordinary_resolve(&publications, type, &resolved);
         assert(success == (select_family == 0));
-        if (success) { assert(resolved == integer_type && type->publication->output_count == 2); }
+        if (success) {
+            assert(resolved == integer_type && type->publication->output_count == 0);
+            assert(type->source->required_graph->work_count == 2 && type->source->required_graph->local_complete);
+        }
         else { assert(resolved == NULL && publications.status == STATIC_PUBLICATION_CONFLICT); }
         destroy_publications();
     }

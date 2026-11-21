@@ -12,11 +12,6 @@
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) preserves the original consumer.
  */
 bool static_ordinary_has(const StaticPublicationPlan *, const StaticOrdinaryType *);
-/** Close the actual independent producer root, select a public Type and only
- * then equate it with the consumer-local variable. Retain the validation edge.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) forbids contextual completion.
- */
-bool static_ordinary_export(StaticPublicationPlan *, StaticOrdinaryType *);
 /** Attach this actual selector without allocating, changing the primary cause,
  * or turning its caller into a producer inference/creation input.
  * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04) preserves requiring-site provenance.

@@ -82,6 +82,7 @@ static void run(void) {
     it_refuses_ambiguous_concrete_operation_views_without_losing_source_definitions();
     it_retains_multiple_actual_foreign_formal_origins_without_choosing_one();
     it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions();
+    it_navigates_nested_declaration_inputs_and_selections_to_exact_foreign_symbols();
 }
 
 /** Return success only after checked editor views expire and counted teardown. */

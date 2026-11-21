@@ -13,7 +13,7 @@ The specification additionally defines
 [static type markers](spec/language/static-results.md#tpl-14) and
 [declaration type expressions](spec/language/templates.md#tpl-15).
 [T221](DONE.md#t221) records accepted marker implementation; declaration
-expressions remain pending [T226](TODO.md#t226), and T237 owns renewed
+expressions are accepted by [T226](DONE.md#t226), and T237 owns renewed
 whole-sprint conformance evidence.
 The current source pipeline selects complete versions under `packages/` and
 `dependencies/`, uses canonical `/vendor/package/version/src-or-tests/module`

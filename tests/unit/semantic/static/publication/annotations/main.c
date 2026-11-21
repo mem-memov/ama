@@ -3,6 +3,7 @@
  */
 #include "../common.c"
 #include "semantic/static/publication/types.h"
+#include "semantic/static/publication/ordinary/projections/internal.h"
 
 /** A generic ordinary path needs per-field Type holes, never a residual value. */
 static void setup_annotations(void) {
@@ -87,16 +88,16 @@ static void it_substitutes_nominal_annotation_scopes_without_inventing_validatio
     destroy_publications();
 }
 
-/** Export lookup may require its real independent static root, but cannot
- * fabricate the using ordinary module's root or provide a runtime instance.
+/** Source-only export facts retain a lexical graph predecessor, but cannot
+ * fabricate the using ordinary module's context or certify its runtime body.
  */
 static void it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context(void) {
     setup_publications("@!\nfield\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n//integer\n");
     StaticOrdinaryType *type = annotation();
     bool changed;
     bool success = static_ordinary_equations(&publications, type, &changed);
-    assert(success && changed && type->producer_context && type->publication);
-    assert(type->producer_context->creation->owner->value == NULL && type->publication->value == NULL);
+    assert(success && changed && type->projection && type->projection->context && !type->publication);
+    assert(type->annotation_path->source_only && type->projection->context->creation->owner->value == NULL);
     for (const StaticResultContext *context = results.first_context; context; context = context->next) {
         assert(context->creation->owner->environment->definition != caller_module);
     }
@@ -110,7 +111,12 @@ static void it_resolves_independent_exports_without_manufacturing_an_ordinary_ca
     size_t dependencies = result_registry.dependency_count;
     success = static_ordinary_equations(&publications, use, &changed);
     assert(success && changed && result_registry.dependency_count > dependencies);
-    assert(use->producer_context == type->producer_context && use->publication == type->publication);
+    assert(use->projection->context != type->projection->context && !use->publication);
+    assert(use->projection->context->registry_use->candidate == type->projection->context->registry_use->candidate);
+    assert(use->projection->context->creation->parent == actual->creation);
+    success = static_ordinary_resolve(&publications, use, &value);
+    assert(success && value == integer_type && use->publication != type->publication);
+    assert(use->publication->context == NULL && use->publication->value == integer_type);
     success = static_ordinary_equations(&publications, use, &changed);
     assert(success && !changed);
     destroy_publications();
@@ -173,8 +179,16 @@ static void it_refuses_unresolved_export_inputs_without_using_consumer_type_evid
     assert(success);
     bool changed = true;
     success = static_ordinary_equations(&publications, type, &changed);
-    assert(!success && changed && publications.status == STATIC_PUBLICATION_UNRESOLVED);
+    assert(success && changed && publications.status == STATIC_PUBLICATION_OK);
     assert(type->publication == NULL && publications.count == 0);
+    const StaticTerm *hole = type->projection->request->inputs[0].value, *value;
+    StaticConstraintOutcome known;
+    assert(static_constraint_value(&solver, hole, &value, &known) && known == STATIC_CONSTRAINT_PENDING);
+    success = static_ordinary_equations(&publications, type, &changed);
+    assert(success && !changed);
+    value = NULL;
+    assert(!static_ordinary_resolve(&publications, type, &value));
+    assert(value == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
     destroy_publications();
 }
 

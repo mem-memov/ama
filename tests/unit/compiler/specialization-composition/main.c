@@ -173,20 +173,7 @@ static void it_rejects_root_lists_that_omit_the_loaded_frontend_entry(void) {
     }
 }
 
-/** A newly parsed input cannot disappear into the older zero-argument export
- * resolver: in particular a nonexistent formal must never compile successfully.
- */
-static void it_refuses_unconsumed_declaration_producer_inputs_before_legacy_export_resolution(void) {
-    prepare_sources("@!\nvalue\n./assembly\n .unknown < ./value\n .result\n");
-    file("generated/project/packages/test/fixture/v1.0.0/src/assembly",
-        "@...\n.result\n./value\n");
-    setup_frontend();
-    assert(!check_project() && !frontend.valid);
-    assert(diagnostic_valid(&frontend.error));
-    assert(strcmp(frontend.error.message, "Static producer arguments in declaration types are not implemented") == 0);
-    assert(layout_text_is(frontend.error.primary.span, ".unknown < ./value"));
-    destroy_frontend();
-}
+#include "support/declarations.c"
 
 /** Nested nominal equations infer an actual generic owner's Type before its
  * incoming creation path can expand that definition; no guessed key is needed.
@@ -222,7 +209,12 @@ static void it_infers_generic_interface_types_through_nested_declaration_inputs(
 /** Dispatch current-stage evidence; no generated execution is claimed here. */
 static void run(void) {
     it_infers_generic_interface_types_through_nested_declaration_inputs();
-    it_refuses_unconsumed_declaration_producer_inputs_before_legacy_export_resolution();
+    it_rejects_unknown_named_declaration_producer_inputs();
+    it_composes_nested_named_declaration_selections_in_the_real_frontend();
+    it_composes_selected_template_operands_into_one_concrete_declared_type();
+    it_rejects_growing_declaration_producer_keys_through_ordinary_metadata();
+    it_suspends_open_declaration_producer_recursion_without_speculative_scopes();
+    it_suspends_delegated_producers_below_open_ordinary_annotation_boundaries();
     it_exposes_closed_generic_type_candidates_before_ordinary_admission();
     it_composes_explicit_multi_root_closure_with_the_real_frontend();
     it_checks_concrete_projects_through_the_public_frontend_entry();
