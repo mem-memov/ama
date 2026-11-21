@@ -85,27 +85,6 @@ T239–T242 and T244–T257 are their pending implementation owners. The
 records foundation gates, task/step acceptance, migration and evidence duties;
 [T243](DONE.md#t243) records its completed planning acceptance.
 
-<a id="t221"></a>
-
-- [ ] **T221 — Implement and accept the specified static type markers.**
-  Status: planned; implementation now authorized, awaiting prerequisites:
-  T220, T231 and T232.
-  Rule: [TPL-14](spec/language/static-results.md#tpl-14) and its
-  [acceptance scenario](spec/implementation/tools-and-conformance.md#static-module-templates).
-  Steps: classify empty static files, preserve nominal marker Type metadata
-  through graph equations/aliases and source tools, and reject runtime storage
-  and producer/constructor misuse at their actual admission boundaries.
-  Test direct/aliased equality, distinct identities, layout boundaries, graph
-  forwarding, all four runtime storage forms and entry/native/C export refusals,
-  including substituted/selected marker Types; retain ordinary producer behavior.
-  Accept: component/composition/failure tests and actual consumers pass; review
-  changed requirement/acceptance arguments with real scoped evidence and pass
-  documentation gates. T237 owns the whole-sprint conformance renewal; record
-  the expected stale refusal before then rather than refreshing hashes to pass.
-  The T196/T197 matrix
-  remains an earlier accepted baseline until this alignment; do not refresh
-  fingerprints merely to make its newer-specification refusal disappear.
-
 <a id="t226"></a>
 
 - [ ] **T226 — Implement complete declaration type expressions.**
@@ -140,8 +119,8 @@ prerequisite order across both alignment sections; listing order does not
 override a dependency edge. Use granular component/composition tests, documented
 invariants and a commit for every accepted task. T222 is complete with explicit specification authorization; see its scoped
 acceptance in DONE.
-T221/T226 remain required; perform them after T231/T222/T232 establish the
-source/configuration foundations.
+T221 is accepted in DONE; T226 remains required after the accepted
+T231/T222/T232 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 
 <a id="t233"></a>

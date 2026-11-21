@@ -101,6 +101,22 @@ static void it_keeps_normal_ordinary_type_inference_and_actual_source_provenance
     destroy_publications();
 }
 
+/** Namespace admission independently rejects a marker supplied through a Type
+ * equation, even before a caller asks the runtime field binder to validate it.
+ */
+static void it_refuses_substituted_marker_namespaces_without_publishing_a_value(void) {
+    setup_publications("@<\nargument\n.type\n@!\nanchor&\n//integer\nvalue\n.type\n", "@...\n");
+    assert(target_module->definition->syntax.sections.kind == MODULE_MARKER);
+    StaticOrdinaryType *type = ordinary("value");
+    assert(static_constraint_equate(&solver, application_symbol(".type"),
+        target_constructor, type->expression->span));
+    const StaticTerm *resolved = integer_type;
+    assert(!static_ordinary_resolve(&publications, type, &resolved));
+    assert(resolved == integer_type && publications.status == STATIC_PUBLICATION_CONFLICT);
+    assert(strstr(publications.error.message, "marker") != NULL);
+    destroy_publications();
+}
+
 /** Selecting a concrete value cannot hide a failing unselected definition. */
 static void it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer(void) {
     setup_publications("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .good\n", "@...\n.good\n//integer\n.bad\n.bad\n");
@@ -226,6 +242,7 @@ static void run(void) {
     it_distinguishes_selected_type_outputs_from_other_template_outputs();
     it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols();
     it_keeps_normal_ordinary_type_inference_and_actual_source_provenance();
+    it_refuses_substituted_marker_namespaces_without_publishing_a_value();
     it_rejects_an_unselected_definition_cycle_before_connecting_the_consumer();
     it_instantiates_generic_field_parameters_independently_before_later_anchors();
     it_unwinds_every_ordinary_export_preparation_and_resolution_allocation_refusal();

@@ -11,17 +11,19 @@ The last accepted implementation baseline maps **214 requirements** and
 [reviewed conformance evidence](docs/implementation/conformance/README.md).
 The specification additionally defines
 [static type markers](spec/language/static-results.md#tpl-14) and
-[declaration type expressions](spec/language/templates.md#tpl-15). Implementation and
-renewed conformance acceptance are pending [T221](TODO.md#t221) and
-[T226](TODO.md#t226).
+[declaration type expressions](spec/language/templates.md#tpl-15).
+[T221](DONE.md#t221) records accepted marker implementation; declaration
+expressions remain pending [T226](TODO.md#t226), and T237 owns renewed
+whole-sprint conformance evidence.
 The current source pipeline selects complete versions under `packages/` and
 `dependencies/`, uses canonical `/vendor/package/version/src-or-tests/module`
 identities and `//` Standard paths, and recognizes single-dot static names.
-[T231](DONE.md#t231) records scoped implementation acceptance. Relative-path
-normalization, scoped `.ini` aliases and the
+[T231](DONE.md#t231) records scoped source implementation acceptance.
+[T232](DONE.md#t232) accepts relative-path normalization and scoped `.ini`
+aliases in the shared frontend. The
 [independent project commands](spec/implementation/project-tools.md) retain
-their separate T232–T237/T224 implementation owners; their specification is not
-evidence of executable support.
+T233–T237/T224 implementation owners; their specification is not evidence of
+executable command support.
 The later [CMake build contract](spec/implementation/application-builds.md),
 [named application inputs](spec/implementation/launch-and-embedding.md) and
 [no-main source inclusion](spec/implementation/c-library.md#embed-09) are also

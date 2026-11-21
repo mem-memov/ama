@@ -4,6 +4,26 @@
 #include "../common.c"
 #include <unistd.h>
 
+/** Static marker navigation returns its original source and no runtime Type. */
+static void it_indexes_marker_heads_without_inventing_runtime_type_metadata(void) {
+    project_fixture("@!\nvalue\n./assembly\n .value\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/kind", "@...\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/assembly",
+        "@...\n.kind\n./kind\n.value\n./cell\n");
+    setup_editor();
+    assert(analyze(&analysis) && analysis.indexed);
+    const char *identity = "/test/fixture/v1.0.0/src/assembly";
+    const ProjectModule *assembly = project_find(&analysis.frontend.project, identity);
+    const ProjectModule *marker = project_find(&analysis.frontend.project,
+        "/test/fixture/v1.0.0/src/kind");
+    assert(assembly && marker && marker->syntax.sections.kind == MODULE_MARKER);
+    EditorDefinition definition;
+    assert(editor_definition(&analysis, identity, point(assembly->source->text, "./kind"), &definition));
+    assert(definition.module == marker && definition.type == NULL && definition.symbol == NULL);
+    assert(definition.definition.source == marker->source->text);
+    destroy_editor();
+}
+
 /** Only actual source-local member tokens become variable-name occurrences. */
 static void it_indexes_normalized_constant_members_without_inventing_alias_name_tokens(void) {
     project_fixture("@!\ndirect\n ./ghost/../palette/shared\nthrough alias\n ~whole\n");
@@ -173,6 +193,7 @@ static void it_exposes_checked_list_method_signatures_without_fabricated_module_
 }
 /** Run identity, namespace, scope and initialization components against real checked IR. */
 void run(void) {
+    it_indexes_marker_heads_without_inventing_runtime_type_metadata();
     it_indexes_normalized_constant_members_without_inventing_alias_name_tokens();
     it_exposes_checked_list_method_signatures_without_fabricated_module_types();
     it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces();

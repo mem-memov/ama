@@ -2,6 +2,8 @@
  * @brief Register only explicit original ordinary compilation roots with checked creation provenance.
  * [TPL-11](../../../spec/language/templates.md#tpl-11) forbids arbitrary inference/default roots.
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04) preserves original failed selections.
+ * [TPL-14](../../../spec/language/static-results.md#tpl-14) excludes markers from runtime binding,
+ * instance closure and executable Type metadata.
  */
 #include "internal.h"
 
@@ -16,7 +18,8 @@ bool compiler_specialization_roots(CompilerSpecialization *analysis, const Proje
     }
     for (size_t index = 0; index < count; index++) {
         const StaticModule *module = static_module_find(analysis->inventory, roots[index]);
-        if (!module || module->definition->syntax.sections.kind == MODULE_STATIC) {
+        if (!module || module->definition->syntax.sections.kind == MODULE_STATIC
+            || module->definition->syntax.sections.kind == MODULE_MARKER) {
             analysis->error = (Diagnostic){.code = DIAGNOSTIC_TYPE_MISMATCH,
                 .message = "Selected root must be an original ordinary module",
                 .primary = {.span = module ? module->definition->syntax.sections.graph.marker->code : (SourceSpan){0}}};

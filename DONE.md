@@ -6900,7 +6900,7 @@ T201. Specification bytes have not changed.
   is required" (/tmp/ama-t220-conformance.log). This is the expected refusal of
   the earlier accepted matrix against a changed target. Preserve its reviewed
   fingerprints; README and conformance/release guides identify the baseline
-  boundary. Planned [T221](TODO.md#t221) owns marker implementation, its actual
+  boundary. Planned [T221](DONE.md#t221) owns marker implementation, its actual
   component/composition/failure tests and renewed current-specification evidence
   review, subject to a separate implementation request. Phantom-formal design
   remains a candidate; the next unused ID is T222.
@@ -6972,7 +6972,7 @@ T201. Specification bytes have not changed.
   accepted matrix. Implementation, native/library/test code, the per-file registry
   and reviewed conformance fingerprints remain untouched. README, backlog context
   and release/evidence guides now identify the expanded pending target without
-  claiming implementation. [T221](TODO.md#t221) owns the marker foundation;
+  claiming implementation. [T221](DONE.md#t221) owns the marker foundation;
   [T226](TODO.md#t226) originally owned expression/phantom implementation and
   renewed evidence under a separate request; T227 narrows it to TPL-15.
   Localization remains [T223](BACKLOG.md#t223).
@@ -7961,3 +7961,55 @@ T201. Specification bytes have not changed.
   or acceptance of new source-operation commands is claimed (T237 and T224).
   Narrative archival is followed by supported Doxygen regeneration and exact
   agreement with the accepted implementation and staged-input fingerprints.
+
+<a id="t221"></a>
+
+- [x] **T221 — Implement and accept the specified static type markers.**
+  Completed 2026-11-21; prerequisites T220, T231 and T232 are accepted.
+  Contract and evidence: [static markers](docs/implementation/static-markers.md).
+  Rule: [TPL-14](spec/language/static-results.md#tpl-14) and its
+  [acceptance scenario](spec/implementation/tools-and-conformance.md#static-module-templates).
+  Steps: classify empty static files, preserve nominal marker Type metadata
+  through graph equations/aliases and source tools, and reject runtime storage
+  and producer/constructor misuse at their actual admission boundaries.
+  Test direct/aliased equality, distinct identities, layout boundaries, graph
+  forwarding, all four runtime storage forms and entry/native/C export refusals,
+  including substituted/selected marker Types; retain ordinary producer behavior.
+  Accept: component/composition/failure tests and actual consumers pass; review
+  changed requirement/acceptance arguments with real scoped evidence and pass
+  documentation gates. T237 owns the whole-sprint conformance renewal; record
+  the expected stale refusal before then rather than refreshing hashes to pass.
+  The T196/T197 matrix
+  remains an earlier accepted baseline until this alignment; do not refresh
+  fingerprints merely to make its newer-specification refusal disappear.
+
+  Result: fully parsed annotation-only static sources are closed nominal Type
+  markers. Aliases and named graph inputs/outputs preserve exact identity;
+  marker values create no runtime context, SemanticType or storage. Direct,
+  selected and substituted marker Types are refused at runtime admission,
+  namespace and executable/library-root boundaries. Public binder/scope APIs
+  independently enforce the same separation, and editor navigation returns
+  the original marker module with absent runtime Type metadata.
+  Acceptance: the full static parent passed 93 assertion harnesses; compiler
+  and editor parents, project source-role matrix, parser marker/draft/producer
+  cases, library marker export refusals and generated integer/marker program
+  passed. Additional focused editor, binder/scope and substituted-namespace
+  cases passed, including unchanged output on refusal. Marker frontend tests
+  refuse every measured allocation and pass ASan/UBSan with counted teardown;
+  LeakSanitizer is disabled and no LSan pass is claimed.
+  Final `make docs` passed 3248 ready inputs, zero debts, 2447 maintained file
+  pages, 9428 documented interfaces and all 489 referenced destinations.
+  Logs and failure resolutions are retained in the component contract; final
+  logs include `/tmp/ama-t221-static-parent.log`,
+  `/tmp/ama-t221-compiler-parent-current.log`, `/tmp/ama-t221-editor-parent.log`,
+  `/tmp/ama-t221-markers-sanitized.log`, `/tmp/ama-t221-namespace-boundary.log`,
+  `/tmp/ama-t221-generated-marker.log` and
+  `/tmp/ama-t221-documentation-namespace-final.log`.
+  Limits: parser documentation composition still reaches the known T226
+  declaration-constructor example refusal; conformance-check refuses the
+  unchanged older specification fingerprints pending T237. Neither is
+  reported as a successful whole-project gate. The source-delivery fixture
+  now declares its required external version selector; consumer expectations
+  remain intact. No specification changes or conformance hash renewals belong
+  to this task. Final narrative-only archival regeneration must match the
+  accepted implementation/test/registry and staged-file fingerprints.

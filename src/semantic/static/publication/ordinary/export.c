@@ -3,6 +3,8 @@
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires complete suppliers and all public outputs.
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) excludes returned Templates from ordinary storage.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) retains required validation provenance.
+ * [TPL-14](../../../../../spec/language/static-results.md#tpl-14) permits marker
+ * exports in static equations but excludes them from ordinary declarations.
  */
 #include "internal.h"
 
@@ -49,6 +51,10 @@ bool static_ordinary_export(StaticPublicationPlan *plan, StaticOrdinaryType *typ
     if (selected->value->kind != STATIC_TERM_NOMINAL || selected->value->category != STATIC_CATEGORY_TYPE) {
         return static_ordinary_export_failure(plan, type, STATIC_PUBLICATION_CONFLICT,
             "An ordinary export selector requires a complete Type rather than a Template", selected->value);
+    }
+    if (selected->value->as.nominal.origin->definition->syntax.sections.kind == MODULE_MARKER) {
+        return static_ordinary_export_failure(plan, type, STATIC_PUBLICATION_CONFLICT,
+            "A static marker export cannot supply runtime storage", selected->value);
     }
     StaticConstraintSolver *solver = plan->results->guards->applications->solver;
     StaticConstraintOutcome solved;

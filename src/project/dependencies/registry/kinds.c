@@ -5,6 +5,8 @@
  * cycles: a target's kind is authoritative only after parsing its source.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) makes graph
  * producers distinct from ordinary Types and requires explicit export selection.
+ * [TPL-14](../../../../spec/language/static-results.md#tpl-14) admits markers as
+ * Type heads while excluding their use as constant namespaces or producers.
  */
 #include <assert.h>
 #include "project/dependencies/internal.h"
@@ -17,9 +19,12 @@
  */
 static const char *mismatch(const ProjectDependency *edge) {
     bool graph = edge->target->syntax.sections.kind == MODULE_STATIC;
+    bool marker = edge->target->syntax.sections.kind == MODULE_MARKER;
     switch (edge->role) {
         case PROJECT_ORDINARY_PATH:
+            return graph ? "A static module is not an ordinary type or constant namespace" : NULL;
         case PROJECT_CONSTANT_PATH:
+            if (marker) { return "A static marker has no constant namespace"; }
             return graph ? "A static module is not an ordinary type or constant namespace" : NULL;
         case PROJECT_STATIC_PRODUCER:
             return graph ? NULL : "A static producer use requires a static module";

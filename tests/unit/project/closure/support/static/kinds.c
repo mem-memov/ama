@@ -27,7 +27,7 @@ static void it_checks_every_static_path_role_against_each_complete_source_kind(v
         "@...\n.named\n/test/fixture/v1.0.0/src/value\n .input < /test/fixture/v1.0.0/src/target\n",
         "@!\n/test/fixture/v1.0.0/src/target\n .export\n item >> value\n"
     };
-    const char *targets[] = {"@!\n", "@C\n", "@=\nitem\n/test/fixture/v1.0.0/src/value\n |0\n", "@...\n.export\n/test/fixture/v1.0.0/src/value\n"};
+    const char *targets[] = {"@!\n", "@C\n", "@=\nitem\n/test/fixture/v1.0.0/src/value\n |0\n", "@...\n.export\n/test/fixture/v1.0.0/src/value\n", "@...\n"};
     for (size_t use = 0; use < sizeof(uses) / sizeof(*uses); use++) {
         for (size_t kind = 0; kind < sizeof(targets) / sizeof(*targets); kind++) {
             prepare_kind_case(uses[use], targets[kind]);
@@ -35,6 +35,7 @@ static void it_checks_every_static_path_role_against_each_complete_source_kind(v
             ProjectStatus status = load_root("generated/static kinds");
             bool requires_graph = use == 1 || use == 2 || use == 7;
             bool accepted = requires_graph == (kind == 3);
+            if (kind == 4 && use == 5) { accepted = false; }
             if (status != (accepted ? PROJECT_OK : PROJECT_INVALID_KIND)) {
                 fprintf(stderr, "Role %zu kind %zu: %d %s\n", use, kind, status, project.error.message);
             }

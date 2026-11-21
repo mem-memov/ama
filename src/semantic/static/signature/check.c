@@ -6,6 +6,8 @@
  * declared metadata, never first actual values. [TPL-12](../../../../spec/language/static-results.md#tpl-12)
  * requires producer metadata before selected outputs can be concrete. Applications
  * await normalization; known bare Type heads cannot accept static arguments.
+ * [TPL-14](../../../../spec/language/static-results.md#tpl-14) forbids direct
+ * marker storage even in definitions with no actual specialization.
  */
 #include "internal.h"
 
@@ -22,6 +24,11 @@ bool static_check_signatures(StaticInventory *inventory) {
     for (const StaticModule *module = inventory->first; module != NULL; module = module->next) {
         for (const StaticOccurrence *site = module->first_occurrence; site != NULL; site = site->next) {
             if (site->receiver != NULL || site->symbol != NULL) { continue; }
+            if (module->definition->syntax.sections.kind != MODULE_STATIC && site->root
+                && site->origin->syntax.sections.kind == MODULE_MARKER) {
+                return static_signature_error(inventory, site->site,
+                    "A static marker Type cannot be stored in an ordinary declaration", NULL, site->origin);
+            }
             if (site->origin->syntax.sections.kind == MODULE_STATIC) { continue; }
             StaticMetadata actual = static_head_metadata(inventory, module, site->expression);
             StaticUsageResult checked = static_usage_expression(inventory, module,

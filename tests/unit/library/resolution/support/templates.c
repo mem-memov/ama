@@ -9,7 +9,10 @@ static void it_rejects_open_static_and_synthetic_template_export_roots(void) {
     file("generated/project/packages/test/fixture/v1.0.0/src/assembly", "@...\n.texts\n/test/fixture/v1.0.0/src/generic\n .element < //text\n");
     file("generated/project/packages/test/fixture/v1.0.0/src/facade", "@!\nworker\n/test/fixture/v1.0.0/src/assembly\n .texts\n");
     file("generated/project/packages/test/fixture/v1.0.0/src/missingclosure", "@!\nworker\n/test/fixture/v1.0.0/src/unavailable\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/marker", "@...\n");
     const char *invalid[]={
+        "export | run | /test/fixture/v1.0.0/src/marker | entry\n",
+        "export | run | /test/fixture/v1.0.0/src/marker | read\n",
         "export | facade | /test/fixture/v1.0.0/src/facade | entry\nexport | open | /test/fixture/v1.0.0/src/generic | entry\n",
         "export | run | /test/fixture/v1.0.0/src/assembly | entry\n",
         "export | facade | /test/fixture/v1.0.0/src/facade | entry\nexport | static | /test/fixture/v1.0.0/src/assembly | read\n",

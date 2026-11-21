@@ -2,6 +2,8 @@
  * @brief Publish original field Type associations for exact source environments without inventing roots.
  * [TPL-04](../../../../../../spec/language/templates.md#tpl-04) preserves independently instantiated owner fields.
  * [TPL-11](../../../../../../spec/language/templates.md#tpl-11) separates metadata from actual expansion.
+ * [TPL-14](../../../../../../spec/language/static-results.md#tpl-14) excludes markers from runtime binding,
+ * instance closure and executable Type metadata.
  */
 #include <stdint.h>
 #include "../../internal.h"
@@ -41,7 +43,8 @@ bool static_connection_scope(StaticConnectionPlan *plan, const StaticTermEnviron
     if (!static_connection_dependencies(plan)) { return false; }
     StaticTermStore *terms = plan->constants->publications->results->guards->applications->terms;
     if (output == NULL || !static_term_has_environment(terms, environment) ||
-        environment->definition->definition->syntax.sections.kind == MODULE_STATIC) {
+        environment->definition->definition->syntax.sections.kind == MODULE_STATIC
+        || environment->definition->definition->syntax.sections.kind == MODULE_MARKER) {
         return static_connection_fail(plan, STATIC_CONNECTION_INVALID, (SourceSpan){0}, "Invalid exact typed environment or scope receiver");
     }
     for (const StaticTypedScope *scope = plan->first_scope; scope; scope = scope->next) {

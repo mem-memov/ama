@@ -2,6 +2,8 @@
  * @brief Retain every actual ordinary use while selecting exact-key representatives for finite body scheduling.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) preserves incoming guards and shares closed-key expansion.
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) preserves original scoped variables.
+ * [TPL-14](../../../../../spec/language/static-results.md#tpl-14) excludes markers from runtime binding,
+ * instance closure and executable Type metadata.
  */
 #include <stdint.h>
 #include "../internal.h"
@@ -68,7 +70,8 @@ bool static_closure_collect(StaticClosurePlan *plan, bool *output) {
     }
     bool changed = false;
     for (const StaticResultContext *actual = results->first_context; actual; actual = actual->next) {
-        if (actual->creation->owner->environment->definition->definition->syntax.sections.kind == MODULE_STATIC) { continue; }
+        if (actual->creation->owner->environment->definition->definition->syntax.sections.kind == MODULE_STATIC
+            || actual->creation->owner->environment->definition->definition->syntax.sections.kind == MODULE_MARKER) { continue; }
         if (!retain(plan, actual, &changed)) { return false; }
     }
     for (StaticClosureEntry *entry = plan->first; entry; entry = entry->next) {

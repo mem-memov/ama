@@ -2,6 +2,8 @@
  * @brief Publish one immutable source-bound runtime module after exact lexical classification.
  * [TYPE-06](../../../../../spec/language/declarations.md#type-06) fixes names before Type solving.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns all failed partial preparation.
+ * [TPL-14](../../../../../spec/language/static-results.md#tpl-14) excludes markers from runtime binding,
+ * instance closure and executable Type metadata.
  */
 #include <stdint.h>
 #include "../internal.h"
@@ -25,7 +27,8 @@ static bool original(const StaticConnectionPlan *plan, const StaticModule *candi
  */
 bool static_connection_runtime(StaticConnectionPlan *plan, const StaticModule *source, const StaticRuntimeModule **output) {
     if (!static_connection_dependencies(plan)) { return false; }
-    if (output == NULL || !original(plan, source) || source->definition->syntax.sections.kind == MODULE_STATIC) {
+    if (output == NULL || !original(plan, source) || source->definition->syntax.sections.kind == MODULE_STATIC
+        || source->definition->syntax.sections.kind == MODULE_MARKER) {
         return static_connection_fail(plan, STATIC_CONNECTION_INVALID, (SourceSpan){0}, "Invalid original runtime module or binding receiver");
     }
     for (const StaticRuntimeModule *module = plan->first_runtime; module; module = module->next) {

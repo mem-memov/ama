@@ -6,6 +6,8 @@
  * Section structure is separate from declaration/body parsing; shared lexical checks precede draft exclusion.
  * [TPL-12](../../../spec/language/static-results.md#tpl-12) gives static modules
  * their own exclusive graph interval, never an ordinary implementation section.
+ * [TPL-14](../../../spec/language/static-results.md#tpl-14) classifies a fully
+ * parsed empty graph as a nominal marker without runtime storage.
  */
 #ifndef AMA_PARSER_SECTIONS_H
 #define AMA_PARSER_SECTIONS_H
@@ -13,8 +15,13 @@
 #include "lexer/layout/layout.h"
 #include "parser/error/error.h"
 
-/** Retained activation kind, independent of semantic entry eligibility. Component contract: [SYN-03](../../../spec/language/source-and-names.md#syn-03). */
-typedef enum { MODULE_DRAFT, MODULE_CONSTANTS, MODULE_AMA, MODULE_NATIVE, MODULE_STATIC } ParsedModuleKind;
+/** Retained activation kind, independent of semantic entry eligibility.
+ * MODULE_MARKER is published only after complete empty-graph validation under
+ * [TPL-14](../../../spec/language/static-results.md#tpl-14); section scanning alone
+ * retains MODULE_STATIC under [SYN-03](../../../spec/language/source-and-names.md#syn-03).
+ */
+typedef enum { MODULE_DRAFT, MODULE_CONSTANTS, MODULE_AMA, MODULE_NATIVE, MODULE_STATIC,
+    MODULE_MARKER } ParsedModuleKind;
 /** Borrowed half-open physical-node interval owned by the surrounding layout. Component contract: [SYN-03](../../../spec/language/source-and-names.md#syn-03). */
 typedef struct {
     const LayoutLine *marker;

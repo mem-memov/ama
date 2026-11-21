@@ -37,6 +37,8 @@ static void delivery_native(const char *name, const char *interface) {
 static void prepare_delivery_sources(void) {
     fixture_package_prepare("generated/project", "fixture");
     fixture_package_prepare("generated/library", "library");
+    file("generated/project/packages/test/fixture/v1.0.0/package.ini",
+        "[dependencies]\n/test/library/v1.0.0\n");
     directory("generated/library/packages/test/library/v1.0.0/src/lib");
     file("generated/project/packages/test/fixture/v1.0.0/src/main", delivery_program);
     file("generated/project/packages/test/fixture/v1.0.0/src/independent", "@!\n");

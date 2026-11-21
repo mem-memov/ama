@@ -2,6 +2,8 @@
  * @brief Require complete ordinary Type metadata while retaining its original publication proof.
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) excludes residual constructor storage.
  * [CONST-03](../../../../../spec/language/declarations.md#const-03) fixes namespaces before member selection.
+ * [TPL-14](../../../../../spec/language/static-results.md#tpl-14) excludes marker
+ * origins even after placeholder substitution or export selection.
  */
 #include "internal.h"
 
@@ -34,6 +36,10 @@ bool static_ordinary_resolve(StaticPublicationPlan *plan, StaticOrdinaryType *ty
     if (value->kind != STATIC_TERM_NOMINAL || value->category != STATIC_CATEGORY_TYPE) {
         return static_publication_fail(plan, STATIC_PUBLICATION_CONFLICT, type->expression->span,
             "Ordinary declarations and namespaces require a complete Type");
+    }
+    if (value->as.nominal.origin->definition->syntax.sections.kind == MODULE_MARKER) {
+        return static_publication_fail(plan, STATIC_PUBLICATION_CONFLICT, type->expression->span,
+            "A static marker Type has no runtime storage or constant namespace");
     }
     *output = value;
     return true;

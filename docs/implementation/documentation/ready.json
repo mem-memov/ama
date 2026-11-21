@@ -158,7 +158,7 @@
     ],
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -12873,7 +12873,7 @@
     "purpose": "Classify supported statement shapes from physical structure without name lookup.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13575,7 +13575,7 @@
     "purpose": "Build explicit declaration/type/initializer structure in source order.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13666,7 +13666,7 @@
     ],
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13742,7 +13742,7 @@
     "purpose": "Map every retained grammar-expectation key to fixed display text.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13894,7 +13894,7 @@
     ],
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -14005,7 +14005,7 @@
     "purpose": "Compose physical layout, sections, declarations and iterative body parsing.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -14103,6 +14103,46 @@
         "case": "it_rejects_every_mixed_or_repeated_static_annotation",
         "command": "make -C tests/unit/parser/module",
         "source": "tests/unit/parser/module/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_distinguishes_marker_sources_from_other_and_invalid_files",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -14111,7 +14151,7 @@
     "purpose": "Recognize genuine activation markers and monotonically ordered section intervals.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -14232,7 +14272,7 @@
     ],
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -14330,6 +14370,46 @@
         "case": "it_rejects_every_mixed_or_repeated_static_annotation",
         "command": "make -C tests/unit/parser/module",
         "source": "tests/unit/parser/module/main.c"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_distinguishes_marker_sources_from_other_and_invalid_files",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -43173,6 +43253,41 @@
         "source": "tests/unit/tools/relocation/staging/main.c",
         "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
         "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -47285,7 +47400,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -47908,7 +48023,7 @@
     "purpose": "Check section activation, ordering and literal-aware structural boundaries.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -61018,7 +61133,7 @@
     "purpose": "Decode already checked section tokens into the grammar's fixed section order.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -61124,7 +61239,7 @@
     "purpose": "Check shared lexical rules and classify genuine activation without parsing unfinished declarations.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -62388,7 +62503,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -63516,7 +63631,7 @@
     "purpose": "Read canonical fenced examples with explicit module/body/ABI contexts, never name-based classification.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -63644,7 +63759,7 @@
     "purpose": "Validate cross-component AST spans and action aliases against the one original source.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -104873,6 +104988,11 @@
         "source": "tests/unit/editor/bindings/main.c",
         "case": "it_indexes_normalized_constant_members_without_inventing_alias_name_tokens",
         "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_indexes_marker_heads_without_inventing_runtime_type_metadata",
+        "command": "make -C tests/unit/editor/bindings"
       }
     ]
   },
@@ -123989,7 +124109,7 @@
     "purpose": "Represent source-owned static expressions and named graph bindings.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124080,7 +124200,7 @@
     "purpose": "Parse ordinary section entries as variable-name/type pairs only.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124161,7 +124281,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124247,7 +124367,7 @@
     "purpose": "Construct a source-preserving static type head without resolving its name.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124303,7 +124423,7 @@
     "purpose": "Parse nested static expressions with explicit indentation and phase frames.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124379,7 +124499,7 @@
     "purpose": "Construct two-line static result definitions with no runtime initializer list.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124455,7 +124575,7 @@
     "purpose": "Declare narrow static-expression construction operations within the AST owner.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124546,7 +124666,7 @@
     "purpose": "Build complete named static bindings with mandatory operands.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124622,7 +124742,7 @@
     "purpose": "Verify static source spellings and structural trees without symbol lookup.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124690,6 +124810,11 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_distinguishes_marker_sources_from_other_and_invalid_files",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -124703,7 +124828,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -128944,6 +129069,41 @@
         "source": "tests/unit/compiler/specialization-diagnostics/main.c",
         "case": "it_reports_static_signature_and_kind_conflicts_with_original_constructor_context",
         "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -139770,6 +139930,41 @@
         "case": "it_routes_producers_and_export_selectors_outside_nominal_application",
         "source": "tests/unit/semantic/static/applications/policy/main.c",
         "command": "make -C tests/unit/semantic/static/applications/policy"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -149176,7 +149371,7 @@
     "purpose": "Compose static graph pairs and explicitly named producer selections.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149252,7 +149447,7 @@
     "purpose": "Begin an ordinary retained constant read from a simple Type namespace.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149328,7 +149523,7 @@
     "purpose": "Parse a simple ordinary Type head and its sole optional named export.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149404,7 +149599,7 @@
     "purpose": "Verify current graph mode refusals, unbounded iterative nesting and allocation teardown.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149480,7 +149675,7 @@
     "purpose": "Verify exclusive graph ownership, named source trees and exact comment regions.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149548,6 +149743,11 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_distinguishes_marker_sources_from_other_and_invalid_files",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -149556,7 +149756,7 @@
     "purpose": "Verify simple ordinary Type pairs and the named static-export bridge syntax.",
     "tests": [
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -150123,6 +150323,41 @@
         "case": "it_retains_occurrence_roles_and_nested_requester_locations",
         "source": "tests/unit/project/closure/main.c",
         "command": "make -C tests/unit/project/closure"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -155145,6 +155380,41 @@
         "source": "tests/unit/compiler/specialization-diagnostics/main.c",
         "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
         "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -155439,6 +155709,46 @@
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
         "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_substituted_marker_namespaces_without_publishing_a_value",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
       }
     ]
   },
@@ -155651,6 +155961,11 @@
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
         "case": "it_instantiates_generic_field_parameters_independently_before_later_anchors",
+        "command": "make -C tests/unit/semantic/static/publication/ordinary"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/ordinary/main.c",
+        "case": "it_refuses_substituted_marker_namespaces_without_publishing_a_value",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       }
     ]
@@ -158281,6 +158596,46 @@
         "source": "tests/unit/semantic/static/connections/failures/main.c",
         "case": "it_refuses_shared_runtime_sources_and_known_access_storage_mismatches",
         "command": "make -C tests/unit/semantic/static/connections/failures"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_refuses_marker_runtime_binding_and_scope_handles",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -158353,6 +158708,41 @@
         "source": "tests/unit/semantic/static/connections/annotations/main.c",
         "case": "it_unwinds_every_annotation_fact_and_actual_validation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/connections/annotations"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -159580,6 +159970,46 @@
         "source": "tests/unit/semantic/static/connections/typed_failures/main.c",
         "case": "it_unwinds_every_corresponding_field_congruence_join_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/connections/typed_failures"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_refuses_marker_runtime_binding_and_scope_handles",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -162901,6 +163331,41 @@
         "source": "tests/unit/semantic/static/closure/scheduler/main.c",
         "case": "it_invalidates_previous_closure_on_phase_refusal_or_collection",
         "command": "make -C tests/unit/semantic/static/closure/scheduler"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -163573,6 +164038,41 @@
         "source": "tests/unit/compiler/specializations/main.c",
         "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
         "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -163747,6 +164247,41 @@
         "source": "tests/unit/compiler/specializations/main.c",
         "case": "it_unwinds_every_owned_compiler_analysis_allocation_refusal",
         "command": "make -C tests/unit/compiler/specializations"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
       }
     ]
   },
@@ -166717,6 +167252,11 @@
         "source": "tests/unit/editor/bindings/main.c",
         "case": "it_indexes_normalized_constant_members_without_inventing_alias_name_tokens",
         "command": "make -C tests/unit/editor/bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_indexes_marker_heads_without_inventing_runtime_type_metadata",
+        "command": "make -C tests/unit/editor/bindings"
       }
     ]
   },
@@ -167193,7 +167733,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_keeps_empty_static_graphs_separate_from_every_runtime_section",
+        "case": "it_classifies_only_valid_empty_static_modules_as_markers",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -179041,6 +179581,253 @@
         "source": "tests/unit/project/inputs/main.c",
         "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
         "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "tests/unit/compiler/markers/Makefile": {
+    "contract": "docs/implementation/static-markers.md",
+    "purpose": "Verify nominal marker forwarding and refusal at real compiler admission boundaries.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      }
+    ]
+  },
+  "tests/unit/compiler/markers/main.c": {
+    "contract": "docs/implementation/static-markers.md",
+    "purpose": "Run complete marker identity, storage admission and resource-failure compositions.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_refuses_marker_runtime_binding_and_scope_handles",
+        "command": "make -C tests/unit/compiler/markers"
+      }
+    ]
+  },
+  "tests/unit/compiler/markers/support/identity.c": {
+    "contract": "docs/implementation/static-markers.md",
+    "purpose": "Test marker identity and forwarding through the actual checked static graph.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_refuses_marker_runtime_binding_and_scope_handles",
+        "command": "make -C tests/unit/compiler/markers"
+      }
+    ]
+  },
+  "tests/unit/compiler/markers/support/prepare.c": {
+    "contract": "docs/implementation/static-markers.md",
+    "purpose": "Prepare exact independent marker, ordinary value and static-export sources.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      }
+    ]
+  },
+  "tests/unit/compiler/markers/support/storage.c": {
+    "contract": "docs/implementation/static-markers.md",
+    "purpose": "Exercise all ordinary storage forms and misuse of marker producer interfaces.",
+    "tests": [
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_forwards_distinct_marker_types_without_runtime_layout",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_preserves_root_kind_in_marker_identity",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_unwinds_every_marker_frontend_allocation_refusal",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_direct_and_exported_marker_storage_in_every_form",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_producer_selection_application_and_constant_reads",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_marker_executable_roots",
+        "command": "make -C tests/unit/compiler/markers"
+      },
+      {
+        "source": "tests/unit/compiler/markers/main.c",
+        "case": "it_rejects_substituted_marker_fields_and_uninstantiated_definitions",
+        "command": "make -C tests/unit/compiler/markers"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/packages/test/fixture/v1.0.0/src/kind": {
+    "contract": "docs/implementation/static-markers.md",
+    "purpose": "Exercise a closed marker in the static graph of a verified generated integer program.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/packages/test/fixture/v1.0.0/src/types": {
+    "contract": "docs/implementation/static-markers.md",
+    "purpose": "Exercise a closed marker in the static graph of a verified generated integer program.",
+    "tests": [
+      {
+        "case": "it_requires_an_explicit_standard_root_to_resolve_integer",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
+      },
+      {
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer",
+        "source": "tests/integration/standard-integer/main.c"
       }
     ]
   }

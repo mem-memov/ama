@@ -4,6 +4,8 @@
  *
  * [COMP-01](../../../spec/implementation/compiler.md#comp-01)
  * Publish a usable AST only after all required structural stages succeed; no symbol lookup occurs.
+ * [TPL-14](../../../spec/language/static-results.md#tpl-14) makes only a complete,
+ * successfully validated empty static body a marker, never an invalid partial graph.
  */
 #include "../internal.h"
 
@@ -25,6 +27,7 @@ ParseStatus parser_module_parse(AstModule *module, const SourceText *source) {
         if (!parser_static_body(&parser, module->sections.graph, &module->graph)) {
             return module->error.diagnostic.code == DIAGNOSTIC_OUT_OF_MEMORY ? PARSE_OUT_OF_MEMORY : PARSE_INVALID;
         }
+        if (module->graph.first == NULL) { module->sections.kind = MODULE_MARKER; }
         module->valid = true;
         return PARSE_OK;
     }

@@ -7,7 +7,7 @@ current accepted workflows; it does not define another language contract.
 
 The T197 results below precede the T220
 [static-marker rule](../../../spec/language/static-results.md#tpl-14).
-Marker implementation remains [T221](../../../TODO.md#t221); the later T225
+Marker implementation is accepted in [T221](../../../DONE.md#t221); the later T225
 [declaration-expression](../../../spec/language/templates.md#tpl-15) contract,
 retained by [T227](../../../DONE.md#t227), awaits [T226](../../../TODO.md#t226).
 The [generation/testing policy](../../../spec/introduction.md#core-06) states

@@ -15,7 +15,8 @@
 /** Explicitly run each component case; failed assertions preserve leaf outputs. */
 void run(void) {
     it_recognizes_atomic_static_names_without_module_lookup();
-    it_keeps_empty_static_graphs_separate_from_every_runtime_section();
+    it_classifies_only_valid_empty_static_modules_as_markers();
+    it_distinguishes_marker_sources_from_other_and_invalid_files();
     it_preserves_named_pairs_partial_values_and_multiple_producer_outputs();
     it_obeys_graph_comment_regions_and_does_not_reopen_closed_children();
     it_keeps_simple_ordinary_type_pairs_and_export_initializers();

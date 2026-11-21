@@ -2,6 +2,8 @@
  * @brief Validate actual annotation paths and complete field Types without admitting an ordinary body.
  * [TYPE-06](../../../../../../spec/language/declarations.md#type-06) requires declared/inferred/local field Types.
  * [TPL-11](../../../../../../spec/language/templates.md#tpl-11) retains real incoming annotation ancestry.
+ * [TPL-14](../../../../../../spec/language/static-results.md#tpl-14) rejects a
+ * marker origin after actual substitutions, independently of runtime reachability.
  */
 #include "../../internal.h"
 
@@ -44,6 +46,11 @@ bool static_connection_validate_fields(StaticConnectionPlan *plan, const StaticR
         StaticConstraintOutcome outcome;
         if (!static_constraint_value(solver, field->type, &value, &outcome)) {
             (void)static_connection_dependencies(plan); return false;
+        }
+        if (outcome == STATIC_CONSTRAINT_COMPLETE && value->kind == STATIC_TERM_NOMINAL
+            && value->as.nominal.origin->definition->syntax.sections.kind == MODULE_MARKER) {
+            return static_connection_fail(plan, STATIC_CONNECTION_CONFLICT, field->definition->site,
+                "A static marker Type cannot supply runtime field storage");
         }
         ready &= outcome == STATIC_CONSTRAINT_COMPLETE;
     }

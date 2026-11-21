@@ -2,6 +2,8 @@
  * @brief Index original static definitions, module heads and exact known foreign labels from the accepted compiler inventory.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) distinguishes graph producers, exports and returned Types.
  * [TPL-02](../../../../spec/language/templates.md#tpl-02) scopes parameters to original definitions.
+ * [TPL-14](../../../../spec/language/static-results.md#tpl-14) excludes markers from runtime binding,
+ * instance closure and executable Type metadata.
  */
 #include "../../analysis/internal.h"
 #include "../../query/context.h"
@@ -13,6 +15,7 @@
 static bool module(EditorAnalysis *analysis, SourceSpan site, const ProjectModule *origin) {
     const StaticModule *definition = static_module_find(&analysis->frontend.static_inventory, origin);
     const SemanticType *type = definition->parameter_count == 0 && origin->syntax.sections.kind != MODULE_STATIC
+        && origin->syntax.sections.kind != MODULE_MARKER
         ? editor_query_type(analysis, origin->source->logical_path) : NULL;
     return editor_index_add(analysis, (EditorOccurrence){.spelling=site,.module=origin,.type=type});
 }

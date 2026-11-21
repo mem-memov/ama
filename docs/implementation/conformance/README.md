@@ -11,10 +11,11 @@ T220 adds [TPL-14](../../../spec/language/static-results.md#tpl-14) and its mark
 acceptance scenario. T225 adds [declaration expressions](../../../spec/language/templates.md#tpl-15),
 retained by [T227](../../../DONE.md#t227), which also states the
 [generation/testing policy](../../../spec/introduction.md#core-06).
-[T221](../../../TODO.md#t221) and [T226](../../../TODO.md#t226) own implementation
-and renewed evidence review. The existing matrix does not claim these new
-capabilities and retains
-its accepted fingerprints. Until alignment passes, `make conformance-check`
+[T221](../../../DONE.md#t221) records accepted marker implementation and scoped
+evidence. [T226](../../../TODO.md#t226) owns declaration-expression implementation,
+and T237 owns whole-sprint evidence renewal. The existing historical matrix
+retains its accepted fingerprints and does not acquire new claims from those
+separate task results. Until alignment passes, `make conformance-check`
 refuses this newer specification; updating hashes alone cannot establish support.
 The earlier release results remain evidence for their recorded input revision.
 T230 additionally specifies versioned packages, slash/relative paths, single-dot

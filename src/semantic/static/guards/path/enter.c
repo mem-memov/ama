@@ -4,6 +4,8 @@
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) keeps graph producers
  * separate from ordinary nominal applications.
  * [COMP-04](../../../../../spec/implementation/compiler.md#comp-04) retains the full rejected path.
+ * [TPL-14](../../../../../spec/language/static-results.md#tpl-14) makes a marker
+ * an already closed identity with no body or instance to expand.
  */
 #include "../internal.h"
 
@@ -44,6 +46,10 @@ static StaticCreationOutcome classify(StaticGuardPlan *plan, const StaticApplica
         return STATIC_CREATION_REUSE;
     }
     *value = static_constraint_root(plan->applications->solver, record->value);
+    if ((*value)->kind == STATIC_TERM_NOMINAL
+        && (*value)->as.nominal.origin->definition->syntax.sections.kind == MODULE_MARKER) {
+        return STATIC_CREATION_REUSE;
+    }
     if (record->context.policy == STATIC_OMIT_NAMESPACE &&
         (*value)->kind == STATIC_TERM_NOMINAL && (*value)->as.nominal.origin->parameter_count == 0) {
         return STATIC_CREATION_REUSE;

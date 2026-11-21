@@ -3,13 +3,13 @@
  * @brief Verify exclusive graph ownership, named source trees and exact comment regions.
  */
 
-/** Empty graphs are complete metadata files, never ordinary implementation bodies. */
-static void it_keeps_empty_static_graphs_separate_from_every_runtime_section(void) {
-    const char *sources[] = {"@...", "@...\n", "# header\r\n@...\r\n# empty graph\r\n"};
+/** Only complete empty static sources create closed marker identities. */
+static void it_classifies_only_valid_empty_static_modules_as_markers(void) {
+    const char *sources[] = {"@...", "@...\n", "# header\r\n@...\r\n# empty graph\r\n", "\n@...   # marker\n\n"};
     for (size_t index = 0; index < sizeof(sources) / sizeof(*sources); index++) {
         setup_tree();
         ParseStatus status = parse_text(sources[index]);
-        assert(status == PARSE_OK && module.valid && module.sections.kind == MODULE_STATIC);
+        assert(status == PARSE_OK && module.valid && module.sections.kind == MODULE_MARKER);
         assert(module.graph.first == NULL && module.body.first == NULL && module.constants.first == NULL);
         assert(module.parameters.first == NULL && module.results.first == NULL && module.warnings == NULL);
         assert(source_length(module.layout.source) == strlen(sources[index]));
@@ -73,6 +73,26 @@ static void it_obeys_graph_comment_regions_and_does_not_reopen_closed_children(v
         setup_tree();
         ParseStatus status = parse_text(invalid[index]);
         assert(status == PARSE_INVALID && !module.valid && diagnostic_valid(&module.error.diagnostic));
+        destroy_tree();
+    }
+}
+
+/** Failed partial graphs, drafts and nonempty producers never acquire marker classification. */
+static void it_distinguishes_marker_sources_from_other_and_invalid_files(void) {
+    const char *valid[] = {"", "# draft\n", "@...\n.result\n//integer\n"};
+    for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) {
+        setup_tree();
+        assert(parse_text(valid[index]) == PARSE_OK && module.valid);
+        assert(module.sections.kind == (index < 2 ? MODULE_DRAFT : MODULE_STATIC));
+        destroy_tree();
+    }
+    const char *invalid[] = {"@... \n", " @...\n", "@...\n # indented\n",
+        "@...\n@...\n", "@...\n@C\n", "@...\n.value\n",
+        "@...\n\t", "@...\n\xff"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
+        setup_tree();
+        assert(parse_text(invalid[index]) == PARSE_INVALID && !module.valid);
+        assert(module.sections.kind != MODULE_MARKER && diagnostic_valid(&module.error.diagnostic));
         destroy_tree();
     }
 }
