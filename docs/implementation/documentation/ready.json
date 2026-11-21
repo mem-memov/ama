@@ -55146,6 +55146,11 @@
         "source": "tests/unit/source/module/packages/main.c",
         "case": "it_selects_local_versions_before_external_roots_in_any_order",
         "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source"
       }
     ]
   },
@@ -172657,6 +172662,1594 @@
         "case": "it_compiles_line_mappings_with_unicode_quotes_controls_and_backslashes",
         "command": "make -C tests/integration/source/diagnostics",
         "source": "tests/integration/source/diagnostics/main.c"
+      }
+    ]
+  },
+  "src/source/configuration/lines/lines.h": {
+    "purpose": "Recognize bounded strict INI lines without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/lines/internal.h": {
+    "purpose": "Recognize bounded strict INI lines without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/lines/space.c": {
+    "purpose": "Recognize bounded strict INI lines without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      }
+    ]
+  },
+  "src/source/configuration/lines/failure.c": {
+    "purpose": "Recognize bounded strict INI lines without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      }
+    ]
+  },
+  "src/source/configuration/lines/begin.c": {
+    "purpose": "Recognize bounded strict INI lines without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      }
+    ]
+  },
+  "src/source/configuration/lines/next.c": {
+    "purpose": "Recognize bounded strict INI lines without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/Makefile": {
+    "purpose": "Dispatch independently executable strict INI line, record and document leaves.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/lines/Makefile": {
+    "purpose": "Recognize bounded strict INI lines without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/lines/main.c": {
+    "purpose": "Recognize bounded strict INI lines without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      }
+    ]
+  },
+  "src/source/configuration/document/aliases.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "src/source/configuration/document/document.h": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/document/failure.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "src/source/configuration/document/internal.h": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/document/lifetime.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "src/source/configuration/document/parse.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "src/source/configuration/document/repository.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "src/source/configuration/document/sections.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "src/source/configuration/document/selectors.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "src/source/configuration/records/alias.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "src/source/configuration/records/assignment.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "src/source/configuration/records/failure.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "src/source/configuration/records/header.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "src/source/configuration/records/internal.h": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/records/read.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "src/source/configuration/records/records.h": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/records/repository.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "src/source/configuration/records/selector.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "src/source/configuration/records/text.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/common.c": {
+    "purpose": "Construct immutable counted byte/span fixtures shared by strict INI component tests.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/document/Makefile": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/document/main.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/document/support/invalid.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/document/support/ownership.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/document/support/valid.c": {
+    "purpose": "Parse strict INI documents with exact source views, unique typed tables and complete arena cleanup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/records/Makefile": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/records/main.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/records/support/read.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/records/support/shapes.c": {
+    "purpose": "Recognize bounded strict INI records without source mutation or filesystem lookup.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_recognizes_exact_records_and_preserves_raw_value_views",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_refuses_malformed_headers_and_assignment_joins_without_publication",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_alias_keys_and_profile_specific_raw_targets",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_checks_selector_components_without_resolving_or_cancelling_masks",
+        "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/records/main.c",
+        "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
+        "command": "make -C tests/unit/source/configuration/records"
       }
     ]
   }

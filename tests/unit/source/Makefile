@@ -1,3 +1,5 @@
-# Register independent storage, Unicode, canonical path, catalog and identity suites.
-SUBDIRECTORIES := text memory unicode path module/packages module identity
+# @file
+# @brief Register independent storage, Unicode, path, configuration, catalog and identity suites.
+# Contract: ../../../docs/implementation/library-tests-and-build.md.
+SUBDIRECTORIES := text memory unicode path configuration module/packages module identity
 include ../../parent.mk

@@ -47,6 +47,10 @@ The [bounded channel contract](../bounded-channels.md) proves whole-message FIFO
 ownership, simultaneous count/byte limits, native endpoint shutdown and independent
 receiver lifetime, including real concurrent and typed Ama acceptance.
 
+The [project configuration contract](../project-configuration.md) records the
+T260 source parser, planned T261/T262 foundations and T232 integration obligations. Its planned
+boundaries are distinct from claims of implemented compiler support.
+
 ## Before implementation
 
 The [T168 template audit](../audit/template-sprint.md) preserves the original

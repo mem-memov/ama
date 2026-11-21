@@ -7533,3 +7533,73 @@ T201. Specification bytes have not changed.
   validation, matching input/staged fingerprints and clean staged diff before
   committing. Full-sprint conformance remains T237; the existing T226 census
   gate is unchanged.
+
+<a id="t260"></a>
+
+- [x] **T260 — Parse the strict package/module INI profile.**
+  Completed 2026-11-21. Prerequisites T231, T222 and T259. Extracted from T232
+  as its independently verified source-only foundation; T232 remains the explicit
+  owner of compiler/tool integration. No spec changes or filesystem/network
+  behavior were introduced. Contract and correctness argument:
+  [project configuration](docs/implementation/project-configuration.md).
+  Implemented separate encoding/physical lines, record/shape recognition and
+  typed document owners under `src/source/configuration/`. Preserve exact bounded
+  SourceText spans without trimming, unquoting, interpolation or source mutation.
+  Accept LF/CRLF and final unterminated lines; reject BOM, malformed UTF-8, TAB,
+  lone CR and boundary whitespace. Pin Unicode White_Space to the language's
+  Unicode 17 edition rather than the host locale. Comments remain complete INI
+  lines, with later semicolon/equals/hash bytes retained inside values.
+  Typed package/module profiles enforce exact allowed sections and assignments,
+  complete alias/path/selector/repository-prefix shapes, exact duplicate records,
+  fixed repository fields and mandatory url/directory values. Physical directory
+  checks establish lexical relative containment; actual checkout filesystem
+  containment and remote validity are acquisition responsibilities. Module alias
+  scope existence/collisions and actual selector matches remain T261/T262.
+  Bounded physical/shape scans terminate by consuming bytes; document duplicate
+  checks traverse finite earlier records. Actual time is O(B + R squared times K)
+  for B source bytes, R records and maximum key length K; arena storage is O(R),
+  excluding borrowed source bytes. Fixed-size records are initialized before
+  linking, and complete/refused construction shares one destructor. No arbitrary
+  line/name/path limit, recursive scan or implicit import is introduced.
+  Independent lines/records/document leaves passed, as did their configuration
+  parent. Named cases in the per-file registry cover every maintained code/header,
+  fixture and build input. Cases include every physical ending, exact original
+  views and error sites, nonpublication on refusal, complete Unicode whitespace
+  domain, raw internal data, alias case/prefix/normalization distinctions, strict
+  profile/schema/duplicate failures, all 36 section/field permutations, every
+  byte prefix of a mixed document and a 2048-component raw path.
+  All six mixed-document arena allocation refusals retain source bytes and
+  release every partial record. Root `make` passed (`/tmp/ama-t260-build.log`).
+  The first source-parent/sanitizer jobs were mistakenly launched together against
+  an overlapping leaf output owner. Both exited zero, but those runs are not
+  trusted composite/sanitizer acceptance. After collecting both, reran serially:
+  `make -C tests/unit/source`, then the document leaf under ASan/UBSan. Both passed
+  with exit 0, session 61500. Logs `/tmp/ama-t260-source-parent-serial.log` and
+  `/tmp/ama-t260-document-sanitized-serial.log` preserve actual invocations.
+  Sanitizer environment: ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 and
+  UBSAN_OPTIONS=halt_on_error=1. Compiler flags add address/undefined sanitizers
+  and frame pointers to the ordinary strict C11 test flags. No LSan claim is made;
+  its established environment restriction is separate from counted ownership tests.
+  The final configuration parent passed (`/tmp/ama-t260-configuration-final.log`).
+  Added explicit duplicate-directory coverage; final document/schema, current
+  root build and sanitized document checks passed at
+  `/tmp/ama-t260-document-final-schema.log`, `/tmp/ama-t260-build-final.log` and
+  `/tmp/ama-t260-document-sanitized-final.log` (exit 0 each).
+  Documentation preflight found missing direct canonical links on enum/helper
+  contracts, then missing standalone-header command metadata. Fixed both with
+  no change to production bytes outside Doxygen blocks. Strict standalone C11
+  headers, actual included test signatures and canonical contract references
+  were independently verified. Full registry check passed with 3150 ready
+  inputs and zero debts. Doxygen then exposed header links moved onto type pages;
+  file-purpose comments now route every related rule while retaining detailed
+  type/function explanations. Actual rendered validation passed without changing
+  a validator or suppressing warnings. Failed-run logs and corrections remain
+  in the linked component contract.
+  Full `make docs` passed (`/tmp/ama-t260-documentation-complete-preacceptance.log`,
+  exit 0): 2358 file pages, 9151 documented interfaces, 488/488 checked destinations.
+  After archival-only Markdown edits, regenerate with the supported builder
+  (`/tmp/ama-t260-documentation-delivery.log`) and require matching final
+  source/staged fingerprints before committing. Code, registry and header-check
+  inputs must remain equal to the accepted prearchive snapshot; otherwise their
+  acceptance must be repeated. No current acceptance is inferred from stale data.
+  T261/T262/T232 remain unimplemented; complete conformance renewal remains T237.
