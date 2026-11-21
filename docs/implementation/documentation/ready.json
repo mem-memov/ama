@@ -145638,6 +145638,21 @@
         "source": "tests/unit/semantic/static/publication/closure/main.c",
         "case": "it_refuses_foreign_closure_handles_and_missing_outcome_receivers",
         "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
       }
     ]
   },
@@ -145974,6 +145989,21 @@
         "source": "tests/unit/semantic/static/publication/closure/main.c",
         "case": "it_refuses_foreign_closure_handles_and_missing_outcome_receivers",
         "command": "make -C tests/unit/semantic/static/publication"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
       }
     ]
   },
@@ -155965,6 +155995,21 @@
         "source": "tests/unit/compiler/specialization-diagnostics/main.c",
         "case": "it_preserves_extra_template_residuals_and_reports_their_original_formals",
         "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
       }
     ],
     "standalone_header_command": [
@@ -156168,6 +156213,31 @@
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
         "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_infers_generic_interface_types_through_nested_declaration_inputs",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
       }
     ]
   },
@@ -164488,6 +164558,11 @@
       {
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_refuses_unconsumed_declaration_producer_inputs_before_legacy_export_resolution",
+        "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_infers_generic_interface_types_through_nested_declaration_inputs",
         "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
@@ -180021,6 +180096,214 @@
         "source": "tests/unit/project/closure/main.c",
         "case": "it_discovers_nested_declaration_inputs_and_selectors_without_losing_source_roles",
         "command": "make -C tests/unit/project/closure"
+      }
+    ]
+  },
+  "src/semantic/static/publication/ordinary/inputs/internal.h": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Share original child-operator caches and source-only equation operations.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/semantic/static/publication/ordinary/inputs/collect.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain each original declaration input operator without C recursion.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      }
+    ]
+  },
+  "src/semantic/static/publication/ordinary/inputs/equations.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Generate original nested Type equations independently of body expansion.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/operands/Makefile": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Verify source-only nested operand equations and exact failure ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/operands/main.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Run source-only complete operand facts, deep collection and resource-failure cases.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/operands/support/prepare.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Prepare original finite declaration trees with one unknown owner Type.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/operands/support/facts.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Verify complete nested nominal facts, stable caches and no invented contexts.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_keeps_branched_operand_sources_distinct_and_matches_reordered_named_maps",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/publication/operands/support/failures.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Refuse every measured collection/equation allocation and retain exact teardown ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_infers_owner_types_from_nested_ordinary_operand_facts_without_actual_roots",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_collects_empty_and_deep_input_trees_once_without_equations_or_body_work",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
+      },
+      {
+        "source": "tests/unit/semantic/static/publication/operands/main.c",
+        "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
+        "command": "make -C tests/unit/semantic/static/publication/operands"
       }
     ]
   }

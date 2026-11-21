@@ -8,10 +8,19 @@
  * [TPL-04](../../../../spec/language/templates.md#tpl-04) permits original per-field annotation equations.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) keeps metadata separate from actual expansion.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial metadata.
+ * [TPL-15](../../../../spec/language/templates.md#tpl-15) retains pure equations
+ * for all original input operands before actual body validation.
  */
 #ifndef AMA_STATIC_ORDINARY_TYPES_H
 #define AMA_STATIC_ORDINARY_TYPES_H
 #include "plan.h"
+
+/** Private publication-owned operand cache; no runtime context is stored.
+ * [TPL-11](../../../../spec/language/templates.md#tpl-11) separates facts and
+ * validation; [TPL-15](../../../../spec/language/templates.md#tpl-15) keeps
+ * nested expressions in their original enclosing environment.
+ */
+struct StaticOrdinaryOperand;
 
 /** One original ordinary Type occurrence in an exact source environment, with
  * optional actual incoming provenance.
@@ -35,6 +44,12 @@ typedef struct StaticOrdinaryType {
     const StaticResultSource *annotation;
     const StaticTermApplication *prepared;
     const StaticApplicationRecord *application;
+    /** Complete original-child cache under [TPL-15](../../../../spec/language/templates.md#tpl-15).
+     * The flag certifies traversal only, never Type closure or actual body
+     * validation under [TPL-11](../../../../spec/language/templates.md#tpl-11).
+     */
+    struct StaticOrdinaryOperand *inputs;
+    bool inputs_collected;
     const StaticModule *producer;
     const StaticSymbol *selected;
     const StaticResultContext *producer_context;
@@ -51,7 +66,7 @@ typedef struct StaticOrdinaryType {
     DiagnosticContext residual_context;
 } StaticOrdinaryType;
 
-/** Register original simple ordinary Type syntax in an exact environment
+/** Register original ordinary annotation syntax in an exact environment
  * without inventing an actual incoming context. It owns only source metadata
  * and consumer Type obligations; no body or definition is read. This is not a
  * checked/executable use. Output stays unchanged on failure.

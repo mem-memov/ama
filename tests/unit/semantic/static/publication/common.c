@@ -18,8 +18,10 @@ static void setup_publications(const char *caller, const char *target) {
     assert(allocation_count == before && publications.status == STATIC_PUBLICATION_OK);
 }
 
-/** Only a registered checked root supplies a compilation context. */
-static const StaticResultContext *publication_context(const StaticTermEnvironment *environment) {
+/** Optional actual-use consumers request a registered root. Pure annotation
+ * consumers deliberately create none and need not call this helper.
+ */
+static inline const StaticResultContext *publication_context(const StaticTermEnvironment *environment) {
     const StaticCreationPath *root;
     const StaticResultContext *context;
     assert(static_creation_root(&guards, environment, &root));

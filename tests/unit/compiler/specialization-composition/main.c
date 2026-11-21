@@ -188,8 +188,40 @@ static void it_refuses_unconsumed_declaration_producer_inputs_before_legacy_expo
     destroy_frontend();
 }
 
+/** Nested nominal equations infer an actual generic owner's Type before its
+ * incoming creation path can expand that definition; no guessed key is needed.
+ */
+static void it_infers_generic_interface_types_through_nested_declaration_inputs(void) {
+    prepare_sources("@!\nvalue\n./family\n .element < ./inner\n  .element < ./leaf\nworker\n./generic\nworker !\n < value\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/family", "@<\nitem\n.element\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/inner", "@<\nitem\n.element\n@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/leaf", "@!\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/generic",
+        "@<\nargument\n./family\n .element < ./inner\n  .element < .owner\n@!\n");
+    setup_frontend();
+    bool checked = check_project();
+    if (!checked) { fprintf(stderr, "Nested generic declaration: %s\n", frontend.error.message); }
+    assert(checked && frontend.valid && frontend.specializations.closure.closed);
+    const ProjectModule *leaf = project_find(&frontend.project, "/test/fixture/v1.0.0/src/leaf");
+    const StaticModule *generic = static_module_find(&frontend.static_inventory,
+        project_find(&frontend.project, "/test/fixture/v1.0.0/src/generic"));
+    assert(generic && generic->parameter_count == 1);
+    bool found = false;
+    for (const StaticRegistryCandidate *candidate = frontend.specializations.registry.first_candidate;
+        candidate; candidate = candidate->next) {
+        if (candidate->key->definition != generic) { continue; }
+        const StaticTerm *type = candidate->key->owner_type;
+        assert(type && type->ground && type->as.nominal.capture_count == 1);
+        assert(type->as.nominal.first_capture->value->as.nominal.origin->definition == leaf);
+        found = true;
+    }
+    assert(found);
+    destroy_frontend();
+}
+
 /** Dispatch current-stage evidence; no generated execution is claimed here. */
 static void run(void) {
+    it_infers_generic_interface_types_through_nested_declaration_inputs();
     it_refuses_unconsumed_declaration_producer_inputs_before_legacy_export_resolution();
     it_exposes_closed_generic_type_candidates_before_ordinary_admission();
     it_composes_explicit_multi_root_closure_with_the_real_frontend();

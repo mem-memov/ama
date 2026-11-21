@@ -4,12 +4,15 @@
  * [TPL-10](../../../../../spec/language/templates.md#tpl-10) permits finite structural equations.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) preserves separate actual expansion checks.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires independently concrete exports.
+ * [TPL-15](../../../../../spec/language/templates.md#tpl-15) requires the exact
+ * equations of every nested input rather than a disconnected child variable.
  */
 #include "internal.h"
+#include "inputs/internal.h"
 #include "../progress.h"
 
-/** Plain ordinary syntax has no nested static binding/definition evaluation.
- * Shared operand/application kernels retain only its exact finite equations.
+/** Shared operand/application kernels retain the complete original annotation's
+ * finite equations, including each nested input, without body evaluation.
  * An export instead closes its actual independent static root, never an ordinary
  * caller root. Such metadata work cannot certify an actual ordinary use.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) leaves ancestry/body validation outstanding.
@@ -23,9 +26,12 @@ bool static_ordinary_equations(StaticPublicationPlan *plan, StaticOrdinaryType *
     StaticPublicationProgress before = static_publication_progress(plan);
     if (type->producer) {
         if (!static_ordinary_export(plan, type)) { return false; }
-    } else if (!static_result_operands(plan->results, type->annotation, &type->prepared) ||
-        !static_result_application(plan->results, type->annotation, type->prepared, &type->application)) {
-        (void)static_publication_dependencies(plan); return false;
+    } else {
+        if (!static_result_operands(plan->results, type->annotation, &type->prepared) ||
+            !static_result_application(plan->results, type->annotation, type->prepared, &type->application)) {
+            (void)static_publication_dependencies(plan); return false;
+        }
+        if (!static_ordinary_input_equations(plan, type)) { return false; }
     }
     *output = !static_publication_same_progress(before, static_publication_progress(plan));
     return true;

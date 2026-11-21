@@ -8062,3 +8062,53 @@ T201. Specification bytes have not changed.
   T237 retains conformance renewal; no specification or historical fingerprint
   was changed. Narrative-only archival regeneration and accepted source/test/
   registry/deletion/staged-input agreement remain required before commit.
+
+<a id="t270"></a>
+
+- [x] **T270 — Normalize every ordinary declaration operand as source-only facts.**
+  Completed 2026-11-21; prerequisites T217, T221, T232 and T269.
+  Contract/steps: [declaration expressions](docs/implementation/declaration-expressions.md).
+  Rules: TPL-02/04/10/11/15, TYPE-01 and ARCH-03/05/06.
+  Extend the existing ordinary annotation equation pass from one root operator
+  to its complete finite input-expression tree, using explicit work records
+  and original environment/source identities. Reuse existing operand/application
+  kernels; preserve FIELD omission only at the original declaration root and
+  PARTIAL omission for nested arguments. Generate no actual caller root, body
+  expansion, runtime storage or validation certificate from these facts.
+  Accept source-only nested nominal/placeholder inference, exact full maps,
+  no invented contexts, actual generic-call composition, invalid/membership and
+  every measured allocation refusal, sanitizers and documentation gates.
+  Static producer selections retain their explicit existing domain checks;
+  T226 owns general selected-value/producer evaluation and removal of T269's
+  unsupported-input guard. This foundation must not claim that integration.
+
+  Result: the normal annotation pass collects and caches every original child
+  operator with an explicit frame stack, then applies existing pure equation
+  kernels in source preorder. Known nested nominal information reaches its
+  exact owner parameter without allocating an actual context or reading a
+  body. The collected flag certifies only traversal. Root FIELD and nested
+  PARTIAL omission continue to come from original occurrence roles; repeated
+  constructor spelling and reordered named arguments do not merge sources.
+  Acceptance: source-only counterexample fails before and passes after the
+  implementation; a stable repeat reports no false progress. Empty collection
+  allocates nothing; 1024-level collection, sibling branches, independent owner
+  inference and every measured deep-collection/full-equation allocation
+  refusal pass, with unchanged output on failure and counted teardown.
+  Complete publication and compiler parents, operand ASan/UBSan (including the
+  final branch case) and actual generated integer/marker C regression pass.
+  The nonrecursive generic-call case already passed before and is retained as
+  a composition regression; it is not claimed as a previously failing program.
+  LeakSanitizer is disabled and no LSan pass is claimed.
+  Final `make docs` passed 3259 ready inputs, zero debts, 2457 maintained file
+  pages, 9453 documented interfaces and all 490 referenced destinations.
+  Logs, flags, proof and actual failed-run corrections are in the component
+  contract. Final logs include `/tmp/ama-t270-publication-parent.log`,
+  `/tmp/ama-t270-compiler-parent.log`, `/tmp/ama-t270-branched-operands.log`,
+  `/tmp/ama-t270-branched-sanitized.log`,
+  `/tmp/ama-t270-generated-regression.log` and
+  `/tmp/ama-t270-documentation-branched-final.log`.
+  Limits: general static producer selections and the T269 unsupported-input
+  boundary remain T226; whole-sprint conformance renewal remains T237. No
+  specification or accepted conformance fingerprint was changed. Final
+  narrative-only archival generation must retain accepted source/test/registry
+  fingerprints and agree with the staged files and site/report manifests.

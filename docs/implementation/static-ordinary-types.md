@@ -8,26 +8,27 @@ source-only annotation facts. Authority:
 [TPL-11](../../spec/language/templates.md#tpl-11),
 [TPL-12](../../spec/language/static-results.md#tpl-12),
 [CONST-03](../../spec/language/declarations.md#const-03) and
-[CONST-06](../../spec/language/declarations.md#const-06).
+[CONST-06](../../spec/language/declarations.md#const-06) and
+[TPL-15](../../spec/language/templates.md#tpl-15).
 T212 and T217 acceptance commands, failures, corrections and limits are in DONE.
 No specification change or executable admission is claimed by this component.
 
 ## Why an ordinary field differs from a static constructor value
 
 An ordinary generic path creates an independent field inference map. Assume
-`.container` has one ordinary input whose Type is `...element`:
+`/example/demo/v1.0.0/src/container` has one ordinary input whose Type is `.element`:
 
 ```text
 @<
 number
-..integer
+//integer
 text
-..text
+//text
 @!
 first
-.container
+/example/demo/v1.0.0/src/container
 second
-.container
+/example/demo/v1.0.0/src/container
 first !
  < number
 second !
@@ -44,11 +45,11 @@ A static graph instead retains a residual constructor when it supplies no inputs
 
 ```text
 @...
-...family
-.container
+.family
+/example/demo/v1.0.0/src/container
 ```
 
-Here `...family` is a Template, not a container instance Type. Equating a generic
+Here `.family` is a Template, not a container instance Type. Equating a generic
 ordinary field with that residual constructor is incorrect. The zero-binding
 identity law is therefore suppressed for an ordinary FIELD-policy module path
 whose known constructor retains formals. Its ordinary application operation
@@ -73,10 +74,14 @@ a real use after validating its actual incoming context. Different use records
 can share the same source/value term without sharing validation provenance or
 runtime state. Copied syntax/environments/records do not count as membership.
 
-`static_ordinary_equations` processes only the original simple ordinary annotation.
-It shares the existing immutable operand/application kernels. It can substitute
-a supplied Type, create source-owned field omission variables, and add the exact
-structural equations entailed by that annotation. It neither evaluates an ordinary
+`static_ordinary_equations` processes the original normal annotation and every
+nested input operator. [T270](../../DONE.md#t270) retains a finite original-child
+cache and uses the existing immutable operand/application kernels for each source.
+The declaration root keeps FIELD omission; nested inputs keep PARTIAL omission.
+Bare Type operands receive their own identity equation, so nested nominal
+information can determine an owner parameter without executing that owner.
+It can substitute a supplied Type, create source-owned field omission variables,
+and add only the structural equations entailed by the annotation. It neither evaluates an ordinary
 body/default/call nor reads a computed ordinary definition. Static graph modules
 are outside this API's source domain. No removed generic interface-preview
 operation or computed-interface exception is restored.
@@ -151,3 +156,21 @@ allocation refusal. Current graph/result/constant compositions remain required
 regressions. File-specific/header evidence and final commands belong to the task
 record and [ready.json](documentation/ready.json). The completed T217 record retains strict/sanitizer/build/Doxygen evidence; T182 consumes the new annotation facts
 for ordinary typed operations, and later tasks perform executable admission.
+
+## Complete normal operand facts
+
+[T270](../../DONE.md#t270) tests nested nominal inference independently of actual
+contexts and existing generic-call composition. The cache's collected flag is
+only source traversal evidence; it never closes a Type, marks a body checked, or
+supplies an incoming root. Preparation traverses the finite original tree with
+explicit frames, then applies existing pure kernels in preorder. The solver
+receives the same simultaneous equations independently of that schedule.
+All cache/frame records remain publication-owned after refusal; their source
+and operator pointers borrow longer-lived existing owners.
+
+General static producer input/selected-value expressions retain T226 as their
+implementation owner. T269's explicit refusal prevents the older zero-argument
+ordinary-export path from discarding newly parsed inputs. The normal operand
+pass does not bypass that boundary or invent supplier inputs from an expected
+consumer Type. The [declaration-expression record](declaration-expressions.md)
+contains the current task, proof, failure partitions and collected run evidence.
