@@ -116,17 +116,6 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   resolver foundations with current consumers. No guessed mask/prefix rewrite,
   implicit acquisition or partial copy after move refusal is allowed.
 
-<a id="t234"></a>
-
-- [ ] **T234 — Implement exact dependency masks and repository routing.**
-  Prerequisites: T232 and T233. Implement PKG-05/06 as independent finite-set
-  matcher, requester-scoped source router and snapshot/source-contract planners.
-  Preserve multi-depth whole-component stars, component-local embedded stars,
-  version validity and all matches; route by longest full-component prefix with
-  explicit conflicts and no failure fallback. Accept exhaustive bounded models,
-  overlapping/reordered mappings, empty masks, skipped absent members and actual
-  config consumers; one source contract must govern each acquired version.
-
 <a id="t235"></a>
 
 - [ ] **T235 — Compute minimal structural source-and-test delivery closure.**

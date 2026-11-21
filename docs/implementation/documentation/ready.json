@@ -180624,6 +180624,16 @@
         "source": "tests/unit/tools/project/building/main.c",
         "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
         "command": "make -C tests/unit/tools/project/building"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
       }
     ]
   },
@@ -181372,6 +181382,16 @@
         "source": "tests/unit/tools/project/compiled/main.c",
         "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
         "command": "make -C tests/unit/tools/project/compiled"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
       }
     ]
   },
@@ -181519,6 +181539,931 @@
         "source": "tests/unit/tools/project/building/main.c",
         "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
         "command": "make -C tests/unit/tools/project/building"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compose independently tested acquisition planners and own their immutable input/result fixtures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_matches_every_bounded_reordered_scope_without_character_prefix_leakage",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/common.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compose independently tested acquisition planners and own their immutable input/result fixtures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_matches_every_bounded_reordered_scope_without_character_prefix_leakage",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/location/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Verify finite word-state path normal forms, scoped mapping, exact failure and cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_matches_every_bounded_relative_directory_word_model",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_retains_failed_mapping_scratch_and_recovers_with_the_same_borrowed_route",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_refuses_zero_absolute_and_missing_directory_metadata",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/location/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Verify finite word-state path normal forms, scoped mapping, exact failure and cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_matches_every_bounded_relative_directory_word_model",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_retains_failed_mapping_scratch_and_recovers_with_the_same_borrowed_route",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_refuses_zero_absolute_and_missing_directory_metadata",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/routing/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Exhaust requester route tables and real Unicode alias/source provenance compositions.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_matches_every_bounded_reordered_scope_without_character_prefix_leakage",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_retains_requesting_scope_and_selects_unavailable_specific_routes",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_refuses_invalid_inputs_without_publishing_a_partial_route",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_routes_unicode_alias_values_while_preserving_original_expression_offsets",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/routing/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Exhaust requester route tables and real Unicode alias/source provenance compositions.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_matches_every_bounded_reordered_scope_without_character_prefix_leakage",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_retains_requesting_scope_and_selects_unavailable_specific_routes",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_refuses_invalid_inputs_without_publishing_a_partial_route",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_routes_unicode_alias_values_while_preserving_original_expression_offsets",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/sources.mk": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compose independently tested acquisition planners and own their immutable input/result fixtures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_matches_every_bounded_reordered_scope_without_character_prefix_leakage",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/sources/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compose real parsed scopes, selected local versions and operation-owned source contracts.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/sources/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compose real parsed scopes, selected local versions and operation-owned source contracts.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/sources/support/conflicts.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Verify immutable conflicting sources, foreign-operation refusal and untouched invalid outputs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/sources/support/ownership.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Sweep every measured source request, commit and binding allocation refusal and recovery.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/sources/support/prepared.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Consume actual common selected package/dependency views before incomplete version indexing.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/sources/support/selection.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compose actual aliases and finite selector unions with requester-scoped snapshot plans.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/sources/support/snapshots.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Verify snapshot scheduling equivalence, pending resolution and commit-based source identity.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tools/project/acquisition/location/assemble.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Normalize contained physical directories and assemble one immutable version location with checked ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_matches_every_bounded_relative_directory_word_model",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_retains_failed_mapping_scratch_and_recovers_with_the_same_borrowed_route",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_refuses_zero_absolute_and_missing_directory_metadata",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      }
+    ]
+  },
+  "tools/project/acquisition/location/directory.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Normalize contained physical directories and assemble one immutable version location with checked ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_matches_every_bounded_relative_directory_word_model",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_retains_failed_mapping_scratch_and_recovers_with_the_same_borrowed_route",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_refuses_zero_absolute_and_missing_directory_metadata",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      }
+    ]
+  },
+  "tools/project/acquisition/location/internal.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Normalize contained physical directories and assemble one immutable version location with checked ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_matches_every_bounded_relative_directory_word_model",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_retains_failed_mapping_scratch_and_recovers_with_the_same_borrowed_route",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_refuses_zero_absolute_and_missing_directory_metadata",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/location/location.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Normalize contained physical directories and assemble one immutable version location with checked ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_matches_every_bounded_relative_directory_word_model",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_retains_failed_mapping_scratch_and_recovers_with_the_same_borrowed_route",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/location/main.c",
+        "case": "it_refuses_zero_absolute_and_missing_directory_metadata",
+        "command": "make -C tests/unit/tools/project/acquisition/location"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/routing/route.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Select the exact longest requesting-scope repository prefix with preserved normalized identity provenance.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_matches_every_bounded_reordered_scope_without_character_prefix_leakage",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_retains_requesting_scope_and_selects_unavailable_specific_routes",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_refuses_invalid_inputs_without_publishing_a_partial_route",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_routes_unicode_alias_values_while_preserving_original_expression_offsets",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/routing/select.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Select the exact longest requesting-scope repository prefix with preserved normalized identity provenance.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_matches_every_bounded_reordered_scope_without_character_prefix_leakage",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_retains_requesting_scope_and_selects_unavailable_specific_routes",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_refuses_invalid_inputs_without_publishing_a_partial_route",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/routing/main.c",
+        "case": "it_routes_unicode_alias_values_while_preserving_original_expression_offsets",
+        "command": "make -C tests/unit/tools/project/acquisition/routing"
+      }
+    ]
+  },
+  "tools/project/acquisition/sources/bind.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Publish one coherent selected version contract and preserve prior sources on conflicts.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tools/project/acquisition/sources/failure.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own source planning records, exact source keys and original conflict evidence through complete or failed preparation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tools/project/acquisition/sources/internal.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own source planning records, exact source keys and original conflict evidence through complete or failed preparation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/sources/lifetime.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own source planning records, exact source keys and original conflict evidence through complete or failed preparation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tools/project/acquisition/sources/request.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Gate all prepared on-disk versions before scoped remote planning and exact snapshot request interning.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tools/project/acquisition/sources/snapshot/find.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Validate snapshot ownership and explicitly publish one immutable resolved commit.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tools/project/acquisition/sources/snapshot/request.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Intern exact operation-local URL and optional revision requests without resolving transport.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tools/project/acquisition/sources/snapshot/resolve.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Validate snapshot ownership and explicitly publish one immutable resolved commit.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "tools/project/acquisition/sources/sources.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own source planning records, exact source keys and original conflict evidence through complete or failed preparation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/sources/text.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own source planning records, exact source keys and original conflict evidence through complete or failed preparation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_distinguishes_default_revision_and_aliases_equal_resolved_commits",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_all_unequal_source_contract_fields_without_replacing_the_prior_version",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_rejects_foreign_commit_handles_and_preserves_single_assignment",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_refuses_unmapped_and_foreign_requests_without_growing_indexes",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_uses_actual_prepared_whole_versions_before_routing_or_source_indexing",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/sources/main.c",
+        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/sources"
       }
     ]
   }

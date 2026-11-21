@@ -22,8 +22,9 @@ identities and `//` Standard paths, and recognizes single-dot static names.
 [T232](DONE.md#t232) accepts relative-path normalization and scoped `.ini`
 aliases in the shared frontend. The
 [independent project commands](spec/implementation/project-tools.md) retain
-T234–T237/T224 implementation owners. T233 accepts initialization and the
-prepared isolated-test API; other commands retain their separate implementation gates.
+T235–T237/T224 implementation owners. T233 accepts initialization and the
+prepared isolated-test API; T234 accepts exact scoped acquisition planning.
+Acquisition/source commands retain their separate implementation gates.
 The later [CMake build contract](spec/implementation/application-builds.md),
 [named application inputs](spec/implementation/launch-and-embedding.md) and
 [no-main source inclusion](spec/implementation/c-library.md#embed-09) are also

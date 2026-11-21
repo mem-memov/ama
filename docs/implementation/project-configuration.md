@@ -1175,3 +1175,12 @@ Only narrative archival follows the accepted implementation. Regenerate via
 `python3 tools/documentation/build.py --doxygen doxygen`, verify unchanged
 accepted non-Markdown inputs and final staged documentation fingerprints, then
 commit T232 independently before starting T221.
+
+## Accepted acquisition-planning consumer
+
+[T234](../../DONE.md#t234) reuses the exact selector/finite-view and parsed
+configuration APIs described here. Its independent project-tool
+[acquisition contract](acquisition-plan.md) owns requester-scoped repository
+routing, contained physical mapping and coherent snapshot/version source
+records. It adds no compiler-side acquisition, global repository table or
+alternate wildcard semantics. T235/T236 retain delivery/transport ownership.

@@ -8229,3 +8229,32 @@ T201. Specification bytes have not changed.
   high-level test command; T234/T236 retain acquisition ownership. No specification
   or whole-sprint conformance fingerprints changed. Full failures, corrections,
   commands, invariants and limitations are preserved in the linked contract.
+
+<a id="t234"></a>
+
+- [x] **T234 — Implement exact dependency masks and repository routing.**
+  Status: accepted; shared exact selectors are composed with scoped routes,
+  contained physical mapping and coherent operation-local source records.
+  Evidence: [acquisition planning](docs/implementation/acquisition-plan.md).
+  Prerequisites: T232 and T233. Implement PKG-05/06 as independent finite-set
+  matcher, requester-scoped source router and snapshot/source-contract planners.
+  Preserve multi-depth whole-component stars, component-local embedded stars,
+  version validity and all matches; route by longest full-component prefix with
+  explicit conflicts and no failure fallback. Accept exhaustive bounded models,
+  overlapping/reordered mappings, empty masks, skipped absent members and actual
+  config consumers; one source contract must govern each acquired version.
+
+  Acceptance: 326 ordered route tables / 1956 independent decisions, 780
+  physical word-state cases, Unicode aliases with original source offsets,
+  all-matches/empty/missing-member selector compositions and inventory reversal
+  passed. Actual prepared package/dependency versions block remote hole filling
+  before incomplete indexing. Exact URL/revision snapshot scheduling, immutable
+  commit publication, source conflicts, foreign handles, stable handle reuse,
+  all nine measured source-allocation refusals and same-owner recovery passed.
+  The complete project-tool parent (including real Ama compile/run and actual
+  incremental tool builds) and ASan/UBSan passed; LeakSanitizer remains explicitly
+  disabled and counted ownership checks are separate evidence. `make docs`
+  passed: 3344 ready inputs, zero debts, 2522 maintained file pages, 9698 interfaces
+  and 492 validated destinations. No specification/conformance fingerprints
+  changed. These are pure planning interfaces; T235/T236 own closure/transport,
+  actual checkout validation, acquisition publication and command composition.
