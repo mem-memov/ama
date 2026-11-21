@@ -166,6 +166,10 @@ not evidence to defer silently to T242.
 
 ### T244 — Establish ownership and internal contracts
 
+The [reconciled handoff and migration contract](build-launcher-contracts.md)
+records the actual `dc284fb` consumers, typed ownership/state boundaries,
+backend metadata envelopes and test partitions.
+
 1. Reconcile the bounded inventory with actual callers and existing evidence.
    Assign every retained/new/removed boundary to a task; retain reusable code
    only with a named current consumer.

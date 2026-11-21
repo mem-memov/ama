@@ -169,17 +169,6 @@ The linked plan expands their step order and acceptance partitions. Earlier
 complete-conformance fingerprints remain historical until T237's final review;
 focused accepted evidence and documentation are required at every task.
 
-<a id="t244"></a>
-
-- [ ] **T244 — Establish build and launcher component contracts.**
-  Status: planned. Prerequisites: T243, T229 and T230. Reconcile the bounded
-  current-owner inventory with real consumers; assign retain/adapt/remove owners
-  and establish typed request, closure, binding, binary-schema, profile, artifact
-  and stage-result handoffs. Link BUILD/CLI/EMBED/CABI/RT contracts, invariants,
-  resource bounds, termination arguments and independent test partitions.
-  Accept: every boundary has an owner, explicit lifetime/failure effects and a
-  migration/test witness; no dormant implementation or competing specification.
-
 <a id="t245"></a>
 
 - [ ] **T245 — Implement explicit delivery requests and emission metadata.**

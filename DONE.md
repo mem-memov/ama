@@ -8258,3 +8258,28 @@ T201. Specification bytes have not changed.
   and 492 validated destinations. No specification/conformance fingerprints
   changed. These are pure planning interfaces; T235/T236 own closure/transport,
   actual checkout validation, acquisition publication and command composition.
+
+<a id="t244"></a>
+
+- [x] **T244 — Establish build and launcher component contracts.**
+  Status: accepted; actual consumers, migration owners, typed lifetimes/failures,
+  metadata envelopes and test partitions are reconciled in the
+  [handoff contract](docs/implementation/build-launcher-contracts.md).
+  Prerequisites: T243, T229 and T230. Reconcile the bounded
+  current-owner inventory with real consumers; assign retain/adapt/remove owners
+  and establish typed request, closure, binding, binary-schema, profile, artifact
+  and stage-result handoffs. Link BUILD/CLI/EMBED/CABI/RT contracts, invariants,
+  resource bounds, termination arguments and independent test partitions.
+  Accept: every boundary has an owner, explicit lifetime/failure effects and a
+  migration/test witness; no dormant implementation or competing specification.
+
+  Acceptance: read-only caller tracing at `dc284fb` verified the fixed artifact/
+  launcher route, fresh-root recipe gap, checked library schema/materialization,
+  exact identity/symbol consumers and separate project process/test adapters.
+  All twelve named current witness leaves and contract paths/rule anchors exist.
+  The supported Doxygen builder passed with 2522 maintained file pages, 9698
+  documented interfaces and 493 referenced destinations. This task changes only
+  Markdown: no implementation, header/ABI, specification or conformance input
+  changed, and no proposed behavior is claimed as tested. Later implementation
+  tasks own the concrete producer/consumer codecs and actual replacement tests;
+  live stateful library/current low-level consumers remain explicitly assigned.

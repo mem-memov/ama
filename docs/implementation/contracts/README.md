@@ -335,3 +335,7 @@ scaffold publication and isolated experiment orchestration.
 
 The [scoped acquisition planning contract](../acquisition-plan.md) owns T234
 repository routes and operation-local coherent source records.
+
+The [build/launcher handoff contract](../build-launcher-contracts.md) owns T244
+request/closure/construction/schema/profile/artifact/stage boundaries and the
+current-consumer migration ledger for T245–T257.
