@@ -42,5 +42,5 @@ typedef struct {
  * exact joins and rejects unknown header forms. Time O(line bytes), space O(1).
  */
 bool configuration_record_read(SourceSpan line, ConfigurationRecord *output,
-    ConfigurationIssue *issue);
+    SourceIssue *issue);
 #endif

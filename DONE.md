@@ -7603,3 +7603,40 @@ T201. Specification bytes have not changed.
   inputs must remain equal to the accepted prearchive snapshot; otherwise their
   acceptance must be repeated. No current acceptance is inferred from stale data.
   T261/T262/T232 remain unimplemented; complete conformance renewal remains T237.
+
+<a id="t261"></a>
+
+- [x] **T261 — Normalize paths and build exact alias scopes.**
+  Status: accepted after T260 (`f62e448`); contract and step checkpoint in
+  [project configuration](docs/implementation/project-configuration.md#t261-path-and-scope-contract).
+  Prerequisites: T260. Implement SRC-06/PKG-04 with explicit root/component
+  stacks, original component provenance, separate package/module relative bases,
+  no shadowing or module-alias chaining, and no intermediate filesystem lookup.
+  Normalize before context-specific module/constant selection. Test direct,
+  relative, aliased, cross-boundary, underflow, unknown/cyclic/local-chain,
+  namespace and order cases; prove idempotent canonical results and bounded
+  expansion. T232 owns compiler/tool integration of this shared foundation.
+
+  Acceptance: pure normalization preserves roots, reduced component bytes and
+  original source provenance; namespace description and constant selection share
+  the canonical shape validator. The independent reverse-cancellation model
+  covers 21,840 bounded operands, including first-parent and root-underflow sites.
+  Alias scopes retain only their own sorted entries and at most one exact
+  version-matched package table. Module-local RHS lookup cannot see local entries;
+  collisions precede target resolution, so order cannot permit chains or shadowing.
+  Parsed document nodes can retire after construction; borrowed SourceText and
+  package owners have explicit longer lifetimes. SourceIssue replaces the
+  INI-specific duplicate issue shape throughout its actual consumers.
+  Scoped path/configuration leaves, full source parent and root compiler make
+  passed. All measured package/module/path allocation refusals preserve output
+  and release partial arena storage. ASan/UBSan normalization and scope leaves
+  passed serially with leak detection disabled; the original LSan ptrace refusal
+  is recorded separately and is not accepted as a pass. Logs and exact boundary
+  evidence live in the linked contract. Complete `make docs` passed: 3181 ready
+  inputs, zero debts, 2387 maintained file pages, 9247 documented interfaces and
+  488/488 rendered canonical destinations. After archival-only Markdown updates,
+  regenerate final Doxygen delivery and verify source/staged fingerprints;
+  unchanged compiler/registry/test/header inputs retain the accepted checks.
+  T262 and T232 remain responsible for selector authorization and real pipeline
+  integration; this task does not claim that source-only foundations are wired
+  into compilation. Whole-sprint current conformance acceptance remains T237.

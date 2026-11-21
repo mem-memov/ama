@@ -7,7 +7,7 @@
 #include "internal.h"
 
 bool configuration_record_read(SourceSpan line, ConfigurationRecord *output,
-    ConfigurationIssue *issue) {
+    SourceIssue *issue) {
     if (!source_span_valid(line)) {
         return configuration_record_failure(issue, line, "Invalid configuration span", "an original line span");
     }

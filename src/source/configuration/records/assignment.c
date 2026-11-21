@@ -22,7 +22,7 @@ static bool boundary_space(SourceSpan text, bool last) {
 }
 
 bool configuration_assignment(SourceSpan line, size_t equal, ConfigurationRecord *record,
-    ConfigurationIssue *issue) {
+    SourceIssue *issue) {
     const unsigned char *bytes = source_bytes(line.source);
     if (equal - line.start < 2 || line.end - equal < 3
         || bytes[equal - 1] != ' ' || bytes[equal + 1] != ' ') {

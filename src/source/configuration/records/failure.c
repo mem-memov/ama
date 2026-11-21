@@ -7,8 +7,8 @@
  */
 #include "internal.h"
 
-bool configuration_record_failure(ConfigurationIssue *issue, SourceSpan span,
+bool configuration_record_failure(SourceIssue *issue, SourceSpan span,
     const char *message, const char *expected) {
-    *issue = (ConfigurationIssue){span, message, expected};
+    *issue = (SourceIssue){span, message, expected};
     return false;
 }

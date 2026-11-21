@@ -22,17 +22,17 @@ bool configuration_text_equal(SourceSpan left, SourceSpan right);
 /** Fill the first caller-owned issue with this exact span and static explanations.
  * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) attributes refusal to original configuration text.
  */
-bool configuration_record_failure(ConfigurationIssue *issue, SourceSpan span,
+bool configuration_record_failure(SourceIssue *issue, SourceSpan span,
     const char *message, const char *expected);
 /** Recognize an exact known header and validate repository prefix spelling.
  * [PKG-06](../../../../spec/project/packages.md#pkg-06) constrains the repository prefix before any remote lookup.
  */
-bool configuration_header(SourceSpan line, ConfigurationRecord *record, ConfigurationIssue *issue);
+bool configuration_header(SourceSpan line, ConfigurationRecord *record, SourceIssue *issue);
 /** Split the first equals sign at its exact one-space joins; later equals signs are data.
  * [PKG-03](../../../../spec/project/packages.md#pkg-03) preserves subsequent equals signs as value data.
  */
 bool configuration_assignment(SourceSpan line, size_t equal, ConfigurationRecord *record,
-    ConfigurationIssue *issue);
+    SourceIssue *issue);
 /** Validate a complete tilde-prefixed ordinary alias key without resolving it.
  * [PKG-04](../../../../spec/project/packages.md#pkg-04) requires tilde plus one complete ordinary name.
  */

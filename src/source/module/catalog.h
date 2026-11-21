@@ -15,6 +15,7 @@
 #include <sys/stat.h>
 #include "source/memory/arena.h"
 #include "source/text/source.h"
+#include "source/path/root.h"
 
 /** Authoritative source identity/bytes captured by ordinary discovery; snapshot construction deep-copies text and names. Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 typedef struct {
@@ -50,12 +51,6 @@ typedef struct ModuleSource {
     ino_t inode;
     bool native_loaded;
 } ModuleSource;
-
-/** Logical namespace family; zero is deliberately invalid until a root is explicitly configured. Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
-typedef enum {
-    MODULE_ROOT_PROJECT = 1,
-    MODULE_ROOT_STANDARD = 2
-} ModuleRootKind;
 
 /** Borrowed physical root plus exact relative exclusions and required namespace family.
  * Project roots contain optional packages/dependencies storage and use ordinary

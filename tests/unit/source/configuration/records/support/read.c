@@ -26,7 +26,7 @@ static void it_recognizes_exact_records_and_preserves_raw_value_views(void) {
         setup_test();
         SourceSpan text = configuration_test_text(cases[index].text);
         ConfigurationRecord record;
-        ConfigurationIssue issue = {0};
+        SourceIssue issue = {0};
         size_t before = allocation_count;
         failure_at = allocation_count + 1;
         assert(configuration_record_read(text, &record, &issue));
@@ -53,7 +53,7 @@ static void it_refuses_malformed_headers_and_assignment_joins_without_publicatio
         ConfigurationRecord record = {.kind = CONFIGURATION_COMMENT, .span = text};
         unsigned char saved[sizeof(record)];
         memcpy(saved, &record, sizeof(record));
-        ConfigurationIssue issue = {0};
+        SourceIssue issue = {0};
         assert(!configuration_record_read(text, &record, &issue));
         assert(memcmp(saved, &record, sizeof(record)) == 0);
         assert(source_span_valid(issue.span) && issue.span.source == text.source);
@@ -61,7 +61,7 @@ static void it_refuses_malformed_headers_and_assignment_joins_without_publicatio
         destroy_test();
     }
     ConfigurationRecord record = {0};
-    ConfigurationIssue issue = {0};
+    SourceIssue issue = {0};
     assert(!configuration_record_read((SourceSpan){0}, &record, &issue));
     assert(issue.message != NULL);
 }

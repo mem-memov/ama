@@ -7,17 +7,7 @@
  */
 #ifndef AMA_SOURCE_CONFIGURATION_LINES_H
 #define AMA_SOURCE_CONFIGURATION_LINES_H
-#include "source/text/source.h"
-
-/** Original failure site and static explanations; the source owner outlives all views.
- * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) requires an
- * actionable original location, never a location in normalized replacement text.
- */
-typedef struct {
-    SourceSpan span;
-    const char *message;
-    const char *expected;
-} ConfigurationIssue;
+#include "source/text/issue.h"
 
 /** Allocation-free cursor borrowing one complete immutable source through end/failure.
  * A failure closes the cursor; the output of next remains unchanged on refusal.
@@ -27,7 +17,7 @@ typedef struct {
 typedef struct {
     const SourceText *source;
     size_t offset;
-    ConfigurationIssue issue;
+    SourceIssue issue;
     bool failed;
 } ConfigurationLines;
 

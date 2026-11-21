@@ -10,7 +10,7 @@
 bool configuration_line_failure(ConfigurationLines *lines, size_t offset,
     const char *message, const char *expected) {
     size_t length = lines->source == NULL ? 0 : source_length(lines->source);
-    lines->issue = (ConfigurationIssue){
+    lines->issue = (SourceIssue){
         {lines->source, offset, offset < length ? offset + 1 : offset},
         message, expected
     };

@@ -361,8 +361,13 @@ static void it_matches_the_complete_bounded_raw_path_language(void) {
     }
 }
 
+#include "support/shape.c"
+
 /** Register every independently specified version and logical endpoint case explicitly. */
 void run(void) {
+    it_describes_exact_root_version_area_and_module_boundaries();
+    it_preserves_shape_output_on_invalid_or_unbounded_endpoint_requests();
+    it_classifies_every_bounded_version_and_area_shape_without_probe_names();
     it_separates_raw_path_syntax_from_canonical_identity();
     it_bounds_shared_name_version_and_path_prefixes();
     it_matches_the_complete_bounded_raw_path_language();

@@ -69,7 +69,7 @@ typedef struct {
     ConfigurationSelector *last_selector;
     ConfigurationRepository *repositories;
     ConfigurationRepository *last_repository;
-    ConfigurationIssue issue;
+    SourceIssue issue;
     ConfigurationStatus status;
     ConfigurationProfile profile;
     bool attempted;

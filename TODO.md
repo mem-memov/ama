@@ -144,17 +144,6 @@ T221/T226 remain required; perform them after T231/T222/T232 establish the
 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 
-<a id="t261"></a>
-
-- [ ] **T261 — Normalize paths and build exact alias scopes.**
-  Prerequisites: T260. Implement SRC-06/PKG-04 with explicit root/component
-  stacks, original component provenance, separate package/module relative bases,
-  no shadowing or module-alias chaining, and no intermediate filesystem lookup.
-  Normalize before context-specific module/constant selection. Test direct,
-  relative, aliased, cross-boundary, underflow, unknown/cyclic/local-chain,
-  namespace and order cases; prove idempotent canonical results and bounded
-  expansion. T232 owns compiler/tool integration of this shared foundation.
-
 <a id="t262"></a>
 
 - [ ] **T262 — Match dependency selectors and authorize versioned edges.**

@@ -34489,6 +34489,21 @@
         "source": "tests/unit/tools/relocation/preview/main.c",
         "case": "it_refuses_a_missing_projected_local_area_without_external_fallback",
         "command": "make -C tests/unit/tools/relocation/preview"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_describes_exact_root_version_area_and_module_boundaries",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_preserves_shape_output_on_invalid_or_unbounded_endpoint_requests",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_classifies_every_bounded_version_and_area_shape_without_probe_names",
+        "command": "make -C tests/unit/source/path"
       }
     ]
   },
@@ -55151,6 +55166,71 @@
         "source": "tests/unit/source/configuration/lines/main.c",
         "case": "it_preserves_original_lines_and_all_physical_ending_forms",
         "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
       }
     ]
   },
@@ -166744,6 +166824,56 @@
         "source": "tests/unit/source/path/main.c",
         "case": "it_accepts_deep_finite_namespaces_without_a_semantic_depth_cap",
         "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_describes_exact_root_version_area_and_module_boundaries",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_preserves_shape_output_on_invalid_or_unbounded_endpoint_requests",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_classifies_every_bounded_version_and_area_shape_without_probe_names",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
       }
     ]
   },
@@ -166775,6 +166905,56 @@
         "source": "tests/unit/source/path/main.c",
         "case": "it_accepts_deep_finite_namespaces_without_a_semantic_depth_cap",
         "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_describes_exact_root_version_area_and_module_boundaries",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_preserves_shape_output_on_invalid_or_unbounded_endpoint_requests",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_classifies_every_bounded_version_and_area_shape_without_probe_names",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
       }
     ],
     "standalone_header_command": [
@@ -166845,6 +167025,21 @@
       {
         "source": "tests/unit/source/path/main.c",
         "case": "it_accepts_deep_finite_namespaces_without_a_semantic_depth_cap",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_describes_exact_root_version_area_and_module_boundaries",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_preserves_shape_output_on_invalid_or_unbounded_endpoint_requests",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_classifies_every_bounded_version_and_area_shape_without_probe_names",
         "command": "make -C tests/unit/source/path"
       }
     ]
@@ -172929,6 +173124,36 @@
         "source": "tests/unit/source/configuration/document/main.c",
         "case": "it_checks_complete_encoding_before_constructing_any_records",
         "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
       }
     ]
   },
@@ -174250,6 +174475,1367 @@
         "source": "tests/unit/source/configuration/records/main.c",
         "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
         "command": "make -C tests/unit/source/configuration/records"
+      }
+    ]
+  },
+  "src/source/path/root.h": {
+    "purpose": "Share the authoritative ordinary/standard namespace families between catalogs and pure path operations.",
+    "contract": "docs/implementation/project-configuration.md",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_describes_exact_root_version_area_and_module_boundaries",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_preserves_shape_output_on_invalid_or_unbounded_endpoint_requests",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_classifies_every_bounded_version_and_area_shape_without_probe_names",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "tests/unit/source/path/support/shape.c": {
+    "purpose": "Verify exact namespace/version/area/module shape metadata and refusal publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_describes_exact_root_version_area_and_module_boundaries",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_preserves_shape_output_on_invalid_or_unbounded_endpoint_requests",
+        "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/path/main.c",
+        "case": "it_classifies_every_bounded_version_and_area_shape_without_probe_names",
+        "command": "make -C tests/unit/source/path"
+      }
+    ]
+  },
+  "src/source/text/issue.h": {
+    "purpose": "Retain original source-validation issues without coupling path and INI stages.",
+    "contract": "docs/implementation/project-configuration.md",
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ],
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_preserves_original_lines_and_all_physical_ending_forms",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_keeps_internal_payload_bytes_and_noninitial_bom_without_allocation",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_bom_tabs_lone_cr_and_malformed_utf8_at_original_offsets",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_rejects_boundary_padding_and_spaces_only_lines_without_rewriting",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/lines/main.c",
+        "case": "it_matches_the_complete_pinned_whitespace_set_without_host_locale",
+        "command": "make -C tests/unit/source/configuration/lines"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_empty_profiles_and_empty_optional_sections",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_preserves_exact_alias_selector_and_raw_repository_values",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_all_section_and_repository_field_permutations",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_accepts_long_records_without_fixed_buffers_or_recursive_path_scanning",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_rejects_malformed_profile_records_and_duplicate_tables",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_reports_original_duplicate_unknown_and_incomplete_record_sites",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_cleans_every_document_allocation_refusal_without_touching_source",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_retains_bounded_diagnostics_for_every_byte_prefix",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/configuration/document/main.c",
+        "case": "it_checks_complete_encoding_before_constructing_any_records",
+        "command": "make -C tests/unit/source/configuration/document"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/path/normalize/canonical.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/path/normalize/failure.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/path/normalize/internal.h": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/path/normalize/normalize.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/path/normalize/normalize.h": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/path/normalize/read.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/path/normalize/reduce.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/path/normalize/select.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/path/normalize/stack.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/path/normalize/storage.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "tests/unit/source/path/normalization/Makefile": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "tests/unit/source/path/normalization/main.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "tests/unit/source/path/normalization/support/model.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "tests/unit/source/path/normalization/support/ownership.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "tests/unit/source/path/normalization/support/values.c": {
+    "purpose": "Normalize exact logical path components with original provenance, explicit context and checked immutable arena publication.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_uses_explicit_directories_roots_and_initial_parent_components",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_defers_endpoint_validation_until_after_complete_reduction",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_performs_one_whole_alias_lookup_and_preserves_surviving_origins",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_selects_constants_after_normalization_and_rejects_incomplete_or_dotted_members",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_matches_all_bounded_reverse_cancellation_models",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_preserves_outputs_for_syntax_scope_underflow_and_storage_refusals",
+        "command": "make -C tests/unit/source/path/normalization"
+      },
+      {
+        "source": "tests/unit/source/path/normalization/main.c",
+        "case": "it_owns_output_bytes_independently_of_metadata_alias_and_selection_inputs",
+        "command": "make -C tests/unit/source/path/normalization"
+      }
+    ]
+  },
+  "src/source/configuration/aliases/prepare.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "src/source/configuration/aliases/package.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "src/source/configuration/aliases/aliases.h": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/aliases/internal.h": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/aliases/targets.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "src/source/configuration/aliases/lookup.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "src/source/configuration/aliases/failure.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "src/source/configuration/aliases/module.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "src/source/configuration/aliases/keys.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/aliases/main.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/aliases/support/scopes.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/aliases/support/ownership.c": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/aliases/Makefile": {
+    "purpose": "Build and verify immutable exact package/local alias scopes with explicit ownership and no recursive alias expansion.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_package_bases_local_isolation_and_original_ownership",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_rejects_shadowing_chains_and_foreign_version_scopes",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_module_scope_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_composes_source_operands_with_exact_sorted_scope_lookup",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_cleans_all_package_scope_allocation_refusals_and_rejects_invalid_profiles",
+        "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/aliases/main.c",
+        "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
+        "command": "make -C tests/unit/source/configuration/aliases"
       }
     ]
   }

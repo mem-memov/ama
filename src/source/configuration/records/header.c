@@ -8,7 +8,7 @@
 #include <string.h>
 #include "internal.h"
 
-bool configuration_header(SourceSpan line, ConfigurationRecord *record, ConfigurationIssue *issue) {
+bool configuration_header(SourceSpan line, ConfigurationRecord *record, SourceIssue *issue) {
     if (configuration_text_is(line, "[dependencies]")) { record->kind = CONFIGURATION_DEPENDENCIES; }
     else if (configuration_text_is(line, "[aliases]")) { record->kind = CONFIGURATION_ALIASES; }
     else {
