@@ -73,7 +73,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T271**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T272**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -88,8 +88,9 @@ records foundation gates, task/step acceptance, migration and evidence duties;
 <a id="t226"></a>
 
 - [ ] **T226 — Implement complete declaration type expressions.**
-  Status: ready; semantic integration authorized after accepted T270. Prerequisites:
-  T221, T225, T227, T269 and T270. Contract: [TPL-15](spec/language/templates.md#tpl-15) and its
+  Status: ready after accepted T271; subsequent source-only and runtime
+  integration remains authorized. Prerequisites:
+  T221, T225, T227, T269, T270 and T271. Contract: [TPL-15](spec/language/templates.md#tpl-15) and its
   [acceptance scenarios](spec/implementation/tools-and-conformance.md#static-module-templates).
   T227 withdraws the former phantom implementation scope; ordinary declaration
   expressions remain required, as explicitly reaffirmed by the user on 2026-11-20.

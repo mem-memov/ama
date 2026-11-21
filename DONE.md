@@ -8112,3 +8112,54 @@ T201. Specification bytes have not changed.
   specification or accepted conformance fingerprint was changed. Final
   narrative-only archival generation must retain accepted source/test/registry
   fingerprints and agree with the staged files and site/report manifests.
+
+<a id="t271"></a>
+
+- [x] **T271 — Evaluate exact declaration selections in guarded contexts.**
+  Completed 2026-11-21; prerequisites T269 and T270. Extracted from T226's
+  selected-value engine step for independent acceptance before source-only
+  annotation integration. Contract, invariants and checkpoints:
+  [declaration expressions](docs/implementation/declaration-expressions.md).
+  Rules: TPL-08/11/12/15, ARCH-03 and COMP-04.
+  Implement exact source-bound public selection, independent scalar receivers,
+  original named producer inputs and selected definition reads with retained
+  creation/definition paths. Close every supplier input before equating its
+  complete result to the consumer; preserve graph receipt equality semantics.
+
+  Result: declaration operands select an original public foreign result or alias
+  without inventing a producer Type, local alias or free enclosing parameter.
+  The existing iterative evaluator visits named children, guards the actual
+  producer, retains its whole graph and reads the selected definition. Its scalar
+  equation waits for complete supplier inputs and a checked complete selected
+  value. A consumer expectation cannot fill an omitted used or unused input by
+  inversion. Selected partial constructors retain their actual Template identity.
+  Publication exposes one scalar with retained supplier proof, rather than a
+  result bundle or local alias descriptors. No runtime admission is inferred.
+  The selection fixture has a separate preparation/graph-driving support granule.
+
+  Acceptance: exact scalar/Template identities, nested lexical ownership, alias
+  definition provenance, warm reuse, missing/nonpublic selections, unresolved
+  used/unused inputs, closed consumer conflicts, invalid unselected definitions,
+  every measured evaluator/publication allocation refusal and counted teardown
+  pass. The existing result parent leaves passed; its new fixture initially
+  failed before the intended stage and was corrected, with the complete corrected
+  leaf passing. Compiler parent passed. Publication parent and final selected
+  evaluator/publication ASan/UBSan pass. LeakSanitizer was disabled; no LSan
+  acceptance is claimed. Actual failed-run causes and corrections are recorded
+  in the contract, including the original missing Doxygen file-page rule link.
+  Logs: `/tmp/ama-t226-results-parent.log`,
+  `/tmp/ama-t226-selected-compiler.log`,
+  `/tmp/ama-t271-selection-recovery.log`,
+  `/tmp/ama-t271-publication-composition.log`,
+  `/tmp/ama-t271-publication-parent.log`,
+  `/tmp/ama-t271-selection-sanitized.log`,
+  `/tmp/ama-t271-documentation-final.log`.
+  Final full documentation gate: 3263 ready inputs, zero debts, 2460 maintained
+  file pages, 9470 documented interfaces and all 490 referenced destinations.
+  Accepted fingerprints are `/tmp/ama-t271-accepted-manifest.json` and
+  `/tmp/ama-t271-accepted-task-inputs.json`.
+  Limits: T226 owns source-only annotation inference, ordinary runtime admission
+  and replacement of T269's unsupported-input boundary; T237 owns full conformance
+  renewal. No specification or accepted conformance fingerprint was changed.
+  Narrative archival regeneration must preserve accepted maintained inputs and
+  match the staged files before the independent task commit.

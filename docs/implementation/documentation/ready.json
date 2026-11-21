@@ -142426,6 +142426,11 @@
         "source": "tests/unit/semantic/static/results/graphs/main.c",
         "case": "it_refuses_foreign_contexts_missing_receivers_and_graph_or_work_counter_overflow",
         "command": "make -C tests/unit/semantic/static/results/graphs"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ],
     "standalone_header_command": [
@@ -143178,6 +143183,11 @@
         "source": "tests/unit/semantic/static/results/source/main.c",
         "case": "it_unwinds_every_source_and_definition_preparation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/results/source"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ]
   },
@@ -143336,6 +143346,11 @@
         "source": "tests/unit/semantic/static/publication/recursion/main.c",
         "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
         "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ]
   },
@@ -143478,6 +143493,11 @@
         "source": "tests/unit/semantic/static/publication/recursion/main.c",
         "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
         "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ],
     "standalone_header_command": [
@@ -144291,6 +144311,11 @@
         "source": "tests/unit/semantic/static/results/graphs/main.c",
         "case": "it_refuses_foreign_contexts_missing_receivers_and_graph_or_work_counter_overflow",
         "command": "make -C tests/unit/semantic/static/results/graphs"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ]
   },
@@ -145081,6 +145106,11 @@
         "source": "tests/unit/semantic/static/publication/closure/main.c",
         "case": "it_refuses_foreign_closure_handles_and_missing_outcome_receivers",
         "command": "make -C tests/unit/semantic/static/publication/closure"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_publishes_selected_values_with_supplier_proofs_and_unwinds_all_refusals",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ]
   },
@@ -154345,6 +154375,11 @@
         "source": "tests/unit/semantic/static/publication/recursion/main.c",
         "case": "it_rejects_direct_and_mutual_selected_definition_cycles",
         "command": "make -C tests/unit/semantic/static/publication/recursion"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ]
   },
@@ -180304,6 +180339,50 @@
         "source": "tests/unit/semantic/static/publication/operands/main.c",
         "case": "it_unwinds_every_nested_input_collection_and_equation_allocation_failure",
         "command": "make -C tests/unit/semantic/static/publication/operands"
+      }
+    ]
+  },
+  "src/semantic/static/results/evaluate/selection.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Evaluate checked declaration selections independently of ordinary storage admission.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/selection/Makefile": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Evaluate checked declaration selections independently of ordinary storage admission.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/selection/main.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Evaluate checked declaration selections independently of ordinary storage admission.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_reads_one_exact_foreign_result_after_named_input_closure",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      }
+    ]
+  },
+  "tests/unit/semantic/static/results/selection/support/prepare.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Prepare exact guarded selected-value fixtures and validate publication ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_publishes_selected_values_with_supplier_proofs_and_unwinds_all_refusals",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ]
   }

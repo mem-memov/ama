@@ -2,6 +2,8 @@
  * @brief Bind exact original expression heads in their lexical owner without interpreting names as text paths.
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) preserves structural scope.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates producer/result variables.
+ * [TPL-15](../../../../../spec/language/templates.md#tpl-15) binds declaration
+ * selectors to original public outputs and independent scalar receivers.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns partial records.
  */
 #include <stdint.h>
@@ -23,14 +25,21 @@ static const StaticOccurrence *occurrence(const StaticTermEnvironment *environme
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) forbids name capture.
  */
 static bool head(StaticResultPlan *plan, const StaticTermEnvironment *environment,
-    const StaticOccurrence *site, const StaticTerm **output, const StaticModule **producer) {
+    const StaticOccurrence *site, const StaticTerm **output, const StaticModule **producer,
+    const StaticSymbol **selection) {
     StaticTermStore *terms = plan->guards->applications->terms;
     if (site->expression->kind == AST_TYPE_PLACEHOLDER && site->symbol != NULL) {
         if (static_term_symbol(terms, environment, site->symbol, output)) { return true; }
     } else if (site->expression->kind == AST_TYPE_MODULE_PATH && site->origin != NULL) {
         const StaticModule *module = static_module_find(terms->inventory, site->origin);
         if (module && module->definition->syntax.sections.kind == MODULE_STATIC) {
-            if (site->statement->kind != AST_STATIC_PROJECTION ||
+            if (site->expression->selected_export.source != NULL) {
+                *selection = static_symbol_find(module, site->expression->selected_export);
+                if (*selection == NULL || ((*selection)->role != STATIC_RESULT && (*selection)->role != STATIC_ALIAS)) {
+                    return static_result_fail(plan, STATIC_RESULT_INVALID, site->expression->selected_export,
+                        "The static module has no public export with this exact name");
+                }
+            } else if (site->statement->kind != AST_STATIC_PROJECTION ||
                 site->statement->as.static_projection != site->expression) {
                 return static_result_fail(plan, STATIC_RESULT_INVALID, site->site,
                     "A static producer has named outputs rather than a Type or Template value");
@@ -69,14 +78,16 @@ bool static_result_source(StaticResultPlan *plan, const StaticTermEnvironment *e
     }
     const StaticTerm *head_value, *value = NULL;
     const StaticModule *producer = NULL;
-    if (!head(plan, environment, site, &head_value, &producer)) { return false; }
-    if (producer == NULL && !static_term_expression_result(terms, environment, expression, &value)) {
+    const StaticSymbol *selection = NULL;
+    if (!head(plan, environment, site, &head_value, &producer, &selection)) { return false; }
+    if ((producer == NULL || selection != NULL) && !static_term_expression_result(terms, environment, expression, &value)) {
         (void)static_result_dependencies(plan); return false;
     }
     StaticResultSource *source = static_result_allocate(plan, sizeof(*source));
     if (source == NULL) { return false; }
     *source = (StaticResultSource){.environment = environment, .expression = expression,
-        .occurrence = site, .producer = producer, .head = head_value, .value = value, .next = plan->first_source};
+        .occurrence = site, .producer = producer, .selection = selection,
+        .head = head_value, .value = value, .next = plan->first_source};
     plan->first_source = source;
     plan->source_count++;
     *output = source;

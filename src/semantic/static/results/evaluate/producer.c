@@ -1,6 +1,8 @@
 /** @file
  * @brief Check complete producer input maps and selected value metadata without requiring a nonexistent producer value.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) distinguishes producer closure and returned Templates.
+ * [TPL-15](../../../../../spec/language/templates.md#tpl-15) additionally checks
+ * the separate scalar receiver of a declaration selection.
  */
 #include "internal.h"
 
@@ -16,6 +18,11 @@ bool static_result_producer_closed(StaticResultPlan *plan, StaticResultUse *use,
         (void)static_result_dependencies(plan); return false;
     }
     bool closed = keys == STATIC_REGISTRY_KEY_CLOSED;
+    if (use->source->selection) {
+        bool selected_closed;
+        if (!static_result_closed(plan, use->source->value, &selected_closed)) { return false; }
+        closed &= selected_closed;
+    }
     StaticTermStore *terms = plan->guards->applications->terms;
     for (const BindingRequest *request = use->requests->first; request; request = request->next) {
         if (request->direction != BINDING_STATIC_OUTPUT) { continue; }

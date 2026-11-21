@@ -54,6 +54,11 @@ boundaries are distinct from claims of implemented compiler support.
 
 ## Before implementation
 
+The [declaration-expression contract](../declaration-expressions.md) records
+the shared parser, source-only nominal equations and guarded selected-value
+engine. It distinguishes those accepted foundations from T226's remaining
+ordinary annotation, inference and runtime-admission integration.
+
 The [T168 template audit](../audit/template-sprint.md) preserves the original
 concrete-only assumptions and adaptation owners. The delivered static/ordinary
 components now have [current reviewed evidence](../conformance/README.md),

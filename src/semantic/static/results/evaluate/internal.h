@@ -71,6 +71,16 @@ bool static_result_alias_read(StaticResultPlan *, StaticResultDefinitionUse *,
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) closes every producer input.
  */
 bool static_result_producer_closed(StaticResultPlan *, StaticResultUse *, bool *);
+/** Read an exact declaration selector under its original definition ancestry.
+ * [TPL-15](../../../../../spec/language/templates.md#tpl-15) keeps the selected
+ * scalar separate from expected consumer facts until supplier input closure.
+ */
+bool static_result_selection_read(StaticResultEvaluation *, StaticResultUse *);
+/** Publish only a checked complete selection from a fully determined supplier.
+ * [TPL-15](../../../../../spec/language/templates.md#tpl-15) forbids inverse
+ * producer inference through a declaration's scalar receiver.
+ */
+bool static_result_selection_equation(StaticResultPlan *, StaticResultUse *);
 /** Drive an already initialized exact-root stack and always release its scratch
  * arena, including after push/step failure. Graph passes use their prepared root
  * handles rather than reconstructing a potentially different root occurrence.

@@ -315,3 +315,114 @@ general selected producer values. Only narrative archival/status links follow
 acceptance. Supported generation at `/tmp/ama-t270-documentation-archived.log`
 must agree with the final report/site and staged inputs, preserving every
 accepted non-Markdown input, before T270's independent commit.
+
+## T226 continuation: selected producer expressions
+
+T270 is committed as `87f7c59`. T226 is active. The next boundary is an
+original declaration expression selecting one named producer result, including
+a nested operand. Its scalar value is independent of the supplier's derived
+definition until every supplier input is complete. Graph output receipts retain
+their existing explicit equality semantics; the declaration selector must not
+reuse those equalities to invert a producer from its consumer's expected Type.
+
+First extend source binding and actual-context evaluation, testing exact foreign
+result identity, named inputs, selected Type/Template values, unused incomplete
+inputs, warm reuse and allocation failures. Next integrate source-only annotation
+facts and actual replay, preserving lexical creation edges. In particular,
+independent producer roots must not erase a using template's ancestry or permit
+unbounded metadata expansion. The existing zero-argument ordinary-export guard
+remains until the complete consumer replaces it. No support claim or task
+acceptance is made at this checkpoint; specification rules remain unchanged.
+
+### Independent selected-value engine: T271
+
+This cohesive step is extracted as [T271](../../DONE.md#t271), prerequisite of
+T226, before its own acceptance. It extends the existing result evaluator rather
+than adding an alternate ordinary export interpreter. A bound source distinguishes
+ordinary value heads, graph producer bundles, and a producer plus exact public
+selection. Only the last has a separate scalar result variable. Preparing a
+source, named input map or immutable original selector adds no equation from the
+consumer to the supplier.
+
+Evaluation visits finite written input children with the existing explicit stack,
+enters the actual producer through its lexical creation path, retains its whole
+graph obligation, then reads the selected foreign definition under the original
+definition ancestry. An additional scalar equation is permitted only after the
+full supplier key is closed and that checked definition has a complete value.
+The actual value may be a residual Template; T226 owns final ordinary Type
+admission. Existing explicit graph output receipts retain their equality behavior.
+Thus an expected consumer Type cannot fill either a used or an unused supplier
+input by reversing a selected result. Every required unselected output and graph
+statement remains checked independently.
+
+All records borrow original syntax, module/symbol identities and canonical terms
+from longer-lived owners. Result and scratch arenas retain partial preparation
+until their existing destructors. No new owner, alias, formal parameter, nominal
+producer Type, runtime instance or C-recursive walk is introduced. Each new
+evaluation phase advances once and uses the same checked push/pop protocol.
+Successful repeated evaluation reuses original sources, requests, incoming paths
+and selected definitions; it does not manufacture refinement through fresh scopes.
+
+Initial checks: the basic scalar/incomplete-input/OOM leaf passed at
+`/tmp/ama-t226-selection.log`. The expanded leaf first exposed an incorrect test
+member name (`captures` instead of `first_capture`), then a negative fixture
+already rejected by the project loader's module-role check. The latter was
+removed from this lower-layer fixture; no accepted-source bypass was introduced.
+The expanded nested/partial/selection-refusal cases then passed at
+`/tmp/ama-t226-selection-expanded.log`. Later alias and whole-graph failure cases
+are included in the active result parent 91495 at
+`/tmp/ama-t226-results-parent.log`; compiler parent 20730 is active at
+`/tmp/ama-t226-selected-compiler.log`. Both must be collected before acceptance.
+
+### Recovery and publication composition
+
+After the connection interruption, no inherited process handle remained live.
+The compiler parent log ends with successful recursive completion and no warnings
+or assertions. The result parent completed its existing leaves but failed in the
+new selection fixture: an unknown argument was rejected during inventory
+preparation, before the intended evaluator assertion. Replaced that case with a
+well-formed, self-dependent unselected result, whose definition read must fail in
+the actual guarded evaluator. A second fixture used nonexistent `//bit`; replaced
+it with the existing distinct `//text` Type. The complete corrected selection leaf
+passes at `/tmp/ama-t271-selection-recovery.log`.
+
+The first documentation gate accepted 3262 maintained inputs with zero debt,
+then rejected the model header's missing file-page link to TPL-15. Added the
+same canonical link to its `@file` purpose, rather than weakening validation.
+
+A downstream audit found publication resolution classified every producer-backed
+expression as an output bundle. Declaration selections now publish only their
+scalar value; their retained source use still requires the full supplier graph.
+They create no bundle outputs or local alias descriptors. The actual publication
+API is tested, including repeated immutable publication and every measured
+allocation refusal; `/tmp/ama-t271-publication-composition.log` passes. The shared
+selection fixture preparation/traversal has its own support granule. Publication
+parent 28956 runs at `/tmp/ama-t271-publication-parent.log`. Final selection
+ASan/UBSan and complete documentation gates remain required before acceptance.
+
+### T271 final acceptance
+
+T271 is accepted; the preceding active checkpoints are historical. Publication
+parent 28956 and selection ASan/UBSan 63560 both exited zero, without warnings or
+assertion/sanitizer reports. Sanitizer flags match the recorded T270 profile,
+including disabled LeakSanitizer. The final full documentation gate 62295 passed:
+3263 ready inputs, zero debts, 2460 maintained file pages, 9470 documented
+interfaces and all 490 referenced destinations. Its log is
+`/tmp/ama-t271-documentation-final.log`. No behavior/full-gate job remains active.
+
+Accepted source/test/coverage fingerprints and the generated provenance are
+`/tmp/ama-t271-accepted-task-inputs.json` and
+`/tmp/ama-t271-accepted-manifest.json`. Only narrative archival changes follow
+this gate. Final supported generation at
+`/tmp/ama-t271-documentation-archived.log` must preserve all accepted non-Markdown
+inputs and agree with the staged files and checked site/report before commit.
+The full task record is [DONE T271](../../DONE.md#t271). T226 now owns the next
+source-only annotation and ordinary admission integration, including lexical
+creation provenance rather than independent-root expansion.
+
+The staged whitespace check then found an extra empty line at the new support
+file's EOF. Removed exactly one final LF, preserving its existing terminating
+LF and every other byte. `/tmp/ama-t271-eof-proof.json` records both hashes;
+the accepted task-input snapshot is updated only for that proven whitespace
+change. No C token or directive changed. Final archival documentation is
+regenerated from those exact bytes before commit.

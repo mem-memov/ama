@@ -3,15 +3,18 @@
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates producers and selected results.
  * [TPL-08](../../../../spec/language/templates.md#tpl-08) preserves lexical substitution scope.
  * [TPL-11](../../../../spec/language/templates.md#tpl-11) preserves guarded use ancestry.
+ * [TPL-15](../../../../spec/language/templates.md#tpl-15) keeps declaration
+ * scalar selections separate from their supplying producer identities.
  */
 #ifndef AMA_STATIC_RESULT_MODEL_H
 #define AMA_STATIC_RESULT_MODEL_H
 #include "../registry/plan.h"
 
 /** One original expression/environment key. Ordinary expressions have their
- * own value variable; named producer uses retain only their actual module origin,
- * never an invented Type or expression-value variable. Selected outputs remain
- * independent derived definition variables in both cases.
+ * own value variable; graph producer statements retain no scalar value.
+ * A declaration selector retains an independent scalar receiver and an exact
+ * foreign result symbol, never an invented producer Type. Selected outputs
+ * remain independent derived definition variables in all cases.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) separates values and producers.
  */
 typedef struct StaticResultSource {
@@ -19,11 +22,13 @@ typedef struct StaticResultSource {
     const StaticTermEnvironment *environment;
     const AstTypeExpression *expression;
     const StaticOccurrence *occurrence;
-    /** Actual static-module origin for a named producer use; its head/value are
-     * null because a producer is not a metadata value. Ordinary expressions
-     * have null producer and nonnull head/value. [TPL-12](../../../../spec/language/static-results.md#tpl-12).
+    /** Actual static-module origin; its head is null because the producer itself
+     * is not a value. Only a declaration selector has a scalar value receiver.
+     * [TPL-15](../../../../spec/language/templates.md#tpl-15) separates selected
+     * values from their fully determined suppliers.
      */
     const StaticModule *producer;
+    const StaticSymbol *selection;
     const StaticTerm *head;
     const StaticTerm *value;
 } StaticResultSource;
@@ -133,6 +138,7 @@ struct StaticResultUse {
     StaticResultGraph *required_graph;
     const StaticApplicationRecord *application;
     const StaticResultContext *producer;
+    StaticResultDefinitionUse *selection;
     StaticResultDependency *first_dependency;
     StaticResultOutcome outcome;
     bool active;

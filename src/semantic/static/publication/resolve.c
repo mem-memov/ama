@@ -1,6 +1,8 @@
 /** @file
  * @brief Publish an exact source occurrence only after complete producer and dependency closure.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) forbids partial producer publication.
+ * [TPL-15](../../../../spec/language/templates.md#tpl-15) publishes a selected
+ * declaration operand as its scalar value, retaining supplier proof in its use.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial construction.
  */
 #include <stdint.h>
@@ -38,7 +40,8 @@ bool static_publication_resolve(StaticPublicationPlan *plan, const StaticResultC
     }
     StaticPublication *publication = static_publication_allocate(plan, sizeof(*publication));
     if (publication == NULL) { return false; }
-    *publication = (StaticPublication){.use = use, .context = use->source->producer ? use->producer : NULL, .value = value};
+    *publication = (StaticPublication){.use = use,
+        .context = use->source->producer && !use->source->selection ? use->producer : NULL, .value = value};
     if (!static_publication_outputs(plan, publication)) { return false; }
     publication->next = plan->first;
     plan->first = publication;
