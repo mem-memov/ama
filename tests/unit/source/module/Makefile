@@ -10,5 +10,6 @@ SOURCES := source/text/manager.c source/text/lines.c source/text/view.c \
     source/module/scan/walk.c source/module/scan/visit.c \
     source/path/version.c source/path/logical.c source/module/packages/select.c source/module/packages/physical.c \
     source/module/packages/discover.c source/module/packages/queue.c source/module/packages/registry.c \
-    source/module/packages/visit.c source/module/packages/index.c
+    source/module/packages/visit.c source/module/packages/index.c \
+    source/module/packages/context.c source/module/resolve/configuration-snapshot.c
 include ../../../leaf.mk

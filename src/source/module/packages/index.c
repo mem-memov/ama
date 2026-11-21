@@ -8,7 +8,7 @@
  */
 #include "internal.h"
 
-/** Require an exact regular package.ini without parsing its configuration here.
+/** Require an exact regular package.ini and retain its exact bytes without parsing INI here.
  * [PKG-01](../../../../spec/project/packages.md#pkg-01) determines its presence;
  * configuration semantics belong to the separate PKG-03 consumer.
  */
@@ -19,8 +19,15 @@ static ModuleStatus require_configuration(ModuleCatalog *catalog, const ModulePa
     }
     struct stat metadata;
     ModuleStatus status = module_probe(catalog, package->physical, "package.ini", path, &metadata);
-    return status != MODULE_OK || S_ISREG(metadata.st_mode) ? status
-        : module_fail(catalog, MODULE_UNSUPPORTED_PATH, path);
+    if (status != MODULE_OK || !S_ISREG(metadata.st_mode)) {
+        return status != MODULE_OK ? status
+            : module_fail(catalog, MODULE_UNSUPPORTED_PATH, path);
+    }
+    const SourceText *configuration = NULL;
+    status = module_load_utf8(catalog, path, &configuration);
+    return status == MODULE_OK
+        ? module_version_publish(catalog, package->logical, package->physical, configuration)
+        : status;
 }
 
 /** Prepare exact area prefixes and delegate only this selected copy's module scan.

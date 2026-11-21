@@ -7788,3 +7788,31 @@ T201. Specification bytes have not changed.
   unchanged accepted implementation/registry/test/header inputs and final
   source/staged fingerprints. T232 retains actual frontend/loader/Type-origin
   integration; this task claims the policy boundary, not end-to-end enforcement.
+
+<a id="t266"></a>
+
+- [x] **T266 — Retain selected package configuration in catalogs, snapshots and input graphs.**
+  Status: accepted; catalog, source parent, real project closure and input capture,
+  fail-fast ASan/UBSan, root build and full documentation gates passed.
+  Prerequisites: T231, T260, T261, T262, T265.
+  Contract/evidence: [configuration ownership](docs/implementation/project-configuration.md#t266-retained-configuration-ownership).
+  Retain exact selected package.ini bytes and durable version identity without borrowed
+  root descriptors, including empty versions. Connect ordinary modules to their owner;
+  keep standard modules independent. Provide explicit deep-copied source-only snapshot
+  attachment without disk fallback. Capture each contributing version configuration
+  in the real invalidation graph without rereading files.
+  Accept selected/ignored copies, exact version boundaries, empty/changed-on-disk
+  sources, source lifetime, malformed UTF-8 diagnostics and allocation failures;
+  run catalog/source and real project-input compositions, sanitizers, build and docs.
+  T232 retains scope preparation, local companions, dependency/semantic integration
+  and complete configuration/snapshot handoffs; this task does not claim those.
+  Evidence: `/tmp/ama-t232-config-storage.log`,
+  `/tmp/ama-t232-config-inputs.log`, `/tmp/ama-t266-source-parent.log`,
+  `/tmp/ama-t266-project-closure.log`, `/tmp/ama-t266-catalog-sanitizers.log`,
+  `/tmp/ama-t266-inputs-sanitizers.log`, `/tmp/ama-t266-build.log` and
+  `/tmp/ama-t266-documentation.log` all exited zero. Explicit counted-allocation
+  sweeps prove balanced destruction; sanitizers used detect_leaks=0 and make no
+  LeakSanitizer claim. Documentation checked 3221 ready inputs with zero debts.
+  Source-only contexts require explicit attachment; T232 still owns complete
+  scope/companion/dependency/semantic integration and tool snapshot propagation.
+  No whole-sprint conformance renewal or full make test claim is made.

@@ -25,8 +25,8 @@ and every explicitly borrowed source owner must remain live through graph use.
 
 Closure capture registers every required module before linking edges, so cycles
 reuse existing nodes. A module depends on its original Ama source, present ABI,
-native C/header files, root settings and every resolved source dependency. Ama/ABI
-text is borrowed from the Project rather than loaded or copied again. Each
+native C/header files, retained selected package configuration, root settings and
+every resolved source dependency. Ama/ABI/package-configuration text is borrowed from the Project rather than loaded or copied again. Each
 additional native file is read once per exact physical path into private source
 ownership. Repeated requests check the existing node before opening a file.
 Native C is retained as bytes, never executed or parsed as Ama. A failed read
@@ -100,3 +100,11 @@ parser is introduced. Builds perform normal discovery, checking and compilation;
 this snapshot is not a filesystem-change shortcut.
 [Source classification](declaration-parsing.md) and [dependency closure](project-dependencies.md)
 control inactive-to-active transitions.
+
+T266 adds selected package.ini CONFIGURATION nodes keyed by their retained physical
+paths. The real catalog records the selected version once, including empty versions;
+active modules share its source without rereading the file at capture time. The
+configuration-change case demonstrates acquisition/capture separation and consumer
+invalidation while unchanged Ama file nodes stay clean. Full integration of module
+INI presence and alias/path preparation remains T232's responsibility. See the
+[configuration ownership evidence](project-configuration.md#t266-retained-configuration-ownership).

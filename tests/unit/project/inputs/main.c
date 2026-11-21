@@ -31,6 +31,7 @@ static bool changed(const ProjectInputs *inputs, ProjectInputKind kind, const ch
 
 /** Explicitly run every independent graph, capture and failure scenario. */
 void run(void) {
+    it_tracks_retained_package_configuration_without_rereading_disk();
     it_invalidates_static_producers_and_selected_consumers_from_nested_sources();
     it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed();
     it_deduplicates_keys_edges_and_rejects_conflicting_or_closed_mutation();

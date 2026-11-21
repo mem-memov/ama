@@ -3,6 +3,8 @@
  * @brief Load unique module source bytes without selecting native companions.
  *
  * [SRC-01](../../../../spec/language/source-and-names.md#src-01)
+ * [PKG-02](../../../../spec/project/packages.md#pkg-02) associates each ordinary
+ * source with its selected version configuration.
  * Native companion selection follows parsed activation; all source/partial storage stays catalog-owned.
  */
 #include <string.h>
@@ -52,6 +54,7 @@ ModuleStatus module_add_source(ModuleCatalog *catalog, const char *physical,
     }
     *source = (ModuleSource){0};
     source->logical_path = logical;
+    source->version = module_version_find(catalog, logical);
     source->device = metadata->st_dev;
     source->inode = metadata->st_ino;
     status = module_load_utf8(catalog, physical, &source->text);

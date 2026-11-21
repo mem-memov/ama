@@ -19,6 +19,7 @@ void module_catalog_destroy(ModuleCatalog *catalog) {
     source_manager_destroy(&catalog->sources);
     source_arena_destroy(&catalog->arena);
     catalog->first = NULL;
+    catalog->versions = NULL;
     catalog->directories = NULL;
     catalog->built = false;
     catalog->issue = (ModuleIssue){0};

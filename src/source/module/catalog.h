@@ -5,6 +5,8 @@
  * [SRC-02](../../../spec/language/source-and-names.md#src-02)
  * Select versioned project or standard roots explicitly; complete multiword components
  * preserve original bytes and never shadow an earlier physical source.
+ * [PKG-02](../../../spec/project/packages.md#pkg-02) retains one selected version;
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) owns its configuration bytes.
  * [SRC-01](../../../spec/language/source-and-names.md#src-01) makes the declared
  * root kind authoritative instead of inferring it from a physical directory name.
  */
@@ -39,11 +41,24 @@ typedef enum {
     MODULE_INVALID_UTF8
 } ModuleStatus;
 
+/** Retained selected-version identity and immutable configuration bytes, all catalog-owned.
+ * Root descriptors are never retained. Empty versions have records even without modules.
+ * [PKG-02](../../../spec/project/packages.md#pkg-02) selects one physical copy;
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) gives its configuration authority.
+ */
+typedef struct ModuleVersion {
+    struct ModuleVersion *next;
+    const char *logical_path;
+    const char *physical_path;
+    const SourceText *configuration;
+} ModuleVersion;
+
 /** Catalog-owned source/companion record; original device/inode support exact alias detection. Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 typedef struct ModuleSource {
     struct ModuleSource *next;
     const char *logical_path;
     const SourceText *text;
+    const ModuleVersion *version;
     const char *native_c;
     const char *native_header;
     const SourceText *native_abi;
@@ -87,6 +102,7 @@ typedef struct {
     ModuleDirectoryIdentity *directories;
     SourceManager sources;
     ModuleSource *first;
+    ModuleVersion *versions;
     ModuleIssue issue;
     bool built;
     bool attempted;
@@ -118,6 +134,18 @@ ModuleStatus module_catalog_snapshot(ModuleCatalog *, const ModuleSnapshotEntry 
  * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 ModuleStatus module_catalog_snapshot_native(ModuleCatalog *, const ModuleSource *,
     const char *body, const char *header, const SourceText *abi);
+/** Attach one authoritative version configuration to a source-only snapshot before AST consumers.
+ * Deep-copy complete ordinary version identity, physical directory and exact configuration
+ * source/path; no filesystem reads or INI interpretation. Reject duplicate version owners.
+ * Successful attachment connects every matching ordinary source, leaving standard and other
+ * versions unchanged. Failure preserves all existing version/module links; owned scratch
+ * and original UTF-8 failure locations survive until destruction. The caller establishes
+ * snapshot authority and supplies stable inputs only for this call.
+ * [PKG-02](../../../spec/project/packages.md#pkg-02) forbids borrowing another copy;
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) preserves original configuration bytes.
+ */
+ModuleStatus module_catalog_snapshot_configuration(ModuleCatalog *, const char *version,
+    const char *physical_directory, const SourceText *configuration);
 /** Look up one validated retained logical spelling after successful build.
  * @param[out] output Changes only on MODULE_OK and borrows catalog lifetime.
  * @return Invalid path/partial build, absent module or exact match; no root precedence is applied.

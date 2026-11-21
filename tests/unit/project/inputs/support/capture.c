@@ -114,3 +114,37 @@ static void it_owns_the_failed_native_input_path_after_project_destruction(void)
     project_inputs_destroy(&inputs);
     destroy_test();
 }
+
+/** Captured package bytes survive disk changes; only the new project's consumers invalidate. */
+static void it_tracks_retained_package_configuration_without_rereading_disk(void) {
+    prepare_inputs();
+    setup_project();
+    assert(load_root("generated/project") == PROJECT_OK);
+    ModuleRoot root = {.path = "generated/project", .kind = MODULE_ROOT_PROJECT};
+    const char *path = "generated/project/packages/test/fixture/v1.0.0/package.ini";
+    file(path, "; changed after catalog acquisition\n");
+    ProjectInputs before;
+    capture(&before, &project, &root);
+    assert(project_inputs_find(&before, PROJECT_INPUT_CONFIGURATION, path) != NULL);
+    assert(project_inputs_find(&before, PROJECT_INPUT_FILE, path) == NULL);
+    Project after_project;
+    project_init(&after_project, sources.allocator);
+    assert(project_load(&after_project, &root, 1, "/test/fixture/v1.0.0/src/main") == PROJECT_OK);
+    ProjectInputs after;
+    capture(&after, &after_project, &root);
+    assert(project_inputs_compare(&after, &before) == SOURCE_OK);
+    assert(changed(&after, PROJECT_INPUT_CONFIGURATION, path));
+    const char *names[] = {"main", "left", "right", "shared"};
+    for (size_t index = 0; index < 4; index++) {
+        char name[128];
+        int length = snprintf(name, sizeof(name), "/test/fixture/v1.0.0/src/%s", names[index]);
+        assert(length > 0 && (size_t)length < sizeof(name));
+        assert(changed(&after, PROJECT_INPUT_MODULE, name));
+        assert(!changed(&after, PROJECT_INPUT_FILE,
+            source_path(project_find(&after_project, name)->source->text)));
+    }
+    project_inputs_destroy(&after);
+    project_destroy(&after_project);
+    project_inputs_destroy(&before);
+    destroy_project();
+}

@@ -756,3 +756,95 @@ Markdown changes follow the accepted implementation snapshot. Final generation
 is `/tmp/ama-t265-documentation-delivery.log`; require accepted code/registry/
 header/test byte identity and final manifest/staged agreement before commit.
 T265 is archived; T232 integration remains the next work. No test job is active.
+
+## T266 retained configuration ownership
+
+The real catalog currently checks package.ini shape but discards its bytes and
+selected-version context. Source snapshots similarly retain only Ama text and
+native companions. Before alias preparation, retain each selected version's exact
+configuration SourceText once and connect indexed modules to that owner. This is
+an independently accepted T232 prerequisite, not a new language requirement.
+The record must own its logical/physical names independently of borrowed root
+descriptors. Standard modules retain no package context. Empty versions still
+retain their configuration, so permission/view construction does not invent
+probe modules. Ignored external versions contribute neither records nor bytes.
+
+A source-only snapshot attachment must copy configuration bytes, validate the
+complete version identity, refuse duplicate owners and connect only matching
+ordinary module identities. It performs no filesystem lookup and publishes no
+partial module/context connections on allocation or encoding failure. Configuration
+syntax remains the strict document parser's responsibility; storage preserves
+exact bytes and original physical locations. The finite version/module scans
+use exact canonical version boundaries, not textual prefix guesses.
+
+Acceptance for this step: actual selected filesystem copies, empty versions,
+standard isolation, detached caller/root storage, changed-on-disk inputs, exact
+UTF-8 diagnostics and fail-at-every-allocation checks; copied source snapshots
+with explicit configuration attachment and no physical reread. T232 remains
+uncompleted until scope preparation, dependency/semantic handoffs and input-graph
+capture consume these records. No jobs are active at this checkpoint.
+
+T266 implementation: catalog-owned ModuleVersion records preserve configuration
+SourceText, complete logical version and physical directory. Filesystem indexing
+loads only the already selected package configuration and links each source to
+that version. Explicit snapshot attachment copies bytes/paths before publication,
+validates UTF-8 with owned original diagnostics and reconnects only exact version
+identities. No root pointer survives build. Source-only snapshots without attached
+configuration remain explicitly incomplete for future T232 scope preparation;
+this API does not invent an empty package configuration. No INI interpretation,
+implicit download, local companion discovery or permission exemption is introduced.
+
+Version lookup validates the finite canonical path once and compares exact
+version lengths/bytes against the retained list. Publication validates a complete
+version, refuses duplicate ownership, allocates/copies all owner fields, then
+performs one finite source scan. Every matching source receives the same owner;
+standard/different-version sources remain unchanged. With V versions and M
+modules, publication uses O(V + M) bounded identity comparisons plus examined
+path bytes, and one record/two names beyond retained configuration text. Failure
+before publication can leave only catalog-owned scratch, never changed module
+links. Catalog destruction releases records/text after all borrowing consumers.
+
+The real project-input capture links each active module to its version's shared
+CONFIGURATION node keyed by the original physical package.ini path. It borrows
+retained bytes from the Project, matching existing source/ABI lifetime contracts;
+FILE and CONFIGURATION key domains remain distinct. Disk changes after acquisition
+cannot alter the captured graph. A subsequent project acquisition observes changed
+configuration and invalidates all dependent modules through the existing exact
+fixed-point algorithm. Inactive/ignored versions do not gain consumer edges.
+
+Scoped catalog and project-input runs passed with explicit assertion cases. Next:
+register per-file evidence, run parent/source and project closure composition,
+fail-fast ASan/UBSan, root build and documentation gates before archival/commit.
+No other task is marked complete.
+
+T266 checks collected with exit zero: catalog leaf
+(`/tmp/ama-t232-config-storage.log`), real project-input capture
+(`/tmp/ama-t232-config-inputs.log`), complete source parent
+(`/tmp/ama-t266-source-parent.log`) and real project closure
+(`/tmp/ama-t266-project-closure.log`). Scoped canonical-comment, standalone-header
+and compiled actual-case-signature checks also passed. Allocation tests cover
+every measured configuration copy/publication failure with unchanged module links
+and balanced owner teardown; the existing full catalog/capture failure sweeps
+include the new filesystem and graph allocations.
+
+Active acceptance jobs: catalog ASan/UBSan session 10911
+(`/tmp/ama-t266-catalog-sanitizers.log`), project-input ASan/UBSan session 57200
+(`/tmp/ama-t266-inputs-sanitizers.log`), root make session 90358
+(`/tmp/ama-t266-build.log`). Both sanitizers use detect_leaks=0:halt_on_error=1,
+UBSAN halt_on_error=1, strict C11, frame pointers and non-PIE instrumentation;
+no LeakSanitizer claim is made. No shared output trees overlap these jobs.
+Next collect all exits before running the full documentation gate.
+
+T266 sanitizer jobs 10911 and 57200 completed with exit zero. Root build 90358
+is still being collected. Full documentation acceptance is next; implementation,
+registry and fixture bytes remain frozen during that run.
+
+T266 acceptance collected: all sanitizer, source/catalog, project-input and closure
+jobs exited zero, as did root make. Full make docs exited zero
+(`/tmp/ama-t266-documentation.log`), with 3221 ready inputs and zero debts.
+The accepted manifest is preserved at `/tmp/ama-t266-prearchive-manifest.json`.
+Only narrative task archival/current-contract Markdown changes follow; implementation,
+registry, headers and tests remain byte-identical. Final supported Doxygen delivery
+will be `/tmp/ama-t266-documentation-delivery.log`; verify final manifest and staged
+bytes before committing. T266 is archived; T232 remains open and is next.
+No test job remains active.

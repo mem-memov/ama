@@ -34228,6 +34228,31 @@
         "source": "tests/unit/source/module/main.c",
         "case": "it_indexes_dependency_only_projects_and_keeps_versions_distinct",
         "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
       }
     ]
   },
@@ -34504,6 +34529,36 @@
         "source": "tests/unit/source/path/main.c",
         "case": "it_classifies_every_bounded_version_and_area_shape_without_probe_names",
         "command": "make -C tests/unit/source/path"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -34705,6 +34760,31 @@
         "source": "tests/unit/tools/relocation/preview/main.c",
         "case": "it_refuses_a_missing_projected_local_area_without_external_fallback",
         "command": "make -C tests/unit/tools/relocation/preview"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
       }
     ]
   },
@@ -34959,6 +35039,36 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -55296,6 +55406,31 @@
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_checks_standard_local_alias_targets_after_full_normalization",
         "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
       }
     ]
   },
@@ -56743,6 +56878,31 @@
         "source": "tests/unit/source/module/main.c",
         "case": "it_indexes_dependency_only_projects_and_keeps_versions_distinct",
         "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
       }
     ]
   },
@@ -56933,6 +57093,31 @@
       {
         "source": "tests/unit/source/module/main.c",
         "case": "it_indexes_dependency_only_projects_and_keeps_versions_distinct",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
         "command": "make -C tests/unit/source/module"
       }
     ]
@@ -59384,6 +59569,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -59537,6 +59727,11 @@
         "case": "it_invalidates_static_producers_and_selected_consumers_from_nested_sources",
         "command": "make -C tests/unit/project/inputs",
         "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -59609,6 +59804,11 @@
         "case": "it_owns_the_failed_native_input_path_after_project_destruction",
         "command": "make -C tests/unit/project/inputs",
         "source": "tests/unit/project/inputs/main.c"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -167740,6 +167940,31 @@
         "source": "tests/unit/source/module/packages/main.c",
         "case": "it_selects_virtual_versions_and_unwinds_every_reader_callback_failure",
         "command": "make -C tests/unit/source/module/packages"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
       }
     ],
     "purpose": "Build and run exact package-selection and measured directory-I/O failure cases."
@@ -167861,6 +168086,36 @@
         "source": "tests/unit/source/module/main.c",
         "case": "it_indexes_dependency_only_projects_and_keeps_versions_distinct",
         "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -177303,6 +177558,114 @@
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_checks_standard_local_alias_targets_after_full_normalization",
         "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/module/packages/context.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Retain exact selected package configuration and version ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "src/source/module/resolve/configuration-snapshot.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Copy authoritative version configuration without filesystem reads.",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "tests/unit/source/module/support/configuration.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Verify selected and captured configuration lifetime and failure boundaries.",
+    "tests": [
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_retains_selected_version_configuration_and_exact_module_ownership",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_attaches_copied_configuration_to_exact_snapshot_versions",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_unwinds_every_configuration_snapshot_allocation_failure",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_sites",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/module/main.c",
+        "case": "it_reports_selected_configuration_utf8_without_publishing_a_catalog",
+        "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_tracks_retained_package_configuration_without_rereading_disk",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   }

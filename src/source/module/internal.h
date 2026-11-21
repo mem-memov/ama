@@ -3,6 +3,8 @@
  * @brief Declare catalog scan, resolution and source-publication phase contracts.
  *
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03)
+ * [PKG-02](../../../spec/project/packages.md#pkg-02) retains selected owners;
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) preserves configuration bytes.
  * Keep filesystem work in the catalog; it neither parses module bodies nor resolves semantic bindings.
  */
 #ifndef AMA_SOURCE_MODULE_INTERNAL_H
@@ -76,6 +78,19 @@ ModuleStatus module_add_source(ModuleCatalog *catalog, const char *physical,
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 ModuleStatus module_load_utf8(ModuleCatalog *catalog, const char *physical,
     const SourceText **output);
+/** Publish one exact version owner from configuration bytes already owned by this catalog.
+ * Copy identity/directory before linking; reject invalid/duplicate versions. Reconnect only
+ * complete ordinary identities with the same canonical version boundary. No I/O or parsing.
+ * [PKG-02](../../../spec/project/packages.md#pkg-02) makes the version the ownership unit;
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) retains its exact configuration source.
+ */
+ModuleStatus module_version_publish(ModuleCatalog *, const char *, const char *, const SourceText *);
+/** Find a retained owner using the canonical version boundary; standard paths return NULL.
+ * No allocation or mutation. [PKG-02](../../../spec/project/packages.md#pkg-02)
+ * prohibits inferring ownership from a similarly prefixed different version.
+ */
+const ModuleVersion *module_version_find(const ModuleCatalog *, const char *);
+
 /** Register directory identity before queueing its catalog-owned path views; a failed queue allocation leaves only catalog-owned scratch.
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 ModuleStatus module_queue(ModuleWalk *walk, const char *physical,
