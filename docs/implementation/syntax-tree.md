@@ -80,29 +80,39 @@ scope lookup, infer substitutions, determine a producer, or generate a Type.
 sections and the runtime body remain empty. A public static pair has a complete
 single-dot name and a same-indent value head. A producer use has a concrete path,
 zero or more named inputs and at least one named output. All inputs precede
-outputs. Values nest through named input edges only. There are no static skips,
-positions, standalone formal/signature declarations, or ordinary inline static
-applications. Runtime calls retain their own positional forms.
+outputs. Graph values nest through named input edges only. There are no static
+skips, positions or standalone formal/signature declarations. Runtime calls
+retain their own positional forms. An empty fully valid static graph is the
+closed marker classified by [T221](../../DONE.md#t221).
 
-An ordinary declaration still consists of a variable name and a simple Type
-line. A concrete path may carry one child export selector, represented by
-`selected_export`; this is a foreign name, not another local expression head.
-Ordinary initializers and namespace `>>` reads follow at their own grammar depth.
-The shared runtime-Type parser recognizes that shape without resolving the path.
-It also supplies ordinary constant namespaces.
+An ordinary declaration keeps a variable name and a complete structural Type
+expression under [TPL-15](../../spec/language/templates.md#tpl-15). Named input
+bindings form original child expressions. Each level can finish with one bare
+foreign export selector stored in `selected_export`; it introduces no local
+name and has no children. Ordinary initializers follow the complete outer
+expression at their prescribed depth. Graph output bindings are not declaration
+selectors. The explicit-stack parser retains separate graph-value,
+producer-statement and declaration-Type modes.
+
+Constant namespaces use their own simple head/optional-selector reader under
+[CONST-03](../../spec/language/declarations.md#const-03). They retain ordinary
+`>>` requests and acquire no declaration constructor bindings. Shared selector
+recognition preserves the same original foreign-name span without module lookup.
+[T269](../../DONE.md#t269) records this source foundation; T226 owns complete
+semantic/executable declaration-expression admission.
 
 Every syntax span borrows original bytes. Arena frames retain the exact physical
-indentation, owning input and producer/value mode. Each step consumes a source
+indentation, owning input and exact source-expression mode. Each step consumes a source
 line or pops a finite frame; deep source nesting does not consume the C stack.
 Partial nodes, frames and diagnostics have the same destruction contract as
 ordinary parsing. A head opens only its prescribed child region: comments cannot
 invent deeper nesting or reopen a region after dedentation. LF, CRLF and a final
 virtual newline preserve the same code structure without changing literal data.
 
-Dependency discovery follows graph owners and concrete expression heads. It
-excludes placeholder names, foreign labels and export selectors. The current
-concrete semantic inventory rejects unresolved graph modules, placeholders,
-binding trees and selected exports rather than treating them as ordinary Types.
-This is a staged compiler boundary; T207–T212 and T184 own semantic completion.
-[Current evidence](static-source.md) distinguishes syntax acceptance, current
-primitive/caller checks and the remaining source-fixture migrations.
+Dependency discovery follows graph and declaration-expression owners and every
+concrete nested head. It excludes local placeholder names, foreign labels and
+export selectors as independent dependencies, while retaining a selected head's
+producer role. Source acceptance does not itself certify a complete ordinary
+Type or a closed producer. The existing simple-Type/export semantic boundary
+and T226's remaining integration are distinguished in the
+[declaration-expression contract](declaration-expressions.md).

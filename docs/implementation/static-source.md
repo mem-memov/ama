@@ -4,9 +4,10 @@ The current spelling and path handoff is recorded in
 [T231](versioned-source.md): static names start with one dot and module paths use
 slash roots. Current language rules are in
 [the canonical grammar](../../spec/grammar.md#static-template-syntax-and-design-boundaries).
-Complete ordinary declaration constructor expressions are a separate T226
-implementation gate; the historical simple-selector parser acceptance below
-must not be read as acceptance of that newer requirement.
+[T269](../../DONE.md#t269) extends the source parser to complete declaration
+Type-expression trees; [its contract](declaration-expressions.md) separates
+that foundation from T226 semantic/executable admission. The historical
+simple-selector acceptance below does not establish those newer contracts.
 
 ## Historical T206 input and acceptance
 

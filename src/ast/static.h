@@ -11,6 +11,8 @@
  * distinguishes actual constructor metadata, while
  * [TPL-08](../../spec/language/templates.md#tpl-08) requires structural application
  * trees rather than textual substitution; metadata is not syntax.
+ * [TPL-15](../../spec/language/templates.md#tpl-15) retains nested declaration
+ * input expressions and their selected foreign outputs without runtime values.
  */
 #ifndef AMA_AST_STATIC_H
 #define AMA_AST_STATIC_H
@@ -61,8 +63,9 @@ struct AstTypeExpression {
     AstTypeHeadKind kind;
     AstStaticBinding *first;
     AstStaticBinding *last;
-    /** One ordinary type/namespace export selector, never a static argument.
-     * [TPL-12](../../spec/language/static-results.md#tpl-12) selects a named ready Type.
+    /** One foreign export selector after this expression's named inputs.
+     * [TPL-15](../../spec/language/templates.md#tpl-15) allows nested selected
+     * results; semantic admission decides their actual Type/Template category.
      */
     SourceSpan selected_export;
 };

@@ -73,7 +73,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T269**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T270**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -88,8 +88,8 @@ records foundation gates, task/step acceptance, migration and evidence duties;
 <a id="t226"></a>
 
 - [ ] **T226 — Implement complete declaration type expressions.**
-  Status: planned; implementation now authorized. Prerequisites:
-  T221, T225 and T227. Contract: [TPL-15](spec/language/templates.md#tpl-15) and its
+  Status: ready; implementation authorized after accepted T269. Prerequisites:
+  T221, T225, T227 and T269. Contract: [TPL-15](spec/language/templates.md#tpl-15) and its
   [acceptance scenarios](spec/implementation/tools-and-conformance.md#static-module-templates).
   T227 withdraws the former phantom implementation scope; ordinary declaration
   expressions remain required, as explicitly reaffirmed by the user on 2026-11-20.
@@ -103,11 +103,13 @@ records foundation gates, task/step acceptance, migration and evidence duties;
   bare placeholders, aliases, exact inference and all required producer inputs.
   Reject residual/ambiguous final Types, unknown body placeholders, direct marker
   storage and native own parameters; preserve ordinary lifecycle and C transport.
-  The all-positive canonical fence case in
-  `tests/unit/parser/composition/support/documented.c` currently reaches
-  templates.md fence 3 and rejects its inline constructor. Finish that actual
-  TPL-15 boundary and retain the current explicit example contexts; T221 owns
-  marker admission. Record scoped conformance evidence only after
+  T269 now passes the all-positive canonical fence case in
+  `tests/unit/parser/composition/support/documented.c`, including the former
+  templates.md fence 3 refusal. Retain those explicit syntax contexts while
+  accepting actual semantic/executable declaration expressions. Replace T269's
+  fail-closed zero-argument-export boundary with complete checked producer
+  arguments and selected results; never discard supplied bindings. T221 records
+  accepted marker admission. Record scoped conformance evidence only after
   implementation/argument review, then pass required consumers and documentation gates. T237 owns the complete
   matrix renewal once all newer contracts are implemented. The earlier
   accepted matrix remains historical evidence, not support for these new rules.

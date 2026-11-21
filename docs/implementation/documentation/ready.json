@@ -188,7 +188,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -12903,7 +12903,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13605,7 +13605,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13643,6 +13643,21 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_preserves_nested_declaration_inputs_selectors_and_initializer_spans",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -13696,7 +13711,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13772,7 +13787,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13924,7 +13939,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -13997,6 +14012,21 @@
         "source": "tests/unit/editor/rename/static/main.c",
         "case": "it_unwinds_every_static_candidate_correspondence_allocation",
         "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_preserves_nested_declaration_inputs_selectors_and_initializer_spans",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -14035,7 +14065,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -14181,7 +14211,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -14302,7 +14332,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -15790,6 +15820,11 @@
         "source": "tests/unit/project/inputs/main.c",
         "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
         "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/closure/main.c",
+        "case": "it_discovers_nested_declaration_inputs_and_selectors_without_losing_source_roles",
+        "command": "make -C tests/unit/project/closure"
       }
     ]
   },
@@ -47425,7 +47460,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -48053,7 +48088,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -49070,6 +49105,11 @@
       {
         "case": "it_retains_occurrence_roles_and_nested_requester_locations",
         "source": "tests/unit/project/closure/main.c",
+        "command": "make -C tests/unit/project/closure"
+      },
+      {
+        "source": "tests/unit/project/closure/main.c",
+        "case": "it_discovers_nested_declaration_inputs_and_selectors_without_losing_source_roles",
         "command": "make -C tests/unit/project/closure"
       }
     ]
@@ -61163,7 +61203,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -61269,7 +61309,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -62528,7 +62568,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -63661,7 +63701,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -63789,7 +63829,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124139,7 +124179,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124177,6 +124217,21 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_preserves_nested_declaration_inputs_selectors_and_initializer_spans",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
       }
     ],
     "standalone_header_command": [
@@ -124230,7 +124285,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124306,7 +124361,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124397,7 +124452,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124453,7 +124508,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124491,6 +124546,21 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_preserves_nested_declaration_inputs_selectors_and_initializer_spans",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -124529,7 +124599,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124605,7 +124675,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124643,6 +124713,21 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_preserves_nested_declaration_inputs_selectors_and_initializer_spans",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
       }
     ],
     "standalone_header_command": [
@@ -124696,7 +124781,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124772,7 +124857,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -124815,6 +124900,21 @@
         "source": "tests/unit/parser/static/main.c",
         "case": "it_distinguishes_marker_sources_from_other_and_invalid_files",
         "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_preserves_nested_declaration_inputs_selectors_and_initializer_spans",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -124853,7 +124953,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149401,7 +149501,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149477,7 +149577,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149515,12 +149615,17 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
-  "src/parser/types/runtime.c": {
-    "contract": "docs/implementation/static-source.md",
-    "purpose": "Parse a simple ordinary Type head and its sole optional named export.",
+  "src/parser/types/namespace-type.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Parse a simple constant namespace and its sole optional named export.",
     "tests": [
       {
         "case": "it_classifies_only_valid_empty_static_modules_as_markers",
@@ -149553,7 +149658,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149591,6 +149696,11 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
       }
     ]
   },
@@ -149629,7 +149739,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149705,7 +149815,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -149786,7 +149896,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -155623,6 +155733,11 @@
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
         "case": "it_unwinds_every_source_annotation_and_equation_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_refuses_unconsumed_declaration_producer_inputs_before_legacy_export_resolution",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -164369,6 +164484,11 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_distinguishes_catalog_definition_and_explicit_type_root_requests",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-composition/main.c",
+        "case": "it_refuses_unconsumed_declaration_producer_inputs_before_legacy_export_resolution",
+        "command": "make -C tests/unit/compiler/specialization-composition"
       }
     ]
   },
@@ -167758,7 +167878,7 @@
         "source": "tests/unit/parser/static/main.c"
       },
       {
-        "case": "it_rejects_invalid_ordinary_selectors_and_nested_static_blocks",
+        "case": "it_rejects_invalid_selectors_and_namespace_static_bindings",
         "command": "make -C tests/unit/parser/static",
         "source": "tests/unit/parser/static/main.c"
       },
@@ -179828,6 +179948,79 @@
         "case": "it_compiles_and_executes_real_integer_list_results",
         "command": "make -C tests/integration/standard-integer",
         "source": "tests/integration/standard-integer/main.c"
+      }
+    ]
+  },
+  "src/parser/static/selector.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Retain a single bare foreign export name without resolving its module.",
+    "tests": [
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_preserves_nested_declaration_inputs_selectors_and_initializer_spans",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_deep_input_only_values_without_c_recursion",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_unwinds_every_current_graph_and_selector_parse_allocation_failure",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_selects_constant_namespaces_without_ordinary_static_applications",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
+      }
+    ]
+  },
+  "tests/unit/parser/static/support/declarations.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Verify complete declaration trees, selected nested values and initializer ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_preserves_nested_declaration_inputs_selectors_and_initializer_spans",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section",
+        "command": "make -C tests/unit/parser/static"
+      },
+      {
+        "source": "tests/unit/parser/static/main.c",
+        "case": "it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers",
+        "command": "make -C tests/unit/parser/static"
+      }
+    ]
+  },
+  "tests/unit/project/closure/support/static/declarations.c": {
+    "contract": "docs/implementation/declaration-expressions.md",
+    "purpose": "Verify exact dependency roles and spans in nested declaration Type trees.",
+    "tests": [
+      {
+        "source": "tests/unit/project/closure/main.c",
+        "case": "it_discovers_nested_declaration_inputs_and_selectors_without_losing_source_roles",
+        "command": "make -C tests/unit/project/closure"
       }
     ]
   }

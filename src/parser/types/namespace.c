@@ -3,8 +3,8 @@
  * @brief Begin an ordinary retained constant read from a simple Type namespace.
  *
  * [CONST-03](../../../spec/language/declarations.md#const-03) determines the
- * namespace before member lookup. [TPL-12](../../../spec/language/static-results.md#tpl-12)
- * permits one named export selector, not ordinary-body static applications.
+ * namespace before member lookup. [TPL-15](../../../spec/language/templates.md#tpl-15)
+ * adds constructor bindings to declarations, not to these constant-read namespaces.
  */
 #include "../internal.h"
 
@@ -15,7 +15,7 @@
 bool parser_namespace_statement(Parser *parser, ParseFrame **frame, AstNode *node) {
     size_t indentation = parser->line->indentation;
     AstTypeExpression *expression;
-    if (!parser_runtime_type(parser, indentation, &expression)) { return false; }
+    if (!parser_namespace_type(parser, indentation, &expression)) { return false; }
     node->kind = AST_CALL;
     node->as.call.mode = AST_CONSTANT_READ;
     node->as.call.namespace_expression = expression;

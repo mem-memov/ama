@@ -9,6 +9,7 @@
 #include "support/identity.c"
 #include "support/diagnostics.c"
 #include "support/static/expressions.c"
+#include "support/static/declarations.c"
 #include "support/static/kinds.c"
 #include "support/static/closure.c"
 #include "support/static/diagnostics.c"
@@ -367,6 +368,7 @@ static void it_walks_deep_blocks_and_dependency_chains_without_c_recursion(void)
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_discovers_nested_declaration_inputs_and_selectors_without_losing_source_roles();
     it_retains_occurrence_roles_and_nested_requester_locations();
     it_checks_every_static_path_role_against_each_complete_source_kind();
     it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure();

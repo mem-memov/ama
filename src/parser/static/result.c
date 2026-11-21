@@ -25,7 +25,7 @@ bool parser_static_result(Parser *parser, size_t indentation, AstNode *node) {
         return parser_fail(parser, parser_site(parser),
             "A static result requires a same-level defining expression", EXPECT_STATIC_RESULT);
     }
-    if (!parser_type_expression(parser, parser->line->code, indentation, false,
+    if (!parser_type_expression(parser, parser->line->code, indentation, PARSER_TYPE_STATIC_VALUE,
         &node->as.static_result.expression)) { return false; }
     node->span.end = node->as.static_result.expression->span.end;
     return true;

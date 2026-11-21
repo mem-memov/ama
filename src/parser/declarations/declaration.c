@@ -4,6 +4,8 @@
  *
  * [TYPE-01](../../../spec/language/declarations.md#type-01)
  * Do not infer a missing type or resolve a declaration name while parsing.
+ * [TPL-15](../../../spec/language/templates.md#tpl-15) gives each declaration
+ * a complete structural Type expression before its initializer list.
  */
 #include "../internal.h"
 
@@ -44,7 +46,8 @@ bool parser_declaration(Parser *parser, size_t indentation, AstNode *node) {
         return parser_fail(parser, parser_site(parser), "A declaration needs its module type on the next code line",
             EXPECT_TYPE_LINE);
     }
-    if (!parser_runtime_type(parser, indentation, &node->as.declaration.type)) {
+    if (!parser_type_expression(parser, parser->line->code, indentation,
+        PARSER_TYPE_DECLARATION, &node->as.declaration.type)) {
         return false;
     }
     node->span.end = node->as.declaration.type->span.end;

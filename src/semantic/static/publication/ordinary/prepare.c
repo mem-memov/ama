@@ -1,9 +1,13 @@
 /** @file
  * @brief Register ordinary Type forms while keeping selected static exports disconnected from consumer inference.
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) requires one exact public selector.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) prevents ordinary factory binding blocks.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) keeps producer inputs independent of consumer expectations.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) separates actual contexts and source facts.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns partial obligations.
+ * [TPL-15](../../../../../spec/language/templates.md#tpl-15) requires every
+ * supplied producer argument to participate in resolution. The existing
+ * zero-argument export consumer must refuse richer parsed forms until the
+ * complete declaration-expression consumer replaces this domain boundary.
  */
 #include <stdint.h>
 #include "internal.h"
@@ -33,6 +37,10 @@ static bool selector(StaticPublicationPlan *plan, const StaticOccurrence *site, 
     if (!producer || !selected) {
         return static_publication_fail(plan, STATIC_PUBLICATION_CONFLICT, expression->span,
             "A static module requires one named export selector; ordinary Types cannot have one");
+    }
+    if (expression->first != NULL) {
+        return static_publication_fail(plan, STATIC_PUBLICATION_CONFLICT, expression->first->span,
+            "Static producer arguments in declaration types are not implemented");
     }
     record->producer = static_module_find(plan->results->guards->applications->terms->inventory, site->origin);
     record->selected = static_symbol_find(record->producer, expression->selected_export);

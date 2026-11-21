@@ -8013,3 +8013,52 @@ T201. Specification bytes have not changed.
   remain intact. No specification changes or conformance hash renewals belong
   to this task. Final narrative-only archival regeneration must match the
   accepted implementation/test/registry and staged-file fingerprints.
+
+<a id="t269"></a>
+
+- [x] **T269 — Parse complete declaration Type-expression trees.**
+  Completed 2026-11-21; prerequisite T221 (`40d17bd`). Extracted from T226 as an independently
+  verifiable source foundation; it does not claim semantic/executable admission.
+  Contract: [declaration expressions](docs/implementation/declaration-expressions.md).
+  Rules: TPL-02/08/12/15, TYPE-01, CONST-03, COMP-01/02.
+  Extend the iterative expression parser with explicit source modes for graph
+  values, producer statements and ordinary declaration types. Preserve nested
+  named inputs, final childless export selectors and exact original spans;
+  separate ordinary initializers from the complete expression before lookup.
+  Keep constant-read namespaces simple and graph output bindings exclusive to
+  producer statements. Remove obsolete syntax-refusal cases and replace them
+  with positive tree/phase/namespace boundaries, malformed/deep/OOM tests and
+  actual project dependency discovery. Accept parser/source compositions and
+  documentation gates; T226 retains semantic specialization and runtime owners.
+  Refuse unsupported supplied producer inputs before the existing zero-argument
+  export consumer can discard them; T226 must replace this explicit admission
+  boundary with complete checked argument/projection resolution.
+
+  Result: iterative mode-specific parsing retains complete declaration input
+  trees and childless selected results before ordinary initializers. The old
+  runtime-Type reader/API was removed in favor of a restricted namespace reader
+  and shared allocation-free selector recognition. No callee lookup determines
+  source structure. Current AST/dependency consumers preserve exact nested
+  source order and roles. A demonstrated legacy export path silently discarded
+  new producer arguments; it now fails explicitly at the original binding.
+  T226 must replace this unsupported-form boundary with complete checked
+  resolution, not retain a permissive or compatibility alternative.
+  Acceptance: complete parser parent (including all canonical document
+  examples), project-closure composition, specific safe frontend handoff,
+  1024-level graph/declaration trees and every measured parser allocation
+  refusal pass. Parser ASan/UBSan and actual generated integer/marker C
+  compilation/execution pass. LeakSanitizer is disabled; counted teardown
+  independently checks ownership. A final literal-only diagnostic refinement
+  was followed by the complete focused parser leaf.
+  `make docs` passed 3251 ready inputs, zero debts, 2450 maintained file pages,
+  9436 documented interfaces and all 490 referenced destinations. Logs, exact
+  flags and failed-run corrections are retained in the linked contract; final
+  logs include `/tmp/ama-t269-parser-parent.log`,
+  `/tmp/ama-t269-project-discovery.log`, `/tmp/ama-t269-parser-sanitized.log`,
+  `/tmp/ama-t269-unconsumed-input-refusal.log`,
+  `/tmp/ama-t269-generated-final.log` and `/tmp/ama-t269-documentation.log`.
+  Limits: this is source-foundation/safe-consumer acceptance, not complete
+  TPL-15 semantic or runtime admission. T226 retains that implementation and
+  T237 retains conformance renewal; no specification or historical fingerprint
+  was changed. Narrative-only archival regeneration and accepted source/test/
+  registry/deletion/staged-input agreement remain required before commit.

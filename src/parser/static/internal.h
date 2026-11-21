@@ -27,4 +27,12 @@ bool static_binding_line(const LayoutLine *);
  * requires nonempty named labels and operands; static skips do not exist.
  */
 bool static_binding_head(Parser *, AstStaticBinding **);
+
+/** Consume the current valid bare static-name line as a concrete path's
+ * selector, rejecting duplicates. The caller supplies the correct child depth.
+ * Child indentation and subsequent phases stay with the expression owner.
+ * [TPL-15](../../../spec/language/templates.md#tpl-15) gives a selector no
+ * local binding, children or output-action meaning.
+ */
+bool static_expression_selector(Parser *, AstTypeExpression *);
 #endif

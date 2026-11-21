@@ -55,16 +55,25 @@ void parser_skip_layout(Parser *parser);
  * Component contract: [COMP-01](../../spec/implementation/compiler.md#comp-01). */
 bool parser_path(SourceSpan text);
 
-/** Parse one static expression from the current physical head line and its
+/** Exact source forms keep graph outputs and declaration selectors distinct.
+ * [TPL-12](../../spec/language/static-results.md#tpl-12) permits graph outputs
+ * only on producer statements; [TPL-15](../../spec/language/templates.md#tpl-15)
+ * permits nested named inputs followed by one selector in declaration Types.
+ */
+typedef enum { PARSER_TYPE_STATIC_VALUE, PARSER_TYPE_PRODUCER,
+    PARSER_TYPE_DECLARATION } ParserTypeMode;
+
+/** Parse one expression from the current physical head line and its
  * exact child binding region; publish only a complete AST-owned tree.
  * Component contract: [TPL-12](../../spec/language/static-results.md#tpl-12)
  * fixes named operands and input-only values; only a producer root has outputs.
  */
-bool parser_type_expression(Parser *, SourceSpan, size_t, bool, AstTypeExpression **);
-/** Parse a simple ordinary type and optional named export before initializers.
- * [TPL-12](../../spec/language/static-results.md#tpl-12) forbids inline static applications.
+bool parser_type_expression(Parser *, SourceSpan, size_t, ParserTypeMode, AstTypeExpression **);
+/** Parse a simple constant-read namespace and optional named export.
+ * [CONST-03](../../spec/language/declarations.md#const-03) retains read operations;
+ * [TPL-15](../../spec/language/templates.md#tpl-15) adds bindings to declarations only.
  */
-bool parser_runtime_type(Parser *, size_t, AstTypeExpression **);
+bool parser_namespace_type(Parser *, size_t, AstTypeExpression **);
 /** Parse an exclusive graph without ordinary statement or symbol lookup.
  * [TPL-12](../../spec/language/static-results.md#tpl-12) distinguishes pairs and producer uses by syntax.
  */

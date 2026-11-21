@@ -10,6 +10,7 @@
 #include "support/names.c"
 #include "support/graphs.c"
 #include "support/ordinary.c"
+#include "support/declarations.c"
 #include "support/failures.c"
 
 /** Explicitly run each component case; failed assertions preserve leaf outputs. */
@@ -22,8 +23,11 @@ void run(void) {
     it_keeps_simple_ordinary_type_pairs_and_export_initializers();
     it_selects_constant_namespaces_without_ordinary_static_applications();
     it_rejects_old_static_forms_and_invalid_graph_modes();
-    it_rejects_invalid_ordinary_selectors_and_nested_static_blocks();
+    it_rejects_invalid_selectors_and_namespace_static_bindings();
     it_parses_deep_input_only_values_without_c_recursion();
+    it_preserves_nested_declaration_inputs_selectors_and_initializer_spans();
+    it_parses_declaration_arguments_before_lookup_and_in_each_ordinary_section();
+    it_rejects_crossed_expression_phases_outputs_and_nested_runtime_initializers();
     it_unwinds_every_current_graph_and_selector_parse_allocation_failure();
 }
 

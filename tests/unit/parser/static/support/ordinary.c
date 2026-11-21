@@ -57,13 +57,12 @@ static void it_selects_constant_namespaces_without_ordinary_static_applications(
 }
 
 /** Selectors have one level, no binding/suffix/children, and cannot attach to a placeholder. */
-static void it_rejects_invalid_ordinary_selectors_and_nested_static_blocks(void) {
+static void it_rejects_invalid_selectors_and_namespace_static_bindings(void) {
     const char *invalid[] = {
         "@!\nvalue\n/test/fixture/v1.0.0/src/assembly\n .one\n .two\n",
         "@!\nvalue\n/test/fixture/v1.0.0/src/assembly\n .one\n  .child\n",
         "@!\nvalue\n.type\n .selected\n",
         "@!\nvalue\n/test/fixture/v1.0.0/src/assembly\n .selected&\n",
-        "@!\nvalue\n/test/fixture/v1.0.0/src/box\n .element < //integer\n",
         "@!\n/test/fixture/v1.0.0/src/assembly\n .out > .alias\n",
         "@!\n/test/fixture/v1.0.0/src/assembly\n .selected\n .key < //integer\n zero >> value\n",
         "@!\n/test/fixture/v1.0.0/src/assembly\n .selected\n .second\n zero >> value\n"

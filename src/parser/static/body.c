@@ -15,7 +15,7 @@
  */
 static bool producer(Parser *parser, AstNode *node) {
     AstTypeExpression *expression;
-    if (!parser_type_expression(parser, parser->line->code, 0, true, &expression)) { return false; }
+    if (!parser_type_expression(parser, parser->line->code, 0, PARSER_TYPE_PRODUCER, &expression)) { return false; }
     bool outputs = false;
     for (const AstStaticBinding *binding = expression->first; binding; binding = binding->next) {
         outputs |= binding->kind == AST_STATIC_OUTPUT;
