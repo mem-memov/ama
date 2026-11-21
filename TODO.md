@@ -73,7 +73,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T263**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T264**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -147,7 +147,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t262"></a>
 
 - [ ] **T262 — Match dependency selectors and authorize versioned edges.**
-  Prerequisites: T261. Implement PKG-05's exact finite scalar/component matcher
+  Prerequisites: T261 and T263. Compose PKG-05's exact finite scalar/component matcher
   and selected-version/module-unit coverage, including complete structural
   subtrees and associated test areas. Expand only package aliases and normalize
   their real-path base before adding masks. No wildcard cancellation, latest

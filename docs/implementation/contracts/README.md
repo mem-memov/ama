@@ -48,7 +48,8 @@ ownership, simultaneous count/byte limits, native endpoint shutdown and independ
 receiver lifetime, including real concurrent and typed Ama acceptance.
 
 The [project configuration contract](../project-configuration.md) records the
-T260 source parser, planned T261/T262 foundations and T232 integration obligations. Its planned
+T260 source parser, T261 path/scope foundation, T263 selector matcher,
+planned T262 authorization and T232 integration obligations. Its planned
 boundaries are distinct from claims of implemented compiler support.
 
 ## Before implementation

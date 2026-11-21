@@ -7640,3 +7640,43 @@ T201. Specification bytes have not changed.
   T262 and T232 remain responsible for selector authorization and real pipeline
   integration; this task does not claim that source-only foundations are wired
   into compilation. Whole-sprint current conformance acceptance remains T237.
+
+<a id="t263"></a>
+
+- [x] **T263 — Compile dependency patterns and match eligible identities exactly.**
+  Status: accepted after T261 (`161448f`). Prerequisites: T260 and T261.
+  Foundation extracted from T262: compile package-alias selectors into immutable
+  Unicode-scalar components; use exact finite dynamic programming for embedded
+  stars and nonempty whole-component chains. Reject traversal and nonpackage alias
+  scopes, preserve original diagnostics and allocation-failure nonpublication.
+  Compare exhaustive bounded pattern/identity domains against an independent
+  partition/enumeration model; cover Unicode, empty/no-match, duplicate matching
+  decompositions, strict version eligibility and all measured resource failures.
+  [Contract and checkpoint](docs/implementation/project-configuration.md#t263-selector-matching-contract).
+  T262 retains selected-unit coverage and dependency-edge authorization.
+
+  Acceptance: immutable scalar arrays copy normalized package-alias components
+  before appending untouched mask suffixes. Only exact package scopes supply
+  aliases; traversal, standard targets and local alias tables refuse. Compiler
+  orchestration, input, component streaming, measurement, storage, local workspace,
+  scalar DP, path DP and diagnostics have separate cohesive source owners.
+  Boolean reachability implements all scalar substitutions and nonempty component
+  chains without recursion, heuristic choice, latest-version selection or I/O.
+  Output remains unchanged on preparation/resource failure; compiled arenas retain
+  partial storage, while matcher scratch retires on every exit. Original source
+  spans survive alias/document owner retirement with SourceText still alive.
+  Independent enumeration models cover 7440 scalar and 10200 component cases.
+  Positive/negative vectors cover Unicode, exact versions/variants, ordinary/test
+  eligibility, original origins, 1024-component and 4096-byte identities, unknown
+  and ineligible alias scopes, uncancellable traversal and empty/root targets.
+  Every measured compile/match allocation refusal preserves output and counted
+  ownership. Selector/configuration/source parents and root compiler build pass;
+  complete current selector leaf passes fail-fast ASan/UBSan with leak detection
+  disabled. The linked contract records commands, logs and instrumentation limits.
+  Full make docs passed: 3198 ready inputs, zero debts, 2403 maintained file pages,
+  9289 documented interfaces and 488/488 rendered canonical destinations.
+  After archival-only Markdown changes, regenerate final reference and verify
+  unchanged code/registry/header inputs plus final source/staged fingerprints.
+  T262 still owns source-unit/test-area coverage and edge authorization; T232
+  owns compiler integration. This pure matcher proves neither source existence
+  nor actual pipeline acceptance, and does not claim those tasks complete.

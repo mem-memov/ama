@@ -10,6 +10,7 @@
 #ifndef AMA_SOURCE_CONFIGURATION_RECORDS_INTERNAL_H
 #define AMA_SOURCE_CONFIGURATION_RECORDS_INTERNAL_H
 #include "records.h"
+#include "selector.h"
 
 /** Compare a bounded original view with one complete static ASCII spelling.
  * [PKG-03](../../../../spec/project/packages.md#pkg-03) fixes complete header/key spellings, never partial matches.
@@ -41,10 +42,6 @@ bool configuration_alias_key(SourceSpan text);
  * [PKG-04](../../../../spec/project/packages.md#pkg-04) permits package aliases only in a module target.
  */
 bool configuration_alias_target(SourceSpan text, bool allow_alias);
-/** Validate only selector syntax; matching/alias expansion remains a separate operation.
- * [PKG-05](../../../../spec/project/packages.md#pkg-05) separates pattern syntax from selection effects.
- */
-bool configuration_selector(SourceSpan text);
 /** Validate a slash-rooted vendor/package prefix containing no version component.
  * [PKG-06](../../../../spec/project/packages.md#pkg-06) ends repository namespace prefixes before the version.
  */

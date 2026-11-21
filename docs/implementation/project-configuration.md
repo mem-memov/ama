@@ -385,3 +385,90 @@ only EOF-newline normalization. The complete alias leaf was rerun successfully
 (`/tmp/ama-t261-alias-final-format.log`). Production, registry, public headers and
 all other test bytes remain identical to the full documentation-gate snapshot.
 Final regenerated delivery is `/tmp/ama-t261-documentation-commit.log`.
+
+## T263 selector matching contract
+
+Status: accepted after T261 `161448f`; clean worktree at entry. This independent
+foundation is extracted from T262 before selection coverage and edge admission.
+Canonical authority is [PKG-05](../../spec/project/packages.md#pkg-05), with
+[PKG-04](../../spec/project/packages.md#pkg-04) package-only alias expansion and
+[SRC-06](../../spec/language/source-and-names.md#src-06) normalized real bases.
+No specification amendment is authorized or needed.
+
+Compile a validated selector's component literals into Unicode scalar arrays.
+Copy normalized alias-base components before appending the untouched wildcard
+suffix. Never normalize a wildcard or accept dot/parent traversal. Only package
+scopes may supply selector aliases and only the ordinary root is eligible.
+Compiled scalars are arena-owned; SourceSpan origins borrow original SourceText,
+not document nodes or alias-target storage. Publish only after full preparation;
+failed scratch stays owned by the supplied arena.
+
+Matching examines a complete ordinary version or module identity. Ineligible
+identities, including standard paths and mere vendor/package/area prefixes,
+produce false rather than an invented candidate. Identity existence remains the
+prepared-view consumer's responsibility; matching does no I/O or enumeration.
+Exact word DP tracks prefixes of pattern scalars and candidate scalars: literal
+extends two matching prefixes; star either consumes no character or extends its
+current matched prefix. Exact path DP tracks prefixes of component sequences:
+a whole-component star consumes at least one component, then optionally more.
+Embedded stars never consume a separator. Boolean reachability unions all
+partitions, so duplicate decompositions cannot change a result or choose a
+preferred version. Independent tests will enumerate possible star expansions
+rather than reproduce these DP recurrences.
+
+Matcher scratch is local and destroyed on every success/failure. Output changes
+only after complete success; original inputs never change. Size arithmetic for
+component tables and two-row workspaces is checked. Both DP traversals are
+finite increasing index domains; no recursive search, semantic depth bound,
+backtracking heuristic, filesystem probe or latest-version selection is used.
+For pattern scalar count P, candidate byte length B and component count C,
+word comparisons across all component pairs cost O(P B); path reachability adds
+O(pattern-components times C). Compilation is linear in copied spelling and
+scalar counts, matching scratch is O(B+C), and compiled storage is linear in
+pattern size. Actual byte/character distinctions are explicit under UTF-8.
+
+Checkpoint: contract and prerequisite order recorded; no T263 code or acceptance
+exists yet. Next implement narrow pattern preparation and two-row match kernels,
+then independent finite models, real INI/alias composition, allocation injection,
+standalone headers and generated documentation before the task commit.
+
+T263 steps 1–2: preparation now separates raw admission/package-only expansion,
+component streaming, checked measurement, immutable scalar storage and final
+publication. A shared public selector-spelling header removes the consumer's
+need to import private record-parser declarations. Candidate workspace ownership,
+scalar DP, component DP and cleanup have distinct source owners. Alias lookup
+adds its existing O(log A times K) exact-name cost to otherwise linear compilation
+for A package aliases and compared key width K.
+
+Initial selector leaf `/tmp/ama-t263-selector-models.log` and configuration parent
+`/tmp/ama-t263-configuration-parent.log` passed. The complete current selector
+leaf passed ASan/UBSan with fail-fast errors and leak detection disabled
+(`/tmp/ama-t263-selector-asan-ubsan.log`); counted fixture owners independently
+prove teardown on every measured compile/match allocation refusal. There are
+17,640 exhaustive model pairs: 120 scalar patterns times 62 words, and 340
+component patterns times 30 paths. The independent models enumerate substitutions
+and partitions recursively only inside these bounded tests, never in production.
+Additional checks cover package alias origins/retirement, absent/local/standard
+alias refusal, uncancellable traversal, empty/root results, exact Unicode and
+version identities, ineligible candidate shapes, 1024 components and 4096-byte
+names. Compilation scratch remains arena-owned and matcher scratch retires
+immediately on every exit. Scoped canonical-contract, actual test-signature and
+strict standalone-header validators passed.
+
+Checkpoint: no test job active. Next run current root/source composition and full
+documentation gate while T263 remains TODO, then archive with final fingerprint
+agreement and commit. T262 remains selected-unit/edge authorization owner; the
+matcher does not enumerate files, assert existence or implement dependency
+coverage by itself.
+
+T263 acceptance: current root `make` and `make -C tests/unit/source` both exited
+zero (`/tmp/ama-t263-compiler-build.log`, `/tmp/ama-t263-source-parent.log`).
+Complete `make docs` passed (`/tmp/ama-t263-documentation.log`): 3198 ready inputs,
+zero debts, 2403 file pages, 9289 interfaces and 488/488 canonical destinations.
+ASan/UBSan used ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 and
+UBSAN_OPTIONS=halt_on_error=1, strict C11 flags plus address/undefined sanitizers,
+frame pointers and non-PIE instrumentation. No LSan pass is claimed.
+T263 is archived; only narrative Markdown is changed after the accepted gate.
+Final generation is `/tmp/ama-t263-documentation-delivery.log`, with unchanged
+compiler/registry/header/test fingerprints and exact final staged agreement
+required before commit. No test job remains active. T262 is next.

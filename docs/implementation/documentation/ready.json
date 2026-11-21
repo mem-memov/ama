@@ -55231,6 +55231,36 @@
         "source": "tests/unit/source/configuration/aliases/main.c",
         "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
         "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
       }
     ]
   },
@@ -173154,6 +173184,36 @@
         "source": "tests/unit/source/configuration/aliases/main.c",
         "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
         "command": "make -C tests/unit/source/configuration/aliases"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
       }
     ]
   },
@@ -173860,6 +173920,36 @@
         "source": "tests/unit/source/configuration/records/main.c",
         "case": "it_separates_logical_repository_prefixes_from_physical_directory_containment",
         "command": "make -C tests/unit/source/configuration/records"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
       }
     ],
     "standalone_header_command": [
@@ -175837,6 +175927,663 @@
         "case": "it_preserves_cancelled_targets_and_standard_scope_independence",
         "command": "make -C tests/unit/source/configuration/aliases"
       }
+    ]
+  },
+  "src/source/configuration/selectors/word.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selectors/selector.h": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/selectors/workspace.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selectors/internal.h": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/selectors/storage.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selectors/measure.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selectors/compile.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selectors/match.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selectors/input.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selectors/failure.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selectors/parts.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selectors/main.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selectors/support/models.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selectors/support/scopes.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selectors/support/ownership.c": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selectors/Makefile": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/records/selector.h": {
+    "purpose": "Compile and match dependency selectors with exact scalar/component DP, immutable original-source provenance and bounded local scratch.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_scalar_expansion_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_every_bounded_component_partition_model",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_filters_namespace_version_and_unicode_identities_exactly",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_copies_package_alias_components_without_cancelling_pattern_traversal",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_matches_deep_and_long_identities_without_a_fixed_limit",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selectors/main.c",
+        "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
+        "command": "make -C tests/unit/source/configuration/selectors"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   }
 }
