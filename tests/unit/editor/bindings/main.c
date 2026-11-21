@@ -2,6 +2,33 @@
  * @brief Check exact nominal definitions, qualified constants, signatures and source-ordered lexical visibility.
  */
 #include "../common.c"
+#include <unistd.h>
+
+/** Only actual source-local member tokens become variable-name occurrences. */
+static void it_indexes_normalized_constant_members_without_inventing_alias_name_tokens(void) {
+    project_fixture("@!\ndirect\n ./ghost/../palette/shared\nthrough alias\n ~whole\n");
+    const char *configuration = "generated/project/packages/test/fixture/v1.0.0/src/main.ini";
+    file(configuration, "~whole = ./palette/shared\n");
+    setup_editor();
+    assert(analyze(&analysis) && analysis.indexed);
+    const SourceText *source = analysis.selected->text;
+    EditorDefinition definition;
+    size_t member = point(source, "palette/shared") + strlen("palette/");
+    assert(editor_definition(&analysis, "/test/fixture/v1.0.0/src/main", member, &definition));
+    assert(definition.symbol && definition.symbol->role == SYMBOL_CONSTANT);
+    size_t alias = point(source, "~whole");
+    for (const EditorOccurrence *item = analysis.first; item; item = item->next) {
+        assert(item->spelling.source != NULL);
+        if (item->spelling.source == source && item->spelling.start == alias) {
+            assert(item->symbol == NULL);
+            assert(item->module && strcmp(item->module->source->logical_path,
+                "/test/fixture/v1.0.0/src/palette") == 0);
+        }
+    }
+    destroy_editor();
+    int removed = unlink(configuration);
+    assert(removed == 0);
+}
 /** Bounded observations retain checked symbols rather than guessing names from displayed text. */
 typedef struct { const SemanticSymbol *items[64]; size_t count; bool stop; } Symbols;
 /** Record deterministic finite metadata, optionally ending enumeration after its first result. */
@@ -146,6 +173,7 @@ static void it_exposes_checked_list_method_signatures_without_fabricated_module_
 }
 /** Run identity, namespace, scope and initialization components against real checked IR. */
 void run(void) {
+    it_indexes_normalized_constant_members_without_inventing_alias_name_tokens();
     it_exposes_checked_list_method_signatures_without_fabricated_module_types();
     it_resolves_definitions_and_signatures_without_crossing_caller_callee_namespaces();
     it_completes_exact_foreach_scopes_and_source_ordered_inferred_fields();

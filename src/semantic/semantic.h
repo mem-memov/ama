@@ -17,6 +17,8 @@
  * [NAME-06](../../spec/language/declarations.md#name-06) retains lexical local cells separately.
  * [TPL-06](../../spec/language/templates.md#tpl-06) separates closed Type inference from operation admission.
  * [TPL-05](../../spec/language/templates.md#tpl-05) retains closed specialization provenance separately from module paths.
+ * [CONST-05](../../spec/language/declarations.md#const-05) retains actual optional
+ * member-token provenance separately from the resolved declaration identity.
  * Borrow the loaded project; only successful stage outputs are consumable. Only successful explicit/inferred stages publish usable metadata.
  */
 #ifndef AMA_SEMANTIC_PROGRAM_H
@@ -171,6 +173,11 @@ struct SemanticSource {
     AstSourceKind kind;
     SemanticAccess *access;
     SemanticSymbol *constant;
+    /** Actual normalized member provenance, possibly absent or in an alias file.
+     * [CONST-05](../../spec/language/declarations.md#const-05) resolves names
+     * after normalization; a generated containing-directory component has no token.
+     */
+    SourceSpan constant_member;
     SemanticSymbol *declaration;
     SemanticType *type;
     bool reference;

@@ -49,10 +49,29 @@ static void it_preserves_indexed_qualified_reference_list_and_continuation_sourc
         AstSource *source = module.body.first->as.assignment.source;
         assert(source->kind == expected[index] && layout_text_is(source->span, forms[index]));
         if (index == 8) {
-            assert(source->constant_list && layout_text_is(source->module_path, "//palette"));
-            assert(layout_text_is(source->member, "default values"));
+            assert(source->constant_list && layout_text_is(source->qualified_path, "//palette/default values"));
         }
-        if (index == 9) { assert(source->access == NULL && source->module_path.source == NULL); }
+        if (index == 9) { assert(source->access == NULL && source->qualified_path.source == NULL); }
+        destroy_tree();
+    }
+}
+
+/** Raw constant operands retain aliases and reductions without a guessed member split. */
+static void it_retains_whole_constant_aliases_and_relative_operands_for_scoped_resolution(void) {
+    const char *forms[] = {"~complete", "~complete[]", "./ghost/../palette/red",
+        "../palette/red", "./ghost/..", "//single component"};
+    const char *paths[] = {"~complete", "~complete", "./ghost/../palette/red",
+        "../palette/red", "./ghost/..", "//single component"};
+    for (size_t index = 0; index < sizeof(forms) / sizeof(*forms); index++) {
+        char text[256];
+        int length = snprintf(text, sizeof(text), "@!\nreceiver\n %s\n", forms[index]);
+        assert(length > 0 && (size_t)length < sizeof(text));
+        setup_tree();
+        assert(parse_text(text) == PARSE_OK);
+        const AstSource *source = module.body.first->as.assignment.source;
+        assert(source->kind == AST_CONSTANT_SOURCE && source->constant_list == (index == 1));
+        assert(layout_text_is(source->qualified_path, paths[index]));
+        assert(source->qualified_path.source == source->span.source);
         destroy_tree();
     }
 }
@@ -90,7 +109,7 @@ static void it_rejects_literal_assignments_and_parent_comment_reopening_with_exa
     assert(status == PARSE_OK && module.body.first->kind == AST_ASSIGNMENT);
     destroy_tree();
     const char *invalid[] = {"@!\nreceiver\n# closed\n source value", "@!\nreceiver\n  # skipped depth\n source value",
-        "@!\nreceiver\n //only module", "@!\nreceiver\n % values[]", "@!\nreceiver\n & values[]"};
+        "@!\nreceiver\n //only/module/", "@!\nreceiver\n % values[]", "@!\nreceiver\n & values[]"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         status = parse_text(invalid[index]);
@@ -153,6 +172,7 @@ static void it_requires_one_ascii_space_after_reference_acquisition(void) {
 
 /** Run all receiver/source-position and failure scenarios explicitly. */
 void run(void) {
+    it_retains_whole_constant_aliases_and_relative_operands_for_scoped_resolution();
     it_requires_one_ascii_space_after_reference_acquisition();
     it_builds_uniform_assignments_without_classifying_first_use_receivers();
     it_preserves_indexed_qualified_reference_list_and_continuation_source_modes();

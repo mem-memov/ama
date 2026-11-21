@@ -34,7 +34,7 @@ static bool push_block(Project *project, PendingBlock **pending, AstBlock block)
  * Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03), [LIST-04](../../../../spec/language/lists.md#list-04). */
 static bool source_dependency(Project *project, DependencyPaths *paths, const AstSource *source) {
     return source == NULL || source->kind != AST_CONSTANT_SOURCE
-        || project_collect_path(project, paths, source->module_path, NULL, PROJECT_ORDINARY_PATH);
+        || project_collect_path(project, paths, source->qualified_path, NULL, PROJECT_CONSTANT_PATH);
 }
 
 /** Collect declaration type, initializer, constant namespace and bound-source paths for one represented AST node.
@@ -119,7 +119,7 @@ bool project_discover(Project *project, ProjectModule *module) {
     if (!project_collect_paths(project, module, &paths)) { return false; }
     project_sort_paths(&paths);
     for (DependencyPath *request = paths.first; request != NULL; request = request->next) {
-        bool added = request->implicit == NULL ? project_add_dependency(project, module, request->path)
+        bool added = request->implicit == NULL ? project_add_dependency(project, module, request->path, request->role)
             : project_add_implicit_dependency(project, module, request->implicit, request->path);
         if (!added) { return false; }
         module->last->role = request->role;

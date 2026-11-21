@@ -29,9 +29,22 @@ static bool changed(const ProjectInputs *inputs, ProjectInputKind kind, const ch
 #include "support/capture.c"
 #include "support/static.c"
 #include "support/aliases.c"
+#include "support/scopes.c"
+#include "support/qualified.c"
 
 /** Explicitly run every independent graph, capture and failure scenario. */
 void run(void) {
+    it_admits_actual_associated_test_units_using_retained_physical_ancestry();
+    it_normalizes_whole_qualified_operands_before_selecting_constant_members();
+    it_keeps_inherited_constant_members_without_fabricating_source_spans();
+    it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction();
+    it_unwinds_every_whole_qualified_path_allocation_failure();
+    it_checks_standard_scope_isolation_at_actual_alias_use();
+    it_checks_real_external_selectors_and_explicit_source_test_dependencies();
+    it_reports_actual_missing_wildcard_targets_without_inventing_availability();
+    it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources();
+    it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles();
+    it_unwinds_every_actual_scope_and_normalization_allocation_failure();
     it_tracks_local_configuration_presence_and_bytes_without_rereading_disk();
     it_reads_local_configuration_only_for_required_modules_with_owned_errors();
     it_tracks_retained_package_configuration_without_rereading_disk();

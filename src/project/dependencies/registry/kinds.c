@@ -19,6 +19,7 @@ static const char *mismatch(const ProjectDependency *edge) {
     bool graph = edge->target->syntax.sections.kind == MODULE_STATIC;
     switch (edge->role) {
         case PROJECT_ORDINARY_PATH:
+        case PROJECT_CONSTANT_PATH:
             return graph ? "A static module is not an ordinary type or constant namespace" : NULL;
         case PROJECT_STATIC_PRODUCER:
             return graph ? NULL : "A static producer use requires a static module";

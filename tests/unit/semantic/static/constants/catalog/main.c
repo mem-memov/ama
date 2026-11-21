@@ -27,11 +27,11 @@ static void it_collects_all_original_sources_and_exact_loaded_dependency_occurre
     for (const StaticConstantOccurrence *site = module->first_constant_source; site; site = site->next) {
         assert(site->source->kind == AST_CONSTANT_SOURCE && site->statement != NULL);
         assert(site->origin == project_find(&project, "/test/fixture/v1.0.0/src/other"));
-        assert(static_loaded_origin(module, site->source->module_path) == site->origin);
-        SourceSpan wrong = site->source->module_path;
+        assert(static_loaded_origin(module, site->source->qualified_path) == site->origin);
+        SourceSpan wrong = site->source->qualified_path;
         wrong.end--;
         assert(static_loaded_origin(module, wrong) == NULL);
-        assert(layout_text_is(site->source->module_path, "/test/fixture/v1.0.0/src/other"));
+        assert(site->path != NULL && strcmp(site->path->module->text, "/test/fixture/v1.0.0/src/other") == 0);
         lists += site->source->constant_list;
         count++;
         if (site->next == NULL) { assert(site == module->last_constant_source); }
@@ -77,7 +77,7 @@ static void it_rejects_missing_qualified_request_provenance_without_textual_fall
     assert(module != NULL && static_collect_explicit(&inventory, module) && static_collect_occurrences(&inventory, module));
     static_sort_occurrences(module);
     assert(static_classify_names(&inventory, module));
-    SourceSpan site = module->first_constant_source->source->module_path;
+    SourceSpan site = module->first_constant_source->source->qualified_path;
     for (ProjectDependency *edge = project.entry->first; edge; edge = edge->next) {
         if (edge->requirement.source == site.source && edge->requirement.start == site.start && edge->requirement.end == site.end) {
             edge->implicit = true;

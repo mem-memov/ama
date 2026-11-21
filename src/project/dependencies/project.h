@@ -3,18 +3,24 @@
  * @brief Own one required-source closure and the lifetimes of its catalog, ASTs and errors.
  *
  * [DEP-03](../../../spec/implementation/compiler.md#dep-03)
+ * [PKG-04](../../../spec/project/packages.md#pkg-04) scopes aliases at their definitions.
+ * [CONST-05](../../../spec/language/declarations.md#const-05) retains normalized
+ * qualified members beside their exact requesting spans.
  * Loading cycles are permitted; layout and initialization legality belong to separate semantic relations.
  */
 #ifndef AMA_PROJECT_DEPENDENCIES_H
 #define AMA_PROJECT_DEPENDENCIES_H
 
 #include "ast/ast.h"
+#include "source/configuration/aliases/aliases.h"
+#include "source/configuration/selection/selection.h"
 #include "diagnostics/adapters/adapters.h"
 
 /** Required-closure statuses distinguish source catalog, draft, syntax, source-kind, allocation and entry failures. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef enum {
     PROJECT_OK, PROJECT_CATALOG_ERROR, PROJECT_MISSING, PROJECT_DRAFT,
-    PROJECT_SYNTAX_ERROR, PROJECT_OUT_OF_MEMORY, PROJECT_INVALID_ENTRY, PROJECT_INVALID_KIND
+    PROJECT_SYNTAX_ERROR, PROJECT_OUT_OF_MEMORY, PROJECT_INVALID_ENTRY, PROJECT_INVALID_KIND,
+    PROJECT_INVALID_CONFIGURATION
 } ProjectStatus;
 /** Registry admission state; loading records exist before parsing to terminate module cycles. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef enum { PROJECT_MODULE_LOADING, PROJECT_MODULE_READY } ProjectModuleState;
@@ -22,7 +28,8 @@ typedef enum { PROJECT_MODULE_LOADING, PROJECT_MODULE_READY } ProjectModuleState
  * [TPL-12](../../../spec/language/static-results.md#tpl-12) separates ordinary
  * value constructors from graph producers and explicitly selected exports.
  */
-typedef enum { PROJECT_ORDINARY_PATH, PROJECT_STATIC_PRODUCER, PROJECT_STATIC_SELECTOR } ProjectPathRole;
+typedef enum { PROJECT_ORDINARY_PATH, PROJECT_STATIC_PRODUCER, PROJECT_STATIC_SELECTOR,
+    PROJECT_CONSTANT_PATH } ProjectPathRole;
 /**
  * Forward name for one exact project-owned loaded module, permitting reference cycles without
  * recursive C type expansion.
@@ -33,6 +40,12 @@ typedef struct ProjectDependency {
     struct ProjectDependency *next;
     SourceSpan requirement;
     const char *logical_path;
+    const ModulePathValue *resolved_path;
+    /** Resolved namespace/member for a whole qualified operand, otherwise null.
+     * [CONST-05](../../../spec/language/declarations.md#const-05) selects from the
+     * normalized path; component bytes need not occur in the written operand.
+     */
+    const ModuleConstantPath *constant_path;
     ProjectModule *target;
     /** A fixed language dependency retains its requiring site, which is not a written module-path span. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
     bool implicit;
@@ -49,9 +62,15 @@ struct ProjectModule {
     ProjectModuleState state;
     ProjectModule *requested_by;
     SourceSpan requirement;
+    const ConfigurationAliasScope *aliases;
+    const DependencySelection *dependencies;
     ProjectDependency *first;
     ProjectDependency *last;
 };
+/** Opaque cached scope owned by the project arena; [PKG-04](../../../spec/project/packages.md#pkg-04)
+ * shares one version environment without borrowing caller or sibling-module scopes.
+ */
+typedef struct ProjectAliasPackage ProjectAliasPackage;
 /** Closure owner of catalog bytes, module ASTs, registry/work records and diagnostic storage. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 typedef struct {
     ModuleCatalog catalog;
@@ -59,6 +78,8 @@ typedef struct {
     ProjectModule *first;
     ProjectModule *last;
     ProjectModule *entry;
+    ProjectAliasPackage *alias_packages;
+    const DependencyView *dependency_view;
     ProjectStatus status;
     Diagnostic error;
     DiagnosticRelated catalog_related;

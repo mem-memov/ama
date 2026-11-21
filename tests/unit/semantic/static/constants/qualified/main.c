@@ -133,8 +133,9 @@ static void it_preserves_standard_root_identity_and_original_member_spans(void) 
     const StaticConstantSource *source;
     assert(static_constant_source(&constants, context, source_at(0), &source));
     assert(source->namespace_type == integer_type);
-    assert(layout_text_is(source->occurrence->source->module_path, "//integer"));
-    assert(layout_text_is(source->occurrence->source->member, "example member"));
+    assert(strcmp(source->occurrence->path->module->text, "//integer") == 0);
+    assert(layout_text_is(source->occurrence->path->member.origin, "example member"));
+    assert(layout_text_is(source->occurrence->source->qualified_path, "//integer/example member"));
     assert(source->occurrence->origin == integer_type->as.nominal.origin->definition && guards.edge_count == 0);
     destroy_constants();
 }

@@ -62,8 +62,7 @@ static void check_access(const AstAccess *access, const SourceText *source) {
 static void check_source(const AstSource *value, const SourceText *source) {
     if (value == NULL) { return; }
     check_span(value->span, source);
-    check_span(value->module_path, source);
-    check_span(value->member, source);
+    check_span(value->qualified_path, source);
     check_span(value->payload, source);
     check_access(value->access, source);
     if (value->kind == AST_LITERAL_SOURCE) {

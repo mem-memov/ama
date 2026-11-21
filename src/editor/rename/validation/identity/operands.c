@@ -22,7 +22,11 @@ bool rename_same_access(const RenameIdentity *check, const SemanticAccess *old, 
     }
     return old == NULL && fresh == NULL;
 }
-/** Synthetic output transfers retain no fabricated AST; ordinary source mode/type/ownership and literal intervals remain exact. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
+/** Synthetic output transfers retain no fabricated AST; source mode/type/ownership,
+ * selected declaration and complete written operands remain exact. Actual written
+ * member tokens are checked by the occurrence identity pass. Alias-owned optional
+ * provenance is not an edited module-source interval and must not be mapped as one.
+ * Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */
 bool rename_same_source(const RenameIdentity *check, const SemanticSource *old, const SemanticSource *fresh) {
     if (old == NULL) { return fresh == NULL; }
     if (fresh == NULL || old->kind != fresh->kind || old->reference != fresh->reference || old->list != fresh->list
@@ -33,8 +37,7 @@ bool rename_same_source(const RenameIdentity *check, const SemanticSource *old, 
     return fresh->syntax != NULL && old->syntax->kind == fresh->syntax->kind
         && old->syntax->constant_list == fresh->syntax->constant_list
         && rename_same_span(check,old->syntax->span,fresh->syntax->span)
-        && rename_same_span(check,old->syntax->module_path,fresh->syntax->module_path)
-        && rename_same_span(check,old->syntax->member,fresh->syntax->member)
+        && rename_same_span(check,old->syntax->qualified_path,fresh->syntax->qualified_path)
         && rename_same_span(check,old->syntax->payload,fresh->syntax->payload);
 }
 /** Following an alias compares its unique owned syntax identity; control cycles need no recursive traversal. Component contract: [COMP-02](../../../../../spec/implementation/compiler.md#comp-02), [ARCH-06](../../../../../spec/implementation/compiler.md#arch-06). */

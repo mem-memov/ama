@@ -3,6 +3,8 @@
  * [CONST-02](../../../spec/language/declarations.md#const-02) fixes qualified source identity.
  * [CONST-03](../../../spec/language/declarations.md#const-03) closes saved read namespaces independently.
  * [TPL-05](../../../spec/language/templates.md#tpl-05) preserves full capture identity.
+ * [CONST-05](../../../spec/language/declarations.md#const-05) consumes declaration
+ * proofs rather than attempting another split of an aliased raw operand.
  */
 #include "namespace.h"
 #include "semantic/internal.h"
@@ -60,17 +62,40 @@ SemanticType *semantic_read_namespace(SemanticProgram *program, const SemanticTy
     return selected;
 }
 
-SemanticType *semantic_qualified_namespace(SemanticProgram *program, const SemanticType *owner, const AstSource *syntax) {
+/** Require consensus of original closed proofs and project the selected declaration
+ * into the matching semantic owner. No output origin is fabricated for inherited
+ * components. [CONST-05](../../../spec/language/declarations.md#const-05) fixes
+ * the member independently of runtime storage and receiver expectations.
+ */
+SemanticSymbol *semantic_qualified_constant(SemanticProgram *program, const SemanticType *owner,
+    const AstSource *syntax, SourceSpan *member_site) {
     if (!program->type_closure) {
         (void)semantic_fail(program,syntax->span,"No closed proof exists for this qualified constant namespace",NULL);
         return NULL;
     }
     SemanticType *selected = NULL;
+    const AstNode *declaration = NULL;
+    SourceSpan origin = {0};
     const StaticConstantPlan *constants = program->type_closure->connections->constants;
-    for (const StaticConstantSource *item = constants->first_source; item; item = item->next) {
-        if (item->occurrence->source == syntax && caller(owner, item->context)
-            && !merge(program, item->namespace_type, syntax->span, &selected)) { return NULL; }
+    for (const StaticConstantValue *item = constants->first_value; item; item = item->next) {
+        const StaticConstantSource *source = item->source;
+        if (source->occurrence->source != syntax || !caller(owner, source->context)) { continue; }
+        if (!merge(program, source->namespace_type, syntax->span, &selected)) { return NULL; }
+        if (declaration && declaration != item->declaration->syntax) {
+            (void)semantic_fail(program, syntax->span, "Qualified constant proofs select different declarations", NULL);
+            return NULL;
+        }
+        declaration = item->declaration->syntax;
+        origin = source->occurrence->path->member.origin;
     }
-    if (!selected) { (void)semantic_fail(program, syntax->span, "No closed proof exists for this qualified constant namespace", NULL); }
-    return selected;
+    if (selected && declaration) {
+        for (SemanticSymbol *symbol = selected->first; symbol; symbol = symbol->next) {
+            if (symbol->declaration == declaration) {
+                *member_site = origin;
+                return symbol;
+            }
+        }
+    }
+    (void)semantic_fail(program, syntax->span, "No closed declaration proof exists for this qualified constant", NULL);
+    return NULL;
 }

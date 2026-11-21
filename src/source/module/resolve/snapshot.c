@@ -36,7 +36,7 @@ static ModuleStatus insert(ModuleCatalog *catalog, const ModuleSnapshotEntry *en
     ModuleSource *source = source_arena_allocate(&catalog->arena,sizeof(*source));
     const char *logical = source_arena_copy(&catalog->arena,entry->logical_path);
     if (source == NULL || logical == NULL) { return module_fail(catalog,MODULE_OUT_OF_MEMORY,physical); }
-    *source = (ModuleSource){.logical_path=logical,.device=entry->device,.inode=entry->inode};
+    *source = (ModuleSource){.logical_path=logical,.version=module_version_find(catalog,logical),.device=entry->device,.inode=entry->inode};
     SourceStatus copied = source_manager_add(&catalog->sources,physical,
         source_bytes(entry->text),source_length(entry->text),&source->text);
     if (copied != SOURCE_OK) { return module_fail(catalog,MODULE_OUT_OF_MEMORY,physical); }

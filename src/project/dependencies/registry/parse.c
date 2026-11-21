@@ -3,6 +3,8 @@
  * @brief Validate one required module and discover its structural dependencies.
  *
  * [DEP-03](../../../../spec/implementation/compiler.md#dep-03)
+ * [PKG-04](../../../../spec/project/packages.md#pkg-04) prepares defining scopes
+ * before any dependency operand is resolved.
  * [PKG-03](../../../../spec/project/packages.md#pkg-03) captures local configuration
  * only when its definition becomes a required active module.
  * Required drafts/invalid entries fail with requester context rather than being silently skipped.
@@ -45,7 +47,8 @@ bool project_parse_required(Project *project, ProjectModule *module) {
     } else if (module == project->entry && module->syntax.sections.kind == MODULE_CONSTANTS) {
         project_report(project, PROJECT_INVALID_ENTRY, NULL,
             (SourceSpan){module->source->text, 0, 0}, module->source->logical_path, NULL);
-    } else if (required_companions(project, module) && project_discover(project, module)) {
+    } else if (required_companions(project, module) && project_prepare_aliases(project, module)
+        && project_discover(project, module)) {
         module->state = PROJECT_MODULE_READY;
     }
     return project->status == PROJECT_OK;

@@ -1,10 +1,16 @@
-# Exercise real standard integer positions, length values and cleanup through CLI.
+# Exercise scoped type/constant aliases, list copies, integer positions and cleanup.
 @!
 items[]
-//integer
- |7
+~numbers
+items[]
+ ~initial[]
 show
-/test/fixture/v1.0.0/src/show
+./show
+position
+~numbers
+ |0
+show !
+ < items[position]
 items[]
  append !
  insert !

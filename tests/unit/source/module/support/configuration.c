@@ -59,7 +59,7 @@ static void it_attaches_copied_configuration_to_exact_snapshot_versions(void) {
     assert(module_catalog_snapshot(&catalog, entries, 4) == MODULE_OK);
     char logical[] = "/test/fixture/v1.0.0";
     char physical[] = "absent/version";
-    assert(module_catalog_snapshot_configuration(&catalog, logical, physical, configuration) == MODULE_OK);
+    assert(module_catalog_capture_version(&catalog, logical, physical, configuration) == MODULE_OK);
     logical[1] = 'X';
     physical[0] = 'X';
     source_manager_destroy(&sources);
@@ -75,7 +75,7 @@ static void it_attaches_copied_configuration_to_exact_snapshot_versions(void) {
             || strcmp(source->logical_path, entries[1].logical_path) == 0;
         assert(source->version == (matching ? version : NULL));
     }
-    assert(module_catalog_snapshot_configuration(&catalog, "/test/fixture/v1.0.0",
+    assert(module_catalog_capture_version(&catalog, "/test/fixture/v1.0.0",
         "another directory", version->configuration) == MODULE_AMBIGUOUS);
     assert(catalog.versions == version && version->next == NULL);
     assert(strcmp(catalog.issue.related_path, "absent/package.ini") == 0);
@@ -92,7 +92,7 @@ static void it_unwinds_every_configuration_snapshot_allocation_failure(void) {
     size_t baseline = live_allocations;
     assert(module_catalog_snapshot(&catalog, &entry, 1) == MODULE_OK);
     allocation_count = 0;
-    assert(module_catalog_snapshot_configuration(&catalog, "/test/fixture/v1.0.0", "absent", configuration) == MODULE_OK);
+    assert(module_catalog_capture_version(&catalog, "/test/fixture/v1.0.0", "absent", configuration) == MODULE_OK);
     size_t total = allocation_count;
     module_catalog_destroy(&catalog);
     assert(live_allocations == baseline);
@@ -102,7 +102,7 @@ static void it_unwinds_every_configuration_snapshot_allocation_failure(void) {
         assert(module_catalog_snapshot(&catalog, &entry, 1) == MODULE_OK);
         allocation_count = 0;
         failure_at = failure;
-        assert(module_catalog_snapshot_configuration(&catalog, "/test/fixture/v1.0.0", "absent", configuration)
+        assert(module_catalog_capture_version(&catalog, "/test/fixture/v1.0.0", "absent", configuration)
             == MODULE_OUT_OF_MEMORY);
         assert(catalog.versions == NULL && catalog.first->version == NULL && catalog.built);
         assert(source_length(configuration) == 0 && source_bytes(text)[0] == '@');
@@ -120,20 +120,20 @@ static void it_refuses_invalid_configuration_snapshot_contexts_and_retains_utf8_
     const SourceText *configuration = NULL;
     assert(source_manager_add(&sources, "absent/package.ini", (const unsigned char *)";\n\xff", 3,
         &configuration) == SOURCE_OK);
-    assert(module_catalog_snapshot_configuration(&catalog, "/test/fixture/v1.0.0", "absent", configuration)
-        == MODULE_INVALID_PATH);
+    assert(module_catalog_capture_version(&catalog, "/test/fixture/v1.0.0", "absent", configuration)
+        == MODULE_INVALID_UTF8);
     assert(module_catalog_snapshot(&catalog, NULL, 0) == MODULE_OK);
     const char *invalid[] = {NULL, "//value", "/test/fixture", "/test/fixture/v1.0.0/src/value", "/test/fixture/v1.0.0/"};
     for (size_t index = 0; index < sizeof(invalid)/sizeof(invalid[0]); index++) {
-        assert(module_catalog_snapshot_configuration(&catalog, invalid[index], "absent", configuration)
+        assert(module_catalog_capture_version(&catalog, invalid[index], "absent", configuration)
             == MODULE_INVALID_PATH);
         assert(catalog.versions == NULL);
     }
-    assert(module_catalog_snapshot_configuration(NULL, "/test/fixture/v1.0.0", "absent", configuration) == MODULE_INVALID_PATH);
-    assert(module_catalog_snapshot_configuration(&catalog, "/test/fixture/v1.0.0", NULL, configuration) == MODULE_INVALID_PATH);
-    assert(module_catalog_snapshot_configuration(&catalog, "/test/fixture/v1.0.0", "", configuration) == MODULE_INVALID_PATH);
-    assert(module_catalog_snapshot_configuration(&catalog, "/test/fixture/v1.0.0", "absent", NULL) == MODULE_INVALID_PATH);
-    assert(module_catalog_snapshot_configuration(&catalog, "/test/fixture/v1.0.0", "absent", configuration) == MODULE_INVALID_UTF8);
+    assert(module_catalog_capture_version(NULL, "/test/fixture/v1.0.0", "absent", configuration) == MODULE_INVALID_PATH);
+    assert(module_catalog_capture_version(&catalog, "/test/fixture/v1.0.0", NULL, configuration) == MODULE_INVALID_PATH);
+    assert(module_catalog_capture_version(&catalog, "/test/fixture/v1.0.0", "", configuration) == MODULE_INVALID_PATH);
+    assert(module_catalog_capture_version(&catalog, "/test/fixture/v1.0.0", "absent", NULL) == MODULE_INVALID_PATH);
+    assert(module_catalog_capture_version(&catalog, "/test/fixture/v1.0.0", "absent", configuration) == MODULE_INVALID_UTF8);
     assert(catalog.versions == NULL && catalog.issue.offset == 2);
     source_manager_destroy(&sources);
     assert(source_length(catalog.issue.source) == 3);

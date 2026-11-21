@@ -26,6 +26,8 @@ static void it_checks_closed_static_exports_and_captured_native_future_paths_wit
         {"/test/fixture/v1.0.0/src/main",text("generated/not-created/main","@!\nvalue\n/test/fixture/v1.0.0/src/factory\n .out\n"),1,4, NULL}
     };
     assert(module_catalog_snapshot(&frontend.project.catalog,entries,4) == MODULE_OK);
+    assert(module_catalog_capture_version(&frontend.project.catalog,"/test/fixture/v1.0.0",
+        "generated/not-created",text("generated/not-created/package.ini","")) == MODULE_OK);
     const ModuleSource *native = NULL;
     assert(module_catalog_find(&frontend.project.catalog,"/test/fixture/v1.0.0/src/value",&native) == MODULE_OK);
     const SourceText *abi = text("generated/not-created/value.abi","+ initialize\n- destroy\n= clone\n");
@@ -54,6 +56,10 @@ static void it_checks_empty_and_open_definition_only_catalogs_without_default_in
         compiler_frontend_init(&frontend,sources.allocator);
         ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/open",text("generated/not-created/open","@<\nvalue\n.slot\n@!\n"),1,1, NULL};
         assert(module_catalog_snapshot(&frontend.project.catalog,open ? &entry : NULL,open) == MODULE_OK);
+        if (open) {
+            assert(module_catalog_capture_version(&frontend.project.catalog,"/test/fixture/v1.0.0",
+                "generated/not-created",text("generated/not-created/package.ini","")) == MODULE_OK);
+        }
         const char *required[] = {"/test/fixture/v1.0.0/src/open"};
         assert(compiler_frontend_check_snapshot(&frontend,open ? required : NULL,open));
         assert(!frontend.valid && frontend.project.entry == NULL && frontend.semantic.first == NULL);
@@ -62,8 +68,55 @@ static void it_checks_empty_and_open_definition_only_catalogs_without_default_in
         destroy_test();
     }
 }
+/** Captured package/local environments resolve raw aliases without consulting future files. */
+static void it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback(void) {
+    for (size_t local = 0; local < 2; local++) {
+        setup_test();
+        CompilerFrontend frontend;
+        compiler_frontend_init(&frontend, sources.allocator);
+        const SourceText *configuration = text("generated/not-created/scoped/src/main.ini",
+            "~body = ~types/value\n~constant = ~types/palette/shared\n");
+        ModuleSnapshotEntry entries[] = {
+            {"/test/fixture/v1.0.0/src/main", text("generated/not-created/scoped/src/main",
+                "@!\nstate\n~body\nvalue\n ~constant\nadapter\n//adapter\nadapter !\n < state\n"),
+                1, 101, local ? configuration : NULL},
+            {"/test/fixture/v1.0.0/src/value", text("generated/not-created/scoped/src/value", "@!\n"), 1, 102, NULL},
+            {"/test/fixture/v1.0.0/src/palette", text("generated/not-created/scoped/src/palette",
+                "@=\nshared\n~types/value\n@!\n"), 1, 103, NULL},
+            {"//adapter", text("generated/not-created/standard/adapter",
+                "@<\nargument\n.slot\n@!\n"), 1, 104, NULL}
+        };
+        assert(module_catalog_snapshot(&frontend.project.catalog, entries, 4) == MODULE_OK);
+        assert(module_catalog_capture_version(&frontend.project.catalog, "/test/fixture/v1.0.0",
+            "generated/not-created/scoped", text("generated/not-created/scoped/package.ini",
+                "[aliases]\n~types = ./src\n")) == MODULE_OK);
+        const char *required[] = {"/test/fixture/v1.0.0/src/main"};
+        bool valid = compiler_frontend_check_snapshot(&frontend, required, 1);
+        assert(valid == (local != 0));
+        if (local) {
+            const ProjectModule *main = project_find(&frontend.project, required[0]);
+            assert(main && main->aliases->count == 2 && main->aliases->package->count == 1);
+            assert(main->first->target == project_find(&frontend.project, "/test/fixture/v1.0.0/src/value"));
+            assert(main->first->next->constant_path
+                && strcmp(main->first->next->constant_path->module->text,
+                    "/test/fixture/v1.0.0/src/palette") == 0);
+            const ProjectModule *adapter = project_find(&frontend.project, "//adapter");
+            assert(adapter && adapter->first == NULL && adapter->aliases->package == NULL);
+        } else {
+            assert(frontend.project.status == PROJECT_INVALID_CONFIGURATION);
+            assert(diagnostic_valid(&frontend.error));
+        }
+        struct stat metadata;
+        int found = lstat("generated/not-created/scoped/package.ini", &metadata);
+        assert(found == -1 && errno == ENOENT);
+        compiler_frontend_destroy(&frontend);
+        destroy_test();
+    }
+}
+
 /** Run independent captured-owner and empty/source-only boundary observations. */
 static void run(void) {
+    it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback();
     it_checks_closed_static_exports_and_captured_native_future_paths_without_an_entry();
     it_checks_empty_and_open_definition_only_catalogs_without_default_instances();
 }

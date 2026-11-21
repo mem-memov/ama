@@ -66,8 +66,13 @@ term can reach the solver. Independently naming a Type does not certify its
 ordinary body or create an instance. A previously returned selection rechecks
 current equations, scope and guard provenance before reuse.
 
-Qualified sources retain exact original AST/catalog/dependency occurrence,
-namespace root kind and final member split. Their written namespace has no static
+Qualified sources retain exact original AST/catalog/dependency occurrence.
+T232 keeps the whole raw operand in the AST and selects the namespace root kind
+and final member only after defining-scope alias expansion and normalization;
+the loaded dependency owns that descriptor. Member bytes are independent of
+optional source provenance, including whole aliases and inherited components.
+Ordinary semantics consumes the selected declaration proof rather than
+reconstructing a raw member span. Their written namespace has no static
 binding syntax. An open template cannot be completed by the desired member or
 destination. Select own shared storage only after concrete namespace closure and
 an explicitly checked matching ordinary context. Preserve fixed-Type reuse

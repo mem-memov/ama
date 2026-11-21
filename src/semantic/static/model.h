@@ -9,6 +9,8 @@
  * and source-visible aliases from free formals and runtime storage.
  * [COMP-02](../../../spec/implementation/compiler.md#comp-02) keeps bound static
  * metadata distinct from source syntax and executable layout.
+ * [CONST-05](../../../spec/language/declarations.md#const-05) borrows the loaded
+ * normalized qualified operand rather than inventing a parsed namespace/member.
  */
 #ifndef AMA_SEMANTIC_STATIC_MODEL_H
 #define AMA_SEMANTIC_STATIC_MODEL_H
@@ -121,6 +123,11 @@ typedef struct StaticConstantOccurrence {
     const AstSource *source;
     const AstNode *statement;
     const ProjectModule *origin;
+    /** Definition-owned normalized namespace/member, never a synthetic AST span.
+     * [CONST-05](../../../spec/language/declarations.md#const-05) selects only
+     * after the defining scope has expanded and reduced the complete operand.
+     */
+    const ModuleConstantPath *path;
 } StaticConstantOccurrence;
 
 /** An original owning statement and its written section role, independent of

@@ -46,7 +46,7 @@ correctly refuses its older specification fingerprints.
 |---|---|---|
 | [T231](../../DONE.md#t231) | Canonical versioned identities, slash paths and current lexical forms | Required before new full-path/component records |
 | [T222](../../DONE.md#t222) | Agreed reference-prefix notation | Complete with explicit authorization and scoped implementation/runtime/tool acceptance; full sprint conformance remains T237 |
-| [T232](../../TODO.md#t232) | Shared prepared-project/configuration/alias resolution | Required before companion selection or build identity |
+| [T232](../../DONE.md#t232) | Shared prepared-project/configuration/alias resolution | Required before companion selection or build identity |
 | [T221](../../TODO.md#t221), [T226](../../TODO.md#t226) | Marker admission and fully concrete declaration Type expressions | Required before entry/transport and specialization closure claims |
 | [T233](../../TODO.md#t233) | Independent project-command/process boundary, guided projects and isolated test orchestration | Required before new build adapters; does not wait for their final runner |
 | [T234](../../TODO.md#t234), [T235](../../TODO.md#t235), [T224](../../TODO.md#t224), [T236](../../TODO.md#t236) | Exact selection, source/test closure, explicit source copy/safe deletion/movement and snapshot acquisition/promotion | Required for final delivered-dependency/test workflows; acquisition is not a side effect of build |

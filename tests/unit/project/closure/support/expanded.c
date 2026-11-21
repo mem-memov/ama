@@ -55,7 +55,8 @@ static void it_reports_requester_chains_from_expanded_header_and_body_paths(void
     file("generated/expanded/packages/test/fixture/v1.0.0/src/firstinput", "unfinished[\n");
     setup_project();
     status = load_root("generated/expanded");
-    assert(status == PROJECT_DRAFT && layout_text_is(project.error.primary.span, "/test/fixture/v1.0.0/src/firstinput"));
+    assert(status == PROJECT_DRAFT && layout_text_is(project.error.primary.span,
+        "/test/fixture/v1.0.0/src/firstinput/value"));
     assert(project.error.related_count == 1 && strcmp(project.error.related[0].name, "/test/fixture/v1.0.0/src/main") == 0);
     destroy_project();
 }

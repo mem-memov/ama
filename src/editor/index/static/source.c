@@ -49,7 +49,16 @@ bool editor_index_static(EditorAnalysis *analysis) {
             if (site->origin && (!module(analysis, site->site, site->origin) || !labels(analysis, site))) { return false; }
         }
         for (const StaticConstantOccurrence *site = owner->first_constant_source; site; site = site->next) {
-            if (!module(analysis, site->source->module_path, site->origin)) { return false; }
+            SourceSpan namespace = site->source->qualified_path;
+            SourceSpan member = site->path->member.origin;
+            /* Keep the module occurrence disjoint from a genuinely written
+             * constant token. A whole alias has no such token in this source. */
+            if (member.source == namespace.source && member.start > namespace.start
+                && member.end <= namespace.end
+                && source_bytes(namespace.source)[member.start - 1] == '/') {
+                namespace.end = member.start - 1;
+            }
+            if (!module(analysis, namespace, site->origin)) { return false; }
         }
     }
     return true;

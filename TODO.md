@@ -144,25 +144,6 @@ T221/T226 remain required; perform them after T231/T222/T232 establish the
 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 
-<a id="t232"></a>
-
-- [ ] **T232 — Implement shared configuration, scoped aliases and normalization.**
-  Prerequisites: T231, T222, T259, T260, T261, T262, T265, T266 and T267.
-  Status: active; [T268](DONE.md#t268) specifies the accepted AMB-017/018 source-operation
-  policy. No semantic clarification remains pending at this boundary.
-  Core scope/path/selector integration is in progress, uncommitted;
-  do not mark complete or skip to another task. Preserve caller-origin provenance.
-  Contract/steps: [project configuration](docs/implementation/project-configuration.md).
-  Implement PKG-03/04 and SRC-06 through narrow
-  UTF-8/INI, table/scope, parsed-path and normalization components shared by
-  compiler/tools.
-  Enforce package/local alias boundaries and explicit src-to-tests dependencies
-  under PKG-09 while preserving caller-supplied test types. Track effective
-  config/companion presence in caches. Accept positive, malformed, duplicate,
-  scope/base/root-underflow, alias/static distinction and reordered-input cases;
-  compose real ordinary/static/constant/native readers and dependency loading.
-  T221/T226 consume these forms before the later end-to-end tool tasks.
-
 <a id="t233"></a>
 
 - [ ] **T233 — Separate project commands and create guided empty projects.**

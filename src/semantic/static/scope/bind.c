@@ -37,12 +37,5 @@ bool static_bind_occurrences(StaticInventory *inventory, StaticModule *module) {
             }
         }
     }
-    for (StaticConstantOccurrence *site = module->first_constant_source; site; site = site->next) {
-        site->origin = static_loaded_origin(module, site->source->module_path);
-        if (site->origin == NULL) {
-            return static_invalid(inventory, site->source->module_path,
-                "Qualified constant has no loaded dependency identity", NULL);
-        }
-    }
-    return true;
+    return static_bind_constant_occurrences(inventory, module);
 }

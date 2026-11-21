@@ -2,7 +2,7 @@
 
 ## Ownership and current task boundary
 
-[T232](../../TODO.md#t232) owns shared configuration, normalization and the
+[T232](../../DONE.md#t232) owns shared configuration, normalization and the
 compiler/tool integration. Its independently verifiable foundations are
 [T260](../../DONE.md#t260) (strict INI documents),
 [T261](../../DONE.md#t261) (paths and alias scopes),
@@ -10,9 +10,9 @@ compiler/tool integration. Its independently verifiable foundations are
 [T262](../../DONE.md#t262) (selected-unit coverage and ordinary edge policy), and
 [T265](../../DONE.md#t265) (standard-origin isolation).
 T260 implements source-only INI parsing and T261 implements path normalization
-and alias scopes. T262 implements selection coverage and edge policy. Compiler integration remains
-planned; these foundations
-alone are not a claim of complete compiler support.
+and alias scopes. T262 implements selection coverage and edge policy. T232 now integrates these
+foundations with the required-project frontend; its accepted boundary and
+remaining tool owners are stated in the final acceptance record below.
 The prerequisites are committed: T231 `036d3d1`, T222 `ddd055d`, and diagnostic
 follow-up T259 `56e8708`. The earlier source foundations required no specification amendment; T264
 subsequently records the explicitly authorized standard-isolation clarification.
@@ -940,3 +940,238 @@ snapshot. Final supported Doxygen generation is
 `/tmp/ama-t267-documentation-delivery.log`; require unchanged accepted code,
 registry, header and test hashes plus final manifest/staged agreement before
 committing. No test job is active.
+
+## T232 active compiler scope integration
+
+After T267 2017df2, resume T232 itself rather than introducing another independent
+source-only foundation. Prepare actual required-module alias scopes from retained
+version/module inputs, cache one package scope per exact retained version owner,
+then normalize written dependency operands in that defining scope before registry
+lookup. Keep original occurrence spans and never substitute canonical text into
+AST sources. Standard scopes have no package parent and authored standard-to-ordinary
+edges use T265. Ordinary snapshot modules must supply explicit version configuration;
+missing context is an error, not an invented empty file or caller-scope fallback.
+
+Steps remaining in this task: transport package/local captured configuration
+through compiler/tool snapshot consumers; prepare exact shared selector views and
+ordinary edge checks; normalize full qualified constant operands before splitting
+member identity; align all semantic/static consumers with resolved occurrence
+metadata; exercise actual generated ordinary/static/native/constant compositions,
+all failure points, sanitizers and documentation before marking T232 complete.
+The first scope/normalization step may temporarily expose old fixture/snapshot
+assumptions; migrate those inputs to the specified explicit context rather than
+relaxing rules. No completion or commit is authorized for an unfinished T232.
+
+T232 continuation checkpoint — AMB-017 decision and AMB-018
+
+Actual required-module scope preparation, package-scope sharing, source-preserving
+relative/alias path admission, standard isolation, shared actual availability views
+and ordinary selector/src-test checks are implemented in the working tree.
+Scoped loader/policy/isolation assertions and every measured real alias-loading
+allocation failure passed (`/tmp/ama-t232-scopes.log`,
+`/tmp/ama-t232-scope-policy.log`, `/tmp/ama-t232-scope-isolation.log`). Captured
+compiler contexts passed after explicit retained version attachment and linking
+the version capture source (`/tmp/ama-t232-captured-scopes-rerun.log`); the initial
+run failed to link the newly consumed version-capture function, then the explicit
+project source list was corrected. Version capture now supports preparation as
+well as complete source snapshots; its only current API is module_catalog_capture_version.
+Catalog ownership checks passed (`/tmp/ama-t232-captured-version.log`).
+
+No T232 task completion, sanitizer/full-doc gate or commit is claimed. Tool
+reference/staging runs failed assertions in older cross-package fixtures that omit
+initial dependency declarations. During their migration review, AMB-017 exposed a
+separate final-state requirement gap: moving a formerly local dependency across
+versions creates a required external permission that no original explicit selector
+represented. The then-current TOOL-02's exact selected-set preservation did not
+state whether new compensating selectors could be added. The user accepted separate copy/delete/
+move commands, opt-in dependency clones or package.ini extension and safe replacement,
+with explicit authorization for the T268 canonical amendment. Read-only consistency
+review isolated AMB-018 and the user accepted original src-relative suffixes for
+additional dependencies. T268 updates the canonical source-operation rules and
+acceptance; no clarification remains pending. Do not reinterpret the initial
+invalid fixture failures as evidence for the valid minimal example. No code edit
+implements the new source-operation policy. All T232 jobs have completed and no
+T232 job is active.
+
+Remaining work after T268: finish exact package/local configuration transport
+through tool snapshots,
+normalize qualified constants before member splitting, update static/semantic
+occurrence consumers, migrate genuinely obsolete fixture permissions, register
+all new compiler granules and run component/composition/failure/sanitizer/build/
+documentation gates. T232's working changes stay uncommitted until accepted;
+T224 owns full current-policy source-operation implementation after closure
+foundations; no old importer-rewrite behavior is accepted by these design decisions.
+
+T232 qualified-constant integration step (active)
+
+Purpose: a qualified value source is one raw path expression, not a parser-owned
+module/member pair. CONST-05 and SRC-06 require the complete defining-scope
+normal form first; a whole alias can supply its final member, and reductions
+can expose a component inherited from a canonical containing directory.
+
+The AST now retains qualified_path without the optional list suffix. Discovery
+marks that exact occurrence PROJECT_CONSTANT_PATH; normalization selects a
+ModuleConstantPath in the project arena before applying the same module endpoint
+and defining-package policy as other dependencies. The edge retains its original
+full operand span, normalized namespace and copied member bytes/provenance.
+Constant namespace source-kind checks still require an ordinary definition.
+Static collection binds the exact explicit edge, and selection compares complete
+normalized member bytes against own declarations. Ordinary semantic checking
+consumes the already selected declaration proof rather than splitting the raw
+text again. No generated SourceText/SourceSpan or receiver-based namespace
+choice is introduced. The optional member origin is genuine or absent.
+
+Invariant: for every admitted qualified occurrence, its namespace is exactly the
+normal form without its last component and its member is exactly that final
+component. The pure path component establishes terminating stack reduction and
+one final split; the project layer only carries that result through ownership and
+permission checks. All namespace/member bytes are project-owned, source origins
+borrow catalog/config owners, and every failed partial allocation is released by
+the project destructor. Static/runtime consumers select the same own declaration
+identity. Editor indexing records a member token only where that actual token is
+written inside the operand; an alias key or inherited component is not fabricated
+into a variable-name occurrence. Rename validation must still prove the complete
+candidate graph and cannot silently leave a broken alias consumer.
+
+Planned checks: whole aliases including list storage, raw relative paths with
+cancelled nonexistent components, changed final members, inherited members with
+no source origin, invalid complete prefixes, src-to-tests refusal, and every
+measured descriptor/member allocation failure. Compose static collection/member
+selection, actual closed runtime namespaces and editor consumers before acceptance.
+The source-operation implementation remains T224; these checks do not accept
+superseded external-importer rewriting.
+
+Observed before adding the new qualified scenarios: parser sources passed
+(/tmp/ama-t232-qualified-parser.log), and the existing project input leaf passed
+(/tmp/ama-t232-qualified-inputs-initial.log). Current new-scenario jobs are
+project inputs session 69406 (/tmp/ama-t232-qualified-inputs.log), parser sources
+session 52214 (/tmp/ama-t232-qualified-parser-rerun.log), and static constant
+catalog session 66114 (/tmp/ama-t232-qualified-inventory.log). Their exits must be
+collected; no T232 completion, commit or documentation acceptance is claimed.
+
+Collected qualified-step results and corrections
+
+The initial qualified parser, input graph and static catalog jobs all exited
+zero. Static member selection and the ordinary closed-namespace leaf also
+passed (/tmp/ama-t232-qualified-selection.log and
+/tmp/ama-t232-qualified-runtime.log). The full static-constant parent passed
+(/tmp/ama-t232-qualified-constants-parent.log). Source-only captured contexts
+passed both retained/absent local configuration and a standard template receiving
+an ordinary Type through its actual call arguments
+(/tmp/ama-t232-captured-standard-template.log). Explicit authored standard-to-
+ordinary type and qualified-constant paths both refuse at the original operand
+(/tmp/ama-t232-qualified-standard-boundaries.log).
+
+The expanded actual-catalog test covers an external src unit selector, its
+mirrored test program and structural check+/nested helper, while refusing an
+unrelated test directory (/tmp/ama-t232-test-ancestry.log). Whole-operand member
+selection, inherited origin absence and every measured descriptor allocation
+failure pass (/tmp/ama-t232-qualified-inputs-complete.log).
+
+Observed failures were retained and corrected, not reclassified as passes:
+
+- Tree-parser rejection fixtures treated a bare path as already split. The
+  grammar parses one raw module-path operand, so incomplete normalized constant
+  namespaces are now rejected by the project boundary. The tree rerun passed
+  (/tmp/ama-t232-qualified-tree-rerun.log); malformed path syntax remains rejected.
+- The new namespace-alias test initially lacked the POSIX unlink declaration;
+  its explicit include fixed compilation and the full leaf passed
+  (/tmp/ama-t232-qualified-runtime-alias-rerun.log).
+- A full raw module-path index occurrence initially covered its member token.
+  The index now ends that namespace occurrence before the genuine normalized
+  source-local member; aliases supply no invented token. The actual navigation
+  and alias case passed (/tmp/ama-t232-qualified-editor-alias-rerun.log).
+- Alias-owned optional member provenance is not an edited module-source span.
+  A newly added excessive identity comparison refused an otherwise unchanged
+  constant binding. Written operands, selected declaration identity and indexed
+  source occurrences provide the required proof; the foreign-origin comparison
+  was removed. Unrelated-field rename with a retained constant alias and the
+  complete validation leaf pass (/tmp/ama-t232-qualified-rename-alias-rerun.log).
+- The generated-program fixture first used a whole list where each declaration
+  initializer supplies an element. It now declares the list then copies the
+  constant list by assignment. Verified C compilation/execution passed with
+  exact output length=7, length=3, length=0, proving the aliased payload copy and
+  existing integer/list cleanup (/tmp/ama-t232-qualified-generated-rerun.log).
+- The project parent exposed an old required-draft diagnostic expectation that
+  omitted the member from its raw qualified operand. The exact original full
+  operand is now expected; status and requester semantics are unchanged.
+
+Ready coverage now explicitly registers the new scope/normalization/admission
+and qualified-binding granules, their real leaf cases, the additional test
+support files and both maintained integration inputs. This is coverage metadata;
+full documentation acceptance is still pending. The current active jobs are
+project parent rerun session 31429 (/tmp/ama-t232-project-parent-rerun.log) and
+make docs-check session 77714 (/tmp/ama-t232-documentation-check.log). Collect
+both exits before further implementation changes. No T232 completion or commit
+is claimed; T224 still owns complete current-policy source operations.
+
+T232 boundary after T268's source-operation redesign
+
+The accepted plan puts complete source-operation commands/adapters in T224,
+after T235's exact source/test closure. The former global importer-renaming
+mover is superseded by explicit cloning plus safe deletion. T232 must not claim
+its old graph-rewrite acceptance as evidence for that model or grow a partial
+new source-operation implementation before its prerequisites.
+
+The provisional uncommitted old-mover changes in discovery/package-areas.c,
+references/domain.c and staging/validation/domain.c were therefore withdrawn;
+they are not new retained code or accepted configuration adapters. Their exact
+pre-withdrawal diff is /tmp/ama-t232-superseded-mover-adapters.patch for audit.
+T224 owns migration/removal of the superseded operation orchestration, real
+configuration transport and source-operation acceptance. The generic captured
+compiler interface is tested here with exact deep-copied version/module scopes,
+future physical paths, explicitly captured absence, qualified constant aliases
+and a standard template receiving an ordinary Type. These are reusable current
+read-only foundations with a real accepted consumer, not a source-operation
+support claim.
+
+The regular project parent passed from clean owned fixtures
+(/tmp/ama-t232-project-parent-fresh.log). Earlier preserved-failure reruns had
+stale generated absent-entry inputs; leaf clean resets those owned files before
+retry, without changing the test's specified expectation. The genuine fixture
+migration added the declaring application's exact external selector in the
+multi-root case, retaining its draft-parent/nonimport property. The expanded
+requester test now expects the whole original qualified operand.
+
+Editor parent and complete frontend composition passed
+(/tmp/ama-t232-editor-parent.log and /tmp/ama-t232-frontend-composition.log).
+AddressSanitizer/UBSan project-input and closed-namespace leaves passed with
+halt_on_error=1, detect_leaks=0, frame pointers and non-PIE flags
+(/tmp/ama-t232-inputs-sanitizers.log and /tmp/ama-t232-namespaces-sanitizers.log).
+Counted allocation teardown is independent of disabled LeakSanitizer; no LSan
+pass is claimed. Actual verified C integration passed again
+(/tmp/ama-t232-qualified-generated-final.log). make docs-check passed 3241 ready
+inputs and zero debts before the final unused parser-expectation cleanup;
+final documentation gates must include that cleanup and the withdrawn adapters.
+
+## T232 final acceptance and continuation
+
+T232 is accepted on 2026-11-21. Earlier checkpoints above are historical; no
+T232 test or documentation job remains active. The current record is
+[DONE T232](../../DONE.md#t232), and T221 is the next ready task.
+
+Final `make docs` exited zero (session 35894,
+`/tmp/ama-t232-documentation-confirmed.log`): 3241 ready inputs, zero explicit
+debts, 2443 maintained file pages, 9414 documented interfaces and all 488
+canonical destinations validated. This includes standalone headers, actual
+registered test signatures, rule contracts and rendered links. Accepted source
+fingerprints are retained in `/tmp/ama-t232-accepted-manifest.json`.
+Final independent parser errors (session 69068) and source/module (70136)
+checks exited zero; logs are `/tmp/ama-t232-parser-errors-final.log` and
+`/tmp/ama-t232-source-module-final.log`. Verified generated C integration
+(session 19143) exited zero at `/tmp/ama-t232-emission-accepted.log` after
+withdrawal of the provisional superseded-mover adapters.
+
+The sanitizer commands use `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1`,
+`UBSAN_OPTIONS=halt_on_error=1`, C flags `-O0 -g -Wall -Wextra -std=c11
+-pedantic -D_POSIX_C_SOURCE=200809L -fsanitize=address,undefined
+-fno-omit-frame-pointer -fno-pie`, and `LINKER_FLAGS=-no-pie`, against
+`tests/unit/project/inputs` and `tests/unit/semantic/specializations/namespaces`.
+Their exits and independent counted-allocation evidence are recorded above.
+No full `make test`/conformance-fingerprint renewal or complete source-operation
+acceptance is claimed: those remain T237 and T224 after their prerequisites.
+
+Only narrative archival follows the accepted implementation. Regenerate via
+`python3 tools/documentation/build.py --doxygen doxygen`, verify unchanged
+accepted non-Markdown inputs and final staged documentation fingerprints, then
+commit T232 independently before starting T221.

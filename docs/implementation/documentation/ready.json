@@ -226,6 +226,11 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_retains_whole_constant_aliases_and_relative_operands_for_scoped_resolution",
+        "command": "make -C tests/unit/parser/sources"
       }
     ]
   },
@@ -15650,6 +15655,61 @@
         "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -15796,6 +15856,61 @@
         "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -16183,6 +16298,61 @@
         "case": "it_checks_kinds_after_cyclic_targets_have_parsed_and_unwinds_each_failure",
         "command": "make -C tests/unit/project/closure",
         "source": "tests/unit/project/closure/main.c"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -16298,6 +16468,61 @@
       {
         "source": "tests/unit/project/inputs/main.c",
         "case": "it_reads_local_configuration_only_for_required_modules_with_owned_errors",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
         "command": "make -C tests/unit/project/inputs"
       }
     ]
@@ -16445,6 +16670,61 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -32945,6 +33225,11 @@
         "source": "tests/unit/compiler/composition/main.c",
         "case": "it_matches_complete_frontend_outputs_to_independent_explicit_stages",
         "command": "make -C tests/unit/compiler/composition"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -34594,6 +34879,11 @@
         "source": "tests/unit/source/module/main.c",
         "case": "it_unwinds_every_present_configuration_snapshot_copy",
         "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback",
+        "command": "make -C tests/unit/compiler/captured-catalog"
       }
     ]
   },
@@ -49363,6 +49653,61 @@
         "source": "tests/unit/project/inputs/main.c",
         "case": "it_reads_local_configuration_only_for_required_modules_with_owned_errors",
         "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -59907,6 +60252,61 @@
         "source": "tests/unit/project/inputs/main.c",
         "case": "it_reads_local_configuration_only_for_required_modules_with_owned_errors",
         "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
       }
     ]
   },
@@ -61052,6 +61452,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_retains_whole_constant_aliases_and_relative_operands_for_scoped_resolution",
+        "command": "make -C tests/unit/parser/sources"
       }
     ]
   },
@@ -61209,6 +61614,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_retains_whole_constant_aliases_and_relative_operands_for_scoped_resolution",
+        "command": "make -C tests/unit/parser/sources"
       }
     ],
     "standalone_header_command": [
@@ -61259,6 +61669,11 @@
       {
         "source": "tests/unit/parser/sources/main.c",
         "case": "it_requires_one_ascii_space_after_reference_acquisition",
+        "command": "make -C tests/unit/parser/sources"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_retains_whole_constant_aliases_and_relative_operands_for_scoped_resolution",
         "command": "make -C tests/unit/parser/sources"
       }
     ]
@@ -65193,6 +65608,11 @@
       {
         "source": "tests/unit/semantic/specializations/namespaces/main.c",
         "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
         "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
@@ -103868,6 +104288,11 @@
         "source": "tests/unit/editor/static-bindings/main.c",
         "case": "it_retains_original_declarations_across_multiple_concrete_captures",
         "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_indexes_normalized_constant_members_without_inventing_alias_name_tokens",
+        "command": "make -C tests/unit/editor/bindings"
       }
     ]
   },
@@ -104443,6 +104868,11 @@
         "case": "it_exposes_checked_list_method_signatures_without_fabricated_module_types",
         "command": "make -C tests/unit/editor/bindings",
         "source": "tests/unit/editor/bindings/main.c"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_indexes_normalized_constant_members_without_inventing_alias_name_tokens",
+        "command": "make -C tests/unit/editor/bindings"
       }
     ]
   },
@@ -106559,6 +106989,11 @@
         "source": "tests/unit/editor/rename/static/main.c",
         "case": "it_unwinds_every_static_candidate_correspondence_allocation",
         "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/validation/main.c",
+        "case": "it_preserves_alias_constant_bindings_when_renaming_an_unrelated_local_field",
+        "command": "make -C tests/unit/editor/rename/validation"
       }
     ]
   },
@@ -107493,6 +107928,11 @@
         "source": "tests/unit/editor/rename/static/main.c",
         "case": "it_unwinds_every_static_candidate_correspondence_allocation",
         "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/validation/main.c",
+        "case": "it_preserves_alias_constant_bindings_when_renaming_an_unrelated_local_field",
+        "command": "make -C tests/unit/editor/rename/validation"
       }
     ]
   },
@@ -111604,6 +112044,11 @@
         "source": "tests/unit/source/module/main.c",
         "case": "it_unwinds_every_present_configuration_snapshot_copy",
         "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback",
+        "command": "make -C tests/unit/compiler/captured-catalog"
       }
     ]
   },
@@ -124840,6 +125285,11 @@
         "case": "it_rejects_statement_counter_overflow_before_catalog_publication",
         "command": "make -C tests/unit/semantic/static/events",
         "source": "tests/unit/semantic/static/events/main.c"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ],
     "standalone_header_command": [
@@ -125453,6 +125903,11 @@
         "source": "tests/unit/semantic/static/composition/main.c",
         "case": "it_rejects_static_application_of_a_known_concrete_type",
         "command": "make -C tests/unit/semantic/static/composition"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ],
     "standalone_header_command": [
@@ -128398,6 +128853,11 @@
         "source": "tests/unit/semantic/static/constants/qualified/main.c",
         "case": "it_unwinds_every_qualified_registration_and_selection_allocation_refusal",
         "command": "make -C tests/unit/semantic/static/constants/qualified"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -147161,6 +147621,11 @@
         "source": "tests/unit/semantic/static/constants/failures/main.c",
         "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
         "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -147287,6 +147752,11 @@
         "source": "tests/unit/semantic/static/constants/failures/main.c",
         "case": "it_checks_member_storage_labels_and_preserves_borrowed_original_errors",
         "command": "make -C tests/unit/semantic/static/constants/failures"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -164157,6 +164627,11 @@
         "source": "tests/unit/semantic/inference/main.c",
         "case": "it_unwinds_every_inference_allocation_failure",
         "command": "make -C tests/unit/semantic/inference"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
   },
@@ -164182,6 +164657,11 @@
       {
         "source": "tests/unit/semantic/specializations/namespaces/main.c",
         "case": "it_unwinds_every_namespace_semantic_allocation_refusal",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
         "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ],
@@ -164259,6 +164739,11 @@
       {
         "source": "tests/unit/semantic/specializations/namespaces/main.c",
         "case": "it_distinguishes_specialized_relation_keys_and_orders_owner_members",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
         "command": "make -C tests/unit/semantic/specializations/namespaces"
       }
     ]
@@ -166227,6 +166712,11 @@
         "source": "tests/unit/editor/static-bindings/main.c",
         "case": "it_preserves_atomic_unicode_graph_names_and_original_receipt_definitions",
         "command": "make -C tests/unit/editor/static-bindings"
+      },
+      {
+        "source": "tests/unit/editor/bindings/main.c",
+        "case": "it_indexes_normalized_constant_members_without_inventing_alias_name_tokens",
+        "command": "make -C tests/unit/editor/bindings"
       }
     ]
   },
@@ -166874,6 +167364,11 @@
         "source": "tests/unit/tools/relocation/staging/main.c",
         "case": "it_relocates_nested_constructor_origins_without_collapsing_concrete_captures",
         "command": "make -C tests/unit/tools/relocation/staging"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback",
+        "command": "make -C tests/unit/compiler/captured-catalog"
       }
     ]
   },
@@ -177880,6 +178375,11 @@
         "source": "tests/unit/project/inputs/main.c",
         "case": "it_tracks_retained_package_configuration_without_rereading_disk",
         "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback",
+        "command": "make -C tests/unit/compiler/captured-catalog"
       }
     ]
   },
@@ -178081,6 +178581,465 @@
       {
         "source": "tests/unit/project/inputs/main.c",
         "case": "it_reads_local_configuration_only_for_required_modules_with_owned_errors",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "src/project/dependencies/configuration/admission.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Admit complete normalized endpoints under actual package selection and source/test policies.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "src/project/dependencies/configuration/constant.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Own exact post-normalization constant module/member splits and failure scratch.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "src/project/dependencies/configuration/error.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Retain original configuration/path errors and request chains without synthetic sources.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "src/project/dependencies/configuration/internal.h": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Separate immutable defining scopes, normalized namespace/member descriptors and exact endpoint admission.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/project/dependencies/configuration/module.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Prepare only each actual definition's own package and optional local alias scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      }
+    ]
+  },
+  "src/project/dependencies/configuration/package.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Cache an exactly retained version's parsed scope and selected dependency permissions.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/compiler/captured-catalog/main.c",
+        "case": "it_checks_captured_scopes_and_whole_constant_aliases_without_filesystem_fallback",
+        "command": "make -C tests/unit/compiler/captured-catalog"
+      }
+    ]
+  },
+  "src/project/dependencies/configuration/path.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Normalize whole authored module/constant operands before namespace endpoint admission.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "src/project/dependencies/configuration/selection.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Compile selected-version permissions against actual finite catalog availability.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "src/project/dependencies/configuration/view.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Retain actual selected versions and verified physical test ancestry in the permission universe.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "src/semantic/static/scope/constants.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Bind qualified constant occurrences to exact explicit normalized dependency descriptors.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_collects_all_original_sources_and_exact_loaded_dependency_occurrences",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/static/constants/catalog/main.c",
+        "case": "it_rejects_missing_qualified_request_provenance_without_textual_fallback",
+        "command": "make -C tests/unit/semantic/static/constants/catalog"
+      },
+      {
+        "source": "tests/unit/semantic/specializations/namespaces/main.c",
+        "case": "it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources",
+        "command": "make -C tests/unit/semantic/specializations/namespaces"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/packages/test/fixture/v1.0.0/src/main.ini": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Supply separate local aliases for a standard Type and a complete qualified constant list.",
+    "tests": [
+      {
+        "source": "tests/integration/standard-integer/main.c",
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer"
+      }
+    ]
+  },
+  "tests/integration/standard-integer/project/packages/test/fixture/v1.0.0/src/palette": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Own the real shared integer list whose value and storage survive an aliased whole-list copy.",
+    "tests": [
+      {
+        "source": "tests/integration/standard-integer/main.c",
+        "case": "it_compiles_and_executes_real_integer_list_results",
+        "command": "make -C tests/integration/standard-integer"
+      }
+    ]
+  },
+  "tests/unit/project/inputs/support/qualified.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Exercise exact full-operand constant normalization, real/absent provenance and allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_normalizes_whole_qualified_operands_before_selecting_constant_members",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_keeps_inherited_constant_members_without_fabricating_source_spans",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_invalid_and_forbidden_qualified_namespaces_after_reduction",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_whole_qualified_path_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      }
+    ]
+  },
+  "tests/unit/project/inputs/support/scopes.c": {
+    "contract": "docs/implementation/project-configuration.md",
+    "purpose": "Exercise actual own scopes, package/test permissions, standard isolation and complete allocation refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_resolves_actual_defining_scopes_and_relative_dependencies_without_rewriting_sources",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_rejects_actual_scope_collisions_unknown_aliases_and_malformed_profiles",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_unwinds_every_actual_scope_and_normalization_allocation_failure",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_real_external_selectors_and_explicit_source_test_dependencies",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_reports_actual_missing_wildcard_targets_without_inventing_availability",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_checks_standard_scope_isolation_at_actual_alias_use",
+        "command": "make -C tests/unit/project/inputs"
+      },
+      {
+        "source": "tests/unit/project/inputs/main.c",
+        "case": "it_admits_actual_associated_test_units_using_retained_physical_ancestry",
         "command": "make -C tests/unit/project/inputs"
       }
     ]

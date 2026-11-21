@@ -2,7 +2,7 @@
 
 The boundary in [project.h](../../src/project/dependencies/project.h) implements
 [DEP-01–DEP-03](../../spec/implementation/compiler.md#dep-01) and the source-path
-rules in [SRC-01–SRC-05](../../spec/language/source-and-names.md#src-01). It loads
+rules in [SRC-01–SRC-06](../../spec/language/source-and-names.md#src-01). It loads
 one exact required graph. It does not instantiate objects, validate eager layout
 cycles or claim that structurally accepted syntax already has executable support.
 
@@ -38,7 +38,7 @@ project-owned work frames replace recursive C traversal.
 
 Declaration type paths, qualified constant sources and constant-read namespaces
 contribute requests. A structural list-service parent also requires LIST-04's
-fixed `..integer` interface type at its actual target span; no synthetic source
+fixed `//integer` interface type at its actual target span; no synthetic source
 file/path span or family fallback is created. Ordinary list storage/copy/traversal
 alone does not add this interface dependency. Calls resolve through declared types later; selector names,
 local operands, indices, iterator binders, self references and literals do not
@@ -60,6 +60,50 @@ and Standard families never fall back to one another. Appending new records
 provides a finite FIFO; an edge to a loading/ready record does not reload it.
 Repeated explicit seeds share those same records. Parent source directories do
 not create dependencies or inherit declarations.
+
+## Defining scopes and normalized operands (T232)
+
+The [configuration owner](project-configuration.md) prepares one package alias
+environment per required retained version and a separate local environment for
+each activated definition. Parsed documents are temporary; expanded scope data,
+selection metadata and normalized operands belong to the project arena, while
+their original source spans borrow captured catalog/configuration bytes. Local
+aliases do not inherit from a caller or a containing module. A standard module
+has no ordinary package owner. Alias declarations alone import no modules.
+
+Each explicit written operand is normalized under its defining scope before
+registry admission. Edges retain the entire original request span and the
+canonical module identity. The complete operand of a qualified constant is
+retained in the AST without its list suffix; only after alias expansion and
+component reduction does the project select its final member and preceding
+module. The edge owns that normalized namespace/member descriptor. The member
+can originate in an alias file or have no source token when inherited from
+canonical directory metadata; no SourceText or member span is fabricated.
+
+Explicit endpoint admission applies the same selected-version permissions and
+src/tests direction checks to declarations, static constructions and constant
+namespaces. Missing actual targets remain missing-module errors even when a
+wildcard selects nothing. Standard definitions cannot author ordinary module
+dependencies, while caller-supplied ordinary Type/Template arguments retain their
+own originating provenance. The actual finite catalog view retains physical
+test-directory versus structural `+` ancestry for associated-test coverage.
+
+Static constant binding selects the exact explicit dependency occurrence.
+Its normalized member bytes choose an own declaration after independently
+closing the namespace. Ordinary semantics consumes the resulting declaration
+proof instead of splitting the written text a second time. Editor indexing uses
+only genuine source-local member tokens; an alias key is not a variable name.
+
+Captured frontend consumers explicitly supply version metadata and optional
+module companions, including captured absence. Their aliases, constant operands
+and standard template arguments use the same pipeline without filesystem
+fallback. Complete source-operation adapters and their new command semantics
+remain T224 after T235; a captured source-only check does not certify those
+commands. The base closure bounds below are supplemented by one actual-view
+construction, each needed version's configuration/scope/selection preparation,
+and each operand's normalization/admission costs, using the component bounds
+linked from the configuration contract. No module is reparsed to obtain an
+alias expansion or a second guessed constant split.
 
 ## Native activation and invalidation
 

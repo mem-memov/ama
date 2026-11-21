@@ -147,17 +147,18 @@ ModuleStatus module_catalog_snapshot(ModuleCatalog *, const ModuleSnapshotEntry 
  * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 ModuleStatus module_catalog_snapshot_native(ModuleCatalog *, const ModuleSource *,
     const char *body, const char *header, const SourceText *abi);
-/** Attach one authoritative version configuration to a source-only snapshot before AST consumers.
+/** Capture one authoritative version configuration during catalog preparation before AST consumers.
  * Deep-copy complete ordinary version identity, physical directory and exact configuration
  * source/path; no filesystem reads or INI interpretation. Reject duplicate version owners.
  * Successful attachment connects every matching ordinary source, leaving standard and other
  * versions unchanged. Failure preserves all existing version/module links; owned scratch
  * and original UTF-8 failure locations survive until destruction. The caller establishes
- * snapshot authority and supplies stable inputs only for this call.
+ * capture authority and supplies stable inputs only for this call. The initialized
+ * catalog may be under construction or complete; no borrowed AST consumer may exist.
  * [PKG-02](../../../spec/project/packages.md#pkg-02) forbids borrowing another copy;
  * [PKG-03](../../../spec/project/packages.md#pkg-03) preserves original configuration bytes.
  */
-ModuleStatus module_catalog_snapshot_configuration(ModuleCatalog *, const char *version,
+ModuleStatus module_catalog_capture_version(ModuleCatalog *, const char *version,
     const char *physical_directory, const SourceText *configuration);
 /** Look up one validated retained logical spelling after successful build.
  * @param[out] output Changes only on MODULE_OK and borrows catalog lifetime.

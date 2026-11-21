@@ -75,6 +75,13 @@ void static_order_symbols(StaticModule *, StaticRole);
  * [TPL-12](../../../spec/language/static-results.md#tpl-12).
  */
 bool static_bind_occurrences(StaticInventory *, StaticModule *);
+/** Bind whole qualified operands to already normalized explicit dependency edges.
+ * Descriptor and namespace outputs borrow project ownership; a missing original
+ * edge is an inventory error, never a same-text lookup fallback.
+ * [CONST-05](../../../spec/language/declarations.md#const-05) and
+ * [DEP-03](../../../spec/implementation/compiler.md#dep-03) preserve occurrence identity.
+ */
+bool static_bind_constant_occurrences(StaticInventory *, StaticModule *);
 /** Resolve only an exact original nonimplicit loaded request span; no textual
  * path search or new loading. Null means no matching dependency occurrence.
  * [DEP-03](../../../spec/implementation/compiler.md#dep-03) retains request provenance.

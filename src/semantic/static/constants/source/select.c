@@ -5,6 +5,7 @@
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns partial selection.
  */
 #include <stdint.h>
+#include <string.h>
 #include "../internal.h"
 #include "../../internal.h"
 
@@ -22,10 +23,15 @@ static bool registered(const StaticConstantPlan *plan, const StaticConstantSourc
  * compare complete base names, then enforce the written scalar/list suffix.
  * [CONST-02](../../../../../spec/language/declarations.md#const-02) preserves exact selection.
  */
-static const AstNode *member(const BindingInterface *view, const AstSource *syntax) {
+static const AstNode *member(const BindingInterface *view, const ModulePathPart *name) {
     for (const BindingSlot *slot = view->sequences[BINDING_RUNTIME_OUTPUT].first; slot; slot = slot->next) {
         const AstNode *node = slot->runtime_declaration;
-        if (node && static_same_name(node->as.declaration.name->name, syntax->member)) { return node; }
+        if (node) {
+            SourceSpan declared = node->as.declaration.name->name;
+            if (declared.end - declared.start == name->length
+                && memcmp(source_bytes(declared.source) + declared.start,
+                    name->bytes, name->length) == 0) { return node; }
+        }
     }
     return NULL;
 }
@@ -43,7 +49,7 @@ bool static_constant_value(StaticConstantPlan *plan, const StaticConstantSource 
     }
     const AstSource *syntax = source->occurrence->source;
     if (source->namespace_type->category != STATIC_CATEGORY_TYPE) {
-        return static_constant_fail(plan, STATIC_CONSTANT_UNRESOLVED, syntax->module_path, "Qualified namespace needs explicit template arguments");
+        return static_constant_fail(plan, STATIC_CONSTANT_UNRESOLVED, syntax->qualified_path, "Qualified namespace needs explicit template arguments");
     }
     StaticGuardClosure closure;
     if (!static_guard_refresh(plan->publications->results->guards, &closure)) {
@@ -55,7 +61,7 @@ bool static_constant_value(StaticConstantPlan *plan, const StaticConstantSource 
     }
     BindingInterface *view;
     if (!static_constant_surface(plan, source->namespace_type, &view)) { return false; }
-    const AstNode *node = member(view, syntax);
+    const AstNode *node = member(view, &source->occurrence->path->member);
     if (node == NULL || node->as.declaration.name->whole_list != syntax->constant_list) {
         return static_constant_fail(plan, STATIC_CONSTANT_CONFLICT, syntax->span, "Qualified own constant or storage form does not match its declaration");
     }

@@ -43,7 +43,8 @@ static void it_checks_every_static_path_role_against_each_complete_source_kind(v
             if (!accepted) {
                 assert(diagnostic_valid(&project.error));
                 assert(project.error.code == DIAGNOSTIC_TYPE_MISMATCH);
-                assert(layout_text_is(project.error.primary.span, "/test/fixture/v1.0.0/src/target"));
+                assert(layout_text_is(project.error.primary.span, use == 5
+                    ? "/test/fixture/v1.0.0/src/target/item" : "/test/fixture/v1.0.0/src/target"));
                 assert(project.error.primary.span.source == project.entry->source->text);
                 assert(project.error.related_count == 1);
                 assert(strcmp(project.error.related[0].name, "/test/fixture/v1.0.0/src/main") == 0);

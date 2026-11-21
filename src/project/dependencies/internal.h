@@ -3,6 +3,9 @@
  * @brief Declare required-module registry, discovery and requester-diagnostic phases.
  *
  * [DEP-02](../../../spec/implementation/compiler.md#dep-02)
+ * [PKG-04](../../../spec/project/packages.md#pkg-04) retains definition-owned scopes.
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) preserves configuration locations.
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04) preserves first causes.
  * Insert a loading record once before parsing its dependencies, so cycles reuse exact module identity.
  */
 #ifndef AMA_PROJECT_DEPENDENCIES_INTERNAL_H
@@ -22,6 +25,16 @@ ProjectModule *project_lookup(Project *project, const char *path);
  * Component contract: [DEP-02](../../../spec/implementation/compiler.md#dep-02). */
 bool project_require(Project *project, ProjectModule *requester,
     const char *path, SourceSpan requirement, ProjectModule **output);
+/** Prepare the required definition's own module/package alias scopes before dependency discovery.
+ * Captured companions are already loaded; outputs remain arena-owned on failure.
+ * [PKG-04](../../../spec/project/packages.md#pkg-04) forbids caller/local inheritance.
+ */
+bool project_prepare_aliases(Project *, ProjectModule *);
+/** Preserve original configuration/path refusal and requester context without invented source spans.
+ * [COMP-04](../../../spec/implementation/compiler.md#comp-04) locates the first cause;
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) retains original INI locations.
+ */
+bool project_configuration_failure(Project *, ProjectModule *, SourceIssue);
 /** Parse a registered module once, reject required drafts/invalid entry, discover its dependencies, then mark ready. Failure preserves owned AST/context.
  * Component contract: [DEP-02](../../../spec/implementation/compiler.md#dep-02). */
 bool project_parse_required(Project *project, ProjectModule *module);
@@ -35,7 +48,7 @@ bool project_discover(Project *project, ProjectModule *module);
 bool project_validate_kinds(Project *);
 /** Copy the complete path, require its exact module and append one source-mapped edge. Partial allocations remain project-owned on failure.
  * Component contract: [DEP-02](../../../spec/implementation/compiler.md#dep-02). */
-bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan path);
+bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan path, ProjectPathRole role);
 /** Add one fixed language-required module identity while retaining the real source construct that requires it. Component contract: [DEP-02](../../../spec/implementation/compiler.md#dep-02). */
 bool project_add_implicit_dependency(Project *, ProjectModule *, const char *, SourceSpan);
 /** Copy entry spellings and merge original cause notes with the finite first-requester chain.

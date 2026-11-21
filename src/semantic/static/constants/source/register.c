@@ -44,9 +44,9 @@ bool static_constant_source(StaticConstantPlan *plan, const StaticResultContext 
     const StaticModule *module = static_module_find(terms->inventory, site->origin);
     const StaticTerm *type;
     if (module == NULL) {
-        return static_constant_fail(plan, STATIC_CONSTANT_INVALID, syntax->module_path, "Qualified source has no collected loaded namespace");
+        return static_constant_fail(plan, STATIC_CONSTANT_INVALID, syntax->qualified_path, "Qualified source has no collected loaded namespace");
     }
-    if (!static_term_nominal(terms, module, NULL, 0, syntax->module_path, &type)) {
+    if (!static_term_nominal(terms, module, NULL, 0, syntax->qualified_path, &type)) {
         (void)static_constant_dependencies(plan); return false;
     }
     StaticConstantSource *source = static_constant_allocate(plan, sizeof(*source));

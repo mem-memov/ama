@@ -13,6 +13,8 @@
  * [TPL-12](../../spec/language/static-results.md#tpl-12) retains static syntax
  * separately from ordinary runtime fields, arguments and result positions.
  * [FLOW-05](../../spec/language/lists.md#flow-05) has distinct reference binders.
+ * [CONST-05](../../spec/language/declarations.md#const-05) retains whole qualified
+ * operands without prematurely selecting a normalized member.
  */
 #ifndef AMA_SYNTAX_AST_H
 #define AMA_SYNTAX_AST_H
@@ -41,8 +43,11 @@ typedef struct AstSource {
     SourceSpan span;
     AstSourceKind kind;
     AstAccess *access;
-    SourceSpan module_path;
-    SourceSpan member;
+    /** Whole written constant operand without its optional list suffix.
+     * [CONST-05](../../spec/language/declarations.md#const-05) splits its member
+     * only after defining-scope alias expansion and path normalization.
+     */
+    SourceSpan qualified_path;
     SourceSpan payload;
     bool constant_list;
 } AstSource;

@@ -3,6 +3,7 @@
  */
 #include "../common.c"
 #include "semantic/specializations/namespace.h"
+#include <unistd.h>
 
 /** Own one independently projected inventory before ordinary checking. */
 static SemanticType *prepare(void) {
@@ -24,6 +25,30 @@ static void it_resolves_qualified_and_saved_namespaces_from_original_evidence(vo
     assert(strcmp(main_type->statements->source->constant->owner->module->source->logical_path, "/test/fixture/v1.0.0/src/other") == 0);
     assert(semantic_relations(&semantics) == SEMANTIC_OK);
     destroy();
+}
+
+/** Alias-owned member bytes and written reduced operands select the same declaration. */
+static void it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources(void) {
+    fixture_package_prepare(STATIC_SCOPE_ROOT_DIRECTORY, "fixture");
+    const char *configuration = "generated/static scope/packages/test/fixture/v1.0.0/src/main.ini";
+    file(configuration, "~chosen = ./other/value\n~items = ./other/values\n");
+    setup("@!\ndirect\n ~chosen\nreduced\n ./never/../other/value\nitems[]\n ~items[]\n",
+        "@=\nvalue\n//integer\n |7\nvalues[]\n//integer\n@!\n", true);
+    SemanticType *main_type = prepare();
+    assert(semantic_resolve(&semantics) == SEMANTIC_OK);
+    const SemanticSource *direct = main_type->statements->source;
+    const SemanticSource *reduced = main_type->statements->next->source;
+    const SemanticSource *items = main_type->statements->next->next->source;
+    assert(direct->constant == reduced->constant && direct->constant->role == SYMBOL_CONSTANT);
+    assert(direct->constant_member.source != direct->syntax->qualified_path.source);
+    assert(strcmp(source_path(direct->constant_member.source), configuration) == 0);
+    assert(reduced->constant_member.source == reduced->syntax->qualified_path.source);
+    assert(items->list && items->constant != direct->constant);
+    assert(field(main_type, "items")->list && field(main_type, "items")->type == items->type);
+    assert(semantic_relations(&semantics) == SEMANTIC_OK);
+    destroy();
+    int removed = unlink(configuration);
+    assert(removed == 0);
 }
 
 /** Static exports distinguish two capture maps even though the underlying path is identical. */
@@ -86,8 +111,9 @@ static void it_refuses_unregistered_source_identity_without_namespace_guessing(v
     SemanticType *main_type = prepare();
     const AstSource *original = project.entry->syntax.body.first->as.assignment.source;
     AstSource copied = *original;
-    assert(semantic_qualified_namespace(&semantics, main_type, original));
-    assert(!semantic_qualified_namespace(&semantics, main_type, &copied));
+    SourceSpan member;
+    assert(semantic_qualified_constant(&semantics, main_type, original, &member));
+    assert(!semantic_qualified_constant(&semantics, main_type, &copied, &member));
     assert(semantics.status == SEMANTIC_INVALID && diagnostic_valid(&semantics.error));
     assert(!semantics.resolved);
     destroy();
@@ -121,6 +147,7 @@ static void it_unwinds_every_namespace_semantic_allocation_refusal(void) {
 
 /** Explicit dispatch preserves positive, capture-sensitive and refusal partitions. */
 static void run(void) {
+    it_reuses_normalized_alias_member_proofs_for_scalar_and_list_sources();
     it_resolves_qualified_and_saved_namespaces_from_original_evidence();
     it_resolves_multiple_specializations_of_one_constant_namespace();
     it_distinguishes_specialized_relation_keys_and_orders_owner_members();

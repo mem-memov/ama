@@ -17,10 +17,10 @@
  * refuses duplicate owners. [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04)
  * prevents filesystem fallback. Existing module text/native views remain unchanged.
  */
-ModuleStatus module_catalog_snapshot_configuration(ModuleCatalog *catalog, const char *logical,
+ModuleStatus module_catalog_capture_version(ModuleCatalog *catalog, const char *logical,
     const char *physical, const SourceText *configuration) {
     ModulePathShape shape;
-    if (catalog == NULL || !catalog->built || logical == NULL || physical == NULL
+    if (catalog == NULL || logical == NULL || physical == NULL
         || physical[0] == 0 || configuration == NULL
         || !module_path_describe((const unsigned char *)logical, strlen(logical), &shape)
         || shape.root != MODULE_ROOT_PROJECT || shape.extent != MODULE_PATH_VERSION) {

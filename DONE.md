@@ -7918,3 +7918,46 @@ T201. Specification bytes have not changed.
   T232 remains unfinished and uncommitted, T224 owns the current source-operation
   implementation, and T237 owns whole-sprint conformance renewal. No runtime or
   full-project regression pass or refreshed conformance fingerprint is claimed.
+
+<a id="t232"></a>
+
+- [x] **T232 — Implement shared configuration, scoped aliases and normalization.**
+  Prerequisites: T231, T222, T259, T260, T261, T262, T265, T266 and T267.
+  Completed 2026-11-21. [T268](DONE.md#t268) specifies the accepted AMB-017/018
+  source-operation policy. Defining-scope normalization and selector admission
+  preserve original requester and caller-origin Type provenance.
+  Contract/steps: [project configuration](docs/implementation/project-configuration.md).
+  Implement PKG-03/04 and SRC-06 through narrow
+  UTF-8/INI, table/scope, parsed-path and normalization components shared by
+  compiler/tools.
+  Enforce package/local alias boundaries and explicit src-to-tests dependencies
+  under PKG-09 while preserving caller-supplied test types. Track effective
+  config/companion presence in caches. Accept positive, malformed, duplicate,
+  scope/base/root-underflow, alias/static distinction and reordered-input cases;
+  compose real ordinary/static/constant/native readers and dependency loading.
+  Source-only consumers receive explicit captured package/local configuration
+  and use the same checked frontend, including standard template arguments.
+  T268 moves the complete source-operation adapters and command acceptance to
+  T224 after T235; T232 does not adapt or accept the superseded global importer
+  renamer. Its provisional old-mover adapters were withdrawn rather than
+  delivered as an incomplete implementation of the new operation model.
+  T221/T226 consume these forms before the later end-to-end tool tasks.
+
+  Acceptance: project parent, editor parent, frontend composition, full static
+  constants parent, scoped runtime namespace and captured-catalog consumers pass.
+  Project inputs cover every measured allocation refusal, malformed profiles,
+  alias ownership, endpoint restrictions, exact test ancestry and whole qualified
+  constant normalization. ASan/UBSan project-input and namespace leaves pass;
+  LeakSanitizer is disabled and counted ownership checks are separate evidence.
+  Final parser-error/source-module leaves and verified generated C integration
+  pass. The latter prints exactly `length=7`, `length=3`, `length=0`, exercising
+  an aliased constant-list copy and relative type path through real execution.
+  Final `make docs` passed: 3241 ready inputs, zero debts, 2443 maintained file
+  pages, 9414 documented interfaces and all 488 canonical destinations validated.
+  Evidence and failed-run resolutions are retained in the linked configuration
+  contract; final logs include `/tmp/ama-t232-documentation-confirmed.log`,
+  `/tmp/ama-t232-parser-errors-final.log`, `/tmp/ama-t232-source-module-final.log`
+  and `/tmp/ama-t232-emission-accepted.log`. No full-sprint conformance renewal
+  or acceptance of new source-operation commands is claimed (T237 and T224).
+  Narrative archival is followed by supported Doxygen regeneration and exact
+  agreement with the accepted implementation and staged-input fingerprints.

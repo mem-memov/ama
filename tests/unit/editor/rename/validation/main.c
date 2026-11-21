@@ -2,6 +2,22 @@
  * @brief Reject invalid names, namespace collisions, silent successful-compilation captures and stale workspace versions.
  */
 #include "../common.c"
+#include <unistd.h>
+
+/** An unchanged alias-owned constant token is not an edited Ama-name interval. */
+static void it_preserves_alias_constant_bindings_when_renaming_an_unrelated_local_field(void) {
+    project_fixture("@!\nvalue\n/test/fixture/v1.0.0/src/cell\nvalue\n ~whole\n");
+    const char *configuration = "generated/project/packages/test/fixture/v1.0.0/src/main.ini";
+    file(configuration, "~whole = ./palette/shared\n");
+    setup_rename();
+    assert(prepare("/test/fixture/v1.0.0/src/main", "value", "renamed"));
+    assert(validate());
+    const EditorRenameFile *main = changed_file("/test/fixture/v1.0.0/src/main");
+    assert(main && strstr((const char *)source_bytes(main->replacement), "~whole") != NULL);
+    destroy_rename();
+    int removed = unlink(configuration);
+    assert(removed == 0);
+}
 /** Replacement validation consumes exactly one complete name and never strips prohibited syntax. */
 static void it_rejects_invalid_complete_names_without_preparing_source_edits(void) {
     project_fixture("@!\nvalue\n/test/fixture/v1.0.0/src/cell\n");
@@ -76,6 +92,7 @@ static void it_rejects_changed_source_inventory_and_bytes_before_candidate_appli
 }
 /** Exercise actual compiler rejection, stricter identity preservation and byte-exact version guards independently. */
 void run(void) {
+    it_preserves_alias_constant_bindings_when_renaming_an_unrelated_local_field();
     it_rejects_invalid_complete_names_without_preparing_source_edits();
     it_rejects_callee_field_collisions_with_original_compiler_diagnostics();
     it_rejects_silent_capture_even_when_the_complete_candidate_compiles();

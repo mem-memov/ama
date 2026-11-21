@@ -5,10 +5,12 @@
  * [DEP-02](../../../../spec/implementation/compiler.md#dep-02)
  * [LIST-04](../../../../spec/language/lists.md#list-04) adds only its fixed
  * Standard integer identity, retaining the actual requiring list target as its site.
+ * [SRC-06](../../../../spec/language/source-and-names.md#src-06) normalizes written
+ * paths in their defining scopes before registry lookup.
  * Reuse existing loading/ready records by complete supported identity, never root search precedence.
  */
 #include <string.h>
-#include "project/dependencies/internal.h"
+#include "project/dependencies/configuration/internal.h"
 
 ProjectModule *project_lookup(Project *project, const char *path) {
     for (ProjectModule *module = project->first; module != NULL; module = module->next) {
@@ -61,25 +63,26 @@ bool project_require(Project *project, ProjectModule *requester,
 }
 
 /** Link one already owned identity with its actual explicit or language-contract request site. Component contract: [DEP-02](../../../../spec/implementation/compiler.md#dep-02), [LIST-04](../../../../spec/language/lists.md#list-04). */
-static bool add_dependency(Project *project, ProjectModule *module, const char *logical, SourceSpan site, bool implicit) {
+static bool add_dependency(Project *project, ProjectModule *module, const char *logical,
+    SourceSpan site, bool implicit, ProjectPathRole role, ProjectPathResolution resolved) {
     ProjectDependency *dependency = source_arena_allocate(&project->arena, sizeof(*dependency));
     if (dependency == NULL) { return project_memory_failure(project); }
-    *dependency = (ProjectDependency){.requirement = site, .logical_path = logical, .implicit = implicit};
+    *dependency = (ProjectDependency){.requirement = site, .logical_path = logical,
+        .implicit = implicit, .role = role, .resolved_path = resolved.module,
+        .constant_path = resolved.constant};
     if (!project_require(project, module, logical, site, &dependency->target)) { return false; }
     if (module->last == NULL) { module->first = dependency; }
     else { module->last->next = dependency; }
     module->last = dependency;
     return true;
 }
-bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan path) {
-    size_t length = path.end - path.start;
-    char *logical = source_arena_allocate(&project->arena, length + 1);
-    if (logical == NULL) { return project_memory_failure(project); }
-    memcpy(logical, source_bytes(path.source) + path.start, length);
-    logical[length] = 0;
-    return add_dependency(project, module, logical, path, false);
+bool project_add_dependency(Project *project, ProjectModule *module, SourceSpan path, ProjectPathRole role) {
+    ProjectPathResolution resolved;
+    if (!project_dependency_path(project, module, path, role, &resolved)) { return false; }
+    return add_dependency(project, module, resolved.module->text, path, false, role, resolved);
 }
 bool project_add_implicit_dependency(Project *project, ProjectModule *module, const char *path, SourceSpan site) {
     const char *logical = source_arena_copy(&project->arena, path);
-    return logical == NULL ? project_memory_failure(project) : add_dependency(project, module, logical, site, true);
+    return logical == NULL ? project_memory_failure(project) : add_dependency(project,
+        module, logical, site, true, PROJECT_ORDINARY_PATH, (ProjectPathResolution){0});
 }

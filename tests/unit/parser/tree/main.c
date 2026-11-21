@@ -29,7 +29,7 @@ static void it_builds_typed_declarations_and_preserves_each_initializer_source_f
     assert(module.body.first->as.declaration.first->source->kind == AST_CONTINUATION_SOURCE);
     AstSource *qualified = module.body.first->next->as.declaration.first->source;
     assert(qualified->kind == AST_CONSTANT_SOURCE);
-    assert(layout_text_is(qualified->module_path, "/test/fixture/v1.0.0/src/catalog") && layout_text_is(qualified->member, "default"));
+    assert(layout_text_is(qualified->qualified_path, "/test/fixture/v1.0.0/src/catalog/default"));
     assert(module.body.last->as.declaration.initializer_count == 2);
     destroy_tree();
 }
@@ -111,7 +111,7 @@ static void it_rejects_invalid_accesses_layout_and_incomplete_active_declaration
         "@!\nname\n |literal", "@!\nref&\n & other&", "@!\nx\n items[0]",
         "@!\nx\n % items[]", "@!\nitems[] %", "@!\n/test/fixture/v1.0.0/src/type !", "@!\ncondition\n\n?",
         "@!\ncondition&\n?", "@!\ncondition\n{\n action !", "@!\nworker!",
-        "@!\nx\n values[indices&]", "@!\nx\n /member", "@!\nname\n/test/fixture/v1.0.0/src/type\n  |wrong"};
+        "@!\nx\n values[indices&]", "@!\nx\n /member/", "@!\nname\n/test/fixture/v1.0.0/src/type\n  |wrong"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         ParseStatus parsed = parse_text(invalid[index]);

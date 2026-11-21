@@ -200,6 +200,8 @@ static void it_rejects_constants_only_entries_but_accepts_them_as_dependencies(v
 static void it_resolves_multiple_roots_and_submodules_without_loading_the_parent(void) {
     fixture_package_prepare("generated/application", "fixture");
     fixture_package_prepare("generated/library", "library");
+    file("generated/application/packages/test/fixture/v1.0.0/package.ini",
+        "[dependencies]\n/test/library/v1.0.0/src/商店/商品/详情\n");
     directory("generated/library/packages/test/library/v1.0.0/src/商店");
     file("generated/application/packages/test/fixture/v1.0.0/src/main", "@!\n商品\n/test/library/v1.0.0/src/商店/商品/详情\n");
     file("generated/library/packages/test/library/v1.0.0/src/商店/商品", "unfinished parent");
