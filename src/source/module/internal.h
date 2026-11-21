@@ -5,6 +5,8 @@
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03)
  * [PKG-02](../../../spec/project/packages.md#pkg-02) retains selected owners;
  * [PKG-03](../../../spec/project/packages.md#pkg-03) preserves configuration bytes.
+ * [DEP-03](../../../spec/implementation/compiler.md#dep-03) retains companion presence.
+ * [SRC-01](../../../spec/language/source-and-names.md#src-01) fixes their physical paths.
  * Keep filesystem work in the catalog; it neither parses module bodies nor resolves semantic bindings.
  */
 #ifndef AMA_SOURCE_MODULE_INTERNAL_H
@@ -74,6 +76,23 @@ ModuleStatus module_visit_entry(ModuleWalk *walk, const ModuleDirectory *directo
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 ModuleStatus module_add_source(ModuleCatalog *catalog, const char *physical,
     const char *logical, const struct stat *metadata);
+/** Complete owned optional-companion observation, including its anticipated path when absent.
+ * [DEP-03](../../../spec/implementation/compiler.md#dep-03) distinguishes absence
+ * from an empty file without letting a missing native companion invent an input.
+ */
+typedef struct {
+    const char *path;
+    const SourceText *text;
+    bool present;
+} ModuleCompanion;
+/** Probe exactly one regular companion; optionally load and validate UTF-8 text.
+ * Output changes only on success; absent files succeed with present=false and
+ * an owned anticipated path. Scratch/errors survive until catalog destruction.
+ * [SRC-01](../../../spec/language/source-and-names.md#src-01) fixes companions;
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) fixes .ini text ownership.
+ */
+ModuleStatus module_read_companion(ModuleCatalog *, const char *physical,
+    const char *suffix, bool text, ModuleCompanion *output);
 /** Load exact physical bytes, then validate UTF-8. On encoding failure output may point to the catalog-owned invalid source, and issue retains its first malformed byte.
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 ModuleStatus module_load_utf8(ModuleCatalog *catalog, const char *physical,
@@ -91,6 +110,13 @@ ModuleStatus module_version_publish(ModuleCatalog *, const char *, const char *,
  */
 const ModuleVersion *module_version_find(const ModuleCatalog *, const char *);
 
+/** Copy one snapshot entry's explicit optional alias companion before publishing the source.
+ * NULL text seals captured absence. Configuration path/text fields change only on
+ * success; diagnostic text stays owned on failure. [PKG-03](../../../spec/project/packages.md#pkg-03)
+ * preserves source locations; [DEP-03](../../../spec/implementation/compiler.md#dep-03)
+ * tracks absence independently of empty bytes. No filesystem access occurs.
+ */
+ModuleStatus module_snapshot_aliases(ModuleCatalog *, ModuleSource *, const SourceText *);
 /** Register directory identity before queueing its catalog-owned path views; a failed queue allocation leaves only catalog-owned scratch.
  * Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 ModuleStatus module_queue(ModuleWalk *walk, const char *physical,

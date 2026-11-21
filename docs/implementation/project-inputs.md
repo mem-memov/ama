@@ -105,6 +105,19 @@ T266 adds selected package.ini CONFIGURATION nodes keyed by their retained physi
 paths. The real catalog records the selected version once, including empty versions;
 active modules share its source without rereading the file at capture time. The
 configuration-change case demonstrates acquisition/capture separation and consumer
-invalidation while unchanged Ama file nodes stay clean. Full integration of module
-INI presence and alias/path preparation remains T232's responsibility. See the
+invalidation while unchanged Ama file nodes stay clean. T267 adds exact module
+INI presence capture; alias/path scope preparation remains T232's responsibility. See the
 [configuration ownership evidence](project-configuration.md#t266-retained-configuration-ownership).
+
+T267 captures each required module's optional .ini once during actual activation.
+Its CONFIGURATION node uses the observed physical companion path and an owned
+one-byte presence tag followed by exact present-file bytes. Absent and present
+empty inputs therefore differ. Changing the file after project acquisition does
+not change that snapshot; the next acquisition detects creation, changed contents
+or removal and invalidates the owning module plus its transitive consumers.
+Unrelated modules stay clean. Unused companions are not read or attached. Source
+snapshots carry explicit optional companion bytes/absence and never probe physical
+paths for missing captured data. Temporary tag buffers are freed even when node
+or edge preparation fails; existing full capture failure sweeps cover this path.
+INI parsing and normalized aliases remain T232 integration work, and actual
+relative/configuration-aware relocation transport remains separately pending.

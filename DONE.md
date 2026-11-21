@@ -7816,3 +7816,31 @@ T201. Specification bytes have not changed.
   Source-only contexts require explicit attachment; T232 still owns complete
   scope/companion/dependency/semantic integration and tool snapshot propagation.
   No whole-sprint conformance renewal or full make test claim is made.
+
+<a id="t267"></a>
+
+- [x] **T267 — Capture optional module alias companions at actual activation.**
+  Status: accepted; scoped, composition, allocation, sanitizer, build and documentation
+  gates passed. Prerequisites: T260, T261, T266.
+  Contract/evidence: [configuration integration](docs/implementation/project-configuration.md#t267-module-configuration-activation).
+  Load exact optional module.ini only for required modules, retaining absence,
+  empty bytes, original locations and atomic failure ownership. Source snapshots
+  carry explicit optional captured companions and never fall back to disk.
+  Attach companion presence/bytes to actual input-graph consumers. Share exact
+  companion probing with native activation rather than retaining duplicate readers.
+  Accept activation isolation, ordinary/standard/native paths, empty/absent/changed
+  companions, snapshot ownership, invalid UTF-8 and measured allocation failures;
+  check catalog/source, project/input compositions, sanitizers, build and docs.
+  INI interpretation, alias scopes and normalized semantic edges remain T232.
+  Evidence: `/tmp/ama-t267-source-parent.log`, `/tmp/ama-t267-inputs.log`,
+  `/tmp/ama-t267-project-closure.log`, `/tmp/ama-t267-captured-compiler.log`,
+  `/tmp/ama-t267-relocation-references.log`, `/tmp/ama-t267-relocation-staging.log`,
+  `/tmp/ama-t267-catalog-sanitizers.log`, `/tmp/ama-t267-inputs-sanitizers.log`,
+  `/tmp/ama-t267-build.log` and `/tmp/ama-t267-documentation.log` exited zero.
+  ASan/UBSan used halt_on_error=1, frame pointers, non-PIE and detect_leaks=0;
+  counted allocation sweeps independently prove complete teardown. No LSan claim.
+  Documentation accepted 3227 ready inputs, zero debts, 2431 file pages, 9373
+  interfaces and 488 canonical destinations. Snapshot call sites explicitly
+  preserve their current source-only absence; actual alias-aware relocation
+  transport/rewrite remains T224/T232 integration work. No whole-sprint/full-test
+  conformance claim or fingerprint renewal follows this component task.

@@ -34,6 +34,7 @@ SourceStatus project_input_module(ProjectInputs *inputs, const ProjectModule *mo
     const ModuleSource *source = module->source;
     SourceStatus status = file(inputs, consumer, source->text, source_path(source->text));
     if (status == SOURCE_OK) { status = configuration(inputs, consumer, source->version); }
+    if (status == SOURCE_OK) { status = project_input_aliases(inputs, source, consumer); }
     if (status == SOURCE_OK && source->native_abi != NULL) {
         status = file(inputs, consumer, source->native_abi, source_path(source->native_abi));
     }

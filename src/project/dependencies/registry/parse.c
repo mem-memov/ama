@@ -3,15 +3,23 @@
  * @brief Validate one required module and discover its structural dependencies.
  *
  * [DEP-03](../../../../spec/implementation/compiler.md#dep-03)
+ * [PKG-03](../../../../spec/project/packages.md#pkg-03) captures local configuration
+ * only when its definition becomes a required active module.
  * Required drafts/invalid entries fail with requester context rather than being silently skipped.
  */
 #include <assert.h>
 #include "project/dependencies/internal.h"
 
-/** Select native companions after parsing, preserving requester notes on original filesystem/encoding diagnostics. Component contract: [DEP-03](../../../../spec/implementation/compiler.md#dep-03). */
-static bool native_companions(Project *project, ProjectModule *module) {
-    if (module->syntax.sections.kind != MODULE_NATIVE) { return true; }
-    ModuleStatus status = module_catalog_load_native(&project->catalog, module->source);
+/** Capture local configuration, then native companions for parsed native activation.
+ * [PKG-03](../../../../spec/project/packages.md#pkg-03) retains each required
+ * definition's own alias file; [DEP-03](../../../../spec/implementation/compiler.md#dep-03)
+ * preserves original failure sites and the requesting chain without partial readiness.
+ */
+static bool required_companions(Project *project, ProjectModule *module) {
+    ModuleStatus status = module_catalog_load_configuration(&project->catalog, module->source);
+    if (status == MODULE_OK && module->syntax.sections.kind == MODULE_NATIVE) {
+        status = module_catalog_load_native(&project->catalog, module->source);
+    }
     if (status == MODULE_OK) { return true; }
     if (status == MODULE_OUT_OF_MEMORY) { return project_memory_failure(project); }
     Diagnostic cause;
@@ -37,7 +45,7 @@ bool project_parse_required(Project *project, ProjectModule *module) {
     } else if (module == project->entry && module->syntax.sections.kind == MODULE_CONSTANTS) {
         project_report(project, PROJECT_INVALID_ENTRY, NULL,
             (SourceSpan){module->source->text, 0, 0}, module->source->logical_path, NULL);
-    } else if (native_companions(project, module) && project_discover(project, module)) {
+    } else if (required_companions(project, module) && project_discover(project, module)) {
         module->state = PROJECT_MODULE_READY;
     }
     return project->status == PROJECT_OK;

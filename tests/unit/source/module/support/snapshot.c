@@ -7,7 +7,7 @@ static void it_owns_captured_source_snapshots_without_rereading_files(void) {
     const SourceText *text = NULL;
     assert(source_manager_add(&sources,"not-on-disk/value",(const unsigned char *)"@!\n",3,&text) == SOURCE_OK);
     char name[] = "/test/fixture/v1.0.0/src/value";
-    ModuleSnapshotEntry entry = {name,text,1,2};
+    ModuleSnapshotEntry entry = {name,text,1,2, NULL};
     assert(module_catalog_snapshot(&catalog,&entry,1) == MODULE_OK);
     name[1] = 'X';
     source_manager_destroy(&sources);
@@ -25,7 +25,7 @@ static void it_retains_captured_registry_collision_and_encoding_diagnostics(void
         const SourceText *left = NULL, *right = NULL;
         assert(source_manager_add(&sources,"capture/left",(const unsigned char *)"@!\n",3,&left) == SOURCE_OK);
         assert(source_manager_add(&sources,"capture/right",(const unsigned char *)"@!\n",3,&right) == SOURCE_OK);
-        ModuleSnapshotEntry entries[] = {{"/test/fixture/v1.0.0/src/left",left,1,1},{same_name ? "/test/fixture/v1.0.0/src/left" : "/test/fixture/v1.0.0/src/right",right,1,1}};
+        ModuleSnapshotEntry entries[] = {{"/test/fixture/v1.0.0/src/left",left,1,1, NULL},{same_name ? "/test/fixture/v1.0.0/src/left" : "/test/fixture/v1.0.0/src/right",right,1,1, NULL}};
         assert(module_catalog_snapshot(&catalog,entries,2) == (same_name ? MODULE_AMBIGUOUS : MODULE_FILE_ALIAS));
         source_manager_destroy(&sources);
         assert(!catalog.built && strcmp(catalog.issue.path,"capture/right") == 0);
@@ -36,7 +36,7 @@ static void it_retains_captured_registry_collision_and_encoding_diagnostics(void
     const unsigned char invalid[] = {255};
     const SourceText *text = NULL;
     assert(source_manager_add(&sources,"capture/invalid",invalid,1,&text) == SOURCE_OK);
-    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/invalid",text,1,1};
+    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/invalid",text,1,1, NULL};
     assert(module_catalog_snapshot(&catalog,&entry,1) == MODULE_INVALID_UTF8);
     source_manager_destroy(&sources);
     assert(!catalog.built && catalog.issue.offset == 0 && source_bytes(catalog.issue.source)[0] == 255);
@@ -48,7 +48,7 @@ static void it_releases_every_failed_captured_registry_prefix(void) {
     setup_catalog();
     const SourceText *text = NULL;
     assert(source_manager_add(&sources,"capture/value",(const unsigned char *)"@!\n",3,&text) == SOURCE_OK);
-    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/value",text,1,1};
+    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/value",text,1,1, NULL};
     size_t original_allocations = live_allocations;
     allocation_count = 0;
     assert(module_catalog_snapshot(&catalog,&entry,1) == MODULE_OK);
@@ -74,7 +74,7 @@ static void it_owns_native_snapshot_companions_and_unwinds_each_failed_copy(void
     const SourceText *text = NULL, *abi = NULL;
     assert(source_manager_add(&sources,"future/value",(const unsigned char *)"@C\n",3,&text) == SOURCE_OK);
     assert(source_manager_add(&sources,"future/value.abi",(const unsigned char *)"+ initialize\n",13,&abi) == SOURCE_OK);
-    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/value",text,1,1};
+    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/value",text,1,1, NULL};
     assert(module_catalog_snapshot(&catalog,&entry,1) == MODULE_OK);
     const ModuleSource *selected = NULL;
     assert(module_catalog_find(&catalog,"/test/fixture/v1.0.0/src/value",&selected) == MODULE_OK);
@@ -111,7 +111,7 @@ static void it_retains_invalid_native_snapshot_diagnostics_and_empty_presence(vo
     assert(source_manager_add(&sources,"future/value",(const unsigned char *)"@C\n",3,&text) == SOURCE_OK);
     const unsigned char invalid[] = {255};
     assert(source_manager_add(&sources,"future/value.abi",invalid,1,&abi) == SOURCE_OK);
-    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/value",text,1,1};
+    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/value",text,1,1, NULL};
     assert(module_catalog_snapshot(&catalog,&entry,1) == MODULE_OK);
     const ModuleSource *selected = NULL;
     assert(module_catalog_find(&catalog,"/test/fixture/v1.0.0/src/value",&selected) == MODULE_OK);

@@ -848,3 +848,95 @@ registry, headers and tests remain byte-identical. Final supported Doxygen deliv
 will be `/tmp/ama-t266-documentation-delivery.log`; verify final manifest and staged
 bytes before committing. T266 is archived; T232 remains open and is next.
 No test job remains active.
+
+## T267 module configuration activation
+
+T266 committed as 96e8413. T232's next real integration step retains the optional
+module alias companion when a required definition activates. The physical source
+filename plus .ini is authoritative under PKG-03; physical submodules inherit no
+local alias file under PKG-04. Reuse one exact optional-companion reader for native
+and configuration activation. Reader output contains the anticipated owned path,
+presence and optional immutable UTF-8 SourceText; it publishes only after complete
+success, including observed absence. Module activation caches successful results
+and leaves fields unchanged on failure. An unused module's companion is not read.
+
+Extend authoritative ModuleSnapshotEntry with an explicit optional configuration
+source: NULL means captured absence, not permission to probe the filesystem.
+Snapshot construction deep-copies present text/locations and seals absent/present
+metadata. Existing source-only snapshot callers must explicitly supply absence;
+relative/configuration-aware relocation transport remains T224/T232's pending
+handoff, without a claim that these tools already support local aliases.
+
+Input capture uses a configuration node keyed by the original companion path. Its
+payload is one presence byte followed by exact original bytes when present. Thus
+absent and present-empty configurations differ without timestamp/hash assumptions.
+Only active modules receive edges. No source manager reread or INI interpretation
+is performed during capture. Every allocation/UTF-8 failure remains managed,
+owned and unpublished. Next implement, run actual activation/capture compositions
+and measured failure checks, then documentation acceptance before a task commit.
+
+T267 implementation checkpoint: shared exact companion probing now reports an
+owned anticipated path and explicit presence, with unchanged native missing-file
+semantics. Required-module parsing captures the local alias file before dependency
+discovery; valid unused definitions do not activate their companions. Snapshot
+entries explicitly include the optional captured source; every existing caller
+now supplies NULL for its current source-only domain. Snapshot construction seals
+absence or copies present text/locations without filesystem fallback. The pending
+configuration-aware relocation work must transport actual local companions; the
+current explicit NULL call sites do not establish that feature.
+
+Real input capture adds the tagged local-configuration node and links its actual
+module consumer. Temporary encoding storage is released on all outcomes; original
+source remains Project-owned. The encoding is injective: its first byte determines
+presence, and present observations retain the entire remaining byte sequence.
+Absent encoding has length one and tag zero, so it cannot equal present-empty.
+Capture performs O(B) byte work/scratch plus graph admission; exact filesystem
+activation scans catalog membership once, probes one finite path and loads at most
+one companion, with all partial allocations retained under catalog destruction.
+Snapshot source copying completes before record publication, so encoding/allocation
+refusal leaves no newly visible source. Successful repeat activation allocates
+nothing and never reopens the file.
+
+Passed: catalog initial/scoped runs, local graph activation/invalidation tests
+(`/tmp/ama-t267-inputs.log`), source parent (`/tmp/ama-t267-source-parent.log`),
+project closure (`/tmp/ama-t267-project-closure.log`) and strict scoped canonical
+comment/header/actual-case-signature checks. New cases cover parent/submodule
+isolation, explicit absent/present snapshot ownership, copied original failure
+locations, directory/symlink refusal, creation of a physically empty file, captured
+disk changes, removal, invalid unused/used companions and all measured physical
+load/snapshot-copy failures. Existing full closure/capture failure sweeps exercise
+the actual new activation and invalidation allocations. Next: real captured
+compiler/tool compositions, sanitizers, root build and full documentation gate.
+
+T267 real captured compiler and relocation reference/staging compositions passed
+with exit zero: `/tmp/ama-t267-captured-compiler.log`,
+`/tmp/ama-t267-relocation-references.log`,
+`/tmp/ama-t267-relocation-staging.log`. These verify the changed snapshot ownership
+boundary and existing absolute-path tool behavior, not future local-alias rewriting.
+Next run fail-fast catalog/input sanitizers and root make, collect all statuses,
+then freeze code/registry/tests for full documentation acceptance.
+
+Active T267 acceptance jobs: catalog ASan/UBSan session 72235
+(`/tmp/ama-t267-catalog-sanitizers.log`), input capture ASan/UBSan session 86253
+(`/tmp/ama-t267-inputs-sanitizers.log`), root make session 4750
+(`/tmp/ama-t267-build.log`). Sanitizers use strict C11, address/undefined checks,
+frame pointers, non-PIE and halt_on_error=1 with detect_leaks=0. Counted allocator
+zero-balance checks are separate evidence; no LeakSanitizer claim is made.
+Jobs own separate build trees. No completion is inferred before collecting exits.
+
+T267 sanitizer sessions 72235 and 86253 and root make 4750 collected with exit
+zero. No sanitizer warning/error occurred; all explicit assertions remained enabled.
+Root build, original/captured catalog, source parent, project closure, input capture
+and captured compiler/tool compositions have passed. Final scoped comment/header
+checks passed after comment review. Next full make docs freezes implementation,
+registry, headers and fixtures; archive only after that required gate succeeds.
+
+T267 full make docs passed (`/tmp/ama-t267-documentation.log`): 3227 ready inputs,
+zero debts, 2431 maintained file pages, 9373 interfaces and 488/488 canonical
+destinations. The accepted manifest is preserved at
+`/tmp/ama-t267-prearchive-manifest.json`. T267 is archived; T232 remains open.
+Only narrative archival/current-status Markdown changes follow this accepted code
+snapshot. Final supported Doxygen generation is
+`/tmp/ama-t267-documentation-delivery.log`; require unchanged accepted code,
+registry, header and test hashes plus final manifest/staged agreement before
+committing. No test job is active.

@@ -27,7 +27,7 @@ static bool snapshot(RelocationStaging *staging, const char *const **required, s
     size_t index = 0, activated = 0;
     for (const RelocationStagedSource *source = staging->first; source != NULL; source = source->next) {
         const RelocationModule *module = source->module;
-        entries[index++] = (ModuleSnapshotEntry){module->after_identity,source->text,module->device,module->inode};
+        entries[index++] = (ModuleSnapshotEntry){module->after_identity,source->text,module->device,module->inode,NULL};
         if (module->active) { active[activated++] = module->after_identity; }
     }
     ModuleStatus status = module_catalog_snapshot(&staging->frontend.project.catalog,entries,count);

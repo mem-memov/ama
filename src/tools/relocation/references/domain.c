@@ -36,7 +36,7 @@ static bool snapshot(RelocationReferences *references, const char *const **requi
     size_t index = 0, activated = 0;
     for (const RelocationModule *module = references->preview->modules; module != NULL; module = module->next) {
         const char *name = relocation_analysis_name(module);
-        entries[index++] = (ModuleSnapshotEntry){name,module->text,module->device,module->inode};
+        entries[index++] = (ModuleSnapshotEntry){name,module->text,module->device,module->inode,NULL};
         if (module->active) { active[activated++] = name; }
     }
     ModuleStatus status = module_catalog_snapshot(&references->frontend.project.catalog,entries,count);

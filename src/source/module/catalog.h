@@ -7,6 +7,7 @@
  * preserve original bytes and never shadow an earlier physical source.
  * [PKG-02](../../../spec/project/packages.md#pkg-02) retains one selected version;
  * [PKG-03](../../../spec/project/packages.md#pkg-03) owns its configuration bytes.
+ * [DEP-03](../../../spec/implementation/compiler.md#dep-03) tracks active companions.
  * [SRC-01](../../../spec/language/source-and-names.md#src-01) makes the declared
  * root kind authoritative instead of inferring it from a physical directory name.
  */
@@ -19,12 +20,16 @@
 #include "source/text/source.h"
 #include "source/path/root.h"
 
-/** Authoritative source identity/bytes captured by ordinary discovery; snapshot construction deep-copies text and names. Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
+/** Authoritative source identity/bytes and optional module configuration. NULL configuration
+ * explicitly captures absence; snapshot construction deep-copies present text and names.
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) preserves optional companion authority.
+ * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 typedef struct {
     const char *logical_path;
     const SourceText *text;
     dev_t device;
     ino_t inode;
+    const SourceText *configuration;
 } ModuleSnapshotEntry;
 
 /** Catalog outcomes distinguish absence, aliases, unsupported physical storage and malformed UTF-8. Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
@@ -53,12 +58,19 @@ typedef struct ModuleVersion {
     const SourceText *configuration;
 } ModuleVersion;
 
-/** Catalog-owned source/companion record; original device/inode support exact alias detection. Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
+/** Catalog-owned source/companion record; original device/inode support exact alias detection.
+ * configuration_loaded seals both presence and absence; configuration_path retains the
+ * anticipated .ini location even when configuration is NULL. [PKG-03](../../../spec/project/packages.md#pkg-03)
+ * keeps the local file distinct from package configuration and native companions.
+ * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 typedef struct ModuleSource {
     struct ModuleSource *next;
     const char *logical_path;
     const SourceText *text;
     const ModuleVersion *version;
+    const char *configuration_path;
+    const SourceText *configuration;
+    bool configuration_loaded;
     const char *native_c;
     const char *native_header;
     const SourceText *native_abi;
@@ -123,7 +135,8 @@ ModuleStatus module_catalog_build(ModuleCatalog *catalog,
     const ModuleRoot *roots, size_t root_count);
 /** Build once from already discovered authoritative source views without rereading Ama files.
  * Validate exact names, UTF-8 and logical/physical uniqueness; copied records/bytes belong to
- * this catalog. Native companions remain selected by the ordinary later activation path.
+ * this catalog. NULL configuration seals captured absence; present configuration
+ * is deep-copied and UTF-8 checked without disk fallback. Native companions remain selected by the ordinary later activation path.
  * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 ModuleStatus module_catalog_snapshot(ModuleCatalog *, const ModuleSnapshotEntry *, size_t);
 /** Install authoritative captured native companions before AST consumers exist.
@@ -161,6 +174,15 @@ ModuleStatus module_catalog_find(const ModuleCatalog *catalog,
  * @return MODULE_OK, invalid catalog/member, allocation, exact-path, IO or UTF-8 failure.
  * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 ModuleStatus module_catalog_load_native(ModuleCatalog *, const ModuleSource *);
+/** Capture one required module's optional .ini companion, including explicit absence.
+ * Only complete catalog members are accepted. Repeated successful requests reuse
+ * immutable views without I/O. Failure preserves all previous companion fields;
+ * failed text/path scratch remains catalog-owned for diagnostics and destruction.
+ * Source snapshots already seal captured absence/presence and never probe disk.
+ * [PKG-03](../../../spec/project/packages.md#pkg-03) fixes the physical companion;
+ * [DEP-03](../../../spec/implementation/compiler.md#dep-03) tracks contributing inputs.
+ */
+ModuleStatus module_catalog_load_configuration(ModuleCatalog *, const ModuleSource *);
 /** Install an explicit copied candidate text in a complete owned catalog before any AST/native
  * consumer exists. Logical/physical identity is preserved; UTF-8/allocation failure leaves the
  * selected source unchanged and retains diagnostic context. Other records stay unchanged.

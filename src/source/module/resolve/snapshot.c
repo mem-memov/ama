@@ -4,6 +4,8 @@
  * resolves original identities before edits;
  * [SRC-02](../../../../spec/language/source-and-names.md#src-02)
  * forbids duplicate logical names or physical aliases in the analysis registry.
+ * [PKG-03](../../../../spec/project/packages.md#pkg-03) captures optional module
+ * configuration, including explicit absence, without physical rereads.
  */
 #include <stdint.h>
 #include <string.h>
@@ -44,6 +46,8 @@ static ModuleStatus insert(ModuleCatalog *catalog, const ModuleSnapshotEntry *en
         catalog->issue.offset = offset;
         return module_fail(catalog,MODULE_INVALID_UTF8,source_path(source->text));
     }
+    ModuleStatus configuration = module_snapshot_aliases(catalog, source, entry->configuration);
+    if (configuration != MODULE_OK) { return configuration; }
     source->next = catalog->first;
     catalog->first = source;
     return MODULE_OK;

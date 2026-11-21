@@ -300,12 +300,18 @@ static void it_unwinds_every_catalog_allocation_failure(void) {
 #include "support/override.c"
 #include "support/snapshot.c"
 #include "support/configuration.c"
+#include "support/aliases.c"
 
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_unwinds_every_present_configuration_snapshot_copy();
+    it_captures_local_configuration_presence_once_without_submodule_inheritance();
+    it_owns_optional_snapshot_configuration_and_never_falls_back_to_disk();
+    it_unwinds_every_local_configuration_observation_allocation();
+    it_rejects_invalid_local_configuration_files_and_captured_utf8();
     it_retains_selected_version_configuration_and_exact_module_ownership();
     it_attaches_copied_configuration_to_exact_snapshot_versions();
     it_unwinds_every_configuration_snapshot_allocation_failure();

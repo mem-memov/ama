@@ -20,10 +20,10 @@ static void it_checks_closed_static_exports_and_captured_native_future_paths_wit
     CompilerFrontend frontend;
     compiler_frontend_init(&frontend,sources.allocator);
     ModuleSnapshotEntry entries[] = {
-        {"/test/fixture/v1.0.0/src/value",text("generated/not-created/value","@C\n"),1,1},
-        {"/test/fixture/v1.0.0/src/box",text("generated/not-created/box","@<\nvalue\n.slot\n@!\n"),1,2},
-        {"/test/fixture/v1.0.0/src/factory",text("generated/not-created/factory","@...\n.out\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/value\n"),1,3},
-        {"/test/fixture/v1.0.0/src/main",text("generated/not-created/main","@!\nvalue\n/test/fixture/v1.0.0/src/factory\n .out\n"),1,4}
+        {"/test/fixture/v1.0.0/src/value",text("generated/not-created/value","@C\n"),1,1, NULL},
+        {"/test/fixture/v1.0.0/src/box",text("generated/not-created/box","@<\nvalue\n.slot\n@!\n"),1,2, NULL},
+        {"/test/fixture/v1.0.0/src/factory",text("generated/not-created/factory","@...\n.out\n/test/fixture/v1.0.0/src/box\n .slot < /test/fixture/v1.0.0/src/value\n"),1,3, NULL},
+        {"/test/fixture/v1.0.0/src/main",text("generated/not-created/main","@!\nvalue\n/test/fixture/v1.0.0/src/factory\n .out\n"),1,4, NULL}
     };
     assert(module_catalog_snapshot(&frontend.project.catalog,entries,4) == MODULE_OK);
     const ModuleSource *native = NULL;
@@ -52,7 +52,7 @@ static void it_checks_empty_and_open_definition_only_catalogs_without_default_in
         setup_test();
         CompilerFrontend frontend;
         compiler_frontend_init(&frontend,sources.allocator);
-        ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/open",text("generated/not-created/open","@<\nvalue\n.slot\n@!\n"),1,1};
+        ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/open",text("generated/not-created/open","@<\nvalue\n.slot\n@!\n"),1,1, NULL};
         assert(module_catalog_snapshot(&frontend.project.catalog,open ? &entry : NULL,open) == MODULE_OK);
         const char *required[] = {"/test/fixture/v1.0.0/src/open"};
         assert(compiler_frontend_check_snapshot(&frontend,open ? required : NULL,open));

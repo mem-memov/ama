@@ -51,10 +51,10 @@ static void it_attaches_copied_configuration_to_exact_snapshot_versions(void) {
     const unsigned char bytes[] = {';', 'x', 0, 'y', '\r', '\n'};
     assert(source_manager_add(&sources, "absent/package.ini", bytes, sizeof(bytes), &configuration) == SOURCE_OK);
     ModuleSnapshotEntry entries[] = {
-        {"/test/fixture/v1.0.0/src/value", text, 1, 1},
-        {"/test/fixture/v1.0.0/tests/check", text, 1, 2},
-        {"/test/fixture/v1.0.0-fast/src/value", text, 1, 3},
-        {"//value", text, 1, 4}
+        {"/test/fixture/v1.0.0/src/value", text, 1, 1, NULL},
+        {"/test/fixture/v1.0.0/tests/check", text, 1, 2, NULL},
+        {"/test/fixture/v1.0.0-fast/src/value", text, 1, 3, NULL},
+        {"//value", text, 1, 4, NULL}
     };
     assert(module_catalog_snapshot(&catalog, entries, 4) == MODULE_OK);
     char logical[] = "/test/fixture/v1.0.0";
@@ -88,7 +88,7 @@ static void it_unwinds_every_configuration_snapshot_allocation_failure(void) {
     const SourceText *text = NULL, *configuration = NULL;
     assert(source_manager_add(&sources, "absent/value", (const unsigned char *)"@!\n", 3, &text) == SOURCE_OK);
     assert(source_manager_add(&sources, "absent/package.ini", NULL, 0, &configuration) == SOURCE_OK);
-    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/value", text, 1, 1};
+    ModuleSnapshotEntry entry = {"/test/fixture/v1.0.0/src/value", text, 1, 1, NULL};
     size_t baseline = live_allocations;
     assert(module_catalog_snapshot(&catalog, &entry, 1) == MODULE_OK);
     allocation_count = 0;

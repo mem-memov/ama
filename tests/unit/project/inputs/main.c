@@ -28,9 +28,12 @@ static bool changed(const ProjectInputs *inputs, ProjectInputKind kind, const ch
 #include "support/graphs.c"
 #include "support/capture.c"
 #include "support/static.c"
+#include "support/aliases.c"
 
 /** Explicitly run every independent graph, capture and failure scenario. */
 void run(void) {
+    it_tracks_local_configuration_presence_and_bytes_without_rereading_disk();
+    it_reads_local_configuration_only_for_required_modules_with_owned_errors();
     it_tracks_retained_package_configuration_without_rereading_disk();
     it_invalidates_static_producers_and_selected_consumers_from_nested_sources();
     it_matches_independent_reachability_for_every_three_node_graph_and_changed_seed();
