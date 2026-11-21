@@ -73,7 +73,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T264**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T265**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -148,7 +148,9 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 
 - [ ] **T232 — Implement shared configuration, scoped aliases and normalization.**
   Prerequisites: T231, T222, T259, T260, T261 and T262.
-  Status: integration planned after the independently committed foundations.
+  Status: active after T264's authorized AMB-016 amendment and completed
+  foundations T260/T261/T263/T262. Preserve standard isolation and caller-origin
+  Type/Template provenance through integration.
   Contract/steps: [project configuration](docs/implementation/project-configuration.md).
   Implement PKG-03/04 and SRC-06 through narrow
   UTF-8/INI, table/scope, parsed-path and normalization components shared by

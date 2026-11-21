@@ -7726,3 +7726,32 @@ T201. Specification bytes have not changed.
   verify unchanged accepted code/registry/header/test inputs plus final staged
   fingerprints. T232 remains actual frontend/compiler/configuration integration
   owner; these independently accepted foundations do not claim pipeline support.
+
+<a id="t264"></a>
+
+- [x] **T264 — Specify standard-library dependency isolation under AMB-016.**
+  Status: accepted; user explicitly authorized the canonical amendment and continued
+  implementation. Prerequisite: the recorded AMB-016 behavioral decision.
+  Update PKG-05 with motivation and examples; align linked grammar constraints
+  and acceptance scenarios. Forbid authored standard-to-ordinary Ama dependencies
+  after full normalization, preserve caller-supplied Types/Templates and unused
+  alias declarations, and retain ordinary native C library integration.
+  Check canonical ownership, links and generated documentation. Commit this
+  specification task before resuming T232; do not claim implementation acceptance.
+
+  Acceptance: canonical normative behavior is defined once in PKG-05, including
+  the exact defining-origin/normalized-target boundary, prohibition on caller
+  configuration borrowing, unchanged supplied Type/Template semantics, nonimporting
+  unused aliases and distinct native C build inputs. Motivation and two interface
+  fragments explain why a standard library can remain self-contained and generic.
+  Grammar links the semantic constraint without changing productions or adding
+  a configuration form. Acceptance scenarios cover ordinary/native/result/static/
+  constant/alias cases and positive caller-provenance cases. Cross-review against
+  SRC-01/SRC-06 and PKG-03/04/09 found no competing rule; AMB-016 records both
+  user answers and the explicit amendment authorization.
+  Supported Doxygen builder passed (`/tmp/ama-t264-documentation.log`), validating
+  all 488 canonical destinations and current generated source/narrative links.
+  This is a documentation-only task: no runtime tests or implementation-support
+  claim is inferred. After archive-only narrative edits regenerate final delivery
+  and verify accepted nonnarrative inputs plus final manifest/staged agreement.
+  T232 remains implementation owner; no conformance fingerprints were refreshed.

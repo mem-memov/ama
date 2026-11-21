@@ -6,6 +6,13 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 <a id="open-template-design-questions"></a>
 
+## Latest implementation clarification
+
+[AMB-016](#amb-016) is resolved by the user decision and explicit specification
+authorization. [T264](DONE.md#t264) records the canonical amendment; T232 owns implementation.
+Standard definitions must not author ordinary dependencies; caller-supplied
+ordinary Types/Templates remain permitted.
+
 ## Template design decisions
 
 The user explicitly requested this visible list on 2026-11-17 while authorizing
@@ -1116,3 +1123,78 @@ Each entry must contain:
   acyclic resource ownership, independent peer lifetimes, native callback/code
   lifetime and nonexecuting cleanup. No
   compiler source or partial T182 work is changed by the specification decision.
+
+<a id="amb-016"></a>
+
+## AMB-016 — Ordinary-package dependencies authored in a standard module
+
+- **Status:** Resolved by the behavioral decision and explicit subsequent
+  specification authorization. T264 owns the amendment; T232 owns implementation.
+- **Task:** [T232](TODO.md#t232), integrating the accepted configuration/path
+  foundations after T262 commit `6348092`. T261/T263/T262 are separately accepted;
+  no T232 implementation code has been changed.
+- **Canonical requirements:**
+  [SRC-01](spec/language/source-and-names.md#src-01) gives standard modules no
+  vendor/package/version/src/tests wrapper.
+  [SRC-06](spec/language/source-and-names.md#src-06) defines absolute ordinary
+  paths and aliases whose targets choose their own namespace, without forbidding
+  a standard definition from writing an ordinary path.
+  [PKG-03](spec/project/packages.md#pkg-03) gives dependency selectors to a
+  version's package.ini; module.ini permits aliases only.
+  [PKG-04](spec/project/packages.md#pkg-04) gives package aliases to their exact
+  version and permits direct ordinary targets in local aliases.
+  [PKG-05](spec/project/packages.md#pkg-05) requires explicit dependencies on
+  another ordinary version to be covered by the declaring version's selectors
+  and checks them at the definition that writes them. It exempts standard
+  targets from ordinary selectors, but does not specify the reverse direction.
+  [PKG-09](spec/project/packages.md#pkg-09) preserves authored-edge provenance,
+  distinguishing actual dependencies from caller-supplied Type substitutions.
+- **Minimal example:** An interface fragment of standard module `//adapter`
+  writes the ordinary type explicitly:
+
+  ```text
+  @<
+  value
+  /acme/pkg/v1.0.0/src/data
+  ```
+
+  The ordinary module exists in the prepared project. It can equivalently be
+  named through a local `adapter.ini` alias with that absolute ordinary target.
+  The standard origin has no package-version identity or package.ini. Its local
+  companion cannot contain dependencies or repository sections. It might also
+  be the selected root, so a calling ordinary package need not exist.
+- **Precise question:** Are explicit dependencies from standard definitions to
+  ordinary packages forbidden, or allowed under a separately defined admission
+  and acquisition/configuration ownership rule? If forbidden, may standard
+  templates still receive ordinary concrete Types/Templates from their callers
+  without treating substitutions as authored dependencies? A concrete canonical
+  rule is needed before the common frontend can admit or reject this example.
+- **Option 1 (recommended):** Standard definitions explicitly depend only on the
+  standard namespace. They may receive ordinary Types/Templates through existing
+  typed connections. This keeps the standard library self-contained, preserves
+  lexical provenance, and requires no extra configuration format. An attempted
+  ordinary direct/relative/alias/static/native-source dependency is diagnosed
+  at its standard definition. This is a new explicit restriction and must be
+  authorized in spec before implementation.
+- **Option 2:** Permit explicit ordinary dependencies from standard definitions
+  without an ordinary declaring-version selector table. Then specify where
+  repository mappings and acquisition roots come from, including a standard root
+  compiled on its own. A consumer's package.ini must not be silently chosen:
+  doing so would change admission by caller and lose definition-local provenance.
+  Any new standard-root configuration mechanism needs explicit specification.
+- **Affected boundary:** Configuration/project ownership, explicit dependency
+  discovery, normal/static/constant/native path readers and acquisition closure.
+  Current T262 intentionally checks ordinary declaring-version edges only; it
+  must not be treated as authorizing a standard-origin fallback. Existing
+  standard-to-standard relative paths and ordinary-to-standard references are
+  unambiguous. No other task is substituted to bypass this blocker.
+- **User decision/source:** The user answered the AMB-016 clarification with:
+  “Запретить явные зависимости // → /; разрешить получение обычных типов через
+  параметры шаблонов (рекомендуется).” This explicitly selects option 1 and
+  resolves the behavior; ordinary Types/Templates supplied through existing
+  template parameters are not authored dependencies of the standard definition.
+- **Specification authorization:** The user subsequently answered the explicit
+  amendment request: “да, вноси и продолжай делать задачи по плану”. This
+  authorizes the PKG-05 amendment, linked grammar constraints/examples and
+  acceptance scenarios, then continued planned implementation. T264 changes
+  those canonical documents; no further permission is needed for that scope.

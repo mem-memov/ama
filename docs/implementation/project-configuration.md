@@ -12,7 +12,8 @@ and alias scopes. T262 implements selection coverage and edge policy. Compiler i
 planned; these foundations
 alone are not a claim of complete compiler support.
 The prerequisites are committed: T231 `036d3d1`, T222 `ddd055d`, and diagnostic
-follow-up T259 `56e8708`. No specification amendment is requested or made.
+follow-up T259 `56e8708`. The earlier source foundations required no specification amendment; T264
+subsequently records the explicitly authorized standard-isolation clarification.
 
 Canonical contracts are [PKG-03](../../spec/project/packages.md#pkg-03),
 [PKG-04](../../spec/project/packages.md#pkg-04),
@@ -645,3 +646,58 @@ Only archival/current-status Markdown changes follow the accepted snapshot.
 Final generation is `/tmp/ama-t262-documentation-delivery.log`; require unchanged
 accepted compiler/registry/header/test inputs and final manifest/staged agreement.
 T262 is archived; no test job remains active. T232 integration is next.
+
+## T232 integration checkpoint
+
+T262 committed as `6348092`; repository was clean before integration review.
+Read-only tracing of compiler/project loading and canonical SRC-01/SRC-06,
+PKG-03/04/05/09 exposed [AMB-016](../../AMBIGUITIES.md#amb-016): an explicit
+ordinary path in a standard module has no specified selector/configuration owner.
+Standard modules have no package version, and local companions cannot declare
+selectors/repositories. Neither a silent exemption nor borrowing the consumer's
+package scope follows from current requirements. The ordinary-version-only T262
+policy must not become an implicit answer for this different origin category.
+
+T232 is blocked before implementation. Only TODO, ambiguity registry and this
+checkpoint changed; no product code or spec changed. No job is active. User
+clarification is required before choosing behavior. Resume by recording the
+answer and its source, obtaining specific spec authorization if the answer does
+not itself authorize the necessary amendment, then aligning canonical rules
+before implementation. Do not switch to another TODO task to bypass AMB-016.
+
+T232 AMB-016 decision checkpoint: the user explicitly selected option 1 in the
+clarification reply: forbid authored standard-to-ordinary dependencies and permit
+ordinary types through template parameters. The registry records the exact answer
+and source. This resolves behavior, but the reply does not explicitly authorize
+editing spec/. AGENTS.md requires that separate authorization before the canonical
+amendment and implementation. T232 remains blocked pending that authorization;
+no product/spec code changed, no job is active, and no other task is substituted.
+
+## T264 authorized standard-isolation amendment
+
+The user explicitly authorized the requested canonical amendment with “да, вноси
+и продолжай делать задачи по плану”. AMB-016 records this source separately from
+the preceding behavioral choice. T264 adds the normative restriction once in
+PKG-05, with motivation and forbidden/allowed standard-interface fragments.
+The grammar links this semantic constraint without changing path productions;
+the acceptance table adds direct/alias/static/native and provenance witnesses.
+Unused local aliases remain nonimports, supplied ordinary Types/Templates remain
+usable, and C system-library/build inputs retain their existing contracts.
+No new standard package configuration or caller-scope borrowing is introduced.
+
+Consistency review checked SRC-01/SRC-06 and PKG-03/04/05/09: the standard root
+still has no package wrapper, relative paths retain their namespace, ordinary
+alias targets remain legal declarations without imports, actual use is checked
+at the lexical definition, and test substitutions remain authored by their caller.
+T264 changes specification/narrative inputs only; no compiler acceptance claim
+or conformance fingerprint refresh follows. Next run supported generated-reference
+validation, then archive/commit T264 and resume T232 implementation.
+
+T264 acceptance: supported documentation builder exited zero, including 488/488
+canonical destinations. Only archived/current-status narrative Markdown changes
+follow this snapshot; canonical spec and compiler/registry/header/test inputs
+remain unchanged. Final delivery is `/tmp/ama-t264-documentation-delivery.log`.
+Verify its complete input manifest against final staged bytes before committing.
+AMB-016 is resolved and T232 may resume after this specification commit. No
+compiler implementation, parser/runtime test acceptance or conformance renewal
+is claimed by T264. No test job remains active.

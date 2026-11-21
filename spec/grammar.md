@@ -1091,6 +1091,14 @@ at a complete `src`/`tests` module; the storage names and missing `src`/`tests`
 are never inferred. Multiple matching decompositions do not duplicate an
 identity. Masks are forbidden in source `<module-path>` operands.
 
+Path grammar alone does not grant dependency permission. After expansion and
+normalization, [PKG-05](project/packages.md#pkg-05) forbids a standard definition
+from explicitly naming an ordinary Ama dependency, including through a local
+alias, constant namespace or static construction. The same rule preserves
+ordinary Types/Templates received through parameter connections; these do not
+become new authored dependencies of the receiving standard template. No new
+path production or standard-root configuration section is introduced.
+
 ## Native protocol companion syntax
 
 A physical source filename followed by `.abi` names a flat binding table, not

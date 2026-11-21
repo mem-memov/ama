@@ -337,7 +337,8 @@ matching every entry. An explicit dependency on another ordinary package-version
 identity must be covered by the declaring version's selectors, regardless of
 whether either version is stored in `packages/` or `dependencies/`. References
 within the same version need no dependency entry. The separately configured
-standard namespace `//` does not require ordinary package selectors.
+standard namespace `//`, when it is the dependency target, does not require
+ordinary package selectors.
 
 Coverage includes the main source and full structural subtree of a selected
 module unit under PKG-07, not just the exact spelling of its main module. A
@@ -350,6 +351,56 @@ download. Missing wildcard members still contribute no selected identity.
 Check dependencies where a definition explicitly writes them. A Type or
 constructor supplied by a caller does not become a newly authored dependency
 of the receiving template; preserve the test-substitution rule in PKG-09.
+
+A definition in the standard namespace must not explicitly depend on an
+ordinary Ama module. Check this restriction at the source definition that
+writes the dependency, after alias expansion and complete path normalization.
+It covers ordinary declarations and references, result types, constant
+namespaces, static constructions, and source-specified native/compiler inputs
+that name Ama modules. An alias or static expression cannot bypass the rule.
+Diagnose the forbidden reference at its original source occurrence. Do not
+borrow selectors or repository mappings from a caller or invent a package
+configuration owner for the standard module.
+
+Standard ordinary/static templates may receive ordinary concrete Types or
+Templates through their existing typed parameter connections. Reusing or applying
+such a supplied argument does not by itself create a newly authored ordinary
+dependency in the standard definition. Preserve the originating connection's
+definition and check its explicit dependency there. This permission does not
+waive ordinary type/operation checks or the existing native-leaf restrictions.
+An unused local alias with an ordinary target still imports nothing under
+PKG-04; reject a forbidden dependency when an actual reference uses it.
+This restriction concerns dependencies on Ama modules, not C headers, system
+libraries or other native build inputs governed by the native/build contracts.
+
+**Why the standard library is isolated.** Its modules have no ordinary vendor,
+package version or `package.ini`. Keeping their explicitly named Ama dependencies
+inside `//` makes their admission independent of which project calls them.
+Generic parameters still let standard algorithms operate on project-defined
+types without embedding a particular vendor or version into the library.
+
+**Examples: interface fragments of a standard module.** This declaration is
+forbidden even if the ordinary module exists in the prepared project:
+
+```text
+@<
+value
+/acme/pkg/v1.0.0/src/data
+```
+
+A standard template can instead declare a parameter type:
+
+```text
+@<
+value
+.value type
+```
+
+An ordinary caller may supply a value of
+`/acme/pkg/v1.0.0/src/data` through this input. The explicit reference belongs
+to that caller; its own dependency selectors and source/test isolation apply.
+The standard template receives the inferred Type without acquiring that caller's
+package scope or introducing a second written dependency.
 
 An acquisition operation's explicit selector arguments are its initial seeds.
 Needed external references and tests extend those seeds under PKG-08 using the
