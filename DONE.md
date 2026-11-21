@@ -7755,3 +7755,36 @@ T201. Specification bytes have not changed.
   claim is inferred. After archive-only narrative edits regenerate final delivery
   and verify accepted nonnarrative inputs plus final manifest/staged agreement.
   T232 remains implementation owner; no conformance fingerprints were refreshed.
+
+<a id="t265"></a>
+
+- [x] **T265 — Enforce standard-origin isolation in the dependency policy component.**
+  Status: accepted. Prerequisites: T262 and T264 (`55c13d5`). Add a narrow standard-
+  origin decision API without a package selector argument. Check complete
+  normalized module endpoints, allow standard targets and refuse ordinary ones.
+  Preserve the existing ordinary-origin decision contract and a distinct refusal
+  reason. Test root/area/Unicode/invalid endpoint partitions, normalized/aliased
+  target composition, no allocation and immutable inputs. Register code/header/
+  test coverage, run component/composite and documentation acceptance, then commit.
+  T232 retains actual loader/frontend/Type-provenance integration.
+
+  Acceptance: dependency_standard_edge_check validates complete normalized
+  standard origins and module targets, allowing standard targets and returning
+  a distinct standard-to-ordinary refusal without accepting a package table.
+  Existing ordinary-origin API and its owner validation remain unchanged.
+  The finite namespace partition is independent of component words and ordinary
+  source/test area; no allocation, mutation or filesystem effect occurs.
+  Positive/negative/null/incomplete/wrong-origin/Unicode/multiword cases pass,
+  including fail-next-allocation and immutable input checks. Real module INI
+  parsing, standard local scope preparation and path normalization compose into
+  the decision; unused ordinary-target aliases remain legal nonimports.
+  Component leaf, full source parent, root make and fail-fast ASan/UBSan selection
+  leaf pass. Strict public-header, canonical-comment and real case-interface
+  checks pass. Full make docs passes: 3218 ready inputs, zero debts, 2422 file
+  pages, 9343 interfaces and 488/488 canonical destinations. Logs and proof are
+  in the linked component contract. Leak detection remains disabled under the
+  recorded environment restriction; no LSan pass is claimed.
+  After archival-only Markdown edits regenerate final reference and verify
+  unchanged accepted implementation/registry/test/header inputs and final
+  source/staged fingerprints. T232 retains actual frontend/loader/Type-origin
+  integration; this task claims the policy boundary, not end-to-end enforcement.

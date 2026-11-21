@@ -55286,6 +55286,16 @@
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
         "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_dependency_partitions_without_package_scope_or_effects",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_local_alias_targets_after_full_normalization",
+        "command": "make -C tests/unit/source/configuration/selection"
       }
     ]
   },
@@ -173264,6 +173274,16 @@
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
         "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_dependency_partitions_without_package_scope_or_effects",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_local_alias_targets_after_full_normalization",
+        "command": "make -C tests/unit/source/configuration/selection"
       }
     ]
   },
@@ -176958,6 +176978,16 @@
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
         "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_dependency_partitions_without_package_scope_or_effects",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_local_alias_targets_after_full_normalization",
+        "command": "make -C tests/unit/source/configuration/selection"
       }
     ],
     "standalone_header_command": [
@@ -177003,6 +177033,16 @@
       {
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_dependency_partitions_without_package_scope_or_effects",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_local_alias_targets_after_full_normalization",
         "command": "make -C tests/unit/source/configuration/selection"
       }
     ]
@@ -177128,6 +177168,16 @@
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
         "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_dependency_partitions_without_package_scope_or_effects",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_local_alias_targets_after_full_normalization",
+        "command": "make -C tests/unit/source/configuration/selection"
       }
     ]
   },
@@ -177220,6 +177270,38 @@
       {
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/standard.c": {
+    "purpose": "Check standard-origin authored dependencies without a package table and compose normalized alias targets with exact namespace policy.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_dependency_partitions_without_package_scope_or_effects",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_local_alias_targets_after_full_normalization",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selection/support/standard.c": {
+    "purpose": "Check standard-origin authored dependencies without a package table and compose normalized alias targets with exact namespace policy.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_dependency_partitions_without_package_scope_or_effects",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_standard_local_alias_targets_after_full_normalization",
         "command": "make -C tests/unit/source/configuration/selection"
       }
     ]

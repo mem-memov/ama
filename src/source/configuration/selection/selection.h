@@ -63,7 +63,8 @@ typedef struct {
  * [PKG-09](../../../../spec/project/packages.md#pkg-09) precedes same-version permission.
  */
 typedef enum { DEPENDENCY_EDGE_ALLOWED, DEPENDENCY_EDGE_UNDECLARED,
-    DEPENDENCY_EDGE_SOURCE_TEST, DEPENDENCY_EDGE_INVALID } DependencyEdgeDecision;
+    DEPENDENCY_EDGE_SOURCE_TEST, DEPENDENCY_EDGE_INVALID,
+    DEPENDENCY_EDGE_STANDARD_ORDINARY } DependencyEdgeDecision;
 
 /** Validate unique actual ordinary versions/modules and their version membership.
  * Arena/output/issue are valid. Identities are immutable successful normalized
@@ -108,4 +109,14 @@ bool dependency_selection_covers(const DependencySelection *selection, const Mod
  */
 DependencyEdgeDecision dependency_edge_check(const DependencySelection *selection,
     const ModulePathValue *source, const ModulePathValue *target);
+/** Check an explicitly authored standard-definition edge without any package scope.
+ * Source must be a complete standard module and target a complete module.
+ * Values are successful immutable normalized results; NULL/invalid endpoints
+ * return INVALID. No allocation, mutation, lookup or import occurs. Received
+ * caller Type/Template arguments are not additional authored standard edges.
+ * [PKG-05](../../../../spec/project/packages.md#pkg-05) permits standard targets
+ * and refuses ordinary targets independently of consumer selectors or storage.
+ */
+DependencyEdgeDecision dependency_standard_edge_check(const ModulePathValue *source,
+    const ModulePathValue *target);
 #endif

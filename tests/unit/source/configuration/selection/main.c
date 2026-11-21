@@ -40,6 +40,7 @@ static void finish(void) {
 #include "support/ownership.c"
 #include "support/catalog.c"
 #include "support/lifetime.c"
+#include "support/standard.c"
 
 /** Run independent union, policy, provenance and failure boundaries explicitly. */
 void run(void) {
@@ -48,6 +49,8 @@ void run(void) {
     it_validates_view_metadata_and_cleans_every_allocation_refusal();
     it_composes_real_selected_catalog_paths_with_physical_test_coverage();
     it_preserves_unicode_identity_and_independent_view_pattern_lifetimes();
+    it_checks_standard_dependency_partitions_without_package_scope_or_effects();
+    it_checks_standard_local_alias_targets_after_full_normalization();
 }
 /** Require all assertions and counted owners to finish. */
 int main(void) { run(); return EXIT_SUCCESS; }

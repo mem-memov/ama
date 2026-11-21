@@ -5,8 +5,10 @@
 [T232](../../TODO.md#t232) owns shared configuration, normalization and the
 compiler/tool integration. Its independently verifiable foundations are
 [T260](../../DONE.md#t260) (strict INI documents),
-[T261](../../DONE.md#t261) (paths and alias scopes) and
-[T262](../../DONE.md#t262) (selector matching and edge authorization).
+[T261](../../DONE.md#t261) (paths and alias scopes),
+[T263](../../DONE.md#t263) (selector matching),
+[T262](../../DONE.md#t262) (selected-unit coverage and ordinary edge policy), and
+[T265](../../DONE.md#t265) (standard-origin isolation).
 T260 implements source-only INI parsing and T261 implements path normalization
 and alias scopes. T262 implements selection coverage and edge policy. Compiler integration remains
 planned; these foundations
@@ -701,3 +703,56 @@ Verify its complete input manifest against final staged bytes before committing.
 AMB-016 is resolved and T232 may resume after this specification commit. No
 compiler implementation, parser/runtime test acceptance or conformance renewal
 is claimed by T264. No test job remains active.
+
+## T265 standard-origin policy contract
+
+Status: accepted after T264 `55c13d5`, clean worktree at entry. Canonical authority
+is the amended PKG-05, with SRC-01 endpoint validation and SRC-06 normalization.
+Add a separate dependency_standard_edge_check API that takes normalized defining
+and target module values, with no package selection parameter. This preserves
+T262's ordinary-definition API and makes caller selector borrowing impossible
+at the standard boundary. Return a distinct standard-to-ordinary refusal after
+validating complete endpoints; standard-to-standard is allowed. Invalid/null or
+wrong-origin metadata refuses rather than selecting another owner's policy.
+No allocation, mutation, lookup or I/O occurs. Endpoint validation is finite
+O(source bytes + target bytes) with O(1) scratch. Namespace kinds partition the
+entire valid domain, independently of component words such as src/tests.
+
+Tests will exercise positive/negative/invalid root partitions, Unicode names,
+ordinary src/tests targets, normalized local-alias targets, original input
+preservation and a fail-next-allocation control. Caller Type substitution is
+not submitted as an authored standard edge; real provenance handoffs remain
+T232's responsibility. No runtime or frontend support claim follows this helper.
+Checkpoint: task and contract recorded; next implement policy and real component
+composition tests before required acceptance and a separate commit.
+
+T265 step evidence: standard.c exposes a separate standard-origin decision
+without accepting a package table; the ordinary edge API remains ordinary-only.
+A distinct refusal distinguishes forbidden standard-to-ordinary references from
+invalid metadata. Component/alias-composition leaf passed
+(`/tmp/ama-t265-standard-policy.log`), as did the complete source parent
+(`/tmp/ama-t265-source-parent.log`). Cases cover Unicode/multiword standard names,
+ordinary src/tests targets, misleading standard component words, null/incomplete
+endpoints, wrong-origin calls, unchanged inputs and a fail-next-allocation
+control. Local aliases are legally prepared without importing; actual normalized
+uses carry their original span and choose policy by the final namespace.
+The complete current selection leaf passed fail-fast ASan/UBSan with leak
+checking disabled (`/tmp/ama-t265-standard-asan-ubsan.log`). Strict standalone
+public-header, canonical-contract and actual case-signature checks passed.
+
+Checkpoint: scoped tests and sanitizer job collected with exit zero. Root build
+is next/being collected, followed by the full documentation gate while T265 is
+still TODO. After acceptance archive, regenerate final source manifest, inspect
+staged bytes and commit. T232 remains real frontend/loader provenance owner;
+these component tests are not a claim that source compilation yet invokes the API.
+
+T265 acceptance: root make exited zero (`/tmp/ama-t265-compiler-build.log`). Full
+make docs exited zero (`/tmp/ama-t265-documentation.log`): 3218 ready inputs,
+zero debts, 2422 file pages, 9343 interfaces and 488/488 canonical destinations.
+Sanitizer invocation used ASAN_OPTIONS=detect_leaks=0:halt_on_error=1,
+UBSAN_OPTIONS=halt_on_error=1 and strict C11 flags plus address/undefined
+sanitizers, frame pointers and non-PIE instrumentation. Only current/archived
+Markdown changes follow the accepted implementation snapshot. Final generation
+is `/tmp/ama-t265-documentation-delivery.log`; require accepted code/registry/
+header/test byte identity and final manifest/staged agreement before commit.
+T265 is archived; T232 integration remains the next work. No test job is active.
