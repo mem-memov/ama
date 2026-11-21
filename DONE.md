@@ -7680,3 +7680,49 @@ T201. Specification bytes have not changed.
   T262 still owns source-unit/test-area coverage and edge authorization; T232
   owns compiler integration. This pure matcher proves neither source existence
   nor actual pipeline acceptance, and does not claim those tasks complete.
+
+<a id="t262"></a>
+
+- [x] **T262 — Match dependency selectors and authorize versioned edges.**
+  Status: accepted after T263 (`9617370`); contract/checkpoint in
+  [project configuration](docs/implementation/project-configuration.md#t262-selection-and-explicit-edge-contract).
+  Prerequisites: T261 and T263. Compose PKG-05's exact finite scalar/component matcher
+  and selected-version/module-unit coverage, including complete structural
+  subtrees and associated test areas. Expand only package aliases and normalize
+  their real-path base before adding masks. No wildcard cancellation, latest
+  selection or guessed identity. Compare bounded exhaustive cases with an
+  independent finite model; test Unicode, deep trees, empty sets, duplicate
+  decompositions, variant/version boundaries and all resource failures. T232 and
+  later acquisition tools are the explicit implementation consumers.
+
+  Acceptance: shared immutable views validate exact endpoint shapes, uniqueness
+  and actual version membership. Each declaring version retains a sparse union
+  of matching actual roots; duplicate masks/decompositions never duplicate roots.
+  Complete module units, whole-version source trees and associated tests use exact
+  component/version boundaries. Physical provenance is essential: logical paths
+  erase plus-directory markers, so a no-I/O projector checks verified physical
+  components and retains the sufficient leading-ordinary-directory count.
+  Test association requires that physical count as well as proper logical descent;
+  structural test submodules cannot impersonate mirrored associated directories.
+  Explicit ordinary-definition checks validate the declaring version, refuse
+  src-to-tests before internal privilege, permit same-version/standard targets,
+  and otherwise require selected coverage. Caller Type substitutions remain
+  checks of their authored test origin, not invented template dependencies.
+  Independent relations cover all 64 selector subsets against 24 actual-layout
+  identities, checking both exact roots and coverage; duplicated/reversed masks,
+  variants, source/test areas, absent wildcard members, topology ancestors and
+  orphan/structural tests are included. A real selected-package/catalog handoff
+  verifies local whole-version priority and actual physical plus ancestry.
+  Additional cases cover Unicode/multiword identities, empty/invalid metadata,
+  input-array and mask-owner retirement, exact origin policy and every measured
+  shared-view/root-union allocation refusal with unchanged outputs and balanced
+  ownership. Scoped headers/canonical comments/actual interfaces, root make,
+  full source parent and fail-fast ASan/UBSan selection leaf pass. Leak detection
+  remains disabled due the recorded environment restriction; counted ownership
+  is separate evidence. Full make docs passes: 3216 ready inputs, zero debts,
+  2420 file pages, 9339 interfaces and 488/488 rendered canonical destinations.
+  Logs, correctness/complexity arguments and owner limits are in the linked
+  contract. After archive-only Markdown changes, regenerate final reference and
+  verify unchanged accepted code/registry/header/test inputs plus final staged
+  fingerprints. T232 remains actual frontend/compiler/configuration integration
+  owner; these independently accepted foundations do not claim pipeline support.

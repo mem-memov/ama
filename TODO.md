@@ -144,18 +144,6 @@ T221/T226 remain required; perform them after T231/T222/T232 establish the
 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 
-<a id="t262"></a>
-
-- [ ] **T262 — Match dependency selectors and authorize versioned edges.**
-  Prerequisites: T261 and T263. Compose PKG-05's exact finite scalar/component matcher
-  and selected-version/module-unit coverage, including complete structural
-  subtrees and associated test areas. Expand only package aliases and normalize
-  their real-path base before adding masks. No wildcard cancellation, latest
-  selection or guessed identity. Compare bounded exhaustive cases with an
-  independent finite model; test Unicode, deep trees, empty sets, duplicate
-  decompositions, variant/version boundaries and all resource failures. T232 and
-  later acquisition tools are the explicit implementation consumers.
-
 <a id="t232"></a>
 
 - [ ] **T232 — Implement shared configuration, scoped aliases and normalization.**

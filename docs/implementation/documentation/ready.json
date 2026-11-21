@@ -55261,6 +55261,31 @@
         "source": "tests/unit/source/configuration/selectors/main.c",
         "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
         "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
       }
     ]
   },
@@ -173214,6 +173239,31 @@
         "source": "tests/unit/source/configuration/selectors/main.c",
         "case": "it_preserves_outputs_and_cleans_all_selector_allocation_refusals",
         "command": "make -C tests/unit/source/configuration/selectors"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
       }
     ]
   },
@@ -176584,6 +176634,594 @@
       "c",
       "-fsyntax-only",
       "-"
+    ]
+  },
+  "src/source/configuration/selection/order.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/internal.h": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/selection/associated.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/build.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/coverage.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/view.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/edge.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/validate.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/failure.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/selection.h": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/source/configuration/selection/main.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selection/support/edges.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selection/support/model.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selection/support/ownership.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selection/Makefile": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "src/source/configuration/selection/provenance.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selection/support/lifetime.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selection/support/catalog.c": {
+    "purpose": "Validate prepared identity sets, physical test association, selected unit coverage and explicit dependency edges with scoped ownership.",
+    "contract": "docs/implementation/project-configuration.md",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_checks_origin_versions_and_source_test_policy_before_privileges",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_matches_all_bounded_root_unions_and_physical_test_associations",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_preserves_unicode_identity_and_independent_view_pattern_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_composes_real_selected_catalog_paths_with_physical_test_coverage",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_validates_view_metadata_and_cleans_every_allocation_refusal",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
     ]
   }
 }

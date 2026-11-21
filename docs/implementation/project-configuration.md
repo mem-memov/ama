@@ -6,9 +6,10 @@
 compiler/tool integration. Its independently verifiable foundations are
 [T260](../../DONE.md#t260) (strict INI documents),
 [T261](../../DONE.md#t261) (paths and alias scopes) and
-[T262](../../TODO.md#t262) (selector matching and edge authorization).
+[T262](../../DONE.md#t262) (selector matching and edge authorization).
 T260 implements source-only INI parsing and T261 implements path normalization
-and alias scopes. T262 and compiler integration remain planned; these foundations
+and alias scopes. T262 implements selection coverage and edge policy. Compiler integration remains
+planned; these foundations
 alone are not a claim of complete compiler support.
 The prerequisites are committed: T231 `036d3d1`, T222 `ddd055d`, and diagnostic
 follow-up T259 `56e8708`. No specification amendment is requested or made.
@@ -472,3 +473,175 @@ T263 is archived; only narrative Markdown is changed after the accepted gate.
 Final generation is `/tmp/ama-t263-documentation-delivery.log`, with unchanged
 compiler/registry/header/test fingerprints and exact final staged agreement
 required before commit. No test job remains active. T262 is next.
+
+## T262 selection and explicit-edge contract
+
+Status: accepted after T263 `9617370`; worktree clean at entry. Authority remains
+[PKG-05](../../spec/project/packages.md#pkg-05),
+[PKG-07](../../spec/project/packages.md#pkg-07),
+[PKG-08](../../spec/project/packages.md#pkg-08) and
+[PKG-09](../../spec/project/packages.md#pkg-09). No spec change is authorized.
+
+1. Build one shared immutable finite view of actual prepared ordinary versions
+   and module identities. Validate complete canonical endpoint kinds, uniqueness
+   and the presence of each module's real version record. Borrow stable normalized
+   ModulePathValue owners; copy the caller's pointer array into view-owned sorted
+   records. A version record remains explicit even when its areas are empty.
+   The source/catalog consumer supplies actual availability after PKG-02 selection;
+   this pure component never infers a version from a guessed probe module or
+   reads a filesystem. T232 owns the lasting compiler/catalog adapter.
+2. For each declaring version, evaluate its compiled selectors against every
+   actual view record using T263. Retain a unique selected-root entry per matching
+   identity, not per matching decomposition or selector. A sparse arena-owned
+   root list borrows the shared view; it does not copy the universe into every
+   package. Compiled patterns and aliases need survive construction only.
+   Refusal retains partial arena storage and leaves the output unpublished.
+3. Coverage is the union of selected roots' units. A selected module covers its
+   exact main identity and complete logical-component subtree. A selected source
+   module additionally covers proper descendants of its mirrored tests directory;
+   a test file equal to the directory spelling is not inside that directory.
+   A selected whole version covers all its source identities and test directories
+   associated with actual source modules in the shared view. It does not invent
+   orphan experiments or activate unrelated topology-only ancestor units.
+   All prefix comparisons require complete separator boundaries. The validated
+   source layout makes logical module descendants the SRC-05 structural subtree.
+4. Check only explicitly authored ordinary-definition edges. Verify that the
+   origin belongs to the declaring selection's exact version. Apply src-to-tests
+   refusal before same-version privilege. Same-version references and standard
+   targets need no selector; other ordinary targets require unit coverage.
+   Type substitutions are checked at their originating explicit definition;
+   receiving a caller-supplied Type is not a second authored dependency. T232
+   must preserve that provenance at real frontend handoffs. Availability and
+   permission remain separate: an allowed identity can still be missing and
+   must fail normal module lookup. Standard-origin policy is not broadened by
+   this ordinary-version component.
+
+All operations traverse finite views, selector lists and component sequences.
+View construction uses exact byte sorting/duplicate checks and actual version
+membership. Selection is a finite union over N view records and S selector
+patterns, using T263's proven matcher. Source/test coverage uses explicit version,
+area and whole-component boundaries; no C-expression inspection, likely-use
+estimate, filesystem fallback or recursion-depth limit is involved. A context
+ancestor never becomes a selected root solely because its file is present.
+SourceSpan origins and normalized metadata lifetimes remain explicit.
+
+Acceptance will compare complete bounded selected sets and coverage decisions
+against independently enumerated structural-unit/test relations; include mask
+order/duplicate decompositions, empty/missing wildcard members, namespace/version
+boundaries, source versus test origins, topology-only ancestors, absent modules,
+Unicode names and every measured allocation refusal. Include a real prepared
+package-selector/catalog handoff where practical, while retaining T232's pipeline
+integration responsibility. Register code/header/build/test inputs from creation.
+
+Checkpoint: contract and ordering recorded; no T262 implementation or acceptance
+exists yet, and no job is active. Next implement the shared view, sparse selected
+root union, exact unit/test coverage and explicit-edge decision boundary, then
+component/composition models, ownership/failure tests and required documentation.
+
+T262 design correction during source-layout review: the initial logical-prefix
+association was insufficient. SRC-05 erases structural plus suffixes, so
+`tests/a/case` can physically mean `tests/a/case` or `tests/a+/case`.
+Only the former is inside the PKG-08 associated directory of source `src/a`.
+This is specified behavior, not an open semantic question or permission to guess.
+
+The shared view therefore also receives verified physical provenance: for each
+test module, the number t of leading ordinary directory components after tests/,
+stopping before the first structural plus directory or the main filename.
+For a source suffix of k components, association requires the exact logical
+suffix prefix, a proper descendant, and k <= t. This statistic is sufficient:
+logical comparison proves component-name equality and k <= t proves all required
+associated-directory ancestors were ordinary. Later physical components can have
+plus suffixes because the complete associated test directory is retained.
+Non-test records require zero; the numeric bound excludes the main filename.
+The caller derives t from verified physical layout, never from logical spelling.
+T232 must preserve this proof at its catalog adapter; actual-layout compositions
+will test this boundary. Coverage is queried only for actual view members, so
+no physical provenance is invented for missing targets. Same-version/standard
+edge privilege still does not prove normal module availability.
+
+Checkpoint: provisional T262 implementation exists under
+src/source/configuration/selection/ (view, ordering/validation, sparse union,
+association, coverage and explicit-edge decision). It is not accepted or tested;
+no test job is active. Next add independent set/physical-association models,
+resource refusals and real prepared-layout composition, register every new input,
+then compile/test these components before any integration or completion claim.
+
+T262 step 1 component evidence: the new selection leaf compiled and passed
+(`/tmp/ama-t262-selection-model.log`, exit 0). Its independent finite relation
+covers all 64 subsets of six selector entries against 24 prepared identities,
+including duplicate/reversed patterns, absent wildcard members, version variants,
+selected-child versus topology ancestor, orphan tests and physical plus-subtree
+counterexamples. Policy vectors apply src-to-tests refusal before internal
+privilege, preserve ordinary test origins, distinguish foreign declaring owners,
+and admit standard targets without pretending they exist. Every measured sparse
+union allocation refusal is cleaned and leaves output unchanged; view metadata
+checks cover duplicates, absent version records, invalid physical-prefix counts
+and preflight SIZE_MAX refusal. New source/header/test/build inputs are registered
+with explicit cases. These are component witnesses, not final acceptance.
+
+Current checkpoint: T262 active; no process or test job remains active. Production
+files are under src/source/configuration/selection/, tests under the matching
+unit leaf. Next strengthen root-identity assertions and empty/malformed metadata
+partitions, add real package/catalog physical-layout handoffs and Unicode/order
+cases, verify ownership lifetime and all remaining refusal paths; then run scoped
+header/contracts, full source/root, ASan/UBSan and generated documentation before
+archival/commit. T232 remains actual compiler integration owner. Nothing in spec/
+was edited. Next unused task ID remains T264.
+
+T262 step 2: a separate no-I/O provenance projector now validates each verified
+area-relative physical module path against its normalized logical suffix,
+stripping one plus only from directory ancestors. It computes the sufficient
+ordinary-prefix statistic instead of expecting adapters to guess it from names.
+The unit model now composes that projector into view construction and checks
+all projected counts against explicit physical fixtures. Exact selected-root
+identity sets are asserted in addition to counts and coverage. Malformed physical
+paths preserve outputs and refuse. `/tmp/ama-t262-provenance-model.log` exited zero.
+
+Checkpoint update: no job remains active. New projector is registered, and all
+current T262 unit/model cases pass. Remaining work is real filesystem/catalog
+composition, further empty/order/Unicode/lifetime failure partitions, scoped
+header/comment checks, root/source/sanitizer acceptance and generated documentation.
+T262 remains incomplete and uncommitted. Spec files are unchanged; T232 remains
+pipeline owner, with the physical provenance contract now explicit.
+
+T262 step 3: real package selection and module indexing now feed physical source
+paths through the provenance projector into the shared view. The fixture includes
+valid ordinary test directories, structural test plus directories and an ignored
+external version with a locally present replacement. Expected coverage is checked
+after catalog destruction because normalized metadata owns its copied bytes.
+The real handoff passed (`/tmp/ama-t262-real-catalog.log`). Unicode/multiword view
+records, reversed input order, caller-array retirement, compiled-pattern owner
+retirement, empty views and invalid declaring versions are additionally covered.
+Complete current selection leaf passed fail-fast ASan/UBSan with leak detection
+disabled (`/tmp/ama-t262-selection-asan-ubsan.log`). Scoped canonical contract,
+strict standalone-header and actual included case-signature checks passed.
+
+Complexity: view insertion sorting is O(N² K), with O(N log(N+1) K) version
+membership checks for N records and compared byte width K. Selection evaluates
+at most N times S finite matcher decisions and allocates O(R) sparse root nodes
+for R matched identities, borrowing O(N) shared view storage. A query performs
+one binary lookup and at most R unit-prefix checks. For a selected whole-version
+test query it scans N actual source records at most once: only one unique version
+root can equal that candidate's version. Thus query time is bounded by
+O((R+N+log(N+1)) K), with O(1) query scratch. The provenance projection consumes
+each physical/logical component once and uses O(1) scratch. Version comparisons,
+proper test-directory descent and the ordinary-prefix count jointly preserve
+association; no logical string prefix substitutes for erased physical topology.
+
+Checkpoint: selection ASan/UBSan and scoped validators collected with exit zero;
+no active job. Next current root/source composition and full documentation gate,
+then archival-only Markdown, final manifest/staged agreement and task commit.
+No specification file has changed. T232 still owns complete pipeline integration.
+
+T262 acceptance: root `make` and complete source parent both exited zero
+(`/tmp/ama-t262-compiler-build.log`, `/tmp/ama-t262-source-parent.log`). Complete
+`make docs` passed (`/tmp/ama-t262-documentation.log`): 3216 ready inputs, zero
+debts, 2420 file pages, 9339 interfaces and 488/488 canonical destinations.
+Current selection leaf ASan/UBSan used fail-fast options with leak detection
+disabled, strict C11 plus address/undefined sanitizers, frame pointers and non-PIE
+instrumentation. It exited zero; no LSan pass is claimed. All new maintained
+inputs have explicit named cases and standalone public/private header commands.
+Only archival/current-status Markdown changes follow the accepted snapshot.
+Final generation is `/tmp/ama-t262-documentation-delivery.log`; require unchanged
+accepted compiler/registry/header/test inputs and final manifest/staged agreement.
+T262 is archived; no test job remains active. T232 integration is next.
