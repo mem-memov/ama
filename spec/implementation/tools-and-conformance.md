@@ -8,6 +8,7 @@ In this chapter:
 - [Explanation: a requirement needs observable evidence](#explanation-a-requirement-needs-observable-evidence)
 - [Deliverables](#deliverables)
 - [Tests, tooling, and contributor requirements](#tests-tooling-and-contributor-requirements)
+- [Source copy, safe deletion and movement](#directory-relocation-utility)
 - [Acceptance matrix](#acceptance-matrix)
 
 <!-- /chapter-contents -->
@@ -42,8 +43,8 @@ The implementation MUST provide:
 7. Recursive Makefiles and C unit/integration tests, including failure cases.
 8. Reproducible examples, diagnostic documentation, and a conformance report
    identifying supported features and unresolved limitations.
-9. A directory relocation utility that moves a source tree and updates its Ama
-   module references under TOOL-01 through TOOL-04.
+9. Explicit source copy, safe deletion and movement with dependency policies,
+   safe replacement and recoverable publication under TOOL-01 through TOOL-04.
 10. Explicit asynchronous task/event facilities and isolated parallel execution
     contexts under ASYNC-01 through ASYNC-12 and PAR-01 through PAR-08, with
     documented library/host interfaces and conformance evidence.
@@ -63,10 +64,10 @@ The implementation MUST provide:
     scaffolds under [BUILD-01 through BUILD-05](application-builds.md), checked
     named host inputs under [CLI-01 through CLI-04](launch-and-embedding.md), and
     complete no-main source inclusion under [EMBED-09](c-library.md#embed-09).
-13. Versioned projects and selective source-and-test delivery under
+14. Versioned projects and selective source-and-test delivery under
     [PKG-01 through PKG-10](../project/packages.md), with local/package aliases,
     explicit repository mappings and coherent acquisition snapshots.
-14. Separately executable project tools and `ama-project init DESTINATION`,
+15. Separately executable project tools and `ama-project init DESTINATION`,
     including Markdown guidance, under
     [PROJECT-01 through PROJECT-03](project-tools.md). Compilation reads prepared
     inputs without implicitly downloading, moving or testing them.
@@ -221,204 +222,456 @@ clickable correct destinations is insufficient. Test missing/wrong anchors,
 deeply nested source paths, and source moves without changing canonical spec
 bytes to accommodate the documentation generator.
 
-### Directory relocation utility
+<a id="directory-relocation-utility"></a>
 
-### Move a source directory through resolved identities
+## Source copy, safe deletion and movement
+
+**Explanation: copying and moving answer different questions.** Copying creates
+another definition while retaining the original. Moving also removes the
+original, so it is safe only when definitions outside the removal set do not
+use it. Installing a copy elsewhere does not automatically redirect those
+users. This distinction makes changes to a project explicit and prevents a
+replacement from silently changing which implementation an existing caller uses.
+
+A cross-package copy also needs an explicit dependency policy. One policy
+creates independent copies of the required modules in the destination package;
+the other keeps references to the original dependencies and records the needed
+permissions. A permission entry is not a download and does not itself copy code.
+
+### Choose an explicit source operation
 
 <a id="tool-01"></a>
 
-**TOOL-01.** Provide an explicit project-tool command for moving a directory of code to a new
-directory location and rewriting affected Ama module paths. It accepts the
-project's configured roots, an existing source directory `S`, and its exact
-final directory path `D`; `D` is the new location of `S` itself, not an implicit
-destination parent. Provide a read-only preview listing the final location,
-module-identity changes, source edits, and preflight failures, as well as an
-explicit apply operation, under [PROJECT-01](project-tools.md#project-01).
-No source-language syntax is added.
+**TOOL-01.** Provide these explicit commands through
+[PROJECT-01](project-tools.md#project-01):
 
-Use the configured roots to identify source modules and their proposed final
-locations. A configured root at or below `S` moves with that physical tree;
-update its physical location while preserving its root kind. Roots outside `S`
-keep their locations. Moves within one root, between roots of the same kind,
-between ordinary and standard-library roots, and of a whole configured root or
-container of roots are supported when the proposed configuration is unambiguous
-and all required changes are writable. A destination outside known roots must
-be covered by a carried root or an explicitly supplied destination-root setting;
-do not guess a namespace from an arbitrary directory name.
+```sh
+ama-project copy SOURCE DESTINATION
+ama-project delete SOURCE
+ama-project move SOURCE DESTINATION
+```
 
-Return the updated root settings with the operation's result. Persist changes
-only through documented configuration fields; externally supplied root settings
-are returned to the invoking client. Package metadata derives vendor, package
-and version from placement under PKG-01; do not invent redundant identity/root
-or executable fields in package.ini. Recompute the bases of moved package.ini
-and module.ini aliases as well as source-relative paths. Explicit entry/export
-selections supplied to the operation are mapped and returned to the client;
-do not replace path-looking text in unknown formats.
-The selected physical tree moves with its relative file layout intact, including
-native companions and other accompanying files. Do not silently extend the move
-to sibling files outside `S`. A source directory named `name+` does not by itself
-authorize moving its sibling module `name`; the proposed final tree must satisfy
-SRC-05, including every required sibling source for a `name+/` directory.
+`SOURCE` and `DESTINATION` are filesystem operands under explicitly configured
+project roots, not source-language module operands. A source is an existing
+extensionless module file or a source directory. The destination is the exact
+final location of that file or directory itself, not an implicit parent into
+which its basename is appended. Recognize identities through SRC-01 through
+SRC-06 and PKG-01/02; do not infer a namespace from an arbitrary directory name.
+No Ama source-language syntax is added.
 
-The rewrite scope includes all active Ama sources in the configured roots,
-including modules outside `S` and modules unused by the selected entry point.
-Sources newly covered by an explicitly supplied destination root also participate
-in the original reference analysis, not only in final validation. This includes
-previously unconfigured files inside the selected tree. Both the augmented
-original registry and the final registry must be unambiguous; reject an initial
-name conflict before mutation even if the final registry would be unique.
-Inspecting only the current dependency closure is insufficient. Diagnose an
-unreadable or malformed active source that prevents an exact plan before any
-mutation. External projects not supplied through these roots are outside the
-rewrite scope, and the report must identify that scope. Preflight must reject
-an existing `D`, a move into `S`'s own subtree, an invalid destination mapping,
-identity/file collisions, ambiguous filesystem aliases, orphan `name+/` storage,
-or an unavailable required write. Directory merging and search-order shadowing
-are not implicit ways to resolve conflicts.
+Each command provides read-only preview and explicit application of the same
+prepared plan. The preview lists the analysis roots, selected and additional
+units, original/final identities and physical locations, source/configuration
+edits, removal and replacement sets, unchanged external dependencies, and every
+preflight refusal. Report a dependency refusal with the requiring definition,
+its original source occurrence, and the target that prevents the operation.
 
-For ordinary sources, validate both placements against PKG-01 and apply PKG-02
-before constructing the respective registries. An ignored external version
-cannot fill a hole or introduce a duplicate selected module. Report excluded
-copies and reject a plan whose changed package selection prevents an injective
-reference-preserving mapping. The tool must not interpret an arbitrary destination
-directory as a new valid vendor/package/version layout.
+Copy retains original definitions and their incoming references. Delete removes
+only its explicit selection and the associated units defined below, subject to
+TOOL-03. Move is one prepared copy followed by safe deletion of that original
+selection. It does not implicitly delete the originals of additional dependency
+copies. Failure of the deletion check refuses the entire move before any copy
+is published. None of these commands silently redirects surviving outside
+importers to a new identity.
 
-### Compute the complete identity mapping
+#### Select complete units and retain their experiments
+
+Selecting a module file includes its complete PKG-07 unit: its main source,
+all same-module companions and the complete sibling `name+/` tree. An active
+ordinary `src` module also includes its PKG-08 associated test directory and
+required declared test inputs. Missing required tests prevent a successful
+copy or move. A plain deletion removes the associated material actually present;
+it must not require inventing missing tests or acquiring dependencies merely
+to remove an otherwise identifiable unfinished unit.
+
+Selecting a directory retains its relative physical tree, including opaque
+accompanying files and drafts. Every active module selected by that tree has
+the same complete-unit/test obligations. This can explicitly add a selected
+module's companions or associated tests outside the directory; list every such
+file in the preview. Selecting a bare `name+/` directory alone does not select
+its sibling main module. Retain required structural ancestor context under
+PKG-07 for copies; do not delete an ancestor or unrelated sibling merely because
+it provides context. The proposed final trees must satisfy SRC-05. A directory
+selection is not permission to merge arbitrary neighbouring trees.
+
+Tests included as part of a source selection participate in the copy/removal
+set. An outside test that uses that source remains an outside dependant. Test
+helpers do not recursively require tests of their own. Complete-unit and
+source/test association rules apply to static modules too; absence of runtime
+storage does not make an active static definition a draft.
+
+#### Choose the cross-package dependency mode
+
+A copy or move between different ordinary package-version identities
+requires exactly one of the following modes, even if the destination already
+has all necessary external permissions. Version variants are distinct versions.
+Physical storage changes preserving the same complete package-version identity
+are not cross-package identity changes; PKG-02/10 still apply.
+
+| Option | Meaning |
+|---|---|
+| No dependency option | Refuse a cross-package identity change. Within one version, copy only the selected units/tests/companions and retain outgoing references to unselected definitions; existing permissions must suffice. |
+| `--copy-dependencies` | Include the finite needed ordinary source/test dependency closure and clone it into the destination version using TOOL-02. Retain the originals. |
+| `--extend-package` | Copy only the selected units/tests/companions and their explicitly required non-module inputs. Keep outgoing references to unselected modules at their original identities; add the exact necessary external dependency permissions to the destination package.ini. |
+
+The two options are mutually exclusive. They do not authorize network access,
+installation of native libraries, execution of tests, or selection of a newer
+version. A required dependency or selection domain unavailable in the prepared
+local source view causes refusal. Unused dependency selectors are permissions,
+not additional seeds for either mode.
+
+Dependency-cloning/configuration-extension modes require a defined ordinary
+destination version for each copied ordinary unit. For a directory containing
+several versions, the explicit destination layout must identify each unit's
+version unambiguously. An additional dependency follows the destination version
+of the selected unit whose dependency closure requires it. If the same original
+would require incompatible final locations within one operation, refuse rather
+than choose an owner or create extra identities implicitly.
+
+The configured `//` namespace remains separate. Referred standard modules are
+not included merely as ordinary dependency copies, and no package.ini owner or
+selector is invented for them. Explicitly selected standard source trees can
+still be copied/moved under configured roots. A change between ordinary and
+standard root kinds is valid only when the complete final graph satisfies
+PKG-05/09 and all configuration requirements; the dependency options cannot
+authorize a forbidden standard-to-ordinary authored edge.
+
+#### Replace only when explicitly requested
+
+An existing destination or any colliding additional unit refuses by default,
+with its identity and location in the explanation. `--replace` explicitly
+permits preparation of a replacement; it does not waive TOOL-03's safe-deletion
+check. Determine the complete existing target unit/directory and associated
+material that would be removed, list that set, and validate it before writing.
+A replacement removes that old set completely, including obsolete companions
+or children; it is not a file-by-file merge retaining stale pieces.
+
+A basename match or identical contents never establishes that two independently
+named definitions are one module. Distinct planned originals mapping to the
+same final identity are a conflict even with `--replace`. The flag permits
+replacement of an existing target, not merging two proposed copies. Reject
+source/destination self-overlap, copies or moves into their own selected tree,
+unsupported filesystem aliases, orphan `name+/` storage, invalid root mappings
+and unavailable required writes. A replacement cannot delete the selected
+source before its copy has been prepared and verified.
+
+Use configured roots for both original and final selection. A carried root
+retains its kind; roots outside a moved/deleted tree retain their locations.
+Return added, moved or removed root settings to the client, persisting them only
+through documented configuration fields. A destination outside known roots
+needs a carried root or explicit destination-root setting. Do not add redundant
+vendor/version/root or executable fields to package.ini. Explicit client entry/
+export selections are reported with their affected identities; unknown formats
+and outside importers are not silently patched.
+
+### Map copied definitions and dependency permissions
 
 <a id="tool-02"></a>
 
-**TOOL-02.** Derive rewrites from resolved module identities, never textual path
-prefix replacement or guessed filenames. Use the ordinary source classification,
-parser, registry, and SRC-01 through SRC-06 mapping. Let the planned physical map
-be `P(p) = D / relative(S, p)` for a path at or below `S`, and `P(p) = p` otherwise.
-Apply the same map to configured root locations to obtain the proposed root
-configuration, retaining each root's kind. An explicitly supplied destination-root
-setting denotes its final physical location and is included in that proposed
-configuration; validate any pre-existing sources there within the same rewrite
-scope. For each module source `p`, compute
-its old full identity `I_before(p)` and its proposed identity `I_after(P(p))`,
-including root kind and exact name components.
-Compute `I_after` using the proposed root configuration. A source already covered
-by the original roots retains its original identity for analysis. For a newly
-covered source, use its explicitly proposed final identity as `I_before`; there
-is no inferred earlier namespace. Add these records to the original analysis
-registry before resolving any references. Reject duplicate identities or physical
-aliases in that augmented registry rather than preferring either source.
+**TOOL-02.** Build an exact original registry and resolve source references
+before constructing edits. Analyze every active definition in the configured
+roots, including unused modules and ordinary/static/native-interface
+constructs. This analysis is required for safe deletion as well as copying;
+entry-point reachability is insufficient. Sources newly covered by an explicit
+destination root participate in the original analysis too. An already covered
+source keeps its original identity; a newly covered source uses its explicitly
+provided analysis identity, which is its final identity when no earlier root
+was configured. Reject an augmented-original conflict even if a later removal
+would make the final registry unique. Diagnose unreadable/malformed active
+sources that prevent an exact plan. Report the supplied root boundary; unknown
+external projects cannot be included in a safety claim.
 
-For example, when `/example/demo/v1.0.0/src/old/a` moves to `/example/demo/v1.0.0/src/new/a`, a newly covered helper referring
-to `/example/demo/v1.0.0/src/old/a` resolves to the original module and its reference becomes `/example/demo/v1.0.0/src/new/a`.
-If the added root also introduces a different source named `/example/demo/v1.0.0/src/old/a`, reject the
-operation: the helper’s original binding would be ambiguous. Newly covered
-sources themselves map from their explicit analysis identity to that same final
-identity; references within them still follow the mappings of their targets.
+Apply whole-version selection under PKG-02 independently to the original and
+final views. Ignored versions never fill holes or contribute selected modules.
+Refuse a source selection from an ignored version: it has no selected original
+definition/environment in this operation. Do not reinterpret its bytes using
+the configuration of the selected version or silently change the source roots.
+Report excluded copies and reject a selection change that changes a surviving
+reference's original binding or hides a required final module. Compilation,
+acquisition and these commands share the same parsed configuration/path model.
+Do not discover dependencies by textual search, arbitrary C-expression
+inspection or estimates of likely execution.
 
-Define the simultaneous identity map
-`F(I_before(p)) = I_after(P(p))`. Unmoved modules map to themselves. The complete
-final registry must be injective and free of conflicting physical aliases.
-Do not infer `F` by replacing a textual prefix: `name+/` is physical storage,
-and a cross-root move can change `/` to `//` or the reverse. A move between
-ordinary roots can leave a logical identity unchanged.
+#### Construct one injective clone map
 
-Resolve every syntactic module reference before the move. A reference to module
-`m` must afterwards resolve to `F(m)`. Recompute a relative spelling from the
-referring definition's final logical containing directory to `F(m)`, even when
-`F(m) = m`; moving only the importer can require an edit. When the final root
-kinds differ, use the exact rooted spelling. An unchanged importer and target
-retain their unchanged valid path bytes. This includes type
-paths, static graph module heads and argument expressions, explicit
-constant-read namespaces, and module prefixes of qualified
-constant sources, in both moved files and importers elsewhere in the scope.
-For a qualified constant, preserve the final member name and storage suffix;
-only its resolved module prefix is mapped. For example, if the module
-`/example/demo/v1.0.0/src/old tools/names` becomes `/example/demo/v1.0.0/src/archive/new tools/names`, the source
-`/example/demo/v1.0.0/src/old tools/names/default value` becomes `/example/demo/v1.0.0/src/archive/new tools/names/default value`.
-Local variable names, static placeholders/export selectors, binding labels,
-method selectors, and inferred receivers
-are not module paths and do not change.
+Let `K` be the definitions to be copied and `C(u)` the complete identity of the
+copy of original definition `u`. `C` must be injective. Original definitions
+and copies may coexist only as permitted by PKG-02/SRC-02; changing a complete
+identity creates a different nominal Type, including for static markers and
+templates. Identical file bytes do not make the old and new types equal.
+A physical move that preserves complete identity does not create a new Type.
 
-Include parsed package.ini dependency selectors and package/module alias targets
-in the plan. Each alias use must retain the mapped referent after its binding's
-and source's final bases are applied. A shared binding can be rewritten once
-when that edit preserves every affected use; otherwise rewrite the affected
-source operands to exact rooted paths while retaining the binding for its other
-uses. This is an exact representation choice based on resolved targets, not
-a guessed shared textual prefix. Do not rename alias keys. Validate the final
-alias environments, selected dependency sets and PKG-09 source/test dependency
-directions as part of the staged reference graph.
+For the explicitly selected physical tree, use the exact requested destination:
+`P(p) = D / relative(S, p)` for a directory selection, or the explicitly selected
+file's new module stem and its structural companion/submodule layout for a
+module selection. Derive logical identities from these placements, not by
+replacing textual path prefixes. In particular, `name+/` is physical storage
+and does not occur in logical identities.
 
-For selector masks, preserve their selected identity sets under the same mapping.
-Only an exact set-preserving symbolic rewrite or explicit finite selections with
-the same meaning are permitted. If the operation cannot establish the relevant
-selection domain and preservation without fetching or guessing, report the
-unresolved configuration boundary and refuse before mutation. Repository URLs,
-Git revisions and remote physical directories are not local module-path spans
-and are not rewritten as though remote repositories moved with the local tree.
+For `--copy-dependencies`, compute the least needed closure under PKG-07/08,
+using complete source/test units, actual resolved definition edges and declared
+inputs. Expand each complete original identity once and preserve context-to-
+active promotion. Source-dependency cycles therefore cause no repeated cloning
+on a finite local snapshot. Standard targets remain in their configured
+namespace. Missing required inputs refuse rather than cause hidden acquisition.
 
-Construct all edits against original source spans, then apply each file's
-nonoverlapping replacements from the end toward the beginning, or through an
-equivalent exact span-preserving method. Every occurrence is mapped once from
-its original binding; do not repeatedly transform already rewritten text.
+An additional ordinary `src` dependency outside the explicitly selected tree
+preserves its complete logical suffix after `src` under its designated
+destination version. It does not move next to the selected module merely
+because it used to be a sibling. If it is already inside the explicitly mapped
+tree, use that tree's mapping once, not a second dependency mapping.
 
-The correctness invariant is preservation of the resolved reference graph under
-the injective renaming `F`: for every original module-reference edge `u -> v`,
-the corresponding final edge is `F(u) -> F(v)`, with its declaration/member
-selection preserved. Computing `F` from every proposed physical placement covers
-both moved modules and external importers; injectivity prevents accidental
-merging. Cycles in this graph require no rewrite order or recursive textual
-substitution. Algorithms and tests must establish these laws under ARCH-05,
-ARCH-06, and TEST-08.
+Associated tests follow the mapped source: map the original associated test
+directory to the PKG-08 test directory of that source copy and preserve the
+remaining logical suffix. For nested associated directories, the most deeply
+containing original associated test directory determines the map. An additional test
+helper outside every mapped associated directory preserves its complete suffix
+after `tests` under the designated destination version. Derive physical `+`
+placement through SRC-05, rather than adding `+` to mirrored test directories.
+Declared non-module inputs follow the selected unit/test directory mapping;
+other explicitly required version-local inputs retain their version-relative
+location. Package configuration is an environment under the rules below, not
+an opaque asset to install over the destination package.ini.
 
-### Preserve bytes outside rewritten paths
+All overlapping structural-unit, test-directory and declared-input maps must
+agree on their common files and preserve the complete required units. If they
+disagree, leave orphan context or map distinct inputs to one output, refuse
+with the conflicting original/final paths. Do not resolve these conflicts by
+basename/content deduplication, order of discovery, automatic renaming or a
+second implicit clone of the same identity.
+
+**Example: logical identities, with all required tests assumed present.**
+Cloning only `worker` with `--copy-dependencies` gives:
+
+```text
+original worker: /acme/a/v1.0.0/src/old/worker
+original helper: /acme/a/v1.0.0/src/old/helper
+chosen worker:   /acme/b/v1.0.0/src/new/worker
+copied helper:   /acme/b/v1.0.0/src/old/helper
+worker tests:    /acme/b/v1.0.0/tests/new/worker/...
+helper tests:    /acme/b/v1.0.0/tests/old/helper/...
+```
+
+Here `...` abbreviates test suffixes in this informative diagram. If instead
+the selected directory includes both original modules and maps `old` to `new`,
+both copies follow that explicit tree map. Original modules remain available
+after copy; any move must additionally pass TOOL-03 for its original removal set.
+
+**Ama example: fragments of the original and copied worker.** Assume helper is
+a valid ordinary module and all required tests and local inputs exist. The
+original worker declares its helper field using a relative path:
+
+```text
+@!
+helper
+./helper
+```
+
+With the explicit worker destination above, `--copy-dependencies` changes the
+copied type operand to the helper copy's path while retaining the field name:
+
+```text
+@!
+helper
+../old/helper
+```
+
+With `--extend-package`, the copied field instead keeps the original helper's
+complete identity, for example with this exact rooted representation:
+
+```text
+@!
+helper
+/acme/a/v1.0.0/src/old/helper
+```
+
+If no existing destination selector covers it, the destination package.ini
+receives this permission; the helper files themselves remain in package A:
+
+```ini
+[dependencies]
+/acme/a/v1.0.0/src/old/helper
+```
+
+These fragments illustrate the selected dependency policy, not an exception to
+the complete source/test closure or an assertion of current tool support.
+
+#### Preserve the reference graph for originals and copies
+
+For each original edge `u -> v` authored by a copied definition, the copied
+occurrence must resolve to `C(u) -> C(v)` when `v` is also in `K`, and to
+`C(u) -> v` otherwise. A surviving original definition retains its original
+edges and bytes; do not redirect its references to a copy. With
+`--extend-package`, `K` contains the selected units/tests rather than their
+unselected module dependencies. With `--copy-dependencies`, the ordinary needed
+closure is in `K`; a reference to a standard module still targets that original
+standard identity. Apply these laws simultaneously, including for cycles.
+
+Recompute relative spellings from each copied definition's final containing
+logical directory. A copied importer can need an edit even when the target
+retains its original identity. Use exact rooted operands when the required
+root kind differs or a preserved alias cannot express the mapped target.
+This covers type declarations, static graph module heads and argument
+expressions, constant namespaces and the module prefix of a qualified constant.
+Preserve its selected declaration/member and storage suffix. Variable names,
+static names/export selectors, binding labels, method selectors and inferred
+receivers are not module-path operands and do not change.
+
+Resolve package/module aliases in the original definition's own environment.
+A copied field does not borrow that old package environment after changing its
+version. Validate every copied local alias against the destination package
+scope and recompute its base. Rewrite parsed alias targets when all actual uses
+retain the required binding; otherwise materialize those source operands as
+exact rooted paths. Do not rename alias keys or import the original package's
+entire alias/repository table. Refuse if no valid final unchanged-key environment
+and occurrence edits can express the required graph. Unused aliases import
+nothing and do not become dependency edges by themselves.
+
+#### Extend permissions only in the explicit mode
+
+Preserve the destination's existing configuration and selector meanings, subject
+to the exact set-preserving representation changes below. In
+`--extend-package` mode, add concrete complete module-unit selectors only for
+actual copied source/test edges whose external targets are not already covered.
+Use PKG-05's normal structural-unit/test coverage, deduplicate exact identities
+and add no broad wildcard or guessed future selection. Include permissions for
+copied tests as well as source definitions. Same-version and standard targets
+need no external selector. Do not edit original packages or their configuration
+outside the explicitly removed source selection of a move.
+Adding selectors does not copy modules, repository bindings or system libraries.
+
+In `--copy-dependencies` mode, additional ordinary dependencies are cloned into
+their designated destination version. References between units already placed
+by the explicit selected-tree map can still cross destination versions. Add no
+external selectors in this mode: preserve and, for copied configurations, map
+existing explicit permissions exactly. Refuse a final external edge not covered
+by those permissions. No dependency option likewise authorizes no new selectors.
+Every final actual edge must still pass PKG-05/09 and ordinary source admission.
+
+For a package configuration explicitly included in a copied whole-version tree,
+rebase parsed alias targets and map its existing explicit selected sets through
+`C` for copied targets, retaining original identities for unselected targets.
+An unchanged destination configuration keeps its existing explicit selected
+identities; a newly cloned definition must not silently expand an old wildcard.
+Represent the required set exactly using a proven symbolic rewrite or concrete
+finite selections. The new permissions authorized by `--extend-package` are
+an explicit addition to that preserved set, not an exception allowing arbitrary
+mask broadening. If the original/final finite selection domains cannot be
+established from local snapshots, refuse. This set-preservation obligation does
+not rewrite unrelated outside configurations merely because modules are removed;
+PKG-05 still permits a selector with no matching module. Validate every surviving
+actual reference independently.
+
+Repository URLs, revisions and remote physical directories are not local
+module-reference spans and do not move with the local sources. Construct edits
+against original parsed spans, with nonoverlapping replacements applied once.
+Validate final alias scopes, selector sets, member selections, PKG-09 directions
+and both clone/surviving graph laws. These are the correctness invariants for
+ARCH-05/06 and TEST-08; no guessed textual-prefix algorithm substitutes for them.
+
+### Preserve source units and refuse unsafe deletion
 
 <a id="tool-03"></a>
 
-**TOOL-03.** Preserve every source byte outside the selected module-path spans:
-indentation, comments including path-looking text, literals, names, line endings,
-and optional final-newline presence. Emit valid compact paths and markers under
-SRC-03/SYN-06. Inactive drafts retain SYN-04's boundary: move their bytes without
-parsing or rewriting their unfinished text, and list them explicitly in the
-report. A successful report must distinguish this text from rewritten active
-Ama references; no heuristic search through drafts is permitted.
+**TOOL-03.** Before any plain deletion, move-source removal or `--replace`
+removal, determine its complete removal set from the explicit selection and
+TOOL-01's associated material. Let `R` be all original definitions removed by
+the operation, including original source units selected for a move and existing
+target units selected for replacement. Require that no surviving original
+active definition outside `R` has an authored resolved module edge to a
+definition in `R`. Check the original graph before treating replacement copies
+as available. Installing a new implementation at the same identity cannot
+make an otherwise forbidden deletion safe.
 
-Move native `.h`, `.c`, `.abi`, assets, and other accompanying files as opaque
-files with their contents unchanged, except for parsed package.ini/module.ini
-path fields and documented project settings explicitly covered by TOOL-01/02.
-Apart from those fields, only Ama module-reference syntax is rewritten; physical
-paths embedded in handwritten C, literals, external
-build configuration, or unrelated files are outside this rewrite contract. Report
-that boundary without claiming those paths were updated. Generated outputs are
-not editable source references: invalidate affected build artifacts, source maps,
-generated native prefixes and caches, and regenerate them through the normal
-build after relocation. Do not patch generated C or hash-derived symbols.
+References from definitions that are all in `R` do not block each other's
+removal. A reference from an outside unused module, static definition or test
+does block it. A copied dependency's original is not automatically in the
+move-source removal set; its reference to a removed source still blocks the
+move. Entry/export selections explicitly supplied by the client are additional
+roots that must be removed or explicitly mapped in the prepared operation;
+never silently leave a selected missing root. An unused alias or dependency
+selector alone is not an authored module edge. Such configuration may remain,
+but all surviving actual references must remain valid and unchanged in binding.
 
-### Publish the move as a recoverable transaction
+**Example: a cycle, with valid source/test units assumed.** If `worker` and
+`helper` use each other, copying their finite closure is possible. Moving only
+`worker` refuses: the surviving original `helper` still uses original `worker`,
+even though copies of both would exist in the destination. Select an original
+removal set containing the entire cycle to remove it safely.
+
+The removal set must leave valid structural topology and preserve every outside
+file. Every surviving definition/experiment must retain all supported explicitly
+declared non-module inputs too. A shared declared test fixture or native input
+in the removal set is a blocker when a surviving consumer still requires it,
+even though that file is not a module-graph vertex. Use explicit input records,
+not guessed resource ownership or searches through C. Plain deletion does not
+repair importers, remove unrelated dependency
+modules, prune a neighbour's tests or edit dependency permissions. `--replace`
+uses the same check and grants no force-through-dangling-reference option.
+Report every blocker before mutation; do not publish the copy half of a refused
+move or destroy a destination before discovering it is protected.
+
+For copied source/configuration files, preserve every byte outside the authorized
+parsed path/selector fields: indentation, comments including path-looking text,
+literals, names, line endings and final-newline presence. Added selector lines
+obey PKG-03 and do not reformat unrelated entries. Emit source paths under
+SRC-03/SYN-06. Inactive SYN-04 drafts are copied/moved as opaque bytes and listed
+explicitly; they supply no invented parsed edges. Reject unsupported topology
+or unreadable input, but do not heuristically interpret unfinished draft text.
+
+Native `.c`, `.h`, `.abi`, `.cmake`, declared assets and other opaque accompanying
+files retain their contents. Paths embedded in C, literals, build companions
+or unknown formats are outside the rewrite contract; report that boundary and
+any declared input the final operation cannot preserve. Do not claim those
+paths were repaired or execute companions during planning. Generated outputs
+are not source references to edit: invalidate affected build artifacts, source
+maps, native prefixes and caches and regenerate through the normal build.
+Do not patch generated C or hash-derived symbols.
+
+### Publish one recoverable source transaction
 
 <a id="tool-04"></a>
 
-**TOOL-04.** Prepare and validate the complete move/edit plan before publishing
-any source changes. Reparse staged active Ama files and rebuild their resolved
-reference graph under the proposed final registry, checking TOOL-02's invariant
-and SRC-05 topology. Do not execute Ama modules or native constructors to plan
-or validate relocation. Unresolved references, collisions, inaccessible required
-files, and invalid rewritten sources abort before applying the plan.
+**TOOL-04.** Prepare and validate the complete copy/delete/move/replacement
+plan before publishing any source mutation. Reparse staged active copies and
+rebuild the final graph, checking TOOL-02's clone/surviving-reference laws,
+TOOL-03's original-graph deletion test, source/test topology and final package
+admission. Final ordinary checks still apply even if there are no incoming
+references. Do not execute Ama modules, tests, native callbacks or CMake to
+construct or validate the source-operation plan.
 
-Application requires exclusive access to the affected project state. Verify the
-planned file identities and original bytes before replacement; a changed input
-invalidates the plan rather than being overwritten. Stage replacement contents
-and preserve original files and locations in a recoverable transaction before
-the first applied change. Cover movement, edits to importers outside `S`, supported
-configuration updates, and build invalidation in the same operation. A
-copy-and-remove implementation for
-different filesystems must retain originals until its prepared replacements
-are verified; a successful rename is not assumed to cover a multi-file update.
+Record the original/final root settings, selected and excluded versions, all
+contributing configuration bytes and optional-companion presence/absence,
+registry/directory membership, parsed source bytes, copied/deleted opaque inputs
+and explicit client selections. Required local closure/configuration inputs,
+collisions, invalid rewrites and unavailable writes are preflight failures.
+A safety claim covers the supplied roots only, not unknown outside projects.
+
+Application requires exclusive access to the affected project state. Revalidate
+file identities, original bytes, configuration presence and directory membership
+before applying the plan. A newly added importer or companion invalidates the
+prepared plan just as a changed file does; checking only already listed files
+is insufficient. Do not overwrite changed inputs with a stale preview.
+
+Stage and verify copied/replacement contents and retain originals and old target
+contents in recoverable storage before any destructive step. Copy publication,
+optional destination replacement, supported configuration edits, original
+removal for a move, root-setting changes and build invalidation form one
+transaction. A different-filesystem copy-and-remove implementation retains
+originals until replacements have been verified. Neither a successful single
+rename nor an already published copy proves the whole move complete.
 
 On an ordinary apply failure, restore original paths and bytes. Persist enough
-transaction state to recover after interruption: uncommitted work rolls back,
-while committed work completes its cleanup. Recovery must be repeatable without
-losing the saved originals or applying a rewrite twice. If an I/O failure prevents
-rollback, retain the recovery data, report the incomplete transaction and affected
-paths, and do not report success. A completed report lists the final directory,
-identity map, rewritten files, preserved drafts, and rebuild requirements.
+transaction state for interruption recovery: uncommitted work rolls back,
+committed work completes cleanup. Recovery must be repeatable without losing
+saved originals, deleting an unrelated file or applying an edit twice. If I/O
+failure prevents rollback, retain recovery data, report the incomplete
+transaction and affected paths and do not report success. Cleanup touches only
+operation-owned staging/recovery data and reports a retained path on failure.
+The completed report lists final locations and identity maps, retained originals,
+removed/replaced units, configuration changes, unchanged drafts and rebuild
+requirements. No successful preview, specification example or copied file alone
+establishes implementation conformance.
 
 ## Acceptance matrix
 
@@ -442,7 +695,7 @@ evidence is historical; these target rules require new implementation evidence.
 | Selective delivery and tests | Main plus every companion and full name+/ subtree; topology-only ancestors retained without unrelated siblings; promotion to an active unit on a real dependency; mirrored tests and their helpers/data/dependencies; finite least-closure identity deduplication; required tests cannot silently disappear; no execution while fetching; direct and aliased src-to-tests imports refused while test-defined Type arguments remain usable |
 | Publication and provenance | Partial transfer where supported, operation-owned full-download fallback otherwise; overlapping selections deduplicated; staged complete publication; collisions, changed inputs, interruption and cleanup failures; content membership/commit/hash report matches the copied edition; promotion into packages preserves complete selected evidence and precedence |
 | Empty-project command | Separate ama-project init; exact Markdown scaffold; valid guidance and local links; new/existing-empty/nonempty destinations; unsupported aliases and concurrent claims; no overwrite, network, executable choice, compiler/test execution or Git initialization; preparation/publication/cleanup failure behavior |
-| Tool/compiler separation | Offline prepared compilation has no package/source mutation effects; missing local inputs report preparation need; independent command dispatch and narrow shared resolver contracts; tests run as independent microprograms with isolated outputs; relocator shares parsed path/config semantics; explicit output destinations and reproducible experiment provenance |
+| Tool/compiler separation | Offline prepared compilation has no package/source mutation effects; missing local inputs report preparation need; independent command dispatch and narrow shared resolver contracts; tests run as independent microprograms with isolated outputs; source operations share parsed path/config semantics; explicit output destinations and reproducible experiment provenance |
 
 ### CMake applications and one-shot source inclusion
 
@@ -469,8 +722,10 @@ the earlier backend evidence does not certify these newly specified modes.
 | Optimization equivalence | General and optimized plans agree on values, effects, identity/refusal/control transitions and source diagnostics; mandatory static checks still reject invalid eliminated code; internal allocation attempts may differ under GEN-03; remaining failure transitions retain cleanup guarantees |
 | Translation pipeline | Source/AST/resolved IR/storage plans remain distinct; one assembled project C translation unit; labels/explicit return links for Ama, verified inline native entries, original source maps |
 | Ama dependencies | Transitive type/constant/native closure loaded once per logical identity; shared code/constants but separate owned instances; missing/draft/duplicate dependencies diagnosed with requesting paths; no textual Ama includes or function linking |
-| Directory relocation | Physical subtree and companions moved; all active references updated including external/unreachable importers, qualified constants and configuration alias/selector fields; module path mapping, relative-base recomputation when importer/target/both move, / versus // and nested name+/ topology; selected-version precedence before and after; wildcard selection sets and src/tests direction preserved; original graph and contextual member selections retained; comments/literals/native bytes preserved; invalid/conflicting/unprovable plans rejected before mutation |
-| Relocation failure/recovery | Read-only preview and staged validation; changed input invalidates plan; no overwrite/merge; rollback includes external importer edits; cross-filesystem preparation; injected write/rename/remove failures and interruption at transaction boundaries recover without duplicate edits or lost originals; incomplete rollback retains recovery data and reports failure; affected generated outputs invalidated and rebuild required |
+| Source copy and dependency modes | Exact file/directory destinations; complete companions/subtrees and associated tests; cross-version default refusal and mutually exclusive explicit modes; clone finite ordinary source/test/static dependency closure versus retain original external targets and add only needed concrete permissions; additional source paths retain src-relative suffixes, mapped tests follow source ownership and outside test helpers retain tests-relative suffixes; overlapping-unit/map collisions refuse; standard targets remain configured separately; original definitions/importers remain unchanged; nominal clone identities differ despite equal bytes |
+| Safe deletion, movement and replacement | Check every supplied active definition, including unused/static/test dependants; internal edges of the complete removal set do not block, outside incoming edges and required shared declared inputs do; default target collision refuses with explanation; --replace obeys the same pre-replacement deletion test even for an identically named new implementation; move refuses before publication when source removal is unsafe; cloned dependency originals are not implicitly removed; cyclic worker/helper closure copies but moving only worker refuses; obsolete target children/companions are removed only as part of an authorized safe replacement |
+| Source-operation resolution and preservation | Original and final whole-version selection; augmented original conflicts; exact clone and surviving-reference laws; relative bases and shared aliases in source/destination scopes; ordinary/static/native interfaces, qualified-constant members and storage suffixes; copied versus unchanged package configurations, exact selector re-expression and explicit extension; no wildcard expansion, repository-table copying or outside importer redirection; src/tests restrictions, / versus // and name+/ topology; drafts, literals/comments and opaque native/build bytes preserved; unprovable final graph refuses |
+| Source-operation transactions | Preview/apply plan equality; offline preflight without module/test/native/CMake execution; inputs include optional-config presence, directory membership and excluded versions; a new importer/companion invalidates a stale plan; copy, replacement, permissions and move-source removal publish as one transaction; preparation/apply/cleanup failure, cross-filesystem staging, repeatable interruption recovery and incomplete-rollback reports preserve original/recovery data; no leftover copy after a refused move |
 | Compiler decomposition | Every major component has cohesive nested subcomponents, short single-operation functions, narrow declared interfaces and explicit allocation/dependency ownership |
 | Component/composite tests | Independently runnable C leaves cover meaningful parts and assembled parents; real cross-component handoffs and generated-C integration tested; dependency changes invalidate generated artifacts |
 | Exact algorithms and justification | No heuristic decisions; complete component contracts and reviewable mathematical/algebraic arguments; invariant, boundary, failure and composition tests under ARCH-05/ARCH-06 and TEST-08 |

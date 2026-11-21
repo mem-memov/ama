@@ -7844,3 +7844,77 @@ T201. Specification bytes have not changed.
   preserve their current source-only absence; actual alias-aware relocation
   transport/rewrite remains T224/T232 integration work. No whole-sprint/full-test
   conformance claim or fingerprint renewal follows this component task.
+
+<a id="t268"></a>
+
+- [x] **T268 — Specify explicit source cloning, safe deletion and replacement.**
+  Status: accepted specification amendment and consistency review. Prerequisites:
+  T230 and the explicit user decisions/authorization in
+  [AMB-017](AMBIGUITIES.md#amb-017) and [AMB-018](AMBIGUITIES.md#amb-018).
+  The user approved dependency cloning into the destination package, safe
+  `--replace`, the canonical amendment, and preservation of extra dependencies'
+  original src-relative suffixes. No renewed specification permission was needed.
+
+  Scope/steps: amend TOOL-01..04 and linked package/project explanations,
+  requirement navigation, roadmap and acceptance scenarios; record the exact
+  policy, reconcile graph/selector/deletion invariants, review canonical
+  cross-references and archive this documentation task independently of T232.
+  The original ambiguity stopped affected implementation; its narrower placement
+  question was recorded before choosing any new path policy, then explicitly
+  answered. Both entries now preserve those answers and their canonical result.
+
+  Result: the commands are explicit copy/delete/move. Cross-package copying
+  requires mutually exclusive `--copy-dependencies` or `--extend-package`;
+  existing destinations require `--replace`. Cloning uses one injective
+  selected-tree/extra-dependency map and complete source/test units; originals
+  retain their bindings. Extra source dependencies preserve full src-relative
+  paths, associated tests follow mapped sources, and incompatible overlapping
+  maps/collisions refuse. Config extension adds only concrete missing permissions
+  for actual outgoing source/test edges. Standard dependencies stay in `//`.
+  Delete, target replacement and move-source removal share the original-graph
+  outside-dependant check and preserve surviving explicitly declared inputs.
+  Move prepares copying and safe deletion as one recoverable transaction; it
+  does not silently remove cloned dependency originals or retarget importers.
+  Membership/configuration revalidation catches newly added importers as well
+  as changed bytes. Native/build files and inactive drafts retain their opaque
+  boundary; no code, tests, callbacks or CMake run during source-operation planning.
+
+  Motivation, a path diagram, ordinary Ama before/after fragments and the exact
+  package.ini example explain both modes. PKG-07 scopes unchanged placement and
+  original configuration to identity-preserving delivery, while whole-version
+  source copying has an explicit configuration boundary. The four TOOL IDs and
+  241 total canonical requirements remain stable. EBNF is unchanged because
+  no Ama source-language production changes. T224 now consumes T235's complete
+  closure, after T239's native-input foundation; no prerequisite cycle is added.
+
+  Independent consistency review corrected obsolete global importer rewriting,
+  unconditional destination refusal, selector-addition prohibition and broad
+  acquisition-placement wording. It also checked multi-version mapped edges,
+  shared-resource removal, source/test directory ownership, ignored-source
+  selection and whole-version configuration scope. No remaining contradictory
+  source-operation requirement was found in the reviewed canonical chapters.
+
+  Acceptance: `git diff --check` passes. Read-only checking with the repository's
+  actual pinned Markdown parser, parsed heading/HTML anchors and canonical
+  Registry covers all 28 spec Markdown files: 922 local links, 758 fragments,
+  553 exact rule references and 241 unique canonical definitions, zero errors;
+  five external URLs are outside this local check. TODO prerequisite extraction
+  with range expansion and DFS found 28 active tasks, 74 prerequisite edges
+  (56 between active tasks), no missing task IDs and no cycles before archival.
+  Canonical registry reproduction from the repository root:
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=tools/documentation python3 -c 'from pathlib import Path; from linking.registry import Registry; print(len(Registry(Path.cwd()).rules))'`.
+
+  `make docs` exited zero in isolated
+  `/tmp/ama-t268-review-4j5oooe2/checkout`, based on
+  `2017df201023b2617b1adfacd1e1bbaa7de3715a` plus this task's documentation
+  overlay, excluding all incomplete T232 code edits. The full gate checked
+  3227 ready maintained inputs with zero debts, 2431 file pages, 9373 interfaces
+  and 488/488 canonical destinations. Log: `/tmp/ama-t268-documentation.log`.
+  Doxygen is 1.11.0 and markdown-it-py is 3.0.0. Final documentation is regenerated
+  with the supported `python3 tools/documentation/build.py --doxygen doxygen`
+  after this narrative archival, with unchanged accepted implementation inputs
+  and final generated-manifest/staged-input agreement required before commit.
+  This is documentation acceptance, not compiler/tool implementation acceptance:
+  T232 remains unfinished and uncommitted, T224 owns the current source-operation
+  implementation, and T237 owns whole-sprint conformance renewal. No runtime or
+  full-project regression pass or refreshed conformance fingerprint is claimed.

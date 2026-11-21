@@ -8,10 +8,14 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
-[AMB-016](#amb-016) is resolved by the user decision and explicit specification
-authorization. [T264](DONE.md#t264) records the canonical amendment; T232 owns implementation.
-Standard definitions must not author ordinary dependencies; caller-supplied
-ordinary Types/Templates remain permitted.
+[AMB-017](#amb-017) and [AMB-018](#amb-018) have user-approved decisions and
+explicit specification authorization: separate
+copy/delete/move commands, opt-in dependency cloning or package.ini extension,
+default cross-package refusal, safe explicit replacement and original src-relative
+placement for extra dependency clones. T268 updates TOOL-01..04 and their linked
+package/tool contracts; T232/T224 do not yet claim implementation support.
+
+[AMB-016](#amb-016) is resolved; [T264](DONE.md#t264) records its canonical amendment.
 
 ## Template design decisions
 
@@ -1198,3 +1202,151 @@ Each entry must contain:
   authorizes the PKG-05 amendment, linked grammar constraints/examples and
   acceptance scenarios, then continued planned implementation. T264 changes
   those canonical documents; no further permission is needed for that scope.
+
+<a id="amb-017"></a>
+
+## AMB-017 — Implicit same-version permissions after a cross-package move
+
+- **Status:** Resolved by user decision; T268 specifies the policy together with
+  the accepted [AMB-018](#amb-018) placement rule.
+- **Task:** [T232](TODO.md#t232), actual shared-resolver/mover composition;
+  [T224](TODO.md#t224) owns complete relocation configuration editing.
+- **Authority at discovery:** [PKG-05](spec/project/packages.md#pkg-05) allows references
+  inside one version without a dependency entry, but requires external selectors.
+  [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01) supports moves
+  between roots/namespaces when required changes are possible.
+  [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02) requires mapped
+  reference-graph preservation, configuration planning and exact preservation of
+  selector sets. [TOOL-03](spec/implementation/tools-and-conformance.md#tool-03)
+  limits unrelated byte changes. [TOOL-04](spec/implementation/tools-and-conformance.md#tool-04)
+  requires the final staged program to pass dependency checks before mutation.
+- **Minimal example:** package A has `/acme/a/v1.0.0/src/caller` and
+  `/acme/a/v1.0.0/src/worker`, with an empty package.ini. `caller` explicitly uses
+  `worker`. This is valid under PKG-05. Move `worker` to
+  `/acme/b/v1.0.0/src/worker`. The mapped caller edge must use B, but A now lacks
+  permission for that external dependency. There was no explicit selector span
+  or nonempty selected set to rewrite. The same issue arises for worker's own
+  outgoing dependencies that used to be inside A and remain there after worker moves.
+- **Precise question:** may relocation add dependency entries to the applicable
+  package.ini files to compensate for previously implicit same-version access?
+  If yes, clarify that this is distinct from preserving existing explicit selector
+  sets; if no, require refusal unless the existing mapped explicit selectors
+  already authorize every final edge. Do not silently expand masks or permissions.
+- **Original option 1:** retain exact mapping of existing explicit selector
+  sets and additionally add only concrete finite module-unit selectors needed for
+  preserved edges whose permission was implicit before the move. Apply normal
+  PKG-07/08 unit/test coverage, canonical exact identities and no new downloads.
+  Edit only writable affected configurations, validate the complete staged graph,
+  and refuse if a required update cannot be made. This makes the common move work
+  without requiring redundant self-dependencies beforehand. The specification must
+  explicitly authorize new records as necessary configuration edits.
+- **Option 2:** do not introduce selectors. Refuse when final dependency coverage
+  is missing. A user can explicitly select the formerly local target before the
+  move; its selected set can then map to the external location. A wildcard pointing
+  only to a nonexistent future location does not solve strict set preservation:
+  its original empty selection cannot silently become a new nonempty set.
+- **User design directions (current conversation):** the user requested a copy
+  command, a separate deletion command that refuses when the deleted module has
+  dependants, and a move composed of copying and deletion with the same refusal
+  rule. The user then proposed two explicit cross-package modes: copying with all
+  dependencies, or copying without dependency modules while extending package.ini;
+  the default should refuse such copying. In the latest instruction, the user
+  requested refusal with an explanation when the destination already contains a
+  same-named module, plus an explicit force-replacement flag that deletes it.
+  These directions are recorded separately from the original alternatives;
+  the accepted resolution below and AMB-018 now define their canonical replacement.
+- **Accepted resolution and source (current conversation):** the user answered:
+  "Да, клонирование в первом режиме понято верно. Нужно сохранить правило
+  безопасного удаления и для `--replace`. Твоё предложение принимаю. Внеси
+  изменения в спецификацию и проверь её согласованность."
+  This accepts the immediately preceding proposal: `--copy-dependencies` clones
+  ordinary dependency modules into the destination package with fresh complete
+  identities; originals and their importers remain. `--extend-package` instead
+  copies only the selected units/tests/companions, preserves outgoing references
+  to original dependencies and adds their necessary explicit permissions to the
+  destination package.ini. These modes are mutually exclusive; cross-package
+  copying without a mode refuses. An existing target refuses with an explanation
+  unless `--replace` is explicit. Replacement still refuses incoming dependencies
+  from outside its deletion set. Move composes copying with the same safe deletion
+  of the original; flags do not bypass that check. Preparation/validation precedes
+  deletion and preserves original files on refusal.
+- **Specification authorization:** the quoted answer explicitly authorizes this
+  canonical amendment and consistency review. T268 owns it; there is no need to
+  ask for that authorization again. The separately accepted [AMB-018](#amb-018)
+  determines extra dependency placement when the selected source changes its
+  internal path.
+- **Evidence:** T232 actual scoped-loader tests pass strict profiles, own alias
+  environments, relative/alias normalization, standard isolation, cross-version
+  selector checks, src/test refusal and allocation sweeps. Existing reference and
+  staging fixture runs (`/tmp/ama-t232-reference-contexts.log`,
+  `/tmp/ama-t232-staged-contexts.log`) expose older cross-package fixtures with no
+  initial selector declarations; those initial fixtures must be made valid in
+  either option. The additional final-state permission problem above follows
+  directly from the minimal valid same-version example, not from interpreting
+  those initial harness failures as successful evidence of either choice.
+- **Canonical result:** T268 replaces global importer rewriting with separate
+  original/clone graph laws in TOOL-02, adds the explicit modes and replacement
+  boundary in TOOL-01, safe removal in TOOL-03 and a single recoverable source
+  transaction in TOOL-04. PKG-07 distinguishes identity-preserving delivery from
+  identity-changing source operations. Examples, navigation and acceptance
+  scenarios follow the same contract. T232/T224 remain implementation owners;
+  design approval is not implementation acceptance.
+
+<a id="amb-018"></a>
+
+## AMB-018 — Destination paths for dependencies outside the selected clone tree
+
+- **Status:** Resolved by user decision and T268's canonical amendment.
+- **Task:** [T268](DONE.md#t268), authorized source-operation specification
+  amendment; also blocks affected T232/T224 composition.
+- **Authority at discovery:** the accepted [AMB-017](#amb-017) policy requires dependency
+  clones in the destination package. [PKG-01](spec/project/packages.md#pkg-01)
+  and [SRC-06](spec/language/source-and-names.md#src-06) make exact path components
+  part of identity. [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
+  supplies an exact destination for the selected source tree, but no location
+  for extra dependency units outside that tree.
+  [PKG-07](spec/project/packages.md#pkg-07) and
+  [PKG-08](spec/project/packages.md#pkg-08) determine complete units and tests;
+  their acquisition rule preserves original package placement rather than
+  defining a fresh intra-package destination.
+- **Minimal example:** the selected module is
+  `/acme/a/v1.0.0/src/old/worker`; it explicitly uses
+  `/acme/a/v1.0.0/src/old/helper`. Clone only worker to
+  `/acme/b/v1.0.0/src/new/worker` with `--copy-dependencies`.
+  Both original units have valid associated tests. Helper is outside the
+  selected worker unit, so the requested physical subtree map does not place it.
+  Keeping its source-package-relative suffix gives
+  `/acme/b/v1.0.0/src/old/helper`; preserving its sibling relationship gives
+  `/acme/b/v1.0.0/src/new/helper`. Both can preserve the copied reference graph,
+  but they produce different observable paths and nominal types.
+- **Precise question:** for each additional dependency outside the explicitly
+  selected tree, preserve its original `src`/`tests` relative suffix under the
+  destination version, or derive a different path from the selected unit's move?
+  The earlier approved root-level worker/helper example cannot distinguish them.
+- **Accepted placement rule:** the explicitly selected tree follows
+  its exact requested destination. An extra ordinary source dependency preserves
+  its complete suffix after `src` under the destination version. Its associated
+  tests follow PKG-08's association with that mapped source; tests/support inputs
+  must retain a consistent, explicitly validated map. Dependencies already in the
+  selected tree follow that tree's map rather than being copied a second time.
+  Collisions never trigger automatic renaming or merging; normal refusal/safe
+  `--replace` rules apply. Standard modules remain in the separate configured
+  namespace.
+- **Accepted answer and source (current conversation):** the user answered
+  "Согласен с первым вариантом." to the explicit choice between preserving
+  `src/old/helper` and preserving sibling placement as `src/new/helper`. The
+  first variant is accepted: additional source dependencies preserve their full
+  src-relative paths in the destination package, while tests follow their mapped
+  source modules and dependencies within the selected tree follow that tree.
+  AMB-017's explicit specification authorization remains applicable.
+- **Review evidence:** read-only review found that both locations satisfy the
+  approved simple example and that existing acquisition placement rules do not
+  choose one. The required canonical changes are TOOL-01..04, PKG-07's delivery
+  scope, linked project-tool summaries/index/roadmap and acceptance scenarios.
+  No language-source syntax changes, code execution or guessed path mapping is
+  needed for that documentation amendment.
+- **Canonical result:** [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02)
+  defines the selected-tree and additional-dependency map, mirrored source tests,
+  extra test helpers, injectivity and refusal of conflicting overlapping unit
+  mappings. T232/T224 remain incomplete implementation owners; this decision
+  alone establishes no compiler or project-tool support.

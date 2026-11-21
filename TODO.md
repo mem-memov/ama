@@ -73,7 +73,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T268**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T269**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -148,9 +148,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 
 - [ ] **T232 — Implement shared configuration, scoped aliases and normalization.**
   Prerequisites: T231, T222, T259, T260, T261, T262, T265, T266 and T267.
-  Status: active after T264's authorized AMB-016 amendment and completed
-  foundations T260/T261/T263/T262. Preserve standard isolation and caller-origin
-  Type/Template provenance through integration.
+  Status: active; [T268](DONE.md#t268) specifies the accepted AMB-017/018 source-operation
+  policy. No semantic clarification remains pending at this boundary.
+  Core scope/path/selector integration is in progress, uncommitted;
+  do not mark complete or skip to another task. Preserve caller-origin provenance.
   Contract/steps: [project configuration](docs/implementation/project-configuration.md).
   Implement PKG-03/04 and SRC-06 through narrow
   UTF-8/INI, table/scope, parsed-path and normalization components shared by
@@ -176,17 +177,23 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 
 <a id="t224"></a>
 
-- [ ] **T224 — Add relative module paths and support them in directory relocation.**
+- [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
   Status: agreed target, transferred from BACKLOG by T230; implementation now
-  authorized, awaiting prerequisites T232, T233. Rules: SRC-06, PKG-04/09,
+  authorized, aligned with the AMB-017/018 decisions by T268; awaiting
+  prerequisites T232, T233 and T235. Rules: SRC-06, PKG-04/09,
   PROJECT-01 and TOOL-01..04. Use the shared parsed configuration/path resolver;
-  recompute references when importer, target or both move, including external
-  importers, aliases and selector sets. Preserve whole-version selection,
-  static-name identity, member selection, drafts and all unrelated bytes.
-  Accept preview/preflight/apply and recoverable failure tests for namespace
-  switches, nested name+/, multiword/Unicode names, shared aliases, config bases,
-  source/test boundaries and exact graph/set preservation. No guessed mask or
-  textual-prefix rewrite is allowed; unprovable plans fail before mutation.
+  expose explicit copy/delete/move, dependency cloning or package.ini extension,
+  and safe --replace. Use T235's complete source/test closure. Map the selected
+  tree and extra src/test dependencies exactly, preserve original importers,
+  and reject outside incoming dependencies before source/target deletion.
+  Preserve whole-version selection, static-name identity, member selection,
+  drafts and unrelated bytes. Accept preview/apply, nested name+/ topology,
+  namespace/source-test boundaries, aliases/config scopes, exact selector sets
+  and explicit additions; exercise cycles, collisions, shared declared inputs,
+  stale directory membership and recoverable cross-filesystem failure. Replace
+  superseded importer-rewriting behavior and its dedicated tests; retain shared
+  resolver foundations with current consumers. No guessed mask/prefix rewrite,
+  implicit acquisition or partial copy after move refusal is allowed.
 
 <a id="t234"></a>
 

@@ -414,7 +414,7 @@ you need the model, examples, or reasons behind a rule.
 
 | Requirement | Chapter section |
 |---|---|
-| [TOOL-01](implementation/tools-and-conformance.md#tool-01) | Move a source directory through resolved identities |
-| [TOOL-02](implementation/tools-and-conformance.md#tool-02) | Compute the complete identity mapping |
-| [TOOL-03](implementation/tools-and-conformance.md#tool-03) | Preserve bytes outside rewritten paths |
-| [TOOL-04](implementation/tools-and-conformance.md#tool-04) | Publish the move as a recoverable transaction |
+| [TOOL-01](implementation/tools-and-conformance.md#tool-01) | Choose an explicit source operation |
+| [TOOL-02](implementation/tools-and-conformance.md#tool-02) | Map copied definitions and dependency permissions |
+| [TOOL-03](implementation/tools-and-conformance.md#tool-03) | Preserve source units and refuse unsafe deletion |
+| [TOOL-04](implementation/tools-and-conformance.md#tool-04) | Publish one recoverable source transaction |

@@ -77,9 +77,11 @@ The test `empty input` has the distinct name
 This chapter defines project layout, configuration and source delivery.
 [Source paths](../language/source-and-names.md#src-01) define path recognition
 and normalization; [project tools](../implementation/project-tools.md) define
-the separate commands that prepare a project. These are target contracts.
-Examples and task records do not claim that the compiler or tools already
-implement them.
+the separate commands that prepare a project. Acquisition delivers existing
+identities; explicit [source copy and movement](../implementation/tools-and-conformance.md#directory-relocation-utility)
+can create new identities under their chosen dependency policy. These are
+target contracts. Examples and task records do not claim that the compiler or
+tools already implement them.
 
 ## Project storage and complete module names
 
@@ -520,10 +522,11 @@ ancestor, promote it to an active unit. Then include its complete subtree,
 dependencies and associated tests normally. The role follows explicit request,
 resolved graph edges and physical ancestry, not an estimate of likely use.
 
-Preserve relative physical names, file contents and package placement. Retain
-the original package-version `package.ini`; do not rewrite it into a guessed
-summary of the current use. If the exact file `README.md` exists at that same
-version root, also retain it byte for byte with any selection from the version.
+For identity-preserving acquisition or promotion, preserve relative physical
+names, file contents and package placement. Retain the original package-version
+`package.ini`; do not rewrite it into a guessed summary of the current use.
+If the exact file `README.md` exists at that same version root, also retain it
+byte for byte with any selection from the version.
 This is optional package guidance, not an Ama source/configuration input or a
 condition for compilation. Absence is permitted, and tools must not invent an
 instruction file or search other versions or ancestor directories for one.
@@ -539,11 +542,26 @@ identified by a supported explicit input declaration or supplied by the caller
 as a separately identified external test input. Missing declared inputs are
 errors; tools must not silently substitute an unrelated file.
 
-Only needed external code is materialized under the finite closure of PKG-08.
-This does not weaken the complete-unit rule: selecting one needed module can
-bring its whole submodule tree, including children that are not on a particular
-call path. Files required to repeat tests are required inputs even when they
-are unnecessary to the production executable.
+For acquisition, only needed external code is materialized under the finite
+closure of PKG-08. This does not weaken the complete-unit rule: selecting one
+needed module can bring its whole submodule tree, including children that are
+not on a particular call path. Files required to repeat tests are required
+inputs even when they are unnecessary to the production executable.
+
+Explicit source copying and movement under
+[TOOL-01 through TOOL-04](../implementation/tools-and-conformance.md#directory-relocation-utility)
+also preserve complete source units, companions and applicable tests, but may
+create new module identities. Their exact destination map, allowed path rewrites
+and dependency permission edits are defined by
+[TOOL-02](../implementation/tools-and-conformance.md#tool-02). These operations
+do not install an origin version's `package.ini` over an existing destination
+version's configuration or merge origin alias/repository tables into its scope
+when copying selected units. An explicitly selected whole-version tree carries
+its own configuration; TOOL-02 defines its exact re-expression in the copied
+version. Resolve
+original definitions in their original scopes during preparation; check copied
+definitions in the destination version's scope, preserving
+[PKG-02](#pkg-02), [PKG-04](#pkg-04) and [PKG-06](#pkg-06).
 
 ## Keeping the experiments with the code
 

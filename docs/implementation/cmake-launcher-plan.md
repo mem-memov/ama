@@ -49,7 +49,7 @@ correctly refuses its older specification fingerprints.
 | [T232](../../TODO.md#t232) | Shared prepared-project/configuration/alias resolution | Required before companion selection or build identity |
 | [T221](../../TODO.md#t221), [T226](../../TODO.md#t226) | Marker admission and fully concrete declaration Type expressions | Required before entry/transport and specialization closure claims |
 | [T233](../../TODO.md#t233) | Independent project-command/process boundary, guided projects and isolated test orchestration | Required before new build adapters; does not wait for their final runner |
-| [T234](../../TODO.md#t234), [T235](../../TODO.md#t235), [T224](../../TODO.md#t224), [T236](../../TODO.md#t236) | Exact selection, source/test closure, relocation and snapshot acquisition/promotion | Required for final delivered-dependency/test workflows; acquisition is not a side effect of build |
+| [T234](../../TODO.md#t234), [T235](../../TODO.md#t235), [T224](../../TODO.md#t224), [T236](../../TODO.md#t236) | Exact selection, source/test closure, explicit source copy/safe deletion/movement and snapshot acquisition/promotion | Required for final delivered-dependency/test workflows; acquisition is not a side effect of build |
 
 The first implementation prerequisites remain T231, T222 and T232 in that
 order. T244 can establish the new component contracts before them, using current
@@ -116,7 +116,9 @@ Use the following prerequisites rather than numeric sorting.
 | 19 | T237 | Existing project/path prerequisites plus T242 | Whole-sprint current conformance, clean release and documentation delivery |
 
 The selection/acquisition branch remains
-`T234 -> T235 -> T236`, with T239 required by T235 and T224 required by T236.
+`T234 -> T235 -> T224 -> T236`, with T239 required by T235. T268's AMB-017/018
+amendment makes source cloning consume the same complete source/test closure;
+it does not authorize an incomplete mover or external-importer rewriting.
 T233's independent test orchestration must not depend on T242: that would create
 a cycle. T242 connects it to the accepted CMake runner after both sides exist.
 

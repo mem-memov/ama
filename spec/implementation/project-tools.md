@@ -13,9 +13,9 @@ In this chapter:
 
 The compiler answers whether prepared Ama definitions form a valid program and
 how to translate that program. Preparing a checkout, downloading a dependency,
-moving sources and running experiments are separate jobs. Keeping them separate
-makes a compiler invocation predictable and lets the semantic playground compose
-the same small operations as a person working from a terminal.
+copying or deleting sources and running experiments are separate jobs. Keeping
+them separate makes a compiler invocation predictable and lets the semantic
+playground compose the same small operations as a person working from a terminal.
 
 This chapter specifies the target tools. It does not assert that the current
 compiler or an existing command implements the new project model.
@@ -39,17 +39,17 @@ configuration, alias companions and required native inputs. It applies
 [source resolution](../language/source-and-names.md#src-06), type and lifecycle
 checks, and emits only the explicitly requested compilation outputs. It MUST NOT
 download or update dependencies, change repositories or source configuration,
-create project scaffolding, run module tests or move source trees as an implicit
+create project scaffolding, run module tests or mutate source trees as an implicit
 part of compilation. Missing local modules produce diagnostics identifying the
 unresolved identity and the explicit preparation operation needed; compilation
 does not silently repair its inputs through the network.
 
 Project operations include explicit initialization, dependency acquisition,
-source relocation, explicit CMake-backed build/run and test execution. Their
-source boundaries separate command parsing, planning, read-only validation,
-transport/process adapters, publication and cleanup. A package operation MUST
-NOT become a collection of branches inside
-the compiler driver. The compiler's supported low-level C-toolchain invocation
+source copy, safe deletion and movement, explicit CMake-backed build/run and
+test execution. Their source boundaries separate command parsing, planning,
+read-only validation, transport/process adapters, publication and cleanup. A
+package operation MUST NOT become a collection of branches inside the compiler
+driver. The compiler's supported low-level C-toolchain invocation
 remains part of explicit compilation and does not grant package-management
 effects. High-level CMake orchestration belongs to `ama-project` under
 [BUILD-01 through BUILD-05](application-builds.md). Generation-only compilation
@@ -57,10 +57,19 @@ does not execute authored build instructions. Native dependency discovery is
 delegated to explicitly invoked CMake and authored companions, rather than
 performed by the Ama compiler through C header or binary inspection.
 
-The directory mover is owned by the project-tool boundary and follows
-[TOOL-01 through TOOL-04](tools-and-conformance.md#directory-relocation-utility).
-It uses the same parsed path/configuration structures and resolver as compilation
-and acquisition; it must not implement a second interpretation of Ama paths.
+Source operations are owned by the project-tool boundary:
+
+```sh
+ama-project copy SOURCE DESTINATION
+ama-project delete SOURCE
+ama-project move SOURCE DESTINATION
+```
+
+[TOOL-01 through TOOL-04](tools-and-conformance.md#directory-relocation-utility)
+define their filesystem arguments, explicit cross-package dependency policies,
+safe deletion and replacement, and recoverable publication. These operations use
+the same parsed path/configuration structures and resolver as compilation and
+acquisition; they must not implement a second interpretation of Ama paths.
 Native authoring scaffolds, source inspection and editor adapters likewise use
 explicit tool entry points and read-only compiler interfaces rather than implicit
 compilation side effects.
@@ -69,6 +78,13 @@ compilation side effects.
 change the meaning of compiling an already prepared project. Separate commands
 also allow a playground to prepare once and compare several compiler invocations
 or algorithm variants against precisely the same inputs.
+
+**Example: retaining an experiment.** Copying an algorithm into another package
+version can create a separately maintained experiment, with its source units and
+associated tests. Its dependency policy is an explicit source-operation choice
+under [TOOL-02](tools-and-conformance.md#tool-02). Existing callers of the original
+algorithm keep their authored targets; removing the original requires the
+safe-deletion check under [TOOL-03](tools-and-conformance.md#tool-03).
 
 ## A small command for starting a project
 
@@ -201,6 +217,7 @@ no hidden download/update/test effects, shared resolver agreement across tools,
 the init file set and guidance, new/existing-empty/conflicting destinations,
 publication and cleanup failures, concurrent destination claims, selective
 source-and-test acquisition, independently executable tests and provenance that
-matches the actual inputs. Source mutation tests use the mover's preview,
-preflight, recovery and graph-preservation obligations rather than text-search
-substitution.
+matches the actual inputs. Source mutation tests cover copy, safe deletion and
+movement, including their explicit dependency modes, replacement refusals,
+offline preflight, reference mapping and recovery obligations under
+[TOOL-01 through TOOL-04](tools-and-conformance.md#directory-relocation-utility).

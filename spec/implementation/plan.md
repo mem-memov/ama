@@ -186,8 +186,9 @@ README, generated ABI headers, derived documentation and contributor instruction
 together. Canonical specification changes still need prior explicit user
 authorization; do not modify it to match implementation limitations. Publish
 explicit limitations and supported toolchain versions.
-Deliver the directory relocation utility and its source-graph, preservation,
-rollback, and recovery evidence under TOOL-01 through TOOL-04.
+Deliver source copy, safe deletion and movement with source-graph, preservation,
+rollback and recovery evidence under
+[TOOL-01 through TOOL-04](tools-and-conformance.md#directory-relocation-utility).
 
 Deliverable: a reproducible build with a conformance report, not merely a working demo.
 
@@ -281,19 +282,27 @@ definition's explicit source/test dependencies under PKG-09.
 
 Keep project commands separate under
 [PROJECT-01 through PROJECT-03](project-tools.md). Deliver the empty-project
-command and its Markdown guidance, then update the directory mover for relative
-and aliased references/configurations. Define and test the selector matcher and
+command and its Markdown guidance. Define and test the selector matcher and
 repository router before transport. Build exact source/test closure and
 topology-only context handling before implementing partial acquisition,
 operation snapshots, staged publication, cleanup and reproducibility reports.
+Use those same resolution and closure foundations for explicit source copy,
+safe deletion and movement under
+[TOOL-01 through TOOL-04](tools-and-conformance.md#directory-relocation-utility).
+Cover relative and aliased references, destination configuration scopes,
+dependency cloning or explicit permission extension, and prepared copy plus
+safe deletion as one move transaction.
 The runner executes each test as an independently compiled microprogram; the
 fetcher never executes downloaded code.
 
 End-to-end acceptance must prepare, compile and test a dependency-only project,
-promote a selected version into packages, relocate a source/alias user and
-repeat an experiment from its recorded inputs. Cover offline compilation,
-cross-version conflicts, src-to-tests refusals, injected test types, selector
-depth/variant boundaries, changed remote snapshots and publication failures.
+promote a selected version into packages, copy a source/alias user with each
+explicit dependency policy, refuse unsafe deletion/replacement, move an
+unreferenced source unit and repeat an experiment from its recorded inputs.
+Cover offline compilation and source-operation preflight, cross-version
+conflicts, source/test destination maps, src-to-tests refusals, injected test
+types, selector depth/variant boundaries, changed remote snapshots and
+publication failures.
 Implementation and conformance evidence for earlier stages remain historical
 until these revised target contracts pass the current acceptance matrix.
 

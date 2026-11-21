@@ -17,6 +17,9 @@ whole-version local precedence, package.ini and module.ini aliases, dependency
 masks, repository bindings and the source-plus-test delivery boundary. Continue
 with [project tools](implementation/project-tools.md) for explicit preparation,
 repeatable experiments and `ama-project init DESTINATION` with Markdown guidance.
+The [source operations](implementation/tools-and-conformance.md#directory-relocation-utility)
+define explicit `copy`, `delete` and `move` commands, dependency policies for
+cross-package copies, safe replacement and recoverable transactions.
 The [CMake build chapter](implementation/application-builds.md) explains native
 `module.cmake` companions, commented scaffolds and one-command build/run.
 The [launcher chapter](implementation/launch-and-embedding.md) defines exact
@@ -109,7 +112,7 @@ program is well typed and what happens when it executes.
 | [Ama components in C](implementation/c-library.md) | Exported C interfaces, static/shared packaging, source inclusion, checked host objects, and use inside another Ama native module |
 | [Compiler](implementation/compiler.md) | Resolution, typed IR, generated C, component boundaries, and exact algorithms |
 | [Diagnostics](implementation/diagnostics.md) | Expected refusals, fatal failures, status values, and execution traces |
-| [Tools and conformance](implementation/tools-and-conformance.md) | Deliverables, tests, relocation tooling, and acceptance scenarios |
+| [Tools and conformance](implementation/tools-and-conformance.md) | Deliverables, tests, source copy/safe deletion/movement, and acceptance scenarios |
 | [Implementation roadmap](implementation/plan.md) | An informative order of work, not an additional definition of the language |
 | [Requirement index](requirements.md) | Stable requirement identifiers and their canonical chapters |
 
