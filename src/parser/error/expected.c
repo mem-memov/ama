@@ -4,6 +4,8 @@
  *
  * [COMP-04](../../../spec/implementation/compiler.md#comp-04)
  * Compile-time table cardinality prevents missing keys; current grammar extensions remain explicit TODO tasks.
+ * [REF-01](../../../spec/language/values-and-references.md#ref-01) requires the
+ * acquisition hint to describe an owned operand separated by one ASCII space.
  */
 #include "error.h"
 
@@ -19,7 +21,7 @@ const char *parser_expected_text(ParserExpectation expectation) {
         "a complete Unicode name with compact reference, list or named-index suffixes",
         "a Project or Standard qualified constant, optionally ending in []",
         "a module path followed by a slash and a complete constant name",
-        "an adjoining owned instance access after &",
+        "an owned instance access separated from & by one ASCII space",
         "a scalar owned or reference access",
         "name, name&, name[] or name&[]",
         "a simple module path or Type placeholder at the declaration's indentation",

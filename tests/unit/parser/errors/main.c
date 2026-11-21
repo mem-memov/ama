@@ -94,11 +94,28 @@ static void it_produces_valid_diagnostics_for_every_truncated_byte_prefix(void) 
     free(prefix);
 }
 
+/** Malformed acquisitions must explain the current operand separator rather than suggest obsolete joined syntax. */
+static void it_reports_separated_owned_access_for_invalid_reference_acquisition(void) {
+    const char *invalid[] = {"@!\nreceiver\n & target&", "@!\nreceiver\n & values[]",
+        "@!\nreceiver\n & targets&[position]"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
+        setup_tree();
+        assert(parse_text(invalid[index]) == PARSE_INVALID);
+        assert(module.error.expected == EXPECT_OWNED_ACCESS);
+        assert(strstr(module.error.diagnostic.expected, "one ASCII space") != NULL);
+        assert(strstr(module.error.diagnostic.expected, "adjoining") == NULL);
+        assert(diagnostic_valid(&module.error.diagnostic));
+        assert(module.error.diagnostic.primary.span.start == strlen("@!\nreceiver\n "));
+        destroy_tree();
+    }
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_reports_separated_owned_access_for_invalid_reference_acquisition();
     it_reports_specific_expected_constructs_at_exact_source_offsets();
     it_provides_exact_help_and_never_uses_names_to_reclassify_syntax();
     it_keeps_layout_and_utf8_failures_in_the_same_structured_error_contract();

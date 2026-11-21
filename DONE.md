@@ -7507,3 +7507,29 @@ T201. Specification bytes have not changed.
   interruption. These failures are not accepted documentation evidence.
   Commit requires successful
   generation, unchanged rendered input fingerprints and staged-diff review.
+
+<a id="t259"></a>
+
+- [x] **T259 — Align reference-acquisition diagnostic guidance with T222.**
+  Completed 2026-11-21. Prerequisite: T222 (`ddd055d`). During the T232 boundary
+  review, the retained `EXPECT_OWNED_ACCESS` description still said an operand
+  adjoins its prefix. Corrected it to describe one ASCII space under
+  [REF-01](spec/language/values-and-references.md#ref-01); no grammar, expectation
+  key, source span, acceptance or runtime behavior changes. The fixed table keeps
+  its existing cardinality and bounds checks. Added the canonical rule link to
+  the compiler purpose comment.
+  Added `it_reports_separated_owned_access_for_invalid_reference_acquisition`:
+  actual parsing of reference-to-reference, whole-list and indexed-reference
+  acquisitions must report the owned-access expectation at the source ampersand,
+  mention the required single ASCII space, and never suggest adjoining syntax.
+  This checks observable guidance independently of the table's exact sentence.
+  Registered the case for both maintained code inputs.
+  Acceptance: `make -C tests/unit/parser/errors` and
+  `make -C tests/unit/parser/sources` passed, repeated against the final commented
+  source. Logs `/tmp/ama-t259-parser-errors-final.log` and
+  `/tmp/ama-t259-parser-sources-final.log` (exit 0).
+  Delivery gate: run `make docs` against this final archive state, log
+  `/tmp/ama-t259-documentation.log`, and require successful per-file/Doxygen
+  validation, matching input/staged fingerprints and clean staged diff before
+  committing. Full-sprint conformance remains T237; the existing T226 census
+  gate is unchanged.

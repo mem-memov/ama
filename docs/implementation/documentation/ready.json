@@ -13805,6 +13805,11 @@
         "case": "it_unwinds_every_composed_source_to_ast_allocation_failure",
         "command": "make -C tests/unit/parser/composition",
         "source": "tests/unit/parser/composition/main.c"
+      },
+      {
+        "source": "tests/unit/parser/errors/main.c",
+        "case": "it_reports_separated_owned_access_for_invalid_reference_acquisition",
+        "command": "make -C tests/unit/parser/errors"
       }
     ]
   },
@@ -47238,6 +47243,11 @@
         "case": "it_produces_valid_diagnostics_for_every_truncated_byte_prefix",
         "command": "make -C tests/unit/parser/errors",
         "source": "tests/unit/parser/errors/main.c"
+      },
+      {
+        "source": "tests/unit/parser/errors/main.c",
+        "case": "it_reports_separated_owned_access_for_invalid_reference_acquisition",
+        "command": "make -C tests/unit/parser/errors"
       }
     ]
   },
