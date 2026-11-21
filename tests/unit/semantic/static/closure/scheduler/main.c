@@ -145,7 +145,15 @@ static void it_preserves_independent_root_acceptance_in_both_discovery_orders(vo
 static void it_requires_exported_types_without_reinterpreting_static_producers_as_instances(void) {
     const StaticResultContext *root = setup_scheduler("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n//integer\n");
     assert(static_closure_resolve(&closure) && closure.closed);
-    assert(field_type(root, "value") == integer_type && publications.count > 0);
+    assert(field_type(root, "value") == integer_type);
+    bool supplier_checked = false;
+    for (const StaticResultGraph *graph = results.first_graph; graph; graph = graph->next) {
+        if (graph->context->creation->owner->environment->definition == target_module) {
+            assert(graph->local_complete && graph->context->registry_use->key_state == STATIC_REGISTRY_KEY_CLOSED);
+            supplier_checked = true;
+        }
+    }
+    assert(supplier_checked);
     for (const StaticClosureEntry *entry = closure.first; entry; entry = entry->next) {
         assert(entry->scope->environment->definition != target_module);
     }

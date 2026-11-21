@@ -63,7 +63,7 @@ class Product:
 
     def emit(self, flags=(), extra=(), accepted=True):
         """Invoke the actual compiler with exact argv and require the expected publication outcome."""
-        arguments = [str(self.repository / 'ama'), '--emit', str(self.source), '/test/fixture/v1.0.0/src/старт',
+        arguments = [str(self.repository / 'ama'), '--emit', str(self.source), '/test/fixture/v1.0.0/src/старт', '--mode', 'executable', '--component', 'test.products',
                      '--standard-root', str(self.standard), '--out', str(self.output),
                      '--sdk', str(self.repository / 'src'), '--compile']
         for flag in flags:

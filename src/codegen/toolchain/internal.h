@@ -17,6 +17,8 @@ bool codegen_run_tool(NativeScaffold *, char *const *, const char *, FILE *);
 /**
  * Execute the configured compiler with explicit supported C11/non-LTO arguments and private
  * source/include/object paths; borrow error stream through child completion.
+ * Select the unit from the prepared owned entry artifact, then map its basename
+ * into the private stage; never discover an entry by a filename/extension.
  * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 bool codegen_compile_object(NativeScaffold *, const char *, FILE *);
 /**

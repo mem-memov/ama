@@ -11,14 +11,21 @@
 
 /* Strict shared frontend and all borrowed source/option strings outlive emission.
  * Artifacts use the scaffold identity registry and conflict-safe publisher. */
-/**
- * Require an unused scaffold and valid nonauthoring frontend. Validate paths/model/executable
- * root, stage four complete project artifacts plus declarations, then set ready. No publication
- * occurs.
- * Component contract: [COMP-04](../../spec/implementation/compiler.md#comp-04). */
+/** Build shared declarations/header/body once without an application launcher.
+ * Stateful library packaging retains this actual consumer under
+ * [EMBED-01](../../spec/implementation/c-library.md#embed-01).
+ * Failure leaves safely destructible partial artifacts and ready false.
+ */
 bool project_codegen_build(NativeScaffold *, ScaffoldOptions);
+/** Admit explicit component/mode/root, retain exact launch-input capabilities and
+ * stage application artifacts. Currently unsupported packaging refuses before
+ * publication; later source-inclusion packaging is owned by T241 under
+ * [EMBED-09](../../spec/implementation/c-library.md#embed-09).
+ */
+bool project_delivery_build(NativeScaffold *, ScaffoldOptions, const DeliveryRequest *);
 /**
- * Require ready unpublished source artifacts and no previously retained executable. Clear ready
+ * Require executable delivery, its explicit owned C entry artifact, ready unpublished
+ * source artifacts and no previously retained executable. Clear ready
  * while staging/compile/verify/link/retain proceeds; set it only after success and best-effort
  * temporary cleanup.
  * Component contract: [COMP-04](../../spec/implementation/compiler.md#comp-04). */

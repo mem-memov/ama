@@ -29,10 +29,10 @@ static void it_reads_one_exact_foreign_result_after_named_input_closure(void) {
     destroy_results();
 }
 
-/** Even a known selected output cannot erase an unused incomplete supplier
- * input. Consumer expectations remain disconnected until independent evidence.
+/** Structural evidence determines a reflected input, but never a discarded input.
+ * Producer closure remains mandatory even when its selected result is known.
  */
-static void it_keeps_expected_scalar_types_disconnected_from_unresolved_supplier_inputs(void) {
+static void it_uses_structural_evidence_without_filling_discarded_supplier_inputs(void) {
     for (size_t dependent = 0; dependent < 2; dependent++) {
         const StaticResultContext *context = setup_selection(
             "@!\ndata\n/test/fixture/v1.0.0/src/other\n .out\nanchor&\n//integer\n",
@@ -42,12 +42,15 @@ static void it_keeps_expected_scalar_types_disconnected_from_unresolved_supplier
         assert(static_result_use(&results, context, expression, NULL, &use));
         assert(static_constraint_equate(&solver, use->source->value, integer_type, expression->head));
         assert(evaluate_selection(context, expression, &use));
-        assert(!use->closed && use->producer_request->input_count == 1);
+        assert(use->producer_request->input_count == 1);
         const StaticTerm *hole = use->producer_request->inputs[0].value, *value;
         StaticConstraintOutcome outcome;
-        assert(static_constraint_value(&solver, hole, &value, &outcome) && outcome == STATIC_CONSTRAINT_PENDING);
-        assert(!use->required_graph->local_complete);
-        assert(static_constraint_equate(&solver, hole, integer_type, expression->head));
+        assert(static_constraint_value(&solver, hole, &value, &outcome));
+        if (dependent) { assert(outcome == STATIC_CONSTRAINT_COMPLETE && value == integer_type); }
+        else {
+            assert(outcome == STATIC_CONSTRAINT_PENDING && !use->required_graph->local_complete);
+            assert(static_constraint_equate(&solver, hole, integer_type, expression->head));
+        }
         assert(evaluate_selection(context, expression, &use) && use->closed && use->required_graph->local_complete);
         destroy_results();
     }
@@ -206,7 +209,7 @@ static void it_publishes_selected_values_with_supplier_proofs_and_unwinds_all_re
 /** Execute scalar identity, phase isolation and counted failure partitions. */
 static void run(void) {
     it_reads_one_exact_foreign_result_after_named_input_closure();
-    it_keeps_expected_scalar_types_disconnected_from_unresolved_supplier_inputs();
+    it_uses_structural_evidence_without_filling_discarded_supplier_inputs();
     it_evaluates_nested_selections_under_the_original_lexical_owner();
     it_preserves_selected_partial_constructor_identity_without_runtime_admission();
     it_refuses_nonpublic_or_missing_foreign_selections_without_publishing_sources();

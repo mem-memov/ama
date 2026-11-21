@@ -30,9 +30,10 @@ struct StaticOrdinaryProjection;
  * Every form retains an annotation source; actual uses additionally retain
  * guarded work. Selected operands retain exact supplier requests and attributed
  * graph/definition proofs. A source-only predecessor is not an ordinary context.
- * No equation connects an export to value before independent closure succeeds.
+ * Structural export equations may refine value before supplier closure; only
+ * complete supplier and graph proofs authorize publication.
  * The publication arena owns records; all pointers borrow longer-lived metadata.
- * [TYPE-01](../../../../spec/language/declarations.md#type-01) forbids contextual factory inference.
+ * [TYPE-01](../../../../spec/language/declarations.md#type-01) requires unique structural Type determination before storage admission.
  * [TPL-12](../../../../spec/language/static-results.md#tpl-12) keeps producers out of runtime storage.
  */
 typedef struct StaticOrdinaryType {
@@ -83,7 +84,7 @@ bool static_ordinary_source(StaticPublicationPlan *, const StaticTermEnvironment
  * means new structural facts or required validation proofs, never allocations.
  * Failed outcome stays unchanged and partial facts remain owned.
  * [TPL-04](../../../../spec/language/templates.md#tpl-04) permits per-field omission equations.
- * [TPL-12](../../../../spec/language/static-results.md#tpl-12) forbids consumer-driven export inference.
+ * [TPL-12](../../../../spec/language/static-results.md#tpl-12) retains every supplier input as a publication obligation.
  */
 bool static_ordinary_equations(StaticPublicationPlan *, StaticOrdinaryType *, bool *);
 
@@ -103,7 +104,7 @@ bool static_ordinary_type(StaticPublicationPlan *, const StaticResultContext *,
  * closure: bare unknown Type forwarding may already be READY. Final resolution
  * separately requires a concrete Type. Failures preserve the outcome receiver and leave
  * partial records owned; ordinary Pending remains a nonfailure.
- * [TYPE-01](../../../../spec/language/declarations.md#type-01) forbids reverse supplier inference.
+ * [TYPE-01](../../../../spec/language/declarations.md#type-01) requires complete ordinary Type metadata before admission.
  */
 bool static_ordinary_evaluate(StaticPublicationPlan *, StaticOrdinaryType *, StaticResultOutcome *);
 /** Require a complete ordinary Type and retained source/producer publication.

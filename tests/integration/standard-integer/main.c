@@ -45,7 +45,7 @@ static void it_requires_an_explicit_standard_root_to_resolve_integer(void) {
 static void it_compiles_and_executes_real_integer_list_results(void) {
     setup_test();
     char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--standard-root", TEST_STANDARD_ROOT,
-        "--out", "generated/output", "--sdk", TEST_SDK, "--compile", NULL};
+        "--out", "generated/output", "--sdk", TEST_SDK, "--compile", "--mode", "executable", "--component", "test.application", NULL};
     int result = run_compiler_arguments(arguments);
     char text[8192];
     read_stream(errors, text, sizeof(text));

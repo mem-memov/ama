@@ -33,7 +33,7 @@ static int run_built_program(void) {
  */
 static void it_builds_and_runs_a_verified_executable_through_the_real_command(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE,"--emit","project","/test/fixture/v1.0.0/src/main","--out","generated/complete","--sdk",TEST_SDK,"--compile",NULL};
+    char *arguments[] = {AMA_EXECUTABLE,"--emit","project","/test/fixture/v1.0.0/src/main","--out","generated/complete","--sdk",TEST_SDK,"--compile","--mode", "executable", "--component", "test.application", NULL};
     int result = run_compiler_arguments(arguments);
     if (result != EXIT_SUCCESS) {
         char diagnostic[8192];
@@ -59,7 +59,7 @@ static void it_builds_and_runs_a_verified_executable_through_the_real_command(vo
  */
 static void it_preserves_the_previous_program_when_native_compilation_fails(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE,"--emit","project","/test/fixture/v1.0.0/src/broken","--out","generated/complete","--sdk",TEST_SDK,"--compile",NULL};
+    char *arguments[] = {AMA_EXECUTABLE,"--emit","project","/test/fixture/v1.0.0/src/broken","--out","generated/complete","--sdk",TEST_SDK,"--compile","--mode", "executable", "--component", "test.application", NULL};
     int result = run_compiler_arguments(arguments);
     assert(result == EXIT_FAILURE);
     char bytes[8192];
@@ -83,7 +83,7 @@ static void it_refuses_to_overwrite_an_unowned_program(void) {
     int written = fputs("Handwritten file\n",file);
     int closed = fclose(file);
     assert(written != EOF && closed == 0);
-    char *arguments[] = {AMA_EXECUTABLE,"--emit","project","/test/fixture/v1.0.0/src/main","--out","generated/conflict","--sdk",TEST_SDK,"--compile",NULL};
+    char *arguments[] = {AMA_EXECUTABLE,"--emit","project","/test/fixture/v1.0.0/src/main","--out","generated/conflict","--sdk",TEST_SDK,"--compile","--mode", "executable", "--component", "test.application", NULL};
     int result = run_compiler_arguments(arguments);
     assert(result == EXIT_FAILURE);
     file = fopen("generated/conflict/program","rb");

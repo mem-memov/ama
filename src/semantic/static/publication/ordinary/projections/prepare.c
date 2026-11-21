@@ -25,8 +25,8 @@ static bool parent(StaticPublicationPlan *plan, StaticOrdinaryType *type, const 
 /** Cache only original immutable request identity. A guarded Pending keeps
  * this cache but publishes no new target context; independent evidence can
  * resume the same source occurrence with the same input variables.
- * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) separates
- * producer inputs from any expected consumer result.
+ * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) preserves
+ * full producer-input obligations independently of the selected scalar result.
  */
 bool static_ordinary_projection_prepare(StaticPublicationPlan *plan, StaticOrdinaryType *type,
     const StaticResultSource *source, StaticOrdinaryProjection **output) {

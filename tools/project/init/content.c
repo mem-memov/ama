@@ -16,7 +16,7 @@ static const ProjectInitFile files[] = {
         "explicitly acquire dependencies with repository mappings; compilation never downloads code.\n"
         "Temporary download/ exists only when acquisition needs staging.\n\n"
         "Select any ordinary executable module explicitly, for example:\n\n"
-        "```sh\nama --emit . /vendor/package/v1.0.0/src/module --out OUTPUT --sdk SDK --standard-root STANDARD --compile\n```\n\n"
+        "```sh\nama --emit . /vendor/package/v1.0.0/src/module --out OUTPUT --sdk SDK --standard-root STANDARD --mode executable --component COMPONENT --compile\n```\n\n"
         "This is a command shape: choose real names, tool installation paths and an output destination.\n"
         "Initialization creates no entry module or package.ini.\n"},
     {"AGENTS.md",

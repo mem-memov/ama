@@ -80,7 +80,9 @@ The user's 2026-11-20 continuation request authorizes implementation of this
 queue in prerequisite order. Specification amendments still need their own
 explicit authorization; T222's separately authorized notation amendment is complete.
 [T229](DONE.md#t229) specifies the CMake/launcher/source-inclusion contracts;
-T239–T242 and T244–T257 are their pending implementation owners. The
+T239–T242 and T246–T257 are their pending implementation owners.
+[T244](DONE.md#t244) and [T245](DONE.md#t245) provide the accepted handoff and
+delivery foundations. The
 [detailed implementation plan](docs/implementation/cmake-launcher-plan.md)
 records foundation gates, task/step acceptance, migration and evidence duties;
 [T243](DONE.md#t243) records its completed planning acceptance.
@@ -169,17 +171,6 @@ The linked plan expands their step order and acceptance partitions. Earlier
 complete-conformance fingerprints remain historical until T237's final review;
 focused accepted evidence and documentation are required at every task.
 
-<a id="t245"></a>
-
-- [ ] **T245 — Implement explicit delivery requests and emission metadata.**
-  Status: planned. Prerequisites: T244 and T233. Carry concrete entry, component
-  identity, output mode and checked transport schema through driver/export/IR
-  consumers under EMBED-01/04/09 and CLI-01. Document backend metadata validation
-  and ownership; separate runtime input values from compilation configuration.
-  Accept concrete/native roots, unsupported root/schema refusals, real emission,
-  ownership/allocation boundaries and generation without CMake/network/source
-  mutation. Use the shared current resolver instead of adding a parallel one.
-
 <a id="t239"></a>
 
 - [ ] **T239 — Capture native companions and build-closure provenance.**
@@ -266,7 +257,11 @@ focused accepted evidence and documentation are required at every task.
   decoder view. Invoke decoding at that input's initial construction in declaration
   order; publish only independently owned state, without eager pre-decoding.
   Accept embedded zeros, size/range/schema/decoder/partial-resource failures,
-  same-layout wrong-Type refusal and borrow-expiration checks. No payload casts,
+  same-layout wrong-Type refusal and borrow-expiration checks. First parse and
+  validate the documented versioned binary-adapter metadata, including duplicate/
+  unknown keys, exact input/Type references, format bounds and decoder declarations;
+  reject unconfigured/unsupported descriptors before accepting generation.
+  This keeps descriptor and actual adapter admission under one owner. No payload casts,
   persisted input addresses, helper-name discovery or new native ABI protocol.
 
 <a id="t251"></a>

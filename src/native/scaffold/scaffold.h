@@ -6,6 +6,10 @@
  * [ERROR-04](../../../spec/implementation/diagnostics.md#error-04) plans
  * current full-key native providers before any matching header/body context.
  * Borrow the complete frontend/configuration through build/publication; handwritten source replacement requires explicit options.
+ * [EMBED-01](../../../spec/implementation/c-library.md#embed-01) separates
+ * shared library artifacts from application delivery;
+ * [STACK-04](../../../spec/implementation/compiler.md#stack-04) verifies the
+ * explicitly retained application compilation unit.
  */
 #ifndef AMA_NATIVE_SCAFFOLD_H
 #define AMA_NATIVE_SCAFFOLD_H
@@ -13,6 +17,7 @@
 #include <stdio.h>
 #include "compiler/frontend.h"
 #include "output/artifact.h"
+#include "delivery/inputs/inputs.h"
 #include "source/identity/identity.h"
 #include "native/status/providers/providers.h"
 
@@ -70,6 +75,19 @@ typedef struct {
     ScaffoldOptions options;
     ScaffoldType *types;
     ScaffoldType *selected;
+    /** Optional owned application metadata; stateful libraries have neither
+     * launcher selection nor launch-input table under
+     * [EMBED-01](../../../spec/implementation/c-library.md#embed-01).
+     */
+    const DeliverySelection *delivery;
+    const DeliveryInputs *launch_inputs;
+    /** Actual generated C unit selected for application compilation/verification;
+     * points into this scaffold's owned artifact list, never guessed by extension.
+     * Stateful libraries leave it null under
+     * [EMBED-01](../../../spec/implementation/c-library.md#embed-01);
+     * [STACK-04](../../../spec/implementation/compiler.md#stack-04) checks this unit.
+     */
+    const ScaffoldArtifact *entry_artifact;
     ScaffoldArtifact *first;
     ScaffoldArtifact *last;
     const char *directory;

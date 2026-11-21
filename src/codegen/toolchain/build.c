@@ -58,6 +58,9 @@ static bool codegen_retain_program(NativeScaffold *scaffold, const char *stage) 
  * Component contract: [COMP-04](../../../spec/implementation/compiler.md#comp-04). */
 bool project_codegen_compile(NativeScaffold *scaffold, FILE *errors) {
     if (!scaffold->ready || scaffold->publish_attempted || scaffold->last->executable) { return false; }
+    if (!scaffold->delivery || scaffold->delivery->mode != DELIVERY_EXECUTABLE || !scaffold->entry_artifact) {
+        return scaffold_error(scaffold, DIAGNOSTIC_TYPE_MISMATCH, "Verified executable compilation requires executable delivery selection", NULL);
+    }
     scaffold->ready = false;
     char directory[] = "/tmp/ama-project-XXXXXX";
     if (mkdtemp(directory) == NULL) { return scaffold_error(scaffold, DIAGNOSTIC_IO_FAILURE, "Cannot create native build storage", NULL); }

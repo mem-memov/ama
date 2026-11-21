@@ -47,7 +47,7 @@ static void it_unwinds_every_captured_project_generation_allocation_before_publi
         ScaffoldOptions options = {.directory = "generated/output", .sdk = TEST_SDK};
         size_t before = allocation_count;
         if (cut) { failure_at = before + cut; }
-        bool built = project_codegen_build(&assembly, options);
+        bool built = project_delivery_build(&assembly, options, &(DeliveryRequest){.mode = DELIVERY_EXECUTABLE, .component = "test.codegen"});
         if (!cut) { assert(built && assembly.ready); total = allocation_count - before; assert(total); inspect_captured_model(&assembly); }
         else {
             assert(!built && !assembly.ready && assembly.error.code == DIAGNOSTIC_OUT_OF_MEMORY);

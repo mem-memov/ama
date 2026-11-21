@@ -7,7 +7,7 @@
 
 /** Every actual expression preserves its source evaluator's structural outcome,
  * separately from value and supplier closure. Failed output stays untouched.
- * [TYPE-01](../../../../../spec/language/declarations.md#type-01) forbids reverse factory inference.
+ * [TYPE-01](../../../../../spec/language/declarations.md#type-01) requires complete storage Types before admission.
  */
 bool static_ordinary_evaluate(StaticPublicationPlan *plan, StaticOrdinaryType *type,
     StaticResultOutcome *output) {

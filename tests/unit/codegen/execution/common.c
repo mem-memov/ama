@@ -227,7 +227,7 @@ static void prepare_project(const char *main_source) {
     }
     options.flags = flags;
     options.flag_count = flag_count;
-    bool built = project_codegen_build(&assembly, options);
+    bool built = project_delivery_build(&assembly, options, &(DeliveryRequest){.mode = DELIVERY_EXECUTABLE, .component = "test.codegen"});
     if (!built && assembly.error.message) { fprintf(stderr, "Code generation failed: %s\n", assembly.error.message); }
     assert(built);
     if (host_launcher != NULL) {

@@ -1,5 +1,13 @@
 # Structural declaration Type expressions
 
+**Current correction in T245:** TPL-10/TPL-15 permit simultaneous structural
+constraints from an independently known producer, including ordinary typed
+connections. Full producer closure remains required at admission, rather than
+being a prerequisite for adding those equations. The chronological T271/T226
+records below describe the earlier implementation and its acceptance at that
+time; their blanket restriction on consumer evidence is superseded.
+See [the correction and its tests](build-launcher-contracts.md#t245-continuation).
+
 ## Tasks and authority
 
 [T269](../../DONE.md#t269) owns the iterative syntax-tree foundation, preceding

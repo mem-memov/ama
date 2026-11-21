@@ -25,6 +25,7 @@ static void it_documents_verified_project_compilation(void) {
     read_stream(output, message, capacity);
     assert(result == EXIT_SUCCESS);
     assert(strstr(message, "--compile") != NULL);
+    assert(strstr(message, "--mode MODE --component ID") != NULL);
     assert(strstr(message, "--check ROOT MODULE") != NULL);
     assert(strstr(message, "// standard-library paths") != NULL);
     assert(strstr(message, "double-dot") == NULL && strstr(message, "ROOT /test/fixture/v1.0.0/src/module") == NULL);

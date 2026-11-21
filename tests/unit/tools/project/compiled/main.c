@@ -17,7 +17,7 @@ static bool execute(void *context, const ProjectTestJob *job, const char *direct
     (void)snprintf(err, sizeof(err), "%s/compile.stderr.log", directory);
     FILE *output = fopen(out, "wb"), *errors = fopen(err, "wb"); assert(output && errors);
     char *arguments[] = {AMA_EXECUTABLE, "--emit", TEST_PROJECT, (char *)job->module,
-        "--out", compiled, "--sdk", TEST_SDK, "--compile", NULL};
+        "--out", compiled, "--sdk", TEST_SDK, "--compile", "--mode", "executable", "--component", "test.application", NULL};
     ProjectProcessResult result = {.exit_code = 1};
     bool observed = project_process(arguments, NULL, output, errors, &result);
     *outcome = (ProjectTestOutcome){.stage = PROJECT_TEST_COMPILATION,

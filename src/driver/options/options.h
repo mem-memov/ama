@@ -4,6 +4,8 @@
  *
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03) requires an explicit
  * boundary: this owner contains configuration and diagnostics, never a frontend.
+ * [CLI-01](../../../spec/implementation/launch-and-embedding.md#cli-01) keeps
+ * explicit component/mode configuration separate from runtime argument values.
  */
 #ifndef AMA_DRIVER_OPTIONS_H
 #define AMA_DRIVER_OPTIONS_H
@@ -11,6 +13,7 @@
 #include "source/module/catalog.h"
 #include "diagnostics/record/diagnostic.h"
 #include "driver/request/request.h"
+#include "delivery/mode.h"
 
 /** Completed configuration; the arena owns arrays and argv owns stored strings. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 typedef struct {
@@ -38,6 +41,12 @@ typedef struct {
     const char *sdk;
     const char **c_flags;
     size_t c_flag_count;
+    /** Explicit compiler delivery authority under
+     * [CLI-01](../../../spec/implementation/launch-and-embedding.md#cli-01).
+     */
+    const char *component;
+    DeliveryMode delivery_mode;
+    bool has_delivery_mode;
     bool compile;
     bool create;
     bool overwrite;

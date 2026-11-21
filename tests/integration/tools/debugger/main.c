@@ -17,7 +17,7 @@ static void verify_condition(bool condition, size_t line) {
 static void build(const char *entry, const char *directory, const char *binary) {
     setup_test();
     char *emit[] = {AMA_EXECUTABLE, "--emit", "project", (char *)entry, "--out", (char *)directory,
-        "--sdk", TEST_SDK, "--standard-root", TEST_STDLIB, "--compile", NULL};
+        "--sdk", TEST_SDK, "--standard-root", TEST_STDLIB, "--compile", "--mode", "executable", "--component", "test.application", NULL};
     int result = run_compiler_arguments(emit);
     if (result != EXIT_SUCCESS) {
         char text[8192]; read_stream(errors, text, sizeof(text)); fprintf(stderr, "%s", text);

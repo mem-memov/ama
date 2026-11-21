@@ -8283,3 +8283,52 @@ T201. Specification bytes have not changed.
   changed, and no proposed behavior is claimed as tested. Later implementation
   tasks own the concrete producer/consumer codecs and actual replacement tests;
   live stateful library/current low-level consumers remain explicitly assigned.
+
+<a id="t245"></a>
+
+- [x] **T245 — Implement explicit delivery requests and emission metadata.**
+  Status: accepted; checked selection/input, owned metadata, explicit C entry,
+  actual executable/stateful consumers and complete static acceptance passed.
+  Continuation and actual checks: [T245 checkpoint](docs/implementation/build-launcher-contracts.md#t245-continuation).
+  Prerequisites: T244 and T233. Carry concrete entry, component
+  identity, output mode and checked transport schema through driver/export/IR
+  consumers under EMBED-01/04/09 and CLI-01. Document backend metadata validation
+  and ownership; separate runtime input values from compilation configuration.
+  Accept concrete/native roots, unsupported root/schema refusals, real emission,
+  ownership/allocation boundaries and generation without CMake/network/source
+  mutation. Use the shared current resolver instead of adding a parallel one.
+  T245's transport foundation retains checked literal capability and exact input
+  identity, including default-only unsupported shapes. Explicit binary descriptor
+  parsing and Type/schema/declaration admission remain together in T256; no
+  configured binary adapter or runtime argument support is claimed here.
+
+  Acceptance: explicit mode/component options preserve exact UTF-8 authority and
+  reject missing/duplicate/unknown values. Owned selection/input tables cover
+  ordinary/native roots, open/static/marker refusal, stale frontend lifetime,
+  literal-only noncopyable native Types, default-only reference/list/compound
+  fields and every measured allocation refusal. Actual JSON parsing validates
+  finite recursive Type graphs, full keys/edges/roles, byte lengths, exactly one
+  entry and agreement with tooling records; all 256 byte values, empty bytes and
+  stream failure are covered. Shared library assembly emits no discarded launcher.
+
+  Existing consumer testing exposed T226's premature selected-output closure
+  barrier. It now contributes permitted structural equations while all actual
+  producer inputs remain mandatory; discarded inputs still fail with exact
+  supplier/selector provenance. The complete 97-harness static matrix, corrected
+  generated nested composition, compiler composition/diagnostics and ASan/UBSan
+  passed. Existing value/creation-cycle guards and the shared solver remain intact.
+
+  Real executable compilation/execution, stateful library build/failure/publication,
+  project initialization/two independent compiled tests, driver/help composition,
+  metadata generation and codegen allocation sweeps passed. Sanitized runs keep
+  LeakSanitizer explicitly disabled; counted ownership failure tests are separate
+  evidence. Supported `make docs` passed with 3364 ready inputs, zero debts,
+  2539 maintained file pages, 9749 interfaces, 493 canonical/page destinations
+  and 8020 total pages. Only Markdown archival follows that accepted source gate;
+  final provenance is regenerated and checked before this task's commit.
+
+  Explicit source-inclusion packaging, public names, runtime tokens/startup/files
+  and configured binary adapters remain T241/T251/T240/T248/T249/T257/T256.
+  No CMake orchestration, network acquisition, source mutation or unsupported
+  transport is claimed by this foundation. Specification and conformance evidence
+  fingerprints are unchanged; T237 retains current full release/conformance renewal.

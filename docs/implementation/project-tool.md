@@ -75,7 +75,7 @@ The independent request parser and immutable three-file guidance plan are in
 `make -C tests/unit/tools/project/command` exited zero; missing/excess/unknown
 arguments, null/empty inputs, output preservation, literal shell metacharacters
 and exact guidance membership/local links are checked. Guidance uses the actual
-current compiler `--emit ROOT MODULE --out OUTPUT --sdk SDK` request shape, with
+current compiler `--emit ROOT MODULE --out OUTPUT --sdk SDK --mode executable --component COMPONENT` request shape, with
 an explicit Standard root; it does not invent a project entry or promise future
 project commands already work. Next: descriptor-backed scaffold transaction.
 

@@ -19,7 +19,7 @@ code changes or new behavioral acceptance claims belong to T244.
 
 | Responsibility and current consumer | Treatment and implementation owner | Current witness and replacement acceptance |
 |---|---|---|
-| `DriverOptions` in [options.h](../../src/driver/options/options.h), exact request recognition in [request.h](../../src/driver/request/request.h), emission through [generate.c](../../src/codegen/project/generate.c) | T245 adapts the validated request; root/mode/component/transports become explicit before IR emission. T240 separately owns runtime token admission. Keep exact checking/library/editor requests with their current consumers. | `tests/unit/driver/request` exact-command cases; `tests/unit/codegen/assembly` real emission and allocation refusal. Replacement adds both output modes and malformed request/schema refusals. |
+| `DriverOptions` in [options.h](../../src/driver/options/options.h), exact request recognition in [request.h](../../src/driver/request/request.h), emission through [generate.c](../../src/codegen/project/generate.c) | T245 validates explicit mode/component, borrows the checked concrete root, captures exact literal capabilities and emits owned delivery metadata. T240 separately owns runtime token admission. Keep exact checking/library/editor requests with their current consumers. | `tests/unit/driver/request` exact-command cases; `tests/unit/codegen/assembly` real emission and allocation refusal. Replacement adds both output modes and malformed request/schema refusals. |
 | Selected companion/cache graph in [ProjectInputs](../../src/project/inputs/inputs.h) and source/module resolution | T239 extends the existing selected-input capture to `.cmake`, declared resources and optional effective README. Retain the common resolver; T235 consumes the same closure for delivery. | `tests/unit/project/inputs`, source module/configuration suites. Replacement checks presence vs empty, ignored dependency copies and native/static/specialized closure membership. |
 | Native author-file preparation/publication under `src/native/scaffold/output/` | T246 adapts the existing author-preserving artifact transaction; T247 separately consumes the authored CMake function. Keep ownership/publication children with native authoring and generated-output consumers. | `tests/unit/native/scaffold/publication`: new-file, replacement, rollback and lock failures. Replacement covers `.cmake` omission/existing bytes and comments-only generation. |
 | Root startup: [ama_context_execution_start](../../src/runtime/context/execution/begin.c), [ama_program_start](../../src/runtime/program/construction/start.c) | T248 adapts fresh-root startup to supplied recipes. Retain acquired existing-root entry/resume and their distinct interface-reset semantics. Runtime remains one lease and label dispatch, never a C call per Ama module. | `tests/unit/runtime/program-construction` real self construction and failed-prefix cleanup; `tests/unit/runtime/contexts` independent contexts/reentry/cleanup. Replacement proves supplied/default choice once in declaration order. |
@@ -290,7 +290,7 @@ one. Identical scalar names do not merge typed ID domains.
 | Envelope | Required typed groups | Producer / consumer and owner |
 |---|---|---|
 | `ama.delivery.v1` | mode, root/component IDs, target/ABI edition, output paths, component-local Type/field graph, admitted transport declarations, input closure, native relations, exact verification entries | T245/T239 compiler emission; T252/T253 planner. Borrow IR only while constructing an owned serialized record. |
-| `ama.binary-transport.v1` | exact Type/schema binding, format identity/edition, bounds, typed decoder declaration/symbol, implementation/dependency inputs, ownership policy identifier | T245 parses admission metadata; T256 checks/emits the actual typed adapter. Incompatible wire/Type IDs fail before generation succeeds. |
+| `ama.binary-transport.v1` | exact Type/schema binding, format identity/edition, bounds, typed decoder declaration/symbol, implementation/dependency inputs, ownership policy identifier | T245 records exact input identity and declared literal capability; T256 parses/checks explicit binary-adapter metadata and emits its typed adapter. Incompatible wire/Type IDs fail before generation succeeds. |
 | `ama.build-profile.v1` | target/toolchain/ABI/C settings, concrete CMake generator/configuration, verification policy, dependency/provider/environment inputs and editions | T252 resolved profile; T253/T254 actual commands/evidence. Runtime argv is excluded. |
 | `ama.build-record.v1` | delivery/profile/input identities and contents/hashes, companion/resource presence, effective settings/providers, exact command/results, artifact IDs, verification, publication state, diagnostic/log paths | T252–T255 build owner; T242 test composition. Unknown provider effects cannot be replaced by invented hashes. |
 
@@ -403,4 +403,427 @@ No runtime regression execution or future component support is claimed.
 
 T244 is archived in DONE. Regenerate Doxygen after this archival and verify
 that all accepted non-Markdown inputs remain unchanged before the task commit.
-Next ready task: T245, typed delivery request and emission metadata.
+At the T244 checkpoint, the next ready task was T245. Its subsequent acceptance is recorded below.
+
+## T245 active implementation checkpoint
+
+T245 starts from `63a2d36`. Actual emission has two consumers: the compiler's
+application path and checked library packaging. The latter currently generates
+then removes launcher/tooling artifacts by filename; migrate it to a shared
+assembly boundary instead of attaching one-shot metadata to a stateful library.
+
+The existing library binding validator requires every exported field and its
+scalar profiles require clone/condition hooks. CLI admission has different
+coverage/capability rules: defaulted complex inputs and unread results need no
+codec, and owned scalar text needs the actual literal constructor. Reuse exact
+nominal/ownership primitives where applicable; do not apply the full-export
+coverage rule or extra clone requirements to launch inputs.
+
+Planned small steps: (1) an owned explicit component/mode plus actual validated
+executable-root selection, (2) exact declaration-ordered input/transport metadata
+with omission preserved, (3) driver/export/shared-assembly integration and owned
+metadata emission, (4) component/composition/OOM/schema refusal and no hidden
+process/source mutation checks, registry and Doxygen. T241/T240/T256 retain
+their actual launcher/token/decoder implementation responsibilities. Generation
+must not publish mode-inconsistent artifacts while those consumers migrate.
+
+Current step: implement/test the root/component selection child. No T245 checks
+have run, no new behavior is accepted, and no job is active.
+
+The first selection child is implemented under `src/delivery/selection/`.
+`make -j2 -C tests/unit/delivery/selection` exited zero at
+`/tmp/ama-t245-selection.log` (7569). It uses actual checked ordinary/native
+frontends, both mode data values, copied Unicode/space-preserving component
+identity, malformed UTF-8/unknown mode refusal, unchecked/static/open root
+refusal and every measured selection allocation failure with retry. Native
+fixture companions contain intentional `#error` directives, so these accepted
+check-only tests cannot accidentally compile/execute native C.
+
+This is a model child only: it is not yet integrated into driver/emission and
+does not claim a new launcher. T245 remains active/uncommitted. No job is active.
+Next: exact declaration-ordered input capability metadata, then actual owned
+request/driver/shared-assembly integration and schema handling.
+
+The declaration-ordered input child is implemented under `src/delivery/inputs/`.
+Its first build failed on a diagnostic field spelling (`location` instead of the
+actual `primary` member); the corrected complete leaf exited zero at
+`/tmp/ama-t245-inputs-fixed.log`. It preserves default-only reference/list/compound
+inputs, excludes results, admits a literal-only noncopyable native Type without
+condition hooks, checks exact multiword names/parameter ordinals, refuses a live
+invalidated frontend before old IR dereference, and recovers table OOM.
+The failed command is `/tmp/ama-t245-inputs.log` (51824); it is not acceptance.
+
+Current T245 files are working changes, not registered/accepted delivery support.
+Next integration must separate shared assembly from application artifacts: the
+stateful library build currently calls `project_codegen_build`, then removes
+launcher/tooling names. Do not attach one-shot application metadata to that
+library consumer. Add explicit compiler mode/component request handling and
+wire the checked selection/table into actual emission; later launcher/decoder
+tasks retain their documented implementation owners. All current jobs are
+collected. No source or specification ambiguity is open.
+
+<a id="t245-continuation"></a>
+
+### T245 continuation after connection recovery
+
+Confirmed that `/tmp/ama-t245-assembly-integration.log` reached successful test
+execution and automatic cleanup. The standalone explicit delivery options suite
+passed with required mode/component and refusal of omission, repetition, unknown
+mode and executable compilation of source-inclusion mode:
+`make -C tests/unit/driver/options` (`/tmp/ama-t245-options-boundaries.log`).
+`make -j2 -C tests/unit/library/execution` exited zero
+(`/tmp/ama-t245-library-assembly.log`, session 27790 collected). Stateful library
+assembly now creates only shared declarations/body and no longer removes a
+launcher after emission. Actual application tests use explicit delivery selection;
+existing process-based emission consumers are being migrated to explicit flags.
+
+`make -j2 -C tests/unit/codegen/assembly` passed with `delivery.json` staged as
+an owned artifact (`/tmp/ama-t245-metadata-assembly.log`, 54175 collected), including
+every measured allocation refusal. Added an independent JSON parser case for
+exact field names/capabilities, complete framed nominal keys, graph-edge membership
+and a recursive reference self edge; that new case still needs its next run.
+
+Concrete initial delivery fields are `format`, `mode`, `component`, `root`,
+`directory`, `types`, `inputs`, `generated` and `verification_entries`. IDs/ordinals and ByteString lengths are
+unsigned decimal **strings** (not JSON floating-point numbers). Type nodes carry
+component-local `id`, canonical `module`, complete framed `key` ByteString and
+ordered `fields`; fields carry exact UTF-8 `name`, semantic `role` (`parameter`, `result`, `state`), role `ordinal`,
+resolved `type`, `reference` and `list`. Inputs carry exact `name`, `ordinal`,
+literal capability `text` and `binary` (currently null: no configured decoder is
+claimed). The finite graph references IDs rather than expanding Type cycles.
+T239 still owns companion/build closure additions. Runtime argument values are
+absent. Source-inclusion metadata selection is supported by the selection child;
+the application emitter refuses it before artifacts pending T241 packaging.
+
+Remaining T245 work: finish actual metadata/schema admission and refusal coverage,
+run new graph case and migrated real consumers, complete required ownership/failure
+checks, reconcile current usage, register every maintained input and run Doxygen.
+T245 is incomplete and uncommitted. No semantic ambiguity is open. No job is active
+at this checkpoint; the next action is the metadata graph test followed by actual
+driver emission and remaining schema boundary work. No specification files changed.
+
+The independent finite graph JSON case passed in
+`make -j2 -C tests/unit/codegen/assembly`
+(`/tmp/ama-t245-metadata-graph.log`, session 11293 collected, exit zero).
+The real command-line consumer compiled and ran the minimal application both
+normally and with its existing generated-target ASan/UBSan configuration:
+`make -j2 -C tests/integration/minimal`
+(`/tmp/ama-t245-real-driver.log`, session 22338 collected, exit zero).
+These verify actual driver-to-artifact-to-C execution, not runtime argument support.
+Added pending cases for all 256 byte values/empty ByteString/output failure and
+application-refusal versus shared-library isolation. Project init guidance now
+includes explicit mode/component flags. T245 remains active; registry, remaining
+schema contract and final acceptance are outstanding.
+
+The boundary cases also passed with the full assembly suite
+(`/tmp/ama-t245-metadata-boundaries.log`, session 92062 collected, exit zero):
+all 256 byte values, empty record, `/dev/full` failure, unsupported packaging before
+artifacts, shared-library isolation and the existing complete OOM sweep. New
+maintained files and affected interfaces are now registered to named actual cases;
+registry validation is still pending. No task completion is claimed.
+
+Initial registry/interface coverage validation exited zero:
+`python3 tools/documentation/coverage.py`
+(`/tmp/ama-t245-coverage-initial.log`, session 37586 collected). This proves
+registered file/header/case interfaces, not behavioral test execution.
+The first delivery parent command failed before any leaf due to a wrong relative
+include of `parent.mk` (`/tmp/ama-t245-delivery-composition.log`); corrected it to
+`../../parent.mk`. Metadata Type edges now use the existing exact
+`native_scaffold_type` lookup instead of maintaining a duplicate lookup loop.
+Current README and initialization command shapes carry explicit delivery flags.
+Next run: corrected delivery parent, followed by actual project scaffold/compiled
+consumer acceptance and metadata regression for that lookup simplification.
+
+The corrected delivery parent passed (`/tmp/ama-t245-delivery-parent-fixed.log`,
+21184 collected). Project command/initialization/compiled consumers passed
+(`/tmp/ama-t245-project-consumers.log`, 3773 collected). The delivery parent also
+passed ASan/UBSan with the documented non-PIE flags and leak instrumentation
+disabled (`/tmp/ama-t245-delivery-sanitized.log`, 55999 collected); counted arena
+failure tests remain separate ownership evidence.
+
+The four-leaf codegen consumer command failed overall
+(`/tmp/ama-t245-codegen-consumers.log`, 59529 collected, exit two), first exposing
+the old negative case that forbids structural inference through a known producer.
+Read-only actual `ama --check` diagnosed the incomplete selection at main line 11,
+with factory as related provenance (`/tmp/ama-t245-static-diagnostic.stderr.log`).
+Inspection found a deeper conformance issue than the old location assertion:
+TPL-10 step 5, TPL-15 and TYPE-01 now permit simultaneous structural selected-output
+and ordinary-call equations. The T271/T226 implementation note's blanket ban on
+consumer evidence is therefore obsolete. Do not merely change the expected
+error span to make the old negative test pass.
+
+The current correction equates a selected scalar to its original evaluated
+structural definition before input closure; actual producer origin/definition are
+already resolved. Complete-input, unused-input, graph/provenance and publication
+checks remain independent admission obligations. No candidate search or invented
+inverse is added. The old negative composition is now a generated-execution
+positive for a uniquely determined nested producer result. This correction and
+all related negative/cycle/OOM cases require acceptance before T245 can finish.
+Current next run: specialization composition. T245 remains incomplete; no commit
+or new conformance claim has been made, and no specification has changed.
+
+The corrected real nested composition passed
+`make -j2 -C tests/unit/codegen/specializations`
+(`/tmp/ama-t245-structural-equation.log`, 50883 collected, exit zero), including
+its existing full generation-allocation sweep. Other leaves of the failed
+four-leaf run completed successfully (assembly, layouts and execution), but the
+combined command remains failed evidence. Updated the direct selection test to
+separate reflected-input inference from discarded-input underdetermination and
+removed the unused context parameter from the scalar-equation interface.
+The next acceptance is the direct result-selection and publication contracts.
+
+Direct results `selection` and `cache` acceptance passed after the simultaneous
+constraint correction (`make -j2 -C tests/unit/semantic/static/results selection cache`,
+`/tmp/ama-t245-selected-constraints.log`, 7228 collected, exit zero).
+Active behavioral run: `make -k -j2 -C tests/unit/semantic/static`, session **86759**,
+log `/tmp/ama-t245-static-matrix.log`. Production/test inputs are frozen while it
+runs; this continuation note is not a behavioral input. Collect its actual exit
+and all failure leaves before modifying code. The corrected generated composition
+passed earlier; the direct test distinguishes reflected and discarded inputs.
+Next: resolve any matrix failures against canonical rules, register the changed
+interfaces/cases, finish T245 transport/metadata and required final acceptance.
+No task is complete, no new commit was made and no user clarification is pending.
+
+Additional compiler consumer run collected: `make -k -j2 -C tests/unit/compiler
+specialization-composition specialization-diagnostics`
+(`/tmp/ama-t245-compiler-constraints.log`, session 76282, exit two).
+Specialization composition passed. Diagnostics exposed a **real remaining
+provenance regression**, not an obsolete semantic expectation: a factory's
+selected output is fixed integer while another public output uses its missing
+input. Rejection remains correct, but the error falls back to generic main:1:1,
+losing both the exact selector and supplier definition witnesses required by the
+existing diagnostic composition. Keep that assertion and repair pending-producer
+obligation diagnostics; do not weaken it to accept a generic root message.
+
+Static matrix 86759 is still active; 22 harness invocations observed with no
+reported assertion yet. Do not edit production/tests until its completion. Next
+investigation: retain explicit pending full-input/graph obligations even after the
+selected scalar is known, and attribute their refusal to the actual selector and
+original supplier. All other T245 acceptance remains outstanding.
+
+The full static matrix completed all **97** harnesses (86759 collected, exit two).
+Four leaves failed: annotations/ordinary/constants-initializer retained the old
+blanket prohibition and now become positive structural-inference coverage;
+closure/scheduler required an implementation-specific publication counter even
+though the actual graph/key closure was established. The scheduler now checks
+those real supplier graph/key proofs and the absence of a runtime producer entry.
+No test is removed or weakened to accept an unresolved supplier.
+
+Mandatory input closure is now recorded independently of scalar result closure
+in `results/producers/requirements.c`, before publishing each prepared request.
+Each actual input term becomes an existing solver requirement at the exact
+selector (or static graph head). Omitted terms retain the original formal, so
+underdetermination points both to the use and to the responsible supplier input.
+All inputs remain mandatory, including ones discarded by selected outputs;
+partial returned Templates remain complete metadata with known residuals.
+No solve/body evaluation is performed during registration. The cached full map
+is finite; repeated preparation reuses it and adds no duplicate requirements.
+On allocation refusal, prior partial requirements remain arena-owned and no
+request is published. The solver's original saturation/occurs/provenance checks
+and the separate publication/executable gates remain authoritative.
+
+Next run: the corrected four leaves and compiler diagnostics, followed by the
+whole static acceptance for the new input-obligation registration. T245 remains
+active; documentation/registry and remaining delivery acceptance are unfinished.
+All earlier jobs are collected; no specification was changed.
+
+The corrected focused commands all exited zero: publication `annotations ordinary`
+(`/tmp/ama-t245-publication-corrected.log`, 56719), constants `initializer`
+(`/tmp/ama-t245-constant-corrected.log`, 31876), closure `scheduler`
+(`/tmp/ama-t245-scheduler-corrected.log`, 91792), and compiler
+`specialization-diagnostics` (`/tmp/ama-t245-producer-provenance.log`, 17257).
+All sessions are collected. In particular, the unchanged compiler diagnostic
+expectations now retain exact supplier/use provenance, and the scheduler checks
+actual closed supplier graphs instead of an incidental publication count.
+
+The invariant is declarative: every actual producer input belongs to the solver's
+required set independently of output projection. Structural result equations may
+refine those inputs; they cannot remove a requirement for a discarded input.
+Only final closure admits the result. The existing finite saturation includes
+requirement-count changes and the existing exact term interning/cached maps avoid
+fabricated progress. Requirements preserve original scoped formals and require no
+new failure-time allocation. Byte/Type metadata uses existing registered identities
+and exact lookup; field roles are stable explicit strings, not compiler enum values.
+
+Next: repeat the whole static matrix after obligation registration, run the actual
+metadata consumer after role serialization, register all changed/new interfaces,
+then complete delivery-specific acceptance and Doxygen. T245 remains active.
+
+Active continuation checkpoint (code/test inputs frozen):
+
+- Full 97-leaf static repeat: `make -k -j2 -C tests/unit/semantic/static`,
+  session **92355**, `/tmp/ama-t245-static-obligations-final.log`.
+- Actual metadata/assembly consumer: `make -j2 -C tests/unit/codegen/assembly`,
+  session **41567**, `/tmp/ama-t245-metadata-roles-final.log`.
+- Sanitized compiler diagnostics: session **64428**,
+  `/tmp/ama-t245-provenance-sanitized.log`; ASan/UBSan, `detect_leaks=0`,
+  `halt_on_error=1`, the recorded non-PIE C/link flags. Counted OOM tests remain
+  separate evidence; do not claim leak instrumentation.
+
+Collect all three outcomes before code changes. After that, remaining T245 work
+includes the delivery/transport ownership contract, final real consumers,
+registry/interface validation and generated documentation. Binary byte-adapter
+implementation and actual launcher packaging/token handling still have their
+explicit T256/T241/T240 owners. No task is complete or committed yet.
+
+Collected checks after the role/obligation corrections:
+
+- Metadata/assembly **41567** exited zero
+  (`/tmp/ama-t245-metadata-roles-final.log`).
+- Compiler diagnostic ASan/UBSan **64428** exited zero
+  (`/tmp/ama-t245-provenance-sanitized.log`); leak instrumentation was disabled.
+- Registry/header/case-interface coverage **45440** exited zero:
+  **3363 ready inputs, zero explicit debts**
+  (`/tmp/ama-t245-coverage-constraints.log`). This is interface evidence, not a
+  substitute for behavioral execution. Subsequently only purpose text and a named
+  existing OOM-case registration were refined in ready.json.
+- Real stateful CLI library builds and their failure/publication controls **96407**
+  exited zero (`make -j2 -C tests/integration/library-build`,
+  `/tmp/ama-t245-stateful-library-build.log`). Shared-assembly separation therefore
+  passes the actual library build command, not only a manually linked host fixture.
+
+Only **92355** remains active: the full static repeat at
+`/tmp/ama-t245-static-obligations-final.log`. Collect it before production/test
+changes. The metadata and diagnostic inputs are frozen. Future binary adapter
+admission/token parsing/packaging remain their explicit roadmap owners; no
+configured binary decoder or source-inclusion artifact is claimed by T245's
+currently accepted children. T245 is not complete or committed.
+
+**Full static acceptance collected:** session 92355 exited zero after all **97**
+assertion harnesses (`/tmp/ama-t245-static-obligations-final.log`). No failed leaf
+or assertion was reported. This accepts the simultaneous selected-output equations,
+mandatory full-input obligations, actual graph checks and all existing cycle,
+constant, ownership and allocation-refusal compositions. No static behavior/code
+changed after this run; remaining changes concern delivery artifact selection.
+
+Application delivery now retains the actual staged `entry_artifact` in its owner.
+Tooling argv and private object compilation consume that record rather than
+reconstructing a launcher filename. Stateful shared assembly has no entry record.
+Delivery metadata adds `generated` (preceding owned artifacts' exact path bytes,
+byte lengths and explicit entry marker) and `verification_entries` (actual C unit
+and explicit main requirement from the selected delivery mode). The metadata file
+is staged last and does not list itself; a subsequently compiled executable belongs
+to the build result, not the generated-source list. This avoids recursive length
+claims and filename-based compile-entry discovery. T239 still owns source/native
+closure provenance; T252–T255 own actual build/profile/result records.
+
+Pending: actual metadata/compilation consumer tests for this explicit unit wiring,
+registry and Doxygen, then final T245 acceptance. Earlier static acceptance is
+retained; no new compiler inference or language rule is introduced by this step.
+
+### T245 admitted transport and consumer boundary
+
+This foundation uses the existing checked frontend/IR and native ABI declarations.
+For each root parameter it retains the original symbol (hence complete nominal
+Type, storage shape and constructor declaration), its declaration ordinal and
+literal capability. An owned scalar native-backed Type with `|` is the admitted
+text profile. References, lists and compound Types remain in the table as
+**default-only**, not generation errors: omission is legal under CLI-02.
+Neither cloning nor a condition hook is an extra literal requirement. No result
+codec is required merely because the root returns that result.
+
+`binary: null` is an explicit absence of an admitted binary adapter, not a request
+to discover one or deserialize payload memory. T256 already owns CLI-03/EMBED-04's
+exact Type/schema/declaration admission together with the concrete decoder; its
+first step also owns parsing the versioned binary-adapter descriptor. This
+clarifies the duplicated ownership sentence in the T244 ledger. No binary
+configuration is accepted unchecked, no required language behavior is removed,
+and this component does not claim runtime token/file/decoder support. T240,
+T248/T249, T257 and T256 remain the actual token, startup, text, file and binary
+consumers respectively. T241/T251 own source-inclusion packaging and public names;
+the current application emitter refuses that mode before staging any artifact.
+
+A future metadata reader must validate the exact edition/closed field sets and
+all ByteStrings/decimal strings before using paths or allocating arrays. Type IDs
+are nonzero, unique and component-local; the root and every field edge refer to
+that same graph. Roles are exactly parameter/result/state; original names and
+per-role ordinals identify fields without normalization. Each input matches the
+root's parameter name/ordinal and retains its actual reference/list flags through
+the field graph. An admitted text profile cannot refer to reference/list storage.
+Exactly one `generated` record is the explicit entry, and every verification
+entry references an actual generated unit with the mode's main requirement.
+The generated-source manifest does not assert that an executable was compiled;
+that result belongs to the later build record. A consumer must not infer a C
+unit by extension, a transport from a Type basename, or successful verification
+from manifest presence. Runtime argument values never enter these identities.
+
+Explicit-output acceptance `make -j2 -C tests/unit/codegen/assembly` passed
+(`/tmp/ama-t245-explicit-output-records.log`, 97573 collected, exit zero).
+The independent parser checks real published byte lengths, exactly one entry,
+verification membership and equality with compilation database argv/file selection.
+The existing every-allocation failure sweep also passed. The earlier complete
+97-harness static acceptance remains valid; these changes affect only delivery
+artifact metadata/tooling selection, not static equations or closure.
+
+Actual executable delivery after explicit entry wiring passed the real CLI:
+`make -j2 -C tests/integration/minimal`
+(`/tmp/ama-t245-explicit-entry-driver.log`, 63082 collected, exit zero), including
+its ordinary and generated-target ASan/UBSan execution. The final specialization
+codegen suite also passed (`/tmp/ama-t245-specialized-delivery-final.log`, 79802
+collected, exit zero), including nested inferred composition and generation OOM.
+Only interface/purpose comments changed after those runs.
+
+Review of the driver consumer's explicit link inputs found the shared JSON writer
+listed both through scaffold dependencies and the driver's whole output subtree.
+The driver list now excludes that already owned child explicitly, instead of
+silently sorting/deduplicating arbitrary link inputs. The real driver-run harness
+will verify that composition and the help text's required mode/component flags.
+No behavior/specification alternative is introduced by this build dependency fix.
+
+### T245 final behavioral review before generated documentation
+
+The actual driver composition passed after the explicit link-owner correction:
+`make -j2 -C tests/unit/driver/run`
+(`/tmp/ama-t245-driver-composition-final.log`, 64264 collected, exit zero).
+Its help observation now requires the explicit `--mode MODE --component ID`
+command shape. No arbitrary source-list deduplication or compatibility branch was
+introduced. No behavioral job is active.
+
+Current accepted boundaries are owned selection/input descriptors, explicit
+application mode/component options, finite exact delivery JSON with actual output
+and verification-unit records, shared stateful assembly without discarded launcher
+artifacts, and the existing real executable toolchain consuming that same selected
+unit. Source-inclusion artifacts, runtime token/file/startup adapters, explicit
+binary decoder admission and CMake orchestration retain their named future owners.
+This is a foundation acceptance, not a claim that those commands already work.
+
+The static correctness repair is accepted by the complete 97-harness matrix,
+positive generated nested composition, unchanged lost-input diagnostics and
+ASan/UBSan compiler diagnostics. Every input remains a solver obligation; a known
+output cannot erase a discarded input. The exact structural solver and creation/
+value-cycle guards remain the only algorithms. Current input/entry metadata uses
+that shared checked result rather than another resolver.
+
+Remaining gate: `make docs` over the final maintained inputs, inspect final diff,
+archive the full T245 record only after acceptance, regenerate after Markdown-only
+archival and verify provenance/staged bytes before committing. The next ready
+implementation task is T239. No open ambiguity or specification edit is pending.
+
+The first final Doxygen command failed its rendered-link gate, after coverage
+succeeded for 3364 inputs (`/tmp/ama-t245-documentation-final.log`, 26261 collected,
+exit two). New input/selection/scaffold/options type/member contracts cite rules
+whose descriptions render on class pages, so their owning file purposes now also
+explain and link those same lifetime/transport/entry rules. Added an explicit
+lifetime paragraph for the private flexible-array table owner as well. These are
+comment-only corrections; no behavior, requirement or accepted test changes.
+Next rerun: the complete supported `make docs` gate.
+
+### T245 acceptance and continuation
+
+`make docs` passed after the comment-only origin-page corrections
+(`/tmp/ama-t245-documentation-links-fixed.log`, session 57727 collected, exit zero):
+3364 ready inputs, zero debts, 2539 maintained file pages, 9749 documented interfaces,
+493 validated destinations and 8020 total pages with Doxygen 1.11.0.
+The generated manifest/report matched byte for byte. Accepted non-Markdown task
+inputs are frozen in `/tmp/ama-t245-accepted-task-inputs.json`; the accepted full
+manifest is `/tmp/ama-t245-accepted-manifest.json`. These temporary audit files are
+supporting provenance, not the sole task record.
+
+T245 is accepted in [DONE](../../DONE.md#t245). Its detailed behavior, deliberate
+remaining owners, failed initial checks and corrected successful runs are retained
+above. Only Markdown task archival/status reconciliation follows the accepted
+source/interface gate. Regenerate the supported Doxygen output for those final
+pages, verify every final input fingerprint and inspect staged task bytes before
+committing. No behavioral job is active, no semantic ambiguity is open and no
+specification or conformance fingerprint has changed. Continue with T239 after
+this task's commit; completion of this foundation does not complete the sprint.

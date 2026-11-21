@@ -6,17 +6,6 @@
 #include <string.h>
 #include "internal.h"
 #include "library/artifact/assembly.h"
-/** Remove only the exact two executable-only filenames; retain all native declarations. Component contract: [EMBED-01](../../../../spec/implementation/c-library.md#embed-01). */
-static void remove_launcher(NativeScaffold *scaffold) {
-    ScaffoldArtifact **link=&scaffold->first;
-    scaffold->last=NULL;
-    while (*link != NULL) {
-        ScaffoldArtifact *artifact=*link;
-        const char *name=strrchr(artifact->path,'/'); name=name==NULL ? artifact->path : name+1;
-        if (strcmp(name,"launcher.c")==0 || strcmp(name,"compile_commands.json")==0) { *link=artifact->next; }
-        else { scaffold->last=artifact; link=&artifact->next; }
-    }
-}
 /** Write one complete generated source, checking close even after a failed writer. Component contract: [EMBED-01](../../../../spec/implementation/c-library.md#embed-01). */
 static bool boundary(NativeScaffold *scaffold, const LibraryBuild *build, const char *stage, unsigned part) {
     static const char *const names[]={"public.h","component.c","component.json"};
@@ -30,7 +19,6 @@ static bool boundary(NativeScaffold *scaffold, const LibraryBuild *build, const 
     return written && closed==0;
 }
 bool driver_library_stage(NativeScaffold *scaffold, const LibraryBuild *build, const char *stage) {
-    remove_launcher(scaffold);
     for (const ScaffoldArtifact *artifact=scaffold->first; artifact!=NULL; artifact=artifact->next) {
         const char *name=strrchr(artifact->path,'/'); name=name==NULL ? artifact->path : name+1;
         const char *path=scaffold_join(scaffold,stage,"/",name);

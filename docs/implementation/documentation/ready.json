@@ -408,6 +408,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -2861,6 +2876,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -3209,6 +3239,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -3801,6 +3846,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -4014,6 +4064,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -6435,6 +6495,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -6491,6 +6556,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -6562,6 +6632,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -6684,6 +6759,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -6745,6 +6825,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -6894,6 +6979,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -10492,7 +10582,7 @@
       },
       {
         "source": "tests/unit/codegen/specializations/main.c",
-        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "case": "it_infers_static_producer_inputs_from_exact_structural_call_constraints",
         "command": "make -C tests/unit/codegen/specializations"
       },
       {
@@ -11381,6 +11471,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -40893,6 +41003,26 @@
         "source": "tests/unit/conformance/main.c",
         "case": "it_checks_the_current_canonical_evidence_and_real_test_interfaces",
         "command": "make -C tests/unit/conformance"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -41767,7 +41897,7 @@
       },
       {
         "source": "tests/unit/codegen/specializations/main.c",
-        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "case": "it_infers_static_producer_inputs_from_exact_structural_call_constraints",
         "command": "make -C tests/unit/codegen/specializations"
       },
       {
@@ -41976,6 +42106,21 @@
         "case": "it_rejects_resume_after_ordinary_copy",
         "command": "make -C tests/unit/codegen/traversal",
         "source": "tests/unit/codegen/traversal/main.c"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -42745,7 +42890,7 @@
       },
       {
         "source": "tests/unit/codegen/specializations/main.c",
-        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "case": "it_infers_static_producer_inputs_from_exact_structural_call_constraints",
         "command": "make -C tests/unit/codegen/specializations"
       },
       {
@@ -44386,6 +44531,11 @@
         "case": "it_unwinds_every_relocation_option_array_allocation",
         "command": "make -C tests/unit/driver/options",
         "source": "tests/unit/driver/options/main.c"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -47144,6 +47294,26 @@
         "case": "it_requires_the_library_status_sdk_header_before_model_or_artifact_emission",
         "command": "make -C tests/unit/native/scaffold/contracts",
         "source": "tests/unit/native/scaffold/contracts/main.c"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   },
@@ -127860,7 +128030,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -142968,6 +143138,16 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_uses_structural_evidence_without_filling_discarded_supplier_inputs",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
       }
     ],
     "standalone_header_command": [
@@ -145033,7 +145213,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -145473,7 +145653,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -145533,7 +145713,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -145887,7 +146067,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication"
       },
       {
@@ -145947,7 +146127,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication"
       },
       {
@@ -146022,7 +146202,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication"
       },
       {
@@ -146800,7 +146980,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -147066,7 +147246,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -147257,7 +147437,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -147544,7 +147724,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -148044,7 +148224,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -148175,7 +148355,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -148221,7 +148401,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -148272,7 +148452,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       }
     ]
@@ -148444,7 +148624,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -148695,7 +148875,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -148989,7 +149169,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       },
       {
@@ -149040,7 +149220,7 @@
       },
       {
         "source": "tests/unit/semantic/static/constants/initializer/main.c",
-        "case": "it_refuses_initializer_driven_completion_of_a_selected_static_supplier",
+        "case": "it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals",
         "command": "make -C tests/unit/semantic/static/constants/initializer"
       }
     ]
@@ -149444,7 +149624,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -149504,7 +149684,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -155008,6 +155188,21 @@
         "source": "tests/unit/semantic/static/results/entry/main.c",
         "case": "it_releases_every_partial_entry_and_registry_allocation_on_refusal",
         "command": "make -C tests/unit/semantic/static/results/entry"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_uses_structural_evidence_without_filling_discarded_supplier_inputs",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_unwinds_every_selected_value_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ],
     "standalone_header_command": [
@@ -155074,6 +155269,21 @@
         "source": "tests/unit/semantic/static/results/entry/main.c",
         "case": "it_releases_every_partial_entry_and_registry_allocation_on_refusal",
         "command": "make -C tests/unit/semantic/static/results/entry"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_uses_structural_evidence_without_filling_discarded_supplier_inputs",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_unwinds_every_selected_value_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ]
   },
@@ -155487,7 +155697,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -155547,7 +155757,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -155578,7 +155788,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -155659,7 +155869,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -155705,7 +155915,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -155765,7 +155975,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -155806,7 +156016,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -155866,7 +156076,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -155937,7 +156147,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -155997,7 +156207,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -156073,7 +156283,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -156119,7 +156329,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -156180,7 +156390,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -156240,7 +156450,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -156296,7 +156506,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -156356,7 +156566,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -156467,7 +156677,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/ordinary/main.c",
-        "case": "it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known",
+        "case": "it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence",
         "command": "make -C tests/unit/semantic/static/publication/ordinary"
       },
       {
@@ -156527,7 +156737,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -156668,7 +156878,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -156709,7 +156919,7 @@
       },
       {
         "source": "tests/unit/semantic/static/publication/annotations/main.c",
-        "case": "it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence",
+        "case": "it_refines_reflected_supplier_inputs_before_ordinary_type_publication",
         "command": "make -C tests/unit/semantic/static/publication/annotations"
       },
       {
@@ -166253,7 +166463,7 @@
       },
       {
         "source": "tests/unit/codegen/specializations/main.c",
-        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "case": "it_infers_static_producer_inputs_from_exact_structural_call_constraints",
         "command": "make -C tests/unit/codegen/specializations"
       },
       {
@@ -166299,7 +166509,7 @@
       },
       {
         "source": "tests/unit/codegen/specializations/main.c",
-        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "case": "it_infers_static_producer_inputs_from_exact_structural_call_constraints",
         "command": "make -C tests/unit/codegen/specializations"
       },
       {
@@ -166657,7 +166867,7 @@
       },
       {
         "source": "tests/unit/codegen/specializations/main.c",
-        "case": "it_refuses_to_infer_static_producer_inputs_from_ordinary_calls",
+        "case": "it_infers_static_producer_inputs_from_exact_structural_call_constraints",
         "command": "make -C tests/unit/codegen/specializations"
       }
     ]
@@ -172529,7 +172739,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/packages/test/fixture/v1.0.0/src/\u7a0b\u5e8f": {
+  "tests/integration/parser/grammar/project/packages/test/fixture/v1.0.0/src/程序": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172560,7 +172770,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/packages/test/fixture/v1.0.0/src/\u4e2d\u95f4": {
+  "tests/integration/project/closure/project/packages/test/fixture/v1.0.0/src/中间": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172571,7 +172781,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172582,7 +172792,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.abi": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172593,7 +172803,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.c": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -172604,7 +172814,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.h": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -172630,7 +172840,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172641,7 +172851,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.abi": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172652,7 +172862,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.c": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -172663,7 +172873,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.h": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -174625,7 +174835,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/\u5546\u5e97/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/商店/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -174651,7 +174861,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/other/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/other/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -180404,6 +180614,21 @@
         "source": "tests/unit/compiler/specialization-composition/main.c",
         "case": "it_composes_selected_template_operands_into_one_concrete_declared_type",
         "command": "make -C tests/unit/compiler/specialization-composition"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_uses_structural_evidence_without_filling_discarded_supplier_inputs",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_unwinds_every_selected_value_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/selection"
       }
     ]
   },
@@ -182464,6 +182689,611 @@
         "source": "tests/unit/tools/project/acquisition/sources/main.c",
         "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
         "command": "make -C tests/unit/tools/project/acquisition/sources"
+      }
+    ]
+  },
+  "src/delivery/mode.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Define the explicit executable/source-inclusion selection shared without frontend dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_exact_inputs_and_supports_literal_only_native_types",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_retains_empty_tables_without_requiring_result_transports",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_refuses_expired_frontend_state_without_using_borrowed_ir",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_the_selection_and_output_on_table_allocation_refusal",
+        "command": "make -C tests/unit/delivery/inputs"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/selection/prepare.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Copy exact component bytes into an arena-owned checked selection without changing failed output.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
+        "command": "make -C tests/unit/delivery/selection"
+      }
+    ]
+  },
+  "src/delivery/selection/internal.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Separate exact delivery admission predicates from owned selection preparation.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
+        "command": "make -C tests/unit/delivery/selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/selection/validate.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Reject invalid mode, malformed component identity and unchecked/nonexecutable roots before allocation.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
+        "command": "make -C tests/unit/delivery/selection"
+      }
+    ]
+  },
+  "src/delivery/selection/selection.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Declare owned component identity and borrowed checked executable-root selection.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
+        "command": "make -C tests/unit/delivery/selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/inputs/prepare.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Capture parameters only, preserve default-only shapes and reject stale frontend/ordering metadata.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_exact_inputs_and_supports_literal_only_native_types",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_retains_empty_tables_without_requiring_result_transports",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_refuses_expired_frontend_state_without_using_borrowed_ir",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_the_selection_and_output_on_table_allocation_refusal",
+        "command": "make -C tests/unit/delivery/inputs"
+      }
+    ]
+  },
+  "src/delivery/inputs/inputs.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Declare exact declaration-order input descriptors and literal-only transport capability.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_exact_inputs_and_supports_literal_only_native_types",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_retains_empty_tables_without_requiring_result_transports",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_refuses_expired_frontend_state_without_using_borrowed_ir",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_the_selection_and_output_on_table_allocation_refusal",
+        "command": "make -C tests/unit/delivery/inputs"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/codegen/project/metadata/internal.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Declare bounded byte and finite Type-graph serialization operations for delivery artifacts.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/codegen/project/metadata/bytes.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Encode arbitrary byte strings as exact lowercase hex and decimal-string byte lengths.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      }
+    ]
+  },
+  "src/codegen/project/metadata/emit.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Emit owned mode/component/root/input metadata without runtime argument data or invented binary adapters.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      }
+    ]
+  },
+  "src/codegen/project/metadata/types.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Serialize full nominal identity keys and logical field edges without expanding recursive Types.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      }
+    ]
+  },
+  "src/codegen/project/base.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Prepare shared declarations and body independently of application launcher/tooling artifacts.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_keeps_application_admission_separate_from_stateful_shared_assembly",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
+      }
+    ]
+  },
+  "src/driver/options/assembly/delivery.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Consume exactly one explicit mode and nonempty UTF-8 component identity for application emission.",
+    "tests": [
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
+      }
+    ]
+  },
+  "tests/unit/delivery/Makefile": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Dispatch independent checked-root and launch-input component suites.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_exact_inputs_and_supports_literal_only_native_types",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_retains_empty_tables_without_requiring_result_transports",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_refuses_expired_frontend_state_without_using_borrowed_ir",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_the_selection_and_output_on_table_allocation_refusal",
+        "command": "make -C tests/unit/delivery/inputs"
+      }
+    ]
+  },
+  "tests/unit/delivery/selection/main.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Exercise root categories, exact component ownership, invalid authority and every selection allocation refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
+        "command": "make -C tests/unit/delivery/selection"
+      }
+    ]
+  },
+  "tests/unit/delivery/selection/Makefile": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Build the real checked-frontend selection fixture and its ownership/refusal tests.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
+        "command": "make -C tests/unit/delivery/selection"
+      },
+      {
+        "source": "tests/unit/delivery/selection/main.c",
+        "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
+        "command": "make -C tests/unit/delivery/selection"
+      }
+    ]
+  },
+  "tests/unit/delivery/inputs/main.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Test scalar/ref/list/compound omissions, empty interfaces, stale frontend lifetime and input-table allocation refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_exact_inputs_and_supports_literal_only_native_types",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_retains_empty_tables_without_requiring_result_transports",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_refuses_expired_frontend_state_without_using_borrowed_ir",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_the_selection_and_output_on_table_allocation_refusal",
+        "command": "make -C tests/unit/delivery/inputs"
+      }
+    ]
+  },
+  "tests/unit/delivery/inputs/Makefile": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Build declaration-order and ABI literal-capability tests against the real frontend.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_exact_inputs_and_supports_literal_only_native_types",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_retains_empty_tables_without_requiring_result_transports",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_refuses_expired_frontend_state_without_using_borrowed_ir",
+        "command": "make -C tests/unit/delivery/inputs"
+      },
+      {
+        "source": "tests/unit/delivery/inputs/main.c",
+        "case": "it_preserves_the_selection_and_output_on_table_allocation_refusal",
+        "command": "make -C tests/unit/delivery/inputs"
+      }
+    ]
+  },
+  "src/semantic/static/results/producers/requirements.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Retain all actual producer-input closure obligations with exact use/formal provenance independently of selected results.",
+    "tests": [
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_uses_structural_evidence_without_filling_discarded_supplier_inputs",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      },
+      {
+        "source": "tests/unit/compiler/specialization-diagnostics/main.c",
+        "case": "it_preserves_independent_bridge_refusals_across_declaration_and_root_orders",
+        "command": "make -C tests/unit/compiler/specialization-diagnostics"
+      },
+      {
+        "source": "tests/unit/semantic/static/results/selection/main.c",
+        "case": "it_unwinds_every_selected_value_evaluation_allocation_refusal",
+        "command": "make -C tests/unit/semantic/static/results/selection"
+      }
+    ]
+  },
+  "src/codegen/project/metadata/outputs.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Serialize actual owned output records and the explicit C compilation/verification unit without filename discovery.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_unwinds_every_assembly_emission_allocation_failure",
+        "command": "make -C tests/unit/codegen/assembly"
       }
     ]
   }

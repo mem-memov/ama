@@ -85,7 +85,7 @@ static void build_and_debug(const char *base, const char *entry, const char *nam
     path(binary, sizeof(binary), directory, "ama-debugger"); path(responses, sizeof(responses), directory, "responses.jsonl");
     setup_test();
     char *emit[] = {AMA_EXECUTABLE, "--emit", root, (char *)entry, "--out", directory,
-        "--sdk", TEST_SDK, "--standard-root", library, "--compile", NULL};
+        "--sdk", TEST_SDK, "--standard-root", library, "--compile", "--mode", "executable", "--component", "test.application", NULL};
     command(emit); destroy_test(); tool_build_debugger(directory, binary);
     setup_test();
     tool_require(tool_run_debugger(binary, responses, "run\ninspect\ninspect\nresume\ninspect\nresume\ninspect\nquit\n") == EXIT_SUCCESS);

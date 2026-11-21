@@ -5,7 +5,7 @@
 static void it_composes_planned_fields_with_actual_c_layout_lifecycle_and_native_borrows(void) {
     prepare_layout();
     begin_layout(true);
-    bool built = project_codegen_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK});
+    bool built = project_delivery_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK}, &(DeliveryRequest){.mode = DELIVERY_EXECUTABLE, .component = "test.codegen"});
     assert(built);
     for (const ScaffoldType *type = assembly.types; type != NULL; type = type->next) {
         if (type->plan->type->module->syntax.sections.kind == MODULE_NATIVE) { write_layout_native(type); }

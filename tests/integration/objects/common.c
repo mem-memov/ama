@@ -38,9 +38,9 @@ static void compile_and_run_object(const char *entry, const char *expected,
     assert(length > 0 && (size_t)length < sizeof(directory));
     length = snprintf(executable, sizeof(executable), "%s/program", directory);
     assert(length > 0 && (size_t)length < sizeof(executable));
-    char *ordinary[] = {AMA_EXECUTABLE, "--emit", "project", (char *)entry, "--out", directory, "--sdk", TEST_SDK, "--compile", NULL};
+    char *ordinary[] = {AMA_EXECUTABLE, "--emit", "project", (char *)entry, "--out", directory, "--sdk", TEST_SDK, "--compile", "--mode", "executable", "--component", "test.application", NULL};
     char *instrumented[] = {AMA_EXECUTABLE, "--emit", "project", (char *)entry, "--out", directory, "--sdk", TEST_SDK, "--compile",
-        "--c-flag", "-fsanitize=address,undefined", "--c-flag", "-fno-omit-frame-pointer", "--c-flag", "-fno-pie", "--c-flag", "-no-pie", NULL};
+        "--c-flag", "-fsanitize=address,undefined", "--c-flag", "-fno-omit-frame-pointer", "--c-flag", "-fno-pie", "--c-flag", "-no-pie", "--mode", "executable", "--component", "test.application", NULL};
     int result = run_compiler_arguments(sanitized ? instrumented : ordinary);
     char diagnostic[8192];
     read_stream(errors, diagnostic, sizeof(diagnostic));

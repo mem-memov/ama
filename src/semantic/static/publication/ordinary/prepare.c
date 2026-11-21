@@ -1,7 +1,7 @@
 /** @file
- * @brief Register ordinary Type forms while keeping selected static exports disconnected from consumer inference.
+ * @brief Register ordinary Type forms with exact selected-export scalar identities.
  * [TYPE-01](../../../../../spec/language/declarations.md#type-01) requires one exact public selector.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) keeps producer inputs independent of consumer expectations.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) retains complete producer-input obligations.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) separates actual contexts and source facts.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03) owns partial obligations.
  * [TPL-15](../../../../../spec/language/templates.md#tpl-15) requires every
@@ -46,9 +46,9 @@ static bool selector(StaticPublicationPlan *plan, const StaticOccurrence *site, 
     return true;
 }
 
-/** Preparing a local Type variable does not constrain the selected foreign
- * output: only the independent export operation can add that equality later.
- * [TYPE-01](../../../../../spec/language/declarations.md#type-01) forbids receiver-driven factory inference.
+/** Preparing a local Type variable does not itself choose a foreign output:
+ * the exact selected definition contributes its own structural equation later.
+ * [TYPE-01](../../../../../spec/language/declarations.md#type-01) requires exact Type expressions and uniquely determined producer inputs.
  */
 static bool prepare(StaticPublicationPlan *plan, const StaticResultContext *context,
     const StaticTermEnvironment *environment, const AstTypeExpression *expression, StaticOrdinaryType **output) {

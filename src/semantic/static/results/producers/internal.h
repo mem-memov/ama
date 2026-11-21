@@ -16,4 +16,11 @@
  */
 bool static_result_producer_inputs(StaticResultPlan *, const StaticResultSource *,
     const BindingApplication *, const StaticTermCapture **);
+/** Retain closure obligations for every actual input before request publication.
+ * The exact selector/head is the requiring site; original formal identities
+ * remain on terms. No solving occurs and partial requirements remain owned on
+ * failure. [TPL-12](../../../../../spec/language/static-results.md#tpl-12)
+ * requires all inputs even when the selected scalar is independently known.
+ */
+bool static_result_require_producer_inputs(StaticResultPlan *, const StaticResultProducer *);
 #endif

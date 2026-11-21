@@ -13,7 +13,7 @@
 /** Preorder applies the same simultaneous structural equations as any other
  * schedule: input result variables already exist and later child equations
  * refine them. [TPL-10](../../../../../../spec/language/templates.md#tpl-10)
- * permits known nominal equalities without a search or inverse producer.
+ * permits known nominal equalities without a search or an invented noninjective inverse.
  * [ARCH-03](../../../../../../spec/implementation/compiler.md#arch-03) keeps
  * partial preparations under their original owners when a child refuses.
  */

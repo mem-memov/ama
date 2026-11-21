@@ -1,5 +1,5 @@
 /** @file
- * @brief Verify exact named exports without ordinary consumer-driven factory inference.
+ * @brief Verify exact named exports and uniquely determined structural supplier inputs.
  */
 #include "../common.c"
 #include "semantic/static/publication/ordinary/internal.h"
@@ -35,8 +35,8 @@ static void it_resolves_named_exports_as_concrete_types_without_producer_instanc
     destroy_publications();
 }
 
-/** A desired consumer Type is not evidence about a factory's unknown parameter. */
-static void it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known(void) {
+/** An identity output determines its reflected input through structural equality. */
+static void it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence(void) {
     setup_publications("@!\nvalue\n/test/fixture/v1.0.0/src/other\n .out\n",
         "@...\n.out\n.slot\n.anchor\n//integer\n");
     StaticOrdinaryType *type = ordinary("value");
@@ -44,9 +44,9 @@ static void it_refuses_open_suppliers_even_when_the_consumer_type_is_already_kno
     assert(success);
     const StaticTerm *resolved = NULL;
     success = static_ordinary_resolve(&publications, type, &resolved);
-    assert(!success && resolved == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
-    assert(type->publication == NULL && publications.count == 0);
-    assert(type->source->producer->registry_use->key_state == STATIC_REGISTRY_KEY_PENDING);
+    assert(success && resolved == integer_type && publications.status == STATIC_PUBLICATION_OK);
+    assert(type->publication && publications.count > 0);
+    assert(type->source->producer->registry_use->key_state == STATIC_REGISTRY_KEY_CLOSED);
     destroy_publications();
 }
 
@@ -243,7 +243,7 @@ static void it_refuses_copied_handles_missing_receivers_and_counter_overflow(voi
 /** Run independent export, category, inference, ownership and identity partitions. */
 static void run(void) {
     it_resolves_named_exports_as_concrete_types_without_producer_instances();
-    it_refuses_open_suppliers_even_when_the_consumer_type_is_already_known();
+    it_resolves_reflected_supplier_inputs_from_structural_consumer_evidence();
     it_distinguishes_selected_type_outputs_from_other_template_outputs();
     it_rejects_unknown_and_nonpublic_export_names_without_adding_caller_symbols();
     it_keeps_normal_ordinary_type_inference_and_actual_source_provenance();

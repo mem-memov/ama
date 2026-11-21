@@ -1,7 +1,7 @@
 /** @file
- * @brief Read a declaration's exact foreign result without inferring supplier inputs from its consumer.
+ * @brief Constrain a declaration selection by its actual finite structural definition.
  * [TPL-15](../../../../../spec/language/templates.md#tpl-15) permits selected
- * Type/Template operands but requires complete producer inputs before selection.
+ * Type/Template operands and requires complete producer inputs before admission.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) retains value
  * definition ancestry independently of whole-producer validation obligations.
  */
@@ -20,33 +20,21 @@ bool static_result_selection_read(StaticResultEvaluation *evaluation, StaticResu
     return static_result_push_definition(evaluation, use->selection);
 }
 
-/** A scalar receiver may already have an expected Type; therefore never equate
- * it to a symbolic supplier result. Both the full input key and the selected
- * value must be complete, and the definition must have a checked ready RHS.
- * [TPL-15](../../../../../spec/language/templates.md#tpl-15) forbids inverting
- * a producer, including one with an unused unresolved input.
+/** Equate the receiver with its independently identified structural definition.
+ * These are simultaneous constraints, not publication: unused supplier inputs,
+ * graph obligations and actual use provenance must still close separately.
+ * [TPL-10](../../../../../spec/language/templates.md#tpl-10) permits structural
+ * evidence from selected outputs; [TPL-15](../../../../../spec/language/templates.md#tpl-15)
+ * combines it with ordinary typed connections. Requiring a closed supplier here
+ * would discard the very equations that can determine its inputs.
  */
 bool static_result_selection_equation(StaticResultPlan *plan, const StaticResultSource *source,
-    const StaticResultContext *producer, const StaticResultDefinitionUse *definition) {
+    const StaticResultDefinitionUse *definition) {
     if (!source->selection || !definition) { return true; }
-    StaticRegistryUse *registered;
-    StaticRegistryKeyState keys;
-    if (!static_registry_use(plan->registry, producer->creation, &registered, &keys)) {
-        (void)static_result_dependencies(plan); return false;
-    }
-    if (keys != STATIC_REGISTRY_KEY_CLOSED) { return true; }
     const StaticResultUse *rhs = definition->cache_hit ? definition->checked_rhs : definition->rhs;
-    if (definition->outcome != STATIC_RESULT_READY || !rhs || rhs->outcome != STATIC_RESULT_READY || !rhs->closed) {
-        return true;
-    }
-    const StaticTerm *value;
-    StaticConstraintOutcome outcome;
-    StaticConstraintSolver *solver = plan->guards->applications->solver;
-    if (!static_constraint_value(solver, definition->definition->value, &value, &outcome)) {
-        (void)static_result_dependencies(plan); return false;
-    }
-    if (outcome != STATIC_CONSTRAINT_COMPLETE) { return true; }
-    if (!static_constraint_equate(solver, source->value, value, source->expression->selected_export)) {
+    if (!rhs) { return true; }
+    if (!static_constraint_equate(plan->guards->applications->solver,
+        source->value, definition->definition->value, source->expression->selected_export)) {
         (void)static_result_dependencies(plan); return false;
     }
     return true;

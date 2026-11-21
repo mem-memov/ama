@@ -171,8 +171,8 @@ static void it_preserves_pending_and_unequal_ancestry_after_source_only_annotati
     }
 }
 
-/** A known annotation consumer is not an input anchor for its static supplier. */
-static void it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence(void) {
+/** Structural annotation evidence determines reflected inputs without publishing early. */
+static void it_refines_reflected_supplier_inputs_before_ordinary_type_publication(void) {
     setup_publications("@!\nfield\n/test/fixture/v1.0.0/src/other\n .out\n", "@...\n.out\n.slot\n.anchor\n//integer\n");
     StaticOrdinaryType *type = annotation();
     bool success = static_constraint_equate(&solver, type->value, integer_type, type->expression->span);
@@ -183,12 +183,12 @@ static void it_refuses_unresolved_export_inputs_without_using_consumer_type_evid
     assert(type->publication == NULL && publications.count == 0);
     const StaticTerm *hole = type->projection->request->inputs[0].value, *value;
     StaticConstraintOutcome known;
-    assert(static_constraint_value(&solver, hole, &value, &known) && known == STATIC_CONSTRAINT_PENDING);
+    assert(static_constraint_value(&solver, hole, &value, &known) && known == STATIC_CONSTRAINT_COMPLETE && value == integer_type);
+    value = NULL;
+    assert(static_ordinary_resolve(&publications, type, &value));
+    assert(value == integer_type && type->publication && publications.status == STATIC_PUBLICATION_OK);
     success = static_ordinary_equations(&publications, type, &changed);
     assert(success && !changed);
-    value = NULL;
-    assert(!static_ordinary_resolve(&publications, type, &value));
-    assert(value == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
     destroy_publications();
 }
 
@@ -251,7 +251,7 @@ static void run(void) {
     it_substitutes_nominal_annotation_scopes_without_inventing_validation_provenance();
     it_resolves_independent_exports_without_manufacturing_an_ordinary_caller_context();
     it_preserves_pending_and_unequal_ancestry_after_source_only_annotation_inference();
-    it_refuses_unresolved_export_inputs_without_using_consumer_type_evidence();
+    it_refines_reflected_supplier_inputs_before_ordinary_type_publication();
     it_refuses_foreign_metadata_handles_and_missing_actual_validation_contexts();
     it_unwinds_every_source_annotation_and_equation_allocation_refusal();
 }

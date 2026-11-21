@@ -42,6 +42,12 @@ bool driver_options_validate(DriverOptions *options) {
         && (options->output == NULL || options->sdk == NULL)) {
         return driver_options_invalid(options, "Project emission needs --out and --sdk");
     }
+    if (options->request == DRIVER_REQUEST_EMIT && (!options->has_delivery_mode || !options->component)) {
+        return driver_options_invalid(options, "Project emission requires explicit --mode and --component");
+    }
+    if (options->request == DRIVER_REQUEST_EMIT && options->compile && options->delivery_mode != DELIVERY_EXECUTABLE) {
+        return driver_options_invalid(options, "Native executable compilation requires --mode executable");
+    }
     if (options->request == DRIVER_REQUEST_EDITOR || options->request == DRIVER_REQUEST_RENAME_PLAN) {
         if (options->query_module == NULL) { options->query_module = options->entry; }
         if (options->request == DRIVER_REQUEST_RENAME_PLAN && (!options->has_offset || options->rename_name == NULL)) {

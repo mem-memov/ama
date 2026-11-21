@@ -77,7 +77,7 @@ static void it_reports_drafts_distinctly_without_accepting_them_as_required_modu
  */
 static void it_emits_from_the_same_frontend_without_invoking_the_native_c_compiler(void) {
     setup_test();
-    char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--out", "generated/assembly", "--sdk", TEST_SDK, NULL};
+    char *arguments[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--out", "generated/assembly", "--sdk", TEST_SDK, "--mode", "executable", "--component", "test.application", NULL};
     int result = run_compiler_arguments(arguments);
     char text[4096];
     read_stream(output, text, sizeof(text));
@@ -102,7 +102,7 @@ static void it_matches_check_and_verified_compile_diagnostics_without_publishing
         destroy_test();
         setup_test();
         char *compiled[] = {AMA_EXECUTABLE, "--emit", "project", (char *)entries[index],
-            "--out", "generated/rejected", "--sdk", TEST_SDK, "--compile", NULL};
+            "--out", "generated/rejected", "--sdk", TEST_SDK, "--compile", "--mode", "executable", "--component", "test.application", NULL};
         result = run_compiler_arguments(compiled);
         char actual[4096];
         read_stream(errors, actual, sizeof(actual));

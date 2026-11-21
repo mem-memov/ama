@@ -6,3 +6,7 @@ SOURCES += $(filter-out compiler/specializations/%,$(patsubst $(ROOT)/src/%,%,$(
     $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/native/scaffold)) \
     native/namespace/context.c native/namespace/status.c native/namespace/symbol.c source/mapping/directive.c
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/native/status/providers))
+
+SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/delivery))
+
+SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/tools/output/json))

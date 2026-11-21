@@ -54,9 +54,13 @@ static char **codegen_arguments(NativeScaffold *scaffold, size_t extra) {
 /**
  * Execute the configured compiler with explicit supported C11/non-LTO arguments and private
  * source/include/object paths; borrow error stream through child completion.
+ * Select the unit from the prepared owned entry artifact, then map its basename
+ * into the private stage; never discover an entry by a filename/extension.
  * Component contract: [STACK-04](../../../spec/implementation/compiler.md#stack-04). */
 bool codegen_compile_object(NativeScaffold *scaffold, const char *stage, FILE *errors) {
-    const char *source = scaffold_join(scaffold, stage, "/", "launcher.c");
+    const char *selected = scaffold->entry_artifact->path;
+    const char *name = strrchr(selected, '/');
+    const char *source = scaffold_join(scaffold, stage, "/", name ? name + 1 : selected);
     const char *object = scaffold_join(scaffold, stage, "/", "program.o");
     const char *flags[] = {AMA_TOOLCHAIN_REQUIRED_FLAGS, "-O2", "-I", stage,
         "-I", scaffold->sdk, "-c", source, "-o", object, NULL};

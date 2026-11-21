@@ -70,10 +70,10 @@ static void it_infers_nested_exported_list_element_types_from_own_constant_sourc
     destroy_constants();
 }
 
-/** Neither a typed constant source nor literal payload can complete the inputs
- * of a static supplier selected as the destination's declared Type.
+/** A typed constant supplies structural evidence; literal payload bytes do not
+ * identify the destination Type or a missing producer input.
  */
-static void it_refuses_initializer_driven_completion_of_a_selected_static_supplier(void) {
+static void it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals(void) {
     const char *sources[] = {"known", "|7"};
     for (size_t kind = 0; kind < 2; kind++) {
         char caller[512];
@@ -92,10 +92,15 @@ static void it_refuses_initializer_driven_completion_of_a_selected_static_suppli
         StaticConstraintOutcome known;
         assert(use->producer_request && use->producer_request->input_count == 1);
         assert(static_constraint_value(&solver, use->producer_request->inputs[0].value, &input, &known));
-        assert(known == STATIC_CONSTRAINT_PENDING);
+        if (!kind) { assert(known == STATIC_CONSTRAINT_COMPLETE && input == integer_type); }
+        else { assert(known == STATIC_CONSTRAINT_PENDING); }
         input = NULL;
-        assert(!static_ordinary_resolve(&publications, item->declaration->source, &input));
-        assert(input == NULL && publications.status == STATIC_PUBLICATION_UNRESOLVED);
+        bool resolved = static_ordinary_resolve(&publications, item->declaration->source, &input);
+        assert(resolved == (kind == 0));
+        if (!kind) {
+            assert(input == integer_type && publications.status == STATIC_PUBLICATION_OK);
+            assert(static_constant_initializer_resolve(&constants, item, NULL, &outcome) && outcome == STATIC_RESULT_READY);
+        } else { assert(!input && publications.status == STATIC_PUBLICATION_UNRESOLVED); }
         destroy_constants();
     }
 }
@@ -190,7 +195,7 @@ static void it_unwinds_every_initializer_registration_and_resolution_allocation_
 static void run(void) {
     it_infers_from_local_and_qualified_constants_but_never_literal_bytes();
     it_infers_nested_exported_list_element_types_from_own_constant_sources();
-    it_refuses_initializer_driven_completion_of_a_selected_static_supplier();
+    it_infers_selected_supplier_inputs_from_typed_constants_but_not_literals();
     it_rejects_runtime_and_mutable_shared_initializer_sources();
     it_checks_initializer_identity_counter_bounds_and_type_conflicts();
     it_unwinds_every_initializer_registration_and_resolution_allocation_refusal();

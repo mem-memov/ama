@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include "codegen/codegen.h"
 #include "native/scaffold/internal.h"
+#include "codegen/project/metadata/internal.h"
 
 static NativeScaffold assembly;
 
@@ -59,7 +60,7 @@ static void begin_assembly(void) {
  * for assertions.
  */
 static bool build_assembly(void) {
-    return project_codegen_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK});
+    return project_delivery_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK}, &(DeliveryRequest){.mode = DELIVERY_EXECUTABLE, .component = "test.codegen"});
 }
 
 /**
@@ -101,6 +102,96 @@ static void it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_u
     int status;
     pid_t waited = waitpid(process, &status, 0);
     assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
+    end_assembly();
+}
+
+/** Parse the actual owned manifest independently and verify exact graph edges,
+ * names, transport omissions and complete nominal keys, including a self reference.
+ */
+static void it_emits_a_finite_exact_delivery_manifest_for_recursive_types(void) {
+    prepare_assembly();
+    file("generated/project/packages/test/fixture/v1.0.0/src/main",
+        "@<\ninput name\n/test/fixture/v1.0.0/src/value\n"
+        "@!\nreference&\n/test/fixture/v1.0.0/src/node\n");
+    begin_assembly();
+    bool built = build_assembly(); assert(built);
+    bool published = native_scaffold_publish(&assembly); assert(published);
+    pid_t process = fork(); assert(process >= 0);
+    if (!process) {
+        execlp("python3", "python3", "-c",
+            "import json; from pathlib import Path; "
+            "m=json.loads(Path('generated/output/delivery.json').read_bytes()); "
+            "assert m['format']=='ama.delivery.v1' and m['mode']=='executable'; "
+            "assert m['component']=='test.codegen'; "
+            "decode=lambda x:bytes.fromhex(x['hex']); "
+            "files={decode(x['path']):x for x in m['generated']}; "
+            "v=m['verification_entries']; assert len(v)==1 and v[0]['main'] is True; "
+            "entry=decode(v[0]['path']); assert entry in files and files[entry]['entry']; "
+            "assert sum(x['entry'] for x in files.values())==1; "
+            "assert all(Path(p.decode()).stat().st_size==int(x['length']) for p,x in files.items()); "
+            "db=json.loads(Path('generated/output/compile_commands.json').read_bytes()); "
+            "assert db[0]['file'].encode()==entry; "
+            "d=m['directory']; assert len(bytes.fromhex(d['hex']))==int(d['length']); "
+            "nodes={x['id']:x for x in m['types']}; assert len(nodes)==len(m['types']); "
+            "assert nodes[m['root']]['module'].endswith('/src/main'); "
+            "assert nodes[m['root']]['fields'][0]['role']=='parameter'; "
+            "assert m['inputs']==[{'name':'input name','ordinal':'0','text':True,'binary':None}]; "
+            "assert all(len(bytes.fromhex(n['key']['hex']))==int(n['key']['length']) for n in nodes.values()); "
+            "assert len({n['key']['hex'] for n in nodes.values()})==len(nodes); "
+            "assert all(f['type'] in nodes for n in nodes.values() for f in n['fields']); "
+            "n=next(n for n in nodes.values() if n['module'].endswith('/src/node')); "
+            "assert len(n['fields'])==1 and n['fields'][0]['type']==n['id']; "
+            "assert n['fields'][0]['reference'] and not n['fields'][0]['list']; "
+            "assert n['fields'][0]['role']=='state'",
+            (char *)NULL);
+        _exit(127);
+    }
+    int status; pid_t waited = waitpid(process, &status, 0);
+    assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
+    end_assembly();
+}
+
+/** Arbitrary byte records preserve NUL, invalid UTF-8 and all byte values exactly;
+ * stream errors remain sticky through finalization rather than producing success.
+ */
+static void it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure(void) {
+    unsigned char bytes[256]; for (size_t i = 0; i < sizeof(bytes); i++) { bytes[i] = (unsigned char)i; }
+    FILE *output = tmpfile(); assert(output);
+    ToolJsonWriter writer; tool_json_init(&writer, output);
+    bool emitted = delivery_metadata_bytes(&writer, bytes, sizeof(bytes)); assert(emitted);
+    emitted = tool_json_finish(&writer); assert(emitted);
+    rewind(output); char actual[600] = {0}; size_t count = fread(actual, 1, sizeof(actual) - 1, output);
+    char expected[600] = "{\"hex\":\""; size_t offset = strlen(expected);
+    for (unsigned i = 0; i < 256; i++) { int n = snprintf(expected + offset, sizeof(expected) - offset, "%02x", i); assert(n == 2); offset += 2; }
+    int n = snprintf(expected + offset, sizeof(expected) - offset, "\",\"length\":\"256\"}"); assert(n > 0);
+    assert(count == strlen(expected) && !strcmp(actual, expected));
+    int closed = fclose(output); assert(!closed);
+    output = tmpfile(); assert(output); tool_json_init(&writer, output);
+    emitted = delivery_metadata_bytes(&writer, NULL, 0); assert(emitted);
+    emitted = tool_json_finish(&writer); assert(emitted); rewind(output);
+    count = fread(actual, 1, sizeof(actual) - 1, output); actual[count] = 0;
+    assert(!strcmp(actual, "{\"hex\":\"\",\"length\":\"0\"}"));
+    closed = fclose(output); assert(!closed);
+    output = fopen("/dev/full", "wb"); assert(output); tool_json_init(&writer, output);
+    (void)delivery_metadata_bytes(&writer, bytes, sizeof(bytes));
+    emitted = tool_json_finish(&writer); assert(!emitted && writer.status == TOOL_JSON_IO_ERROR);
+    assert(!tool_json_raw(&writer, "{}")); (void)fclose(output);
+}
+/** Unsupported application packaging refuses before staging artifacts; shared
+ * library assembly never acquires one-shot metadata or launcher outputs.
+ */
+static void it_keeps_application_admission_separate_from_stateful_shared_assembly(void) {
+    prepare_assembly(); begin_assembly();
+    DeliveryRequest request = {.mode = DELIVERY_SOURCE_INCLUSION, .component = "test.inclusion"};
+    bool built = project_delivery_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK}, &request);
+    assert(!built && !assembly.ready && !assembly.entry_artifact && assembly.error.code == DIAGNOSTIC_UNSUPPORTED_FEATURE);
+    assert(!assembly.first && !assembly.published); end_assembly();
+    begin_assembly();
+    built = project_codegen_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK});
+    assert(built && assembly.ready && !assembly.delivery && !assembly.launch_inputs && !assembly.entry_artifact);
+    for (const ScaffoldArtifact *artifact = assembly.first; artifact; artifact = artifact->next) {
+        assert(!strstr(artifact->path, "/launcher.c") && !strstr(artifact->path, "/compile_commands.json") && !strstr(artifact->path, "/delivery.json"));
+    }
     end_assembly();
 }
 
@@ -261,6 +352,9 @@ static void it_rejects_missing_or_duplicate_required_control_sites_before_public
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_preserves_every_byte_in_delivery_metadata_and_reports_stream_failure();
+    it_keeps_application_admission_separate_from_stateful_shared_assembly();
+    it_emits_a_finite_exact_delivery_manifest_for_recursive_types();
     it_builds_complete_traversal_adapters_after_valid_ir();
     it_compiles_the_self_contained_assembly_and_isolated_interfaces_in_either_include_order();
     it_composes_the_real_runtime_and_qualified_native_sources_in_one_c_unit();

@@ -20,7 +20,7 @@ int driver_write_response(DriverRequest request, FILE *output) {
             "       ama --check ROOT MODULE [--root DIR] [--exclude PATH]\n"
             "       ama --status ROOT MODULE [--root DIR] [--exclude PATH]\n"
             "       ama --native ROOT MODULE --out DIR --sdk DIR [--create]\n"
-            "       ama --emit ROOT MODULE --out DIR --sdk DIR [--compile]\n"
+            "       ama --emit ROOT MODULE --out DIR --sdk DIR --mode MODE --component ID [--compile]\n"
             "       ama --library-check ROOT CONFIG [--root DIR] [--exclude PATH]\n"
             "       ama --library-header ROOT CONFIG [--root DIR] [--exclude PATH]\n"
             "       ama --library-build ROOT CONFIG --out DIR --sdk DIR [--cc TOOL]\n"

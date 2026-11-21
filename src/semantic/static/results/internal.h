@@ -13,15 +13,15 @@
 #include "plan.h"
 #include "../guards/internal.h"
 
-/** Equate a declaration scalar only to a checked complete selection whose
- * supplier input key is complete. Source and definition identities belong to
- * the registered result owner; ordinary metadata callers need no fabricated
- * using-module context. A null definition or nonselection contributes no fact.
- * [TPL-15](../../../../spec/language/templates.md#tpl-15) forbids reverse
- * inference through a producer while sharing this phase boundary with actual uses.
+/** Add a simultaneous equation from an original selected structural definition.
+ * Actual source/definition identities belong to the registered result owner;
+ * null definitions and nonselections add no equation. Full supplier closure is
+ * a separate admission requirement under
+ * [TPL-10](../../../../spec/language/templates.md#tpl-10) and
+ * [TPL-15](../../../../spec/language/templates.md#tpl-15).
  */
 bool static_result_selection_equation(StaticResultPlan *, const StaticResultSource *,
-    const StaticResultContext *, const StaticResultDefinitionUse *);
+    const StaticResultDefinitionUse *);
 
 /** Allocate zeroed result-plan records while healthy; failures allocate no report.
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) owns partial construction.

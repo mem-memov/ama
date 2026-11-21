@@ -188,9 +188,11 @@ descriptions. Later tasks add their actual file/test evidence.
 
 ### T245 — Carry an explicit delivery request through emission
 
-1. Validate concrete root, component identity, output mode and configured input
-   schemas at the real driver/export boundary. Keep the build profile separate
-   from runtime argument values.
+1. Validate concrete root, component identity, output mode and declared literal
+   input capability at the real driver boundary. Preserve the existing checked
+   stateful C-export schema consumer. Keep build configuration separate from
+   runtime argument values. Explicit binary descriptor/adaptor admission remains
+   together in T256, where its actual decoder and ownership consumer are available.
 2. Carry resolved identities/spans, supported capabilities and owned metadata
    through the actual emission plan. Connect existing compiler consumers to
    this representation without implementing another source resolver.
@@ -198,9 +200,16 @@ descriptions. Later tasks add their actual file/test evidence.
    later executable and source-inclusion compositions.
 
 Test executable/native concrete roots and refusal of static, marker, open or
-unresolved roots; schema/type mismatch, arithmetic/allocation failure and stale
+unresolved roots; exact input/Type capability and retained export-schema mismatch,
+arithmetic/allocation failure and stale
 borrowed metadata. Verify generation has no process/network/source-write effect.
 Do not install the final public build command early with guessed defaults.
+
+T245 is accepted in [DONE](../../DONE.md#t245); its actual metadata/entry, ownership,
+full static correction and generated-reference evidence are in the
+[handoff record](build-launcher-contracts.md#t245-continuation). Binary-adapter
+metadata parsing stays with T256's concrete admission/decoder consumer rather
+than creating a parser with no admitted adapter in this foundation.
 
 ### T239 — Capture the actual native build closure
 

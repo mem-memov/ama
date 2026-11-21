@@ -43,6 +43,8 @@ static const DriverOption options[] = {
     {"--cc", DRIVER_OPTION_COMPILER, true, GENERATING_REQUESTS},
     {"--protocols", DRIVER_OPTION_PROTOCOLS, true, NATIVE_REQUEST},
     {"--c-flag", DRIVER_OPTION_C_FLAG, true, NATIVE_REQUEST | EMIT_REQUEST},
+    {"--mode", DRIVER_OPTION_DELIVERY_MODE, true, EMIT_REQUEST},
+    {"--component", DRIVER_OPTION_COMPONENT, true, EMIT_REQUEST},
     {"--compile", DRIVER_OPTION_COMPILE, false, EMIT_REQUEST},
     {"--create", DRIVER_OPTION_CREATE, false, NATIVE_REQUEST},
     {"--overwrite", DRIVER_OPTION_OVERWRITE, false, GENERATING_REQUESTS}

@@ -3,8 +3,8 @@
  * [TPL-08](../../../../../spec/language/templates.md#tpl-08) reads original lexical symbols, not captured variable roles.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) guards actual creation before following outputs.
  * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) separates selected reads and whole-graph validation.
- * [TPL-15](../../../../../spec/language/templates.md#tpl-15) delays declaration
- * scalar equations until the selected definition and all supplier inputs close.
+ * [TPL-15](../../../../../spec/language/templates.md#tpl-15) retains structural declaration
+ * equations while complete supplier validation remains an admission obligation.
  */
 #include "internal.h"
 
@@ -66,7 +66,7 @@ bool static_result_expression_step(StaticResultEvaluation *evaluation) {
         return true;
     }
     if (!static_result_receivers(plan, use) ||
-        !static_result_selection_equation(plan, use->source, use->producer, use->selection)) { return false; }
+        !static_result_selection_equation(plan, use->source, use->selection)) { return false; }
     bool closed;
     if (use->source->producer) {
         if (!static_result_producer_closed(plan, use, &closed)) { return false; }

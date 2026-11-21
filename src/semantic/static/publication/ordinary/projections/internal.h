@@ -1,7 +1,7 @@
 /** @file
  * @brief Retain selected supplier facts separately from ordinary annotation and actual-use admission.
  * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) requires every
- * supplied input and a unique selected value without producer inversion.
+ * supplied input and a unique selected value through structural constraints.
  * [TPL-11](../../../../../../spec/language/templates.md#tpl-11) keeps lexical
  * source-only predecessors distinct from actual incoming validation scopes.
  * [ARCH-03](../../../../../../spec/implementation/compiler.md#arch-03) owns
@@ -35,7 +35,7 @@ typedef struct StaticOrdinaryProjection {
 bool static_ordinary_projection_prepare(StaticPublicationPlan *, StaticOrdinaryType *,
     const StaticResultSource *, StaticOrdinaryProjection **);
 /** Advance required graphs and the exact selected definition, then contribute
- * its scalar equation only after complete supplier input/value closure. This
+ * its scalar structural equation while preserving full supplier obligations. This
  * contributes facts without requiring premature closure or inventing a caller
  * context. Root selections also retain ordinary Type/marker storage restrictions.
  * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) permits partial

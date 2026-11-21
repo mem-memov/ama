@@ -28,7 +28,8 @@ int driver_emit(const DriverOptions *options, FILE *output, FILE *errors) {
         native_scaffold_init(&assembly, &frontend, source_system_allocator());
         ScaffoldOptions generation = {.directory = options->output, .sdk = options->sdk, .compiler = options->compiler,
             .flags = options->c_flags, .flag_count = options->c_flag_count, .overwrite = options->overwrite};
-        if (project_codegen_build(&assembly, generation) && (!options->compile || project_codegen_compile(&assembly, errors)) && native_scaffold_publish(&assembly)) {
+        DeliveryRequest delivery = {.mode = options->delivery_mode, .component = options->component};
+        if (project_delivery_build(&assembly, generation, &delivery) && (!options->compile || project_codegen_compile(&assembly, errors)) && native_scaffold_publish(&assembly)) {
             if (fprintf(output, "emitted project assembly %s\n", options->entry) >= 0 && fflush(output) == 0) { result = EXIT_SUCCESS; }
         } else { (void)diagnostic_render(errors, &assembly.error); }
         native_scaffold_destroy(&assembly);

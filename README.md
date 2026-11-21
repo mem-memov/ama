@@ -47,7 +47,7 @@ evidence. The [audit](docs/implementation/audit/README.md) describes the origina
 before its replacement and is historical evidence.
 `./ama --check ROOT MODULE` validates dependencies, syntax, types and typed plans without emitting or
 compiling C. `./ama --status ROOT MODULE` reports source activation without
-validating a project. `./ama --emit ROOT MODULE --out DIR --sdk /path/to/ama/src --compile`
+validating a project. `./ama --emit ROOT MODULE --out DIR --sdk /path/to/ama/src --mode executable --component application --compile`
 produces a verified stackless executable at `DIR/program`. Entry calls, retained
 reads, assignments, branches, loops, suspension and continuation copying execute;
 typed list services and live traversal execute with checked origins and copied
@@ -180,7 +180,7 @@ then open `docs/technical/index.html`. See the
 make
 ./ama --help
 ./ama --check examples/template-lists /test/fixture/v1.0.0/src/main --standard-root stdlib/modules
-./ama --emit examples/template-lists /test/fixture/v1.0.0/src/main --standard-root stdlib/modules --out generated --sdk "$PWD/src" --compile
+./ama --emit examples/template-lists /test/fixture/v1.0.0/src/main --standard-root stdlib/modules --out generated --sdk "$PWD/src" --mode executable --component template-lists --compile
 ./generated/program
 make test
 make test-clean

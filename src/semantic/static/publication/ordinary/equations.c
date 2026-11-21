@@ -3,7 +3,7 @@
  * [TPL-04](../../../../../spec/language/templates.md#tpl-04) gives omitted field arguments exact source identities.
  * [TPL-10](../../../../../spec/language/templates.md#tpl-10) permits finite structural equations.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) preserves separate actual expansion checks.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires independently concrete exports.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) requires complete producer inputs before publication.
  * [TPL-15](../../../../../spec/language/templates.md#tpl-15) requires the exact
  * equations of every nested input rather than a disconnected child variable.
  */
@@ -18,7 +18,7 @@
  * requiring premature closure or inventing an ordinary caller root. Such
  * metadata work cannot certify an actual ordinary use.
  * [TPL-11](../../../../../spec/language/templates.md#tpl-11) leaves ancestry/body validation outstanding.
- * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) forbids reverse supplier inference.
+ * [TPL-12](../../../../../spec/language/static-results.md#tpl-12) permits exact selected structural equations.
  */
 bool static_ordinary_equations(StaticPublicationPlan *plan, StaticOrdinaryType *type, bool *output) {
     if (!static_publication_dependencies(plan)) { return false; }

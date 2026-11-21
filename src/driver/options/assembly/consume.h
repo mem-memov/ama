@@ -19,4 +19,8 @@ bool driver_options_consume(DriverOptions *, DriverOptionStorage *, int count, c
 bool driver_options_source_tool(DriverOptions *, DriverOptionKind, const char *);
 /** Install explicit relocation settings, rejecting duplicate scalar authority and retaining ordered configuration/output arrays. Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */
 bool driver_options_relocation(DriverOptions *, DriverOptionKind, const char *);
+/** Install explicit mode/component once, preserving exact values under
+ * [CLI-01](../../../../spec/implementation/launch-and-embedding.md#cli-01).
+ */
+bool driver_options_delivery(DriverOptions *, DriverOptionKind, const char *);
 #endif

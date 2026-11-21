@@ -86,7 +86,8 @@ static void it_preserves_repeated_values_flags_and_shared_root_exclusions(void) 
     char *arguments[] = {"ama", "--emit", "first", "/test/fixture/v1.0.0/src/main", "--root", "second", "--root", "second",
         "--exclude", "build", "--exclude", "build", "--out", "old", "--out", "new", "--sdk", "sdk",
         "--cc", "first-cc", "--cc", "last-cc", "--c-flag", "-O1", "--c-flag", "-O2",
-        "--compile", "--compile", "--overwrite", "--overwrite"};
+        "--compile", "--compile", "--overwrite", "--overwrite",
+        "--mode", "executable", "--component", "test.options"};
     DriverOptions options;
     driver_options_init(&options, sources.allocator);
     bool valid = driver_options_parse(&options, (int)(sizeof(arguments) / sizeof(*arguments)), arguments);
@@ -277,8 +278,39 @@ static void it_unwinds_every_relocation_option_array_allocation(void) {
         driver_options_destroy(&options); destroy_test();
     }
 }
+/** Explicit compiler delivery values retain exact bytes and reject ambiguous authority. */
+static void it_recognizes_exact_delivery_modes_and_component_authority(void) {
+    for (int mode = 0; mode < 2; mode++) {
+        setup_test(); DriverOptions options; driver_options_init(&options, sources.allocator);
+        char *arguments[] = {"ama", "--emit", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk",
+            "--mode", mode ? "source-inclusion" : "executable", "--component", "компонент / name  "};
+        bool valid = driver_options_parse(&options, 12, arguments);
+        assert(valid && options.has_delivery_mode && options.delivery_mode == (mode ? DELIVERY_SOURCE_INCLUSION : DELIVERY_EXECUTABLE));
+        assert(!strcmp(options.component, "компонент / name  "));
+        driver_options_destroy(&options); destroy_test();
+    }
+    char *unknown[] = {"ama", "--emit", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk", "--mode", "other"};
+    invalid_arguments(10, unknown, "Unknown delivery mode; expected executable or source-inclusion");
+    char *repeated[] = {"ama", "--emit", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk", "--mode", "executable", "--mode", "source-inclusion"};
+    invalid_arguments(12, repeated, "Delivery requires exactly one --mode value");
+    char *component[] = {"ama", "--emit", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk", "--component", "first", "--component", "second"};
+    invalid_arguments(12, component, "Delivery requires one nonempty UTF-8 --component value without repetition");
+    component[9] = "";
+    invalid_arguments(10, component, "Delivery requires one nonempty UTF-8 --component value without repetition");
+    char *missing[] = {"ama", "--emit", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk",
+        "--mode", "executable", "--component", "application"};
+    invalid_arguments(8, missing, "Project emission requires explicit --mode and --component");
+    invalid_arguments(10, missing, "Project emission requires explicit --mode and --component");
+    missing[9] = "source-inclusion";
+    char *compile[] = {"ama", "--emit", "root", "/test/fixture/v1.0.0/src/main", "--out", "output", "--sdk", "sdk",
+        "--mode", "source-inclusion", "--component", "application", "--compile"};
+    invalid_arguments(13, compile, "Native executable compilation requires --mode executable");
+    assert(!driver_option_recognize(DRIVER_REQUEST_NATIVE, "--mode"));
+    assert(!driver_option_recognize(DRIVER_REQUEST_LIBRARY_BUILD, "--component"));
+}
 /** Exercise independent recognition/storage and their real request assembly. */
 void run(void) {
+    it_recognizes_exact_delivery_modes_and_component_authority();
     it_unwinds_every_relocation_option_array_allocation();
     it_validates_relocation_authority_and_standalone_recovery();
     it_validates_source_tool_selectors_and_required_rename_operands();

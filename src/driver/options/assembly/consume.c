@@ -30,6 +30,8 @@ static bool install(DriverOptions *options, DriverOptionStorage *storage,
         case DRIVER_OPTION_PROTOCOLS: options->protocols = value; break;
         case DRIVER_OPTION_C_FLAG: options->c_flags[options->c_flag_count++] = value; break;
         case DRIVER_OPTION_COMPILE: options->compile = true; break;
+        case DRIVER_OPTION_COMPONENT: case DRIVER_OPTION_DELIVERY_MODE:
+            return driver_options_delivery(options, kind, value);
         case DRIVER_OPTION_CREATE: options->create = true; break;
         case DRIVER_OPTION_OVERWRITE: options->overwrite = true; break;
         case DRIVER_OPTION_QUERY_MODULE: case DRIVER_OPTION_OFFSET: case DRIVER_OPTION_RENAME_NAME:

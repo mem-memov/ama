@@ -1,7 +1,7 @@
 /** @file
  * @brief Refine declaration selections without requiring unresolved suppliers to close prematurely.
- * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) permits only
- * complete selected scalar equations and requires ordinary final storage Types.
+ * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) permits simultaneous
+ * selected scalar equations and requires ordinary final storage Types.
  * [TPL-12](../../../../../../spec/language/static-results.md#tpl-12) retains
  * all supplier public definitions independently of the selected value read.
  * [COMP-04](../../../../../../spec/implementation/compiler.md#comp-04) preserves
@@ -10,8 +10,8 @@
 #include "internal.h"
 
 /** Root declarations require an ordinary Type; nested operands may retain a
- * complete partial constructor. Check only independently closed supplier keys
- * and selected values, before scalar equality can obscure the actual residual.
+ * complete partial constructor. Validate final storage category only for closed supplier keys
+ * and selected values; symbolic equations do not certify admission.
  * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) distinguishes
  * intermediate Template metadata from the final runtime-capable Type.
  */
@@ -55,8 +55,8 @@ static bool graphs(StaticPublicationPlan *plan) {
 /** Read the original foreign symbol in its guarded supplier context. Pending
  * is ordinary inference work, not a hard unresolved error in this fact pass.
  * The eventual actual use must retain and close its own incoming proof.
- * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) forbids inverse
- * inference; [COMP-04](../../../../../../spec/implementation/compiler.md#comp-04)
+ * [TPL-15](../../../../../../spec/language/templates.md#tpl-15) permits structural
+ * constraints from independently resolved producers; [COMP-04](../../../../../../spec/implementation/compiler.md#comp-04)
  * retains requiring-site context for an original root selector.
  */
 bool static_ordinary_projection_equations(StaticPublicationPlan *plan, StaticOrdinaryType *type,
@@ -73,7 +73,7 @@ bool static_ordinary_projection_equations(StaticPublicationPlan *plan, StaticOrd
         if (plan->status == STATIC_PUBLICATION_OK) { goto failure; }
         return false;
     }
-    if (!static_result_selection_equation(plan->results, source, projection->context, projection->selected)) { goto failure; }
+    if (!static_result_selection_equation(plan->results, source, projection->selected)) { goto failure; }
     return true;
 failure:
     (void)static_publication_dependencies(plan);

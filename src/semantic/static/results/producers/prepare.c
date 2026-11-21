@@ -39,6 +39,7 @@ bool static_result_prepare_producer(StaticResultPlan *plan, const StaticResultSo
     if (!prepared) { return false; }
     *prepared = (StaticResultProducer){.next = plan->first_producer_request, .source = source,
         .requests = requests, .inputs = inputs, .input_count = source->producer->parameter_count};
+    if (!static_result_require_producer_inputs(plan, prepared)) { return false; }
     plan->first_producer_request = prepared;
     plan->producer_request_count++;
     *output = prepared;

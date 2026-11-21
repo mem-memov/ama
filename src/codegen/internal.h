@@ -14,6 +14,12 @@
 #include "codegen.h"
 #include "native/scaffold/internal.h"
 
+/** Prepare shared declarations and body under the existing scaffold owner; caller
+ * owns attempt/readiness transitions. No launcher is emitted under
+ * [EMBED-01](../../spec/implementation/c-library.md#embed-01).
+ */
+bool codegen_project_assembly(NativeScaffold *, ScaffoldOptions);
+
 /** Emit one fixed cursor per foreach site and one binding cell per exact reused
  * semantic symbol. Cells are control storage, never declared Ama owned fields.
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03), [PAR-01](../../spec/language/async-and-parallelism.md#par-01), [FLOW-05](../../spec/language/lists.md#flow-05). */
@@ -133,9 +139,15 @@ bool codegen_emit_body(NativeScaffold *, FILE *, const ScaffoldType *);
 bool codegen_emit_launcher(NativeScaffold *, FILE *, const ScaffoldType *);
 /**
  * Write a supported UTF-8 JSON compilation database argv for the launcher, explicit
- * flags/includes and non-LTO compilation. The output is informational tooling, not shell text.
+ * flags/includes and non-LTO compilation. The explicit staged entry artifact
+ * identifies the same unit as actual compilation; this is tooling, not shell text.
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03), [PAR-01](../../spec/language/async-and-parallelism.md#par-01), [FLOW-05](../../spec/language/lists.md#flow-05). */
 bool codegen_emit_tooling(NativeScaffold *, FILE *, const ScaffoldType *);
+/** Write owned delivery selection, finite Type graph and launch capabilities;
+ * no runtime arguments enter compilation metadata under
+ * [CLI-01](../../spec/implementation/launch-and-embedding.md#cli-01).
+ */
+bool codegen_emit_delivery(NativeScaffold *, FILE *, const ScaffoldType *);
 /**
  * Include the independent interface, require exact entry signature compatibility before the
  * authored body, then emit present lifecycle/conversion adapters.

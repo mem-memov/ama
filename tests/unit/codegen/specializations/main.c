@@ -34,7 +34,7 @@ static void run(void) {
     it_reports_concrete_shared_initialization_failure_without_entering_the_root();
     it_preserves_independent_captured_instances_references_and_explicit_continuation_copies();
     it_executes_nested_static_composition_through_an_explicitly_closed_static_assembly();
-    it_refuses_to_infer_static_producer_inputs_from_ordinary_calls();
+    it_infers_static_producer_inputs_from_exact_structural_call_constraints();
     it_executes_a_partial_family_completed_by_another_static_producer();
     it_refuses_busy_captured_self_references_without_merging_equal_key_instance_state();
     it_unwinds_every_captured_project_generation_allocation_before_publication();

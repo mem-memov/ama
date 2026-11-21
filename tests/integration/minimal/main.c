@@ -25,9 +25,9 @@ static int run_minimal(const char *program, bool sanitized) {
 /** Compare maintained expected effects only after verified compilation; separate streams prevent compiler acknowledgements from becoming program output. */
 static void compile_and_run_minimal(bool sanitized) {
     setup_test();
-    char *ordinary[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--out", "generated/ordinary", "--sdk", TEST_SDK, "--compile", NULL};
+    char *ordinary[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--out", "generated/ordinary", "--sdk", TEST_SDK, "--compile", "--mode", "executable", "--component", "test.application", NULL};
     char *instrumented[] = {AMA_EXECUTABLE, "--emit", "project", "/test/fixture/v1.0.0/src/main", "--out", "generated/sanitized", "--sdk", TEST_SDK, "--compile",
-        "--c-flag", "-fsanitize=address,undefined", "--c-flag", "-fno-omit-frame-pointer", "--c-flag", "-fno-pie", "--c-flag", "-no-pie", NULL};
+        "--c-flag", "-fsanitize=address,undefined", "--c-flag", "-fno-omit-frame-pointer", "--c-flag", "-fno-pie", "--c-flag", "-no-pie", "--mode", "executable", "--component", "test.application", NULL};
     int result = run_compiler_arguments(sanitized ? instrumented : ordinary);
     char diagnostic[8192];
     read_stream(errors, diagnostic, sizeof(diagnostic));
