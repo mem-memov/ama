@@ -8201,3 +8201,31 @@ T201. Specification bytes have not changed.
   generated-C execution passed. Final `make docs` passed: 3273 ready inputs,
   zero debts, 2468 maintained file pages, 9512 interfaces and 490 destinations.
   Full commands, corrections and limitations: [task record](docs/implementation/declaration-expressions.md).
+
+<a id="t233"></a>
+
+- [x] **T233 — Separate project commands and create guided empty projects.**
+  Status: accepted; separate init command and prepared isolated-test API are implemented.
+  Evidence: [project-tool contract](docs/implementation/project-tool.md).
+  Prerequisites: T232, T221 and T226. Implement PROJECT-01/02 and the independent
+  test-orchestration part of PROJECT-03. Separate command/process ownership from
+  the compiler pipeline; expose narrow read-only sharing. Implement the exact
+  ama-project init scaffold, destination preflight, staging/publication and
+  Markdown hints; preserve an explicit entry selection. Run test microprograms
+  with isolated outputs. Accept real command tests of new/empty/conflicting and
+  concurrent destinations, failure cleanup, guidance links, no hidden network or
+  compiler mutations, and independently compiled tests with recorded outcomes.
+
+  Acceptance: strict command recognition, atomic complete scaffolding, cancellation,
+  counted allocation refusal, conflict/symlink protection, retained cleanup and
+  synchronized concurrency passed. Independent processes preserve exact arguments
+  and stage/status/signal records; two Ama microprograms compile and run separately.
+  Real standalone incremental/link-membership/flag failure and recovery passed.
+  ASan/UBSan passed with LeakSanitizer explicitly disabled; counted ownership
+  checks are separate evidence. The final registry/header gate accepts 3314 inputs
+  with zero debts; corrected Doxygen covers 2497 maintained file pages, 9619
+  interfaces and 491 destinations. The final comment-only correction preserves
+  those named-case/header contracts. T242 owns the accepted CMake adapter and
+  high-level test command; T234/T236 retain acquisition ownership. No specification
+  or whole-sprint conformance fingerprints changed. Full failures, corrections,
+  commands, invariants and limitations are preserved in the linked contract.

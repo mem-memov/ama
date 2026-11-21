@@ -23,7 +23,11 @@ LINK_COMMAND = $(C_COMPILER) $(C_COMPILER_FLAGS) $(LTO_FLAGS) $(LINKER_FLAGS)
 include make/configuration.mk
 
 .PHONY: all test test-clean conformance-check docs docs-check docs-complete docs-reproducible docs-clean clean rebuild help
-all: ama
+all: ama ama-project
+
+.PHONY: ama-project
+ama-project:
+>    $(MAKE) -C tools/project all
 
 ama: $(PROJECT_OBJECTS) build/link.configuration
 >    $(LINK_COMMAND) -o $@ $(PROJECT_OBJECTS)
@@ -61,7 +65,7 @@ docs-clean:
 >    $(RM) -r docs/technical build/documentation
 
 clean: test-clean docs-clean
->    $(RM) -r build ama
+>    $(RM) -r build ama ama-project
 
 rebuild:
 >    $(MAKE) clean

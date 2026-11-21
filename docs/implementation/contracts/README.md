@@ -329,3 +329,6 @@ composes named static exports with actual package and isolated-child consumers.
 
 T195: [generic list algorithm examples](../template-list-algorithms.md)
 verify actual maintained Ama sources over the unchanged intrinsic list methods.
+
+The [independent project-tool contract](../project-tool.md) owns T233 command,
+scaffold publication and isolated experiment orchestration.

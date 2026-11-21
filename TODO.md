@@ -96,18 +96,6 @@ T221 and T226 are accepted in DONE, together with the
 T231/T222/T232 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 
-<a id="t233"></a>
-
-- [ ] **T233 — Separate project commands and create guided empty projects.**
-  Prerequisites: T232, T221 and T226. Implement PROJECT-01/02 and the independent
-  test-orchestration part of PROJECT-03. Separate command/process ownership from
-  the compiler pipeline; expose narrow read-only sharing. Implement the exact
-  ama-project init scaffold, destination preflight, staging/publication and
-  Markdown hints; preserve an explicit entry selection. Run test microprograms
-  with isolated outputs. Accept real command tests of new/empty/conflicting and
-  concurrent destinations, failure cleanup, guidance links, no hidden network or
-  compiler mutations, and independently compiled tests with recorded outcomes.
-
 <a id="t224"></a>
 
 - [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
@@ -182,7 +170,7 @@ T229 specifies these contracts; T243 supplies the
 [detailed task/step plan](docs/implementation/cmake-launcher-plan.md).
 The user's continuation request authorizes implementation. Execute in order after
 each row's actual prerequisites; IDs are stable, not a numeric ordering rule.
-T231/T222/T232/T221/T226/T233 remain foundation gates. T222 still requires its
+T231/T222/T232/T221/T226/T233 are accepted foundation gates. T222 received its
 separate specification authorization. T233's independent test orchestration does
 not depend on the final CMake runner; T242 composes them after both exist.
 

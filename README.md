@@ -22,8 +22,8 @@ identities and `//` Standard paths, and recognizes single-dot static names.
 [T232](DONE.md#t232) accepts relative-path normalization and scoped `.ini`
 aliases in the shared frontend. The
 [independent project commands](spec/implementation/project-tools.md) retain
-T233–T237/T224 implementation owners; their specification is not evidence of
-executable command support.
+T234–T237/T224 implementation owners. T233 accepts initialization and the
+prepared isolated-test API; other commands retain their separate implementation gates.
 The later [CMake build contract](spec/implementation/application-builds.md),
 [named application inputs](spec/implementation/launch-and-embedding.md) and
 [no-main source inclusion](spec/implementation/c-library.md#embed-09) are also
@@ -199,3 +199,10 @@ implementation claims require the corresponding executable acceptance evidence.
 Native interface authoring is available through `--native ROOT MODULE --out DIR
 --sdk /path/to/ama/src`; add `--create` to propose missing companions. See the
 [native scaffolding guide](docs/implementation/native-scaffolding.md).
+
+`make` also builds the independent `ama-project` executable.
+`ama-project init DESTINATION` creates an empty project with linked README/agent
+guidance and a packages directory, preserving conflicting destinations.
+[T233's project-tool contract](docs/implementation/project-tool.md) describes
+its transaction and prepared isolated-test API. High-level acquisition, source
+operations and CMake commands retain their separate TODO implementation owners.

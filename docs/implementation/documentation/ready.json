@@ -37,6 +37,16 @@
         "source": "tests/unit/conformance/main.c",
         "case": "it_checks_the_current_canonical_evidence_and_real_test_interfaces",
         "command": "make -C tests/unit/conformance"
+      },
+      {
+        "source": "tests/unit/tools/project/building/main.c",
+        "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
+        "command": "make -C tests/unit/tools/project/building"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
       }
     ]
   },
@@ -110816,6 +110826,16 @@
         "case": "it_preserves_inspection_failure_separately_from_program_status",
         "command": "make -C tests/unit/tools/debugger",
         "source": "tests/unit/tools/debugger/main.c"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
       }
     ]
   },
@@ -172509,7 +172529,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/packages/test/fixture/v1.0.0/src/程序": {
+  "tests/integration/parser/grammar/project/packages/test/fixture/v1.0.0/src/\u7a0b\u5e8f": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172540,7 +172560,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/packages/test/fixture/v1.0.0/src/中间": {
+  "tests/integration/project/closure/project/packages/test/fixture/v1.0.0/src/\u4e2d\u95f4": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172551,7 +172571,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172562,7 +172582,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.abi": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172573,7 +172593,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.c": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -172584,7 +172604,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.h": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -172610,7 +172630,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172621,7 +172641,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.abi": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -172632,7 +172652,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.c": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -172643,7 +172663,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.h": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -174605,7 +174625,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/商店/商品": {
+  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/\u5546\u5e97/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -174631,7 +174651,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/other/商品": {
+  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/other/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -180578,6 +180598,927 @@
         "source": "tests/unit/semantic/static/guards/pending/main.c",
         "case": "it_does_not_inherit_unrelated_pending_ancestry_into_closed_metadata_owners",
         "command": "make -C tests/unit/semantic/static/guards/pending"
+      }
+    ]
+  },
+  "tests/unit/tools/project/Makefile": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Compose project-tool acceptance and test-owned fixture/resource lifetimes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      },
+      {
+        "source": "tests/unit/tools/project/building/main.c",
+        "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
+        "command": "make -C tests/unit/tools/project/building"
+      }
+    ]
+  },
+  "tests/unit/tools/project/command/Makefile": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Exercise strict request recognition and complete scaffold descriptions.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/command/main.c",
+        "case": "it_accepts_only_complete_explicit_initialization",
+        "command": "make -C tests/unit/tools/project/command"
+      },
+      {
+        "source": "tests/unit/tools/project/command/main.c",
+        "case": "it_describes_only_three_locally_linked_guidance_files",
+        "command": "make -C tests/unit/tools/project/command"
+      }
+    ]
+  },
+  "tests/unit/tools/project/command/main.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Exercise strict request recognition and complete scaffold descriptions.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/command/main.c",
+        "case": "it_accepts_only_complete_explicit_initialization",
+        "command": "make -C tests/unit/tools/project/command"
+      },
+      {
+        "source": "tests/unit/tools/project/command/main.c",
+        "case": "it_describes_only_three_locally_linked_guidance_files",
+        "command": "make -C tests/unit/tools/project/command"
+      }
+    ]
+  },
+  "tests/unit/tools/project/common.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Compose project-tool acceptance and test-owned fixture/resource lifetimes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      },
+      {
+        "source": "tests/unit/tools/project/building/main.c",
+        "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
+        "command": "make -C tests/unit/tools/project/building"
+      }
+    ]
+  },
+  "tests/unit/tools/project/compiled/Makefile": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Compile and run two independent Ama tests that call the real shared source helper.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tests/unit/tools/project/compiled/main.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Compile and run two independent Ama tests that call the real shared source helper.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tests/unit/tools/project/compiled/project/packages/test/fixture/v1.0.0/package.ini": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Compile and run two independent Ama tests that call the real shared source helper.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tests/unit/tools/project/compiled/project/packages/test/fixture/v1.0.0/src/helper": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Compile and run two independent Ama tests that call the real shared source helper.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tests/unit/tools/project/compiled/project/packages/test/fixture/v1.0.0/tests/first": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Compile and run two independent Ama tests that call the real shared source helper.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tests/unit/tools/project/compiled/project/packages/test/fixture/v1.0.0/tests/second": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Compile and run two independent Ama tests that call the real shared source helper.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tests/unit/tools/project/experiments/Makefile": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Exercise isolated experiment records, processes and resource failures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_rejects_conflicting_or_invalid_selections_before_any_output",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_keeps_output_outside_both_source_namespaces_and_physical_aliases",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_retains_partial_evidence_when_infrastructure_or_allocation_fails",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_distinguishes_exec_failure_normal_127_and_signal_termination",
+        "command": "make -C tests/unit/tools/project/experiments"
+      }
+    ]
+  },
+  "tests/unit/tools/project/experiments/main.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Exercise isolated experiment records, processes and resource failures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_rejects_conflicting_or_invalid_selections_before_any_output",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_keeps_output_outside_both_source_namespaces_and_physical_aliases",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_retains_partial_evidence_when_infrastructure_or_allocation_fails",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_distinguishes_exec_failure_normal_127_and_signal_termination",
+        "command": "make -C tests/unit/tools/project/experiments"
+      }
+    ]
+  },
+  "tests/unit/tools/project/initialization/Makefile": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Exercise actual initialization effects, exact refusals and synchronized concurrency.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_usage_and_conflicts_through_the_command_adapter",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tests/unit/tools/project/initialization/main.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Exercise actual initialization effects, exact refusals and synchronized concurrency.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_usage_and_conflicts_through_the_command_adapter",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tests/unit/tools/project/initialization/support/fixture.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Exercise actual initialization effects, exact refusals and synchronized concurrency.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_usage_and_conflicts_through_the_command_adapter",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/Makefile": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Build the independently owned executable with exact command/link manifests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/building/main.c",
+        "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
+        "command": "make -C tests/unit/tools/project/building"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tools/project/command/request.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Recognize complete explicit initialization without effects.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/command/main.c",
+        "case": "it_accepts_only_complete_explicit_initialization",
+        "command": "make -C tests/unit/tools/project/command"
+      }
+    ]
+  },
+  "tools/project/command/request.h": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Recognize complete explicit initialization without effects.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/command/main.c",
+        "case": "it_accepts_only_complete_explicit_initialization",
+        "command": "make -C tests/unit/tools/project/command"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/run.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Dispatch project initialization and retain useful failure attribution.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_usage_and_conflicts_through_the_command_adapter",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/command/run.h": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Dispatch project initialization and retain useful failure attribution.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_usage_and_conflicts_through_the_command_adapter",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/init/cleanup.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own descriptor-backed scaffold preparation, atomic publication and bounded cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/init/content.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Describe the fixed locally linked empty-project guidance.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/command/main.c",
+        "case": "it_describes_only_three_locally_linked_guidance_files",
+        "command": "make -C tests/unit/tools/project/command"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/init/content.h": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Describe the fixed locally linked empty-project guidance.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/command/main.c",
+        "case": "it_describes_only_three_locally_linked_guidance_files",
+        "command": "make -C tests/unit/tools/project/command"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/init/init.h": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own descriptor-backed scaffold preparation, atomic publication and bounded cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/init/internal.h": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own descriptor-backed scaffold preparation, atomic publication and bounded cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/init/parent.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own descriptor-backed scaffold preparation, atomic publication and bounded cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/init/preflight.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own descriptor-backed scaffold preparation, atomic publication and bounded cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/init/prepare.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own descriptor-backed scaffold preparation, atomic publication and bounded cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/init/publish.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own descriptor-backed scaffold preparation, atomic publication and bounded cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/init/run.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own descriptor-backed scaffold preparation, atomic publication and bounded cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_publishes_exact_scaffold_into_new_and_empty_destinations",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_preserves_destinations_at_every_prepublication_cancellation",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_reports_os_file_conflicts_and_never_removes_unplanned_staging_entries",
+        "command": "make -C tests/unit/tools/project/initialization"
+      },
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/main.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Own the separate project executable process boundary.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/initialization/main.c",
+        "case": "it_runs_the_separate_command_and_serializes_concurrent_initializers",
+        "command": "make -C tests/unit/tools/project/initialization"
+      }
+    ]
+  },
+  "tools/project/process/process.h": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Collect shell-free process launch, exit and signal observations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_distinguishes_exec_failure_normal_127_and_signal_termination",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/process/run.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Collect shell-free process launch, exit and signal observations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_distinguishes_exec_failure_normal_127_and_signal_termination",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tools/project/sources.mk": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Build the independently owned executable with exact command/link manifests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/building/main.c",
+        "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
+        "command": "make -C tests/unit/tools/project/building"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tools/project/testing/internal.h": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Orchestrate explicitly selected independent test programs and preserve partial evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_retains_partial_evidence_when_infrastructure_or_allocation_fails",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/testing/record.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Record byte-exact requests and observed stage outcomes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_retains_partial_evidence_when_infrastructure_or_allocation_fails",
+        "command": "make -C tests/unit/tools/project/experiments"
+      }
+    ]
+  },
+  "tools/project/testing/run.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Orchestrate explicitly selected independent test programs and preserve partial evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_retains_partial_evidence_when_infrastructure_or_allocation_fails",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ]
+  },
+  "tools/project/testing/testing.h": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Orchestrate explicitly selected independent test programs and preserve partial evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_runs_distinct_microprograms_and_records_exact_arguments_and_failures",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_retains_partial_evidence_when_infrastructure_or_allocation_fails",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/compiled/main.c",
+        "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
+        "command": "make -C tests/unit/tools/project/compiled"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/testing/validate.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Validate exact selected identities and physically disjoint output namespaces.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_rejects_conflicting_or_invalid_selections_before_any_output",
+        "command": "make -C tests/unit/tools/project/experiments"
+      },
+      {
+        "source": "tests/unit/tools/project/experiments/main.c",
+        "case": "it_keeps_output_outside_both_source_namespaces_and_physical_aliases",
+        "command": "make -C tests/unit/tools/project/experiments"
+      }
+    ]
+  },
+  "tests/unit/tools/project/building/Makefile": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Verify actual standalone incremental builds, changed flags and exact link-membership recovery.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/building/main.c",
+        "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
+        "command": "make -C tests/unit/tools/project/building"
+      }
+    ]
+  },
+  "tests/unit/tools/project/building/main.c": {
+    "contract": "docs/implementation/project-tool.md",
+    "purpose": "Verify actual standalone incremental builds, changed flags and exact link-membership recovery.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/building/main.c",
+        "case": "it_builds_independently_and_tracks_flags_and_exact_link_membership",
+        "command": "make -C tests/unit/tools/project/building"
       }
     ]
   }

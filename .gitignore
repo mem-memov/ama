@@ -1,5 +1,6 @@
 build/
 /ama
+/ama-project
 /tests/**/generated/
 /docs/technical/
 __pycache__/
