@@ -18,7 +18,7 @@ static void it_resumes_the_saved_branch_statement_after_external_condition_chang
     directory("generated/project");
     fixture_package_prepare("generated/project", "fixture");
     native_fixture("flag", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@C\n");
-    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@>\ncontrol&\n/test/fixture/v1.0.0/src/flag\n@!\nflag\n/test/fixture/v1.0.0/src/flag\nprobe\n/test/fixture/v1.0.0/src/worker\nflag !\n < |1\ncontrol&\n &flag\n"
+    file("generated/project/packages/test/fixture/v1.0.0/src/task", "@>\ncontrol&\n/test/fixture/v1.0.0/src/flag\n@!\nflag\n/test/fixture/v1.0.0/src/flag\nprobe\n/test/fixture/v1.0.0/src/worker\nflag !\n < |1\ncontrol&\n & flag\n"
         "flag\n?\n probe !\n  < |1\n %\n probe !\n  < |2\n:\n probe !\n  < |999\nprobe !\n < |3\n");
     native_entry_override = flag_entry;
     execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\ntask !\n > control&\ncontrol& !\n < |0\ntask %\n", "1:1:0\n2:2:0\n3:3:0\n", true);

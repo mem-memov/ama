@@ -16,7 +16,7 @@ static bool begin(const char *text, size_t indentation, LexCursor *cursor) {
 /** Every valid join retains complete names and longest punctuation across physical ending variants. */
 static void it_preserves_complete_names_compound_tokens_and_all_line_ending_forms(void) {
     const char *texts[] = {"//商店 工具/商品 状态", "目标&[] !", "targets&[positions[next position]]",
-        "input name& < &item state", "% target&", "word name   # arbitrary   comment"};
+        "input name& < & item state", "% target&", "word name   # arbitrary   comment"};
     const LexKind kinds[][8] = {
         {LEX_MODULE_PATH}, {LEX_NAME,LEX_REFERENCE_LIST,LEX_EXECUTE},
         {LEX_NAME,LEX_REFERENCE_INDEX,LEX_NAME,LEX_INDEX_OPEN,LEX_NAME,LEX_INDEX_CLOSE,LEX_INDEX_CLOSE},
@@ -53,7 +53,7 @@ static void it_preserves_complete_names_compound_tokens_and_all_line_ending_form
 
 /** A malformed join fails at the lexical boundary and never publishes a partial token. */
 static void it_rejects_spacing_near_compact_accesses_and_separated_operators(void) {
-    const char *invalid[] = {"target!", "target%", "%target", "target &", "& target", "values []",
+    const char *invalid[] = {"target!", "target%", "%target", "target &", "&target", "&  target", "values []",
         "values &[]", "values[ position]", "values[position ]", ". shop", ".. shop", ".shop .item",
         "..shop..item", "input< value", "input <value", ">>value", "name  part", "name  !",
         "input name  < |#data", "input name <  |#data", "input name< |#data",

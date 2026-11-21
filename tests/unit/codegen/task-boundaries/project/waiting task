@@ -15,7 +15,7 @@ awaiting
 probe
 /test/fixture/v1.0.0/src/worker
 operation&
- &owned operation
+ & owned operation
 owned operation !
  < source&
  > token

@@ -59572,6 +59572,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_requires_one_ascii_space_after_reference_acquisition",
+        "command": "make -C tests/unit/parser/sources"
       }
     ]
   },
@@ -59684,6 +59689,11 @@
         "source": "tests/unit/lexer/tokens/main.c",
         "case": "it_scans_path_operands_and_rejects_invalid_component_joins",
         "command": "make -C tests/unit/lexer/tokens"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_requires_one_ascii_space_after_reference_acquisition",
+        "command": "make -C tests/unit/parser/sources"
       }
     ]
   },
@@ -59745,6 +59755,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_requires_one_ascii_space_after_reference_acquisition",
+        "command": "make -C tests/unit/parser/sources"
       }
     ],
     "standalone_header_command": [
@@ -59816,6 +59831,11 @@
         "source": "tests/unit/lexer/tokens/main.c",
         "case": "it_scans_path_operands_and_rejects_invalid_component_joins",
         "command": "make -C tests/unit/lexer/tokens"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_requires_one_ascii_space_after_reference_acquisition",
+        "command": "make -C tests/unit/parser/sources"
       }
     ],
     "standalone_header_command": [
@@ -60588,6 +60608,16 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_requires_one_ascii_space_after_reference_acquisition",
+        "command": "make -C tests/unit/parser/sources"
+      },
+      {
+        "source": "tests/unit/editor/rename/plan/main.c",
+        "case": "it_preserves_separated_acquisition_during_indexed_operand_rename",
+        "command": "make -C tests/unit/editor/rename/plan"
       }
     ]
   },
@@ -60690,6 +60720,11 @@
         "case": "it_cleans_every_allocation_failure_in_self_reference_assignment_construction",
         "command": "make -C tests/unit/parser/sources",
         "source": "tests/unit/parser/sources/main.c"
+      },
+      {
+        "source": "tests/unit/parser/sources/main.c",
+        "case": "it_requires_one_ascii_space_after_reference_acquisition",
+        "command": "make -C tests/unit/parser/sources"
       }
     ]
   },
@@ -107102,6 +107137,11 @@
         "source": "tests/unit/editor/rename/static/main.c",
         "case": "it_unwinds_every_static_candidate_correspondence_allocation",
         "command": "make -C tests/unit/editor/rename/static"
+      },
+      {
+        "source": "tests/unit/editor/rename/plan/main.c",
+        "case": "it_preserves_separated_acquisition_during_indexed_operand_rename",
+        "command": "make -C tests/unit/editor/rename/plan"
       }
     ]
   },

@@ -77,7 +77,7 @@ static void it_preserves_literal_input_requirements_without_inventing_an_anchor(
 static void it_rejects_implicit_reference_conversion_in_both_binding_directions(void) {
     for (size_t output = 0; output < 2; output++) {
         setup_connections(output ? "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n > fresh&\n" :
-            "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < &anchor\n",
+            "@!\nanchor\n//integer\nworker\n/test/fixture/v1.0.0/src/other\nworker !\n < & anchor\n",
             "@<\nargument\n//integer\n@>\nreturned\n//integer\n@!\n");
         const StaticResultContext *actual;
         const StaticTypedScope *scope = prepare_operations(&actual);

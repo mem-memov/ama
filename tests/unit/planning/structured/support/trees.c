@@ -46,7 +46,7 @@ static void it_keeps_selected_targets_and_caller_operands_through_depth_first_ac
 }
 /** Intrinsic methods remain caller frames with typed preflight/prepare/commit and can immediately execute their real returned element. */
 static void it_lowers_list_methods_and_ephemeral_outputs_without_synthetic_module_bodies(void) {
-    prepare_structured("@!\nitems[]\n/test/fixture/v1.0.0/src/value\nsource\n/test/fixture/v1.0.0/src/value\nitems[]\n append !\n  < &source\n  > result&\n  element& !\n length !\n  > count\n");
+    prepare_structured("@!\nitems[]\n/test/fixture/v1.0.0/src/value\nsource\n/test/fixture/v1.0.0/src/value\nitems[]\n append !\n  < & source\n  > result&\n  element& !\n length !\n  > count\n");
     assert(plan.entry->frame_count == 4 && plan.context_storage.pools == 3);
     ControlNode *service = find_control(plan.entry, CONTROL_ACQUIRE_LIST);
     assert(service != NULL && service->chain->root_frame == service->frame);

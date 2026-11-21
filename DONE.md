@@ -7393,3 +7393,117 @@ T201. Specification bytes have not changed.
   exact commands, failures/corrections and general invariants are in the record.
   Final delivery after archival requires make docs and source/staged manifest
   agreement before this task's commit; generated references stay unversioned.
+
+<a id="t222"></a>
+
+- [x] **T222 — Require a space after the reference-formation operator.**
+  Completed 2026-11-21. Prerequisite: T231. Selected from BACKLOG with its
+  original ID by the user's 2026-11-20 sprint request. The user explicitly
+  authorized changes to REF-01, SYN-06, EBNF and related examples/acceptance on
+  2026-11-21, answering the T222 specification-authorization question.
+  Result: exactly one ASCII space separates acquisition from its owned operand:
+  `& item`, `& items[position]`, `input& < & item`. Reference suffixes
+  (`target&`, `targets&[]`, `targets&[position]`) remain adjoining; standalone
+  self-reference `&` gains no operand or trailing code space. Ownership, lifetime,
+  identity, copying and execution behavior are unchanged.
+  Canonical definitions: [REF-01](spec/language/values-and-references.md#ref-01),
+  [SYN-06](spec/language/source-and-names.md#syn-06),
+  [EBNF](spec/grammar.md#accesses-and-sources). Updated related examples,
+  the grammar join table, spacing acceptance, README and current component notes.
+  The [lexical contract](docs/implementation/lexical-tokens.md#t222-separated-reference-acquisition)
+  explains the deterministic boundary relation, original-span invariant and
+  unchanged linear time/constant auxiliary storage.
+  Removed the obsolete lexer cursor prefix bit and boundary output parameter.
+  The ordinary one-space token relation now applies after acquisition; suffix
+  context stays unchanged. The parser consumes the prefix plus its separator
+  before parsing the same bounded owned-access grammar. Downstream consumers
+  receive the same access shape and exact original name span.
+  Added `it_requires_one_ascii_space_after_reference_acquisition` for simple,
+  multiword and nested-index operands, complete source/name spans, and rejection
+  of joined/doubled/TAB/NBSP/split-line/trailing-space forms, reference-to-reference
+  and whole-list acquisition. Existing independent lexical checks retain all
+  physical endings, suffixes, self-reference, literal bytes, allocation-free
+  scanning and unchanged token publication on failure.
+  Added `it_preserves_separated_acquisition_during_indexed_operand_rename`:
+  actual workspace rename and candidate revalidation preserve the prefix space,
+  suffix, CRLF and comment bytes. Registered both cases against their maintained
+  source/header/consumer boundaries in the per-file documentation registry.
+  Migrated reviewed C string tokens separately from native C code and physical
+  Ama source separately from literal/comment data. Audit confirmed unchanged
+  non-string C tokens/comments in 49 migration files, unchanged protected regions
+  in 56 physical inputs, and unchanged literal/comment suffixes in 1594 C string
+  tokens. All 270 maintained extensionless inputs have no joined acquisition
+  remaining in code regions. Also checked concatenated-string boundaries and
+  formatted source prefixes; deliberate invalid source remains in negative tests
+  and a normative explanation, while literal/comment/native C bytes are retained.
+  Initial event-bridge execution failed on an unannotated `reconcile` fragment.
+  Audited all extensionless fragments and corrected it plus eight task fragments;
+  reran event-bridge and every remaining task leaf successfully. Original failure:
+  `/tmp/ama-t222-codegen-tasks.log`; corrected run:
+  `/tmp/ama-t222-codegen-tasks-corrected.log` (exit 0).
+  Acceptance passed: root `make`; lexer parent; parser sources, tree, bindings,
+  declarations, calls and control; full semantic parent (including every static
+  child and ordinary specialization); compiler composition; planning structured
+  and transfers; editor parent plus the new rename case; relocation references;
+  integration parser/grammar, native-admission, examples and async-examples.
+  Reproducible commands use `make -C tests/unit/<suite>` or
+  `make -C tests/integration/<suite>` for the named leaves/parents. Logs retain
+  actual compiler/linker invocations and completion statuses under
+  `/tmp/ama-t222-*.log`; full semantics: `/tmp/ama-t222-semantic.log` (exit 0).
+  All 15 value/reference codegen leaves passed, sequentially: continuations,
+  execution, layouts, list-deletion, list-insertion, list-values, native-templates,
+  positions, reads, reference-visitors, snapshots, specializations,
+  template-algorithms, traversal and trees. Command for each:
+  `make -C tests/unit/codegen/NAME`; log `/tmp/ama-t222-codegen-values.log`.
+  Task codegen passed channel-waits, control and enrollment, then corrected
+  event-bridge, executor-transfer, parallel-contexts, ready-queues,
+  scheduler-rounds, task-boundaries, task-cancellation and task-detachment.
+  The scheduler's complete budget/refusal and maximum-quota cases ran normally;
+  no timing-based cutoff or weakened expectation was used.
+  Parser sources also passed ASan/UBSan, including all source/AST allocation
+  refusals. Exact invocation:
+
+  ```sh
+  ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 make -C tests/unit/parser/sources C_COMPILER_FLAGS='-O0 -g -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L -fsanitize=address,undefined -fno-omit-frame-pointer'
+  ```
+
+  Log: `/tmp/ama-t222-parser-sanitized.log` (exit 0). No LSan claim is made;
+  the previously established environment restriction remains separate from
+  counted ownership/refusal checks.
+  The unchanged full canonical parser census still fails at
+  `language/templates.md` fence 3, the ordinary-constructor implementation owned
+  by T226. It was actually rerun; log `/tmp/ama-t222-parser-canonical.log`.
+  No case was skipped or converted to expected failure in maintained tests.
+  Independently invoked the other three maintained composition cases via a
+  temporary harness that includes `tests/unit/parser/composition/main.c` with
+  `main` renamed, then calls
+  `it_parses_documented_forms_with_exact_original_source_views`,
+  `it_checks_every_byte_prefix_of_a_composed_unicode_program` and
+  `it_unwinds_every_composed_source_to_ast_allocation_failure`. All passed using
+  `make -C tests/unit/parser/composition LOCAL_SOURCES=/tmp/ama-t222-parser-composition.c`;
+  log `/tmp/ama-t222-parser-focused-composition.log`. Full conformance renewal
+  and the complete project gate remain T237; no evidence hashes were refreshed.
+  Documentation: `make docs-check` passed with 3112 ready inputs and zero debts.
+  Initial `make docs` runs failed on Doxygen inline-code parsing in the task's
+  command record. Joining multiline spans did not fix it. Isolated reproduction
+  established that moving the quoted compiler flags to a fenced shell block
+  fixes the complete task fragment; preserved exact flags and suppressed no
+  warnings. Failed logs: `/tmp/ama-t222-documentation-preacceptance.log` and
+  `/tmp/ama-t222-documentation-preacceptance-corrected.log`.
+  Subsequent full `make docs` passed: 2324 maintained file pages, 9050 documented
+  interfaces, 487/487 canonical/referenced destinations and 7376 HTML pages.
+  Log `/tmp/ama-t222-documentation-fenced-command.log`. Tools: Doxygen 1.11.0,
+  markdown-it-py 3.0.0, Python 3.14.4, GCC 15.2.0. Final delivery repeats
+  `make docs` after this archive update, with log
+  `/tmp/ama-t222-documentation-delivery-serial.log`; the first delivery launch
+  was deliberately interrupted (exit 130) after diff review found an extra EOF
+  blank line in this record. Removed that whitespace before the final run.
+  Stopping that make process did not stop its coverage/generation descendant;
+  the next delivery attempt overlapped its view construction and refused with
+  ENOTEMPTY. Both logs subsequently showed terminal errors and no documentation
+  process remained visible. Retained the interrupted and collided run logs
+  (`/tmp/ama-t222-documentation-delivery.log` and
+  `/tmp/ama-t222-documentation-delivery-final.log`) and reran serially without
+  interruption. These failures are not accepted documentation evidence.
+  Commit requires successful
+  generation, unchanged rendered input fingerprints and staged-diff review.

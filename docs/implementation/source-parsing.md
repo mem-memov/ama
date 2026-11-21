@@ -33,7 +33,7 @@ Source publication follows disjoint explicit forms:
 - Leading `.`/`..` selects a qualified constant and its optional compact `[]`.
   Splitting uses the final component dot after a real module component; a root dot
   never supplies the missing member. Complete names remain unsplit across spaces.
-- `&item state` acquires a reference to the owned access `item state`; the
+- `& item state` acquires a reference to the owned access `item state`; the
   ampersand adjoins its first word. Reference
   slots and whole lists cannot be acquired as owned scalar storage.
 - `% source` retains the explicit continuation-copy tag and requires a scalar

@@ -22,11 +22,11 @@ require
 //task/require
 source !
 round !
- < &red registry
- < &blue registry
- < &red queue
- < &blue queue
- < &source
+ < & red registry
+ < & blue registry
+ < & red queue
+ < & blue queue
+ < & source
  < |1
  < |1
  > ready

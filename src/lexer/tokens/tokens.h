@@ -30,7 +30,6 @@ typedef struct {
     LexToken previous;
     Diagnostic error;
     bool has_previous;
-    bool reference_prefix;
     bool failed;
 } LexCursor;
 /** End is distinct from malformed code; invalid scans never publish an output token. Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06), [SYN-02](../../../spec/language/source-and-names.md#syn-02). */

@@ -19,11 +19,11 @@ require
 hub !
  < |1
 external operation !
- < &hub
+ < & hub
  > token
 source task !
- < &port
- < &external operation
+ < & port
+ < & external operation
 copy
  % source task
 source task
@@ -58,7 +58,7 @@ second packet
 ?
  require !
 fresh operation !
- < &hub
+ < & hub
  > fresh token
 same !
  < token

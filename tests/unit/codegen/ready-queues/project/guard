@@ -15,7 +15,7 @@ registry
 record& !
  < |1
 enqueue !
- < &queue
+ < & queue
  < record&
 step !
  < record&

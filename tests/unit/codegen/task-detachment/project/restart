@@ -9,13 +9,13 @@ require
 source !
  < |1
 operation !
- < &source
+ < & source
  > old
 source
  arm !
   < old
 operation !
- < &source
+ < & source
  > current
 source
  arm !

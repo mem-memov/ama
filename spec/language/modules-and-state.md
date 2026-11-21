@@ -43,7 +43,7 @@ another job
 ```
 
 These are two instances, not two names for the same object. A reference to `job`
-is formed with `&job`. Copying a reference preserves its target identity;
+is formed with `& job`. Copying a reference preserves its target identity;
 copying an owned value creates independent owned data according to its type.
 
 ## Explanation: permanent state and interface state

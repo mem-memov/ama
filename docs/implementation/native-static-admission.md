@@ -181,7 +181,7 @@ static input and inline static bindings in an ordinary variable declaration.
 Those source forms were removed by the static/ordinary split. The real `--check`
 command therefore stopped in syntax parsing before the policy tested here.
 The maintained fixture now introduces `...type` through an ordinary reference
-input pair and supplies a concrete owned `.plain` value through `&known` in an
+input pair and supplies a concrete owned `.plain` value through `& known` in an
 ordinary call. Both the entry-native and reachable-native cases must still
 report the own-parameter policy with the original `@C` and introduction locations,
 and authoring must still leave every companion/header publication path absent.

@@ -21,8 +21,8 @@ registration !
  < epoch
  < generation
 task& !
- < &record
- < &registration
+ < & record
+ < & registration
 record
  generation !
 registration

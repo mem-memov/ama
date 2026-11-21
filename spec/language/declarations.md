@@ -95,14 +95,14 @@ item
 
 target&
 /example/demo/v1.0.0/src/shop/item
- &item
+ & item
 
 items[]
 /example/demo/v1.0.0/src/shop/item
 
 targets&[]
 /example/demo/v1.0.0/src/shop/item
- &item
+ & item
 ```
 
 ### Initial contents and construction order
@@ -508,7 +508,7 @@ constraints are solved.
 |---|---|---|
 | Owned scalar access or scalar constant | Source module type | Owned scalar |
 | Reference access, including an indexed reference-list entry | Referent module type | Reference scalar |
-| `&item` or `&items[index]` | Selected owned instance's module type | Reference scalar |
+| `& item` or `& items[index]` | Selected owned instance's module type | Reference scalar |
 | Standalone `&` | Containing module's complete type expression | Reference scalar |
 | Whole owning list or owning constant list | Element module type | Owning list |
 | Whole reference list | Referent element module type | Reference list |
@@ -599,7 +599,7 @@ new_var
 
 If `new_var` has no earlier local occurrence, it declares an owned `//bit` field.
 The assignment copies the current value of `is_ok` each time execution reaches
-it. The same rule permits `new_ref&` from `&is_ok`, a reference-list field from a
+it. The same rule permits `new_ref&` from `& is_ok`, a reference-list field from a
 whole reference list, or an owned field from `% source`; their explicit suffixes
 and ordinary transfer checks must match. A later assignment to `new_var` reuses
 that field. `new_var` followed by an unindented `is_ok` is not an assignment.

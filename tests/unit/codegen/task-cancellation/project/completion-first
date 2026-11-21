@@ -1,6 +1,6 @@
 # A completion committed by the task cannot be replaced by a later cancellation request.
 dispatch !
- < &queue
+ < & queue
 record
  task& >> task&
 task&
@@ -13,20 +13,20 @@ source
  take !
   > packet
 deliver !
- < &queue
- < &record
+ < & queue
+ < & record
  < packet
  > accepted
 require !
  < accepted
 dispatch !
- < &queue
+ < & queue
 report !
- < &record
- < &queue
+ < & record
+ < & queue
 cancel !
- < &queue
- < &record
+ < & queue
+ < & record
  > accepted
 accepted
 ?
@@ -37,5 +37,5 @@ requested
 ?
  require !
 report !
- < &record
- < &queue
+ < & record
+ < & queue

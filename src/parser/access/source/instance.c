@@ -2,7 +2,8 @@
  * @file
  * @brief Parse value, reference-acquisition and continuation-copy operands without resolving their names.
  * [REF-01](../../../../spec/language/values-and-references.md#ref-01) restricts
- * acquisitions to owned accesses; [CONT-04](../../../../spec/language/continuations.md#cont-04)
+ * acquisitions to owned accesses separated from the prefix by one ASCII space;
+ * [CONT-04](../../../../spec/language/continuations.md#cont-04)
  * preserves explicit scalar continuation-source syntax.
  */
 #include "internal.h"
@@ -17,7 +18,10 @@ bool parser_instance_source(Parser *parser, SourceSpan text, AstSource *source) 
         }
         operand.start += 2;
     } else if (prefix == '&') {
-        operand.start++;
+        if (operand.end - operand.start < 2 || source_bytes(text.source)[operand.start + 1] != ' ') {
+            return parser_fail(parser, text, "Reference acquisition requires one following space", EXPECT_OWNED_ACCESS);
+        }
+        operand.start += 2;
     }
     if (!parser_access(parser, operand, &source->access)) {
         return false;

@@ -38,7 +38,7 @@ delivered
 owned outcome
  fresh outcome
 outcome&
- &owned outcome
+ & owned outcome
 owner&
  source& >> source&
 operation !
@@ -96,7 +96,7 @@ pending
    mailbox& >> mailbox&
   mailbox& !
   detach !
-   < &operation
+   < & operation
   completed phase !
    > phase
   >

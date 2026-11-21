@@ -51,7 +51,7 @@ use that no-op exception.
 
 [Origin records](../../src/semantic/copy/boundaries/origin.c) describe a proved
 reference to one direct owned field, or to the current instance. They retain the
-original `&field`/`&` source site and exact symbol identity. A scalar reference
+original `& field`/`&` source site and exact symbol identity. A scalar reference
 store copies a known origin, replaces it with a newly formed origin, or forgets
 it when its source origin is unknown. Empty/runtime handles are not guessed.
 
@@ -62,7 +62,7 @@ For example, assuming copyable `.value`, this body is rejected statically:
 value
 .value
 alias&
- &value
+ & value
 value
  % alias&
 ```

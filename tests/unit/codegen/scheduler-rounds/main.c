@@ -139,7 +139,7 @@ static void it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum
             native_fixture_completion = authored_bodies;
             char setup[32768], source[65536];
             fixture("project/setup", setup);
-            int length = snprintf(source, sizeof(source), "%sround !\n < &red registry\n < &blue registry\n < &red queue\n < &blue queue\n < &source\n < |%s\n < |%s\n",
+            int length = snprintf(source, sizeof(source), "%sround !\n < & red registry\n < & blue registry\n < & red queue\n < & blue queue\n < & source\n < |%s\n < |%s\n",
                 setup, field == 0 ? invalid[index] : "1", field == 1 ? invalid[index] : "1");
             assert(length > 0 && (size_t)length < sizeof(source));
             execute_project(source, "", false);
@@ -155,7 +155,7 @@ static void it_rejects_invalid_budgets_before_work_and_accepts_the_empty_maximum
     char setup[32768], source[65536];
     fixture("project/setup", setup);
     int length = snprintf(source, sizeof(source),
-        "%sround !\n < &red registry\n < &blue registry\n < &red queue\n < &blue queue\n < &source\n < |%s\n < |%s\n"
+        "%sround !\n < & red registry\n < & blue registry\n < & red queue\n < & blue queue\n < & source\n < |%s\n < |%s\n"
         " > ready\n > waiting\n > quiescent\n > steps\n > imports\n > decisions\n"
         "summary !\n < steps\n < imports\n < decisions\n < ready\n < waiting\n < quiescent\n", setup, maximum, maximum);
     assert(length > 0 && (size_t)length < sizeof(source));

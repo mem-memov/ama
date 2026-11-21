@@ -15,8 +15,8 @@
  */
 static void it_builds_typed_declarations_and_preserves_each_initializer_source_form(void) {
     setup_tree();
-    ParseStatus parsed = parse_text("@=\n价格\n/test/fixture/v1.0.0/src/商店/金额\n |12 # data  \r\n@<\ntarget&\n/test/fixture/v1.0.0/src/shop/item\n &owned\n"
-        "@>\nitems&[]\n/test/fixture/v1.0.0/src/shop/item\n target&\n &owned\n@!\nowned\n/test/fixture/v1.0.0/src/shop/item\n % original\n"
+    ParseStatus parsed = parse_text("@=\n价格\n/test/fixture/v1.0.0/src/商店/金额\n |12 # data  \r\n@<\ntarget&\n/test/fixture/v1.0.0/src/shop/item\n & owned\n"
+        "@>\nitems&[]\n/test/fixture/v1.0.0/src/shop/item\n target&\n & owned\n@!\nowned\n/test/fixture/v1.0.0/src/shop/item\n % original\n"
         "copy\n/test/fixture/v1.0.0/src/shop/item\n /test/fixture/v1.0.0/src/catalog/default\nlist[]\n/test/fixture/v1.0.0/src/shop/item\n first\n second\n");
     assert(parsed == PARSE_OK && module.valid && module.sections.kind == MODULE_AMA);
     AstNode *constant = module.constants.first;
@@ -60,7 +60,7 @@ static void it_preserves_embedded_nul_in_literal_payload_without_string_interpre
  */
 static void it_represents_assignments_nested_indices_calls_reads_and_resume(void) {
     setup_tree();
-    ParseStatus parsed = parse_text("@!\ndestination\n source\nreference&\n &items[positions[index]]\n"
+    ParseStatus parsed = parse_text("@!\ndestination\n source\nreference&\n & items[positions[index]]\n"
         "items[position] !\n value < input\n result > answer\n:\n fallback !\n"
         "target& %\n > answer\nsensor\n result >> reading\n/test/fixture/v1.0.0/src/catalog\n default >> copy\n");
     assert(parsed == PARSE_OK);
@@ -108,7 +108,7 @@ static void it_builds_branches_loops_and_control_without_a_symbol_table(void) {
  */
 static void it_rejects_invalid_accesses_layout_and_incomplete_active_declarations(void) {
     const char *invalid[] = {"@=\nname", "@!\nname\n/test/fixture/v1.0.0/src/type&", "@!\nname\n  source",
-        "@!\nname\n |literal", "@!\nref&\n &other&", "@!\nx\n items[0]",
+        "@!\nname\n |literal", "@!\nref&\n & other&", "@!\nx\n items[0]",
         "@!\nx\n % items[]", "@!\nitems[] %", "@!\n/test/fixture/v1.0.0/src/type !", "@!\ncondition\n\n?",
         "@!\ncondition&\n?", "@!\ncondition\n{\n action !", "@!\nworker!",
         "@!\nx\n values[indices&]", "@!\nx\n /member", "@!\nname\n/test/fixture/v1.0.0/src/type\n  |wrong"};

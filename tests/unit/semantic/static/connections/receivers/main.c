@@ -30,7 +30,7 @@ static void it_binds_result_and_assignment_receivers_before_any_type_is_concrete
  */
 static void it_retains_simple_assignment_reference_list_and_continuation_receiver_forms(void) {
     setup_connections("@!\nknown value\n//integer\nknown values[]\n//integer\nknown refs&[]\n//integer\n"
-        "new value\n known value\nnew ref&\n &known value\nnew values[]\n known values[]\nnew refs&[]\n known refs&[]\n"
+        "new value\n known value\nnew ref&\n & known value\nnew values[]\n known values[]\nnew refs&[]\n known refs&[]\n"
         "continued\n % known value\n", "@!\n");
     const StaticRuntimeModule *module;
     assert(static_connection_runtime(&connections, caller_module, &module));

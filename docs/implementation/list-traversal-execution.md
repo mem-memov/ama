@@ -30,7 +30,7 @@ items[item&]
   items[]
    insert !
     < |1
-    < &extra
+    < & extra
   once
    off
 }

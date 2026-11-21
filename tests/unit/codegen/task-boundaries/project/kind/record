@@ -30,7 +30,7 @@ owned task
 run sequence !
  > epoch
 task&
- &owned task
+ & owned task
 enrolled !
  < |1
 ready !

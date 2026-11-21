@@ -17,15 +17,15 @@ registry
 record& !
  < |1
 enqueue !
- < &queue
+ < & queue
  < record&
 record& !
  < |1
 enqueue !
- < &queue
+ < & queue
  < record&
 dispatch !
- < &queue
+ < & queue
 record&
  queued >> queued
 queued
@@ -33,9 +33,9 @@ queued
  trace !
   < |999
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 # A removed owner leaves a checked stale entry that must simply be discarded.
 registry
  records[]
@@ -44,7 +44,7 @@ registry
 removed& !
  < |2
 enqueue !
- < &queue
+ < & queue
  < removed&
 registry
  records[]
@@ -57,10 +57,10 @@ registry
 replacement& !
  < |3
 enqueue !
- < &queue
+ < & queue
  < replacement&
 dispatch !
- < &queue
+ < & queue
 replacement&
  queued >> replacement queued
 replacement queued
@@ -68,9 +68,9 @@ replacement queued
  trace !
   < |997
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 queue
  entries[]
   length !

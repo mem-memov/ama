@@ -5,8 +5,8 @@
 static void it_unwinds_every_positive_reference_origin_allocation(void) {
     prepare_types();
     const char *texts[] = {
-        "@!\nfirst\n/test/fixture/v1.0.0/src/value\nsecond\n/test/fixture/v1.0.0/src/value\nalias&\n &first\ncopy&\n alias&\nsecond\n % copy&\n",
-        "@!\nfirst\n/test/fixture/v1.0.0/src/value\nalias&\n &first\ncopy&\n alias&\nfirst\n % copy&\n"
+        "@!\nfirst\n/test/fixture/v1.0.0/src/value\nsecond\n/test/fixture/v1.0.0/src/value\nalias&\n & first\ncopy&\n alias&\nsecond\n % copy&\n",
+        "@!\nfirst\n/test/fixture/v1.0.0/src/value\nalias&\n & first\ncopy&\n alias&\nfirst\n % copy&\n"
     };
     for (size_t shape = 0; shape < 2; shape++) {
         SemanticStatus status = resolve_text(texts[shape]);

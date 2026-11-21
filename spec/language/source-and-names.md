@@ -468,14 +468,14 @@ comment indentation must satisfy SYN-02. Module paths and
 qualified constant sources use adjoining slashes under SRC-03. Static names
 use adjoining dots under [TPL-01](templates.md#tpl-01). Storage suffixes
 `&`, `[]`, and `&[]` directly follow the complete name. A reference-forming prefix
-`&` directly precedes its owned access. Index delimiters `[`/`&[` directly follow
-the list name, directly precede the complete index access, and end with an
+`&` is separated from its owned access by exactly one U+0020. Index delimiters
+`[`/`&[` directly follow the list name, directly precede the complete index access, and end with an
 adjoining `]`. No space is permitted at those joins or immediately inside the
 brackets. Each multiword name still has exactly one internal U+0020.
 
 All other grammatical separators remain exactly one U+0020, including those
 before execution suffixes `!`/`%`, after a continuation-copy prefix `%`, and
-around binding markers. Thus `target& !`, `% target&`, and `input& < &item` have
+around binding markers. Thus `target& !`, `% target&`, and `input& < & item` have
 required spaces outside the compact access. Indentation and an operand separator
 before a path, static name or reference prefix are also outside the access.
 There is no optional whitespace, repeated separator, trailing code space, TAB,
@@ -503,7 +503,7 @@ lines, and the TAB ban are shared.
 |---|---|
 | `worker !` / `worker %` | Entry / resume |
 | `target& !` / `target& %` | Execute / resume through a reference |
-| `&item` / `% item` / `% target&` | Reference formation / owned continuation copy / copy through a reference |
+| `& item` / `% item` / `% target&` | Reference formation / owned continuation copy / copy through a reference |
 | `&` as a value source | Reference to the current instance of the containing module |
 | `items[]` / `targets&[]` | Owning-list / reference-list name |
 | `items[current position]` / `targets&[current position]` | Owned / reference element selection |
@@ -518,8 +518,9 @@ any space after it is data. In `< |payload`, the single space between `<` and `|
 is syntax. A standalone marker ends the code part without a trailing space.
 Annotation tokens occupy their own zero-indent lines. Required spaces around
 separate operation/binding markers are grammar separators, never leading/trailing
-spaces in names. Path slashes, static-name dots and storage/access punctuation adjoin their operands
-without spaces.
+spaces in names. Path slashes, static-name dots, storage suffixes and index punctuation adjoin
+their operands without spaces. The reference-forming prefix requires its one
+following U+0020; standalone self-reference `&` has no operand separator.
 
 ### Recognition order
 
@@ -548,7 +549,7 @@ the indentation prefix is outside all names. This invariant yields one name
 segmentation independently of declarations, loading order, or runtime types.
 Whitespace outside the explicitly exempt regions is rejected, not normalized.
 This also applies recursively to indices: `items[positions[current row]]` has
-one unique delimiter structure, and `&item states[current position]` forms a
+one unique delimiter structure, and `& item states[current position]` forms a
 reference to the selected owned element. Compact punctuation never splits or
 normalizes the single spaces inside either multiword name. A qualified constant
 list source likewise retains its compact suffix, as in

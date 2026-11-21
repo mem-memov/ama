@@ -22,7 +22,7 @@ static void it_runs_same_type_nested_copies_under_an_explicit_resuming_host(void
         "AmaStatus status=ama_project_dispose(&host); assert(status.code==AMA_OK);\n"
         "return 0; }\n";
     execute_project("@!\nfirst\n/test/fixture/v1.0.0/src/node\nsecond\n/test/fixture/v1.0.0/src/node\ncopy\n/test/fixture/v1.0.0/src/node\nplain\n/test/fixture/v1.0.0/src/node\n"
-        "probe\n/test/fixture/v1.0.0/src/worker\nfirst !\n < &second\ncopy\n % first\nplain\n first\n%\n"
+        "probe\n/test/fixture/v1.0.0/src/worker\nfirst !\n < & second\ncopy\n % first\nplain\n first\n%\n"
         "copy %\nfirst %\nsecond %\nplain %\n:\n probe !\n  < |99\n",
         "1:1:7\n1:1:0\n2:2:0\n2:2:0\n2:2:7\n99:1:10\n", true);
     host_launcher = NULL;
@@ -38,7 +38,7 @@ static void it_reports_only_the_current_caller_after_copying_a_continuation(void
     file("generated/project/packages/test/fixture/v1.0.0/src/original", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\n@!\ntarget& !\n");
     file("generated/project/packages/test/fixture/v1.0.0/src/resumer", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\n@!\ntarget& %\n");
     execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\ncopy\n/test/fixture/v1.0.0/src/task\noriginal\n/test/fixture/v1.0.0/src/original\nresumer\n/test/fixture/v1.0.0/src/resumer\n"
-        "original !\n < &task\ncopy\n % task\nresumer !\n < &copy\n", "native-entered\n", false);
+        "original !\n < & task\ncopy\n % task\nresumer !\n < & copy\n", "native-entered\n", false);
     expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/task:5:1");
     expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/resumer:5:1");
     FILE *errors = fopen("generated/errors.txt", "rb");

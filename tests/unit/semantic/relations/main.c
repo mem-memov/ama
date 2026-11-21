@@ -97,7 +97,7 @@ static void it_follows_owned_field_construction_reads_without_treating_shared_ty
     expect_relations("@=\nself\n/test/fixture/v1.0.0/src/main\n@!\n", true);
     file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nvalue\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/main/second\n@!\nfield\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/value\n");
     expect_relations("@=\nfirst\n/test/fixture/v1.0.0/src/worker\nsecond\n/test/fixture/v1.0.0/src/value\n |ready\n@!\n", false);
-    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\nvalue\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\n &value\n");
+    file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@!\nvalue\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\n & value\n");
     expect_relations("@=\nconstant\n/test/fixture/v1.0.0/src/worker\n@!\n", false);
 }
 

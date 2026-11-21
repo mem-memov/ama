@@ -23,20 +23,20 @@ require
 source !
  < |2
 first !
- < &source
+ < & source
 second !
- < &source
+ < & source
 enqueue !
- < &queue
- < &first
+ < & queue
+ < & first
 enqueue !
- < &queue
- < &second
+ < & queue
+ < & second
 # Each dispatch performs one task step; both tasks publish their native wait and yield.
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 first
  task& >> first task&
 first task&
@@ -54,26 +54,26 @@ source
  take !
   > packet
 deliver !
- < &queue
- < &first
+ < & queue
+ < & first
  < packet
  > accepted
 require !
  < accepted
 cancel !
- < &queue
- < &second
+ < & queue
+ < & second
  > accepted
 require !
  < accepted
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 report !
- < &first
+ < & first
 report !
- < &second
+ < & second
 # The obsolete completion cannot revive the cancelled enrollment.
 source
  post !

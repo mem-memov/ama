@@ -3,11 +3,11 @@ service
  take !
   > packet
 import !
- < &wait
+ < & wait
  < packet
  > accepted
 validate !
- < &wait
+ < & wait
  > current wait
 current wait
 ?

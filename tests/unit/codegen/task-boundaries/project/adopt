@@ -17,25 +17,25 @@ dispatch
 require
 //task/require
 source !
- < &port
+ < & port
 copy
  % source
 dispatch !
- < &queue
+ < & queue
  > executed
 executed
 ?
  require !
 link&
 /test/fixture/v1.0.0/src/kind/task
- &copy
+ & copy
 record !
  < % link&
 enqueue !
- < &queue
- < &record
+ < & queue
+ < & record
 dispatch !
- < &queue
+ < & queue
  > executed
 require !
  < executed

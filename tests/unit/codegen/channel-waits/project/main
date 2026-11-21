@@ -38,8 +38,8 @@ source !
 sending
 ?
  sender task !
-  < &sender
-  < &source
+  < & sender
+  < & source
  sender task
   token >> token
  ready work !
@@ -94,8 +94,8 @@ sending
 :
  maybe fail !
  receiver task !
-  < &receiver
-  < &source
+  < & receiver
+  < & source
  receiver task
   token >> token
   phase

@@ -29,7 +29,7 @@ static void prepare_layout(void) {
     file("generated/project/packages/test/fixture/v1.0.0/src/main", "@=\nshared\n/test/fixture/v1.0.0/src/plain\n /test/fixture/v1.0.0/src/palette/value\n@!\n"
         "first\n/test/fixture/v1.0.0/src/plain\n |A\nsecond\n/test/fixture/v1.0.0/src/plain\n first\nother\n/test/fixture/v1.0.0/src/twin\n |B\n"
         "items[]\n/test/fixture/v1.0.0/src/plain\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n |D\n"
-        "reference&\n/test/fixture/v1.0.0/src/plain\n &first\nreferences&[]\n/test/fixture/v1.0.0/src/plain\n &first\n &second\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < first\n");
+        "reference&\n/test/fixture/v1.0.0/src/plain\n & first\nreferences&[]\n/test/fixture/v1.0.0/src/plain\n & first\n & second\nworker\n/test/fixture/v1.0.0/src/worker\nworker !\n < first\n");
 }
 /** Load complete static semantics/plans and initialize artifact ownership before any generated-byte publication. */
 static void begin_layout(bool valid) {

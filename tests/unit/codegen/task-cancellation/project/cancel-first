@@ -1,18 +1,18 @@
 # The callback may arrive after the cancel request, but cannot create a second terminal result.
 dispatch !
- < &queue
+ < & queue
 record
  task& >> task&
 task&
  token >> token
 cancel !
- < &queue
- < &record
+ < & queue
+ < & record
  > accepted
 require !
  < accepted
 dispatch !
- < &queue
+ < & queue
 source
  post !
   < token
@@ -21,23 +21,23 @@ source
  take !
   > packet
 deliver !
- < &queue
- < &record
+ < & queue
+ < & record
  < packet
  > accepted
 accepted
 ?
  require !
 report !
- < &record
- < &queue
+ < & record
+ < & queue
 cancel !
- < &queue
- < &record
+ < & queue
+ < & record
  > accepted
 accepted
 ?
  require !
 report !
- < &record
- < &queue
+ < & record
+ < & queue

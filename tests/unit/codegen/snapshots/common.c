@@ -32,6 +32,6 @@ static void prepare_availability_snapshot(void) {
     fixture_package_prepare("generated/project", "fixture");
     file("generated/project/packages/test/fixture/v1.0.0/src/helper", "@<\nsource&\n/test/fixture/v1.0.0/src/wrapper\n@!\ncopy\n/test/fixture/v1.0.0/src/wrapper\ncopy\n % source&\n");
     file("generated/project/packages/test/fixture/v1.0.0/src/task", "@<\nexecutor&\n/test/fixture/v1.0.0/src/helper\nowner&\n/test/fixture/v1.0.0/src/wrapper\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |1\n%\nexecutor& !\n < owner&\n");
-    file("generated/project/packages/test/fixture/v1.0.0/src/wrapper", "@<\nexecutor&\n/test/fixture/v1.0.0/src/helper\n@>\nchild&\n/test/fixture/v1.0.0/src/task\n@!\nbody\n/test/fixture/v1.0.0/src/task\nchild&\n &body\nbody !\n < executor&\n < &\n%\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/wrapper", "@<\nexecutor&\n/test/fixture/v1.0.0/src/helper\n@>\nchild&\n/test/fixture/v1.0.0/src/task\n@!\nbody\n/test/fixture/v1.0.0/src/task\nchild&\n & body\nbody !\n < executor&\n < &\n%\n");
 }
 #endif

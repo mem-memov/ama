@@ -4,7 +4,7 @@
 /** Real two-root source/native setup precedes each independent semantic allocation failure, including profile diagnostics and action publication. */
 static void it_unwinds_every_list_interface_binding_and_result_allocation(void) {
     prepare_lists();
-    const char *text = "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nsample\n/test/fixture/v1.0.0/src/value\nitems[]\n append !\n  < &sample\n  > element&\n"
+    const char *text = "@!\nitems[]\n/test/fixture/v1.0.0/src/value\nsample\n/test/fixture/v1.0.0/src/value\nitems[]\n append !\n  < & sample\n  > element&\n"
         " insert !\n  < |0\n  <\n length !\n  > count\n  value !\n clear !\n";
     SemanticStatus status = resolve_list(text);
     assert(status == SEMANTIC_OK);

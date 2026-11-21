@@ -11,7 +11,7 @@ service !
 bridge
 /test/fixture/v1.0.0/src/bridge
 bridge !
- < &service
+ < & service
 %
 service
  take !

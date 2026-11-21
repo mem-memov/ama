@@ -54,7 +54,7 @@ static void it_checks_initialization_literals_reference_formation_and_continuati
     prepare_types();
     const char *valid[] = {
         "@!\nvalue\n/test/fixture/v1.0.0/src/value\n |12 # bytes  \nlist[]\n/test/fixture/v1.0.0/src/value\n |first\n |second\n",
-        "@!\nvalue\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\n &value\ncopy\n/test/fixture/v1.0.0/src/value\n % reference&\n",
+        "@!\nvalue\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\n & value\ncopy\n/test/fixture/v1.0.0/src/value\n % reference&\n",
         "@!\nvalue&\n/test/fixture/v1.0.0/src/resource\ncopy&\n/test/fixture/v1.0.0/src/resource\n value&\n"
     };
     for (size_t index = 0; index < sizeof(valid) / sizeof(valid[0]); index++) {
@@ -67,7 +67,7 @@ static void it_checks_initialization_literals_reference_formation_and_continuati
         "@!\nvalue\n/test/fixture/v1.0.0/src/resource\ncopy\n/test/fixture/v1.0.0/src/resource\n value\n",
         "@!\nvalue\n/test/fixture/v1.0.0/src/value\nvalue\n % value\n",
         "@=\nreference&\n/test/fixture/v1.0.0/src/value\n@!\n",
-        "@=\nconstant\n/test/fixture/v1.0.0/src/value\n@!\nreference&\n/test/fixture/v1.0.0/src/value\n &constant\n",
+        "@=\nconstant\n/test/fixture/v1.0.0/src/value\n@!\nreference&\n/test/fixture/v1.0.0/src/value\n & constant\n",
         "@=\nconstant\n/test/fixture/v1.0.0/src/value\n@!\nconstant\n constant\n",
         "@=\nconstant\n/test/fixture/v1.0.0/src/resource\n@!\n",
         "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/main/second\nsecond\n/test/fixture/v1.0.0/src/value\n@!\n"
@@ -87,14 +87,14 @@ static void it_resolves_calls_bindings_defaults_and_saved_constant_reads(void) {
         "worker !\n input < |payload\n output > value\n",
         "worker !\n < |payload\n <\n <\n >\nworker\n >> value\n",
         "worker %\n > value\n",
-        "worker !\n < value\n < &value\n",
+        "worker !\n < value\n < & value\n",
         "worker !\n input < value\n input < value\n",
         "worker !\n reference& < |payload\n",
         "worker !\n items[] < |payload\n",
         "worker !\n unknown < value\n",
         "worker !\n <\n <\n <\n <\n",
         "worker !\n >\n >\n",
-        "worker !\n reference < &value\n",
+        "worker !\n reference < & value\n",
         "worker !\n input < absent\n"
     };
     for (size_t index = 0; index < sizeof(tails) / sizeof(tails[0]); index++) {

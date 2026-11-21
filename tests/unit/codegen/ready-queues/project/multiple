@@ -31,26 +31,26 @@ blue registry
 blue& !
  < |4
 red enqueue !
- < &red queue
+ < & red queue
  < red&
 red enqueue !
- < &other red queue
+ < & other red queue
  < red&
 blue enqueue !
- < &blue queue
+ < & blue queue
  < blue&
 red dispatch !
- < &other red queue
+ < & other red queue
 red dispatch !
- < &red queue
+ < & red queue
 blue dispatch !
- < &blue queue
+ < & blue queue
 red enqueue !
- < &other red queue
+ < & other red queue
  < red&
 red dispatch !
- < &red queue
+ < & red queue
 blue dispatch !
- < &blue queue
+ < & blue queue
 red dispatch !
- < &other red queue
+ < & other red queue

@@ -39,7 +39,7 @@ failure
  waiting !
   < |1
  await !
-  < &operation
+  < & operation
   < receiver&
  source&
   ready !
@@ -52,7 +52,7 @@ failure
   %
  waiting !
  detach !
-  < &operation
+  < & operation
  receiver& !
   > wire
   > failure

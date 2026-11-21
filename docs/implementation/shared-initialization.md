@@ -47,7 +47,7 @@ Its later body assignment is not a constant-construction read. For example, if
 field initializers would contribute their reads even inside an unexecuted branch.
 
 Immutable constants cannot contain mutable-object handles. The closure rejects
-explicit `&owned` and standalone `&` in any freshly constructed descendant's
+explicit `& owned` and standalone `&` in any freshly constructed descendant's
 initializer, at the original source site. The latter is important now that self
 has valid static typing: a nested default's lexical self is still a mutable
 instance identity. Empty reference cells have no target, and an assignment in a

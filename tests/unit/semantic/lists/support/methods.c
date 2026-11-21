@@ -5,8 +5,8 @@
 static void it_specializes_all_six_method_interfaces_without_fabricated_declarations(void) {
     prepare_lists();
     SemanticStatus status = resolve_list("@!\nitems[]\n/test/fixture/v1.0.0/src/value\nsample\n/test/fixture/v1.0.0/src/value\n"
-        "items[]\n append !\n  source& < &sample\n  element& > added&\n"
-        " insert !\n  source& < &sample\n  position < |0\n  element& > inserted&\n"
+        "items[]\n append !\n  source& < & sample\n  element& > added&\n"
+        " insert !\n  source& < & sample\n  position < |0\n  element& > inserted&\n"
         " remove !\n  <\n clear !\n swap !\n  <\n  < |0\n length !\n  > count\nappend\n sample\nclear\n sample\n");
     if (status != SEMANTIC_OK) { fprintf(stderr, "List interfaces: %s\n", semantic.error.message); }
     assert(status == SEMANTIC_OK && semantic.resolved);

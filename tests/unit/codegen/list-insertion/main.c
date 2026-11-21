@@ -10,7 +10,7 @@
 static void it_executes_sibling_append_insert_and_direct_structural_sources(void) {
     insertion_standard();
     execute_project("@!\nitems[]\n/test/fixture/v1.0.0/src/value\n |5\nselector\n/test/fixture/v1.0.0/src/value\n |1000\nzero\n//integer\n |0\none\n//integer\n |1\ntwo\n//integer\n |2\n"
-        "replacement\n/test/fixture/v1.0.0/src/value\n |9\nprobe\n/test/fixture/v1.0.0/src/worker\nitems[]\n append !\n  < &items[selector]\n  > added&\n"
+        "replacement\n/test/fixture/v1.0.0/src/value\n |9\nprobe\n/test/fixture/v1.0.0/src/worker\nitems[]\n append !\n  < & items[selector]\n  > added&\n"
         " insert !\n  < zero\n  < added&\n  > inserted&\nitems[one]\n replacement\n"
         "probe !\n < items[zero]\nprobe !\n < items[one]\nprobe !\n < items[two]\n",
         "index=1000\n5:1:0\n9:2:0\n5:3:0\n", true);
@@ -37,7 +37,7 @@ static void it_clears_cloned_positions_and_releases_the_service_before_a_local_h
     fixture_package_prepare("generated/project", "fixture");
     file("generated/project/packages/test/fixture/v1.0.0/src/task", "@!\nprobe\n/test/fixture/v1.0.0/src/worker\nprobe !\n < |1\n%\nprobe !\n < |2\n");
     execute_project("@!\nsource\n/test/fixture/v1.0.0/src/task\ntasks[]\n/test/fixture/v1.0.0/src/task\nzero\n//integer\n |0\nprobe\n/test/fixture/v1.0.0/src/worker\nsource !\n"
-        "tasks[]\n append !\n  < &source\n  element& %\n  :\n   probe !\n    < |99\n"
+        "tasks[]\n append !\n  < & source\n  element& %\n  :\n   probe !\n    < |99\n"
         "source %\ntasks[zero] !\ntasks[zero] %\n", "1:1:0\n99:1:10\n2:2:0\n1:2:0\n2:3:0\n", true);
 }
 

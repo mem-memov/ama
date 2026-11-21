@@ -6,4 +6,4 @@ known
 instance
 /test/fixture/v1.0.0/src/bad
 instance !
- < &known
+ < & known

@@ -11,7 +11,7 @@
 static void it_removes_exact_owned_entries_and_clears_the_remaining_order(void) {
     deletion_standard();
     execute_project("@!\nzero\n//integer\n |0\none\n//integer\n |1\nitems[]\n/test/fixture/v1.0.0/src/resource\n |1\n |2\n |3\n"
-        "saved&\n/test/fixture/v1.0.0/src/resource\n &items[one]\ninspect\n/test/fixture/v1.0.0/src/inspect\nprobe\n/test/fixture/v1.0.0/src/worker\nitems[]\n remove !\n  < one\n"
+        "saved&\n/test/fixture/v1.0.0/src/resource\n & items[one]\ninspect\n/test/fixture/v1.0.0/src/inspect\nprobe\n/test/fixture/v1.0.0/src/worker\nitems[]\n remove !\n  < one\n"
         "inspect !\n < items[zero]\ninspect !\n < items[one]\nsaved& !\n:\n probe !\n  < |8\n"
         "items[]\n clear !\nitems[zero] !\n:\n probe !\n  < |12\nitems[]\n clear !\nitems[zero] !\n:\n probe !\n  < |13\n",
         "value=1\nvalue=3\n8:1:8\n12:2:12\n13:3:12\n", true);

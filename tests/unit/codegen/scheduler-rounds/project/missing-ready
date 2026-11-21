@@ -29,11 +29,11 @@ forgotten& !
  < |1
 # This enrolled Ready task was deliberately never placed in its queue.
 round !
- < &red registry
- < &blue registry
- < &red queue
- < &blue queue
- < &source
+ < & red registry
+ < & blue registry
+ < & red queue
+ < & blue queue
+ < & source
  < |1
  < |1
  > ready

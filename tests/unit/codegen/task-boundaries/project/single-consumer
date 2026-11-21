@@ -11,7 +11,7 @@ same
 source !
  < |1
 operation !
- < &source
+ < & source
  > token
 copy
  token

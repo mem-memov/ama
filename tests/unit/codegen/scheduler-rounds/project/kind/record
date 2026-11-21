@@ -68,7 +68,7 @@ enrolled !
 ready !
  < |1
 task&
- &owned task
+ & owned task
 token
  operation
 source&
@@ -80,4 +80,4 @@ owned mailbox
  ready !
  delivered !
 mailbox&
- &owned mailbox
+ & owned mailbox

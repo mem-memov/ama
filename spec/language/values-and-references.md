@@ -25,7 +25,7 @@ independent
  original
 
 alias&
- &original
+ & original
 ```
 
 If `independent` is a first-occurring receiver, TYPE-06 declares an owned field
@@ -46,10 +46,20 @@ saved execution positions.
 
 <a id="ref-01"></a>
 
-**REF-01.** `&item` obtains a checked reference to owned instance storage.
-`target&` reads a reference variable. `&target&` is invalid: references to
+**REF-01.** `& item` obtains a checked reference to owned instance storage.
+`target&` reads a reference variable. `& target&` is invalid: references to
 references are not supported. The trailing ampersand remains part of reference
-variable access, including named interface labels.
+variable access, including named interface labels. Reference acquisition requires
+exactly one ASCII space after the prefix: `& item state` or
+`& items[position]`. Joined `&item`, repeated spaces, TAB and a line break
+in place of that separator are invalid. This separator does not change
+ownership or reference lifetime. Standalone `&` has no operand and requires no
+following space.
+
+**Explanation.** The space separates an operation that obtains a reference from
+an adjoining suffix that names reference storage. Prefix acquisition therefore
+uses the same visible operand separation as continuation copying `% source`,
+while the name of a reference variable remains compact.
 
 #### Referring to the current instance
 
@@ -150,7 +160,7 @@ destination
  source
 
 target&
- &item
+ & item
 
 other&
  target&

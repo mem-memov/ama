@@ -19,7 +19,7 @@ static void it_rejects_binding_role_suffix_arity_and_copy_capability_errors(void
     prepare_types();
     file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@=\nconstant\n/test/fixture/v1.0.0/src/value\n@<\ninput&\n/test/fixture/v1.0.0/src/value\nitems[]\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\nprivate\n/test/fixture/v1.0.0/src/value\n");
     const char *tails[] = {
-        "worker !\n input < &value\n",
+        "worker !\n input < & value\n",
         "worker !\n items < values[]\n",
         "worker !\n output < value\n",
         "worker !\n private < value\n",

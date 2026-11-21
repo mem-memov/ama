@@ -27,7 +27,7 @@ static void expect_type(const StaticTypedScope *scope, const char *name, const S
 /** All exact source storage categories propagate their declared module Type. */
 static void it_propagates_owned_reference_list_index_acquire_continuation_and_self_types(void) {
     setup_connections("@!\nowned\n//integer\nindex\n//integer\nvalues[]\n//integer\nrefs&[]\n//integer\n"
-        "copy\n owned\nborrowed&\n &owned\ncopy ref&\n borrowed&\ncopy list[]\n values[]\n"
+        "copy\n owned\nborrowed&\n & owned\ncopy ref&\n borrowed&\ncopy list[]\n values[]\n"
         "copy refs&[]\n refs&[]\nselected\n values[index]\nselected ref&\n refs&[index]\n"
         "saved\n % borrowed&\nself&\n &\n", "@!\n");
     const StaticResultContext *actual;

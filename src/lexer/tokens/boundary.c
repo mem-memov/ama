@@ -16,17 +16,16 @@ static bool suffix(LexKind kind) {
 }
 /** Check exact joins without lookup; a static dot always adjoins its name.
  * Component contract: [SYN-06](../../../spec/language/source-and-names.md#syn-06)
- * fixes adjacency; [TPL-12](../../../spec/language/static-results.md#tpl-12)
+ * fixes adjacency and the separated reference-acquisition prefix; [TPL-12](../../../spec/language/static-results.md#tpl-12)
  * permits only complete named static operands, never a bare binding prefix.
  */
-bool lex_boundary(LexCursor *cursor, const LexToken *token, bool *reference_prefix) {
+bool lex_boundary(LexCursor *cursor, const LexToken *token) {
     bool separated = cursor->has_previous;
     LexKind previous = cursor->previous.kind;
-    *reference_prefix = false;
     if (cursor->has_previous && previous == LEX_OUTPUT && token->kind == LEX_OUTPUT) {
         return lex_failure(cursor, token->text.start, "The retained-result marker is one compound token", "adjoining >>");
     }
-    if (cursor->has_previous && (opens(previous) || (previous == LEX_REFERENCE && cursor->reference_prefix))) {
+    if (cursor->has_previous && opens(previous)) {
         if (token->kind != LEX_NAME) {
             return lex_failure(cursor, token->text.start, "A compact access opener requires its name", "an adjoining complete Unicode name");
         }
@@ -41,9 +40,9 @@ bool lex_boundary(LexCursor *cursor, const LexToken *token, bool *reference_pref
     } else if (token->kind == LEX_DOT && cursor->has_previous && previous == LEX_NAME) {
         separated = false;
     } else if (token->kind == LEX_REFERENCE) {
-        *reference_prefix = !cursor->has_previous
+        bool reference_prefix = !cursor->has_previous
             || (previous != LEX_NAME && previous != LEX_INDEX_CLOSE && previous != LEX_MODULE_PATH);
-        if (!*reference_prefix) { separated = false; }
+        if (!reference_prefix) { separated = false; }
     }
     if (token->separator != separated) {
         return lex_failure(cursor, token->text.start, "Incorrect code-token separator",

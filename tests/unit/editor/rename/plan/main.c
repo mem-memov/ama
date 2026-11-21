@@ -97,8 +97,27 @@ static void it_renames_to_hyphenated_complete_names_without_changing_other_bytes
     }
 }
 
+/** Renaming an owned list updates only the indexed operand name, preserving the acquisition separator and comment bytes. */
+static void it_preserves_separated_acquisition_during_indexed_operand_rename(void) {
+    project_fixture("@!\r\nvalue state[]\r\n/test/fixture/v1.0.0/src/cell\r\n"
+        "position\r\n//integer\r\n |0\r\nreference&\r\n/test/fixture/v1.0.0/src/cell\r\n"
+        " & value state[position]\r\n# &value state  \r\n");
+    ModuleRoot roots[] = {{"generated/project",NULL,0,MODULE_ROOT_PROJECT},
+        {TEST_STANDARD_ROOT,NULL,0,MODULE_ROOT_STANDARD}};
+    setup_rename_roots(roots,2);
+    assert(prepare("/test/fixture/v1.0.0/src/main","value state[]","renamed state"));
+    const EditorRenameFile *main = changed_file("/test/fixture/v1.0.0/src/main");
+    assert(main != NULL && strcmp((const char *)source_bytes(main->replacement),
+        "@!\r\nrenamed state[]\r\n/test/fixture/v1.0.0/src/cell\r\n"
+        "position\r\n//integer\r\n |0\r\nreference&\r\n/test/fixture/v1.0.0/src/cell\r\n"
+        " & renamed state[position]\r\n# &value state  \r\n") == 0);
+    assert(validate() && rename_plan.validated);
+    destroy_rename();
+}
+
 /** Check core source-edit construction with real catalog/parser/resolver/planner revalidation. */
 void run(void) {
+    it_preserves_separated_acquisition_during_indexed_operand_rename();
     it_renames_to_hyphenated_complete_names_without_changing_other_bytes();
     it_renames_callee_labels_in_unused_importers_without_changing_caller_values();
     it_renames_qualified_constants_across_files_and_preserves_unrelated_bytes();

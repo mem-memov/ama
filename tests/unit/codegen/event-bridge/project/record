@@ -30,10 +30,10 @@ epoch
 generation
  first generation
 task&
- &owned task
+ & owned task
 owned mailbox !
 owned mailbox
  ready !
  delivered !
 mailbox&
- &owned mailbox
+ & owned mailbox

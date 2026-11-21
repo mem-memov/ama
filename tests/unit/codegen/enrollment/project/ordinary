@@ -20,8 +20,8 @@ registration !
  < epoch
  < generation
 task& !
- < &record
- < &registration
+ < & record
+ < & registration
 validate !
  < registration
  > valid
@@ -30,8 +30,8 @@ valid
  probe !
   < |10
 task& !
- < &record
- < &registration
+ < & record
+ < & registration
 record
  epoch >> epoch
  generation >> generation
@@ -71,8 +71,8 @@ registration !
  < epoch
  < generation
 task& !
- < &record
- < &registration
+ < & record
+ < & registration
 record
  epoch >> epoch
 same !

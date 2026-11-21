@@ -68,7 +68,7 @@ of state and explicit resource lifetimes.
 | Source form | Read it as |
 |---|---|
 | `item` / `target&` / `items[]` / `targets&[]` | Owned value / reference / owning list / reference list |
-| `&item` in source position | Form a checked non-owning reference |
+| `& item` in source position | Form a checked non-owning reference |
 | Standalone `&` in source position | Refer to this containing instance |
 | `destination` followed by indented `source` | Transfer into the destination; a first receiver can declare its field |
 | `worker !` | Start the existing instance at entry and prepare its interface |

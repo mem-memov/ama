@@ -33,7 +33,7 @@ first !
  < generation
 task& !
  < record&
- < &first
+ < & first
 old first
  first
 record&
@@ -62,7 +62,7 @@ second !
  < generation
 task& !
  < record&
- < &second
+ < & second
 validate !
  < old first
  > valid
@@ -104,7 +104,7 @@ third !
  < generation
 task& !
  < record&
- < &third
+ < & third
 validate !
  < old first
  > valid

@@ -7,7 +7,7 @@
 static void it_follows_returned_references_and_uses_caller_indices(void) {
     directory("generated/project");
     fixture_package_prepare("generated/project", "fixture");
-    file("generated/project/packages/test/fixture/v1.0.0/src/holder", "@>\nmethod&\n/test/fixture/v1.0.0/src/worker\nmethods[]\n/test/fixture/v1.0.0/src/worker\n /test/fixture/v1.0.0/src/template/value\n /test/fixture/v1.0.0/src/template/value\n@!\nactual\n/test/fixture/v1.0.0/src/worker\nindex\n/test/fixture/v1.0.0/src/value\n |1\nmethod&\n &actual\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/holder", "@>\nmethod&\n/test/fixture/v1.0.0/src/worker\nmethods[]\n/test/fixture/v1.0.0/src/worker\n /test/fixture/v1.0.0/src/template/value\n /test/fixture/v1.0.0/src/template/value\n@!\nactual\n/test/fixture/v1.0.0/src/worker\nindex\n/test/fixture/v1.0.0/src/value\n |1\nmethod&\n & actual\n");
     file("generated/project/packages/test/fixture/v1.0.0/src/template", "@=\nvalue\n/test/fixture/v1.0.0/src/worker\n");
     execute_project("@!\nobject\n/test/fixture/v1.0.0/src/holder\nindex\n/test/fixture/v1.0.0/src/value\n |0\nobject !\n method& !\n  < |31\n methods[index] !\n  < |41\nobject\n method& !\n  < |32\n methods[index] !\n  < |42\n", "31:1:0\n41:1:0\n32:2:0\n42:2:0\n", true);
 }

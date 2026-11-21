@@ -67,7 +67,7 @@ static void it_nests_distinct_same_type_instances_and_keeps_refusals_in_the_call
     directory("generated/project");
     fixture_package_prepare("generated/project", "fixture");
     file("generated/project/packages/test/fixture/v1.0.0/src/node", "@<\nnext&\n/test/fixture/v1.0.0/src/node\n@!\nprobe\n/test/fixture/v1.0.0/src/worker\nnext& !\n:\n probe !\nprobe !\n");
-    execute_project("@!\nfirst\n/test/fixture/v1.0.0/src/node\nsecond\n/test/fixture/v1.0.0/src/node\nfirst !\n < &second\nfirst !\n < &first\n", "7:1:7\n7:2:7\n7:1:0\n7:2:9\n7:3:9\n", true);
+    execute_project("@!\nfirst\n/test/fixture/v1.0.0/src/node\nsecond\n/test/fixture/v1.0.0/src/node\nfirst !\n < & second\nfirst !\n < & first\n", "7:1:7\n7:2:7\n7:1:0\n7:2:9\n7:3:9\n", true);
 }
 
 /**

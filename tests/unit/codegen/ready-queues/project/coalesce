@@ -34,42 +34,42 @@ enqueue !
  < invalid queue&
  < first&
 enqueue !
- < &queue
+ < & queue
  < first&
 enqueue !
- < &queue
+ < & queue
  < first&
 enqueue !
- < &queue
+ < & queue
  < second&
 enqueue !
- < &queue
+ < & queue
  < third&
 enqueue !
- < &queue
+ < & queue
  < second&
 dispatch !
- < &queue
+ < & queue
 dispatch !
  < invalid queue&
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 first&
  ready !
   < |1
 enqueue !
- < &queue
+ < & queue
  < first&
 dispatch !
- < &queue
+ < & queue
 queue
  entries[]
   length !
@@ -88,9 +88,9 @@ queued
 first& !
  < |1
 enqueue !
- < &queue
+ < & queue
  < first&
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue

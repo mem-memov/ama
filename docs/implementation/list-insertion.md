@@ -29,7 +29,7 @@ position
 
 items[]
  append !
-  < &items[position]
+  < & items[position]
   > appended&
  insert !
   < position
@@ -69,7 +69,7 @@ by the method frame, not C-stack native values. The source-reference input copie
 its complete handle and defaults to empty. It creates no ownership credit.
 
 Direct structural source/index/receiver helpers receive the exact acquired
-parent grant. Thus `< &items[position]` does not reacquire the busy list. Ordinary
+parent grant. Thus `< & items[position]` does not reacquire the busy list. Ordinary
 calls, their inputs and executed result bodies receive no inherited grant.
 All helpers keep caller-local operands separate from a selected result owner.
 

@@ -1,6 +1,6 @@
 # Arrival/import is not a terminal commit; a cancellation observed at the next boundary wins.
 dispatch !
- < &queue
+ < & queue
 record
  task& >> task&
 task&
@@ -13,20 +13,20 @@ source
  take !
   > packet
 deliver !
- < &queue
- < &record
+ < & queue
+ < & record
  < packet
  > accepted
 require !
  < accepted
 cancel !
- < &queue
- < &record
+ < & queue
+ < & record
  > accepted
 require !
  < accepted
 dispatch !
- < &queue
+ < & queue
 report !
- < &record
- < &queue
+ < & record
+ < & queue

@@ -36,7 +36,7 @@ static void it_executes_local_and_persistent_bindings(void) {
 static void it_visits_new_future_memberships(void) {
     traversal_standard();
     execute_project("@!\nzero\n//integer\n |0\nitems[]\n/test/fixture/v1.0.0/src/value\n |1\n |2\nextra\n/test/fixture/v1.0.0/src/value\n |3\nlast\n/test/fixture/v1.0.0/src/value\n |4\nonce\n/test/fixture/v1.0.0/src/value\n |1\noff\n/test/fixture/v1.0.0/src/value\n |0\n"
-        "items[item&]\n{\n item& !\n once\n ?\n  items[]\n   insert !\n    < |1\n    < &extra\n   append !\n    < &last\n  once\n   off\n}\nextra !\nlast !\n",
+        "items[item&]\n{\n item& !\n once\n ?\n  items[]\n   insert !\n    < |1\n    < & extra\n   append !\n    < & last\n  once\n   off\n}\nextra !\nlast !\n",
         "value=1\nvalue=3\nvalue=2\nvalue=4\nvalue=3\nvalue=4\n", true);
 }
 
@@ -44,15 +44,15 @@ static void it_visits_new_future_memberships(void) {
 static void it_skips_new_past_memberships(void) {
     traversal_standard();
     execute_project("@!\nzero\n//integer\n |0\nitems[]\n/test/fixture/v1.0.0/src/value\n |1\n |2\nextra\n/test/fixture/v1.0.0/src/value\n |3\nonce\n/test/fixture/v1.0.0/src/value\n |1\noff\n/test/fixture/v1.0.0/src/value\n |0\n"
-        "items[item&]\n{\n item& !\n once\n ?\n  items[]\n   insert !\n    < zero\n    < &extra\n  once\n   off\n}\nitems[zero] !\n",
+        "items[item&]\n{\n item& !\n once\n ?\n  items[]\n   insert !\n    < zero\n    < & extra\n  once\n   off\n}\nitems[zero] !\n",
         "value=1\nvalue=2\nvalue=3\n", true);
 }
 
 /** Removing the selected membership refuses its body access before native code. */
 static void it_guards_removed_origins_and_allows_explicit_detachment(void) {
     traversal_standard();
-    execute_project("@!\nzero\n//integer\n |0\nfirst\n/test/fixture/v1.0.0/src/value\n |1\nsecond\n/test/fixture/v1.0.0/src/value\n |9\nrefs&[]\n/test/fixture/v1.0.0/src/value\n &first\n"
-        "refs&[item&]\n{\n item& !\n refs&[]\n  clear !\n item& !\n :\n  second !\n item&\n  &second\n item& !\n}\nfirst !\n",
+    execute_project("@!\nzero\n//integer\n |0\nfirst\n/test/fixture/v1.0.0/src/value\n |1\nsecond\n/test/fixture/v1.0.0/src/value\n |9\nrefs&[]\n/test/fixture/v1.0.0/src/value\n & first\n"
+        "refs&[item&]\n{\n item& !\n refs&[]\n  clear !\n item& !\n :\n  second !\n item&\n  & second\n item& !\n}\nfirst !\n",
         "value=1\nvalue=9\nvalue=10\nvalue=2\n", true);
 }
 
@@ -75,7 +75,7 @@ static void it_maps_active_bindings_across_a_copied_forest(void) {
     file("generated/project/packages/test/fixture/v1.0.0/src/task", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\nid\n/test/fixture/v1.0.0/src/value\n |0\n@>\ncode\n/test/fixture/v1.0.0/src/value\n id\n@!\npeers&[]\n/test/fixture/v1.0.0/src/task\nshow\n/test/fixture/v1.0.0/src/show\n"
         "peers&[]\n clear !\n append !\n  < target&\npeers&[peer&]\n{\n %\n peer&\n  >> captured\n show !\n  < captured\n}\n");
     file("generated/project/packages/test/fixture/v1.0.0/src/forest", "@>\nsecond&\n/test/fixture/v1.0.0/src/task\n@!\nzero\n//integer\n |0\none\n//integer\n |1\ntasks[]\n/test/fixture/v1.0.0/src/task\ntasks[]\n append !\n append !\n"
-        "tasks[zero] !\n < &tasks[one]\n < |1\ntasks[one] !\n < &tasks[zero]\n < |2\nsecond&\n &tasks[one]\n%\ntasks[zero] %\ntasks[one] %\n");
+        "tasks[zero] !\n < & tasks[one]\n < |1\ntasks[one] !\n < & tasks[zero]\n < |2\nsecond&\n & tasks[one]\n%\ntasks[zero] %\ntasks[one] %\n");
     execute_project("@!\nzero\n//integer\n |0\nforest\n/test/fixture/v1.0.0/src/forest\nforest !\n > second&\ncopy\n % forest\nsecond& !\n <\n < |99\ncopy %\n",
         "read=2\nread=1\n", true);
 }

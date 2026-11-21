@@ -8,7 +8,7 @@
  */
 static void it_fixes_nested_disjoint_and_reused_foreach_bindings_without_shadowing(void) {
     setup_connections("@!\nknown\n//integer\nvalues[]\n//integer\nreused&\n//integer\nvalues[reused&]\n{\n}\n"
-        "values[item&]\n{\n values[item&]\n {\n  copied&\n   item&\n }\n}\nvalues[item&]\n{\n}\nitem&\n &known\nvalues[item&]\n{\n}\n", "@!\n");
+        "values[item&]\n{\n values[item&]\n {\n  copied&\n   item&\n }\n}\nvalues[item&]\n{\n}\nitem&\n & known\nvalues[item&]\n{\n}\n", "@!\n");
     const StaticRuntimeModule *module;
     assert(static_connection_runtime(&connections, caller_module, &module));
     assert(module->foreach_count == 5 && module->field_count == 7 && module->receiver_count == 2);

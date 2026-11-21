@@ -31,10 +31,10 @@ blue registry
 blue& !
  < |2
  < token
- < &source
+ < & source
  < |1
 blue enqueue !
- < &blue queue
+ < & blue queue
  < blue&
 keep running
 //std/condition
@@ -42,11 +42,11 @@ keep running
 keep running
 {
  round !
-  < &red registry
-  < &blue registry
-  < &red queue
-  < &blue queue
-  < &source
+  < & red registry
+  < & blue registry
+  < & red queue
+  < & blue queue
+  < & source
   < |1
   < |1
   > ready

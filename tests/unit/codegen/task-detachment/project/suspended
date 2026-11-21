@@ -12,7 +12,7 @@ tasks[]
  append !
   > old task&
 old task& !
- < &source
+ < & source
  > old token
 tasks[]
  remove !
@@ -20,7 +20,7 @@ tasks[]
  append !
   > current task&
 current task& !
- < &source
+ < & source
  > current token
 source
  post !

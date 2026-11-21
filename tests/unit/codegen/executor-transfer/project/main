@@ -7,7 +7,7 @@ service !
 capture
 /test/fixture/v1.0.0/src/capture
 capture !
- < &service
+ < & service
 visit
 /test/fixture/v1.0.0/src/visit
 visit !

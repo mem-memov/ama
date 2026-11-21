@@ -123,7 +123,7 @@ item
 /acme/shop/v1.0.0/src/item
 item_ref&
 /acme/shop/v1.0.0/src/item
- &item
+ & item
 items[]
 /acme/shop/v1.0.0/src/item
 ```

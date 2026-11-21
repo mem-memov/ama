@@ -15,7 +15,7 @@ enqueue
 dispatch
 /test/fixture/v1.0.0/src/kind/dispatch
 source !
- < &port
+ < & port
 copy
  % source
 record !
@@ -23,9 +23,9 @@ record !
 port !
  < |1
 enqueue !
- < &queue
- < &record
+ < & queue
+ < & record
 dispatch !
- < &queue
+ < & queue
 source %
 copy %

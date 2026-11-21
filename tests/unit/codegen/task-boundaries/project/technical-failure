@@ -15,9 +15,9 @@ probe
 source !
  < |2
 first !
- < &source
+ < & source
 second !
- < &source
+ < & source
 first
  operation& >> first operation&
 second

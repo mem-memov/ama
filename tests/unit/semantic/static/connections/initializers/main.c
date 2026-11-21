@@ -35,7 +35,7 @@ static void it_infers_default_result_and_list_element_types_from_declared_source
 
 /** One owned/ref list initializer receives exactly one scalar of matching ownership. */
 static void it_accepts_owned_and_reference_element_sources_without_splicing_lists(void) {
-    setup_connections("@!\nanchor\n//integer\nvalues[]\n//integer\n anchor\nrefs&[]\n//integer\n &anchor\n", "@!\n");
+    setup_connections("@!\nanchor\n//integer\nvalues[]\n//integer\n anchor\nrefs&[]\n//integer\n & anchor\n", "@!\n");
     const StaticResultContext *actual;
     (void)prepare_initializers(&actual);
     bool changed;

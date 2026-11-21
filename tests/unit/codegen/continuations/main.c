@@ -131,7 +131,7 @@ static void it_reports_the_new_caller_after_a_yield_releases_the_original_link(v
     file("generated/project/packages/test/fixture/v1.0.0/src/task", "@!\nworker\n/test/fixture/v1.0.0/src/worker\n%\nworker !\n < |500\n");
     file("generated/project/packages/test/fixture/v1.0.0/src/original", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\n@!\ntarget& !\n");
     file("generated/project/packages/test/fixture/v1.0.0/src/resumer", "@<\ntarget&\n/test/fixture/v1.0.0/src/task\n@!\ntarget& %\n");
-    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\noriginal\n/test/fixture/v1.0.0/src/original\nresumer\n/test/fixture/v1.0.0/src/resumer\noriginal !\n < &task\nresumer !\n < &task\n", "native-entered\n", false);
+    execute_project("@!\ntask\n/test/fixture/v1.0.0/src/task\noriginal\n/test/fixture/v1.0.0/src/original\nresumer\n/test/fixture/v1.0.0/src/resumer\noriginal !\n < & task\nresumer !\n < & task\n", "native-entered\n", false);
     expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/task:5:1");
     expect_diagnostic("generated/project/packages/test/fixture/v1.0.0/src/resumer:5:1");
     FILE *errors = fopen("generated/errors.txt", "rb");

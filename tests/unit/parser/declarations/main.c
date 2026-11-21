@@ -8,9 +8,9 @@
 /** Verify all four storage forms and complete names through each real physical ending convention. */
 static void it_builds_all_storage_forms_with_multiword_names_and_standard_root_types(void) {
     const char *text = "@=\ndefault value\n//integer\n |1\n@<\ninput value\n//integer\n default value\n"
-        "@>\nresult value&\n//integer\n &input value\n@!\nowned value\n//integer\n |2\n"
-        "reference value&\n//integer\n &owned value\nowned values[]\n//integer\n |3\n |4\n"
-        "references&[]\n//integer\n &owned value\n";
+        "@>\nresult value&\n//integer\n & input value\n@!\nowned value\n//integer\n |2\n"
+        "reference value&\n//integer\n & owned value\nowned values[]\n//integer\n |3\n |4\n"
+        "references&[]\n//integer\n & owned value\n";
     const char *names[] = {"owned value", "reference value", "owned values", "references"};
     const bool references[] = {false,true,false,true};
     const bool lists[] = {false,false,true,true};

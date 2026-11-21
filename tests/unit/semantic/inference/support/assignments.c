@@ -17,8 +17,8 @@ static void it_types_a_first_assignment_receiver_without_synthetic_declaration_o
 /** The source table distinguishes references, whole/indexed lists, continuation copies and lexical self. */
 static void it_derives_the_complete_assignment_source_storage_table_immediately(void) {
     prepare_inference();
-    valid_inference("@!\nowned\n/test/fixture/v1.0.0/src/value\n |1\nreference&\n/test/fixture/v1.0.0/src/value\n &owned\nitems[]\n/test/fixture/v1.0.0/src/value\n |1\nreferences&[]\n/test/fixture/v1.0.0/src/value\n &owned\nindex\n/test/fixture/v1.0.0/src/value\n |0\n"
-        "copy\n owned\nreference copy&\n reference&\nacquired&\n &owned\nlist copy[]\n items[]\nreference list copy&[]\n references&[]\n"
+    valid_inference("@!\nowned\n/test/fixture/v1.0.0/src/value\n |1\nreference&\n/test/fixture/v1.0.0/src/value\n & owned\nitems[]\n/test/fixture/v1.0.0/src/value\n |1\nreferences&[]\n/test/fixture/v1.0.0/src/value\n & owned\nindex\n/test/fixture/v1.0.0/src/value\n |0\n"
+        "copy\n owned\nreference copy&\n reference&\nacquired&\n & owned\nlist copy[]\n items[]\nreference list copy&[]\n references&[]\n"
         "element\n items[index]\nreference element&\n references&[index]\ncontinuation copy\n % reference&\nself&\n &\n");
     const char *names[] = {"copy", "reference copy", "acquired", "list copy", "reference list copy",
         "element", "reference element", "continuation copy", "self"};

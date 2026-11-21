@@ -102,7 +102,7 @@ static void it_executes_native_owned_reference_and_list_fields_from_closed_stati
     file("generated/project/packages/test/fixture/v1.0.0/src/factory", "@...\n/test/fixture/v1.0.0/src/source\n .out > .value\n.unused\n/test/fixture/v1.0.0/src/resource\n");
     native_entry_override = exported_entry;
     native_fixture_completion = inspect_exported_native_model;
-    execute_project("@!\nvalue\n/test/fixture/v1.0.0/src/resource\n |7\nitems[]\n/test/fixture/v1.0.0/src/resource\n |3\nreferences&[]\n/test/fixture/v1.0.0/src/resource\n &value\nmethod\n/test/fixture/v1.0.0/src/adapter\nmethod !\n owned < |7\n reference& < &value\n items[] < items[]\n references&[] < references&[]\n result > result\nprobe\n/test/fixture/v1.0.0/src/consumer\nprobe !\n < result\n", "selected-native\n7:1:0\n", true);
+    execute_project("@!\nvalue\n/test/fixture/v1.0.0/src/resource\n |7\nitems[]\n/test/fixture/v1.0.0/src/resource\n |3\nreferences&[]\n/test/fixture/v1.0.0/src/resource\n & value\nmethod\n/test/fixture/v1.0.0/src/adapter\nmethod !\n owned < |7\n reference& < & value\n items[] < items[]\n references&[] < references&[]\n result > result\nprobe\n/test/fixture/v1.0.0/src/consumer\nprobe !\n < result\n", "selected-native\n7:1:0\n", true);
     native_entry_override = NULL;
     native_fixture_completion = NULL;
     check_exported_headers();

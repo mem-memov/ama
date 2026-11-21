@@ -84,7 +84,7 @@ static void it_rejects_empty_reads_named_placeholders_invalid_literals_and_mixed
         "@!\nworker !\n <\n value > destination", "@!\nworker %\n <", "@!\nworker !\n >> value",
         "@!\nworker\n >", "@!\nworker\n >> value\n > destination", "@!\nworker !\n >\n <",
         "@!\nworker !\n <|12", "@!\nworker !\n <12", "@!\nworker !\n name< value",
-        "@!\nworker\n > > value", "@!\nworker !\n > &item"};
+        "@!\nworker\n > > value", "@!\nworker !\n > & item"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         ParseStatus parsed = parse_text(invalid[index]);

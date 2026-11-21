@@ -21,7 +21,7 @@ require
 source !
  < |1
 record !
- < &source
+ < & source
 enqueue !
- < &queue
- < &record
+ < & queue
+ < & record

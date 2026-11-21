@@ -10,7 +10,7 @@ static size_t local_count(void) {
 /** Disjoint bodies own distinct cells; a later persistent field cannot rewrite those earlier lexical bindings. */
 static void it_scopes_disjoint_local_references_without_retroactive_module_binding(void) {
     prepare_inference();
-    valid_inference("@!\nowned\n/test/fixture/v1.0.0/src/value\nitems[]\n/test/fixture/v1.0.0/src/value\nknown&\n/test/fixture/v1.0.0/src/value\n &owned\n"
+    valid_inference("@!\nowned\n/test/fixture/v1.0.0/src/value\nitems[]\n/test/fixture/v1.0.0/src/value\nknown&\n/test/fixture/v1.0.0/src/value\n & owned\n"
         "items[item&]\n{\n escaped&\n  item&\n}\nitems[item&]\n{\n copy\n  % item&\n}\n"
         "item&\n known&\nitems[item&]\n{\n item&\n  known&\n}\n");
     SemanticForeachBinding *first = semantic_find_type(&semantic,"/test/fixture/v1.0.0/src/main")->foreach_bindings;

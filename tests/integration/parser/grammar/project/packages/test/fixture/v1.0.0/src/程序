@@ -11,7 +11,7 @@
 @!
 items&[]
 /test/fixture/v1.0.0/src/shop/item
- &owned
+ & owned
 copy
 /test/fixture/v1.0.0/src/shop/item
  % original

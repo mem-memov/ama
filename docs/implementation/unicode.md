@@ -213,7 +213,7 @@ item-list[]
 copy-list[]
  item-list[]
 value-ref&
- &value-name
+ & value-name
 value-name !
 other_name !
 ```

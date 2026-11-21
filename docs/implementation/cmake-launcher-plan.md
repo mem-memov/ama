@@ -45,7 +45,7 @@ correctly refuses its older specification fingerprints.
 | Foundation | Deliverable needed by this plan | Gate |
 |---|---|---|
 | [T231](../../DONE.md#t231) | Canonical versioned identities, slash paths and current lexical forms | Required before new full-path/component records |
-| [T222](../../TODO.md#t222) | Agreed reference-prefix notation | Needs its own explicit specification authorization before amendment/implementation; planning does not grant it |
+| [T222](../../DONE.md#t222) | Agreed reference-prefix notation | Complete with explicit authorization and scoped implementation/runtime/tool acceptance; full sprint conformance remains T237 |
 | [T232](../../TODO.md#t232) | Shared prepared-project/configuration/alias resolution | Required before companion selection or build identity |
 | [T221](../../TODO.md#t221), [T226](../../TODO.md#t226) | Marker admission and fully concrete declaration Type expressions | Required before entry/transport and specialization closure claims |
 | [T233](../../TODO.md#t233) | Independent project-command/process boundary, guided projects and isolated test orchestration | Required before new build adapters; does not wait for their final runner |

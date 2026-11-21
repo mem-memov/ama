@@ -4,30 +4,30 @@ operation
 detach
 //task/operation/detach
 detach !
- < &operation
+ < & operation
  > retired
 retired
 ?
  require !
 operation !
- < &source
+ < & source
  > old
 source
  arm !
   < old
 detach !
- < &operation
+ < & operation
  > retired
 require !
  < retired
 detach !
- < &operation
+ < & operation
  > retired
 retired
 ?
  require !
 operation !
- < &source
+ < & source
  > current
 source
  arm !

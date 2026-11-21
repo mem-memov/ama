@@ -82,34 +82,34 @@ service
  take !
   > packet
 observe !
- < &registry
+ < & registry
  < packet
 service
  take !
   > packet
 observe !
- < &registry
+ < & registry
  < packet
 service
  take !
   > packet
 observe !
- < &registry
+ < & registry
  < packet
 reconcile !
- < &queue
- < &registry
+ < & queue
+ < & registry
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue

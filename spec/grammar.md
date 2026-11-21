@@ -119,9 +119,9 @@ Neither a blank line nor a comment delimits a section.
 
 | Direct joins, without spaces | Separate tokens, with one space |
 |---|---|
-| `&item`, `target&` | `target& !`, `target& %` |
+| `target&` | `& item`, `target& !`, `target& %` |
 | `items[]`, `targets&[]` | `% target&` |
-| `items[current position]` | `input& < &item` |
+| `items[current position]` | `input& < & item` |
 | `targets&[positions[next position]]` | `output > receiving value` |
 | `/acme/shop tools/v2.4.14/src/item state`, `//integer` | `< //palette/red` |
 
@@ -245,7 +245,7 @@ visibility, receiver inference, and the non-shadowing rule for foreach locals.
                                  | <identifier> "[" <index> "]"
 <reference-access>           ::= <identifier> "&"
                                  | <identifier> "&[" <index> "]"
-<reference-acquisition>      ::= "&" <owned-access>
+<reference-acquisition>      ::= "&" <space> <owned-access>
 <self-reference>             ::= "&"
 <constant-access>            ::= <module-path> [ "[]" ]
 <whole-list-access>          ::= <owned-list-name> | <reference-list-name>
@@ -262,8 +262,8 @@ visibility, receiver inference, and the non-shadowing rule for foreach locals.
 <call-target>                ::= <instance-target> | <whole-list-access>
 ```
 
-`&item` forms a reference to owned storage; `target&` reads reference storage.
-`&target&` is invalid. A lone `&` is a source for the instance lexically containing
+`& item` forms a reference to owned storage; `target&` reads reference storage.
+`& target&` is invalid. A lone `&` is a source for the instance lexically containing
 it. It is not a receiver, operation target, condition, index, or `%` operand.
 Shared constant initialization cannot use it. See
 [Values and references](language/values-and-references.md).
@@ -642,7 +642,7 @@ destination
  source
 
 target&
- &item
+ & item
 
 continuation
  % original

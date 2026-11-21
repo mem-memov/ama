@@ -86,7 +86,7 @@ static void it_preserves_assignment_and_reference_output_modes_without_snapshot_
     prepare_types();
     file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@>\noutput&\n/test/fixture/v1.0.0/src/value\n@!\n");
     PlanStatus status = transfer_plan_text("@!\nsource\n/test/fixture/v1.0.0/src/value\ntarget\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\nworker\n/test/fixture/v1.0.0/src/worker\n"
-        "reference&\n &source\ntarget\n source\ntarget\n % source\nworker\n output& >> reference&\n");
+        "reference&\n & source\ntarget\n source\ntarget\n % source\nworker\n output& >> reference&\n");
     assert(status == PLAN_OK);
     const SemanticTransfer expected[] = {TRANSFER_HANDLE, TRANSFER_CLONE, TRANSFER_CONTINUATION};
     ControlNode *node = plan.entry->entry;

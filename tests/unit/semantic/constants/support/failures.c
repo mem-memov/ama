@@ -50,7 +50,7 @@ static void it_rejects_invalid_constant_members_forms_and_forward_reads(void) {
         "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/absent\n@!\n",
         "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/items\n@!\n",
         "@=\nfirst\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/worker/shared[]\n@!\n",
-        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n &second\n@!\nsecond\n/test/fixture/v1.0.0/src/value\n"
+        "@=\nfirst\n/test/fixture/v1.0.0/src/value\n & second\n@!\nsecond\n/test/fixture/v1.0.0/src/value\n"
     };
     for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) { expect_resolved(invalid[index], false); }
 }

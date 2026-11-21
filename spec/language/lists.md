@@ -198,13 +198,13 @@ items[]
  append !
   > new_item&
  append !
-  < &sample
+  < & sample
 
 # Insert a copy before the current named position.
 items[]
  insert !
   < position
-  < &sample
+  < & sample
 
 # Remove an entry; handle a missing position without executing a deletion.
 items[]
@@ -516,7 +516,7 @@ claiming the caller's identity.
 
 Generated selection helpers resolving that method's direct input sources,
 indices, receivers, and preflight checks may borrow its exact token for that
-same collection. Thus `< &items[position]` can use an already acquired source
+same collection. Thus `< & items[position]` can use an already acquired source
 list without reacquiring it. This structural-access grant is never passed to
 executed Ama/native result bodies, user callbacks, or unrelated operations;
 they must acquire their own target normally and cannot reenter the busy list.

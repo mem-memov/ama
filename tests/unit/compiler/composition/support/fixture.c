@@ -6,7 +6,7 @@
 static const char composed_source[] = "@=\nbase\n/test/fixture/v1.0.0/src/value\n /test/fixture/v1.0.0/src/palette/seed\n@<\nexternal&\n/test/fixture/v1.0.0/src/value\n@>\nself&\n/test/fixture/v1.0.0/src/main\n &\n@!\n"
     "producer\n/test/fixture/v1.0.0/src/producer\nsource\n/test/fixture/v1.0.0/src/value\n |literal % ref& # bytes  \nitems[]\n/test/fixture/v1.0.0/src/value\n |1\n"
     "producer !\n < source\n method !\n  > received\n  next& %\n   > resumed\n  :\n   %\n"
-    "items[item&]\n{\n saved&\n  item&\n items[]\n  append !\n   < &source\n   > created&\n %\n}\n"
+    "items[item&]\n{\n saved&\n  item&\n items[]\n  append !\n   < & source\n   > created&\n %\n}\n"
     "items[]\n length !\n  value\n  {\n  }\ncontinued\n % source\n";
 /** Keep project/standard identities distinct and all native contracts explicit. */
 static void prepare_composed_files(const char *text) {

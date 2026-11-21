@@ -25,7 +25,7 @@ items[item&]
  ?
   items[]
    append !
-    < &extra
+    < & extra
   once
    off
  items[]

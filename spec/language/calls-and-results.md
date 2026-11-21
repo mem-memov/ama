@@ -160,7 +160,7 @@ item !
 
 The declaration creates owned state once when its enclosing instance is created;
 it does not execute the child body. `item !` executes that particular child.
-Acquiring `&item` likewise refers to the declared object, not its module type.
+Acquiring `& item` likewise refers to the declared object, not its module type.
 
 ## Binding inputs and outputs
 

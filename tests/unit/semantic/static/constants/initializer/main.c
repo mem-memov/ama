@@ -95,7 +95,7 @@ static void it_refuses_initializer_driven_completion_of_a_selected_static_suppli
  * initialization evidence even when their eventual runtime Type could match.
  */
 static void it_rejects_runtime_and_mutable_shared_initializer_sources(void) {
-    const char *sources[] = {"runtime", "&known", "% known", "&"};
+    const char *sources[] = {"runtime", "& known", "% known", "&"};
     for (size_t mode = 0; mode < 4; mode++) {
         char caller[512];
         int size = snprintf(caller, sizeof(caller), "@=\nknown\n//integer\n |1\nbad\n//integer\n %s\n@<\nruntime\n//integer\n@!\n", sources[mode]);

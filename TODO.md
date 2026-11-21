@@ -138,40 +138,11 @@ records foundation gates, task/step acceptance, migration and evidence duties;
 The user now authorizes implementation following the completed T243 plan. Execute in
 prerequisite order across both alignment sections; listing order does not
 override a dependency edge. Use granular component/composition tests, documented
-invariants and a commit for every accepted task. T222 is selected for this sprint;
-align its specification only after explicit authorization for that amendment.
+invariants and a commit for every accepted task. T222 is complete with explicit specification authorization; see its scoped
+acceptance in DONE.
 T221/T226 remain required; perform them after T231/T222/T232 establish the
 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
-
-<a id="t222"></a>
-
-- [ ] **T222 — Require a space after the reference-formation operator.**
-  Status: ready after T231; waiting for its explicit specification-amendment
-  authorization. Selected by the user's 2026-11-20 request; transferred
-  from BACKLOG with its original ID. Prerequisite: T231. The intended spelling
-  was recorded earlier on 2026-11-20; the required specification amendment
-  still needs separate explicit authorization;
-  the user's continuation request now authorizes implementation after that gate.
-  Desired spelling: exactly one ASCII space between prefix `&` and its owned
-  operand: `& item`, `& items[position]`, and `input& < & item`.
-  The reference suffix stays adjoining (`target&`); standalone self-reference
-  `&` has no operand and gains no trailing space. Reference semantics stay intact.
-  Current contracts still require the joined prefix under
-  [REF-01](spec/language/values-and-references.md#ref-01),
-  [SYN-06](spec/language/source-and-names.md#syn-06) and the
-  [grammar](spec/grammar.md#accesses-and-sources).
-  Steps when separately authorized: align those rules, examples and acceptance
-  scenarios; update recognition and affected source tools/fixtures using source
-  structure, preserving literal/comment data; document and verify the change.
-  Complete this narrow notation change before T232 and later consumers adopt
-  the revised source forms; keep it independent of reference ownership/lifetime.
-  Accept: test one-space formation with simple, multiword and indexed operands;
-  reject joined operands, repeated spaces, TAB and a line break in place of the
-  separator. Preserve suffix/self-reference parsing and all reference behavior.
-  Complete component/composition, source-tool, scoped conformance evidence and
-  documentation checks before marking this language change implemented. T237
-  owns the later complete conformance matrix/gate.
 
 <a id="t232"></a>
 

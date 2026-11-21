@@ -64,7 +64,7 @@ operation !
 waiting !
  < |1
 await !
- < &operation
+ < & operation
  < sender&
  < wire
 source&
@@ -80,9 +80,9 @@ cancel requested
 ?
  waiting !
  detach !
-  < &operation
+  < & operation
  cancel !
-  < &await
+  < & await
  outcome !
   < true
   < false
@@ -93,7 +93,7 @@ cancel requested
  >
 waiting !
 detach !
- < &operation
+ < & operation
 sender& !
  < wire
  > failure

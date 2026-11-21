@@ -9,7 +9,7 @@ require
 source !
  < |1
 operation !
- < &source
+ < & source
  > old
 source
  arm !
@@ -17,7 +17,7 @@ source
 source !
  < |1
 operation !
- < &source
+ < & source
  > current
 source
  arm !

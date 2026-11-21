@@ -22,12 +22,10 @@ LexStatus lex_token_next(LexCursor *cursor, LexToken *output) {
     LexToken token;
     if (!lex_recognize(cursor, offset, &token)) { return LEX_INVALID; }
     token.separator = separator;
-    bool reference_prefix;
-    if (!lex_boundary(cursor, &token, &reference_prefix)) { return LEX_INVALID; }
+    if (!lex_boundary(cursor, &token)) { return LEX_INVALID; }
     cursor->offset = token.text.end;
     cursor->previous = token;
     cursor->has_previous = true;
-    cursor->reference_prefix = reference_prefix;
     *output = token;
     return LEX_TOKEN;
 }

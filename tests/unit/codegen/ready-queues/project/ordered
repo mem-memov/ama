@@ -82,44 +82,44 @@ service
  take !
   > packet
 import !
- < &queue
- < &registry
+ < & queue
+ < & registry
  < packet
 import !
- < &queue
- < &registry
- < packet
-service
- take !
-  > packet
-import !
- < &queue
- < &registry
+ < & queue
+ < & registry
  < packet
 service
  take !
   > packet
 import !
- < &queue
- < &registry
+ < & queue
+ < & registry
+ < packet
+service
+ take !
+  > packet
+import !
+ < & queue
+ < & registry
  < packet
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 dispatch !
- < &queue
+ < & queue
 import !
- < &queue
- < &registry
+ < & queue
+ < & registry
  < packet
 queue
  entries[]
@@ -128,7 +128,7 @@ queue
 remaining
 ?
  dispatch !
-  < &queue
+  < & queue
 # The test also requires the late notification not to allocate an entry.
 remaining
 ?

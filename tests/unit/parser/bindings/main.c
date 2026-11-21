@@ -33,7 +33,7 @@ static void it_rejects_extra_or_missing_binding_separators_without_trimming_them
 
 /** Complete Unicode declaration labels include compact reference/list suffixes and preserve empty literal payloads. */
 static void it_preserves_complete_labels_and_empty_literal_versus_omitted_input(void) {
-    const char *labels[] = {"消息 内容 < |", "消息 内容& < &owned value", "消息 内容[] < values[]", "消息 内容&[] < references&[]"};
+    const char *labels[] = {"消息 内容 < |", "消息 内容& < & owned value", "消息 内容[] < values[]", "消息 内容&[] < references&[]"};
     for (size_t index = 0; index < 4; index++) {
         setup_tree();
         AstArgument argument;

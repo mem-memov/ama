@@ -33,7 +33,7 @@ blue registry
 blue& !
  < |2
  < token
- < &source
+ < & source
  < |1
 step !
  < blue&
@@ -42,11 +42,11 @@ blue&
  waiting !
 source !
 round !
- < &red registry
- < &blue registry
- < &red queue
- < &blue queue
- < &source
+ < & red registry
+ < & blue registry
+ < & red queue
+ < & blue queue
+ < & source
  < |1
  < |1
  > ready

@@ -61,7 +61,7 @@ static void it_reconciles_completion_before_and_after_the_awaiting_recheck(void)
         fixture("reconcile", reconcile);
         const char *post = "service\n post !\n  < token\n  < |7\n  < |complete\n";
         int length = snprintf(source, sizeof(source),
-            "%stask& !\n < &record\n < &wait\n < &service\n < token\n < |%u\n < |%u\n < |%u\n%s%s%s%s%s"
+            "%stask& !\n < & record\n < & wait\n < & service\n < token\n < |%u\n < |%u\n < |%u\n%s%s%s%s%s"
             "ready&[item&]\n{\n probe !\n  < |1\n item& %%\n}\n"
             "task&\n phase >> phase\nphase\n completed >> completed\ncompleted\n?\n probe !\n  < |2\n",
             setup, timing == 0, timing == 1, timing == 2, (timing == 3 || timing == 5) ? post : "", timing == 5 ? "task& %\n" : "", reconcile,
@@ -82,12 +82,12 @@ static void it_rejects_revoked_waits_and_mismatched_import_identities(void) {
         char setup[16384], source[32768];
         fixture("setup", setup);
         int length = snprintf(source, sizeof(source),
-            "%stask& !\n < &record\n < &wait\n < &service\n < token\n < |%u\n < |0\n < |0\n"
+            "%stask& !\n < & record\n < & wait\n < & service\n < token\n < |%u\n < |0\n < |0\n"
             "service\n post !\n  < token\n  < |7\n  < |complete\nservice\n take !\n  > packet\n"
             "record\n epoch >> epoch\n generation >> generation\n%s"
-            "import !\n < &wait\n < packet\n > accepted\naccepted\n:\n probe !\n  < |1\n"
+            "import !\n < & wait\n < packet\n > accepted\naccepted\n:\n probe !\n  < |1\n"
             "mailbox&\n delivered >> delivered\ndelivered\n:\n probe !\n  < |2\n"
-            "validate !\n < &wait\n > current wait\ncurrent wait\n?\n mailbox&\n  ready >> ready flag\n ready flag\n ?\n"
+            "validate !\n < & wait\n > current wait\ncurrent wait\n?\n mailbox&\n  ready >> ready flag\n ready flag\n ?\n"
             "  ready&[]\n   append !\n    < task&\nready&[]\n length !\n  > count\ncount\n:\n probe !\n  < |3\n", setup, index < 5, changes[index]);
         assert(length > 0 && (size_t)length < sizeof(source));
         execute_project(source, "1:1:0\n2:2:0\n3:3:0\n", true);

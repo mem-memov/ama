@@ -4,9 +4,9 @@
 /** Copy syntax selects saved-position behavior explicitly, without introducing a continuation storage type. */
 static void it_keeps_ordinary_handle_and_continuation_transfer_kinds_distinct(void) {
     prepare_types();
-    SemanticStatus status = resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/value\n |% reference& # data  \nreference&\n/test/fixture/v1.0.0/src/value\n &source\nordinary\n/test/fixture/v1.0.0/src/value\n source\n"
+    SemanticStatus status = resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/value\n |% reference& # data  \nreference&\n/test/fixture/v1.0.0/src/value\n & source\nordinary\n/test/fixture/v1.0.0/src/value\n source\n"
         "continued\n/test/fixture/v1.0.0/src/value\n % reference&\nelements[]\n/test/fixture/v1.0.0/src/value\n % source\n"
-        "ordinary\n source\nreference&\n &source\ncontinued\n % source\n%");
+        "ordinary\n source\nreference&\n & source\ncontinued\n % source\n%");
     assert(status == SEMANTIC_OK);
     assert(semantic_entry()->first->initializers->source->kind == AST_LITERAL_SOURCE);
     assert(layout_text_is(semantic_entry()->first->initializers->source->syntax->payload, "% reference& # data  "));
@@ -47,7 +47,7 @@ static void it_accepts_owned_scalar_continuation_sources_from_owned_and_referenc
         }
     }
     file("generated/program/packages/test/fixture/v1.0.0/src/worker", "@<\ninput\n/test/fixture/v1.0.0/src/value\n@>\noutput\n/test/fixture/v1.0.0/src/value\n@!\n");
-    SemanticStatus status = resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\n &source\nworker\n/test/fixture/v1.0.0/src/worker\n"
+    SemanticStatus status = resolve_text("@!\nsource\n/test/fixture/v1.0.0/src/value\nreference&\n/test/fixture/v1.0.0/src/value\n & source\nworker\n/test/fixture/v1.0.0/src/worker\n"
         "worker !\n < % reference&\n > received\nworker %\n > resumed\nworker\n >> retained\n");
     assert(status == SEMANTIC_OK);
     SemanticStatement *entry = NULL;
@@ -66,7 +66,7 @@ static void it_rejects_resume_inputs_whole_list_sources_and_invalid_prefix_forms
     const char *invalid[] = {
         "worker %\n <\n", "worker %\n < value\n", "worker %\n >> value\n",
         "value\n % values[]\n", "value\n % references&[]\n", "value\n % &\n",
-        "value\n % &value\n", "value\n % |literal\n", "value\n % /test/fixture/v1.0.0/src/worker/constant\n",
+        "value\n % & value\n", "value\n % |literal\n", "value\n % /test/fixture/v1.0.0/src/worker/constant\n",
         "value\n %value\n", "value\n % value\n:\n >\n"
     };
     for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {

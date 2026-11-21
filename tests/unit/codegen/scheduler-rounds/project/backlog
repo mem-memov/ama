@@ -55,11 +55,11 @@ source
   < |0
   < |
 round !
- < &red registry
- < &blue registry
- < &red queue
- < &blue queue
- < &source
+ < & red registry
+ < & blue registry
+ < & red queue
+ < & blue queue
+ < & source
  < |1
  < |1
  > ready
@@ -76,11 +76,11 @@ summary !
  < waiting
  < quiescent
 round !
- < &red registry
- < &blue registry
- < &red queue
- < &blue queue
- < &source
+ < & red registry
+ < & blue registry
+ < & red queue
+ < & blue queue
+ < & source
  < |1
  < |1
  > ready
@@ -97,11 +97,11 @@ summary !
  < waiting
  < quiescent
 round !
- < &red registry
- < &blue registry
- < &red queue
- < &blue queue
- < &source
+ < & red registry
+ < & blue registry
+ < & red queue
+ < & blue queue
+ < & source
  < |1
  < |1
  > ready

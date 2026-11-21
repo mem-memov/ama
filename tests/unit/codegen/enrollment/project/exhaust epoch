@@ -21,11 +21,11 @@ registration !
  < epoch
  < generation
 task& !
- < &record
- < &registration
+ < & record
+ < & registration
 record
  epoch !
  waiting !
 task& !
- < &record
- < &registration
+ < & record
+ < & registration

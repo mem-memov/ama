@@ -12,7 +12,7 @@ operations[]
  append !
   > first&
 first& !
- < &source
+ < & source
  > old
 source
  arm !
@@ -31,7 +31,7 @@ operations[]
  append !
   > second&
 second& !
- < &source
+ < & source
  > current
 source
  arm !

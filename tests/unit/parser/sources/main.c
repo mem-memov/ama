@@ -34,7 +34,7 @@ static void it_builds_uniform_assignments_without_classifying_first_use_receiver
 /** Every permitted source spelling retains its own tag and original qualified component/storage views. */
 static void it_preserves_indexed_qualified_reference_list_and_continuation_source_modes(void) {
     const char *forms[] = {"owned values[positions[next position]]", "reference slots&[current position]",
-        "&owned values[current position]", "% owned value", "% source reference&", "values[]",
+        "& owned values[current position]", "% owned value", "% source reference&", "values[]",
         "references&[]", "/test/fixture/v1.0.0/src/palette/default value", "//palette/default values[]", "&"};
     const AstSourceKind expected[] = {AST_VALUE_SOURCE,AST_VALUE_SOURCE,AST_ACQUIRE_SOURCE,
         AST_CONTINUATION_SOURCE,AST_CONTINUATION_SOURCE,AST_VALUE_SOURCE,AST_VALUE_SOURCE,
@@ -68,7 +68,7 @@ static void it_restricts_self_reference_to_source_positions_without_inventing_a_
     assert(module.body.first->as.call.first->next->source->kind == AST_SELF_REFERENCE_SOURCE);
     destroy_tree();
     const char *invalid[] = {"@!\n&\n source", "@!\n& !", "@!\n&\n?", "@!\nreceiver\n values[&]",
-        "@!\nreceiver\n % &", "@!\nworker !\n > &", "@!\nreceiver\n &reference&"};
+        "@!\nreceiver\n % &", "@!\nworker !\n > &", "@!\nreceiver\n & reference&"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         status = parse_text(invalid[index]);
@@ -90,7 +90,7 @@ static void it_rejects_literal_assignments_and_parent_comment_reopening_with_exa
     assert(status == PARSE_OK && module.body.first->kind == AST_ASSIGNMENT);
     destroy_tree();
     const char *invalid[] = {"@!\nreceiver\n# closed\n source value", "@!\nreceiver\n  # skipped depth\n source value",
-        "@!\nreceiver\n //only module", "@!\nreceiver\n % values[]", "@!\nreceiver\n &values[]"};
+        "@!\nreceiver\n //only module", "@!\nreceiver\n % values[]", "@!\nreceiver\n & values[]"};
     for (size_t index = 0; index < sizeof(invalid) / sizeof(invalid[0]); index++) {
         setup_tree();
         status = parse_text(invalid[index]);
@@ -120,8 +120,40 @@ static void it_cleans_every_allocation_failure_in_self_reference_assignment_cons
     }
 }
 
+/** T222 preserves complete owned operands and rejects every missing or non-ASCII separator. */
+static void it_requires_one_ascii_space_after_reference_acquisition(void) {
+    const char *valid[] = {"& item", "& item state", "& items[current position]",
+        "& items[positions[next position]]"};
+    const char *names[] = {"item", "item state", "items", "items"};
+    for (size_t index = 0; index < sizeof(valid) / sizeof(*valid); index++) {
+        char text[256];
+        int written = snprintf(text, sizeof(text), "@!\nreceiver&\n %s\n", valid[index]);
+        assert(written > 0 && (size_t)written < sizeof(text));
+        setup_tree();
+        assert(parse_text(text) == PARSE_OK);
+        AstSource *source = module.body.first->as.assignment.source;
+        assert(source->kind == AST_ACQUIRE_SOURCE);
+        assert(layout_text_is(source->span, valid[index]));
+        assert(layout_text_is(source->access->name, names[index]));
+        assert((source->access->index != NULL) == (index >= 2));
+        destroy_tree();
+    }
+    const char *invalid[] = {"&item", "&item state", "&items[position]", "&  item",
+        "&\titem", "&\xc2\xa0item", "&\n item", "& ", "& reference&", "& items[]"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
+        char text[256];
+        int written = snprintf(text, sizeof(text), "@!\nreceiver&\n %s\n", invalid[index]);
+        assert(written > 0 && (size_t)written < sizeof(text));
+        setup_tree();
+        assert(parse_text(text) == PARSE_INVALID);
+        assert(diagnostic_valid(&module.error.diagnostic));
+        destroy_tree();
+    }
+}
+
 /** Run all receiver/source-position and failure scenarios explicitly. */
 void run(void) {
+    it_requires_one_ascii_space_after_reference_acquisition();
     it_builds_uniform_assignments_without_classifying_first_use_receivers();
     it_preserves_indexed_qualified_reference_list_and_continuation_source_modes();
     it_restricts_self_reference_to_source_positions_without_inventing_a_name();
