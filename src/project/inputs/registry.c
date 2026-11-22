@@ -63,3 +63,9 @@ SourceStatus project_inputs_put(ProjectInputs *inputs, ProjectInputKind kind,
     }
     return project_input_source(inputs, kind, key, content, output);
 }
+
+const SourceText *project_inputs_content(const ProjectInputs *inputs, ProjectInputKind kind, const char *key) {
+    if (inputs == NULL || !inputs->sealed) { return NULL; }
+    const ProjectInput *input = project_inputs_find(inputs, kind, key);
+    return input == NULL ? NULL : input->content;
+}

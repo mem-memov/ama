@@ -6,6 +6,10 @@
  * [ERROR-04](../../../spec/implementation/diagnostics.md#error-04) plans
  * current full-key native providers before any matching header/body context.
  * Borrow the complete frontend/configuration through build/publication; handwritten source replacement requires explicit options.
+ * [BUILD-01](../../../spec/implementation/application-builds.md#build-01) retains
+ * concrete native instruction snapshots;
+ * [BUILD-05](../../../spec/implementation/application-builds.md#build-05) retains
+ * ordinary package guidance even without native origins;
  * [EMBED-01](../../../spec/implementation/c-library.md#embed-01) separates
  * shared library artifacts from application delivery;
  * [STACK-04](../../../spec/implementation/compiler.md#stack-04) verifies the
@@ -18,6 +22,7 @@
 #include "compiler/frontend.h"
 #include "output/artifact.h"
 #include "delivery/inputs/inputs.h"
+#include "delivery/native/guidance.h"
 #include "source/identity/identity.h"
 #include "native/status/providers/providers.h"
 
@@ -81,6 +86,14 @@ typedef struct {
      */
     const DeliverySelection *delivery;
     const DeliveryInputs *launch_inputs;
+    /** Owned concrete native relations and raw snapshots; frontend origins remain
+     * borrowed under [BUILD-01](../../../spec/implementation/application-builds.md#build-01).
+     */
+    const DeliveryNativeCapture *native_inputs;
+    /** Effective emitted-version guidance remains optional under
+     * [BUILD-05](../../../spec/implementation/application-builds.md#build-05).
+     */
+    const DeliveryVersionGuidance *guidance;
     /** Actual generated C unit selected for application compilation/verification;
      * points into this scaffold's owned artifact list, never guessed by extension.
      * Stateful libraries leave it null under

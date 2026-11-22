@@ -213,6 +213,12 @@ than creating a parser with no admitted adapter in this foundation.
 
 ### T239 — Capture the actual native build closure
 
+Accepted in [DONE](../../DONE.md#t239); the
+[capture contract and evidence](build-launcher-contracts.md#t239-captured-native-build-input-contract)
+record concrete origins, exact snapshots, resource/guidance ownership and actual
+emission/consumer checks. The steps below describe the accepted scope; T247/T252
+still own configuration/external-provider inputs and build-cache admission.
+
 1. Extend selected module snapshots to optional `.cmake`, declared resources and
    version-root README guidance. Preserve selected-copy and lifetime provenance.
 2. Emit deterministic participating-module records from actual concrete closure;

@@ -3,6 +3,8 @@
  * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) prevents partial
  * metadata publication; [NAME-02](../../../../spec/implementation/compiler.md#name-02)
  * requires complete identity keys rather than digest-only equality.
+ * [BUILD-01](../../../../spec/implementation/application-builds.md#build-01)
+ * preserves concrete native origins and captured companion bytes.
  */
 #ifndef AMA_CODEGEN_DELIVERY_METADATA_H
 #define AMA_CODEGEN_DELIVERY_METADATA_H
@@ -24,4 +26,8 @@ bool delivery_metadata_types(ToolJsonWriter *, const NativeScaffold *);
  * selected entry units rather than inferring them from filenames.
  */
 bool delivery_metadata_outputs(ToolJsonWriter *, const NativeScaffold *);
+/** Emit ordered actual native origins with captured source/instruction bytes
+ * under [BUILD-01](../../../../spec/implementation/application-builds.md#build-01).
+ */
+bool delivery_metadata_native(ToolJsonWriter *, const NativeScaffold *);
 #endif

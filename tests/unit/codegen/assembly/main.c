@@ -60,7 +60,12 @@ static void begin_assembly(void) {
  * for assertions.
  */
 static bool build_assembly(void) {
-    return project_delivery_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK}, &(DeliveryRequest){.mode = DELIVERY_EXECUTABLE, .component = "test.codegen"});
+    bool built = project_delivery_build(&assembly, (ScaffoldOptions){.directory = "generated/output", .sdk = TEST_SDK}, &(DeliveryRequest){.mode = DELIVERY_EXECUTABLE, .component = "test.codegen"});
+    if (!built && assembly.error.message != NULL) {
+        fprintf(stderr, "Assembly: %s (%s)\n", assembly.error.message,
+            assembly.error.primary.path == NULL ? "no path" : assembly.error.primary.path);
+    }
+    return built;
 }
 
 /**
@@ -113,6 +118,10 @@ static void it_emits_a_finite_exact_delivery_manifest_for_recursive_types(void) 
     file("generated/project/packages/test/fixture/v1.0.0/src/main",
         "@<\ninput name\n/test/fixture/v1.0.0/src/value\n"
         "@!\nreference&\n/test/fixture/v1.0.0/src/node\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.cmake", "message(FATAL_ERROR \"Generation must not run CMake\")\n");
+    file("generated/project/packages/test/fixture/v1.0.0/src/value.extra", "declared resource\n");
+    directory("generated/project/packages/test/fixture/v1.0.0/src/other.cmake");
+    directory("generated/project/packages/test/fixture/v1.0.0/README.md");
     begin_assembly();
     bool built = build_assembly(); assert(built);
     bool published = native_scaffold_publish(&assembly); assert(published);
@@ -124,6 +133,16 @@ static void it_emits_a_finite_exact_delivery_manifest_for_recursive_types(void) 
             "assert m['format']=='ama.delivery.v1' and m['mode']=='executable'; "
             "assert m['component']=='test.codegen'; "
             "decode=lambda x:bytes.fromhex(x['hex']); "
+            "assert decode(m['working_directory'])==str(Path.cwd()).encode(); "
+            "native=m['native']; assert len(native)==1 and native[0]['module'].endswith('/src/value'); "
+            "nr=native[0]; assert nr['cmake']['state']=='present'; "
+            "assert nr['version']=='/test/fixture/v1.0.0' and decode(nr['version_root']).endswith(b'/v1.0.0'); "
+            "assert b'FATAL_ERROR' in decode(nr['cmake']['file']['content']); "
+            "assert nr['readme']['state']=='unavailable' and nr['readme']['issue']=='shape'; "
+            "assert len(m['guidance'])==1 and m['guidance'][0]['readme']==nr['readme']; "
+            "assert all(decode(nr[k]['content'])==Path(decode(nr[k]['path']).decode()).read_bytes() for k in ['c','h','abi']); "
+            "assets=nr['resources']; assert len(assets)==2; "
+            "assert any(decode(x['snapshot']['file']['content'])==b'declared resource\\n' for x in assets if not x['directory']); "
             "files={decode(x['path']):x for x in m['generated']}; "
             "v=m['verification_entries']; assert len(v)==1 and v[0]['main'] is True; "
             "entry=decode(v[0]['path']); assert entry in files and files[entry]['entry']; "
@@ -133,6 +152,7 @@ static void it_emits_a_finite_exact_delivery_manifest_for_recursive_types(void) 
             "assert db[0]['file'].encode()==entry; "
             "d=m['directory']; assert len(bytes.fromhex(d['hex']))==int(d['length']); "
             "nodes={x['id']:x for x in m['types']}; assert len(nodes)==len(m['types']); "
+            "assert nr['types'] and all(nodes[i]['module']==nr['module'] for i in nr['types']); "
             "assert nodes[m['root']]['module'].endswith('/src/main'); "
             "assert nodes[m['root']]['fields'][0]['role']=='parameter'; "
             "assert m['inputs']==[{'name':'input name','ordinal':'0','text':True,'binary':None}]; "
@@ -149,6 +169,10 @@ static void it_emits_a_finite_exact_delivery_manifest_for_recursive_types(void) 
     int status; pid_t waited = waitpid(process, &status, 0);
     assert(waited == process && WIFEXITED(status) && WEXITSTATUS(status) == 0);
     end_assembly();
+    int removed = remove("generated/project/packages/test/fixture/v1.0.0/src/value.cmake"); assert(!removed);
+    removed = remove("generated/project/packages/test/fixture/v1.0.0/src/value.extra"); assert(!removed);
+    removed = rmdir("generated/project/packages/test/fixture/v1.0.0/src/other.cmake"); assert(!removed);
+    removed = rmdir("generated/project/packages/test/fixture/v1.0.0/README.md"); assert(!removed);
 }
 
 /** Arbitrary byte records preserve NUL, invalid UTF-8 and all byte values exactly;

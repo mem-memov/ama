@@ -8,6 +8,10 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-019](#amb-019) is resolved for T239: README guidance remains optional during
+generation/build, and native requirements belong in CMake companions. BUILD-05
+records unavailable guidance separately from compilation and source-delivery errors.
+
 [AMB-017](#amb-017) and [AMB-018](#amb-018) have user-approved decisions and
 explicit specification authorization: separate
 copy/delete/move commands, opt-in dependency cloning or package.ini extension,
@@ -1350,3 +1354,57 @@ Each entry must contain:
   extra test helpers, injectivity and refusal of conflicting overlapping unit
   mappings. T232/T224 remain incomplete implementation owners; this decision
   alone establishes no compiler or project-tool support.
+
+<a id="amb-019"></a>
+
+## AMB-019 — Invalid optional README during generation/build metadata capture
+
+- **Status:** Resolved; the user answered the explicit specification-clarification
+  question in the current conversation on 2026-11-22.
+- **Current task:** [T239](DONE.md#t239), after accepted T245 commit `1021776`.
+  The approved clarification is recorded in BUILD-05; implementation acceptance
+  remains part of T239.
+- **Authority:** [BUILD-01](spec/implementation/application-builds.md#build-01)
+  requires metadata for actual participating native companions;
+  [BUILD-05](spec/implementation/application-builds.md#build-05) says the optional
+  version README is not parsed by the compiler/CMake adapter and cannot be
+  required for compilation;
+  [PKG-07](spec/project/packages.md#pkg-07) records guidance presence/content as
+  delivery/report metadata, excludes README-only changes from program build
+  identity, and diagnoses a supplied unreadable/non-file README as a delivery
+  I/O/shape failure.
+- **Minimal example:** a valid selected concrete native module and its normal
+  `.c`, `.h`, `.abi` companions live under
+  `packages/acme/library/v1.0.0/src/native`. The exact version-root path
+  `packages/acme/library/v1.0.0/README.md` is a directory, or an existing regular
+  file that the process cannot read. Source/ABI validation otherwise succeeds.
+  A missing README is allowed in all variants and is not the question.
+- **Precise question:** must `--emit` and the later application build refuse
+  while capturing this optional guidance, or continue and record/report guidance
+  as unavailable with its exact path and I/O/shape issue? PKG-07's refusal remains
+  applicable to actual source delivery; the unresolved boundary is whether that
+  severity also applies to compilation/generation metadata.
+- **Recommended decision:** generation/build continues with an explicit
+  unavailable-guidance record; do not pretend the entry is absent, search another
+  directory or fabricate instructions. A required source/companion/resource error
+  remains fatal. Actual source delivery refuses the invalid README under PKG-07.
+- **Alternative and consequence:** fail generation/build as well whenever the
+  optional README entry exists but is invalid/unreadable. This adds a conditional
+  guidance dependency to compilation and requires stating its relationship to
+  BUILD-05's nonrequirement explicitly.
+- **Implementation consequence:** the choice determines whether guidance
+  snapshot status is report data or a fatal capture error; it also determines
+  snapshot/publication, missing-local-copy and failure-injection acceptance. Do not
+  choose a severity, fallback or workaround before the answer.
+- **Accepted answer/source:** in response to the explicit question authorizing a
+  specification clarification, the user wrote: "readme необязателен, правила
+  установки нужных программ определяется в файлах cmake" (2026-11-22, current
+  conversation). README inspection therefore cannot block generation/build;
+  record unavailable guidance and preserve PKG-07 delivery validation. CMake
+  companions own native requirements and preparation checks. BUILD-01's existing
+  prohibition of implicit installation remains in force; the answer does not
+  request automatic installation or change that separate contract.
+- **Canonical result:** BUILD-05 distinguishes missing, usable and unavailable
+  optional guidance and links the unchanged delivery/preparation boundaries.
+  T239's accepted native-input capture and emission are archived in DONE;
+  future CMake/source-delivery commands retain their separate acceptance owners.

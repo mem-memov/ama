@@ -353,8 +353,21 @@ root and its optional `README.md`. If present, supply its usable physical path;
 if absent, state that the file is absent and still report the version directory.
 Use the same effective package selection as compilation. A package README is
 optional, is not parsed by the compiler or CMake adapter and cannot be required
-for compilation. Its delivery follows [PKG-07](../project/packages.md#pkg-07).
-The system must not fabricate installation guidance for a README that is missing.
+for compilation. If the exact README path exists but is not a readable regular
+file, generation and building continue: retain its path and the observed
+I/O/shape issue as unavailable-guidance metadata, rather than treating it as
+absent or selecting another copy. Failure to inspect optional guidance does not
+replace a primary build failure. This does not relax errors for required source,
+native companion or declared resource inputs. Actual source delivery still
+checks the README under [PKG-07](../project/packages.md#pkg-07) and refuses a
+supplied unreadable/non-file entry.
+
+Native dependency requirements and their preparation checks belong in the
+module's CMake companion under [BUILD-01](#build-01). README text is optional
+human guidance, never a substitute for those declarations. The system must not
+fabricate installation guidance for a README that is missing or unavailable.
+BUILD-01's separation of explicit dependency preparation from configuration/build
+continues to apply; this rule does not authorize automatic software installation.
 
 Package authors should describe required external libraries, supported platforms,
 installation of runtime and development/header packages, configuration options,
@@ -381,7 +394,8 @@ machine-readable diagnostic encoding remain implementation interfaces.
 Acceptance includes actual CMake configure/build/run and generation-only probes;
 no-dependency and shared native dependencies; two independent test targets using
 one companion; required include/source order; optional/missing companions and
-README files; untouched authored scaffolds; declared dependency conflicts;
+README files, including nonfatal unreadable/non-file guidance during generation
+and building versus delivery refusal; untouched authored scaffolds; declared dependency conflicts;
 unsupported toolchains and target/host distinction; missing headers/libraries;
 CMake, compiler, linker, verifier and startup failures; source-inclusion host
 integration; stale cache rejection; parallel output ownership; publication and

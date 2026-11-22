@@ -80,9 +80,9 @@ The user's 2026-11-20 continuation request authorizes implementation of this
 queue in prerequisite order. Specification amendments still need their own
 explicit authorization; T222's separately authorized notation amendment is complete.
 [T229](DONE.md#t229) specifies the CMake/launcher/source-inclusion contracts;
-T239–T242 and T246–T257 are their pending implementation owners.
-[T244](DONE.md#t244) and [T245](DONE.md#t245) provide the accepted handoff and
-delivery foundations. The
+T240–T242 and T246–T257 retain the pending build/launcher implementation.
+[T239](DONE.md#t239), [T244](DONE.md#t244) and [T245](DONE.md#t245) provide the
+accepted native-input, handoff and delivery foundations. The
 [detailed implementation plan](docs/implementation/cmake-launcher-plan.md)
 records foundation gates, task/step acceptance, migration and evidence duties;
 [T243](DONE.md#t243) records its completed planning acceptance.
@@ -170,18 +170,6 @@ component/composition evidence, resource/failure checks and a separate commit.
 The linked plan expands their step order and acceptance partitions. Earlier
 complete-conformance fingerprints remain historical until T237's final review;
 focused accepted evidence and documentation are required at every task.
-
-<a id="t239"></a>
-
-- [ ] **T239 — Capture native companions and build-closure provenance.**
-  Status: planned. Prerequisite: T245. Preserve this task's original native
-  metadata ownership; T246/T247 extract scaffolding/target integration.
-  Implement BUILD-01/05 and PKG-07 selected module.cmake/resource/optional README
-  capture, exact concrete closure membership and deterministic emitted records.
-  Accept absent/empty/changed companions, selected-version holes, Unicode/spaces,
-  specialized native dependencies, unused-module exclusion and distinct component
-  records. Record exact absence/content invalidation and snapshot lifetime;
-  generation must not execute CMake or recover ignored dependency files.
 
 <a id="t246"></a>
 

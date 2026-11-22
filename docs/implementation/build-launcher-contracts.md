@@ -92,9 +92,9 @@ NativeRelation = {
   concrete_type_ids, owned_input_snapshots,
   c, h, abi, cmake: Present(bytes, origin) | Absent(origin),
   declared_resources, effective_version_root,
-  readme: Present(path, bytes) | Absent(expected_path)
+  readme: Present(path, bytes) | Absent(expected_path) | Unavailable(path, issue)
 }
-ResolvedBuildClosure = finite ordered NativeRelation table + dependency edges
+ResolvedBuildClosure = finite ordered NativeRelation table linked to concrete Type IDs
 ```
 
 Deduplicate the CMake application key `(component, resolved native module)`;
@@ -827,3 +827,171 @@ pages, verify every final input fingerprint and inspect staged task bytes before
 committing. No behavioral job is active, no semantic ambiguity is open and no
 specification or conformance fingerprint has changed. Continue with T239 after
 this task's commit; completion of this foundation does not complete the sprint.
+
+## T239 initial investigation (historical)
+
+T245 was committed as **1021776** after the final supported archival regeneration
+(`/tmp/ama-t245-documentation-final-provenance.log`, 61461 collected, exit zero).
+The final manifest/report matched and all 2792 rendered-input fingerprints and
+81 accepted non-Markdown task hashes were verified; staged bytes matched the
+88 reviewed task paths. The worktree was clean immediately after that commit.
+
+T239 read-only tracing identifies the current source boundary:
+`source/module/resolve/native-snapshot.c` copies captured native body/header paths
+and ABI bytes before sealing `native_loaded`; `ModuleSource` retains those
+selected-copy views. `resolve/companion.c` has separate exact-path probing and
+UTF-8 loading behavior; a false text flag is not an owned raw-byte snapshot.
+Build companion/resource/guidance capture must preserve this authority and add no
+ignored-copy or physical reread fallback to a sealed snapshot. Participating-module
+selection must be traced through actual resolved emission/assembly membership,
+not the whole scanned module catalog. No T239 implementation is started.
+
+[AMB-019](../../AMBIGUITIES.md#amb-019) was resolved by the user's explicit
+specification-clarification answer on 2026-11-22: README remains optional and
+native dependency requirements belong in CMake companions. BUILD-05 now requires
+nonfatal unavailable-guidance metadata for unreadable/non-file README entries;
+PKG-07 still rejects them during source delivery. BUILD-01's explicit preparation
+boundary and prohibition of implicit software installation remain unchanged.
+
+At this initial checkpoint, the next step was tracing actual emitted native
+closure and snapshot consumers before implementation. The subsequent contract,
+step evidence and final acceptance below supersede that pre-implementation state.
+
+### T239 captured native build-input contract
+
+`src/delivery/native/closure.h` and `select.c` project the concrete `ProgramPlan`
+onto native source origins. The ordered-list invariant is strict full logical
+module order with one catalog owner for each identity. Inserting each native
+plan preserves that order; equal identities reuse the same source owner or
+refuse inconsistent authority. Finite traversal of P planned types and at most
+N origin rows gives O(P*N) comparisons and O(N) retained records. There is no
+source-directory scan, CMake evaluation or runtime instance traversal. Empty
+projections succeed. Failed preparation leaves caller output unchanged and
+scratch under the caller's arena; different component calls own different rows.
+
+`files/` retains exact `Absent`, `Present` and `Unavailable` observations. Empty
+present files cannot alias absence. Original bytes, including zeros and invalid
+UTF-8, survive verbatim; these are opaque build inputs, not Ama syntax. Exact
+child probing precedes reading, with no alternate-copy lookup. Required supplied
+CMake and resource failures refuse preparation. README I/O/shape issues remain
+report data under the approved AMB-019 clarification; allocation failure still
+prevents retention of a complete record. No code or installation instruction is
+executed. A source manager owns byte snapshots and the caller arena owns paths,
+rows and scratch; the checked frontend/catalog outlives every borrowed origin.
+
+`resources.c` walks only PKG-07's additional same-basename companions and entire
+module-plus subtree. Core C/header/ABI/configuration inputs keep their existing
+captured authority. The exact prefix test requires a nonempty suffix; unrelated
+neighbors are never guessed into the unit. The iterative queue preserves every
+owned child, including hidden resources and empty directories; an absent optional
+module-plus root is explicit. The shared catalog enumerator sorts original entry
+names. Shared device/inode registration rejects repeated directory identities,
+so a directory alias cannot cause an infinite expansion; symbolic links refuse.
+The result is sorted by full physical path. For R resource entries and B file
+bytes, list insertion and per-child exact probing are bounded by O(R^2+B), plus
+the top-level directory enumeration and path-byte copying. Retained records and
+bytes are linear in the copied input size. All temporary directory-enumeration
+owners close streams and release on both success and failure. Filesystem inputs
+must stay stable during capture; no universal concurrent-filesystem snapshot is
+promised.
+
+`guidance.c` independently projects actual emitted Type versions, including an
+ordinary-only component. It reuses the identical native observation for a shared
+version, or captures one exact optional README. Sorted version rows remain
+separate from build prerequisites. README never becomes a ProjectInputs file node;
+its bytes are diagnostic/delivery data, not a native build equivalence key.
+Native source C/header content comes through `project_inputs_content` only from
+the existing sealed graph, without reopening or recovering another physical copy.
+
+The shared project assembly consumes these components before completing artifacts.
+`metadata/native.c` emits ordered native origins, concrete descriptor IDs,
+effective version/root, captured C/header/ABI/configuration, CMake, resources and
+guidance. The top-level `guidance` table includes ordinary package versions.
+Physical paths and arbitrary content use the established exact byte encoding.
+`working_directory` records the source-path base: combine relative physical paths
+with that retained directory, never the later adapter's working directory.
+The native origin table is component-local; it is not process-global state.
+The tagged state, full paths and complete bytes distinguish creation, removal,
+empty presence and content changes without a hash-equivalence assumption.
+
+These are preparation/emission records, not a configured build or cache-reuse
+certificate. External resources/providers declared by actual CMake configuration
+remain T247/T252/T253 consumers; capture does not evaluate CMake to discover them.
+T235 consumes the explicit delivery unit and retains PKG-07 README delivery errors.
+T252 composes these records with all compiler/profile/tool inputs, excluding README
+content from program build identity. The current task does not claim those future
+commands or refresh T237's historical conformance fingerprints.
+
+### T239 verification and continuation
+
+Collected successful commands (exit zero):
+
+- `make -C tests/unit/delivery/native`: first origin projection, session 45652,
+  `/tmp/ama-t239-native-origin-selection.log`.
+- `make -j2 -C tests/unit/delivery/native`: captured-file step 57973, resource step
+  51576, capture boundaries 41241, concrete/specialized closure 26955, and guidance
+  ownership 75034. Logs are `/tmp/ama-t239-native-capture.log`,
+  `/tmp/ama-t239-owned-resource-capture.log`,
+  `/tmp/ama-t239-native-capture-boundaries.log`,
+  `/tmp/ama-t239-selected-concrete-closure.log`, and
+  `/tmp/ama-t239-guidance-ownership.log` respectively. The final leaf has twelve
+  explicit cases, including Unicode/multiword paths, local holes despite an
+  ignored external companion, static-specialization dependencies, snapshots after
+  physical changes, ordinary/native guidance ownership, permission failures and
+  exhaustive counted allocation refusals for capture and resource traversal.
+- `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 make
+  -j2 -C tests/unit/delivery/native C_COMPILER_FLAGS='-O0 -g -Wall -Wextra -std=c11
+  -pedantic -D_POSIX_C_SOURCE=200809L -fsanitize=address,undefined
+  -fno-omit-frame-pointer -fno-pie' LINKER_FLAGS='-no-pie'`: session 64986,
+  `/tmp/ama-t239-native-address-undefined.log`, exit zero. Initial run 99611
+  omitted the explicit LSan setting and exited two because LeakSanitizer cannot
+  run under this environment's ptrace, not because an assertion/ASan/UBSan error
+  was reported. `/tmp/ama-t239-native-sanitizers.log` retains that failure. No LSan
+  success is claimed; counted owners independently verify complete release.
+- `make -j2 -C tests/unit/codegen/assembly`: corrected composition 64997, final
+  native records 24447 and ordinary-guidance emission 81017 all exited zero;
+  logs `/tmp/ama-t239-native-metadata-corrected.log`,
+  `/tmp/ama-t239-final-native-records.log`,
+  `/tmp/ama-t239-guidance-emission-composition.log`. Independent Python JSON parsing
+  checks native/core bytes, descriptor links, resource records, unusable optional
+  guidance and unused native exclusion. Actual generated C/interface execution,
+  translation-unit checks and complete-emission allocation sweeps also run.
+- `make -j2 -C tests/unit/codegen/specializations`: session 44439,
+  `/tmp/ama-t239-specialized-native-composition.log`, exit zero.
+- `make -j2 -C tests/unit/library/package`: session 30010,
+  `/tmp/ama-t239-actual-library-package-composition.log`, exit zero. An earlier
+  attempted path `tests/unit/library/building` did not exist, so no test ran from
+  that command; `/tmp/ama-t239-library-native-composition.log` records exit two.
+- Final shared-assembly step 34091 and actual CLI integration 67163 exited zero:
+  `make -j2 -C tests/unit/codegen/assembly`,
+  `/tmp/ama-t239-final-assembly-acceptance.log`; and
+  `make -j2 -C tests/integration/minimal`,
+  `/tmp/ama-t239-driver-minimal-acceptance.log`. The latter exercises actual emission,
+  verified compilation and generated-program execution through the public driver.
+
+The first assembly composition (79100) failed because the new test's cleanup was
+mistakenly placed in the preceding scenario, leaving a deliberately invalid unused
+companion for a later scenario that actually uses it. A diagnostic rerun confirmed
+the retained-fixture consequence; both failed logs are preserved at
+`/tmp/ama-t239-native-metadata-composition.log` and
+`/tmp/ama-t239-native-metadata-diagnostic.log`. The cleanup was moved to its owning
+scenario, the leaf's supported `clean` command reset its owned output, and the
+corrected full leaf passed. No product requirement or expected behavior changed.
+
+Final source-path-context assembly run 70809,
+`/tmp/ama-t239-native-path-context.log`, exited zero. The complete parent
+`make -j2 -C tests/unit/delivery` also exited zero (99461,
+`/tmp/ama-t239-delivery-parent-acceptance.log`), checking actual parent dispatch.
+`make docs` exited zero (16071, `/tmp/ama-t239-documentation-first.log`): 3377 ready
+inputs, zero debts, 2551 maintained file pages, 9803 documented interfaces and
+493 resolved destinations. Doxygen 1.11.0, markdown-it-py 3.0.0 and Python 3.14.4
+are recorded in the generated manifest. The registry's unrelated Unicode key
+spellings were restored after review; parsed registry data is unchanged by that
+formatting correction.
+
+T239 is accepted and archived in [DONE](../../DONE.md#t239). Its source, tests,
+per-file coverage, AMB-019 clarification and evidence belong to the same reviewed
+commit. Archival Markdown changes require a final supported Doxygen regeneration
+and matching-input provenance check before commit; behavioral inputs stay frozen.
+No ambiguity is open. Next ready task is T235; compilation/build/cache acceptance
+that belongs to later tasks is explicitly not claimed by these snapshots.

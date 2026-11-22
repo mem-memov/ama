@@ -3,7 +3,8 @@
  * [CLI-01](../../../../spec/implementation/launch-and-embedding.md#cli-01)
  * keeps runtime arguments outside compilation configuration;
  * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) requires a complete
- * owned artifact before any publication. Native/build provenance is added by T239.
+ * owned artifact before any publication. [BUILD-01](../../../../spec/implementation/application-builds.md#build-01)
+ * retains native provenance from concrete origins.
  */
 #include <string.h>
 #include "internal.h"
@@ -34,8 +35,11 @@ bool codegen_emit_delivery(NativeScaffold *scaffold, FILE *output, const Scaffol
         && tool_json_raw(&writer, ",\"root\":") && tool_json_unsigned(&writer, codegen_type_id(scaffold, scaffold->selected))
         && tool_json_raw(&writer, ",\"directory\":")
         && delivery_metadata_bytes(&writer, (const unsigned char *)scaffold->directory, strlen(scaffold->directory))
+        && tool_json_raw(&writer, ",\"working_directory\":")
+        && delivery_metadata_bytes(&writer, (const unsigned char *)scaffold->working_directory, strlen(scaffold->working_directory))
         && tool_json_raw(&writer, ",\"types\":") && delivery_metadata_types(&writer, scaffold)
         && tool_json_raw(&writer, ",\"inputs\":") && inputs(&writer, scaffold)
+        && delivery_metadata_native(&writer, scaffold)
         && delivery_metadata_outputs(&writer, scaffold)
         && tool_json_raw(&writer, "}\n") && tool_json_finish(&writer);
 }

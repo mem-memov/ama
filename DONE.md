@@ -8332,3 +8332,37 @@ T201. Specification bytes have not changed.
   No CMake orchestration, network acquisition, source mutation or unsupported
   transport is claimed by this foundation. Specification and conformance evidence
   fingerprints are unchanged; T237 retains current full release/conformance renewal.
+
+<a id="t239"></a>
+
+- [x] **T239 — Capture native companions and build-closure provenance.**
+  Status: complete. AMB-019 is resolved in BUILD-05; optional guidance never
+  becomes a compilation prerequisite.
+  Prerequisite: T245. Preserve this task's original native
+  metadata ownership; T246/T247 extract scaffolding/target integration.
+  Implement BUILD-01/05 and PKG-07 selected module.cmake/resource/optional README
+  capture, exact concrete closure membership and deterministic emitted records.
+  Accept absent/empty/changed companions, selected-version holes, Unicode/spaces,
+  specialized native dependencies, unused-module exclusion and distinct component
+  records. Record exact absence/content invalidation and snapshot lifetime;
+  generation must not execute CMake or recover ignored dependency files.
+  Result: concrete-plan native origins, selected CMake/raw resource snapshots,
+  ordinary/native package guidance and complete component-local JSON provenance
+  are composed with shared assembly emission. Existing sealed compiler snapshots
+  retain C/header byte authority; relative physical origins retain their working
+  directory. No generation-time CMake execution, ignored-copy recovery or hidden
+  installation occurs.
+  Verification: twelve independent native component cases and exhaustive counted
+  allocation failures; ASan/UBSan with explicit unsupported LSan exclusion;
+  complete delivery parent; independent JSON parsing, generated C/interface
+  composition and emission failure sweeps; actual specialized execution,
+  static/shared library packaging and public minimal driver compilation/run.
+  All final behavioral commands exited zero. Doxygen coverage/rendered-link
+  acceptance passed with 3377 ready inputs, zero debts, 2551 maintained file pages,
+  9803 interfaces and 493 destinations. The linked record retains exact commands,
+  sessions/logs, failed-fixture correction, permission assumptions and limits:
+  [native build-input contract](docs/implementation/build-launcher-contracts.md#t239-captured-native-build-input-contract).
+  CMake configuration/application, external-provider build records and cache
+  admission remain T247/T252/T253; source delivery keeps PKG-07 errors under T235.
+  T237 owns current full release/conformance renewal; no old fingerprints are
+  refreshed merely to fit these changes.

@@ -38,6 +38,11 @@ SourceStatus project_inputs_put(ProjectInputs *, ProjectInputKind, const char *,
     const unsigned char *, size_t, ProjectInput **);
 /** Borrow an exact node during construction or inspection; absence returns null. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 ProjectInput *project_inputs_find(const ProjectInputs *, ProjectInputKind, const char *);
+/** Borrow the exact captured file bytes of a sealed graph; missing keys or an
+ * unsealed graph return null, never reread the filesystem. The graph/source
+ * owners outlive the view under [DEP-03](../../../spec/implementation/compiler.md#dep-03).
+ */
+const SourceText *project_inputs_content(const ProjectInputs *, ProjectInputKind, const char *);
 /** Add one consumer-to-dependency edge, deduplicating repeats. Both nodes must belong to this live mutable graph. Component contract: [DEP-03](../../../spec/implementation/compiler.md#dep-03). */
 SourceStatus project_inputs_depend(ProjectInputs *, ProjectInput *, ProjectInput *);
 /** Capture a valid loaded closure and its exact root settings once into an empty graph.

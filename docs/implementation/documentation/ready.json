@@ -60148,6 +60148,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_exposes_only_sealed_authoritative_native_input_bytes",
+        "command": "make -C tests/unit/delivery/native"
       }
     ]
   },
@@ -60516,6 +60521,11 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_exposes_only_sealed_authoritative_native_input_bytes",
+        "command": "make -C tests/unit/delivery/native"
       }
     ],
     "standalone_header_command": [
@@ -183112,47 +183122,52 @@
   },
   "tests/unit/delivery/Makefile": {
     "contract": "docs/implementation/build-launcher-contracts.md",
-    "purpose": "Dispatch independent checked-root and launch-input component suites.",
+    "purpose": "Dispatch checked-root, launch-input and concrete native-capture component suites.",
     "tests": [
       {
         "source": "tests/unit/delivery/selection/main.c",
         "case": "it_owns_explicit_component_bytes_for_both_validated_root_kinds_and_modes",
-        "command": "make -C tests/unit/delivery/selection"
+        "command": "make -C tests/unit/delivery"
       },
       {
         "source": "tests/unit/delivery/selection/main.c",
         "case": "it_refuses_invalid_mode_and_component_without_touching_output_or_frontend",
-        "command": "make -C tests/unit/delivery/selection"
+        "command": "make -C tests/unit/delivery"
       },
       {
         "source": "tests/unit/delivery/selection/main.c",
         "case": "it_refuses_unchecked_open_and_static_roots_before_allocating_metadata",
-        "command": "make -C tests/unit/delivery/selection"
+        "command": "make -C tests/unit/delivery"
       },
       {
         "source": "tests/unit/delivery/selection/main.c",
         "case": "it_unwinds_each_selection_allocation_refusal_without_poisoning_the_root",
-        "command": "make -C tests/unit/delivery/selection"
+        "command": "make -C tests/unit/delivery"
       },
       {
         "source": "tests/unit/delivery/inputs/main.c",
         "case": "it_preserves_exact_inputs_and_supports_literal_only_native_types",
-        "command": "make -C tests/unit/delivery/inputs"
+        "command": "make -C tests/unit/delivery"
       },
       {
         "source": "tests/unit/delivery/inputs/main.c",
         "case": "it_retains_empty_tables_without_requiring_result_transports",
-        "command": "make -C tests/unit/delivery/inputs"
+        "command": "make -C tests/unit/delivery"
       },
       {
         "source": "tests/unit/delivery/inputs/main.c",
         "case": "it_refuses_expired_frontend_state_without_using_borrowed_ir",
-        "command": "make -C tests/unit/delivery/inputs"
+        "command": "make -C tests/unit/delivery"
       },
       {
         "source": "tests/unit/delivery/inputs/main.c",
         "case": "it_preserves_the_selection_and_output_on_table_allocation_refusal",
-        "command": "make -C tests/unit/delivery/inputs"
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_the_complete_declared_resource_unit_and_refuses_symlinks",
+        "command": "make -C tests/unit/delivery"
       }
     ]
   },
@@ -183294,6 +183309,464 @@
         "source": "tests/unit/codegen/assembly/main.c",
         "case": "it_unwinds_every_assembly_emission_allocation_failure",
         "command": "make -C tests/unit/codegen/assembly"
+      }
+    ]
+  },
+  "src/delivery/native/closure.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Declare concrete native-origin ownership and ordered projection.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_projects_only_actual_native_origins_in_identity_order",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_empty_projection_from_invalid_frontend",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_preserves_output_at_every_native_origin_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_keeps_selected_version_holes_with_unicode_and_multiword_origins",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_native_dependencies_of_selected_static_specializations",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/native/select.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Project actual plans onto deduplicated native source origins.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_projects_only_actual_native_origins_in_identity_order",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_empty_projection_from_invalid_frontend",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_preserves_output_at_every_native_origin_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_keeps_selected_version_holes_with_unicode_and_multiword_origins",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_native_dependencies_of_selected_static_specializations",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ]
+  },
+  "src/delivery/native/capture.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Declare selected instruction/resource and optional-guidance snapshots.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_exact_instruction_bytes_and_optional_guidance",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_refuses_bad_instructions_and_every_capture_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_unreadable_guidance_from_unreadable_instructions",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_the_complete_declared_resource_unit_and_refuses_symlinks",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_keeps_selected_version_holes_with_unicode_and_multiword_origins",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_ordinary_package_guidance_and_reuses_native_snapshots",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/native/capture.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Capture each concrete native origin and share exact effective-version guidance.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_exact_instruction_bytes_and_optional_guidance",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_refuses_bad_instructions_and_every_capture_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_unreadable_guidance_from_unreadable_instructions",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_the_complete_declared_resource_unit_and_refuses_symlinks",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_keeps_selected_version_holes_with_unicode_and_multiword_origins",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_ordinary_package_guidance_and_reuses_native_snapshots",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ]
+  },
+  "src/delivery/native/files/snapshot.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Distinguish absent, present and unavailable raw file observations.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_exact_instruction_bytes_and_optional_guidance",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_refuses_bad_instructions_and_every_capture_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_unreadable_guidance_from_unreadable_instructions",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_preserves_binary_files_and_rejects_invalid_child_requests",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/native/files/capture.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Capture exact optional-file bytes without CMake execution or source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_exact_instruction_bytes_and_optional_guidance",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_refuses_bad_instructions_and_every_capture_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_unreadable_guidance_from_unreadable_instructions",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_preserves_binary_files_and_rejects_invalid_child_requests",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ]
+  },
+  "src/delivery/native/resources.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Declare complete module-owned resource capture and failure lifetime.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_the_complete_declared_resource_unit_and_refuses_symlinks",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_refuses_bad_instructions_and_every_capture_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/native/resources.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Traverse exact companion and module-plus resource units in stable order.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_the_complete_declared_resource_unit_and_refuses_symlinks",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_refuses_bad_instructions_and_every_capture_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ]
+  },
+  "tests/unit/delivery/native/main.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Run native-origin, raw snapshot, optional-guidance and resource-boundary checks.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_projects_only_actual_native_origins_in_identity_order",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_empty_projection_from_invalid_frontend",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_preserves_output_at_every_native_origin_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_exact_instruction_bytes_and_optional_guidance",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_refuses_bad_instructions_and_every_capture_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_preserves_binary_files_and_rejects_invalid_child_requests",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_the_complete_declared_resource_unit_and_refuses_symlinks",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_unreadable_guidance_from_unreadable_instructions",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_exposes_only_sealed_authoritative_native_input_bytes",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_keeps_selected_version_holes_with_unicode_and_multiword_origins",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_native_dependencies_of_selected_static_specializations",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_ordinary_package_guidance_and_reuses_native_snapshots",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ]
+  },
+  "tests/unit/delivery/native/Makefile": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Build native closure and captured-file tests through the real frontend.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_projects_only_actual_native_origins_in_identity_order",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_empty_projection_from_invalid_frontend",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_preserves_output_at_every_native_origin_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_exact_instruction_bytes_and_optional_guidance",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_refuses_bad_instructions_and_every_capture_allocation_failure",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_preserves_binary_files_and_rejects_invalid_child_requests",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_captures_the_complete_declared_resource_unit_and_refuses_symlinks",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_distinguishes_unreadable_guidance_from_unreadable_instructions",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_exposes_only_sealed_authoritative_native_input_bytes",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_keeps_selected_version_holes_with_unicode_and_multiword_origins",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_native_dependencies_of_selected_static_specializations",
+        "command": "make -C tests/unit/delivery/native"
+      },
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_ordinary_package_guidance_and_reuses_native_snapshots",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ]
+  },
+  "src/codegen/project/metadata/native.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Serialize concrete native origins and captured companion/resource/guidance bytes.",
+    "tests": [
+      {
+        "source": "tests/unit/codegen/assembly/main.c",
+        "case": "it_emits_a_finite_exact_delivery_manifest_for_recursive_types",
+        "command": "make -C tests/unit/codegen/assembly"
+      }
+    ]
+  },
+  "src/delivery/native/guidance.h": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Retain ordinary and native effective-version guidance independently of build prerequisites.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_ordinary_package_guidance_and_reuses_native_snapshots",
+        "command": "make -C tests/unit/delivery/native"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/native/guidance.c": {
+    "contract": "docs/implementation/build-launcher-contracts.md",
+    "purpose": "Retain ordinary and native effective-version guidance independently of build prerequisites.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/native/main.c",
+        "case": "it_retains_ordinary_package_guidance_and_reuses_native_snapshots",
+        "command": "make -C tests/unit/delivery/native"
       }
     ]
   }
