@@ -202197,6 +202197,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_composed_configuration_failures_and_rejects_foreign_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206757,6 +206762,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_composed_configuration_failures_and_rejects_foreign_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206774,6 +206784,63 @@
         "case": "it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures",
         "command": "make -C tests/unit/tools/project/source/aliases"
       }
+    ]
+  },
+  "tools/project/source/copy/configuration/prepare.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual preserved root images, fixed-baseline authorized additions and exact original-span selector edits, including shared configurations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_composed_configuration_failures_and_rejects_foreign_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_actual_original_and_copied_selection_roots_without_new_wildcard_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/configuration/prepare.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual preserved root images, fixed-baseline authorized additions and exact original-span selector edits, including shared configurations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_composed_configuration_failures_and_rejects_foreign_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_actual_original_and_copied_selection_roots_without_new_wildcard_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   }
 }

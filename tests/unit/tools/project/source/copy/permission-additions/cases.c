@@ -2,19 +2,24 @@
  * @brief Verify concrete extension policy through independent final compiler and binding/site proof.
  * @see [T224 contract](../../../../../../../docs/implementation/source-operations.md)
  */
+#include "../../../../../../../tools/project/source/copy/configuration/prepare.h"
 /** Re-express the exact preserved-plus-added union, then let the real compiler
  * decide all actual final scopes and compare every original/copied reference site. */
 static void verify_permission_addition(PermissionAdditionFixture *fixture, const SourceSelectionRoots *added) {
-    const DependencyViewEntry *entries[2]; size_t count = 0;
-    for (size_t i = 0; i < fixture->final.view->count; i++) {
-        const DependencyViewEntry *entry = &fixture->final.view->entries[i]; bool selected = false;
-        for (size_t j = 0; j < fixture->baseline.count; j++) { if (entry == fixture->baseline.entries[j]) { selected = true; } }
-        for (size_t j = 0; j < added->count; j++) { if (entry == added->entries[j]) { selected = true; } }
-        if (selected) { assert(count < 2); entries[count++] = entry; }
+    const SourcePackageScope *before = environment_scope(&fixture->original, fixture->scope->version->logical_path);
+    SourceTextEdits edits; source_text_edits_init(&edits, sources.allocator, before->document.source);
+    SourceSelectionRoots requested = {0}; SourceConfigurationIssue configuration_issue;
+    assert(source_copy_configuration_prepare(&fixture->arena, &edits, &copy, &fixture->map,
+        &fixture->original, before, &fixture->final, fixture->scope, false, NULL, 0,
+        &requested, &configuration_issue) == SOURCE_CONFIGURATION_OK);
+    assert(requested.count == fixture->baseline.count + added->count);
+    for (size_t i = 0; i < requested.count; i++) {
+        bool found = false;
+        for (size_t j = 0; j < fixture->baseline.count; j++) { if (requested.entries[i] == fixture->baseline.entries[j]) { found = true; } }
+        for (size_t j = 0; j < added->count; j++) { if (requested.entries[i] == added->entries[j]) { found = true; } }
+        assert(found);
     }
-    SourceSelectionRoots requested = {entries, count}; check_permission_text(&fixture->arena, fixture->scope, fixture->final.view, &requested);
-    SourceTextEdits edits; source_text_edits_init(&edits, sources.allocator, fixture->scope->document.source);
-    assert(source_copy_reexpress_selectors(&edits, &fixture->scope->document, fixture->final.view, entries, count) == SOURCE_EDITS_OK);
+    check_permission_text(&fixture->arena, fixture->scope, fixture->final.view, &requested);
     const SourceText *result = NULL;
     assert(source_text_edits_apply(&edits, &sources, source_path(fixture->scope->document.source), &result) == SOURCE_EDITS_OK);
     permission_source_file(source_path(result), result);
@@ -88,4 +93,63 @@ static void it_retires_permission_addition_failures_and_refuses_foreign_baseline
             fixture.scope, &fixture.baseline, &output, &issue) == SOURCE_PERMISSION_INVALID);
         source_clone_map_destroy(&open); finish_permission_additions(&fixture);
     }
+}
+
+/** Preparation failure never publishes an exact-set result; both scratch and
+ * partially prepared edit owners retire at every real allocation ordinal. */
+static void it_retires_composed_configuration_failures_and_rejects_foreign_authority(void) {
+    PermissionAdditionFixture fixture; prepare_permission_additions(&fixture, SOURCE_COPY_EXTEND_PACKAGE, false, 0, false);
+    const SourcePackageScope *before = environment_scope(&fixture.original, fixture.scope->version->logical_path);
+    size_t baseline = live_allocations, total = 0;
+    for (size_t failure = 0; !failure || failure <= total; failure++) {
+        SourceArena arena; source_arena_init(&arena, sources.allocator);
+        SourceTextEdits edits; source_text_edits_init(&edits, sources.allocator, before->document.source);
+        SourceSelectionRoots output = fixture.baseline; SourceConfigurationIssue issue;
+        size_t start = allocation_count; if (failure) { failure_at = start + failure; }
+        SourceConfigurationStatus status = source_copy_configuration_prepare(&arena, &edits, &copy, &fixture.map,
+            &fixture.original, before, &fixture.final, fixture.scope, false, NULL, 0, &output, &issue);
+        if (!failure) { assert(status == SOURCE_CONFIGURATION_OK && output.count == 1); total = allocation_count - start; assert(total); }
+        else {
+            assert(status == SOURCE_CONFIGURATION_MEMORY
+                || (status == SOURCE_CONFIGURATION_ROOTS && issue.roots_status == SOURCE_SELECTION_ROOTS_MEMORY)
+                || (status == SOURCE_CONFIGURATION_PERMISSIONS && issue.permission_status == SOURCE_PERMISSION_MEMORY)
+                || (status == SOURCE_CONFIGURATION_EDITS && issue.edits_status == SOURCE_EDITS_MEMORY));
+            assert(output.entries == fixture.baseline.entries && output.count == fixture.baseline.count);
+        }
+        failure_at = 0; source_text_edits_destroy(&edits); source_arena_destroy(&arena); assert(live_allocations == baseline);
+    }
+    SourceTextEdits edits; source_text_edits_init(&edits, sources.allocator, before->document.source);
+    SourceSelectionRoots output = fixture.baseline; SourceConfigurationIssue issue;
+    SourcePackageScope foreign = *before;
+    assert(source_copy_configuration_prepare(&fixture.arena, &edits, &copy, &fixture.map,
+        &fixture.original, &foreign, &fixture.final, fixture.scope, false, NULL, 0, &output, &issue) == SOURCE_CONFIGURATION_INVALID);
+    assert(!edits.first && output.entries == fixture.baseline.entries);
+    SourceSelectionVersionPair pair = {0};
+    assert(source_copy_configuration_prepare(&fixture.arena, &edits, &copy, &fixture.map,
+        &fixture.original, before, &fixture.final, fixture.scope, false, &pair, 0, &output, &issue) == SOURCE_CONFIGURATION_INVALID);
+    assert(!edits.first);
+    source_text_edits_destroy(&edits);
+    const SourcePackageScope *source_scope = environment_scope(&fixture.original, "/vendor/pkg/v1.0.0");
+    source_text_edits_init(&edits, sources.allocator, source_scope->document.source);
+    assert(source_copy_configuration_prepare(&fixture.arena, &edits, &copy, &fixture.map,
+        &fixture.original, source_scope, &fixture.final, fixture.scope, false, NULL, 0, &output, &issue) == SOURCE_CONFIGURATION_INVALID);
+    assert(!edits.first);
+    pair.original = permission_entry(fixture.original.view, "/vendor/pkg/v1.0.0");
+    pair.final = permission_entry(fixture.final.view, "/vendor/pkg/v2.0.0");
+    assert(source_copy_configuration_prepare(&fixture.arena, &edits, &copy, &fixture.map,
+        &fixture.original, source_scope, &fixture.final, fixture.scope, true, &pair, 1, &output, &issue) == SOURCE_CONFIGURATION_OK);
+    assert(output.count == 1 && !strcmp(output.entries[0]->identity->text, "/vendor/pkg/v1.0.0/src/other"));
+    const SourceText *prepared = NULL;
+    assert(source_text_edits_apply(&edits, &sources, "copied package.ini", &prepared) == SOURCE_EDITS_OK);
+    const char *comment = "; original\n";
+    assert(source_length(prepared) > strlen(comment) && !memcmp(source_bytes(prepared), comment, strlen(comment)));
+    assert(source_copy_configuration_prepare(&fixture.arena, &edits, &copy, &fixture.map,
+        &fixture.original, source_scope, &fixture.final, fixture.scope, true, &pair, 1, &output, &issue) == SOURCE_CONFIGURATION_INVALID);
+    source_text_edits_destroy(&edits);
+    source_text_edits_init(&edits, sources.allocator, source_scope->document.source);
+    pair.final = permission_entry(fixture.final.view, "/vendor/pkg/v2.0.0/src/copied");
+    assert(source_copy_configuration_prepare(&fixture.arena, &edits, &copy, &fixture.map,
+        &fixture.original, source_scope, &fixture.final, fixture.scope, true, &pair, 1, &output, &issue) == SOURCE_CONFIGURATION_ROOTS);
+    assert(issue.roots_status == SOURCE_SELECTION_ROOTS_INVALID && !edits.first);
+    source_text_edits_destroy(&edits); finish_permission_additions(&fixture);
 }

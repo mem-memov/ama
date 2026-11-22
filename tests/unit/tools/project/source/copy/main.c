@@ -20,6 +20,7 @@
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_retires_composed_configuration_failures_and_rejects_foreign_authority();
     it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites();
     it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions();
     it_retires_permission_addition_failures_and_refuses_foreign_baselines();

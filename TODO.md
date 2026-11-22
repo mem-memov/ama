@@ -105,8 +105,9 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   Status: active after [AMB-025](AMBIGUITIES.md#amb-025): shared source/destination
   package.ini follows destination rules, preserving its exact original selected
   set plus only authorized --extend-package additions. Other bytes and original
-  reference laws remain protected. Complete configuration/material preparation
-  is next. T224 is unfinished; later tasks are not started.
+  reference laws remain protected. Composed configuration preparation now passes
+  strict, sanitizer, allocation-failure and real final-compiler/site checks;
+  complete material assembly is next. T224 is unfinished; later tasks are not started.
   Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;
@@ -151,10 +152,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   refusals and occurrence order pass independent final compiler and exact graph/
   site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
   source-parent checks are recorded in the linked step log. Current per-file/
-  header acceptance: 3798 ready inputs, zero explicit debt.
+  header acceptance: 3800 ready inputs, zero explicit debt.
   Complete configuration/material assembly, public command application,
   recoverable publication and final task acceptance remain unfinished. Stop for
-  AMB-025 before choosing shared source/destination configuration authority.
+  any new ambiguity; AMB-025 now supplies shared-configuration authority.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.

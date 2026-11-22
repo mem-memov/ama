@@ -2,7 +2,7 @@
  * @brief Derive finite selected-root images from actual old/new environments and ready clone maps.
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
  */
-#include "../../../../../../tools/project/source/copy/selectors/roots.h"
+#include "../../../../../../tools/project/source/copy/configuration/prepare.h"
 #include "../../../../../../tools/project/source/copy/selectors/reexpress.h"
 /** Resolve an exact canonical identity only within an actual prepared view. */
 static const DependencyViewEntry *permission_entry(const DependencyView *view, const char *name) {
@@ -40,7 +40,10 @@ static void check_permission_text(SourceArena *arena, const SourcePackageScope *
 /** An unchanged wildcard must not acquire a new explicit root; copied
  * configurations instead map exactly the selected roots covered by C. */
 static void it_derives_actual_original_and_copied_selection_roots_without_new_wildcard_matches(void) {
-    prepare_environment_catalog(); SourcePackageEnvironment original; source_package_environment_init(&original, sources.allocator);
+    prepare_environment_catalog(); select_main();
+    source_copy_closure_init(&copy, sources.allocator, &capture, &analysis, NULL);
+    assert(source_copy_closure_build(&copy, &tree, SOURCE_COPY_KEEP_EXTERNAL) == SOURCE_COPY_CLOSURE_OK);
+    SourcePackageEnvironment original; source_package_environment_init(&original, sources.allocator);
     assert(source_package_environment_build(&original, &capture.catalog) == SOURCE_ENVIRONMENT_OK);
     file("generated/project/packages/vendor/pkg/v1.0.0/src/copied", "@!\nother&\n./other\n");
     directory("generated/project/packages/vendor/pkg/v1.0.0/tests/copied");
@@ -76,6 +79,20 @@ static void it_derives_actual_original_and_copied_selection_roots_without_new_wi
         }
         assert(has_original == !copied && has_copy == (copied != 0));
         check_permission_text(&arena, after, final.view, &selected);
+        if (!copied) {
+            SourceTextEdits edits; source_text_edits_init(&edits, sources.allocator, before->document.source);
+            SourceSelectionRoots preserved = {0}; SourceConfigurationIssue configuration_issue;
+            assert(source_copy_configuration_prepare(&arena, &edits, &copy, &map, &original, before,
+                &final, after, false, NULL, 0, &preserved, &configuration_issue) == SOURCE_CONFIGURATION_OK);
+            assert(preserved.count == selected.count);
+            for (size_t i = 0; i < selected.count; i++) { assert(preserved.entries[i] == selected.entries[i]); }
+            const SourceText *prepared = NULL;
+            assert(source_text_edits_apply(&edits, &sources, "shared package.ini", &prepared) == SOURCE_EDITS_OK);
+            const char *prefix = "[aliases]\n~code = ./src\n[dependencies]\n";
+            assert(source_length(prepared) >= strlen(prefix) && !memcmp(source_bytes(prepared), prefix, strlen(prefix)));
+            check_permission_text(&arena, after, final.view, &preserved);
+            source_text_edits_destroy(&edits);
+        }
     }
     const SourceText *version_text = NULL; const char *version = "/vendor/pkg/v1.0.0";
     assert(source_manager_add(&sources, "version selector", (const unsigned char *)version, strlen(version), &version_text) == SOURCE_OK);
@@ -115,5 +132,5 @@ static void it_derives_actual_original_and_copied_selection_roots_without_new_wi
     source_package_environment_destroy(&final); source_package_environment_destroy(&original); source_root_capture_destroy(&final_capture);
     assert(unlink("generated/project/packages/vendor/pkg/v1.0.0/src/copied") == 0);
     assert(unlink("generated/project/packages/vendor/pkg/v1.0.0/tests/copied/check") == 0);
-    assert(rmdir("generated/project/packages/vendor/pkg/v1.0.0/tests/copied") == 0); finish();
+    assert(rmdir("generated/project/packages/vendor/pkg/v1.0.0/tests/copied") == 0); finish_copy();
 }

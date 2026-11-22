@@ -3341,3 +3341,73 @@ Documentation-only checkpoint: no runtime support or task completion is claimed.
 Next: compose complete configuration/material preparation with these existing
 verified selector, alias and permission components, then final image/compiler/
 graph checks and public preview/application acceptance. No active jobs.
+
+
+### Composed exact package configuration preparation
+
+Purpose: connect actual original/final scopes to the existing root-image,
+fixed-baseline permission and selector-edit components. The new narrow
+copy/configuration/prepare interface owns no discovery or filesystem mutation.
+It validates actual scope ownership, captured-original catalog identity, ready C
+and original document/edit identity. An unchanged destination (including the
+AMB-025 shared case) retains original identities and cannot supply version pairs.
+Explicitly copied configurations instead use the existing C/version-root image.
+
+Invariant: let B be that exact baseline and A the actual uncovered edge targets
+permitted by EXTEND_PACKAGE against fixed B. Scan the finite final view in its
+canonical order and include exactly entries in B union A. Thus no duplicate,
+mask expansion, source-order dependence or incidental future permission appears.
+Only after child policy success does the component prepare original-span selector
+edits. Unrelated bytes and existing alias/repository tables stay untouched.
+Copied alias rebasing remains a separate eligible-owner operation sharing the
+same original edit owner. Output roots publish only after successful preparation;
+on any refusal, discard scratch and edit owners, including partial edit prefixes.
+Child finite scans dominate runtime, with O(V*(B+A)) union work and O(V) storage.
+
+Tests consume this production composition in the existing real final compiler/
+reference-site cases for uncovered/covered extensions, cloned dependencies and
+reordered occurrences. The same-version wildcard fixture now exercises shared
+configuration preparation in default mode, confirms the old root set excludes
+the new clone and preserves original alias bytes. Allocation injection covers
+every composed scratch/output/edit allocation, while foreign original scope and
+forbidden unchanged-environment version pairs refuse before edit publication.
+Acceptance runs pending; this is preparation support, not public copy/move/delete
+acceptance. Complete material/final image/public command transactions remain next.
+
+
+Review refinement: unchanged configuration preparation now explicitly requires
+identical original/final logical version identities. Foreign owned scopes cannot
+silently transfer another version's permissions. Added negative coverage plus
+explicit copied-configuration preparation with actual version pairs, original
+comment preservation, malformed pair category and already-applied owner refusal.
+Initial strict/sanitizer/tool/docs runs passed (3800 ready inputs, zero debts);
+those runs precede this refinement and are not final acceptance. Repeat affected
+runs on the final inputs before recording acceptance.
+
+
+Final composed-configuration acceptance passed:
+- `C_COMPILER_FLAGS='-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L' make -C tests/unit/tools/project/source/copy`
+  passed (`/tmp/ama-t224-config-final.exit = 0`). This exercises the real child
+  compiler and final reference-site proof in the extension/clone compositions.
+- The same leaf with `-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie`,
+  `LINKER_FLAGS=-no-pie`, `ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+  `UBSAN_OPTIONS=halt_on_error=1` passed
+  (`/tmp/ama-t224-config-final-sanitizers.exit = 0`). Instrumentation applies to
+  the component harness; the child compiler is independently executed, not claimed
+  as instrumented. LSan remains unavailable under the established environment;
+  counted-allocation teardown and every composed failure ordinal pass.
+- `make -C tools/project` passed (`/tmp/ama-t224-config-final-tool.exit = 0`).
+- `make docs-check` passed with 3800 ready inputs and zero explicit debts
+  (`/tmp/ama-t224-config-final-registry.exit = 0`), including standalone header
+  compilation. These are maintained-input coverage/header checks, not regenerated
+  Doxygen reference or final release acceptance.
+
+Continuation: T224 remains active, with no unresolved AMB-025 policy or active
+jobs. Configuration preparation now has a production composition and real
+consumer tests. Next connect every affected configuration to complete C/P
+material assembly: copied configurations combine alias and selector edits against
+one original document; existing/shared destinations retain their own aliases.
+Prepare a complete immutable final image, independently rediscover/reparse and
+compare actual selections/graph sites before recoverable public application.
+Public copy/delete/move dispatch, freshness/publication and full task acceptance
+remain unfinished. No later TODO task has started.
