@@ -3091,3 +3091,53 @@ Checkpoint this verified byte-preparation boundary; do not mark T224 complete.
 Next derive and prove the requested exact finite root set from original/final
 selection domains and the operation's explicit mapping/extension authority,
 then compose final permission and material checks before transaction work.
+
+### Shared actual catalog-to-selection domain (active step)
+
+Before mapping permission sets, extract the compiler's existing neutral
+catalog-to-DependencyView construction from its Project owner. Both compiler
+and project operations must use the same actual version/module universe,
+including empty versions and physical test-directory provenance. Keep Project
+cache/diagnostic translation in its existing owner; normalized identities and
+view storage belong to the caller arena. Do not duplicate discovery or derive
+physical '+' ancestry from logical depth. Test actual catalog discovery,
+standard exclusion, local-version precedence, empty versions, catalog teardown,
+invalid provenance and every allocation failure; retain compiler configuration
+and actual project-tool compositions as separate acceptance gates.
+
+The first new full-catalog fixture failed because its empty version omitted the
+required tests/ directory (`/tmp/ama-t224-catalog-view.exit = 2`, diagnostic run
+identified that exact path). Corrected the fixture, retaining the normative
+layout; no production fallback or discovery rule changed. Strict shared-view
+acceptance then passed (`/tmp/ama-t224-catalog-view-renewed.exit = 0`). The view
+contains real local modules and empty versions, excludes standard/overridden
+external modules, retains ordinary versus structural test ancestry, and owns its
+canonical metadata independently after catalog teardown. Every preparation
+allocation ordinal is exercised with unchanged output on failure. Invalid
+catalog/provenance handoffs refuse rather than derive logical-depth guesses.
+Compiler build, Project input composition, sanitizer and complete per-file gates
+are active; preserve their source inputs until completion and record exit status.
+
+Shared-view sanitizer, compiler build and existing Project input composition all
+passed (`/tmp/ama-t224-catalog-sanitizers.exit = 0`,
+`/tmp/ama-t224-catalog-compiler.exit = 0`,
+`/tmp/ama-t224-catalog-project.exit = 0`). The initial documentation gate correctly
+refused a function-purpose comment lacking its own canonical rule link
+(`/tmp/ama-t224-catalog-registry.exit = 2`). Added rule-specific explanations to
+the Project adapter and neutral catalog helper comments; no executable behavior
+changed. The renewed full per-file gate is running at
+`/tmp/ama-t224-catalog-registry-renewed.log` with exit recorded alongside it.
+The renewed gate also identified the public header's own interface-purpose
+comment (`/tmp/ama-t224-catalog-registry-renewed.exit = 2`). Linked its actual
+PKG-05/08 contract explicitly rather than relying on the file-purpose comment.
+The final complete check is `/tmp/ama-t224-catalog-registry-final.log`.
+The existing project integration suite also passed
+(`/tmp/ama-t224-catalog-integration.exit = 0`), exercising the rebuilt compiler
+through real project closure/configuration behavior. Current source changes are
+frozen pending final full documentation/header checking; no final operation,
+transaction, Doxygen release or T224 completion is claimed by this extraction.
+Final full per-file/header checking passed with 3784 ready inputs and zero debt
+(`/tmp/ama-t224-catalog-registry-final.exit = 0`). Checkpoint this shared working
+compiler foundation with its real catalog/Project/integration/sanitizer evidence;
+T224 remains open. Next prepare actual package scopes/selections for source
+operations using this shared domain, then derive exact mapping/extension sets.

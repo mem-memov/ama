@@ -180118,6 +180118,16 @@
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_checks_standard_local_alias_targets_after_full_normalization",
         "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_builds_shared_dependency_views_from_actual_catalogs_with_owned_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_refuses_invalid_catalog_views_and_retires_every_preparation_allocation",
+        "command": "make -C tests/unit/source/configuration/selection"
       }
     ]
   },
@@ -180999,7 +181009,7 @@
   },
   "src/project/dependencies/configuration/view.c": {
     "contract": "docs/implementation/project-configuration.md",
-    "purpose": "Retain actual selected versions and verified physical test ancestry in the permission universe.",
+    "purpose": "Cache the shared neutral actual-catalog dependency domain and translate resource/configuration failures into Project diagnostics.",
     "tests": [
       {
         "source": "tests/unit/project/inputs/main.c",
@@ -206256,6 +206266,69 @@
         "source": "tests/unit/tools/project/source/selectors/main.c",
         "case": "it_preserves_original_matches_when_the_final_domain_gains_a_module",
         "command": "make -C tests/unit/tools/project/source/selectors"
+      }
+    ]
+  },
+  "src/source/configuration/selection/catalog.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Expose one compiler-independent actual-catalog availability domain with explicit ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_builds_shared_dependency_views_from_actual_catalogs_with_owned_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_refuses_invalid_catalog_views_and_retires_every_preparation_allocation",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/configuration/selection/catalog.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve selected ordinary versions, actual modules and physical test provenance through neutral domain construction.",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_builds_shared_dependency_views_from_actual_catalogs_with_owned_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_refuses_invalid_catalog_views_and_retires_every_preparation_allocation",
+        "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tests/unit/source/configuration/selection/support/catalog-view.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual catalog domains, local precedence, empty versions, standard exclusion, provenance refusal, teardown and allocation failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_builds_shared_dependency_views_from_actual_catalogs_with_owned_lifetimes",
+        "command": "make -C tests/unit/source/configuration/selection"
+      },
+      {
+        "source": "tests/unit/source/configuration/selection/main.c",
+        "case": "it_refuses_invalid_catalog_views_and_retires_every_preparation_allocation",
+        "command": "make -C tests/unit/source/configuration/selection"
       }
     ]
   }

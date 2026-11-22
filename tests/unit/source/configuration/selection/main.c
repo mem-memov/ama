@@ -39,6 +39,7 @@ static void finish(void) {
 #include "support/edges.c"
 #include "support/ownership.c"
 #include "support/catalog.c"
+#include "support/catalog-view.c"
 #include "support/lifetime.c"
 #include "support/standard.c"
 
@@ -48,6 +49,8 @@ void run(void) {
     it_checks_origin_versions_and_source_test_policy_before_privileges();
     it_validates_view_metadata_and_cleans_every_allocation_refusal();
     it_composes_real_selected_catalog_paths_with_physical_test_coverage();
+    it_builds_shared_dependency_views_from_actual_catalogs_with_owned_lifetimes();
+    it_refuses_invalid_catalog_views_and_retires_every_preparation_allocation();
     it_preserves_unicode_identity_and_independent_view_pattern_lifetimes();
     it_checks_standard_dependency_partitions_without_package_scope_or_effects();
     it_checks_standard_local_alias_targets_after_full_normalization();

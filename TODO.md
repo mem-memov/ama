@@ -153,6 +153,11 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   augmented-domain selection, strict/sanitizer/failure and tool-link checks;
   per-file checking passes with 3781 ready inputs and zero debt. Deriving the
   authorized requested selection set remains an outer unfinished obligation.
+  The compiler now uses shared neutral actual-catalog availability (including
+  empty versions and physical test provenance); real catalog, Project input,
+  integration, allocation and sanitizer checks pass. Per-file/header checking
+  passes with 3784 ready inputs and zero debt. Package environment composition
+  and exact mapping/extension sets remain next within T224.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.
