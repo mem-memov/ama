@@ -102,11 +102,11 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t224"></a>
 
 - [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
-  Status: awaiting [AMB-025](AMBIGUITIES.md#amb-025): whether a package.ini
-  shared by source/destination may receive required exact selector re-expression
-  despite the source-configuration edit prohibition. AMB-024 is resolved and its
-  unchanged-parent topology is implemented/tested. No overlap policy or public
-  operation workaround is chosen. T224 is unfinished; later tasks are not started.
+  Status: active after [AMB-025](AMBIGUITIES.md#amb-025): shared source/destination
+  package.ini follows destination rules, preserving its exact original selected
+  set plus only authorized --extend-package additions. Other bytes and original
+  reference laws remain protected. Complete configuration/material preparation
+  is next. T224 is unfinished; later tasks are not started.
   Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;

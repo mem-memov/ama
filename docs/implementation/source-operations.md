@@ -3320,3 +3320,24 @@ unfinished and awaits explicit clarification/spec authorization. No later TODO
 work, shared-configuration exception, spec amendment or public command application
 is implemented while that decision is pending. Temporary logs are supplementary;
 the committed registry/task evidence and source/tests retain the result.
+
+
+### AMB-025 resolved: shared configuration uses destination authority
+
+The user explicitly authorized the TOOL-02 clarification in the AMB-025 reply:
+apply destination rules to a shared source/destination package.ini. Its original
+explicit selected identities remain the exact baseline; only actual concrete
+--extend-package permission additions may enlarge that baseline. Preserve other
+configuration bytes, original definition/reference laws and unrelated original
+configurations. This is a narrow overlap exception, not authority to rebase an
+unchanged shared alias table or merge repository bindings.
+
+Updated TOOL-02, the ambiguity registry and T224's current status. Reviewed the
+exception against the following exact-set, copied-whole-version, no-new-permission
+and surviving-reference clauses: unchanged/shared configurations retain original
+root identities; explicitly copied configurations map roots through C. The mode
+gate for additions and final PKG-05/09 checks remain mandatory in both cases.
+Documentation-only checkpoint: no runtime support or task completion is claimed.
+Next: compose complete configuration/material preparation with these existing
+verified selector, alias and permission components, then final image/compiler/
+graph checks and public preview/application acceptance. No active jobs.

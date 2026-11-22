@@ -8,10 +8,11 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
-[AMB-025](#amb-025) is **Open** for T224: source and destination can share
-one package.ini, so required exact destination selector re-expression conflicts
-with the source-configuration edit prohibition. Await an explicit overlap rule;
-no public-operation precedence or workaround is inferred.
+[AMB-025](#amb-025) is **Resolved** for T224: a shared source/destination
+package.ini follows destination rules. Exact preservation of its original selected
+set and only concrete `--extend-package` additions are authorized; other bytes,
+original reference laws and unrelated source configurations remain protected.
+The user explicitly authorized the scoped TOOL-02 clarification.
 
 [AMB-024](#amb-024) is **Resolved** for T224: an unchanged existing destination
 parent supplies final topology without copying the old structural-only parent.
@@ -1792,7 +1793,7 @@ Each entry must contain:
 
 ## AMB-025 — A package configuration shared by copy source and destination
 
-- **Status:** Open.
+- **Status:** Resolved.
 - **Current task:** [T224](TODO.md#t224), complete configuration/material
   preparation after independently verified alias/selector/permission components.
 - **Authority:** [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02)
@@ -1850,5 +1851,11 @@ Each entry must contain:
   shared source configuration through a public operation. No overlap policy,
   heuristic precedence or command workaround has been implemented. T224 is paused
   for this decision; no later TODO task is started.
-- **Decision/source:** awaiting the user's explicit answer. No specification
-  amendment for this overlap has been authorized.
+- **Decision/source:** the user answered the question explicitly requesting
+  TOOL-02 amendment: «Применять правила назначения: разрешить точное сохранение
+  прежнего набора и добавления только по --extend-package; остальное сохранить
+  (рекомендуется).» This authorizes the narrow shared-configuration exception.
+  Its original selected identities remain the baseline; only the mode's actual
+  concrete permission additions may extend it. Other bytes, original reference
+  laws and unrelated source configurations remain protected. T224 resumes;
+  this decision does not establish public-operation implementation acceptance.

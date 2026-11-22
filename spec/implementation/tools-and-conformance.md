@@ -583,7 +583,15 @@ Use PKG-05's normal structural-unit/test coverage, deduplicate exact identities
 and add no broad wildcard or guessed future selection. Include permissions for
 copied tests as well as source definitions. Same-version and standard targets
 need no external selector. Do not edit original packages or their configuration
-outside the explicitly removed source selection of a move.
+outside the explicitly removed source selection of a move, with one narrow
+exception: when the same package.ini is both the original source environment
+and the destination environment, apply the destination configuration rules to
+that shared file. Preserve its original explicit selected identities exactly;
+permit the set-preserving representation changes described below and only the
+concrete additions authorized by `--extend-package`. Sharing the environment
+does not authorize other source edits, alias or repository changes, or changes
+to unrelated original configurations. Preserve all other configuration bytes
+and every surviving original definition/reference law.
 Adding selectors does not copy modules, repository bindings or system libraries.
 
 In `--copy-dependencies` mode, additional ordinary dependencies are cloned into
