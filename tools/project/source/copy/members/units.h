@@ -10,9 +10,10 @@
 #include "../../mapping/map.h"
 #include "../../mapping/files/files.h"
 #include "../../mapping/unit/member.h"
+#include "../contexts/omissions.h"
 /** Keep missing main correspondence and unit/file-map failures distinct. */
 typedef enum { SOURCE_COPY_UNITS_OK, SOURCE_COPY_UNITS_INVALID, SOURCE_COPY_UNITS_MAIN,
-    SOURCE_COPY_UNITS_PATH, SOURCE_COPY_UNITS_MEMORY, SOURCE_COPY_UNITS_MAP } SourceCopyUnitsStatus;
+    SOURCE_COPY_UNITS_PATH, SOURCE_COPY_UNITS_MEMORY, SOURCE_COPY_UNITS_MAP, SOURCE_COPY_UNITS_CONTEXT } SourceCopyUnitsStatus;
 /** Borrow exact original cause/clone witnesses and map-arena-owned proposed path. */
 typedef struct {
     const AcquisitionMember *member;
@@ -20,12 +21,15 @@ typedef struct {
     const SourceCloneMapping *clone;
     const char *path;
     SourceUnitPathStatus path_status;
+    SourceCopyContextStatus context_status;
 } SourceCopyUnitsIssue;
 /** Join every UNIT_MEMBER cause of a valid original closure with its explicitly
  * mapped original main. Clone map must be ready over that same original capture;
  * physical file map stays open for later test/declared/environment passes. Missing
- * active/context main rows refuse; context classification/placement belongs to the
- * outer planner. No other cause family is silently mapped. Each overlap uses the
+ * active main rows refuse. An unmapped context may be omitted only when the
+ * caller supplies a matching open omission owner; record that obligation before
+ * skipping its material. Final discovery/context proof remains mandatory before
+ * acceptance. NULL omission owner retains strict missing-context refusal. No other cause family is silently mapped. Each overlap uses the
  * same original kind/bytes and must propose the identical output. Failure poisons
  * file-map sealing and retains exact witnesses/prefix. Invalid closed/failed map
  * or missing issue refuses unchanged. Inputs outlive result inspection/teardown.
@@ -33,5 +37,5 @@ typedef struct {
  * file scans plus checked owned key joins bound work and storage.
  */
 SourceCopyUnitsStatus source_copy_map_unit_members(SourceFileMap *, const SourceCopyClosure *,
-    const SourceCloneMap *, SourceCopyUnitsIssue *);
+    const SourceCloneMap *, SourceCopyContextOmissions *, SourceCopyUnitsIssue *);
 #endif

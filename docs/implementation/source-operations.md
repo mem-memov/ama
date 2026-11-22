@@ -2996,3 +2996,57 @@ Reviewed the normative rule, conformance row, registry and TODO against that exa
 boundary; no new missing-parent policy is inferred. Next implement explicit
 context-disposition evidence consumed by physical unit mapping, with actual
 retained-parent/detached/required-context and final-catalog/reference checks.
+
+### Explicit context omissions and actual final-parent proof (active step)
+
+Add an operation-owned unique omission ledger. The unit mapper can skip an
+unmapped structural-only cause only when supplied that exact copy/main-map ledger;
+otherwise missing context still refuses, and missing active mains always refuse.
+Seal the ledger only after every unmapped unit cause has been accounted for.
+A sealed ledger is a frozen obligation set, not final acceptance. Candidate file
+maps can be prepared/sealed for image construction while these obligations await
+final common discovery, avoiding circular or falsely asserted topology authority.
+
+After complete final image capture, check each original context's actual requiring
+copied mains at their mapped identities/paths. Common SRC-05 discovery establishes
+valid plus ancestry. Every supplying parent must be an explicitly mapped main or
+an unchanged retained original: same logical/physical identity, exact main and
+complete dot-companion bytes, and no removal entry. Ordinary directories impose
+no parent-module obligation. Never redirect a reference to the new physical parent;
+final independent compiler and clone/surviving binding/site proof remain mandatory.
+
+Completeness/termination: original valid closure causes and unique immutable role
+handles bound the omission set. Equal role requests are idempotent. Seal scans all
+unit causes, so no active source disappears. Final valid capture indexes all actual
+plus ancestors; scan logical and physical ancestor boundaries together, preventing
+unrelated nested root prefixes from becoming providers. Every checked requiring
+main and supplying parent has explicit provenance. All scans are finite; recording
+owns only one node per omitted role, checking allocates nothing. Failure retains
+owned prefixes and cannot produce a final proof.
+
+Acceptance in progress: real old draft-parent/companion closure copied under an
+unchanged existing other parent and into a detached ordinary directory; full test
+material/image/independent compiler/site joins; missing parent, changed main/new
+companion, removed-parent and missing-child refusals; complete accounting, foreign/
+active roles, frozen owners, repeat checking and all allocation ordinals.
+
+Strict C11 copy acceptance passed (`/tmp/ama-t224-context-omissions.exit = 0`).
+ASan/UBSan copy acceptance also passed (`/tmp/ama-t224-context-sanitizers.exit = 0`),
+including counted-owner zero-live teardown and every injected allocation ordinal.
+LeakSanitizer remains disabled under the previously recorded ptrace restriction;
+no unsupported leak-sanitizer result is claimed. Both real positive final images
+pass independent compiler/site checks. Negative images distinguish invalid common
+discovery, changed retained main/companion sets, removed parent and absent mapped
+child. Neither seal nor these component checks claims public operation completion.
+The project-tool build passed (`/tmp/ama-t224-context-tool.exit = 0`), and
+`make docs-check` passed with 3777 ready inputs / zero explicit debts
+(`/tmp/ama-t224-context-registry.exit = 0`). Registry serialization afterward
+restored its existing literal Unicode spelling, with parsed-object equality
+asserted; no coverage contract changed. The strict full source parent suite is
+running independently (`/tmp/ama-t224-context-source.log`, exit recorded beside
+it on completion). Do not edit its source inputs while that acceptance is active.
+The full strict source parent suite passed (`/tmp/ama-t224-context-source.exit = 0`),
+including all recursive source-operation leaves and their real compiler joins.
+Checkpoint this verified omission boundary without completing T224. Next retain
+one exact selection-domain contract for original/final package environments,
+then integrate complete material and configuration preparation before publication.

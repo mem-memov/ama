@@ -40,7 +40,7 @@ static void it_maps_complete_test_trees_and_agrees_with_actual_unit_topology(voi
     SourceVersionPlacement version = {"/target/new/v3.0.0", "/prepared/"};
     SourceFileMap files; source_file_map_init(&files, sources.allocator);
     SourceCopyUnitsIssue units; SourceCopyTestsIssue issue;
-    assert(source_copy_map_unit_members(&files, &copy, &mains, &units) == SOURCE_COPY_UNITS_OK);
+    assert(source_copy_map_unit_members(&files, &copy, &mains, NULL, &units) == SOURCE_COPY_UNITS_OK);
     assert(source_copy_map_test_members(&files, &copy, &mains, &version, 1, &issue) == SOURCE_COPY_TESTS_OK);
     bool data = false, empty = false, helper = false, root = false;
     for (const SourceFileMapping *row = files.first; row; row = row->next) {

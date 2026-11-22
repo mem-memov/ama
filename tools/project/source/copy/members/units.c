@@ -12,13 +12,15 @@ static SourceCopyUnitsStatus fail(SourceFileMap *files, SourceCopyUnitsStatus st
     files->status = status == SOURCE_COPY_UNITS_MEMORY ? SOURCE_FILE_MAP_MEMORY : SOURCE_FILE_MAP_INVALID; return status;
 }
 SourceCopyUnitsStatus source_copy_map_unit_members(SourceFileMap *files, const SourceCopyClosure *copy,
-    const SourceCloneMap *mains, SourceCopyUnitsIssue *issue) {
+    const SourceCloneMap *mains, SourceCopyContextOmissions *omissions, SourceCopyUnitsIssue *issue) {
     if (!issue) { return SOURCE_COPY_UNITS_INVALID; }
     *issue = (SourceCopyUnitsIssue){0};
     if (!files || files->ready || files->status != SOURCE_FILE_MAP_OK) { return SOURCE_COPY_UNITS_INVALID; }
     if (!copy || !copy->valid || !mains || !mains->ready || mains->capture != copy->tree->capture) {
         return fail(files, SOURCE_COPY_UNITS_INVALID);
     }
+    if (omissions && (omissions->copy != copy || omissions->mains != mains || omissions->ready
+        || omissions->status != SOURCE_COPY_CONTEXT_OK)) { return fail(files, SOURCE_COPY_UNITS_CONTEXT); }
     for (const AcquisitionMember *member = copy->closure.members.first; member; member = member->next) {
         for (const AcquisitionMemberCause *cause = member->causes; cause; cause = cause->next) {
             if (cause->kind != ACQUISITION_UNIT_MEMBER) { continue; }
@@ -26,7 +28,14 @@ SourceCopyUnitsStatus source_copy_map_unit_members(SourceFileMap *files, const S
             const SourceCloneMapping *clone = mains->first;
             while (clone && strcmp(clone->original->logical_path, cause->requester->identity)) { clone = clone->next; }
             issue->clone = clone;
-            if (!clone) { return fail(files, SOURCE_COPY_UNITS_MAIN); }
+            if (!clone) {
+                if (!omissions || cause->requester->role != ACQUISITION_CONTEXT) { return fail(files, SOURCE_COPY_UNITS_MAIN); }
+                issue->context_status = source_copy_context_omit(omissions, cause->requester);
+                if (issue->context_status != SOURCE_COPY_CONTEXT_OK) {
+                    return fail(files, issue->context_status == SOURCE_COPY_CONTEXT_MEMORY ? SOURCE_COPY_UNITS_MEMORY : SOURCE_COPY_UNITS_CONTEXT);
+                }
+                continue;
+            }
             issue->path_status = source_unit_member_path(&files->arena, source_path(clone->original->text),
                 clone->path, member->path, member->directory, &issue->path);
             if (issue->path_status != SOURCE_UNIT_PATH_OK) {

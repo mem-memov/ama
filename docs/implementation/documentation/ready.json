@@ -202097,6 +202097,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_every_declared_material_allocation_and_refuses_invalid_interfaces",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -205438,6 +205448,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -205458,6 +205478,16 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
@@ -206002,6 +206032,101 @@
         "source": "tests/unit/tools/project/source/aliases/main.c",
         "case": "it_checks_rebased_aliases_in_the_real_destination_scope_without_old_package_borrowing",
         "command": "make -C tests/unit/tools/project/source/aliases"
+      }
+    ]
+  },
+  "tools/project/source/copy/contexts/omissions.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Define complete context-omission obligations separately from final topology proof.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/contexts/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own unique omission records without owning borrowed original and final material.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/contexts/record.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for genuine unmapped context causes while refusing missing active mains.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/contexts/check.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prove actual final ancestor provenance and unchanged retained parent material.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/contexts.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual final context omissions, independent compiler joins, refusals and allocation failures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   }

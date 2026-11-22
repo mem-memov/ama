@@ -9,12 +9,15 @@
 #include "units.c"
 #include "tests.c"
 #include "declared.c"
+#include "contexts.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_proves_existing_parent_and_detached_context_omissions_against_real_final_images();
+    it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes();
     it_validates_complete_explicit_version_placement_tables_without_allocation();
     it_maps_declared_assets_with_explicit_origins_and_preserves_environment_ownership();
     it_refuses_conflicting_shared_declared_input_destinations();

@@ -143,7 +143,12 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   strict/allocation/sanitizer checks pass. Local aliases now rebase through real
   original scopes and reparse under independent destination scopes; strict,
   sanitizer, dispatcher and per-file checks pass (3772 ready, zero debt).
-  T224 is unfinished; AMB-024 is resolved and context planning resumes.
+  Context omissions now have explicit complete accounting and actual final-parent
+  provenance checks; existing-parent/detached compiler compositions, missing or
+  changed parent/child refusals and allocation failures pass strict and sanitizer
+  checks. Per-file coverage passes with 3777 ready inputs and zero debt. T224
+  remains unfinished: environment selection, complete material integration and
+  recoverable public operations still require acceptance.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.

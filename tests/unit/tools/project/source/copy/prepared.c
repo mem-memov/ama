@@ -64,7 +64,7 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     assert(source_copy_place_version_mains(&map, &destinations, &version, names, 4, &placement) == SOURCE_COPY_MAINS_OK);
     assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
     SourceFileMap files; source_file_map_init(&files, sources.allocator); SourceCopyUnitsIssue units;
-    assert(source_copy_map_unit_members(&files, &copy, &map, &units) == SOURCE_COPY_UNITS_OK);
+    assert(source_copy_map_unit_members(&files, &copy, &map, NULL, &units) == SOURCE_COPY_UNITS_OK);
     SourceCopyTestsIssue test_material;
     assert(source_copy_map_test_members(&files, &copy, &map, &version, 1, &test_material) == SOURCE_COPY_TESTS_OK);
     assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_OK);

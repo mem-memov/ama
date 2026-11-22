@@ -35,7 +35,7 @@ static void it_maps_real_opaque_unit_companions_and_plus_data_with_durable_captu
     prepare_unit_members(); SourceCloneMap explicit_map, mains; SourceCopyDestinations destinations;
     unit_main_map(&explicit_map, &destinations, &mains);
     SourceFileMap files; source_file_map_init(&files, sources.allocator); SourceCopyUnitsIssue issue;
-    assert(source_copy_map_unit_members(&files, &copy, &mains, &issue) == SOURCE_COPY_UNITS_OK && !files.ready);
+    assert(source_copy_map_unit_members(&files, &copy, &mains, NULL, &issue) == SOURCE_COPY_UNITS_OK && !files.ready);
     size_t count = 0; bool companion = false, data = false, plus = false;
     for (const SourceFileMapping *row = files.first; row; row = row->next) {
         count++;
@@ -48,9 +48,9 @@ static void it_maps_real_opaque_unit_companions_and_plus_data_with_durable_captu
         assert(!strstr(row->destination, "package.ini") && !strstr(row->destination, "README.md"));
     }
     assert(count == 7 && companion && data && plus);
-    assert(source_copy_map_unit_members(&files, &copy, &mains, &issue) == SOURCE_COPY_UNITS_OK);
+    assert(source_copy_map_unit_members(&files, &copy, &mains, NULL, &issue) == SOURCE_COPY_UNITS_OK);
     assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_OK);
-    assert(source_copy_map_unit_members(&files, &copy, &mains, &issue) == SOURCE_COPY_UNITS_INVALID && files.ready);
+    assert(source_copy_map_unit_members(&files, &copy, &mains, NULL, &issue) == SOURCE_COPY_UNITS_INVALID && files.ready);
     source_file_map_destroy(&files); source_clone_map_destroy(&mains); source_copy_destinations_destroy(&destinations);
     source_clone_map_destroy(&explicit_map); finish_unit_members();
 }
@@ -62,29 +62,29 @@ static void it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_all
     SourceCloneMap empty; source_clone_map_init(&empty, sources.allocator, &capture);
     assert(source_clone_map_seal(&empty) == SOURCE_CLONE_OK);
     SourceFileMap missing; source_file_map_init(&missing, sources.allocator); SourceCopyUnitsIssue issue;
-    assert(source_copy_map_unit_members(&missing, &copy, &empty, &issue) == SOURCE_COPY_UNITS_MAIN && issue.member && issue.cause && !issue.clone);
+    assert(source_copy_map_unit_members(&missing, &copy, &empty, NULL, &issue) == SOURCE_COPY_UNITS_MAIN && issue.member && issue.cause && !issue.clone);
     assert(source_file_map_seal(&missing) != SOURCE_FILE_MAP_OK); source_file_map_destroy(&missing); source_clone_map_destroy(&empty);
     SourceFileMap conflict; source_file_map_init(&conflict, sources.allocator);
     const AcquisitionMember *member = copy.closure.members.first;
     while (member && !strstr(member->path, "/src/main.payload")) { member = member->next; } assert(member);
     const SourceFileMapping *row = NULL;
     assert(source_file_map_observation(&conflict, member->path, member->content, false, "/wrong", &row) == SOURCE_FILE_MAP_OK);
-    assert(source_copy_map_unit_members(&conflict, &copy, &mains, &issue) == SOURCE_COPY_UNITS_MAP);
+    assert(source_copy_map_unit_members(&conflict, &copy, &mains, NULL, &issue) == SOURCE_COPY_UNITS_MAP);
     assert(conflict.status == SOURCE_FILE_MAP_CONFLICT && conflict.requester && !strcmp(conflict.requester->file.path, member->path));
     assert(source_file_map_seal(&conflict) != SOURCE_FILE_MAP_OK); source_file_map_destroy(&conflict);
     size_t total = 0, baseline = live_allocations;
     for (size_t failure = 0; !failure || failure <= total; failure++) {
         SourceFileMap files; source_file_map_init(&files, sources.allocator);
         size_t before = allocation_count; if (failure) { failure_at = before + failure; }
-        SourceCopyUnitsStatus status = source_copy_map_unit_members(&files, &copy, &mains, &issue);
+        SourceCopyUnitsStatus status = source_copy_map_unit_members(&files, &copy, &mains, NULL, &issue);
         if (!failure) { assert(status == SOURCE_COPY_UNITS_OK); total = allocation_count - before; assert(total); }
         else { assert(status == SOURCE_COPY_UNITS_MEMORY && source_file_map_seal(&files) != SOURCE_FILE_MAP_OK); }
         failure_at = 0; source_file_map_destroy(&files); assert(live_allocations == baseline);
     }
     SourceFileMap invalid; source_file_map_init(&invalid, sources.allocator);
-    assert(source_copy_map_unit_members(NULL, &copy, &mains, &issue) == SOURCE_COPY_UNITS_INVALID);
-    assert(source_copy_map_unit_members(&invalid, &copy, &mains, NULL) == SOURCE_COPY_UNITS_INVALID && invalid.status == SOURCE_FILE_MAP_OK);
-    assert(source_copy_map_unit_members(&invalid, NULL, &mains, &issue) == SOURCE_COPY_UNITS_INVALID && invalid.status == SOURCE_FILE_MAP_INVALID);
+    assert(source_copy_map_unit_members(NULL, &copy, &mains, NULL, &issue) == SOURCE_COPY_UNITS_INVALID);
+    assert(source_copy_map_unit_members(&invalid, &copy, &mains, NULL, NULL) == SOURCE_COPY_UNITS_INVALID && invalid.status == SOURCE_FILE_MAP_OK);
+    assert(source_copy_map_unit_members(&invalid, NULL, &mains, NULL, &issue) == SOURCE_COPY_UNITS_INVALID && invalid.status == SOURCE_FILE_MAP_INVALID);
     source_file_map_destroy(&invalid); source_clone_map_destroy(&mains); source_copy_destinations_destroy(&destinations);
     source_clone_map_destroy(&explicit_map); finish_unit_members();
 }
