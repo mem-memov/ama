@@ -8,6 +8,7 @@
 #include "prepared.c"
 #include "material.c"
 #include "image.c"
+#include "freshness.c"
 #include "units.c"
 #include "tests.c"
 #include "declared.c"
@@ -22,6 +23,8 @@
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses();
+    it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement();
     it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation();
     it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures();
     it_joins_every_mapped_member_with_exact_prepared_or_opaque_content();

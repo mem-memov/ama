@@ -202222,6 +202222,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -207104,6 +207114,69 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/observation/freshness.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Revalidate full original observation facts, including ignored directory membership, explicit opaque bytes and physical identity without timestamp guesses or allocation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/observation/freshness.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Revalidate full original observation facts, including ignored directory membership, explicit opaque bytes and physical identity without timestamp guesses or allocation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/freshness.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Revalidate full original observation facts, including ignored directory membership, explicit opaque bytes and physical identity without timestamp guesses or allocation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]

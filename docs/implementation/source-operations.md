@@ -3535,3 +3535,55 @@ actual final configuration sets before application. Implement exclusive freshnes
 recoverable publication/rollback/recovery and public preview/apply acceptance.
 The compiler/test processes above validate preparations only; no public copy,
 delete or move command is claimed implemented. Do not start T236/T237 yet.
+
+
+### Complete original-observation freshness comparison
+
+Before public application, add the explicit pure comparison gate required by
+TOOL-04. Compare the original and freshly rebuilt ORIGINAL observation images,
+never the prepared final image. Require identical configured root/exclusion order,
+physical key sets and observation precision; compare known device/inode/mode and
+all observed bytes. Equal graph/compilation results alone do not detect a newly
+added ignored directory name. Complete directory listings plus exact key-set
+equality establish unchanged immediate membership, including unknown ignored rows.
+Do not fetch previously unknown bytes or substitute timestamps for content.
+
+Both images are independently immutable and valid; rows/text handles may differ
+or be reordered. Exact finite key lookup gives O(N squared + root/exclusion work
++ compared bytes), constant scratch and no allocation/I/O. Caller must hold
+exclusive access while collecting the fresh view and through publication; this
+component does not claim to acquire a lock or make an unlocked check race-free.
+Plan tests: independent real observations, ignored-name additions, explicitly
+observed opaque byte changes, live inode replacement, reordered pure models,
+changed root/observation precision and allocation-free execution. Current T224
+step, acceptance pending; public transaction remains unfinished.
+
+
+Original-observation freshness acceptance passed:
+- Strict copy leaf with the recorded strict C11/POSIX flags:
+  `/tmp/ama-t224-freshness.exit = 0`.
+- ASan/UBSan copy leaf with the recorded non-PIE flags/LSan restriction:
+  `/tmp/ama-t224-freshness-sanitizers.exit = 0`.
+- `make -C tools/project`: `/tmp/ama-t224-freshness-tool.exit = 0`.
+- `make docs-check`: `/tmp/ama-t224-freshness-registry.exit = 0`, 3813 ready
+  inputs, zero explicit debts, including the new standalone header.
+
+Actual independent observer builds remain valid with identical active definitions
+when an ignored orphan companion appears, or a separately requested opaque file's
+bytes/inode change. The new gate refuses those facts as membership/content/identity
+respectively. The inode case retains the old file under a different private test
+path while creating its replacement, so the test cannot accidentally pass because
+an immediately freed inode was reused. All test mutations are restored explicitly.
+Pure-model checks prove row-order independence, separate equal-byte text ownership,
+root/exclusion and observation-precision refusal, both addition/removal directions,
+empty images and no allocation. Timestamp changes alone do not substitute for or
+invalidate unchanged facts. This gate is only the comparison; exclusive access and
+final publication are not claimed implemented.
+
+Continuation: no active jobs, no new unresolved question. T224 stays active.
+The current image and configuration compositions plus freshness comparison are
+accepted steps, not completed commands. Next compose expected configuration-root
+sets with the independently rebuilt final environments and join original safety,
+context and C/P/site proofs under one operation plan. Public command handling,
+exclusive access, durable publication/rollback/recovery and final task acceptance
+remain required. Later TODO tasks are not started.

@@ -110,7 +110,9 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   exact mapped-material/prepared-text joining is also tested, including opaque
   bytes and empty directories. Production image assembly now derives required
   ancestors, requires explicit target removal and passes actual final compiler/
-  site checks; public orchestration and recoverable application remain next. T224 is unfinished; later tasks are not started.
+  site checks. Exact original-observation freshness comparison also passes real
+  ignored-name, opaque-byte and inode-replacement checks. Operation-plan/command
+  orchestration and recoverable application remain next. T224 is unfinished; later tasks are not started.
   Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;
@@ -155,7 +157,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   refusals and occurrence order pass independent final compiler and exact graph/
   site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
   source-parent checks are recorded in the linked step log. Current per-file/
-  header acceptance: 3810 ready inputs, zero explicit debt.
+  header acceptance: 3813 ready inputs, zero explicit debt.
   Complete configuration-plan/command orchestration, public application,
   recoverable publication and final task acceptance remain unfinished. Stop for
   any new ambiguity; AMB-025 now supplies shared-configuration authority.
