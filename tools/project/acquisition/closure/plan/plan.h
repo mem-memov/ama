@@ -5,6 +5,8 @@
  * association and finite least closure; [PROJECT-01](../../../../../spec/implementation/project-tools.md#project-01)
  * keeps provider preparation separate from this project-side controller.
  * Prepared facts and exact joins replace heuristic source discovery.
+ * [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02)
+ * allows explicit copy policies to retain unchanged dependency targets externally.
  * [ARCH-05](../../../../../spec/implementation/compiler.md#arch-05)
  * The enclosing operation owns partial preparation and borrowed lifetime boundaries.
  * [ARCH-03](../../../../../spec/implementation/compiler.md#arch-03)
@@ -34,10 +36,25 @@ typedef struct AcquisitionDeclaredInputs {
     const AcquisitionVersionSource *source;
     const AcquisitionUnitEntry *files;
 } AcquisitionDeclaredInputs;
+/** Provider-certified indexed main retained as declared data. This is not a
+ * semantic outgoing edge and cannot be hidden by a source-copy dependency policy.
+ * The provider matches exact original physical input/main membership, supplies
+ * the complete canonical identity, and retains any actual observation span (or
+ * explicit absent span). No filename inference occurs in the controller under
+ * [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02).
+ */
+typedef struct AcquisitionDeclaredModule {
+    struct AcquisitionDeclaredModule *next;
+    const char *identity;
+    SourceSpan origin;
+} AcquisitionDeclaredModule;
 /** One complete prepared expansion. Providers use the authoritative source
  * catalog, complete structural captures and the checked compiler export. Every
  * module in the active owned subtree appears in submodules; active definitions
- * in associated tests appear in definitions. Draft test material may remain only
+ * in associated tests and the own active main appear in definitions. A draft
+ * main has no own checked definition or automatic test association; the provider
+ * confirms that state through the production parser or a complete checked active
+ * export, never arbitrary partial-export absence. Draft test material may remain only
  * in test_files. Configuration is required for ordinary versions; guidance is
  * optional but a supplied unreadable/non-file entry is a provider failure, never
  * a missing entry. Providers and all borrowed source owners outlive the plan.
@@ -50,6 +67,12 @@ typedef struct AcquisitionDeclaredInputs {
  */
 typedef struct {
     const ModuleSource *module;
+    /** Production-confirmed inactive SYN-04 main. Structural activation still
+     * retains its complete subtree, but no semantic dependencies or automatic
+     * test association are invented under
+     * [PKG-07](../../../../../spec/project/packages.md#pkg-07).
+     */
+    bool draft;
     const AcquisitionVersionSource *source;
     const AcquisitionUnitEntry *files, *configuration, *guidance;
     const AcquisitionContextFact *contexts;
@@ -59,6 +82,7 @@ typedef struct {
     const AcquisitionUnitEntry *test_files;
     const DeliverySourceDefinition *definitions;
     const AcquisitionDeclaredInputs *declared_inputs;
+    const AcquisitionDeclaredModule *declared_modules;
 } AcquisitionExpansion;
 /** Non-OK states stop publication; OPEN_TEST is a healthy admission-only result. */
 typedef enum { ACQUISITION_CLOSURE_OK, ACQUISITION_CLOSURE_INVALID,
@@ -85,7 +109,16 @@ typedef AcquisitionClosureStatus (*AcquisitionTestAdmission)(void *, const Deliv
  * retain mutable compiler state in this owner or implement heuristic fallback
  * under [ARCH-05](../../../../../spec/implementation/compiler.md#arch-05).
  */
-typedef struct { void *context; AcquisitionExpansionProvider expand; AcquisitionTestAdmission admit_test; } AcquisitionClosureProvider;
+typedef struct {
+    void *context;
+    AcquisitionExpansionProvider expand;
+    AcquisitionTestAdmission admit_test;
+    /** NULL retains complete acquisition closure; explicit source-copy policy may
+     * leave a checked target external under
+     * [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02).
+     */
+    AcquisitionDependencySelection follow_dependency;
+} AcquisitionClosureProvider;
 /** Own the role/member fixed point and selected independent tests. Provider facts,
  * source/version owners and original bytes remain borrowed. valid alone permits
  * output consumption. Failed scratch/partial sets remain owned for teardown under
@@ -111,7 +144,8 @@ void acquisition_closure_destroy(AcquisitionClosure *);
  * borrowed only during this call; providers outlive retained facts. Duplicate
  * seeds/edges are idempotent. Refusal leaves valid false; never publish the partial
  * member set. On success the set is the least one closed under all supplied exact
- * structural, test and compiler-edge facts. Termination assumes a finite reachable
+ * structural/test facts and the compiler edges selected by the explicit policy.
+ * With NULL policy this is the full acquisition source/test dependency closure. Termination assumes a finite reachable
  * snapshot graph and finishing providers, as [PKG-08](../../../../../spec/project/packages.md#pkg-08)
  * requires; no arbitrary provider is promised to terminate.
  */

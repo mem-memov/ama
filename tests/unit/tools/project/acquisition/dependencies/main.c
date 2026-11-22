@@ -41,7 +41,7 @@ static void it_expands_actual_alias_resolved_cycle_once_with_original_requiremen
     while ((current = acquisition_roles_take(&roles))) {
         count++; assert(count <= 2);
         const DeliverySourceDefinition *definition = find_definition(current->identity); assert(definition);
-        status = acquisition_dependencies_expand(&roles, current, definition);
+        status = acquisition_dependencies_expand(&roles, current, definition, NULL, NULL);
         assert(status == ACQUISITION_ROLE_OK);
     }
     assert(count == 2 && selected->reasons->requester && selected->reasons->next);
@@ -51,7 +51,7 @@ static void it_expands_actual_alias_resolved_cycle_once_with_original_requiremen
     assert(origin.source == frontend.project.entry->source->text);
     assert(origin.end - origin.start == strlen("~target") && !memcmp(source_bytes(origin.source) + origin.start, "~target", strlen("~target")));
     assert(other->reasons->requester == selected);
-    status = acquisition_dependencies_expand(&roles, selected, find_definition("/test/fixture/v1.0.0/src/main"));
+    status = acquisition_dependencies_expand(&roles, selected, find_definition("/test/fixture/v1.0.0/src/main"), NULL, NULL);
     assert(status == ACQUISITION_ROLE_OK && !acquisition_roles_take(&roles));
     finish();
 }
@@ -85,7 +85,7 @@ static void it_expands_actual_static_and_constant_edges_without_unrelated_source
         const char *name = strrchr(current->identity, '/') + 1;
         for (size_t index = 0; index < 5; index++) { if (!strcmp(name, expected[index])) { observed |= 1u << index; } }
         const DeliverySourceDefinition *definition = find_definition(current->identity); assert(definition);
-        status = acquisition_dependencies_expand(&roles, current, definition);
+        status = acquisition_dependencies_expand(&roles, current, definition, NULL, NULL);
         assert(status == ACQUISITION_ROLE_OK);
     }
     assert(count == 5 && observed == 31);
@@ -100,10 +100,39 @@ static void it_refuses_foreign_and_mismatched_records_without_expanding(void) {
     AcquisitionRoleStatus status = acquisition_roles_add(&roles, "/test/fixture/v1.0.0/src/other", ACQUISITION_ACTIVE,
         ACQUISITION_SELECTED, NULL, (SourceSpan){0}, &selected); assert(status == ACQUISITION_ROLE_OK);
     AcquisitionRoleRecord foreign = {0};
-    status = acquisition_dependencies_expand(&roles, &foreign, find_definition("/test/fixture/v1.0.0/src/main"));
+    status = acquisition_dependencies_expand(&roles, &foreign, find_definition("/test/fixture/v1.0.0/src/main"), NULL, NULL);
     assert(status == ACQUISITION_ROLE_INVALID);
-    status = acquisition_dependencies_expand(&roles, selected, find_definition("/test/fixture/v1.0.0/src/main"));
+    status = acquisition_dependencies_expand(&roles, selected, find_definition("/test/fixture/v1.0.0/src/main"), NULL, NULL);
     assert(status == ACQUISITION_ROLE_INVALID && selected->reasons && !selected->reasons->next);
+    finish();
+}
+/** Keep checked edges external without mutating their original binding. */
+static bool retain_external(void *context, const DeliverySourceDefinition *definition,
+    const DeliverySourceDependency *edge) {
+    assert(definition && edge && edge->target);
+    (*(size_t *)context)++;
+    return false;
+}
+/** Explicit external membership allocates nothing; foreign owners never reach policy. */
+static void it_retains_external_edges_without_allocating_or_consulting_policy_for_foreign_owners(void) {
+    prepare();
+    const AcquisitionRoleRecord *selected = NULL;
+    AcquisitionRoleStatus status = acquisition_roles_add(&roles,
+        "/test/fixture/v1.0.0/src/main", ACQUISITION_ACTIVE,
+        ACQUISITION_SELECTED, NULL, (SourceSpan){0}, &selected);
+    assert(status == ACQUISITION_ROLE_OK);
+    const DeliverySourceDefinition *definition = find_definition(selected->identity);
+    const DeliverySourceDependency *edge = definition->dependencies;
+    assert(edge && !edge->next);
+    const char *target = edge->target;
+    size_t calls = 0, before = allocation_count;
+    status = acquisition_dependencies_expand(&roles, selected, definition, retain_external, &calls);
+    assert(status == ACQUISITION_ROLE_OK && calls == 1 && allocation_count == before);
+    assert(roles.records == selected && !selected->next && edge->target == target);
+    assert(!strcmp(target, "/test/fixture/v1.0.0/src/other"));
+    AcquisitionRoleRecord foreign = *selected;
+    status = acquisition_dependencies_expand(&roles, &foreign, definition, retain_external, &calls);
+    assert(status == ACQUISITION_ROLE_INVALID && calls == 1 && allocation_count == before);
     finish();
 }
 /** Each failed edge insertion remains owned and cannot publish a target record. */
@@ -115,7 +144,7 @@ static void it_retires_failed_actual_dependency_edge_allocations(void) {
             ACQUISITION_SELECTED, NULL, (SourceSpan){0}, &selected); assert(status == ACQUISITION_ROLE_OK);
         const AcquisitionRoleRecord *claimed = acquisition_roles_take(&roles); assert(claimed == selected);
         size_t before = allocation_count; if (failure) { failure_at = before + failure; }
-        status = acquisition_dependencies_expand(&roles, selected, find_definition("/test/fixture/v1.0.0/src/main"));
+        status = acquisition_dependencies_expand(&roles, selected, find_definition("/test/fixture/v1.0.0/src/main"), NULL, NULL);
         if (!failure) { assert(status == ACQUISITION_ROLE_OK); allocations = allocation_count - before; assert(allocations); }
         else { assert(status == ACQUISITION_ROLE_OUT_OF_MEMORY && roles.records == selected && !roles.pending); failure_at = 0; }
         finish();
@@ -127,6 +156,7 @@ void run(void) {
     it_refuses_foreign_and_mismatched_records_without_expanding();
     it_expands_actual_static_and_constant_edges_without_unrelated_sources();
     it_retires_failed_actual_dependency_edge_allocations();
+    it_retains_external_edges_without_allocating_or_consulting_policy_for_foreign_owners();
 }
 /** Finish after all counted queue/frontend owners retire. */
 int main(void) { run(); return 0; }

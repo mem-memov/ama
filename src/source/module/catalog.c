@@ -7,6 +7,7 @@
  */
 #include <string.h>
 #include "internal.h"
+#include "view.h"
 #include "packages/packages.h"
 
 void module_catalog_init(ModuleCatalog *catalog, SourceAllocator allocator) {
@@ -22,6 +23,7 @@ void module_catalog_destroy(ModuleCatalog *catalog) {
     catalog->versions = NULL;
     catalog->directories = NULL;
     catalog->built = false;
+    catalog->reader = NULL;
     catalog->issue = (ModuleIssue){0};
 }
 
@@ -32,14 +34,22 @@ ModuleStatus module_fail(ModuleCatalog *catalog, ModuleStatus status, const char
 }
 
 
-ModuleStatus module_catalog_build(ModuleCatalog *catalog,
-    const ModuleRoot *roots, size_t root_count) {
-    if (catalog->attempted || (root_count != 0 && roots == NULL)) {
+/** Keep one selector/scanner for physical and explicit prepared views.
+ * [PKG-02](../../../spec/project/packages.md#pkg-02) applies before module
+ * indexing in either case; [SRC-05](../../../spec/language/source-and-names.md#src-05)
+ * keeps plus-anchor validation in the common traversal. No failed view falls back.
+ */
+static ModuleStatus build(ModuleCatalog *catalog, const ModuleRoot *roots,
+    size_t root_count, const ModuleCatalogReader *reader) {
+    if (!catalog || catalog->attempted || (root_count != 0 && roots == NULL)) {
         return MODULE_INVALID_PATH;
     }
     catalog->attempted = true;
+    catalog->reader = reader;
     ModulePackage *packages = NULL;
-    ModuleStatus status = module_packages_select(catalog, roots, root_count, &packages);
+    ModuleStatus status = reader
+        ? module_packages_select_view(catalog, roots, root_count, &reader->tree, &packages)
+        : module_packages_select(catalog, roots, root_count, &packages);
     if (status != MODULE_OK) {
         return status;
     }
@@ -59,6 +69,17 @@ ModuleStatus module_catalog_build(ModuleCatalog *catalog,
     }
     catalog->built = true;
     return MODULE_OK;
+}
+
+ModuleStatus module_catalog_build(ModuleCatalog *catalog, const ModuleRoot *roots, size_t count) {
+    return build(catalog, roots, count, NULL);
+}
+ModuleStatus module_catalog_build_view(ModuleCatalog *catalog, const ModuleRoot *roots, size_t count,
+    const ModuleCatalogReader *reader) {
+    if (!reader || !reader->tree.root || !reader->tree.child || !reader->tree.entries || !reader->read) {
+        return MODULE_INVALID_PATH;
+    }
+    return build(catalog, roots, count, reader);
 }
 
 ModuleStatus module_catalog_find(const ModuleCatalog *catalog,

@@ -346,15 +346,32 @@ static void it_selects_exact_source_snapshot_input_without_root_fallback(void) {
     assert(valid && options.valid && !strcmp(options.source_snapshot, "prepared.json"));
     assert(!options.roots && !options.root_count && !options.entry && !options.compiler && !allocation_count);
     driver_options_destroy(&options); destroy_test();
-    invalid_arguments(3, arguments, "Captured source inspection requires exactly --snapshot FILE");
-    invalid_arguments(6, arguments, "Captured source inspection requires exactly --snapshot FILE");
+    invalid_arguments(3, arguments, "Captured source inspection requires --snapshot FILE and optional --probe-entry CANONICAL_MODULE");
+    invalid_arguments(6, arguments, "Captured source inspection requires --snapshot FILE and optional --probe-entry CANONICAL_MODULE");
     arguments[3] = "";
-    invalid_arguments(4, arguments, "Captured source inspection requires exactly --snapshot FILE");
+    invalid_arguments(4, arguments, "Captured source inspection requires --snapshot FILE and optional --probe-entry CANONICAL_MODULE");
+}
+
+/** Captured entry probes use exact canonical identity and allocate no option storage. */
+static void it_selects_exact_captured_entry_probes_without_allocating_or_accepting_aliases(void) {
+    char *arguments[] = {"ama", "--source-domain", "--snapshot", "prepared.json", "--probe-entry", "/vendor/pkg/v1.0.0/src/main", "--probe-entry", "//other"};
+    setup_test(); DriverOptions options; driver_options_init(&options, sources.allocator);
+    assert(driver_options_parse(&options, 6, arguments) && options.valid && options.source_probe == arguments[5]);
+    assert(options.source_snapshot == arguments[3] && !options.roots && !options.root_count && !options.entry && !allocation_count);
+    driver_options_destroy(&options); destroy_test();
+    const char *invalid[] = {"", "./relative", "~alias", ".T", "//", "/vendor/pkg/v1.0.0/src/main/"};
+    for (size_t index = 0; index < sizeof(invalid) / sizeof(*invalid); index++) {
+        arguments[5] = (char *)invalid[index];
+        invalid_arguments(6, arguments, "Captured source inspection requires --snapshot FILE and optional --probe-entry CANONICAL_MODULE");
+    }
+    arguments[5] = "//main";
+    invalid_arguments(8, arguments, "Captured source inspection requires --snapshot FILE and optional --probe-entry CANONICAL_MODULE");
 }
 
 /** Exercise independent recognition/storage and their real request assembly. */
 void run(void) {
     it_selects_exact_source_snapshot_input_without_root_fallback();
+    it_selects_exact_captured_entry_probes_without_allocating_or_accepting_aliases();
     it_parses_source_domain_roots_without_an_entry_or_mutation_options();
     it_recognizes_exact_delivery_modes_and_component_authority();
     it_unwinds_every_relocation_option_array_allocation();

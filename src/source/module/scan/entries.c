@@ -4,6 +4,9 @@
  *
  * [COMP-05](../../../../spec/implementation/compiler.md#comp-05)
  * Sorting exact bytes makes discovery independent of filesystem enumeration order.
+ * [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02)
+ * supplies complete sorted names from an explicit immutable view without falling
+ * back to physical directory enumeration.
  */
 #include <dirent.h>
 #include <errno.h>
@@ -11,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../internal.h"
+#include "../view.h"
 
 /** Arena-owned copy of an unstable readdir name, later flattened into a sorted array. Component contract: [COMP-05](../../../../spec/implementation/compiler.md#comp-05). */
 typedef struct EntryName {
@@ -49,6 +53,9 @@ static ModuleStatus remember_names(ModuleCatalog *catalog, DIR *stream,
 
 ModuleStatus module_catalog_entries(ModuleCatalog *catalog, const char *physical,
     const char ***names, size_t *count) {
+    if (catalog->reader) {
+        return catalog->reader->tree.entries(catalog->reader->tree.context, catalog, physical, names, count);
+    }
     DIR *stream = opendir(physical);
     if (stream == NULL) {
         return module_fail(catalog, MODULE_IO_ERROR, physical);

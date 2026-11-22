@@ -33,4 +33,6 @@ SourceStatus acquisition_unit_child(AcquisitionUnitCapture *, const char *, cons
  * [PKG-07](../../../../../spec/project/packages.md#pkg-07).
  */
 SourceStatus acquisition_unit_tree(AcquisitionUnitCapture *, const char *, const char *);
+/** Walk descendants of an already retained and registered exact directory root. */
+SourceStatus acquisition_unit_walk(AcquisitionUnitCapture *, const char *);
 #endif

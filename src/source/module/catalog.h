@@ -108,6 +108,12 @@ typedef struct {
  * Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 typedef struct ModuleDirectoryIdentity ModuleDirectoryIdentity;
 
+/** Immutable explicit read adapter, declared in view.h. Physical builds use NULL.
+ * [TOOL-02](../../../spec/implementation/tools-and-conformance.md#tool-02)
+ * validates projected final source views through this same catalog machinery.
+ */
+struct ModuleCatalogReader;
+
 /** Build-once owner of records, source bytes, directory identities and failure context. Component contract: [SRC-02](../../../spec/language/source-and-names.md#src-02), [SRC-01](../../../spec/language/source-and-names.md#src-01). */
 typedef struct {
     SourceArena arena;
@@ -116,6 +122,7 @@ typedef struct {
     ModuleSource *first;
     ModuleVersion *versions;
     ModuleIssue issue;
+    const struct ModuleCatalogReader *reader;
     bool built;
     bool attempted;
 } ModuleCatalog;

@@ -54,13 +54,7 @@ void compiler_frontend_destroy(CompilerFrontend *frontend) {
  * Component contract: [ARCH-03](../../spec/implementation/compiler.md#arch-03). */
 bool compiler_frontend_finish(CompilerFrontend *frontend,
     const SemanticNativeAuthoring *authoring) {
-    if (!compiler_frontend_resolve(frontend,authoring)) { return false; }
-    program_plan_init(&frontend->plan, &frontend->semantic, frontend->allocator);
-    frontend->plan_initialized = true;
-    if (program_plan_build(&frontend->plan) != PLAN_OK) {
-        frontend->error = frontend->plan.error;
-        return false;
-    }
+    if (!compiler_frontend_plan(frontend, authoring)) { return false; }
     project_inputs_seal(&frontend->inputs);
     SourceStatus compared = project_inputs_compare(&frontend->inputs, NULL);
     assert(compared == SOURCE_OK);

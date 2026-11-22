@@ -24,16 +24,18 @@ ModuleStatus module_read_companion(ModuleCatalog *catalog, const char *physical,
     const char *name = strrchr(path, '/');
     if (slash != NULL) { *slash = 0; }
     struct stat metadata;
-    PathProbe probe = path_exact_child(slash == NULL ? "." : (*parent == 0 ? "/" : parent),
+    ModuleIssue previous = catalog->issue;
+    ModuleStatus probed = module_probe(catalog, slash == NULL ? "." : (*parent == 0 ? "/" : parent),
         name == NULL ? path : name + 1, path, &metadata);
-    if (probe == PATH_MISSING) {
+    if (probed == MODULE_MISSING) {
+        /* Optional absence is a successful observation, not a retained failure
+         * from the shared physical/projected exact probe. */
+        catalog->issue = previous;
         *output = (ModuleCompanion){.path = path};
         return MODULE_OK;
     }
-    if (probe != PATH_FOUND || !S_ISREG(metadata.st_mode)) {
-        return module_fail(catalog, probe == PATH_IO_ERROR ? MODULE_IO_ERROR
-            : MODULE_UNSUPPORTED_PATH, path);
-    }
+    if (probed != MODULE_OK) { return probed; }
+    if (!S_ISREG(metadata.st_mode)) { return module_fail(catalog, MODULE_UNSUPPORTED_PATH, path); }
     ModuleCompanion prepared = {.path = path, .present = true};
     ModuleStatus status = text ? module_load_utf8(catalog, path, &prepared.text) : MODULE_OK;
     if (status == MODULE_OK) { *output = prepared; }

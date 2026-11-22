@@ -15,6 +15,8 @@
 #include "delivery/source/report/report.h"
 #include "diagnostics/render/render.h"
 #include "source-domain/input.h"
+#include "source-domain/probe.h"
+#include "delivery/source/probe/protocol.h"
 int driver_source_domain(const DriverOptions *options, FILE *output, FILE *errors) {
     CompilerFrontend frontend;
     SourceArena exports;
@@ -37,10 +39,13 @@ int driver_source_domain(const DriverOptions *options, FILE *output, FILE *error
     }
     int result = EXIT_FAILURE;
     if (checked && driver_warnings(&frontend.project, errors)) {
-        if (delivery_source_report(output, &frontend.project.catalog, definitions)) { result = EXIT_SUCCESS; }
-        else {
-            Diagnostic error = {.code = DIAGNOSTIC_IO_FAILURE, .message = "Cannot write the complete checked source-domain response"};
-            (void)diagnostic_render(errors, &error);
+        int decision = options->source_probe ? driver_source_domain_probe(&snapshot, options->source_probe, errors) : EXIT_SUCCESS;
+        if (decision == EXIT_SUCCESS || decision == DELIVERY_SOURCE_PROBE_OPEN_EXIT) {
+            if (delivery_source_report(output, &frontend.project.catalog, definitions)) { result = decision; }
+            else {
+                Diagnostic error = {.code = DIAGNOSTIC_IO_FAILURE, .message = "Cannot write the complete checked source-domain response"};
+                (void)diagnostic_render(errors, &error);
+            }
         }
     } else if (!checked) { (void)diagnostic_render(errors, &frontend.error); }
     source_arena_destroy(&exports);

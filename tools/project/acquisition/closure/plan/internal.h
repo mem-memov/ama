@@ -15,6 +15,12 @@ AcquisitionClosureStatus acquisition_closure_fail(AcquisitionClosure *, Acquisit
 /** Join complete structural/context/submodule evidence before following resolved
  * edges under [PKG-07](../../../../../spec/project/packages.md#pkg-07). */
 AcquisitionClosureStatus acquisition_closure_structure(AcquisitionClosure *, const AcquisitionRoleRecord *, const AcquisitionExpansion *);
+/** Require an own checked definition, or explicit noncontradictory draft proof.
+ * NULL output denotes only a certified inactive main under
+ * [PKG-07](../../../../../spec/project/packages.md#pkg-07).
+ */
+AcquisitionClosureStatus acquisition_closure_definition(AcquisitionClosure *, const AcquisitionRoleRecord *,
+    const AcquisitionExpansion *, const DeliverySourceDefinition **);
 /** Classify direct candidates and admit concrete tests, retain the complete associated directory and
  * schedule its active definitions without tests-of-tests under
  * [PKG-08](../../../../../spec/project/packages.md#pkg-08). */
@@ -24,6 +30,12 @@ AcquisitionClosureStatus acquisition_closure_tests(AcquisitionClosure *, const A
  * conflicts or failed allocation abort [PKG-07](../../../../../spec/project/packages.md#pkg-07) preparation. */
 AcquisitionClosureStatus acquisition_closure_files(AcquisitionClosure *, const AcquisitionUnitEntry *,
     const AcquisitionRoleRecord *, const AcquisitionVersionSource *, AcquisitionMemberKind);
+/** Activate provider-certified declared mains after retaining structural contexts,
+ * independently of semantic-edge policy under
+ * [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02).
+ */
+AcquisitionClosureStatus acquisition_closure_declared_modules(AcquisitionClosure *,
+    const AcquisitionRoleRecord *, const AcquisitionDeclaredModule *);
 /** Add a canonical identity and preserve role-join allocation refusal under
  * [PKG-08](../../../../../spec/project/packages.md#pkg-08). */
 AcquisitionClosureStatus acquisition_closure_request(AcquisitionClosure *, const char *, AcquisitionRole, AcquisitionReasonKind,

@@ -4,6 +4,8 @@
  *
  * [ARCH-03](../../spec/implementation/compiler.md#arch-03)
  * Check once; source spans, proposed ABI and diagnostics stay valid until reverse destruction. No native compilation or execution occurs.
+ * [TOOL-04](../../spec/implementation/tools-and-conformance.md#tool-04) separates
+ * captured entry eligibility from physical build readiness.
  * [TPL-13](../../spec/language/templates.md#tpl-13) admits native own-formal
  * definitions before source/native input tracking or authoring preparation.
  */
@@ -78,6 +80,18 @@ bool compiler_frontend_check_catalog(CompilerFrontend *, const ModuleRoot *, siz
  * validation of prepared bytes before directory publication.
  */
 bool compiler_frontend_check_snapshot(CompilerFrontend *, const char *const *, size_t);
+
+/** Check one canonical executable entry in an already complete captured catalog.
+ * The caller establishes unconditional source/version/configuration/native capture
+ * authority before this call. Use normal source loading, Type inference, ordinary
+ * checks and planning; never capture, seal or compare filesystem inputs, emit or
+ * execute code. Success leaves plan.valid true but frontend.valid false: it is
+ * executable eligibility, not an immutable physical build certificate. Failure
+ * retains original diagnostics and typed root-key closure facts for exact open
+ * helper classification. A fresh unattempted owner is required under
+ * [TOOL-04](../../spec/implementation/tools-and-conformance.md#tool-04).
+ */
+bool compiler_frontend_check_entry_snapshot(CompilerFrontend *, const char *entry);
 
 /**
  * Load an active native root and own a proposed ABI source if supplied or required for initial

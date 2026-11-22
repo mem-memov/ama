@@ -17,7 +17,11 @@ SourceStatus acquisition_unit_tree(AcquisitionUnitCapture *capture, const char *
     AcquisitionUnitEntry *root = NULL;
     SourceStatus status = acquisition_unit_child(capture, parent, name, true, true, &root);
     if (status != SOURCE_OK || !root) { return status; }
-    Directory initial = {.path = root->file.path}, *pending = &initial, **tail = &initial.next;
+    return acquisition_unit_walk(capture, root->file.path);
+}
+SourceStatus acquisition_unit_walk(AcquisitionUnitCapture *capture, const char *path) {
+    Directory initial = {.path = path}, *pending = &initial, **tail = &initial.next;
+    SourceStatus status;
     while (pending) {
         const char *directory = pending->path;
         pending = pending->next; if (!pending) { tail = &pending; }
@@ -26,7 +30,8 @@ SourceStatus acquisition_unit_tree(AcquisitionUnitCapture *capture, const char *
         ModuleStatus listed = module_catalog_entries(&capture->entries, directory, &names, &count);
         if (listed != MODULE_OK) { return listed == MODULE_OUT_OF_MEMORY ? SOURCE_OUT_OF_MEMORY : SOURCE_IO_ERROR; }
         for (size_t index = 0; index < count; index++) {
-            const char *path = source_arena_join(capture->arena, directory, "/", names[index]);
+            const char *path = source_arena_join(capture->arena, directory,
+                directory[strlen(directory) - 1] == '/' ? "" : "/", names[index]);
             if (!path) { return SOURCE_OUT_OF_MEMORY; }
             capture->failed = path;
             struct stat metadata;

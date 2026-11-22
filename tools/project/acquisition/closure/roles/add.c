@@ -22,7 +22,7 @@ AcquisitionRoleStatus acquisition_roles_add(AcquisitionRoles *roles, const char 
     SourceSpan origin, const AcquisitionRoleRecord **output) {
     if (!identity || !*identity || !output ||
         (role != ACQUISITION_CONTEXT && role != ACQUISITION_ACTIVE) ||
-        kind < ACQUISITION_SELECTED || kind > ACQUISITION_TEST ||
+        kind < ACQUISITION_SELECTED || kind > ACQUISITION_DECLARED_MODULE ||
         (origin.source ? !source_span_valid(origin) : origin.start || origin.end)) {
         return ACQUISITION_ROLE_INVALID;
     }

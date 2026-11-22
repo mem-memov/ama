@@ -9,7 +9,7 @@
 #include "entry.h"
 DeliveryEntryState delivery_source_entry_state(const CompilerFrontend *frontend) {
     if (!frontend || !frontend->attempted || frontend->authoring || !frontend->project.entry) { return DELIVERY_ENTRY_INVALID; }
-    if (frontend->valid && frontend->plan_initialized) { return DELIVERY_ENTRY_EXECUTABLE; }
+    if (frontend->plan_initialized && frontend->plan.valid) { return DELIVERY_ENTRY_EXECUTABLE; }
     if (!frontend->specialization_initialized || frontend->specializations.closure.status != STATIC_CLOSURE_UNRESOLVED) {
         return DELIVERY_ENTRY_INVALID;
     }

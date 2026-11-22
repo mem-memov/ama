@@ -20,7 +20,7 @@ typedef enum { ACQUISITION_CONTEXT, ACQUISITION_ACTIVE } AcquisitionRole;
  * [PKG-07](../../../../../spec/project/packages.md#pkg-07) and
  * [PKG-08](../../../../../spec/project/packages.md#pkg-08). */
 typedef enum { ACQUISITION_SELECTED, ACQUISITION_TOPOLOGY, ACQUISITION_SUBMODULE,
-    ACQUISITION_DEPENDENCY, ACQUISITION_TEST } AcquisitionReasonKind;
+    ACQUISITION_DEPENDENCY, ACQUISITION_TEST, ACQUISITION_DECLARED_MODULE } AcquisitionReasonKind;
 /** Stable role identity lets causal edges refer to a record before its complete
  * layout. [PKG-08](../../../../../spec/project/packages.md#pkg-08) retains shared
  * identity through source cycles without copying or re-expanding the record.

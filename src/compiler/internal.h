@@ -7,6 +7,8 @@
  * [TPL-13](../../spec/language/templates.md#tpl-13) requires native definition
  * admission before authoring/header preparation.
  * [TPL-06](../../spec/language/templates.md#tpl-06) keeps open catalog definitions symbolic.
+ * [TOOL-04](../../spec/implementation/tools-and-conformance.md#tool-04) separates
+ * plan eligibility from filesystem input sealing.
  * [TPL-11](../../spec/language/templates.md#tpl-11) validates exact selected Type roots.
  */
 #ifndef AMA_COMPILER_FRONTEND_INTERNAL_H
@@ -61,6 +63,13 @@ bool compiler_frontend_capture(CompilerFrontend *, const ModuleRoot *, size_t);
  * [COMP-02](../../spec/implementation/compiler.md#comp-02) keeps source and executable consumers on one semantic implementation.
  */
 bool compiler_frontend_resolve(CompilerFrontend *, const SemanticNativeAuthoring *);
+/** Resolve ordinary semantics and build the exact program plan without capturing
+ * or sealing filesystem inputs. plan.valid is the executable eligibility proof;
+ * composite frontend.valid remains unchanged under
+ * [TOOL-04](../../spec/implementation/tools-and-conformance.md#tool-04).
+ */
+bool compiler_frontend_plan(CompilerFrontend *, const SemanticNativeAuthoring *);
+
 /**
  * Analyze the loaded closure using an optional explicit authoring contract, then build resolved
  * plans. Record initialization before fallible work and retain the first stage diagnostic.

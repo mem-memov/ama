@@ -12,6 +12,14 @@
  * root discovery remains separate under [PKG-08](../../../../../spec/project/packages.md#pkg-08).
  */
 typedef struct { const char *logical, *physical; } AcquisitionTestDirectory;
+/** Derive the logical associated test directory from a canonical ordinary src
+ * module identity alone. No selected physical version or fabricated ModuleSource
+ * is needed: final placement planning can use the same association as original
+ * delivery. Return an arena-owned namespace on success only; reject standard,
+ * test, prefix and unnormalized identities. No I/O; O(identity bytes) time and
+ * storage. Physical placement and final selected-version authority are separate.
+ */
+SourceStatus acquisition_test_namespace(SourceArena *, const char *identity, const char **output);
 /** Derive exactly one active ordinary src module's association without I/O.
  * Borrow source/version only during this call. Require a canonical complete src
  * identity and its matching selected version record. Standard/test identities

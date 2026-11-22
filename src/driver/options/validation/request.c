@@ -8,6 +8,7 @@
  */
 #include "validation.h"
 #include <string.h>
+#include "source/path/logical.h"
 
 bool driver_options_invalid(DriverOptions *options, const char *message) {
     options->error = (Diagnostic){.code = DIAGNOSTIC_INVALID_PATH, .message = message};
@@ -17,8 +18,11 @@ bool driver_options_invalid(DriverOptions *options, const char *message) {
 bool driver_options_operands(DriverOptions *options, int count, char *const arguments[]) {
     if (options->request == DRIVER_REQUEST_SOURCE_DOMAIN) {
         if (count >= 3 && !strcmp(arguments[2], "--snapshot")) {
-            return count == 4 && arguments[3][0] ? true
-                : driver_options_invalid(options, "Captured source inspection requires exactly --snapshot FILE");
+            bool plain = count == 4 && arguments[3][0];
+            bool probe = count == 6 && arguments[3][0] && !strcmp(arguments[4], "--probe-entry")
+                && module_path_canonical((const unsigned char *)arguments[5], strlen(arguments[5]));
+            return plain || probe ? true : driver_options_invalid(options,
+                "Captured source inspection requires --snapshot FILE and optional --probe-entry CANONICAL_MODULE");
         }
         return count >= 3 && arguments[2][0] != 0 ? true
             : driver_options_invalid(options, "Source-domain inspection requires an explicit source root");

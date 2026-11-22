@@ -26,4 +26,9 @@ bool delivery_source_domain_required(CompilerFrontend *, SourceArena *, const De
  * [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04).
  */
 bool delivery_source_domain_native(CompilerFrontend *, const ModuleSource *, const DeliverySourceCompanions *);
+/** Install exactly the decoded selected versions and source catalog in a fresh
+ * frontend. Failure consumes the attempt and retains original diagnostics under
+ * [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04).
+ */
+bool delivery_source_snapshot_catalog(CompilerFrontend *, const DeliverySourceSnapshot *);
 #endif

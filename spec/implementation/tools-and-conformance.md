@@ -514,6 +514,16 @@ unselected module dependencies. With `--copy-dependencies`, the ordinary needed
 closure is in `K`; a reference to a standard module still targets that original
 standard identity. Apply these laws simultaneously, including for cycles.
 
+When `v` is outside `K`, preserving `v` means preserving the original target
+module, not merely its complete name. Refuse if that original target belongs to
+the removal or replacement set, even when a new definition would reuse its name
+and ordinary final type checking would succeed. For example, moving `a` over
+`b` with `--replace` is refused if `a` refers to the unselected original `b`:
+the copied reference must not silently become a reference to the replacement.
+When `v` is in `K`, use `C(v)` instead; an explicitly mapped identity-preserving
+self-reference is therefore allowed subject to all other checks. This binding
+check is separate from TOOL-03's original incoming-edge deletion check.
+
 Recompute relative spellings from each copied definition's final containing
 logical directory. A copied importer can need an edit even when the target
 retains its original identity. Use exact rooted operands when the required

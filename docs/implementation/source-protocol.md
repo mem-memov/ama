@@ -1,5 +1,45 @@
 # Prepared source compiler bridge
 
+## Current captured analysis requests
+
+The original graph request is:
+
+```text
+ama --source-domain --snapshot REQUEST
+```
+
+T224 additionally uses independent entry eligibility:
+
+```text
+ama --source-domain --snapshot REQUEST --probe-entry CANONICAL_MODULE
+```
+
+Both requests consume the same complete `ama.source-snapshot.v1` tables and
+return the same closed `ama.source-domain.v1` whole-original graph. The second
+request prepares a separate entry frontend from those captured tables; it does
+not read future native paths, seal physical build inputs, run CMake or execute
+the selected module. It proves typed entry eligibility, not a successful C build
+or test execution. Ordinary native/toolchain failures still belong to their later
+build/test gates.
+
+Normal graph-only completion requires exit 0. An explicit entry probe accepts
+exit 0 for a concrete executable Ama plan, or the dedicated exit 10 for a healthy
+open original entry key at the inference fixed point. All other semantic,
+process or stream failures refuse admission. Exit 10 from a graph-only request
+is a child failure; diagnostic text never classifies an open helper. Stream
+failure is an error even when the entry would otherwise be open, and any partial
+output is unusable.
+
+The project client first checks normal expected completion, then the closed
+response schema and exact source/version/native observations. Independent test
+admission additionally compares the complete returned graph, including original
+edge provenance, with the original admitted graph. Only then may it publish the
+typed probe result. The single-attempt client owns raw output/diagnostics and
+decoded facts; cached test proofs retain their owners through closure use.
+See the current [T224 record](source-operations.md) for implementation evidence
+and the remaining source-operation acceptance boundary. The T273 sections below
+retain that completed prerequisite's historical work and acceptance.
+
 ## T273 contract
 
 T273 starts from accepted T272 commit `44e813c5` and a clean worktree. It is the

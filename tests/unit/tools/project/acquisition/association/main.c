@@ -57,8 +57,33 @@ static void it_preserves_both_outputs_on_each_allocation_failure(void) {
         finish();
     }
 }
+/** Logical associations need no physical version object and preserve namespace
+ * components exactly. Invalid/failing calls leave the caller's sentinel intact. */
+static void it_derives_owned_test_namespaces_without_physical_version_handles(void) {
+    begin();
+    const char *output = "unchanged";
+    static const char *const invalid[] = {NULL, "", "//integer", "/a/p/v1.0.0/src",
+        "/a/p/v1.0.0/tests/check", "/a/p/v1.0.0/src/../m", "/a/p/v1.0.0/src/m+/child"};
+    size_t before = allocation_count;
+    for (size_t i = 0; i < sizeof(invalid) / sizeof(invalid[0]); i++) {
+        assert(acquisition_test_namespace(&results, invalid[i], &output) == SOURCE_INVALID_ARGUMENT);
+        assert(!strcmp(output, "unchanged") && allocation_count == before);
+    }
+    char input[] = "/a/p/v2.4.14-speed/src/дерево/ключ ключ";
+    assert(acquisition_test_namespace(NULL, input, &output) == SOURCE_INVALID_ARGUMENT);
+    assert(acquisition_test_namespace(&results, input, NULL) == SOURCE_INVALID_ARGUMENT);
+    failure_at = allocation_count + 1;
+    assert(acquisition_test_namespace(&results, input, &output) == SOURCE_OUT_OF_MEMORY);
+    assert(!strcmp(output, "unchanged"));
+    failure_at = 0;
+    assert(acquisition_test_namespace(&results, input, &output) == SOURCE_OK);
+    input[1] = 'z';
+    assert(!strcmp(output, "/a/p/v2.4.14-speed/tests/дерево/ключ ключ"));
+    finish();
+}
 /** Run association, nonmembership and owned-result failure partitions. */
 void run(void) {
+    it_derives_owned_test_namespaces_without_physical_version_handles();
     it_maps_nested_logical_suffixes_in_the_selected_version();
     it_refuses_non_source_paths_and_mismatched_version_owners();
     it_preserves_both_outputs_on_each_allocation_failure();

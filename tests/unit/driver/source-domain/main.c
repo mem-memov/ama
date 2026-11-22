@@ -6,6 +6,7 @@
 #include "../../fixtures/package.h"
 #include <sys/wait.h>
 #include <unistd.h>
+#include "delivery/source/probe/protocol.h"
 /** Write only explicitly owned fixture files, preserving exact supplied bytes. */
 static void file(const char *path, const char *text) {
     FILE *stream = fopen(path, "wb"); assert(stream);
@@ -124,6 +125,35 @@ static void it_refuses_invalid_source_snapshot_files_models_and_checked_code(voi
         destroy_test();
     }
 }
+/** Both completed probe states publish the same complete independently decoded domain. */
+static void it_reports_exact_executable_and_open_captured_entry_completions(void) {
+    snapshot_fixture();
+    const char *entries[] = {"/vendor/pkg/v1.0.0/src/main", "/vendor/pkg/v1.0.0/src/helper"};
+    for (size_t index = 0; index < 2; index++) {
+        setup_test(); FILE *document = fopen("generated/domain.json", "wb"); assert(document);
+        char *arguments[] = {"ama", "--source-domain", "--snapshot", "generated/base.json", "--probe-entry", (char *)entries[index]};
+        int result = driver_run(6, arguments, document, errors);
+        assert(result == (index ? DELIVERY_SOURCE_PROBE_OPEN_EXIT : EXIT_SUCCESS) && fclose(document) == 0);
+        char message[1024]; read_stream(errors, message, sizeof(message)); assert(!message[0]);
+        verify("snapshot"); destroy_test();
+    }
+    setup_test(); FILE *full = fopen("/dev/full", "wb"); assert(full);
+    char *arguments[] = {"ama", "--source-domain", "--snapshot", "generated/base.json", "--probe-entry", (char *)entries[1]};
+    assert(driver_run(6, arguments, full, errors) == EXIT_FAILURE);
+    (void)fclose(full); destroy_test();
+}
+/** Missing/noncanonical operands, absent entries and real compiler errors never become Open. */
+static void it_refuses_invalid_probe_requests_and_entry_errors_without_graph_output(void) {
+    snapshot_fixture();
+    char *arguments[] = {"ama", "--source-domain", "--snapshot", "generated/base.json", "--probe-entry", "//absent", "extra"};
+    for (int count = 5; count <= 7; count++) {
+        setup_test(); assert(driver_run(count, arguments, output, errors) == EXIT_FAILURE && ftell(output) == 0); destroy_test();
+    }
+    arguments[5] = ".invalid"; setup_test();
+    assert(driver_run(6, arguments, output, errors) == EXIT_FAILURE && ftell(output) == 0); destroy_test();
+    arguments[5] = "/vendor/pkg/v1.0.0/src/main"; arguments[3] = "generated/bad-source.json"; setup_test();
+    assert(driver_run(6, arguments, output, errors) == EXIT_FAILURE && ftell(output) == 0); destroy_test();
+}
 /** Execute actual dispatch, schema, original-domain refusal and stream checks. */
 void run(void) {
     it_dispatches_the_complete_domain_without_an_entry_or_native_execution();
@@ -132,6 +162,8 @@ void run(void) {
     it_propagates_source_domain_output_and_flush_failures();
     it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes();
     it_refuses_invalid_source_snapshot_files_models_and_checked_code();
+    it_reports_exact_executable_and_open_captured_entry_completions();
+    it_refuses_invalid_probe_requests_and_entry_errors_without_graph_output();
 }
 /** The C harness owns assertions and child status collection. */
 int main(void) { run(); return 0; }

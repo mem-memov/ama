@@ -6,11 +6,14 @@
  * and directory-identity aliases during capture.
  * Required associated directories share the lossless structural capture boundary.
  * [PKG-08](../../../../../spec/project/packages.md#pkg-08)
+ * [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01)
+ * also selects complete explicit directory operands.
  */
 #ifndef AMA_ACQUISITION_UNIT_H
 #define AMA_ACQUISITION_UNIT_H
 #include "delivery/native/files/snapshot.h"
 #include "../roles/roles.h"
+#include "source/path/physical/physical.h"
 /** Byte-sorted owned file/directory membership; file bytes belong to the supplied
  * SourceManager. Empty directories are retained; absent optional subtrees are not
  * members under [PKG-07](../../../../../spec/project/packages.md#pkg-07).
@@ -45,4 +48,15 @@ SourceStatus acquisition_unit_capture(SourceArena *, SourceManager *, const char
  */
 SourceStatus acquisition_directory_capture(SourceArena *, SourceManager *, const char *parent,
     const char *name, const AcquisitionUnitEntry **output, const char **failed_path);
+/** Capture an independently resolved existing directory operand, including a
+ * filesystem root without inventing a basename. Borrow its exact path/metadata;
+ * require stable verified ancestors and unchanged root device/inode. Recheck the
+ * root's regular directory shape, own the root record and traverse exactly as the
+ * associated-directory operation. Output changes only on complete success;
+ * failures retain scratch and a failed path. No symlink is followed at the root.
+ * [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01)
+ * permits explicit directory SOURCE operands, including empty directories.
+ */
+SourceStatus acquisition_directory_capture_root(SourceArena *, SourceManager *, const SourcePhysicalPath *,
+    const AcquisitionUnitEntry **output, const char **failed_path);
 #endif

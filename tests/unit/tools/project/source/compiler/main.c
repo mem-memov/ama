@@ -40,42 +40,42 @@ static int producer(const char *mode) {
     FILE *input = fopen("generated/captured-response.json", "rb"); assert(input);
     int byte; while ((byte = fgetc(input)) != EOF) { assert(fputc(byte, stdout) != EOF); }
     assert(!ferror(input) && fclose(input) == 0);
-    return !strcmp(mode, "nonzero") ? 127 : 0;
+    return !strcmp(mode, "nonzero") ? 127 : !strcmp(mode, "open") ? DELIVERY_SOURCE_PROBE_OPEN_EXIT : 0;
 }
 /** Successful collection preserves diagnostics and owns graph independently. */
 static void it_accepts_only_complete_successful_exact_reply(void) {
-    prepare(); assert(source_compiler_client_run(&client, executable, "valid ; $(never execute)", &view) == SOURCE_COMPILER_OK);
+    prepare(); assert(source_compiler_client_run(&client, executable, "valid ; $(never execute)", &view, NULL) == SOURCE_COMPILER_OK);
     assert(client.valid && client.response.valid && client.diagnostics && client.process.exit_code == 0);
     assert(source_length(client.diagnostics) == strlen("raw compiler diagnostic\n"));
-    assert(source_compiler_client_run(&client, executable, "valid", &view) == SOURCE_COMPILER_INVALID && client.valid);
+    assert(source_compiler_client_run(&client, executable, "valid", &view, NULL) == SOURCE_COMPILER_INVALID && client.valid);
     delivery_source_snapshot_destroy(&snapshot);
     assert(client.response.definitions && source_bytes(client.response.sources->source)[0] == '@'); finish();
 }
 /** Valid-looking output on nonzero exit/signal never even reaches schema decoding. */
 static void it_rejects_failed_and_signalled_children_before_decoding(void) {
-    prepare(); assert(source_compiler_client_run(&client, executable, "nonzero", &view) == SOURCE_COMPILER_CHILD);
+    prepare(); assert(source_compiler_client_run(&client, executable, "nonzero", &view, NULL) == SOURCE_COMPILER_CHILD);
     assert(!client.valid && !client.response.attempted && client.process.exit_code == 127 && !client.process.error); finish();
-    prepare(); assert(source_compiler_client_run(&client, executable, "signal", &view) == SOURCE_COMPILER_CHILD);
+    prepare(); assert(source_compiler_client_run(&client, executable, "signal", &view, NULL) == SOURCE_COMPILER_CHILD);
     assert(!client.response.attempted && client.process.signal == SIGTERM); finish();
-    prepare(); assert(source_compiler_client_run(&client, "/no/such/ama", "valid", &view) == SOURCE_COMPILER_CHILD);
+    prepare(); assert(source_compiler_client_run(&client, "/no/such/ama", "valid", &view, NULL) == SOURCE_COMPILER_CHILD);
     assert(client.process.error && !client.response.attempted); finish();
 }
 /** Normal child success alone does not establish protocol or capture equality. */
 static void it_rejects_malformed_and_mismatched_successful_replies(void) {
-    prepare(); assert(source_compiler_client_run(&client, executable, "malformed", &view) == SOURCE_COMPILER_PROTOCOL);
+    prepare(); assert(source_compiler_client_run(&client, executable, "malformed", &view, NULL) == SOURCE_COMPILER_PROTOCOL);
     assert(!client.valid && client.response.attempted && !client.response.valid); finish();
     prepare(); view.count--;
-    assert(source_compiler_client_run(&client, executable, "valid", &view) == SOURCE_COMPILER_MISMATCH);
+    assert(source_compiler_client_run(&client, executable, "valid", &view, NULL) == SOURCE_COMPILER_MISMATCH);
     assert(!client.valid && client.response.valid); finish();
 }
 /** Every result allocation refusal stays destructible and never grants authority. */
 static void it_refuses_every_allocation_failure_without_retaining_partial_authority(void) {
     prepare(); size_t start = allocation_count;
-    assert(source_compiler_client_run(&client, executable, "valid", &view) == SOURCE_COMPILER_OK);
+    assert(source_compiler_client_run(&client, executable, "valid", &view, NULL) == SOURCE_COMPILER_OK);
     size_t count = allocation_count - start; finish(); assert(count);
     for (size_t index = 1; index <= count; index++) {
         prepare(); failure_at = allocation_count + index;
-        SourceCompilerStatus status = source_compiler_client_run(&client, executable, "valid", &view);
+        SourceCompilerStatus status = source_compiler_client_run(&client, executable, "valid", &view, NULL);
         assert(status != SOURCE_COMPILER_OK && !client.valid); failure_at = 0; finish();
     }
 }
@@ -86,11 +86,11 @@ static void it_refuses_temporary_stream_exhaustion_and_invalid_requests(void) {
     assert(fclose(probe) == 0);
     for (size_t index = 0; index < 2; index++) {
         prepare();
-        assert(source_compiler_client_run(&client, NULL, "valid", &view) == SOURCE_COMPILER_INVALID);
+        assert(source_compiler_client_run(&client, NULL, "valid", &view, NULL) == SOURCE_COMPILER_INVALID);
         assert(!client.attempted);
         struct rlimit limited = original; limited.rlim_cur = index ? (rlim_t)available + 1 : 0;
         assert(setrlimit(RLIMIT_NOFILE, &limited) == 0);
-        SourceCompilerStatus status = source_compiler_client_run(&client, executable, "valid", &view);
+        SourceCompilerStatus status = source_compiler_client_run(&client, executable, "valid", &view, NULL);
         assert(setrlimit(RLIMIT_NOFILE, &original) == 0);
         assert(status == SOURCE_COMPILER_PROCESS && !client.valid && !client.response.attempted); finish();
     }
@@ -99,9 +99,44 @@ static void it_refuses_temporary_stream_exhaustion_and_invalid_requests(void) {
 static void it_accepts_real_compiler_snapshot_without_future_path_reads(void) {
     prepare();
     assert(source_compiler_client_run(&client, "../../../../../../ama",
-        "generated/base.json", &view) == SOURCE_COMPILER_OK);
+        "generated/base.json", &view, NULL) == SOURCE_COMPILER_OK);
     assert(client.valid && client.response.definitions && !client.process.error && !client.process.signal);
     finish();
+}
+/** The dedicated Open exit is admissible only in explicit probe mode and after matching JSON. */
+static void it_admits_typed_probe_completion_only_after_exact_response_admission(void) {
+    prepare();
+    assert(source_compiler_client_run(&client, executable, "open", &view, NULL) == SOURCE_COMPILER_CHILD);
+    assert(!client.valid && client.probe_state == DELIVERY_PROBE_NONE); finish();
+    prepare();
+    assert(source_compiler_client_run(&client, executable, "open", &view, "//native") == SOURCE_COMPILER_OK);
+    assert(client.valid && client.probe_state == DELIVERY_PROBE_OPEN); finish();
+    prepare();
+    assert(source_compiler_client_run(&client, executable, "valid", &view, "//native") == SOURCE_COMPILER_OK);
+    assert(client.probe_state == DELIVERY_PROBE_EXECUTABLE); finish();
+    prepare();
+    assert(source_compiler_client_run(&client, executable, "nonzero", &view, "//native") == SOURCE_COMPILER_CHILD);
+    assert(!client.valid && client.probe_state == DELIVERY_PROBE_NONE); finish();
+    prepare();
+    assert(source_compiler_client_run(&client, executable, "signal", &view, "//native") == SOURCE_COMPILER_CHILD);
+    assert(!client.valid && client.probe_state == DELIVERY_PROBE_NONE); finish();
+    prepare(); view.count--;
+    assert(source_compiler_client_run(&client, executable, "open", &view, "//native") == SOURCE_COMPILER_MISMATCH);
+    assert(!client.valid && client.probe_state == DELIVERY_PROBE_NONE); finish();
+    prepare();
+    assert(source_compiler_client_run(&client, executable, "valid", &view, ".not canonical") == SOURCE_COMPILER_INVALID);
+    assert(!client.attempted && client.probe_state == DELIVERY_PROBE_NONE); finish();
+}
+/** Real independent entry inference distinguishes an unconstrained helper from executable native source. */
+static void it_collects_real_compiler_executable_and_open_entry_proofs(void) {
+    prepare();
+    assert(source_compiler_client_run(&client, "../../../../../../ama", "generated/base.json", &view,
+        "/vendor/pkg/v1.0.0/src/helper") == SOURCE_COMPILER_OK);
+    assert(client.valid && client.probe_state == DELIVERY_PROBE_OPEN); finish();
+    prepare();
+    assert(source_compiler_client_run(&client, "../../../../../../ama", "generated/base.json", &view,
+        "/vendor/pkg/v1.0.0/src/main") == SOURCE_COMPILER_OK);
+    assert(client.valid && client.probe_state == DELIVERY_PROBE_EXECUTABLE); finish();
 }
 /** Execute explicit process admission and lifetime failure partitions. */
 void run(void) {
@@ -112,9 +147,15 @@ void run(void) {
     it_refuses_every_allocation_failure_without_retaining_partial_authority();
     it_refuses_temporary_stream_exhaustion_and_invalid_requests();
     it_accepts_real_compiler_snapshot_without_future_path_reads();
+    it_admits_typed_probe_completion_only_after_exact_response_admission();
+    it_collects_real_compiler_executable_and_open_entry_proofs();
 }
 /** This controlled executable also serves as its own shell-free compiler fixture. */
 int main(int argc, char **argv) {
-    if (argc == 4) { assert(!strcmp(argv[1], "--source-domain") && !strcmp(argv[2], "--snapshot")); return producer(argv[3]); }
+    if (argc == 4 || argc == 6) {
+        assert(!strcmp(argv[1], "--source-domain") && !strcmp(argv[2], "--snapshot"));
+        if (argc == 6) { assert(!strcmp(argv[4], "--probe-entry") && argv[5][0]); }
+        return producer(argv[3]);
+    }
     executable = argv[0]; run(); return 0;
 }

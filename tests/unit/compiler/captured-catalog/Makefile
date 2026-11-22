@@ -4,4 +4,5 @@
 ROOT := $(abspath ../../../..)
 include $(ROOT)/tests/unit/planning/sources.mk
 include $(ROOT)/tests/unit/compiler/sources.mk
+SOURCES += delivery/source/entry.c
 include $(ROOT)/tests/leaf.mk

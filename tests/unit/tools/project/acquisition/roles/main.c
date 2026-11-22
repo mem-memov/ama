@@ -124,6 +124,21 @@ static void it_refuses_foreign_causes_and_failed_promotions_without_queue_change
     const AcquisitionRoleRecord *claimed = acquisition_roles_take(&roles); assert(claimed == record);
     acquisition_roles_destroy(&roles); finish();
 }
+/** Declared-main causes are a distinct valid boundary value, never a semantic dependency. */
+static void it_accepts_declared_module_causes_and_rejects_the_next_invalid_reason_value(void) {
+    begin(); AcquisitionRoles roles; acquisition_roles_init(&roles, sources.allocator);
+    const AcquisitionRoleRecord *record = NULL, *same = NULL;
+    assert(acquisition_roles_add(&roles, "/a/p/v1.0.0/src/a", ACQUISITION_ACTIVE,
+        ACQUISITION_DECLARED_MODULE, NULL, (SourceSpan){0}, &record) == ACQUISITION_ROLE_OK);
+    size_t before = allocation_count;
+    assert(acquisition_roles_add(&roles, record->identity, ACQUISITION_ACTIVE,
+        ACQUISITION_DECLARED_MODULE, NULL, (SourceSpan){0}, &same) == ACQUISITION_ROLE_OK && same == record);
+    assert(allocation_count == before && record->reasons->kind == ACQUISITION_DECLARED_MODULE);
+    assert(acquisition_roles_add(&roles, record->identity, ACQUISITION_ACTIVE,
+        (AcquisitionReasonKind)(ACQUISITION_DECLARED_MODULE + 1), NULL, (SourceSpan){0}, &same) == ACQUISITION_ROLE_INVALID);
+    assert(acquisition_roles_take(&roles) == record && !acquisition_roles_take(&roles));
+    acquisition_roles_destroy(&roles); finish();
+}
 /** Invoke finite joins, real cyclic discovery and ownership/refusal partitions. */
 void run(void) {
     it_matches_all_bounded_role_request_sequences();
@@ -131,6 +146,7 @@ void run(void) {
     it_keeps_fifo_order_across_promotion_and_later_discovery();
     it_preserves_visible_membership_on_every_insertion_allocation_failure();
     it_refuses_foreign_causes_and_failed_promotions_without_queue_changes();
+    it_accepts_declared_module_causes_and_rejects_the_next_invalid_reason_value();
 }
 /** Retire all operation/source owners before normal success. */
 int main(void) { run(); return 0; }

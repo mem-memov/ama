@@ -6,17 +6,30 @@
  * [PKG-02](../../../../spec/project/packages.md#pkg-02) associates each ordinary
  * source with its selected version configuration.
  * Native companion selection follows parsed activation; all source/partial storage stays catalog-owned.
+ * [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02)
+ * uses the same loader for explicit immutable views, copying borrowed bytes under
+ * their final physical keys before shared UTF-8 validation.
  */
 #include <string.h>
 #include "../internal.h"
+#include "../view.h"
 #include "source/unicode/unicode.h"
 
 ModuleStatus module_load_utf8(ModuleCatalog *catalog, const char *physical,
     const SourceText **output) {
-    SourceStatus loaded = source_manager_load(&catalog->sources, physical, output);
+    SourceStatus loaded;
+    if (catalog->reader) {
+        const SourceText *captured = NULL;
+        loaded = catalog->reader->read(catalog->reader->tree.context, physical, &captured);
+        if (loaded == SOURCE_OK) {
+            if (!captured) { return module_fail(catalog, MODULE_INVALID_PATH, physical); }
+            loaded = source_manager_add(&catalog->sources, physical,
+                source_bytes(captured), source_length(captured), output);
+        }
+    } else { loaded = source_manager_load(&catalog->sources, physical, output); }
     if (loaded != SOURCE_OK) {
         return module_fail(catalog, loaded == SOURCE_IO_ERROR ? MODULE_IO_ERROR
-            : MODULE_OUT_OF_MEMORY, physical);
+            : loaded == SOURCE_OUT_OF_MEMORY ? MODULE_OUT_OF_MEMORY : MODULE_INVALID_PATH, physical);
     }
     size_t error;
     if (!utf8_validate(source_bytes(*output), source_length(*output), &error)) {

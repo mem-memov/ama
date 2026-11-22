@@ -1,5 +1,5 @@
 # @file
 # @brief Dispatch exact source-operation components independently of compiler or mutation commands.
 # Contract: ../../../../../docs/implementation/source-operations.md.
-SUBDIRECTORIES := removal domain report compiler
+SUBDIRECTORIES := image-capture observation image removal domain report compiler capture graph analysis expansion selection removal-selection mapping edits copy
 include ../../../../parent.mk

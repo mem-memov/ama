@@ -114,6 +114,7 @@ static void it_refuses_invalid_sets_and_foreign_input_owners_without_publishing(
     status = source_removal_check(&report, NULL, NULL, NULL, 0, NULL, 0, &blockers);
     assert(status == SOURCE_REMOVAL_OK && !blockers); finish();
 }
+#include "client-roots.c"
 /** Explicitly exercise finite cuts, input sharing, original-graph and refusal partitions. */
 void run(void) {
     it_matches_every_three_vertex_graph_cut_without_runtime_or_kind_filters();
@@ -122,6 +123,10 @@ void run(void) {
     it_reports_non_executable_original_consumers_without_kind_filtering();
     it_retains_failed_report_scratch_without_publishing_at_every_allocation();
     it_refuses_invalid_sets_and_foreign_input_owners_without_publishing();
+    it_checks_every_three_root_disposition_and_removal_set();
+    it_preserves_authored_blockers_after_explicit_client_root_mapping();
+    it_preserves_duplicate_client_roots_and_retires_all_report_allocation_failures();
+    it_refuses_malformed_client_roots_and_preserves_output_on_late_invalidity();
 }
 /** Finish after all original-source and result owners retire cleanly. */
 int main(void) { run(); return 0; }

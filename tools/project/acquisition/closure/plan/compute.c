@@ -38,16 +38,22 @@ AcquisitionClosureStatus acquisition_closure_compute(AcquisitionClosure *closure
         if (shape.extent == MODULE_PATH_VERSION) {
             status = acquisition_closure_version(closure, record, &fact);
             if (status != ACQUISITION_CLOSURE_OK) { return status; }
+            status = acquisition_closure_declared_modules(closure, record, fact.declared_modules);
+            if (status != ACQUISITION_CLOSURE_OK) { return status; }
             continue;
         }
         status = acquisition_closure_structure(closure, record, &fact);
         if (status != ACQUISITION_CLOSURE_OK) { return status; }
+        status = acquisition_closure_declared_modules(closure, record, fact.declared_modules);
+        if (status != ACQUISITION_CLOSURE_OK) { return status; }
+        const DeliverySourceDefinition *definition = NULL;
+        status = acquisition_closure_definition(closure, record, &fact, &definition);
+        if (status != ACQUISITION_CLOSURE_OK) { return status; }
+        if (!definition) { continue; }
         status = acquisition_closure_tests(closure, record, &fact, provider);
         if (status != ACQUISITION_CLOSURE_OK) { return status; }
-        const DeliverySourceDefinition *definition = fact.definitions;
-        while (definition && strcmp(definition->identity, record->identity)) { definition = definition->next; }
-        if (!definition) { return acquisition_closure_fail(closure, ACQUISITION_CLOSURE_INVALID, "Selected module lacks its checked source definition"); }
-        AcquisitionRoleStatus expanded = acquisition_dependencies_expand(&closure->roles, record, definition);
+        AcquisitionRoleStatus expanded = acquisition_dependencies_expand(&closure->roles, record, definition,
+            provider->follow_dependency, provider->context);
         if (expanded != ACQUISITION_ROLE_OK) {
             return acquisition_closure_fail(closure, expanded == ACQUISITION_ROLE_OUT_OF_MEMORY ? ACQUISITION_CLOSURE_OUT_OF_MEMORY
                 : ACQUISITION_CLOSURE_INVALID, "Resolved delivery dependency expansion failed");

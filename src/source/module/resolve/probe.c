@@ -9,10 +9,14 @@
  */
 #include <string.h>
 #include "../internal.h"
+#include "../view.h"
 #include "source/unicode/unicode.h"
 
 ModuleStatus module_probe(ModuleCatalog *catalog, const char *parent,
     const char *name, const char *full, struct stat *metadata) {
+    if (catalog->reader) {
+        return catalog->reader->tree.child(catalog->reader->tree.context, catalog, parent, name, full, metadata);
+    }
     PathProbe probe = path_exact_child(parent, name, full, metadata);
     if (probe == PATH_FOUND) {
         return MODULE_OK;
@@ -37,6 +41,12 @@ ModuleStatus module_verify_root(ModuleCatalog *catalog, const char *path) {
      * token. Diagnose the unsupported original path, rather than rewriting it. */
     if (strchr(copy, '\r') != NULL) {
         return module_fail(catalog, MODULE_UNSUPPORTED_PATH, copy);
+    }
+    if (catalog->reader) {
+        struct stat metadata;
+        ModuleStatus status = catalog->reader->tree.root(catalog->reader->tree.context, catalog, copy, &metadata);
+        return status != MODULE_OK ? status : S_ISDIR(metadata.st_mode) ? MODULE_OK
+            : module_fail(catalog, MODULE_UNSUPPORTED_PATH, copy);
     }
     char *cursor = copy;
     while (*cursor != 0) {

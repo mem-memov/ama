@@ -3,5 +3,6 @@
 # Contract: ../../../../../../docs/implementation/acquisition-plan.md.
 ROOT := $(abspath ../../../../../..)
 include ../sources.mk
-LOCAL_SOURCES := main.c $(ROOT)/tools/project/acquisition/closure/tests/association.c
+LOCAL_SOURCES := main.c $(ROOT)/tools/project/acquisition/closure/tests/association.c \
+    $(ROOT)/tools/project/acquisition/closure/tests/namespace.c
 include ../../../../../leaf.mk

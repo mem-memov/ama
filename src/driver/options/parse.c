@@ -26,6 +26,7 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
     }
     if (options->request == DRIVER_REQUEST_SOURCE_DOMAIN && !strcmp(arguments[2], "--snapshot")) {
         options->source_snapshot = arguments[3];
+        if (count == 6) { options->source_probe = arguments[5]; }
         options->valid = true;
         return true;
     }

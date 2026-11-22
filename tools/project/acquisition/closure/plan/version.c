@@ -8,7 +8,7 @@
 #include <string.h>
 AcquisitionClosureStatus acquisition_closure_version(AcquisitionClosure *closure, const AcquisitionRoleRecord *record,
     const AcquisitionExpansion *fact) {
-    if (fact->module || !fact->source || !fact->source->version || strcmp(fact->source->version, record->identity) ||
+    if (fact->draft || fact->module || !fact->source || !fact->source->version || strcmp(fact->source->version, record->identity) ||
         !fact->files || !fact->configuration || fact->configuration->directory || !fact->configuration->file.content || fact->contexts || fact->test_directory || fact->test_files ||
         (fact->submodule_count && !fact->submodules)) {
         return acquisition_closure_fail(closure, ACQUISITION_CLOSURE_INVALID, "Incomplete selected-version expansion");

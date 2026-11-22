@@ -23,7 +23,9 @@ SourceStatus acquisition_test_directory(SourceArena *arena, const ModuleSource *
     /* The canonical shape proves the exact '/src/' boundary; the remaining
      * suffix is already logical, including nested module components. */
     const char *suffix = source->logical_path + shape.version_length + sizeof("/src/") - 1;
-    const char *logical = source_arena_join(arena, source->version->logical_path, "/tests/", suffix);
+    const char *logical = NULL;
+    SourceStatus status = acquisition_test_namespace(arena, source->logical_path, &logical);
+    if (status != SOURCE_OK) { return status; }
     const char *parent = source->version->physical_path;
     const char *physical = source_arena_join(arena, parent,
         parent[strlen(parent) - 1] == '/' ? "tests/" : "/tests/", suffix);

@@ -10,7 +10,8 @@ PROJECT_TOOL_SHARED_SOURCES := source/path/logical.c source/path/version.c sourc
 PROJECT_TOOL_CAPTURE_SOURCES := source/text/manager.c source/text/lines.c source/path/exact.c \
     delivery/native/files/capture.c \
     $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/module) \
-    $(call source_files,$(ROOT)/src/source/io))
+    $(call source_files,$(ROOT)/src/source/io) \
+    $(call source_files,$(ROOT)/src/source/path/physical))
 
 # Shared response/request data readers own no compiler, Ama parser or mutation state.
 PROJECT_TOOL_SHARED_SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/json) \

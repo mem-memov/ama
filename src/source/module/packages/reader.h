@@ -17,8 +17,9 @@
  * finite directory view. Successful metadata includes stable device/inode.
  * Callbacks allocate returned paths/names/errors in the destination catalog or
  * a longer-lived context, never mutate source storage, and return a ModuleStatus.
- * Failure must preserve its diagnostic in catalog->issue. No callback/context
- * is retained after selection. [SRC-02](../../../../spec/language/source-and-names.md#src-02)
+ * Failure must preserve its diagnostic in catalog->issue. The selector itself
+ * retains no callback/context after selection; a complete catalog view may retain
+ * its containing reader under the explicit lifetime contract in view.h. [SRC-02](../../../../spec/language/source-and-names.md#src-02)
  * requires identical spelling/alias/error guarantees in both filesystem views.
  */
 typedef struct {

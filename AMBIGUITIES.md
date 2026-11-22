@@ -8,6 +8,11 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-022](#amb-022) is **Resolved** for T224: an unselected original
+reference target must survive. Reusing its complete name for a replacement does
+not preserve that definition. The user authorized recording this rule in TOOL-02;
+a copied target still follows the explicit clone map.
+
 [AMB-021](#amb-021) is **Resolved**: copy/delete/move require exactly one
 explicit `--preview` or `--apply` mode; T224 implementation continues.
 No destructive default is inferred from the bare command examples.
@@ -1530,3 +1535,78 @@ Each entry must contain:
   before mutation. TOOL-01 defines the rule and PROJECT-01 shows its command form.
   This resolves the blocker and authorizes T224 to resume; it does not establish
   implemented command support or complete the task.
+
+
+<a id="amb-022"></a>
+
+## AMB-022 — Retained dependency when replacement reuses its complete identity
+
+- **Status:** Resolved.
+- **Current task:** [T224](TODO.md#t224). Its source/copy preparation components
+  are tested, but no public operation, final conformance or task completion is
+  claimed. Implementation resumes under the decision below.
+- **Authority:** [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02)
+  defines C(u) as a complete identity and requires copied edges to target C(v)
+  when v is copied, otherwise v. It also requires retaining original bindings.
+  [TOOL-03](spec/implementation/tools-and-conformance.md#tool-03) permits edges
+  wholly inside the original removal set and forbids outside incoming edges even
+  when a replacement reuses a name. [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
+  permits explicit safe replacement. These clauses do not explicitly state
+  whether an unselected v must remain the original definition when the target
+  identity is occupied by another copied definition after authorized replacement.
+- **Minimal example:** all modules are in one version, with concrete tests and
+  no outside consumers or unmapped client roots. Initially `src/a` contains:
+
+  ```ama
+  @!
+  b&
+  ./b
+  ```
+
+  `src/b` contains only `@!`. The planned command is:
+
+  ```sh
+  ama-project move packages/acme/demo/v1.0.0/src/a packages/acme/demo/v1.0.0/src/b --replace --preview
+  ```
+
+  This is a proposed public command example, not a claim that the unfinished
+  command has been implemented/executed. R contains original a, original b and
+  their original associated tests. K contains a and its copied tests, not old b.
+  There are no outside incoming edges, so the original deletion cut passes.
+  C(a) has complete identity b. An unchanged/rooted target spelling still names
+  b. In the final definition of b, field b& therefore has type b itself; this
+  describes a type/reference dependency, not automatic runtime self-binding.
+
+  ```text
+  original:  a ----field type----> b (old definition)
+  final:     b (copy of a) ------> b (copy of a)
+  ```
+
+- **Read-only investigation:** actual `ama --source-domain PROJECT` returned 0
+  for both the original and final source/test projects in
+  `/tmp/ama-retained-target-ur_1sqws`. Original exported a -> b and final exported
+  b -> b; test programs instantiate/call the corresponding module. No move/copy
+  command, CMake/native code or test program was executed. Ordinary final typing
+  therefore cannot select between the two source-operation policies.
+- **Precise question:** must a copied edge to a target outside K retain that
+  original definition, refusing if it is removed/replaced, or is preserving its
+  complete identity enough, allowing the edge to the replacement at that name?
+- **Recommended decision:** refuse when an edge must retain an unselected
+  original target that belongs to R, even if its identity is reused. This avoids
+  introducing a self-dependent type through replacement. Copied targets still
+  use C, and identity-preserving mapped self-references remain valid. Clarify
+  TOOL-02 explicitly; ordinary type checking and the original deletion cut remain
+  separate required checks.
+- **Alternative and consequence:** allow the operation when the complete target
+  identity is preserved and all ordinary checks pass. Explicit replacement may
+  turn an original cross-module type edge into a self edge. TOOL-03 still blocks
+  surviving original outside consumers; no exception to that safety cut is made.
+  The graph check compares the specified canonical identities in this case.
+- **Implementation consequence:** retain the strict removed-target guard and its
+  tests. Ordinary final type checking and original incoming-edge deletion safety
+  remain independent required checks; neither permits substituting a replacement
+  for an unselected original target.
+- **Decision/source:** the user answered the explicit specification clarification
+  question: “Отказывать: некопируемый исходный целевой модуль должен сохраниться
+  (рекомендуется).” This selects refusal and authorizes the corresponding TOOL-02
+  clarification. T224 resumes; the task remains unfinished until full acceptance.

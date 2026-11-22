@@ -7,7 +7,7 @@
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03) keeps partial
  * catalog preparation destructible and successful outputs frontend-owned.
  */
-#include "domain.h"
+#include "internal.h"
 /** A failed preparation consumes this frontend even before normal project
  * loading starts under [ARCH-03](../../../../spec/implementation/compiler.md#arch-03).
  * [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04)
@@ -22,9 +22,8 @@ static bool failed(CompilerFrontend *frontend) {
     }
     return false;
 }
-bool delivery_source_domain_snapshot(CompilerFrontend *frontend, SourceArena *arena,
-    const DeliverySourceSnapshot *snapshot, const DeliverySourceDefinition **output) {
-    if (!frontend || !arena || !snapshot || !snapshot->valid || !output || frontend->attempted
+bool delivery_source_snapshot_catalog(CompilerFrontend *frontend, const DeliverySourceSnapshot *snapshot) {
+    if (!frontend || !snapshot || !snapshot->valid || frontend->attempted
         || frontend->project.catalog.attempted || frontend->project.catalog.versions
         || (snapshot->count && (!snapshot->entries || !snapshot->companions))) { return false; }
     for (const DeliverySnapshotVersion *version = snapshot->versions; version; version = version->next) {
@@ -35,5 +34,10 @@ bool delivery_source_domain_snapshot(CompilerFrontend *frontend, SourceArena *ar
     if (module_catalog_snapshot(&frontend->project.catalog, snapshot->entries, snapshot->count) != MODULE_OK) {
         return failed(frontend);
     }
-    return delivery_source_domain(frontend, arena, snapshot->companions, output);
+    return true;
+}
+bool delivery_source_domain_snapshot(CompilerFrontend *frontend, SourceArena *arena,
+    const DeliverySourceSnapshot *snapshot, const DeliverySourceDefinition **output) {
+    return arena && output && delivery_source_snapshot_catalog(frontend, snapshot)
+        && delivery_source_domain(frontend, arena, snapshot->companions, output);
 }

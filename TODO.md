@@ -106,8 +106,23 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;
   entry-free whole-domain export and its read-only command are implemented/tested.
-  The project-side response/process bridge is accepted. Physical capture,
-  independent test-entry probes and the remaining operation pipeline are next.
+  The project-side response/process bridge is accepted (`d7d8d8df`). Physical
+  compiler-input capture and exact independent test-entry admission are implemented
+  and component-tested. Structural module/whole-version provider expansion now
+  passes real closure composition, allocation-failure and sanitizer checks.
+  Exact original tree/removal sets, declared/native/configuration input consumers
+  and client-root safety pass component, real-compiler and sanitizer checks.
+  Clone/file candidates, exact prepared-source graph/site joins and rooted
+  operands pass component and real-compiler checks. Copy closure now composes
+  explicit modes, required data mains, original consistency and concrete tests.
+  [AMB-022](AMBIGUITIES.md#amb-022) is resolved: an unselected original target
+  must survive; replacement at the same name does not preserve its definition.
+  The authorized TOOL-02 clarification retains the strict removed-target guard.
+  Finite destination-version propagation, deepest associated-test naming and
+  final-name-driven main topology now pass component and real-catalog checks.
+  Actual copy closures produce active ordinary logical destination candidates;
+  complete context/test/data/opaque physical placement and common final catalog
+  authority remain next. T224 is active and unfinished.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.

@@ -7,6 +7,8 @@
  * [TPL-10](../../../spec/language/templates.md#tpl-10)
  * Selected-root provenance separates root parameters from unrelated pending uses.
  * [TPL-11](../../../spec/language/templates.md#tpl-11)
+ * [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04) separates
+ * an executable plan certificate from physical input freshness.
  */
 #ifndef AMA_DELIVERY_SOURCE_ENTRY_H
 #define AMA_DELIVERY_SOURCE_ENTRY_H
@@ -17,7 +19,10 @@
  */
 typedef enum { DELIVERY_ENTRY_EXECUTABLE, DELIVERY_ENTRY_OPEN, DELIVERY_ENTRY_INVALID } DeliveryEntryState;
 /** Observe one normal independently attempted executable check. Completed plan
- * success certifies eligibility. A typed unresolved closure with an exact pending
+ * success certifies eligibility, independently of filesystem input sealing.
+ * Captured probes retain composite frontend.valid false under
+ * [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04).
+ * A typed unresolved closure with an exact pending
  * original generic root key classifies an open helper. Every other failure,
  * including closed-root unknown fields, syntax/type/capability/native failures,
  * remains invalid with the frontend's original diagnostic. No diagnostic strings,

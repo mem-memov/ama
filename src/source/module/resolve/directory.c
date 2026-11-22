@@ -6,9 +6,14 @@
  * Equal device/inode pairs expose aliases even for empty directories.
  */
 #include "../internal.h"
+#include "../view.h"
 
 ModuleStatus module_remember_directory(ModuleCatalog *catalog, const char *path) {
     struct stat metadata;
+    if (catalog->reader) {
+        ModuleStatus status = catalog->reader->tree.root(catalog->reader->tree.context, catalog, path, &metadata);
+        return status == MODULE_OK ? module_remember_directory_metadata(catalog, path, &metadata) : status;
+    }
     if (lstat(path, &metadata) != 0) {
         return module_fail(catalog, MODULE_IO_ERROR, path);
     }

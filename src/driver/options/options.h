@@ -28,6 +28,10 @@ typedef struct {
      * [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04).
      */
     const char *source_snapshot;
+    /** Optional canonical captured-entry probe under
+     * [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04).
+     */
+    const char *source_probe;
     const char *query_module;
     const char *rename_name;
     size_t offset;

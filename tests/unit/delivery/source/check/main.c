@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include "../../../source/common.c"
 #include "delivery/source/domain/domain.h"
+#include "delivery/source/probe/snapshot.h"
 static CompilerFrontend frontend;
 static DeliverySourceSnapshot snapshot;
 static SourceManager request;
@@ -36,6 +37,22 @@ static void prepare(const char *name) {
 static void finish(void) {
     source_arena_destroy(&exports); compiler_frontend_destroy(&frontend);
     delivery_source_snapshot_destroy(&snapshot); source_manager_destroy(&request); destroy_test();
+}
+/** The same immutable request supports independent executable and genuinely open roots. */
+static void it_probes_independent_captured_entries_with_exact_native_and_root_key_authority(void) {
+    generate();
+    const char *entries[] = {"/vendor/pkg/v1.0.0/src/main", "/vendor/pkg/v1.0.0/src/helper"};
+    for (size_t index = 0; index < 2; index++) {
+        prepare("base.json");
+        DeliveryEntryState state = delivery_source_snapshot_entry(&frontend, &exports, &snapshot, entries[index]);
+        assert(state == (index ? DELIVERY_ENTRY_OPEN : DELIVERY_ENTRY_EXECUTABLE));
+        assert(!frontend.valid && !frontend.inputs.attempted && !frontend.inputs.sealed);
+        assert(index || (frontend.plan_initialized && frontend.plan.valid));
+        assert(access("not-published/native.c", F_OK) != 0); finish();
+    }
+    prepare("bad-native-abi.json");
+    assert(delivery_source_snapshot_entry(&frontend, &exports, &snapshot, entries[0]) == DELIVERY_ENTRY_INVALID);
+    assert(frontend.error.message && !frontend.valid); finish();
 }
 /** Future physical files do not exist. Canonical ordinary/standard identities,
  * package context, open definitions and the native interface still check exactly. */
@@ -109,6 +126,7 @@ static void it_accepts_empty_capture_and_refuses_invalid_or_reused_owners(void) 
 }
 /** Explicitly execute real normal-check and source ownership handoffs. */
 void run(void) {
+    it_probes_independent_captured_entries_with_exact_native_and_root_key_authority();
     it_checks_captured_future_paths_without_filesystem_or_native_execution();
     it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication();
     it_retires_every_failed_captured_frontend_allocation();

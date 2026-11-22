@@ -9,6 +9,7 @@
 #ifndef AMA_PROJECT_SOURCE_COMPILER_CLIENT_H
 #define AMA_PROJECT_SOURCE_COMPILER_CLIENT_H
 #include "delivery/source/response/match.h"
+#include "delivery/source/probe/protocol.h"
 #include "../../process/process.h"
 /** Distinguish host/process refusal, unsuccessful child, capture I/O/allocation,
  * malformed reply and input mismatch. No failure grants graph authority under
@@ -28,6 +29,7 @@ typedef struct {
     const SourceText *output, *diagnostics;
     ProjectProcessResult process;
     SourceCompilerStatus status;
+    DeliverySourceProbeState probe_state;
     SourceStatus capture_status;
     bool attempted, valid;
 } SourceCompilerClient;
@@ -40,14 +42,19 @@ void source_compiler_client_init(SourceCompilerClient *, SourceAllocator);
  */
 void source_compiler_client_destroy(SourceCompilerClient *);
 /** Execute compiler --source-domain --snapshot request_path without a shell.
+ * A NULL entry requests only whole-domain facts. A canonical entry adds the exact
+ * --probe-entry operand; zero then proves executable eligibility and the dedicated
+ * open completion status proves a pending original root key. Every other exit
+ * remains child failure. Both outcomes still require exact complete graph/input
+ * admission; only then publish probe_state.
  * Caller owns the already serialized request and immutable input view throughout
  * this synchronous operation. Capture both streams, collect child normally, then
- * decode and compare only a successful exit. No source discovery or mutation.
+ * decode and compare only an expected completed result. No source discovery or mutation.
  * Repeated calls refuse without replacing retained results. Raw diagnostics remain
  * available on child failure; host/stream failures can retain only partial data.
  * Exact input equality under [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04)
  * is required even for valid JSON and zero exit status.
  */
 SourceCompilerStatus source_compiler_client_run(SourceCompilerClient *, const char *, const char *,
-    const DeliverySourceSnapshotView *);
+    const DeliverySourceSnapshotView *, const char *entry);
 #endif
