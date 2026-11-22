@@ -147,8 +147,11 @@ static void it_retires_every_rebased_alias_edit_allocation_and_rejects_invalid_h
     assert(source_copy_rebase_aliases(&edits, &local_document, local, &issue) == SOURCE_COPY_ALIASES_EDITS);
     source_text_edits_destroy(&edits); finish_aliases();
 }
+#include "packages.c"
 /** Explicit registration keeps all authority, byte and resource partitions live. */
 void run(void) {
+    it_rebases_owned_package_alias_targets_in_independent_destination_scopes();
+    it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures();
     it_checks_rebased_aliases_in_the_real_destination_scope_without_old_package_borrowing();
     it_rebases_actual_local_alias_targets_and_preserves_all_other_ini_bytes();
     it_refuses_foreign_alias_authorities_and_overlapping_target_edits();

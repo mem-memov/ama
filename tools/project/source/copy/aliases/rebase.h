@@ -1,5 +1,5 @@
 /** @file
- * @brief Rebase local aliases through their original resolved targets for rooted-use copy plans.
+ * @brief Rebase owned aliases through their original resolved targets for rooted-use copy plans.
  * [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02)
  * permits parsed target edits with unchanged keys and rooted source occurrences;
  * [PKG-04](../../../../../spec/project/packages.md#pkg-04) supplies original scope.
@@ -17,15 +17,19 @@ typedef struct {
     const ConfigurationAliasEntry *entry;
     SourceEditsStatus edit_status;
 } SourceCopyAliasesIssue;
-/** Replace every parsed module-INI alias target with its original fully normalized
+/** Replace every parsed alias target in an owned copied INI document with its original fully normalized
  * target. Document and scope must be valid common-parser/resolver results for the
- * same original text as edits; scope is its own MODULE table, not a package table.
+ * same original text as edits. Module documents require their own MODULE table;
+ * package documents require their own PACKAGE table. Never borrow the other kind.
  * Keep keys/comments/line endings/other bytes unchanged. Equal repeat edits share
  * normal edit rows. No alias import, target loading, discovery or mutation occurs.
  *
  * This is the explicit strategy for a copy plan that rewrites actual module-use
  * occurrences to their required rooted targets separately. It preserves the old
- * alias bindings without borrowing the old package's alias table. The outer plan
+ * alias bindings without borrowing a foreign alias table. Package documents are
+ * eligible only when the outer operation explicitly owns that copied configuration;
+ * this helper never imports its keys/repositories into an existing destination
+ * package. The outer plan
  * must still validate destination nonshadowing, final scope and every actual use;
  * this helper alone proves neither copied-definition bindings nor publication.
  *

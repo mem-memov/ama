@@ -102,10 +102,11 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t224"></a>
 
 - [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
-  Status: [AMB-024](AMBIGUITIES.md#amb-024) resolved with explicit spec
-  authorization: unchanged destination parents supply topology without copying
-  the old structural-only parent. Context planning resumes; namespace/area
-  preservation and full final reference proof remain mandatory. T224 is unfinished.
+  Status: awaiting [AMB-025](AMBIGUITIES.md#amb-025): whether a package.ini
+  shared by source/destination may receive required exact selector re-expression
+  despite the source-configuration edit prohibition. AMB-024 is resolved and its
+  unchanged-parent topology is implemented/tested. No overlap policy or public
+  operation workaround is chosen. T224 is unfinished; later tasks are not started.
   Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;
@@ -132,45 +133,28 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   images and exact final compiler/binding/site proofs now pass real compositions
   and failure checks. Ordinary copy-main placement also joins actual logical
   candidates, final topology and a complete projected-version compiler fixture.
-  Complete context/test/data/opaque file-map integration, configuration edits and
-  recoverable publication remain unfinished. Shared clone admission now rejects
-  namespace/area changes before allocation. Complete physical test associations,
-  opaque test material, nested ownership across versions, real unit overlap and
-  final compiler/site composition pass strict and ASan/UBSan checks. Full per-file
-  registry checks 3768 ready inputs with zero debt. Declared input placement now
-  preserves structural authority/version-relative suffixes, diagnoses shared
-  destination conflicts, and keeps configurations with their environment owner;
-  strict/allocation/sanitizer checks pass. Local aliases now rebase through real
-  original scopes and reparse under independent destination scopes; strict,
-  sanitizer, dispatcher and per-file checks pass (3772 ready, zero debt).
-  Context omissions now have explicit complete accounting and actual final-parent
-  provenance checks; existing-parent/detached compiler compositions, missing or
-  changed parent/child refusals and allocation failures pass strict and sanitizer
-  checks. Per-file coverage passes with 3777 ready inputs and zero debt. T224
-  remains unfinished: environment selection, complete material integration and
-  recoverable public operations still require acceptance. Concrete selector
-  re-expression now preserves parsed surrounding bytes and passes independent
-  augmented-domain selection, strict/sanitizer/failure and tool-link checks;
-  per-file checking passes with 3781 ready inputs and zero debt. Deriving the
-  authorized requested selection set remains an outer unfinished obligation.
-  The compiler now uses shared neutral actual-catalog availability (including
-  empty versions and physical test provenance); real catalog, Project input,
-  integration, allocation and sanitizer checks pass. Per-file/header checking
-  passes with 3784 ready inputs and zero debt. Package environment composition
-  now passes real captured/compiler scope isolation, malformed empty-version,
-  wildcard, allocation, sanitizer and full source-parent checks. Per-file/header
-  checking passes with 3790 ready inputs and zero debt. Exact mapping/extension
-  baseline sets now derive exact original-root images through ready C and explicit
-  actual version pairs, with independent reparse/matching, missing/conflicting/
-  foreign-case, allocation and sanitizer acceptance. Per-file/header checks pass
-  with 3793 ready inputs and zero debt. Explicit extension targets and complete
-  targets now derive only actual uncovered copied edges under EXTEND_PACKAGE;
-  retained permissions, standard targets, cloned cycles, missing/default refusal,
-  occurrence order and allocation cases pass strict/sanitizer checks. Prepared
-  configurations pass independent final compiler and exact graph/site proofs.
-  Per-file/header checking passes with 3797 ready inputs and zero debt. Package
-  alias rebasing and complete material/publication integration remain unfinished
-  within T224.
+  Shared clone admission rejects namespace/area changes before allocation.
+  Complete physical unit/test/declared maps cover opaque data, nested test
+  associations and cross-version ownership, with conflict and failure checks.
+  Explicit context omissions prove complete accounting and actual unchanged
+  destination-parent provenance through final discovery and compiler/site joins.
+  Local and explicitly copied package aliases rebase through matching original
+  scopes; independent final scopes, selector-edit composition and exact preserved
+  keys/comments/repositories/line endings pass acceptance. The compiler and tool
+  use shared actual-catalog availability, including empty versions and physical
+  test provenance. Actual package environments isolate version aliases, evaluate
+  exact wildcard unions and reject malformed metadata without fallback.
+  Original selected-root images map through ready C and explicit actual version
+  pairs without admitting new wildcard matches. EXTEND_PACKAGE additions contain
+  only actual uncovered copied-edge targets, deduplicated against a fixed
+  baseline. Existing coverage, standard targets, clone cycles, default/missing
+  refusals and occurrence order pass independent final compiler and exact graph/
+  site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
+  source-parent checks are recorded in the linked step log. Current per-file/
+  header acceptance: 3798 ready inputs, zero explicit debt.
+  Complete configuration/material assembly, public command application,
+  recoverable publication and final task acceptance remain unfinished. Stop for
+  AMB-025 before choosing shared source/destination configuration authority.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.

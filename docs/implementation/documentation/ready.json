@@ -206023,7 +206023,7 @@
   },
   "tools/project/source/copy/aliases/rebase.h": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Rebase local aliases through their original resolved targets for rooted-use copy plans.",
+    "purpose": "Define matched owned module/package alias target preparation separately from source-use, selector and final-scope proof.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/aliases/main.c",
@@ -206043,6 +206043,16 @@
       {
         "source": "tests/unit/tools/project/source/aliases/main.c",
         "case": "it_checks_rebased_aliases_in_the_real_destination_scope_without_old_package_borrowing",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_rebases_owned_package_alias_targets_in_independent_destination_scopes",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures",
         "command": "make -C tests/unit/tools/project/source/aliases"
       }
     ],
@@ -206064,7 +206074,7 @@
   },
   "tools/project/source/copy/aliases/rebase.c": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Edit only authoritative local alias target spans from one resolved original scope.",
+    "purpose": "Rebase only owned matching module/package alias targets through their exact original normalized bindings without importing foreign tables.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/aliases/main.c",
@@ -206084,6 +206094,16 @@
       {
         "source": "tests/unit/tools/project/source/aliases/main.c",
         "case": "it_checks_rebased_aliases_in_the_real_destination_scope_without_old_package_borrowing",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_rebases_owned_package_alias_targets_in_independent_destination_scopes",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures",
         "command": "make -C tests/unit/tools/project/source/aliases"
       }
     ]
@@ -206111,6 +206131,16 @@
         "source": "tests/unit/tools/project/source/aliases/main.c",
         "case": "it_checks_rebased_aliases_in_the_real_destination_scope_without_old_package_borrowing",
         "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_rebases_owned_package_alias_targets_in_independent_destination_scopes",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures",
+        "command": "make -C tests/unit/tools/project/source/aliases"
       }
     ]
   },
@@ -206136,6 +206166,16 @@
       {
         "source": "tests/unit/tools/project/source/aliases/main.c",
         "case": "it_checks_rebased_aliases_in_the_real_destination_scope_without_old_package_borrowing",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_rebases_owned_package_alias_targets_in_independent_destination_scopes",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures",
         "command": "make -C tests/unit/tools/project/source/aliases"
       }
     ]
@@ -206253,6 +206293,16 @@
         "source": "tests/unit/tools/project/source/selectors/main.c",
         "case": "it_preserves_original_matches_when_the_final_domain_gains_a_module",
         "command": "make -C tests/unit/tools/project/source/selectors"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_rebases_owned_package_alias_targets_in_independent_destination_scopes",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures",
+        "command": "make -C tests/unit/tools/project/source/aliases"
       }
     ],
     "standalone_header_command": [
@@ -206289,6 +206339,16 @@
         "source": "tests/unit/tools/project/source/selectors/main.c",
         "case": "it_preserves_original_matches_when_the_final_domain_gains_a_module",
         "command": "make -C tests/unit/tools/project/source/selectors"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_rebases_owned_package_alias_targets_in_independent_destination_scopes",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures",
+        "command": "make -C tests/unit/tools/project/source/aliases"
       }
     ]
   },
@@ -206697,6 +206757,22 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
         "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/aliases/packages.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify explicitly owned package alias rebasing, destination scopes, concrete selector composition, exact bytes and every edit allocation refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_rebases_owned_package_alias_targets_in_independent_destination_scopes",
+        "command": "make -C tests/unit/tools/project/source/aliases"
+      },
+      {
+        "source": "tests/unit/tools/project/source/aliases/main.c",
+        "case": "it_composes_owned_package_alias_rebasing_with_exact_selector_reexpression_and_failures",
+        "command": "make -C tests/unit/tools/project/source/aliases"
       }
     ]
   }

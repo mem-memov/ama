@@ -9,5 +9,6 @@ SOURCES := $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/con
     source/text/manager.c source/text/lines.c source/text/view.c source/unicode/decode.c \
     source/unicode/identifier.c source/unicode/word.c source/unicode/name.c
 LOCAL_SOURCES := main.c $(ROOT)/tools/project/source/copy/aliases/rebase.c \
+    $(ROOT)/tools/project/source/copy/selectors/reexpress.c \
     $(call source_files,$(ROOT)/tools/project/source/edits)
 include ../../../../../leaf.mk

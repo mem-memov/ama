@@ -3277,3 +3277,46 @@ policy and real final compiler/reference composition without completing T224.
 Next complete copied package-alias target rebasing alongside the already accepted
 local-alias strategy, then assemble full configuration/material preparation and
 safe public operation/publication boundaries.
+
+### Copied package alias target rebasing (active step)
+
+Generalize the already accepted exact alias-target helper to matched package
+or module document/scope pairs. A package file is eligible only when the outer
+operation explicitly owns that copied configuration; this helper never merges
+its table into an existing destination environment. Retain original normalized
+targets and unchanged keys. Actual module occurrences still use separate rooted
+C-target edits, and selectors use the proven concrete root union, so no guessed
+alias-prefix mapping is required. Repository records and unrelated bytes remain
+untouched. Validate matching profile/scope category and own-table local flags;
+retain existing authority, overlap, idempotence and failure-ownership checks.
+Test independent destination package scopes, ordinary/standard canonical targets,
+CRLF/unterminated inputs, empty/canonical tables, selector-edit composition,
+category/ownership mismatches and every package target-edit allocation ordinal.
+
+### Awaiting AMB-025 before complete configuration application
+
+Found an observable overlap conflict while designing the full configuration
+consumer: a same-version copy can require exact destination wildcard freezing,
+but the destination package.ini is also the source configuration protected by
+TOOL-02. Recorded the concrete edge-free a -> b example and both consequences in
+AMBIGUITIES.md#amb-025. Components prove root sets/edits; they cannot authorize
+which original bytes a public operation may modify. Stop affected implementation
+and ask for explicit overlap policy/spec authorization. Preserve the already
+prepared package-alias step and finish its read-only acceptance; do not claim
+T224 complete or start another TODO task while awaiting the answer.
+
+Owned package-alias acceptance completed independently of the AMB-025 policy:
+strict suite passed (`/tmp/ama-t224-package-aliases.exit = 0`), ASan/UBSan with
+all target-edit allocations passed (`/tmp/ama-t224-package-alias-sanitizers.exit = 0`),
+and project-tool linking passed (`/tmp/ama-t224-package-alias-tool.exit = 0`).
+Real parser/resolver tests preserve package aliases across independent destination
+versions, CRLF and unterminated repository records; empty/canonical tables,
+local/module authority checks, idempotent repeats and invalid own-table flags
+remain covered. Composed alias-target plus selector edits reparse and select the
+exact requested actual root. Full per-file/header checking passed with 3798 ready
+inputs and zero debt (`/tmp/ama-t224-package-alias-registry.exit = 0`).
+Checkpoint this verified step together with the open AMB-025 record; T224 remains
+unfinished and awaits explicit clarification/spec authorization. No later TODO
+work, shared-configuration exception, spec amendment or public command application
+is implemented while that decision is pending. Temporary logs are supplementary;
+the committed registry/task evidence and source/tests retain the result.

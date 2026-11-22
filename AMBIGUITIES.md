@@ -8,6 +8,11 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-025](#amb-025) is **Open** for T224: source and destination can share
+one package.ini, so required exact destination selector re-expression conflicts
+with the source-configuration edit prohibition. Await an explicit overlap rule;
+no public-operation precedence or workaround is inferred.
+
 [AMB-024](#amb-024) is **Resolved** for T224: an unchanged existing destination
 parent supplies final topology without copying the old structural-only parent.
 No implicit parent collision/replacement/removal is introduced; independent active
@@ -1782,3 +1787,68 @@ Each entry must contain:
   amendment: unchanged b supplies final topology, original context-only a is not
   copied solely for that purpose, and final reference laws remain mandatory.
   Independent active-unit obligations are unchanged. T224 may resume.
+
+<a id="amb-025"></a>
+
+## AMB-025 — A package configuration shared by copy source and destination
+
+- **Status:** Open.
+- **Current task:** [T224](TODO.md#t224), complete configuration/material
+  preparation after independently verified alias/selector/permission components.
+- **Authority:** [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02)
+  says not to edit original packages or their configuration outside the explicitly
+  removed source selection of a move. The same rule requires preserving the
+  destination's existing selector meanings, permits exact finite re-expression,
+  and says a newly cloned definition must not silently expand an old wildcard.
+  [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01) allows exact
+  source/destination operands in the same version.
+  [PKG-05](spec/project/packages.md#pkg-05) gives exact actual wildcard matches;
+  selecting one's own version/module is valid even though same-version references
+  need no explicit permission.
+- **Minimal example:** one actual ordinary version contains:
+
+  ```text
+  packages/vendor/pkg/v1.0.0/package.ini
+  packages/vendor/pkg/v1.0.0/src/a
+  packages/vendor/pkg/v1.0.0/tests/a/check
+  ```
+
+  Both a and its concrete test contain only `@!` and a newline. package.ini has:
+
+  ```ini
+  [dependencies]
+  /vendor/pkg/v1.0.0/src/*
+  ```
+
+  Copy src/a to src/b in that same version, with associated tests going to
+  tests/b/. There are no dependency edges, collisions or removal blockers. The
+  original explicit selected roots are `{a}`; the unchanged wildcard in the final
+  actual catalog selects `{a, b}`. Exact destination-set preservation requires
+  replacing the mask with the concrete original selector for a. But the affected
+  package.ini is simultaneously the original source configuration, outside the
+  selected source unit, and is protected by TOOL-02's source-edit prohibition.
+- **Precise question:** when one package.ini is both the source and destination
+  environment, does destination authority permit its exact set-preserving
+  representation changes (and only explicitly authorized EXTEND_PACKAGE additions),
+  or must the source-configuration prohibition refuse this copy? No overlap
+  precedence/exception is stated. This changes command success and actual modified
+  bytes; it cannot be decided by the permission-set algorithm alone.
+- **Options and consequences:**
+  1. Treat that shared configuration as a destination configuration. Permit
+     required exact re-expression of its original finite selected roots and only
+     TOOL-02-authorized concrete EXTEND_PACKAGE additions. Preserve all other
+     bytes and original definition/reference laws. The example succeeds without
+     silently enlarging the selected set; unrelated source configurations remain
+     protected. This needs an explicit narrow overlap exception in TOOL-02.
+  2. Keep the source-configuration prohibition absolute. Refuse whenever the
+     same-version copy/move would need to edit that shared package.ini; operations
+     requiring no configuration change remain possible. The example refuses even
+     though its module/test graph and topology are safe.
+- **Investigation boundary:** actual old/new catalog tests already establish the
+  wildcard's changed matches, exact baseline derivation and concrete re-expression.
+  They verify those independently prepared components, not permission to mutate a
+  shared source configuration through a public operation. No overlap policy,
+  heuristic precedence or command workaround has been implemented. T224 is paused
+  for this decision; no later TODO task is started.
+- **Decision/source:** awaiting the user's explicit answer. No specification
+  amendment for this overlap has been authorized.
