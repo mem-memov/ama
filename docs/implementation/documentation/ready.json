@@ -199451,6 +199451,16 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_retires_every_joined_tree_proposal_allocation_without_partial_acceptance",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_exact_unit_members_without_confusing_companions_or_prefix_peers",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_unit_member_output_at_invalid_interfaces_and_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
   },
@@ -199881,6 +199891,21 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_refuses_invalid_main_indexes_and_preserves_owned_physical_outputs",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_exact_unit_members_without_confusing_companions_or_prefix_peers",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_unit_member_output_at_invalid_interfaces_and_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
   },
@@ -200137,6 +200162,16 @@
       {
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_refuses_invalid_main_indexes_and_preserves_owned_physical_outputs",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_exact_unit_members_without_confusing_companions_or_prefix_peers",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_unit_member_output_at_invalid_interfaces_and_allocation_failure",
         "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
@@ -200420,6 +200455,11 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_checks_mapping_correspondence_only_for_complete_relations_without_allocating",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
   },
@@ -200491,6 +200531,11 @@
       {
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_checks_mapping_correspondence_only_for_complete_relations_without_allocating",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses",
         "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ],
@@ -200578,6 +200623,11 @@
       {
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_checks_mapping_correspondence_only_for_complete_relations_without_allocating",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses",
         "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
@@ -201966,6 +202016,16 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -205193,6 +205253,239 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_every_actual_copy_main_placement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/mapping/unit/member.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Translate exactly regular mains, flat companions and complete plus-tree members without confusing prefix peers or companion-like subdirectories, preserving ownership and atomic failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_exact_unit_members_without_confusing_companions_or_prefix_peers",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_unit_member_output_at_invalid_interfaces_and_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_module_stems_companions_and_subtrees_with_a_consistent_clone_relation",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      }
+    ]
+  },
+  "tools/project/source/mapping/unit/member.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Translate exactly regular mains, flat companions and complete plus-tree members without confusing prefix peers or companion-like subdirectories, preserving ownership and atomic failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_exact_unit_members_without_confusing_companions_or_prefix_peers",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_unit_member_output_at_invalid_interfaces_and_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_module_stems_companions_and_subtrees_with_a_consistent_clone_relation",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/tools/project/source/mapping/unit-members.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Translate exactly regular mains, flat companions and complete plus-tree members without confusing prefix peers or companion-like subdirectories, preserving ownership and atomic failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_exact_unit_members_without_confusing_companions_or_prefix_peers",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_unit_member_output_at_invalid_interfaces_and_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_places_module_stems_companions_and_subtrees_with_a_consistent_clone_relation",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      }
+    ]
+  },
+  "tools/project/source/copy/members/units.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact unit-member causes through mapped main geometry with durable owned capture descriptors and refuse unsealed, missing, conflicting or failed material.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/members/units.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact unit-member causes through mapped main geometry with durable owned capture descriptors and refuse unsealed, missing, conflicting or failed material.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/mapping/files/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact unit-member causes through mapped main geometry with durable owned capture descriptors and refuse unsealed, missing, conflicting or failed material.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/mapping/files/observation.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact unit-member causes through mapped main geometry with durable owned capture descriptors and refuse unsealed, missing, conflicting or failed material.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/units.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact unit-member causes through mapped main geometry with durable owned capture descriptors and refuse unsealed, missing, conflicting or failed material.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure",
         "command": "make -C tests/unit/tools/project/source/copy"
       },
       {

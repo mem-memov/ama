@@ -107,6 +107,7 @@ static void it_rejects_foreign_or_invalid_proposals_and_accepts_an_empty_complet
 #include "version-cases.c"
 #include "test-directory-cases.c"
 #include "tree-cases.c"
+#include "unit-members.c"
 #include "identity-cases.c"
 #include "propose-cases.c"
 #include "files-cases.c"
@@ -116,6 +117,9 @@ static void it_rejects_foreign_or_invalid_proposals_and_accepts_an_empty_complet
 #include "operand-cases.c"
 /** Run finite injectivity, identity ownership, publication and failure boundaries. */
 void run(void) {
+    it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses();
+    it_places_exact_unit_members_without_confusing_companions_or_prefix_peers();
+    it_preserves_unit_member_output_at_invalid_interfaces_and_allocation_failure();
     it_matches_common_catalog_for_every_two_ancestor_final_topology_in_src_and_tests();
     it_refuses_invalid_main_indexes_and_preserves_owned_physical_outputs();
     it_composes_version_demands_additional_suffixes_and_injective_clone_proposals();

@@ -42,6 +42,14 @@ void source_file_map_destroy(SourceFileMap *);
  */
 SourceFileMapStatus source_file_map_add(SourceFileMap *, const AcquisitionUnitEntry *,
     const char *destination, const SourceFileMapping **output);
+/** Adapt plain immutable captured membership into an arena-owned descriptor,
+ * then use normal insertion/diagnostics. Borrow original path/content through map
+ * teardown; own both translated relation keys. Even an equal repeat can retain
+ * one adapter allocation; no stack record is retained on success or failure.
+ * Validation/allocation failures poison sealing and preserve output/prefix.
+ * No I/O or source discovery; use only certified captured membership facts. */
+SourceFileMapStatus source_file_map_observation(SourceFileMap *, const char *source,
+    const SourceText *content, bool directory, const char *destination, const SourceFileMapping **output);
 /** Admit every row of one ready explicit tree placement, retaining any failed
  * prefix as unsealable. Other unit/test/declared mappings may be joined later.
  */

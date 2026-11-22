@@ -6,12 +6,15 @@
 #include "destinations.c"
 #include "physical.c"
 #include "prepared.c"
+#include "units.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors();
+    it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure();
     it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites();
     it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing();
     it_retires_every_actual_copy_main_placement_allocation_failure();

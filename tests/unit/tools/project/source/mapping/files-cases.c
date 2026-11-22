@@ -122,3 +122,30 @@ static void it_retires_every_file_map_allocation_and_invalid_capture_without_acc
     assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_INVALID);
     source_file_map_destroy(&files); destroy_test();
 }
+/** Plain capture adapters validate before allocation and keep incoming conflict
+ * descriptors alive after returning, including binary byte/kind disagreement. */
+static void it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses(void) {
+    setup_test(); AcquisitionUnitEntry entry = opaque_entry("/original/a", false, 0);
+    for (unsigned choice = 0; choice < 7; choice++) {
+        SourceFileMap files; source_file_map_init(&files, sources.allocator);
+        const char *source = choice == 0 ? NULL : choice == 1 ? "relative" : "/original/a";
+        const char *destination = choice == 2 ? "/" : choice == 3 ? "/final/" : "/final/a";
+        const SourceText *content = choice == 4 ? NULL : entry.file.content;
+        SourceFileMapping sentinel = {0}; const SourceFileMapping *row = &sentinel; size_t before = allocation_count;
+        assert(source_file_map_observation(&files, source, content, choice == 5, destination,
+            choice == 6 ? NULL : &row) == SOURCE_FILE_MAP_INVALID);
+        assert(row == &sentinel && !files.first && allocation_count == before);
+        assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_INVALID);
+        source_file_map_destroy(&files);
+    }
+    SourceFileMap files; source_file_map_init(&files, sources.allocator); const SourceFileMapping *row = NULL;
+    assert(source_file_map_observation(&files, entry.file.path, entry.file.content, false, "/final/a", &row) == SOURCE_FILE_MAP_OK);
+    const AcquisitionUnitEntry *owned = row->original;
+    assert(owned != &entry && owned->file.content == entry.file.content && !strcmp(owned->file.path, entry.file.path));
+    const SourceFileMapping *saved = row;
+    assert(source_file_map_observation(&files, entry.file.path, entry.file.content, false, "/final/a", &row) == SOURCE_FILE_MAP_OK && row == saved);
+    assert(source_file_map_observation(&files, entry.file.path, entry.file.content, false, "/different", &row) == SOURCE_FILE_MAP_CONFLICT && row == saved);
+    assert(files.requester && files.requester != owned && files.requester->file.content == entry.file.content);
+    assert(!strcmp(files.requester->file.path, "/original/a") && files.conflict == saved);
+    source_file_map_destroy(&files); destroy_test();
+}

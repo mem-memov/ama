@@ -10,6 +10,7 @@
 #include "../../../../../../tools/project/source/operands/rooted.h"
 #include "../../../../../../tools/project/source/graph/sites.h"
 #include <stdint.h>
+#include "../../../../../../tools/project/source/copy/members/units.h"
 /** Choose the least unused synthetic (device 0,inode) class. At most the finite
  * original-plus-added row count can block candidates; labels model distinct new
  * entries and do not predict host inodes. All real original classes are retained. */
@@ -61,6 +62,12 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     SourceCloneMap map; source_clone_map_init(&map, sources.allocator, &capture);
     assert(source_copy_place_version_mains(&map, &destinations, &version, names, 4, &placement) == SOURCE_COPY_MAINS_OK);
     assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
+    SourceFileMap files; source_file_map_init(&files, sources.allocator); SourceCopyUnitsIssue units;
+    assert(source_copy_map_unit_members(&files, &copy, &map, &units) == SOURCE_COPY_UNITS_OK);
+    assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_OK);
+    size_t mapped = 0;
+    for (const SourceFileMapping *file = files.first; file; file = file->next) { mapped++; }
+    assert(mapped == 4);
     SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
     assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
     const char *directories[] = {"packages/target", "packages/target/new", "packages/target/new/v3.0.0",
@@ -82,6 +89,9 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     for (size_t i = 0; i < 4; i++) {
         row = map.first;
         while (row && row->original != destinations.entries[i].source) { row = row->next; } assert(row);
+        const SourceFileMapping *file = files.first;
+        while (file && strcmp(file->source, source_path(row->original->text))) { file = file->next; }
+        assert(file && !strcmp(file->destination, row->path) && !file->original->directory);
         const DeliverySourceDefinition *definition = copy_definition(row->original->logical_path);
         const SourceText *original = definition->dependencies ? definition->dependencies->origin.source : row->original->text;
         source_text_edits_init(&edits[i], sources.allocator, original);
@@ -109,6 +119,6 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     assert(source_graph_sites(analysis.original.response.definitions, final.response.definitions, &map, NULL, 0, provenance, &sites) == SOURCE_SITES_OK);
     source_compiler_client_destroy(&final); source_image_capture_destroy(&final_capture);
     for (size_t i = 0; i < 4; i++) { source_text_edits_destroy(&edits[i]); }
-    source_manager_destroy(&prepared); source_observed_image_destroy(&observed); source_clone_map_destroy(&map);
+    source_manager_destroy(&prepared); source_observed_image_destroy(&observed); source_file_map_destroy(&files); source_clone_map_destroy(&map);
     source_copy_destinations_destroy(&destinations); source_clone_map_destroy(&explicit_map); source_arena_destroy(&arena); finish_copy();
 }

@@ -8,6 +8,12 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-023](#amb-023) is **Open** for T224: associated-test placement is undefined
+when an ordinary src source is explicitly copied to the standard namespace or
+the tests area. TOOL-01 allows graph-safe root-kind changes, while TOOL-02 derives
+test destinations through PKG-08, whose association exists only for ordinary src.
+The affected implementation is paused pending an explicit user decision.
+
 [AMB-022](#amb-022) is **Resolved** for T224: an unselected original
 reference target must survive. Reusing its complete name for a replacement does
 not preserve that definition. The user authorized recording this rule in TOOL-02;
@@ -1610,3 +1616,85 @@ Each entry must contain:
   question: “Отказывать: некопируемый исходный целевой модуль должен сохраниться
   (рекомендуется).” This selects refusal and authorizes the corresponding TOOL-02
   clarification. T224 resumes; the task remains unfinished until full acceptance.
+
+
+<a id="amb-023"></a>
+
+## AMB-023 — Associated tests when copied code changes its root kind or src/tests area
+
+- **Status:** Open.
+- **Current task:** [T224](TODO.md#t224), complete physical copy/test material
+  placement after verified checkpoint `2b2bb0b8`. Shared unit-member translation
+  and mapped unit-cause joining are implemented/tested after that checkpoint;
+  no public mutation command or completed task is claimed.
+- **Authority:** [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
+  requires copying an active ordinary src module together with its PKG-08 tests,
+  allows explicit ordinary/standard root-kind changes when the complete final
+  graph and configuration requirements hold, and does not forbid explicit src
+  versus tests destination changes. [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02)
+  says to map associated tests to the PKG-08 test directory of the source copy.
+  [PKG-08](spec/project/packages.md#pkg-08) defines that directory only for an
+  ordinary src module: replace src with tests and retain its logical suffix as
+  an ordinary physical directory. [PKG-05](spec/project/packages.md#pkg-05) and
+  [PKG-09](spec/project/packages.md#pkg-09) constrain actual edges; they cannot
+  determine where accompanying test files should be stored.
+- **Minimal example:** the original selected local version contains:
+
+  ```text
+  packages/acme/demo/v1.0.0/
+    package.ini
+    src/a             # contents: @! followed by a newline
+    tests/a/check     # contents: @! followed by a newline
+  ```
+
+  Consider an explicitly configured standard-root destination whose final module
+  name is `//copied a`, or an ordinary destination with final name
+  `/acme/demo/v1.0.0/tests/copied a`. Both leaf module bodies have no authored
+  outgoing edges, so the question does not arise from a forbidden // -> / or
+  src -> tests edge. These are proposed operations, not implemented commands.
+
+  ```text
+  ordinary src/a  ------copy------> //copied a
+       |
+       +-- tests/a/check ---------> where?
+
+  ordinary src/a  ------copy------> ordinary tests/copied a
+       |
+       +-- tests/a/check ---------> where?
+  ```
+
+  Neither destination is an ordinary src module with a PKG-08 associated
+  directory. Reusing tests/copied a as both the copied main and an ordinary test
+  directory also introduces a file/directory collision; choosing plus storage,
+  another project/version or a different test directory would be an additional
+  rule, not an inference from type checking.
+- **Read-only investigation:** the existing ordinary destination phase derives
+  associated-test namespaces exclusively with the shared PKG-08 src association
+  and reports a namespace refusal for these inputs. Its documented boundary
+  explicitly leaves root-kind planning to an outer stage; this is not evidence
+  that the specification already forbids such operations. Existing tests prove
+  normal src -> src mapping and explicit standard selections, not this missing
+  placement policy. No arbitrary path or dropped tests have been implemented.
+- **Precise question:** must source operations preserve root kind and ordinary
+  src/tests area, refusing these transitions; or should exceptional transitions
+  remain allowed with an explicit mapping for accompanying test directories?
+  If automatic exceptional placement is wanted instead, its destination project,
+  version and directory rule must be specified. The reverse case (a standard/test
+  module becoming ordinary src) must likewise define its required final tests;
+  source transformations cannot invent test programs.
+- **Options and consequences:**
+  1. Preserve root kind and src/tests area for copy/move. This keeps automatic test
+     placement total and simple, but narrows TOOL-01's currently permitted graph-safe
+     root changes and needs explicit specification authorization.
+  2. Keep exceptional transitions with explicit test-directory mapping. Ordinary
+     src -> src placement remains automatic. This preserves flexibility but requires
+     an explicit request/configuration contract and the same injectivity, collision,
+     association, final typing and safe-removal checks for all provided maps.
+  3. Define an automatic exceptional layout. The compiler cannot choose its package
+     ownership or physical location; an exact additional product rule is required.
+- **Implementation consequence:** pause T224 before implementing test-material
+  destinations or declaring cross-namespace operations supported/refused. Preserve
+  already tested unit-member components, collect their pending read-only coverage
+  checks and wait for the user's answer. No other TODO task is started.
+- **Decision/source:** awaiting the user's explicit answer. No specification
+  change is authorized by this entry or by the continuing implementation request.

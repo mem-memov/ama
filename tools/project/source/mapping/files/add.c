@@ -5,10 +5,16 @@
  * Prepare all allocations before publishing a new row.
  */
 #include <string.h>
-#include "files.h"
+#include "internal.h"
 /** Paths are already normalized; enforce only the prepared-key interface shape. */
 static bool key(const char *path) {
     return path && path[0] == '/' && (path[1] == 0 || path[strlen(path) - 1] != '/');
+}
+/** Use one key/payload contract for borrowed captures and owned closure adapters. */
+bool source_file_map_entry_valid(const AcquisitionUnitEntry *entry, const char *destination) {
+    return entry && key(entry->file.path) && key(destination) && entry->file.state == DELIVERY_FILE_PRESENT
+        && (entry->directory || (entry->file.path[1] && destination[1]))
+        && (entry->directory ? entry->file.content == NULL : entry->file.content != NULL);
 }
 /** Independent captures of one original path must agree in shape and every byte. */
 static bool same(const AcquisitionUnitEntry *left, const AcquisitionUnitEntry *right) {
@@ -20,10 +26,7 @@ SourceFileMapStatus source_file_map_add(SourceFileMap *map, const AcquisitionUni
     const char *destination, const SourceFileMapping **output) {
     if (!map || map->ready) { return SOURCE_FILE_MAP_INVALID; }
     if (map->status != SOURCE_FILE_MAP_OK) { return map->status; }
-    if (!entry || !key(entry->file.path) || !key(destination) || !output
-        || entry->file.state != DELIVERY_FILE_PRESENT
-        || (!entry->directory && (!entry->file.path[1] || !destination[1]))
-        || (entry->directory ? entry->file.content != NULL : entry->file.content == NULL)) {
+    if (!output || !source_file_map_entry_valid(entry, destination)) {
         return map->status = SOURCE_FILE_MAP_INVALID;
     }
     map->requester = entry;

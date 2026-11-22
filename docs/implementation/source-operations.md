@@ -2670,3 +2670,87 @@ placement and expanded copy material, then complete context/test/declared/opaque
 file-map joining. Exact destination configuration edits, whole-operation final
 proof, freshness/journal recovery and public commands remain mandatory. T236 and
 T237 remain dependent and have not been started. No ambiguity is open.
+
+### Shared exact structural unit-member placement (active step)
+
+Checkpoint `2b2bb0b8` preserves the preceding verified material/proof milestone;
+T224 remains open. Extract exact module-unit translation from raw-tree placement
+into `mapping/unit/`: a regular main, flat nonempty dot companions, and the plus
+root/full descendant tree are the three disjoint permitted forms. Keep directory
+selection's relative geometry separate. The result joins the destination main
+with the exact physical storage suffix; no import-text or logical-prefix rewriting
+occurs. Nonmembers allocate nothing; malformed interfaces and allocation failure
+preserve output. Caller supplies normalized captured keys and separately proves
+whole-unit completeness, final topology and destination permission.
+
+Reuse the helper from actual `source_tree_placement_build`, removing the duplicate
+private classifier. This supplies both a real existing consumer and the foundation
+for expanded-copy member causes. Test independently enumerated main/companion/
+plus and nonmember partitions, boundary prefix names, nested opaque files, spaces,
+wrong file/directory shapes, output ownership and allocation failure; retain the
+existing real raw-tree/candidate/file-map compositions. Recognition is a finite
+exact suffix classification, and checked arena joining bounds storage by the two
+keys' lengths. A flat companion cannot contain '/'; a plus subtree can. No changed
+specification behavior or public operation support is claimed.
+
+Shared unit-member translation now drives real raw-tree module placement; the
+superseded private classifier is removed. Strict existing mapping compositions
+plus independent exact-member/ownership/failure cases passed
+(`/tmp/ama-t224-unit-member-mapping-renewed.exit`, 0). The first compile caught the
+new narrow header's missing explicit stdbool include; corrected standalone header
+compilation also passed. New per-file entries link the helper, header and test
+input to those actual cases and existing complete-tree compositions.
+
+Next join immutable closure unit-member causes with the actual clone relation.
+Adapt plain captured member bytes into arena-owned entry descriptors before the
+existing file-map insertion, avoiding borrowed stack diagnostics. Share the same
+entry-shape validator with ordinary captured-entry insertion; do not duplicate
+that contract. For each UNIT_MEMBER cause require an explicit original-to-copy
+main row, translate by the shared unit helper and join through the file map's
+injectivity/byte agreement rules. Missing mapped context/active causes refuse;
+there is no guessed destination. Other cause families (tests/config/guidance/
+declared groups) remain explicit later passes, and the map stays unsealed until
+those passes finish. This stage neither classifies needed final contexts nor
+claims complete unit/test material. Test actual copy closures with opaque companions
+and plus data, map conflicts/missing mains and every allocation failure; consume
+this production unit join in the complete projected-version compiler fixture.
+
+Mapped unit-member joining now consumes actual closure causes and the ready main
+relation, with arena-owned capture descriptors shared through the existing exact
+file-map admission. The actual projected-version compiler/site fixture consumes
+this production unit map, rather than only independent main candidates. Raw
+companions, complete plus data/empty directory shapes, repeated causes, missing
+main correspondence, conflicting outputs, durable failed witnesses and every
+measured allocation failure passed. The first combined test run exposed opaque
+fixture files left behind for later cases; teardown now retires all owners before
+removing that profile's extras. No production expectation was weakened.
+
+Strict corrected copy/member composition passed
+(`/tmp/ama-t224-copy-unit-members-renewed.exit`, 0). Both mapping and actual-copy
+compositions passed ASan/UBSan with counted zero-live teardown
+(`/tmp/ama-t224-unit-member-mapping-sanitizers.exit`,
+`/tmp/ama-t224-copy-unit-members-sanitizers.exit`, both 0). Strict standalone tool
+link passed (`/tmp/ama-t224-unit-material-tool-build.exit`, 0). Complete per-file
+coverage passed (`/tmp/ama-t224-unit-material-coverage.exit`, 0): 3757 ready inputs,
+zero debts, including independent header probes. No acceptance process remains
+active. Doxygen generation/release conformance remain final task gates, not claims
+of this intermediate preparation boundary.
+
+### Awaiting AMB-023; do not choose test locations
+
+Read-only review of the next test-material pass found
+[AMB-023](../../AMBIGUITIES.md#amb-023). TOOL-01 permits graph-safe ordinary/standard
+root-kind changes; TOOL-02 maps associated tests through PKG-08, defined only for
+ordinary src destinations. The concrete leaf-module example isolates missing
+storage policy from forbidden graph edges. Explicit src -> tests destinations
+likewise lack a specified corresponding association, and reverse transitions
+must not invent new test programs. Record the user's decision and obtain explicit
+specification authorization before changing that contract. No exceptional layout,
+implicit dropping of tests or blanket rejection has been implemented.
+
+The new unit-member components are verified but T224 is unfinished and paused.
+Save a transparent intermediate checkpoint with this question; do not archive the
+task or advance to T236/T237. The clarification question was sent through the user
+input tool; no answer has arrived. On resumption, reconcile the exact answer with
+TOOL-01/02 and PKG-08 before implementing the remaining deepest associated-test,
+context/declared/environment maps, whole-operation proof and recoverable publication.

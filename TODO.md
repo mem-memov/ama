@@ -102,7 +102,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t224"></a>
 
 - [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
-  Status: integration follows accepted bridge [T273](DONE.md#t273) and accepted
+  Status: awaiting [AMB-023](AMBIGUITIES.md#amb-023): associated-test placement
+  for explicit root-kind/src-tests transitions is undefined. Further affected
+  implementation is paused; no operation support or completion is claimed.
+  Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;
   entry-free whole-domain export and its read-only command are implemented/tested.

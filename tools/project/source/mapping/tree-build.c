@@ -6,6 +6,7 @@
  */
 #include <string.h>
 #include "tree.h"
+#include "unit/member.h"
 /** Directory suffixes keep component boundaries, including a filesystem-root source. */
 static const char *directory_suffix(const char *path, const char *source) {
     size_t length = strlen(source);
@@ -14,18 +15,6 @@ static const char *directory_suffix(const char *path, const char *source) {
     if (!*suffix) { return suffix; }
     if (source[length - 1] != '/' && *suffix != '/') { return NULL; }
     return *suffix == '/' ? suffix + 1 : suffix;
-}
-/** The module unit has three disjoint forms: main, dot-file companion, plus tree. */
-static const char *module_suffix(const AcquisitionUnitEntry *entry, const char *source) {
-    size_t length = strlen(source);
-    if (strncmp(entry->file.path, source, length)) { return NULL; }
-    const char *suffix = entry->file.path + length;
-    if (!*suffix) { return entry->directory ? NULL : suffix; }
-    if (*suffix == '.' && suffix[1]) { return entry->directory ? NULL : suffix; }
-    if (*suffix == '+' && (suffix[1] == '/' || !suffix[1])) {
-        return !suffix[1] && !entry->directory ? NULL : suffix;
-    }
-    return NULL;
 }
 SourcePlacementStatus source_tree_placement_build(SourceTreePlacement *placement,
     const SourceTreeSelection *selection, const char *destination) {
@@ -42,11 +31,20 @@ SourcePlacementStatus source_tree_placement_build(SourceTreePlacement *placement
     }
     SourceTreePlacementEntry **tail = &placement->entries;
     for (const AcquisitionUnitEntry *entry = selection->members; entry; entry = entry->next) {
-        const char *suffix = directory ? directory_suffix(entry->file.path, selection->operand.path)
-            : module_suffix(entry, selection->operand.path);
-        if (!suffix) { placement->failed_path = entry->file.path; return placement->status = SOURCE_PLACEMENT_INVALID; }
-        const char *separator = directory && *suffix && destination[strlen(destination) - 1] != '/' ? "/" : "";
-        const char *path = source_arena_join(&placement->arena, placement->destination, separator, suffix);
+        const char *path = NULL;
+        if (directory) {
+            const char *suffix = directory_suffix(entry->file.path, selection->operand.path);
+            if (!suffix) { placement->failed_path = entry->file.path; return placement->status = SOURCE_PLACEMENT_INVALID; }
+            const char *separator = *suffix && destination[strlen(destination) - 1] != '/' ? "/" : "";
+            path = source_arena_join(&placement->arena, placement->destination, separator, suffix);
+        } else {
+            SourceUnitPathStatus status = source_unit_member_path(&placement->arena, selection->operand.path,
+                placement->destination, entry->file.path, entry->directory, &path);
+            if (status != SOURCE_UNIT_PATH_OK) {
+                placement->failed_path = entry->file.path;
+                return placement->status = status == SOURCE_UNIT_PATH_MEMORY ? SOURCE_PLACEMENT_MEMORY : SOURCE_PLACEMENT_INVALID;
+            }
+        }
         SourceTreePlacementEntry *row = path ? source_arena_allocate(&placement->arena, sizeof(*row)) : NULL;
         if (!row) { return placement->status = SOURCE_PLACEMENT_MEMORY; }
         *row = (SourceTreePlacementEntry){.original = entry, .path = path};
