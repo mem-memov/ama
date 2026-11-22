@@ -136,7 +136,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   namespace/area changes before allocation. Complete physical test associations,
   opaque test material, nested ownership across versions, real unit overlap and
   final compiler/site composition pass strict and ASan/UBSan checks. Full per-file
-  registry checks 3763 ready inputs with zero debt. T224 is active and unfinished.
+  registry checks 3768 ready inputs with zero debt. Declared input placement now
+  preserves structural authority/version-relative suffixes, diagnoses shared
+  destination conflicts, and keeps configurations with their environment owner;
+  strict/allocation/sanitizer checks pass. T224 is active and unfinished.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.

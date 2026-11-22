@@ -9,21 +9,6 @@
 #include "../../../acquisition/closure/tests/association.h"
 #include "source/path/logical.h"
 #include <string.h>
-/** Version tables are exact authorities, not first-match lookup alternatives. */
-static bool versions_valid(const SourceVersionPlacement *versions, size_t count) {
-    if (count && !versions) { return false; }
-    for (size_t i = 0; i < count; i++) {
-        ModulePathShape shape;
-        if (!versions[i].identity || !versions[i].physical || versions[i].physical[0] != '/'
-            || !module_path_describe((const unsigned char *)versions[i].identity,
-                strlen(versions[i].identity), &shape)
-            || shape.root != MODULE_ROOT_PROJECT || shape.extent != MODULE_PATH_VERSION) { return false; }
-        for (size_t j = 0; j < i; j++) {
-            if (!strcmp(versions[i].identity, versions[j].identity)) { return false; }
-        }
-    }
-    return true;
-}
 /** Add one unique source's association, with a destination selected by full version. */
 static SourceCopyTestsStatus association(SourceFileMap *files, const SourceCloneMapping *clone,
     const SourceVersionPlacement *versions, size_t count, SourceCopyTestAssociation **head) {
@@ -59,7 +44,7 @@ static SourceCopyTestsStatus association(SourceFileMap *files, const SourceClone
 SourceCopyTestsStatus source_copy_test_associations(SourceFileMap *files, const SourceCopyClosure *copy,
     const SourceCloneMap *mains, const SourceVersionPlacement *versions, size_t count,
     const SourceCopyTestAssociation **output, SourceCopyTestsIssue *issue) {
-    if (!versions_valid(versions, count)) { return SOURCE_COPY_TESTS_VERSION; }
+    if (!source_version_placements_valid(versions, count)) { return SOURCE_COPY_TESTS_VERSION; }
     SourceCopyTestAssociation *head = NULL;
     for (const AcquisitionMember *member = copy->closure.members.first; member; member = member->next) {
         for (const AcquisitionMemberCause *cause = member->causes; cause; cause = cause->next) {

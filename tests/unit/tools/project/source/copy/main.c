@@ -8,12 +8,17 @@
 #include "prepared.c"
 #include "units.c"
 #include "tests.c"
+#include "declared.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_validates_complete_explicit_version_placement_tables_without_allocation();
+    it_maps_declared_assets_with_explicit_origins_and_preserves_environment_ownership();
+    it_refuses_conflicting_shared_declared_input_destinations();
+    it_retires_every_declared_material_allocation_and_refuses_invalid_interfaces();
     it_maps_nested_test_material_by_deepest_source_association_across_versions();
     it_maps_complete_test_trees_and_agrees_with_actual_unit_topology();
     it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures();

@@ -202057,6 +202057,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_maps_nested_test_material_by_deepest_source_association_across_versions",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_validates_complete_explicit_version_placement_tables_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_declared_assets_with_explicit_origins_and_preserves_environment_ownership",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_conflicting_shared_declared_input_destinations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_declared_material_allocation_and_refuses_invalid_interfaces",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -205682,6 +205702,166 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_maps_nested_test_material_by_deepest_source_association_across_versions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/mapping/physical/version.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate explicit ordinary destination-version storage authorities.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_validates_complete_explicit_version_placement_tables_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_declared_assets_with_explicit_origins_and_preserves_environment_ownership",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_conflicting_shared_declared_input_destinations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_declared_material_allocation_and_refuses_invalid_interfaces",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/mapping/physical/version.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reject ambiguous destination-version tables before using any entry.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_validates_complete_explicit_version_placement_tables_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_declared_assets_with_explicit_origins_and_preserves_environment_ownership",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_conflicting_shared_declared_input_destinations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_declared_material_allocation_and_refuses_invalid_interfaces",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/members/declared.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join explicitly declared raw inputs with structural and version-local copy placement.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_declared_assets_with_explicit_origins_and_preserves_environment_ownership",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_conflicting_shared_declared_input_destinations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_declared_material_allocation_and_refuses_invalid_interfaces",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/members/declared.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Project exact declared input causes without losing shared-placement conflicts.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_declared_assets_with_explicit_origins_and_preserves_environment_ownership",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_conflicting_shared_declared_input_destinations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_declared_material_allocation_and_refuses_invalid_interfaces",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/declared.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise explicit input placement, version-relative assets and shared-cause conflicts.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_validates_complete_explicit_version_placement_tables_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_declared_assets_with_explicit_origins_and_preserves_environment_ownership",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_conflicting_shared_declared_input_destinations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_declared_material_allocation_and_refuses_invalid_interfaces",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]

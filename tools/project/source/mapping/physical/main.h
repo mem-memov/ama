@@ -8,11 +8,7 @@
 #ifndef AMA_PROJECT_SOURCE_MAIN_PLACEMENT_H
 #define AMA_PROJECT_SOURCE_MAIN_PLACEMENT_H
 #include "source/memory/arena.h"
-/** One proposed selected ordinary version root; keys are borrowed during a call.
- * physical is an already normalized absolute directory key. This record does not
- * fabricate a compiler ModuleVersion or claim final whole-version selection.
- */
-typedef struct { const char *identity, *physical; } SourceVersionPlacement;
+#include "version.h"
 /** Invalid index and missing requested main are separate preparation failures. */
 typedef enum { SOURCE_MAIN_PATH_OK, SOURCE_MAIN_PATH_INVALID,
     SOURCE_MAIN_PATH_MISSING, SOURCE_MAIN_PATH_MEMORY } SourceMainPathStatus;

@@ -2854,3 +2854,57 @@ registry also passed but is not substituted for this final run. No process is
 active. No Doxygen/release conformance renewal or public mutation acceptance is
 claimed at this intermediate T224 boundary. Save a transparent checkpoint, then
 continue context/declared/environment placement and full operation acceptance.
+
+### Declared raw inputs after structural maps (active step)
+
+Purpose: join actual DECLARED_INPUT causes after explicit/unit/test placement.
+Preexisting file rows are the explicit/structural authority. For each unique
+member, remember that authority before inserting any cause; otherwise a fallback
+inserted for its first requester could hide a conflicting fallback required by a
+later requester. Without a preexisting placement, use the exact original bound
+version root and the requiring role's actual destination-version candidate.
+Preserve the entire version-relative suffix. Every cause proposes through the
+same file relation, so a shared asset requiring different outputs refuses.
+Unversioned/outside inputs need supplied placement authority; this internal stage
+returns UNPLACED instead of guessing a base or defining a new command default.
+Original package configurations remain owned by the environment transformation,
+including when a caller lists them as declared data.
+
+Extract the already exercised complete destination-version-table validation into
+its physical version component, shared by test associations and declared inputs.
+Retain canonical ordinary version identities, unique entries and explicit absolute
+roots, with physical normalization remaining a prior caller obligation.
+
+Proof: each member has one immutable initial structural authority or independently
+computed per-cause fallback. Every required cause is visited. The file relation
+admits exactly equal original-kind/bytes/output repetitions; different fallback
+outputs therefore cannot be hidden by enumeration order. Finite scans bound work;
+all new strings/adapters remain in the file arena through refusal cleanup.
+Acceptance: actual closure/destination compositions for bound, unversioned,
+explicitly placed, configuration, shared-version-conflict, malformed-table and
+all-allocation partitions; strict build, sanitizer and full per-file checks.
+
+The first strict declared-material run failed its test-support zero-live check
+(`/tmp/ama-t224-declared-material.exit`, 2): the profile destroyed the counted
+allocator before retiring its separate declaration text/arena owners. The new
+fixture teardown destroys closure/tree borrowers, removes the asset while its
+owned path is live, retires declaration bytes/arena, then destroys original test
+owners. Production behavior was unchanged. The complete corrected strict leaf
+passed `/tmp/ama-t224-declared-material-renewed.exit` (0), including existing
+real final compiler/site composition and all new declared cases.
+
+Active jobs over frozen implementation/test inputs: copy ASan/UBSan session
+39412 (`/tmp/ama-t224-declared-sanitizers.log`, `.exit`) and complete registry
+session 99741 (`/tmp/ama-t224-declared-registry.log`, `.exit`). Strict tool build
+already passed `/tmp/ama-t224-declared-tool.exit` (0). Collect both before
+checkpointing; do not infer acceptance from launch. Context and complete final
+material/environment/publication remain unfinished T224 work.
+
+Declared-material ASan/UBSan completed successfully:
+`/tmp/ama-t224-declared-sanitizers.exit` is 0 under the same strict sanitizer
+flags and explicit LSan limitation recorded above. The final registry also
+completed successfully: `/tmp/ama-t224-declared-registry.exit` is 0, checking
+3768 ready inputs with zero debt, including both new independent headers.
+Strict tool build is 0 as recorded above. No process is active. This intermediate
+boundary is ready to checkpoint; T224 remains open for context/environment/full
+material and transaction/public command acceptance.
