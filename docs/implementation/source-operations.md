@@ -2908,3 +2908,75 @@ completed successfully: `/tmp/ama-t224-declared-registry.exit` is 0, checking
 Strict tool build is 0 as recorded above. No process is active. This intermediate
 boundary is ready to checkpoint; T224 remains open for context/environment/full
 material and transaction/public command acceptance.
+
+### Broader source-composition gate after declared material
+
+Checkpoint `4e616dd1` preserves the accepted declared-input boundary. The shared
+version type moved to its focused header and is consumed through main placement
+and test-material paths too. Therefore run the complete source-operation parent
+with strict C11 flags before changing those shared inputs again:
+`make -C tests/unit/tools/project/source C_COMPILER_FLAGS='-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L'`.
+Active session 84709, `/tmp/ama-t224-source-composition.log` and `.exit`.
+Freeze these sources until the result is collected. This is a subsystem
+composition run, not whole-project release acceptance. Context/environment maps,
+full final-material assembly and recoverable public commands remain pending.
+
+The strict complete source-operation parent finished successfully:
+`/tmp/ama-t224-source-composition.exit` is 0. Every registered leaf, including
+original/final compiler joins, ran and cleaned successfully. No active job remains.
+
+### Local alias rebasing for rooted-use occurrence plans (active step)
+
+Prepare parsed module-INI target edits from its actual common original alias
+scope. Replace targets with their exact original normalized paths, preserving
+keys and every outside byte. Package alias expansion is thereby materialized
+without copying any package table into the module. This strategy accompanies
+separately rooted actual module-use occurrence edits; destination nonshadowing,
+final scope and graph/site validation remain mandatory outer gates. No unused
+alias becomes a dependency or triggers target loading.
+
+Contract: document, own module scope and edit input share one exact SourceText;
+match aliases through their parser-retained name spans, not a textual key search.
+Validate complete table correspondence and insert only authoritative target spans
+through the existing byte-edit owner. Equal repeat edits are idempotent. Conflicts
+and allocation failures preserve failed prefixes but poison application.
+Finite alias/table/edit scans plus replacement bytes bound work and storage.
+Tests use actual INI parser and scope normalizer, ordinary/standard bases,
+package-prefix references, multiword keys, CRLF/comments, empty/canonical inputs,
+wrong owners/profiles/table shapes, pending edit conflicts and every allocation.
+
+Local target rebasing passed the strict leaf
+(`/tmp/ama-t224-local-aliases.exit`, 0). The real destination composition also
+passed (`/tmp/ama-t224-local-alias-destination.exit`, 0): reparse generated INI
+and construct a new ordinary package scope with no old aliases, or a separate
+standard scope; every retained local key resolves to the original target. A new
+package's same-key alias still makes final module-scope admission refuse. This
+checks actual parser/resolver handoffs, not just an expected output substring.
+
+ASan/UBSan passed `/tmp/ama-t224-local-alias-sanitizers.exit` (0), under the
+previously recorded strict flags/LSan limitation and counted teardown. Strict
+standalone tool link passed `/tmp/ama-t224-local-alias-tool.exit` (0). Active
+jobs: parent dispatcher `make -C tests/unit/tools/project/source aliases` session
+4064 (`/tmp/ama-t224-local-alias-parent.log`, `.exit`) and frozen-input complete
+registry session 50555 (`/tmp/ama-t224-local-alias-registry.log`, `.exit`). Collect
+both before checkpointing. No implementation/test/registry edits while they run.
+Remaining T224 obligations still include context/environment selection, complete
+physical material, whole-operation final proof and recoverable publication.
+
+
+Local-alias parent dispatch passed `/tmp/ama-t224-local-alias-parent.exit` (0).
+Final frozen-input registry passed `/tmp/ama-t224-local-alias-registry.exit` (0):
+3772 ready inputs and zero debt, including standalone header compilation. No job
+remains active. Doxygen/release/public mutation acceptance remains outstanding.
+
+### Awaiting AMB-024: existing different destination parent
+
+Read-only review of the next context-inclusion step isolated
+[AMB-024](../../AMBIGUITIES.md#amb-024). The source controller correctly retains
+original parent context; final plus topology may instead already be supplied by
+an existing different destination parent. The normative rules do not explicitly
+say whether to omit the old context or treat it as a colliding additional copy.
+Record the minimal same-version, same-src-area, zero-edge example in the registry
+and ask before implementing either inclusion policy. This is separate from
+namespace changes resolved by AMB-023. Save the verified alias/material stages as
+an intermediate checkpoint, leave T224 open, and do not advance other TODO tasks.

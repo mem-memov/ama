@@ -8,6 +8,13 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-024](#amb-024) is **Open** for T224: a copied child can be placed under an
+already existing different parent module. The rules retain original structural
+context but do not say whether that original context must replace the existing
+parent or can be omitted when final topology is already valid. Implementation
+pauses before choosing the context inclusion/collision policy.
+
+
 [AMB-023](#amb-023) is **Resolved** for T224: copy/move preserve ordinary
 versus standard root kind and the src/tests area. Whole module branches and
 corresponding test branches follow their respective areas. The user explicitly
@@ -1707,3 +1714,69 @@ Each entry must contain:
   and src/tests area, including replacement/dependency modes; its conformance row
   records the same boundary. Existing cross-root dependencies remain governed by
   PKG-05/09. No new exceptional storage policy is needed.
+
+<a id="amb-024"></a>
+
+## AMB-024 — Original context when a child joins an existing different parent
+
+- **Status:** Open.
+- **Current task:** [T224](TODO.md#t224), structural-context placement after
+  verified unit/test/declared material and local-alias preparation.
+- **Authority:** [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
+  retains required structural ancestor context under PKG-07, makes destinations
+  exact and refuses colliding additional units without replacement.
+  [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02) requires coherent
+  physical/nominal maps, preserves reference bindings and rejects orphan contexts.
+  [PKG-07](spec/project/packages.md#pkg-07) retains ancestor mains/companions as
+  context without selecting their other children, tests or dependencies.
+  [SRC-05](spec/language/source-and-names.md#src-05) requires an actual parent main
+  for plus storage but does not require that main to originate from the child's
+  old parent. AMB-023's namespace/area restriction is satisfied in this example.
+- **Minimal example:** in one selected ordinary package version, all extensionless
+  files shown below contain only `@!` and a newline, so there are no authored
+  dependency edges. In particular, child does not refer to a or b.
+
+  ```text
+  src/a
+  src/a+/child
+  src/b
+  tests/a/child/check
+  ```
+
+  Copy `src/a+/child` to `src/b+/copy` within that version, without --replace.
+  The destination child and its associated tests do not exist yet.
+  Whole-unit/test copying itself is defined:
+
+  ```text
+  src/a+/child          -> src/b+/copy
+  tests/a/child/check   -> tests/b/copy/check
+  ```
+
+  Original a is retained as a structural context by source preparation. Existing b
+  already supplies the parent required to make the proposed b+ directory valid.
+- **Precise question:** is original a still required copy material, leading to
+  a proposed a -> b context mapping and default collision refusal; or may it be
+  omitted because unchanged b already supplies the final required topology?
+  This determines selected files, clone identities, collision/removal sets and
+  whether this otherwise graph-safe copy succeeds. It is not a choice of memory
+  representation or path-normalization algorithm.
+- **Options and consequences:**
+  1. Reuse the existing destination parent for topology. Do not copy/replace the
+     old context solely because it was needed by the original physical layout.
+     Keep the existing parent unchanged/outside implicit removal, and require
+     exact final discovery and reference preservation. An independently selected
+     or semantically needed old parent still follows ordinary active-unit rules.
+     This allows composing submodule branches without overwriting their new parent.
+  2. Always carry original ancestor context to the corresponding final ancestor.
+     An existing different parent is an additional-unit collision, so this example
+     refuses without --replace and its normal safe-deletion checks. This preserves
+     the original context material but restricts attaching independent branches.
+- **Investigation boundary:** existing pure unit-member mapping requires a main
+  correspondence for retained context causes; it does not decide which contexts
+  remain necessary in final topology. Common catalog discovery can validate the
+  unchanged b plus new child in option 1, while the clone relation detects the
+  additional parent collision in option 2. Neither mechanism supplies the missing
+  inclusion policy. No automatic context dropping/replacement was implemented.
+- **Decision/source:** awaiting explicit user clarification and authorization for
+  the corresponding specification rule. Do not switch to T236/T237 or complete
+  T224 while this question is open.

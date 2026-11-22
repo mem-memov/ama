@@ -102,9 +102,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t224"></a>
 
 - [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
-  Status: [AMB-023](AMBIGUITIES.md#amb-023) resolved with explicit specification
-  authorization: copy/move preserve root kind and src/tests area. Remaining
-  physical mapping and operation acceptance continue; no completion is claimed.
+  Status: awaiting [AMB-024](AMBIGUITIES.md#amb-024), the context-inclusion rule
+  when copying a child under an existing different parent. AMB-023 is resolved;
+  namespace and src/tests area are preserved. Verified stages remain accepted,
+  but further context planning is paused and T224 is not complete.
   Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;
@@ -139,7 +140,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   registry checks 3768 ready inputs with zero debt. Declared input placement now
   preserves structural authority/version-relative suffixes, diagnoses shared
   destination conflicts, and keeps configurations with their environment owner;
-  strict/allocation/sanitizer checks pass. T224 is active and unfinished.
+  strict/allocation/sanitizer checks pass. Local aliases now rebase through real
+  original scopes and reparse under independent destination scopes; strict,
+  sanitizer, dispatcher and per-file checks pass (3772 ready, zero debt).
+  T224 is unfinished and paused at AMB-024.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.
