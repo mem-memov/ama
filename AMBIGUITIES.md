@@ -8,12 +8,11 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
-[AMB-024](#amb-024) is **Open** for T224: a copied child can be placed under an
-already existing different parent module. The rules retain original structural
-context but do not say whether that original context must replace the existing
-parent or can be omitted when final topology is already valid. Implementation
-pauses before choosing the context inclusion/collision policy.
-
+[AMB-024](#amb-024) is **Resolved** for T224: an unchanged existing destination
+parent supplies final topology without copying the old structural-only parent.
+No implicit parent collision/replacement/removal is introduced; independent active
+unit selection and exact reference preservation still apply. The user explicitly
+approved recording this rule in spec/ through the clarification question.
 
 [AMB-023](#amb-023) is **Resolved** for T224: copy/move preserve ordinary
 versus standard root kind and the src/tests area. Whole module branches and
@@ -1719,7 +1718,7 @@ Each entry must contain:
 
 ## AMB-024 — Original context when a child joins an existing different parent
 
-- **Status:** Open.
+- **Status:** Resolved.
 - **Current task:** [T224](TODO.md#t224), structural-context placement after
   verified unit/test/declared material and local-alias preparation.
 - **Authority:** [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
@@ -1777,6 +1776,9 @@ Each entry must contain:
   unchanged b plus new child in option 1, while the clone relation detects the
   additional parent collision in option 2. Neither mechanism supplies the missing
   inclusion policy. No automatic context dropping/replacement was implemented.
-- **Decision/source:** awaiting explicit user clarification and authorization for
-  the corresponding specification rule. Do not switch to T236/T237 or complete
-  T224 while this question is open.
+- **Decision/source:** the user selected «Использовать существующий b; a не
+  копировать (рекомендуется)» in response to the question explicitly asking
+  permission to record that rule in spec. This authorizes the scoped TOOL-01
+  amendment: unchanged b supplies final topology, original context-only a is not
+  copied solely for that purpose, and final reference laws remain mandatory.
+  Independent active-unit obligations are unchanged. T224 may resume.

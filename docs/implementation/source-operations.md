@@ -2980,3 +2980,19 @@ Record the minimal same-version, same-src-area, zero-edge example in the registr
 and ask before implementing either inclusion policy. This is separate from
 namespace changes resolved by AMB-023. Save the verified alias/material stages as
 an intermediate checkpoint, leave T224 open, and do not advance other TODO tasks.
+
+
+### AMB-024 resolved: use unchanged destination topology
+
+The user selected «Использовать существующий b; a не копировать (рекомендуется)»
+in reply to the explicit request to record this rule in spec/. TOOL-01 now
+separates original context retained for analysis from final required copied
+material. Existing unchanged b can supply the final b+ topology; context-only a
+and its companions are not implicitly copied/replaced/removed for that purpose.
+An actual active requirement for a remains separate. Final reference laws never
+redirect a binding merely because a child has another physical parent.
+
+Reviewed the normative rule, conformance row, registry and TODO against that exact
+boundary; no new missing-parent policy is inferred. Next implement explicit
+context-disposition evidence consumed by physical unit mapping, with actual
+retained-parent/detached/required-context and final-catalog/reference checks.

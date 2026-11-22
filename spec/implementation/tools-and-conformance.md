@@ -301,6 +301,23 @@ PKG-07 for copies; do not delete an ancestor or unrelated sibling merely because
 it provides context. The proposed final trees must satisfy SRC-05. A directory
 selection is not permission to merge arbitrary neighbouring trees.
 
+Original context retention for analysis is distinct from required final copy
+material. If an existing destination parent main remains unchanged and already
+provides the SRC-05 structure needed by a copied child, use that parent. Do not
+copy the original parent or its companions solely because they provided the
+child's original structural context. Such an omitted context creates no clone,
+collision, replacement or removal entry. The existing destination parent remains
+unchanged; its mere presence does not require --replace. An original parent
+independently selected or required as an active unit still follows the normal
+unit, dependency and collision rules.
+
+For example, copying `src/a+/child` to `src/b+/copy`, with an unchanged existing
+`src/b`, does not copy `src/a` when a is only structural context. Associated child
+tests follow the child's mapped source under TOOL-02. This is a physical topology
+rule, not rebinding: a reference to a does not become a reference to b merely
+because the child now lives in b+. Verify complete final discovery and all
+TOOL-02 clone/surviving-reference laws before accepting the operation.
+
 Tests included as part of a source selection participate in the copy/removal
 set. An outside test that uses that source remains an outside dependant. Test
 helpers do not recursively require tests of their own. Complete-unit and
@@ -751,7 +768,7 @@ the earlier backend evidence does not certify these newly specified modes.
 | Optimization equivalence | General and optimized plans agree on values, effects, identity/refusal/control transitions and source diagnostics; mandatory static checks still reject invalid eliminated code; internal allocation attempts may differ under GEN-03; remaining failure transitions retain cleanup guarantees |
 | Translation pipeline | Source/AST/resolved IR/storage plans remain distinct; one assembled project C translation unit; labels/explicit return links for Ama, verified inline native entries, original source maps |
 | Ama dependencies | Transitive type/constant/native closure loaded once per logical identity; shared code/constants but separate owned instances; missing/draft/duplicate dependencies diagnosed with requesting paths; no textual Ama includes or function linking |
-| Source copy and dependency modes | Preserve ordinary/standard root kind and ordinary src/tests area; refuse transitions even with replacement or dependency options; exact file/directory destinations; complete companions/subtrees and associated tests; cross-version default refusal and mutually exclusive explicit modes; clone finite ordinary source/test/static dependency closure versus retain original external targets and add only needed concrete permissions; additional source paths retain src-relative suffixes, mapped tests follow source ownership and outside test helpers retain tests-relative suffixes; overlapping-unit/map collisions refuse; standard targets remain configured separately; original definitions/importers remain unchanged; nominal clone identities differ despite equal bytes |
+| Source copy and dependency modes | Preserve ordinary/standard root kind and ordinary src/tests area; refuse transitions even with replacement or dependency options; exact file/directory destinations; complete companions/subtrees and associated tests; unchanged existing destination parents can supply topology without copying old context or implicitly replacing the parent; cross-version default refusal and mutually exclusive explicit modes; clone finite ordinary source/test/static dependency closure versus retain original external targets and add only needed concrete permissions; additional source paths retain src-relative suffixes, mapped tests follow source ownership and outside test helpers retain tests-relative suffixes; overlapping-unit/map collisions refuse; standard targets remain configured separately; original definitions/importers remain unchanged; nominal clone identities differ despite equal bytes |
 | Safe deletion, movement and replacement | Check every supplied active definition, including unused/static/test dependants; internal edges of the complete removal set do not block, outside incoming edges and required shared declared inputs do; default target collision refuses with explanation; --replace obeys the same pre-replacement deletion test even for an identically named new implementation; move refuses before publication when source removal is unsafe; cloned dependency originals are not implicitly removed; cyclic worker/helper closure copies but moving only worker refuses; obsolete target children/companions are removed only as part of an authorized safe replacement |
 | Source-operation resolution and preservation | Original and final whole-version selection; augmented original conflicts; exact clone and surviving-reference laws; relative bases and shared aliases in source/destination scopes; ordinary/static/native interfaces, qualified-constant members and storage suffixes; copied versus unchanged package configurations, exact selector re-expression and explicit extension; no wildcard expansion, repository-table copying or outside importer redirection; src/tests restrictions, / versus // and name+/ topology; drafts, literals/comments and opaque native/build bytes preserved; unprovable final graph refuses |
 | Source-operation transactions | Exactly one explicit `--preview` or `--apply`; absent, repeated or conflicting modes refuse before mutation; preview/apply plan equality; offline preflight without module/test/native/CMake execution; inputs include optional-config presence, directory membership and excluded versions; a new importer/companion invalidates a stale plan; copy, replacement, permissions and move-source removal publish as one transaction; preparation/apply/cleanup failure, cross-filesystem staging, repeatable interruption recovery and incomplete-rollback reports preserve original/recovery data; no leftover copy after a refused move |
