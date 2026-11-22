@@ -24,7 +24,8 @@ All component work below was already authorized/planned under T224; this refinem
 makes its completed foundation independently reviewable before the larger operation
 pipeline is implemented. It neither closes T224 nor drops any of its criteria.
 
-T224 still owns project-side response decoding/process/capture integration,
+T273 supplies the accepted project-side response/process bridge. T224 still owns
+physical capture integration,
 independent test-entry probes, exact selected/removal/client roots, clone maps,
 rewrites and destination scopes, final graph laws, recoverable publication,
 public copy/delete/move/replace commands and removal of superseded implementation.
@@ -716,3 +717,20 @@ counts and tool versions remain as reported above. This final evidence note is
 Markdown only. Refresh its reference provenance once more using the same builder
 and verify every current input fingerprint before staging; no behavioral check
 needs repeating because all 81 accepted code/build/test input hashes are unchanged.
+
+
+### T273 accepted bridge and remaining T224 work
+
+The [prepared source protocol](source-protocol.md) delivers the separately
+accepted project-side response/process prerequisite, with complete immutable
+source/version/configuration equality, compiler-classified native capture equality,
+normal-success admission, raw diagnostic ownership and real compiler evidence.
+Private duplicate blob/stream/wire implementations are removed. Its complete
+record is [T273](../../DONE.md#t273).
+
+Next T224 step: capture complete explicitly selected local roots and companions
+through the common catalog/file primitives, then compose the bridge and independent
+executable-test probes. Preserve original/newly covered identity authority;
+no code-text searches, parameter-count guesses or live frontend state may replace
+compiler facts. Selection, clone maps, rewriting, whole-final graph checks,
+transactions, commands and removal of superseded implementations remain open.

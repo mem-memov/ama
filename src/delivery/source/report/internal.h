@@ -10,15 +10,8 @@
 #ifndef AMA_DELIVERY_SOURCE_REPORT_INTERNAL_H
 #define AMA_DELIVERY_SOURCE_REPORT_INTERNAL_H
 #include "report.h"
+#include "../wire.h"
 #include "tools/output/json/json.h"
-/** Encode a nullable physical pathname as lossless bytes, never lossy UTF-8.
- * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves bytes.
- */
-bool delivery_source_report_path(ToolJsonWriter *, const char *);
-/** Encode a nullable owned source snapshot including original path/content.
- * [COMP-04](../../../../spec/implementation/compiler.md#comp-04) preserves bytes.
- */
-bool delivery_source_report_text(ToolJsonWriter *, const SourceText *);
 /** Append versions and all catalog sources in authoritative catalog order.
  * [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02)
  * retains source/configuration authority without choosing new roots.

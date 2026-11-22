@@ -21,7 +21,7 @@ static bool edge(ToolJsonWriter *writer, const DeliverySourceDependency *item) {
         && tool_json_raw(writer, ",\"member\":")
         && tool_json_string(writer, item->member)
         && tool_json_raw(writer, ",\"origin\":{\"path\":")
-        && delivery_source_report_path(writer, item->origin.source ? source_path(item->origin.source) : NULL)
+        && delivery_source_wire_path(writer, item->origin.source ? source_path(item->origin.source) : NULL)
         && tool_json_raw(writer, ",\"start\":")
         && tool_json_unsigned(writer, item->origin.start)
         && tool_json_raw(writer, ",\"end\":")

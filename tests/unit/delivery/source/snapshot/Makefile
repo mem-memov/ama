@@ -8,4 +8,5 @@ SOURCES := source/text/manager.c source/text/lines.c source/text/view.c source/m
     source/unicode/word.c source/unicode/name.c
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/json) $(call source_files,$(ROOT)/src/source/io) \
     $(call source_files,$(ROOT)/src/delivery/source/snapshot))
+SOURCES := $(filter-out delivery/source/snapshot/write.c,$(SOURCES))
 include ../../../../leaf.mk

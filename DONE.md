@@ -8453,3 +8453,49 @@ T201. Specification bytes have not changed.
   fixes, ownership arguments and final provenance. No public copy/delete/move,
   response/process/capture controller, test-entry probe or transaction support
   is claimed here; T224 remains open. T237 retains full release/conformance renewal.
+
+<a id="t273"></a>
+
+- [x] **T273 — Bridge prepared source snapshots to the separate compiler process.**
+  Status: complete; prerequisite extracted from T224's recorded original-analysis
+  step after accepted T272 (`44e813c5`). Keep T224's remaining criteria intact.
+  Serialize exact borrowed captured inputs, decode closed source-domain responses
+  into independent plain source/edge owners, require successful shell-free child
+  completion, and compare response source/version/configuration/native facts with
+  the supplied capture before admitting dependency metadata. Share coherent blob
+  ownership between request and response readers; retain no duplicate decoders.
+  Use existing neutral syntax/schema and process primitives. Preserve incomplete
+  capture versus observed absence, byte paths, original spans and integer values.
+  Verify real compiler handoffs plus malformed/stale/mismatched responses,
+  unsuccessful/signalled/failed child processes, stream and allocation failures,
+  independent tool linking, per-file documentation and Doxygen. No source mutation,
+  network, test/native execution, physical-root discovery, independent test-entry
+  probe or copy/delete/move command is completed by this bridge.
+  Contract/steps: [source protocol](docs/implementation/source-protocol.md).
+
+  Result: exact owned request/response data and coherent byte captures, borrowed
+  snapshot serialization, plain graph/source observations and exact admission
+  against prepared inputs. Shell-free child collection preserves raw diagnostics,
+  rejects failed/signalled children before decoding, and accepts only matching
+  successful replies. Shared stream/wire/capture implementations replace private
+  duplicates; the independent project executable links no compiler dispatcher,
+  frontend or semantic state.
+
+  Verification: independent closed-schema models (36 malformed responses), binary
+  and non-UTF-8 physical paths, exact native/configuration observations, finite
+  graph cycles, reordered rows, missing/changed/ambiguous inputs, every allocation
+  refusal, read/write/flush failures and real descriptor exhaustion. Controlled
+  child cases distinguish exit 127, exec failure, signals, malformed or stale
+  successful replies; the actual compiler captured-input handoff passes. Strict
+  component/consumer groups, independent project build invalidation and final
+  isolated ASan/UBSan runs pass. Counted teardown verifies zero live allocations;
+  LSan remains unavailable under the recorded ptrace restriction. The linked
+  record retains initial fixture-sharing failures and corrected isolated reruns.
+
+  Documentation: 3523 ready inputs, zero debts, 2673 maintained file pages,
+  10316 interfaces, 495 canonical destinations and 8433 total Doxygen pages.
+  Full current generation passed before this Markdown-only archival. Final
+  delivery requires regeneration of the archived narrative and exact manifest
+  fingerprint validation, without changing accepted component inputs.
+  T224 retains physical-root capture, test-entry probing, rewrites, transactions
+  and public source operations. T237 retains full release/conformance renewal.

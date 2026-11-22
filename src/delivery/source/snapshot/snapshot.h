@@ -15,7 +15,7 @@
 #ifndef AMA_DELIVERY_SOURCE_SNAPSHOT_H
 #define AMA_DELIVERY_SOURCE_SNAPSHOT_H
 #include "../records.h"
-#include "source/json/json.h"
+#include "source/json/capture/capture.h"
 #include "source/module/catalog.h"
 /** One selected version's captured identity, directory and required metadata.
  * All fields belong to the enclosing snapshot owner under
@@ -27,13 +27,19 @@ typedef struct DeliverySnapshotVersion {
     const char *directory;
     const SourceText *configuration;
 } DeliverySnapshotVersion;
-/** Private exact-path/byte coherence index, owned with the decoded data under
- * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03).
+/** Immutable borrowed provider view, without a decoder-owned validity flag.
+ * Rows/version/companion owners outlive synchronous serialization/comparison under
+ * [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04).
  */
-typedef struct DeliverySnapshotText DeliverySnapshotText;
+typedef struct {
+    const ModuleSnapshotEntry *entries;
+    size_t count;
+    const DeliverySnapshotVersion *versions;
+    const DeliverySourceCompanions *companions;
+} DeliverySourceSnapshotView;
 /** Data-only owner: valid certifies the captured-input schema, not Ama semantics
- * or actual filesystem freshness. Arrays, names and capture rows belong to arena;
- * source/configuration/ABI byte snapshots belong to sources. Failed prefixes are
+ * or actual filesystem freshness. Arrays/capture rows belong to arena; names and
+ * source/configuration/ABI byte snapshots belong to the independent capture owner. Failed prefixes are
  * unusable until destruction. Failure issue borrows the original request source;
  * successful public data survives release of the JSON request and parse scratch.
  * No compiler AST/semantic/runtime or project execution owner crosses this model
@@ -41,12 +47,11 @@ typedef struct DeliverySnapshotText DeliverySnapshotText;
  */
 typedef struct {
     SourceArena arena;
-    SourceManager sources;
+    SourceJsonCapture capture;
     const ModuleSnapshotEntry *entries;
     size_t count;
     const DeliverySnapshotVersion *versions;
     const DeliverySourceCompanions *companions;
-    DeliverySnapshotText *texts;
     SourceJsonIssue issue;
     SourceJsonStatus status;
     bool attempted, valid;

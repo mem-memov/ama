@@ -7,4 +7,5 @@ include $(ROOT)/tests/unit/compiler/sources.mk
 SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/json) \
     $(call source_files,$(ROOT)/src/delivery/source/snapshot) $(call source_files,$(ROOT)/src/delivery/source/domain))
 SOURCES += delivery/source/export.c
+SOURCES := $(filter-out delivery/source/snapshot/write.c,$(SOURCES))
 include ../../../../leaf.mk

@@ -58,11 +58,11 @@ static SourceJsonStatus companions(DeliverySnapshotReader *reader, const SourceJ
     if (status != SOURCE_JSON_OK) { return status; }
     const char *body = NULL, *header = NULL;
     const SourceText *abi = NULL;
-    status = delivery_snapshot_path(reader, fields[0], &body);
+    status = source_json_capture_path(&reader->owner->capture, reader->scratch, fields[0], &body, &reader->owner->issue);
     if (status != SOURCE_JSON_OK) { return status; }
-    status = delivery_snapshot_path(reader, fields[1], &header);
+    status = source_json_capture_path(&reader->owner->capture, reader->scratch, fields[1], &header, &reader->owner->issue);
     if (status != SOURCE_JSON_OK) { return status; }
-    status = delivery_snapshot_text(reader, fields[2], &abi);
+    status = source_json_capture_text(&reader->owner->capture, reader->scratch, fields[2], &abi, &reader->owner->issue);
     if (status != SOURCE_JSON_OK) { return status; }
     DeliverySourceCompanions *row = source_arena_allocate(&reader->owner->arena, sizeof(*row));
     if (!row) { return delivery_snapshot_memory(reader, value); }
@@ -87,13 +87,13 @@ SourceJsonStatus delivery_snapshot_entries(DeliverySnapshotReader *reader, const
         SourceJsonStatus status = source_json_schema_fields(item, names, 6, fields, &reader->owner->issue);
         if (status != SOURCE_JSON_OK) { return status; }
         ModuleSnapshotEntry entry = {0};
-        status = delivery_snapshot_string(reader, fields[0], &entry.logical_path);
+        status = source_json_capture_string(&reader->owner->capture, fields[0], &entry.logical_path, &reader->owner->issue);
         if (status != SOURCE_JSON_OK) { return status; }
         if (!module_path_canonical((const unsigned char *)entry.logical_path, strlen(entry.logical_path))
             || !version_present(reader->owner, entry.logical_path)) {
             return delivery_snapshot_error(reader, fields[0], "Captured module identity or selected version is invalid");
         }
-        status = delivery_snapshot_text(reader, fields[1], &entry.text);
+        status = source_json_capture_text(&reader->owner->capture, reader->scratch, fields[1], &entry.text, &reader->owner->issue);
         if (status != SOURCE_JSON_OK) { return status; }
         if (!entry.text) { return delivery_snapshot_error(reader, fields[1], "Captured module source bytes are missing"); }
         for (size_t prior = 0; prior < index; prior++) {
@@ -103,7 +103,7 @@ SourceJsonStatus delivery_snapshot_entries(DeliverySnapshotReader *reader, const
         }
         status = metadata(reader, fields[2], fields[3], &entry);
         if (status != SOURCE_JSON_OK) { return status; }
-        status = delivery_snapshot_text(reader, fields[4], &entry.configuration);
+        status = source_json_capture_text(&reader->owner->capture, reader->scratch, fields[4], &entry.configuration, &reader->owner->issue);
         if (status != SOURCE_JSON_OK) { return status; }
         DeliverySourceCompanions *row = NULL;
         status = companions(reader, fields[5], entry.logical_path, &row);

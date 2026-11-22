@@ -8,6 +8,7 @@
  */
 #ifndef AMA_SOURCE_IO_BUFFER_H
 #define AMA_SOURCE_IO_BUFFER_H
+#include <stdio.h>
 #include "source/text/source.h"
 
 /** Private growable read storage, initialized zero. Owns only bytes; caller releases
@@ -36,4 +37,12 @@ SourceStatus source_buffer_plan(size_t, size_t, size_t, SourceBufferPlan *);
  * length/capacity and ownership; no source record is published here.
  * Component contract: [SRC-03](../../../../spec/language/source-and-names.md#src-03), [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 SourceStatus source_buffer_append(SourceAllocator, SourceBuffer *, const unsigned char *, size_t);
+/** Append exact bytes from a borrowed open stream through observed EOF. Never
+ * close, rewind or retain it. Return IO_ERROR on ferror and preserve a captured
+ * prefix on read/allocation failure; caller retires that buffer and must not
+ * publish it as complete. [COMP-04](../../../../spec/implementation/compiler.md#comp-04)
+ * forbids fabricated EOF/data; [SRC-03](../../../../spec/language/source-and-names.md#src-03)
+ * preserves bytes before role-specific validation.
+ */
+SourceStatus source_buffer_read(SourceAllocator, FILE *, SourceBuffer *);
 #endif

@@ -16,10 +16,6 @@
 #define AMA_DELIVERY_SOURCE_SNAPSHOT_INTERNAL_H
 #include "snapshot.h"
 #include "source/json/schema/schema.h"
-/** Exact captured text index; repeated paths may reuse only identical bytes under
- * [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04).
- */
-struct DeliverySnapshotText { DeliverySnapshotText *next; const SourceText *source; };
 /** Parse scratch is independent of public result storage under
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03).
  */
@@ -32,20 +28,6 @@ SourceJsonStatus delivery_snapshot_error(DeliverySnapshotReader *, const SourceJ
  * [ARCH-03](../../../../spec/implementation/compiler.md#arch-03).
  */
 SourceJsonStatus delivery_snapshot_memory(DeliverySnapshotReader *, const SourceJsonValue *);
-/** Copy one nonempty NUL-free logical/schema string under
- * [COMP-04](../../../../spec/implementation/compiler.md#comp-04).
- */
-SourceJsonStatus delivery_snapshot_string(DeliverySnapshotReader *, const SourceJsonValue *, const char **);
-/** Decode nullable raw physical paths, refusing empty/NUL payloads without
- * normalization under [COMP-04](../../../../spec/implementation/compiler.md#comp-04).
- */
-SourceJsonStatus delivery_snapshot_path(DeliverySnapshotReader *, const SourceJsonValue *, const char **);
-/** Decode nullable source/configuration/ABI bytes with coherent repeated physical
- * paths. Actual catalog/native activation selects encoding/syntax validation;
- * ordinary/draft ABI companions remain opaque under
- * [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04).
- */
-SourceJsonStatus delivery_snapshot_text(DeliverySnapshotReader *, const SourceJsonValue *, const SourceText **);
 /** Decode exact selected version contexts under
  * [PKG-03](../../../../spec/project/packages.md#pkg-03).
  */

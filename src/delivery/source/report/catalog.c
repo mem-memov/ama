@@ -16,19 +16,19 @@ static bool source(ToolJsonWriter *writer, const ModuleSource *item) {
     return tool_json_raw(writer, "{\"identity\":")
         && tool_json_string(writer, item->logical_path)
         && tool_json_raw(writer, ",\"source\":")
-        && delivery_source_report_text(writer, item->text)
+        && delivery_source_wire_text(writer, item->text)
         && tool_json_raw(writer, ",\"configurationCaptured\":")
         && tool_json_boolean(writer, item->configuration_loaded)
         && tool_json_raw(writer, ",\"configuration\":")
-        && delivery_source_report_text(writer, item->configuration)
+        && delivery_source_wire_text(writer, item->configuration)
         && tool_json_raw(writer, ",\"native\":{\"captured\":")
         && tool_json_boolean(writer, item->native_loaded)
         && tool_json_raw(writer, ",\"body\":")
-        && delivery_source_report_path(writer, item->native_c)
+        && delivery_source_wire_path(writer, item->native_c)
         && tool_json_raw(writer, ",\"header\":")
-        && delivery_source_report_path(writer, item->native_header)
+        && delivery_source_wire_path(writer, item->native_header)
         && tool_json_raw(writer, ",\"abi\":")
-        && delivery_source_report_text(writer, item->native_abi)
+        && delivery_source_wire_text(writer, item->native_abi)
         && tool_json_raw(writer, "}}");
 }
 bool delivery_source_report_catalog(ToolJsonWriter *writer, const ModuleCatalog *catalog) {
@@ -39,9 +39,9 @@ bool delivery_source_report_catalog(ToolJsonWriter *writer, const ModuleCatalog 
             || !tool_json_raw(writer, "{\"identity\":")
             || !tool_json_string(writer, item->logical_path)
             || !tool_json_raw(writer, ",\"directory\":")
-            || !delivery_source_report_path(writer, item->physical_path)
+            || !delivery_source_wire_path(writer, item->physical_path)
             || !tool_json_raw(writer, ",\"configuration\":")
-            || !delivery_source_report_text(writer, item->configuration)
+            || !delivery_source_wire_text(writer, item->configuration)
             || !tool_json_raw(writer, "}")) { return false; }
         comma = true;
     }

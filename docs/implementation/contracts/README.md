@@ -52,6 +52,12 @@ T260 source parser, T261 path/scope foundation, T263 selector matcher,
 T262 authorization and planned T232 integration obligations. Its planned
 boundaries are distinct from claims of implemented compiler support.
 
+The [prepared source protocol](../source-protocol.md) records T273’s owned
+request/response boundary, exact capture equality and shell-free child admission,
+with failure and real compiler handoff evidence. It supports the unfinished
+[source operation integration](../source-operations.md) without claiming public
+copy/delete/move support.
+
 ## Before implementation
 
 The [declaration-expression contract](../declaration-expressions.md) records

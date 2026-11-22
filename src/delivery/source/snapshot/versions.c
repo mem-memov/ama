@@ -18,7 +18,7 @@ SourceJsonStatus delivery_snapshot_versions(DeliverySnapshotReader *reader, cons
         if (status != SOURCE_JSON_OK) { return status; }
         const char *identity = NULL, *directory = NULL;
         const SourceText *configuration = NULL;
-        status = delivery_snapshot_string(reader, fields[0], &identity);
+        status = source_json_capture_string(&reader->owner->capture, fields[0], &identity, &reader->owner->issue);
         if (status != SOURCE_JSON_OK) { return status; }
         ModulePathShape shape;
         if (!module_path_describe((const unsigned char *)identity, strlen(identity), &shape)
@@ -30,10 +30,10 @@ SourceJsonStatus delivery_snapshot_versions(DeliverySnapshotReader *reader, cons
                 return delivery_snapshot_error(reader, fields[0], "Captured version identity is repeated");
             }
         }
-        status = delivery_snapshot_path(reader, fields[1], &directory);
+        status = source_json_capture_path(&reader->owner->capture, reader->scratch, fields[1], &directory, &reader->owner->issue);
         if (status != SOURCE_JSON_OK) { return status; }
         if (!directory) { return delivery_snapshot_error(reader, fields[1], "Captured version directory is missing"); }
-        status = delivery_snapshot_text(reader, fields[2], &configuration);
+        status = source_json_capture_text(&reader->owner->capture, reader->scratch, fields[2], &configuration, &reader->owner->issue);
         if (status != SOURCE_JSON_OK) { return status; }
         if (!configuration) { return delivery_snapshot_error(reader, fields[2], "Captured version requires package.ini bytes"); }
         DeliverySnapshotVersion *version = source_arena_allocate(&reader->owner->arena, sizeof(*version));

@@ -4,5 +4,5 @@
 ROOT := $(abspath ../../../../..)
 include $(ROOT)/make/sources.mk
 SOURCES := source/memory/arena.c source/text/manager.c source/text/lines.c source/text/view.c source/unicode/decode.c
-SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/json))
+SOURCES += $(patsubst $(ROOT)/src/%,%,$(wildcard $(ROOT)/src/source/json/*.c) $(wildcard $(ROOT)/src/source/json/schema/*.c))
 include ../../../../leaf.mk

@@ -16,11 +16,11 @@
 void delivery_source_snapshot_init(DeliverySourceSnapshot *snapshot, SourceAllocator allocator) {
     *snapshot = (DeliverySourceSnapshot){.status = SOURCE_JSON_INVALID};
     source_arena_init(&snapshot->arena, allocator);
-    source_manager_init(&snapshot->sources, allocator);
+    source_json_capture_init(&snapshot->capture, allocator);
 }
 void delivery_source_snapshot_destroy(DeliverySourceSnapshot *snapshot) {
     source_arena_destroy(&snapshot->arena);
-    source_manager_destroy(&snapshot->sources);
+    source_json_capture_destroy(&snapshot->capture);
     *snapshot = (DeliverySourceSnapshot){0};
 }
 SourceJsonStatus delivery_snapshot_error(DeliverySnapshotReader *reader, const SourceJsonValue *value, const char *message) {

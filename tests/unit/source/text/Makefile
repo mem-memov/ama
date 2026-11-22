@@ -3,5 +3,5 @@
 # Contract: ../../../../docs/implementation/library-tests-and-build.md; generated output is never a maintained input.
 ROOT := $(abspath ../../../..)
 SOURCES := source/text/manager.c source/text/lines.c source/text/view.c \
-    source/io/load.c source/io/buffer/plan.c source/io/buffer/append.c
+    source/io/load.c source/io/buffer/read.c source/io/buffer/plan.c source/io/buffer/append.c
 include ../../../leaf.mk

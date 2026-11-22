@@ -56621,6 +56621,46 @@
         "source": "tests/unit/source/json/schema/main.c",
         "case": "it_retains_full_width_unsigned_identity_strings",
         "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_reuses_coherent_binary_snapshots_and_refuses_conflicting_paths",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_retains_strings_raw_paths_and_explicit_absence",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_truncated_paths_invalid_strings_and_malformed_blobs",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_preserves_output_on_every_capture_allocation_failure",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_missing_or_aliased_capture_owners",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_reads_complete_binary_stream_without_owning_or_rewinding_it",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_distinguishes_read_failure_from_empty_eof",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_retires_each_allocation_failure_without_fabricating_a_complete_stream",
+        "command": "make -C tests/unit/source/stream"
       }
     ]
   },
@@ -59907,6 +59947,21 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_reads_complete_binary_stream_without_owning_or_rewinding_it",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_distinguishes_read_failure_from_empty_eof",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_retires_each_allocation_failure_without_fabricating_a_complete_stream",
+        "command": "make -C tests/unit/source/stream"
       }
     ],
     "standalone_header_command": [
@@ -181654,6 +181709,36 @@
         "source": "tests/unit/tools/project/compiled/main.c",
         "case": "it_compiles_and_runs_each_ama_microprogram_in_its_own_output_tree",
         "command": "make -C tests/unit/tools/project/compiled"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_only_complete_successful_exact_reply",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_failed_and_signalled_children_before_decoding",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_malformed_and_mismatched_successful_replies",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_every_allocation_failure_without_retaining_partial_authority",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_real_compiler_snapshot_without_future_path_reads",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_temporary_stream_exhaustion_and_invalid_requests",
+        "command": "make -C tests/unit/tools/project/source/compiler"
       }
     ]
   },
@@ -182117,6 +182202,36 @@
         "source": "tests/unit/tools/project/acquisition/sources/main.c",
         "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
         "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_only_complete_successful_exact_reply",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_failed_and_signalled_children_before_decoding",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_malformed_and_mismatched_successful_replies",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_every_allocation_failure_without_retaining_partial_authority",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_real_compiler_snapshot_without_future_path_reads",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_temporary_stream_exhaustion_and_invalid_requests",
+        "command": "make -C tests/unit/tools/project/source/compiler"
       }
     ]
   },
@@ -187475,6 +187590,31 @@
         "source": "tests/unit/tools/project/source/domain/main.c",
         "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
         "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_only_complete_successful_exact_reply",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_failed_and_signalled_children_before_decoding",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_malformed_and_mismatched_successful_replies",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_every_allocation_failure_without_retaining_partial_authority",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_real_compiler_snapshot_without_future_path_reads",
+        "command": "make -C tests/unit/tools/project/source/compiler"
       }
     ]
   },
@@ -188004,27 +188144,6 @@
       "c",
       "-fsyntax-only",
       "-"
-    ]
-  },
-  "src/delivery/source/report/bytes.c": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/report/main.c",
-        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
-        "command": "make -C tests/unit/tools/project/source/report"
-      },
-      {
-        "source": "tests/unit/tools/project/source/report/main.c",
-        "case": "it_reports_empty_domains_as_complete_empty_arrays",
-        "command": "make -C tests/unit/tools/project/source/report"
-      },
-      {
-        "source": "tests/unit/tools/project/source/report/main.c",
-        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
-        "command": "make -C tests/unit/tools/project/source/report"
-      }
     ]
   },
   "src/delivery/source/report/catalog.c": {
@@ -189258,6 +189377,31 @@
         "source": "tests/unit/source/json/schema/main.c",
         "case": "it_retains_full_width_unsigned_identity_strings",
         "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_reuses_coherent_binary_snapshots_and_refuses_conflicting_paths",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_retains_strings_raw_paths_and_explicit_absence",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_truncated_paths_invalid_strings_and_malformed_blobs",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_preserves_output_on_every_capture_allocation_failure",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_missing_or_aliased_capture_owners",
+        "command": "make -C tests/unit/source/json"
       }
     ]
   },
@@ -189486,57 +189630,6 @@
     ]
   },
   "src/delivery/source/snapshot/versions.c": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
-    "tests": [
-      {
-        "source": "tests/unit/delivery/source/snapshot/main.c",
-        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
-        "command": "make -C tests/unit/delivery/source/snapshot"
-      },
-      {
-        "source": "tests/unit/delivery/source/snapshot/main.c",
-        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
-        "command": "make -C tests/unit/delivery/source/snapshot"
-      },
-      {
-        "source": "tests/unit/delivery/source/snapshot/main.c",
-        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
-        "command": "make -C tests/unit/delivery/source/snapshot"
-      },
-      {
-        "source": "tests/unit/delivery/source/snapshot/main.c",
-        "case": "it_retires_every_failed_snapshot_decode_allocation",
-        "command": "make -C tests/unit/delivery/source/snapshot"
-      },
-      {
-        "source": "tests/unit/delivery/source/snapshot/main.c",
-        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
-        "command": "make -C tests/unit/delivery/source/snapshot"
-      },
-      {
-        "source": "tests/unit/delivery/source/check/main.c",
-        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
-        "command": "make -C tests/unit/delivery/source/check"
-      },
-      {
-        "source": "tests/unit/delivery/source/check/main.c",
-        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
-        "command": "make -C tests/unit/delivery/source/check"
-      },
-      {
-        "source": "tests/unit/delivery/source/check/main.c",
-        "case": "it_retires_every_failed_captured_frontend_allocation",
-        "command": "make -C tests/unit/delivery/source/check"
-      },
-      {
-        "source": "tests/unit/delivery/source/check/main.c",
-        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
-        "command": "make -C tests/unit/delivery/source/check"
-      }
-    ]
-  },
-  "src/delivery/source/snapshot/text.c": {
     "contract": "docs/implementation/source-operations.md",
     "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
     "tests": [
@@ -189978,6 +190071,26 @@
         "source": "tests/unit/delivery/source/check/main.c",
         "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
         "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_accepts_complete_exact_capture_and_empty_domains",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_or_unobserved_sources",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_or_ambiguous_companion_authority",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_versions",
+        "command": "make -C tests/unit/delivery/source/matching"
       }
     ]
   },
@@ -190010,6 +190123,1451 @@
         "source": "tests/unit/driver/source-domain/main.c",
         "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
         "command": "make -C tests/unit/driver/source-domain"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/json/capture/internal.h": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Own exact decoded names/byte paths and coherent source snapshots independently of syntax scratch and compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_reuses_coherent_binary_snapshots_and_refuses_conflicting_paths",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_retains_strings_raw_paths_and_explicit_absence",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_truncated_paths_invalid_strings_and_malformed_blobs",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_preserves_output_on_every_capture_allocation_failure",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_missing_or_aliased_capture_owners",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/json/capture/capture.h": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Own exact decoded names/byte paths and coherent source snapshots independently of syntax scratch and compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_reuses_coherent_binary_snapshots_and_refuses_conflicting_paths",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_retains_strings_raw_paths_and_explicit_absence",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_truncated_paths_invalid_strings_and_malformed_blobs",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_preserves_output_on_every_capture_allocation_failure",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_missing_or_aliased_capture_owners",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/json/capture/lifetime.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Own exact decoded names/byte paths and coherent source snapshots independently of syntax scratch and compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_reuses_coherent_binary_snapshots_and_refuses_conflicting_paths",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_retains_strings_raw_paths_and_explicit_absence",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_truncated_paths_invalid_strings_and_malformed_blobs",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_preserves_output_on_every_capture_allocation_failure",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_missing_or_aliased_capture_owners",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "src/source/json/capture/read.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Own exact decoded names/byte paths and coherent source snapshots independently of syntax scratch and compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_reuses_coherent_binary_snapshots_and_refuses_conflicting_paths",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_retains_strings_raw_paths_and_explicit_absence",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_truncated_paths_invalid_strings_and_malformed_blobs",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_preserves_output_on_every_capture_allocation_failure",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_missing_or_aliased_capture_owners",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/source/json/capture/main.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Own exact decoded names/byte paths and coherent source snapshots independently of syntax scratch and compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_reuses_coherent_binary_snapshots_and_refuses_conflicting_paths",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_retains_strings_raw_paths_and_explicit_absence",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_truncated_paths_invalid_strings_and_malformed_blobs",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_preserves_output_on_every_capture_allocation_failure",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_missing_or_aliased_capture_owners",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/source/json/capture/Makefile": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Own exact decoded names/byte paths and coherent source snapshots independently of syntax scratch and compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_reuses_coherent_binary_snapshots_and_refuses_conflicting_paths",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_retains_strings_raw_paths_and_explicit_absence",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_truncated_paths_invalid_strings_and_malformed_blobs",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_preserves_output_on_every_capture_allocation_failure",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/source/json/capture/main.c",
+        "case": "it_refuses_missing_or_aliased_capture_owners",
+        "command": "make -C tests/unit/source/json/capture"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "src/delivery/source/response/sources.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Decode complete owned source-domain observations, exact original graph sites and closed schema failures.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ]
+  },
+  "src/delivery/source/response/response.h": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Decode complete owned source-domain observations, exact original graph sites and closed schema failures.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/response/match.h": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Reject stale or ambiguous compiler observations through exact prepared input set and byte equality.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_accepts_complete_exact_capture_and_empty_domains",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_or_unobserved_sources",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_or_ambiguous_companion_authority",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_versions",
+        "command": "make -C tests/unit/delivery/source/matching"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/response/internal.h": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Decode complete owned source-domain observations, exact original graph sites and closed schema failures.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/response/versions.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Decode complete owned source-domain observations, exact original graph sites and closed schema failures.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ]
+  },
+  "src/delivery/source/response/match.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Reject stale or ambiguous compiler observations through exact prepared input set and byte equality.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_accepts_complete_exact_capture_and_empty_domains",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_or_unobserved_sources",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_or_ambiguous_companion_authority",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_versions",
+        "command": "make -C tests/unit/delivery/source/matching"
+      }
+    ]
+  },
+  "src/delivery/source/response/definitions.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Decode complete owned source-domain observations, exact original graph sites and closed schema failures.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ]
+  },
+  "src/delivery/source/response/lifetime.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Decode complete owned source-domain observations, exact original graph sites and closed schema failures.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ]
+  },
+  "src/delivery/source/response/read.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Decode complete owned source-domain observations, exact original graph sites and closed schema failures.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ]
+  },
+  "tools/project/source/compiler/client.h": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Collect shell-free compiler processes and admit only successful exact prepared-input replies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_only_complete_successful_exact_reply",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_failed_and_signalled_children_before_decoding",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_malformed_and_mismatched_successful_replies",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_every_allocation_failure_without_retaining_partial_authority",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_real_compiler_snapshot_without_future_path_reads",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_temporary_stream_exhaustion_and_invalid_requests",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/compiler/lifetime.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Collect shell-free compiler processes and admit only successful exact prepared-input replies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_only_complete_successful_exact_reply",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_failed_and_signalled_children_before_decoding",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_malformed_and_mismatched_successful_replies",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_every_allocation_failure_without_retaining_partial_authority",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_real_compiler_snapshot_without_future_path_reads",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_temporary_stream_exhaustion_and_invalid_requests",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      }
+    ]
+  },
+  "tools/project/source/compiler/run.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Collect shell-free compiler processes and admit only successful exact prepared-input replies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_only_complete_successful_exact_reply",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_failed_and_signalled_children_before_decoding",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_malformed_and_mismatched_successful_replies",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_every_allocation_failure_without_retaining_partial_authority",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_real_compiler_snapshot_without_future_path_reads",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_temporary_stream_exhaustion_and_invalid_requests",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/response/generate.py": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/response/main.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/response/Makefile": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retains_owned_sources_native_states_and_original_graph_sites",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_preserves_finite_cycles_and_normalized_constant_members",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_refuses_malformed_response_observations_graphs_and_spans",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_retires_every_failed_response_allocation",
+        "command": "make -C tests/unit/delivery/source/response"
+      },
+      {
+        "source": "tests/unit/delivery/source/response/main.c",
+        "case": "it_accepts_empty_responses_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/response"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/writing/main.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_exact_borrowed_capture_authority_without_mutation",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_empty_capture_without_synthetic_rows",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_refuses_incomplete_or_ambiguous_capture_views_before_output",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_propagates_capture_writer_stream_and_flush_failures",
+        "command": "make -C tests/unit/delivery/source/writing"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/writing/verify.py": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_exact_borrowed_capture_authority_without_mutation",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_empty_capture_without_synthetic_rows",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_refuses_incomplete_or_ambiguous_capture_views_before_output",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_propagates_capture_writer_stream_and_flush_failures",
+        "command": "make -C tests/unit/delivery/source/writing"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/writing/Makefile": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_exact_borrowed_capture_authority_without_mutation",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_empty_capture_without_synthetic_rows",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_refuses_incomplete_or_ambiguous_capture_views_before_output",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_propagates_capture_writer_stream_and_flush_failures",
+        "command": "make -C tests/unit/delivery/source/writing"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/matching/main.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_accepts_complete_exact_capture_and_empty_domains",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_or_unobserved_sources",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_or_ambiguous_companion_authority",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_versions",
+        "command": "make -C tests/unit/delivery/source/matching"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/matching/Makefile": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_accepts_complete_exact_capture_and_empty_domains",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_or_unobserved_sources",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_or_ambiguous_companion_authority",
+        "command": "make -C tests/unit/delivery/source/matching"
+      },
+      {
+        "source": "tests/unit/delivery/source/matching/main.c",
+        "case": "it_refuses_changed_missing_duplicate_versions",
+        "command": "make -C tests/unit/delivery/source/matching"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/compiler/main.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_only_complete_successful_exact_reply",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_failed_and_signalled_children_before_decoding",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_malformed_and_mismatched_successful_replies",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_every_allocation_failure_without_retaining_partial_authority",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_real_compiler_snapshot_without_future_path_reads",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_temporary_stream_exhaustion_and_invalid_requests",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/compiler/Makefile": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_only_complete_successful_exact_reply",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_failed_and_signalled_children_before_decoding",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_rejects_malformed_and_mismatched_successful_replies",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_every_allocation_failure_without_retaining_partial_authority",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_accepts_real_compiler_snapshot_without_future_path_reads",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/compiler/main.c",
+        "case": "it_refuses_temporary_stream_exhaustion_and_invalid_requests",
+        "command": "make -C tests/unit/tools/project/source/compiler"
+      }
+    ]
+  },
+  "tests/unit/source/stream/main.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_reads_complete_binary_stream_without_owning_or_rewinding_it",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_distinguishes_read_failure_from_empty_eof",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_retires_each_allocation_failure_without_fabricating_a_complete_stream",
+        "command": "make -C tests/unit/source/stream"
+      }
+    ]
+  },
+  "tests/unit/source/stream/Makefile": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Exercise independent component, ownership and failure contracts for prepared source analysis.",
+    "tests": [
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_reads_complete_binary_stream_without_owning_or_rewinding_it",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_distinguishes_read_failure_from_empty_eof",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_retires_each_allocation_failure_without_fabricating_a_complete_stream",
+        "command": "make -C tests/unit/source/stream"
+      }
+    ]
+  },
+  "src/delivery/source/snapshot/write.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Serialize exact borrowed captured input with pre-output authority checks and stream failure handling.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_exact_borrowed_capture_authority_without_mutation",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_empty_capture_without_synthetic_rows",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_refuses_incomplete_or_ambiguous_capture_views_before_output",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_propagates_capture_writer_stream_and_flush_failures",
+        "command": "make -C tests/unit/delivery/source/writing"
+      }
+    ]
+  },
+  "src/delivery/source/snapshot/write.h": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Serialize exact borrowed captured input with pre-output authority checks and stream failure handling.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_exact_borrowed_capture_authority_without_mutation",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_empty_capture_without_synthetic_rows",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_refuses_incomplete_or_ambiguous_capture_views_before_output",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_propagates_capture_writer_stream_and_flush_failures",
+        "command": "make -C tests/unit/delivery/source/writing"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/io/buffer/read.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Read borrowed streams exactly through observed EOF, preserving partial buffers on managed I/O or allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_reads_complete_binary_stream_without_owning_or_rewinding_it",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_distinguishes_read_failure_from_empty_eof",
+        "command": "make -C tests/unit/source/stream"
+      },
+      {
+        "source": "tests/unit/source/stream/main.c",
+        "case": "it_retires_each_allocation_failure_without_fabricating_a_complete_stream",
+        "command": "make -C tests/unit/source/stream"
+      }
+    ]
+  },
+  "src/delivery/source/wire.c": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_exact_borrowed_capture_authority_without_mutation",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_empty_capture_without_synthetic_rows",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_refuses_incomplete_or_ambiguous_capture_views_before_output",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_propagates_capture_writer_stream_and_flush_failures",
+        "command": "make -C tests/unit/delivery/source/writing"
+      }
+    ]
+  },
+  "src/delivery/source/wire.h": {
+    "contract": "docs/implementation/source-protocol.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_exact_borrowed_capture_authority_without_mutation",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_serializes_empty_capture_without_synthetic_rows",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_refuses_incomplete_or_ambiguous_capture_views_before_output",
+        "command": "make -C tests/unit/delivery/source/writing"
+      },
+      {
+        "source": "tests/unit/delivery/source/writing/main.c",
+        "case": "it_propagates_capture_writer_stream_and_flush_failures",
+        "command": "make -C tests/unit/delivery/source/writing"
       }
     ],
     "standalone_header_command": [
