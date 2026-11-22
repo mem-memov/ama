@@ -1,8 +1,8 @@
 /** @file
  * @brief Compose actual copy main placement, parsed edits, simultaneous material and final compiler/site proof.
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
- * This fixture declares every added directory/main explicitly; it is not the
- * general opaque/context/configuration material planner or transaction runner.
+ * Production assembly derives mapped rows and required ancestor scaffolding.
+ * Configuration eligibility, safe removal and publication remain separate gates.
  */
 #include "../../../../../../tools/project/source/observation/observation.h"
 #include "../../../../../../tools/project/source/capture/image.h"
@@ -10,7 +10,7 @@
 #include "../../../../../../tools/project/source/operands/rooted.h"
 #include "../../../../../../tools/project/source/graph/sites.h"
 #include <stdint.h>
-#include "../../../../../../tools/project/source/copy/material/material.h"
+#include "../../../../../../tools/project/source/copy/image/image.h"
 #include "../../../../../../tools/project/source/copy/members/units.h"
 #include "../../../../../../tools/project/source/copy/tests/tests.h"
 /** Choose the least unused synthetic (device 0,inode) class. At most the finite
@@ -48,7 +48,14 @@ static const DeliverySourceDefinition *copy_definition(const char *identity) {
 /** Original cyclic modules and their concrete tests are placed into a new actual
  * package layout in an immutable image, edited by spans and independently rechecked. */
 static void it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites(void) {
-    prepare(); select_main(); source_copy_closure_init(&copy, sources.allocator, &capture, &analysis, NULL);
+    setup_test(); fixtures();
+    file("generated/project/packages/vendor/pkg/v1.0.0/src/main.payload", "opaque companion\n");
+    directory("generated/project/packages/vendor/pkg/v1.0.0/src/main+");
+    directory("generated/project/packages/vendor/pkg/v1.0.0/src/main+/empty");
+    const unsigned char opaque[] = {'x', 0, 255};
+    FILE *asset = fopen("generated/project/packages/vendor/pkg/v1.0.0/src/main+/data.bin", "wb"); assert(asset);
+    assert(fwrite(opaque, 1, sizeof(opaque), asset) == sizeof(opaque) && fclose(asset) == 0);
+    capture_fixtures(); select_main(); source_copy_closure_init(&copy, sources.allocator, &capture, &analysis, NULL);
     assert(source_copy_closure_build(&copy, &tree, SOURCE_COPY_CLONE_DEPENDENCIES) == SOURCE_COPY_CLOSURE_OK);
     SourceArena arena; source_arena_init(&arena, sources.allocator);
     const char *version_path = source_arena_join(&arena, capture.roots[0].path, "/", "packages/target/new/v3.0.0"); assert(version_path);
@@ -71,24 +78,22 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_OK);
     size_t mapped = 0;
     for (const SourceFileMapping *file = files.first; file; file = file->next) { mapped++; }
-    assert(mapped == 6);
+    assert(mapped == 10);
     SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-    assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
-    const char *directories[] = {"packages/target", "packages/target/new", "packages/target/new/v3.0.0",
-        "packages/target/new/v3.0.0/src", "packages/target/new/v3.0.0/tests",
-        "packages/target/new/v3.0.0/tests/renamed", "packages/target/new/v3.0.0/tests/other"};
-    SourceImageChange additions[12] = {0}; size_t used = 0;
-    for (size_t i = 0; i < sizeof(directories) / sizeof(*directories); i++) {
-        const char *path = source_arena_join(&arena, capture.roots[0].path, "/", directories[i]); assert(path);
-        additions[used] = (SourceImageChange){SOURCE_IMAGE_ADD, {.path = path,
-            .metadata = fresh_class(&observed.image, additions, used, true), .metadata_captured = true, .children_complete = true}}; used++;
+    SourceObservationRequest requests[10]; size_t requested = 0;
+    for (const SourceFileMapping *file = files.first; file; file = file->next) {
+        assert(requested < 10);
+        requests[requested++] = (SourceObservationRequest){file->source,
+            file->original->directory ? SOURCE_OBSERVE_CHILDREN : SOURCE_OBSERVE_CONTENT, false};
     }
+    assert(requested == mapped);
+    assert(source_observed_image_build(&observed, &capture, requests, requested) == SOURCE_OBSERVATION_OK);
     SourceManager prepared; source_manager_init(&prepared, sources.allocator);
     const char *configuration_path = source_arena_join(&arena, version_path, "/", "package.ini"); assert(configuration_path);
     const SourceText *configuration = NULL;
     assert(source_manager_add(&prepared, configuration_path, (const unsigned char *)"", 0, &configuration) == SOURCE_OK);
-    additions[used] = (SourceImageChange){SOURCE_IMAGE_ADD, {.path = configuration_path, .content = configuration,
-        .metadata = fresh_class(&observed.image, additions, used, false), .metadata_captured = true}}; used++;
+    SourceImageChange configuration_change = {SOURCE_IMAGE_ADD, {.path = configuration_path, .content = configuration,
+        .metadata = fresh_class(&observed.image, NULL, 0, false), .metadata_captured = true}};
     SourceTextEdits edits[4]; SourceGraphPreparedText provenance[4];
     for (size_t i = 0; i < 4; i++) {
         row = map.first;
@@ -107,20 +112,25 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
         assert(source_text_edits_apply(&edits[i], &prepared, row->path, &text) == SOURCE_EDITS_OK);
         provenance[i] = (SourceGraphPreparedText){i == 3 ? NULL : &provenance[i + 1], &edits[i]};
     }
-    SourceCopyMaterial material = {0}; SourceMaterialIssue material_issue;
-    assert(source_copy_material_prepare(&arena, &files, provenance, &material, &material_issue) == SOURCE_MATERIAL_OK);
-    assert(material.count == mapped);
-    for (size_t i = 0; i < material.count; i++) {
-        const SourceCopyMaterialEntry *member = &material.entries[i];
-        if (member->mapping->original->directory) { assert(!member->content); continue; }
-        additions[used] = (SourceImageChange){SOURCE_IMAGE_ADD, {.path = member->mapping->destination, .content = member->content,
-            .metadata = fresh_class(&observed.image, additions, used, false), .metadata_captured = true}}; used++;
+    const SourceCatalogImage *image = NULL; SourceCopyImageIssue image_issue;
+    SourceCopyImageStatus image_status = source_copy_image_prepare(&arena, &observed.image, &files, provenance, &configuration_change, 1,
+        &image, &image_issue);
+    if (image_status != SOURCE_COPY_IMAGE_OK) { fprintf(stderr, "image assembly: status=%d path=%s material=%d projection=%d\n",
+        image_status, image_issue.path ? image_issue.path : "(none)", image_issue.material_status, image_issue.projection_status); }
+    assert(image_status == SOURCE_COPY_IMAGE_OK);
+    assert(image && access(version_path, F_OK) != 0 && errno == ENOENT);
+    const char *opaque_path = source_arena_join(&arena, version_path, "/", "src/renamed+/data.bin"); assert(opaque_path);
+    const char *empty_path = source_arena_join(&arena, version_path, "/", "src/renamed+/empty"); assert(empty_path);
+    bool found_opaque = false, found_empty = false;
+    for (size_t i = 0; i < image->count; i++) {
+        const SourceCatalogImageEntry *entry = &image->entries[i];
+        if (!strcmp(entry->path, opaque_path)) { found_opaque = true; assert(entry->content && source_length(entry->content) == sizeof(opaque)
+            && !memcmp(source_bytes(entry->content), opaque, sizeof(opaque))); }
+        if (!strcmp(entry->path, empty_path)) { found_empty = true; assert(S_ISDIR(entry->metadata.st_mode) && entry->children_complete && !entry->content); }
     }
-    assert(used == 12 && access(version_path, F_OK) != 0 && errno == ENOENT);
-    SourceCatalogImage image = {0}; SourceProjectionIssue projection;
-    assert(source_image_project(&arena, &observed.image, additions, used, &image, &projection) == SOURCE_PROJECTION_OK);
+    assert(found_opaque && found_empty);
     SourceImageCapture final_capture; source_image_capture_init(&final_capture, sources.allocator);
-    assert(source_image_capture_build(&final_capture, &image) == SOURCE_IMAGE_CAPTURE_OK);
+    assert(source_image_capture_build(&final_capture, image) == SOURCE_IMAGE_CAPTURE_OK);
     assert(final_capture.view.count == capture.view.count + 4);
     FILE *request = fopen("generated/final-copy.json", "wb"); assert(request);
     assert(delivery_source_snapshot_write(request, &final_capture.view) && fclose(request) == 0);
@@ -132,4 +142,8 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     for (size_t i = 0; i < 4; i++) { source_text_edits_destroy(&edits[i]); }
     source_manager_destroy(&prepared); source_observed_image_destroy(&observed); source_file_map_destroy(&files); source_clone_map_destroy(&map);
     source_copy_destinations_destroy(&destinations); source_clone_map_destroy(&explicit_map); source_arena_destroy(&arena); finish_copy();
+    assert(unlink("generated/project/packages/vendor/pkg/v1.0.0/src/main.payload") == 0);
+    assert(unlink("generated/project/packages/vendor/pkg/v1.0.0/src/main+/data.bin") == 0);
+    assert(rmdir("generated/project/packages/vendor/pkg/v1.0.0/src/main+/empty") == 0);
+    assert(rmdir("generated/project/packages/vendor/pkg/v1.0.0/src/main+") == 0);
 }

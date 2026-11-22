@@ -3456,3 +3456,82 @@ simultaneous projector. Refuse existing mapped destinations without explicit
 removal authority and any supplemental/map disagreement. Common final discovery,
 compiler/site validation and transaction publication remain separate mandatory
 gates. No ambiguity or active run remains at this checkpoint.
+
+
+### Root-preserving image assembly and exact ancestor scaffolding
+
+Implement one production assembly over original observations, sealed P and the
+accepted material join. Supplemental configuration/removal changes remain explicit
+caller-authorized inputs. Existing P targets require an exact supplemental REMOVE;
+replace that change with one UPDATE, preserving simultaneous projection. Other
+map/supplemental collisions refuse. Verify every mapped original's observed kind,
+file bytes or complete directory membership before preparing its copy.
+
+Generate only required missing physical ancestor keys within the closest explicit
+root. An unchanged observed complete directory stops the chain; an explicit planned
+directory also stops it. Unknown observations or conflicting regular ancestors
+refuse. Paths strictly shorten on each ancestor step; a checked sum of destination
+component counts bounds storage, and shared ancestors are deduplicated by exact
+keys. Source-root settings remain borrowed and unchanged.
+
+New image entries need distinct symbolic physical classes: use the least unused
+inode in device class zero, scanning every observed and already planned class.
+At most the finite occupied classes can block candidates; reject representational
+exhaustion. This models fresh entries for catalog alias checks without predicting
+host inodes or manufacturing original observations. Final publication obtains real
+metadata independently. Keep captured modes for members and root modes for new
+scaffolding. The shared projector still proves original change availability and
+final topology. Store its output in stable arena storage so reader.context never
+points at a discarded stack temporary. Output publishes only on full success.
+
+Plan acceptance: the real final-compiler/reference-site composition now uses this
+assembly, including complete opaque plus material with NUL/invalid UTF-8 bytes and
+an empty directory. Add independent collision, explicit replacement, unknown
+source/parent, outside-root, duplicate supplemental and allocation-failure cases.
+No public command or recovery acceptance is claimed yet.
+
+
+Initial assembly integration refused correctly because the original observed
+image had not explicitly fetched opaque P-member bytes/empty directory membership
+(`/tmp/ama-t224-image-assembly.exit = 2`). Added exact CONTENT/CHILDREN observation
+requests derived from every P member before sealing the observed image; do not
+fall back to host reads from the assembler. A first rerun encountered preserved
+fixture material from the aborted prior run in an earlier unit-members case
+(`/tmp/ama-t224-image-assembly-renewed.exit = 2`); clean only through the leaf's
+supported clean target, then repeat the full strict leaf. Neither failed run is
+acceptance. Added pure finite-image cases for distinct classes, generated deep
+parents, explicit file/file and directory/file replacement, empty copy/delete,
+unknown source/parent, outside roots, conflicting supplemental keys and all actual
+allocation ordinals. Final acceptance pending.
+
+
+Image-assembly acceptance passed on final inputs:
+- Strict full copy leaf with `-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L`:
+  `/tmp/ama-t224-image-assembly-final.exit = 0` after supported leaf cleanup.
+- ASan/UBSan full copy leaf with the recorded non-PIE flags, halt-on-error and
+  LSan environment restriction: `/tmp/ama-t224-image-sanitizers.exit = 0`.
+  Every assembly/material/ancestor/projection allocation ordinal is faulted and
+  counted teardown returns to the original live-allocation baseline. The actual
+  child compiler is executed separately, not claimed as sanitizer-instrumented.
+- Project-tool linking: `/tmp/ama-t224-image-tool.exit = 0`.
+- `make docs-check`: `/tmp/ama-t224-image-registry.exit = 0`, 3810 ready inputs,
+  zero explicit debts; new public/internal headers compile independently.
+
+The real composition builds no destination on disk. Complete P-derived explicit
+observation requests fetch opaque contents and directory membership before sealing.
+Production assembly then adds mapped mains, tests, opaque companions/plus assets,
+empty directories and their exact physical ancestors to an immutable image. The
+actual final catalog and independent compiler accept it; original/copied reference
+sites satisfy C and exact edit provenance. Pure model cases cover fresh symbolic
+classes despite occupied device-zero classes, unchanged ancestors, explicit
+file/file and directory/file replacements, empty-copy/delete projections, collisions,
+unknown input/membership, outside roots and duplicate supplemental demands.
+
+Continuation: no active jobs or new unresolved ambiguity. T224 remains unfinished.
+C/P/material and exact configuration preparation now have tested production
+compositions. Connect all configuration plans and source-operation command inputs
+to this image pipeline, retain original graph/removal/context checks and compare
+actual final configuration sets before application. Implement exclusive freshness,
+recoverable publication/rollback/recovery and public preview/apply acceptance.
+The compiler/test processes above validate preparations only; no public copy,
+delete or move command is claimed implemented. Do not start T236/T237 yet.

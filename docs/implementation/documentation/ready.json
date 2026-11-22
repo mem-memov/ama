@@ -202212,6 +202212,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_unrelated_ambiguous_and_unapplied_material_preparations",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206922,6 +206932,178 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_unrelated_ambiguous_and_unapplied_material_preparations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/image/image.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact simultaneous mapped-material images with observed source authority, explicit replacement, bounded symbolic identities and required root-contained ancestors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/image/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact simultaneous mapped-material images with observed source authority, explicit replacement, bounded symbolic identities and required root-contained ancestors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/image/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact simultaneous mapped-material images with observed source authority, explicit replacement, bounded symbolic identities and required root-contained ancestors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/image/metadata.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact simultaneous mapped-material images with observed source authority, explicit replacement, bounded symbolic identities and required root-contained ancestors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/image/members.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact simultaneous mapped-material images with observed source authority, explicit replacement, bounded symbolic identities and required root-contained ancestors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/image/parents.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact simultaneous mapped-material images with observed source authority, explicit replacement, bounded symbolic identities and required root-contained ancestors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/image.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact simultaneous mapped-material images with observed source authority, explicit replacement, bounded symbolic identities and required root-contained ancestors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]

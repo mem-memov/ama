@@ -7,6 +7,7 @@
 #include "physical.c"
 #include "prepared.c"
 #include "material.c"
+#include "image.c"
 #include "units.c"
 #include "tests.c"
 #include "declared.c"
@@ -21,6 +22,8 @@
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation();
+    it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retires_failures();
     it_joins_every_mapped_member_with_exact_prepared_or_opaque_content();
     it_refuses_unrelated_ambiguous_and_unapplied_material_preparations();
     it_retires_composed_configuration_failures_and_rejects_foreign_authority();
