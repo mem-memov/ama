@@ -8,11 +8,10 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
-[AMB-023](#amb-023) is **Open** for T224: associated-test placement is undefined
-when an ordinary src source is explicitly copied to the standard namespace or
-the tests area. TOOL-01 allows graph-safe root-kind changes, while TOOL-02 derives
-test destinations through PKG-08, whose association exists only for ordinary src.
-The affected implementation is paused pending an explicit user decision.
+[AMB-023](#amb-023) is **Resolved** for T224: copy/move preserve ordinary
+versus standard root kind and the src/tests area. Whole module branches and
+corresponding test branches follow their respective areas. The user explicitly
+authorized the TOOL-01 specification amendment; implementation may resume.
 
 [AMB-022](#amb-022) is **Resolved** for T224: an unselected original
 reference target must survive. Reusing its complete name for a replacement does
@@ -1622,7 +1621,7 @@ Each entry must contain:
 
 ## AMB-023 — Associated tests when copied code changes its root kind or src/tests area
 
-- **Status:** Open.
+- **Status:** Resolved.
 - **Current task:** [T224](TODO.md#t224), complete physical copy/test material
   placement after verified checkpoint `2b2bb0b8`. Shared unit-member translation
   and mapped unit-cause joining are implemented/tested after that checkpoint;
@@ -1696,5 +1695,15 @@ Each entry must contain:
   destinations or declaring cross-namespace operations supported/refused. Preserve
   already tested unit-member components, collect their pending read-only coverage
   checks and wait for the user's answer. No other TODO task is started.
-- **Decision/source:** awaiting the user's explicit answer. No specification
-  change is authorized by this entry or by the continuing implementation request.
+- **Decision/source:** in the clarification reply the user stated that the whole
+  module/submodule branch and corresponding tests move together, with code staying
+  in src and tests staying in tests. In the subsequent chat message the user
+  decided: «смену пространства запрещаем» (namespace changes are forbidden).
+  Applied to the two transitions in this question, this selects option 1:
+  preserve ordinary/standard root kind and src/tests area. Package/vendor/version
+  changes within that same kind and area remain governed by the existing rules.
+  The subsequent user reply «да, разрешаю» explicitly authorized amending spec/
+  to record this restriction and continuing T224. TOOL-01 now preserves root kind
+  and src/tests area, including replacement/dependency modes; its conformance row
+  records the same boundary. Existing cross-root dependencies remain governed by
+  PKG-05/09. No new exceptional storage policy is needed.

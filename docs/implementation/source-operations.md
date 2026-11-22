@@ -2754,3 +2754,20 @@ task or advance to T236/T237. The clarification question was sent through the us
 input tool; no answer has arrived. On resumption, reconcile the exact answer with
 TOOL-01/02 and PKG-08 before implementing the remaining deepest associated-test,
 context/declared/environment maps, whole-operation proof and recoverable publication.
+
+### AMB-023 resolved: preserve namespace and source/test area
+
+The user clarified that the complete module/submodule branch and corresponding
+whole test branch move together, code staying in src and tests in tests; then
+forbade namespace changes and explicitly authorized the spec amendment with
+«да, разрешаю». TOOL-01 now rejects ordinary/standard and src/tests transitions,
+including replacement and dependency modes. Vendor/package/version changes
+within those boundaries remain allowed. The former root-kind planner proposal
+above is superseded by this explicit refusal contract; existing supported
+cross-root dependency operands still need correct rewriting.
+
+Documentation review checks the normative rule, conformance row, decision
+registry and TODO against this one boundary. T224 resumes at deepest associated
+test material mapping; context/declared/environment placement and full public
+transaction acceptance remain pending. No implementation or execution acceptance
+is claimed for this documentation checkpoint.

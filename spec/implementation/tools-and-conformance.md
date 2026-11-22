@@ -338,10 +338,22 @@ than choose an owner or create extra identities implicitly.
 The configured `//` namespace remains separate. Referred standard modules are
 not included merely as ordinary dependency copies, and no package.ini owner or
 selector is invented for them. Explicitly selected standard source trees can
-still be copied/moved under configured roots. A change between ordinary and
-standard root kinds is valid only when the complete final graph satisfies
-PKG-05/09 and all configuration requirements; the dependency options cannot
-authorize a forbidden standard-to-ordinary authored edge.
+still be copied/moved within configured standard roots. Copy and move preserve
+root kind: an ordinary module cannot become a standard module or conversely.
+Within ordinary versions they also preserve the src/tests area: source code
+remains in src and test code remains in tests. Refuse a destination violating
+these constraints before preparing mutations, including with --replace or either
+dependency option. Vendor, package and version changes remain possible under the
+ordinary destination and dependency rules above. These restrictions keep the
+source/test association defined without inventing tests or an exceptional layout.
+
+Move the entire selected module branch, including submodules and companions;
+map its associated test branches to the corresponding destination tests paths
+under TOOL-02 and PKG-08. The complete final graph must still satisfy PKG-05/09
+and all configuration requirements. Preserving the source module's root kind
+does not remove cross-root dependency checks: ordinary modules may refer to
+standard modules, and dependency options cannot authorize a forbidden
+standard-to-ordinary authored edge.
 
 #### Replace only when explicitly requested
 
@@ -739,7 +751,7 @@ the earlier backend evidence does not certify these newly specified modes.
 | Optimization equivalence | General and optimized plans agree on values, effects, identity/refusal/control transitions and source diagnostics; mandatory static checks still reject invalid eliminated code; internal allocation attempts may differ under GEN-03; remaining failure transitions retain cleanup guarantees |
 | Translation pipeline | Source/AST/resolved IR/storage plans remain distinct; one assembled project C translation unit; labels/explicit return links for Ama, verified inline native entries, original source maps |
 | Ama dependencies | Transitive type/constant/native closure loaded once per logical identity; shared code/constants but separate owned instances; missing/draft/duplicate dependencies diagnosed with requesting paths; no textual Ama includes or function linking |
-| Source copy and dependency modes | Exact file/directory destinations; complete companions/subtrees and associated tests; cross-version default refusal and mutually exclusive explicit modes; clone finite ordinary source/test/static dependency closure versus retain original external targets and add only needed concrete permissions; additional source paths retain src-relative suffixes, mapped tests follow source ownership and outside test helpers retain tests-relative suffixes; overlapping-unit/map collisions refuse; standard targets remain configured separately; original definitions/importers remain unchanged; nominal clone identities differ despite equal bytes |
+| Source copy and dependency modes | Preserve ordinary/standard root kind and ordinary src/tests area; refuse transitions even with replacement or dependency options; exact file/directory destinations; complete companions/subtrees and associated tests; cross-version default refusal and mutually exclusive explicit modes; clone finite ordinary source/test/static dependency closure versus retain original external targets and add only needed concrete permissions; additional source paths retain src-relative suffixes, mapped tests follow source ownership and outside test helpers retain tests-relative suffixes; overlapping-unit/map collisions refuse; standard targets remain configured separately; original definitions/importers remain unchanged; nominal clone identities differ despite equal bytes |
 | Safe deletion, movement and replacement | Check every supplied active definition, including unused/static/test dependants; internal edges of the complete removal set do not block, outside incoming edges and required shared declared inputs do; default target collision refuses with explanation; --replace obeys the same pre-replacement deletion test even for an identically named new implementation; move refuses before publication when source removal is unsafe; cloned dependency originals are not implicitly removed; cyclic worker/helper closure copies but moving only worker refuses; obsolete target children/companions are removed only as part of an authorized safe replacement |
 | Source-operation resolution and preservation | Original and final whole-version selection; augmented original conflicts; exact clone and surviving-reference laws; relative bases and shared aliases in source/destination scopes; ordinary/static/native interfaces, qualified-constant members and storage suffixes; copied versus unchanged package configurations, exact selector re-expression and explicit extension; no wildcard expansion, repository-table copying or outside importer redirection; src/tests restrictions, / versus // and name+/ topology; drafts, literals/comments and opaque native/build bytes preserved; unprovable final graph refuses |
 | Source-operation transactions | Exactly one explicit `--preview` or `--apply`; absent, repeated or conflicting modes refuse before mutation; preview/apply plan equality; offline preflight without module/test/native/CMake execution; inputs include optional-config presence, directory membership and excluded versions; a new importer/companion invalidates a stale plan; copy, replacement, permissions and move-source removal publish as one transaction; preparation/apply/cleanup failure, cross-filesystem staging, repeatable interruption recovery and incomplete-rollback reports preserve original/recovery data; no leftover copy after a refused move |
