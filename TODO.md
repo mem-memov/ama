@@ -148,7 +148,11 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   changed parent/child refusals and allocation failures pass strict and sanitizer
   checks. Per-file coverage passes with 3777 ready inputs and zero debt. T224
   remains unfinished: environment selection, complete material integration and
-  recoverable public operations still require acceptance.
+  recoverable public operations still require acceptance. Concrete selector
+  re-expression now preserves parsed surrounding bytes and passes independent
+  augmented-domain selection, strict/sanitizer/failure and tool-link checks;
+  per-file checking passes with 3781 ready inputs and zero debt. Deriving the
+  authorized requested selection set remains an outer unfinished obligation.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.

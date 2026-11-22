@@ -3050,3 +3050,44 @@ including all recursive source-operation leaves and their real compiler joins.
 Checkpoint this verified omission boundary without completing T224. Next retain
 one exact selection-domain contract for original/final package environments,
 then integrate complete material and configuration preparation before publication.
+
+### Concrete selector re-expression from a proven finite domain (active step)
+
+The next component owns byte preparation, not permission policy: accept exact
+actual entries of an independently built final DependencyView, and replace only
+parsed selector spans with their duplicate-free canonical rooted spellings.
+Caller remains responsible for deriving that finite set from the original
+selection/C plus authorized concrete additions. No wildcard is widened and no
+alias/repository table is imported. Reparse and independently evaluate the final
+configuration; equality of selected roots and all ordinary edge checks remain
+mandatory before publication. Empty desired sets remove pattern tokens while
+preserving intervening comments/line endings. Empty dependency sections and
+missing sections need explicit parsed-header insertion, not guessed source edits.
+Termination is bounded by finite view/selector/source scans; emit entries in the
+view's canonical order, independent of input order. Resource failures poison the
+edit owner without source mutation. Test real parser/selector evaluation, CRLF,
+unterminated files, empty sections/documents, comments, duplicate requests,
+foreign view entries, invalid owners and every allocation ordinal.
+
+Initial strict selector acceptance passed (`/tmp/ama-t224-selectors.exit = 0`),
+then augmented-domain acceptance passed (`/tmp/ama-t224-selectors-domain.exit = 0`).
+The original real wildcard selects two source roots; evaluating it unchanged in
+the augmented final view selects three. Re-expression derived from the original
+actual roots selects exactly the original two in the same augmented view. A
+separately requested concrete whole-version root retains normal PKG-05 coverage;
+it is not treated as a single-module selector. Actual independent INI parsing and
+selection also cover empty/missing sections, reordered duplicate requests, empty
+sets, comments/aliases, LF/CRLF and unterminated input. Current ASan/UBSan tests
+pass (`/tmp/ama-t224-selector-sanitizers.exit = 0`), including failures while
+removing a second original selector after preparing the first replacement,
+foreign byte-equal entries, source/profile mismatch and overlapping pending edits.
+Project-tool linking with shared strict INI record/line components passes
+(`/tmp/ama-t224-selector-tool.exit = 0`). Selection-policy derivation, final
+coverage equality and public operation acceptance remain separate unfinished work.
+Recursive parent dispatch of the strict current selector suite passed
+(`/tmp/ama-t224-selector-parent.exit = 0`). Full per-file checking passed with
+3781 ready inputs and zero explicit debt (`/tmp/ama-t224-selector-registry.exit = 0`).
+Checkpoint this verified byte-preparation boundary; do not mark T224 complete.
+Next derive and prove the requested exact finite root set from original/final
+selection domains and the operation's explicit mapping/extension authority,
+then compose final permission and material checks before transaction work.

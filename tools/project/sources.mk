@@ -16,3 +16,8 @@ PROJECT_TOOL_CAPTURE_SOURCES := source/text/manager.c source/text/lines.c source
 # Shared response/request data readers own no compiler, Ama parser or mutation state.
 PROJECT_TOOL_SHARED_SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/json) \
     $(call source_files,$(ROOT)/src/delivery/source/response))
+
+# Strict shared INI records provide parsed dependency-section insertion anchors.
+PROJECT_TOOL_SHARED_SOURCES += source/path/syntax.c $(patsubst $(ROOT)/src/%,%,\
+    $(call source_files,$(ROOT)/src/source/configuration/lines) \
+    $(call source_files,$(ROOT)/src/source/configuration/records))
