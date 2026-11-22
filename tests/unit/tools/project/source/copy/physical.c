@@ -22,7 +22,7 @@ static void it_checks_copy_main_placement_topology_explicit_agreement_and_failur
         if (profile == 2) { version.physical = "/wrong"; expected = SOURCE_COPY_MAINS_EXPLICIT; }
         if (profile == 3) {
             const ModuleSource *different = NULL;
-            for (size_t i = 0; i < result.count; i++) { if (result.entries[i].source != tree.units[0]->source) { different = result.entries[i].source; break; } }
+            assert(module_catalog_find(&capture.catalog, "/vendor/pkg/v1.0.0/src/other", &different) == MODULE_OK);
             const SourceCloneMapping *row = NULL; assert(different);
             assert(source_clone_map_add(&map, different, "/prepared/src/renamed", "/target/new/v3.0.0/src/renamed", &row) == SOURCE_CLONE_OK);
             expected = SOURCE_COPY_MAINS_MAP;

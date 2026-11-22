@@ -6,8 +6,8 @@
 #include "../../../../../../tools/project/source/operands/rooted.h"
 /** A normalized member is authoritative even when its raw spelling cannot be split into a module prefix. */
 static void it_prepares_rooted_copied_and_retained_targets_without_rewriting_outside_operand_bytes(void) {
-    const char *written[] = {"./relative", "../retained", "//a", "~alias"};
-    const char *expected[] = {"//a", "/vendor/pkg/v1.0.0/src/parentish", "//a", "//a/chosen value"};
+    const char *written[] = {"./relative", "../retained", "/vendor/target/v2.0.0/src/a", "~alias"};
+    const char *expected[] = {"/vendor/target/v2.0.0/src/a", "/vendor/pkg/v1.0.0/src/parentish", "/vendor/target/v2.0.0/src/a", "/vendor/target/v2.0.0/src/a/chosen value"};
     for (unsigned choice = 0; choice < 4; choice++) {
         prepare(); binding_map(false);
         char bytes[256], wanted[256]; const char *suffix = "[]& # kept\r\n";
@@ -36,7 +36,7 @@ static void it_keeps_fixed_dependencies_without_allocation_and_refuses_changed_f
         const char *identity = "/vendor/pkg/v1.0.0/src/parent/child";
         if (changed) {
             const SourceCloneMapping *row = NULL;
-            assert(source_clone_map_add(&map, original(identity), "/moved/child", changed == 1 ? "//changed" : identity, &row) == SOURCE_CLONE_OK);
+            assert(source_clone_map_add(&map, original(identity), "/moved/child", changed == 1 ? "/vendor/target/v2.0.0/src/changed" : identity, &row) == SOURCE_CLONE_OK);
         }
         assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
         const SourceText *text = original(identity)->text;

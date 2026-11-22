@@ -11,6 +11,7 @@
 #include "../../../../../../tools/project/source/graph/sites.h"
 #include <stdint.h>
 #include "../../../../../../tools/project/source/copy/members/units.h"
+#include "../../../../../../tools/project/source/copy/tests/tests.h"
 /** Choose the least unused synthetic (device 0,inode) class. At most the finite
  * original-plus-added row count can block candidates; labels model distinct new
  * entries and do not predict host inodes. All real original classes are retained. */
@@ -64,10 +65,12 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
     SourceFileMap files; source_file_map_init(&files, sources.allocator); SourceCopyUnitsIssue units;
     assert(source_copy_map_unit_members(&files, &copy, &map, &units) == SOURCE_COPY_UNITS_OK);
+    SourceCopyTestsIssue test_material;
+    assert(source_copy_map_test_members(&files, &copy, &map, &version, 1, &test_material) == SOURCE_COPY_TESTS_OK);
     assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_OK);
     size_t mapped = 0;
     for (const SourceFileMapping *file = files.first; file; file = file->next) { mapped++; }
-    assert(mapped == 4);
+    assert(mapped == 6);
     SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
     assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
     const char *directories[] = {"packages/target", "packages/target/new", "packages/target/new/v3.0.0",

@@ -8,17 +8,17 @@ static void it_requires_both_maps_to_cover_exactly_the_same_original_mains_and_o
     for (unsigned choice = 0; choice < 6; choice++) {
         prepare(); assert(source_tree_selection_read(&selection, &capture, main_path) == SOURCE_TREE_OK);
         SourceTreePlacement placement; source_tree_placement_init(&placement, sources.allocator);
-        assert(source_tree_placement_build(&placement, &selection, "/final/copy") == SOURCE_PLACEMENT_OK);
+        assert(source_tree_placement_build(&placement, &selection, "/final/packages/vendor/target/v2.0.0/src/copy") == SOURCE_PLACEMENT_OK);
         const ModuleSource *parent = original("/vendor/pkg/v1.0.0/src/parent");
         source_clone_map_init(&map, sources.allocator, &capture);
-        ModuleRoot root = {"/final", NULL, 0, MODULE_ROOT_STANDARD};
+        ModuleRoot root = {"/final", NULL, 0, MODULE_ROOT_PROJECT};
         if (choice != 1) {
             SourceCloneTreeIssue proposal_issue = {0};
             assert(source_clone_map_propose_tree(&map, &placement, &root, 1, &proposal_issue) == SOURCE_CLONE_OK);
         } else {
             const ModuleSource *child = original("/vendor/pkg/v1.0.0/src/parent/child");
             const SourceCloneMapping *row = NULL;
-            assert(source_clone_map_add(&map, child, "/final/copy+/child", "//copy/child", &row) == SOURCE_CLONE_OK);
+            assert(source_clone_map_add(&map, child, "/final/packages/vendor/target/v2.0.0/src/copy+/child", "/vendor/target/v2.0.0/src/copy/child", &row) == SOURCE_CLONE_OK);
         }
         assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
         SourceFileMap files; source_file_map_init(&files, sources.allocator);

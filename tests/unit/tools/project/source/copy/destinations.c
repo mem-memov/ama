@@ -88,8 +88,9 @@ static void it_refuses_invalid_copy_destination_inputs_and_namespace_crossings(v
         SourceCloneMap explicit_map; source_clone_map_init(&explicit_map, sources.allocator, &capture);
         const SourceCloneMapping *row = NULL;
         if (profile) {
-            assert(source_clone_map_add(&explicit_map, tree.units[0]->source, "/prepared/src/renamed",
-                profile == 2 ? "//renamed" : "/target/new/v3.0.0/src/renamed", &row) == SOURCE_CLONE_OK);
+            SourceCloneStatus admission = source_clone_map_add(&explicit_map, tree.units[0]->source, "/prepared/src/renamed",
+                profile == 2 ? "//renamed" : "/target/new/v3.0.0/src/renamed", &row);
+            assert(admission == (profile == 2 ? SOURCE_CLONE_NAMESPACE : SOURCE_CLONE_OK));
         }
         if (profile == 3) {
             const ModuleSource *other = NULL;
@@ -100,7 +101,7 @@ static void it_refuses_invalid_copy_destination_inputs_and_namespace_crossings(v
         SourceCopyDestinations result; source_copy_destinations_init(&result, sources.allocator);
         SourceCopyDestinationsStatus status = source_copy_destinations_build(&result, &copy, &explicit_map);
         if (profile == 1) { assert(status == SOURCE_COPY_DESTINATIONS_OK && result.valid); }
-        else { assert(status == (profile == 2 ? SOURCE_COPY_DESTINATIONS_NAMESPACE : SOURCE_COPY_DESTINATIONS_INVALID)); assert(!result.valid && !result.entries); }
+        else { assert(status == SOURCE_COPY_DESTINATIONS_INVALID); assert(!result.valid && !result.entries); }
         source_copy_destinations_destroy(&result); source_clone_map_destroy(&explicit_map);
     }
     SourceCopyDestinations result; source_copy_destinations_init(&result, sources.allocator);

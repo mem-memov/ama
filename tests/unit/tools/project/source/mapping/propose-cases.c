@@ -41,21 +41,21 @@ static void it_refuses_cross_capture_unplaced_or_conflicting_tree_proposals(void
     for (size_t choice = 0; choice < 5; choice++) {
         prepare(); assert(source_tree_selection_read(&selection, &capture, main_path) == SOURCE_TREE_OK);
         SourceTreePlacement placement; source_tree_placement_init(&placement, sources.allocator);
-        assert(source_tree_placement_build(&placement, &selection, "/destination/src/copied") == SOURCE_PLACEMENT_OK);
+        assert(source_tree_placement_build(&placement, &selection, "/destination/packages/vendor/target/v2.0.0/src/copied") == SOURCE_PLACEMENT_OK);
         source_clone_map_init(&map, sources.allocator, &capture);
-        ModuleRoot root = {"/destination/src", NULL, 0, MODULE_ROOT_STANDARD};
+        ModuleRoot root = {"/destination", NULL, 0, MODULE_ROOT_PROJECT};
         SourceCloneTreeIssue issue = {0};
         if (choice == 0) { placement.ready = false; }
         if (choice == 1) { map.capture = NULL; }
-        if (choice == 2) { root.kind = MODULE_ROOT_PROJECT; }
+        if (choice == 2) { root.kind = MODULE_ROOT_STANDARD; root.path = "/destination/packages/vendor/target/v2.0.0/src"; }
         if (choice == 3) {
             const SourceCloneMapping *row = NULL;
-            assert(source_clone_map_add(&map, original("/vendor/pkg/v1.0.0/src/parent"), "/different", "//copied", &row) == SOURCE_CLONE_OK);
+            assert(source_clone_map_add(&map, original("/vendor/pkg/v1.0.0/src/parent"), "/different", "/vendor/target/v2.0.0/src/copied", &row) == SOURCE_CLONE_OK);
         }
         SourceCloneStatus status = source_clone_map_propose_tree(&map, &placement, &root, 1, choice == 4 ? NULL : &issue);
-        assert(status == (choice == 3 ? SOURCE_CLONE_CONFLICT : SOURCE_CLONE_INVALID));
+        assert(status == (choice == 3 ? SOURCE_CLONE_CONFLICT : choice == 2 ? SOURCE_CLONE_NAMESPACE : SOURCE_CLONE_INVALID));
         assert(!map.ready && source_clone_map_seal(&map) == status);
-        if (choice == 2) { assert(issue.unit && issue.path && issue.identity_status == SOURCE_IDENTITY_NOT_MODULE); }
+        if (choice == 2) { assert(issue.unit && issue.path && map.requester); }
         if (choice == 3) { assert(issue.unit && issue.path && map.conflict); }
         source_clone_map_destroy(&map); source_tree_placement_destroy(&placement); finish();
     }
@@ -66,9 +66,9 @@ static void it_retires_every_joined_tree_proposal_allocation_without_partial_acc
     for (size_t failure = 0; !failure || failure <= count; failure++) {
         prepare(); assert(source_tree_selection_read(&selection, &capture, main_path) == SOURCE_TREE_OK);
         SourceTreePlacement placement; source_tree_placement_init(&placement, sources.allocator);
-        assert(source_tree_placement_build(&placement, &selection, "/destination/copied") == SOURCE_PLACEMENT_OK);
+        assert(source_tree_placement_build(&placement, &selection, "/destination/packages/vendor/target/v2.0.0/src/copied") == SOURCE_PLACEMENT_OK);
         source_clone_map_init(&map, sources.allocator, &capture);
-        ModuleRoot root = {"/destination", NULL, 0, MODULE_ROOT_STANDARD};
+        ModuleRoot root = {"/destination", NULL, 0, MODULE_ROOT_PROJECT};
         SourceCloneTreeIssue issue = {0}; size_t before = allocation_count;
         if (failure) { failure_at = before + failure; }
         SourceCloneStatus status = source_clone_map_propose_tree(&map, &placement, &root, 1, &issue);

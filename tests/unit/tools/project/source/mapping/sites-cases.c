@@ -23,8 +23,8 @@ static void it_requires_exact_prepared_site_provenance_after_binding_admission(v
         assert(deep != result);
         DeliverySourceDependency old_edge = {.target = a, .origin = {old_text, choice == 4 ? 1 : 0, source_length(old_text)}};
         DeliverySourceDefinition old = {.identity = a, .dependencies = &old_edge};
-        DeliverySourceDependency copy_edge = {.target = choice == 8 ? a : "//a", .origin = {deep, choice == 2 ? 1 : 0, source_length(deep)}};
-        DeliverySourceDefinition copy = {.identity = "//a", .dependencies = &copy_edge};
+        DeliverySourceDependency copy_edge = {.target = choice == 8 ? a : "/vendor/target/v2.0.0/src/a", .origin = {deep, choice == 2 ? 1 : 0, source_length(deep)}};
+        DeliverySourceDefinition copy = {.identity = "/vendor/target/v2.0.0/src/a", .dependencies = &copy_edge};
         DeliverySourceDependency survivor_edge = old_edge;
         if (choice == 7) { survivor_edge.origin.start = 1; }
         DeliverySourceDefinition survivor = old; survivor.dependencies = &survivor_edge; survivor.next = &copy;

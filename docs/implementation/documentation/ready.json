@@ -199359,6 +199359,11 @@
         "source": "tests/unit/tools/project/source/expansion/main.c",
         "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
         "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_namespace_for_every_source_test_standard_pair",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
   },
@@ -199512,6 +199517,11 @@
         "source": "tests/unit/tools/project/source/expansion/main.c",
         "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
         "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_namespace_for_every_source_test_standard_pair",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ],
     "standalone_header_command": [
@@ -199905,6 +199915,11 @@
       {
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_namespace_for_every_source_test_standard_pair",
         "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
@@ -202026,6 +202041,21 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_complete_test_trees_and_agrees_with_actual_unit_topology",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_nested_test_material_by_deepest_source_association_across_versions",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -205491,6 +205521,167 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/mapping/namespace-cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exhaust the source/test/standard placement matrix over real captured modules.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_namespace_for_every_source_test_standard_pair",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      }
+    ]
+  },
+  "tools/project/source/copy/tests/tests.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Map complete associated test material through copied source ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_complete_test_trees_and_agrees_with_actual_unit_topology",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_nested_test_material_by_deepest_source_association_across_versions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/tests/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Separate complete association preparation from raw test-member projection.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_complete_test_trees_and_agrees_with_actual_unit_topology",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_nested_test_material_by_deepest_source_association_across_versions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/tests/associations.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive test-directory pairs from actual source causes and explicit final versions.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_complete_test_trees_and_agrees_with_actual_unit_topology",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_nested_test_material_by_deepest_source_association_across_versions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/tests/members.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join each raw test member through the deepest complete source association.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_complete_test_trees_and_agrees_with_actual_unit_topology",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_nested_test_material_by_deepest_source_association_across_versions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/tests.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify complete associated test projection, nested ownership and overlap failures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_complete_test_trees_and_agrees_with_actual_unit_topology",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_maps_nested_test_material_by_deepest_source_association_across_versions",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]

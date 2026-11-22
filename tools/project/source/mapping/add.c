@@ -3,6 +3,8 @@
  * [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02)
  * gives each original one identity and forbids content-based merging or implicit
  * duplicate specialization locations within an operation.
+ * [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01)
+ * preserves root kind and ordinary src/tests area before any row is published.
  */
 #include <string.h>
 #include "map.h"
@@ -25,6 +27,16 @@ SourceCloneStatus source_clone_map_add(SourceCloneMap *map, const ModuleSource *
         return map->status = SOURCE_CLONE_INVALID;
     }
     map->requester = source;
+    ModulePathShape original_shape, final_shape;
+    if (!module_path_describe((const unsigned char *)source->logical_path,
+        strlen(source->logical_path), &original_shape)
+        || !module_path_describe((const unsigned char *)identity, strlen(identity), &final_shape)) {
+        return map->status = SOURCE_CLONE_INVALID;
+    }
+    if (original_shape.root != final_shape.root || original_shape.area != final_shape.area) {
+        return map->status = SOURCE_CLONE_NAMESPACE;
+    }
+
     for (const SourceCloneMapping *entry = map->first; entry; entry = entry->next) {
         bool same_path = !strcmp(entry->path, path), same_name = !strcmp(entry->identity, identity);
         if (entry->original == source && same_path && same_name) { *output = entry; return SOURCE_CLONE_OK; }

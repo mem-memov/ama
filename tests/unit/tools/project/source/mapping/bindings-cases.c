@@ -8,8 +8,8 @@
 static void binding_map(bool second) {
     source_clone_map_init(&map, sources.allocator, &capture);
     const SourceCloneMapping *row = NULL;
-    assert(source_clone_map_add(&map, original("/vendor/pkg/v1.0.0/src/parent/child"), "/mapped/a", "//a", &row) == SOURCE_CLONE_OK);
-    if (second) { assert(source_clone_map_add(&map, original("/vendor/pkg/v1.0.0/src/parentish"), "/mapped/b", "//b", &row) == SOURCE_CLONE_OK); }
+    assert(source_clone_map_add(&map, original("/vendor/pkg/v1.0.0/src/parent/child"), "/mapped/a", "/vendor/target/v2.0.0/src/a", &row) == SOURCE_CLONE_OK);
+    if (second) { assert(source_clone_map_add(&map, original("/vendor/pkg/v1.0.0/src/parentish"), "/mapped/b", "/vendor/target/v2.0.0/src/b", &row) == SOURCE_CLONE_OK); }
     assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
 }
 /** All self-recursive removal/copy subsets and closed two-source cycles preserve standard edges. */
@@ -28,10 +28,10 @@ static void it_preserves_simultaneous_cycle_bindings_for_every_clone_and_survivo
                 DeliverySourceDefinition old[] = {{.identity = a, .dependencies = &edges[0]},
                     {.identity = b, .dependencies = &edges[1]}, {.identity = "//standard"}};
                 old[0].next = &old[1]; old[1].next = &old[2];
-                DeliverySourceDependency copied_edges[] = {{.target = cycle ? second ? "//b" : b : "//a", .next = &external, .member = "choice"},
-                    {.target = cycle ? "//a" : "//b"}};
-                DeliverySourceDefinition copies[] = {{.identity = "//a", .dependencies = &copied_edges[0]},
-                    {.identity = "//b", .dependencies = &copied_edges[1]}};
+                DeliverySourceDependency copied_edges[] = {{.target = cycle ? second ? "/vendor/target/v2.0.0/src/b" : b : "/vendor/target/v2.0.0/src/a", .next = &external, .member = "choice"},
+                    {.target = cycle ? "/vendor/target/v2.0.0/src/a" : "/vendor/target/v2.0.0/src/b"}};
+                DeliverySourceDefinition copies[] = {{.identity = "/vendor/target/v2.0.0/src/a", .dependencies = &copied_edges[0]},
+                    {.identity = "/vendor/target/v2.0.0/src/b", .dependencies = &copied_edges[1]}};
                 DeliverySourceDefinition survivors[] = {old[0], old[1], old[2]};
                 DeliverySourceDefinition *final = &copies[0];
                 copies[0].next = second ? &copies[1] : &survivors[2]; copies[1].next = &survivors[2];
@@ -55,9 +55,9 @@ static void it_refuses_each_changed_clone_edge_field_and_surviving_original_redi
         prepare(); binding_map(false);
         DeliverySourceDependency old_edge = {.target = a, .member = "value"};
         DeliverySourceDefinition old = {.identity = a, .dependencies = &old_edge};
-        DeliverySourceDependency copy_edge = {.target = "//a", .member = "value"};
+        DeliverySourceDependency copy_edge = {.target = "/vendor/target/v2.0.0/src/a", .member = "value"};
         DeliverySourceDependency extra = copy_edge;
-        DeliverySourceDefinition copy = {.identity = "//a", .dependencies = &copy_edge};
+        DeliverySourceDefinition copy = {.identity = "/vendor/target/v2.0.0/src/a", .dependencies = &copy_edge};
         DeliverySourceDefinition survivor = old; survivor.next = &copy;
         DeliverySourceDependency changed_survivor = old_edge;
         if (changed == 0) { copy_edge.target = a; }
@@ -67,7 +67,7 @@ static void it_refuses_each_changed_clone_edge_field_and_surviving_original_redi
         if (changed == 4) { copy.dependencies = NULL; }
         if (changed == 5) { copy_edge.next = &extra; }
         if (changed == 6) { copy.kind = DELIVERY_SOURCE_PARAMETERIZED; }
-        if (changed == 7) { changed_survivor.target = "//a"; survivor.dependencies = &changed_survivor; }
+        if (changed == 7) { changed_survivor.target = "/vendor/target/v2.0.0/src/a"; survivor.dependencies = &changed_survivor; }
         SourceBindingsIssue issue = {0};
         assert(source_graph_bindings(&old, &survivor, &map, NULL, 0, &issue)
             == (changed == 6 ? SOURCE_BINDINGS_KIND : SOURCE_BINDINGS_EDGE));
@@ -83,9 +83,9 @@ static void it_refuses_missing_extra_and_survivor_clone_identity_collisions(void
         prepare(); source_clone_map_init(&map, sources.allocator, &capture);
         const SourceCloneMapping *row = NULL;
         const ModuleSource *input = original(changed == 4 ? "/vendor/pkg/v1.0.0/src/parent" : a);
-        assert(source_clone_map_add(&map, input, "/mapped/a", changed == 3 ? a : "//a", &row) == SOURCE_CLONE_OK);
+        assert(source_clone_map_add(&map, input, "/mapped/a", changed == 3 ? a : "/vendor/target/v2.0.0/src/a", &row) == SOURCE_CLONE_OK);
         assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
-        DeliverySourceDefinition copy = {.identity = changed == 3 ? a : "//a"};
+        DeliverySourceDefinition copy = {.identity = changed == 3 ? a : "/vendor/target/v2.0.0/src/a"};
         DeliverySourceDefinition old = {.identity = a}, survivor = old, extra = {.identity = "//unexpected"};
         survivor.next = &copy;
         const DeliverySourceDefinition *final = &survivor;

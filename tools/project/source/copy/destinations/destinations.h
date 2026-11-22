@@ -47,8 +47,8 @@ void source_copy_destinations_destroy(SourceCopyDestinations *);
 /** Build once from a valid copy closure and exactly its explicit selected-tree
  * clone rows (one per raw selected indexed main, no extra rows). Both must refer
  * to the same original capture. Ordinary explicit units require ordinary final
- * module names in this phase; a standard/ordinary namespace crossing reports its
- * own stage for the outer root-kind planner. Standard originals have no ordinary
+ * module names in this phase. TOOL-01 forbids root-kind or src/tests crossings;
+ * the shared clone-map admission rejects them. Standard originals have no ordinary
  * version candidate. No physical destination, package permission or operation
  * support is inferred from this phase alone.
  * Use active ordinary roles only. Topology-only reasons do not place copies.

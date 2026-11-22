@@ -2771,3 +2771,86 @@ registry and TODO against this one boundary. T224 resumes at deepest associated
 test material mapping; context/declared/environment placement and full public
 transaction acceptance remain pending. No implementation or execution acceptance
 is claimed for this documentation checkpoint.
+
+### Namespace admission at the shared clone relation
+
+Implement TOOL-01 at `source_clone_map_add`, after original-handle and canonical
+identity validation but before any row allocation: compare parsed root kind and
+structural area. Equality is necessary for every copied main, independent of
+physical placement, selection route or dependency mode. A mismatch retains the
+original requester, leaves output and previous rows intact and prevents sealing.
+The three classes src/tests/standard give a complete nine-pair acceptance matrix;
+only the diagonal is allowed. Vendor/package/version/name components do not enter
+this invariant. Work is linear in the two names with constant auxiliary storage.
+Existing explicit-tree conflict and allocation cases now use valid same-space
+ordinary destinations rather than abandoned cross-root success expectations.
+
+Current checks pending: strict mapping suite, actual copy consumer, sanitizers,
+standalone tool build and per-file documentation registry. No running job yet.
+
+### Complete physical associated-test projection
+
+Prepare the entire source-association set from actual TEST_MEMBER causes and the
+ready main relation. Every cause must name a copied source; every final source
+must have one explicit ordinary destination version. Validate the version table
+before using it. Derive original directories using the shared selected-version
+PKG-08 helper and final directories from the shared logical association and its
+explicit physical version root. No physical source plus marker is mirrored.
+Then visit each unique test member once, selecting the longest containing
+original directory on a slash boundary, including the directory itself, and
+append its untouched physical suffix. Because a valid source clone map assigns
+one output per original and PKG-08 is injective within one original version,
+there cannot be two different associations with the same original directory.
+Strict length order therefore gives a unique deepest match independently of
+cause/association insertion order. Unit/test overlap still uses the common file
+relation and must agree; this component cannot override a disagreement.
+
+Scratch association rows and proposed keys belong to the open file-map arena.
+Failures retain witnesses, prevent sealing and retire with the normal file owner.
+No compiler/native/test execution or source mutation occurs here. Finite nested
+scans are exact; total original member/cause/main/version counts and string bytes
+bound work and storage. The final common discovery/main correspondence remains
+necessary: preservation of a raw test suffix alone does not prove final topology.
+
+Strict namespace relation tests passed after updating abandoned cross-root fixture
+placements. Initial `/tmp/ama-t224-namespace.exit` and
+`/tmp/ama-t224-namespace-renewed.exit` were 2: the first explicit standard fixture
+was not a canonical standard destination, then the correspondence fixture still
+expected cross-root success. `/tmp/ama-t224-namespace-current.exit` is 0 after
+using canonical same-area placements throughout binding/correspondence/operand
+fixtures. `/tmp/ama-t224-namespace-copy.exit` was 2 because its collision seed
+chose a test original for a source destination; it now explicitly selects the
+other source original, preserving that collision partition.
+
+Actual test material, all allocation ordinals and final independent compiler/site
+composition passed `/tmp/ama-t224-test-material.exit` (0). The additional nested
+parent/child case uses two destination versions, checks the nested directory
+itself plus opaque input, rejects an obsolete parent-relative output and reverses
+the version table: `/tmp/ama-t224-nested-test-material.exit` (0). Unit/test overlap
+and retained test-helper plus storage are checked by the real main topology.
+
+Continuation: no source edits while the two sanitizer leaves run. Active jobs:
+copy sanitizer session 3177 (`/tmp/ama-t224-test-material-sanitizers.log`, `.exit`);
+mapping sanitizer session 45102 (`/tmp/ama-t224-namespace-sanitizers.log`, `.exit`).
+The earlier registry job 56023 is provisional because final registry entries were
+added while it ran; collect it but rerun against the frozen final inputs before
+claiming current complete coverage. Next: collect jobs, strict tool build, final
+registry, then context/declared/environment material and full operation gates.
+
+Both sanitizer leaves completed with exit 0: mapping
+`/tmp/ama-t224-namespace-sanitizers.exit` and actual copy
+`/tmp/ama-t224-test-material-sanitizers.exit`. They ran with strict C11 flags,
+ASan/UBSan, `-fno-omit-frame-pointer -fno-pie`, linker `-no-pie`,
+`ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+`UBSAN_OPTIONS=halt_on_error=1`. LSan remains unavailable under this environment's
+ptrace restriction; counted allocation teardown separately returns to the owner
+baseline at every measured failure. The standalone strict tool build passed
+`/tmp/ama-t224-test-material-tool.exit` (0), including all new test-material units.
+
+The final frozen-input registry run passed
+`/tmp/ama-t224-test-material-final-registry.exit` (0): 3763 ready inputs, no debt,
+including independent new public/internal header probes. Earlier provisional
+registry also passed but is not substituted for this final run. No process is
+active. No Doxygen/release conformance renewal or public mutation acceptance is
+claimed at this intermediate T224 boundary. Save a transparent checkpoint, then
+continue context/declared/environment placement and full operation acceptance.

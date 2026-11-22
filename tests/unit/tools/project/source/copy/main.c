@@ -7,12 +7,16 @@
 #include "physical.c"
 #include "prepared.c"
 #include "units.c"
+#include "tests.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_maps_nested_test_material_by_deepest_source_association_across_versions();
+    it_maps_complete_test_trees_and_agrees_with_actual_unit_topology();
+    it_refuses_test_mapping_authority_conflicts_and_all_allocation_failures();
     it_maps_real_opaque_unit_companions_and_plus_data_with_durable_capture_descriptors();
     it_refuses_unmapped_or_conflicting_unit_causes_and_retires_every_allocation_failure();
     it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites();

@@ -9,7 +9,7 @@
 #include "../capture/capture.h"
 /** Retain the first refusal; a failed prefix cannot be sealed as a complete map. */
 typedef enum { SOURCE_CLONE_OK, SOURCE_CLONE_INVALID, SOURCE_CLONE_CONFLICT,
-    SOURCE_CLONE_MEMORY } SourceCloneStatus;
+    SOURCE_CLONE_MEMORY, SOURCE_CLONE_NAMESPACE } SourceCloneStatus;
 /** One original catalog definition and owned final placement. Virtual type/state
  * generation belongs to the compiler, never to this source-side identity table.
  */
@@ -40,7 +40,11 @@ void source_clone_map_destroy(SourceCloneMap *);
  * canonical final identity. Physical normalization/exact spelling is the caller's
  * prior obligation, not performed by this pure relation. Same proposal is an
  * allocation-free repeat. One original cannot acquire a second placement, and
- * distinct originals cannot share a final name or path. Copy strings and publish
+ * distinct originals cannot share a final name or path.
+ * [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01)
+ * requires preserving root kind and src/tests area. A mismatch returns NAMESPACE
+ * without allocating or publishing a row, retaining requester for diagnostics.
+ * Copy strings and publish
  * output only on complete success; a failure poisons sealing but preserves owned
  * previous rows. After seal no further proposal, even a repeat, is allowed.
  * No filesystem reads, body analysis or mutation occurs.
