@@ -3411,3 +3411,48 @@ Prepare a complete immutable final image, independently rediscover/reparse and
 compare actual selections/graph sites before recoverable public application.
 Public copy/delete/move dispatch, freshness/publication and full task acceptance
 remain unfinished. No later TODO task has started.
+
+
+### Exact mapped-material and prepared-text join
+
+Current step: replace manual main-only material emission in the real immutable
+image/compiler composition with a production join over sealed P. Each explicit
+prepared output must match a regular P destination and the exact captured original
+path/bytes. Distinct source handles are allowed because compiler responses own
+separate captures; equal bytes at a different original path never grant authority.
+Reject duplicate output preparations before allocating a result. Emit precisely
+one row per P member: transformed content for authorized prepared files, original
+opaque bytes otherwise, NULL content for directories including empty ones.
+
+This is a byte/membership join, not edit authorization or filesystem publication.
+Package updates outside P remain separate explicit changes. Final metadata,
+parent scaffolding, replacement/removal and independent final graph checks remain
+outer responsibilities. Invariant: injective sealed P plus unique admitted output
+preparation gives exactly one unambiguous content choice for every member.
+Finite P/E scans terminate; storage is one checked array, failed output unchanged.
+Plan tests: real compiler/site composition, opaque bytes including NUL/invalid
+UTF-8, empty directories/maps, different equal-byte handles, incorrect original
+path/bytes, unmapped/directory output, duplicate/unapplied owners and every result
+allocation failure. Acceptance is pending; T224 remains active.
+
+
+Mapped-material acceptance passed: strict copy leaf
+(`/tmp/ama-t224-material-join.exit = 0`), ASan/UBSan copy leaf with the previously
+recorded non-PIE flags/LSan restriction
+(`/tmp/ama-t224-material-sanitizers.exit = 0`), project-tool link
+(`/tmp/ama-t224-material-tool.exit = 0`) and `make docs-check`
+(`/tmp/ama-t224-material-registry.exit = 0`, 3803 ready inputs, zero debts).
+Counted allocation teardown covers every result allocation; actual immutable
+image discovery, child compiler and reference-site proof consume the joined
+regular-file contents. No host destination files are created in that composition.
+The independent material cases cover opaque bytes, empty directories and exact
+refusal contracts. This is not final public source-operation acceptance.
+
+Next step: compose sealed material with the original observed image and explicitly
+owned supplemental configuration/removal changes. Derive missing physical parent
+directories from exact destination keys, retain existing unchanged ancestors,
+assign distinct symbolic identities for new image entries, and use the shared
+simultaneous projector. Refuse existing mapped destinations without explicit
+removal authority and any supplemental/map disagreement. Common final discovery,
+compiler/site validation and transaction publication remain separate mandatory
+gates. No ambiguity or active run remains at this checkpoint.

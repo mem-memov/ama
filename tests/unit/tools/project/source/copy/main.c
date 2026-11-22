@@ -6,6 +6,7 @@
 #include "destinations.c"
 #include "physical.c"
 #include "prepared.c"
+#include "material.c"
 #include "units.c"
 #include "tests.c"
 #include "declared.c"
@@ -20,6 +21,8 @@
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_joins_every_mapped_member_with_exact_prepared_or_opaque_content();
+    it_refuses_unrelated_ambiguous_and_unapplied_material_preparations();
     it_retires_composed_configuration_failures_and_rejects_foreign_authority();
     it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites();
     it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions();

@@ -202202,6 +202202,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_composed_configuration_failures_and_rejects_foreign_authority",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_every_mapped_member_with_exact_prepared_or_opaque_content",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_ambiguous_and_unapplied_material_preparations",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206841,6 +206851,79 @@
       "c",
       "-fsyntax-only",
       "-"
+    ]
+  },
+  "tools/project/source/copy/material/material.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Define exact complete P-membership/material join, borrowed ownership and refusal contract.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_every_mapped_member_with_exact_prepared_or_opaque_content",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_ambiguous_and_unapplied_material_preparations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/material/prepare.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate unique prepared outputs against captured original paths/bytes and retain all opaque and directory members.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_every_mapped_member_with_exact_prepared_or_opaque_content",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_ambiguous_and_unapplied_material_preparations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/material.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise exact transformed/opaque membership, empty directories/maps, independent source ownership and refusal/allocation boundaries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_every_mapped_member_with_exact_prepared_or_opaque_content",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_ambiguous_and_unapplied_material_preparations",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
     ]
   }
 }

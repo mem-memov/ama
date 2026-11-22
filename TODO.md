@@ -107,7 +107,8 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   set plus only authorized --extend-package additions. Other bytes and original
   reference laws remain protected. Composed configuration preparation now passes
   strict, sanitizer, allocation-failure and real final-compiler/site checks;
-  complete material assembly is next. T224 is unfinished; later tasks are not started.
+  exact mapped-material/prepared-text joining is also tested, including opaque
+  bytes and empty directories. Full image assembly is next. T224 is unfinished; later tasks are not started.
   Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;
@@ -152,7 +153,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   refusals and occurrence order pass independent final compiler and exact graph/
   site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
   source-parent checks are recorded in the linked step log. Current per-file/
-  header acceptance: 3800 ready inputs, zero explicit debt.
+  header acceptance: 3803 ready inputs, zero explicit debt.
   Complete configuration/material assembly, public command application,
   recoverable publication and final task acceptance remain unfinished. Stop for
   any new ambiguity; AMB-025 now supplies shared-configuration authority.

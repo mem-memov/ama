@@ -10,6 +10,7 @@
 #include "../../../../../../tools/project/source/operands/rooted.h"
 #include "../../../../../../tools/project/source/graph/sites.h"
 #include <stdint.h>
+#include "../../../../../../tools/project/source/copy/material/material.h"
 #include "../../../../../../tools/project/source/copy/members/units.h"
 #include "../../../../../../tools/project/source/copy/tests/tests.h"
 /** Choose the least unused synthetic (device 0,inode) class. At most the finite
@@ -104,9 +105,16 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
         }
         const SourceText *text = NULL;
         assert(source_text_edits_apply(&edits[i], &prepared, row->path, &text) == SOURCE_EDITS_OK);
-        additions[used] = (SourceImageChange){SOURCE_IMAGE_ADD, {.path = row->path, .content = text,
-            .metadata = fresh_class(&observed.image, additions, used, false), .metadata_captured = true}}; used++;
         provenance[i] = (SourceGraphPreparedText){i == 3 ? NULL : &provenance[i + 1], &edits[i]};
+    }
+    SourceCopyMaterial material = {0}; SourceMaterialIssue material_issue;
+    assert(source_copy_material_prepare(&arena, &files, provenance, &material, &material_issue) == SOURCE_MATERIAL_OK);
+    assert(material.count == mapped);
+    for (size_t i = 0; i < material.count; i++) {
+        const SourceCopyMaterialEntry *member = &material.entries[i];
+        if (member->mapping->original->directory) { assert(!member->content); continue; }
+        additions[used] = (SourceImageChange){SOURCE_IMAGE_ADD, {.path = member->mapping->destination, .content = member->content,
+            .metadata = fresh_class(&observed.image, additions, used, false), .metadata_captured = true}}; used++;
     }
     assert(used == 12 && access(version_path, F_OK) != 0 && errno == ENOENT);
     SourceCatalogImage image = {0}; SourceProjectionIssue projection;
