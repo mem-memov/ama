@@ -157,7 +157,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   empty versions and physical test provenance); real catalog, Project input,
   integration, allocation and sanitizer checks pass. Per-file/header checking
   passes with 3784 ready inputs and zero debt. Package environment composition
-  and exact mapping/extension sets remain next within T224.
+  now passes real captured/compiler scope isolation, malformed empty-version,
+  wildcard, allocation, sanitizer and full source-parent checks. Per-file/header
+  checking passes with 3790 ready inputs and zero debt. Exact mapping/extension
+  sets and complete material/publication integration remain next within T224.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.

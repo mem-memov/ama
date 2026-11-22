@@ -8,6 +8,7 @@ SOURCES := $(sort $(PROJECT_TOOL_SHARED_SOURCES) $(PROJECT_TOOL_CAPTURE_SOURCES)
 SOURCES += delivery/source/snapshot/write.c delivery/source/wire.c \
     $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/tools/output/json))
 LOCAL_SOURCES := main.c $(call source_files,$(ROOT)/tools/project/source/image) \
+    $(call source_files,$(ROOT)/tools/project/source/environment) \
     $(call source_files,$(ROOT)/tools/project/source/observation) \
     $(call source_files,$(ROOT)/tools/project/source/edits) \
     $(call source_files,$(ROOT)/tools/project/source/operands) $(call source_files,$(ROOT)/tools/project/source/mapping) $(call source_files,$(ROOT)/tools/project/source/copy) \

@@ -17,7 +17,9 @@ PROJECT_TOOL_CAPTURE_SOURCES := source/text/manager.c source/text/lines.c source
 PROJECT_TOOL_SHARED_SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/json) \
     $(call source_files,$(ROOT)/src/delivery/source/response))
 
-# Strict shared INI records provide parsed dependency-section insertion anchors.
+# Shared neutral configuration and actual-domain preparation serve project scopes.
+# These components own no Ama parser, compiler dispatch or execution state.
 PROJECT_TOOL_SHARED_SOURCES += source/path/syntax.c $(patsubst $(ROOT)/src/%,%,\
-    $(call source_files,$(ROOT)/src/source/configuration/lines) \
-    $(call source_files,$(ROOT)/src/source/configuration/records))
+    $(call source_files,$(ROOT)/src/source/configuration) \
+    $(call source_files,$(ROOT)/src/source/path/normalize))
+PROJECT_TOOL_SHARED_SOURCES := $(sort $(PROJECT_TOOL_SHARED_SOURCES))

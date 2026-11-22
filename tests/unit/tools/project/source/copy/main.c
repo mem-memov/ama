@@ -10,12 +10,16 @@
 #include "tests.c"
 #include "declared.c"
 #include "contexts.c"
+#include "environment.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_prepares_actual_package_environments_with_exact_version_isolation_and_matches();
+    it_retires_every_actual_package_environment_preparation_allocation();
+    it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free();
     it_proves_existing_parent_and_detached_context_omissions_against_real_final_images();
     it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes();
     it_validates_complete_explicit_version_placement_tables_without_allocation();

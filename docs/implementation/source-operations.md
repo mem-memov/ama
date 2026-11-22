@@ -3141,3 +3141,40 @@ Final full per-file/header checking passed with 3784 ready inputs and zero debt
 compiler foundation with its real catalog/Project/integration/sanitizer evidence;
 T224 remains open. Next prepare actual package scopes/selections for source
 operations using this shared domain, then derive exact mapping/extension sets.
+
+### Actual package environments over the shared domain (active step)
+
+Prepare one explicit project-tool owner over a successful immutable original or
+final catalog. Build the shared actual availability view, parse every actual
+version's retained package.ini with the common strict parser, normalize package
+aliases in that exact version, compile the original selector spans and evaluate
+their exact union. Standard modules contribute no invented package environment.
+Publish valid only after every scope succeeds. A partial row is registered for
+cleanup before parsing, so its separate document arena and shared result scratch
+are always retired. No filesystem fallback, network, compiler state or source
+mutation enters this component. Use actual copy-fixture catalog/compiler inputs
+for alias/version isolation, real wildcard matches, malformed retained inputs,
+missing scope authority, repeated builds and every preparation allocation failure.
+This supplies original/final facts, not permission mapping or operation acceptance.
+
+Strict actual environment/copy composition passed
+(`/tmp/ama-t224-environments.exit = 0`), as did ASan/UBSan with every allocation
+ordinal and counted zero-live teardown (`/tmp/ama-t224-environment-sanitizers.exit = 0`).
+Two actual selected versions resolve the same alias key to independent canonical
+bases; one wildcard selects four actual source roots and their normal associated
+test coverage, while the empty version selects none. A real original compiler
+analysis supplies the normal fixture before preparation. Separate physically
+captured malformed empty-version configurations refuse in document, alias or
+selector phases with the exact original source and failed version. Standard-only
+capture has a valid empty domain and no package scopes. Repeated build attempts
+leave accepted/failed owners unchanged and allocate nothing. Tool linking passes
+(`/tmp/ama-t224-environment-tool.exit = 0`). Full per-file checking and the strict
+recursive source parent suite are running; keep inputs frozen until both finish.
+Full per-file/header checking passed with 3790 ready inputs and zero debt
+(`/tmp/ama-t224-environment-registry.exit = 0`). The full strict recursive source
+suite also passed (`/tmp/ama-t224-environment-source.exit = 0`), including all
+consumers of the expanded shared neutral configuration source list. Checkpoint
+this complete fact-preparation step, keeping T224 open. Next derive requested
+roots from original selections, explicit copied-configuration origins and C;
+only EXTEND_PACKAGE may add concrete uncovered copied-edge targets. Re-expression
+and final independent parser/permission/reference checks remain mandatory.

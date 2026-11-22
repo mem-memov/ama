@@ -182867,6 +182867,21 @@
         "source": "tests/unit/tools/project/source/selectors/main.c",
         "case": "it_preserves_original_matches_when_the_final_domain_gains_a_module",
         "command": "make -C tests/unit/tools/project/source/selectors"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -202147,6 +202162,21 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -202357,6 +202387,21 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -206329,6 +206374,162 @@
         "source": "tests/unit/source/configuration/selection/main.c",
         "case": "it_refuses_invalid_catalog_views_and_retires_every_preparation_allocation",
         "command": "make -C tests/unit/source/configuration/selection"
+      }
+    ]
+  },
+  "tools/project/source/environment/environment.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Define owned actual package alias and dependency-selection environments without mutation or compiler state.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/environment/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Keep shared exact selector preparation private to the environment owner.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/environment/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retire every initialized document before shared environment metadata, including failed prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/environment/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join shared actual availability with every retained version configuration and publish only complete environments.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/environment/selection.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compile each owning package selector and evaluate the actual finite root union with typed failures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/environment.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual captured/compiler inputs, version isolation, wildcard coverage, empty/standard scopes, malformed metadata and allocation failures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_actual_package_environments_with_exact_version_isolation_and_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_package_environment_preparation_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   }
