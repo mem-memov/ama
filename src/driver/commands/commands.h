@@ -41,4 +41,11 @@ int driver_check(const DriverOptions *options, FILE *output, FILE *errors);
 /** Resolve explicit library exports and write checked metadata without creating a launcher or artifact. Component contract: [ARCH-03](../../../spec/implementation/compiler.md#arch-03). */
 int driver_library(const DriverOptions *, FILE *, FILE *);
 
+/** Check every active definition in explicit roots, export versioned source facts
+ * without an executable entry, and acknowledge only complete flushed output.
+ * No project mutation or C execution occurs. Borrowed diagnostics are rendered
+ * before source teardown under [ARCH-03](../../../spec/implementation/compiler.md#arch-03).
+ */
+int driver_source_domain(const DriverOptions *, FILE *, FILE *);
+
 #endif

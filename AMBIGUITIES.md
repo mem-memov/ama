@@ -8,6 +8,10 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-021](#amb-021) is **Resolved**: copy/delete/move require exactly one
+explicit `--preview` or `--apply` mode; T224 implementation continues.
+No destructive default is inferred from the bare command examples.
+
 [AMB-020](#amb-020) is **Resolved** for T235: only concrete executable direct
 modules count as tests. Open templates and non-executable definitions are helpers;
 no concrete directly associated test is an acquisition error (PKG-08).
@@ -1481,3 +1485,48 @@ Each entry must contain:
   Syntax and type errors remain errors; failed checking is never a helper filter.
 - **Canonical result:** PKG-08 now defines direct test roots semantically and
   retains open/non-executable support without counting it as a concrete test.
+
+<a id="amb-021"></a>
+
+## AMB-021 — Default mode of source copy/delete/move commands
+
+- **Status:** Resolved; explicit mode required.
+- **Current task:** [T224](TODO.md#t224), after accepted T235 commit `9506245c`.
+  Its original-graph removal-safety foundation is implemented/tested; no public
+  mutation command/default has been implemented or task completion claimed.
+- **Authority:** [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
+  lists `ama-project copy SOURCE DESTINATION`, `delete SOURCE` and
+  `move SOURCE DESTINATION`, and requires read-only preview plus explicit
+  application of the same prepared plan. [PROJECT-01](spec/implementation/project-tools.md#project-01)
+  assigns these operations to the project tool.
+  [TOOL-04](spec/implementation/tools-and-conformance.md#tool-04) defines
+  preflight/application/recovery safety but does not choose the bare command's
+  preview/application mode.
+- **Minimal example:**
+
+  ```sh
+  ama-project delete packages/acme/pkg/v1.0.0/src/worker
+  ```
+
+  The same spelling can either remove the unit after validation, only display a
+  preview, or refuse until an explicit mode is supplied. These have different
+  observable effects even when all dependency/deletion checks pass.
+- **Precise question:** what does a command without a mode do, and may that rule
+  be stated in TOOL-01/PROJECT-01 before its request parser is implemented?
+- **Recommended decision:** require exactly one explicit `--preview` or `--apply`
+  mode for copy/delete/move; reject a bare command, conflicting/duplicate modes
+  and unsupported mode combinations before any source mutation. The existing
+  prepared-plan/staleness/deletion/transaction obligations remain unchanged.
+- **Alternatives and consequences:** a bare command could default to preview
+  (with explicit application), or could apply as the traditional Unix verb does
+  (with an explicit preview option). The former adds a nonmutating default; the
+  latter grants mutation to the bare examples. Neither behavior is inferred here.
+- **Implementation consequence:** command recognition/help, plan preparation,
+  side-effect refusal and command-level tests need one contract. No compiler
+  source inspection or algorithm can decide the user's intended default.
+- **Decision/source:** On 2026-11-22 the user answered the scoped specification
+  authorization question: “Требовать --preview/--apply (рекомендуется)”.
+  Exactly one mode is required; absent, conflicting or repeated modes are errors
+  before mutation. TOOL-01 defines the rule and PROJECT-01 shows its command form.
+  This resolves the blocker and authorizes T224 to resume; it does not establish
+  implemented command support or complete the task.

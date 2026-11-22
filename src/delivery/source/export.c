@@ -5,12 +5,18 @@
  * executable tests separately from open/static/constant support.
  * [PROJECT-01](../../../spec/implementation/project-tools.md#project-01) prevents
  * project consumers from depending on live compiler owners.
+ * [TOOL-02](../../../spec/implementation/tools-and-conformance.md#tool-02)
+ * keeps fixed dependency sites and normalized constant members explicit.
  */
 #include "export.h"
 #include <string.h>
+#include <stdint.h>
 /** Preserve every resolved edge and original span without reinterpreting scopes
  * or dropping compile-time dependencies under
  * [DEP-03](../../../spec/implementation/compiler.md#dep-03).
+ * Keep implicit sites distinct and copy normalized constant members under
+ * [TOOL-02](../../../spec/implementation/tools-and-conformance.md#tool-02);
+ * original operand text may not contain its normalized components contiguously.
  */
 static SourceStatus dependencies(SourceArena *arena, const ProjectModule *module,
     DeliverySourceDependency **output) {
@@ -19,7 +25,17 @@ static SourceStatus dependencies(SourceArena *arena, const ProjectModule *module
         DeliverySourceDependency *copy = source_arena_allocate(arena, sizeof(*copy));
         const char *target = copy ? source_arena_copy(arena, edge->target->source->logical_path) : NULL;
         if (!target) { return SOURCE_OUT_OF_MEMORY; }
-        *copy = (DeliverySourceDependency){.target = target, .origin = edge->requirement};
+        const char *member = NULL;
+        if (edge->constant_path) {
+            ModulePathPart part = edge->constant_path->member;
+            if (part.length == SIZE_MAX) { return SOURCE_OUT_OF_MEMORY; }
+            char *name = source_arena_allocate(arena, part.length + 1);
+            if (!name) { return SOURCE_OUT_OF_MEMORY; }
+            memcpy(name, part.bytes, part.length); name[part.length] = 0;
+            member = name;
+        }
+        *copy = (DeliverySourceDependency){.target = target, .origin = edge->requirement,
+            .implicit = edge->implicit, .member = member};
         *tail = copy; tail = &copy->next;
     }
     *output = first; return SOURCE_OK;

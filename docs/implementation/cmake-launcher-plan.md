@@ -116,7 +116,7 @@ Use the following prerequisites rather than numeric sorting.
 | 19 | T237 | Existing project/path prerequisites plus T242 | Whole-sprint current conformance, clean release and documentation delivery |
 
 The selection/acquisition branch remains
-`T234 -> T235 -> T224 -> T236`, with T239 required by T235. T268's AMB-017/018
+`T234 -> T235 -> T272 -> T224 -> T236` (T272 is the accepted read-only analysis prerequisite extracted from T224), with T239 required by T235. T268's AMB-017/018
 amendment makes source cloning consume the same complete source/test closure;
 it does not authorize an incomplete mover or external-importer rewriting.
 T233's independent test orchestration must not depend on T242: that would create

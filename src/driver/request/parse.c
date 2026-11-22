@@ -43,5 +43,6 @@ DriverRequest driver_parse_request(int argument_count, char *const arguments[]) 
     if (argument_count >= 2 && strcmp(arguments[1], "--relocate-preview") == 0) { return DRIVER_REQUEST_RELOCATE_PREVIEW; }
     if (argument_count >= 2 && strcmp(arguments[1], "--relocate-apply") == 0) { return DRIVER_REQUEST_RELOCATE_APPLY; }
     if (argument_count >= 2 && strcmp(arguments[1], "--relocate-recover") == 0) { return DRIVER_REQUEST_RELOCATE_RECOVER; }
+    if (argument_count >= 2 && strcmp(arguments[1], "--source-domain") == 0) { return DRIVER_REQUEST_SOURCE_DOMAIN; }
     return DRIVER_REQUEST_UNAVAILABLE;
 }

@@ -308,8 +308,54 @@ static void it_recognizes_exact_delivery_modes_and_component_authority(void) {
     assert(!driver_option_recognize(DRIVER_REQUEST_NATIVE, "--mode"));
     assert(!driver_option_recognize(DRIVER_REQUEST_LIBRARY_BUILD, "--component"));
 }
+/** Entry-free domain options start immediately after ROOT, retain explicit root
+ * kinds/exclusions and never accept output, execution or executable-entry flags. */
+static void it_parses_source_domain_roots_without_an_entry_or_mutation_options(void) {
+    char *arguments[] = {"ama", "--source-domain", "root", "--root", "other",
+        "--standard-root", "standard", "--exclude", "excluded"};
+    size_t requests = 0;
+    for (size_t failure = 0; !failure || failure <= requests; failure++) {
+        setup_test(); DriverOptions options; driver_options_init(&options, sources.allocator);
+        failure_at = failure;
+        bool valid = driver_options_parse(&options, 9, arguments);
+        if (!failure) {
+            assert(valid && options.valid && !options.entry && !options.compile && !options.output);
+            assert(options.root_count == 3 && options.roots[2].kind == MODULE_ROOT_STANDARD);
+            assert(!strcmp(options.roots[1].path, "other"));
+            assert(options.roots[0].excluded_count == 1 && !strcmp(options.roots[0].excluded[0], "excluded"));
+            requests = allocation_count; assert(requests);
+        } else { assert(!valid && !options.valid && options.error.code == DIAGNOSTIC_OUT_OF_MEMORY); }
+        driver_options_destroy(&options); destroy_test();
+    }
+    invalid_arguments(2, arguments, "Source-domain inspection requires an explicit source root");
+    const char *forbidden[] = {"--out", "--entry", "--compile", "--mode", "--apply", "--create"};
+    for (size_t index = 0; index < sizeof(forbidden) / sizeof(*forbidden); index++) {
+        setup_test(); DriverOptions options; driver_options_init(&options, sources.allocator);
+        char *invalid[] = {"ama", "--source-domain", "root", (char *)forbidden[index], "value"};
+        bool valid = driver_options_parse(&options, 5, invalid);
+        assert(!valid && !options.valid);
+        driver_options_destroy(&options); destroy_test();
+    }
+}
+/** Captured inspection has one explicit file and no implicit roots, exclusions,
+ * output directory, toolchain or option-allocation side effects. */
+static void it_selects_exact_source_snapshot_input_without_root_fallback(void) {
+    char *arguments[] = {"ama", "--source-domain", "--snapshot", "prepared.json", "--root", "other"};
+    setup_test(); DriverOptions options; driver_options_init(&options, sources.allocator);
+    bool valid = driver_options_parse(&options, 4, arguments);
+    assert(valid && options.valid && !strcmp(options.source_snapshot, "prepared.json"));
+    assert(!options.roots && !options.root_count && !options.entry && !options.compiler && !allocation_count);
+    driver_options_destroy(&options); destroy_test();
+    invalid_arguments(3, arguments, "Captured source inspection requires exactly --snapshot FILE");
+    invalid_arguments(6, arguments, "Captured source inspection requires exactly --snapshot FILE");
+    arguments[3] = "";
+    invalid_arguments(4, arguments, "Captured source inspection requires exactly --snapshot FILE");
+}
+
 /** Exercise independent recognition/storage and their real request assembly. */
 void run(void) {
+    it_selects_exact_source_snapshot_input_without_root_fallback();
+    it_parses_source_domain_roots_without_an_entry_or_mutation_options();
     it_recognizes_exact_delivery_modes_and_component_authority();
     it_unwinds_every_relocation_option_array_allocation();
     it_validates_relocation_authority_and_standalone_recovery();

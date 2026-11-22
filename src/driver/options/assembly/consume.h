@@ -10,7 +10,8 @@
 #include "driver/options/storage/storage.h"
 #include "driver/options/recognition/option.h"
 
-/** Consume argv[4..count), preserving exact arity and existing repeated options.
+/** Consume options after the command's fixed operands (index 3 for root-domain
+ * inspection, index 4 for entry-based commands), preserving exact arity and repetitions.
  * Allocated arrays each have capacity count. Strings remain borrowed. Failure
  * leaves a diagnostic and an invalid partial owner safe to destroy.
  * Component contract: [ARCH-03](../../../../spec/implementation/compiler.md#arch-03). */

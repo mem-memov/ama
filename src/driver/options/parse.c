@@ -9,6 +9,7 @@
  * entries in the project/import family; standard authority is never guessed from paths.
  */
 #include "options.h"
+#include <string.h>
 #include "storage/storage.h"
 #include "validation/validation.h"
 #include "assembly/consume.h"
@@ -23,6 +24,11 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
         options->valid = true;
         return true;
     }
+    if (options->request == DRIVER_REQUEST_SOURCE_DOMAIN && !strcmp(arguments[2], "--snapshot")) {
+        options->source_snapshot = arguments[3];
+        options->valid = true;
+        return true;
+    }
     DriverOptionStorage storage = {0};
     if (!driver_options_allocate(options, (size_t)count, &storage)) {
         return false;
@@ -31,7 +37,7 @@ bool driver_options_parse(DriverOptions *options, int count, char *const argumen
         || options->request == DRIVER_REQUEST_LIBRARY_BUILD) { options->library_configuration = arguments[3]; }
     else if (options->request == DRIVER_REQUEST_RELOCATE_PREVIEW || options->request == DRIVER_REQUEST_RELOCATE_APPLY) {
         options->relocation_source = arguments[3];
-    } else { options->entry = arguments[3]; }
+    } else if (options->request != DRIVER_REQUEST_SOURCE_DOMAIN) { options->entry = arguments[3]; }
     options->roots[options->root_count++] = (ModuleRoot){
         .path = arguments[2], .kind = MODULE_ROOT_PROJECT};
     if (!driver_options_consume(options, &storage, count, arguments) || !driver_options_validate(options)) {

@@ -4,6 +4,8 @@
  *
  * [ARCH-03](../../../spec/implementation/compiler.md#arch-03) requires an explicit
  * boundary: this owner contains configuration and diagnostics, never a frontend.
+ * [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04)
+ * keeps explicit captured inputs separate from physical root discovery.
  * [CLI-01](../../../spec/implementation/launch-and-embedding.md#cli-01) keeps
  * explicit component/mode configuration separate from runtime argument values.
  */
@@ -22,6 +24,10 @@ typedef struct {
     ModuleRoot *roots;
     size_t root_count;
     const char *entry;
+    /** Explicit read-only captured input; roots remain absent in this mode under
+     * [TOOL-04](../../../spec/implementation/tools-and-conformance.md#tool-04).
+     */
+    const char *source_snapshot;
     const char *query_module;
     const char *rename_name;
     size_t offset;

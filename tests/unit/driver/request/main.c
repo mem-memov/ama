@@ -101,11 +101,20 @@ static void it_recognizes_only_explicit_relocation_operations(void) {
     arguments[1] = "--relocate";
     assert(driver_parse_request(2,arguments) == DRIVER_REQUEST_UNAVAILABLE);
 }
+/** Whole-domain inspection is an exact read-only request, independent of entry arguments. */
+static void it_recognizes_exact_entry_free_source_domain_inspection(void) {
+    char *arguments[] = {"ama", "--source-domain"};
+    assert(driver_parse_request(2, arguments) == DRIVER_REQUEST_SOURCE_DOMAIN);
+    arguments[1] = "--source-domai";
+    assert(driver_parse_request(2, arguments) == DRIVER_REQUEST_UNAVAILABLE);
+}
+
 /**
  * Run every explicitly selected assertion case in this executable; a failed assertion preserves
  * leaf generated output for diagnosis.
  */
 void run(void) {
+    it_recognizes_exact_entry_free_source_domain_inspection();
     it_recognizes_only_explicit_relocation_operations();
     it_recognizes_exact_read_only_source_tool_commands();
     it_recognizes_only_the_explicit_library_build_command();

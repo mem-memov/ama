@@ -7,6 +7,7 @@
  * path spelling to its source component; current path-model adaptation is T014.
  */
 #include "validation.h"
+#include <string.h>
 
 bool driver_options_invalid(DriverOptions *options, const char *message) {
     options->error = (Diagnostic){.code = DIAGNOSTIC_INVALID_PATH, .message = message};
@@ -14,6 +15,14 @@ bool driver_options_invalid(DriverOptions *options, const char *message) {
 }
 
 bool driver_options_operands(DriverOptions *options, int count, char *const arguments[]) {
+    if (options->request == DRIVER_REQUEST_SOURCE_DOMAIN) {
+        if (count >= 3 && !strcmp(arguments[2], "--snapshot")) {
+            return count == 4 && arguments[3][0] ? true
+                : driver_options_invalid(options, "Captured source inspection requires exactly --snapshot FILE");
+        }
+        return count >= 3 && arguments[2][0] != 0 ? true
+            : driver_options_invalid(options, "Source-domain inspection requires an explicit source root");
+    }
     if (options->request == DRIVER_REQUEST_RELOCATE_RECOVER) {
         return count == 3 && arguments[2][0] != 0 ? true
             : driver_options_invalid(options,"Recovery requires exactly one explicit journal directory");

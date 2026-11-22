@@ -60,9 +60,9 @@ performed by the Ama compiler through C header or binary inspection.
 Source operations are owned by the project-tool boundary:
 
 ```sh
-ama-project copy SOURCE DESTINATION
-ama-project delete SOURCE
-ama-project move SOURCE DESTINATION
+ama-project copy SOURCE DESTINATION (--preview | --apply)
+ama-project delete SOURCE (--preview | --apply)
+ama-project move SOURCE DESTINATION (--preview | --apply)
 ```
 
 [TOOL-01 through TOOL-04](tools-and-conformance.md#directory-relocation-utility)

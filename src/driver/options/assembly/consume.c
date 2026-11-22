@@ -45,7 +45,8 @@ static bool install(DriverOptions *options, DriverOptionStorage *storage,
 
 bool driver_options_consume(DriverOptions *options, DriverOptionStorage *storage,
     int count, char *const arguments[]) {
-    for (int index = 4; index < count;) {
+    int first = options->request == DRIVER_REQUEST_SOURCE_DOMAIN ? 3 : 4;
+    for (int index = first; index < count;) {
         const DriverOption *option = driver_option_recognize(options->request, arguments[index++]);
         if (option == NULL) {
             return driver_options_invalid(options, index == count ? "Command option needs a value" : "Unknown command option");

@@ -24,7 +24,7 @@
 int driver_run(int argument_count, char *const arguments[],
     FILE *output, FILE *errors) {
     DriverRequest request = driver_parse_request(argument_count, arguments);
-    if (request == DRIVER_REQUEST_CHECK || request == DRIVER_REQUEST_STATUS
+    if (request == DRIVER_REQUEST_SOURCE_DOMAIN || request == DRIVER_REQUEST_CHECK || request == DRIVER_REQUEST_STATUS
         || request == DRIVER_REQUEST_NATIVE || request == DRIVER_REQUEST_EMIT
         || request == DRIVER_REQUEST_LIBRARY_CHECK || request == DRIVER_REQUEST_LIBRARY_HEADER
         || request == DRIVER_REQUEST_LIBRARY_BUILD || request == DRIVER_REQUEST_EDITOR
@@ -35,7 +35,8 @@ int driver_run(int argument_count, char *const arguments[],
         bool parsed = driver_options_parse(&options, argument_count, arguments);
         int status = EXIT_FAILURE;
         if (parsed) {
-            status = request == DRIVER_REQUEST_CHECK ? driver_check(&options, output, errors)
+            status = request == DRIVER_REQUEST_SOURCE_DOMAIN ? driver_source_domain(&options, output, errors)
+                : request == DRIVER_REQUEST_CHECK ? driver_check(&options, output, errors)
                 : request == DRIVER_REQUEST_STATUS ? driver_status(&options, output, errors)
                 : request == DRIVER_REQUEST_NATIVE ? driver_native(&options, output, errors)
                 : request == DRIVER_REQUEST_EMIT ? driver_emit(&options, output, errors)

@@ -46,7 +46,14 @@ proposals; [DONE.md](DONE.md) preserves completed tasks and their acceptance
 evidence. The [audit](docs/implementation/audit/README.md) describes the original implementation
 before its replacement and is historical evidence.
 `./ama --check ROOT MODULE` validates dependencies, syntax, types and typed plans without emitting or
-compiling C. `./ama --status ROOT MODULE` reports source activation without
+compiling C. `./ama --source-domain ROOT` checks all active definitions in the
+selected roots without an executable entry and writes the versioned
+[read-only source-domain response](docs/implementation/source-operations.md#structured-response-producer).
+It retains draft bytes and open templates; it does not certify sealed build inputs.
+`./ama --source-domain --snapshot FILE` checks an explicit captured input table,
+including unpublished source paths, through that same frontend without reading
+those paths or executing native code.
+`./ama --status ROOT MODULE` reports source activation without
 validating a project. `./ama --emit ROOT MODULE --out DIR --sdk /path/to/ama/src --mode executable --component application --compile`
 produces a verified stackless executable at `DIR/program`. Entry calls, retained
 reads, assignments, branches, loops, suspension and continuation copying execute;

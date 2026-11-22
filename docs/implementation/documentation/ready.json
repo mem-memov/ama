@@ -6230,6 +6230,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -6500,6 +6520,31 @@
         "source": "tests/unit/driver/options/main.c",
         "case": "it_recognizes_exact_delivery_modes_and_component_authority",
         "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_parses_source_domain_roots_without_an_entry_or_mutation_options",
+        "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -6560,6 +6605,11 @@
       {
         "source": "tests/unit/driver/options/main.c",
         "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_selects_exact_source_snapshot_input_without_root_fallback",
         "command": "make -C tests/unit/driver/options"
       }
     ]
@@ -6637,6 +6687,21 @@
         "source": "tests/unit/driver/options/main.c",
         "case": "it_recognizes_exact_delivery_modes_and_component_authority",
         "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_selects_exact_source_snapshot_input_without_root_fallback",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -6698,6 +6763,46 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_parses_source_domain_roots_without_an_entry_or_mutation_options",
+        "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_selects_exact_source_snapshot_input_without_root_fallback",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -6830,6 +6935,31 @@
         "source": "tests/unit/driver/options/main.c",
         "case": "it_recognizes_exact_delivery_modes_and_component_authority",
         "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_parses_source_domain_roots_without_an_entry_or_mutation_options",
+        "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -6983,6 +7113,46 @@
       {
         "source": "tests/unit/driver/options/main.c",
         "case": "it_recognizes_exact_delivery_modes_and_component_authority",
+        "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_parses_source_domain_roots_without_an_entry_or_mutation_options",
+        "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_selects_exact_source_snapshot_input_without_root_fallback",
         "command": "make -C tests/unit/driver/options"
       }
     ]
@@ -7242,6 +7412,36 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -7318,6 +7518,31 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/request/main.c",
+        "case": "it_recognizes_exact_entry_free_source_domain_inspection",
+        "command": "make -C tests/unit/driver/request"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -7409,6 +7634,31 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/request/main.c",
+        "case": "it_recognizes_exact_entry_free_source_domain_inspection",
+        "command": "make -C tests/unit/driver/request"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -7560,6 +7810,36 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -44418,6 +44698,36 @@
         "case": "it_refuses_initial_collisions_in_an_explicit_new_destination_root",
         "command": "make -C tests/integration/tools/relocation",
         "source": "tests/integration/tools/relocation/main.c"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -44536,6 +44846,16 @@
         "source": "tests/unit/driver/options/main.c",
         "case": "it_recognizes_exact_delivery_modes_and_component_authority",
         "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_parses_source_domain_roots_without_an_entry_or_mutation_options",
+        "command": "make -C tests/unit/driver/options"
+      },
+      {
+        "source": "tests/unit/driver/options/main.c",
+        "case": "it_selects_exact_source_snapshot_input_without_root_fallback",
+        "command": "make -C tests/unit/driver/options"
       }
     ]
   },
@@ -44603,6 +44923,11 @@
         "case": "it_recognizes_only_explicit_relocation_operations",
         "command": "make -C tests/unit/driver/request",
         "source": "tests/unit/driver/request/main.c"
+      },
+      {
+        "source": "tests/unit/driver/request/main.c",
+        "case": "it_recognizes_exact_entry_free_source_domain_inspection",
+        "command": "make -C tests/unit/driver/request"
       }
     ]
   },
@@ -47314,6 +47639,16 @@
         "source": "tests/unit/codegen/assembly/main.c",
         "case": "it_unwinds_every_assembly_emission_allocation_failure",
         "command": "make -C tests/unit/codegen/assembly"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
       }
     ]
   },
@@ -56206,6 +56541,86 @@
         "source": "tests/unit/source/module/main.c",
         "case": "it_unwinds_every_present_configuration_snapshot_copy",
         "command": "make -C tests/unit/source/module"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/source"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_retains_full_width_unsigned_identity_strings",
+        "command": "make -C tests/unit/source"
       }
     ]
   },
@@ -180869,6 +181284,81 @@
         "source": "tests/unit/tools/project/acquisition/sources/main.c",
         "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
         "command": "make -C tests/unit/tools/project/acquisition/sources"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_matches_every_three_vertex_graph_cut_without_runtime_or_kind_filters",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_exports_the_complete_domain_without_an_executable_entry",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_unused_body_and_path_errors_without_publishing",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_admits_captured_native_metadata_without_native_execution",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_accepts_empty_and_draft_only_domains",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_incomplete_and_already_attempted_frontends",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project"
       }
     ]
   },
@@ -183198,6 +183688,51 @@
         "source": "tests/unit/delivery/native/main.c",
         "case": "it_captures_the_complete_declared_resource_unit_and_refuses_symlinks",
         "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery"
       }
     ]
   },
@@ -184913,6 +185448,51 @@
         "source": "tests/unit/tools/project/acquisition/plan/main.c",
         "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
         "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
       }
     ],
     "standalone_header_command": [
@@ -185175,6 +185755,16 @@
         "source": "tests/unit/tools/project/acquisition/plan/main.c",
         "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
         "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
       }
     ]
   },
@@ -186611,6 +187201,2831 @@
         "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
         "command": "make -C tests/unit/tools/project/acquisition/plan"
       }
+    ]
+  },
+  "tools/project/source/removal/check.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Report original surviving definition and declared-input consumers before source removal, independently of proposed replacement copies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_matches_every_three_vertex_graph_cut_without_runtime_or_kind_filters",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_shared_declared_inputs_and_all_surviving_consumers",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_preserves_original_blockers_and_handles_duplicate_or_draft_selections",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_non_executable_original_consumers_without_kind_filtering",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_retains_failed_report_scratch_without_publishing_at_every_allocation",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_refuses_invalid_sets_and_foreign_input_owners_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/removal/check.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Report original surviving definition and declared-input consumers before source removal, independently of proposed replacement copies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_matches_every_three_vertex_graph_cut_without_runtime_or_kind_filters",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_shared_declared_inputs_and_all_surviving_consumers",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_preserves_original_blockers_and_handles_duplicate_or_draft_selections",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_non_executable_original_consumers_without_kind_filtering",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_retains_failed_report_scratch_without_publishing_at_every_allocation",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_refuses_invalid_sets_and_foreign_input_owners_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Report original surviving definition and declared-input consumers before source removal, independently of proposed replacement copies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_matches_every_three_vertex_graph_cut_without_runtime_or_kind_filters",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_shared_declared_inputs_and_all_surviving_consumers",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_preserves_original_blockers_and_handles_duplicate_or_draft_selections",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_non_executable_original_consumers_without_kind_filtering",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_retains_failed_report_scratch_without_publishing_at_every_allocation",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_refuses_invalid_sets_and_foreign_input_owners_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Report original surviving definition and declared-input consumers before source removal, independently of proposed replacement copies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_matches_every_three_vertex_graph_cut_without_runtime_or_kind_filters",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_shared_declared_inputs_and_all_surviving_consumers",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_preserves_original_blockers_and_handles_duplicate_or_draft_selections",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_non_executable_original_consumers_without_kind_filtering",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_retains_failed_report_scratch_without_publishing_at_every_allocation",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_refuses_invalid_sets_and_foreign_input_owners_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Report original surviving definition and declared-input consumers before source removal, independently of proposed replacement copies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_matches_every_three_vertex_graph_cut_without_runtime_or_kind_filters",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_shared_declared_inputs_and_all_surviving_consumers",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_preserves_original_blockers_and_handles_duplicate_or_draft_selections",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_reports_non_executable_original_consumers_without_kind_filtering",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_retains_failed_report_scratch_without_publishing_at_every_allocation",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal/main.c",
+        "case": "it_refuses_invalid_sets_and_foreign_input_owners_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_exports_the_complete_domain_without_an_executable_entry",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_unused_body_and_path_errors_without_publishing",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_admits_captured_native_metadata_without_native_execution",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_accepts_empty_and_draft_only_domains",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_incomplete_and_already_attempted_frontends",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source"
+      }
+    ]
+  },
+  "src/delivery/source/domain/domain.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check the complete captured active domain through production parsing and ordinary entry-free semantics before source-operation planning.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_exports_the_complete_domain_without_an_executable_entry",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_unused_body_and_path_errors_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_admits_captured_native_metadata_without_native_execution",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_accepts_empty_and_draft_only_domains",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_incomplete_and_already_attempted_frontends",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/domain/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check the complete captured active domain through production parsing and ordinary entry-free semantics before source-operation planning.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_exports_the_complete_domain_without_an_executable_entry",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_unused_body_and_path_errors_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_admits_captured_native_metadata_without_native_execution",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_accepts_empty_and_draft_only_domains",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_incomplete_and_already_attempted_frontends",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/domain/required.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check the complete captured active domain through production parsing and ordinary entry-free semantics before source-operation planning.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_exports_the_complete_domain_without_an_executable_entry",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_unused_body_and_path_errors_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_admits_captured_native_metadata_without_native_execution",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_accepts_empty_and_draft_only_domains",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_incomplete_and_already_attempted_frontends",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "src/delivery/source/domain/check.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check the complete captured active domain through production parsing and ordinary entry-free semantics before source-operation planning.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_exports_the_complete_domain_without_an_executable_entry",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_unused_body_and_path_errors_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_admits_captured_native_metadata_without_native_execution",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_accepts_empty_and_draft_only_domains",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_incomplete_and_already_attempted_frontends",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/domain/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check the complete captured active domain through production parsing and ordinary entry-free semantics before source-operation planning.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_exports_the_complete_domain_without_an_executable_entry",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_unused_body_and_path_errors_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_admits_captured_native_metadata_without_native_execution",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_accepts_empty_and_draft_only_domains",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_incomplete_and_already_attempted_frontends",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/domain/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check the complete captured active domain through production parsing and ordinary entry-free semantics before source-operation planning.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_exports_the_complete_domain_without_an_executable_entry",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_unused_body_and_path_errors_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_admits_captured_native_metadata_without_native_execution",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_accepts_empty_and_draft_only_domains",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_incomplete_and_already_attempted_frontends",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_blocks_original_cycle_removal_for_an_unused_outside_consumer",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_retains_normalized_constant_members_and_fixed_dependency_sites",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      }
+    ]
+  },
+  "src/delivery/source/report/report.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/report/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/report/bytes.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ]
+  },
+  "src/delivery/source/report/catalog.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ]
+  },
+  "src/delivery/source/report/graph.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ]
+  },
+  "src/delivery/source/report/write.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/report/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/report/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/report/verify.py": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Serialize and independently decode checked whole-domain source, configuration, native and edge facts without certifying sealed inputs or performing project mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_round_trips_real_checked_domain_configuration_native_and_edge_facts",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_reports_empty_domains_as_complete_empty_arrays",
+        "command": "make -C tests/unit/tools/project/source/report"
+      },
+      {
+        "source": "tests/unit/tools/project/source/report/main.c",
+        "case": "it_refuses_write_flush_invalid_owner_and_invalid_category_results",
+        "command": "make -C tests/unit/tools/project/source/report"
+      }
+    ]
+  },
+  "src/driver/commands/source-domain.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check and export all selected active sources through an entry-free read-only compiler command, with exact observations and failed-output refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      }
+    ]
+  },
+  "tests/unit/driver/source-domain/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check and export all selected active sources through an entry-free read-only compiler command, with exact observations and failed-output refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      }
+    ]
+  },
+  "tests/unit/driver/source-domain/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check and export all selected active sources through an entry-free read-only compiler command, with exact observations and failed-output refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      }
+    ]
+  },
+  "tests/unit/driver/source-domain/verify.py": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check and export all selected active sources through an entry-free read-only compiler command, with exact observations and failed-output refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_the_complete_domain_without_an_entry_or_native_execution",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_unused_errors_and_respects_explicit_exclusions",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_accepts_empty_projects_and_refuses_invalid_roots_or_requests",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_propagates_source_domain_output_and_flush_failures",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      }
+    ]
+  },
+  "src/source/json/value.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ]
+  },
+  "src/source/json/parse.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ]
+  },
+  "src/source/json/cursor.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ]
+  },
+  "src/source/json/container.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ]
+  },
+  "src/source/json/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/json/string.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ]
+  },
+  "src/source/json/number.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ]
+  },
+  "src/source/json/json.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/source/json/grammar/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ]
+  },
+  "tests/unit/source/json/grammar/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Read exact complete source-domain JSON with explicit container state, length-delimited Unicode data, duplicate-key refusal and safely owned failures.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/src/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/src/source/json"
+      }
+    ]
+  },
+  "src/source/json/schema/error.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate exact response field sets, byte representations, NUL-free strings and bounded decimal offset strings without guessing or partially publishing results.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/src/source/json/schema"
+      }
+    ]
+  },
+  "src/source/json/schema/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate exact response field sets, byte representations, NUL-free strings and bounded decimal offset strings without guessing or partially publishing results.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/src/source/json/schema"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/source/json/schema/scalar.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate exact response field sets, byte representations, NUL-free strings and bounded decimal offset strings without guessing or partially publishing results.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_retains_full_width_unsigned_identity_strings",
+        "command": "make -C tests/unit/source/json/schema"
+      }
+    ]
+  },
+  "src/source/json/schema/bytes.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate exact response field sets, byte representations, NUL-free strings and bounded decimal offset strings without guessing or partially publishing results.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/src/source/json/schema"
+      }
+    ]
+  },
+  "src/source/json/schema/fields.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate exact response field sets, byte representations, NUL-free strings and bounded decimal offset strings without guessing or partially publishing results.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/src/source/json/schema"
+      }
+    ]
+  },
+  "src/source/json/schema/schema.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate exact response field sets, byte representations, NUL-free strings and bounded decimal offset strings without guessing or partially publishing results.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_retains_full_width_unsigned_identity_strings",
+        "command": "make -C tests/unit/source/json/schema"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/source/json/schema/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate exact response field sets, byte representations, NUL-free strings and bounded decimal offset strings without guessing or partially publishing results.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_retains_full_width_unsigned_identity_strings",
+        "command": "make -C tests/unit/source/json/schema"
+      }
+    ]
+  },
+  "tests/unit/source/json/schema/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate exact response field sets, byte representations, NUL-free strings and bounded decimal offset strings without guessing or partially publishing results.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/src/source/json/schema"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_retains_full_width_unsigned_identity_strings",
+        "command": "make -C tests/unit/source/json/schema"
+      }
+    ]
+  },
+  "tests/unit/source/json/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Dispatch neutral JSON grammar/schema components through their actual owning leaves.",
+    "tests": [
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_nested_structure_keys_scalars_and_original_spans",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_decodes_unicode_boundaries_controls_and_embedded_nul_exactly",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_retains_exact_json_number_spellings_without_conversion",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_documents_and_duplicate_decoded_keys",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_malformed_utf8_before_syntax_interpretation",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_locates_rejected_controls_escapes_and_duplicate_keys_exactly",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_parses_twenty_thousand_nested_containers_without_recursion",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_preserves_output_on_every_json_allocation_failure",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/grammar/main.c",
+        "case": "it_refuses_invalid_json_parser_arguments_without_publication",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_matches_exact_unordered_fields_without_prefixes_or_partial_publication",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_decodes_all_byte_values_and_consistent_unicode_views_exactly",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_refuses_noncanonical_or_inconsistent_byte_objects_without_publication",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_checks_canonical_decimal_strings_at_size_boundaries",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_extracts_nonempty_nul_free_strings_without_trimming",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_preserves_payload_output_on_allocation_failure_and_invalid_owners",
+        "command": "make -C tests/unit/source/json"
+      },
+      {
+        "source": "tests/unit/source/json/schema/main.c",
+        "case": "it_retains_full_width_unsigned_identity_strings",
+        "command": "make -C tests/unit/source/json"
+      }
+    ]
+  },
+  "src/delivery/source/domain/native.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Install exact captured native metadata only after production classification, rejecting ambiguous/missing/prebound authority without filesystem fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_installs_prepared_companions_only_after_native_classification",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_refuses_missing_duplicate_and_already_bound_native_capture_authority",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/tools/project/source/domain/main.c",
+        "case": "it_preserves_output_on_every_prepared_native_domain_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/domain"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "src/delivery/source/snapshot/snapshot.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/snapshot/entries.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "src/delivery/source/snapshot/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/snapshot/versions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "src/delivery/source/snapshot/text.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "src/delivery/source/snapshot/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "src/delivery/source/snapshot/read.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/snapshot/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/snapshot/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/snapshot/generate.py": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source/snapshot"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      }
+    ]
+  },
+  "src/delivery/source/domain/snapshot.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/check/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/check/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode exact captured source authority and verify its data ownership or ordinary entry-free frontend handoff without physical source fallback.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source/check"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source/check"
+      }
+    ]
+  },
+  "tests/unit/delivery/source/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Dispatch captured-data and actual frontend composition independently.",
+    "tests": [
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_decodes_owned_version_source_and_unconditional_companion_data",
+        "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_defers_source_native_and_physical_alias_checks_to_the_frontend",
+        "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_refuses_closed_schema_and_capture_coherence_errors",
+        "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_retires_every_failed_snapshot_decode_allocation",
+        "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/snapshot/main.c",
+        "case": "it_accepts_empty_input_and_refuses_owner_reuse_without_replacing_results",
+        "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_checks_captured_future_paths_without_filesystem_or_native_execution",
+        "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_refuses_invalid_prepared_code_abi_and_aliases_before_graph_publication",
+        "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_retires_every_failed_captured_frontend_allocation",
+        "command": "make -C tests/unit/delivery/source"
+      },
+      {
+        "source": "tests/unit/delivery/source/check/main.c",
+        "case": "it_accepts_empty_capture_and_refuses_invalid_or_reused_owners",
+        "command": "make -C tests/unit/delivery/source"
+      }
+    ]
+  },
+  "src/driver/commands/source-domain/input.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Load only an explicit captured JSON request and preserve schema/frontend diagnostics without probing its unpublished source paths.",
+    "tests": [
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      }
+    ]
+  },
+  "src/driver/commands/source-domain/input.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Load only an explicit captured JSON request and preserve schema/frontend diagnostics without probing its unpublished source paths.",
+    "tests": [
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_dispatches_prepared_source_snapshot_without_root_or_native_path_probes",
+        "command": "make -C tests/unit/driver/source-domain"
+      },
+      {
+        "source": "tests/unit/driver/source-domain/main.c",
+        "case": "it_refuses_invalid_source_snapshot_files_models_and_checked_code",
+        "command": "make -C tests/unit/driver/source-domain"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   }
 }

@@ -17,6 +17,8 @@ int driver_write_response(DriverRequest request, FILE *output) {
     const char *message = request == DRIVER_REQUEST_HELP
         ? "Ama compiler and tools\n"
             "Usage: ama --help\n"
+            "       ama --source-domain ROOT [--root DIR] [--standard-root DIR] [--exclude PATH]\n"
+            "       ama --source-domain --snapshot FILE\n"
             "       ama --check ROOT MODULE [--root DIR] [--exclude PATH]\n"
             "       ama --status ROOT MODULE [--root DIR] [--exclude PATH]\n"
             "       ama --native ROOT MODULE --out DIR --sdk DIR [--create]\n"

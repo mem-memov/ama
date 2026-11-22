@@ -9,7 +9,7 @@ backend. Unsupported executable compilation must never report successful output.
 [Recognition](../../../src/driver/request/request.h) accepts a nonnegative count
 and that many nonnull NUL-terminated strings; a zero count permits a null vector.
 It borrows them without mutation. Standalone `--help` selects Help; otherwise an
-exact `--check`, `--status`, `--native`, `--emit`, library check/header/build,
+exact `--source-domain`, `--check`, `--status`, `--native`, `--emit`, library check/header/build,
 `--editor`, `--rename-plan` or explicit relocation preview/apply/recovery selects its command before operand validation.
 Other requests are unavailable. Count checks precede every argument access. The exact string
 predicates and fallback partition the domain; prefixes/extra help arguments do
@@ -32,6 +32,22 @@ the error stream. This sequential law prevents partial frontend/output failure
 from appearing as success. No command retains borrowed arguments after return.
 Check-only has read-only filesystem effects and invokes no C toolchain; detailed
 source/semantic/planning ownership laws are in the checking contract.
+
+The read-only `--source-domain ROOT` request additionally accepts explicit
+`--root`, `--standard-root` and `--exclude` options without an executable module
+operand. It checks every active definition in the selected catalog and emits the
+versioned [original-domain response](../source-operations.md#structured-response-producer).
+Draft source bytes remain represented without creating instances. Success requires
+complete ordinary entry-free checking and final stream flush. This response does
+not certify sealed opaque/native inputs or independent concrete test-entry
+admission. It performs no project mutation, C compilation or execution.
+The separate exact form `--source-domain --snapshot FILE` reads a complete
+`ama.source-snapshot.v1` capture instead of discovering roots. It accepts no
+root/exclusion/emission options. Explicit version/source/configuration/companion
+facts feed the same normal frontend; future physical paths are never probed.
+The source snapshot and original request remain alive through error rendering;
+successful exported facts are frontend-owned. Both forms use the same response
+schema and require complete write/flush acknowledgement.
 
 [Source-tool requests](../source-tool-commands.md) reuse the immutable editor and
 complete-workspace rename APIs. Their JSON observations retain original byte

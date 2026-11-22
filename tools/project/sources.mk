@@ -11,3 +11,6 @@ PROJECT_TOOL_CAPTURE_SOURCES := source/text/manager.c source/text/lines.c source
     delivery/native/files/capture.c \
     $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/module) \
     $(call source_files,$(ROOT)/src/source/io))
+
+# Shared response/request data readers own no compiler, Ama parser or mutation state.
+PROJECT_TOOL_SHARED_SOURCES += $(patsubst $(ROOT)/src/%,%,$(call source_files,$(ROOT)/src/source/json))

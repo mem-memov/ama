@@ -246,9 +246,9 @@ permissions. A permission entry is not a download and does not itself copy code.
 [PROJECT-01](project-tools.md#project-01):
 
 ```sh
-ama-project copy SOURCE DESTINATION
-ama-project delete SOURCE
-ama-project move SOURCE DESTINATION
+ama-project copy SOURCE DESTINATION (--preview | --apply)
+ama-project delete SOURCE (--preview | --apply)
+ama-project move SOURCE DESTINATION (--preview | --apply)
 ```
 
 `SOURCE` and `DESTINATION` are filesystem operands under explicitly configured
@@ -258,6 +258,13 @@ final location of that file or directory itself, not an implicit parent into
 which its basename is appended. Recognize identities through SRC-01 through
 SRC-06 and PKG-01/02; do not infer a namespace from an arbitrary directory name.
 No Ama source-language syntax is added.
+
+The notation `(--preview | --apply)` means that exactly one of these flags
+must be supplied; the parentheses and vertical bar are not command arguments.
+`--preview` prepares and reports the plan without applying it. `--apply` explicitly
+requests preparation, validation and application under TOOL-04. A command without
+a mode, with both modes, or with a repeated mode is an error and must be refused
+before source mutation. There is no default mode.
 
 Each command provides read-only preview and explicit application of the same
 prepared plan. The preview lists the analysis roots, selected and additional
@@ -725,7 +732,7 @@ the earlier backend evidence does not certify these newly specified modes.
 | Source copy and dependency modes | Exact file/directory destinations; complete companions/subtrees and associated tests; cross-version default refusal and mutually exclusive explicit modes; clone finite ordinary source/test/static dependency closure versus retain original external targets and add only needed concrete permissions; additional source paths retain src-relative suffixes, mapped tests follow source ownership and outside test helpers retain tests-relative suffixes; overlapping-unit/map collisions refuse; standard targets remain configured separately; original definitions/importers remain unchanged; nominal clone identities differ despite equal bytes |
 | Safe deletion, movement and replacement | Check every supplied active definition, including unused/static/test dependants; internal edges of the complete removal set do not block, outside incoming edges and required shared declared inputs do; default target collision refuses with explanation; --replace obeys the same pre-replacement deletion test even for an identically named new implementation; move refuses before publication when source removal is unsafe; cloned dependency originals are not implicitly removed; cyclic worker/helper closure copies but moving only worker refuses; obsolete target children/companions are removed only as part of an authorized safe replacement |
 | Source-operation resolution and preservation | Original and final whole-version selection; augmented original conflicts; exact clone and surviving-reference laws; relative bases and shared aliases in source/destination scopes; ordinary/static/native interfaces, qualified-constant members and storage suffixes; copied versus unchanged package configurations, exact selector re-expression and explicit extension; no wildcard expansion, repository-table copying or outside importer redirection; src/tests restrictions, / versus // and name+/ topology; drafts, literals/comments and opaque native/build bytes preserved; unprovable final graph refuses |
-| Source-operation transactions | Preview/apply plan equality; offline preflight without module/test/native/CMake execution; inputs include optional-config presence, directory membership and excluded versions; a new importer/companion invalidates a stale plan; copy, replacement, permissions and move-source removal publish as one transaction; preparation/apply/cleanup failure, cross-filesystem staging, repeatable interruption recovery and incomplete-rollback reports preserve original/recovery data; no leftover copy after a refused move |
+| Source-operation transactions | Exactly one explicit `--preview` or `--apply`; absent, repeated or conflicting modes refuse before mutation; preview/apply plan equality; offline preflight without module/test/native/CMake execution; inputs include optional-config presence, directory membership and excluded versions; a new importer/companion invalidates a stale plan; copy, replacement, permissions and move-source removal publish as one transaction; preparation/apply/cleanup failure, cross-filesystem staging, repeatable interruption recovery and incomplete-rollback reports preserve original/recovery data; no leftover copy after a refused move |
 | Compiler decomposition | Every major component has cohesive nested subcomponents, short single-operation functions, narrow declared interfaces and explicit allocation/dependency ownership |
 | Component/composite tests | Independently runnable C leaves cover meaningful parts and assembled parents; real cross-component handoffs and generated-C integration tested; dependency changes invalidate generated artifacts |
 | Exact algorithms and justification | No heuristic decisions; complete component contracts and reviewable mathematical/algebraic arguments; invariant, boundary, failure and composition tests under ARCH-05/ARCH-06 and TEST-08 |

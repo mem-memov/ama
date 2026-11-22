@@ -8403,3 +8403,53 @@ T201. Specification bytes have not changed.
   copy/delete/move integration remains T224. No public acquisition command,
   automatic C/CMake asset discovery or execution coverage is claimed by this
   prepared-fact foundation. T237 retains full release/conformance renewal.
+
+<a id="t272"></a>
+
+- [x] **T272 — Accept the read-only source-analysis and original-removal foundation.**
+  Status: complete. Explicit prerequisite extracted from the
+  already planned T224 steps 1/2; T224 retains all copy/delete/move criteria.
+  Prerequisites T232, T233 and T235 are accepted. Deliver the pure original-edge
+  and declared-input removal predicate, complete entry-free definition export,
+  exact implicit/constant-member facts, neutral iterative JSON/schema readers,
+  owned captured-input model, native-only captured companion binding and the
+  read-only root/snapshot compiler analysis command. Retain raw source/configuration
+  bytes, original source sites, open definitions and draft material; perform no
+  Ama/native/CMake execution or project mutation. Record the approved AMB-021
+  mode clarification without claiming those project commands are implemented.
+  Accept exhaustive graph cuts, exact Unicode/number/byte boundaries, malformed
+  captures, future unpublished paths, ordinary source/ABI/alias failures, each
+  allocation failure, stream/refusal boundaries, current driver/project build
+  consumers, standalone headers, per-file evidence and generated Doxygen.
+  Contract/results: [resolved source operations](docs/implementation/source-operations.md).
+  Excludes project-side response/process/capture integration, independent test-entry
+  probing, clone mapping/rewrites, transactions and public source operations;
+  those remain owned by T224. Do not archive T224 when this prerequisite passes.
+
+  Result: original-edge/input cut checking plus complete original definition
+  metadata and actual `ama --source-domain` root/captured input forms. Neutral
+  iterative JSON/schema readers preserve byte identity, reject duplicate keys and
+  checked integer overflow, and do not share compiler state with ama-project.
+  Captured future paths require no source/native I/O; source/configuration/ABI
+  ownership and normal language checks remain explicit. Native-only companion
+  installation retains ordinary/draft ABI bytes as opaque data. AMB-021 is resolved
+  in TOOL-01/PROJECT-01 with mandatory exclusive preview/application modes.
+
+  Verification: exhaustive 4096 three-vertex original graph cuts; every
+  component/source/option allocation failure; exact Unicode/escape and integer/byte
+  boundaries; 20,000 nested JSON containers; 27 independently encoded malformed
+  capture models; source/native/alias errors and stream/flush refusals. Frozen
+  strict parents for neutral JSON, captured delivery, graph/domain/report and
+  current driver consumers passed, together with compiler and independent
+  private/incremental/project link-membership builds. All four final ASan/UBSan
+  groups passed; counted teardown independently reports zero live allocations.
+  LSan remains disabled for the recorded ptrace restriction. Actual rebuilt
+  compiler processes accepted root/captured inputs, refused mixed/invalid requests
+  and preserved all fixture source/configuration/request hashes.
+
+  Documentation: 3490 ready inputs, zero debts, 2646 maintained file pages,
+  10198 interfaces, 494 canonical destinations and 8354 total Doxygen pages.
+  Linked record retains all exact commands/logs, initial failed build/gate facts,
+  fixes, ownership arguments and final provenance. No public copy/delete/move,
+  response/process/capture controller, test-entry probe or transaction support
+  is claimed here; T224 remains open. T237 retains full release/conformance renewal.
