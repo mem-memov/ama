@@ -3,6 +3,7 @@
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
  */
 #include "common.c"
+#include "projection.c"
 /** An independent callback model and both image row orders feed the same common
  * discovery/companion pipeline with identical selected source bytes and aliases. */
 static void it_matches_independent_complete_catalog_views_in_both_image_orders_without_disk_io(void) {
@@ -189,6 +190,7 @@ static void it_preserves_single_and_repeated_slash_root_prefixes_through_common_
 }
 /** Run independent-view equality, complete/unavailable distinctions and all fault domains. */
 void run(void) {
+    test_image_projection();
     it_preserves_single_and_repeated_slash_root_prefixes_through_common_discovery();
     it_matches_independent_complete_catalog_views_in_both_image_orders_without_disk_io();
     it_refuses_unavailable_selected_image_inputs_and_preserves_common_alias_and_anchor_checks();

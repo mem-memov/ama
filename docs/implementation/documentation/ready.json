@@ -198282,6 +198282,21 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_refuses_new_companion_presence_and_known_directory_to_file_contradictions",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -198377,6 +198392,21 @@
       {
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_refuses_new_companion_presence_and_known_directory_to_file_contradictions",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
@@ -201922,6 +201952,21 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_handles_standard_empty_and_draft_destination_partitions",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_copy_main_placement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -202117,6 +202162,21 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_handles_standard_empty_and_draft_destination_partitions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_copy_main_placement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -203118,6 +203178,21 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_handles_standard_empty_and_draft_destination_partitions",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_copy_main_placement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -203680,6 +203755,26 @@
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_preserves_single_and_repeated_slash_root_prefixes_through_common_discovery",
         "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_simultaneous_changes_in_every_order_through_common_catalog",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_unproved_or_conflicting_projection_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_checks_projection_ownership_allocation_and_empty_interfaces",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_file_directory_replacement_without_inventing_original_membership",
+        "command": "make -C tests/unit/tools/project/source/image"
       }
     ]
   },
@@ -203777,6 +203872,21 @@
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_preserves_single_and_repeated_slash_root_prefixes_through_common_discovery",
         "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_simultaneous_changes_in_every_order_through_common_catalog",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_unproved_or_conflicting_projection_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_checks_projection_ownership_allocation_and_empty_interfaces",
+        "command": "make -C tests/unit/tools/project/source/image"
       }
     ]
   },
@@ -203818,6 +203928,21 @@
         "source": "tests/unit/tools/project/source/expansion/main.c",
         "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
         "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_observes_explicit_deep_inputs_and_replays_them_without_disk_fallback",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_refuses_invalid_or_unavailable_explicit_observation_demands",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
+        "command": "make -C tests/unit/tools/project/source/observation"
       }
     ],
     "standalone_header_command": [
@@ -203868,6 +203993,21 @@
       {
         "source": "tests/unit/tools/project/source/observation/main.c",
         "case": "it_checks_observation_original_interfaces_and_accepts_an_empty_domain",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_observes_explicit_deep_inputs_and_replays_them_without_disk_fallback",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_refuses_invalid_or_unavailable_explicit_observation_demands",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
         "command": "make -C tests/unit/tools/project/source/observation"
       }
     ],
@@ -204228,6 +204368,21 @@
         "source": "tests/unit/tools/project/source/expansion/main.c",
         "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
         "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_observes_explicit_deep_inputs_and_replays_them_without_disk_fallback",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_refuses_invalid_or_unavailable_explicit_observation_demands",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
+        "command": "make -C tests/unit/tools/project/source/observation"
       }
     ]
   },
@@ -204263,6 +204418,21 @@
       {
         "source": "tests/unit/tools/project/source/observation/main.c",
         "case": "it_checks_observation_original_interfaces_and_accepts_an_empty_domain",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_observes_explicit_deep_inputs_and_replays_them_without_disk_fallback",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_refuses_invalid_or_unavailable_explicit_observation_demands",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
         "command": "make -C tests/unit/tools/project/source/observation"
       }
     ]
@@ -204608,6 +204778,427 @@
         "source": "tests/unit/tools/project/source/image-capture/main.c",
         "case": "it_checks_prepared_capture_interfaces_and_accepts_an_empty_image",
         "command": "make -C tests/unit/tools/project/source/image-capture"
+      }
+    ]
+  },
+  "tools/project/source/image/project.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Project simultaneous exact material changes with proved original observations, atomic output and actual final catalog admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_simultaneous_changes_in_every_order_through_common_catalog",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_unproved_or_conflicting_projection_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_checks_projection_ownership_allocation_and_empty_interfaces",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/expansion/main.c",
+        "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
+        "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_file_directory_replacement_without_inventing_original_membership",
+        "command": "make -C tests/unit/tools/project/source/image"
+      }
+    ]
+  },
+  "tools/project/source/image/projection.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Project simultaneous exact material changes with proved original observations, atomic output and actual final catalog admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_simultaneous_changes_in_every_order_through_common_catalog",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_unproved_or_conflicting_projection_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_checks_projection_ownership_allocation_and_empty_interfaces",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/expansion/main.c",
+        "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
+        "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_file_directory_replacement_without_inventing_original_membership",
+        "command": "make -C tests/unit/tools/project/source/image"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/tools/project/source/image/projection.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Project simultaneous exact material changes with proved original observations, atomic output and actual final catalog admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_simultaneous_changes_in_every_order_through_common_catalog",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_unproved_or_conflicting_projection_without_publishing",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_checks_projection_ownership_allocation_and_empty_interfaces",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_projects_file_directory_replacement_without_inventing_original_membership",
+        "command": "make -C tests/unit/tools/project/source/image"
+      }
+    ]
+  },
+  "tools/project/source/observation/requests.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Observe only explicitly demanded original opaque keys through complete ancestor evidence and retire all physical/allocation failures before sealing.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_observes_explicit_deep_inputs_and_replays_them_without_disk_fallback",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_refuses_invalid_or_unavailable_explicit_observation_demands",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/observation/requests.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Observe only explicitly demanded original opaque keys through complete ancestor evidence and retire all physical/allocation failures before sealing.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_observes_explicit_deep_inputs_and_replays_them_without_disk_fallback",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_refuses_invalid_or_unavailable_explicit_observation_demands",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/observation/main.c",
+        "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
+        "command": "make -C tests/unit/tools/project/source/observation"
+      }
+    ]
+  },
+  "tools/project/source/removal/image/image.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/removal/image/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/removal/image/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/removal/image/material.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/removal/image/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/cases/image.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/removal/image/prove.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Require exact prepared compiler inputs before proving surviving original binding and parsed occurrence-site identities without allocation or I/O.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/copy/destinations/physical.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join actual logical candidates and explicit placements with final main topology, injective clone proposals and independently compiled projected package inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_copy_main_placement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/destinations/physical.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join actual logical candidates and explicit placements with final main topology, injective clone proposals and independently compiled projected package inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_copy_main_placement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/tools/project/source/copy/physical.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join actual logical candidates and explicit placements with final main topology, injective clone proposals and independently compiled projected package inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_copy_main_placement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/prepared.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join actual logical candidates and explicit placements with final main topology, injective clone proposals and independently compiled projected package inputs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_actual_copy_main_placement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   }

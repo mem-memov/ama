@@ -16,10 +16,11 @@ static SourceObservationStatus catalog_failure(SourceObservedImage *observed) {
     }
     return observed->status;
 }
-SourceObservationStatus source_observed_image_build(SourceObservedImage *observed, const SourceRootCapture *original) {
+SourceObservationStatus source_observed_image_build(SourceObservedImage *observed, const SourceRootCapture *original,
+    const SourceObservationRequest *requests, size_t count) {
     if (!observed || observed->attempted) { return SOURCE_OBSERVATION_INVALID; }
     observed->attempted = true;
-    if (!original || !original->valid) { return observed->status = SOURCE_OBSERVATION_INVALID; }
+    if (!original || !original->valid || (count && !requests)) { return observed->status = SOURCE_OBSERVATION_INVALID; }
     observed->original = original;
     if (module_catalog_build_view(&observed->catalog, original->roots, original->root_count, &observed->reader) != MODULE_OK) {
         return catalog_failure(observed);
@@ -29,5 +30,6 @@ SourceObservationStatus source_observed_image_build(SourceObservedImage *observe
     }
     if (source_observation_compare(observed) != SOURCE_OBSERVATION_OK) { return observed->status; }
     if (source_observation_units(observed) != SOURCE_OBSERVATION_OK) { return observed->status; }
+    if (source_observation_requests(observed, requests, count) != SOURCE_OBSERVATION_OK) { return observed->status; }
     return source_observation_seal(observed);
 }

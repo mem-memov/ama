@@ -33,6 +33,8 @@ SourceStatus source_observation_read(void *, const char *, const SourceText **);
 SourceObservationStatus source_observation_compare(SourceObservedImage *);
 /** Complete every original companion and refuse newly listed same-module members. */
 SourceObservationStatus source_observation_units(SourceObservedImage *);
+/** Satisfy one finite set of explicit local demands before sealing. */
+SourceObservationStatus source_observation_requests(SourceObservedImage *, const SourceObservationRequest *, size_t);
 /** Materialize finite rows and seal the original image after all comparisons pass. */
 SourceObservationStatus source_observation_seal(SourceObservedImage *);
 #endif

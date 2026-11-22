@@ -8,8 +8,12 @@
 #include "cases/declared-observations.c"
 #include "cases/review.c"
 #include "cases/failures.c"
+#include "cases/image.c"
 /** Run actual missing/present test material, exact original cuts, overlap and allocation ownership. */
 void run(void) {
+    it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks();
+    it_refuses_blocked_changed_and_structurally_expanded_removal_images();
+    it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs();
     it_refuses_unowned_or_malformed_declared_input_observations_before_material_expansion();
     it_refuses_declared_observations_that_change_known_original_main_companion_or_configuration_bytes();
     it_refuses_new_companion_presence_and_known_directory_to_file_contradictions();

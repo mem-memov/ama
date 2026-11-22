@@ -4,12 +4,17 @@
  */
 #include "common.c"
 #include "destinations.c"
+#include "physical.c"
+#include "prepared.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites();
+    it_checks_copy_main_placement_topology_explicit_agreement_and_failure_sealing();
+    it_retires_every_actual_copy_main_placement_allocation_failure();
     it_selects_deepest_original_test_owners_and_refuses_shared_helper_version_conflicts();
     it_handles_standard_empty_and_draft_destination_partitions();
     it_composes_actual_copy_closures_with_logical_and_physical_destination_candidates();

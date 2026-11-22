@@ -4,6 +4,7 @@
  */
 #include "../../../../../../tools/project/source/copy/destinations/destinations.h"
 #include "../../../../../../tools/project/source/mapping/physical/main.h"
+#include "../../../../../../tools/project/source/copy/destinations/physical.h"
 /** Find a logical output by its exact original catalog identity. */
 static const SourceCopyDestination *destination(const SourceCopyDestinations *result, const char *original) {
     for (size_t i = 0; i < result->count; i++) {
@@ -44,11 +45,12 @@ static void it_composes_actual_copy_closures_with_logical_and_physical_destinati
         const char *names[4];
         for (size_t i = 0; i < result.count; i++) { names[i] = result.entries[i].identity; }
         SourceVersionPlacement version = {"/target/new/v3.0.0", "/prepared"};
+        SourceCopyMainsIssue placement;
+        assert(source_copy_place_version_mains(&complete, &result, &version, names, result.count, &placement) == SOURCE_COPY_MAINS_OK);
         for (size_t i = 0; i < result.count; i++) {
-            const char *path = NULL; const SourceCloneMapping *row = NULL;
-            assert(!strcmp(result.entries[i].version, version.identity));
-            assert(source_main_physical_path(&result.arena, &version, names, result.count, names[i], &path) == SOURCE_MAIN_PATH_OK);
-            assert(source_clone_map_add(&complete, result.entries[i].source, path, names[i], &row) == SOURCE_CLONE_OK);
+            const SourceCloneMapping *row = complete.first;
+            while (row && row->original != result.entries[i].source) { row = row->next; }
+            assert(row && !strcmp(row->identity, result.entries[i].identity));
         }
         assert(source_clone_map_seal(&complete) == SOURCE_CLONE_OK);
         size_t before = allocation_count;

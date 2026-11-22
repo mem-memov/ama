@@ -8,6 +8,7 @@
 #include "../../../../../../tools/project/source/observation/observation.h"
 #include "../../../../../../tools/project/source/capture/image.h"
 #include <stdint.h>
+#include "../../../../../../tools/project/source/image/projection.h"
 #include "../../../../../../tools/project/source/graph/sites.h"
 #include "../../../../../../tools/project/source/operands/rooted.h"
 /** Find one actual admitted definition, never reconstruct an edge with textual search. */
@@ -22,7 +23,7 @@ static const DeliverySourceDefinition *checked_definition(const DeliverySourceDe
 static void prepared_image(SourceArena *arena, const SourceObservedImage *original,
     const ModuleSource *const sources[2], const SourceText *const copies[2], SourceCatalogImage *output) {
     size_t count = original->image.count;
-    SourceCatalogImageEntry *rows = source_arena_allocate(arena, (count + 2) * sizeof(*rows)); assert(rows);
+    SourceCatalogImageEntry *rows = source_arena_allocate(arena, count * sizeof(*rows)); assert(rows);
     memcpy(rows, original->image.entries, count * sizeof(*rows));
     for (size_t i = 0; i < count; i++) {
         if (!rows[i].metadata_captured) { continue; }
@@ -35,19 +36,23 @@ static void prepared_image(SourceArena *arena, const SourceObservedImage *origin
         assert((uintmax_t)(ino_t)(representative + 1) == representative + 1);
         rows[i].metadata.st_dev = 0; rows[i].metadata.st_ino = (ino_t)(representative + 1);
     }
+    SourceImageChange additions[2] = {0};
     for (size_t i = 0; i < 2; i++) {
         const SourceCatalogImageEntry *source = NULL;
         for (size_t j = 0; j < count; j++) {
             if (!strcmp(original->image.entries[j].path, source_path(sources[i]->text))) { source = &original->image.entries[j]; }
         }
         assert(source && source->metadata_captured && S_ISREG(source->metadata.st_mode));
-        rows[count + i] = *source; rows[count + i].path = source_path(copies[i]); rows[count + i].content = copies[i];
+        additions[i].kind = SOURCE_IMAGE_ADD; additions[i].entry = *source;
+        additions[i].entry.path = source_path(copies[i]); additions[i].entry.content = copies[i];
         assert((uintmax_t)(ino_t)(count + i + 1) == count + i + 1);
-        rows[count + i].metadata.st_dev = 0; rows[count + i].metadata.st_ino = (ino_t)(count + i + 1);
+        additions[i].entry.metadata.st_dev = 0; additions[i].entry.metadata.st_ino = (ino_t)(count + i + 1);
     }
     SourceImageIssue issue = {0};
-    assert(source_catalog_image_prepare(output, rows, count + 2,
+    SourceCatalogImage base = {0}; SourceProjectionIssue projection;
+    assert(source_catalog_image_prepare(&base, rows, count,
         original->image.roots, original->image.root_count, &issue) == SOURCE_IMAGE_OK);
+    assert(source_image_project(arena, &base, additions, 2, output, &projection) == SOURCE_PROJECTION_OK);
 }
 /** Reparse actual edited copies, reject a valid wrong binding and reject an unresolved rewrite. */
 static void it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance(void) {
@@ -61,7 +66,7 @@ static void it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_
         SourceCloneMap map; source_clone_map_init(&map, sources.allocator, &capture);
         SourceTextEdits edits[2]; SourceGraphPreparedText provenance[2] = {0};
         SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-        assert(source_observed_image_build(&observed, &capture) == SOURCE_OBSERVATION_OK);
+        assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
         SourceImageCapture final_capture; source_image_capture_init(&final_capture, sources.allocator);
         SourceCatalogImage image = {0}; const SourceText *copied_texts[2] = {0};
         const ModuleSource *originals[2] = {0}; const char *paths[2] = {0};

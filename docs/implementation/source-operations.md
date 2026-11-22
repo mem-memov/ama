@@ -2468,3 +2468,205 @@ recoverable publication are still required. A checkpoint preserves the tested
 foundation across interruptions; it is not the task's final acceptance/commit.
 No Doxygen or conformance fingerprints have been refreshed as a release claim.
 Continue with finite projected material assembly and complete directory provenance.
+
+### Explicit finite image projection (active step)
+
+Next implement an immutable, root-preserving projection boundary: unique explicit
+ADD/UPDATE/REMOVE rows over an admitted original image. This is material algebra,
+not operation permission, recursive filesystem deletion, freshness or publication.
+ADD requires proved absence by a complete original directory listing (possibly
+above an absent new directory); UPDATE/REMOVE require known original metadata.
+Changes to directory membership require complete original parent listings. New
+directories assert complete planned membership; updated directories retain their
+original complete-listing authority. Roots cannot change at this boundary. The
+outer planner must gather missing observations and independently prove physical
+removal, clone/reference and configuration laws. No unavailable observation is
+silently promoted to absence or completeness.
+
+Use unique exact keys, validate each change against the same original image,
+then emit retained/updated original rows and additions and run common image shape
+validation. Thus order cannot change meaning; parent removal without child removal
+fails shape validation. Output is published only after validation. Borrow immutable
+paths/content/roots, own only the result row vector in the caller's arena. Failed
+attempts may retain scratch arena allocations until its normal teardown. Quadratic
+lookup/duplicate checking terminates over finite rows; checked cardinality bounds
+protect allocation. Test independent expected memberships, permutations, unknown
+and incomplete observations, parent/child edits, malformed changes, allocation
+failure and common final catalogue consumption before extending the planner.
+
+Projection now owns a checked exact row-vector transformation under
+`source/image/projection.h` and `project.c`. It is consumed by the existing real
+cyclic-copy compiler/site composition, replacing its handwritten append logic.
+The component cases in `tests/unit/tools/project/source/image/projection.c` are
+included by that leaf's actual `main.c` (shared guarded fixtures stay in one
+translation unit). They check all 120 permutations, independent final key sets,
+common discovery with zero disk I/O, fourteen refusal profiles, complete subtree
+removal, no-op ownership, the single allocation failure, empty/invalid interfaces
+and output atomicity. Per-file registry links all new inputs to these cases and
+the production handoff; the header has an independent inclusion probe.
+
+Strict component and actual compiler/site composition initially passed
+(`/tmp/ama-t224-projection.exit`, `/tmp/ama-t224-projection-compiler.exit`, both 0).
+The subsequently expanded refusal/ownership cases passed ASan/UBSan with leak
+checking disabled (`/tmp/ama-t224-projection-sanitizers-renewed.exit`, 0), plus
+counted zero-live teardown. The first sanitizer invocation reached LeakSanitizer's
+known ptrace failure after running assertions; it is not counted as a successful
+gate. The first full coverage invocation correctly rejected the missing explicit
+standalone-header command; that registry omission is corrected for the next run.
+No task completion, transaction safety, physical mapping or final acceptance is
+claimed. Next capture explicitly needed original opaque/deep-directory observations
+before sealing, then join complete physical copy/removal material with this image
+projection and the already real final compiler proof.
+
+Projection's expanded cases and real compiler join both passed ASan/UBSan;
+`/tmp/ama-t224-projection-compiler-sanitizers.exit` is 0. Strict standalone tool
+link passed (`/tmp/ama-t224-projection-tool-build.exit`, 0). Renewed full per-file
+coverage passed (`/tmp/ama-t224-projection-coverage-renewed.exit`, 0): 3736 ready
+inputs, zero explicit debts. No job remains active at this boundary.
+
+### Explicit extra original observation demands (active next step)
+
+Extend the existing observer's build input with a finite explicit request array,
+not an unsealing API or whole-filesystem scan. Each request asks for metadata,
+raw file bytes or complete directory membership under already authorized original
+roots; optional absence is distinct from required input failure. Walk every exact
+ancestor from a captured root using the same complete-name/metadata callbacks.
+Refuse dot traversal and malformed structural keys, wrong-kind requests and
+contradictory observations. Unknown opaque entries are touched only when requested.
+The same selected-source consistency checks remain mandatory, and requests cannot
+introduce selected definitions or amend roots. All requests run before sealing;
+final consumers still perform zero physical I/O. Update actual consumers explicitly
+rather than retain a superseded build signature. Verify deep opaque paths, missing
+ancestor proof, unchanged ignored inputs, request ordering/idempotence, failures
+and original-to-projection composition before further physical material joining.
+
+Explicit demanded observation checks passed strictly and under ASan/UBSan
+(`/tmp/ama-t224-requested-observations.exit` and
+`/tmp/ama-t224-requested-observations-sanitizers.exit`, both 0), including all
+measured allocation/physical failures, two reverse dependency orders, optional
+missing ancestors and wrong-kind/path requests. The observed opaque bytes feed
+real image projection without post-seal I/O. The updated real compiler join and
+standalone tool linked/passed (`/tmp/ama-t224-requested-compiler-join.exit`,
+`/tmp/ama-t224-requested-tool-build.exit`, both 0). The completed coverage gate
+reported 3738 ready inputs/zero debts; this is the preceding boundary, before
+adding the removal-image orchestration below. No previous two-argument observer
+build API remains. Requests terminate because every successful descent consumes
+one nonempty component; cached complete lists cannot acquire invented children.
+Existing callback, image and common catalog contracts supply allocation/alias
+and source-consistency obligations. Requests do not authorize root changes.
+
+### Original removal material to final compiler image (active step)
+
+Join the actual removal selection/review with explicit observation demands and
+simultaneous projection under `source/removal/image/`. Original authored input,
+module and client cuts run before final availability. Demand complete raw bytes
+for every removed regular file and complete membership for every removed directory;
+compare raw bytes/shapes against the previously captured removal set. Then project
+all removals once and build actual common final capture. No physical deletion or
+publication is performed. This root-preserving preparation boundary rejects root
+removal and unavailable final observations; outer complete operation planning must
+handle root changes and prove final semantic/reference/freshness/journal contracts.
+
+The invariant is: every projected removed key belongs to the same reviewed original
+set and matches its earlier captured material; all remaining image rows are exact
+original observations. A new unselected child of a removed directory makes final
+shape admission fail instead of being silently deleted. Finite unique original
+members bound request/change arrays; checked counts and multiplication protect
+allocations. Tests must compose real original compiler/removal selection, opaque
+associated data, final common capture and independent final compiler/graph checks;
+check blockers before observation, changed opaque bytes, newly appeared children,
+repeat/invalid inputs and every measured owner allocation failure. No public delete
+command or task completion claim follows from preparation alone.
+
+Removal-image composition passed strictly and under ASan/UBSan, including all
+measured preparation allocation failures (`/tmp/ama-t224-removal-image.exit` and
+`/tmp/ama-t224-removal-image-sanitizers.exit`, both 0). Standalone tool strict link
+passed (`/tmp/ama-t224-removal-image-tool-build.exit`, 0). Full per-file coverage
+passed at this boundary: 3744 ready inputs, zero debts
+(`/tmp/ama-t224-removal-image-coverage.exit`, 0). No job remains active.
+
+Next replace the test's manual graph join with the actual production proof:
+`source_removal_image_prove` first checks that an independently successful
+whole-domain compiler response matches the prepared snapshot, then checks every
+surviving original binding and occurrence site through the existing graph/site
+algorithms with the empty clone relation. Repeated proof is allocation-free and
+has no filesystem effects. An original response cannot substitute for a changed
+module set; for an empty opaque-directory removal, unchanged semantic inputs may
+legitimately reuse an equal checked response. This proof still grants no freshness
+or publication authority. Test exact inputs, positive/negative response reuse,
+empty removal semantics and invalid interfaces before further command integration.
+
+The production removal proof now replaces the test's handwritten empty-map join.
+It checks exact final response inputs and every surviving occurrence through
+`source_graph_sites`, is repeatable without allocation, and rejects stale original
+responses when semantic inputs changed. The added empty-directory case legitimately
+accepts an equal original semantic response, without confusing that equality with
+physical removal safety. Strict proof/composition and ASan/UBSan passed
+(`/tmp/ama-t224-removal-proof.exit` and
+`/tmp/ama-t224-removal-proof-sanitizers.exit`, both 0); strict standalone tool link
+passed (`/tmp/ama-t224-removal-proof-tool-build.exit`, 0). The new `prove.c` is
+registered; the previous full gate predates it, so renew complete coverage at the
+next preparation milestone. No job remains active.
+
+### Actual copy candidate to physical main-map join (active next step)
+
+Replace the copy test's handwritten destination-to-clone loop with a production
+join, one explicitly designated destination version at a time. Consume the admitted
+logical candidate owner and its immutable explicit map, the actual destination
+version root and complete proposed same-version main namespace. Derive physical
+paths by the existing final-name topology algorithm, require explicit P placements
+to agree exactly, and add active/explicit rows through the same injective clone
+owner. Do not seal: final context/opaque/declared material joining still follows.
+A refusal poisons map sealing, so a successful prefix can never masquerade as the
+complete plan. No destination I/O, root selection, context fabrication or filesystem
+identity prediction occurs. Tests cover actual copy modes, missing/duplicate main
+names, explicit-physical disagreement, retained topology anchors, invalid owners,
+all allocation failures and a later complete common-final-catalog join. This step
+certifies supplied active/explicit mains only; it cannot omit required context or
+claim operation completion.
+
+Actual copy-main joining passed strict mode, boundary/allocation tests and the
+complete original-observation -> explicit target package image -> independent
+compiler -> copy/survivor site composition. The fixture declares seven directories,
+one destination configuration and four copied mains explicitly; full general
+opaque/context/configuration placement and publication remain outer work. Synthetic
+new metadata classes are the exact least unused finite labels, disjoint from all
+original classes; they do not predict filesystem identities. The first fixture
+compile exposed nonportable S_IFDIR/S_IFREG availability under strict POSIX flags;
+use actual observed mode prototypes instead. Corrected strict composition passed
+(`/tmp/ama-t224-copy-main-final-compiler.exit`, 0), then ASan/UBSan passed
+(`/tmp/ama-t224-copy-main-final-sanitizers.exit`, 0). Earlier mode/boundary checks
+also passed (`/tmp/ama-t224-copy-main-join.exit` and
+`/tmp/ama-t224-copy-main-boundaries.exit`, 0). Strict tool link passed
+(`/tmp/ama-t224-copy-main-tool-build.exit`, 0). Full per-file gate passed
+(`/tmp/ama-t224-main-material-coverage.exit`, 0): 3749 ready inputs/zero debts.
+
+A boundary review found one overly narrow internal absence proof: a known regular
+file cannot have descendants, even without a directory listing. Generalize the
+projection proof to include that exact case, allowing explicit file-to-directory
+replacement plus new children. The final shape must still reject adding children
+without replacing the regular parent. Test both replacement directions and required
+missing descendants; this is an implementation completeness correction, not a
+specification amendment or permission to replace an occupied target. The outer
+safe-removal and --replace gates remain mandatory. Renew affected image tests and
+the real main/removal consumers before checkpointing; no jobs are active now.
+
+Replacement completeness checks passed strictly and under ASan/UBSan
+(`/tmp/ama-t224-image-kind-replacement.exit` and
+`/tmp/ama-t224-image-kind-sanitizers.exit`, both 0). Actual copy and removal
+consumers passed again under ASan/UBSan after that proof correction
+(`/tmp/ama-t224-kind-copy-consumer.exit`, `/tmp/ama-t224-kind-removal-consumer.exit`,
+both 0). Standalone strict tool rebuilt/linked successfully
+(`/tmp/ama-t224-kind-tool-build.exit`, 0). Renewed full coverage passed
+(`/tmp/ama-t224-image-projection-final-coverage.exit`, 0): 3749 ready inputs,
+zero explicit debts, including independent public/internal header compilation.
+No acceptance process remains active.
+
+Checkpoint: save these verified material/image/main-placement and removal-proof
+steps without marking T224 complete or moving it to DONE. No specification,
+Doxygen output or release-conformance fingerprints changed. The next coherent
+step is the shared exact unit-member physical translation, consumed by raw-tree
+placement and expanded copy material, then complete context/test/declared/opaque
+file-map joining. Exact destination configuration edits, whole-operation final
+proof, freshness/journal recovery and public commands remain mandatory. T236 and
+T237 remain dependent and have not been started. No ambiguity is open.

@@ -13,6 +13,11 @@ struct SourceObservedEntry;
 typedef enum { SOURCE_OBSERVATION_OK, SOURCE_OBSERVATION_INVALID,
     SOURCE_OBSERVATION_MEMORY, SOURCE_OBSERVATION_PHYSICAL, SOURCE_OBSERVATION_CATALOG,
     SOURCE_OBSERVATION_CHANGED } SourceObservationStatus;
+/** Explicit demands keep opaque/deep inputs separate from common selected discovery. */
+typedef enum { SOURCE_OBSERVE_METADATA, SOURCE_OBSERVE_CONTENT, SOURCE_OBSERVE_CHILDREN } SourceObservationKind;
+/** Borrow an exact catalog physical key through build; optional missing ancestors
+ * prove absence without inventing unavailable descendant metadata. */
+typedef struct { const char *path; SourceObservationKind kind; bool optional; } SourceObservationRequest;
 /** Own read-only preparation scratch and immutable output bytes/rows. Borrow the
  * complete original capture until destruction. catalog is the common observed
  * selection used only as evidence, not a new mutable source-I/O entry point after
@@ -47,9 +52,14 @@ void source_observed_image_destroy(SourceObservedImage *);
  * reject new companions, missing originals or any different observed main set.
  * Do not replace the original capture on mismatch. Stable original paths/directories
  * are required throughout this synchronous observation, as for the physical catalog.
+ * Explicit requests observe only their exact ancestor chains and demanded bytes
+ * or immediate child lists, before sealing. Keys use the catalog root-plus-slash
+ * spelling and forbid empty, dot and parent components below the root. Repeated
+ * requests reuse observations; optional absence never hides I/O/type failures.
  * On success seal the observation callbacks and publish one immutable image.
  * Final whole-domain freshness before application is still mandatory. Failed
  * prefixes remain owned and never valid; repeated calls preserve previous results.
  */
-SourceObservationStatus source_observed_image_build(SourceObservedImage *, const SourceRootCapture *);
+SourceObservationStatus source_observed_image_build(SourceObservedImage *, const SourceRootCapture *,
+    const SourceObservationRequest *, size_t);
 #endif

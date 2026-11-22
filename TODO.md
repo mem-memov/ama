@@ -122,7 +122,14 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   final-name-driven main topology now pass component and real-catalog checks.
   Actual copy closures produce active ordinary logical destination candidates;
   complete context/test/data/opaque physical placement and common final catalog
-  authority remain next. T224 is active and unfinished.
+  authority remain next. Exact simultaneous image projection now passes all 120
+  change orders, real final-compiler/site composition, sanitizer and full per-file
+  coverage checks. Explicit opaque/deep original demands, root-preserving removal
+  images and exact final compiler/binding/site proofs now pass real compositions
+  and failure checks. Ordinary copy-main placement also joins actual logical
+  candidates, final topology and a complete projected-version compiler fixture.
+  Complete context/test/data/opaque file-map integration, configuration edits and
+  recoverable publication remain unfinished. T224 is active and unfinished.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.
