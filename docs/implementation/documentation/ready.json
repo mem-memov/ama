@@ -181788,18 +181788,48 @@
       },
       {
         "source": "tests/unit/tools/project/acquisition/location/main.c",
-        "case": "it_maps_shared_versions_and_physical_dot_reductions_without_rerouting",
+        "case": "it_matches_every_bounded_relative_directory_word_model",
         "command": "make -C tests/unit/tools/project/acquisition/location"
       },
       {
         "source": "tests/unit/tools/project/acquisition/sources/main.c",
-        "case": "it_recovers_every_request_resolution_and_binding_allocation_refusal",
+        "case": "it_coalesces_exact_snapshot_requests_and_waits_for_explicit_resolution",
         "command": "make -C tests/unit/tools/project/acquisition/sources"
       },
       {
-        "source": "tests/unit/tools/project/acquisition/sources/main.c",
-        "case": "it_routes_every_actual_alias_mask_match_once_in_either_inventory_order",
-        "command": "make -C tests/unit/tools/project/acquisition/sources"
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_matches_all_bounded_role_request_sequences",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_maps_nested_logical_suffixes_in_the_selected_version",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_joins_all_bounded_membership_request_words_without_duplicates",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
       }
     ]
   },
@@ -183767,6 +183797,2819 @@
         "source": "tests/unit/delivery/native/main.c",
         "case": "it_retains_ordinary_package_guidance_and_reuses_native_snapshots",
         "command": "make -C tests/unit/delivery/native"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/roles/roles.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_matches_all_bounded_role_request_sequences",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_expands_cyclic_dependencies_once_and_preserves_distinct_reasons",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_keeps_fifo_order_across_promotion_and_later_discovery",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_preserves_visible_membership_on_every_insertion_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_refuses_foreign_causes_and_failed_promotions_without_queue_changes",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/roles/add.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_matches_all_bounded_role_request_sequences",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_expands_cyclic_dependencies_once_and_preserves_distinct_reasons",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_keeps_fifo_order_across_promotion_and_later_discovery",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_preserves_visible_membership_on_every_insertion_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_refuses_foreign_causes_and_failed_promotions_without_queue_changes",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/roles/lifetime.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_matches_all_bounded_role_request_sequences",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_expands_cyclic_dependencies_once_and_preserves_distinct_reasons",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_keeps_fifo_order_across_promotion_and_later_discovery",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_preserves_visible_membership_on_every_insertion_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_refuses_foreign_causes_and_failed_promotions_without_queue_changes",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/roles/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_matches_all_bounded_role_request_sequences",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_expands_cyclic_dependencies_once_and_preserves_distinct_reasons",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_keeps_fifo_order_across_promotion_and_later_discovery",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_preserves_visible_membership_on_every_insertion_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_refuses_foreign_causes_and_failed_promotions_without_queue_changes",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/roles/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_matches_all_bounded_role_request_sequences",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_expands_cyclic_dependencies_once_and_preserves_distinct_reasons",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_keeps_fifo_order_across_promotion_and_later_discovery",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_preserves_visible_membership_on_every_insertion_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_refuses_foreign_causes_and_failed_promotions_without_queue_changes",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/tests/association.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_maps_nested_logical_suffixes_in_the_selected_version",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_refuses_non_source_paths_and_mismatched_version_owners",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_preserves_both_outputs_on_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/tests/association.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_maps_nested_logical_suffixes_in_the_selected_version",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_refuses_non_source_paths_and_mismatched_version_owners",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_preserves_both_outputs_on_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/association/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_maps_nested_logical_suffixes_in_the_selected_version",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_refuses_non_source_paths_and_mismatched_version_owners",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_preserves_both_outputs_on_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/association/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_maps_nested_logical_suffixes_in_the_selected_version",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_refuses_non_source_paths_and_mismatched_version_owners",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_preserves_both_outputs_on_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/unit/unit.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_context_without_entering_its_subtree_and_rejects_links_when_active",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_distinguishes_absent_optional_subtrees_from_invalid_required_inputs",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_failed_capture_allocation_without_partial_output",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_captures_required_directories_and_refuses_missing_or_non_directory_roots",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_required_directory_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/unit/child.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_context_without_entering_its_subtree_and_rejects_links_when_active",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_distinguishes_absent_optional_subtrees_from_invalid_required_inputs",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_failed_capture_allocation_without_partial_output",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_captures_required_directories_and_refuses_missing_or_non_directory_roots",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_required_directory_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/unit/internal.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_context_without_entering_its_subtree_and_rejects_links_when_active",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_distinguishes_absent_optional_subtrees_from_invalid_required_inputs",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_failed_capture_allocation_without_partial_output",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_captures_required_directories_and_refuses_missing_or_non_directory_roots",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_required_directory_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/unit/tree.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_context_without_entering_its_subtree_and_rejects_links_when_active",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_distinguishes_absent_optional_subtrees_from_invalid_required_inputs",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_failed_capture_allocation_without_partial_output",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_captures_required_directories_and_refuses_missing_or_non_directory_roots",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_required_directory_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/unit/capture.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_context_without_entering_its_subtree_and_rejects_links_when_active",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_distinguishes_absent_optional_subtrees_from_invalid_required_inputs",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_failed_capture_allocation_without_partial_output",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_captures_required_directories_and_refuses_missing_or_non_directory_roots",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_required_directory_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/unit/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_context_without_entering_its_subtree_and_rejects_links_when_active",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_distinguishes_absent_optional_subtrees_from_invalid_required_inputs",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_failed_capture_allocation_without_partial_output",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_captures_required_directories_and_refuses_missing_or_non_directory_roots",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_required_directory_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/unit/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_context_without_entering_its_subtree_and_rejects_links_when_active",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_distinguishes_absent_optional_subtrees_from_invalid_required_inputs",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_failed_capture_allocation_without_partial_output",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_captures_required_directories_and_refuses_missing_or_non_directory_roots",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_required_directory_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/tests/roots.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/tests/roots.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/test-roots/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/test-roots/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/dependencies/expand.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/dependencies/expand.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/dependencies/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/dependencies/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/members/add.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_joins_all_bounded_membership_request_words_without_duplicates",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_retains_every_distinct_reason_and_bound_snapshot_contract",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_refuses_changed_content_and_storage_kind_without_losing_previous_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_preserves_membership_and_causes_on_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/members/members.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_joins_all_bounded_membership_request_words_without_duplicates",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_retains_every_distinct_reason_and_bound_snapshot_contract",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_refuses_changed_content_and_storage_kind_without_losing_previous_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_preserves_membership_and_causes_on_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/members/lifetime.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_joins_all_bounded_membership_request_words_without_duplicates",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_retains_every_distinct_reason_and_bound_snapshot_contract",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_refuses_changed_content_and_storage_kind_without_losing_previous_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_preserves_membership_and_causes_on_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/members/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_joins_all_bounded_membership_request_words_without_duplicates",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_retains_every_distinct_reason_and_bound_snapshot_contract",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_refuses_changed_content_and_storage_kind_without_losing_previous_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_preserves_membership_and_causes_on_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/members/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_joins_all_bounded_membership_request_words_without_duplicates",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_retains_every_distinct_reason_and_bound_snapshot_contract",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_refuses_changed_content_and_storage_kind_without_losing_previous_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_preserves_membership_and_causes_on_every_allocation_refusal",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/closure/common.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own narrow counted bytes/result arenas for closure tests without importing unused routing/parser helpers.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/roles/main.c",
+        "case": "it_matches_all_bounded_role_request_sequences",
+        "command": "make -C tests/unit/tools/project/acquisition/roles"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/association/main.c",
+        "case": "it_maps_nested_logical_suffixes_in_the_selected_version",
+        "command": "make -C tests/unit/tools/project/acquisition/association"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/members/main.c",
+        "case": "it_joins_all_bounded_membership_request_words_without_duplicates",
+        "command": "make -C tests/unit/tools/project/acquisition/members"
+      }
+    ]
+  },
+  "src/delivery/source/records.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Export original checked source categories and dependencies, and distinguish independent executable proof from exact pending root keys without masking errors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/export.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Export original checked source categories and dependencies, and distinguish independent executable proof from exact pending root keys without masking errors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "src/delivery/source/export.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Export original checked source categories and dependencies, and distinguish independent executable proof from exact pending root keys without masking errors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/unit/directory.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Own and verify one narrow structural capture, source classification or monotone delivery membership operation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_all_active_structural_inputs_and_no_neighbor_units",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retains_context_without_entering_its_subtree_and_rejects_links_when_active",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_distinguishes_absent_optional_subtrees_from_invalid_required_inputs",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_failed_capture_allocation_without_partial_output",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_captures_required_directories_and_refuses_missing_or_non_directory_roots",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/unit/main.c",
+        "case": "it_retires_every_required_directory_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/unit"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/main.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/support/empty-version.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/support/prepared.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/cases/allocations.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/cases/standard-native.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/cases/structural.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/cases/types-and-requests.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/Makefile": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/plan/plan.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/plan/structure.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/plan/files.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/plan/compute.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/plan/internal.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/acquisition/closure/plan/tests.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/plan/lifetime.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "tools/project/acquisition/closure/plan/version.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "src/delivery/source/entry.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Export original checked source categories and dependencies, and distinguish independent executable proof from exact pending root keys without masking errors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ]
+  },
+  "src/delivery/source/entry.h": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Export original checked source categories and dependencies, and distinguish independent executable proof from exact pending root keys without masking errors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_selects_immediate_runtime_candidates_before_exact_entry_classification",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_reports_missing_candidates_and_preserves_parameterized_candidates_for_probing",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_actual_helper_errors_instead_of_skipping_failed_compilation",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_output_on_every_root_projection_allocation_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_preserves_export_output_on_every_allocation_failure_and_invalid_inventory",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/test-roots/main.c",
+        "case": "it_classifies_grounded_formals_pending_roots_and_real_errors_by_typed_entry_evidence",
+        "command": "make -C tests/unit/tools/project/acquisition/test-roots"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_alias_resolved_cycle_once_with_original_requirement_spans",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_expands_actual_static_and_constant_edges_without_unrelated_sources",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_refuses_foreign_and_mismatched_records_without_expanding",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/dependencies/main.c",
+        "case": "it_retires_failed_actual_dependency_edge_allocations",
+        "command": "make -C tests/unit/tools/project/acquisition/dependencies"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/tools/project/acquisition/plan/cases/whole-version.c": {
+    "contract": "docs/implementation/acquisition-plan.md",
+    "purpose": "Compute and verify exact prepared structural/source/test closure with original snapshot causes and independent semantic entry admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_empty_versions_without_inventing_module_instances",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retires_every_controller_allocation_failure_in_real_compositions",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_standard_native_inputs_without_inventing_package_scope_or_tests",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_child_only_delivery_without_activating_its_draft_parent",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_promotes_context_and_closes_real_source_cycles_with_all_test_support",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_publication_after_independent_test_admission_failure",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_refuses_an_associated_directory_containing_only_open_test_helpers",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_explicit_declared_test_inputs_without_guessing_package_assets",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_retains_injected_test_types_through_their_original_test_scope",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_handles_empty_and_invalid_selection_requests_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_admits_tests_whose_original_formals_close_from_typed_defaults",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
+      },
+      {
+        "source": "tests/unit/tools/project/acquisition/plan/main.c",
+        "case": "it_closes_whole_versions_through_their_actual_source_and_test_units",
+        "command": "make -C tests/unit/tools/project/acquisition/plan"
       }
     ]
   }

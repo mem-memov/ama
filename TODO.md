@@ -81,8 +81,9 @@ queue in prerequisite order. Specification amendments still need their own
 explicit authorization; T222's separately authorized notation amendment is complete.
 [T229](DONE.md#t229) specifies the CMake/launcher/source-inclusion contracts;
 T240–T242 and T246–T257 retain the pending build/launcher implementation.
-[T239](DONE.md#t239), [T244](DONE.md#t244) and [T245](DONE.md#t245) provide the
-accepted native-input, handoff and delivery foundations. The
+[T239](DONE.md#t239), [T244](DONE.md#t244), [T245](DONE.md#t245) and
+[T235](DONE.md#t235) provide the
+accepted native-input, source/test closure, handoff and delivery foundations. The
 [detailed implementation plan](docs/implementation/cmake-launcher-plan.md)
 records foundation gates, task/step acceptance, migration and evidence duties;
 [T243](DONE.md#t243) records its completed planning acceptance.
@@ -101,9 +102,9 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t224"></a>
 
 - [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
-  Status: agreed target, transferred from BACKLOG by T230; implementation now
-  authorized, aligned with the AMB-017/018 decisions by T268; awaiting
-  prerequisites T232, T233 and T235. Rules: SRC-06, PKG-04/09,
+  Status: ready; transferred from BACKLOG by T230, implementation authorized
+  and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
+  and T235 are accepted. Rules: SRC-06, PKG-04/09,
   PROJECT-01 and TOOL-01..04. Use the shared parsed configuration/path resolver;
   expose explicit copy/delete/move, dependency cloning or package.ini extension,
   and safe --replace. Use T235's complete source/test closure. Map the selected
@@ -117,18 +118,6 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   superseded importer-rewriting behavior and its dedicated tests; retain shared
   resolver foundations with current consumers. No guessed mask/prefix rewrite,
   implicit acquisition or partial copy after move refusal is allowed.
-
-<a id="t235"></a>
-
-- [ ] **T235 — Compute minimal structural source-and-test delivery closure.**
-  Prerequisites: T234, T221, T226 and T239. Implement PKG-07..09 through source-unit,
-  companion, topology-context, test-association and dependency-expansion children.
-  Retain complete selected subtrees; distinguish topology-only parents from
-  active units. Build the least finite closure of needed source/test/support
-  inputs without tests-of-tests or guessed assets. Accept isolated and composite
-  checks for child-only selection, parent promotion, shared/cyclic dependencies,
-  mirrored tests, template/static/native inputs, missing tests and injected test
-  types. Every emitted membership must have a recorded reason and snapshot.
 
 <a id="t236"></a>
 

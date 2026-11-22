@@ -8,6 +8,10 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-020](#amb-020) is **Resolved** for T235: only concrete executable direct
+modules count as tests. Open templates and non-executable definitions are helpers;
+no concrete directly associated test is an acquisition error (PKG-08).
+
 [AMB-019](#amb-019) is resolved for T239: README guidance remains optional during
 generation/build, and native requirements belong in CMake companions. BUILD-05
 records unavailable guidance separately from compilation and source-delivery errors.
@@ -1408,3 +1412,72 @@ Each entry must contain:
   optional guidance and links the unchanged delivery/preparation boundaries.
   T239's accepted native-input capture and emission are archived in DONE;
   future CMake/source-delivery commands retain their separate acceptance owners.
+
+<a id="amb-020"></a>
+
+## AMB-020 — Direct test roots versus open ordinary template helpers
+
+- **Status:** Resolved; the user explicitly authorized the PKG-08 clarification.
+- **Task at discovery:** [T235](DONE.md#t235), after accepted T239 commit `60e95c94`.
+  Only source/specification review and the task contract have started; no T235
+  implementation or tests are written.
+- **Authority:** [PKG-08](spec/project/packages.md#pkg-08) requires at least one
+  directly associated test microprogram and retains the whole associated
+  directory, including helpers. It places a direct test's main source immediately
+  in that directory, but does not give a complete test-root/helper classification.
+  [PROJECT-03](spec/implementation/project-tools.md#project-03) requires ordinary
+  independent test microprograms, normal compiler checks and explicitly selected
+  jobs. [SYN-04](spec/language/source-and-names.md#syn-04) classifies activation,
+  drafts and constants; `@!` also occurs in ordinary module templates that cannot
+  be independently instantiated until concrete types are supplied.
+- **Minimal example:** an acquired `src/sort` has the associated directory:
+
+  ```text
+  tests/sort/
+  ├── check     ordinary concrete module that calls helper with //integer
+  └── helper    ordinary open module template
+  ```
+
+  `helper` contains:
+
+  ```ama
+  @<
+  value
+  .T
+  @!
+  ```
+
+  It is valid as a helper instantiated by `check`. As an independent root it has
+  no information selecting `.T`. Its filename has no reserved meaning. Both
+  files are immediate main-source entries, and the entire directory is delivered
+  in every variant.
+- **Precise question:** should direct test discovery automatically select only
+  closed executable ordinary/native modules, retaining open templates/static/
+  constants/drafts as support files, or should every immediate `@!`/`@C` module
+  be a required independently runnable test (making this helper placement an
+  error and requiring helper placement elsewhere)? The test directory's merely
+  containing an open helper must not ambiguously satisfy the mandatory-test
+  condition or silently hide a broken test.
+- **Recommended decision:** use exact semantic classification: closed executable
+  direct modules are tests; open templates and non-executable definitions are
+  support. An actual syntax/type inconsistency is an error, not a reason to skip
+  a test. Missing concrete own type parameters distinguish an open helper from
+  an invalid definition; never guess roles from names or arbitrary compiler
+  diagnostic strings. A directory with no closed directly runnable test fails
+  the mandatory-test check.
+- **Alternative and consequence:** all immediate ordinary/native code-bearing
+  files are mandatory test entries; an unclosed one refuses acquisition. Authors
+  put open helpers outside the direct test-entry level. Static/constant/draft
+  files still do not count as runnable tests. This is a stricter placement rule
+  that must be stated before implementing discovery.
+- **Implementation consequence:** this determines the declared test-root set,
+  positive/missing-test acceptance, semantic admission boundary and behavior of
+  existing valid open helper definitions. Role/closure implementation is stopped;
+  do not select a heuristic or switch tasks around the issue.
+- **Decision/source:** answering the question explicitly asking which rule may be
+  recorded in spec, the user accepted: "Тесты — только конкретные исполняемые
+  модули; открытые шаблоны и неисполняемые определения считаются вспомогательными.
+  Если конкретного теста нет — ошибка" (2026-11-22, current conversation).
+  Syntax and type errors remain errors; failed checking is never a helper filter.
+- **Canonical result:** PKG-08 now defines direct test roots semantically and
+  retains open/non-executable support without counting it as a concrete test.

@@ -585,6 +585,32 @@ modules have nested associated directories. Each selected source module must
 have at least one directly associated test program; a test only for a child
 does not by itself provide the parent's tests.
 
+A directly associated test root is a concrete executable ordinary or native
+module: all of its own type parameters must be determined, and the module must
+be admissible as an independent executable entry under the normal compiler
+rules. An open module template, static module, constants-only definition or
+draft is auxiliary material, not a test root. Retain such helpers with the
+associated directory, but do not count them toward the required concrete test.
+If no concrete directly associated test exists, acquisition fails. Determine
+these roles from the language's semantic classification, never from filenames
+or by suppressing compiler diagnostics. Syntax and type errors in definitions
+subject to checking remain errors; invalid programs must not be reclassified as
+helpers merely because independent compilation fails.
+
+Determine concreteness after the ordinary inference of
+[TPL-03](../language/templates.md#tpl-03). The mere presence of an original type
+placeholder does not make a module an open helper: for example, a typed default
+can uniquely determine it. Insufficient information for the selected root's own
+parameters distinguishes a genuinely open template from a concrete entry with
+an invalid or unresolved body. Preserve that distinction without interpreting
+diagnostic strings or trying guessed type arguments.
+
+**Example: a concrete test may use an open helper.** An associated directory
+can contain a concrete executable `check` and an ordinary template `helper`
+whose parameter has type `.T`. `check` supplies the concrete type when it uses
+`helper`. Both files are delivered; only `check` counts as a direct test. A
+directory containing only the open `helper` does not satisfy this requirement.
+
 **Example: association uses logical source components.**
 
 | Physical source | Associated physical test directory |

@@ -8366,3 +8366,40 @@ T201. Specification bytes have not changed.
   admission remain T247/T252/T253; source delivery keeps PKG-07 errors under T235.
   T237 owns current full release/conformance renewal; no old fingerprints are
   refreshed merely to fit these changes.
+
+<a id="t235"></a>
+
+- [x] **T235 — Compute minimal structural source-and-test delivery closure.**
+  Status: complete; AMB-020 is resolved with independent semantic entry
+  classification, including formals closed by typed defaults.
+  Step/proof/evidence record:
+  [delivery closure](docs/implementation/acquisition-plan.md#t235-structural-source-and-test-delivery).
+  Prerequisites: T234, T221, T226 and T239. Implement PKG-07..09 through source-unit,
+  companion, topology-context, test-association and dependency-expansion children.
+  Retain complete selected subtrees; distinguish topology-only parents from
+  active units. Build the least finite closure of needed source/test/support
+  inputs without tests-of-tests or guessed assets. Accept isolated and composite
+  checks for child-only selection, parent promotion, shared/cyclic dependencies,
+  mirrored tests, template/static/native inputs, missing tests and injected test
+  types. Every emitted membership must have a recorded reason and snapshot.
+
+  Result: exact prepared source/test closure through source-unit/companion
+  capture, context promotion, whole/empty version roots, explicit declared inputs,
+  original resolved dependency exports and independently checked test entries.
+  Snapshot/request causes survive deduplication; incomplete preparation is never
+  publishable. Compiler state stays behind a plain source-record boundary;
+  project tooling performs no hidden source mutation, network or CMake execution.
+  Verification: seven new independently runnable leaves with 40 named C/assert
+  cases, finite role/member word models and exhaustive measured allocation faults;
+  the complete acquisition parent with -Werror; ASan/UBSan; normal compiler and
+  standalone tool builds plus actual incremental/failure/recovery/init acceptance.
+  Grounded own formals, genuinely open keys, typed conflicts and unknown bodies
+  are distinguished by normal compiler evidence, never diagnostic strings.
+  Doxygen acceptance: 3430 ready inputs, zero debts, 2597 maintained file pages,
+  9981 interfaces, 493 canonical destinations and 8209 total pages. The linked
+  record preserves commands, sessions/logs, corrected fixtures, generated-reference
+  failures/corrections, exact documentation-only change proof and LSan limits.
+  Transport/compiler-protocol adapters and publication remain T236; resolved
+  copy/delete/move integration remains T224. No public acquisition command,
+  automatic C/CMake asset discovery or execution coverage is claimed by this
+  prepared-fact foundation. T237 retains full release/conformance renewal.
