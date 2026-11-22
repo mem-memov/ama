@@ -160,7 +160,11 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   now passes real captured/compiler scope isolation, malformed empty-version,
   wildcard, allocation, sanitizer and full source-parent checks. Per-file/header
   checking passes with 3790 ready inputs and zero debt. Exact mapping/extension
-  sets and complete material/publication integration remain next within T224.
+  baseline sets now derive exact original-root images through ready C and explicit
+  actual version pairs, with independent reparse/matching, missing/conflicting/
+  foreign-case, allocation and sanitizer acceptance. Per-file/header checks pass
+  with 3793 ready inputs and zero debt. Explicit extension targets and complete
+  material/publication integration remain unfinished within T224.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.

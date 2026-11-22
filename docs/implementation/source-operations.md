@@ -3178,3 +3178,58 @@ this complete fact-preparation step, keeping T224 open. Next derive requested
 roots from original selections, explicit copied-configuration origins and C;
 only EXTEND_PACKAGE may add concrete uncovered copied-edge targets. Re-expression
 and final independent parser/permission/reference checks remain mandatory.
+
+### Exact image of explicit selected roots (active next step)
+
+For one original successful selection, construct its finite root-name image in
+an actual final view. An unchanged configuration retains root names; a copied
+configuration maps selected module roots through the ready C relation and
+selected version roots through explicitly supplied actual version pairs. Retain
+unmapped names. Intersect with actual final availability: PKG-05 permits a
+selector with no remaining match after explicitly removed inputs. No wildcard
+re-evaluation or permission addition belongs to this baseline. Preserve normal
+PKG-05 unit/version/test coverage of the resulting exact roots; an explicitly
+selected whole version still means its complete actual tree. Distinguish this
+from new wildcard-matched roots. Validate version-pair ownership/category and
+conflicting source assignments before allocation. Iterate final actual entries
+once per comparison pass for canonical unique output, independent of input pair
+or source-root order. Finite exact comparisons bound work; publish only a full
+arena-owned entry array. Test with actual original/final package environments,
+ready C, augmented catalog membership, retained/mapped roots, explicit version
+pairs, absent roots, conflicting/foreign pairs and every allocation refusal.
+
+Baseline invariant: let R be the original successful selection's explicit roots,
+f the identity map for unchanged configurations or the exact C/version-pair image
+for copied configurations, and V the actual final view. Output is exactly
+`{v in V | identity(v) in f(R)}`. The two finite membership passes use the same
+immutable inputs: the first proves exact allocation capacity; the second emits
+one pointer per matching unique canonical V entry in view order. Every original
+root is tested by complete-name equality. Unavailable names contribute no match;
+no new matching root can enter by re-evaluating an original wildcard. Normal
+structural/version/associated-test coverage is evaluated afterward from these
+roots by the common PKG-05 implementation, not replaced by this identity law.
+
+Strict actual-root acceptance passed (`/tmp/ama-t224-selection-roots.exit = 0`).
+It captures a real augmented final catalog where the unchanged wildcard matches
+five rather than four roots, derives exact unchanged/copied sets via a ready C,
+re-expresses them into parsed selector spans and independently reparses/evaluates
+the prepared documents. It also covers explicit actual version mapping,
+idempotent duplicate pairs, conflicting destinations, foreign/category-invalid
+pairs, empty final matches without allocation, invalid map modes and every output
+allocation refusal with unchanged output and counted cleanup. Tool linking passes
+(`/tmp/ama-t224-root-tool.exit = 0`). Sanitizer and full per-file gates are active.
+ASan/UBSan root-image/copy composition also passed
+(`/tmp/ama-t224-root-sanitizers.exit = 0`). Current code/test/registry inputs are
+frozen for full per-file/header acceptance; the pending log is
+`/tmp/ama-t224-root-registry.log`. After this boundary, the next policy component
+must collect the canonical set of actual copied-edge ordinary targets uncovered
+by the preserved baseline. Only EXTEND_PACKAGE authorizes those concrete roots;
+other modes must refuse an uncovered external edge. Same-version/standard targets
+need no new roots; normal PKG-05 coverage and PKG-09 direction checks remain in
+the shared evaluator. Collect against the fixed baseline, deduplicate exact target
+identities and emit in actual view order, so graph/edge order cannot choose a
+different permission set. No speculative wildcard, repository binding or system
+library permission is an addition candidate.
+Full per-file/header checking passed with 3793 ready inputs and zero debt
+(`/tmp/ama-t224-root-registry.exit = 0`). Checkpoint the verified baseline image
+boundary without claiming permission-extension or T224 completion.

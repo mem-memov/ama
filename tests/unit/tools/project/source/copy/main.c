@@ -11,12 +11,14 @@
 #include "declared.c"
 #include "contexts.c"
 #include "environment.c"
+#include "permissions.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_derives_actual_original_and_copied_selection_roots_without_new_wildcard_matches();
     it_prepares_actual_package_environments_with_exact_version_isolation_and_matches();
     it_retires_every_actual_package_environment_preparation_allocation();
     it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free();
