@@ -3233,3 +3233,47 @@ library permission is an addition candidate.
 Full per-file/header checking passed with 3793 ready inputs and zero debt
 (`/tmp/ama-t224-root-registry.exit = 0`). Checkpoint the verified baseline image
 boundary without claiming permission-extension or T224 completion.
+
+### Concrete copied-edge permission additions (active step)
+
+For one actual final package scope, construct the ordinary shared sparse selection
+from its validated canonical baseline roots. Examine admitted original dependency
+records whose ready C source images belong to that version. Expected targets use
+C simultaneously, otherwise retain the original identity. Require actual final
+module availability; standard targets are looked up in the actual final catalog.
+Shared PKG-05/09 checking decides coverage and direction. Only EXTEND_PACKAGE may
+collect uncovered external ordinary targets. Evaluate all edges against the fixed
+baseline, not a growing permission set, and mark actual target indices. The final
+view-order scan yields the canonical duplicate-free addition set. Thus repeated
+edges and edge/definition order cannot choose different permissions; no greedy
+cover or wildcard broadening is introduced. Failed scratch never changes output.
+
+Acceptance uses real cross-version source/test clones and retained compiler edge
+sites. Root copied operands through the existing occurrence editor, prepare the
+exact preserved-plus-added package.ini, capture its actual bytes independently,
+run the real compiler, then prove full original/copied graph bindings/sites.
+Cover duplicate external edges plus a standard target, existing coverage,
+same-version fully cloned cycles, default refusal, missing ordinary/standard
+targets, foreign scopes/roots, unsealed C and every preparation allocation ordinal.
+The first test build exposed a misspelled existing client API in the new harness
+(`/tmp/ama-t224-permission-additions.exit = 2`); corrected to the declared
+source_compiler_client_run, without changing product behavior. Current strict
+acceptance is `/tmp/ama-t224-permission-additions-renewed.log`.
+Strict actual addition acceptance passed
+(`/tmp/ama-t224-permission-additions-renewed.exit = 0`). Current ASan/UBSan
+acceptance also passes (`/tmp/ama-t224-addition-sanitizers.exit = 0`), including
+reordered authored standard/external occurrences, full clone cycles, retained
+coverage and all scratch/output allocation ordinals. Each positive profile writes
+the prepared selector union into its explicit fixture, independently captures the
+actual final project, runs the compiler and passes source_graph_sites against the
+original admitted graph and exact rooted-operand provenance. No source-operation
+command/application support is inferred: independent placement/mode admission,
+complete C/P material, safe removal, freshness and transactions remain unfinished.
+Tool linking passes (`/tmp/ama-t224-addition-tool.exit = 0`); complete per-file and
+header checking remains pending at `/tmp/ama-t224-addition-registry.log`.
+Complete per-file/header checking passed with 3797 ready inputs and zero debt
+(`/tmp/ama-t224-addition-registry.exit = 0`). Checkpoint this verified addition
+policy and real final compiler/reference composition without completing T224.
+Next complete copied package-alias target rebasing alongside the already accepted
+local-alias strategy, then assemble full configuration/material preparation and
+safe public operation/publication boundaries.

@@ -202182,6 +202182,21 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_derives_actual_original_and_copied_selection_roots_without_new_wildcard_matches",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206582,6 +206597,105 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_derives_actual_original_and_copied_selection_roots_without_new_wildcard_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/selectors/additions.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Define concrete copied-edge permission additions against one fixed authorized baseline and actual final scope.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/selectors/additions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Collect exact uncovered actual external targets only under EXTEND_PACKAGE while retaining shared coverage, direction and availability checks.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/permission-additions/fixture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own real cross-version source/test clones, exact occurrence edits and deliberate missing-target refusal fixtures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/permission-additions/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify concrete extension policy, independent final compiler and reference sites, existing coverage, missing/default refusals and allocation ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]

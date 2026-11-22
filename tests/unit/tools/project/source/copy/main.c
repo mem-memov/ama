@@ -12,12 +12,17 @@
 #include "contexts.c"
 #include "environment.c"
 #include "permissions.c"
+#include "permission-additions/fixture.c"
+#include "permission-additions/cases.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites();
+    it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions();
+    it_retires_permission_addition_failures_and_refuses_foreign_baselines();
     it_derives_actual_original_and_copied_selection_roots_without_new_wildcard_matches();
     it_prepares_actual_package_environments_with_exact_version_isolation_and_matches();
     it_retires_every_actual_package_environment_preparation_allocation();

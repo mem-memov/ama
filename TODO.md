@@ -164,7 +164,13 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   actual version pairs, with independent reparse/matching, missing/conflicting/
   foreign-case, allocation and sanitizer acceptance. Per-file/header checks pass
   with 3793 ready inputs and zero debt. Explicit extension targets and complete
-  material/publication integration remain unfinished within T224.
+  targets now derive only actual uncovered copied edges under EXTEND_PACKAGE;
+  retained permissions, standard targets, cloned cycles, missing/default refusal,
+  occurrence order and allocation cases pass strict/sanitizer checks. Prepared
+  configurations pass independent final compiler and exact graph/site proofs.
+  Per-file/header checking passes with 3797 ready inputs and zero debt. Package
+  alias rebasing and complete material/publication integration remain unfinished
+  within T224.
   Transferred from BACKLOG by T230, implementation authorized
   and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
   and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.
