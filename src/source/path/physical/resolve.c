@@ -34,12 +34,13 @@ static SourcePhysicalStatus publish(SourcePhysicalPath *output, SourcePhysicalIs
     if (metadata) { output->metadata = *metadata; }
     *issue = (SourcePhysicalIssue){0}; return SOURCE_PHYSICAL_OK;
 }
-SourcePhysicalStatus source_physical_resolve(SourceArena *arena, const char *input, SourcePhysicalKind kind,
-    bool missing_final, SourcePhysicalPath *output, SourcePhysicalIssue *issue) {
+SourcePhysicalStatus source_physical_walk(SourceArena *arena, const char *input, SourcePhysicalKind kind,
+    bool missing_final, SourcePhysicalPath *output, SourcePhysicalIssue *issue, SourcePhysicalFrontier *frontier) {
     if (!arena || !input || !*input || !output || !issue
         || (kind != SOURCE_PHYSICAL_DIRECTORY && kind != SOURCE_PHYSICAL_ENDPOINT)) {
         return source_physical_fail(issue, SOURCE_PHYSICAL_INVALID, NULL, PATH_IO_ERROR);
     }
+    if (frontier) { *frontier = (SourcePhysicalFrontier){0}; }
     bool directory_required = kind == SOURCE_PHYSICAL_DIRECTORY || input[strlen(input) - 1] == '/';
     char *copy = source_arena_copy(arena, input);
     if (!copy) { return source_physical_fail(issue, SOURCE_PHYSICAL_STORAGE, NULL, PATH_IO_ERROR); }
@@ -71,6 +72,7 @@ SourcePhysicalStatus source_physical_resolve(SourceArena *arena, const char *inp
         if (probe == PATH_MISSING && missing_final && final) {
             return publish(output, issue, full, NULL, directory_required);
         }
+        if (probe == PATH_MISSING && frontier) { *frontier = (SourcePhysicalFrontier){full, remaining}; }
         if (probe != PATH_FOUND) { return failure(issue, full, probe); }
         if ((!S_ISDIR(metadata.st_mode) && !S_ISREG(metadata.st_mode))
             || ((!final || directory_required) && !S_ISDIR(metadata.st_mode))) { return failure(issue, full, PATH_UNSUPPORTED); }
@@ -81,4 +83,11 @@ SourcePhysicalStatus source_physical_resolve(SourceArena *arena, const char *inp
     if (lstat(current, &metadata)) { return source_physical_fail(issue, SOURCE_PHYSICAL_IO_ERROR, current, PATH_IO_ERROR); }
     if (!S_ISDIR(metadata.st_mode)) { return failure(issue, current, PATH_UNSUPPORTED); }
     return publish(output, issue, current, &metadata, true);
+}
+/** Keep current source and explicit missing-final consumers on the same strict
+ * walker under [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01);
+ * only the separate destination operation may consume a frontier. */
+SourcePhysicalStatus source_physical_resolve(SourceArena *arena, const char *input, SourcePhysicalKind kind,
+    bool missing_final, SourcePhysicalPath *output, SourcePhysicalIssue *issue) {
+    return source_physical_walk(arena, input, kind, missing_final, output, issue, NULL);
 }

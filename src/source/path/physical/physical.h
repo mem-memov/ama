@@ -48,4 +48,22 @@ typedef struct { SourcePhysicalStatus status; const char *path; PathProbe probe;
  */
 SourcePhysicalStatus source_physical_resolve(SourceArena *, const char *, SourcePhysicalKind,
     bool missing_final, SourcePhysicalPath *output, SourcePhysicalIssue *issue);
+/** Normalize an explicit creation destination over the same exact verified
+ * prefix as source_physical_resolve, admitting multiple missing ordinary tail
+ * components. Do not create, read source bytes, follow aliases, repair a regular
+ * parent or cancel an unverified missing component through '.'/'..'. Navigation
+ * in the actually existing prefix retains ordinary strict traversal semantics.
+ * On success return either the genuine existing endpoint or a normalized
+ * absolute proposal with present=false/zero metadata. Kind and trailing slash
+ * preserve directory intent. The proposal grants no namespace, root-setting,
+ * absence/freshness or mutation authority; final image/topology proof remains
+ * mandatory under [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01)
+ * and [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04).
+ * Preserve output on failure; arena owns scratch and retained diagnostic keys.
+ * No fixed path/depth cap. Beyond shared finite prefix-walk bounds, tail time
+ * and owned buffer are O(input bytes). Inputs/outcomes obey the same lifetime
+ * and distinct output/issue requirements as source_physical_resolve.
+ */
+SourcePhysicalStatus source_physical_destination(SourceArena *, const char *, SourcePhysicalKind,
+    SourcePhysicalPath *output, SourcePhysicalIssue *issue);
 #endif

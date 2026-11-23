@@ -4,13 +4,15 @@
 
 This is the current implementation checkpoint, revised on 2026-11-23 from the
 actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
-accepted T275, T282, T283, T284, T285 and T276 below. The public operation is not
+accepted T275, T282, T283, T284, T285, T276, T286 and T289 below. The public operation is not
 complete. [TODO](../../TODO.md#t287) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
 [PKG-04/09](../../spec/project/packages.md#pkg-04) and
 [PROJECT-01](../../spec/implementation/project-tools.md#project-01).
 This plan adds no alternative source language or compatibility contract.
+The next ready implementation task is [T290](../../TODO.md#t290); T287 retains
+the complete command-preparation integration gate.
 
 ### What the review established
 
@@ -62,7 +64,10 @@ next action; keep prior facts explicitly historical.
 | [T285](../../DONE.md#t285) | T275, T284 | Exact admission boundary for untouched newly selected suppliers after PKG-02 selection |
 | [T276](../../DONE.md#t276) | T275, T282, T283, T284, T285 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
 | [T286](../../DONE.md#t286) | T276 | Explicit side-effect-free source request; T287 consumes it |
-| [T287](../../TODO.md#t287) | T276, T286 | Actual command-owned captured inputs and single complete plan; T288/T277 consume it |
+| [T289](../../DONE.md#t289) | T276, T286 | Immutable command original capture, O/U/F proposals and protected requests; T290 consumes them |
+| [T290](../../TODO.md#t290) | T289 | Complete command C/P, context obligations and exact original D; T291 consumes them |
+| [T291](../../TODO.md#t291) | T290 | Typed command rewrites and exact independently sealed final image; T287 consumes it |
+| [T287](../../TODO.md#t287) | T276, T286, T289, T290, T291 | Actual command-owned captured inputs and single complete plan; T288/T277 consume it |
 | [T288](../../TODO.md#t288) | T276, T287 | Deterministic actual-plan/refusal report; T277 consumes it |
 | [T277](../../TODO.md#t277) | T276, T286, T287, T288 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
 | [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
@@ -80,7 +85,11 @@ flowchart TD
     material --> selection[T285: newly selected suppliers]
     selection --> plan[T276: complete immutable plan]
     plan --> request[T286: explicit source request]
-    request --> inputs[T287: captured command inputs]
+    request --> captured[T289: immutable command originals]
+    plan --> captured
+    captured --> relations[T290: complete command C/P and D]
+    relations --> typed[T291: typed writes and final sealing]
+    typed --> inputs[T287: integrated command preparation]
     plan --> inputs
     inputs --> reports[T288: actual plan and refusal reports]
     reports --> preview[T277: public preview]
@@ -108,7 +117,7 @@ existing dependencies; do not switch to it to bypass unfinished source work.
 T276 is accepted in `00eb74eb`: reuse its actual complete prepared/sealed
 operation owner. T277 entry review found that the command adapter still recognizes
 only init, and no command-owned original/destination observation pipeline or preview
-report consumer exists. Accepted [T286](../../DONE.md#t286) supplies the explicit request; T287 is next
+report consumer exists. Accepted [T286](../../DONE.md#t286) supplies the explicit request; T287 is active
 for entry review and composes actual
 captures/analysis/closure/writers into T276, and T288 reports that same owned result.
 T277 retains real public command and byte-exact no-mutation acceptance. Do not
@@ -5551,3 +5560,300 @@ facts, typed writers and T276's complete owner, reusing existing exact child
 algorithms. T288/T277 still own reports/public CLI acceptance. The unchanged
 public init dispatcher is not evidence of source-operation support. Regenerate
 Doxygen for these archived Markdown inputs before the task commit.
+
+
+## T287 entry review after accepted T286
+
+Entry revision `9dece7c4`, clean. The actual source request and complete operation
+owner are accepted. Read command, capture/analysis, neutral physical resolver,
+observation requests, placement/version/closure, material reconstruction and
+private-tree/initializer preparation interfaces. No existing command-owned source
+snapshot workspace or complete request-to-certificate pipeline exists. The only
+existing temporary-directory controller executes test jobs and cannot be reused
+as source preview authority. Reuse source capture, analysis/probes, maps, writers
+and T276 proofs rather than importing compiler dispatch or test execution.
+
+Finite implementation steps within T287:
+
+1. Normalize explicit input/destination keys and O/U/F root choices; retain
+   actual structural root-carry provenance. Existing physical resolution admits
+   only a missing final component. New-version module destinations can require
+   several missing ancestors, so add a distinct exact destination-key proposal
+   over the same verified-prefix walker, preserving strict source resolution.
+   Permit only ordinary creation-tail components; do not cancel unverified
+   missing components through '.'/'..', follow aliases or create directories.
+2. Own a private compiler-request workspace outside semantic source/target roots,
+   genuine original capture/analysis and actual deletion preparation. Exercise
+   a real parsed delete request through T276 early. Private names/cleanup need
+   explicit observed ownership and failure results, not source-tree staging.
+3. Derive raw/active/test/context/declared C/P and exact source/replacement cuts
+   for copy/move through existing shared placement/closure algorithms. Preserve
+   root family/area, whole-version selection and exact original coverage.
+4. Prepare actual candidate scope facts needed by typed package/module writers,
+   required new-version structure and parsed main edits. Candidate facts grant
+   no operation authority; the only accepted final plan/certificate is T276.
+5. Independently compile the complete owner's exact final capture, seal it and
+   retain precise failure witnesses/diagnostics for T288. No module, test,
+   native, CMake, acquisition or source mutation is part of preparation.
+6. Check actual request compositions, byte-exact source preservation, invalid
+   roots/collisions/modes, resource/I/O/process failures and source-proof
+   boundaries, then required parent/sanitizer/build/documentation acceptance.
+
+Current step 1: extend neutral verified physical traversal with a separate
+creation-destination operation and explicit finite tail contract; strict current
+source APIs retain their existing behavior. This is an implementation capability
+needed for TOOL-01/02 new-version creation, not a new language rule or a license
+to weaken alias/nonexistent-parent checks. T287 remains unfinished. No spec
+changes are authorized or required. All T286 jobs/receipts are collected.
+
+### T287 verified destination keys and workspace ownership entry
+
+Step 1's new neutral `source_physical_destination` shares the exact existing-
+component walker with strict source resolution. A typed private frontier records
+the first actually missing ordinary component and remaining raw suffix. Only a
+separate destination operation consumes that frontier; it normalizes ordinary
+future components with checked linear tail storage and preserves a missing
+traversal failure for '.'/'..'. Existing/special/alias/kind behavior is unchanged.
+No directories are created and a proposal has no metadata/freshness/namespace
+or write authority. Strict physical tests, POSIX prefix/known-tail expectations,
+raw bytes, source-regression and every measured proposal allocation passed in
+`/tmp/ama-t287-destination.exit=0`.
+
+Step 2 reuses `SourceMaterialTree` for verified creation/readback and owned prefix
+cleanup of a private workspace root and its two immutable original/final JSON
+requests. It does not create another recursive cleanup implementation. A narrow
+read-only `source_material_tree_owns` query now matches actual no-follow inode
+observations to identified, unremoved created rows, including failed prefixes;
+content/membership verification remains separate. Its genuine partial file,
+foreign collision, changed key/device/inode/mode, removed/destroyed ownership and
+allocation-free query cases passed with the existing private-tree suite in
+`/tmp/ama-t287-private-ownership.exit=0`.
+
+Workspace input will be an explicit existing temporary parent plus complete
+canonical protected source/destination prefixes. It must select an exclusive
+name disjoint from those prefixes before creation, preserve foreign collisions,
+and refuse unavailable safe scratch rather than write inside source trees.
+The controller will hold identity-checked directory descriptors, delegate each
+owned request file to the shared tree primitive, and expose explicit cleanup
+separately from close/destruction. Unknown/replaced bytes or directory members
+must remain intact and yield retained-path evidence. Compiler snapshot encoding
+uses the existing neutral writer; no CMake/test/native/Ama execution belongs to
+this component. Current action: implement/test that finite owner, then compose
+actual parsed deletion through original analysis and T276 before adding copies.
+T287 remains unfinished; no job remains active at this checkpoint.
+
+### T287 private requests and first actual deletion handoff
+
+The protected workspace now owns its root and two immutable snapshot files
+through existing `SourceMaterialTree` children. It invalidates the standalone
+empty-root readiness when a child is added, while independently verifying the
+joined root identity, actual child ownership, full membership and bytes. The
+least unused PID/counter component is checked against both directions of every
+protected prefix before creation; existing names are preserved. Cleanup never
+runs implicitly in destruction, and its issue remains separate from the primary
+failure. Failed partial files retain identified ownership without pretending to
+be ready. Stable finite parent membership and exclusive private access remain
+explicit assumptions; no pathname-only recursive removal occurs.
+
+Strict actual workspace compositions passed in
+`/tmp/ama-t287-workspace.exit=0`; every measured custom allocation and explicit
+private-tree operation boundary was denied in turn. Unknown children, modified
+request bytes and replaced roots prevented cleanup; restoring test-owned
+interference allowed safe retry without erasing the primary error. Actual source
+bytes, live allocations and descriptor counts were checked. The same suite
+passed ASan/UBSan in `/tmp/ama-t287-workspace-san.exit=0`; leak sanitizer remains
+disabled in this environment, independently counted ownership still checked.
+The strict leaf initially exposed a missing explicit acquisition-unit linker
+input, which its Makefile now declares. An earlier full-tool build exposed XSI
+stat constant feature visibility in two new construction files; explicit feature
+selection fixed it. The real project executable then built in
+`/tmp/ama-t287-tool-build.exit=0`.
+
+A first genuine command composition now takes a parsed delete request, captures
+its configured roots/source, writes the original request outside those roots,
+obtains actual original compiler facts, derives actual removal membership and
+root dispositions, observes stable physical parents separately from semantic
+roots, and calls the existing T276 complete owner. Its exact final capture is
+serialized independently and checked by the compiler before sealing that same
+owner. A surviving authored dependency blocks at the original cut; no alternate
+permission sets/plans or mocked validity replace the shared gates. Both success
+and blocked cases preserve source bytes. Strict acceptance of this early
+handoff is `/tmp/ama-t287-preparation-delete.exit=0`. The internal stages are not
+yet public command support: copy/move, destination augmentation and typed writers
+remain T287 steps 3–5. All T287 changes remain uncommitted until its full
+acceptance. Current next action: extend that same owner with explicit O/U/F
+root preparation and actual copy placements, retaining these deletion checks.
+
+### T287 root proposal checkpoint
+
+The actual deletion composition additionally passed removal of the entire semantic
+root, with DROP in the shared settings result and zero final semantic roots. Its
+stable parent is observed physically, never indexed as a namespace. Malformed
+original source and an unavailable compiler stop before deletion preparation;
+the actual child status, raw diagnostics and exec errno remain retained. The
+expanded strict suite passed `/tmp/ama-t287-preparation-delete.exit=0` and
+ASan/UBSan passed `/tmp/ama-t287-preparation-san.exit=0`. A test initially expected
+spawn failure for a collected exec error; it now checks the existing process
+contract's CHILD plus exact ENOENT rather than changing product behavior.
+
+The two old full-project test harness consumers now link the complete neutral
+request serialization source set explicitly. Both real compiled microprograms
+and experiments passed (`/tmp/ama-t287-compiled.exit=0`,
+`/tmp/ama-t287-experiments.exit=0`). Intermediate official documentation coverage
+passed 4043 maintained inputs with zero debt in
+`/tmp/ama-t287-interim-docs-check.exit=0`; this count precedes the root-proposal
+files added next. The checker caught missing canonical rule citations on newly
+extracted physical helper comments; those were corrected. No generated docs or
+specification bytes were hand-edited. The task/navigation audit still reports
+288 unique tasks, an acyclic 25-node active graph, 241 canonical rules and valid
+local prose links.
+
+Step 3 now has an exact `command/source/roots` proposal component over genuine
+configured capture/raw placement and explicit destination descriptors. Only an
+actual mapped raw directory can carry a root: COPY keeps O and adds its carry;
+MOVE carries the setting. Explicit final descriptors select their whole final
+scope at the same canonical path, including exclusions, without merging them
+with O. Kind conflicts and duplicate normalized explicit roots refuse. Each
+explicit physical key is resolved once; finite arrays are bounded by 2O+E.
+Candidate settings do not certify original augmentation or final material/root
+selection; the shared T276 owner remains mandatory. Actual copy/move directory
+carries, explicit scopes, collisions and every measured proposal allocation
+passed in `/tmp/ama-t287-root-settings.exit=0` alongside the earlier actual delete
+compositions. These are component results, not public copy/move support.
+
+Current step: compose those F proposals with original U augmentation using exact
+root-region inclusion and one common original capture. Preserve the configured
+O observations and raw tree across augmentation; only then analyze U and build
+copy closure/material. Copy/move, typed writers, full failure/parent/documentation
+acceptance and the T287 commit remain unfinished. All jobs listed above are
+collected; no process is active at this checkpoint. No later TODO task has been
+started and no spec change is made or authorized.
+
+
+## T289 entry review split from T287
+
+Actual T287 implementation reached a meaningful independently checked boundary:
+protected request ownership, exact creation destinations, O/F root settings,
+common U augmentation, actual original analysis and an early deletion sealed by
+T276. Copy/move original preparation now consumes those same root/augmentation
+owners before any edits; strict composition passed
+`/tmp/ama-t287-original-augmented.exit=0`. It analyzes newly exposed existing
+inputs in one U capture, keeps O separately, protects all O/F/source/destination
+prefixes and does not advertise final copy/move support.
+
+The remaining copy/move relation/topology and typed configuration path is a
+separate material dependency boundary, not a small continuation of workspace
+cleanup. Under the mandatory task-entry review, T287 is refined into T289
+(original capture/protected requests), T290 (complete C/P/context/D) and T291
+(typed writes and independent final sealing). T287 retains final integration and
+failure acceptance; none of these tasks or its parent is marked complete by this
+split. T289 is the currently active prerequisite; its implementation originated
+in authorized T287 steps and remains uncommitted pending full acceptance. This is
+a roadmap refinement based on actual consumers, not a semantics/specification
+change or a switch around an unresolved question.
+
+The exact U scope implementation adds only uncovered preexisting F regions.
+Missing future roots add no fictional original inputs. Equal physical root paths
+are merged algebraically: union of included regions equals the complement of
+the intersection of their excluded subtree unions. Prefix-comparable exclusions
+intersect at the deeper key; incomparable subtrees are disjoint. The separate
+pure scope component passed the full 256-pair finite algebra model including
+nested and byte-prefix-only sibling keys. Actual same-path exclusion relaxation
+exposed the formerly excluded source through one U root while preserving O's
+scope and avoiding duplicate indexing. Common-catalog conflicts and changed raw
+bytes refuse. Raw membership is compared in both directions with exact kinds,
+bytes and endpoint identity/mode; metadata absent from the retained raw member
+schema is not fabricated. Full O supplier/configuration/identity preservation
+still belongs to T276's final observed-root proof. The strict expanded leaf and
+its separated capture/region/source responsibilities passed
+`/tmp/ama-t287-augmentation-split.exit=0` and the actual copy/move original
+composition passed `/tmp/ama-t287-original-augmented.exit=0`.
+
+T289 next: finish single-attempt admission and precise primary/failure ownership,
+register all new consumers, exhaust current original preparation failures, then
+run affected parents/build/sanitizer/documentation acceptance and archive/commit
+T289 alone. No process is active at this checkpoint. Do not start T290 or claim
+T287 complete before that acceptance.
+
+### T289 acceptance entry
+
+The single-attempt `project_source_preparation_capture` now admits a genuine
+immutable parsed request before I/O, retains the original typed child failure,
+and publishes captured only after actual original compiler admission. Repeats
+refuse without allocations or overwriting prior evidence; final prepared/sealed
+remain separate. All measured allocations of the real copy-original command
+flow, including snapshot serialization and actual compiler response admission,
+were denied individually and retired without source creation/mutation or counted
+allocation leaks (`/tmp/ama-t289-capture.exit=0`). Workspace operation-boundary
+failures and retained foreign-data cases remain covered by its independent leaf.
+
+Root settings now have separate lifetime, finite insertion, original carry,
+explicit scope and orchestration files. Augmentation separates region/root
+selection, same-path scope algebra, raw consistency, capture orchestration and
+lifetime. The exact root-region predicate has a narrow shared public declaration
+so the command controller reuses the accepted boundary decision rather than
+importing a private orchestration interface. Original destinations retain their
+actual physical issue structure for later reporting. Complete copy/move original
+preparation consumes these components; final C/P/writes and integration remain
+T290/T291/T287. T289 has no public command advertisement or source publication.
+
+Acceptance begins over frozen maintained inputs: run the complete source-tool
+component parent, the modified physical path leaf, actual project-tool build and
+its two affected full-source harness consumers, focused sanitizer/failure suites,
+official per-file/header coverage and generated Doxygen/reference validation.
+The refreshed task graph has 291 unique IDs, 28 active nodes, no cycles and next
+unused T292; canonical 241-rule index and local prose navigation remain valid.
+All earlier jobs are collected before this run. No specification files changed.
+
+The first T289 parent run found a real consumer boundary regression: the T286
+parser leaf recursively enumerated command/source, so the new preparation child
+was linked without its capture/compiler dependencies. The parser must remain
+side-effect-free and independently linkable; its Makefile now enumerates only
+direct parser translation units rather than broadening it to the full tool.
+No parser behavior or semantic requirement changed. The failed run is retained
+as `/tmp/ama-t289-parent.exit=2`; rerun the parent after this correction.
+Official intermediate coverage passed 4066 inputs with zero debt in
+`/tmp/ama-t289-coverage.exit=0`; repeat it after final archival/input changes.
+
+
+### T289 accepted captured-command boundary
+
+T289 acceptance passed after the parser-leaf source-boundary correction. The
+strict complete source-tool parent is
+`/tmp/ama-t289-parent-corrected.exit=0`; the separate physical leaf is
+`/tmp/ama-t289-physical.exit=0`. Actual strict project-tool build after the owner
+review is `/tmp/ama-t289-tool-reviewed.exit=0`; actual full-source compiled and
+experiment consumers are `/tmp/ama-t289-compiled.exit=0` and
+`/tmp/ama-t289-experiments.exit=0`. All jobs were collected before changing
+maintained inputs. Root all also builds ama-project, so future jobs touching that
+shared build must be serialized; the final reviewed tool build ran after the
+parent and both harness consumers had completed.
+
+ASan/UBSan acceptance is `/tmp/ama-t289-san-0.exit=0` (preparation),
+`/tmp/ama-t289-san-1.exit=0` (workspace),
+`/tmp/ama-t289-san-2.exit=0` (physical), and
+`/tmp/ama-t289-san-owner-reviewed.exit=0` after the final borrower-first teardown
+review. That review noticed that the certificate borrows its independently
+constructed final compiler client; construction order is not teardown authority.
+The certificate now retires first. Actual original/final/delete composition and
+every measured original-capture allocation were rechecked through that owner.
+No broader repeated runtime test is required for the following comment/archive
+changes; the affected ownership composition was rechecked directly.
+
+Official coverage passed 4066 maintained inputs, zero debt. First Doxygen
+validation found a missing originating-header rule destination: the new frontier
+type's TOOL-04 explanation was rendered on its type page. The physical internal
+header's actual purpose now also explicitly explains strict/proposal separation
+and lack of mutation authority under TOOL-01/04. Corrected official generation
+passed `/tmp/ama-t289-doxygen-corrected.exit=0`, validating 3193 maintained file
+pages, 12005 interfaces, 495 canonical destinations and 9879 total pages. This
+is genuine generated-output validation; no artifact or canonical spec was edited.
+
+The accepted task record moves to DONE with its code/tests/evidence. Before its
+commit, run official coverage and Doxygen once more over these archived Markdown
+inputs; retain `/tmp/ama-t289-archived-coverage.exit` and
+`/tmp/ama-t289-archived-doxygen.exit` and require success. This refresh checks
+current source/document navigation fingerprints after archival, not a new semantic
+implementation. No spec changes or public copy/move/preview/apply claims. Next:
+commit T289 alone, then perform T290's entry review against the actual owners;
+T287, T291 and the public command/transaction tasks remain unfinished.

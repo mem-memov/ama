@@ -173819,7 +173819,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/packages/test/fixture/v1.0.0/src/\u7a0b\u5e8f": {
+  "tests/integration/parser/grammar/project/packages/test/fixture/v1.0.0/src/程序": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173850,7 +173850,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/packages/test/fixture/v1.0.0/src/\u4e2d\u95f4": {
+  "tests/integration/project/closure/project/packages/test/fixture/v1.0.0/src/中间": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173861,7 +173861,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173872,7 +173872,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.abi": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173883,7 +173883,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.c": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -173894,7 +173894,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.h": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -173920,7 +173920,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173931,7 +173931,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.abi": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173942,7 +173942,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.c": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -173953,7 +173953,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.h": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -175915,7 +175915,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/\u5546\u5e97/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/商店/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -175941,7 +175941,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/other/\u5546\u54c1": {
+  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/other/商品": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -194632,6 +194632,21 @@
         "source": "tests/unit/source/path/physical/main.c",
         "case": "it_refuses_unavailable_actual_cwd_without_fallback",
         "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_normalizes_missing_destination_tails_without_relaxing_source_traversal",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_refuses_unverified_destination_navigation_aliases_and_wrong_kinds",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_retires_destination_proposal_failures_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/source/path/physical"
       }
     ]
   },
@@ -194667,6 +194682,21 @@
       {
         "source": "tests/unit/source/path/physical/main.c",
         "case": "it_refuses_unavailable_actual_cwd_without_fallback",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_normalizes_missing_destination_tails_without_relaxing_source_traversal",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_refuses_unverified_destination_navigation_aliases_and_wrong_kinds",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_retires_destination_proposal_failures_and_preserves_invalid_outputs",
         "command": "make -C tests/unit/source/path/physical"
       }
     ],
@@ -194755,6 +194785,21 @@
         "source": "tests/unit/source/path/physical/main.c",
         "case": "it_refuses_unavailable_actual_cwd_without_fallback",
         "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_normalizes_missing_destination_tails_without_relaxing_source_traversal",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_refuses_unverified_destination_navigation_aliases_and_wrong_kinds",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_retires_destination_proposal_failures_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/source/path/physical"
       }
     ],
     "standalone_header_command": [
@@ -194806,6 +194851,21 @@
         "source": "tests/unit/source/path/physical/main.c",
         "case": "it_refuses_unavailable_actual_cwd_without_fallback",
         "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_normalizes_missing_destination_tails_without_relaxing_source_traversal",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_refuses_unverified_destination_navigation_aliases_and_wrong_kinds",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_retires_destination_proposal_failures_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/source/path/physical"
       }
     ]
   },
@@ -194841,6 +194901,21 @@
       {
         "source": "tests/unit/source/path/physical/main.c",
         "case": "it_refuses_unavailable_actual_cwd_without_fallback",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_normalizes_missing_destination_tails_without_relaxing_source_traversal",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_refuses_unverified_destination_navigation_aliases_and_wrong_kinds",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_retires_destination_proposal_failures_and_preserves_invalid_outputs",
         "command": "make -C tests/unit/source/path/physical"
       }
     ]
@@ -209869,6 +209944,11 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_matches_only_actual_identified_unremoved_private_inode_ownership",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ],
     "standalone_header_command": [
@@ -209924,6 +210004,11 @@
       {
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_matches_only_actual_identified_unremoved_private_inode_ownership",
         "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
@@ -212511,6 +212596,31 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ],
     "standalone_header_command": [
@@ -213891,6 +214001,1857 @@
         "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
         "command": "make -C tests/unit/tools/project/source/request"
       }
+    ]
+  },
+  "src/source/path/physical/destination.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Normalize creation-only destination tails through verified existing physical prefixes without relaxing strict source traversal.",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_normalizes_missing_destination_tails_without_relaxing_source_traversal",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_refuses_unverified_destination_navigation_aliases_and_wrong_kinds",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_retires_destination_proposal_failures_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/source/path/physical"
+      }
+    ]
+  },
+  "tests/unit/source/path/physical/destination.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Normalize creation-only destination tails through verified existing physical prefixes without relaxing strict source traversal.",
+    "tests": [
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_normalizes_missing_destination_tails_without_relaxing_source_traversal",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_refuses_unverified_destination_navigation_aliases_and_wrong_kinds",
+        "command": "make -C tests/unit/source/path/physical"
+      },
+      {
+        "source": "tests/unit/source/path/physical/main.c",
+        "case": "it_retires_destination_proposal_failures_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/source/path/physical"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/owns.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Match actual identified unremoved private inode ownership without granting byte or namespace authority.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_matches_only_actual_identified_unremoved_private_inode_ownership",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/private-tree/ownership.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Match actual identified unremoved private inode ownership without granting byte or namespace authority.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_matches_only_actual_identified_unremoved_private_inode_ownership",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/workspace/cleanup.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tools/project/source/workspace/verify.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tools/project/source/workspace/encode.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tools/project/source/workspace/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/workspace/snapshot.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tools/project/source/workspace/workspace.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/workspace/open.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tools/project/source/workspace/choose.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tools/project/source/workspace/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tools/project/source/workspace/parent.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/workspace/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/workspace/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/workspace/failures.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/workspace/refusals.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/workspace/common.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/workspace/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own exact private compiler requests outside protected sources and preserve foreign data across every failed cleanup prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_owns_actual_original_and_final_requests_outside_sources_and_cleans_them_safely",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_skips_protected_and_existing_private_names_before_any_creation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_refuses_unavailable_or_protected_workspace_inputs_without_source_mutation",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_preserves_foreign_workspace_members_bytes_and_root_replacements",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      },
+      {
+        "source": "tests/unit/tools/project/source/workspace/main.c",
+        "case": "it_retires_workspace_allocation_and_cancelled_prefixes_with_primary_issues_intact",
+        "command": "make -C tests/unit/tools/project/source/workspace"
+      }
+    ]
+  },
+  "tools/project/command/source/preparation/delete.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual parsed deletion, immutable original/final compiler requests and the sole shared complete operation certificate without source mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_prepares_parsed_deletion_through_actual_original_and_final_compilers",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_drops_an_actually_removed_root_without_indexing_its_observed_parent",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_original_capture_and_process_failures_without_final_authority",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/preparation/original.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual parsed deletion, immutable original/final compiler requests and the sole shared complete operation certificate without source mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_prepares_parsed_deletion_through_actual_original_and_final_compilers",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_drops_an_actually_removed_root_without_indexing_its_observed_parent",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_original_capture_and_process_failures_without_final_authority",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/preparation/preparation.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual parsed deletion, immutable original/final compiler requests and the sole shared complete operation certificate without source mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_prepares_parsed_deletion_through_actual_original_and_final_compilers",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_drops_an_actually_removed_root_without_indexing_its_observed_parent",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_original_capture_and_process_failures_without_final_authority",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/preparation/seal.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual parsed deletion, immutable original/final compiler requests and the sole shared complete operation certificate without source mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_prepares_parsed_deletion_through_actual_original_and_final_compilers",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_drops_an_actually_removed_root_without_indexing_its_observed_parent",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_original_capture_and_process_failures_without_final_authority",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/preparation/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual parsed deletion, immutable original/final compiler requests and the sole shared complete operation certificate without source mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_prepares_parsed_deletion_through_actual_original_and_final_compilers",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_drops_an_actually_removed_root_without_indexing_its_observed_parent",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_original_capture_and_process_failures_without_final_authority",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/preparation/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual parsed deletion, immutable original/final compiler requests and the sole shared complete operation certificate without source mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_prepares_parsed_deletion_through_actual_original_and_final_compilers",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_drops_an_actually_removed_root_without_indexing_its_observed_parent",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_original_capture_and_process_failures_without_final_authority",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual parsed deletion, immutable original/final compiler requests and the sole shared complete operation certificate without source mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_prepares_parsed_deletion_through_actual_original_and_final_compilers",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_drops_an_actually_removed_root_without_indexing_its_observed_parent",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_original_capture_and_process_failures_without_final_authority",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual parsed deletion, immutable original/final compiler requests and the sole shared complete operation certificate without source mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_prepares_parsed_deletion_through_actual_original_and_final_compilers",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_drops_an_actually_removed_root_without_indexing_its_observed_parent",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_original_capture_and_process_failures_without_final_authority",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/roots/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive exact copy/move root settings from genuine raw directory carries and complete explicit destination scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/roots/explicit.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive exact copy/move root settings from genuine raw directory carries and complete explicit destination scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/roots/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive exact copy/move root settings from genuine raw directory carries and complete explicit destination scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/roots/roots.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive exact copy/move root settings from genuine raw directory carries and complete explicit destination scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/roots/originals.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive exact copy/move root settings from genuine raw directory carries and complete explicit destination scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/roots/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive exact copy/move root settings from genuine raw directory carries and complete explicit destination scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/roots.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive exact copy/move root settings from genuine raw directory carries and complete explicit destination scopes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/augmentation/scopes.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/augmentation/roots.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/augmentation/scopes.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/augmentation/source.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/augmentation/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/augmentation/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/augmentation/augmentation.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/augmentation/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/roots/add.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/preparation/destination.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/preparation/capture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/scopes.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/original.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/failures.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/augmentation.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/source/operation/roots/region.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve actual configured originals while preparing exact common augmented input scopes and immutable compiler requests.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_captures_uncovered_existing_final_roots_in_one_original_domain",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_unions_equal_root_scopes_by_the_exclusion_intersection_law",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_expands_same_path_original_coverage_without_duplicate_root_indexing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_analyzes_augmented_original_inputs_before_preparing_copy_or_move",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
     ]
   }
 }

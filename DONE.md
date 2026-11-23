@@ -8843,3 +8843,41 @@ T201. Specification bytes have not changed.
   retains contracts, the corrected harness refusal, commands and successful receipts.
   No spec changes or public source preview/apply claim. T287 is the next consumer;
   T277 retains real CLI acceptance after preparation and reporting.
+
+<a id="t289"></a>
+
+- [x] **T289 — Capture immutable source-command originals and safe compiler requests.**
+  Status: complete (2026-11-23); split from T287 after actual root/workspace composition review.
+  Prerequisites: T276 and T286. Own exact existing/future destination keys,
+  configured O and proposed F settings, common augmented-original U capture,
+  raw consistency, protected private original/final compiler requests and precise
+  failed-prefix cleanup. Expose single-attempt original capture for parsed
+  copy/delete/move; retain the early actual deletion-to-T276 seal composition.
+  Accept real root carry/explicit scope/exclusion expansion, original duplicate
+  conflicts, preserved source bytes, all measured resource/control failures,
+  parent/consumer regressions, sanitizers and per-file/generated documentation.
+  No source publication or public copy/move support. T290 consumes these exact
+  owners; do not introduce a second semantic planner. Evidence:
+  [source-operation note](docs/implementation/source-operations.md#t289-entry-review-split-from-t287).
+
+  Delivered the single-attempt captured-command owner, verified missing-tail
+  destinations, exact O/F carries/scopes and common original U augmentation,
+  protected immutable compiler request files and explicit safe prefix cleanup.
+  Same-path scope expansion uses the exact exclusion-intersection law; actual
+  parser-to-original copy/move analysis and delete-to-final-T276 seal compositions
+  exercise the boundary. No public source command or source publication is claimed.
+
+  Acceptance: strict complete source-tool parent, physical path leaf and actual
+  ama-project build; both affected full-source project harness consumers;
+  ASan/UBSan physical/workspace/preparation leaves, all measured original-capture
+  allocations and controlled private-tree failures, byte/foreign-data/resource
+  preservation, exact 256-pair scope algebra. The final ownership review retires
+  the complete certificate before its borrowed compiler result; the actual
+  composition was rechecked under sanitizers. Official coverage checked 4066
+  maintained inputs with zero debt. Doxygen 1.11.0 validated 3193 source/header
+  pages, 12005 interfaces and 495 canonical destinations. LSan is unavailable
+  under sandbox ptrace; counted live allocations/descriptors are independent.
+  The [task record](docs/implementation/source-operations.md#t289-entry-review-split-from-t287)
+  retains corrected parser harness and documentation-link failures, exact gates,
+  commands, receipts and the final archive regeneration requirement. No spec edit.
+  T290 consumes these owners; T291/T287 retain complete copy/move acceptance.

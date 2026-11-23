@@ -5,5 +5,5 @@ ROOT := $(abspath ../../../../..)
 include $(ROOT)/make/sources.mk
 include $(ROOT)/tools/project/sources.mk
 LOCAL_SOURCES := main.c $(filter-out $(ROOT)/tools/project/main.c,$(call source_files,$(ROOT)/tools/project))
-SOURCES := $(PROJECT_TOOL_SHARED_SOURCES)
+SOURCES := $(PROJECT_TOOL_ALL_SHARED_SOURCES)
 include ../../../../leaf.mk

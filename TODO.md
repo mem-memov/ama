@@ -77,7 +77,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T289**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T292**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -121,15 +121,38 @@ queue. T282 through T285 and [T276](DONE.md#t276) are accepted. The complete
 immutable operation owner joins their image, request, material, edit and supplier
 gates with configuration/root/client authority and actual final sealing. T277
 retains public preview acceptance; [T286](DONE.md#t286) request recognition is
-accepted and T287 is next for preparation entry review. Each remaining subtask below is a separate
+accepted; T289 supplies captured command originals. T290 and T291 are next prerequisite steps before T287 final integration. Each remaining subtask below is a separate
 implementation/test/documentation/commit unit and remains unchecked. T224 keeps
 final acceptance; T236 still waits for it. Follow SRC-06, PKG-04/09, PROJECT-01
 and TOOL-01..04 throughout; no task authorizes a new language rule.
 
+<a id="t290"></a>
+
+- [ ] **T290 — Construct complete command copy/move relations and original cuts.**
+  Status: planned. Prerequisites: T289. Review current accepted placement,
+  closure, topology, test/declared membership and intent algorithms against the
+  captured command owners. Derive complete C/P, designated version storage,
+  necessary context copies/omissions and exact source/replacement D union.
+  Reuse shared solvers; no filename guesses, dropped opaque/test inputs or
+  independent command binding law. Accept real cyclic dependencies, nested
+  module storage, retained/absent parents, drafts/helpers, root/area preservation,
+  replacement overlap/safety and failure teardown. T291 consumes these owners.
+
+<a id="t291"></a>
+
+- [ ] **T291 — Prepare typed command rewrites and independently seal the final image.**
+  Status: planned. Prerequisites: T290. Prepare original/final candidate facts
+  needed by shared main edits, required new-version structure and typed package/
+  module writers. Candidate facts grant no operation authority. Invoke T276's
+  single complete prepare path, independently compile exactly its final capture,
+  and seal that same owner. Accept preserved selectors/aliases/repositories,
+  both dependency policies, introduced suppliers, actual clients/root settings,
+  invalid configurations and every failed prefix. T287 consumes this joined path.
+
 <a id="t287"></a>
 
 - [ ] **T287 — Prepare captured command inputs through the complete operation owner.**
-  Status: planned. Prerequisites: T276 and T286. Own explicit configured O,
+  Status: active; entry review completed against 9dece7c4. Verified destination keys, protected request workspace and actual parsed deletion handoff are implemented; complete copy/move preparation and full acceptance remain. Prerequisites: T276, T286, T289, T290 and T291. Retain final integrated acceptance. Own explicit configured O,
   common augmented-original U and final F roots; safe source/destination resolution,
   private compiler-request workspace, genuine original analysis and closure,
   complete logical/physical maps and necessary context providers. Derive exact

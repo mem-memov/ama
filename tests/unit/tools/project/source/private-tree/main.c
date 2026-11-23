@@ -190,8 +190,10 @@ static void it_cleans_every_private_preparation_failure_without_source_changes(v
     end();
 }
 #include "recovery.c"
+#include "ownership.c"
 /** Explicit actual-filesystem, ownership, collision and exhaustive failure coverage. */
 void run(void) {
+    it_matches_only_actual_identified_unremoved_private_inode_ownership();
     it_materializes_actual_forest_trees_and_retires_all_descriptors();
     it_preserves_foreign_children_replacements_and_existing_collisions();
     it_cleans_every_private_preparation_failure_without_source_changes();

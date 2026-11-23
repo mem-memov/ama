@@ -4,5 +4,5 @@
 ROOT := $(abspath ../../../../../..)
 include $(ROOT)/make/sources.mk
 SOURCES := source/memory/arena.c source/text/manager.c source/text/lines.c source/text/view.c
-LOCAL_SOURCES := main.c $(call source_files,$(ROOT)/tools/project/command/source)
+LOCAL_SOURCES := main.c $(wildcard $(ROOT)/tools/project/command/source/*.c)
 include ../../../../../leaf.mk

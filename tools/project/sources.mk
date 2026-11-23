@@ -28,3 +28,9 @@ PROJECT_TOOL_SHARED_SOURCES := $(sort $(PROJECT_TOOL_SHARED_SOURCES))
 # compiler dispatcher, schema producer or execution state is linked here.
 PROJECT_TOOL_RECORD_SOURCES := $(patsubst $(ROOT)/src/%,%,\
     $(call source_files,$(ROOT)/src/tools/output/json))
+
+# Compiler request serialization shares only neutral snapshot rows and scalar
+# writers. Component tests opt in; full-tool compositions link the complete set.
+PROJECT_TOOL_REQUEST_SOURCES := delivery/source/snapshot/write.c delivery/source/wire.c
+PROJECT_TOOL_ALL_SHARED_SOURCES := $(sort $(PROJECT_TOOL_SHARED_SOURCES) $(PROJECT_TOOL_CAPTURE_SOURCES) \
+    $(PROJECT_TOOL_RECORD_SOURCES) $(PROJECT_TOOL_REQUEST_SOURCES))

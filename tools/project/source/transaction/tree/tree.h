@@ -71,6 +71,17 @@ bool source_material_tree_snapshot(SourceMaterialTree *, SourceArena *, const So
 /** Recheck retained identity/mode, exact written byte prefixes and full child sets.
  * No source changes; false retains failed_path/system_error and recovery data. */
 bool source_material_tree_verify(SourceMaterialTree *);
+/** Match one caller-observed inode against a retained created entry's material
+ * key, device/inode and current owned mode. Accept identified failed prefixes;
+ * reject uncreated, removed, unknown or destroyed entries. No I/O, allocation
+ * or mutation; O(rows * key bytes), constant scratch. This proves recorded
+ * ownership only, never complete byte/membership equality or current filesystem
+ * truth. The caller must supply its actual no-follow observation and separately
+ * verify content/membership. This narrow query lets a private workspace join
+ * independently owned request files without exposing internal descriptors or
+ * duplicating cleanup under [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04).
+ */
+bool source_material_tree_owns(const SourceMaterialTree *, const char *, const struct stat *);
 /** Verify all created material before the first unlink, then remove children
  * before parents. Missing already-cleaned entries are supported on a repeated
  * cleanup. Replacements/additional names refuse without deleting them. Failure

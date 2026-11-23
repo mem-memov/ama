@@ -127,6 +127,7 @@ static void it_refuses_unavailable_actual_cwd_without_fallback(void) {
     }
     collected(child); free(path);
 }
+#include "destination.c"
 /** Execute exact physical traversal and actual host/allocation refusal partitions. */
 void run(void) {
     fixtures();
@@ -136,6 +137,9 @@ void run(void) {
     it_retires_every_physical_path_allocation_failure_without_partial_output();
     it_grows_for_actual_long_cwd_and_unwinds_each_capacity_failure();
     it_refuses_unavailable_actual_cwd_without_fallback();
+    it_normalizes_missing_destination_tails_without_relaxing_source_traversal();
+    it_refuses_unverified_destination_navigation_aliases_and_wrong_kinds();
+    it_retires_destination_proposal_failures_and_preserves_invalid_outputs();
 }
 /** Preserve generated evidence on failed assertions. */
 int main(void) { run(); return 0; }

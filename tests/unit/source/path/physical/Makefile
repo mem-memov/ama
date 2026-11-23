@@ -3,5 +3,5 @@
 # Contract: ../../../../../docs/implementation/source-operations.md.
 ROOT := $(abspath ../../../../..)
 SOURCES := source/memory/arena.c source/text/manager.c source/text/lines.c source/text/view.c \
-    source/path/exact.c source/path/physical/cwd.c source/path/physical/resolve.c
+    source/path/exact.c source/path/physical/cwd.c source/path/physical/resolve.c source/path/physical/destination.c
 include ../../../../leaf.mk
