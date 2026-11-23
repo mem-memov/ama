@@ -139,6 +139,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   synchronize/read back exact contents and reject foreign replacements/children
   before owned cleanup. Exhaustive preparation cancellation/allocation prefixes,
   descriptor retirement, sanitizer and complete source-parent checks pass.
+  Exact saved-tree identities now survive production record serialization and owner
+  expiry; reopening rejects foreign classes/names/FIFOs and supports only recorded
+  partial-cleanup transitions. Strict, sanitizer, failure-prefix and final-copy
+  integration checks pass. Durable journal publication remains next.
   directory leases now pass real contention, namespace-replacement, every allocation/
   cancellation prefix, sanitizer and complete source-parent checks; actual common
   freshness comparisons run under those leases. T224 is unfinished;
@@ -187,7 +191,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   refusals and occurrence order pass independent final compiler and exact graph/
   site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
   source-parent checks are recorded in the linked step log. Current per-file/
-  header acceptance: 3878 ready inputs, zero explicit debt.
+  header acceptance: 3881 ready inputs, zero explicit debt.
   Complete command orchestration, public application,
   recoverable publication and final task acceptance remain unfinished. Stop for
   any new ambiguity; AMB-025 now supplies shared-configuration authority.

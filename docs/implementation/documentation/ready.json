@@ -189475,6 +189475,26 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208534,6 +208554,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208565,6 +208605,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208596,6 +208656,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ],
     "standalone_header_command": [
@@ -208642,6 +208722,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208673,6 +208773,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ],
     "standalone_header_command": [
@@ -208719,6 +208839,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208750,6 +208890,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208781,6 +208941,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208854,6 +209034,26 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208874,6 +209074,26 @@
       {
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
@@ -208896,6 +209116,26 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208916,6 +209156,26 @@
       {
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ],
@@ -208953,6 +209213,26 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208973,6 +209253,26 @@
       {
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
@@ -208995,6 +209295,26 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -209015,6 +209335,26 @@
       {
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ],
@@ -209052,6 +209392,26 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -209072,6 +209432,104 @@
       {
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/adopt.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recover exact recorded private tree ownership without accepting symbolic classes, foreign replacements or partial cleanup authority.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/snapshot.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recover exact recorded private tree ownership without accepting symbolic classes, foreign replacements or partial cleanup authority.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/private-tree/recovery.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recover exact recorded private tree ownership without accepting symbolic classes, foreign replacements or partial cleanup authority.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_reopens_exact_private_ownership_after_the_original_owner_expires",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_refuses_unrecorded_classes_and_foreign_private_recovery_material",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_retires_every_private_recovery_and_snapshot_failure",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]

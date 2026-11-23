@@ -6,9 +6,9 @@
 #ifndef AMA_SOURCE_TRANSACTION_TREE_H
 #define AMA_SOURCE_TRANSACTION_TREE_H
 #include "../forest/forest.h"
-/** Each callback precedes one host operation; cleanup never invokes cancellation. */
+/** Callbacks precede explicit preparation/reopen boundaries; cleanup never invokes cancellation. */
 typedef enum { SOURCE_TREE_CREATE, SOURCE_TREE_WRITE, SOURCE_TREE_MODE,
-    SOURCE_TREE_SYNC, SOURCE_TREE_VERIFY } SourceTreeOperation;
+    SOURCE_TREE_SYNC, SOURCE_TREE_VERIFY, SOURCE_TREE_OPEN } SourceTreeOperation;
 /** Borrow cancellation/fault context only through synchronous preparation. */
 typedef struct { void *context; bool (*permit)(void *, SourceTreeOperation, const char *); } SourceTreeControl;
 /** Preserve refusal, allocation, cancellation, I/O and changed ownership separately. */
@@ -46,6 +46,28 @@ int source_material_tree_destroy(SourceMaterialTree *);
  * or semantic/freshness/publication authority is implied by ready. */
 SourceMaterialTreeStatus source_material_tree_prepare(SourceMaterialTree *, int, const char *,
     const SourceCatalogImageEntry *const *, size_t, SourceTreeControl);
+/** Exact reopen prepares material; cleanup reopen admits only two recorded
+ * cleanup transitions: known entries may already be absent and owned directories
+ * may have their recorded mode OR 0700. Outer recovery must prove cleanup authority. */
+typedef enum { SOURCE_TREE_ADOPT_EXACT, SOURCE_TREE_ADOPT_CLEANUP } SourceTreeAdoption;
+/** Reopen once from trusted recorded operation-owned material. Require actual
+ * recorded device/inode/mode classes, not projected synthetic classes. Cleanup
+ * admission additionally accepts only the documented missing/mode transitions;
+ * it never publishes ready. Exact admission opens only
+ * no-follow descriptor-relative components and verify full bytes/membership before
+ * ready. No creation, writes or permission changes. A failed partial adoption
+ * retains descriptors, but cannot authorize removal of unopened existing children.
+ * The outer journal proves the private parent and record ownership; schema alone
+ * is never adoption authority. Borrow all record/name/parent owners through teardown.
+ */
+SourceMaterialTreeStatus source_material_tree_adopt(SourceMaterialTree *, int, const char *,
+    const SourceCatalogImageEntry *const *, size_t, SourceTreeAdoption, SourceTreeControl);
+/** Verify a ready tree and retain its actual created identities under original
+ * material keys for lossless journal emission. Rows belong to the supplied arena;
+ * path/content bytes still borrow the immutable forest/record owner. Publish output
+ * only after success. Allocation failure retains all recovery material. No writes.
+ */
+bool source_material_tree_snapshot(SourceMaterialTree *, SourceArena *, const SourceCatalogImageEntry **);
 /** Recheck retained identity/mode, exact written byte prefixes and full child sets.
  * No source changes; false retains failed_path/system_error and recovery data. */
 bool source_material_tree_verify(SourceMaterialTree *);

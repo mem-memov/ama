@@ -11,7 +11,9 @@
 #include <unistd.h>
 #include "../../../../source/common.c"
 #include "../../../../../../tools/project/source/transaction/tree/tree.h"
+#include "../../../../../../tools/project/source/transaction/document/document.h"
 static SourceArena arena;
+static SourceImageDocument recorded;
 static ModuleRoot root;
 static SourceCatalogImageEntry before_rows[5], after_rows[5];
 static SourceCatalogImage before_image, after_image;
@@ -22,6 +24,7 @@ static char directory[64];
 static void begin(void) {
     setup_test();
     source_arena_init(&arena, sources.allocator);
+    source_image_document_init(&recorded, sources.allocator);
     assert(mkdir("generated", 0700) == 0 || errno == EEXIST);
     strcpy(directory, "generated/private-tree-XXXXXX");
     assert(mkdtemp(directory));
@@ -52,6 +55,7 @@ static void begin(void) {
 /** Refuse hidden material leaks rather than recursively deleting unknown paths. */
 static void end(void) {
     assert(close(parent) == 0 && rmdir(directory) == 0);
+    source_image_document_destroy(&recorded);
     source_arena_destroy(&arena);
     destroy_test();
 }
@@ -185,11 +189,16 @@ static void it_cleans_every_private_preparation_failure_without_source_changes(v
     }
     end();
 }
+#include "recovery.c"
 /** Explicit actual-filesystem, ownership, collision and exhaustive failure coverage. */
 void run(void) {
     it_materializes_actual_forest_trees_and_retires_all_descriptors();
     it_preserves_foreign_children_replacements_and_existing_collisions();
     it_cleans_every_private_preparation_failure_without_source_changes();
+    it_reopens_exact_private_ownership_after_the_original_owner_expires();
+    it_refuses_unrecorded_classes_and_foreign_private_recovery_material();
+    it_retires_every_private_recovery_and_snapshot_failure();
+    it_resumes_only_recorded_partial_private_cleanup_transitions();
 }
 /** Exit only after all staged material and descriptor owners retire. */
 int main(void) { run(); return 0; }

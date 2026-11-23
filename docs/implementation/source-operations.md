@@ -4165,3 +4165,111 @@ parent launch at 09:10:35, so their child output trees did not overlap. This ste
 covers private preparation and cleanup only. Next persist/admit exact owned tree
 identities and write-ahead publication/recovery; public commands and T224 final
 acceptance remain unfinished.
+
+### Reopening exact recorded private ownership for recovery (active step)
+
+A recoverable journal must retain actual created device/inode/mode facts, not the
+projected symbolic classes used for final compilation. Extend the private-tree
+owner with an exact ready-tree snapshot and read-only adoption of such recorded
+material. Adoption prevalidates topology, opens only no-follow components through
+retained parents and requires exact recorded identity/mode, bytes and names before
+ready. A partial reopen never authorizes cleanup of unknown siblings. Destruction
+leaves the material for another recovery attempt. The journal supplies the prior
+owned-stage authority; decoded bytes alone do not authorize adopting arbitrary
+source trees. Test the actual original owner expiring, serialization/reopening,
+unknown replacement/extra child and every allocation/cancellation prefix without
+source mutations. Publication/root relocation remains outside these operations.
+
+Exact adoption passes strict checks (`/tmp/ama-t224-private-recovery.exit = 0`).
+The serialized actual-identity/owner-expiry/fault-prefix composition passes strict
+ASan/UBSan (`/tmp/ama-t224-private-recovery-sanitizers.exit = 0`, same recorded
+non-PIE flags and LSan restriction). A FIFO replacement is rejected by no-follow
+metadata before opening; O_NONBLOCK additionally avoids an accidental blocking
+open if a noncooperating actor swaps the name. Existing descriptor identity is
+checked again after opening. Records preserve exact created classes through the
+production image JSON codec and expire its temporary source before adoption.
+
+Interruption can also occur during cleanup after a directory chmod or child unlink.
+Cleanup adoption therefore accepts exactly these internal transitions from a
+trusted journal: a known entry is absent (including all descendants of an absent
+known directory), or an owned directory has its recorded mode OR 0700, the sole
+permission change made by cleanup. Every remaining entry must retain its recorded
+inode/type, allowed mode, full bytes and known child set. No other permissions,
+foreign names or same-byte replacements are accepted. Cleanup admission never
+publishes ready material. Exact adoption continues to reject partial cleanup.
+These are internal recovery states, not relaxed source/copy equality rules.
+
+Strict resume checks pass (`/tmp/ama-t224-private-resume.exit = 0`); expanded
+cleanup-mode/unknown-child refusals and all prior adoption cases pass ASan/UBSan
+(`/tmp/ama-t224-private-resume-sanitizers.exit = 0`, recorded non-PIE flags/LSan
+restriction). Tests simulate both partial and fully completed cleanup before
+opening a fresh owner; full process-interruption publication acceptance remains
+pending. Snapshot memory refusal leaves output untouched and material retained.
+All sanitizer jobs are collected; no child jobs remain.
+
+#### Next publication owner: fixed protocol and invariants
+
+Keep semantic admission outside physical publication, but require the actual
+prepared final-copy/deletion proofs and held fresh original guard before any
+source change. Derive the forest from that baseline and final image rather than
+accepting an unrelated forest. Existing root-preserving support must not masquerade
+as root-setting support: general root changes require a separate stable physical
+observation/lease envelope and distinct effective-registry retirement accounting.
+
+Use one exclusive operation-owned stage in each mutation root's stable parent,
+on that parent's filesystem. A finite least-unused sequence over complete original
+membership plus planned names is exact; an unexpected exclusive-create collision
+refuses rather than replacing a newer observation. Persist all stage locations and
+actual directory classes. The first creation-to-identity-record window can leave
+an unproven stage after process loss: source paths are still unchanged, and recovery
+must report/retain that uncertain object rather than infer ownership from a prefix.
+
+Each root has independently verified `saved` (original copy), `ready` (final copy)
+and reserved `old` (actual original renamed during publication). A durable prepared
+record must include complete original/desired images, exact created saved/ready
+classes and bytes, stage-parent/name/identity evidence and original/final root/client/
+configuration facts. Actual ready classes differ from the projected compile-time
+classes. Do not destroy the original source before all saved/ready data and the
+write-ahead prepared record are synchronized. Private record files must be exclusive,
+checked and fsynced with their containing directories; codec flush alone is not a
+journal durability claim.
+
+Publish by renaming original to `old`, then `ready` to the absent final root, with
+parent/stage synchronization. Keep all originals until every final tree is verified.
+Journal commit is separate from successful individual renames. Persist a commit
+decision only after whole-plan publication/readback; an indeterminate commit-write
+failure must retain recovery data and report uncertainty, never guess rollback vs
+cleanup. Ordinary precommit failures roll back in reverse; I/O/resource failures
+that prevent it retain every remaining original and report affected paths.
+
+Recovery acquires hierarchical leases from the recorded stable original physical
+roots but does not run the ordinary fresh-original guard against a half-applied
+transaction. Classify each root using exact original/ready classes, bytes and full
+membership: original-at-root/no-old is untouched/restored; root-absent/old-present
+is between renames; ready-at-root/old-present is published. Add/delete cases have
+the corresponding explicitly absent side. Any unrelated or conflicting state
+refuses. Uncommitted recovery removes only proven ready material (including exact
+partial-cleanup transitions) and restores old originals. Committed recovery touches
+only owned saved/old/leftover-ready stages, never later user edits to final sources.
+Cleanup/adoption must be repeatable after each interruption boundary.
+
+Reserve rollback metadata/descriptors before the first source mutation. A live
+ready/original owner needs an explicit allocation-free binding handoff after each
+successful rename; do not discover that rollback itself requires a new arena
+allocation. New-process recovery may refuse unavailable resources without changing
+sources. Reopen actual stage and parent classes, not similarly named paths. Keep
+journal data until all required owned cleanup is finished; unknown staging objects
+are retained/reported. Test real process interruption, real journal reopen, all
+rename/sync/cleanup failures, partial cleanup and cross-filesystem source/destination
+stages before claiming public TOOL-04 conformance.
+
+Final adoption/resume boundary: independent tool build
+`/tmp/ama-t224-private-resume-tool.exit = 0`, strict actual final-copy/compiler/site
+composition `/tmp/ama-t224-private-resume-copy.exit = 0`, and documentation/header
+registry `/tmp/ama-t224-private-resume-docs.exit = 0` (3881 ready inputs, zero debts).
+All jobs collected. A final comment clarification says callbacks precede preparation
+boundaries rather than falsely claiming one callback per host syscall; this changes
+no tokens in preprocessed C, interfaces, rule links or coverage mappings. Full
+process-interruption journal recovery/public commands remain pending. Continue
+with the physical publication owner and durable journal handoffs described above;
+T224 stays active and later TODO tasks remain blocked on its final acceptance.

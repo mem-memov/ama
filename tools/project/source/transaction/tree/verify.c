@@ -84,6 +84,7 @@ bool source_material_tree_verify(SourceMaterialTree *tree) {
             return source_material_tree_fail(tree, SOURCE_MATERIAL_TREE_CHANGED, row->expected->path, 0);
         }
         if (S_ISDIR(actual.st_mode) ? !children(tree, i) : !bytes(tree, row, &actual)) { return false; }
+        row->identity = actual;
     }
     return true;
 }
