@@ -48,6 +48,7 @@ static const DeliverySourceDefinition *copy_definition(const char *identity) {
     assert(false); return NULL;
 }
 #include "proof-cases.c"
+#include "plan-cases.c"
 /** Original cyclic modules and their concrete tests are placed into a new actual
  * package layout in an immutable image, edited by spans and independently rechecked. */
 static void it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites(void) {
@@ -156,6 +157,7 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     assert(proof.material_status == SOURCE_MATERIAL_MEMORY); failure_at = 0;
     assert(source_copy_prove(&arena, &analysis, &map, &files, provenance, &contexts, &final_capture, &final, NULL, 0, &proof) == SOURCE_COPY_PROOF_OK);
     check_copy_proof_refusals(&arena, &prepared, &map, &files, provenance, &contexts, &final_capture, &final, opaque_path);
+    check_copy_plan(&arena, &observed, &map, &files, provenance, &contexts, &final_capture, &final, initialized.changes, initialized.count);
     source_copy_context_omissions_destroy(&contexts);
     source_compiler_client_destroy(&final); source_image_capture_destroy(&final_capture);
     for (size_t i = 0; i < 4; i++) { source_text_edits_destroy(&edits[i]); }

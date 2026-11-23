@@ -3,6 +3,7 @@
  * @see [T224 contract](../../../../../../../docs/implementation/source-operations.md)
  */
 #include "../../../../../../../tools/project/source/copy/configuration/prepare.h"
+#include "../../../../../../../tools/project/source/copy/configuration/check.h"
 /** Re-express the exact preserved-plus-added union, then let the real compiler
  * decide all actual final scopes and compare every original/copied reference site. */
 static void verify_permission_addition(PermissionAdditionFixture *fixture, const SourceSelectionRoots *added) {
@@ -38,6 +39,14 @@ static void verify_permission_addition(PermissionAdditionFixture *fixture, const
     SourceSitesIssue issue;
     assert(source_graph_sites(analysis.original.response.definitions, client.response.definitions,
         &fixture->map, NULL, 0, fixture->provenance, &issue) == SOURCE_SITES_OK);
+    SourcePackageEnvironment reparsed; source_package_environment_init(&reparsed, sources.allocator);
+    assert(source_package_environment_build(&reparsed, &verified.catalog) == SOURCE_ENVIRONMENT_OK);
+    const SourcePackageScope *actual = environment_scope(&reparsed, fixture->scope->version->logical_path);
+    SourceConfigurationCheckIssue checked;
+    size_t check_allocations = allocation_count; failure_at = check_allocations + 1;
+    assert(source_copy_configuration_check(&fixture->final, fixture->scope, &requested, &reparsed, actual, &checked) == SOURCE_CONFIGURATION_CHECK_OK);
+    assert(!checked.expected && !checked.actual && allocation_count == check_allocations); failure_at = 0;
+    source_package_environment_destroy(&reparsed);
     source_compiler_client_destroy(&client); source_root_capture_destroy(&verified); source_text_edits_destroy(&edits);
 }
 /** Duplicate actual external edges produce one concrete addition; existing

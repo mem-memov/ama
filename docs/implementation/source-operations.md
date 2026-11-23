@@ -3839,3 +3839,98 @@ The current proof's removed names are the explicitly supplied original registry
 retirement set. Callers must keep physical removal safety distinct from PKG-02
 selection retirement when adding promotion/root-selection orchestration; this
 proof is not permission to erase shadowed physical originals.
+
+### Independently verify exact final configuration selections
+
+`copy/configuration/check` compares prepared destination root sets with actual
+independently rebuilt package environments. Expected entries must be unique actual
+members of their preparation view; scopes must belong to their environment owners.
+Version identity, physical version and configuration path identify the destination.
+Compare canonical root names across separate view owners, not pointer identity or
+coverage: two different root sets can cover the same copied edge while granting
+different future permissions. Both set inclusions are required. Missing and extra
+roots have separate exact witnesses; malformed ownership or duplicates refuse
+before dereferencing unknown roots. The finite scans allocate nothing or mutate
+anything; expected-root authorization remains the prepare/initialize caller's
+responsibility. Plan composition must account for every affected final scope.
+
+The existing permission-extension/clone/new-version cases now rebuild an actual
+independent final environment after writing their deliberate fixture preparation,
+then run the production set check alongside the real final compiler/site proof.
+A new independent case covers empty, missing, extra, duplicate and foreign sets,
+wrong destination/scope owners, invalid arguments, and proves allocation-free
+checking with the counted allocator failure armed. Strict expanded copy leaf
+passed (`/tmp/ama-t224-final-permissions.exit = 0`, session 88598 collected by its
+exit file); further operation composition follows before broader acceptance.
+
+### Root-preserving simultaneous copy/removal plan owner
+
+`copy/plan/` composes the previously accepted children into one prepared-image
+owner instead of leaving correctness to a fixture's individual child calls. Its
+borrowed inputs are ready original maps, edits, exact sealed observations,
+context obligations, structural/configuration changes, the optional joint physical
+removal union and one authorized root-set expectation per final package scope.
+It enforces explicit cross-version policy independently of coverage. A default
+copy changing any ordinary mapped version refuses even if package permissions
+would happen to permit the copied edges. Standard mappings have no version label.
+
+Before image assembly, every supplemental REMOVE must belong to the supplied
+physical removal union and every union member must have exactly one REMOVE.
+Captured file kinds/bytes and complete removal-directory listings agree with the
+original removal material. Run the original consumer/client cut on the joint
+union; a valid final copy cannot erase an outside blocker. The owner then assembles
+the simultaneous image, performs common final discovery and independently rebuilds
+all actual package environments. Every final scope has exactly one owned expected
+scope; extra, missing, duplicate, foreign or unequal selections refuse. Prove both
+scope-set inclusions before marking prepared. Compiler evidence is an explicit
+later input to plan_prove and must match the plan's own final capture.
+
+Inductive gate invariant: no later stage can turn a failed original cut, incomplete
+physical removal accounting, invalid image or unequal configuration set into a
+prepared plan. Each child becomes consumable only after success; a failed prefix
+is owned and unprepared. Teardown reverses final environment, capture and image-row
+dependencies. Borrowed original/configuration/map/selection owners outlive the plan.
+Finite row/scope/map scans and existing child bounds establish termination; storage
+is the image/capture/environment/proof scratch retained in the explicit owners.
+No source writes, compiler/test/native execution or hidden filesystem fallback
+occurs in build. Public command admission, prepared supplemental-edit authority,
+whole closure/P completeness, exclusive freshness and recovery remain outer gates.
+This root-preserving composition does not infer new analysis roots or promotion's
+logical registry-retirement set from a physical removal list.
+
+Actual fixture compositions now include an independently proved copy-only plan
+and a joint source-cycle removal plus that copy. Removal of either cycle owner
+alone is blocked; their exact union yields a separately compiled final snapshot
+and passes the production physical/context/graph proof. Missing/extra removal
+rows, explicit kept client roots, missing/duplicate scope expectations and default
+cross-version policy refuse. Every measured plan-build allocation ordinal must
+leave no prepared prefix and retire all nested ownership. Strict initial plan
+and expanded cycle-composition runs passed (`/tmp/ama-t224-copy-plan.exit = 0`,
+`/tmp/ama-t224-copy-plan-final.exit = 0`). Final expanded client/blocker assertions
+require the next frozen-input run; earlier exits do not cover those additions.
+
+Simultaneous-plan acceptance completed on final expanded inputs: strict copy leaf
+(`/tmp/ama-t224-copy-plan-reviewed.exit = 0`), full copy ASan/UBSan using recorded
+non-PIE flags/LSan restriction (`/tmp/ama-t224-copy-plan-sanitizers.exit = 0`),
+independent tool build (`/tmp/ama-t224-copy-plan-tool.exit = 0`), strict complete
+source-operation parent (`/tmp/ama-t224-copy-plan-source-parent.exit = 0`) and
+`make docs-check` (`/tmp/ama-t224-copy-plan-registry.exit = 0`, 3839 ready inputs,
+zero explicit debts). The frozen expanded parent includes exact outside-client
+and original-consumer blocker assertions, not just inconsistent removal rows.
+It independently compiles/proves the joint-cycle removal image. Every measured
+plan-build allocation ordinal retires nested ownership without a prepared prefix.
+All active jobs collected. No public copy/delete/move dispatch, source mutation,
+exclusive lease, persistent journal or recovery support is claimed.
+
+Next implementation boundary: exclusive filesystem access and revalidation,
+then durable staging/publication/rollback/recovery and public command assembly.
+Use the existing init directory-lease discipline as evidence, not a single-rename
+substitute for TOOL-04. A suitable exact hierarchical lease model requests shared
+ancestor directories and exclusive affected roots, unions repeated actual inode
+keys with strongest mode, acquires nonblocking in a deterministic order, and
+revalidates descriptor ancestry/root identities before original-image freshness.
+This permits independent roots to coexist and conflicts with ancestor operations
+(including init's parent exclusive lease). All traversed components must be
+no-follow, retained descriptors must retire on every prefix, and known paths must
+be revalidated after acquisition. This is the next design target, not accepted
+implementation. T224 remains active; subsequent TODO tasks are not started.

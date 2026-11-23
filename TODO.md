@@ -122,8 +122,13 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   ignored-name, opaque-byte and inode-replacement checks. Joint move/replacement removals now pass original-cut, actual final-image/
   compiler, allocation-failure and sanitizer checks. Final-copy proof now composes physical material, complete retained/
   copied units, context obligations and actual compiler graph/sites, with independent
-  compilable incorrect-image refusals. Operation-plan/command
-  orchestration and recoverable application remain next. T224 is unfinished; later tasks are not started.
+  compilable incorrect-image refusals. A root-preserving plan owner now joins
+  dependency-mode admission, exact original removal accounting, joint safety review,
+  simultaneous image/capture and independent complete final package-scope/root sets.
+  Actual copy and joint-cycle move images, all preparation allocation failures,
+  sanitizers and the strict source-operation parent pass. Public command assembly,
+  exclusive freshness and recoverable application remain next. T224 is unfinished;
+  later tasks are not started.
   Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
   explicit preview/application modes. Original-graph safety is implemented/tested;
@@ -168,8 +173,8 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   refusals and occurrence order pass independent final compiler and exact graph/
   site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
   source-parent checks are recorded in the linked step log. Current per-file/
-  header acceptance: 3828 ready inputs, zero explicit debt.
-  Complete configuration-plan/command orchestration, public application,
+  header acceptance: 3839 ready inputs, zero explicit debt.
+  Complete command orchestration, public application,
   recoverable publication and final task acceptance remain unfinished. Stop for
   any new ambiguity; AMB-025 now supplies shared-configuration authority.
   Transferred from BACKLOG by T230, implementation authorized

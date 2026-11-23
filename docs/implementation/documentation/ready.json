@@ -202312,6 +202312,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_complete_final_permission_sets_and_exact_scope_owners_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206897,6 +206902,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_complete_final_permission_sets_and_exact_scope_owners_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -207583,6 +207593,187 @@
   "tests/unit/tools/project/source/copy/proof-cases.c": {
     "contract": "docs/implementation/source-operations.md",
     "purpose": "Independently compile incorrect final images before testing original, companion and opaque refusals.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/configuration/check.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check exact prepared root sets against independently rebuilt destination permissions.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_complete_final_permission_sets_and_exact_scope_owners_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/configuration/check.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reject missing and extra final permissions with exact scope and view ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_complete_final_permission_sets_and_exact_scope_owners_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/permission-additions/check.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check exact final permission sets and refusal/owner boundaries without allocation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_checks_complete_final_permission_sets_and_exact_scope_owners_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/plan/plan.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own root-preserving simultaneous copy and original-removal plans with exact final scope expectations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/plan/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Separate original removal and final configuration accounting from image orchestration.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/plan/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retire independent final scopes and capture before their projected image rows.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/plan/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join dependency-mode admission, original cut, image, final capture and exact configuration checks.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/plan/configurations.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for every independently rebuilt final package exactly once.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/plan/removal.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Require exact observed original removal material and the combined consumer/client cut.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/plan/prove.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Admit final compiler evidence for the exact prepared copy/removal image.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/plan-cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose actual copy and joint-cycle removal plans, refusal boundaries and all preparation allocation failures.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
