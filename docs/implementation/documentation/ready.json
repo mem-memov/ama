@@ -189460,6 +189460,21 @@
         "source": "tests/unit/tools/project/source/image-document/main.c",
         "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
         "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   },
@@ -208818,6 +208833,246 @@
         "source": "tests/unit/tools/project/source/image-document/main.c",
         "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
         "command": "make -C tests/unit/tools/project/source/image-document"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/prepare.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/cleanup.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/verify.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/tree/shape.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/create.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tools/project/source/transaction/tree/tree.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/tools/project/source/private-tree/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/private-tree/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Materialize and verify complete private forest trees and refuse cleanup of unrelated entries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_materializes_actual_forest_trees_and_retires_all_descriptors",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_preserves_foreign_children_replacements_and_existing_collisions",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/private-tree/main.c",
+        "case": "it_cleans_every_private_preparation_failure_without_source_changes",
+        "command": "make -C tests/unit/tools/project/source/private-tree"
       }
     ]
   }

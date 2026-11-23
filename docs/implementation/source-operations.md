@@ -4117,3 +4117,51 @@ All runs are collected; no active jobs remain. Next implement actual complete-tr
 materialization/readback and exact owned cleanup for saved and prepared copies,
 then durable write-ahead publication/recovery and public command assembly. T224
 remains active and is not eligible for DONE or task-completion claims.
+
+### Private complete-tree materialization and owned cleanup (active step)
+
+Purpose: materialize the forest's saved originals and prepared replacements under
+an explicitly supplied private directory, without touching any original source
+path. The caller owns that directory and its exclusion/journal lifetime. A tree
+owner retains every created descriptor and exact expected byte prefix; creation
+uses exclusive single-component descriptor-relative operations. Prevalidate all
+relative component/parent relationships before the first creation. Files retain
+binary bytes; directories retain empty membership. Synchronize bytes and requested
+modes, then read back exact bytes, inode identity and complete names before ready.
+A failed prefix remains owned. Explicit cleanup first verifies the complete owned
+prefix and refuses any replacement/extra child before deleting anything, then
+unlinks children before parents. Retiring descriptors alone never silently deletes
+recovery material. This component grants no source-publication authority.
+
+Termination follows finite rows and byte counts (apart from ordinary host calls);
+parent lookup and exact directory membership checks are quadratic in row count,
+with linear retained descriptors/metadata and bounded read/write buffers. Tests
+will cover binary/empty trees and modes, collisions/symlinks, exact readback,
+unrelated additions/replacements, every callback/allocation failure and descriptor
+retirement. Actual staged transaction/journal composition remains the next owner.
+
+Private-tree acceptance: strict leaf `/tmp/ama-t224-private-tree.exit = 0`;
+expanded foreign-replacement/content/destruction checks
+`/tmp/ama-t224-private-tree-final.exit = 0`; final malformed-topology and complete
+failure-prefix cases under ASan/UBSan (recorded non-PIE flags, LSan unavailable)
+`/tmp/ama-t224-private-tree-sanitizers.exit = 0`. Successful copies include 70003
+binary bytes spanning multiple writes, empty file/directory and readonly-directory
+mode. All measured callback/allocation ordinals permit verified owned-prefix
+cleanup and restore live descriptor/allocation counts. Unknown child, same-byte
+inode replacement and changed bytes refuse before cleanup's first unlink;
+restoring the actual original material permits cleanup. Existing symlinks survive
+collision refusal. Destruction without cleanup leaves the created regular file
+intact as required; the test then removes its independently known owned fixture.
+Malformed components, missing/duplicate parents and unavailable material refuse
+before any creation.
+
+The complete source-operation parent passes
+(`/tmp/ama-t224-private-tree-parent.exit = 0`), including actual common compiler/
+copy compositions linked with the new private-tree files. Independent tool build
+passes (`/tmp/ama-t224-private-tree-tool-final.exit = 0`). Documentation/header
+acceptance passes (`/tmp/ama-t224-private-tree-docs.exit = 0`, 3878 ready inputs,
+zero debts). All jobs collected; sanitizer completion at 09:10:12 preceded the
+parent launch at 09:10:35, so their child output trees did not overlap. This step
+covers private preparation and cleanup only. Next persist/admit exact owned tree
+identities and write-ahead publication/recovery; public commands and T224 final
+acceptance remain unfinished.
