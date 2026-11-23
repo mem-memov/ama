@@ -8,6 +8,9 @@
 typedef struct {
     SourceArena arena;
     SourcePackageEnvironment original, final;
+    SourceObservedImage observed;
+    const char *target_identity, *target_physical;
+    bool new_version;
     SourceRootCapture final_capture;
     SourceCloneMap map;
     SourceTextEdits edits[2];
@@ -35,9 +38,8 @@ static const DeliverySourceDefinition *permission_definition(const char *name) {
 static void permission_clone(PermissionAdditionFixture *fixture, const char *original, const char *suffix) {
     const ModuleSource *source = NULL; const SourceCloneMapping *row = NULL;
     assert(module_catalog_find(&capture.catalog, original, &source) == MODULE_OK);
-    const SourcePackageScope *version = environment_scope(&fixture->original, "/vendor/pkg/v2.0.0");
-    const char *identity = source_arena_join(&fixture->arena, version->version->logical_path, "", suffix);
-    const char *path = source_arena_join(&fixture->arena, version->version->physical_path, "", suffix); assert(identity && path);
+    const char *identity = source_arena_join(&fixture->arena, fixture->target_identity, "", suffix);
+    const char *path = source_arena_join(&fixture->arena, fixture->target_physical, "", suffix); assert(identity && path);
     const ModuleSource *absent = NULL; assert(module_catalog_find(&capture.catalog, identity, &absent) == MODULE_MISSING);
     assert(source_clone_map_add(&fixture->map, source, path, identity, &row) == SOURCE_CLONE_OK);
 }
@@ -64,12 +66,14 @@ static void permission_write_clones(PermissionAdditionFixture *fixture) {
 }
 /** Original snapshots stay immutable while a distinct physical candidate image
  * receives clones. Missing-target profiles deliberately refuse before application. */
-static void prepare_permission_additions(PermissionAdditionFixture *fixture, SourceCopyDependencyMode mode, bool covered, unsigned missing, bool reversed) {
+static void prepare_permission_additions(PermissionAdditionFixture *fixture, SourceCopyDependencyMode mode, bool covered, unsigned missing, bool reversed, bool new_version) {
     memset(fixture, 0, sizeof(*fixture)); fixture->cloned = mode == SOURCE_COPY_CLONE_DEPENDENCIES; fixture->missing = missing;
+    fixture->new_version = new_version; assert(!new_version || !covered);
     setup_test(); fixtures();
     file("generated/project/packages/vendor/pkg/v1.0.0/src/main", reversed
         ? "@!\nstandard&\n//plain\nother&\n./other\nalso other&\n./other\n"
         : "@!\nother&\n./other\nalso other&\n./other\nstandard&\n//plain\n");
+    if (!covered) { file("generated/project/packages/vendor/pkg/v2.0.0/package.ini", ""); }
     if (covered) { file("generated/project/packages/vendor/pkg/v2.0.0/package.ini", "[dependencies]\n/vendor/pkg/v1.0.0/src/other\n"); }
     capture_fixtures(); select_main();
     source_copy_closure_init(&copy, sources.allocator, &capture, &analysis, NULL);
@@ -77,14 +81,27 @@ static void prepare_permission_additions(PermissionAdditionFixture *fixture, Sou
     source_arena_init(&fixture->arena, sources.allocator);
     source_package_environment_init(&fixture->original, sources.allocator);
     assert(source_package_environment_build(&fixture->original, &capture.catalog) == SOURCE_ENVIRONMENT_OK);
+    source_observed_image_init(&fixture->observed, sources.allocator);
+    assert(source_observed_image_build(&fixture->observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
+    if (new_version) {
+        fixture->target_identity = "/target/new/v3.0.0";
+        fixture->target_physical = source_arena_join(&fixture->arena, capture.roots[0].path, "/", "packages/target/new/v3.0.0"); assert(fixture->target_physical);
+        directory("generated/project/packages/target"); directory("generated/project/packages/target/new");
+        directory(fixture->target_physical);
+        directory("generated/project/packages/target/new/v3.0.0/src"); directory("generated/project/packages/target/new/v3.0.0/tests");
+        file("generated/project/packages/target/new/v3.0.0/package.ini", "");
+    } else {
+        const SourcePackageScope *target = environment_scope(&fixture->original, "/vendor/pkg/v2.0.0");
+        fixture->target_identity = target->version->logical_path; fixture->target_physical = target->version->physical_path;
+    }
     source_clone_map_init(&fixture->map, sources.allocator, &capture);
     permission_clone(fixture, main_identity, "/src/copied");
     permission_clone(fixture, "/vendor/pkg/v1.0.0/tests/main/check", "/tests/copied/check");
-    directory("generated/project/packages/vendor/pkg/v2.0.0/tests/copied");
+    directory(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/copied"));
     if (fixture->cloned) {
         permission_clone(fixture, "/vendor/pkg/v1.0.0/src/other", "/src/helper");
         permission_clone(fixture, "/vendor/pkg/v1.0.0/tests/other/check", "/tests/helper/check");
-        directory("generated/project/packages/vendor/pkg/v2.0.0/tests/helper");
+        directory(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/helper"));
     }
     assert(source_clone_map_seal(&fixture->map) == SOURCE_CLONE_OK); permission_write_clones(fixture);
     if (missing == 1) { assert(unlink("generated/project/packages/vendor/pkg/v1.0.0/src/other") == 0); }
@@ -94,11 +111,14 @@ static void prepare_permission_additions(PermissionAdditionFixture *fixture, Sou
     assert(source_root_capture_build(&fixture->final_capture, roots, 2) == SOURCE_CAPTURE_OK);
     source_package_environment_init(&fixture->final, sources.allocator);
     assert(source_package_environment_build(&fixture->final, &fixture->final_capture.catalog) == SOURCE_ENVIRONMENT_OK);
-    fixture->scope = environment_scope(&fixture->final, "/vendor/pkg/v2.0.0");
-    const SourcePackageScope *original_scope = environment_scope(&fixture->original, "/vendor/pkg/v2.0.0");
-    SourceSelectionRootsIssue issue;
-    assert(source_copy_selected_roots(&fixture->arena, original_scope->selection, fixture->final.view,
-        NULL, false, NULL, 0, &fixture->baseline, &issue) == SOURCE_SELECTION_ROOTS_OK);
+    fixture->scope = environment_scope(&fixture->final, fixture->target_identity);
+    if (!new_version) {
+        const SourcePackageScope *original_scope = environment_scope(&fixture->original, fixture->target_identity);
+        SourceSelectionRootsIssue issue;
+        assert(source_copy_selected_roots(&fixture->arena, original_scope->selection, fixture->final.view,
+            NULL, false, NULL, 0, &fixture->baseline, &issue) == SOURCE_SELECTION_ROOTS_OK);
+    }
+
 }
 /** Restore deliberate refusal inputs and retire every borrower before original
  * snapshots; remove fixture-only clone material before subsequent test profiles. */
@@ -109,10 +129,19 @@ static void finish_permission_additions(PermissionAdditionFixture *fixture) {
         assert(module_catalog_find(&capture.catalog, name, &source) == MODULE_OK); permission_source_file(source_path(source->text), source->text);
     }
     for (size_t i = 0; i < fixture->edit_count; i++) { source_text_edits_destroy(&fixture->edits[i]); }
+    source_observed_image_destroy(&fixture->observed);
     source_package_environment_destroy(&fixture->final); source_package_environment_destroy(&fixture->original);
     source_root_capture_destroy(&fixture->final_capture);
     for (const SourceCloneMapping *row = fixture->map.first; row; row = row->next) { assert(unlink(row->path) == 0); }
-    assert(rmdir("generated/project/packages/vendor/pkg/v2.0.0/tests/copied") == 0);
-    if (fixture->cloned) { assert(rmdir("generated/project/packages/vendor/pkg/v2.0.0/tests/helper") == 0); }
+    assert(rmdir(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/copied")) == 0);
+    if (fixture->cloned) { assert(rmdir(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/helper")) == 0); }
+    if (fixture->new_version) {
+        assert(unlink("generated/project/packages/target/new/v3.0.0/package.ini") == 0);
+        assert(rmdir("generated/project/packages/target/new/v3.0.0/src") == 0);
+        assert(rmdir("generated/project/packages/target/new/v3.0.0/tests") == 0);
+        assert(rmdir("generated/project/packages/target/new/v3.0.0") == 0);
+        assert(rmdir("generated/project/packages/target/new") == 0);
+        assert(rmdir("generated/project/packages/target") == 0);
+    }
     source_clone_map_destroy(&fixture->map); source_arena_destroy(&fixture->arena); finish_copy();
 }

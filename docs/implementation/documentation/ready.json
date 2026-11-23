@@ -202232,6 +202232,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_new_version_permissions_from_empty_scope_and_passes_actual_final_compiler",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206771,6 +206781,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_permission_addition_failures_and_refuses_foreign_baselines",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_new_version_permissions_from_empty_scope_and_passes_actual_final_compiler",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206796,6 +206816,16 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_composed_configuration_failures_and_rejects_foreign_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_new_version_permissions_from_empty_scope_and_passes_actual_final_compiler",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -206854,6 +206884,16 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_derives_actual_original_and_copied_selection_roots_without_new_wildcard_matches",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_new_version_permissions_from_empty_scope_and_passes_actual_final_compiler",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
@@ -207177,6 +207217,38 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/configuration/initialize.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare proven absent destination scopes with genuine empty baselines, exact authorized additions, owner/refusal and allocation checks.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_new_version_permissions_from_empty_scope_and_passes_actual_final_compiler",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/permission-additions/initialize.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare proven absent destination scopes with genuine empty baselines, exact authorized additions, owner/refusal and allocation checks.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_new_version_permissions_from_empty_scope_and_passes_actual_final_compiler",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]

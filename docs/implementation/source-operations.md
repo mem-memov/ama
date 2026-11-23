@@ -3633,3 +3633,55 @@ required layout, valid empty configuration and existing/copy-carried environment
 remain compatible. No language grammar changes arise. Next implement new-scope
 permission preparation and absent-version structural preparation with exact
 original absence evidence, then continue complete operation orchestration.
+
+
+### New-version empty-baseline permission preparation
+
+Implement a separate initialized-environment entry beside existing/copied scope
+preparation. Require the actual provisional empty final package document and a
+sealed original observer over the copy's exact capture. Prove the entire version
+path absent through a closest observed complete directory ancestor; an existing
+empty directory or an unknown/regular ancestor cannot authorize initialization.
+Do not fabricate SourcePackageScope or reuse another physical copy's environment.
+The shared actual-edge addition checker evaluates a genuinely empty root set;
+only EXTEND_PACKAGE may add uncovered external targets. Emit that exact canonical
+set against the original zero-byte document, with output publication only after
+all steps succeed. Existing scopes retain their accepted preparation interface.
+
+Finite path shortening bounds the absence proof; shared graph/view bounds and
+edit ownership retain the existing correctness/failure argument. Plan real
+compiler/site tests over a new v3 directory, both dependency modes, default edge
+refusal, existing-directory and nonempty-document refusal, foreign observer/scope
+and every actual preparation allocation. Structural creation and full operation
+publication remain explicit outer obligations. Acceptance pending.
+
+
+Initialized-scope strict leaf passed
+(`/tmp/ama-t224-initialized-scopes-renewed.exit = 0`). Initial fixture compilation
+failed because it named a nonexistent document alias_count field; use the actual
+resolved scope alias count instead (`/tmp/ama-t224-initialized-scopes.exit = 2`).
+The actual original observer is now sealed before provisional clone/config writes
+for both existing and new fixture destinations. New-v3 extension and clone cases
+pass a separately rebuilt final compiler and exact original/copied graph/site
+proof; default uncovered edges refuse. Existing zero-byte v2 still refuses
+initialization because its directory existed. Nonempty provisional files and
+foreign observer/scope owners refuse, and every preparation allocation ordinal
+retains unchanged output with complete teardown. Structural writes in these
+fixtures are deliberate test preparation, not public command implementation.
+Sanitizer/tool/header acceptance pending on these maintained inputs.
+
+
+Initialized-scope acceptance completed: strict full copy leaf
+(`/tmp/ama-t224-initialized-scopes-renewed.exit = 0`), ASan/UBSan full copy leaf
+with the previously recorded non-PIE flags/LSan restriction
+(`/tmp/ama-t224-initialized-sanitizers.exit = 0`), tool link
+(`/tmp/ama-t224-initialized-tool.exit = 0`) and `make docs-check`
+(`/tmp/ama-t224-initialized-registry.exit = 0`, 3815 ready inputs, zero debts).
+These tests include actual final compiler/site proofs and allocation failure
+ownership, not successful public source commands. No active job remains.
+
+Continue with production structural preparation of zero-byte package.ini and
+required empty src/tests for proved absent versions, preserving explicit carried
+configuration selection and agreeing with the already prepared P map. Then join
+exact final configuration-set checks and the remaining operation/transaction
+pipeline. T224 is active and unfinished; no new ambiguity or later TODO work.

@@ -105,7 +105,9 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   Status: active after [AMB-026](AMBIGUITIES.md#amb-026): selected-module
   copying/movement initializes a completely absent version with zero-byte
   package.ini and required src/tests in the same atomic operation. The baseline
-  is empty; existing incomplete versions are not repaired.
+  is empty; existing incomplete versions are not repaired. New-scope permission
+  preparation passes strict, sanitizer, fault-allocation and final compiler/site
+  checks without a synthetic original scope. Structural initialization is next.
   [AMB-025](AMBIGUITIES.md#amb-025) is resolved: shared source/destination
   package.ini follows destination rules, preserving its exact original selected
   set plus only authorized --extend-package additions. Other bytes and original
@@ -161,7 +163,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   refusals and occurrence order pass independent final compiler and exact graph/
   site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
   source-parent checks are recorded in the linked step log. Current per-file/
-  header acceptance: 3813 ready inputs, zero explicit debt.
+  header acceptance: 3815 ready inputs, zero explicit debt.
   Complete configuration-plan/command orchestration, public application,
   recoverable publication and final task acceptance remain unfinished. Stop for
   any new ambiguity; AMB-025 now supplies shared-configuration authority.

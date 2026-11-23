@@ -17,12 +17,15 @@
 #include "permissions.c"
 #include "permission-additions/fixture.c"
 #include "permission-additions/cases.c"
+#include "permission-additions/initialize.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_prepares_new_version_permissions_from_empty_scope_and_passes_actual_final_compiler();
+    it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments();
     it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses();
     it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement();
     it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation();

@@ -6,12 +6,17 @@
 /** Re-express the exact preserved-plus-added union, then let the real compiler
  * decide all actual final scopes and compare every original/copied reference site. */
 static void verify_permission_addition(PermissionAdditionFixture *fixture, const SourceSelectionRoots *added) {
-    const SourcePackageScope *before = environment_scope(&fixture->original, fixture->scope->version->logical_path);
+    const SourcePackageScope *before = fixture->new_version ? fixture->scope
+        : environment_scope(&fixture->original, fixture->scope->version->logical_path);
     SourceTextEdits edits; source_text_edits_init(&edits, sources.allocator, before->document.source);
     SourceSelectionRoots requested = {0}; SourceConfigurationIssue configuration_issue;
-    assert(source_copy_configuration_prepare(&fixture->arena, &edits, &copy, &fixture->map,
-        &fixture->original, before, &fixture->final, fixture->scope, false, NULL, 0,
-        &requested, &configuration_issue) == SOURCE_CONFIGURATION_OK);
+    SourceConfigurationStatus status = fixture->new_version
+        ? source_copy_configuration_initialize(&fixture->arena, &edits, &copy, &fixture->map,
+            &fixture->observed, &fixture->final, fixture->scope, &requested, &configuration_issue)
+        : source_copy_configuration_prepare(&fixture->arena, &edits, &copy, &fixture->map,
+            &fixture->original, before, &fixture->final, fixture->scope, false, NULL, 0,
+            &requested, &configuration_issue);
+    assert(status == SOURCE_CONFIGURATION_OK);
     assert(requested.count == fixture->baseline.count + added->count);
     for (size_t i = 0; i < requested.count; i++) {
         bool found = false;
@@ -40,7 +45,7 @@ static void verify_permission_addition(PermissionAdditionFixture *fixture, const
 static void it_derives_only_authorized_concrete_permission_additions_and_passes_final_compiler_sites(void) {
     const SourceCopyDependencyMode modes[] = {SOURCE_COPY_EXTEND_PACKAGE, SOURCE_COPY_EXTEND_PACKAGE, SOURCE_COPY_CLONE_DEPENDENCIES, SOURCE_COPY_EXTEND_PACKAGE};
     for (size_t i = 0; i < 4; i++) {
-        PermissionAdditionFixture fixture; prepare_permission_additions(&fixture, modes[i], i == 1, 0, i == 3);
+        PermissionAdditionFixture fixture; prepare_permission_additions(&fixture, modes[i], i == 1, 0, i == 3, false);
         SourcePermissionIssue issue; SourceSelectionRoots added = {0};
         assert(source_copy_permission_additions(&fixture.arena, &copy, &fixture.map, &fixture.final,
             fixture.scope, &fixture.baseline, &added, &issue) == SOURCE_PERMISSION_OK);
@@ -55,7 +60,7 @@ static void it_derives_only_authorized_concrete_permission_additions_and_passes_
 static void it_refuses_uncovered_or_missing_copy_permission_targets_before_publishing_additions(void) {
     for (unsigned profile = 0; profile < 3; profile++) {
         PermissionAdditionFixture fixture;
-        prepare_permission_additions(&fixture, profile ? SOURCE_COPY_EXTEND_PACKAGE : SOURCE_COPY_KEEP_EXTERNAL, false, profile, false);
+        prepare_permission_additions(&fixture, profile ? SOURCE_COPY_EXTEND_PACKAGE : SOURCE_COPY_KEEP_EXTERNAL, false, profile, false, false);
         SourceSelectionRoots sentinel = fixture.baseline, added = sentinel; SourcePermissionIssue issue;
         SourcePermissionStatus status = source_copy_permission_additions(&fixture.arena, &copy, &fixture.map,
             &fixture.final, fixture.scope, &fixture.baseline, &added, &issue);
@@ -69,7 +74,7 @@ static void it_refuses_uncovered_or_missing_copy_permission_targets_before_publi
  * unsealed correspondence cannot become permission authority. */
 static void it_retires_permission_addition_failures_and_refuses_foreign_baselines(void) {
     for (unsigned covered = 0; covered < 2; covered++) {
-        PermissionAdditionFixture fixture; prepare_permission_additions(&fixture, SOURCE_COPY_EXTEND_PACKAGE, covered != 0, 0, false);
+        PermissionAdditionFixture fixture; prepare_permission_additions(&fixture, SOURCE_COPY_EXTEND_PACKAGE, covered != 0, 0, false, false);
         size_t total = 0, baseline = live_allocations;
         for (size_t failure = 0; !failure || failure <= total; failure++) {
             SourceArena attempt; source_arena_init(&attempt, sources.allocator);
@@ -98,7 +103,7 @@ static void it_retires_permission_addition_failures_and_refuses_foreign_baseline
 /** Preparation failure never publishes an exact-set result; both scratch and
  * partially prepared edit owners retire at every real allocation ordinal. */
 static void it_retires_composed_configuration_failures_and_rejects_foreign_authority(void) {
-    PermissionAdditionFixture fixture; prepare_permission_additions(&fixture, SOURCE_COPY_EXTEND_PACKAGE, false, 0, false);
+    PermissionAdditionFixture fixture; prepare_permission_additions(&fixture, SOURCE_COPY_EXTEND_PACKAGE, false, 0, false, false);
     const SourcePackageScope *before = environment_scope(&fixture.original, fixture.scope->version->logical_path);
     size_t baseline = live_allocations, total = 0;
     for (size_t failure = 0; !failure || failure <= total; failure++) {
