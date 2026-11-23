@@ -8,11 +8,11 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
-[AMB-026](#amb-026) is **Open** for T224: copying selected modules into a
-completely absent destination version needs an explicit rule for creating its
-mandatory package.ini/src/tests environment. Existing-destination and explicitly
-copied whole-version rules do not specify that initialization. No empty baseline,
-source-configuration import or default refusal policy is inferred.
+[AMB-026](#amb-026) is **Resolved** for T224: a completely absent destination
+version is initialized with zero-byte package.ini and required src/tests as part
+of the reported atomic operation. No origin alias/repository table is imported;
+only --extend-package may add concrete permissions. Existing incomplete versions
+are not repaired. The user explicitly authorized the TOOL-01/02 amendment.
 
 [AMB-025](#amb-025) is **Resolved** for T224: a shared source/destination
 package.ini follows destination rules. Exact preservation of its original selected
@@ -1871,7 +1871,7 @@ Each entry must contain:
 
 ## AMB-026 — Initialize a completely new destination version for a module copy
 
-- **Status:** Open.
+- **Status:** Resolved.
 - **Current task:** [T224](TODO.md#t224), complete operation/configuration-plan
   orchestration after accepted mapped material, image assembly and freshness.
 - **Authority:** [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
@@ -1933,5 +1933,10 @@ Each entry must contain:
   final checks do not authorize a public command to create that file. No new
   initialization/default refusal policy or command workaround is implemented.
   Stop T224 here; no later TODO task is started.
-- **Decision/source:** awaiting explicit user clarification. No specification
-  change for destination-version initialization has been authorized.
+- **Decision/source:** the user answered the question explicitly requesting
+  TOOL-01/02 authorization: «Да, создавать пустую структуру новой версии
+  (рекомендуется)». This authorizes zero-byte package.ini plus required src/tests
+  for an entirely absent destination version within the same prepared operation.
+  Its baseline is empty, not a synthetic original scope. Concrete additions are
+  restricted to --extend-package; existing incomplete versions and explicit
+  whole-version configuration rules retain their existing behavior. T224 resumes.

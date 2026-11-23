@@ -352,6 +352,17 @@ of the selected unit whose dependency closure requires it. If the same original
 would require incompatible final locations within one operation, refuse rather
 than choose an owner or create extra identities implicitly.
 
+When selected modules are copied or moved into a completely absent ordinary
+version directory, prepare a new empty `package.ini` (zero bytes), `src/` and
+`tests/` as part of that same reported operation. The exact destination layout
+still determines the version identity; no version guessing or upgrade occurs.
+Create these required directories even if one remains empty. Do not publish
+initialization during preview or before the whole copy/move passes validation.
+This initialization does not repair an existing incomplete or malformed version:
+its missing/invalid configuration or structure remains an original-input error.
+An explicitly selected whole-version tree instead carries its own configuration
+under TOOL-02; do not replace that file with a newly initialized empty one.
+
 The configured `//` namespace remains separate. Referred standard modules are
 not included merely as ordinary dependency copies, and no package.ini owner or
 selector is invented for them. Explicitly selected standard source trees can
@@ -602,6 +613,15 @@ existing explicit permissions exactly. Refuse a final external edge not covered
 by those permissions. No dependency option likewise authorizes no new selectors.
 Every final actual edge must still pass PKG-05/09 and ordinary source admission.
 
+A new destination version initialized under TOOL-01 starts with an empty explicit
+permission set and no aliases or repository bindings. It has no original package
+scope to import or synthesize. Apply the normal concrete copied-edge permission
+check against that empty baseline: only `--extend-package` may add required
+external module selectors. `--copy-dependencies` must satisfy all final edges
+without adding selectors. Never copy the origin's alias/repository table merely
+to initialize this destination; copied definitions still undergo ordinary rooted
+operand/local-alias preparation and final destination-scope validation.
+
 For a package configuration explicitly included in a copied whole-version tree,
 rebase parsed alias targets and map its existing explicit selected sets through
 `C` for copied targets, retaining original identities for unselected targets.
@@ -776,7 +796,7 @@ the earlier backend evidence does not certify these newly specified modes.
 | Optimization equivalence | General and optimized plans agree on values, effects, identity/refusal/control transitions and source diagnostics; mandatory static checks still reject invalid eliminated code; internal allocation attempts may differ under GEN-03; remaining failure transitions retain cleanup guarantees |
 | Translation pipeline | Source/AST/resolved IR/storage plans remain distinct; one assembled project C translation unit; labels/explicit return links for Ama, verified inline native entries, original source maps |
 | Ama dependencies | Transitive type/constant/native closure loaded once per logical identity; shared code/constants but separate owned instances; missing/draft/duplicate dependencies diagnosed with requesting paths; no textual Ama includes or function linking |
-| Source copy and dependency modes | Preserve ordinary/standard root kind and ordinary src/tests area; refuse transitions even with replacement or dependency options; exact file/directory destinations; complete companions/subtrees and associated tests; unchanged existing destination parents can supply topology without copying old context or implicitly replacing the parent; cross-version default refusal and mutually exclusive explicit modes; clone finite ordinary source/test/static dependency closure versus retain original external targets and add only needed concrete permissions; additional source paths retain src-relative suffixes, mapped tests follow source ownership and outside test helpers retain tests-relative suffixes; overlapping-unit/map collisions refuse; standard targets remain configured separately; original definitions/importers remain unchanged; nominal clone identities differ despite equal bytes |
+| Source copy and dependency modes | Preserve ordinary/standard root kind and ordinary src/tests area; refuse transitions even with replacement or dependency options; exact file/directory destinations; complete companions/subtrees and associated tests; unchanged existing destination parents can supply topology without copying old context or implicitly replacing the parent; cross-version default refusal and mutually exclusive explicit modes; completely absent destination versions initialize empty package.ini/src/tests atomically while existing incomplete versions are not repaired; clone finite ordinary source/test/static dependency closure versus retain original external targets and add only needed concrete permissions; additional source paths retain src-relative suffixes, mapped tests follow source ownership and outside test helpers retain tests-relative suffixes; overlapping-unit/map collisions refuse; standard targets remain configured separately; original definitions/importers remain unchanged; nominal clone identities differ despite equal bytes |
 | Safe deletion, movement and replacement | Check every supplied active definition, including unused/static/test dependants; internal edges of the complete removal set do not block, outside incoming edges and required shared declared inputs do; default target collision refuses with explanation; --replace obeys the same pre-replacement deletion test even for an identically named new implementation; move refuses before publication when source removal is unsafe; cloned dependency originals are not implicitly removed; cyclic worker/helper closure copies but moving only worker refuses; obsolete target children/companions are removed only as part of an authorized safe replacement |
 | Source-operation resolution and preservation | Original and final whole-version selection; augmented original conflicts; exact clone and surviving-reference laws; relative bases and shared aliases in source/destination scopes; ordinary/static/native interfaces, qualified-constant members and storage suffixes; copied versus unchanged package configurations, exact selector re-expression and explicit extension; no wildcard expansion, repository-table copying or outside importer redirection; src/tests restrictions, / versus // and name+/ topology; drafts, literals/comments and opaque native/build bytes preserved; unprovable final graph refuses |
 | Source-operation transactions | Exactly one explicit `--preview` or `--apply`; absent, repeated or conflicting modes refuse before mutation; preview/apply plan equality; offline preflight without module/test/native/CMake execution; inputs include optional-config presence, directory membership and excluded versions; a new importer/companion invalidates a stale plan; copy, replacement, permissions and move-source removal publish as one transaction; preparation/apply/cleanup failure, cross-filesystem staging, repeatable interruption recovery and incomplete-rollback reports preserve original/recovery data; no leftover copy after a refused move |

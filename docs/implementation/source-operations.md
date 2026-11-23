@@ -3616,3 +3616,20 @@ runtime tests are claimed for this documentation-only blocker. Check Markdown
 links/anchors and diff consistency, then await the user's explicit decision and
 scoped specification authorization. T224 remains unfinished. No active jobs,
 source-code/specification changes or later task work were started in this turn.
+
+
+### AMB-026 resolved: explicitly initialized new destination environment
+
+The user explicitly authorized TOOL-01/02 amendment by selecting creation of the
+empty new version structure. Record zero-byte package.ini plus src/tests as
+reported changes in the same transaction. Its baseline is genuinely empty;
+never fabricate an original SourcePackageScope. Only actual --extend-package
+permissions may extend it. An existing incomplete version remains invalid, and
+explicit whole-version copying still carries its own configuration.
+
+Updated canonical initialization/permission clauses and the acceptance row,
+resolved the registry and resumed T224. Reviewed PKG-01/03/07 against TOOL-01/02:
+required layout, valid empty configuration and existing/copy-carried environments
+remain compatible. No language grammar changes arise. Next implement new-scope
+permission preparation and absent-version structural preparation with exact
+original absence evidence, then continue complete operation orchestration.
