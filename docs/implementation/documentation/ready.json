@@ -189340,6 +189340,26 @@
         "source": "tests/unit/tools/project/source/selectors/main.c",
         "case": "it_preserves_original_matches_when_the_final_domain_gains_a_module",
         "command": "make -C tests/unit/tools/project/source/selectors"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source"
       }
     ]
   },
@@ -202543,6 +202563,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -207779,6 +207804,274 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/lease/lease.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Lease affected roots exclusively and share their directory ancestors without creating source lock files.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/lease/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Separate retained no-follow traversal, inode demand union and namespace verification.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/lease/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retire every successful or failed directory-lease descriptor prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/lease/acquire.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join original-root admission and hierarchical lease acquisition before freshness.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/lease/walk.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retain no-follow ancestor descriptors and verify exact original root identities.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/lease/lock.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Order strongest inode demands, acquire nonblocking locks and revalidate namespace links.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/lease/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check real kernel contention, stale roots, namespace replacement and all owned resource prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/lease/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Build and run hierarchical directory-lease acceptance independently.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_leases_disjoint_roots_and_refuses_overlapping_domains_without_mutation",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_refuses_replaced_roots_and_symbolic_ancestors_before_acquisition",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_retires_every_lease_allocation_and_cancellation_prefix",
+        "command": "make -C tests/unit/tools/project/source/lease"
+      },
+      {
+        "source": "tests/unit/tools/project/source/lease/main.c",
+        "case": "it_revalidates_namespace_links_after_acquiring_locks",
+        "command": "make -C tests/unit/tools/project/source/lease"
       }
     ]
   }

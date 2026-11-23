@@ -3,6 +3,7 @@
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
  */
 #include "../../../../../../tools/project/source/observation/freshness.h"
+#include "../../../../../../tools/project/source/transaction/lease/lease.h"
 /** Reordered rows/different text owners and unused timestamps preserve facts;
  * root, membership, precision, physical identity or byte changes do not. */
 static void it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses(void) {
@@ -57,12 +58,15 @@ static void it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_r
         if (profile == 1) { file("generated/project/packages/vendor/pkg/v1.0.0/src/extra.blob", "ignored"); }
         if (profile == 2) { file(payload, "after!"); }
         if (profile == 3) { assert(rename(payload, "generated/saved-payload.blob") == 0); file(payload, "before"); }
+        SourceTransactionLease lease; source_transaction_lease_init(&lease, sources.allocator);
+        assert(source_transaction_lease_acquire(&lease, &baseline.image, (SourceLeaseControl){0}) == SOURCE_LEASE_OK);
         SourceObservedImage fresh; source_observed_image_init(&fresh, sources.allocator);
         assert(source_observed_image_build(&fresh, &capture, &request, 1) == SOURCE_OBSERVATION_OK);
         SourceFreshnessIssue issue; size_t calls = allocation_count;
         assert(source_observation_freshness(&baseline.image, &fresh.image, &issue) == expected[profile]);
         assert(allocation_count == calls);
         source_observed_image_destroy(&fresh);
+        assert(source_transaction_lease_destroy(&lease) == 0);
         if (profile == 1) { assert(unlink("generated/project/packages/vendor/pkg/v1.0.0/src/extra.blob") == 0); }
         if (profile == 2) { file(payload, "before"); }
         if (profile == 3) { assert(unlink(payload) == 0 && rename("generated/saved-payload.blob", payload) == 0); }

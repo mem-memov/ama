@@ -127,7 +127,10 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   simultaneous image/capture and independent complete final package-scope/root sets.
   Actual copy and joint-cycle move images, all preparation allocation failures,
   sanitizers and the strict source-operation parent pass. Public command assembly,
-  exclusive freshness and recoverable application remain next. T224 is unfinished;
+  automatic leased freshness and recoverable application remain next. Hierarchical
+  directory leases now pass real contention, namespace-replacement, every allocation/
+  cancellation prefix, sanitizer and complete source-parent checks; actual common
+  freshness comparisons run under those leases. T224 is unfinished;
   later tasks are not started.
   Integration follows accepted bridge [T273](DONE.md#t273) and accepted
   foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
@@ -173,7 +176,7 @@ The earlier conformance matrix must not be refreshed to disguise missing support
   refusals and occurrence order pass independent final compiler and exact graph/
   site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
   source-parent checks are recorded in the linked step log. Current per-file/
-  header acceptance: 3839 ready inputs, zero explicit debt.
+  header acceptance: 3847 ready inputs, zero explicit debt.
   Complete command orchestration, public application,
   recoverable publication and final task acceptance remain unfinished. Stop for
   any new ambiguity; AMB-025 now supplies shared-configuration authority.

@@ -3934,3 +3934,76 @@ This permits independent roots to coexist and conflicts with ancestor operations
 no-follow, retained descriptors must retire on every prefix, and known paths must
 be revalidated after acquisition. This is the next design target, not accepted
 implementation. T224 remains active; subsequent TODO tasks are not started.
+
+### Hierarchical exclusive access without source lock files
+
+`transaction/lease/` retains ordinary directory descriptors for every configured
+root and each of its ancestors. Ancestors request shared access; affected roots
+request exclusive access. Union equal actual device/inode keys with the strongest
+demand and acquire unique representatives nonblocking in device/inode order.
+Disjoint roots therefore share common ancestors, while a root operation conflicts
+with an operation inside that root or on its ancestors. Existing init's exclusive
+parent flock conflicts with a source operation's shared ancestor lease. No source
+lock file, hidden source-directory insertion or guessed sleeping interval exists.
+
+Walk absolute canonical root paths component by component with openat O_NOFOLLOW,
+retaining descriptors and actual parent/name witnesses. Compare original root
+inode/device/full mode. After acquiring locks, revalidate all parent/name links
+through retained descriptors; a lease on an old renamed inode cannot silently
+authorize the newly substituted pathname. Equal inode aliases use one strongest
+kernel lock but retain every namespace witness. All cooperating source operations
+must honor this hierarchy. As with any advisory locking protocol, unrelated
+programs must honor the required exclusive application boundary; locks alone do
+not prove freshness or stop an uncooperative editor.
+
+The finite ancestor closure determines the lock domain. For any two overlapping
+root operations, one requests exclusive access on a directory that the other
+requests at least shared access on; disjoint domains have only compatible shared
+ancestors. Nonblocking acquisition cannot deadlock; deterministic order makes
+attempts reproducible. After successful namespace verification, cooperating
+ancestor mutations cannot change the verified chain while leases remain held.
+Every descriptor is registered before its following fstat/lock operations; failures
+retain an owned unacquired prefix and destruction closes each descriptor once.
+Close errors are returned, never blindly retried or suppressed by a cancellation
+callback. Arena/source owners outlive all descriptors/diagnostics. Finite scans
+use O(D² + D*R + bytes) comparisons and O(D + path bytes) storage as in lease.h.
+
+Actual tests cover shared-ancestor coexistence, equal/nested root contention,
+strongest nested-root demands, conflict with init-style parent locks, original
+root substitution and symlink components. A controlled callback replaces a root
+only after locking and the namespace recheck refuses it. Every allocation and
+cancellation ordinal retires all prefix locks: a fresh owner immediately acquires
+the same roots. The real existing opaque-byte/ignored-membership/inode-replacement
+freshness case now acquires this lease before the common independent observation
+and holds it through comparison. This is concrete composition evidence, not
+public application/journal acceptance. Strict lease initial/final runs passed
+(`/tmp/ama-t224-lease.exit = 0`, `/tmp/ama-t224-lease-final.exit = 0`). Strict
+freshness composition is active at `/tmp/ama-t224-lease-freshness.log`, session
+67433; collect completion before accepting it. Sanitizer, tool, parent-dispatch
+and per-file/header acceptance remain pending on the frozen maintained inputs.
+
+Hierarchical lease acceptance completed on frozen maintained inputs: strict leaf
+(`/tmp/ama-t224-lease-final.exit = 0`), actual leased common-observation freshness
+composition (`/tmp/ama-t224-lease-freshness.exit = 0`), ASan/UBSan lease leaf with
+recorded non-PIE flags/LSan restriction (`/tmp/ama-t224-lease-sanitizers.exit = 0`),
+independent project tool (`/tmp/ama-t224-lease-tool.exit = 0`), strict complete source
+parent including its new explicit lease dispatch
+(`/tmp/ama-t224-lease-source-parent.exit = 0`), and `make docs-check`
+(`/tmp/ama-t224-lease-registry.exit = 0`, 3847 ready inputs, zero explicit debts).
+No active job remains. Kernel directory locks and no-follow probes were actually
+executed, including a deterministic after-lock namespace substitution. Counted
+allocation and cancellation checks cover complete descriptor-prefix retirement;
+this is not an assertion that every possible host I/O error was injected.
+
+Continuation checkpoint: T224 remains active. Accepted root-preserving plan,
+exact final scopes, joint original removal cut and final material/compiler proof
+are committed; hierarchical leases now protect the real freshness composition.
+No public copy/delete/move command or persistent transaction application is yet
+accepted. Next derive exact prior observation demands and perform automatic
+common reobservation under an owned lease; then implement durable staged originals/
+replacement verification, write-ahead transaction state, ordinary-failure rollback,
+repeatable interrupted recovery and operation-owned cleanup. Hold hierarchical
+leases through all publication/rollback steps. Root-setting changes and effective
+registry retirement for promotion still need their outer composition, distinct
+from physical deletion. Complete public acceptance before moving T224 to DONE;
+T236/T237 remain unstarted. No new semantic ambiguity or specification change.
