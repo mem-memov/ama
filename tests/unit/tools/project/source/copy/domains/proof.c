@@ -68,22 +68,41 @@ static void domain_prove(DomainFixture *fixture) {
             replacement = (SourceImageChange){SOURCE_IMAGE_REMOVE, fixture->observed.image.entries[i]}; replacements = 1;
         }
     }
-    const SourceCatalogImage *constructed = NULL; SourceCopyImageIssue construction_issue;
-    assert(source_copy_image_prepare(&fixture->arena, &fixture->observed.image, &files, fixture->prepared,
-        replacements ? &replacement : NULL, replacements, &constructed, &construction_issue) == SOURCE_COPY_IMAGE_OK);
-    SourceCatalogImage final_image; SourceProjectionIssue projection_issue;
-    assert(source_image_project(&fixture->arena, constructed, NULL, 0, &fixture->final_root, 1,
-        &final_image, &projection_issue) == SOURCE_PROJECTION_OK);
-    SourceImageCapture final_capture; source_image_capture_init(&final_capture, sources.allocator);
-    assert(source_image_capture_build(&final_capture, &final_image) == SOURCE_IMAGE_CAPTURE_OK);
-    assert(delivery_source_response_matches(&fixture->after.response, &final_capture.view));
     SourceCopyContextOmissions contexts; source_copy_context_omissions_init(&contexts, sources.allocator, &copied, &fixture->map);
     assert(source_copy_context_omissions_seal(&contexts) == SOURCE_COPY_CONTEXT_OK);
+    SourcePackageEnvironment expected_environment; source_package_environment_init(&expected_environment, sources.allocator);
+    assert(source_package_environment_build(&expected_environment, &fixture->final.catalog) == SOURCE_ENVIRONMENT_OK);
+    /* This independent reference image has one empty package.ini. An expected
+     * scope proves its exact location/configuration, not inferred permissions. */
+    assert(expected_environment.first && !expected_environment.first->next);
+    SourceCopyConfigurationExpectation expectation = {.environment = &expected_environment, .scope = expected_environment.first};
+    SourceTreeSelection replaced_tree; source_tree_selection_init(&replaced_tree, sources.allocator);
+    SourceRemovalSelection removed; source_removal_selection_init(&removed, sources.allocator);
+    if (replacements) {
+        assert(source_tree_selection_read(&replaced_tree, &fixture->original, fixture->destination) == SOURCE_TREE_OK);
+        assert(source_removal_selection_build(&removed, &replaced_tree, &fixture->analysis, NULL) == SOURCE_REMOVAL_SELECTION_OK);
+        assert(removed.path_count == 1 && removed.identity_count == 0);
+    }
+    SourceCopyPlanInputs inputs = {.final_roots = &fixture->final_root, .final_root_count = 1,
+        .copy = &copied, .observed = &fixture->observed, .mains = &fixture->map, .files = &files,
+        .texts = fixture->prepared, .contexts = &contexts,
+        .changes = replacements ? &replacement : NULL, .change_count = replacements,
+        .removal = replacements ? &removed : NULL, .configurations = &expectation, .configuration_count = 1};
+    SourceCopyPlan plan; source_copy_plan_init(&plan, sources.allocator);
+    assert(source_copy_plan_build(&plan, &inputs) == SOURCE_COPY_PLAN_OK);
+    assert(plan.image->roots == &fixture->final_root && plan.image->root_count == 1);
+    assert(delivery_source_response_matches(&fixture->after.response, &plan.capture.view));
+    assert(plan.mutations.count == 1 && !strcmp(plan.mutations.roots[0].path, fixture->destination));
     SourceCopyProofIssue issue;
-    assert(source_copy_prove(&fixture->arena, &fixture->analysis, &fixture->map, &files, fixture->prepared,
-        &contexts, &final_capture, &fixture->after, NULL, 0, &issue) == SOURCE_COPY_PROOF_OK);
+    assert(source_copy_plan_prove(&plan, &fixture->after, &issue) == SOURCE_COPY_PROOF_OK);
     domain_refuse_lost_original(fixture, &files, &contexts);
-    source_image_capture_destroy(&final_capture);
+    source_copy_plan_destroy(&plan);
+    inputs.final_roots = NULL;
+    source_copy_plan_init(&plan, sources.allocator);
+    assert(source_copy_plan_build(&plan, &inputs) == SOURCE_COPY_PLAN_INVALID && !plan.prepared);
+    source_copy_plan_destroy(&plan);
+    source_removal_selection_destroy(&removed); source_tree_selection_destroy(&replaced_tree);
+    source_package_environment_destroy(&expected_environment);
     source_copy_context_omissions_destroy(&contexts); source_file_map_destroy(&files);
     source_copy_closure_destroy(&copied); source_tree_selection_destroy(&selected);
 }

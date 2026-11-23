@@ -4,7 +4,7 @@
 
 This is the current implementation checkpoint, revised on 2026-11-23 from the
 actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
-accepted T275 below. The public operation is not
+accepted T275 and T282 below. The public operation is not
 complete. [TODO](../../TODO.md#t276) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
@@ -29,7 +29,7 @@ components or declare the unfinished parent complete.
 | Project-side process/wire/input capture | Accepted [T273](../../DONE.md#t273); no compiler dispatcher is linked into the project tool |
 | Source/test/native/configuration closure | Accepted [T235](../../DONE.md#t235), plus the detailed compositions below; acquisition remains separate |
 | Exact original/final images, topology/maps, configuration edits and compiler/site proofs | Implemented and tested below, including independently compilable incorrect-image refusals; their complete root-changing orchestration is pending |
-| [Root-preserving copy plan](../../tools/project/source/copy/plan/plan.h) | Joins dependency modes, joint removal and final proofs; still excludes changed-root orchestration; its copy proof now derives selected-registry retirement separately from physical removal |
+| [Prepared copy plan](../../tools/project/source/copy/plan/plan.h) | Joins dependency modes, joint removal and final proofs; T282 adds explicit final-root assembly while complete root/client authorization remains T276; its copy proof derives selected-registry retirement separately from physical removal |
 | [Freshness guard](../../tools/project/source/transaction/guard/guard.h), [hierarchical leases](../../tools/project/source/transaction/lease/lease.h) and [mutation forest](../../tools/project/source/transaction/forest/forest.h) | Tested actual capture, stale membership/inodes and complete disjoint trees; T275 adds separate physical boundaries, unchanged-root regression and real changed-root consumers |
 | [Image records](../../tools/project/source/transaction/document/document.h) and [private-tree ownership](../../tools/project/source/transaction/tree/tree.h) | Codec roundtrip, exact saved classes, synchronization/readback, reopen and permitted partial-cleanup transitions pass; a codec/private copy is not yet a durable transaction journal |
 | Public command and process-loss recovery | Unfinished: command dispatch still supports init, not source-operation preview/apply; real whole-operation journal/recovery must be integrated |
@@ -56,7 +56,8 @@ next action; keep prior facts explicitly historical.
 | Task | Immediate prerequisites | Finite result and next real consumer |
 |---|---|---|
 | [T275](../../DONE.md#t275) | T232, T233, T235, T272, T273 and existing T224 foundations | Original/final semantic registries, actual physical mutation/removal and stable observation/coordination are separate in actual capture/plan consumers; T276 consumes them |
-| [T276](../../TODO.md#t276) | T275 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
+| [T282](../../DONE.md#t282) | T275 | One simultaneous changed-root image through actual assembly and copy-plan consumers; T276 consumes it |
+| [T276](../../TODO.md#t276) | T275, T282 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
 | [T277](../../TODO.md#t277) | T276 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
 | [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
 | [T279](../../TODO.md#t279) | T278 | Whole multi-tree copy/delete/move/replace publication and repeatable recovery, with writer/reader coordination and same/cross-filesystem failure evidence |
@@ -67,7 +68,8 @@ next action; keep prior facts explicitly historical.
 ```mermaid
 flowchart TD
     existing[T232 / T233 / T235 / T272 / T273 and T224 foundations] --> roots[T275: distinct domains]
-    roots --> plan[T276: complete immutable plan]
+    roots --> assembly[T282: simultaneous final-root assembly]
+    assembly --> plan[T276: complete immutable plan]
     plan --> preview[T277: public preview]
     plan --> journal[T278: one-tree apply and recovery]
     preview --> journal
@@ -90,11 +92,10 @@ existing dependencies; do not switch to it to bypass unfinished source work.
 
 ### Next action and acceptance safeguards
 
-Start T276 with the actual plan/image/removal/configuration interfaces. Its entry
+Resume T276 with the actual plan/image/removal/configuration interfaces after accepted T282. Its entry
 review must account for T275's accepted physical envelopes, explicit final
 semantic roots and independent registry retirement. The remaining gap is one
-complete immutable operation plan: SourceCopyPlan still orchestrates a
-root-preserving copy, while deletion has its own preparation owner. Join those
+complete immutable operation plan: SourceCopyPlan now accepts explicit final roots but still orchestrates copy, while deletion has its own preparation owner. Join those
 real consumers with explicit root/client/configuration and rebuild intentions;
 do not restart the accepted wire, closure, image, lease, record or owned-tree
 foundations. Public commands and durable publication remain later gates.
@@ -121,6 +122,84 @@ Child acceptance never implies whole-sprint conformance; T237 still owns that
 release gate. Do not refresh old conformance fingerprints to hide missing public
 behavior. Every child records successful/refused/failing compositions and commits
 its own complete evidence before the next task.
+
+## T276 entry review
+
+The accepted T275 interfaces separate physical observation bounds from semantic
+roots. Actual consumers still split copy preparation (`copy/plan`) and deletion
+(`removal/image`). Neither is a complete public operation plan. Their existing
+proofs, configuration expectations and mutation forests remain reusable.
+
+The copy image builder still invokes projection with original semantic roots.
+Its changed-root proof tests currently build that intermediate image and then
+reselect roots. That composition cannot remove an original semantic root: the
+intermediate image would require the removed directory. Extract T282 to pass
+explicit final roots through the existing builder/plan and test simultaneous
+root removal/replacement. No second projection or compatibility entry remains.
+T276 retains operation-kind/removal provenance, authorized configuration and
+root/client intentions, build invalidations and one common immutable-plan owner.
+Original augmented-domain preparation must preserve selected original physical
+identities and use the common whole-version selector; merging independently
+selected catalogs is not an acceptable substitute.
+
+## T282 entry review and execution
+
+**Purpose and consumer.** Prepare one final material image with explicit semantic
+roots, consumed immediately by the existing copy plan and genuine changed-root
+compiler/proof compositions. This is a finite prerequisite extracted from T276;
+it does not authorize settings edits or source publication. Canonical
+[TOOL-02](../../spec/implementation/tools-and-conformance.md#tool-02) defines final
+roots independently of physical material; [TOOL-04](../../spec/implementation/tools-and-conformance.md#tool-04)
+requires their simultaneous validated preparation. No specification change.
+
+**Steps.** (1) Replace the root-preserving image-builder contract with explicit
+final roots and migrate every real caller. (2) Exercise simultaneous old-root
+removal/new-root creation, invalid/empty final selections, failure atomicity and
+allocation failures. (3) Run real promotion/relocation through one builder and
+its current plan consumer, then full compiler/site proof. (4) Run affected strict
+and sanitizer tests, documentation coverage/navigation, archive and commit.
+
+**Invariant.** Material joins, collision checks and ancestor scaffolding use the
+unchanged observed physical envelope. The one shared projection validates the
+complete final row set against the supplied final roots. Original roots are
+never silently substituted; zero final roots means an empty semantic selection.
+Projection preserves original physical bounds. Invalid shape or allocation
+failure publishes no output. No additional asymptotic work or host I/O is added;
+existing finite material/ancestor/projection bounds remain applicable. Root
+borrowing and all input owners outlive the plan as before. Caller authorization
+and original/final root-domain proof remain T276 obligations.
+
+**Result.** Steps 1–4 complete. All callers now pass final roots explicitly;
+there is no root-preserving fallback or second intermediate image. Real
+promotion and existing/new-root relocation use `SourceCopyPlan`, original
+replacement review, exact final configuration scopes, mutation forest and the
+independent final compiler/site proof. Simultaneous semantic-root removal and
+creation, empty/malformed/missing/non-directory/outside roots, unchanged failure
+output and every measured replacement-preparation allocation failure are covered.
+Existing root-preserving copy/move compositions remain in the passing suite.
+No specification edit, public operation or root/client-setting authorization
+claim was added. T276 is the next active task.
+
+**Acceptance and receipts.** Strict C11 (`-O0 -g -Wall -Wextra -Werror -std=c11
+-pedantic -D_POSIX_C_SOURCE=200809L`) copy suite:
+`/tmp/ama-t282-copy.exit = 0`. Independent `make -j2 -C tools/project`:
+`/tmp/ama-t282-build.exit = 0`. ASan/UBSan copy suite adds
+`-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie -no-pie`, with
+`ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+`UBSAN_OPTIONS=halt_on_error=1`:
+`/tmp/ama-t282-sanitizers-clean.exit = 0`. Counted allocation teardown checks
+remain active; no LeakSanitizer success is claimed. The first sanitizer launch
+omitted the environment's required LSan exclusion and failed under ptrace;
+rerunning without cleaning retained fixture output caused an existing exact
+package-count assertion. A supported `make ... clean` followed by the complete
+sanitizer run passed; production code/expectations were not changed to hide this.
+
+`make docs` passed (`/tmp/ama-t282-docs.exit = 0`): 3891 ready inputs,
+zero debts; Doxygen 1.11.0, 3021 maintained file pages, 11575 interfaces,
+495 canonical destinations and 9418 pages. The new cohesive test file and
+changed production headers/implementations have explicit current-case registry
+evidence. Archive/navigation changes require the final generator refresh below;
+no code/coverage input changes follow the accepted checks.
 
 ## T275 entry review and execution
 

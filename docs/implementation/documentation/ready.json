@@ -202522,6 +202522,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_root_replacement_in_one_projection_and_refuses_invalid_final_roots",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_simultaneous_root_replacement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -207389,6 +207399,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_root_replacement_in_one_projection_and_refuses_invalid_final_roots",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_simultaneous_root_replacement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -207460,6 +207480,16 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_root_replacement_in_one_projection_and_refuses_invalid_final_roots",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_simultaneous_root_replacement_allocation_failure",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -208079,6 +208109,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -209970,6 +210005,22 @@
         "source": "tests/unit/tools/project/source/image-document/main.c",
         "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
         "command": "make -C tests/unit/tools/project/source/image-document"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/image-roots.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify one simultaneous root replacement, explicit empty or invalid final selections, physical-envelope preservation and each preparation allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_assembles_root_replacement_in_one_projection_and_refuses_invalid_final_roots",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_simultaneous_root_replacement_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   }

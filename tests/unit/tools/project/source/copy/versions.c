@@ -35,7 +35,7 @@ static void it_initializes_required_empty_version_areas_and_preserves_reserved_i
             || changes[i].entry.metadata.st_ino != changes[j].entry.metadata.st_ino); }
     }
     const SourceCatalogImage *image = NULL; SourceCopyImageIssue image_issue;
-    assert(source_copy_image_prepare(&arena, &observed.image, &files, NULL, changes, 6, &image, &image_issue) == SOURCE_COPY_IMAGE_OK);
+    assert(source_copy_image_prepare(&arena, &observed.image, &files, NULL, changes, 6, observed.image.roots, observed.image.root_count, &image, &image_issue) == SOURCE_COPY_IMAGE_OK);
     SourceImageCapture final; source_image_capture_init(&final, sources.allocator);
     assert(source_image_capture_build(&final, image) == SOURCE_IMAGE_CAPTURE_OK);
     SourcePackageEnvironment environment; source_package_environment_init(&environment, sources.allocator);

@@ -1,5 +1,5 @@
 /** @file
- * @brief Assemble mapped source material into one immutable root-preserving image.
+ * @brief Assemble mapped source material into one immutable image with explicitly selected final semantic roots.
  * [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02)
  * requires exact physical material; [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04)
  * separates image preparation from deletion authority and recoverable publication.
@@ -32,10 +32,17 @@ typedef struct {
  * Check each P input against original observed kind/bytes (complete directory
  * membership for directories). Preserve opaque content via the material join.
  * Add exactly the absent physical ancestor directories needed by final additions
- * within an existing configured root; reuse unchanged observed directories.
+ * within the original physical observation envelope; reuse unchanged observed directories.
  * New rows receive distinct symbolic device/inode classes, not predicted host
  * identities. Their permission modes derive from the captured input, or the
- * containing root for new scaffolding. No host metadata or I/O is consulted.
+ * containing physical boundary for new scaffolding. No host metadata or I/O is consulted.
+ *
+ * Project material and final_roots simultaneously: removed original semantic
+ * roots need not exist in the final rows. An empty final root set selects no
+ * modules; it never means reuse original roots. The physical envelope remains
+ * unchanged, including when the original used compact bounds. Final roots are
+ * borrowed and must outlive image consumers. This operation grants no root-setting
+ * authorization; the outer complete operation must prove that independently.
  *
  * Return an arena-owned stable image pointer only after shared simultaneous
  * projection succeeds. Borrow roots/bytes/paths through all catalog consumers;
@@ -49,5 +56,5 @@ typedef struct {
  */
 SourceCopyImageStatus source_copy_image_prepare(SourceArena *, const SourceCatalogImage *,
     const SourceFileMap *, const SourceGraphPreparedText *, const SourceImageChange *, size_t,
-    const SourceCatalogImage **output, SourceCopyImageIssue *);
+    const ModuleRoot *final_roots, size_t final_root_count, const SourceCatalogImage **output, SourceCopyImageIssue *);
 #endif

@@ -8,6 +8,7 @@
 #include "prepared.c"
 #include "material.c"
 #include "image.c"
+#include "image-roots.c"
 #include "freshness.c"
 #include "units.c"
 #include "tests.c"
@@ -30,6 +31,8 @@
 #include "domains/cases.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_assembles_root_replacement_in_one_projection_and_refuses_invalid_final_roots();
+    it_retires_every_simultaneous_root_replacement_allocation_failure();
     it_proves_real_promotion_and_root_relocation_without_physical_source_removal();
     it_retires_registry_scratch_failures_and_refuses_foreign_removal_names();
     it_retires_each_wider_envelope_observation_allocation_failure();

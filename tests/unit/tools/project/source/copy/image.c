@@ -45,7 +45,7 @@ static const SourceCatalogImageEntry *image_assembly_entry(const SourceCatalogIm
 static void it_assembles_exact_ancestor_images_and_explicit_replacements_without_host_mutation(void) {
     ImageAssemblyFixture fixture; image_assembly_setup(&fixture, "/image/from", "/image/new/deep/copied", false);
     const SourceCatalogImage *output = NULL; SourceCopyImageIssue issue;
-    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, NULL, 0, &output, &issue) == SOURCE_COPY_IMAGE_OK);
+    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, NULL, 0, fixture.original.roots, fixture.original.root_count, &output, &issue) == SOURCE_COPY_IMAGE_OK);
     assert(output->count == 8 && output->reader.tree.context == output);
     assert(image_assembly_entry(output, "/image/new") && image_assembly_entry(output, "/image/new/deep"));
     assert(image_assembly_entry(output, "/image/new/deep/copied")->content == fixture.entries[1].content);
@@ -57,7 +57,7 @@ static void it_assembles_exact_ancestor_images_and_explicit_replacements_without
     for (unsigned directory_input = 0; directory_input < 2; directory_input++) {
         image_assembly_setup(&fixture, directory_input ? "/image/directory" : "/image/from", "/image/target", directory_input != 0);
         SourceImageChange remove = {SOURCE_IMAGE_REMOVE, {.path = "/image/target"}};
-        assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, &remove, 1, &output, &issue) == SOURCE_COPY_IMAGE_OK);
+        assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, &remove, 1, fixture.original.roots, fixture.original.root_count, &output, &issue) == SOURCE_COPY_IMAGE_OK);
         assert(output->count == 5);
         const SourceCatalogImageEntry *target = image_assembly_entry(output, "/image/target");
         assert(target && (directory_input ? S_ISDIR(target->metadata.st_mode) && target->children_complete : target->content == fixture.entries[1].content));
@@ -67,10 +67,10 @@ static void it_assembles_exact_ancestor_images_and_explicit_replacements_without
     image_assembly_setup(&fixture, "/image/from", "/image/target", false);
     source_file_map_destroy(&fixture.map); source_file_map_init(&fixture.map, sources.allocator);
     assert(source_file_map_seal(&fixture.map) == SOURCE_FILE_MAP_OK);
-    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, NULL, 0, &output, &issue) == SOURCE_COPY_IMAGE_OK);
+    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, NULL, 0, fixture.original.roots, fixture.original.root_count, &output, &issue) == SOURCE_COPY_IMAGE_OK);
     assert(output->count == 5);
     SourceImageChange remove = {SOURCE_IMAGE_REMOVE, {.path = "/image/target"}};
-    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, &remove, 1, &output, &issue) == SOURCE_COPY_IMAGE_OK);
+    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, &remove, 1, fixture.original.roots, fixture.original.root_count, &output, &issue) == SOURCE_COPY_IMAGE_OK);
     assert(output->count == 4 && !image_assembly_entry(output, "/image/target") && image_assembly_entry(output, "/image/from"));
     image_assembly_destroy(&fixture);
 }
@@ -84,22 +84,22 @@ static void it_refuses_ambiguous_unobserved_and_outside_image_assembly_and_retir
         ImageAssemblyFixture fixture; image_assembly_setup(&fixture, profile == 3 ? "/image/absent" : "/image/from", targets[profile], false);
         if (profile == 4) { fixture.entries[0].children_complete = false; }
         const SourceCatalogImage *output = &fixture.original; SourceCopyImageIssue issue;
-        assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, NULL, 0, &output, &issue) == expected[profile]);
+        assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, NULL, 0, fixture.original.roots, fixture.original.root_count, &output, &issue) == expected[profile]);
         assert(output == &fixture.original && issue.path); image_assembly_destroy(&fixture);
     }
     ImageAssemblyFixture fixture; image_assembly_setup(&fixture, "/image/from", "/image/new/deep/copied", false);
     SourceImageChange duplicated[] = {{SOURCE_IMAGE_REMOVE, {.path = "/image/target"}}, {SOURCE_IMAGE_REMOVE, {.path = "/image/target"}}};
     const SourceCatalogImage *output = &fixture.original; SourceCopyImageIssue issue;
-    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, duplicated, 2, &output, &issue) == SOURCE_COPY_IMAGE_COLLISION);
+    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, duplicated, 2, fixture.original.roots, fixture.original.root_count, &output, &issue) == SOURCE_COPY_IMAGE_COLLISION);
     assert(output == &fixture.original);
     SourceImageChange invalid = {SOURCE_IMAGE_REMOVE, {.path = "/image/not observed"}};
-    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, &invalid, 1, &output, &issue) == SOURCE_COPY_IMAGE_PROJECTION);
+    assert(source_copy_image_prepare(&fixture.arena, &fixture.original, &fixture.map, NULL, &invalid, 1, fixture.original.roots, fixture.original.root_count, &output, &issue) == SOURCE_COPY_IMAGE_PROJECTION);
     assert(output == &fixture.original && issue.projection_status == SOURCE_PROJECTION_MISSING);
     size_t baseline = live_allocations, total = 0;
     for (size_t failure = 0; !failure || failure <= total; failure++) {
         SourceArena attempt; source_arena_init(&attempt, sources.allocator); output = &fixture.original;
         size_t start = allocation_count; if (failure) { failure_at = start + failure; }
-        SourceCopyImageStatus status = source_copy_image_prepare(&attempt, &fixture.original, &fixture.map, NULL, NULL, 0, &output, &issue);
+        SourceCopyImageStatus status = source_copy_image_prepare(&attempt, &fixture.original, &fixture.map, NULL, NULL, 0, fixture.original.roots, fixture.original.root_count, &output, &issue);
         if (!failure) { assert(status == SOURCE_COPY_IMAGE_OK); total = allocation_count - start; assert(total); }
         else {
             assert(status == SOURCE_COPY_IMAGE_MEMORY

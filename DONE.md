@@ -8653,3 +8653,29 @@ T201. Specification bytes have not changed.
   No spec, grammar, compiler/runtime language behavior, network/acquisition or
   public source-operation command is added by T275. T224 remains unfinished;
   T276 consumes this representation for complete immutable operation planning.
+
+<a id="t282"></a>
+
+- [x] **T282 — Assemble changed-root copy images in one projection.**
+  Status: completed, extracted by the T276 entry review. Prerequisite: T275.
+  Pass explicit final semantic roots through the actual material/scaffolding
+  builder and its current copy-plan consumer, retaining the original physical
+  envelope. Remove the root-preserving intermediate image from changed-root
+  proof tests. Accept simultaneous removal of an old nested semantic root and
+  creation of its replacement, empty final selection, invalid final roots,
+  unchanged output on refusal, allocation failures and real final compiler/copy
+  proofs for promotion and relocation. This delivers image preparation, not
+  root-setting authorization or the complete T276 operation plan.
+  Steps and evidence: [source-operation record](docs/implementation/source-operations.md#t282-entry-review-and-execution).
+
+  Delivered explicit final roots through the actual image builder and current
+  copy-plan owner; removed the intermediate root-preserving changed-root image.
+  Added direct root-replacement/empty/invalid/failure tests and migrated genuine
+  promotion/relocation compositions to the plan's independent compiler/site proof.
+  Every actual allocation-failure prefix retires; existing-root replacement uses
+  original safe-deletion evidence. No spec change or publication support claim.
+  Acceptance: strict copy suite, independent ama-project build, copy ASan/UBSan
+  after clean fixture preparation, 3891 ready inputs/zero debt, Doxygen 1.11.0
+  with 3021 maintained file pages and 11575 documented interfaces. Detailed
+  commands, initial environmental failures and scoped limits remain in the
+  linked source-operation record. T276 still owns the complete operation plan.

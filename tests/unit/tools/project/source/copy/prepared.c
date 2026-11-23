@@ -121,7 +121,7 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
         provenance[i] = (SourceGraphPreparedText){i == 3 ? NULL : &provenance[i + 1], &edits[i]};
     }
     const SourceCatalogImage *image = NULL; SourceCopyImageIssue image_issue;
-    SourceCopyImageStatus image_status = source_copy_image_prepare(&arena, &observed.image, &files, provenance, initialized.changes, initialized.count,
+    SourceCopyImageStatus image_status = source_copy_image_prepare(&arena, &observed.image, &files, provenance, initialized.changes, initialized.count, observed.image.roots, observed.image.root_count,
         &image, &image_issue);
     if (image_status != SOURCE_COPY_IMAGE_OK) { fprintf(stderr, "image assembly: status=%d path=%s material=%d projection=%d\n",
         image_status, image_issue.path ? image_issue.path : "(none)", image_issue.material_status, image_issue.projection_status); }

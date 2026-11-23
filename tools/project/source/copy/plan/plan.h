@@ -1,5 +1,5 @@
 /** @file
- * @brief Own a root-preserving prepared copy image and independently checked package scopes.
+ * @brief Own a prepared copy image with explicit final semantic roots and independently checked package scopes.
  * [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04)
  * joins all intended writes before semantic admission and recoverable publication;
  * [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03)
@@ -23,9 +23,13 @@ typedef struct {
  * removal is the actual physical removal union, not a dependency closure. Each
  * supplemental REMOVE must belong to that union and every union path must occur.
  * Configuration edits/initialization and any other supplemental changes must have
- * their own prior authorization. Expectations account for every final package.
+ * their own prior authorization. final_roots is the exact final semantic selection,
+ * including an explicitly empty set; it borrows immutable ModuleRoot rows. This
+ * builder does not derive or authorize root-setting changes. Expectations account for every final package.
  */
 typedef struct {
+    const ModuleRoot *final_roots;
+    size_t final_root_count;
     const SourceCopyClosure *copy;
     const SourceObservedImage *observed;
     const SourceCloneMap *mains;
@@ -85,7 +89,7 @@ void source_copy_plan_destroy(SourceCopyPlan *);
  * edit authority and closure/P completeness remain caller obligations. Finite
  * input scans plus documented child bounds terminate; arena and nested owners
  * retain projected image/catalog/environment allocations and failed prefixes.
- * Root-setting changes are not derived by this root-preserving stage;
+ * Root-setting changes are not derived or authorized by this stage;
  * supply those through their explicit semantic/physical domain owners
  * before applying a general source operation.
  */
@@ -94,7 +98,7 @@ SourceCopyPlanStatus source_copy_plan_build(SourceCopyPlan *, const SourceCopyPl
  * the complete final-copy proof. No I/O/source mutation; repeatable. This stage
  * derives selected-registry retirement independently from original/final main
  * paths, while strict removal safety still uses the physical-removal union.
- * General changed-root orchestration remains outside this plan builder. Success is
+ * Complete root/client-setting authorization remains outside this builder. Success is
  * still not freshness, supplemental edit authorization or publication authority.
  */
 SourceCopyProofStatus source_copy_plan_prove(SourceCopyPlan *, const SourceCompilerClient *, SourceCopyProofIssue *);

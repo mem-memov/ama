@@ -16,9 +16,9 @@ static bool reserve_path(size_t *capacity, const char *path) {
 }
 SourceCopyImageStatus source_copy_image_prepare(SourceArena *arena, const SourceCatalogImage *original,
     const SourceFileMap *map, const SourceGraphPreparedText *prepared, const SourceImageChange *extra, size_t extra_count,
-    const SourceCatalogImage **output, SourceCopyImageIssue *issue) {
+    const ModuleRoot *final_roots, size_t final_root_count, const SourceCatalogImage **output, SourceCopyImageIssue *issue) {
     if (!issue) { return SOURCE_COPY_IMAGE_INVALID; } *issue = (SourceCopyImageIssue){0};
-    if (!arena || !original || !original->valid || !output || (extra_count && !extra)) { return SOURCE_COPY_IMAGE_INVALID; }
+    if (!arena || !original || !original->valid || !output || (extra_count && !extra) || (final_root_count && !final_roots)) { return SOURCE_COPY_IMAGE_INVALID; }
     SourceCopyMaterial material = {0};
     issue->material_status = source_copy_material_prepare(arena, map, prepared, &material, &issue->material);
     if (issue->material_status != SOURCE_MATERIAL_OK) { return SOURCE_COPY_IMAGE_MATERIAL; }
@@ -45,7 +45,7 @@ SourceCopyImageStatus source_copy_image_prepare(SourceArena *arena, const Source
     if (status != SOURCE_COPY_IMAGE_OK) { return status; }
     SourceCatalogImage *image = source_arena_allocate(arena, sizeof(*image));
     if (!image) { return SOURCE_COPY_IMAGE_MEMORY; }
-    issue->projection_status = source_image_project(arena, original, changes, builder.count, (original)->roots, (original)->root_count, image, &issue->projection);
+    issue->projection_status = source_image_project(arena, original, changes, builder.count, final_roots, final_root_count, image, &issue->projection);
     if (issue->projection_status != SOURCE_PROJECTION_OK) { return SOURCE_COPY_IMAGE_PROJECTION; }
     *output = image; *issue = (SourceCopyImageIssue){0}; return SOURCE_COPY_IMAGE_OK;
 }

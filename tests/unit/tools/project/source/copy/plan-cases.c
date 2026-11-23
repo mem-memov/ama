@@ -116,7 +116,7 @@ static void check_copy_plan(SourceArena *arena, const SourceObservedImage *obser
         }
         index++;
     }
-    SourceCopyPlanInputs inputs = {.copy = &copy, .observed = observed, .mains = map, .files = files,
+    SourceCopyPlanInputs inputs = {.final_roots = observed->image.roots, .final_root_count = observed->image.root_count, .copy = &copy, .observed = observed, .mains = map, .files = files,
         .texts = texts, .contexts = contexts, .changes = changes, .change_count = change_count,
         .configurations = expected, .configuration_count = count};
     check_copy_plan_removals(arena, &inputs);

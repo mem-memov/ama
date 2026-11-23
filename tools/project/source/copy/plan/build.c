@@ -26,13 +26,13 @@ SourceCopyPlanStatus source_copy_plan_build(SourceCopyPlan *plan, const SourceCo
         || inputs->observed->original != inputs->copy->tree->capture || !inputs->mains || !inputs->mains->ready
         || inputs->mains->capture != inputs->copy->tree->capture || !inputs->files || !inputs->files->ready
         || !inputs->contexts || !inputs->contexts->ready || inputs->contexts->copy != inputs->copy || inputs->contexts->mains != inputs->mains
-        || (inputs->change_count && !inputs->changes) || (inputs->configuration_count && !inputs->configurations)) { return plan->status = SOURCE_COPY_PLAN_INVALID; }
+        || (inputs->final_root_count && !inputs->final_roots) || (inputs->change_count && !inputs->changes) || (inputs->configuration_count && !inputs->configurations)) { return plan->status = SOURCE_COPY_PLAN_INVALID; }
     plan->inputs = *inputs;
     if (!mode(inputs)) { return plan->status = SOURCE_COPY_PLAN_MODE; }
     plan->status = source_copy_plan_removal(plan);
     if (plan->status != SOURCE_COPY_PLAN_OK) { return plan->status; }
     if (source_copy_image_prepare(&plan->arena, &inputs->observed->image, inputs->files, inputs->texts,
-        inputs->changes, inputs->change_count, &plan->image, &plan->image_issue) != SOURCE_COPY_IMAGE_OK) { return plan->status = SOURCE_COPY_PLAN_IMAGE; }
+        inputs->changes, inputs->change_count, inputs->final_roots, inputs->final_root_count, &plan->image, &plan->image_issue) != SOURCE_COPY_IMAGE_OK) { return plan->status = SOURCE_COPY_PLAN_IMAGE; }
     if (source_image_capture_build(&plan->capture, plan->image) != SOURCE_IMAGE_CAPTURE_OK) { return plan->status = SOURCE_COPY_PLAN_CAPTURE; }
     if (source_package_environment_build(&plan->environment, &plan->capture.catalog) != SOURCE_ENVIRONMENT_OK) { return plan->status = SOURCE_COPY_PLAN_ENVIRONMENT; }
     plan->status = source_copy_plan_configurations(plan);
