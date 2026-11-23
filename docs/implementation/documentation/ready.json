@@ -122500,6 +122500,26 @@
         "source": "tests/unit/documentation/main.c",
         "case": "it_requires_rule_links_on_each_compiler_contract",
         "command": "make -C tests/unit/documentation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
   },
@@ -173799,7 +173819,7 @@
       }
     ]
   },
-  "tests/integration/parser/grammar/project/packages/test/fixture/v1.0.0/src/程序": {
+  "tests/integration/parser/grammar/project/packages/test/fixture/v1.0.0/src/\u7a0b\u5e8f": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173830,7 +173850,7 @@
       }
     ]
   },
-  "tests/integration/project/closure/project/packages/test/fixture/v1.0.0/src/中间": {
+  "tests/integration/project/closure/project/packages/test/fixture/v1.0.0/src/\u4e2d\u95f4": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173841,7 +173861,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173852,7 +173872,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.abi": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173863,7 +173883,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.c": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the first distinct Unicode nominal type.",
     "tests": [
@@ -173874,7 +173894,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/元.h": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u5143.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the first Unicode nominal type.",
     "standalone_header_command": [
@@ -173900,7 +173920,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173911,7 +173931,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.abi": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.abi": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -173922,7 +173942,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.c": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.c": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored C companion of the incompatible Unicode nominal type.",
     "tests": [
@@ -173933,7 +173953,7 @@
       }
     ]
   },
-  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/米.h": {
+  "tests/integration/semantic/types/project/packages/test/fixture/v1.0.0/src/\u7c73.h": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Supply the authored header marker of the incompatible Unicode nominal type.",
     "standalone_header_command": [
@@ -175895,7 +175915,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/商店/商品": {
+  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/\u5546\u5e97/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -175921,7 +175941,7 @@
       }
     ]
   },
-  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/other/商品": {
+  "tests/integration/source/diagnostics/project/packages/test/fixture/v1.0.0/src/other/\u5546\u54c1": {
     "contract": "docs/implementation/library-tests-and-build.md",
     "purpose": "Byte-preserved library/interface or acceptance input; see its exact path entry in the fixture contract.",
     "tests": [
@@ -182354,6 +182374,26 @@
         "source": "tests/unit/tools/project/source/compiler/main.c",
         "case": "it_refuses_temporary_stream_exhaustion_and_invalid_requests",
         "command": "make -C tests/unit/tools/project/source/compiler"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
   },
@@ -182882,6 +182922,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_malformed_empty_version_environments_and_keeps_standard_roots_scope_free",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
   },
@@ -189360,6 +189420,46 @@
         "source": "tests/unit/tools/project/source/lease/main.c",
         "case": "it_revalidates_namespace_links_after_acquiring_locks",
         "command": "make -C tests/unit/tools/project/source"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
   },
@@ -208120,6 +208220,604 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
         "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/forest/material.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Partition exact complete image deltas into disjoint mutation subtrees.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/forest/forest.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Partition exact complete image deltas into disjoint mutation subtrees.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/forest/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Partition exact complete image deltas into disjoint mutation subtrees.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/forest/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Partition exact complete image deltas into disjoint mutation subtrees.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/forest/parent.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Partition exact complete image deltas into disjoint mutation subtrees.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/forest/compare.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Partition exact complete image deltas into disjoint mutation subtrees.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/forest/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Partition exact complete image deltas into disjoint mutation subtrees.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/forest/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Partition exact complete image deltas into disjoint mutation subtrees.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_partitions_changed_files_and_complete_replaced_subtrees",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retains_exact_delete_add_and_empty_tree_material_and_ignores_timestamps",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_refuses_unobserved_mutation_material_and_domain_changes",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      },
+      {
+        "source": "tests/unit/tools/project/source/forest/main.c",
+        "case": "it_retires_every_mutation_forest_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/forest"
+      }
+    ]
+  },
+  "tools/project/source/transaction/document/values.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/document/roots.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/document/document.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/document/entries.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/document/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/document/write.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/document/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/document/read.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/image-document/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/image-document/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve exact independently owned filesystem image epochs through closed lossless records.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_lossless_images_and_independent_content_epochs",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
   }

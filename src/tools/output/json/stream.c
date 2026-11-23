@@ -10,7 +10,7 @@ void tool_json_init(ToolJsonWriter *writer, FILE *output) { *writer = (ToolJsonW
 /** The finite output prefix either advances completely or retains a permanent I/O error. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_json_write(ToolJsonWriter *writer, const void *bytes, size_t length) {
     if (writer->status != TOOL_JSON_OK) { return false; }
-    if (length != 0 && fwrite(bytes,1,length,writer->output) != length) {
+    if (length != 0 && (fwrite(bytes,1,length,writer->output) != length || ferror(writer->output))) {
         writer->status = TOOL_JSON_IO_ERROR;
         return false;
     }
@@ -21,6 +21,6 @@ bool tool_json_raw(ToolJsonWriter *writer, const char *text) { return tool_json_
 /** Success is acknowledged only after the borrowed stream flushes. Component contract: [COMP-04](../../../../spec/implementation/compiler.md#comp-04). */
 bool tool_json_finish(ToolJsonWriter *writer) {
     if (writer->status != TOOL_JSON_OK) { return false; }
-    if (fflush(writer->output) != 0) { writer->status = TOOL_JSON_IO_ERROR; return false; }
+    if (fflush(writer->output) != 0 || ferror(writer->output)) { writer->status = TOOL_JSON_IO_ERROR; return false; }
     return true;
 }

@@ -9,7 +9,7 @@ C_COMPILER ?= gcc
 C_COMPILER_FLAGS ?= -O2 -Wall -Wextra -std=c11 -pedantic -D_POSIX_C_SOURCE=200809L
 include $(ROOT)/make/sources.mk
 include sources.mk
-PROJECT_TOOL_SHARED_SOURCES += $(PROJECT_TOOL_CAPTURE_SOURCES)
+PROJECT_TOOL_SHARED_SOURCES += $(PROJECT_TOOL_CAPTURE_SOURCES) $(PROJECT_TOOL_RECORD_SOURCES)
 LOCAL_SOURCES := $(patsubst ./%,%,$(call source_files,.))
 CONFIGURATION_DIRECTORY := $(ROOT)/build/project-tool
 OBJECTS := $(patsubst %.c,$(CONFIGURATION_DIRECTORY)/local/%.o,$(LOCAL_SOURCES)) \

@@ -11,6 +11,7 @@
 #include "../proof/proof.h"
 #include "../configuration/check.h"
 #include "../../removal/selection/selection.h"
+#include "../../transaction/forest/forest.h"
 /** An authorized prepared exact root set for one final physical package scope.
  * All three owners remain immutable and outlive plan destruction/proof. */
 typedef struct {
@@ -42,7 +43,7 @@ typedef struct {
 /** Preserve exact failed preparation boundary instead of guessing from messages. */
 typedef enum { SOURCE_COPY_PLAN_OK, SOURCE_COPY_PLAN_INVALID, SOURCE_COPY_PLAN_MODE,
     SOURCE_COPY_PLAN_REMOVAL, SOURCE_COPY_PLAN_IMAGE, SOURCE_COPY_PLAN_CAPTURE,
-    SOURCE_COPY_PLAN_ENVIRONMENT, SOURCE_COPY_PLAN_CONFIGURATION } SourceCopyPlanStatus;
+    SOURCE_COPY_PLAN_ENVIRONMENT, SOURCE_COPY_PLAN_CONFIGURATION, SOURCE_COPY_PLAN_MUTATIONS } SourceCopyPlanStatus;
 /** Own image rows, final capture and independent final package environment.
  * Borrow all input owners until destruction. prepared proves read-only image/
  * cut/configuration preparation only; compiler/proof, freshness and recoverable
@@ -53,6 +54,9 @@ typedef struct {
     SourcePackageEnvironment environment;
     SourceCopyPlanInputs inputs;
     const SourceCatalogImage *image;
+    SourceMutationForest mutations;
+    SourceForestStatus mutation_status;
+    SourceForestIssue mutation_issue;
     SourceRemovalReview removal_review;
     SourceRemovalStatus removal_status;
     SourceCopyImageIssue image_issue;
@@ -73,7 +77,8 @@ void source_copy_plan_destroy(SourceCopyPlan *);
  * verify its observed bytes/kinds and exact supplemental removal accounting,
  * then assemble/capture the simultaneous image and rebuild all package scopes.
  * Every actual final scope requires exactly one valid supplied expectation;
- * extra/missing/duplicate or unequal root sets refuse. Publish prepared only
+ * extra/missing/duplicate or unequal root sets refuse. Derive complete disjoint
+ * mutation trees with stable observed parents for later staging. Publish prepared only
  * after all gates. Failure retains destructible typed child evidence.
  *
  * No source I/O, compiler/test/native execution or mutation. Inputs/supplemental

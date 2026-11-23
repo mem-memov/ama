@@ -36,5 +36,8 @@ SourceCopyPlanStatus source_copy_plan_build(SourceCopyPlan *plan, const SourceCo
     if (source_image_capture_build(&plan->capture, plan->image) != SOURCE_IMAGE_CAPTURE_OK) { return plan->status = SOURCE_COPY_PLAN_CAPTURE; }
     if (source_package_environment_build(&plan->environment, &plan->capture.catalog) != SOURCE_ENVIRONMENT_OK) { return plan->status = SOURCE_COPY_PLAN_ENVIRONMENT; }
     plan->status = source_copy_plan_configurations(plan);
-    plan->prepared = plan->status == SOURCE_COPY_PLAN_OK; return plan->status;
+    if (plan->status != SOURCE_COPY_PLAN_OK) { return plan->status; }
+    plan->mutation_status = source_mutation_forest(&plan->arena, &inputs->observed->image, plan->image, &plan->mutations, &plan->mutation_issue);
+    if (plan->mutation_status != SOURCE_FOREST_OK) { plan->failed_path = plan->mutation_issue.path; return plan->status = SOURCE_COPY_PLAN_MUTATIONS; }
+    plan->prepared = true; return plan->status = SOURCE_COPY_PLAN_OK;
 }

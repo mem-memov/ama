@@ -3,6 +3,31 @@
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
  */
 #include "../../../../../../tools/project/source/copy/plan/plan.h"
+#include "../../../../../../tools/project/source/transaction/document/document.h"
+/** Durable image records retain the same material/compiler proof after the
+ * temporary JSON text expires; decoded data has no independent mutation authority. */
+static void check_recorded_copy_plan(SourceArena *arena, const SourceCopyPlan *plan,
+    const SourceCompilerClient *client, const char *const *removed, size_t removed_count) {
+    FILE *stream = tmpfile(); assert(stream);
+    assert(source_image_document_write(stream, plan->image));
+    long length = ftell(stream); assert(length >= 0 && fseek(stream, 0, SEEK_SET) == 0);
+    unsigned char *bytes = source_arena_allocate(arena, (size_t)length); assert(bytes);
+    assert(fread(bytes, 1, (size_t)length, stream) == (size_t)length && fclose(stream) == 0);
+    SourceManager record; source_manager_init(&record, sources.allocator);
+    const SourceText *text = NULL;
+    assert(source_manager_add(&record, "recorded-plan.json", bytes, (size_t)length, &text) == SOURCE_OK);
+    SourceImageDocument document; source_image_document_init(&document, sources.allocator);
+    assert(source_image_document_read(&document, text) == SOURCE_JSON_OK);
+    source_manager_destroy(&record);
+    SourceImageCapture decoded; source_image_capture_init(&decoded, sources.allocator);
+    assert(source_image_capture_build(&decoded, &document.image) == SOURCE_IMAGE_CAPTURE_OK);
+    SourceCopyProofIssue issue;
+    const SourceCopyPlanInputs *inputs = &plan->inputs;
+    assert(source_copy_prove(arena, inputs->copy->expansion.analysis, inputs->mains,
+        inputs->files, inputs->texts, inputs->contexts, &decoded, client, removed,
+        removed_count, &issue) == SOURCE_COPY_PROOF_OK);
+    source_image_capture_destroy(&decoded); source_image_document_destroy(&document);
+}
 /** A source cycle can be moved only as one reviewed union. The final source
  * snapshot changes, so a client for the earlier copy-only image must refuse. */
 static void check_copy_plan_removals(SourceArena *arena, const SourceCopyPlanInputs *baseline) {
@@ -28,13 +53,22 @@ static void check_copy_plan_removals(SourceArena *arena, const SourceCopyPlanInp
     SourceCopyPlan plan; source_copy_plan_init(&plan, sources.allocator);
     SourceCopyPlanStatus status = source_copy_plan_build(&plan, &inputs);
     if (status != SOURCE_COPY_PLAN_OK) { fprintf(stderr, "move plan status=%d path=%s review=%d\n", status, plan.failed_path ? plan.failed_path : "(none)", plan.removal_status); }
-    assert(status == SOURCE_COPY_PLAN_OK);
+    /* main.payload is a sibling companion, not a descendant of the main
+     * file or main+ directory, so it is its own seventh mutation root. */
+    assert(status == SOURCE_COPY_PLAN_OK && plan.mutations.count == 7);
+    bool payload_root = false;
+    for (size_t i = 0; i < plan.mutations.count; i++) {
+        const char *name = plan.mutations.roots[i].name;
+        if (!strcmp(name, "main.payload")) { payload_root = true; }
+    }
+    assert(payload_root);
     FILE *request = fopen("generated/final-move-plan.json", "wb"); assert(request);
     assert(delivery_source_snapshot_write(request, &plan.capture.view) && fclose(request) == 0);
     SourceCompilerClient client; source_compiler_client_init(&client, sources.allocator);
     assert(source_compiler_client_run(&client, "../../../../../../ama", "generated/final-move-plan.json", &plan.capture.view, NULL) == SOURCE_COMPILER_OK);
     SourceCopyProofIssue proof;
     assert(source_copy_plan_prove(&plan, &client, &proof) == SOURCE_COPY_PROOF_OK);
+    check_recorded_copy_plan(arena, &plan, &client, merged.identities, merged.identity_count);
     source_compiler_client_destroy(&client); source_copy_plan_destroy(&plan);
     inputs.change_count--; source_copy_plan_init(&plan, sources.allocator);
     assert(source_copy_plan_build(&plan, &inputs) == SOURCE_COPY_PLAN_REMOVAL && !plan.prepared);
@@ -88,8 +122,10 @@ static void check_copy_plan(SourceArena *arena, const SourceObservedImage *obser
     check_copy_plan_removals(arena, &inputs);
     SourceCopyPlan plan; source_copy_plan_init(&plan, sources.allocator);
     assert(source_copy_plan_build(&plan, &inputs) == SOURCE_COPY_PLAN_OK && plan.prepared);
+    assert(plan.mutations.count == 1 && !plan.mutations.roots[0].before_count && plan.mutations.roots[0].after_count);
     SourceCopyProofIssue proof;
     assert(source_copy_plan_prove(&plan, client, &proof) == SOURCE_COPY_PROOF_OK);
+    check_recorded_copy_plan(arena, &plan, client, NULL, 0);
     assert(source_copy_plan_prove(&plan, &analysis.original, &proof) == SOURCE_COPY_PROOF_INPUTS);
     assert(source_copy_plan_build(&plan, &inputs) == SOURCE_COPY_PLAN_INVALID && plan.prepared);
     source_copy_plan_destroy(&plan);

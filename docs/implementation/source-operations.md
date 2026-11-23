@@ -4044,3 +4044,76 @@ new importers/companions refuse without baseline replacement, and every measured
 allocation failure retires both leases and observation ownership. Next build the
 exact nonoverlapping mutation forest and persistent same-filesystem staging/journal
 protocol. T224 remains active; no public mutation/recovery acceptance is claimed.
+
+### Exact disjoint mutation forests and durable image records
+
+The next publication boundary stages a finite forest of nonoverlapping complete
+subtrees. Compare actual physical image keys, kind/mode/inode class and captured
+bytes; timestamps/unused stat fields do not create writes. The changed paths with
+no changed proper ancestor are the unique minimal ancestor cover. Every changed
+row belongs to one root, and no root overlaps another. Retain every original and
+final subtree row, including unchanged descendants, so backup/replacement is a
+whole-tree operation. Unknown bytes, incomplete directory material and missing
+stable complete parents refuse. The two images must describe the same physical
+observation universe: a root-setting omission alone never authorizes deletion.
+Root-setting work needs separate physical parent/domain preparation.
+
+This transformation is now part of the real root-preserving copy plan. A fresh
+vendor branch is one staged tree. The joint-cycle move has seven trees, including
+main.payload as its own sibling companion (not a descendant of main or main+).
+The first composite expectation incorrectly counted six; production already
+included the seventh correctly (`/tmp/ama-t224-forest-plan.exit = 2`). Preserve
+that failed result; after correcting the independently justified expectation and
+cleaning the failed fixture, the real copy/compile/proof composition passed
+(`/tmp/ama-t224-forest-plan-renewed.exit = 0`). Pure forest strict tests passed
+(`/tmp/ama-t224-forest-renewed.exit = 0`); the initial fixture compile omitted the
+X/Open feature declaration for S_IF* constants (`/tmp/ama-t224-forest.exit = 2`).
+No rule or production expectation changed to hide those fixture errors.
+
+Persistent publication also needs exact original/final image records, including
+binary opaque data, unknown observation precision, ordered roots/exclusions and
+full filesystem identity integers. Plan a closed versioned JSON data codec using
+the existing neutral lossless byte/integer reader/writer primitives, not hashes
+as equality certificates, compiler state or text rewriting. Independent before
+and after epoch owners permit different bytes at one physical path. Decoded
+images pass the existing topology validator before becoming consumable; schema
+success alone authorizes no source mutation. Test roundtrip binary/non-UTF8 data,
+unknown/empty states, malformed/duplicate/extra fields, exact integers and every
+allocation failure before using the records in a write-ahead journal.
+
+The image codec and forest now pass the complete source-operation parent
+(`/tmp/ama-t224-source-forest-record.exit = 0`) and documentation/header registry
+(`/tmp/ama-t224-forest-record-docs.exit = 0`, 3868 ready inputs, zero debts).
+The first image-record fixture compile lacked `<stdint.h>` for UINT64_C
+(`/tmp/ama-t224-image-document.exit = 2`); adding the actual declaration fixed
+that fixture. The next fault-output run exposed a real neutral JSON writer bug:
+stdio could retain ferror after a callback failure even when fwrite/fflush returned
+success. Production stream writes/finalization now retain that sticky failure;
+all measured write ordinals refuse incomplete records. Strict codec acceptance
+(`/tmp/ama-t224-image-document-final.exit = 0`), codec ASan/UBSan with the recorded
+non-PIE/LSan restriction (`/tmp/ama-t224-image-document-sanitizers.exit = 0`) and
+the upstream strict JSON writer leaf (`/tmp/ama-t224-json-stream.exit = 0`) pass.
+The original failed callback-output assertion remains recorded in
+`/tmp/ama-t224-image-document-renewed.exit = 2`; it was not weakened or skipped.
+
+An additional actual-copy/move composition encodes the fully prepared final image,
+decodes it into an independent epoch, expires the temporary JSON source owner,
+rebuilds common final catalog/input capture and reruns the production physical/
+material/graph/site proof against the successful independent compiler response.
+The first fixture compile used pointer-to-pointer instead of the borrowed analysis
+pointer (`/tmp/ama-t224-recorded-copy.exit = 2`); the caller was corrected to match
+the production proof API. This is data-integrity evidence, not journal durability
+or public command acceptance. Those T224 obligations remain unfinished.
+
+The actual decoded copy/move composition passes strict checks
+(`/tmp/ama-t224-recorded-copy-renewed.exit = 0`) and the full copy leaf passes
+ASan/UBSan (`/tmp/ama-t224-recorded-copy-sanitizers.exit = 0`, same recorded
+non-PIE/LSan restriction). The forest leaf also passes ASan/UBSan
+(`/tmp/ama-t224-forest-sanitizers.exit = 0`). The independently linked tool builds
+(`/tmp/ama-t224-forest-record-tool-final.exit = 0`). After registering both pure
+and real consumer cases, `make docs-check` passes
+(`/tmp/ama-t224-recorded-copy-docs.exit = 0`, 3868 ready inputs, zero debts).
+All runs are collected; no active jobs remain. Next implement actual complete-tree
+materialization/readback and exact owned cleanup for saved and prepared copies,
+then durable write-ahead publication/recovery and public command assembly. T224
+remains active and is not eligible for DONE or task-completion claims.

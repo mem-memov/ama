@@ -23,3 +23,8 @@ PROJECT_TOOL_SHARED_SOURCES += source/path/syntax.c $(patsubst $(ROOT)/src/%,%,\
     $(call source_files,$(ROOT)/src/source/configuration) \
     $(call source_files,$(ROOT)/src/source/path/normalize))
 PROJECT_TOOL_SHARED_SOURCES := $(sort $(PROJECT_TOOL_SHARED_SOURCES))
+
+# Lossless image journal records share only neutral JSON scalar writers; no
+# compiler dispatcher, schema producer or execution state is linked here.
+PROJECT_TOOL_RECORD_SOURCES := $(patsubst $(ROOT)/src/%,%,\
+    $(call source_files,$(ROOT)/src/tools/output/json))
