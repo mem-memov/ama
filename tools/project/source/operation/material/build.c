@@ -13,12 +13,15 @@ SourceOperationMaterialStatus source_operation_material_build(SourceOperationMat
     if (review->intent_status != SOURCE_OPERATION_INTENT_OK) { return review->status = SOURCE_OPERATION_MATERIAL_INTENT; }
     review->plan = plan; review->intent = intent;
     review->explicit_mains.capture = plan->inputs.observed->original;
+    review->expected_mains.capture = plan->inputs.observed->original;
     review->omissions.copy = plan->inputs.copy; review->omissions.mains = plan->inputs.mains;
     review->status = source_operation_material_explicit(review);
     if (review->status != SOURCE_OPERATION_MATERIAL_OK) { return review->status; }
     review->status = source_operation_material_versions(review);
     if (review->status != SOURCE_OPERATION_MATERIAL_OK) { return review->status; }
     review->status = source_operation_material_logical(review);
+    if (review->status != SOURCE_OPERATION_MATERIAL_OK) { return review->status; }
+    review->status = source_operation_material_contexts(review);
     if (review->status != SOURCE_OPERATION_MATERIAL_OK) { return review->status; }
     review->status = source_operation_material_members(review);
     if (review->status != SOURCE_OPERATION_MATERIAL_OK) { return review->status; }

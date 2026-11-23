@@ -8905,3 +8905,35 @@ T201. Specification bytes have not changed.
   maintained pages, 12009 interfaces and 495 canonical destinations. The initial
   redundant task-note anchor was removed and regeneration passed. Final archive
   refresh is required before commit. Evidence and exact logs are in the task note.
+
+<a id="t293"></a>
+
+- [x] **T293 — Join actual command copy seeds and forced parent constraints.**
+  Status: completed; extracted from T290 after the accepted positional rule and
+  review of real consumers. Prerequisites: T289, T292. Own the exact raw C seeds,
+  shared original closure and logical destinations, designated version storage,
+  and positional parent proposals. Reuse the same parent operation to independently
+  reconstruct C in the common material certificate, preventing a command-only
+  interpretation. Accept actual standard/ordinary/draft/opaque/cyclic compositions,
+  whole-version authority coalescing, retained/missing/wrong-kind parents, foreign
+  handles, wrong ancestor maps, failed prefixes and every measured allocation
+  failure. Finish strict component/composition, sanitizer, coverage/header and
+  Doxygen checks. This delivers candidate/constraint components, not complete
+  command C/P/D or public copy/move. T295/T294/T290 consume these owners.
+  Record: [T290 construction steps](docs/implementation/source-operations.md#t290-command-relation-construction-after-t292).
+
+  Acceptance: actual command seed owners join raw C, shared closure/logical
+  destinations and unambiguous version storage. The same parent constructor
+  enforces positional correspondence in independent material rederivation.
+  Real final compiler/certificate tests accept automatic nearest/two-level parents
+  and reject wrong origins; cyclic ordinary dependencies and exact test mappings,
+  drafts, opaque zero-seed inputs, whole-version coalescing, observed regular and
+  wrong-kind parents, foreign handles and every measured custom allocation prefix
+  are covered. Full strict source-tool parent and standalone tool passed; the
+  final membership fix passed its minimal diagnostic, strict composed suite and
+  ASan/UBSan. LSan is unavailable under ptrace; allocator accounting is independent.
+  Official coverage reports 4087 ready inputs, zero debts. Final Doxygen 1.11.0
+  validated 3214 maintained pages, 12054 interfaces and 495 canonical destinations.
+  Earlier fixture/assertion/compile failures and their corrected scopes are retained
+  in the task note. No public command or complete T290 C/P/D support is claimed.
+  Archive navigation must be refreshed before this task's separate commit.

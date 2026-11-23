@@ -4,15 +4,17 @@
 
 This is the current implementation checkpoint, revised on 2026-11-23 from the
 actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
-accepted T275, T282, T283, T284, T285, T276, T286 and T289 below. The public operation is not
+accepted T275, T282, T283, T284, T285, T276, T286, T289 and T292 below. The public operation is not
 complete. [TODO](../../TODO.md#t287) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
 [PKG-04/09](../../spec/project/packages.md#pkg-04) and
 [PROJECT-01](../../spec/implementation/project-tools.md#project-01).
 This plan adds no alternative source language or compatibility contract.
-The next implementation task [T290](../../TODO.md#t290) resumes after the authorized
-[AMB-027](../../AMBIGUITIES.md#amb-027) positional-context clarification; T287 retains the complete
+[T293](../../DONE.md#t293) delivers accepted command seeds and shared positional
+parent constraints after the authorized [AMB-027](../../AMBIGUITIES.md#amb-027)
+clarification. Then review T295's actual source/target cuts and T294's future
+name facts before T290 completes command C/P/D. T287 retains the complete
 command-preparation integration gate.
 
 ### What the review established
@@ -67,7 +69,10 @@ next action; keep prior facts explicitly historical.
 | [T286](../../DONE.md#t286) | T276 | Explicit side-effect-free source request; T287 consumes it |
 | [T289](../../DONE.md#t289) | T276, T286 | Immutable command original capture, O/U/F proposals and protected requests; T290 consumes them |
 | [T292](../../DONE.md#t292) | T289 | Accepted positional ancestor contract and shared complete proof; T290 consumes it |
-| [T290](../../TODO.md#t290) | T289, T292 | Complete command C/P, context obligations and exact original D; T291 consumes them |
+| [T293](../../DONE.md#t293) | T289, T292 | Exact command seeds and shared positional parent constraints; T295/T294/T290 consume them |
+| [T295](../../TODO.md#t295) | T293 | Genuine source/target cut owners without selected-original reinterpretation |
+| [T294](../../TODO.md#t294) | T293, T295 | Exact future-selected name facts before final physical placement |
+| [T290](../../TODO.md#t290) | T289, T292, T293, T295, T294 | Complete command C/P, context obligations and exact original D; T291 consumes them |
 | [T291](../../TODO.md#t291) | T290 | Typed command rewrites and exact independently sealed final image; T287 consumes it |
 | [T287](../../TODO.md#t287) | T276, T286, T289, T290, T291 | Actual command-owned captured inputs and single complete plan; T288/T277 consume it |
 | [T288](../../TODO.md#t288) | T276, T287 | Deterministic actual-plan/refusal report; T277 consumes it |
@@ -89,7 +94,11 @@ flowchart TD
     plan --> request[T286: explicit source request]
     request --> captured[T289: immutable command originals]
     plan --> captured
-    captured --> relations[T290: complete command C/P and D]
+    captured --> seeds[T293: actual copy seeds and parent constraints]
+    seeds --> cuts[T295: original source and target cut owners]
+    seeds --> future[T294: future-selected main-name facts]
+    cuts --> future
+    future --> relations[T290: complete command C/P and D]
     relations --> typed[T291: typed writes and final sealing]
     typed --> inputs[T287: integrated command preparation]
     plan --> inputs
@@ -5963,3 +5972,189 @@ total pages. The archive refresh repeats generation against final maintained
 inputs before the T292 commit. T290 remains unfinished and consumes this shared
 proof; its next step is command C/P/context and exact removal construction.
 No public copy/move support or source publication is claimed by T292.
+
+### T290 command relation construction after T292
+
+Entry review against `ebd56cdf` reuses T289's genuine common original U and F
+settings and T292's positional proof. The first implementation step joins the
+actual raw placement to exact explicit C seeds, shared finite copy closure and
+ordinary logical destinations. Ordinary version storage must come from those
+explicit placements, not an independently guessed selected root: retain one
+physical authority per final version and reject conflicting authorities. The
+shared final environment remains the independent acceptance check in T291.
+
+Subsequent steps construct necessary positional context copies over actual
+unchanged/planned providers, complete raw/unit/test/declared P, and the exact
+MOVE/replacement original removal union. Candidate ownership must keep every
+failed prefix destructible and must not grant publication or final compilation
+authority. Positive/negative/failure tests accompany each step; T290 remains
+unfinished until the complete C/P/D deliverable passes its joined acceptance.
+
+T290 seed step implementation: command-owned seed metadata now reuses actual raw
+clone proposals, shared copy closure and logical destinations. Version storage
+is decoded through the admitted explicit root and canonical version component
+count, then independently decoded again as a version endpoint; no basename or
+fixed-length buffer is used in production. Equal physical authorities coalesce;
+conflicts refuse. The command preparation owner consumes and destroys this
+component before its original facts. Complete C/P/D and T291 remain unfinished.
+
+Initial strict seed test failures were fixture/assertion errors, retained in
+`/tmp/ama-t290-seeds.log` and `/tmp/ama-t290-seeds-reviewed.log`: draft fixture
+tests incorrectly referenced deliberately inactive definitions, then allocation
+enumeration incorrectly assumed an opaque-only zero-seed join must allocate.
+Draft fixture tests now remain independent executable modules; zero-allocation
+opaque preparation is explicitly expected. The actual reciprocal-reference
+ordinary case passed its four exact source/test logical destinations before
+the latter assertion. Clean rerun follows; no failed run is counted as acceptance.
+
+Collected strict seed composition rerun `/tmp/ama-t290-seeds-corrected.exit=0`
+passed ordinary reciprocal-reference dependencies and their exact test mappings,
+standard roots, inactive drafts, explicit cross-version refusal/extension, raw
+opaque zero-seed input, unchanged outputs on invalid version proposals, repeats
+and every measured custom allocation failure for standard/draft/opaque profiles.
+Next test addition covers coalescing two explicit draft main authorities in the
+same nested package version. Per-file coverage records now name the concrete
+preparation cases; they do not mark T290 or public commands complete.
+
+The coalescing seed test `/tmp/ama-t290-seeds-coalesced.exit=0` passed. Review
+then strengthens that fixture to a complete version copy with its four explicit
+source/test mains and carried configuration, instead of proposing a source-dir
+copy into itself. The earlier seed stage certified candidates only; overlap
+remains an intent gate and was not claimed accepted. The revised fixture permits
+its eventual use in a full operation composition.
+
+The whole-version sanitizer attempt stopped at an incorrect expected logical-row
+count (`/tmp/ama-t290-seeds-sanitizers.exit=2`). Inspection of the shared closure
+contract confirms structural ACTIVE includes explicitly selected drafts: all four
+raw mains have fixed logical rows, although only two are executable definitions.
+The test now asserts that distinction rather than treating semantic inactivity
+as permission to drop draft placement. No production behavior was changed.
+
+Parent-construction step: extract the accepted ancestor position operation into
+a shared allocation-free query used by both planning and final proof. Exact
+source-handle membership prevents a same-byte foreign handle from supplying an
+ancestor. Parent proposals scan actual plus components nearest first under F,
+retain observed regular mains and independently fixed explicit/active placements,
+and demand the corresponding original only for missing parents. Shared-map
+injectivity refuses conflicting placements; different context causes for one
+missing parent cannot select different originals. Sorted map insertion cannot
+hide an obligation: every added parent's strict destination ancestors are already
+a subset of the requester's scanned ancestors. Finite original handles bound
+new rows without a guessed recursion/iteration limit.
+
+Strict preparation `/tmp/ama-t290-parent-placement.exit=0` accepts the automatically
+constructed shortened and two-parent maps through actual final compilation and
+the same T276 seal. Every measured parent-planner allocation failure poisons
+sealing and releases its prefix. The preceding shared ancestor query run passed
+(`/tmp/ama-t290-ancestor-queries.exit=0`). Seed sanitizer rerun passed
+(`/tmp/ama-t290-seeds-sanitizers-corrected.exit=0`) with the documented ASan/UBSan
+flags and ptrace restriction. T290 still requires its command-wide complete
+C/P, original cut/replace union and composition acceptance; T291 remains pending.
+
+Common certificate composition now independently rebuilds C from raw and active
+rows and actual common final main discovery, then calls the same positional
+parent operation and compares both C inclusions. There is no second prepared
+image or compiler reply. This prevents a command-specific origin rule and rejects
+the wrong grandparent during material preparation, before final sealing; the
+direct final context gate still rejects it after independent final compilation.
+The actual automatic nearest/two-level proposals continue through the complete
+owner and seal. Strict joined preparation passed
+(`/tmp/ama-t290-material-parents-corrected.exit=0`). Its initial compile attempt
+used plan fields instead of the existing plan.inputs fields and failed; corrected
+without changing the contract (`/tmp/ama-t290-material-parents.exit=2`).
+
+Observed-provider cases passed (`/tmp/ama-t290-parent-providers.exit=0`): an
+existing regular main supplies a position even without a source ancestor; a
+missing original position refuses with the missing destination path; a directory
+cannot supply a module main. No destination material is created. Per-file records
+cover the new granular code/headers and tests. Next checks: the broader existing
+copy suite and sanitizers for shared material rederivation. T290 remains active
+until command-wide C/P/D construction, every required composition and the full
+documentation gates pass. No T290 commit or public support claim is made yet.
+
+### Entry-review split: T293 seeds, T295 cuts and T294 future name facts
+
+The implemented seed/parent/material components have a finite independently
+verified deliverable and actual consumers in command preparation and the common
+certificate. Isolate their acceptance as T293; T290 retains complete command
+C/P/D rather than calling this partial result complete. Strict broader copy
+acceptance passed `/tmp/ama-t290-copy-material.exit=0`.
+
+Physical placement of additional ordinary mains requires a complete proposed
+same-version main index, including surviving previously ignored suppliers that
+become selected under F. The old task order postponed all candidate facts until
+T291, after T290 needed them. Correct that engineering prerequisite: T295 first
+owns actual source/replacement cuts; T294 supplies non-authoritative future
+selection/name facts, and T290 joins/refines those facts with exact physical maps
+and the removal union. T291 still owns typed final rewrites, the sole accepted
+complete projection and independently compiled final sealing. No extra compiler
+semantics, network action, implicit configuration permission or spec change is
+introduced by the split.
+
+Candidate discovery must preserve the original selected U definitions and capture
+actual newly needed bytes before the original observer seals. Future selection
+is not source selection from an ignored version. Do not simply use the current
+selected catalog as a supposedly complete final-name index, validate every
+ignored version regardless of relevance, or use a second accepted final plan.
+If an overlay needs virtual directory identities while reading additional real
+metadata, preserve identity equality by explicit disjoint symbolic classes,
+not a reserved host inode/device guess. This is a candidate-fact implementation
+choice, not runtime identity or a new source definition. T294 must prove it with
+exact invariants and actual catalog compositions.
+
+Current task T293: all functional strict checks collected; next run sanitizers
+for the final shared rederivation, finish per-file documentation checks, archive
+and commit only that accepted foundation. T295/T294/T290 remain unfinished.
+
+T293 sanitizer acceptance collected `/tmp/ama-t293-sanitizers.exit=0` for the
+final command seed, ancestor-query, automatic parent, provider and independently
+rederived material composition. Flags: strict C11/Werror plus ASan/UBSan,
+`-fno-omit-frame-pointer -fno-pie -no-pie`; environment disables unsupported
+LeakSanitizer under ptrace and halts on other sanitizer errors. Every measured
+custom allocation prefix remains independently accounted for. Required remaining
+gates are the strict standalone project-tool build, affected full source-tool
+parent, coverage/headers and actual generated Doxygen navigation. Logs will use
+`/tmp/ama-t293-tool.log`, `/tmp/ama-t293-parent.log`,
+`/tmp/ama-t293-coverage.log` and `/tmp/ama-t293-doxygen.log`, each with an explicit
+collected exit receipt; launch alone is not acceptance. No jobs are active at
+this checkpoint. Finish these gates, archive T293 and commit it separately; then
+review T295 against the actual target-selection contracts before implementation.
+
+Collected pre-final-review gates: strict full source-tool parent
+`/tmp/ama-t293-parent.exit=0`, strict standalone tool
+`/tmp/ama-t293-tool.exit=0`, official coverage/standalone headers
+`/tmp/ama-t293-coverage.exit=0` (4087 ready, zero debts), and actual Doxygen
+`/tmp/ama-t293-doxygen.exit=0` (3214 maintained pages, 12054 interfaces, 495
+canonical destinations).
+
+Final review found a foreign-handle admission bug in the new ancestor query:
+its structural predicate read names/text before confirming pointer membership.
+A zero-initialized foreign ModuleSource may not supply those fields. The minimal
+host diagnostic `/tmp/ama-t293-foreign.c` linked the actual query/topology/text
+functions; it crashed with exit 139 before the fix. Membership now runs first,
+without reading the foreign descriptor fields. Maintained regression assertions
+cover foreign parent, foreign child, an empty unit list and ancestor lookup;
+outputs and allocation counts stay unchanged. Re-run the diagnostic, strict
+preparation and sanitizers for this local fix; previous broad positive/negative
+results remain scoped to the pre-fix revision. Final tool/documentation refresh
+will describe the fixed maintained inputs. No spec behavior was changed.
+
+Post-review foreign-handle regression is accepted: minimal actual-code diagnostic
+`/tmp/ama-t293-foreign-corrected.exit=0`, strict joined preparation
+`/tmp/ama-t293-membership.exit=0`, and ASan/UBSan joined preparation
+`/tmp/ama-t293-membership-sanitizers.exit=0`. This local fix checks exact membership
+before dereferencing any foreign module's name/text; all genuine input behavior
+remains covered by the earlier full parent run. Final tool and documentation
+refreshes use `/tmp/ama-t293-tool-final.log`,
+`/tmp/ama-t293-coverage-final.log`, `/tmp/ama-t293-doxygen-final.log`. Keep T293
+active until their actual exits are collected. No jobs remain active before
+launching those final checks; the next action is archive/commit after acceptance.
+
+T293 final fixed-input gates collected with exit zero:
+`/tmp/ama-t293-tool-final.exit`, `/tmp/ama-t293-coverage-final.exit` (4087 ready,
+zero debts) and `/tmp/ama-t293-doxygen-final.exit` (Doxygen 1.11.0; 3214 maintained
+pages, 12054 interfaces, 495 canonical destinations). All launched jobs have been
+collected. T293 is accepted and archived; regenerate documentation against the
+archive's final navigation before its separate commit. T295 is the next ready
+task, with entry review required before changing target selection. T294/T290/T291
+and public commands remain unfinished. This archive changes no code or spec.

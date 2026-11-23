@@ -6,6 +6,7 @@
 #ifndef AMA_SOURCE_COPY_CONTEXT_INTERNAL_H
 #define AMA_SOURCE_COPY_CONTEXT_INTERNAL_H
 #include "omissions.h"
+#include "ancestors.h"
 /** Borrow an exact canonical captured unit, or NULL. */
 const SourceCapturedUnit *source_copy_context_unit(const SourceCapturedUnit *, const char *);
 /** Borrow an original-key or final-key C row, or NULL. */

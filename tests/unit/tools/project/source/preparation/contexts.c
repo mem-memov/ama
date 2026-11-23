@@ -5,6 +5,7 @@
  * well-typed final code. No command-specific or mocked certificate is accepted.
  */
 #include "../../../../../../tools/project/source/copy/members/units.h"
+#include "../../../../../../tools/project/source/copy/contexts/ancestors.h"
 #include "../../../../../../src/delivery/source/snapshot/write.h"
 /** Borrow a real catalog main; failed lookup is an invalid fixture. */
 static const ModuleSource *find(const SourceRootCapture *capture, const char *identity) {
@@ -41,19 +42,49 @@ static void check_context_positions(bool deep) {
     SourceObservedImage observed; source_observed_image_init(&observed, allocator);
     SourceObservationStatus read = source_observed_image_build(&observed, original.original_capture, (SourceImageBounds){0}, NULL, 0);
     assert(read == SOURCE_OBSERVATION_OK);
-    for (unsigned grand = 0; grand < 2; grand++) {
+    const ModuleSource *original_child = find(original.original_capture, "//g/folder/a/child");
+    const ModuleSource *nearest = find(original.original_capture, "//g/folder/a");
+    const ModuleSource *outer = find(original.original_capture, "//g");
+    const SourceCapturedUnit *units = original.original_capture->units;
+    size_t position = SIZE_MAX, before_queries = allocation_count;
+    assert(source_copy_context_position(units, nearest, original_child, &position) && position == 0);
+    assert(source_copy_context_position(units, outer, original_child, &position) && position == 1);
+    assert(source_copy_context_ancestor(units, original_child, 0)->source == nearest);
+    assert(source_copy_context_ancestor(units, original_child, 1)->source == outer);
+    assert(!source_copy_context_ancestor(units, original_child, 2));
+    ModuleSource uninitialized = {0}; position = SIZE_MAX;
+    assert(!source_copy_context_position(units, &uninitialized, original_child, &position) && position == SIZE_MAX);
+    assert(!source_copy_context_position(units, nearest, &uninitialized, &position) && position == SIZE_MAX);
+    assert(!source_copy_context_position(NULL, &uninitialized, &uninitialized, &position) && position == SIZE_MAX);
+    assert(!source_copy_context_ancestor(units, &uninitialized, 0));
+    ModuleSource foreign = *nearest; position = SIZE_MAX;
+    assert(!source_copy_context_position(units, &foreign, original_child, &position) && position == SIZE_MAX);
+    assert(!source_copy_context_position(units, nearest, nearest, &position) && position == SIZE_MAX);
+    assert(!source_copy_context_position(units, nearest, original_child, NULL));
+    assert(!source_copy_context_ancestor(units, &foreign, 0) && !source_copy_context_ancestor(units, NULL, 0));
+    assert(allocation_count == before_queries);
+    check_context_parent_failures(&original, &copy, &observed);
+    for (unsigned choice = 0; choice < 3; choice++) {
+        bool grand = choice == 1, automatic = choice == 2;
         SourceArena arena; source_arena_init(&arena, allocator);
         SourceCloneMap mains; source_clone_map_init(&mains, allocator, original.original_capture);
         const SourceCloneMapping *row = NULL;
         SourceCloneStatus mapping = source_clone_map_add(&mains, find(original.original_capture, "//g/folder/a/child"), original.destination.path, deep ? "//b/inner/copy" : "//b/copy", &row);
         assert(mapping == SOURCE_CLONE_OK);
-        const char *path = source_arena_join(&arena, original.original_capture->roots[0].path, "/", "b"); assert(path);
-        mapping = source_clone_map_add(&mains, find(original.original_capture, (grand != deep) ? "//g" : "//g/folder/a"), path, "//b", &row);
-        assert(mapping == SOURCE_CLONE_OK);
-        if (deep) {
-            const char *inner = source_arena_join(&arena, original.original_capture->roots[0].path, "/", "b+/inner"); assert(inner);
-            mapping = source_clone_map_add(&mains, find(original.original_capture, grand ? "//g" : "//g/folder/a"), inner, "//b/inner", &row);
+        if (automatic) {
+            SourceCopyParentInputs parents = {.copy = &copy, .mains = &mains, .observed = &observed,
+                .roots = original.root_settings.final, .root_count = original.root_settings.final_count};
+            SourceCopyParentIssue parent_issue;
+            assert(source_copy_context_place(&parents, &parent_issue) == SOURCE_COPY_PARENT_OK);
+        } else {
+            const char *path = source_arena_join(&arena, original.original_capture->roots[0].path, "/", "b"); assert(path);
+            mapping = source_clone_map_add(&mains, find(original.original_capture, (grand != deep) ? "//g" : "//g/folder/a"), path, "//b", &row);
             assert(mapping == SOURCE_CLONE_OK);
+            if (deep) {
+                const char *inner = source_arena_join(&arena, original.original_capture->roots[0].path, "/", "b+/inner"); assert(inner);
+                mapping = source_clone_map_add(&mains, find(original.original_capture, grand ? "//g" : "//g/folder/a"), inner, "//b/inner", &row);
+                assert(mapping == SOURCE_CLONE_OK);
+            }
         }
         mapping = source_clone_map_seal(&mains); assert(mapping == SOURCE_CLONE_OK);
         SourceCopyContextOmissions contexts; source_copy_context_omissions_init(&contexts, allocator, &copy, &mains);
@@ -70,7 +101,8 @@ static void check_context_positions(bool deep) {
             .contexts = &contexts, .root_originals = original.root_settings.originals, .root_original_count = original.configured.root_count};
         SourceOperationComplete complete; source_operation_complete_init(&complete, allocator);
         SourceOperationCompleteStatus prepared = source_operation_complete_prepare(&complete, &inputs);
-        assert(prepared == SOURCE_OPERATION_COMPLETE_OK);
+        assert(prepared == (grand ? SOURCE_OPERATION_COMPLETE_MATERIAL : SOURCE_OPERATION_COMPLETE_OK));
+        if (grand) { assert(complete.material.status == SOURCE_OPERATION_MATERIAL_CONTEXT && !complete.prepared); }
         const char *request_path = grand ? "generated/grand.json" : "generated/nearest.json";
         FILE *output = fopen(request_path, "wb"); assert(output);
         bool encoded = delivery_source_snapshot_write(output, &complete.plan.capture.view); int saved = fclose(output); assert(encoded && !saved);
@@ -82,9 +114,9 @@ static void check_context_positions(bool deep) {
             == (grand ? SOURCE_COPY_CONTEXT_UNNECESSARY : SOURCE_COPY_CONTEXT_OK));
         assert(allocation_count == before);
         SourceOperationCompleteStatus sealed = source_operation_complete_seal(&complete, &final);
-        assert(sealed == (grand ? SOURCE_OPERATION_COMPLETE_PROOF : SOURCE_OPERATION_COMPLETE_OK));
+        assert(sealed == (grand ? SOURCE_OPERATION_COMPLETE_INVALID : SOURCE_OPERATION_COMPLETE_OK));
         assert(complete.sealed == !grand);
-        assert(complete.proof_status == (grand ? SOURCE_COPY_PROOF_CONTEXT : SOURCE_COPY_PROOF_OK));
+        if (!grand) { assert(complete.proof_status == SOURCE_COPY_PROOF_OK); }
         const char *tag = source_arena_join(&arena, original.original_capture->roots[0].path, "/", "b.tag"); assert(tag);
         const SourceText *actual = NULL;
         for (size_t i = 0; i < complete.plan.image->count; i++) {

@@ -12,6 +12,9 @@ ProjectSourcePreparationStatus project_source_preparation_original(ProjectSource
 /** Normalize destination and prepare exact F choices and one common original U,
  * then reconstruct actual raw placement over that U without source mutation. */
 ProjectSourcePreparationStatus project_source_preparation_destination(ProjectSourcePreparation *);
+/** Join exact copy/move seeds, finite closure and designated version proposals.
+ * Require completed original capture; this grants no final-plan authority. */
+ProjectSourcePreparationStatus project_source_preparation_seed(ProjectSourcePreparation *);
 /** Derive actual deletion material/settings, observe once and prepare the shared
  * complete owner. Borrow all exact source facts; never construct a copy closure. */
 ProjectSourcePreparationStatus project_source_preparation_delete(ProjectSourcePreparation *);

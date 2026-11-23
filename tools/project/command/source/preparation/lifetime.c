@@ -15,6 +15,7 @@ void project_source_preparation_init(ProjectSourcePreparation *owner, SourceAllo
     project_source_augmentation_init(&owner->augmentation, allocator);
     source_workspace_init(&owner->workspace, allocator);
     source_analysis_init(&owner->original, allocator);
+    project_source_seeds_init(&owner->seeds, allocator);
     source_removal_selection_init(&owner->removal, allocator);
     source_clone_map_init(&owner->mains, allocator, &owner->configured);
     source_file_map_init(&owner->files, allocator);
@@ -32,6 +33,7 @@ int project_source_preparation_destroy(ProjectSourcePreparation *owner) {
     source_observed_image_destroy(&owner->observed);
     source_file_map_destroy(&owner->files); source_clone_map_destroy(&owner->mains);
     source_removal_selection_destroy(&owner->removal);
+    project_source_seeds_destroy(&owner->seeds);
     source_analysis_destroy(&owner->original);
     int error = source_workspace_destroy(&owner->workspace);
     source_tree_placement_destroy(&owner->placement);

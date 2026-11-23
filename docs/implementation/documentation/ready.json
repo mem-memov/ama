@@ -210726,6 +210726,16 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ],
     "standalone_header_command": [
@@ -210825,6 +210835,16 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ]
   },
@@ -210846,6 +210866,16 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ],
     "standalone_header_command": [
@@ -210882,6 +210912,16 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ]
   },
@@ -211433,6 +211473,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ],
     "standalone_header_command": [
@@ -211504,6 +211554,11 @@
       {
         "source": "tests/unit/tools/project/source/preparation/main.c",
         "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
         "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ]
@@ -214738,6 +214793,16 @@
         "source": "tests/unit/tools/project/source/preparation/main.c",
         "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
         "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ],
     "standalone_header_command": [
@@ -214845,6 +214910,16 @@
         "source": "tests/unit/tools/project/source/preparation/main.c",
         "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
         "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ],
     "standalone_header_command": [
@@ -214906,6 +214981,16 @@
         "source": "tests/unit/tools/project/source/preparation/main.c",
         "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
         "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ]
   },
@@ -214961,6 +215046,21 @@
       {
         "source": "tests/unit/tools/project/source/preparation/main.c",
         "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
         "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ]
@@ -215876,6 +215976,406 @@
       {
         "source": "tests/unit/tools/project/source/preparation/main.c",
         "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/seeds/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Separate exact physical-version authority derivation from seed/closure orchestration.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/seeds/physical.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recover an exact ordinary version directory through its decoded root and validated version-component boundary, preserving failed outputs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/seeds/versions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Coalesce equal actual storage authorities and refuse ambiguous versions or cross-version copies lacking explicit dependency policy.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/seeds/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join actual raw main proposals, admitted original closure and shared logical destinations without a new binding solver.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/seeds/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retire seed destination borrowers, explicit rows, original closure captures and arena strings in dependency order.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/command/source/seeds/seeds.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Define immutable original/placement seed ownership and its candidate-only contract, separate from final command and publication authority.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/preparation/seed.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Admit captured copy/move owners and pass their actual placement, analysis, declarations, dependency policy and final roots to the seed composition.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/seeds/fixture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Build real nested ordinary and standard packages with drafts, reciprocal references, executable tests, opaque files and optional whole-version placement.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/seeds/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check real seed/closure destinations, whole-version authority coalescing, explicit policy refusal and immutable failure/repeat outputs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/seeds/failures.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Enumerate every measured seed allocation failure while preserving original facts, zero-allocation opaque success and exact cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_joins_actual_command_seeds_and_requires_explicit_cross_version_policy",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retires_every_command_seed_allocation_failure_and_rejects_invalid_admission",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/source/copy/contexts/ancestors.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Expose exact handle-based module-ancestor position and selection queries shared by proposal construction and final proof.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/contexts/ancestors.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Count only captured module ancestors and refuse foreign handles without allocation or path-depth guesses.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/source/copy/contexts/placement/placement.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Define forced parent proposal inputs and precise missing/provider/conflict failure witnesses independently of final operation authority.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/contexts/placement/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Separate parent-position scanning from exact observed/planned provider admission.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/contexts/placement/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Admit genuine original owners and bound positional parent additions through injective source mappings, poisoning failed prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/source/copy/contexts/placement/scan.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode physical plus-parent stems under exact final roots and visit occupied module positions nearest first.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/source/copy/contexts/placement/providers.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retain actual regular/planned independent parents or select the single corresponding original context, refusing invented or conflicting providers.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tools/project/source/operation/material/contexts.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Independently reconstruct canonical positional C from genuine raw/active rows and actual final capture, comparing both relation inclusions.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/parents.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Inject every measured parent-planner allocation failure against genuine originals and require poisoned sealing and complete cleanup.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/seeds/parents.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reject a missing original position and directory-as-main collision while retaining an actual existing regular parent without cloning it.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_retains_or_refuses_actual_parent_providers_without_inventing_ancestors",
         "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ]

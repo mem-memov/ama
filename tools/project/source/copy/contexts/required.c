@@ -18,18 +18,6 @@ static const AcquisitionRoleRecord *role(const SourceCopyClosure *copy, const ch
     while (row && strcmp(row->identity, identity)) { row = row->next; }
     return row;
 }
-/** Count strict intervening module parents, not path components. Actual captured
- * topology supplies a finite chain; retained parents count exactly like clones.
- * TOOL-01 matches positions, so equal counts identify the corresponding ancestor.
- * No allocation, mutation or filesystem query is needed. */
-static size_t intervening(const SourceCapturedUnit *units, const ModuleSource *parent, const ModuleSource *child) {
-    size_t count = 0;
-    for (; units; units = units->next) {
-        if (source_copy_context_parent(parent, units->source)
-            && source_copy_context_parent(units->source, child)) { count++; }
-    }
-    return count;
-}
 /** One actual original topology cause must still require this final plus parent.
  * Strict final ancestry makes chains of mapped context demands acyclic. */
 static bool demanded(const SourceCopyContextOmissions *owner, const SourceImageCapture *final,
@@ -40,11 +28,12 @@ static bool demanded(const SourceCopyContextOmissions *owner, const SourceImageC
         const SourceCapturedUnit *child = mapped ? source_copy_context_unit(final->units, mapped->identity) : NULL;
         const SourceCapturedUnit *original_child = source_copy_context_unit(owner->mains->capture->units, reason->requester->identity);
         const SourceCapturedUnit *original_parent = source_copy_context_unit(owner->mains->capture->units, context->identity);
+        size_t original_position, final_position;
         if (child && original_child && original_parent && !strcmp(source_path(child->source->text), mapped->path)
-            && source_copy_context_parent(original_parent->source, original_child->source)
-            && source_copy_context_parent(parent->source, child->source)
-            && intervening(owner->mains->capture->units, original_parent->source, original_child->source)
-                == intervening(final->units, parent->source, child->source)) {
+            && source_copy_context_position(owner->mains->capture->units, original_parent->source,
+                original_child->source, &original_position)
+            && source_copy_context_position(final->units, parent->source, child->source, &final_position)
+            && original_position == final_position) {
             issue->requester = reason->requester; return true;
         }
     }

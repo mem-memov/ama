@@ -12,13 +12,14 @@
 #include "../../copy/members/units.h"
 #include "../../copy/members/declared.h"
 #include "../../copy/tests/tests.h"
+#include "../../copy/contexts/placement/placement.h"
 /** Retain the exact failed owner/stage rather than infer meaning from diagnostics. */
 typedef enum { SOURCE_OPERATION_MATERIAL_OK, SOURCE_OPERATION_MATERIAL_INVALID,
     SOURCE_OPERATION_MATERIAL_INTENT, SOURCE_OPERATION_MATERIAL_EXPLICIT,
     SOURCE_OPERATION_MATERIAL_DESTINATIONS, SOURCE_OPERATION_MATERIAL_LOGICAL, SOURCE_OPERATION_MATERIAL_RAW,
     SOURCE_OPERATION_MATERIAL_UNITS, SOURCE_OPERATION_MATERIAL_TESTS,
     SOURCE_OPERATION_MATERIAL_DECLARED, SOURCE_OPERATION_MATERIAL_FILESET,
-    SOURCE_OPERATION_MATERIAL_MEMORY } SourceOperationMaterialStatus;
+    SOURCE_OPERATION_MATERIAL_MEMORY, SOURCE_OPERATION_MATERIAL_CONTEXT } SourceOperationMaterialStatus;
 /** Own rederived relation/candidate evidence and all failed prefixes. Borrow the
  * immutable prepared plan, intent and nested original owners through teardown.
  * valid proves material completeness and active ordinary name placement only;
@@ -27,10 +28,12 @@ typedef enum { SOURCE_OPERATION_MATERIAL_OK, SOURCE_OPERATION_MATERIAL_INVALID,
  */
 typedef struct SourceOperationMaterialReview {
     SourceArena arena;
-    SourceCloneMap explicit_mains;
+    SourceCloneMap explicit_mains, expected_mains;
     SourceCopyDestinations destinations;
     SourceFileMap expected;
     SourceCopyContextOmissions omissions;
+    SourceCopyParentStatus parent_status;
+    SourceCopyParentIssue parent_issue;
     const SourceOperationPlan *plan;
     const SourceOperationIntent *intent;
     const SourceVersionPlacement *versions;
@@ -58,7 +61,9 @@ void source_operation_material_destroy(SourceOperationMaterialReview *);
  * ordinary destinations through the common solver and version storage from the
  * actual final package environment. Rebuild P with the shared raw/unit/test/data
  * operations and compare both set inclusions. Ignore no mapped extra or missing
- * required member. Context omission remains subject to the final context proof.
+ * required member. Independently reconstruct context C from raw/active placements
+ * and the shared positional parent operation, comparing both map inclusions.
+ * Context omission remains subject to the final context proof.
  *
  * No I/O, execution, source mutation or source reanalysis. Failed prefixes remain
  * owned/invalid; exact child statuses and witnesses remain inspectable. Finite

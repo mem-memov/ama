@@ -8,6 +8,7 @@
 #define AMA_PROJECT_SOURCE_PREPARATION_H
 #include "../request.h"
 #include "../augmentation/augmentation.h"
+#include "../seeds/seeds.h"
 #include "../../../source/workspace/workspace.h"
 #include "../../../source/operation/complete/complete.h"
 /** Preserve the actual failed composed boundary rather than interpreting stderr. */
@@ -19,7 +20,7 @@ typedef enum { PROJECT_SOURCE_PREPARATION_OK, PROJECT_SOURCE_PREPARATION_INVALID
     PROJECT_SOURCE_PREPARATION_ANALYSIS, PROJECT_SOURCE_PREPARATION_REMOVAL,
     PROJECT_SOURCE_PREPARATION_MAPPING, PROJECT_SOURCE_PREPARATION_OBSERVATION,
     PROJECT_SOURCE_PREPARATION_COMPLETE, PROJECT_SOURCE_PREPARATION_COMPILER,
-    PROJECT_SOURCE_PREPARATION_SEAL } ProjectSourcePreparationStatus;
+    PROJECT_SOURCE_PREPARATION_SEAL, PROJECT_SOURCE_PREPARATION_SEEDS } ProjectSourcePreparationStatus;
 /** Borrow the parsed request and explicit external records through destruction.
  * temporary_parent is existing scratch, never an inferred semantic root. Inputs
  * and clients remain explicit; absent records do not claim outside-project safety. */
@@ -48,6 +49,7 @@ typedef struct {
     const SourceTreeSelection *selected;
     SourceWorkspace workspace;
     SourceAnalysis original;
+    ProjectSourceSeeds seeds;
     SourceRemovalSelection removal;
     SourceCloneMap mains;
     SourceFileMap files;
