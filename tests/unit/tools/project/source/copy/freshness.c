@@ -3,7 +3,7 @@
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
  */
 #include "../../../../../../tools/project/source/observation/freshness.h"
-#include "../../../../../../tools/project/source/transaction/lease/lease.h"
+#include "../../../../../../tools/project/source/transaction/guard/guard.h"
 /** Reordered rows/different text owners and unused timestamps preserve facts;
  * root, membership, precision, physical identity or byte changes do not. */
 static void it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses(void) {
@@ -53,23 +53,36 @@ static void it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_r
     SourceObservationRequest request = {payload, SOURCE_OBSERVE_CONTENT, false};
     SourceObservedImage baseline; source_observed_image_init(&baseline, sources.allocator);
     assert(source_observed_image_build(&baseline, &capture, &request, 1) == SOURCE_OBSERVATION_OK);
+    size_t total = 0, live = live_allocations;
+    for (size_t failure = 0; !failure || failure <= total; failure++) {
+        SourceTransactionGuard guard; source_transaction_guard_init(&guard, sources.allocator);
+        size_t before = allocation_count; if (failure) { failure_at = before + failure; }
+        SourceGuardStatus status = source_transaction_guard_acquire(&guard, &baseline, (SourceLeaseControl){0});
+        if (!failure) { assert(status == SOURCE_GUARD_OK); total = allocation_count - before; assert(total); }
+        else { assert(status != SOURCE_GUARD_OK && !guard.valid); }
+        failure_at = 0; assert(source_transaction_guard_destroy(&guard) == 0 && live_allocations == live);
+    }
     const SourceFreshnessStatus expected[] = {SOURCE_FRESH_OK, SOURCE_FRESH_MEMBERSHIP, SOURCE_FRESH_CONTENT, SOURCE_FRESH_IDENTITY};
     for (unsigned profile = 0; profile < 4; profile++) {
         if (profile == 1) { file("generated/project/packages/vendor/pkg/v1.0.0/src/extra.blob", "ignored"); }
         if (profile == 2) { file(payload, "after!"); }
         if (profile == 3) { assert(rename(payload, "generated/saved-payload.blob") == 0); file(payload, "before"); }
-        SourceTransactionLease lease; source_transaction_lease_init(&lease, sources.allocator);
-        assert(source_transaction_lease_acquire(&lease, &baseline.image, (SourceLeaseControl){0}) == SOURCE_LEASE_OK);
-        SourceObservedImage fresh; source_observed_image_init(&fresh, sources.allocator);
-        assert(source_observed_image_build(&fresh, &capture, &request, 1) == SOURCE_OBSERVATION_OK);
-        SourceFreshnessIssue issue; size_t calls = allocation_count;
-        assert(source_observation_freshness(&baseline.image, &fresh.image, &issue) == expected[profile]);
-        assert(allocation_count == calls);
-        source_observed_image_destroy(&fresh);
-        assert(source_transaction_lease_destroy(&lease) == 0);
+        SourceTransactionGuard guard; source_transaction_guard_init(&guard, sources.allocator);
+        SourceGuardStatus status = source_transaction_guard_acquire(&guard, &baseline, (SourceLeaseControl){0});
+        assert(status == (profile ? SOURCE_GUARD_STALE : SOURCE_GUARD_OK));
+        assert(guard.freshness_status == expected[profile] && guard.lease.acquired);
+        assert(guard.valid == (profile == 0));
+        assert(source_transaction_guard_destroy(&guard) == 0);
         if (profile == 1) { assert(unlink("generated/project/packages/vendor/pkg/v1.0.0/src/extra.blob") == 0); }
         if (profile == 2) { file(payload, "before"); }
         if (profile == 3) { assert(unlink(payload) == 0 && rename("generated/saved-payload.blob", payload) == 0); }
+    }
+    const char *new_paths[] = {"generated/project/packages/vendor/pkg/v1.0.0/src/new importer", "generated/project/packages/vendor/pkg/v1.0.0/src/main.c"};
+    for (size_t i = 0; i < 2; i++) {
+        file(new_paths[i], i ? "opaque companion" : "@!\n");
+        SourceTransactionGuard guard; source_transaction_guard_init(&guard, sources.allocator);
+        assert(source_transaction_guard_acquire(&guard, &baseline, (SourceLeaseControl){0}) == SOURCE_GUARD_OBSERVATION && !guard.valid && guard.lease.acquired);
+        assert(source_transaction_guard_destroy(&guard) == 0 && unlink(new_paths[i]) == 0);
     }
     source_observed_image_destroy(&baseline); assert(unlink(payload) == 0);
     source_arena_destroy(&arena); finish();

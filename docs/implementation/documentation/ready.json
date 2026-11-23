@@ -208074,5 +208074,53 @@
         "command": "make -C tests/unit/tools/project/source/lease"
       }
     ]
+  },
+  "tools/project/source/transaction/guard/guard.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own automatic complete original reobservation under hierarchical exclusive access.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/guard/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Destroy fresh observations before releasing exclusion on every owned prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/transaction/guard/acquire.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct exact original observation precision and reject stale state under held leases.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
   }
 }

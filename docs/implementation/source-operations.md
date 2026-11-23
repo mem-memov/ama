@@ -4007,3 +4007,40 @@ leases through all publication/rollback steps. Root-setting changes and effectiv
 registry retirement for promotion still need their outer composition, distinct
 from physical deletion. Complete public acceptance before moving T224 to DONE;
 T236/T237 remain unstarted. No new semantic ambiguity or specification change.
+
+### Automatic leased original-state revalidation
+
+`transaction/guard/` owns hierarchical exclusion and the full common reobservation
+rather than requiring a caller to reconstruct precision correctly. From the exact
+sealed original image, content rows demand content, complete directories demand
+children and other known rows demand metadata. Unknown ignored rows are not
+upgraded. Ancestor complete listings also retain previously proved absence.
+Acquire the lease first; then rebuild the common original observer against the
+same immutable capture and compare exact keys, precision, identity/mode and bytes.
+New active importers/companions fail original observation consistency; ignored
+membership or opaque changes fail exact freshness. No newer baseline is accepted.
+A failed guard retains its owned exclusion until explicit destruction, allowing
+failure handling without another writer entering the middle of that handling.
+
+Finite original-row scans create O(N) request metadata; the accepted lease,
+observer and comparator bounds determine the rest. Observations retire before
+exclusion, so a valid guard can outlive all staged publication/rollback work.
+Build does no source mutation or runtime/native execution. Its success does not
+authorize a final image, configuration edits, removal or persistent publication.
+The real opaque/inode/membership fixture now consumes the guard directly instead
+of manually requesting a second observer. New importer and companion cases refuse
+at the observation boundary. Every measured guard allocation ordinal leaves no
+valid prefix and retires both descriptors and nested owners. Strict initial and
+expanded runs passed (`/tmp/ama-t224-guard.exit = 0`,
+`/tmp/ama-t224-guard-final.exit = 0`). Broader acceptance remains pending.
+
+Automatic guard acceptance completed: expanded strict copy leaf
+(`/tmp/ama-t224-guard-final.exit = 0`), full copy ASan/UBSan with recorded non-PIE
+flags/LSan restriction (`/tmp/ama-t224-guard-sanitizers.exit = 0`), independent
+tool build (`/tmp/ama-t224-guard-tool.exit = 0`) and `make docs-check`
+(`/tmp/ama-t224-guard-registry.exit = 0`, 3850 ready inputs, zero debts).
+All jobs collected. Original precision is reproduced exactly in the real fixtures;
+new importers/companions refuse without baseline replacement, and every measured
+allocation failure retires both leases and observation ownership. Next build the
+exact nonoverlapping mutation forest and persistent same-filesystem staging/journal
+protocol. T224 remains active; no public mutation/recovery acceptance is claimed.
