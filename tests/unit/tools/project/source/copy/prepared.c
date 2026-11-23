@@ -11,6 +11,7 @@
 #include "../../../../../../tools/project/source/graph/sites.h"
 #include <stdint.h>
 #include "../../../../../../tools/project/source/copy/image/image.h"
+#include "../../../../../../tools/project/source/copy/configuration/version.h"
 #include "../../../../../../tools/project/source/copy/members/units.h"
 #include "../../../../../../tools/project/source/copy/tests/tests.h"
 /** Choose the least unused synthetic (device 0,inode) class. At most the finite
@@ -89,11 +90,15 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     assert(requested == mapped);
     assert(source_observed_image_build(&observed, &capture, requests, requested) == SOURCE_OBSERVATION_OK);
     SourceManager prepared; source_manager_init(&prepared, sources.allocator);
-    const char *configuration_path = source_arena_join(&arena, version_path, "/", "package.ini"); assert(configuration_path);
-    const SourceText *configuration = NULL;
-    assert(source_manager_add(&prepared, configuration_path, (const unsigned char *)"", 0, &configuration) == SOURCE_OK);
-    SourceImageChange configuration_change = {SOURCE_IMAGE_ADD, {.path = configuration_path, .content = configuration,
-        .metadata = fresh_class(&observed.image, NULL, 0, false), .metadata_captured = true}};
+    const SourceCatalogImageEntry *configuration_mode = NULL;
+    const char *original_configuration_path = source_path(tree.units[0]->source->version->configuration);
+    for (size_t i = 0; i < observed.image.count; i++) {
+        if (!strcmp(observed.image.entries[i].path, original_configuration_path)) { configuration_mode = &observed.image.entries[i]; }
+    }
+    SourceVersionInitialization initialized; SourceVersionInitializationIssue initialization_issue;
+    assert(source_version_initialize(&arena, &prepared, &observed, &version, &files, configuration_mode, NULL, 0,
+        &initialized, &initialization_issue) == SOURCE_VERSION_INITIALIZATION_OK);
+    assert(initialized.count == 1 && !source_length(initialized.configuration));
     SourceTextEdits edits[4]; SourceGraphPreparedText provenance[4];
     for (size_t i = 0; i < 4; i++) {
         row = map.first;
@@ -113,7 +118,7 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
         provenance[i] = (SourceGraphPreparedText){i == 3 ? NULL : &provenance[i + 1], &edits[i]};
     }
     const SourceCatalogImage *image = NULL; SourceCopyImageIssue image_issue;
-    SourceCopyImageStatus image_status = source_copy_image_prepare(&arena, &observed.image, &files, provenance, &configuration_change, 1,
+    SourceCopyImageStatus image_status = source_copy_image_prepare(&arena, &observed.image, &files, provenance, initialized.changes, initialized.count,
         &image, &image_issue);
     if (image_status != SOURCE_COPY_IMAGE_OK) { fprintf(stderr, "image assembly: status=%d path=%s material=%d projection=%d\n",
         image_status, image_issue.path ? image_issue.path : "(none)", image_issue.material_status, image_issue.projection_status); }

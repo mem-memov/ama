@@ -8,13 +8,16 @@
 #ifndef AMA_PROJECT_SOURCE_PLACEMENT_IDENTITY_H
 #define AMA_PROJECT_SOURCE_PLACEMENT_IDENTITY_H
 #include "source/module/catalog.h"
+#include "source/path/logical.h"
 /** Structural interpretation is distinct from final selected-source authority. */
 typedef enum { SOURCE_IDENTITY_OK, SOURCE_IDENTITY_INVALID, SOURCE_IDENTITY_OUTSIDE,
     SOURCE_IDENTITY_NOT_MODULE, SOURCE_IDENTITY_AMBIGUOUS, SOURCE_IDENTITY_MEMORY } SourceIdentityStatus;
 /** Arena-owned candidate name and exact explicit root index; no filesystem lease. */
 typedef struct { const char *identity; size_t root; } SourcePlacedIdentity;
 /** Interpret a previously normalized absolute physical main under explicit final
- * roots. Root-local exclusions apply; ordinary roots require packages/dependencies,
+ * roots. Request MODULE_PATH_MODULE or MODULE_PATH_VERSION explicitly; other
+ * extents refuse. Versions are decoded directly, without a synthetic probe name
+ * or stripping module-area plus markers. Root-local exclusions apply; ordinary roots require packages/dependencies,
  * vendor/package/version and src/tests placement. Strip trailing plus only from
  * module-area directory components, never from package/version/area or a main's
  * basename. Validate with the shared canonical logical path predicate. Multiple
@@ -24,5 +27,5 @@ typedef struct { const char *identity; size_t root; } SourcePlacedIdentity;
  * physical aliases, required plus anchors or destination existence.
  */
 SourceIdentityStatus source_placement_identity(SourceArena *, const ModuleRoot *, size_t,
-    const char *path, SourcePlacedIdentity *output);
+    const char *path, ModulePathExtent, SourcePlacedIdentity *output);
 #endif

@@ -3685,3 +3685,56 @@ required empty src/tests for proved absent versions, preserving explicit carried
 configuration selection and agreeing with the already prepared P map. Then join
 exact final configuration-set checks and the remaining operation/transaction
 pipeline. T224 is active and unfinished; no new ambiguity or later TODO work.
+
+
+### Production structural initialization for absent versions
+
+Prepare zero-byte package.ini and required empty src/tests as supplemental changes
+for the existing simultaneous image assembler. P already supplies some area
+folders or descendants; omit duplicate area rows there and let exact ancestor
+scaffolding provide the directory. Explicit P-carried package.ini reports CARRIED
+so whole-version copying retains its own file; regular-file area collisions and
+reserved-change conflicts refuse. Use one actual original regular image row as
+an explicit file-mode prototype and the designated actual root's directory mode.
+New symbolic classes avoid original and previously reserved initialization rows.
+No source package aliases, selectors or repository tables are imported.
+
+Extend the existing physical identity decoder with an explicit requested module
+or ordinary-version extent, preserving all current module consumers. Decode a
+version directly by the canonical version structure; never append a made-up probe
+module that could collide with an exclusion. This shares root ambiguity/exclusion
+and canonical component validation. Share the exact absent-directory predicate
+between structural and permission initialization. Output publishes only after
+all changes and the empty source record succeed; paths/rows are arena-owned and
+configuration text belongs to the explicit source manager. No I/O or mutation.
+
+Plan actual immutable image/compiler integration, empty-area discovery, explicit
+carried config, existing/unknown version rejection, mismatched identity, reserved
+classes, malformed owners and all initialization allocation ordinals. Update the
+mapping consumer tests for explicit MODULE extent and add direct VERSION cases.
+Acceptance pending; T224 remains unfinished and no public command is claimed.
+
+
+Structural strict acceptance passed for actual copy/image/compiler composition
+(`/tmp/ama-t224-version-structure-final.exit = 0`; earlier initial structure run
+also passed) and explicit module/version mapping consumers
+(`/tmp/ama-t224-version-identities.exit = 0`). Production structural initialization
+replaces the real copy fixture's manually supplied zero-byte configuration.
+Independent images with two entirely empty versions retain required src/tests,
+strict empty scopes and disjoint reserved symbolic classes. P-carried config,
+regular area conflicts, mismatched/foreign placements, existing versions and
+all arena/source-manager allocation failures are covered. Source mode selection
+uses an explicit actual observed prototype, not a guessed metadata/file lookup.
+Final sanitizer/tool/header gate remains pending on the frozen maintained inputs.
+
+
+Structural acceptance completed: copy and mapping ASan/UBSan leaves exited zero
+(`/tmp/ama-t224-version-structure-sanitizers.exit`,
+`/tmp/ama-t224-version-identities-sanitizers.exit`), with the previously recorded
+non-PIE flags and LSan restriction. Tool build exited zero
+(`/tmp/ama-t224-version-structure-tool.exit`). `make docs-check` exited zero
+(`/tmp/ama-t224-version-structure-registry.exit`): 3820 ready inputs, zero debts.
+Strict copy/mapping and actual final compiler/site composition passed as above.
+All launched runs have been collected. T224 remains active; next join original
+removal sets for move plus replacement before their single safety review, then
+complete operation planning, public commands and recoverable publication.

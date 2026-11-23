@@ -37,16 +37,19 @@ static const char *module_area(const char *body) {
 }
 /** Build one structural spelling, then delegate all Unicode/name/version validation. */
 static SourceIdentityStatus candidate(SourceArena *arena, const ModuleRoot *root,
-    const char *path, const char **output) {
+    const char *path, ModulePathExtent extent, const char **output) {
     const char *body = path, *module;
     size_t leading = root->kind == MODULE_ROOT_STANDARD ? 2 : 1;
     if (root->kind == MODULE_ROOT_PROJECT) {
         if (!strncmp(body, "packages/", 9)) { body += 9; }
         else if (!strncmp(body, "dependencies/", 13)) { body += 13; }
         else { return SOURCE_IDENTITY_NOT_MODULE; }
-        module = module_area(body);
+        module = extent == MODULE_PATH_VERSION ? body + strlen(body) : module_area(body);
         if (!module) { return SOURCE_IDENTITY_NOT_MODULE; }
-    } else { module = body; }
+    } else {
+        if (extent != MODULE_PATH_MODULE) { return SOURCE_IDENTITY_NOT_MODULE; }
+        module = body;
+    }
     size_t length = strlen(body);
     if (length > SIZE_MAX - leading - 1) { return SOURCE_IDENTITY_MEMORY; }
     char *identity = source_arena_allocate(arena, length + leading + 1);
@@ -64,13 +67,14 @@ static SourceIdentityStatus candidate(SourceArena *arena, const ModuleRoot *root
         identity[used++] = '/'; cursor = slash + 1;
     }
     identity[used] = 0;
-    if (!module_path_canonical((const unsigned char *)identity, used)) { return SOURCE_IDENTITY_NOT_MODULE; }
+    ModulePathShape shape;
+    if (!module_path_describe((const unsigned char *)identity, used, &shape) || shape.extent != extent) { return SOURCE_IDENTITY_NOT_MODULE; }
     *output = identity;
     return SOURCE_IDENTITY_OK;
 }
 SourceIdentityStatus source_placement_identity(SourceArena *arena, const ModuleRoot *roots, size_t count,
-    const char *path, SourcePlacedIdentity *output) {
-    if (!arena || (count && !roots) || !path || path[0] != '/' || !output) { return SOURCE_IDENTITY_INVALID; }
+    const char *path, ModulePathExtent extent, SourcePlacedIdentity *output) {
+    if ((extent != MODULE_PATH_MODULE && extent != MODULE_PATH_VERSION) || !arena || (count && !roots) || !path || path[0] != '/' || !output) { return SOURCE_IDENTITY_INVALID; }
     bool covered = false, found = false;
     SourcePlacedIdentity result = {0};
     for (size_t index = 0; index < count; index++) {
@@ -83,7 +87,7 @@ SourceIdentityStatus source_placement_identity(SourceArena *arena, const ModuleR
         covered = true;
         if (module_path_excluded(root, part)) { continue; }
         const char *identity = NULL;
-        SourceIdentityStatus status = candidate(arena, root, part, &identity);
+        SourceIdentityStatus status = candidate(arena, root, part, extent, &identity);
         if (status == SOURCE_IDENTITY_MEMORY) { return status; }
         if (status != SOURCE_IDENTITY_OK) { continue; }
         if (found) { return SOURCE_IDENTITY_AMBIGUOUS; }

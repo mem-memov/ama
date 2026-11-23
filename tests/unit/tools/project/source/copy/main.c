@@ -15,6 +15,7 @@
 #include "contexts.c"
 #include "environment.c"
 #include "permissions.c"
+#include "versions.c"
 #include "permission-additions/fixture.c"
 #include "permission-additions/cases.c"
 #include "permission-additions/initialize.c"
@@ -24,6 +25,8 @@
 #include "failures.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes();
+    it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures();
     it_prepares_new_version_permissions_from_empty_scope_and_passes_actual_final_compiler();
     it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments();
     it_compares_exact_original_observation_facts_without_allocation_or_timestamp_guesses();

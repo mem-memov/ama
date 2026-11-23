@@ -30,7 +30,7 @@ SourceCloneStatus source_clone_map_propose_tree(SourceCloneMap *map, const Sourc
         issue->unit = unit; issue->path = entry ? entry->path : source_path(unit->source->text);
         if (!entry) { return map->status = SOURCE_CLONE_INVALID; }
         SourcePlacedIdentity identity = {0};
-        issue->identity_status = source_placement_identity(&map->arena, roots, count, entry->path, &identity);
+        issue->identity_status = source_placement_identity(&map->arena, roots, count, entry->path, MODULE_PATH_MODULE, &identity);
         if (issue->identity_status != SOURCE_IDENTITY_OK) {
             return map->status = issue->identity_status == SOURCE_IDENTITY_MEMORY
                 ? SOURCE_CLONE_MEMORY : SOURCE_CLONE_INVALID;

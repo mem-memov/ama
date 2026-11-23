@@ -118,6 +118,7 @@ static void it_rejects_foreign_or_invalid_proposals_and_accepts_an_empty_complet
 #include "operand-cases.c"
 /** Run finite injectivity, identity ownership, publication and failure boundaries. */
 void run(void) {
+    it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names();
     it_preserves_namespace_for_every_source_test_standard_pair();
     it_validates_plain_capture_adapters_and_retains_durable_conflict_witnesses();
     it_places_exact_unit_members_without_confusing_companions_or_prefix_peers();

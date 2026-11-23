@@ -199996,6 +199996,11 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_preserves_namespace_for_every_source_test_standard_pair",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
   },
@@ -200304,6 +200309,11 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_retires_every_joined_tree_proposal_allocation_without_partial_acceptance",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ],
     "standalone_header_command": [
@@ -200360,6 +200370,11 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_retires_every_joined_tree_proposal_allocation_without_partial_acceptance",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
   },
@@ -200400,6 +200415,11 @@
       {
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_retires_every_joined_tree_proposal_allocation_without_partial_acceptance",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
         "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
@@ -202241,6 +202261,16 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -207249,6 +207279,146 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_initialized_scope_allocations_and_refuses_existing_or_foreign_environments",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/configuration/absence.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare absent-version zero-byte configuration and required areas with exact placement/absence and preserved carried input ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/configuration/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare absent-version zero-byte configuration and required areas with exact placement/absence and preserved carried input ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/configuration/version.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare absent-version zero-byte configuration and required areas with exact placement/absence and preserved carried input ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/configuration/version.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare absent-version zero-byte configuration and required areas with exact placement/absence and preserved carried input ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/versions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare absent-version zero-byte configuration and required areas with exact placement/absence and preserved carried input ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
