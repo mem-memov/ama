@@ -14,11 +14,12 @@ bool source_copy_proof_material(const SourceCopyMaterial *, const SourceCatalogI
  * edges per definition, use O(T(C+D) + EH) comparisons and O(1) scratch. */
 bool source_copy_proof_edits(const DeliverySourceDefinition *, const SourceCloneMap *,
     const SourceGraphPreparedText *, SourceCopyProofIssue *);
-/** Preserve complete main/dot-companion bytes and membership for an ignored
- * original not physically removed; unavailable parent listings refuse. */
+/** Compare complete main/dot-companion bytes and membership against another
+ * immutable image. Use original-to-final for retired preserved suppliers and
+ * final-to-original for introduced untouched suppliers; unknown parents refuse. */
 bool source_copy_proof_preserved_unit(const SourceCapturedUnit *, const SourceCatalogImage *);
 /** Prove retained originals, C placement, complete companion membership and final
  * main accounting over validated immutable inputs; no allocation or publication. */
 SourceCopyProofStatus source_copy_proof_units(const SourceCloneMap *, const SourceFileMap *,
-    const SourceImageCapture *, const char *const *, size_t, SourceRegistryRetirement, SourceCopyProofIssue *);
+    const SourceImageCapture *, const char *const *, size_t, SourceRegistryRetirement, const SourceCopyIntroduction *, SourceCopyProofIssue *);
 #endif

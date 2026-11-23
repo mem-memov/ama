@@ -27,7 +27,7 @@ static void check_recorded_copy_plan(SourceArena *arena, const SourceOperationPl
     assert(source_image_capture_build(&decoded, &document.image) == SOURCE_IMAGE_CAPTURE_OK);
     SourceCopyProofIssue issue;
     const SourceOperationPlanInputs *inputs = &plan->inputs;
-    assert(source_copy_prove(arena, inputs->original, inputs->mains,
+    assert(source_copy_prove(arena, inputs->original, inputs->observed, inputs->mains,
         inputs->files, inputs->texts, inputs->contexts, &decoded, client, removed,
         removed_count, &issue) == SOURCE_COPY_PROOF_OK);
     source_image_capture_destroy(&decoded); source_image_document_destroy(&document);
@@ -131,7 +131,7 @@ static void check_copy_plan(SourceArena *arena, const SourceObservedImage *obser
     assert(source_operation_plan_prove(&plan, client, &proof) == SOURCE_COPY_PROOF_OK);
     check_recorded_copy_plan(arena, &plan, client, NULL, 0);
     check_copy_material_review(&plan);
-    assert(source_copy_prove(&plan.arena, inputs.original, map, files, texts,
+    assert(source_copy_prove(&plan.arena, inputs.original, inputs.observed, map, files, texts,
         NULL, &plan.capture, client, NULL, 0, &proof) == SOURCE_COPY_PROOF_INVALID);
     assert(source_operation_plan_prove(&plan, &analysis.original, &proof) == SOURCE_COPY_PROOF_INPUTS);
     assert(source_operation_plan_build(&plan, &inputs) == SOURCE_OPERATION_PLAN_INVALID && plan.prepared);

@@ -5,14 +5,14 @@
 /** Valid compiler inputs can still violate copy preservation: whitespace edits to
  * originals, leftover copied companions and changed opaque subtree bytes do not
  * require invalid Ama syntax or a graph mismatch. Prove the separate refusals. */
-static void check_copy_proof_refusals(SourceArena *arena, SourceManager *texts,
+static void check_copy_proof_refusals(SourceArena *arena, SourceManager *texts, const SourceObservedImage *observed,
     const SourceCloneMap *map, const SourceFileMap *files, const SourceGraphPreparedText *prepared,
     const SourceCopyContextOmissions *contexts, const SourceImageCapture *accepted, const SourceCompilerClient *accepted_client,
     const char *opaque_path) {
     SourceCopyProofIssue proof;
-    assert(source_copy_prove(arena, &analysis, map, files, prepared, NULL, accepted, accepted_client, NULL, 0, &proof) == SOURCE_COPY_PROOF_INVALID);
+    assert(source_copy_prove(arena, &analysis, observed, map, files, prepared, NULL, accepted, accepted_client, NULL, 0, &proof) == SOURCE_COPY_PROOF_INVALID);
     const char *invalid[] = {NULL};
-    assert(source_copy_prove(arena, &analysis, map, files, prepared, contexts, accepted, accepted_client, invalid, 1, &proof) == SOURCE_COPY_PROOF_INVALID);
+    assert(source_copy_prove(arena, &analysis, observed, map, files, prepared, contexts, accepted, accepted_client, invalid, 1, &proof) == SOURCE_COPY_PROOF_INVALID);
     for (unsigned variant = 0; variant < 3; variant++) {
         const SourceCatalogImage *image = accepted->image;
         SourceImageChange change = {.kind = variant == 1 ? SOURCE_IMAGE_ADD : SOURCE_IMAGE_UPDATE};
@@ -40,7 +40,7 @@ static void check_copy_proof_refusals(SourceArena *arena, SourceManager *texts,
         assert(delivery_source_snapshot_write(request, &captured.view) && fclose(request) == 0);
         SourceCompilerClient client; source_compiler_client_init(&client, sources.allocator);
         assert(source_compiler_client_run(&client, "../../../../../../ama", "generated/final-copy-refusal.json", &captured.view, NULL) == SOURCE_COMPILER_OK);
-        SourceCopyProofStatus status = source_copy_prove(arena, &analysis, map, files, prepared, contexts, &captured, &client, NULL, 0, &proof);
+        SourceCopyProofStatus status = source_copy_prove(arena, &analysis, observed, map, files, prepared, contexts, &captured, &client, NULL, 0, &proof);
         assert(status == (variant == 0 ? SOURCE_COPY_PROOF_ORIGINAL : variant == 1 ? SOURCE_COPY_PROOF_PLACEMENT : SOURCE_COPY_PROOF_MATERIAL));
         assert(proof.path && !strcmp(proof.path, path));
         source_compiler_client_destroy(&client); source_image_capture_destroy(&captured);

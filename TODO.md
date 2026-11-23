@@ -122,24 +122,6 @@ implementation/test/documentation/commit unit and remains unchecked. T224 keeps
 final acceptance; T236 still waits for it. Follow SRC-06, PKG-04/09, PROJECT-01
 and TOOL-01..04 throughout; no task authorizes a new language rule.
 
-<a id="t285"></a>
-
-- [ ] **T285 — Review newly selected untouched definitions after version selection.**
-  Status: planned; extracted by the continuing T276 entry review.
-  Prerequisites: T275 and T284. Reproduce deletion of an unreferenced local
-  package version that reveals its pre-existing ignored dependency copy. Compare
-  current old-or-C-only final-unit proof with TOOL-02/04's independent original/
-  final PKG-02 selection and unchanged physical material. Establish the exact
-  contract before broadening admission; stop for any unresolved observable
-  ambiguity. Reuse common catalog/version selection, distinguish real copied
-  definitions from untouched newly selected suppliers, preserve original
-  incoming-edge/client and unchanged-target laws, and reject arbitrary new code
-  or source-domain augmentation bypass. Accept malformed/unobserved fallback,
-  changed companions, outside old consumers, explicitly handled client roots,
-  successful final compiler evidence and allocation failures. No spec change is
-  authorized by this task. T276 consumes the reviewed registry boundary before
-  completing configuration and root/client/rebuild intentions.
-
 <a id="t276"></a>
 
 - [ ] **T276 — Prepare one complete immutable copy/delete/move plan.**

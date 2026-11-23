@@ -4,7 +4,7 @@
 
 This is the current implementation checkpoint, revised on 2026-11-23 from the
 actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
-accepted T275, T282, T283 and T284 below. The public operation is not
+accepted T275, T282, T283, T284 and T285 below. The public operation is not
 complete. [TODO](../../TODO.md#t276) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
@@ -59,7 +59,7 @@ next action; keep prior facts explicitly historical.
 | [T282](../../DONE.md#t282) | T275 | One simultaneous changed-root image through actual assembly and copy-plan consumers; T276 consumes it |
 | [T283](../../DONE.md#t283) | T275, T282 | One shared copy/deletion image and proof owner, with migrated real consumers; T276 supplies remaining authorization |
 | [T284](../../DONE.md#t284) | T275, T282, T283 | Request/material/main-edit review and final-root initialization; actual shared image/proof consumers |
-| [T285](../../TODO.md#t285) | T275, T284 | Exact admission boundary for untouched newly selected suppliers after PKG-02 selection |
+| [T285](../../DONE.md#t285) | T275, T284 | Exact admission boundary for untouched newly selected suppliers after PKG-02 selection |
 | [T276](../../TODO.md#t276) | T275, T282, T283, T284, T285 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
 | [T277](../../TODO.md#t277) | T276 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
 | [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
@@ -4862,3 +4862,103 @@ T276 still owns context necessity, complete supplemental-write authorization,
 root/client/rebuild intentions and final immutable sealing; public commands
 remain later tasks. The earlier I1/I2 checkpoints are historical intermediate
 evidence, not current active-job or unfinished-T284 statements.
+
+## T285 entry review and execution
+
+Prerequisites T275 and T284 are delivered at `c3171266`. TOOL-02 explicitly
+requires independent original/final PKG-02 whole-version selection. The existing
+unit and graph-site proof accepts only retained selected originals and C images;
+this must be compared with deleting a complete unreferenced local version which
+reveals the unchanged previously ignored external copy. The first step is an
+actual observed removal image and independent final compiler response. No
+requirement is changed and no newly selected definition is silently authorized.
+The test must preserve explicit original client/cut/unchanged-target laws.
+Current step: reproduce the exact failure before defining its narrow solution.
+
+### T285 exact selection/provenance argument
+
+The reproduction is confirmed: `/tmp/ama-t285-reproduction-corrected.exit = 0`
+asserts the prior PLACEMENT refusal after genuine original observation, complete
+local-version removal, common final selection and successful independent final
+compilation. The first fixture attempt incorrectly supplied relative explicit
+observation keys; correcting them to capture-owned absolute keys fixes the test
+without changing the product contract. The failed fixture log is
+`/tmp/ama-t285-reproduction.exit = 2`.
+
+Introduce a separately certified set J, never an inferred clone or a selected
+original. For each final unit outside retained original units and C:
+
+1. Its ordinary complete version has an originally selected *different* physical
+   supplier. Its main and version paths map to the same names under the exact
+   original roots/exclusions through the shared structural path interpreter.
+   Original successful whole-version discovery establishes why such an already
+   covered alternative was ignored; exclusions/new roots cannot manufacture
+   this premise after the fact. No storage-prefix or basename heuristic is used.
+2. The original sealed observer must contain its unchanged main, every dot
+   companion, complete parent membership and package configuration. Reuse the
+   exact existing preservation test in the reverse direction. Unknown content,
+   missing membership or changed bytes refuse. This proves unit/configuration
+   provenance, not authority to alter unobserved opaque files elsewhere.
+3. The actual full final compiler response must match the actual final capture.
+   No parser/source validity flag or compiler response is synthesized. Its newly
+   selected authors have no selected-original edge baseline. Restrict only the
+   final *author conservation query* to retained/C authors, retaining checked
+   response fields and dependency lists; run the existing full graph/site proof
+   on that exact subset. All actual final authors still passed normal admission.
+4. Before that restriction, reject a conserved original/copied edge which would
+   bind to J instead of its original unselected target. Explicit C substitution
+   for a copied edge still applies normally. Original removal/input/client cuts
+   remain mandatory in the shared operation plan; same names waive none of them.
+
+These checks are exact finite joins over real captured keys. J and the restricted
+query rows are arena-owned; source/capture/response data are borrowed. Failed
+prefixes never publish their output. The header gives algebraic time/storage
+bounds including the shared placement operations. J grants neither configuration
+write permission nor root/client/publication authorization; T276 still owns those.
+
+### T285 initial composition evidence
+
+The initial implementation passed `/tmp/ama-t285-introduction.exit = 0`.
+Outside original target refusal and existing full copy regression passed
+`/tmp/ama-t285-reselection-target.exit = 0` and
+`/tmp/ama-t285-copy-regression.exit = 0`.
+
+Expanded strict compositions passed
+`/tmp/ama-t285-compositions-corrected.exit = 0`: external-only module names,
+unchanged opaque companions, real shared-plan proof, explicit client KEEP refusal
+and DROP acceptance, changed main/companion/configuration bytes, missing companion,
+arbitrary new code, original excluded-root bypass refusal, actual incomplete
+observers and every measured introduction/full-proof allocation failure.
+A test initially assumed dropping a redundant parent-directory request erased
+parent evidence. Exact child probing already records the complete parent listing;
+its positive case is now accepted while missing configuration/main/companion bytes
+still refuse. Diagnostic failure is recorded in
+`/tmp/ama-t285-observation-diagnostic.exit = 2`; no requirement changed.
+
+Current step: final strict and ASan/UBSan compositions, independent tool build,
+per-file mapping, Doxygen/navigation, then archive/commit T285. All preceding test
+sessions are collected; no task completion is claimed by these initial receipts.
+
+### T285 final acceptance
+
+T285 is complete and archived in DONE. Final strict compositions and earlier
+copy regression are recorded above. Final current-code receipts are:
+
+- `/tmp/ama-t285-copy-sanitizers.exit = 0` and
+  `/tmp/ama-t285-removal-sanitizers.exit = 0`: strict ASan/UBSan suites, including
+  all measured allocation prefixes, caller-state preservation and reverse teardown.
+  LSan disabled because sandbox ptrace is unsupported; counted allocations checked.
+- `/tmp/ama-t285-build.exit = 0`: independent ama-project build.
+- `/tmp/ama-t285-coverage.exit = 0`: 3926 ready inputs, zero explicit debts.
+- `/tmp/ama-t285-doxygen.exit = 0`: Doxygen 1.11.0, 3056 maintained file pages,
+  11652 documented interfaces, 495 canonical destinations and 9507 HTML pages.
+- Task graph, canonical requirement index and prose navigation pass. The final
+  archival Doxygen refresh runs before this task's separate commit.
+
+All code/test/build/coverage and initial Doxygen jobs completed and were collected.
+No source code changed during those final runs. No spec files changed. The J
+provenance gate does not authorize configuration writes, root/client changes or
+publication; full-plan preparation/sealing remains T276. Next ready task: review
+T276 against the accepted request/material/edit/selection interfaces, then complete
+its remaining configuration/root/client/rebuild and seal steps. Do not repeat the
+completed T284/T285 foundations or claim public preview/application support.

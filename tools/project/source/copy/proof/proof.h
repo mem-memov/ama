@@ -11,12 +11,13 @@
 #include "../material/material.h"
 #include "../../mapping/correspondence.h"
 #include "../registry/retirement.h"
+#include "introduction/introduction.h"
 /** Separate malformed ownership, semantic input mismatch and failed copy laws. */
 typedef enum { SOURCE_COPY_PROOF_OK, SOURCE_COPY_PROOF_INVALID,
     SOURCE_COPY_PROOF_INPUTS, SOURCE_COPY_PROOF_CORRESPONDENCE,
     SOURCE_COPY_PROOF_MATERIAL, SOURCE_COPY_PROOF_PLACEMENT,
     SOURCE_COPY_PROOF_ORIGINAL, SOURCE_COPY_PROOF_CONTEXT,
-    SOURCE_COPY_PROOF_SITES, SOURCE_COPY_PROOF_REGISTRY, SOURCE_COPY_PROOF_EDITS } SourceCopyProofStatus;
+    SOURCE_COPY_PROOF_SITES, SOURCE_COPY_PROOF_REGISTRY, SOURCE_COPY_PROOF_EDITS, SOURCE_COPY_PROOF_INTRODUCTION } SourceCopyProofStatus;
 /** Borrow first failed physical/unit witnesses and retain exact child diagnostics. */
 typedef struct {
     const char *path;
@@ -27,6 +28,8 @@ typedef struct {
     SourceCopyContextIssue context;
     SourceSitesIssue sites;
     SourceRegistryStatus registry_status;
+    SourceIntroductionStatus introduction_status;
+    SourceIntroductionIssue introduction;
     const SourceGraphPreparedText *prepared;
     const SourceTextEdit *edit;
 } SourceCopyProofIssue;
@@ -43,7 +46,14 @@ typedef struct {
  * companion sets/bytes. An ignored original not physically removed must still
  * preserve its complete captured unit in the image; retirement cannot excuse
  * lost/changed bytes merely because the selected final view compiles.
- * Every final main is a retained original or a C image;
+ * Every final main is a retained original, C image, or certified untouched
+ * formerly ignored supplier after independent PKG-02 selection. Such suppliers
+ * require the same identity under original roots, an originally selected other
+ * copy of their version, complete original observed main/companion/configuration
+ * preservation, and final common compiler admission. Their final authors have no
+ * original selected edge baseline; conserved original/copied edges may not change
+ * target to them. The original observer must belong to C's exact capture.
+ * For every C image,
  * copied companions must belong to P, preventing leftover replacement material.
  * Main-file edits must remain wholly inside explicit original module operands.
  * Zero-width insertions require strict interior positions: boundary-biased site
@@ -71,7 +81,7 @@ typedef struct {
  * [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03)
  * retains independent original-cut authorization at the enclosing plan boundary.
  */
-SourceCopyProofStatus source_copy_prove(SourceArena *, const SourceAnalysis *,
+SourceCopyProofStatus source_copy_prove(SourceArena *, const SourceAnalysis *, const SourceObservedImage *,
     const SourceCloneMap *, const SourceFileMap *, const SourceGraphPreparedText *,
     const SourceCopyContextOmissions *, const SourceImageCapture *, const SourceCompilerClient *,
     const char *const *removed, size_t, SourceCopyProofIssue *);

@@ -9,7 +9,7 @@ SourceCopyProofStatus source_operation_plan_prove(SourceOperationPlan *plan, con
         if (issue) { *issue = (SourceCopyProofIssue){0}; } return SOURCE_COPY_PROOF_INVALID;
     }
     const SourceOperationPlanInputs *inputs = &plan->inputs;
-    return source_copy_prove(&plan->arena, inputs->original,
+    return source_copy_prove(&plan->arena, inputs->original, inputs->observed,
         inputs->mains, inputs->files, inputs->texts, inputs->contexts, &plan->capture, client,
         inputs->removal ? inputs->removal->identities : NULL,
         inputs->removal ? inputs->removal->identity_count : 0, issue);

@@ -8737,3 +8737,35 @@ T201. Specification bytes have not changed.
   no complete-plan seal, root/client/configuration authorization or public
   preview/application support is claimed. Receipts and next entry review are in
   the linked record. No specification files changed.
+
+<a id="t285"></a>
+
+- [x] **T285 — Review newly selected untouched definitions after version selection.**
+  Status: completed; entry review established the canonical selection boundary.
+  Prerequisites: T275 and T284. Reproduce deletion of an unreferenced local
+  package version that reveals its pre-existing ignored dependency copy. Compare
+  current old-or-C-only final-unit proof with TOOL-02/04's independent original/
+  final PKG-02 selection and unchanged physical material. Establish the exact
+  contract before broadening admission; stop for any unresolved observable
+  ambiguity. Reuse common catalog/version selection, distinguish real copied
+  definitions from untouched newly selected suppliers, preserve original
+  incoming-edge/client and unchanged-target laws, and reject arbitrary new code
+  or source-domain augmentation bypass. Accept malformed/unobserved fallback,
+  changed companions, outside old consumers, explicitly handled client roots,
+  successful final compiler evidence and allocation failures. No spec change is
+  authorized by this task. T276 consumes the reviewed registry boundary before
+  completing configuration and root/client/rebuild intentions.
+
+  Delivered exact formerly ignored supplier introduction checks without changing
+  original semantic coverage, clone identity or incoming-target/client laws.
+  Required observed main/companion/configuration membership and bytes, actual final
+  compiler admission and explicit client dispositions; retained the original graph
+  conservation query for all conserved authors. Migrated the full proof to require
+  its actual original observer; retained no old compatibility entry. Acceptance:
+  strict real reselection compositions and existing copy regression; final strict
+  ASan/UBSan copy/removal suites with measured introduction/full-proof allocation
+  failures; independent ama-project build; 3926 ready documentation inputs/zero
+  debt; Doxygen 1.11.0 validated 3056 maintained file pages and 11652 interfaces.
+  LSan remains disabled under unsupported sandbox ptrace, with counted teardown
+  checked. No spec changes or complete-operation/public-command claim. Detailed
+  invariants, corrected fixture assumptions and receipts are in the linked record.

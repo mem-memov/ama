@@ -1,8 +1,8 @@
 /** @file
- * @brief Preserve complete ignored original units without treating retirement as deletion permission.
+ * @brief Compare complete captured unit membership/bytes with another immutable physical image.
  * [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02)
- * preserves original main/companion material, even after a different copy supplies
- * the same nominal Type. [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04)
+ * preserves original main/companion material when suppliers lose selection,
+ * and certifies unchanged observed material when ignored suppliers gain it. [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04)
  * requires complete observed membership rather than assuming missing companions.
  */
 #include <string.h>

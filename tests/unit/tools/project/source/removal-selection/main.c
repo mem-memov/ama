@@ -12,8 +12,20 @@
 #include "cases/plan-inputs.c"
 #include "cases/image.c"
 #include "cases/merge.c"
+#include "reselection/fixture.c"
+#include "reselection/image.c"
+#include "reselection/cases.c"
+#include "reselection/unknown.c"
+#include "reselection/changes.c"
+#include "reselection/failures.c"
+#include "reselection/plan.c"
 /** Run actual missing/present test material, exact original cuts, overlap and allocation ownership. */
 void run(void) {
+    it_requires_original_configuration_main_companion_and_parent_observations_for_reselection();
+    it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile();
+    it_retires_every_reselection_allocation_and_preserves_invalid_outputs();
+    it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices();
+    it_accepts_untouched_external_reselection_and_refuses_original_target_substitution();
     it_prepares_exact_removal_demands_and_retires_failed_outputs();
     it_refuses_mixed_copy_deletion_plan_owners();
     it_merges_joint_original_cuts_and_proves_the_actual_final_image();

@@ -5,12 +5,13 @@
  * requires the compiler response to match the actual prepared input set.
  */
 #include "internal.h"
-SourceCopyProofStatus source_copy_prove(SourceArena *arena, const SourceAnalysis *original,
+SourceCopyProofStatus source_copy_prove(SourceArena *arena, const SourceAnalysis *original, const SourceObservedImage *observed,
     const SourceCloneMap *map, const SourceFileMap *files, const SourceGraphPreparedText *prepared,
     const SourceCopyContextOmissions *contexts, const SourceImageCapture *final, const SourceCompilerClient *client,
     const char *const *removed, size_t count, SourceCopyProofIssue *issue) {
     if (!issue) { return SOURCE_COPY_PROOF_INVALID; } *issue = (SourceCopyProofIssue){0};
     if (!arena || !original || !original->valid || !map || !map->ready || !map->capture || !map->capture->valid
+        || !observed || !observed->valid || !observed->sealed || observed->original != map->capture
         || !files || !files->ready
         || !final || !final->valid || !client || !client->valid || (count && !removed)) { return SOURCE_COPY_PROOF_INVALID; }
     if (contexts) {
@@ -30,9 +31,16 @@ SourceCopyProofStatus source_copy_prove(SourceArena *arena, const SourceAnalysis
     issue->material_status = source_copy_material_prepare(arena, files, prepared, &material, &issue->material);
     if (issue->material_status != SOURCE_MATERIAL_OK || !source_copy_proof_material(&material, final->image, &issue->path)) { return SOURCE_COPY_PROOF_MATERIAL; }
     if (!source_copy_proof_edits(original->original.response.definitions, map, prepared, issue)) { return SOURCE_COPY_PROOF_EDITS; }
-    SourceCopyProofStatus units = source_copy_proof_units(map, files, final, removed, count, retired, issue);
+    SourceCopyIntroduction introduced;
+    issue->introduction_status = source_copy_introduction_prepare(arena, observed, final, map, retired,
+        original->original.response.definitions, client->response.definitions, &introduced, &issue->introduction);
+    if (issue->introduction_status != SOURCE_INTRODUCTION_OK) {
+        issue->path = issue->introduction.path; issue->unit = issue->introduction.unit;
+        return SOURCE_COPY_PROOF_INTRODUCTION;
+    }
+    SourceCopyProofStatus units = source_copy_proof_units(map, files, final, removed, count, retired, &introduced, issue);
     if (units != SOURCE_COPY_PROOF_OK) { return units; }
     if (contexts && source_copy_context_omissions_check(contexts, final, retired.names, retired.count, &issue->context) != SOURCE_COPY_CONTEXT_OK) { return SOURCE_COPY_PROOF_CONTEXT; }
-    if (source_graph_sites(original->original.response.definitions, client->response.definitions, map, removed, count, retired, prepared, &issue->sites) != SOURCE_SITES_OK) { return SOURCE_COPY_PROOF_SITES; }
+    if (source_graph_sites(original->original.response.definitions, introduced.conserved, map, removed, count, retired, prepared, &issue->sites) != SOURCE_SITES_OK) { return SOURCE_COPY_PROOF_SITES; }
     *issue = (SourceCopyProofIssue){0}; return SOURCE_COPY_PROOF_OK;
 }

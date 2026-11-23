@@ -207767,6 +207767,31 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ],
     "standalone_header_command": [
@@ -207798,6 +207823,31 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ],
     "standalone_header_command": [
@@ -207834,6 +207884,31 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -207850,6 +207925,31 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -208106,6 +208206,31 @@
       {
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
@@ -209896,6 +210021,31 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -210538,6 +210688,339 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/proof/introduction/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Certify untouched previously ignored supplier provenance and preserve original target/site conservation after independent whole-version reselection.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/copy/proof/introduction/graph.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Certify untouched previously ignored supplier provenance and preserve original target/site conservation after independent whole-version reselection.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/copy/proof/introduction/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Certify untouched previously ignored supplier provenance and preserve original target/site conservation after independent whole-version reselection.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/proof/introduction/introduction.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Certify untouched previously ignored supplier provenance and preserve original target/site conservation after independent whole-version reselection.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/proof/introduction/membership.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Certify untouched previously ignored supplier provenance and preserve original target/site conservation after independent whole-version reselection.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/copy/proof/introduction/origin.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Certify untouched previously ignored supplier provenance and preserve original target/site conservation after independent whole-version reselection.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/reselection/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual original and final captures, independent compiler evidence, untouched supplier membership, refused target substitutions and owned failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/reselection/changes.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual original and final captures, independent compiler evidence, untouched supplier membership, refused target substitutions and owned failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/reselection/failures.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual original and final captures, independent compiler evidence, untouched supplier membership, refused target substitutions and owned failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/reselection/fixture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual original and final captures, independent compiler evidence, untouched supplier membership, refused target substitutions and owned failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/reselection/image.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual original and final captures, independent compiler evidence, untouched supplier membership, refused target substitutions and owned failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/reselection/plan.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual original and final captures, independent compiler evidence, untouched supplier membership, refused target substitutions and owned failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/reselection/unknown.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise actual original and final captures, independent compiler evidence, untouched supplier membership, refused target substitutions and owned failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   }

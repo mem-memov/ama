@@ -43,7 +43,7 @@ static void domain_refuse_lost_original(DomainFixture *fixture, const SourceFile
         SourceCompilerClient client; source_compiler_client_init(&client, sources.allocator);
         domain_compile(&client, &captured.view, "generated/domain-bad.json");
         SourceCopyProofIssue issue;
-        assert(source_copy_prove(&fixture->arena, &fixture->analysis, &fixture->map, files,
+        assert(source_copy_prove(&fixture->arena, &fixture->analysis, &fixture->observed, &fixture->map, files,
             fixture->prepared, contexts, &captured, &client, NULL, 0, &issue) == SOURCE_COPY_PROOF_ORIGINAL);
         assert(!strcmp(issue.path, path));
         source_compiler_client_destroy(&client); source_image_capture_destroy(&captured);

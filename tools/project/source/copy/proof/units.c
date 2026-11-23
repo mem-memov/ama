@@ -36,7 +36,7 @@ static bool mapped_file(const SourceFileMap *files, const char *path) {
 }
 SourceCopyProofStatus source_copy_proof_units(const SourceCloneMap *map, const SourceFileMap *files,
     const SourceImageCapture *final, const char *const *removed, size_t count,
-    SourceRegistryRetirement retired, SourceCopyProofIssue *issue) {
+    SourceRegistryRetirement retired, const SourceCopyIntroduction *introduced, SourceCopyProofIssue *issue) {
     for (const SourceCloneMapping *row = map->first; row; row = row->next) {
         issue->unit = find(final->units, row->identity); issue->path = row->path;
         if (!issue->unit || strcmp(source_path(issue->unit->source->text), row->path)) { return SOURCE_COPY_PROOF_PLACEMENT; }
@@ -57,6 +57,7 @@ SourceCopyProofStatus source_copy_proof_units(const SourceCloneMap *map, const S
     }
     for (const SourceCapturedUnit *now = final->units; now; now = now->next) {
         const char *name = now->source->logical_path;
+        if (source_copy_introduction_contains(introduced, name)) { continue; }
         if (!removed_name(name, retired.names, retired.count) && find(map->capture->units, name)) { continue; }
         const SourceCloneMapping *row = map->first;
         while (row && strcmp(row->identity, name)) { row = row->next; }
