@@ -11,8 +11,9 @@ remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01
 [PKG-04/09](../../spec/project/packages.md#pkg-04) and
 [PROJECT-01](../../spec/implementation/project-tools.md#project-01).
 This plan adds no alternative source language or compatibility contract.
-The next ready implementation task is [T290](../../TODO.md#t290); T287 retains
-the complete command-preparation integration gate.
+The next implementation task [T290](../../TODO.md#t290) resumes after the authorized
+[AMB-027](../../AMBIGUITIES.md#amb-027) positional-context clarification; T287 retains the complete
+command-preparation integration gate.
 
 ### What the review established
 
@@ -65,7 +66,8 @@ next action; keep prior facts explicitly historical.
 | [T276](../../DONE.md#t276) | T275, T282, T283, T284, T285 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
 | [T286](../../DONE.md#t286) | T276 | Explicit side-effect-free source request; T287 consumes it |
 | [T289](../../DONE.md#t289) | T276, T286 | Immutable command original capture, O/U/F proposals and protected requests; T290 consumes them |
-| [T290](../../TODO.md#t290) | T289 | Complete command C/P, context obligations and exact original D; T291 consumes them |
+| [T292](../../DONE.md#t292) | T289 | Accepted positional ancestor contract and shared complete proof; T290 consumes it |
+| [T290](../../TODO.md#t290) | T289, T292 | Complete command C/P, context obligations and exact original D; T291 consumes them |
 | [T291](../../TODO.md#t291) | T290 | Typed command rewrites and exact independently sealed final image; T287 consumes it |
 | [T287](../../TODO.md#t287) | T276, T286, T289, T290, T291 | Actual command-owned captured inputs and single complete plan; T288/T277 consume it |
 | [T288](../../TODO.md#t288) | T276, T287 | Deterministic actual-plan/refusal report; T277 consumes it |
@@ -5857,3 +5859,107 @@ current source/document navigation fingerprints after archival, not a new semant
 implementation. No spec changes or public copy/move/preview/apply claims. Next:
 commit T289 alone, then perform T290's entry review against the actual owners;
 T287, T291 and the public command/transaction tasks remain unfinished.
+
+
+## T290 entry review after accepted T289
+
+Prerequisite `2f173ff5` supplies actual single-attempt command originals, O/F
+choices, common U capture, immutable request files and original analysis; its
+working tree was clean after commit and every acceptance job was collected.
+The next missing result is construction of complete command C/P and D, not
+another compiler client, input capture, image projection or semantic planner.
+Shared material review already independently rederives raw/unit/test/declared
+membership from submitted maps, and complete sealing checks actual context
+necessity and surviving bindings. Reuse those boundaries.
+
+Entry review first checks that command-side context correspondence is uniquely
+defined before constructing new maps. Expansion retains all actual ancestor mains
+as separate original topology causes. The existing complete/proof gate validates
+a supplied context clone against a required absent final parent, but that alone
+may not choose which original ancestor supplies a shortened destination chain.
+Read-only investigation of a minimal two-ancestor example follows; no new
+context-placement policy, implementation heuristic or spec edit is introduced.
+
+
+### T290 stopped at AMB-027 before selecting a context policy
+
+Actual investigation confirmed the entry concern. A temporary driver submits two
+explicit genuine maps for source g+/a+/child -> b+/copy with no b: a supplies b
+in one, g supplies it in the other. Both independently pass actual T276 complete
+prepare, material/root gates, final captured-input compilation and full sealing;
+b.tag differs. The exact fixture, maps, APIs, successful stdout and receipt are
+retained in [AMB-027](../../AMBIGUITIES.md#amb-027), not merely the temporary log.
+No production context solver or new policy was implemented. Existing context
+necessity proves that b is needed and absent, not which original ancestor must
+supply it. T290 is blocked pending the user's positional correspondence decision
+and explicit spec authorization; no later TODO task is started. T289 remains
+accepted in commit 2f173ff5. All diagnostic jobs are collected; no process remains.
+
+### T290 resumed after the AMB-027 decision
+
+The user explicitly approved the proposed positional rule and its TOOL-01
+amendment. Both ancestor chains count module parents nearest first; surviving
+or independently planned parents occupy their positions, ordinary folders do
+not. Missing parents require the original at the same position; an unavailable
+position or incompatible existing placement refuses the operation. The
+specification now states this once in TOOL-01 and retains the separate original
+context, dependency and reference-preservation laws. No grammar production changes:
+this is command material selection, not Ama syntax.
+
+Next: strengthen shared context-copy validation to reject the former grandparent
+certificate, then build command C/P/D using the same positional contract. Cover
+retained positions, differing depths, ordinary folders and conflicting mappings.
+T290 is active, not accepted; no publication or public CLI support is claimed.
+
+## T292 positional context proof
+
+Entry review after AMB-027 isolates the shared acceptance-law change before
+T290's command construction. The user explicitly authorized the TOOL-01 update.
+Original ancestor retention (PKG-07), necessary final structure (SRC-05), explicit
+placements and TOOL-02 reference preservation remain distinct and consistent.
+No new syntax or grammar production is introduced.
+
+The context gate now counts actual captured module mains strictly between each
+original parent/requester and its proposed final parent/requester. Both ancestor
+sets are finite strict chains: equality of these counts is exactly equality of
+nearest-first positions. Ordinary directories contribute no main; every retained
+or mapped module parent contributes one. Existing genuine-reason, plus/logical
+ancestry and originally-absent-destination checks remain mandatory. Active or
+explicitly selected parents retain their independent placement authority. The
+check allocates nothing, mutates nothing and needs no filesystem access.
+
+The maintained preparation test composes genuine parsed command originals, actual
+copy closure and observation, raw/unit P, omissions and the same T276 complete
+owner with independently compiled final inputs. An ordinary folder lies between
+the two original module ancestors. For a shortened final chain, nearest a is
+accepted and g rejected. For a two-parent chain, ordered g/a is accepted and
+swapped a/g rejected. All four candidate images compile; only the positional
+relations seal. Actual opaque companion bytes distinguish the definitions.
+The direct shared gate is additionally checked for zero allocations.
+
+Collected checks so far: strict preparation `/tmp/ama-t290-contexts-expanded.exit=0`
+(before the ordinary-folder/direct-no-allocation additions); strict existing copy
+suite `/tmp/ama-t290-copy.exit=0`. The first sanitizer run failed because default
+LeakSanitizer cannot run under this environment's ptrace. The clean rerun with
+`ASAN_OPTIONS=detect_leaks=0:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1`,
+`-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie -no-pie` passed
+(`/tmp/ama-t290-contexts-san-reviewed.exit=0`, including ordinary folders, before
+the direct zero-allocation assertion). LeakSanitizer is not claimed; the harness
+independently checks allocator accounting at teardown. Final strict/sanitizer,
+coverage/header and Doxygen gates remain before acceptance/commit.
+
+Final code acceptance: strict preparation `/tmp/ama-t292-preparation.exit=0`;
+ASan/UBSan with the documented leak-detection restriction
+`/tmp/ama-t292-sanitizers.exit=0`; official `make docs-check`
+`/tmp/ama-t292-coverage.exit=0` reports 4067 ready inputs and zero explicit debts.
+The first Doxygen run found a duplicate task-note anchor: the heading already
+provided the same anchor as a redundant explicit tag. Remove the redundant tag
+and regenerate; this changes no code or specification behavior.
+
+Acceptance: the corrected Doxygen run completed with exit zero
+(`/tmp/ama-t292-doxygen-corrected.exit=0`): Doxygen 1.11.0, 3194 maintained
+file pages, 12009 documented interfaces, 495 canonical destinations and 9881
+total pages. The archive refresh repeats generation against final maintained
+inputs before the T292 commit. T290 remains unfinished and consumes this shared
+proof; its next step is command C/P/context and exact removal construction.
+No public copy/move support or source publication is claimed by T292.

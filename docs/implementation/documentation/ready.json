@@ -206652,6 +206652,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ],
     "standalone_header_command": [
@@ -211474,7 +211479,7 @@
   },
   "tools/project/source/copy/contexts/required.c": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Prove that every non-explicit structural-only clone is necessary and its destination parent was originally absent.",
+    "purpose": "Prove necessary context clones occupy the same nearest-first module-ancestor position and their destination was originally absent.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
@@ -211495,6 +211500,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ]
   },
@@ -214947,6 +214957,11 @@
         "source": "tests/unit/tools/project/source/preparation/main.c",
         "case": "it_retires_every_original_command_capture_allocation_failure_and_preserves_single_attempts",
         "command": "make -C tests/unit/tools/project/source/preparation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
       }
     ]
   },
@@ -215852,6 +215867,17 @@
       "c",
       "-fsyntax-only",
       "-"
+    ]
+  },
+  "tests/unit/tools/project/source/preparation/contexts.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Independently compile shortened and two-parent copies through ordinary folders, accepting positional context and rejecting distant or swapped ancestors at the complete seal.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/preparation/main.c",
+        "case": "it_matches_missing_parent_clones_by_position_before_sealing",
+        "command": "make -C tests/unit/tools/project/source/preparation"
+      }
     ]
   }
 }

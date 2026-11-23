@@ -8,6 +8,12 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-027](#amb-027) is **Resolved** for T290: structural module ancestors
+match nearest-to-outermost by position. Existing or independently planned parents
+occupy their positions; missing parents require the corresponding original.
+Ordinary directories consume no position. The user explicitly authorized the
+TOOL-01 amendment; implementation and acceptance remain part of T290.
+
 [AMB-026](#amb-026) is **Resolved** for T224: a completely absent destination
 version is initialized with zero-byte package.ini and required src/tests as part
 of the reported atomic operation. No origin alias/repository table is imported;
@@ -1174,7 +1180,7 @@ Each entry must contain:
 
 - **Status:** Resolved by the behavioral decision and explicit subsequent
   specification authorization. T264 owns the amendment; T232 owns implementation.
-- **Task:** [T232](TODO.md#t232), integrating the accepted configuration/path
+- **Task:** [T232](DONE.md#t232), integrating the accepted configuration/path
   foundations after T262 commit `6348092`. T261/T263/T262 are separately accepted;
   no T232 implementation code has been changed.
 - **Canonical requirements:**
@@ -1249,7 +1255,7 @@ Each entry must contain:
 
 - **Status:** Resolved by user decision; T268 specifies the policy together with
   the accepted [AMB-018](#amb-018) placement rule.
-- **Task:** [T232](TODO.md#t232), actual shared-resolver/mover composition;
+- **Task:** [T232](DONE.md#t232), actual shared-resolver/mover composition;
   [T224](TODO.md#t224) owns complete relocation configuration editing.
 - **Authority at discovery:** [PKG-05](spec/project/packages.md#pkg-05) allows references
   inside one version without a dependency entry, but requires external selectors.
@@ -1940,3 +1946,112 @@ Each entry must contain:
   Its baseline is empty, not a synthetic original scope. Concrete additions are
   restricted to --extend-package; existing incomplete versions and explicit
   whole-version configuration rules retain their existing behavior. T224 resumes.
+
+
+<a id="amb-027"></a>
+
+## AMB-027 — Which original ancestor supplies a missing destination parent?
+
+- **Status:** Resolved.
+- **Current task:** [T290](TODO.md#t290), entry review after accepted
+  [T289](DONE.md#t289), commit `2f173ff5`.
+- **Exact requirements:** [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
+  distinguishes original analysis context from final copy material, requires
+  valid SRC-05 topology, and retains an unchanged existing destination parent
+  instead of cloning the original solely for context.
+  [PKG-07](spec/project/packages.md#pkg-07) retains every required original
+  ancestor main/companion as context without activating its siblings or tests.
+  [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02) requires exact
+  explicit source placement and injective, coherent maps. These rules constrain
+  needed material but do not assign multiple original ancestors to a shorter or
+  partially preexisting destination parent chain.
+- **Minimal physical example:** an explicit standard root contains:
+
+  ```text
+  source/
+   g                 # empty @! module
+   g.tag             # bytes: grandparent
+   g+/
+    a                # empty @! module
+    a.tag            # bytes: nearest parent
+    a+/
+     child           # empty @! module
+  ```
+
+  The parsed request is:
+
+  ```sh
+  ama-project copy source/g+/a+/child source/b+/copy --standard-root source --preview
+  ```
+
+  Here b and b+ do not exist. This is the supported request/parser notation,
+  not a claim that the public executable already dispatches copy. A valid final
+  b+/copy requires a new parent main b. Both g and a are genuine original
+  structural contexts of child. Neither is independently selected/active.
+- **Two different permitted candidate maps:**
+
+  ```text
+  candidate A                         candidate B
+  //g/a/child -> //b/copy              //g/a/child -> //b/copy
+  //g/a       -> //b                   //g         -> //b
+  omit //g as copy context            omit //g/a as copy context
+  b.tag = nearest parent              b.tag = grandparent
+  ```
+
+  Both maps copy exactly the selected child and the chosen context's complete
+  main/companions, preserve original files and produce valid final structure.
+  The unknown is which module's actual code/companions the command must install
+  as b; empty bodies and distinct opaque companions isolate this choice from
+  unrelated type/runtime errors.
+- **Actual read-only investigation:** a temporary C driver outside the repository
+  (`/tmp/ama-amb027/main.c`) used the real T289 parsed-command capture, original
+  compiler analysis, copy closure and original observer. For each explicitly
+  supplied map it derived P through shared raw/unit operations and real context
+  omissions, then called the same T276 complete prepare path, independently
+  compiled its exact final capture, and sealed that same owner. Both candidates
+  passed preparation, exact material/root checks and final graph/context proof:
+
+  ```text
+  nearest prepare=0 material=0 plan=0
+  nearest seal=0 proof=0
+  nearest final b.tag=nearest parent
+  grandparent prepare=0 material=0 plan=0
+  grandparent seal=0 proof=0
+  grandparent final b.tag=grandparent
+  ```
+
+  Each zero was asserted against its named OK constant; each final b.tag byte
+  sequence was independently checked in the immutable image. Command:
+  `make -j2 -C /tmp/ama-amb027`; receipt `/tmp/ama-amb027.exit=0`.
+  No valid flags, untyped extra writes or mocked compiler responses were used.
+  The diagnostic changed no repository files and executed no Ama module body,
+  native companion or CMake instruction. Only the host C diagnostic and compiler
+  analysis checked immutable preparation facts. Successful temporary generated inputs were cleaned by
+  the standard leaf harness. The diagnostic establishes underspecification,
+  not acceptance of either command policy.
+- **Precise question:** how are actual source ancestor modules matched to final
+  parent-module positions when some parents must be created? Does an unchanged
+  existing/planned destination parent consume a matching position, and what
+  happens when the original chain is shorter?
+- **Recommended complete rule:** order both module-ancestor chains from nearest
+  to outermost and match by position; ordinary non-module directories consume no
+  position. An unchanged surviving destination parent or an independently mapped
+  planned parent supplies its position without cloning/rebinding the old parent.
+  A missing parent is copied from the original ancestor at that position. If no
+  such ancestor exists, refuse with that missing path. Explicit/active clone
+  placements remain authoritative: do not rename them silently, map one original
+  twice or select another ancestor to avoid a conflict. The example therefore
+  creates b from a and does not copy g. A partial chain with retained parents
+  remains deterministic because those positions are occupied, not skipped.
+- **Alternative and consequences:** require every destination parent outside
+  explicit raw placement to be prepared already, refusing this example. This
+  avoids automatic context correspondence but requires extra manual preparation
+  and narrows the existing automatic context-copy capability. Other correspondences
+  also need an explicit rule; discovery order, first-fitting bytes/types and
+  basename guesses are not decisions.
+- **Decision/source:** the user's reply to the AMB-027 clarification explicitly
+  approved the complete positional rule and its specification amendment:
+  «Да, закрепить это правило в spec (рекомендуется)». TOOL-01 now defines the
+  correspondence, occupied positions, ordinary-directory exclusion and refusal
+  cases. Resume T290 using that rule; the previous two-candidate diagnostic is
+  historical evidence of the gap, not acceptance of the rejected grandparent map.

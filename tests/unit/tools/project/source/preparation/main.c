@@ -99,8 +99,10 @@ static void it_retains_original_capture_and_process_failures_without_final_autho
 #include "scopes.c"
 #include "original.c"
 #include "failures.c"
+#include "contexts.c"
 /** Keep the genuine original/final handoff scenario independently runnable. */
 void run(void) {
+    it_matches_missing_parent_clones_by_position_before_sealing();
     it_derives_root_settings_from_actual_raw_directory_carries_and_explicit_scopes();
     it_captures_uncovered_existing_final_roots_in_one_original_domain();
     it_unions_equal_root_scopes_by_the_exclusion_intersection_law();

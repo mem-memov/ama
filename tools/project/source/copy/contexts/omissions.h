@@ -68,12 +68,14 @@ SourceCopyContextStatus source_copy_context_omissions_check(const SourceCopyCont
     const SourceObservedImage *, const SourceImageCapture *, const char *const *removed, size_t, SourceCopyContextIssue *);
 /** Certify every mapped structural-only, non-explicit original parent is needed
  * by an actual topology requester mapped below it in both final logical identity
- * and physical plus storage. Its final main must be proven absent originally;
+ * and physical plus storage at the same nearest-first module-ancestor position.
+ * Ordinary folders do not count; retained or independently mapped module parents
+ * do count. Its final main must be proven absent originally;
  * existing destination parents are retained, never cloned solely for context.
  * Active/promoted and explicitly selected raw units retain their normal rules.
  * Exact original observer and genuine frozen omission/map/closure owners are
- * mandatory. No allocation/I/O/mutation. Finite C*(R+U+T(C+F)+B*L) comparisons
- * for C clones, R roles, U raw units, T maximum topology reasons, F final units,
+ * mandatory. No allocation/I/O/mutation. Finite C*(R+U+T(C+O+F)+B*L) comparisons
+ * for C clones, R roles, U raw units, T maximum topology reasons, O original units, F final units,
  * B original image rows and L path components; constant scratch. This proves
  * context-copy necessity only; full material, supplier, graph and write gates
  * remain mandatory. Typed witnesses borrow all owners through consumption.

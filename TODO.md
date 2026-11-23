@@ -77,7 +77,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T292**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T293**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -129,7 +129,7 @@ and TOOL-01..04 throughout; no task authorizes a new language rule.
 <a id="t290"></a>
 
 - [ ] **T290 — Construct complete command copy/move relations and original cuts.**
-  Status: planned. Prerequisites: T289. Review current accepted placement,
+  Status: active; [AMB-027](AMBIGUITIES.md#amb-027) resolved with explicit TOOL-01 authorization; shared proof correction accepted in [T292](DONE.md#t292); entry review against 2f173ff5. Prerequisites: T289, T292. Review current accepted placement,
   closure, topology, test/declared membership and intent algorithms against the
   captured command owners. Derive complete C/P, designated version storage,
   necessary context copies/omissions and exact source/replacement D union.

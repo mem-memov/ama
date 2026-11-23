@@ -318,6 +318,32 @@ rule, not rebinding: a reference to a does not become a reference to b merely
 because the child now lives in b+. Verify complete final discovery and all
 TOOL-02 clone/surviving-reference laws before accepting the operation.
 
+Match structural module ancestors by position, ordered from the nearest parent
+outwards, in the original and destination chains. Count only module ancestors
+represented by SRC-05 parent mains and their `name+/` storage; ordinary directories
+do not occupy a position. An unchanged surviving destination parent, or a parent
+independently placed by the operation's explicit selection or active dependency
+closure, supplies its position without cloning the corresponding original parent.
+Do not skip that position when matching more distant parents.
+
+For each still-missing destination parent, copy the original ancestor at the
+same position, including its required companions. If that original position does
+not exist, refuse and identify the missing destination parent. If the original
+ancestor is already required at a different destination, refuse: the mapping
+must remain injective and coherent. Do not select a different ancestor, clone
+one original twice, or change an explicit or active placement to make the
+structure fit. Original ancestors beyond the destination chain are retained for
+analysis but are not copied solely for context. Independently active or selected
+ancestors retain their ordinary copy obligations.
+
+Informative example: copying `g+/a+/child` to `b+/copy`, with b absent, creates b
+from a, the nearest original parent; g is not copied solely for context. If b
+already survives unchanged, it occupies the nearest position and neither a nor
+g is copied solely for this placement. This positional rule makes the copied
+parent's code and companions predictable without examining their contents or
+choosing a parent by discovery order. It grants no reference rebinding; TOOL-02
+still governs references and the complete final image must pass SRC-05.
+
 Tests included as part of a source selection participate in the copy/removal
 set. An outside test that uses that source remains an outside dependant. Test
 helpers do not recursively require tests of their own. Complete-unit and

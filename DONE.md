@@ -8881,3 +8881,27 @@ T201. Specification bytes have not changed.
   retains corrected parser harness and documentation-link failures, exact gates,
   commands, receipts and the final archive regeneration requirement. No spec edit.
   T290 consumes these owners; T291/T287 retain complete copy/move acceptance.
+
+<a id="t292"></a>
+
+- [x] **T292 — Enforce the accepted positional context-parent rule.**
+  Status: completed. Prerequisites: T289. The AMB-027 decision explicitly authorizes the specification amendment.
+  Entry review found a shared certificate gap, separate from command construction:
+  two different ancestor choices could seal. Amend TOOL-01, enforce nearest-first
+  module-ancestor correspondence in the common context gate, and prove actual
+  original/final compiler composition for shorter and two-parent chains, ordinary
+  folders and incorrect ancestor choices. Preserve existing context-copy tests,
+  allocation-free validation and failure teardown; register coverage and regenerate
+  checked documentation. T290 consumes this shared contract rather than inventing
+  a command-only rule. See the [task record](docs/implementation/source-operations.md#t292-positional-context-proof).
+
+  Acceptance: TOOL-01 updated under the user's explicit AMB-027 authorization.
+  The common context gate counts actual intervening module mains and rejects
+  distant/swapped ancestors without allocation. Genuine original/final compiler
+  tests cover shortened/two-parent chains and ordinary folders; strict preparation,
+  existing copy suite and ASan/UBSan passed. LeakSanitizer is unavailable under
+  ptrace; allocator accounting remains independently asserted. `make docs-check`
+  reports 4067 ready inputs, zero debts. Corrected Doxygen 1.11.0 validates 3194
+  maintained pages, 12009 interfaces and 495 canonical destinations. The initial
+  redundant task-note anchor was removed and regeneration passed. Final archive
+  refresh is required before commit. Evidence and exact logs are in the task note.

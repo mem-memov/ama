@@ -1,7 +1,8 @@
 /** @file
  * @brief Refuse unnecessary context clones and preserve existing destination parent mains.
  * [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01)
- * distinguishes required new structural material from original analysis context.
+ * distinguishes required new structural material from original analysis context
+ * and matches necessary parent clones by nearest-first module-ancestor position.
  */
 #include "internal.h"
 #include <string.h>
@@ -17,6 +18,18 @@ static const AcquisitionRoleRecord *role(const SourceCopyClosure *copy, const ch
     while (row && strcmp(row->identity, identity)) { row = row->next; }
     return row;
 }
+/** Count strict intervening module parents, not path components. Actual captured
+ * topology supplies a finite chain; retained parents count exactly like clones.
+ * TOOL-01 matches positions, so equal counts identify the corresponding ancestor.
+ * No allocation, mutation or filesystem query is needed. */
+static size_t intervening(const SourceCapturedUnit *units, const ModuleSource *parent, const ModuleSource *child) {
+    size_t count = 0;
+    for (; units; units = units->next) {
+        if (source_copy_context_parent(parent, units->source)
+            && source_copy_context_parent(units->source, child)) { count++; }
+    }
+    return count;
+}
 /** One actual original topology cause must still require this final plus parent.
  * Strict final ancestry makes chains of mapped context demands acyclic. */
 static bool demanded(const SourceCopyContextOmissions *owner, const SourceImageCapture *final,
@@ -25,8 +38,13 @@ static bool demanded(const SourceCopyContextOmissions *owner, const SourceImageC
         if (reason->kind != ACQUISITION_TOPOLOGY || !reason->requester) { continue; }
         const SourceCloneMapping *mapped = source_copy_context_clone(owner->mains, reason->requester->identity, true);
         const SourceCapturedUnit *child = mapped ? source_copy_context_unit(final->units, mapped->identity) : NULL;
-        if (child && !strcmp(source_path(child->source->text), mapped->path)
-            && source_copy_context_parent(parent->source, child->source)) {
+        const SourceCapturedUnit *original_child = source_copy_context_unit(owner->mains->capture->units, reason->requester->identity);
+        const SourceCapturedUnit *original_parent = source_copy_context_unit(owner->mains->capture->units, context->identity);
+        if (child && original_child && original_parent && !strcmp(source_path(child->source->text), mapped->path)
+            && source_copy_context_parent(original_parent->source, original_child->source)
+            && source_copy_context_parent(parent->source, child->source)
+            && intervening(owner->mains->capture->units, original_parent->source, original_child->source)
+                == intervening(final->units, parent->source, child->source)) {
             issue->requester = reason->requester; return true;
         }
     }
