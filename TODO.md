@@ -8,10 +8,14 @@ language nor grants permission to edit the specification.
 
 ## How to use this queue
 
-Start with the first unfinished task whose prerequisites are satisfied. Plan
-small verifiable steps, record the actual results in the task and its owning
-contract, and commit the completed task before beginning the next one. Follow
-prerequisites and presentation order rather than numeric ID order.
+Start with the first unfinished task whose prerequisites are satisfied. Before
+implementation, review its contract against the current specification, decisions,
+actual consumers and prerequisite evidence under the
+[entry review](docs/development/README.md#review-the-next-task-against-the-current-state).
+Revise stale scope and acceptance, then plan small verifiable steps. Record actual
+results in the task and its owning contract, and commit the completed task before
+beginning the next one. Follow prerequisites and presentation order rather than
+numeric ID order.
 
 [Completed tasks and acceptance evidence](DONE.md) belong in DONE.md. Keep
 selected unfinished work here; future proposals belong in [BACKLOG.md](BACKLOG.md).
@@ -73,7 +77,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T274**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T282**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -99,120 +103,174 @@ T221 and T226 are accepted in DONE, together with the
 T231/T222/T232 source/configuration foundations.
 The earlier conformance matrix must not be refreshed to disguise missing support.
 
+### Source operations: finish the pending implementation
+
+[T274](DONE.md#t274) reviews the actual T224 state as of 2026-11-23. Existing
+analysis, graph/image/configuration preparation, root-preserving planning,
+freshness/leases, record codecs and private-tree ownership have component and
+composition evidence. Public copy/delete/move, a durable transaction journal and
+complete root-changing operation plans remain unfinished. Reuse the tested
+foundations; do not restart them or infer public support from them.
+
+The [current checkpoint and task graph](docs/implementation/source-operations.md#current-plan-after-t274)
+identify the concrete owners, retained evidence and next action. The old step log
+in that note is historical; its earlier "next" statements are not the current
+queue. T275 is the next task for entry review. Each subtask below is a separate
+implementation/test/documentation/commit unit and remains unchecked. T224 keeps
+final acceptance; T236 still waits for it. Follow SRC-06, PKG-04/09, PROJECT-01
+and TOOL-01..04 throughout; no task authorizes a new language rule.
+
+<a id="t275"></a>
+
+- [ ] **T275 — Separate semantic roots, physical changes and observation bounds.**
+  Status: planned; first remaining T224 subtask. Prerequisites: T232, T233, T235,
+  T272 and T273. Reuse the recorded T224 root-preserving foundation. Review the
+  actual catalog/image/lease consumers, then separate original/final selected
+  module registries, the physical mutation/removal set, effective registry
+  retirement, and the stable physical observation/coordination envelope. An
+  observed parent must not acquire module identities or write authority. Feed
+  these distinctions through the existing capture and plan owners rather than
+  introducing another resolver. Accept real augmented-original analysis with
+  initial-name conflict refusal, new/relocated roots and same-identity whole-version
+  promotion whose ignored external files remain intact. Check selection versus
+  actual deletion safety, unchanged-root regressions, exact freshness, allocation
+  failures and real compiler/catalog consumers. Deliver a tested representation
+  consumed immediately by T276; this task does not publish source changes.
+
+<a id="t276"></a>
+
+- [ ] **T276 — Prepare one complete immutable copy/delete/move plan.**
+  Status: planned. Prerequisite: T275. Extend the existing root-preserving plan
+  owner to all supported operations and original/final roots. Join complete
+  source/test/companion and declared-input closure, injective identity/physical
+  maps, context obligations, original joint deletion/replacement safety, exact
+  selector/alias/configuration edits and actual final compiler/binding proofs.
+  Carry client entry/export/root-setting changes and owned build-invalidation
+  intentions now so publication cannot discover them later. Every planned write
+  needs an explicit owner and authorization. Preparation executes no module,
+  test, native code, CMake, network or source mutation. Accept independent
+  compilable-but-incorrect final-image refusals, unused/static/native/test edges,
+  constants/storage suffixes, drafts/opaque bytes, missing client roots, allocation
+  failures and retained root-preserving compositions. Unknown configuration formats
+  are reported without patching. The finite owned plan is the common input to
+  preview and publication; no second command-specific planner is allowed.
+
+<a id="t277"></a>
+
+- [ ] **T277 — Expose real source-operation previews.**
+  Status: planned. Prerequisite: T276. Connect public ama-project copy/delete/move
+  request recognition and --preview to the actual immutable plan. Enforce exactly
+  one --preview/--apply, explicit dependency policies and safe --replace; report
+  exact maps, removals, configuration/root/client changes, retained material,
+  safety refusals and rebuild intentions. Accept all operations through the real
+  executable, invalid/repeated/conflicting flags, cross-package modes, cycles,
+  namespace/area boundaries and byte-exact no-mutation evidence including
+  configuration presence/directory membership. Preview has no acquisition or
+  test/native/CMake execution. Until T281 accepts application, --apply must give
+  a clear unsupported outcome before mutation rather than falling through to a
+  preview or claiming success. Document this finite preview-only implementation
+  boundary; public apply/recovery remains owned by T281.
+
+<a id="t278"></a>
+
+- [ ] **T278 — Apply and recover one tree through a durable journal.**
+  Status: planned. Prerequisites: T276 and T277. Build the first complete
+  publication/recovery slice using a real prepared removal plan, existing record
+  codecs, leases and private saved-tree ownership.
+  Define a versioned journal, durable decision/state invariants, explicit recovery
+  entry and recorded staging location. Reserve rollback resources before the
+  first destructive step. Publish one removal and recover it in a fresh process,
+  using the same production executor that T279 will extend. Accept forced process
+  termination without exit cleanup before/after destructive and commit boundaries,
+  repeated recovery/interrupted cleanup, every relevant I/O/allocation refusal,
+  unknown ownership and retained recovery evidence. Define how a new process
+  discovers unfinished work even after the dead writer's kernel locks disappear.
+  Independently test file/directory persistence ordering, incomplete records and
+  unsupported durability;
+  distinguish a storage-fault model from a physical power-loss experiment.
+  Ordinary uncommitted failure restores the original; committed cleanup failure
+  retains the committed decision. This is a real backend slice, not acceptance of
+  the full public command or a second synthetic test-only state machine.
+
+<a id="t279"></a>
+
+- [ ] **T279 — Publish and recover complete multi-tree source transactions.**
+  Status: planned. Prerequisite: T278. Extend that same journal/executor to every
+  addition, replacement, removal and prepared configuration edit in one plan,
+  including copy, move and safe --replace. Stage on each destination's filesystem
+  under stable observed parents, keep originals until the whole validated final
+  state is durable and commit once. Compose common writer exclusion, fresh-input
+  checks and reader coordination; no instantaneous cross-filesystem rename is
+  assumed. Accept same/cross-filesystem real compositions, failures at every
+  rename/synchronization/rollback/cleanup boundary, process interruption and
+  conflicting external files, inodes or directory members. Refused moves leave no
+  copy. Recover only proved operation-owned data and retain/report uncertainty;
+  overlapping writers cannot publish concurrently, while permitted disjoint work
+  remains independent. After writer death releases locks, a new participating
+  reader must refuse the unfinished view without repairing it, and an overlapping
+  writer must report the explicit recovery entry/location before new work.
+  Do not maintain a parallel publisher or deferred test-only
+  rollback implementation.
+
+<a id="t280"></a>
+
+- [ ] **T280 — Publish root/client settings and rebuild consequences coherently.**
+  Status: planned. Prerequisites: T275, T276 and T279. Integrate the already
+  prepared original/final root selection, selected physical-copy changes,
+  documented writable client entry/export fields and owned build-invalidation
+  intentions into the same transaction and final report. Return client-supplied
+  root mappings without inventing a project-wide settings file; change only
+  explicitly supported selected configuration fields. Accept new/moved/removed
+  roots, identity-preserving promotion, original definitions that stay physically
+  present but become ignored, and crashes between source and metadata updates.
+  Final compiler/catalog checks must use the intended registry, not observation
+  ancestors. Verify stale generated outputs cannot be presented as the new result,
+  outside importers are not redirected, and unknown formats/unrelated bytes remain
+  untouched and accurately reported. Root and metadata publication must recover
+  as part of the whole operation, not a later best-effort fixup.
+
+<a id="t281"></a>
+
+- [ ] **T281 — Expose complete public application and recovery workflows.**
+  Status: planned. Prerequisites: T277, T279 and T280. Wire --apply and the
+  documented explicit recovery entry to the same accepted plan and executor.
+  Choose and document concrete journal/staging/recovery options as engineering
+  interfaces; permit an explicit recorded recovery location. Revalidate the full
+  original observation under exclusion before mutation; never reuse a stale
+  preview as authority. Accept the real executable for copy/delete/move, both
+  dependency policies, safe replacement, root/client changes, contention, new
+  importers/companions and process-loss recovery. Distinguish complete commit,
+  successful rollback, incomplete/uncertain recovery and committed cleanup debt
+  in outcomes/diagnostics. Demonstrate coordinated read-only compiler/editor/
+  playground access to original or committed final views, or an unfinished-state
+  refusal; compilation acquires no source-mutation/recovery responsibility.
+  Document nonparticipating reader limits, supported filesystem/platform
+  assumptions and retained paths. Remove the temporary unsupported-apply branch
+  when its real public consumer is accepted. No false success or implicit recovery
+  of unproved material is permitted.
+
 <a id="t224"></a>
 
-- [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
-  Status: active after [AMB-026](AMBIGUITIES.md#amb-026): selected-module
-  copying/movement initializes a completely absent version with zero-byte
-  package.ini and required src/tests in the same atomic operation. The baseline
-  is empty; existing incomplete versions are not repaired. New-scope permission
-  preparation passes strict, sanitizer, fault-allocation and final compiler/site
-  checks without a synthetic original scope. Structural initialization now passes
-  immutable-image/final-compiler composition, empty-area, allocation-failure and
-  sanitizer checks. Direct version decoding preserves root/exclusion authority.
-  [AMB-025](AMBIGUITIES.md#amb-025) is resolved: shared source/destination
-  package.ini follows destination rules, preserving its exact original selected
-  set plus only authorized --extend-package additions. Other bytes and original
-  reference laws remain protected. Composed configuration preparation now passes
-  strict, sanitizer, allocation-failure and real final-compiler/site checks;
-  exact mapped-material/prepared-text joining is also tested, including opaque
-  bytes and empty directories. Production image assembly now derives required
-  ancestors, requires explicit target removal and passes actual final compiler/
-  site checks. Exact original-observation freshness comparison also passes real
-  ignored-name, opaque-byte and inode-replacement checks. Joint move/replacement removals now pass original-cut, actual final-image/
-  compiler, allocation-failure and sanitizer checks. Final-copy proof now composes physical material, complete retained/
-  copied units, context obligations and actual compiler graph/sites, with independent
-  compilable incorrect-image refusals. A root-preserving plan owner now joins
-  dependency-mode admission, exact original removal accounting, joint safety review,
-  simultaneous image/capture and independent complete final package-scope/root sets.
-  Actual copy and joint-cycle move images, all preparation allocation failures,
-  sanitizers and the strict source-operation parent pass. Public command assembly,
-  recoverable application remain next. Automatic leased freshness reconstructs
-  exact original demands and now rejects new importers/companions, opaque changes
-  and stale identity/membership under held exclusion, with full allocation-failure
-  and sanitizer checks. Hierarchical
-  The copy plan now computes exact disjoint complete mutation trees; lossless
-  original/final image records pass roundtrip, fault-output/allocation checks,
-  strict and sanitizer acceptance, and actual independent final compiler/site
-  proof after decoding. Durable publication and public commands remain unfinished.
-  Actual private complete-tree writes now preserve binary/empty material and modes,
-  synchronize/read back exact contents and reject foreign replacements/children
-  before owned cleanup. Exhaustive preparation cancellation/allocation prefixes,
-  descriptor retirement, sanitizer and complete source-parent checks pass.
-  Exact saved-tree identities now survive production record serialization and owner
-  expiry; reopening rejects foreign classes/names/FIFOs and supports only recorded
-  partial-cleanup transitions. Strict, sanitizer, failure-prefix and final-copy
-  integration checks pass. Durable journal publication remains next.
-  directory leases now pass real contention, namespace-replacement, every allocation/
-  cancellation prefix, sanitizer and complete source-parent checks; actual common
-  freshness comparisons run under those leases. T224 is unfinished;
-  later tasks are not started.
-  Integration follows accepted bridge [T273](DONE.md#t273) and accepted
-  foundation [T272](DONE.md#t272); [AMB-021](AMBIGUITIES.md#amb-021) is resolved with mandatory
-  explicit preview/application modes. Original-graph safety is implemented/tested;
-  entry-free whole-domain export and its read-only command are implemented/tested.
-  The project-side response/process bridge is accepted (`d7d8d8df`). Physical
-  compiler-input capture and exact independent test-entry admission are implemented
-  and component-tested. Structural module/whole-version provider expansion now
-  passes real closure composition, allocation-failure and sanitizer checks.
-  Exact original tree/removal sets, declared/native/configuration input consumers
-  and client-root safety pass component, real-compiler and sanitizer checks.
-  Clone/file candidates, exact prepared-source graph/site joins and rooted
-  operands pass component and real-compiler checks. Copy closure now composes
-  explicit modes, required data mains, original consistency and concrete tests.
-  [AMB-022](AMBIGUITIES.md#amb-022) is resolved: an unselected original target
-  must survive; replacement at the same name does not preserve its definition.
-  The authorized TOOL-02 clarification retains the strict removed-target guard.
-  Finite destination-version propagation, deepest associated-test naming and
-  final-name-driven main topology now pass component and real-catalog checks.
-  Actual copy closures produce active ordinary logical destination candidates;
-  complete context/test/data/opaque physical placement and common final catalog
-  authority remain next. Exact simultaneous image projection now passes all 120
-  change orders, real final-compiler/site composition, sanitizer and full per-file
-  coverage checks. Explicit opaque/deep original demands, root-preserving removal
-  images and exact final compiler/binding/site proofs now pass real compositions
-  and failure checks. Ordinary copy-main placement also joins actual logical
-  candidates, final topology and a complete projected-version compiler fixture.
-  Shared clone admission rejects namespace/area changes before allocation.
-  Complete physical unit/test/declared maps cover opaque data, nested test
-  associations and cross-version ownership, with conflict and failure checks.
-  Explicit context omissions prove complete accounting and actual unchanged
-  destination-parent provenance through final discovery and compiler/site joins.
-  Local and explicitly copied package aliases rebase through matching original
-  scopes; independent final scopes, selector-edit composition and exact preserved
-  keys/comments/repositories/line endings pass acceptance. The compiler and tool
-  use shared actual-catalog availability, including empty versions and physical
-  test provenance. Actual package environments isolate version aliases, evaluate
-  exact wildcard unions and reject malformed metadata without fallback.
-  Original selected-root images map through ready C and explicit actual version
-  pairs without admitting new wildcard matches. EXTEND_PACKAGE additions contain
-  only actual uncovered copied-edge targets, deduplicated against a fixed
-  baseline. Existing coverage, standard targets, clone cycles, default/missing
-  refusals and occurrence order pass independent final compiler and exact graph/
-  site proof. Strict, sanitizer, allocation-failure, tool-link and scoped/full
-  source-parent checks are recorded in the linked step log. Current per-file/
-  header acceptance: 3881 ready inputs, zero explicit debt.
-  Complete command orchestration, public application,
-  recoverable publication and final task acceptance remain unfinished. Stop for
-  any new ambiguity; AMB-025 now supplies shared-configuration authority.
-  Transferred from BACKLOG by T230, implementation authorized
-  and aligned with the AMB-017/018 decisions by T268. Prerequisites T232, T233
-  and T235 are accepted; [T272](DONE.md#t272) supplies the independently accepted analysis foundation.
-  Step/contract record:
-  [resolved source operations](docs/implementation/source-operations.md). Rules: SRC-06, PKG-04/09,
-  PROJECT-01 and TOOL-01..04. Use the shared parsed configuration/path resolver;
-  expose explicit copy/delete/move, dependency cloning or package.ini extension,
-  and safe --replace. Use T235's complete source/test closure. Map the selected
-  tree and extra src/test dependencies exactly, preserve original importers,
-  and reject outside incoming dependencies before source/target deletion.
-  Preserve whole-version selection, static-name identity, member selection,
-  drafts and unrelated bytes. Accept preview/apply, nested name+/ topology,
-  namespace/source-test boundaries, aliases/config scopes, exact selector sets
-  and explicit additions; exercise cycles, collisions, shared declared inputs,
-  stale directory membership and recoverable cross-filesystem failure. Replace
-  superseded importer-rewriting behavior and its dedicated tests; retain shared
-  resolver foundations with current consumers. No guessed mask/prefix rewrite,
-  implicit acquisition or partial copy after move refusal is allowed.
+- [ ] **T224 — Accept resolved source copy, safe deletion and movement.**
+  Status: unfinished parent; remaining implementation is T275..T281. Prerequisites:
+  T232, T233, T235, T272, T273 and accepted T275..T281. Transferred from BACKLOG
+  by T230; T268 aligns the scope with AMB-017/018 and AMB-021..026 resolve the
+  later operation boundaries. Preserve the full original TOOL-01..04 acceptance:
+  explicit preview/apply, complete source/test closure, no namespace/area change,
+  name+/ topology, injective clone maps, original joint-removal safety, exact
+  aliases/selector sets and authorized additions, client/root changes, drafts,
+  opaque/declared inputs and recoverable cross-filesystem publication. Audit real
+  public operations and all retained consumers; no guessed mask/prefix rewrite,
+  hidden acquisition or partial copy after move refusal is allowed. Remove
+  superseded compiler-side mutation/importer-rewrite APIs and tests dedicated
+  solely to them after tracing/migrating real consumers. Retain shared current
+  resolver foundations with explicit owners. Accept the complete command/mode/
+  failure matrix and affected full source workflows, sanitizer/resource failures,
+  per-file coverage, Doxygen/source links and actual final compiler/site proofs.
+  Reuse scoped child evidence where inputs still match; T237 retains whole-sprint
+  conformance and release. Archive/commit this parent only when every promised
+  public behavior and its documentation has passed. Existing detailed evidence:
+  [source-operation record](docs/implementation/source-operations.md).
 
 <a id="t236"></a>
 

@@ -448,6 +448,18 @@ identity creates a different nominal Type, including for static markers and
 templates. Identical file bytes do not make the old and new types equal.
 A physical move that preserves complete identity does not create a new Type.
 
+**Example: promotion without a new nominal Type.** Suppose the selected
+`dependencies/acme/math/v1.0.0/` is copied as a complete version to
+`packages/acme/math/v1.0.0/`. Under PKG-02 the local version becomes selected
+and the external version becomes ignored. A module retains the complete name
+`/acme/math/v1.0.0/src/add`; its external files have not been deleted. This is
+a change of selected physical definition, not a clone with a different Type
+identity. It still requires TOOL-02's original/final configuration and reference
+checks. Copying to `v1.0.1` instead changes the complete name and creates a
+distinct nominal Type. These examples assume the required code, tests and
+companions are present; equal names alone do not authorize an incomplete
+promotion or fill holes from the ignored external copy.
+
 For the explicitly selected physical tree, use the exact requested destination:
 `P(p) = D / relative(S, p)` for a directory selection, or the explicitly selected
 file's new module stem and its structural companion/submodule layout for a
@@ -721,11 +733,54 @@ and explicit client selections. Required local closure/configuration inputs,
 collisions, invalid rewrites and unavailable writes are preflight failures.
 A safety claim covers the supplied roots only, not unknown outside projects.
 
-Application requires exclusive access to the affected project state. Revalidate
-file identities, original bytes, configuration presence and directory membership
-before applying the plan. A newly added importer or companion invalidates the
-prepared plan just as a changed file does; checking only already listed files
-is insufficient. Do not overwrite changed inputs with a stale preview.
+#### Distinguish selection, removal and observation
+
+Record these three boundaries separately:
+
+1. The original and final **selected module registries** follow the configured
+   roots and PKG-02. A physical copy can stop supplying a selected definition
+   while its files remain on disk, as in the promotion example under TOOL-02.
+2. The **physical mutation set** identifies the actual files/directories and
+   supported configuration fields added, changed or removed. Losing selection
+   alone does not authorize deleting an ignored copy. TOOL-03's removal check
+   applies to definitions whose original units are actually removed/replaced;
+   selection changes must also pass TOOL-02's independent binding laws.
+3. The **observation and coordination boundary** contains the physical state
+   needed to prove the plan and publish or recover it. It can include a stable
+   parent of a new or moved root, directory membership and ignored versions.
+   Observing or locking that parent does not make it a module-identity root,
+   interpret unrelated files as Ama sources, or authorize changing them.
+
+An explicit root-setting change supplies its original/final identity mapping
+under TOOL-01/02. Do not simulate it by treating an omitted root as a deleted
+physical subtree. Preserve these distinctions in preview, the recoverable plan
+and the completion report. Root settings supplied by the client need no invented
+project-wide configuration file; persist a change only when the client selected
+a documented writable configuration field that owns it.
+
+#### Coordinate the complete operation
+
+Application requires exclusive access to the affected project state under a
+documented coordination protocol. Source-mutating Ama project commands must
+use the same protocol for overlapping states and hold it through publication
+or rollback. A conflicting operation waits or refuses with its affected paths;
+it must not proceed as if it owned the state. Revalidate file identities,
+original bytes, configuration presence and directory membership after obtaining
+that access and before applying the plan. A newly added importer or companion
+invalidates the prepared plan just as a changed file does; checking only already
+listed files is insufficient. Do not overwrite changed inputs with a stale
+preview.
+
+A client requiring a coherent read of the affected project while an operation
+may run must participate in the documented read/write coordination protocol
+and exclude an unfinished transaction before consuming the view. A reader that
+does not participate can observe intermediate physical changes, particularly
+across directories or filesystems. The tool must document this boundary for
+compiler, editor and playground integrations. Ordinary filesystem locks do not
+prevent an arbitrary editor or other nonparticipating program from writing.
+If a conflicting change is detected, stop further publication and use the
+recovery rules below; never silently overwrite the new material or discard
+the evidence of the conflict.
 
 Stage and verify copied/replacement contents and retain originals and old target
 contents in recoverable storage before any destructive step. Copy publication,
@@ -735,17 +790,88 @@ transaction. A different-filesystem copy-and-remove implementation retains
 originals until replacements have been verified. Neither a successful single
 rename nor an already published copy proves the whole move complete.
 
+The transaction's atomicity is a whole-plan outcome under this coordination
+and recovery protocol. It does not require several filesystem writes or
+cross-filesystem renames to become visible at one instant. Participating clients
+must not accept an intermediate mixture as a completed project state. Report
+success only after the entire validated final state and its commit decision
+have been made durable under the supported failure model.
+
+#### State the failure and durability model
+
+Recovery must handle interruption of the tool process at any step, including
+termination that runs no signal handler or exit cleanup. It must also handle
+operating-system interruption or power loss when every participating local
+filesystem and storage device honors the platform's documented atomic
+replacement and durable file/directory synchronization guarantees. Persist the
+recovery information and saved originals needed for the next destructive step
+before taking that step. An ordinary successful write, close or rename alone
+does not establish the durability of file bytes and directory entries.
+
+Document the supported filesystem/platform assumptions and the synchronization
+ordering that establishes the commit decision. A caller-selected recovery
+location is permitted, but must be recorded explicitly, remain available to a
+new process and satisfy the same durability and ownership requirements. Merely
+placing the journal on another filesystem does not make source publication
+durable or atomic. The journal format, staging layout and exact command syntax
+are implementation choices; they must provide a documented recovery entry
+point and identify retained recovery locations in diagnostics. No mandatory
+additional project directory or package.ini field is introduced by this rule.
+
+Detectable absence or failure of required locking, atomic-replacement or
+synchronization support must not be silently downgraded to a successful
+transaction. Refuse before destructive work when detected during preparation;
+if detected later, retain recovery material and report the incomplete outcome.
+Storage loss, corrupted recovery evidence and a device falsely acknowledging
+durability cannot be repaired by assuming a successful commit or guessing the
+old state. Report that the outcome cannot be established and preserve every
+available recovery copy. The ordinary rollback obligations still apply wherever
+their required evidence and filesystem operations remain available.
+
+#### Recover first, then retire recovery material
+
 On an ordinary apply failure, restore original paths and bytes. Persist enough
-transaction state for interruption recovery: uncommitted work rolls back,
-committed work completes cleanup. Recovery must be repeatable without losing
-saved originals, deleting an unrelated file or applying an edit twice. If I/O
-failure prevents rollback, retain recovery data, report the incomplete
-transaction and affected paths and do not report success. Cleanup touches only
-operation-owned staging/recovery data and reports a retained path on failure.
+transaction state for a new process to determine the durable decision:
+uncommitted work rolls back, committed work completes cleanup. A commit decision
+is valid only under the documented durable protocol after publication of the
+complete final state; it is not inferred from a process's last in-memory phase,
+timestamps or the apparent presence of one copied file. If evidence cannot
+establish the decision or ownership of a path, preserve the material and report
+the uncertainty rather than choosing a likely interpretation.
+
+Recovery reacquires the corresponding coordination before altering affected
+state and must be repeatable without losing saved originals, deleting an
+unrelated file or applying an edit twice. Validate existing files and directory
+membership against the recorded original, staged and published states before
+restoring or removing them. An unexpected file or an unrelated replacement at a
+recorded pathname is a conflict, not permission to delete it. A missing already
+retired owned item may be accepted only when the recorded protocol establishes
+that its absence is a permitted recovery state.
+
+If I/O failure or a conflicting external change prevents rollback, retain
+recovery data, report the incomplete transaction and affected paths and do not
+report success. An overlapping operation must not proceed on unresolved partial
+state; report the recovery entry point and retained locations. Cleanup touches
+only proved operation-owned staging/recovery data and reports a retained path
+on failure. Failure to clean committed work does not turn it into uncommitted
+work or permit restoring its old source bytes; report the committed state and
+the outstanding cleanup separately.
+
 The completed report lists final locations and identity maps, retained originals,
 removed/replaced units, configuration changes, unchanged drafts and rebuild
 requirements. No successful preview, specification example or copied file alone
 establishes implementation conformance.
+
+**Why these boundaries exist.** Existing systems distinguish exclusion, an
+atomic change to one file, and recovery of a whole transaction. Git documents
+its [lockfile and atomic file replacement](https://git-scm.com/docs/api-lockfile.html)
+separately from reader coordination. SQLite's
+[atomic-commit explanation](https://sqlite.org/atomiccommit.html) shows why
+recovery records and synchronization are needed even when a final operation is
+atomic. PostgreSQL's [storage reliability discussion](https://www.postgresql.org/docs/18/wal-reliability.html)
+explains the dependence of durability on the complete storage stack. Ama adopts
+these distinctions for source trees; this explanation does not require either
+database implementation or Git's specific lockfile layout.
 
 ## Acceptance matrix
 
@@ -800,6 +926,9 @@ the earlier backend evidence does not certify these newly specified modes.
 | Safe deletion, movement and replacement | Check every supplied active definition, including unused/static/test dependants; internal edges of the complete removal set do not block, outside incoming edges and required shared declared inputs do; default target collision refuses with explanation; --replace obeys the same pre-replacement deletion test even for an identically named new implementation; move refuses before publication when source removal is unsafe; cloned dependency originals are not implicitly removed; cyclic worker/helper closure copies but moving only worker refuses; obsolete target children/companions are removed only as part of an authorized safe replacement |
 | Source-operation resolution and preservation | Original and final whole-version selection; augmented original conflicts; exact clone and surviving-reference laws; relative bases and shared aliases in source/destination scopes; ordinary/static/native interfaces, qualified-constant members and storage suffixes; copied versus unchanged package configurations, exact selector re-expression and explicit extension; no wildcard expansion, repository-table copying or outside importer redirection; src/tests restrictions, / versus // and name+/ topology; drafts, literals/comments and opaque native/build bytes preserved; unprovable final graph refuses |
 | Source-operation transactions | Exactly one explicit `--preview` or `--apply`; absent, repeated or conflicting modes refuse before mutation; preview/apply plan equality; offline preflight without module/test/native/CMake execution; inputs include optional-config presence, directory membership and excluded versions; a new importer/companion invalidates a stale plan; copy, replacement, permissions and move-source removal publish as one transaction; preparation/apply/cleanup failure, cross-filesystem staging, repeatable interruption recovery and incomplete-rollback reports preserve original/recovery data; no leftover copy after a refused move |
+| Source-operation selection and physical boundaries | Same-identity promotion from dependencies to packages changes the selected physical copy while retaining the ignored external files and nominal Type; moving/copying to another version creates the corresponding different Type; explicit root additions/removals use original/final module registries independently of the physical mutation set; observing/locking a stable parent does not add a module root or authorize unrelated writes; original/final configuration and binding checks remain required |
+| Coordinated source-operation access | Controlled overlapping writers cannot both publish; a participating reader observes a validated original or committed final view, or receives an unfinished-transaction/refusal outcome; disjoint permitted operations retain independent access; a nonparticipating reader has no whole-tree snapshot guarantee; detected external file, directory-member or root replacement is preserved and reported rather than silently overwritten |
+| Source-operation failure model | Real new-process recovery after termination without exit cleanup, before/after every destructive and commit boundary; durable-storage model checks interrupt each relevant file/directory synchronization and permitted persistence ordering, including torn/incomplete uncommitted records and multiple filesystems; ordinary I/O failure rolls back, interruption without a durable commit rolls back, durable commit completes cleanup; repeat recovery and interrupted cleanup are safe; unknown ownership, corrupted evidence or unsupported durability retains material and reports uncertainty; committed cleanup failure never restores old source state; record actual platform assumptions and distinguish simulated power-loss evidence from a physical power-loss test |
 | Compiler decomposition | Every major component has cohesive nested subcomponents, short single-operation functions, narrow declared interfaces and explicit allocation/dependency ownership |
 | Component/composite tests | Independently runnable C leaves cover meaningful parts and assembled parents; real cross-component handoffs and generated-C integration tested; dependency changes invalidate generated artifacts |
 | Exact algorithms and justification | No heuristic decisions; complete component contracts and reviewable mathematical/algebraic arguments; invariant, boundary, failure and composition tests under ARCH-05/ARCH-06 and TEST-08 |

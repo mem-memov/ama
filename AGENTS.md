@@ -142,8 +142,21 @@
   task and evidence to DONE in the task's commit;
   preserve dependencies, decisions and results. Do not archive unfinished work
   or an unresolved documentation-debt owner. Consult DONE for completed prerequisites.
+- Before starting each next task, [review its contract against the current state](docs/development/README.md#review-the-next-task-against-the-current-state).
+  Compare the task with the current specification, accepted decisions, completed
+  prerequisites, actual code/consumers and available evidence. Update stale scope,
+  dependencies, deliverables and acceptance conditions in its existing record
+  before implementation; a plan cannot anticipate every later finding. Repeat
+  this review when a material change invalidates its conclusions. Split oversized
+  work into stable-ID subtasks with finite reviewable results and retain the
+  parent's final acceptance. If the uncertainty warrants an additional, deeper
+  audit, explain its question, scope, expected result and extra effort, and ask the
+  user to authorize that audit and choose the reasoning depth or budget; do not
+  change these settings or assume that extra expenditure is authorized. Routine
+  review and engineering choices remain part of the authorized task. This review
+  does not authorize specification changes or bypass the ambiguity procedure.
 - When asked to implement or continue implementation, work from [TODO.md](TODO.md),
-  respecting prerequisites and the stated acceptance criteria. Choose a ready task
+  respecting prerequisites and the revised acceptance criteria. Choose a ready task
   and finish its implementation, documentation, component/composition tests,
   and required checks before marking it complete.
   Continue through ready tasks within the authorized scope after each commit;

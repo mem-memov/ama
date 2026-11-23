@@ -1,5 +1,132 @@
 # Resolved source operations
 
+## Current plan after T274
+
+This is the current implementation checkpoint, revised on 2026-11-23 from the
+actual `af8e43eb` worktree and prior T224 evidence. The public operation is not
+complete. [TODO](../../TODO.md#t275) owns current task status; canonical behavior
+remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
+[SRC-06](../../spec/language/source-and-names.md#src-06),
+[PKG-04/09](../../spec/project/packages.md#pkg-04) and
+[PROJECT-01](../../spec/implementation/project-tools.md#project-01).
+This plan adds no alternative source language or compatibility contract.
+
+### What the review established
+
+The delay is a planning/integration problem, not evidence of an infinite loop.
+Thirty-two T224 commits have delivered meaningful narrow foundations, but the
+original nine-step task kept semantic preparation, physical publication, crash
+recovery and public commands inside one completion boundary. Late discovery of
+root-setting and transaction distinctions expanded that boundary. Repeated
+append-only status paragraphs made its next action hard to find. Splitting the
+remaining work must expose real end-to-end results earlier, not restart verified
+components or declare the unfinished parent complete.
+
+| Existing boundary | Evidence and reuse limit |
+|---|---|
+| Original graph/input safety and compiler analysis export | Accepted [T272](../../DONE.md#t272); use the complete original domain, not runtime reachability |
+| Project-side process/wire/input capture | Accepted [T273](../../DONE.md#t273); no compiler dispatcher is linked into the project tool |
+| Source/test/native/configuration closure | Accepted [T235](../../DONE.md#t235), plus the detailed compositions below; acquisition remains separate |
+| Exact original/final images, topology/maps, configuration edits and compiler/site proofs | Implemented and tested below, including independently compilable incorrect-image refusals; their complete root-changing orchestration is pending |
+| [Root-preserving copy plan](../../tools/project/source/copy/plan/plan.h) | Joins dependency modes, joint removal and final proofs; explicitly excludes changed semantic roots and effective-registry retirement separate from physical deletion |
+| [Freshness guard](../../tools/project/source/transaction/guard/guard.h), [hierarchical leases](../../tools/project/source/transaction/lease/lease.h) and [mutation forest](../../tools/project/source/transaction/forest/forest.h) | Tested actual capture, stale membership/inodes and complete disjoint trees; new root/observation separation must reuse these consumers |
+| [Image records](../../tools/project/source/transaction/document/document.h) and [private-tree ownership](../../tools/project/source/transaction/tree/tree.h) | Codec roundtrip, exact saved classes, synchronization/readback, reopen and permitted partial-cleanup transitions pass; a codec/private copy is not yet a durable transaction journal |
+| Public command and process-loss recovery | Unfinished: command dispatch still supports init, not source-operation preview/apply; real whole-operation journal/recovery must be integrated |
+
+The last collected foundation checks are
+`/tmp/ama-t224-private-resume-tool.exit = 0`,
+`/tmp/ama-t224-private-resume-copy.exit = 0` and
+`/tmp/ama-t224-private-resume-docs.exit = 0` (3881 ready inputs, zero explicit
+coverage debt). These are recorded historical results, not reruns by T274 or
+public-command acceptance. Their detailed flags, failure cases and earlier
+failed/corrected runs remain below. No implementation job was active at this
+review checkpoint.
+
+### Remaining tasks and consumers
+
+Each row is a separately accepted implementation/test/documentation task and
+commit. [TODO](../../TODO.md#t275) gives its complete scope and acceptance;
+review that scope against actual circumstances before starting, under the
+[task-entry rule](../development/README.md#review-the-next-task-against-the-current-state).
+Use a short entry record here for each task, then append only its actual steps
+and evidence. Revise this current checkpoint when an accepted result changes the
+next action; keep prior facts explicitly historical.
+
+| Task | Immediate prerequisites | Finite result and next real consumer |
+|---|---|---|
+| [T275](../../TODO.md#t275) | T232, T233, T235, T272, T273 and existing T224 foundations | Original/final semantic registries, actual physical mutation/removal and stable observation/coordination are separate in actual capture/plan consumers; T276 consumes them |
+| [T276](../../TODO.md#t276) | T275 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
+| [T277](../../TODO.md#t277) | T276 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
+| [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
+| [T279](../../TODO.md#t279) | T278 | Whole multi-tree copy/delete/move/replace publication and repeatable recovery, with writer/reader coordination and same/cross-filesystem failure evidence |
+| [T280](../../TODO.md#t280) | T275, T276, T279 | Prepared root/client selection, metadata and rebuild consequences publish/recover with those sources |
+| [T281](../../TODO.md#t281) | T277, T279, T280 | Public apply/recovery and coordinated read-only integration consume the same plan/executor, with precise outcome/retained-path reports |
+| [T224](../../TODO.md#t224) | T232, T233, T235, T272, T273, T275..T281 | Final public matrix, current consumer/removal audit, complete affected regression and generated documentation; T236 consumes accepted operations |
+
+```mermaid
+flowchart TD
+    existing[T232 / T233 / T235 / T272 / T273 and T224 foundations] --> roots[T275: distinct domains]
+    roots --> plan[T276: complete immutable plan]
+    plan --> preview[T277: public preview]
+    plan --> journal[T278: one-tree apply and recovery]
+    preview --> journal
+    journal --> publish[T279: multi-tree transactions]
+    roots --> metadata[T280: root and client publication]
+    plan --> metadata
+    publish --> metadata
+    preview --> commands[T281: public apply and recovery]
+    publish --> commands
+    metadata --> commands
+    commands --> final[T224: final acceptance]
+    final --> acquire[T236: acquisition and promotion]
+```
+
+The diagram shows the reading order, not a substitute for the prerequisite
+lists. T224 also waits for every child independently. T236's dependency is not
+weakened to a private-tree helper: whole-version promotion needs the same complete
+operation and recovery guarantees. The independent CMake branch keeps its
+existing dependencies; do not switch to it to bypass unfinished source work.
+
+### Next action and acceptance safeguards
+
+Start T275 with the actual catalog/image/plan interfaces. Write the entry review
+and the invariant separating selected module roots from stable observed physical
+parents; prove same-identity promotion and root augmentation through real
+consumers before extending immutable orchestration in T276. Reuse the accepted
+wire, closure, image, lease, record and owned-tree foundations. No source command
+or recoverable publication is accepted merely by updating these documents.
+
+T277 must exercise the real command executable before further private publication
+work. T278 must perform a real controlled process kill and reopen from another
+process, not only invoke a callback or replay an in-memory record. T279 extends
+that production state machine instead of creating a second rollback algorithm.
+A new reader/writer must still discover unfinished work after writer death has
+released kernel locks: a lock becoming available is not a commit record. A
+read-only consumer refuses that state without repairing it; an overlapping writer
+reports the explicit recovery entry/location before new work.
+T280 must consume root/client/configuration intentions already present in T276;
+late metadata discovery is a plan defect, not permission for a best-effort fixup.
+T281 documents coherent-reader participation without giving the compiler hidden
+source-mutation or recovery effects. Nonparticipating readers receive no
+whole-tree snapshot guarantee. Storage-fault ordering models and physical power
+loss are different evidence; record actual supported assumptions honestly.
+
+T224 retains all original final criteria, including removal of superseded
+compiler-side mutation/importer rewriting after real consumer migration,
+per-file coverage, Doxygen/source navigation and final compiler/site checks.
+Child acceptance never implies whole-sprint conformance; T237 still owns that
+release gate. Do not refresh old conformance fingerprints to hide missing public
+behavior. Every child records successful/refused/failing compositions and commits
+its own complete evidence before the next task.
+
+## Historical T224 execution record
+
+Everything below preserves the original task plan and chronological step logs.
+Their "current", "active" and "next" statements describe the checkpoint at which
+they were written; use the current plan above for resumption. They retain the
+actual decisions, failures and acceptance boundaries rather than being rewritten
+as if later implementation had already existed.
+
 ## T224 contract and execution plan
 
 T224 starts from accepted T235 commit `9506245c` and a clean worktree.

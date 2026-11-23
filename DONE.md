@@ -8499,3 +8499,85 @@ T201. Specification bytes have not changed.
   fingerprint validation, without changing accepted component inputs.
   T224 retains physical-root capture, test-entry probing, rewrites, transactions
   and public source operations. T237 retains full release/conformance renewal.
+
+## Current-state planning and source-operation completion
+
+<a id="t274"></a>
+
+- [x] **T274 — Replan source operations and require task-entry reassessment.**
+  Accepted on 2026-11-23. Prerequisites: accepted T243 planning baseline and the
+  recorded T224 foundation evidence at `af8e43eb`. The user requested revision
+  of the plan, described subtask boundaries and a mandatory review before taking
+  up the next task, with an optional specifically scoped deeper audit. The same
+  request entrusted necessary clarifications to the agent, guided by usability,
+  configuration flexibility, fault tolerance, clarity and successful industry
+  practice. This authorizes the bounded transaction/static-producer clarifications
+  below; it is not standing permission for unrelated specification changes.
+
+  Scope and result: reviewed actual command/plan/capture/transaction consumers and
+  preserved all existing T224 requirements and evidence. Thirty-two T224 commits
+  had delivered real foundations; the single task still combined semantic
+  preparation, durable publication, recovery and public commands. Its accumulated
+  status text obscured the remaining work. Split that work into finite,
+  independently accepted T275..T281: separate semantic/physical domains; prepare
+  the complete immutable plan; expose real previews; apply/recover one tree;
+  extend to complete multi-tree transactions; publish root/client metadata and
+  rebuild consequences; expose complete public apply/recovery. T224 retains final
+  public/regression/documentation acceptance, and T236 still waits for accepted
+  T224. T277 is an explicit prerequisite of T278 so public integration is tested
+  before the journal work expands. No implementation child is marked complete.
+
+  Updated [TODO](TODO.md#t275), the
+  [source-operation checkpoint/graph](docs/implementation/source-operations.md#current-plan-after-t274)
+  and the [CMake dependency plan](docs/implementation/cmake-launcher-plan.md#dependency-order-and-commit-boundaries)
+  together. Preserved the full chronological source-operation record, including
+  failed/corrected runs, as explicitly historical evidence. Reuse existing tested
+  wire/closure/image/configuration/lease/record/private-tree owners; the plan does
+  not restart them, infer public support or weaken original safety. Every child
+  names its real consumer, finite deliverable and relevant refusal/failure checks.
+  New-process discovery of unfinished work is required even after kernel locks
+  vanish on writer death; readers refuse without performing source recovery.
+
+  Workflow: [AGENTS](AGENTS.md#workflow), the
+  [development standard](docs/development/README.md#review-the-next-task-against-the-current-state)
+  and [task template](docs/development/task-template.md#entry-review-against-the-current-state)
+  now require an entry review against current rules, decisions, actual consumers,
+  prerequisite results and reusable/invalidated evidence. Revise stale scope,
+  dependencies and acceptance before implementation. Split oversized work while
+  retaining the parent's gate, or request a bounded additional audit with its
+  question, scope, expected benefit and extra effort. User authorization and a
+  selected depth/budget are required for that additional audit; routine review
+  remains authorized. No silent model-setting/budget changes or bypass of the
+  specification-permission/ambiguity procedure is introduced.
+
+  Authorized specification clarifications:
+  [TOOL-02/04](spec/implementation/tools-and-conformance.md#tool-02) now distinguish
+  selected registries, actual physical mutations and observation/coordination
+  bounds; explain same-identity promotion without deleting ignored external
+  files; define participating reader/writer exclusion, process and conditional
+  host/storage failure guarantees, durable decisions, ownership conflicts and
+  repeatable recovery. Committed cleanup debt is distinct from an uncommitted
+  operation. Three acceptance rows expose these obligations. Motivation links
+  the reviewed primary Git lockfile, SQLite atomic-commit and PostgreSQL storage
+  reliability documentation; their exact journal/layout is not prescribed.
+  [Static-producer wording](spec/language/static-results.md#tpl-12) explicitly
+  confines the bare-producer prohibition to the static equation graph and
+  preserves TPL-15's ordinary named-export projections. Grammar/source syntax,
+  canonical requirement IDs and compiler/runtime behavior are unchanged.
+
+  Acceptance: independent read-only plan/spec/workflow review found no blocking
+  contradiction; its writer-death case was added to T278/T279. Mechanical checks
+  confirm 281 unique task records, 25 active acyclic dependency nodes, correct
+  T275..T281/T224/T237 prerequisites and next unused ID T282. All 241
+  canonical requirements have one definition and the matching index destination.
+  Prose navigation checks pass for 1529 local links and 1103 Markdown anchors
+  across 35 changed/canonical documents; Markdown whitespace checks pass.
+  `make docs-check` passes with 3881 ready inputs and zero explicit debts
+  (`/tmp/ama-t274-docs-check.log`, exit 0). Scratch dependency/index checks initially
+  produced parser false positives; explicit prerequisite wording and corrected
+  range/dictionary handling pass on the final documents. These are documentation
+  checks, not new compiler, crash-recovery or full-conformance evidence. No C,
+  header, build or test implementation input changes; generated Doxygen was not
+  republished. The task commit contains only planning, workflow and the scoped
+  specification clarification. T224 remains unfinished; T275 is next for entry
+  review before implementation.

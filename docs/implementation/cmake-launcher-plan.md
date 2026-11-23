@@ -8,8 +8,10 @@ specification amendments remain separate authorizations.
 
 Use [TODO](../../TODO.md) for task status and the
 [development standard](../development/README.md) for the task lifecycle.
-Every task below is planned. The acceptance cases and commands are obligations
-for its future execution, not results of this planning task.
+The prerequisite table describes task boundaries, not current status; accepted
+foundations are recorded in DONE and the remaining tasks in TODO. Acceptance
+cases and commands below are obligations, not results of this plan. Before each
+next task, perform the current-state entry review in the development standard.
 
 ## Result and scope
 
@@ -115,12 +117,24 @@ Use the following prerequisites rather than numeric sorting.
 | 18 | T242 | T246, T255, T241, T236 | Integrated application, inclusion and delivered-test acceptance |
 | 19 | T237 | Existing project/path prerequisites plus T242 | Whole-sprint current conformance, clean release and documentation delivery |
 
-The selection/acquisition branch remains
-`T234 -> T235 -> T272 -> T224 -> T236` (T272 is the accepted read-only analysis prerequisite extracted from T224), with T239 required by T235. T268's AMB-017/018
-amendment makes source cloning consume the same complete source/test closure;
-it does not authorize an incomplete mover or external-importer rewriting.
-T233's independent test orchestration must not depend on T242: that would create
-a cycle. T242 connects it to the accepted CMake runner after both sides exist.
+The source-operation branch was revised by [T274](../../DONE.md#t274) after
+reviewing actual T224 consumers and retained evidence. Its complete current
+[subtask contracts and checkpoint](source-operations.md#current-plan-after-t274)
+are authoritative for planning that branch; canonical semantics stay in spec.
+The accepted selection/closure/protocol foundations feed T275's separation of
+semantic and physical domains, then T276's immutable plan. T277 exposes previews
+before T278's first complete journal/recovery slice; T279 expands publication,
+T280 integrates root/client metadata, and T281 exposes complete apply/recovery.
+T224 retains final acceptance after all seven children; T236 still depends on
+accepted T224. This split adds no dependency cycle and does not infer public
+support from private preparation or record-codec tests.
+
+T268's AMB-017/018 amendment makes source cloning consume the same complete
+source/test closure; it does not authorize an incomplete mover or external-importer
+rewriting. T239 is required by T235. T233's independent test orchestration must
+not depend on T242: that would create a cycle. T242 connects it to the accepted
+CMake runner after both sides exist. The CMake rows keep their actual immediate
+prerequisites; do not start a later task to bypass a source-operation blocker.
 
 ```mermaid
 flowchart TD
@@ -148,7 +162,21 @@ flowchart TD
     publish --> run[T255: build and run]
     run --> acceptance[T242: composed acceptance]
     scaffold --> acceptance
-    delivery[T234 / T235 / T224 / T236] --> acceptance
+    closure[T234 / T235 / T272 / T273] --> domains[T275: source domains]
+    domains --> operation[T276: complete source plan]
+    operation --> preview[T277: source preview]
+    operation --> journal[T278: one-tree recovery]
+    preview --> journal
+    journal --> transaction[T279: multi-tree publication]
+    domains --> roots[T280: root and client publication]
+    operation --> roots
+    transaction --> roots
+    preview --> apply[T281: public apply and recovery]
+    transaction --> apply
+    roots --> apply
+    apply --> sourcegate[T224: final source acceptance]
+    sourcegate --> delivery[T236: acquisition and promotion]
+    delivery --> acceptance
     acceptance --> release[T237: complete release]
 ```
 

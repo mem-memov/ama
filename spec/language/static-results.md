@@ -298,10 +298,15 @@ precede named outputs at each application level. Source nesting follows SYN-06;
 there is no static ordinal counter or implicit first result.
 
 A static producer has named outputs rather than a value denoting its own Type.
-It cannot be the right-hand value of a result pair or an inline constructor
-argument. Select its result into a name, then use that name as the value of
-another expression. A producer use without an output selection is not a graph
-statement. This introduces no output-free or effectful compile-time call.
+In an `@...` equation graph, a bare producer path cannot be the right-hand value
+of a result pair or an inline constructor argument: the graph must select its
+named result into a name, then use that name as the value of another expression.
+A producer use without an output selection is not a graph statement. This
+introduces no output-free or effectful compile-time call. Ordinary declaration
+type expressions instead have the explicit named-export projection defined by
+[TPL-15](templates.md#tpl-15), including in nested arguments. Such a projection
+denotes the selected result, not a value of the producer itself, and still must
+yield the category and final concrete Type required by that rule.
 
 The actual nonempty producer is determined by its explicit path. A marker path
 denotes its Type in a value expression instead of supplying named outputs.

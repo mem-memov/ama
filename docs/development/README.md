@@ -51,6 +51,48 @@ tasks after each commit; a progress report or completed substep is not a reason
 to abandon the remaining work. Do not enlarge the user's scope or request new
 approval for routine implementation choices already covered by that scope.
 
+## Review the next task against the current state
+
+Before starting each next task, check that its original contract still describes
+the work now needed. Plans are provisional: earlier implementation, accepted
+clarifications and new evidence can change later prerequisites and boundaries.
+An old task description is not evidence that its assumptions still hold.
+
+Use this short entry check within the existing task record:
+
+- Compare the task with current canonical rules and recorded user decisions.
+- Verify prerequisites through their delivered interfaces and acceptance evidence;
+  inspect the affected code and real consumers rather than relying on checkboxes.
+- Identify what already works, what remains missing, and which previous results
+  are reusable for the current inputs. Record unsupported or invalidated claims.
+- Confirm a finite deliverable, its consumer and the checks that will establish
+  completion. Include the relevant integration and failure boundary in that result.
+
+Record the review's inputs, findings and disposition in TODO or the already linked
+task note. A short paragraph is enough for a small task; do not add a separate
+review log. Before implementation, revise stale scope, dependencies, steps,
+acceptance conditions and known limits while preserving the task's stable ID and
+historical evidence. Repeat the affected part of the review when a material rule,
+decision, interface, consumer or environmental assumption changes. Do not discard
+unaffected evidence or rerun unrelated checks solely because a review occurred.
+
+If the task has become too large for one independently accepted result, split it
+into stable-ID subtasks with explicit prerequisites and completion conditions.
+Retain the parent's final acceptance and name the consumer of each foundation.
+Arrange early steps to exercise a real composition; a succession of isolated
+foundations without a path to the promised behavior is not a completion plan.
+Splitting a task does not complete its parent or permit bypassing a blocker.
+
+If a broader audit would resolve a substantial planning or design uncertainty,
+the agent may request one before taking up that work. State the question, affected
+boundary, proposed audit deliverable and why the expected benefit justifies more
+tokens or deeper reasoning. Ask the user to authorize that additional audit and
+select the depth or budget; do not silently change model settings, invent a token
+allowance or treat silence as approval. Ordinary entry review and exact engineering
+choices remain within the authorized work and need no repeated permission.
+Observable ambiguity still follows the ambiguity procedure below. Review findings
+cannot authorize specification edits or substitute for a required user decision.
+
 ## Plan small steps with visible outcomes
 
 Use the [task record template](task-template.md). The TODO entry is sufficient

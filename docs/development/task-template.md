@@ -16,6 +16,24 @@ Follow the [development standard](README.md).
 - Affected components and real consumers:
 - Acceptance conditions and known environmental assumptions:
 
+## Entry review against the current state
+
+Complete this before starting the task; keep it brief and link existing evidence.
+Update it when a material change invalidates its conclusions, without duplicating
+the historical results below.
+
+- Reviewed specification/decisions, repository state and prerequisite evidence:
+- Actual delivered behavior, missing behavior and reusable or invalidated evidence:
+- Revisions to scope, dependencies, finite deliverable/consumer and acceptance:
+- Disposition: ready, split into linked stable-ID subtasks with parent acceptance
+  retained, or awaiting a precise clarification/authorized additional audit.
+
+For a requested additional audit, state its question, scope, expected result and
+reason for extra effort; record the user's authorization and selected depth or
+budget before that audit. Routine task review needs no separate approval. Apply
+the [entry review rules](README.md#review-the-next-task-against-the-current-state)
+and preserve specification authority and ambiguity handling.
+
 ## Contract and planned steps
 
 Link the owning [component contract](../implementation/contracts/component-template.md)
