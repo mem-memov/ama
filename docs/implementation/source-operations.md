@@ -3784,3 +3784,58 @@ owners and contradictory kinds refuse. All active jobs collected. Next integrate
 final-copy proof over actual C/P placement, prepared image/compiler input,
 context obligations and graph sites; final configuration sets and operation
 publication remain independent mandatory gates. T224 is not complete.
+
+### Compose physical and semantic final-copy proof
+
+`copy/proof/` now joins C/P correspondence, exact mapped material, actual final
+main placements, retained-original whole-unit bytes, complete final main
+accounting, context omission obligations and graph/site preservation. The input
+compiler response must first match the final capture's exact view; original
+analysis must match C's actual original capture. Context provenance belongs to
+the same copy/map/analysis. Physical and semantic facts stay distinct: graph
+edges cannot detect a changed edge-free main, a leftover target companion, a
+draft at the wrong identity or altered opaque subtree bytes.
+
+The proof computes prepared material through the production byte-exact join and
+checks every target against the actual image. Every clone has its explicit final
+identity/path; every captured clone companion belongs to P. Every surviving
+original retains its physical path and complete ordered main/dot-companion bytes.
+Every actual final main is accounted for by a retained original or C. Together
+these finite inclusions establish main-set equality, including inactive drafts;
+correspondence also equates the C and P original main domains. Context and site
+checks then consume the same owners and reviewed removal-name union. No final
+success grants deletion safety, exact configuration authority, dependency-mode
+permission, freshness or publication authority. Those outer gates remain required.
+
+Split orchestration, unit preservation and material comparison into cohesive
+production files with an explicit private interface. Scratch is operation-arena
+owned; diagnostics borrow source/map witnesses. No source I/O, execution or
+mutation occurs. Finite scans bound time as documented in proof.h; the prepared
+material array is the sole new allocation, so its measured failure ordinal must
+leave no accepted result or unowned resource.
+
+The real existing copy/image/compiler fixture now consumes this production proof
+instead of calling the graph-site child alone. It retains cyclic module/test
+copies, initialized configuration, opaque companion and NUL/non-UTF8 subtree data.
+Additional independently compiled final images intentionally change only original
+whitespace, introduce an extra copied companion, or alter opaque subtree bytes.
+All remain compilable, but must respectively refuse ORIGINAL, PLACEMENT and
+MATERIAL. Wrong compiler input and failed proof scratch are separate refusal
+cases. Initial strict run passed; final expanded strict run is active at
+`/tmp/ama-t224-copy-proof-final.log`, session 13999. No final task acceptance yet.
+
+Final-copy proof acceptance completed: expanded strict leaf
+(`/tmp/ama-t224-copy-proof-final.exit = 0`; initial proof run also zero), full
+copy ASan/UBSan with the recorded non-PIE flags/LSan restriction
+(`/tmp/ama-t224-copy-proof-sanitizers.exit = 0`), tool build
+(`/tmp/ama-t224-copy-proof-tool.exit = 0`) and `make docs-check`
+(`/tmp/ama-t224-copy-proof-registry.exit = 0`, 3828 ready inputs, zero debts).
+All three independently recompiled incorrect images fail their distinct physical
+laws despite successful ordinary compilation. Wrong compiler snapshots, invalid
+owners and the sole proof scratch allocation failure refuse separately. No
+active job remains. Next join exact independent final configuration-root checks
+and operation planning; public command/transaction acceptance is still absent.
+The current proof's removed names are the explicitly supplied original registry
+retirement set. Callers must keep physical removal safety distinct from PKG-02
+selection retirement when adding promotion/root-selection orchestration; this
+proof is not permission to erase shadowed physical originals.

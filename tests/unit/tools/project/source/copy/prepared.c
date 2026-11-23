@@ -11,6 +11,7 @@
 #include "../../../../../../tools/project/source/graph/sites.h"
 #include <stdint.h>
 #include "../../../../../../tools/project/source/copy/image/image.h"
+#include "../../../../../../tools/project/source/copy/proof/proof.h"
 #include "../../../../../../tools/project/source/copy/configuration/version.h"
 #include "../../../../../../tools/project/source/copy/members/units.h"
 #include "../../../../../../tools/project/source/copy/tests/tests.h"
@@ -46,6 +47,7 @@ static const DeliverySourceDefinition *copy_definition(const char *identity) {
     }
     assert(false); return NULL;
 }
+#include "proof-cases.c"
 /** Original cyclic modules and their concrete tests are placed into a new actual
  * package layout in an immutable image, edited by spans and independently rechecked. */
 static void it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites(void) {
@@ -141,8 +143,20 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
     assert(delivery_source_snapshot_write(request, &final_capture.view) && fclose(request) == 0);
     SourceCompilerClient final; source_compiler_client_init(&final, sources.allocator);
     assert(source_compiler_client_run(&final, "../../../../../../ama", "generated/final-copy.json", &final_capture.view, NULL) == SOURCE_COMPILER_OK);
-    SourceSitesIssue sites;
-    assert(source_graph_sites(analysis.original.response.definitions, final.response.definitions, &map, NULL, 0, provenance, &sites) == SOURCE_SITES_OK);
+    SourceCopyContextOmissions contexts;
+    source_copy_context_omissions_init(&contexts, sources.allocator, &copy, &map);
+    assert(source_copy_context_omissions_seal(&contexts) == SOURCE_COPY_CONTEXT_OK);
+    SourceCopyProofIssue proof;
+    assert(source_copy_prove(&arena, &analysis, &map, &files, provenance, &contexts, &final_capture, &final, NULL, 0, &proof) == SOURCE_COPY_PROOF_OK);
+    assert(!proof.path && !proof.unit);
+    assert(source_copy_prove(&arena, &analysis, &map, &files, provenance, &contexts, &final_capture, &analysis.original, NULL, 0, &proof) == SOURCE_COPY_PROOF_INPUTS);
+    size_t before_proof = allocation_count;
+    failure_at = before_proof + 1;
+    assert(source_copy_prove(&arena, &analysis, &map, &files, provenance, &contexts, &final_capture, &final, NULL, 0, &proof) == SOURCE_COPY_PROOF_MATERIAL);
+    assert(proof.material_status == SOURCE_MATERIAL_MEMORY); failure_at = 0;
+    assert(source_copy_prove(&arena, &analysis, &map, &files, provenance, &contexts, &final_capture, &final, NULL, 0, &proof) == SOURCE_COPY_PROOF_OK);
+    check_copy_proof_refusals(&arena, &prepared, &map, &files, provenance, &contexts, &final_capture, &final, opaque_path);
+    source_copy_context_omissions_destroy(&contexts);
     source_compiler_client_destroy(&final); source_image_capture_destroy(&final_capture);
     for (size_t i = 0; i < 4; i++) { source_text_edits_destroy(&edits[i]); }
     source_manager_destroy(&prepared); source_observed_image_destroy(&observed); source_file_map_destroy(&files); source_clone_map_destroy(&map);
