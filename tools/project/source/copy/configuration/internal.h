@@ -10,4 +10,7 @@
  * Existing or unknown keys refuse; only the closest complete directory ancestor
  * proves absence. No allocation/I/O; finite exact row/ancestor scans. */
 bool source_configuration_version_absent(const SourceCatalogImage *, const char *);
+/** Borrow an observed final root mode, or closest containing physical boundary
+ * mode for a wholly missing root. Unknown/non-directory rows refuse. */
+const SourceCatalogImageEntry *source_configuration_root_mode(const SourceCatalogImage *, const ModuleRoot *);
 #endif

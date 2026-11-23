@@ -49,6 +49,52 @@ static void domain_refuse_lost_original(DomainFixture *fixture, const SourceFile
         source_compiler_client_destroy(&client); source_image_capture_destroy(&captured);
     }
 }
+/** A real move removes the explicit original source tree, including its nested
+ * semantic root, while preserving the already proven copied selected view. */
+static void domain_prove_move(DomainFixture *fixture, const SourceOperationPlanInputs *copy_inputs,
+    const SourceTreePlacement *placement, const SourceRemovalSelection *replacement) {
+    SourceRemovalSelection source_cut, removed;
+    source_removal_selection_init(&source_cut, sources.allocator); source_removal_selection_init(&removed, sources.allocator);
+    assert(source_removal_selection_build(&source_cut, copy_inputs->copy->tree, &fixture->analysis, NULL) == SOURCE_REMOVAL_SELECTION_OK);
+    const SourceRemovalSelection *parts[] = {&source_cut, replacement};
+    assert(source_removal_selection_merge(&removed, parts, replacement ? 2 : 1) == SOURCE_REMOVAL_SELECTION_OK);
+    SourceImageChange *changes = source_arena_allocate(&fixture->arena, removed.path_count * sizeof(*changes)); assert(changes);
+    size_t index = 0;
+    for (const SourceRemovalSelectedFile *file = removed.selected; file; file = file->next) {
+        changes[index++] = (SourceImageChange){SOURCE_IMAGE_REMOVE, {.path = file->file->file.path}};
+    }
+    assert(index == removed.path_count);
+    SourceOperationPlanInputs inputs = *copy_inputs;
+    inputs.removal = &removed; inputs.changes = changes; inputs.change_count = removed.path_count;
+    SourceOperationPlan move; source_operation_plan_init(&move, sources.allocator);
+    assert(source_operation_plan_build(&move, &inputs) == SOURCE_OPERATION_PLAN_OK && move.mutations.count == 2);
+    SourceOperationIntent intent = {.kind = SOURCE_OPERATION_MOVE, .source = copy_inputs->copy->tree,
+        .placement = placement, .source_removal = &source_cut, .replacements = replacement ? &replacement : NULL,
+        .replacement_count = replacement ? 1 : 0, .replace = replacement != NULL};
+    SourceOperationIntentIssue issue;
+    assert(source_operation_intent_check(&move, &intent, &issue) == SOURCE_OPERATION_INTENT_OK && !issue.path && !issue.selection);
+    SourceOperationMaterialReview material; source_operation_material_init(&material, sources.allocator);
+    assert(source_operation_material_build(&material, &move, &intent) == SOURCE_OPERATION_MATERIAL_OK && material.valid);
+    source_operation_material_destroy(&material);
+    SourceCopyProofIssue proof;
+    assert(source_operation_plan_prove(&move, &fixture->after, &proof) == SOURCE_COPY_PROOF_OK);
+    if (replacement) {
+        const SourceRemovalSelection *repeated[] = {replacement, replacement};
+        intent.replacements = repeated; intent.replacement_count = 2;
+        assert(source_operation_intent_check(&move, &intent, &issue) == SOURCE_OPERATION_INTENT_OK);
+        intent.replacements = &replacement; intent.replacement_count = 1;
+    }
+    intent.kind = SOURCE_OPERATION_COPY;
+    assert(source_operation_intent_check(&move, &intent, &issue) == SOURCE_OPERATION_INTENT_INVALID);
+    intent.kind = SOURCE_OPERATION_MOVE; intent.source_removal = NULL;
+    assert(source_operation_intent_check(&move, &intent, &issue) == SOURCE_OPERATION_INTENT_INVALID);
+    intent.source_removal = &source_cut; intent.replacements = NULL; intent.replacement_count = 0;
+    if (replacement) { assert(source_operation_intent_check(&move, &intent, &issue) == SOURCE_OPERATION_INTENT_REMOVAL); }
+    const SourceRemovalSelection *extra[] = {&source_cut};
+    intent.replacements = extra; intent.replacement_count = 1; intent.replace = true;
+    assert(source_operation_intent_check(&move, &intent, &issue) == SOURCE_OPERATION_INTENT_REPLACE);
+    source_operation_plan_destroy(&move); source_removal_selection_destroy(&removed); source_removal_selection_destroy(&source_cut);
+}
 /** Compose genuine raw selection, test closure, complete physical mapping and
  * context accounting rather than constructing fake valid proof owners. */
 static void domain_prove(DomainFixture *fixture) {
@@ -95,6 +141,26 @@ static void domain_prove(DomainFixture *fixture) {
     assert(plan.mutations.count == 1 && !strcmp(plan.mutations.roots[0].path, fixture->destination));
     SourceCopyProofIssue issue;
     assert(source_operation_plan_prove(&plan, &fixture->after, &issue) == SOURCE_COPY_PROOF_OK);
+    SourceTreePlacement placement; source_tree_placement_init(&placement, sources.allocator);
+    assert(source_tree_placement_build(&placement, &selected, fixture->destination) == SOURCE_PLACEMENT_OK);
+    const SourceRemovalSelection *replacement_cut = replacements ? &removed : NULL;
+    SourceOperationIntent intent = {.kind = SOURCE_OPERATION_COPY, .source = &selected, .placement = &placement,
+        .replacements = replacement_cut ? &replacement_cut : NULL, .replacement_count = replacements, .replace = replacements != 0};
+    SourceOperationIntentIssue intent_issue;
+    assert(source_operation_intent_check(&plan, &intent, &intent_issue) == SOURCE_OPERATION_INTENT_OK);
+    SourceOperationMaterialReview material; source_operation_material_init(&material, sources.allocator);
+    assert(source_operation_material_build(&material, &plan, &intent) == SOURCE_OPERATION_MATERIAL_OK && material.valid);
+    size_t material_calls = allocation_count;
+    assert(source_operation_material_build(&material, &plan, &intent) == SOURCE_OPERATION_MATERIAL_INVALID && material.valid && allocation_count == material_calls);
+    source_operation_material_destroy(&material);
+    if (replacements) {
+        intent.replace = false;
+        assert(source_operation_intent_check(&plan, &intent, &intent_issue) == SOURCE_OPERATION_INTENT_REPLACE);
+        intent.replace = true;
+    }
+    domain_prove_move(fixture, &inputs, &placement, replacement_cut);
+    source_tree_placement_destroy(&placement);
+    domain_check_main_edit_eligibility(fixture, &inputs);
     domain_refuse_lost_original(fixture, &files, &contexts);
     source_operation_plan_destroy(&plan);
     inputs.final_roots = NULL;

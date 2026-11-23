@@ -24,17 +24,18 @@ static int area_coverage(const SourceFileMap *files, const char *path) {
     return covered ? 1 : 0;
 }
 SourceVersionInitializationStatus source_version_initialize(SourceArena *arena, SourceManager *texts,
-    const SourceObservedImage *original, const SourceVersionPlacement *version, const SourceFileMap *files,
+    const SourceObservedImage *original, const ModuleRoot *final_roots, size_t final_root_count,
+    const SourceVersionPlacement *version, const SourceFileMap *files,
     const SourceCatalogImageEntry *file_mode, const SourceImageChange *reserved, size_t reserved_count,
     SourceVersionInitialization *output, SourceVersionInitializationIssue *issue) {
     if (!issue) { return SOURCE_VERSION_INITIALIZATION_INVALID; } *issue = (SourceVersionInitializationIssue){0};
     if (!arena || !texts || !original || !original->valid || !original->sealed || !output
         || !files || !files->ready || files->status != SOURCE_FILE_MAP_OK
         || !source_version_placements_valid(version, 1) || (reserved_count && !reserved)
-        || !owns_mode(&original->image, file_mode)) { return SOURCE_VERSION_INITIALIZATION_INVALID; }
+        || (final_root_count && !final_roots) || !owns_mode(&original->image, file_mode)) { return SOURCE_VERSION_INITIALIZATION_INVALID; }
     issue->path = version->physical;
     SourcePlacedIdentity placed;
-    issue->identity_status = source_placement_identity(arena, original->image.roots, original->image.root_count,
+    issue->identity_status = source_placement_identity(arena, final_roots, final_root_count,
         version->physical, MODULE_PATH_VERSION, &placed);
     if (issue->identity_status != SOURCE_IDENTITY_OK) {
         return issue->identity_status == SOURCE_IDENTITY_MEMORY ? SOURCE_VERSION_INITIALIZATION_MEMORY : SOURCE_VERSION_INITIALIZATION_PLACEMENT;
@@ -64,7 +65,8 @@ SourceVersionInitializationStatus source_version_initialize(SourceArena *arena, 
     }
     SourceCopyImageBuilder builder = {.arena = arena, .original = &original->image, .changes = changes,
         .count = reserved_count, .capacity = reserved_count + 3};
-    const SourceCatalogImageEntry *root = source_copy_image_original(&builder, original->image.roots[placed.root].path);
+    const SourceCatalogImageEntry *root = source_configuration_root_mode(&original->image, &final_roots[placed.root]);
+    if (!root) { issue->path = final_roots[placed.root].path; return SOURCE_VERSION_INITIALIZATION_PLACEMENT; }
     for (size_t i = 0; i < 3; i++) {
         issue->path = paths[i];
         int coverage = i ? area_coverage(files, paths[i]) : 0;
@@ -83,6 +85,7 @@ SourceVersionInitializationStatus source_version_initialize(SourceArena *arena, 
         return issue->source_status == SOURCE_LIMIT ? SOURCE_VERSION_INITIALIZATION_LIMIT : SOURCE_VERSION_INITIALIZATION_MEMORY;
     }
     changes[reserved_count].entry.content = configuration;
-    *output = (SourceVersionInitialization){original, *version, configuration, &changes[reserved_count], builder.count - reserved_count};
+    *output = (SourceVersionInitialization){.original = original, .final_roots = final_roots, .final_root_count = final_root_count,
+        .version = *version, .configuration = configuration, .changes = &changes[reserved_count], .count = builder.count - reserved_count};
     *issue = (SourceVersionInitializationIssue){0}; return SOURCE_VERSION_INITIALIZATION_OK;
 }

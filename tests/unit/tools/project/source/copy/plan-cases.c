@@ -3,6 +3,10 @@
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
  */
 #include "../../../../../../tools/project/source/operation/plan/plan.h"
+#include "../../../../../../tools/project/source/operation/material/material.h"
+#include "material-review/failures.c"
+#include "material-review/membership.c"
+#include "material-review/fixture.c"
 #include "../../../../../../tools/project/source/transaction/document/document.h"
 /** Durable image records retain the same material/compiler proof after the
  * temporary JSON text expires; decoded data has no independent mutation authority. */
@@ -126,6 +130,7 @@ static void check_copy_plan(SourceArena *arena, const SourceObservedImage *obser
     SourceCopyProofIssue proof;
     assert(source_operation_plan_prove(&plan, client, &proof) == SOURCE_COPY_PROOF_OK);
     check_recorded_copy_plan(arena, &plan, client, NULL, 0);
+    check_copy_material_review(&plan);
     assert(source_copy_prove(&plan.arena, inputs.original, map, files, texts,
         NULL, &plan.capture, client, NULL, 0, &proof) == SOURCE_COPY_PROOF_INVALID);
     assert(source_operation_plan_prove(&plan, &analysis.original, &proof) == SOURCE_COPY_PROOF_INPUTS);

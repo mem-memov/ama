@@ -8,6 +8,12 @@
 #include "proof.h"
 /** Compare finite prepared P observations with actual final image rows; no allocation. */
 bool source_copy_proof_material(const SourceCopyMaterial *, const SourceCatalogImage *, const char **);
+/** Permit main-file edits only inside authored module operands; final site proof
+ * must still match the entire projected operand, preventing inserted code escape.
+ * With T text owners, C clones, D definitions, E edits and H maximum operand
+ * edges per definition, use O(T(C+D) + EH) comparisons and O(1) scratch. */
+bool source_copy_proof_edits(const DeliverySourceDefinition *, const SourceCloneMap *,
+    const SourceGraphPreparedText *, SourceCopyProofIssue *);
 /** Preserve complete main/dot-companion bytes and membership for an ignored
  * original not physically removed; unavailable parent listings refuse. */
 bool source_copy_proof_preserved_unit(const SourceCapturedUnit *, const SourceCatalogImage *);

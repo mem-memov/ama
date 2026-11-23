@@ -99,7 +99,7 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
         if (!strcmp(observed.image.entries[i].path, original_configuration_path)) { configuration_mode = &observed.image.entries[i]; }
     }
     SourceVersionInitialization initialized; SourceVersionInitializationIssue initialization_issue;
-    assert(source_version_initialize(&arena, &prepared, &observed, &version, &files, configuration_mode, NULL, 0,
+    assert(source_version_initialize(&arena, &prepared, &observed, observed.image.roots, observed.image.root_count, &version, &files, configuration_mode, NULL, 0,
         &initialized, &initialization_issue) == SOURCE_VERSION_INITIALIZATION_OK);
     assert(initialized.count == 1 && !source_length(initialized.configuration));
     SourceTextEdits edits[4]; SourceGraphPreparedText provenance[4];

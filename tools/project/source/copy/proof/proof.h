@@ -16,7 +16,7 @@ typedef enum { SOURCE_COPY_PROOF_OK, SOURCE_COPY_PROOF_INVALID,
     SOURCE_COPY_PROOF_INPUTS, SOURCE_COPY_PROOF_CORRESPONDENCE,
     SOURCE_COPY_PROOF_MATERIAL, SOURCE_COPY_PROOF_PLACEMENT,
     SOURCE_COPY_PROOF_ORIGINAL, SOURCE_COPY_PROOF_CONTEXT,
-    SOURCE_COPY_PROOF_SITES, SOURCE_COPY_PROOF_REGISTRY } SourceCopyProofStatus;
+    SOURCE_COPY_PROOF_SITES, SOURCE_COPY_PROOF_REGISTRY, SOURCE_COPY_PROOF_EDITS } SourceCopyProofStatus;
 /** Borrow first failed physical/unit witnesses and retain exact child diagnostics. */
 typedef struct {
     const char *path;
@@ -27,6 +27,8 @@ typedef struct {
     SourceCopyContextIssue context;
     SourceSitesIssue sites;
     SourceRegistryStatus registry_status;
+    const SourceGraphPreparedText *prepared;
+    const SourceTextEdit *edit;
 } SourceCopyProofIssue;
 /** Require admitted original analysis of C's exact capture, sealed C/P,
  * valid immutable final capture and successful
@@ -43,6 +45,13 @@ typedef struct {
  * lost/changed bytes merely because the selected final view compiles.
  * Every final main is a retained original or a C image;
  * copied companions must belong to P, preventing leftover replacement material.
+ * Main-file edits must remain wholly inside explicit original module operands.
+ * Zero-width insertions require strict interior positions: boundary-biased site
+ * projection cannot authorize adding code before or after an operand. The final
+ * whole projected sites must equal actual parsed sites, so a permitted edit
+ * cannot inject unrelated code. Literals, comments, labels, storage suffixes and
+ * implicit requiring constructs are not writable operands. Non-main configuration
+ * edits and other supplemental writes still require their separate outer owners.
  * Then prove complete context obligations and original/copied graph/sites.
  * Drafts and edge-free definitions remain subject to physical checks.
  *

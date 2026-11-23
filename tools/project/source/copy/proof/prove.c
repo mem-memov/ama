@@ -29,6 +29,7 @@ SourceCopyProofStatus source_copy_prove(SourceArena *arena, const SourceAnalysis
     SourceCopyMaterial material;
     issue->material_status = source_copy_material_prepare(arena, files, prepared, &material, &issue->material);
     if (issue->material_status != SOURCE_MATERIAL_OK || !source_copy_proof_material(&material, final->image, &issue->path)) { return SOURCE_COPY_PROOF_MATERIAL; }
+    if (!source_copy_proof_edits(original->original.response.definitions, map, prepared, issue)) { return SOURCE_COPY_PROOF_EDITS; }
     SourceCopyProofStatus units = source_copy_proof_units(map, files, final, removed, count, retired, issue);
     if (units != SOURCE_COPY_PROOF_OK) { return units; }
     if (contexts && source_copy_context_omissions_check(contexts, final, retired.names, retired.count, &issue->context) != SOURCE_COPY_CONTEXT_OK) { return SOURCE_COPY_PROOF_CONTEXT; }

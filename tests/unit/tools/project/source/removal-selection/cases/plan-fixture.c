@@ -3,6 +3,8 @@
  * @see [T283 contract](../../../../../../../docs/implementation/source-operations.md#t283-entry-review-and-execution)
  */
 #include "../../../../../../../tools/project/source/operation/plan/plan.h"
+#include "../../../../../../../tools/project/source/operation/intent/intent.h"
+#include "../../../../../../../tools/project/source/operation/material/material.h"
 #include "../../../../../../../tools/project/source/removal/selection/material.h"
 /** Retain every initialized failure prefix; the plan borrows all other fields. */
 typedef struct {

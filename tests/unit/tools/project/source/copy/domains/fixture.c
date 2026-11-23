@@ -3,6 +3,8 @@
  * @see [T275 contract](../../../../../../../docs/implementation/source-operations.md#t275-entry-review-and-execution)
  */
 #include "../../../../../../../tools/project/source/copy/registry/retirement.h"
+#include "../../../../../../../tools/project/source/operation/intent/intent.h"
+#include "../../../../../../../tools/project/source/operation/material/material.h"
 #include "../../../../../../../tools/project/source/transaction/guard/guard.h"
 /** Test-only owners retire compiler/image borrowers before their original bytes. */
 typedef struct {
@@ -50,7 +52,7 @@ static void domain_begin(DomainFixture *fixture, unsigned mode) {
     for (size_t i = 1; i < sizeof(directories)/sizeof(*directories); i++) { directory(domain_path(fixture, fixture->project, directories[i])); }
     file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/package.ini"), "");
     file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/src/main"), "@!\nhelper&\n./helper\n");
-    file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/src/helper"), "@!\n");
+    file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/src/helper"), "@!\n# stable marker\n");
     file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/tests/main/check"), "@!\n");
     file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/tests/helper/check"), "@!\n");
     fixture->opaque = domain_path(fixture, parent.path, "unrelated opaque"); file(fixture->opaque, "\xff not Ama");

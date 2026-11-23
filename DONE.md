@@ -8708,3 +8708,32 @@ T201. Specification bytes have not changed.
   (3020 maintained file pages, 11571 interfaces). No specification change or
   public preview/application support claim. T276 retains full operation-kind,
   root/client/edit authorization and immutable publication/rebuild intentions.
+
+<a id="t284"></a>
+
+- [x] **T284 — Review physical operation intent, complete material and main-file edits.**
+  Status: completed; extracted from T276's implemented I1/source-I2 steps before
+  their acceptance. Prerequisites: T275, T282 and T283. Certify genuine
+  copy/delete/move source versus replacement cuts, raw placement and self-overlap;
+  reconstruct complete P through shared unit/test/declared-input mappers and
+  compare both set inclusions. Restrict copied main edits to authoritative
+  written path intervals with final site projection. Initialize absent versions
+  against explicit final roots using observed physical mode evidence. Accept real
+  copy/move promotion/root relocation, empty deletion relations, compiling wrong
+  images, omitted test-directory provenance, changed comments/reference suffixes,
+  boundary insertions, legal partial path edits, initialization and measured
+  allocation failures. Run strict compositions, ASan/UBSan, independent tool
+  build, per-file coverage and Doxygen/navigation. This is source-material
+  review, not complete configuration/root/client/write authorization or public
+  command support; T276 retains final sealing. Evidence remains in the existing
+  [I1/I2 record](docs/implementation/source-operations.md#t276-remaining-implementation-steps-after-t283).
+
+  Acceptance: strict complete source-operation suite; ASan/UBSan copy and
+  removal suites (LSan disabled because sandbox ptrace is unsupported, counted
+  allocation teardown checked); independent ama-project build; 3913 ready
+  documentation inputs with zero debt; Doxygen 1.11.0 produced 3043 maintained
+  file pages and 11626 documented interfaces with validated navigation. Actual
+  request/material/main-edit reviewers remain separate mandatory source gates;
+  no complete-plan seal, root/client/configuration authorization or public
+  preview/application support is claimed. Receipts and next entry review are in
+  the linked record. No specification files changed.

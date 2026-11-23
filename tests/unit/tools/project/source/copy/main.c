@@ -27,10 +27,16 @@
 #include "failures.c"
 #include "domains/fixture.c"
 #include "domains/projection.c"
+#include "domains/edits.c"
 #include "domains/proof.c"
+#include "domains/initialization.c"
+#include "domains/overlap.c"
 #include "domains/cases.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_refuses_self_overlap_even_when_the_prepared_image_compiles();
+    it_initializes_version_under_existing_or_missing_final_roots_with_one_image_projection();
+    it_refuses_final_root_initializer_boundaries_and_retires_each_allocation_failure();
     it_assembles_root_replacement_in_one_projection_and_refuses_invalid_final_roots();
     it_retires_every_simultaneous_root_replacement_allocation_failure();
     it_proves_real_promotion_and_root_relocation_without_physical_source_removal();

@@ -77,7 +77,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T284**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T286**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -117,15 +117,33 @@ foundations; do not restart them or infer public support from them.
 The [current checkpoint and task graph](docs/implementation/source-operations.md#current-plan-after-t274)
 identify the concrete owners, retained evidence and next action. The old step log
 in that note is historical; its earlier "next" statements are not the current
-queue. T282 and T283 are accepted; T276 resumes with the common image/proof owner. Each remaining subtask below is a separate
+queue. T282/T283 are accepted; extracted T284 owns acceptance of the new source-material gates, then T285 reviews final supplier changes before T276 resumes. Each remaining subtask below is a separate
 implementation/test/documentation/commit unit and remains unchecked. T224 keeps
 final acceptance; T236 still waits for it. Follow SRC-06, PKG-04/09, PROJECT-01
 and TOOL-01..04 throughout; no task authorizes a new language rule.
 
+<a id="t285"></a>
+
+- [ ] **T285 — Review newly selected untouched definitions after version selection.**
+  Status: planned; extracted by the continuing T276 entry review.
+  Prerequisites: T275 and T284. Reproduce deletion of an unreferenced local
+  package version that reveals its pre-existing ignored dependency copy. Compare
+  current old-or-C-only final-unit proof with TOOL-02/04's independent original/
+  final PKG-02 selection and unchanged physical material. Establish the exact
+  contract before broadening admission; stop for any unresolved observable
+  ambiguity. Reuse common catalog/version selection, distinguish real copied
+  definitions from untouched newly selected suppliers, preserve original
+  incoming-edge/client and unchanged-target laws, and reject arbitrary new code
+  or source-domain augmentation bypass. Accept malformed/unobserved fallback,
+  changed companions, outside old consumers, explicitly handled client roots,
+  successful final compiler evidence and allocation failures. No spec change is
+  authorized by this task. T276 consumes the reviewed registry boundary before
+  completing configuration and root/client/rebuild intentions.
+
 <a id="t276"></a>
 
 - [ ] **T276 — Prepare one complete immutable copy/delete/move plan.**
-  Status: active; entry review completed. Prerequisites: T275, T282 and T283. Extend the shared image plan
+  Status: active; entry review completed. Prerequisites: T275, T282, T283, T284 and T285. Extend the shared image plan
   owner to all supported operations and original/final roots. Join complete
   source/test/companion and declared-input closure, injective identity/physical
   maps, context obligations, original joint deletion/replacement safety, exact

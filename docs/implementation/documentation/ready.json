@@ -202542,6 +202542,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_every_simultaneous_root_replacement_allocation_failure",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_version_under_existing_or_missing_final_roots_with_one_image_projection",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_final_root_initializer_boundaries_and_retires_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -207576,6 +207586,16 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_version_under_existing_or_missing_final_roots_with_one_image_projection",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_final_root_initializer_boundaries_and_retires_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -207617,6 +207637,16 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_version_under_existing_or_missing_final_roots_with_one_image_projection",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_final_root_initializer_boundaries_and_retires_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -207658,6 +207688,16 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_version_under_existing_or_missing_final_roots_with_one_image_projection",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_final_root_initializer_boundaries_and_retires_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -210040,6 +210080,464 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_refuses_mixed_copy_deletion_plan_owners",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/intent/intent.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check genuine copy/delete/move source and raw placement, explicit destination replacement and exact original physical/name removal union without allocation or mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_self_overlap_even_when_the_prepared_image_compiles",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/intent/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check genuine copy/delete/move source and raw placement, explicit destination replacement and exact original physical/name removal union without allocation or mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/intent/check.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check genuine copy/delete/move source and raw placement, explicit destination replacement and exact original physical/name removal union without allocation or mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_self_overlap_even_when_the_prepared_image_compiles",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/intent/placement.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check genuine copy/delete/move source and raw placement, explicit destination replacement and exact original physical/name removal union without allocation or mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_self_overlap_even_when_the_prepared_image_compiles",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/intent/removal.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check genuine copy/delete/move source and raw placement, explicit destination replacement and exact original physical/name removal union without allocation or mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/intent/union.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check genuine copy/delete/move source and raw placement, explicit destination replacement and exact original physical/name removal union without allocation or mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/copy/configuration/mode.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Select actual final-root or closest explicit physical-boundary directory modes for wholly new version initialization without host reads.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_version_under_existing_or_missing_final_roots_with_one_image_projection",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_final_root_initializer_boundaries_and_retires_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/proof/edits.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Permit copied module edits only within explicit original path operands and compose with exact final site projection to preserve other bytes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/domains/initialization.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise initialization under existing or missing final roots, exact empty version discovery, refusal boundaries and every allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_version_under_existing_or_missing_final_roots_with_one_image_projection",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_final_root_initializer_boundaries_and_retires_each_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/domains/overlap.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Independently compile a genuinely prepared self-copy image and reject the explicit operation overlap.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_self_overlap_even_when_the_prepared_image_compiles",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/domains/edits.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Independently compile comment/storage/boundary edits that pass graph sites and distinguish them from authorized interior and prefix operand edits.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/material/logical.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/material/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/material/equal.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/material/explicit.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/material/versions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/material/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/material/material.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/material/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/material/members.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Reconstruct actual raw/unit/test/declared membership and active ordinary placement from genuine original/final plan owners, comparing exact relation sets with destructible failure prefixes.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/material-review/membership.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify actual material reconstruction, every measured allocation failure and a compiling image that omits required test-directory provenance.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/material-review/fixture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify actual material reconstruction, every measured allocation failure and a compiling image that omits required test-directory provenance.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/material-review/failures.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify actual material reconstruction, every measured allocation failure and a compiling image that omits required test-directory provenance.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   }

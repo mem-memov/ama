@@ -4,7 +4,7 @@
 
 This is the current implementation checkpoint, revised on 2026-11-23 from the
 actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
-accepted T275, T282 and T283 below. The public operation is not
+accepted T275, T282, T283 and T284 below. The public operation is not
 complete. [TODO](../../TODO.md#t276) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
@@ -58,7 +58,9 @@ next action; keep prior facts explicitly historical.
 | [T275](../../DONE.md#t275) | T232, T233, T235, T272, T273 and existing T224 foundations | Original/final semantic registries, actual physical mutation/removal and stable observation/coordination are separate in actual capture/plan consumers; T276 consumes them |
 | [T282](../../DONE.md#t282) | T275 | One simultaneous changed-root image through actual assembly and copy-plan consumers; T276 consumes it |
 | [T283](../../DONE.md#t283) | T275, T282 | One shared copy/deletion image and proof owner, with migrated real consumers; T276 supplies remaining authorization |
-| [T276](../../TODO.md#t276) | T275, T282, T283 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
+| [T284](../../DONE.md#t284) | T275, T282, T283 | Request/material/main-edit review and final-root initialization; actual shared image/proof consumers |
+| [T285](../../TODO.md#t285) | T275, T284 | Exact admission boundary for untouched newly selected suppliers after PKG-02 selection |
+| [T276](../../TODO.md#t276) | T275, T282, T283, T284, T285 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
 | [T277](../../TODO.md#t277) | T276 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
 | [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
 | [T279](../../TODO.md#t279) | T278 | Whole multi-tree copy/delete/move/replace publication and repeatable recovery, with writer/reader coordination and same/cross-filesystem failure evidence |
@@ -71,7 +73,9 @@ flowchart TD
     existing[T232 / T233 / T235 / T272 / T273 and T224 foundations] --> roots[T275: distinct domains]
     roots --> assembly[T282: simultaneous final-root assembly]
     assembly --> shared[T283: shared copy and deletion image/proof]
-    shared --> plan[T276: complete immutable plan]
+    shared --> material[T284: source material and edit review]
+    material --> selection[T285: newly selected suppliers]
+    selection --> plan[T276: complete immutable plan]
     plan --> preview[T277: public preview]
     plan --> journal[T278: one-tree apply and recovery]
     preview --> journal
@@ -144,6 +148,148 @@ root/client intentions, build invalidations and one common immutable-plan owner.
 Original augmented-domain preparation must preserve selected original physical
 identities and use the common whole-version selector; merging independently
 selected catalogs is not an acceptable substitute.
+
+### Entry-review split after initial I1/I2 evidence
+
+The implemented physical intent/material/main-edit checks form a finite shared
+review boundary with actual consumers and independent acceptance. Extract it as
+T284 before further metadata work; it includes the required final-root initializer
+refinement. T276 remains incomplete and still requires every source/configuration
+write owner plus root/client/build intentions and sealing. These are extractions
+of already authorized T276 steps, not new language rules or completed-task claims.
+
+The next entry review also identifies the inverse selection case not covered by
+T275's copy promotion: deleting a local version can reveal an untouched ignored
+dependency copy. The current final-unit and graph proof admits only retained
+selected originals or C images. T285 must first reproduce and compare that
+boundary with independent PKG-02 selection, physical preservation and original
+consumer laws, before changing admission. It cannot silently allow arbitrary
+extra definitions, reinterpret ignored SOURCE selection, or bypass augmented
+original analysis. Canonical meaning must be established before implementation;
+any unresolved case follows the ambiguity procedure. No spec change is authorized.
+
+### T276 remaining implementation steps after T283
+
+Current step is **I2**. The preceding **I1** work attaches exact operation intent to the shared prepared image.
+Validate copy/delete/move kind against genuine source selection and raw placement,
+separate move-source/deletion removal from destination replacement, require
+explicit replacement permission and prove the exact combined removal union.
+Reject self-overlap; copying dependencies never authorizes their source removal.
+Exercise real whole-root copy/move with actual final compiler proof, including
+existing/missing destination roots, rather than treating arbitrary image unions
+as complete authorized operations.
+
+**I1 checkpoint.** Added `source/operation/intent` with separate admission,
+raw-placement/overlap and source-versus-replacement/union checks. No synthetic
+valid owners are used. Actual promotion and existing/new-root relocation now
+also prepare a genuine complete source-removal union and prove a MOVE image
+with two disjoint mutation roots through the independent final compiler response.
+Negative cases reject missing source cuts, wrong request kinds, undeclared
+replacement and extra removed material. Copy and deletion strict suites passed:
+`/tmp/ama-t276-intent-copy.exit = 0`,
+`/tmp/ama-t276-intent-removal.exit = 0`. This is initial I1 evidence, not final
+T276 acceptance; broader malformed/overlap/completeness and allocation checks,
+final sealing and documentation generation remain open. No test job remains.
+
+**I2 entry finding.** `source_version_initialize` still derives destination
+version identity and directory modes from original semantic roots. Like the
+pre-T282 image builder, this cannot cover a wholly new missing final root even
+when its physical parent is explicitly observed. Before config/write
+certification, migrate initialization to explicit final semantic roots and
+observed physical mode prototypes, retaining existing-root/carry/conflict
+refusals. This is required implementation of existing TOOL-01/02/04, not a new
+root policy or specification change.
+
+**I2 partial results.** Initialization now consumes explicit final semantic roots
+and retains them in its result. Existing roots supply their actual observed mode;
+missing roots use the closest explicit physical boundary, matching scaffolding.
+A real initializer/image/catalog/environment composition accepts empty versions
+under existing and missing final roots; absent authority, wrong namespace,
+exclusions and every measured allocation failure refuse without changing output.
+Old carried/existing/incomplete-version cases remain in the passing copy suite:
+`/tmp/ama-t276-final-root-initialization.exit = 0`.
+
+Added main-file edit eligibility to the existing full copy proof, with typed
+`SOURCE_COPY_PROOF_EDITS` witnesses. A nonempty edit must be enclosed in an
+explicit original module operand; an insertion must lie strictly inside it.
+Implicit constructs grant no edit authority. Exact final whole-site projection
+remains mandatory, preventing an allowed interval from leaking new code around a
+path. `SourceTextEdits` preserves all bytes outside those intervals; therefore
+labels, literal payloads, comments and storage suffixes remain unchanged without
+lexical guessing. Legitimate relative, rooted, partial-prefix and interior edits
+remain possible when final binding/site laws hold. Non-main/configuration writes
+are deliberately left to their own still-pending authority checks.
+
+Real independently compiled images demonstrate that graph/site checking alone
+accepts changed comments, removed reference suffixes and injected comments at
+both operand boundaries. The new full proof rejects each, while accepting a
+strict interior current-directory insertion and a partial rooted-prefix rewrite.
+The strict whole-copy suite passed all cases:
+`/tmp/ama-t276-main-edit-boundaries.exit = 0`. A genuinely prepared and compiling
+self-copy image is refused by I1 overlap checks; repeated replacement owners use
+idempotent set union (`/tmp/ama-t276-intent-overlap.exit = 0`). Current independent
+tool build passed: `/tmp/ama-t276-partial-build.exit = 0`. These are partial
+T276 receipts, not its final acceptance or a public operation claim.
+
+**Current continuation checkpoint.** Code/registry edits for I1/I2 are
+uncommitted and now owned by active extracted T284; T276 remains incomplete. The strict
+deletion regression completed successfully and its session was collected:
+`/tmp/ama-t276-removal-edits-regression.exit = 0`. No implementation/test or
+Doxygen process remains active at this checkpoint. Further current material
+results and the next action follow below; do not replay collected earlier jobs.
+
+**I2 material-completeness design.** Reconstruct the required physical relation
+from genuine inputs, rather than trusting that a supplied sealed P is complete:
+raw request placement, complete unit causes, deepest associated test membership
+and version-relative declared inputs. Reuse the existing exact mappers and derive
+ordinary active logical destinations again from the actual explicit raw C rows.
+Use actual final selected version scopes for physical version authorities, never
+an ancestor/name guess. Compare reconstructed and supplied sets in both directions
+by original key, destination, kind and bytes. Carried package configuration comes
+only from raw selection; initialization and authorized configuration transformations
+remain separate supplemental-write owners. Unplaced unversioned input remains a
+typed refusal, not an invented location. Context-only copied-unit necessity and
+full operation sealing remain later gates; material reconstruction alone grants
+no request or publication authority. The new review owner must keep all failed
+child prefixes destructible, with finite mapper bounds plus quadratic set checks.
+
+**I2 material results.** Added the rederived review owner under
+`source/operation/material`, with separate explicit-main extraction, actual final
+version storage, ordinary logical candidates, membership composition and two-way
+relation equality. All children have explicit reverse-order teardown and typed
+failure evidence. Actual copy/move promotion and existing/missing-root relocation,
+plus genuine empty deletion relations, pass reconstruction:
+`/tmp/ama-t276-material-review-copy.exit = 0` and
+`/tmp/ama-t276-material-review-removal.exit = 0`.
+
+The cyclic cross-version copy with a binary payload/empty subtree reconstructs
+exactly four mains and ten material entries. Every measured review allocation
+failure retires without changing its prepared original plan. An independently
+compiling image that passes the complete earlier unit/graph/site proof but omits
+an associated test-directory P row is rejected by the new exact membership
+review; silently regenerated scaffolding does not establish captured test-origin
+membership. Full strict copy suite passed this composition:
+`/tmp/ama-t276-material-membership-failures.exit = 0`; its session 33885 completed and was collected. This is initial I2 evidence,
+not final T276 acceptance. Material review does not itself authorize context-only
+copies, configuration/extra writes, roots, client selections or publication.
+
+**Next action.** Complete known configuration/extra-write ownership checks, then
+root/client/build intentions and the final seal. Reuse the actual rederived maps
+and current full proof; do not create a command-specific planner or synthesize
+valid closure/context owners. Broaden malformed intent, context-necessity,
+empty/draft and failure compositions; final sanitizers and Doxygen/coverage for
+all current input bytes are still required. No task completion or commit of
+unfinished T276 is authorized merely by these partial checks.
+
+Then **I2**: account for complete raw/unit/test/declared/configuration material and
+trace every extra write to its actual typed prepared owner/authorization. **I3**:
+record/validate original/final roots, explicit client selections, known writable
+fields and owned rebuild intentions; unknown external formats are reported without
+patching. **I4**: seal the one complete immutable plan only after all those gates
+and its actual final compiler/site proof, with allocation/failure/composition
+acceptance and removal of superseded interfaces. These are steps of unfinished
+T276, not completed tasks or new specification rules. Public preview/publication
+remain T277 onward. No implementation job is active at this entry checkpoint.
 
 ## T283 entry review and execution
 
@@ -4684,3 +4830,35 @@ no tokens in preprocessed C, interfaces, rule links or coverage mappings. Full
 process-interruption journal recovery/public commands remain pending. Continue
 with the physical publication owner and durable journal handoffs described above;
 T224 stays active and later TODO tasks remain blocked on its final acceptance.
+
+## T284 acceptance
+
+The extracted I1/source-I2 boundary is accepted independently; T276 remains
+unfinished. Genuine copy/delete/move requests now validate exact original and
+replacement cuts, raw placement and self-overlap. Reconstructed physical
+relations account for unit, associated-test and declared-input membership in
+both directions. Copied main edits require authoritative written operand
+intervals and exact final site projection. Final-root version initialization
+uses observed mode evidence without host reads. Actual wrong images can compile
+and pass the former graph proof while these new gates correctly refuse them.
+
+Final unchanged-code receipts:
+
+- `/tmp/ama-t284-source-strict.exit = 0`: strict complete source-operation suite.
+- `/tmp/ama-t284-copy.exit = 0` and `/tmp/ama-t284-removal.exit = 0`: strict
+  ASan/UBSan suites, including measured allocation failures and owner teardown.
+  LSan is disabled under unsupported sandbox ptrace; no LSan success is claimed.
+- `/tmp/ama-t284-build.exit = 0`: independent ama-project build.
+- `/tmp/ama-t284-docs.exit = 0`: 3913 ready inputs, zero explicit debts.
+- `/tmp/ama-t284-doxygen.exit = 0`: Doxygen 1.11.0, 3043 maintained file pages,
+  11626 documented interfaces, 495 canonical destinations and 9473 HTML pages.
+- Task graph, canonical requirement index and prose links pass the maintained
+  navigation checker. Final archival navigation refresh follows before commit.
+
+All source-test, coverage, tool and first Doxygen sessions completed and were
+collected. Code acceptance is complete; no source implementation changed during
+those runs. T284 is archived in DONE; T285 is the next ready entry review.
+T276 still owns context necessity, complete supplemental-write authorization,
+root/client/rebuild intentions and final immutable sealing; public commands
+remain later tasks. The earlier I1/I2 checkpoints are historical intermediate
+evidence, not current active-job or unfinished-T284 statements.

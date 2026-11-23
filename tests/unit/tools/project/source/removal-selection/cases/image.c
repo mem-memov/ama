@@ -14,6 +14,14 @@ static void it_prepares_actual_removals_through_final_compiler_and_surviving_bin
         RemovalPlanFixture fixture;
         assert(removal_plan_fixture_build(&fixture, &removal) && fixture.plan.prepared);
         SourceOperationPlan *image = &fixture.plan;
+        SourceOperationIntent intent = {.kind = SOURCE_OPERATION_DELETE, .source = removal.tree, .source_removal = &removal};
+        SourceOperationIntentIssue intent_issue;
+        assert(source_operation_intent_check(image, &intent, &intent_issue) == SOURCE_OPERATION_INTENT_OK);
+        SourceOperationMaterialReview material_review; source_operation_material_init(&material_review, sources.allocator);
+        assert(source_operation_material_build(&material_review, image, &intent) == SOURCE_OPERATION_MATERIAL_OK && material_review.valid && !material_review.expected.first);
+        source_operation_material_destroy(&material_review);
+        intent.source_removal = NULL;
+        assert(source_operation_intent_check(image, &intent, &intent_issue) == SOURCE_OPERATION_INTENT_INVALID);
         size_t expected = 0;
         for (const SourceCapturedUnit *old = capture.units; old; old = old->next) {
             bool removed = false;
