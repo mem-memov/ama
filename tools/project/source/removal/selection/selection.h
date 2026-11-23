@@ -79,6 +79,24 @@ void source_removal_selection_destroy(SourceRemovalSelection *);
  */
 SourceRemovalSelectionStatus source_removal_selection_build(SourceRemovalSelection *,
     const SourceTreeSelection *, SourceAnalysis *, const SourceDeclaredGroup *);
+/** Union one or more valid selections from exactly the same capture and analysis
+ * into a fresh initialized selection. Borrow every contributing selection until
+ * the merged selection and all its consumers retire; groups and input-list nodes
+ * are copied, while observed bytes and occurrence owners remain borrowed.
+ * Reuse the exact physical index: repeated paths must agree in kind and bytes;
+ * identities are derived from that union, including drafts. Deduplicate identical
+ * original input occurrences by owner, path, span and exact origin bytes, never
+ * just by target path. Review the union once, not each part independently.
+ * No I/O, dependency expansion, source mutation or final-graph authorization.
+ * Invalid admission leaves the fresh output unattempted; allocation/observation
+ * failure leaves an owned invalid prefix for destroy, never a valid partial set.
+ * Finite group/file/input scans terminate; with F physical entries, I uses and
+ * U original units, time is O(F² + I² + UF + U²) comparisons and space O(F+I+U)
+ * plus retained group reasons. Original cuts, final proof and publication remain
+ * separate requirements under [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03).
+ */
+SourceRemovalSelectionStatus source_removal_selection_merge(SourceRemovalSelection *,
+    const SourceRemovalSelection *const *, size_t);
 /** Check both original graph/input and client-root cuts against this exact set.
  * Captured configuration/native inputs and all supplied declaration uses are
  * included automatically for active original owners. inputs adds separately

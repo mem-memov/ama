@@ -9,8 +9,11 @@
 #include "cases/review.c"
 #include "cases/failures.c"
 #include "cases/image.c"
+#include "cases/merge.c"
 /** Run actual missing/present test material, exact original cuts, overlap and allocation ownership. */
 void run(void) {
+    it_merges_joint_original_cuts_and_proves_the_actual_final_image();
+    it_retires_merged_removal_failures_and_rejects_foreign_owners();
     it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks();
     it_refuses_blocked_changed_and_structurally_expanded_removal_images();
     it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs();

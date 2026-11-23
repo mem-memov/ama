@@ -197353,6 +197353,16 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_refuses_new_companion_presence_and_known_directory_to_file_contradictions",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_merges_joint_original_cuts_and_proves_the_actual_final_image",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_merged_removal_failures_and_rejects_foreign_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -197448,6 +197458,16 @@
       {
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_refuses_new_companion_presence_and_known_directory_to_file_contradictions",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_merges_joint_original_cuts_and_proves_the_actual_final_image",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_merged_removal_failures_and_rejects_foreign_owners",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
@@ -197944,6 +197964,16 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_refuses_new_companion_presence_and_known_directory_to_file_contradictions",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_merges_joint_original_cuts_and_proves_the_actual_final_image",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_merged_removal_failures_and_rejects_foreign_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ],
     "standalone_header_command": [
@@ -198371,6 +198401,16 @@
       {
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_merges_joint_original_cuts_and_proves_the_actual_final_image",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_merged_removal_failures_and_rejects_foreign_owners",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
@@ -207420,6 +207460,38 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
         "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/removal/selection/merge.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join original removal selections before a single survivor-cut review.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_merges_joint_original_cuts_and_proves_the_actual_final_image",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_merged_removal_failures_and_rejects_foreign_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/cases/merge.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check joint original cuts, final images, exact owners and allocation failures.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_merges_joint_original_cuts_and_proves_the_actual_final_image",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_merged_removal_failures_and_rejects_foreign_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   }

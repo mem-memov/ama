@@ -3738,3 +3738,49 @@ Strict copy/mapping and actual final compiler/site composition passed as above.
 All launched runs have been collected. T224 remains active; next join original
 removal sets for move plus replacement before their single safety review, then
 complete operation planning, public commands and recoverable publication.
+
+### Joint original removal selection for move with replacement
+
+A move with replacement removes two original domains simultaneously. Reviewing
+individual cuts would spuriously retain an edge whose owner belongs to the other
+removed domain. Prepare their union first, then use the existing original-cut,
+client-root, material/image and final-proof consumers. `selection/merge.c` borrows
+valid selections with pointer-identical original capture and admitted analysis;
+it copies reason groups and input-list nodes into its own arena. Input occurrences
+are deduplicated by exact original owner, path, span and origin bytes, so repeated
+automatic configuration/native uses do not duplicate diagnostics. Distinct owners
+or spans remain distinct. The existing physical index checks equal repeated path
+observations and derives the exact original main set including drafts. No outgoing
+dependency traversal or final replacement availability changes the original cut.
+
+The inductive invariant after each input part is that retained groups cover exactly
+its prefix union and retained uses represent exactly that prefix's occurrences.
+Indexing computes one sorted physical key per equal observation; contradictory
+kind/bytes refuse. Original identities are precisely captured mains whose physical
+keys belong to that union. Finite input scans terminate without recursive graph
+expansion. All copied nodes are arena-owned; original text/groups remain borrowed
+until merged consumers retire. A failed prefix is invalid and destroyable, never
+reviewable. No source I/O/mutation occurs in merging.
+
+Acceptance planned: two actual mutually referencing original modules are blocked
+individually but jointly removable; repeated input selections are idempotent;
+explicit client roots still block. Feed the union into actual immutable removal
+image assembly, independent final compiler and exact binding/site proof. Check
+foreign capture/analysis, contradictory repeated physical observations and every
+merge allocation ordinal. T224 stays active; public orchestration and recoverable
+publication remain unfinished. Strict leaf run is active in
+`/tmp/ama-t224-merged-removals.log` (session 24270); collect its actual exit.
+
+Joint-removal acceptance completed: strict leaf
+(`/tmp/ama-t224-merged-removals.exit = 0`), full leaf ASan/UBSan with recorded
+non-PIE flags/LSan restriction
+(`/tmp/ama-t224-merged-removals-sanitizers.exit = 0`), independent tool build
+(`/tmp/ama-t224-merged-removals-tool.exit = 0`), and `make docs-check`
+(`/tmp/ama-t224-merged-removals-registry.exit = 0`, 3822 ready inputs, zero debts).
+The mutual-reference case uses the real compiler before and after simultaneous
+removal and the production final binding/site proof. All merge allocation
+ordinals retire; repeated physical/input membership is idempotent, foreign
+owners and contradictory kinds refuse. All active jobs collected. Next integrate
+final-copy proof over actual C/P placement, prepared image/compiler input,
+context obligations and graph sites; final configuration sets and operation
+publication remain independent mandatory gates. T224 is not complete.
