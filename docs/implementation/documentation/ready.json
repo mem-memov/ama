@@ -189495,6 +189495,31 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
       }
     ]
   },
@@ -213218,6 +213243,653 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
         "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/command/source/request.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/parse.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tools/project/command/source/reserve.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tools/project/command/source/finish.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tools/project/command/source/options.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tools/project/command/source/consume.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tools/project/command/source/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/command/source/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tools/project/command/source/exclusions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tools/project/source/operation/kind.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_self_overlap_even_when_the_prepared_image_compiles",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/mode.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Recognize exact explicit source-operation arguments, preserve raw root/exclusion provenance and typed policies, and retire all invalid/resource-failed prefixes without I/O or compiler-state dependencies.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_composes_every_copy_dependency_mode_with_actual_cycles_tests_and_standard_targets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_explicit_standard_and_draft_tree_selections_without_invented_tests",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_preserves_empty_raw_material_and_checks_original_ownership_before_empty_closure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_missing_and_only_open_required_tests_using_actual_compiler_admission",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_ignored_version_selection_before_structural_preparation_or_test_probes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_invalid_copy_selection_and_mode_interfaces_without_provider_effects",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_includes_declared_module_data_in_default_copy_mode_with_its_real_tests",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_changed_original_unit_bytes_and_new_companions_before_copy_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_every_copy_owner_allocation_for_default_dependency_and_declared_data_compositions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/tools/project/source/request/main.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify source-request syntax, exact explicit scope binding, stable ownership and every measured resource-failure prefix through independently runnable assertion cases.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/request/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify source-request syntax, exact explicit scope binding, stable ownership and every measured resource-failure prefix through independently runnable assertion cases.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/request/failures.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify source-request syntax, exact explicit scope binding, stable ownership and every measured resource-failure prefix through independently runnable assertion cases.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/request/refusals.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify source-request syntax, exact explicit scope binding, stable ownership and every measured resource-failure prefix through independently runnable assertion cases.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/request/common.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify source-request syntax, exact explicit scope binding, stable ownership and every measured resource-failure prefix through independently runnable assertion cases.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/request/Makefile": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify source-request syntax, exact explicit scope binding, stable ownership and every measured resource-failure prefix through independently runnable assertion cases.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_recognizes_explicit_source_operation_modes_and_policies_without_effects",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_preserves_root_families_exact_argument_indices_and_order_independent_exclusions",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_incomplete_unknown_repeated_and_conflicting_source_arguments",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_refuses_ambiguous_root_scope_and_noncanonical_exclusion_keys",
+        "command": "make -C tests/unit/tools/project/source/request"
+      },
+      {
+        "source": "tests/unit/tools/project/source/request/main.c",
+        "case": "it_retires_every_source_request_allocation_and_preserves_repeat_results",
+        "command": "make -C tests/unit/tools/project/source/request"
       }
     ]
   }

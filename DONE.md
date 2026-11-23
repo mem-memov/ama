@@ -8809,3 +8809,37 @@ T201. Specification bytes have not changed.
   fixture assumptions, documentation refusals, exact commands/receipts and the
   remaining freshness/publication boundary are retained in the
   [task record](docs/implementation/source-operations.md#t276-resumed-entry-review-after-t285).
+
+<a id="t286"></a>
+
+- [x] **T286 — Recognize explicit source-operation requests.**
+  Status: completed; T277 entry review established the missing command boundary.
+  Prerequisite: T276. Add an independently tested, owned project-side parser for
+  copy/delete/move, source/destination operands, exactly one preview/apply mode,
+  exclusive dependency options, safe replacement permission, explicit root kinds,
+  root exclusions, destination-root choices and compiler selection. Retain raw
+  argv provenance without filesystem access or namespace inference. Validate the
+  whole request before publishing output, reject unknown/missing/repeated or
+  conflicting flags and delete-only incompatibilities, and retire every failed
+  allocation prefix. Preserve the existing working init command. T287 consumes
+  this real request; public preview/unsupported-apply dispatch acceptance remains
+  T277, so a parser result alone must not advertise working source operations.
+
+  Delivered the side-effect-free owned source request with exact positional/option
+  arities, explicit root families/scoped exclusions, stable argv provenance and
+  typed operation/dependency modes shared with actual semantic consumers. Repeated,
+  conflicting, missing and out-of-scope options refuse without publishing partial
+  data; every measured allocation prefix is retired. Init dispatch remains unchanged.
+  Its stale unit Makefile now links only actual initialization consumers while
+  retaining separately executed full-tool acceptance, rather than indiscriminately
+  linking all planners with incomplete library dependencies.
+
+  Acceptance: strict complete source parent, existing command and actual initializer
+  regressions; ASan/UBSan request leaf; independent ama-project build; 4015 ready
+  documentation inputs/zero debt. Doxygen 1.11.0 checked 3144 file pages, 11880
+  interfaces and all 495 canonical destinations. LSan remains unavailable under
+  sandbox ptrace; explicit live-allocation teardown is checked separately.
+  The [task record](docs/implementation/source-operations.md#t286-request-contract-and-first-results)
+  retains contracts, the corrected harness refusal, commands and successful receipts.
+  No spec changes or public source preview/apply claim. T287 is the next consumer;
+  T277 retains real CLI acceptance after preparation and reporting.

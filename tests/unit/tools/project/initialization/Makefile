@@ -1,12 +1,11 @@
 # @file
-# @brief Verify real isolated project commands, publication, cancellation and concurrency.
+# @brief Verify initializer composition and the real tool without linking unrelated project planners into its unit harness.
 # Contract: ../../../../../docs/implementation/project-tool.md.
 ROOT := $(abspath ../../../../..)
 include $(ROOT)/make/sources.mk
-LOCAL_SOURCES := main.c $(filter-out $(ROOT)/tools/project/main.c,$(call source_files,$(ROOT)/tools/project))
+LOCAL_SOURCES := main.c $(ROOT)/tools/project/command/request.c $(ROOT)/tools/project/command/run.c \
+    $(call source_files,$(ROOT)/tools/project/init)
 TEST_DEFINES := -DPROJECT_EXECUTABLE='"$(ROOT)/ama-project"'
-include $(ROOT)/tools/project/sources.mk
-SOURCES := $(PROJECT_TOOL_SHARED_SOURCES)
 include ../../../../leaf.mk
 .PHONY: project-tool
 build: project-tool

@@ -8,9 +8,7 @@
 #ifndef AMA_SOURCE_OPERATION_INTENT_H
 #define AMA_SOURCE_OPERATION_INTENT_H
 #include "../plan/plan.h"
-/** Move copies selected material and removes its original; extra dependencies
- * remain originals. Deletion introduces no copies or replacement permission. */
-typedef enum { SOURCE_OPERATION_COPY, SOURCE_OPERATION_DELETE, SOURCE_OPERATION_MOVE } SourceOperationKind;
+#include "../kind.h"
 /** Borrow genuine immutable source/placement and removal owners through review.
  * source_removal is present exactly for DELETE/MOVE and must belong to source.
  * replacements are complete existing destination selections, not arbitrary

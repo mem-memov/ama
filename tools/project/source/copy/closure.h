@@ -9,11 +9,7 @@
 #define AMA_PROJECT_SOURCE_COPY_CLOSURE_H
 #include "../expansion/expansion.h"
 #include "../selection/domain.h"
-/** Membership for default/extend is the same; permission extension is a later
- * explicit configuration operation, never performed by closure preparation.
- */
-typedef enum { SOURCE_COPY_KEEP_EXTERNAL, SOURCE_COPY_EXTEND_PACKAGE,
-    SOURCE_COPY_CLONE_DEPENDENCIES } SourceCopyDependencyMode;
+#include "mode.h"
 /** Preserve the failing stage instead of inferring it from compiler diagnostics. */
 typedef enum { SOURCE_COPY_CLOSURE_OK, SOURCE_COPY_CLOSURE_INVALID,
     SOURCE_COPY_CLOSURE_DOMAIN, SOURCE_COPY_CLOSURE_PREPARATION,

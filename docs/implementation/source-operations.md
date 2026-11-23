@@ -5,7 +5,7 @@
 This is the current implementation checkpoint, revised on 2026-11-23 from the
 actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
 accepted T275, T282, T283, T284, T285 and T276 below. The public operation is not
-complete. [TODO](../../TODO.md#t277) owns current task status; canonical behavior
+complete. [TODO](../../TODO.md#t287) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
 [PKG-04/09](../../spec/project/packages.md#pkg-04) and
@@ -61,7 +61,10 @@ next action; keep prior facts explicitly historical.
 | [T284](../../DONE.md#t284) | T275, T282, T283 | Request/material/main-edit review and final-root initialization; actual shared image/proof consumers |
 | [T285](../../DONE.md#t285) | T275, T284 | Exact admission boundary for untouched newly selected suppliers after PKG-02 selection |
 | [T276](../../DONE.md#t276) | T275, T282, T283, T284, T285 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
-| [T277](../../TODO.md#t277) | T276 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
+| [T286](../../DONE.md#t286) | T276 | Explicit side-effect-free source request; T287 consumes it |
+| [T287](../../TODO.md#t287) | T276, T286 | Actual command-owned captured inputs and single complete plan; T288/T277 consume it |
+| [T288](../../TODO.md#t288) | T276, T287 | Deterministic actual-plan/refusal report; T277 consumes it |
+| [T277](../../TODO.md#t277) | T276, T286, T287, T288 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
 | [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
 | [T279](../../TODO.md#t279) | T278 | Whole multi-tree copy/delete/move/replace publication and repeatable recovery, with writer/reader coordination and same/cross-filesystem failure evidence |
 | [T280](../../TODO.md#t280) | T275, T276, T279 | Prepared root/client selection, metadata and rebuild consequences publish/recover with those sources |
@@ -76,7 +79,11 @@ flowchart TD
     shared --> material[T284: source material and edit review]
     material --> selection[T285: newly selected suppliers]
     selection --> plan[T276: complete immutable plan]
-    plan --> preview[T277: public preview]
+    plan --> request[T286: explicit source request]
+    request --> inputs[T287: captured command inputs]
+    plan --> inputs
+    inputs --> reports[T288: actual plan and refusal reports]
+    reports --> preview[T277: public preview]
     plan --> journal[T278: one-tree apply and recovery]
     preview --> journal
     journal --> publish[T279: multi-tree transactions]
@@ -98,14 +105,14 @@ existing dependencies; do not switch to it to bypass unfinished source work.
 
 ### Next action and acceptance safeguards
 
-Resume T276 with the actual plan/image/removal/configuration interfaces after accepted T282. Its entry
-review accounts for T275's accepted physical envelopes, explicit final
-semantic roots and independent registry retirement. The remaining gap is one
-complete immutable operation plan: T283 now unifies copy/deletion image preparation and final proof. Complete that
-shared owner with operation-kind/source-versus-replacement removal provenance,
-explicit root/client/configuration authority and rebuild intentions;
-do not restart the accepted wire, closure, image, lease, record or owned-tree
-foundations. Public commands and durable publication remain later gates.
+T276 is accepted in `00eb74eb`: reuse its actual complete prepared/sealed
+operation owner. T277 entry review found that the command adapter still recognizes
+only init, and no command-owned original/destination observation pipeline or preview
+report consumer exists. Accepted [T286](../../DONE.md#t286) supplies the explicit request; T287 is next
+for entry review and composes actual
+captures/analysis/closure/writers into T276, and T288 reports that same owned result.
+T277 retains real public command and byte-exact no-mutation acceptance. Do not
+restart accepted source, graph, map, scope, image or proof algorithms.
 
 T277 must exercise the real command executable before further private publication
 work. T278 must perform a real controlled process kill and reopen from another
@@ -5388,3 +5395,159 @@ retain durable publication/recovery and metadata application. No spec files were
 changed. Regenerate Doxygen once more after this archival Markdown change so the
 reference fingerprints describe the committed inputs; this does not require a
 repeat of unchanged behavioral or header checks.
+
+
+## T277 entry review after accepted T276
+
+Repository entry: `00eb74eb`, clean. Read current TOOL-01..04, PROJECT-01,
+actual command request/run interfaces, init consumers, physical capture/root and
+process adapters, mapping/destination/closure APIs and the complete T276 owner.
+The independent executable builds and all semantic/physical proof foundations are
+accepted. Its command adapter still consumes an init-only borrowed request; there
+is no source-operation dispatcher or command-owned preparation/report pipeline.
+The absence of these real consumers is an integration gap, not a new language rule.
+
+The task is split into stable T286/T287/T288 prerequisites with T277 retaining
+public executable acceptance. T286 has an independently working parser contract
+and T287 is its explicit implementation consumer; no placeholder public preview
+or misleading apply behavior is introduced merely to expose parsed requests.
+T287 owns all acquired local snapshots and private request files needed by
+compiler analysis; its final authority is T276, not a duplicate command planner.
+T288 only reports that owner or its precise failed evidence. T277 wires public
+preview and explicitly refuses unsupported apply until T281.
+
+T286 begins with exact positional operands followed by explicit options; source
+paths remain physical arguments. Reuse conventional --root/--standard-root names
+and optional explicit --compiler instead of importing compiler mutable option
+owners or guessing namespace from a directory name. Exact root/exclusion and
+additional destination-root rows remain request data until neutral physical
+normalization/catalog admission. Repeated/conflicting scalar modes/options
+refuse; there is no inferred source root, standard library location or dependency
+mode. The parser executes no I/O/processes. Detailed API/option spelling and tests
+are recorded here as the narrow parser is implemented. Root/client persistence
+continues to require a documented external field owner; no package.ini fields or
+new project-wide configuration file are invented.
+
+Current step: T286 interface and small recognition/assembly/validation components,
+with positive/negative/boundary and per-allocation tests. No task is complete and
+no T277 public support is claimed. No specification changes are authorized or
+needed for this engineering decomposition. All T276 acceptance jobs are collected.
+
+### T286 request contract and first results
+
+`command/source` owns a side-effect-free request over borrowed argv. It shares
+only narrow neutral operation/dependency enums and root descriptors; enum
+categories were extracted from the existing intent/closure headers without
+changing their values or introducing a duplicate policy. The existing init
+adapter remains unchanged. T287 is the explicit source-request consumer; source
+commands are not publicly advertised or dispatched by this parser task alone.
+
+The grammar is positional `copy/move SOURCE DESTINATION OPTIONS` or
+`delete SOURCE OPTIONS`. Exactly one --preview/--apply and at least one explicit
+--root/--standard-root are required. The mutually exclusive dependency flags and
+--replace retain TOOL-01 meanings; delete rejects those flags and destination
+options. --compiler FILE borrows one literal program operand; absent means the
+literal program name `ama` for later ordinary PATH lookup, without environment
+reads during parsing. --destination-root/--destination-standard-root only record
+explicit final root choices. `--exclude ROOT RELATIVE` and
+`--destination-exclude ROOT RELATIVE` bind to the exact raw root argument in the
+corresponding list, even when the exclusion appears first. They do not bind by
+prefix, basename or filesystem equivalence. Aliased physical roots are a later
+common capture check. No root/vendor/version/executable configuration fields,
+new project file, root-family inference or cross-version permission inference
+are introduced.
+
+Scalar repeats, conflicting modes/policies, equal raw root duplicates, unknown
+options, missing/empty values and repeated exclusions refuse. Exclusions are
+exact relative physical keys with no empty, '.' or '..' components; arbitrary
+physical component byte spelling is otherwise preserved. Operand/value arities
+are exact: a value is one literal argv entry, not a shell expression or a
+--key=value convenience form. The original argv index is retained for each root
+and the first refusal. Namespace, filesystem existence, final placement and
+compilation authority are deliberately not parser results.
+
+Correctness/termination: each parser step consumes one option plus its fixed
+arity, so the remaining argv suffix strictly decreases. Appended rows consume
+separate argv occurrences and fit checked A-entry arrays. Distinct raw root keys
+make each exclusion's exact scope unique. Every attached exclusion comes from
+one validated raw row, and each raw row attaches exactly once; bidirectional
+scans preserve original per-root order. A single valid flag publishes output
+only after modes, root counts and all scoped rows pass. Failed arrays/prefixes
+belong to the request arena; single-attempt admission preserves prior results.
+There are O(A squared) token/key comparisons, O(A*B) byte work for A arguments/B
+spelling bytes, and O(A) metadata/pointer storage. No host/process calls occur.
+
+Initial strict request leaf passed in `/tmp/ama-t286-request.log` (`.exit=0`):
+command/mode/policy/replacement combinations, explicit family/index provenance,
+forward exclusions, exact grammar/category/refusal boundaries and every measured
+allocation. Added standard-only and reversed conflicting-family boundaries still
+need the final collected run. Next: finish component/real init regression,
+sanitisers, independent build, per-file/Doxygen gates; T286 remains unfinished.
+
+T286 final-entry checkpoint: code frozen for strict source-parent session **15565**
+(`/tmp/ama-t286-final-parent.log`), official coverage session **73685**
+(`/tmp/ama-t286-final-coverage.log`) and independent tool-build session **9283**
+(`/tmp/ama-t286-final-build.log`). Every run writes a sibling `.exit` receipt.
+The unchanged init-command parser regression already collected zero in
+`/tmp/ama-t286-final-command.exit`. The source parent includes the new request
+leaf and actual intent/closure consumers of the extracted neutral enums; do not
+run its child leaves concurrently. After build/source parent finish, run the real
+initialization executable regression and sanitized request leaf, then Doxygen.
+T286 remains unfinished; no source-operation public dispatch is claimed.
+
+T286 final behavior results are collected: strict complete source-parent
+`/tmp/ama-t286-final-parent.exit=0`, independent tool build
+`/tmp/ama-t286-final-build.exit=0`, init request regression
+`/tmp/ama-t286-final-command.exit=0`, and official coverage
+`/tmp/ama-t286-final-coverage.exit=0` (**4015 ready inputs, zero debt**).
+The request sanitizer leaf also passed in `/tmp/ama-t286-final-sanitizer.exit`
+using strict C11 plus ASan/UBSan/non-PIE flags and the previously documented
+sandbox environment. Every measured request allocation is checked separately;
+no LeakSanitizer success is claimed.
+
+The real initializer regression exposed a stale harness dependency boundary:
+its LOCAL_SOURCES indiscriminately linked every project planner, while SOURCES
+included only a small neutral subset. The link therefore lacked catalog/capture,
+SourceManager and other libraries long before exercising init. The failed
+`/tmp/ama-t286-final-initialization.log` records the actual unresolved symbols.
+Consumer inspection shows this harness calls only the actual init request/run
+adapter and initializer, plus a separately executed full ama-project binary.
+Its Makefile now links exactly those actual unit consumers; it does not mask
+missing libraries by linking an ever-growing unrelated planner set. The existing
+real-executable prerequisite still builds the complete tool. Collect the corrected
+`/tmp/ama-t286-initialization-corrected.exit` before claiming init acceptance.
+This changes no source-operation or initializer product behavior.
+
+Next: validate final Makefile/current interfaces and generated Doxygen reference,
+then archive/commit T286 and enter T287 against the actual request owner. No
+behavior/source test jobs remain after collecting the corrected initialization;
+no public source preview/apply is claimed. No specification files changed.
+
+Corrected initialization composition/executable regression collected zero in
+`/tmp/ama-t286-initialization-corrected.exit`. Official post-Makefile coverage
+also collected zero in `/tmp/ama-t286-final-coverage-after-init.exit` (4015 ready,
+zero debt). Enum header evidence is now explicitly split: shared enum headers
+list both parser and actual semantic consumers, while their enclosing intent/
+closure headers retain their real copy/removal consumer cases rather than claim
+a parser leaf includes them. Final metadata and Doxygen checks run on this frozen
+registry; no behavior/interface code changed after the collected source-parent,
+request sanitizer and initialization results.
+
+
+### T286 accepted request boundary
+
+All final results are collected: reviewed metadata coverage
+`/tmp/ama-t286-final-reviewed-coverage.exit=0` (**4015 ready inputs, zero debt**)
+and Doxygen `/tmp/ama-t286-final-reviewed-doxygen.exit=0` (**3144 maintained
+file pages, 11880 interfaces, 495 canonical destinations, 9755 total pages**).
+Strict affected source-parent, request sanitizer, complete tool build and both
+init parser/real initializer results are recorded above. No implementation job
+remains active and no specification file changed. Doxygen uses the same pinned
+1.11.0/markdown-it-py 3.0.0/Python 3.14.4 toolchain as T276.
+
+The full T286 record is in [DONE](../../DONE.md#t286). The current next action is
+T287 entry review: turn this actual request into captured original/destination
+facts, typed writers and T276's complete owner, reusing existing exact child
+algorithms. T288/T277 still own reports/public CLI acceptance. The unchanged
+public init dispatcher is not evidence of source-operation support. Regenerate
+Doxygen for these archived Markdown inputs before the task commit.

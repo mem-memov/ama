@@ -77,7 +77,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T286**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T289**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -120,15 +120,48 @@ in that note is historical; its earlier "next" statements are not the current
 queue. T282 through T285 and [T276](DONE.md#t276) are accepted. The complete
 immutable operation owner joins their image, request, material, edit and supplier
 gates with configuration/root/client authority and actual final sealing. T277
-is next for entry review and public preview integration. Each remaining subtask below is a separate
+retains public preview acceptance; [T286](DONE.md#t286) request recognition is
+accepted and T287 is next for preparation entry review. Each remaining subtask below is a separate
 implementation/test/documentation/commit unit and remains unchecked. T224 keeps
 final acceptance; T236 still waits for it. Follow SRC-06, PKG-04/09, PROJECT-01
 and TOOL-01..04 throughout; no task authorizes a new language rule.
 
+<a id="t287"></a>
+
+- [ ] **T287 — Prepare captured command inputs through the complete operation owner.**
+  Status: planned. Prerequisites: T276 and T286. Own explicit configured O,
+  common augmented-original U and final F roots; safe source/destination resolution,
+  private compiler-request workspace, genuine original analysis and closure,
+  complete logical/physical maps and necessary context providers. Derive exact
+  replacement/source cuts, main edits, required new-version initialization and
+  typed package/module writers, then invoke T276's single complete prepare/seal
+  path. Reuse the accepted child algorithms; no second operation planner, invented
+  root/configuration owner or command-specific binding law. Record exact refusal
+  witnesses and all retained owners. Accept real copy/delete/move and root-preserving
+  and changed-root compositions, clones/permissions, cycles, collisions, invalid
+  source domains and every preparation/resource failure. No source/acquisition/
+  native/test/CMake effects; scratch must be operation-owned and source inputs
+  unchanged. T288 and T277 consume the same complete result.
+
+<a id="t288"></a>
+
+- [ ] **T288 — Report complete source plans and precise preflight refusals.**
+  Status: planned. Prerequisites: T276 and T287. Add deterministic project-side
+  reports over the actual complete owner and its failed children. List roots and
+  selection boundaries, C/P, cuts/replacements, text/configuration changes,
+  retained external and opaque material, client dispositions, generated-state
+  rebuild intentions and unknown-format boundaries. Preserve exact definition,
+  source occurrence and target witnesses rather than inferring causes from stderr.
+  Report compiler diagnostics as their observed child stage. Check success and
+  failure reports, empty/draft/static/native/test compositions, arbitrary path
+  bytes and output-stream errors without weakening source safety. No source
+  mutation or independent planning. T277 adds the real executable acceptance.
+
 <a id="t277"></a>
 
 - [ ] **T277 — Expose real source-operation previews.**
-  Status: planned. Prerequisite: T276. Connect public ama-project copy/delete/move
+  Status: active parent; entry review split the missing command layers into T286–T288.
+  Prerequisites: T276, T286, T287 and T288. Connect public ama-project copy/delete/move
   request recognition and --preview to the actual immutable plan. Enforce exactly
   one --preview/--apply, explicit dependency policies and safe --replace; report
   exact maps, removals, configuration/root/client changes, retained material,
